@@ -4,6 +4,11 @@
     "ember": "~2.4.3",
     "ember-cli-shims": "0.1.1",
     "ember-cli-test-loader": "0.2.2",
-    "ember-qunit-notifications": "0.1.0"
+    "ember-qunit-notifications": "0.1.0",
+    "semantic-ui-daterangepicker": "5d46ed2e6e5a0bf398bb6a5df82e06036dfc46be",
+    "flatpickr-calendar": "git://github.com/chmln/flatpickr.git#2.3.4",
+    "blueimp-file-upload": "9.11.2",
+    "devicejs": "0.2.7",
+    "semantic-ui": "^2.2.10"
   }
 }

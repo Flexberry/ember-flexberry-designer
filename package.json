@@ -1,7 +1,7 @@
 {
   "name": "ember-flexberry-designer",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.1.0-alpha01",
+  "description": "CASE addon for ember-flexberry applications",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,35 +11,58 @@
     "start": "ember server",
     "test": "ember try:testall"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Flexberry/ember-flexberry-designer.git"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": {
+    "name": "Flexberry Team",
+    "email": "mail@flexberry.net",
+    "url": "http://flexberry.net/"
+  },
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
+    "broccoli-jscs": "1.2.2",
+    "dexie": "1.4.2",
     "ember-ajax": "0.7.1",
+    "ember-browserify": "1.1.9",
     "ember-cli": "2.4.3",
     "ember-cli-app-version": "^1.0.0",
     "ember-cli-dependency-checker": "^1.2.0",
     "ember-cli-htmlbars": "^1.0.3",
     "ember-cli-htmlbars-inline-precompile": "^0.3.1",
     "ember-cli-inject-live-reload": "^1.4.0",
+    "ember-cli-moment-shim": "3.1.0",
     "ember-cli-qunit": "^1.4.0",
     "ember-cli-release": "0.2.8",
+    "ember-cli-sass": "5.2.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^1.2.0",
     "ember-data": "^2.4.2",
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^1.0.5",
+    "ember-flexberry": "0.9.0-beta.7",
+    "ember-link-action": "0.0.34",
     "ember-load-initializers": "^0.5.1",
+    "ember-moment": "6.0.0",
     "ember-resolver": "^2.0.3",
     "ember-try": "^0.2.2",
-    "loader.js": "^4.0.1"
+    "inflection": "1.10.0",
+    "loader.js": "^4.0.1",
+    "node-uuid": "1.4.7",
+    "semantic-ui-ember": "0.9.3"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "uml",
+    "case",
+    "modeling",
+    "designer",
+    "flexberry"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.6"
