@@ -1,7 +1,7 @@
 ---
 language: node_js
 node_js:
-  - "0.12"
+  - "6.10.3"
 
 sudo: false
 
@@ -11,25 +11,26 @@ cache:
 
 env:
   - EMBER_TRY_SCENARIO=default
-  - EMBER_TRY_SCENARIO=ember-1.13
   - EMBER_TRY_SCENARIO=ember-release
-  - EMBER_TRY_SCENARIO=ember-beta
-  - EMBER_TRY_SCENARIO=ember-canary
 
 matrix:
   fast_finish: true
   allow_failures:
-    - env: EMBER_TRY_SCENARIO=ember-canary
+    - env: EMBER_TRY_SCENARIO=ember-release
 
 before_install:
-  - export PATH=/usr/local/phantomjs-2.0.0/bin:$PATH
-  - "npm config set spin false"
-  - "npm install -g npm@^2"
+  - npm config set spin false
+  - npm install -g npm@^2
 
 install:
+  - npm install -g phantomjs-prebuilt
   - npm install -g bower
   - npm install
+  - npm rebuild node-sass
   - bower install
 
 script:
-  - ember try $EMBER_TRY_SCENARIO test
+  - ember try:one $EMBER_TRY_SCENARIO test
+
+after_success:
+  - test $EMBER_TRY_SCENARIO == "default" && test $TRAVIS_PULL_REQUEST == "false" && ember build --gh-pages --brunch=$TRAVIS_BRANCH && bash scripts/deploy-to-gh-pages.sh
