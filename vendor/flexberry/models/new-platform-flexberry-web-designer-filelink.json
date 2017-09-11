@@ -1,0 +1,51 @@
+﻿{
+  "name": "NewPlatformFlexberryWebDesignerFilelink",
+  "modelName": "new-platform-flexberry-web-designer-filelink",
+  "className": "Filelink",
+  "parentModelName": "new-platform-flexberry-web-designer-object-in-system",
+  "parentClassName": "ObjectInSystem",
+  "attrs": [
+    {
+      "name": "fileName",
+      "type": "string",
+      "flexberryType": "FileName",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    }
+  ],
+  "belongsTo": [
+    {
+      "polymorphic": true,
+      "presence": true,
+      "name": "subsystem",
+      "relatedTo": "new-platform-flexberry-web-designer-subsystem",
+      "inverse": "filelinks"
+    }
+  ],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "FileLink",
+      "modelName": "new-platform-flexberry-web-designer-filelink",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "Название",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "description",
+          "caption": "Описание",
+          "hidden": false,
+          "index": 1
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "new-platform-flexberry-web-designer-diagram-edit-form",
+  "editForm": "new-platform-flexberry-web-designer-diagram-edit-form",
+  "caption": "Diagrams",
+  "name": "NewPlatformFlexberryWebDesignerDiagramListForm",
+  "className": "DiagramListForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "new-platform-flexberry-web-designer-dev-u-m-l-c-a-d",
+      "modelProjection": "ListFormView"
+    }
+  ]
+}

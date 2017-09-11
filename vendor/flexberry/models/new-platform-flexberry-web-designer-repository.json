@@ -1,0 +1,62 @@
+﻿{
+  "name": "NewPlatformFlexberryWebDesignerRepository",
+  "modelName": "new-platform-flexberry-web-designer-repository",
+  "className": "Repository",
+  "parentModelName": "new-platform-flexberry-web-designer-repository-object-with-plugins",
+  "parentClassName": "RepositoryObjectWithPlugins",
+  "attrs": [],
+  "belongsTo": [],
+  "hasMany": [
+    {
+      "name": "projects",
+      "relatedTo": "new-platform-flexberry-web-designer-project",
+      "inverse": "repository"
+    }
+  ],
+  "projections": [
+    {
+      "name": "PathSearchView",
+      "modelName": "new-platform-flexberry-web-designer-repository",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "SearchRepObjView",
+      "modelName": "new-platform-flexberry-web-designer-repository",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "Test",
+      "modelName": "new-platform-flexberry-web-designer-repository",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

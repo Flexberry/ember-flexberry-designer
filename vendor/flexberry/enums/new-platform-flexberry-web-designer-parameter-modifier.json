@@ -1,0 +1,11 @@
+﻿{
+  "nameSpace": "NewPlatform.Flexberry.WebDesigner",
+  "className": "ParameterModifier",
+  "enumObjects": {
+    "inModifier": "in",
+    "outModifier": "out",
+    "byvalModifier": "byval",
+    "byrefModifier": "byref",
+    "templateModifier": "template"
+  }
+}

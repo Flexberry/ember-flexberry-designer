@@ -1,0 +1,13 @@
+﻿{
+  "propertyLookup": [],
+  "caption": "Association",
+  "name": "NewPlatformFlexberryWebDesignerAssociationEditForm",
+  "className": "AssociationEditForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "new-platform-flexberry-web-designer-dev-association",
+      "modelProjection": "EditFormView"
+    }
+  ]
+}

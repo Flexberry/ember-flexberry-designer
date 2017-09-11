@@ -1,0 +1,30 @@
+﻿{
+  "name": "NewPlatformFlexberryWebDesignerCaseProperty",
+  "modelName": "new-platform-flexberry-web-designer-case-property",
+  "className": "CaseProperty",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [
+    {
+      "name": "name",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [],
+  "hasMany": [],
+  "projections": [],
+  "stored": true,
+  "offline": true
+}

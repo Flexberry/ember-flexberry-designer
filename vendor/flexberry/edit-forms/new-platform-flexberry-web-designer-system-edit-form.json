@@ -1,0 +1,13 @@
+﻿{
+  "propertyLookup": [],
+  "caption": "System",
+  "name": "NewPlatformFlexberryWebDesignerSystemEditForm",
+  "className": "SystemEditForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "new-platform-flexberry-web-designer-dev-system",
+      "modelProjection": "EditFormView"
+    }
+  ]
+}

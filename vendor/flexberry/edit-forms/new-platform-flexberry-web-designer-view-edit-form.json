@@ -1,0 +1,13 @@
+﻿{
+  "propertyLookup": [],
+  "caption": "View",
+  "name": "NewPlatformFlexberryWebDesignerViewEditForm",
+  "className": "ViewEditForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "new-platform-flexberry-web-designer-dev-view",
+      "modelProjection": "EditFormView"
+    }
+  ]
+}

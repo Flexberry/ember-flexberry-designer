@@ -1,0 +1,13 @@
+﻿{
+  "name": "NewPlatformFlexberryWebDesignerAssociation",
+  "modelName": "new-platform-flexberry-web-designer-association",
+  "className": "Association",
+  "parentModelName": "new-platform-flexberry-web-designer-base-association",
+  "parentClassName": "BaseAssociation",
+  "attrs": [],
+  "belongsTo": [],
+  "hasMany": [],
+  "projections": [],
+  "stored": true,
+  "offline": true
+}

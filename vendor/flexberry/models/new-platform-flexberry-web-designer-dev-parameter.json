@@ -1,0 +1,375 @@
+﻿{
+  "name": "NewPlatformFlexberryWebDesignerDevParameter",
+  "modelName": "new-platform-flexberry-web-designer-dev-parameter",
+  "className": "DevParameter",
+  "parentModelName": "new-platform-flexberry-web-designer-repository-data-object",
+  "parentClassName": "RepositoryDataObject",
+  "attrs": [
+    {
+      "name": "caption",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "modifier",
+      "type": "new-platform-flexberry-web-designer-parameter-modifier",
+      "flexberryType": "ParameterModifier",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "orderNum",
+      "type": "number",
+      "flexberryType": "int",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "realCaption",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "type",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "method",
+      "relatedTo": "new-platform-flexberry-web-designer-dev-method",
+      "inverse": "parameters"
+    }
+  ],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "EditApplication",
+      "modelName": "new-platform-flexberry-web-designer-dev-parameter",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "modifier",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "type",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "EditDataObjectClass",
+      "modelName": "new-platform-flexberry-web-designer-dev-parameter",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "modifier",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "type",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "EditEditForm",
+      "modelName": "new-platform-flexberry-web-designer-dev-parameter",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "modifier",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "type",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "EditInterface",
+      "modelName": "new-platform-flexberry-web-designer-dev-parameter",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "modifier",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "type",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "EditListForm",
+      "modelName": "new-platform-flexberry-web-designer-dev-parameter",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "modifier",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "type",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "EditPrintForm",
+      "modelName": "new-platform-flexberry-web-designer-dev-parameter",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "modifier",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "type",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "EditType",
+      "modelName": "new-platform-flexberry-web-designer-dev-parameter",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "modifier",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "type",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "EditUserForm",
+      "modelName": "new-platform-flexberry-web-designer-dev-parameter",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "modifier",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "type",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "Generator",
+      "modelName": "new-platform-flexberry-web-designer-dev-parameter",
+      "attrs": [
+        {
+          "name": "caption",
+          "caption": "Caption",
+          "hidden": true,
+          "index": 0
+        },
+        {
+          "name": "modifier",
+          "caption": "Modifier",
+          "hidden": true,
+          "index": 1
+        },
+        {
+          "name": "orderNum",
+          "caption": "OrderNum",
+          "hidden": true,
+          "index": 2
+        },
+        {
+          "name": "realCaption",
+          "caption": "RealCaption",
+          "hidden": true,
+          "index": 3
+        },
+        {
+          "name": "type",
+          "caption": "Type",
+          "hidden": true,
+          "index": 4
+        },
+        {
+          "name": "name",
+          "caption": "Name",
+          "hidden": true,
+          "index": 5
+        },
+        {
+          "name": "description",
+          "caption": "Description",
+          "hidden": true,
+          "index": 6
+        },
+        {
+          "name": "nameStr",
+          "caption": "NameStr",
+          "hidden": true,
+          "index": 7
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

@@ -1,0 +1,22 @@
+﻿{
+  "name": "NewPlatformFlexberryWebDesignerRepositoryRefDataObject",
+  "modelName": "new-platform-flexberry-web-designer-repository-ref-data-object",
+  "className": "RepositoryRefDataObject",
+  "parentModelName": "new-platform-flexberry-web-designer-repository-data-object",
+  "parentClassName": "RepositoryDataObject",
+  "attrs": [
+    {
+      "name": "referenceCount",
+      "type": "number",
+      "flexberryType": "int",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [],
+  "hasMany": [],
+  "projections": [],
+  "stored": true,
+  "offline": true
+}
