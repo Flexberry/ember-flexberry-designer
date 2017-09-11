@@ -1,0 +1,4 @@
+import NewPlatformFlexberryWebDesignerSystemEditFormController from '../new-platform-flexberry-web-designer-system-edit-form';
+
+var NewPlatformFlexberryWebDesignerSystemEditFormNewController = NewPlatformFlexberryWebDesignerSystemEditFormController;
+export default NewPlatformFlexberryWebDesignerSystemEditFormNewController;

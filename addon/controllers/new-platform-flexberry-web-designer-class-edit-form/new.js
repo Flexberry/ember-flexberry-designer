@@ -1,0 +1,4 @@
+import NewPlatformFlexberryWebDesignerClassEditFormController from '../new-platform-flexberry-web-designer-class-edit-form';
+
+var NewPlatformFlexberryWebDesignerClassEditFormNewController = NewPlatformFlexberryWebDesignerClassEditFormController;
+export default NewPlatformFlexberryWebDesignerClassEditFormNewController;

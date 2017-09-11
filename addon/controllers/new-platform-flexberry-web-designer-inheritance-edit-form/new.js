@@ -1,0 +1,4 @@
+import NewPlatformFlexberryWebDesignerInheritanceEditFormController from '../new-platform-flexberry-web-designer-inheritance-edit-form';
+
+var NewPlatformFlexberryWebDesignerInheritanceEditFormNewController = NewPlatformFlexberryWebDesignerInheritanceEditFormController;
+export default NewPlatformFlexberryWebDesignerInheritanceEditFormNewController;
