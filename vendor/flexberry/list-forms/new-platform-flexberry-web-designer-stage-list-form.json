@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "new-platform-flexberry-web-designer-stage-edit-form",
+  "editForm": "new-platform-flexberry-web-designer-stage-edit-form",
+  "caption": "Stages",
+  "name": "NewPlatformFlexberryWebDesignerStageListForm",
+  "className": "StageListForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "new-platform-flexberry-web-designer-dev-stage",
+      "modelProjection": "ListFormView"
+    }
+  ]
+}

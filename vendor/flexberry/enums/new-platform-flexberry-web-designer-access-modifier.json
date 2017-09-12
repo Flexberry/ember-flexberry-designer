@@ -1,0 +1,9 @@
+﻿{
+  "nameSpace": "NewPlatform.Flexberry.WebDesigner",
+  "className": "AccessModifier",
+  "enumObjects": {
+    "Public": "+",
+    "Private": "-",
+    "Protected": "#"
+  }
+}

@@ -1,0 +1,13 @@
+﻿{
+  "propertyLookup": [],
+  "caption": "Stage",
+  "name": "NewPlatformFlexberryWebDesignerStageEditForm",
+  "className": "StageEditForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "new-platform-flexberry-web-designer-dev-stage",
+      "modelProjection": "EditFormView"
+    }
+  ]
+}

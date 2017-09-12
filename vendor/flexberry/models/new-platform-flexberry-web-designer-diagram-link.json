@@ -1,0 +1,59 @@
+﻿{
+  "name": "NewPlatformFlexberryWebDesignerDiagramLink",
+  "modelName": "new-platform-flexberry-web-designer-diagram-link",
+  "className": "DiagramLink",
+  "parentModelName": "new-platform-flexberry-web-designer-object-in-system",
+  "parentClassName": "ObjectInSystem",
+  "attrs": [
+    {
+      "name": "diagramPrimaryKey",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "diagramType",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [
+    {
+      "polymorphic": true,
+      "presence": true,
+      "name": "subsystem",
+      "relatedTo": "new-platform-flexberry-web-designer-subsystem",
+      "inverse": "diagramLinks"
+    }
+  ],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "DiagramLink",
+      "modelName": "new-platform-flexberry-web-designer-diagram-link",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "Название",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "description",
+          "caption": "Описание",
+          "hidden": false,
+          "index": 1
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

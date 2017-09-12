@@ -1,0 +1,628 @@
+﻿{
+  "name": "NewPlatformFlexberryWebDesignerDevAssociation",
+  "modelName": "new-platform-flexberry-web-designer-dev-association",
+  "className": "DevAssociation",
+  "parentModelName": "new-platform-flexberry-web-designer-dev-base-association",
+  "parentClassName": "DevBaseAssociation",
+  "attrs": [
+    {
+      "name": "assocType",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "autoGenerateTypeUsage",
+      "type": "boolean",
+      "flexberryType": "bool",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "pBMasterCustomAttributes",
+      "type": "boolean",
+      "flexberryType": "bool",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "pBMasterGetEnd",
+      "type": "boolean",
+      "flexberryType": "bool",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "pBMasterSetEnd",
+      "type": "boolean",
+      "flexberryType": "bool",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "pBMasterGetStart",
+      "type": "boolean",
+      "flexberryType": "bool",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "pBMasterSetStart",
+      "type": "boolean",
+      "flexberryType": "bool",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "realStorage",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "typeUsage",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "Edit",
+      "modelName": "new-platform-flexberry-web-designer-dev-association",
+      "attrs": [
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "startRole",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "startMultiplicity",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "startRoleAccessModifier",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "startRoleStored",
+          "caption": "",
+          "hidden": false,
+          "index": 4
+        },
+        {
+          "name": "endRole",
+          "caption": "",
+          "hidden": false,
+          "index": 5
+        },
+        {
+          "name": "endMultiplicity",
+          "caption": "",
+          "hidden": false,
+          "index": 6
+        },
+        {
+          "name": "autoGenerateTypeUsage",
+          "caption": "",
+          "hidden": false,
+          "index": 7
+        },
+        {
+          "name": "typeUsage",
+          "caption": "",
+          "hidden": false,
+          "index": 8
+        },
+        {
+          "name": "storage",
+          "caption": "",
+          "hidden": false,
+          "index": 9
+        },
+        {
+          "name": "autoStoreMasterDisabled",
+          "caption": "",
+          "hidden": false,
+          "index": 10
+        },
+        {
+          "name": "pBMasterCustomAttributes",
+          "caption": "",
+          "hidden": false,
+          "index": 11
+        },
+        {
+          "name": "pBMasterGetStart",
+          "caption": "",
+          "hidden": false,
+          "index": 12
+        },
+        {
+          "name": "pBMasterGetEnd",
+          "caption": "",
+          "hidden": false,
+          "index": 13
+        },
+        {
+          "name": "pBMasterSetStart",
+          "caption": "",
+          "hidden": false,
+          "index": 14
+        },
+        {
+          "name": "pBMasterSetEnd",
+          "caption": "",
+          "hidden": false,
+          "index": 15
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "EditFormView",
+      "modelName": "new-platform-flexberry-web-designer-dev-association",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "Name",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "description",
+          "caption": "Description",
+          "hidden": false,
+          "index": 1
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "FormDesigner",
+      "modelName": "new-platform-flexberry-web-designer-dev-association",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "startRole",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Stage",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [],
+          "index": 2,
+          "caption": "",
+          "name": "stage",
+          "relatedTo": "new-platform-flexberry-web-designer-stage",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "StartClass",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "",
+              "hidden": false,
+              "index": 5
+            },
+            {
+              "name": "description",
+              "caption": "",
+              "hidden": false,
+              "index": 6
+            }
+          ],
+          "index": 4,
+          "caption": "",
+          "name": "startClass",
+          "relatedTo": "new-platform-flexberry-web-designer-class",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "EndClass",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [],
+          "index": 7,
+          "caption": "",
+          "name": "endClass",
+          "relatedTo": "new-platform-flexberry-web-designer-class",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "Gen",
+      "modelName": "new-platform-flexberry-web-designer-dev-association",
+      "attrs": [
+        {
+          "name": "pBMasterCustomAttributes",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "pBMasterGetEnd",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "pBMasterGetStart",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "storage",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "autoStoreMasterDisabled",
+          "caption": "",
+          "hidden": false,
+          "index": 4
+        },
+        {
+          "name": "typeUsage",
+          "caption": "",
+          "hidden": false,
+          "index": 5
+        },
+        {
+          "name": "autoGenerateTypeUsage",
+          "caption": "",
+          "hidden": false,
+          "index": 6
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 7
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "Generator",
+      "modelName": "new-platform-flexberry-web-designer-dev-association",
+      "attrs": [
+        {
+          "name": "assocType",
+          "caption": "AssocType",
+          "hidden": true,
+          "index": 0
+        },
+        {
+          "name": "autoGenerateTypeUsage",
+          "caption": "AutoGenerateTypeUsage",
+          "hidden": true,
+          "index": 1
+        },
+        {
+          "name": "pBMasterCustomAttributes",
+          "caption": "PBMasterCustomAttributes",
+          "hidden": true,
+          "index": 2
+        },
+        {
+          "name": "pBMasterGetEnd",
+          "caption": "PBMasterGetEnd",
+          "hidden": true,
+          "index": 3
+        },
+        {
+          "name": "pBMasterSetEnd",
+          "caption": "PBMasterSetEnd",
+          "hidden": true,
+          "index": 4
+        },
+        {
+          "name": "pBMasterGetStart",
+          "caption": "PBMasterGetStart",
+          "hidden": true,
+          "index": 5
+        },
+        {
+          "name": "pBMasterSetStart",
+          "caption": "PBMasterSetStart",
+          "hidden": true,
+          "index": 6
+        },
+        {
+          "name": "realStorage",
+          "caption": "RealStorage",
+          "hidden": true,
+          "index": 7
+        },
+        {
+          "name": "typeUsage",
+          "caption": "TypeUsage",
+          "hidden": true,
+          "index": 8
+        },
+        {
+          "name": "autoStoreMasterDisabled",
+          "caption": "AutoStoreMasterDisabled",
+          "hidden": true,
+          "index": 9
+        },
+        {
+          "name": "realEndRole",
+          "caption": "RealEndRole",
+          "hidden": true,
+          "index": 10
+        },
+        {
+          "name": "realStartRole",
+          "caption": "RealStartRole",
+          "hidden": true,
+          "index": 11
+        },
+        {
+          "name": "storage",
+          "caption": "Storage",
+          "hidden": true,
+          "index": 12
+        },
+        {
+          "name": "endMultiplicity",
+          "caption": "EndMultiplicity",
+          "hidden": true,
+          "index": 13
+        },
+        {
+          "name": "endRole",
+          "caption": "EndRole",
+          "hidden": true,
+          "index": 14
+        },
+        {
+          "name": "endRoleAccessModifier",
+          "caption": "EndRoleAccessModifier",
+          "hidden": true,
+          "index": 15
+        },
+        {
+          "name": "endRoleStored",
+          "caption": "EndRoleStored",
+          "hidden": true,
+          "index": 16
+        },
+        {
+          "name": "endRoleStr",
+          "caption": "EndRoleStr",
+          "hidden": true,
+          "index": 17
+        },
+        {
+          "name": "notNullStart",
+          "caption": "NotNullStart",
+          "hidden": true,
+          "index": 18
+        },
+        {
+          "name": "startMultiplicity",
+          "caption": "StartMultiplicity",
+          "hidden": true,
+          "index": 19
+        },
+        {
+          "name": "startRole",
+          "caption": "StartRole",
+          "hidden": true,
+          "index": 20
+        },
+        {
+          "name": "startRoleAccessModifier",
+          "caption": "StartRoleAccessModifier",
+          "hidden": true,
+          "index": 21
+        },
+        {
+          "name": "startRoleStored",
+          "caption": "StartRoleStored",
+          "hidden": true,
+          "index": 22
+        },
+        {
+          "name": "startRoleStr",
+          "caption": "StartRoleStr",
+          "hidden": true,
+          "index": 23
+        },
+        {
+          "name": "referenceCount",
+          "caption": "ReferenceCount",
+          "hidden": true,
+          "index": 24
+        },
+        {
+          "name": "name",
+          "caption": "Name",
+          "hidden": true,
+          "index": 25
+        },
+        {
+          "name": "description",
+          "caption": "Description",
+          "hidden": true,
+          "index": 26
+        },
+        {
+          "name": "nameStr",
+          "caption": "NameStr",
+          "hidden": true,
+          "index": 27
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "EndClass",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [],
+          "index": 28,
+          "caption": "EndClass",
+          "name": "endClass",
+          "relatedTo": "new-platform-flexberry-web-designer-class",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "StartClass",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [],
+          "index": 29,
+          "caption": "StartClass",
+          "name": "startClass",
+          "relatedTo": "new-platform-flexberry-web-designer-class",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "ListFormView",
+      "modelName": "new-platform-flexberry-web-designer-dev-association",
+      "attrs": [
+        {
+          "name": "referenceCount",
+          "caption": "Reference count",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "assocType",
+          "caption": "Association type",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "startRole",
+          "caption": "Start role",
+          "hidden": false,
+          "index": 6
+        },
+        {
+          "name": "endRole",
+          "caption": "End role",
+          "hidden": false,
+          "index": 7
+        },
+        {
+          "name": "storage",
+          "caption": "Storage",
+          "hidden": false,
+          "index": 8
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "StartClass",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "Start class",
+              "hidden": false,
+              "index": 3
+            }
+          ],
+          "index": 2,
+          "caption": "",
+          "name": "startClass",
+          "relatedTo": "new-platform-flexberry-web-designer-class",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "EndClass",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "End class",
+              "hidden": false,
+              "index": 5
+            }
+          ],
+          "index": 4,
+          "caption": "",
+          "name": "endClass",
+          "relatedTo": "new-platform-flexberry-web-designer-class",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

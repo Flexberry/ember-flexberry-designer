@@ -1,0 +1,46 @@
+﻿{
+  "name": "NewPlatformFlexberryWebDesignerDevUMLDPD",
+  "modelName": "new-platform-flexberry-web-designer-dev-u-m-l-d-p-d",
+  "className": "DevUMLDPD",
+  "parentModelName": "new-platform-flexberry-web-designer-d-p-d",
+  "parentClassName": "DPD",
+  "attrs": [
+    {
+      "name": "name",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "primitiveTypes",
+      "type": "string",
+      "flexberryType": "ArrayList",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "primitives",
+      "type": "string",
+      "flexberryType": "ArrayList",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "helpKeyword",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    }
+  ],
+  "belongsTo": [],
+  "hasMany": [],
+  "projections": [],
+  "stored": true,
+  "offline": true
+}

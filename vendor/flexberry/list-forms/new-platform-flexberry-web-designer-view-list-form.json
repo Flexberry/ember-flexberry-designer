@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "new-platform-flexberry-web-designer-view-edit-form",
+  "editForm": "new-platform-flexberry-web-designer-view-edit-form",
+  "caption": "Views",
+  "name": "NewPlatformFlexberryWebDesignerViewListForm",
+  "className": "ViewListForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "new-platform-flexberry-web-designer-dev-view",
+      "modelProjection": "ListFormView"
+    }
+  ]
+}

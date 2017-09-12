@@ -1,0 +1,1079 @@
+﻿{
+  "name": "NewPlatformFlexberryWebDesignerDevAttribute",
+  "modelName": "new-platform-flexberry-web-designer-dev-attribute",
+  "className": "DevAttribute",
+  "parentModelName": "new-platform-flexberry-web-designer-repository-data-object",
+  "parentClassName": "RepositoryDataObject",
+  "attrs": [
+    {
+      "name": "accessModifier",
+      "type": "new-platform-flexberry-web-designer-access-modifier",
+      "flexberryType": "AccessModifier",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "autoincrement",
+      "type": "boolean",
+      "flexberryType": "bool",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "caption",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "dataServiceExpression",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "dataServiceExpressionXML",
+      "type": "string",
+      "flexberryType": "DataServiceCustomizerListXML",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "defaultValue",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "hint",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "notNull",
+      "type": "boolean",
+      "flexberryType": "bool",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "order",
+      "type": "boolean",
+      "flexberryType": "bool",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "orderNum",
+      "type": "number",
+      "flexberryType": "int",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "pBCustomAttributes",
+      "type": "boolean",
+      "flexberryType": "bool",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "pBGetEnd",
+      "type": "boolean",
+      "flexberryType": "bool",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "pBSetEnd",
+      "type": "boolean",
+      "flexberryType": "bool",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "pBGetStart",
+      "type": "boolean",
+      "flexberryType": "bool",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "pBSetStart",
+      "type": "boolean",
+      "flexberryType": "bool",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "realCaption",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "realStorage",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "storage",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "stored",
+      "type": "boolean",
+      "flexberryType": "bool",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "trim",
+      "type": "boolean",
+      "flexberryType": "bool",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "type",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "class",
+      "relatedTo": "new-platform-flexberry-web-designer-dev-class",
+      "inverse": "attributes"
+    }
+  ],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "AuditPrototyping",
+      "modelName": "new-platform-flexberry-web-designer-dev-attribute",
+      "attrs": [
+        {
+          "name": "accessModifier",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "stored",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "type",
+          "caption": "",
+          "hidden": false,
+          "index": 4
+        },
+        {
+          "name": "defaultValue",
+          "caption": "",
+          "hidden": false,
+          "index": 5
+        },
+        {
+          "name": "notNull",
+          "caption": "",
+          "hidden": false,
+          "index": 6
+        },
+        {
+          "name": "dataServiceExpressionXML",
+          "caption": "DataService Expression",
+          "hidden": false,
+          "index": 7
+        },
+        {
+          "name": "order",
+          "caption": "",
+          "hidden": false,
+          "index": 8
+        },
+        {
+          "name": "storage",
+          "caption": "",
+          "hidden": false,
+          "index": 9
+        },
+        {
+          "name": "trim",
+          "caption": "",
+          "hidden": false,
+          "index": 10
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "EditApplication",
+      "modelName": "new-platform-flexberry-web-designer-dev-attribute",
+      "attrs": [
+        {
+          "name": "accessModifier",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "type",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "defaultValue",
+          "caption": "",
+          "hidden": false,
+          "index": 4
+        },
+        {
+          "name": "pBCustomAttributes",
+          "caption": "",
+          "hidden": false,
+          "index": 5
+        },
+        {
+          "name": "pBGetEnd",
+          "caption": "",
+          "hidden": false,
+          "index": 6
+        },
+        {
+          "name": "pBGetStart",
+          "caption": "",
+          "hidden": false,
+          "index": 7
+        },
+        {
+          "name": "pBSetEnd",
+          "caption": "",
+          "hidden": false,
+          "index": 8
+        },
+        {
+          "name": "pBSetStart",
+          "caption": "",
+          "hidden": false,
+          "index": 9
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "EditDataObjectClass",
+      "modelName": "new-platform-flexberry-web-designer-dev-attribute",
+      "attrs": [
+        {
+          "name": "accessModifier",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "stored",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "type",
+          "caption": "",
+          "hidden": false,
+          "index": 4
+        },
+        {
+          "name": "defaultValue",
+          "caption": "",
+          "hidden": false,
+          "index": 5
+        },
+        {
+          "name": "notNull",
+          "caption": "",
+          "hidden": false,
+          "index": 6
+        },
+        {
+          "name": "dataServiceExpressionXML",
+          "caption": "DataService Expression",
+          "hidden": false,
+          "index": 7
+        },
+        {
+          "name": "storage",
+          "caption": "",
+          "hidden": false,
+          "index": 8
+        },
+        {
+          "name": "hint",
+          "caption": "",
+          "hidden": false,
+          "index": 9
+        },
+        {
+          "name": "order",
+          "caption": "",
+          "hidden": false,
+          "index": 10
+        },
+        {
+          "name": "trim",
+          "caption": "",
+          "hidden": false,
+          "index": 11
+        },
+        {
+          "name": "pBCustomAttributes",
+          "caption": "",
+          "hidden": false,
+          "index": 12
+        },
+        {
+          "name": "pBGetEnd",
+          "caption": "",
+          "hidden": false,
+          "index": 13
+        },
+        {
+          "name": "pBGetStart",
+          "caption": "",
+          "hidden": false,
+          "index": 14
+        },
+        {
+          "name": "pBSetEnd",
+          "caption": "",
+          "hidden": false,
+          "index": 15
+        },
+        {
+          "name": "pBSetStart",
+          "caption": "",
+          "hidden": false,
+          "index": 16
+        },
+        {
+          "name": "autoincrement",
+          "caption": "",
+          "hidden": false,
+          "index": 17
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "EditEditForm",
+      "modelName": "new-platform-flexberry-web-designer-dev-attribute",
+      "attrs": [
+        {
+          "name": "accessModifier",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "type",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "defaultValue",
+          "caption": "",
+          "hidden": false,
+          "index": 4
+        },
+        {
+          "name": "pBCustomAttributes",
+          "caption": "",
+          "hidden": false,
+          "index": 5
+        },
+        {
+          "name": "pBGetEnd",
+          "caption": "",
+          "hidden": false,
+          "index": 6
+        },
+        {
+          "name": "pBGetStart",
+          "caption": "",
+          "hidden": false,
+          "index": 7
+        },
+        {
+          "name": "pBSetEnd",
+          "caption": "",
+          "hidden": false,
+          "index": 8
+        },
+        {
+          "name": "pBSetStart",
+          "caption": "",
+          "hidden": false,
+          "index": 9
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "EditEnum",
+      "modelName": "new-platform-flexberry-web-designer-dev-attribute",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "defaultValue",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "caption",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "EditInterface",
+      "modelName": "new-platform-flexberry-web-designer-dev-attribute",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "type",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "EditListForm",
+      "modelName": "new-platform-flexberry-web-designer-dev-attribute",
+      "attrs": [
+        {
+          "name": "accessModifier",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "type",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "defaultValue",
+          "caption": "",
+          "hidden": false,
+          "index": 4
+        },
+        {
+          "name": "pBCustomAttributes",
+          "caption": "",
+          "hidden": false,
+          "index": 5
+        },
+        {
+          "name": "pBGetEnd",
+          "caption": "",
+          "hidden": false,
+          "index": 6
+        },
+        {
+          "name": "pBGetStart",
+          "caption": "",
+          "hidden": false,
+          "index": 7
+        },
+        {
+          "name": "pBSetEnd",
+          "caption": "",
+          "hidden": false,
+          "index": 8
+        },
+        {
+          "name": "pBSetStart",
+          "caption": "",
+          "hidden": false,
+          "index": 9
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "EditPrintForm",
+      "modelName": "new-platform-flexberry-web-designer-dev-attribute",
+      "attrs": [
+        {
+          "name": "accessModifier",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "type",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "defaultValue",
+          "caption": "",
+          "hidden": false,
+          "index": 4
+        },
+        {
+          "name": "pBCustomAttributes",
+          "caption": "",
+          "hidden": false,
+          "index": 5
+        },
+        {
+          "name": "pBGetEnd",
+          "caption": "",
+          "hidden": false,
+          "index": 6
+        },
+        {
+          "name": "pBGetStart",
+          "caption": "",
+          "hidden": false,
+          "index": 7
+        },
+        {
+          "name": "pBSetEnd",
+          "caption": "",
+          "hidden": false,
+          "index": 8
+        },
+        {
+          "name": "pBSetStart",
+          "caption": "",
+          "hidden": false,
+          "index": 9
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "EditType",
+      "modelName": "new-platform-flexberry-web-designer-dev-attribute",
+      "attrs": [
+        {
+          "name": "accessModifier",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "type",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "defaultValue",
+          "caption": "",
+          "hidden": false,
+          "index": 4
+        },
+        {
+          "name": "pBCustomAttributes",
+          "caption": "",
+          "hidden": false,
+          "index": 5
+        },
+        {
+          "name": "pBGetEnd",
+          "caption": "",
+          "hidden": false,
+          "index": 6
+        },
+        {
+          "name": "pBGetStart",
+          "caption": "",
+          "hidden": false,
+          "index": 7
+        },
+        {
+          "name": "pBSetEnd",
+          "caption": "",
+          "hidden": false,
+          "index": 8
+        },
+        {
+          "name": "pBSetStart",
+          "caption": "",
+          "hidden": false,
+          "index": 9
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "EditUserForm",
+      "modelName": "new-platform-flexberry-web-designer-dev-attribute",
+      "attrs": [
+        {
+          "name": "accessModifier",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "type",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "defaultValue",
+          "caption": "",
+          "hidden": false,
+          "index": 4
+        },
+        {
+          "name": "pBCustomAttributes",
+          "caption": "",
+          "hidden": false,
+          "index": 5
+        },
+        {
+          "name": "pBGetEnd",
+          "caption": "",
+          "hidden": false,
+          "index": 6
+        },
+        {
+          "name": "pBGetStart",
+          "caption": "",
+          "hidden": false,
+          "index": 7
+        },
+        {
+          "name": "pBSetEnd",
+          "caption": "",
+          "hidden": false,
+          "index": 8
+        },
+        {
+          "name": "pBSetStart",
+          "caption": "",
+          "hidden": false,
+          "index": 9
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "FormDesigner",
+      "modelName": "new-platform-flexberry-web-designer-dev-attribute",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "type",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "caption",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 4
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Class",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [],
+          "index": 1,
+          "caption": "",
+          "name": "class",
+          "relatedTo": "new-platform-flexberry-web-designer-dev-class",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "Generator",
+      "modelName": "new-platform-flexberry-web-designer-dev-attribute",
+      "attrs": [
+        {
+          "name": "accessModifier",
+          "caption": "AccessModifier",
+          "hidden": true,
+          "index": 0
+        },
+        {
+          "name": "autoincrement",
+          "caption": "Autoincrement",
+          "hidden": true,
+          "index": 1
+        },
+        {
+          "name": "caption",
+          "caption": "Caption",
+          "hidden": true,
+          "index": 2
+        },
+        {
+          "name": "dataServiceExpression",
+          "caption": "DataServiceExpression",
+          "hidden": true,
+          "index": 3
+        },
+        {
+          "name": "dataServiceExpressionXML",
+          "caption": "DataServiceExpressionXML",
+          "hidden": true,
+          "index": 4
+        },
+        {
+          "name": "defaultValue",
+          "caption": "DefaultValue",
+          "hidden": true,
+          "index": 5
+        },
+        {
+          "name": "hint",
+          "caption": "Hint",
+          "hidden": true,
+          "index": 6
+        },
+        {
+          "name": "notNull",
+          "caption": "NotNull",
+          "hidden": true,
+          "index": 7
+        },
+        {
+          "name": "order",
+          "caption": "Order",
+          "hidden": true,
+          "index": 8
+        },
+        {
+          "name": "orderNum",
+          "caption": "OrderNum",
+          "hidden": true,
+          "index": 9
+        },
+        {
+          "name": "pBCustomAttributes",
+          "caption": "PBCustomAttributes",
+          "hidden": true,
+          "index": 10
+        },
+        {
+          "name": "pBGetEnd",
+          "caption": "PBGetEnd",
+          "hidden": true,
+          "index": 11
+        },
+        {
+          "name": "pBSetEnd",
+          "caption": "PBSetEnd",
+          "hidden": true,
+          "index": 12
+        },
+        {
+          "name": "pBGetStart",
+          "caption": "PBGetStart",
+          "hidden": true,
+          "index": 13
+        },
+        {
+          "name": "pBSetStart",
+          "caption": "PBSetStart",
+          "hidden": true,
+          "index": 14
+        },
+        {
+          "name": "realCaption",
+          "caption": "RealCaption",
+          "hidden": true,
+          "index": 15
+        },
+        {
+          "name": "realStorage",
+          "caption": "RealStorage",
+          "hidden": true,
+          "index": 16
+        },
+        {
+          "name": "storage",
+          "caption": "Storage",
+          "hidden": true,
+          "index": 17
+        },
+        {
+          "name": "stored",
+          "caption": "Stored",
+          "hidden": true,
+          "index": 18
+        },
+        {
+          "name": "trim",
+          "caption": "Trim",
+          "hidden": true,
+          "index": 19
+        },
+        {
+          "name": "type",
+          "caption": "Type",
+          "hidden": true,
+          "index": 20
+        },
+        {
+          "name": "name",
+          "caption": "Name",
+          "hidden": true,
+          "index": 21
+        },
+        {
+          "name": "description",
+          "caption": "Description",
+          "hidden": true,
+          "index": 22
+        },
+        {
+          "name": "nameStr",
+          "caption": "NameStr",
+          "hidden": true,
+          "index": 23
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "SearchAttribute",
+      "modelName": "new-platform-flexberry-web-designer-dev-attribute",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "type",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Class",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [],
+          "index": 1,
+          "caption": "",
+          "name": "class",
+          "relatedTo": "new-platform-flexberry-web-designer-dev-class",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

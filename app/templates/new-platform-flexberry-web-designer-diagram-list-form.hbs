@@ -1,0 +1,25 @@
+<h3>{{t 'forms.new-platform-flexberry-web-designer-diagram-list-form.caption'}}</h3>
+<div class="row">
+  {{flexberry-objectlistview
+    modelName="new-platform-flexberry-web-designer-dev-u-m-l-c-a-d"
+    modelProjection=modelProjection
+    editFormRoute=editFormRoute
+    content=model
+    createNewButton=true
+    refreshButton=true
+    sorting=computedSorting
+    orderable=true
+    sortByColumn=(action "sortByColumn")
+    addColumnToSorting=(action "addColumnToSorting")
+    pages=pages
+    perPageValue=perPageValue
+    perPageValues=perPageValues
+    recordsTotalCount=recordsTotalCount
+    hasPreviousPage=hasPreviousPage
+    hasNextPage=hasNextPage
+    previousPage=(action "previousPage")
+    gotoPage=(action "gotoPage")
+    nextPage=(action "nextPage")
+    componentName="NewPlatformFlexberryWebDesignerDiagramListForm"
+  }}
+</div>

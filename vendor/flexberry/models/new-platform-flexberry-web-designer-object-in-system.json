@@ -1,0 +1,13 @@
+﻿{
+  "name": "NewPlatformFlexberryWebDesignerObjectInSystem",
+  "modelName": "new-platform-flexberry-web-designer-object-in-system",
+  "className": "ObjectInSystem",
+  "parentModelName": "new-platform-flexberry-web-designer-repository-browser-data-object",
+  "parentClassName": "RepositoryBrowserDataObject",
+  "attrs": [],
+  "belongsTo": [],
+  "hasMany": [],
+  "projections": [],
+  "stored": false,
+  "offline": true
+}

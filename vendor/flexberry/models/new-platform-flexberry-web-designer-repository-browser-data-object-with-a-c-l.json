@@ -1,0 +1,49 @@
+﻿{
+  "name": "NewPlatformFlexberryWebDesignerRepositoryBrowserDataObjectWithACL",
+  "modelName": "new-platform-flexberry-web-designer-repository-browser-data-object-with-a-c-l",
+  "className": "RepositoryBrowserDataObjectWithACL",
+  "parentModelName": "new-platform-flexberry-web-designer-repository-browser-data-object",
+  "parentClassName": "RepositoryBrowserDataObject",
+  "attrs": [
+    {
+      "name": "aCL",
+      "type": "string",
+      "flexberryType": "RepositoryACL",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "Properties",
+      "modelName": "new-platform-flexberry-web-designer-repository-browser-data-object-with-a-c-l",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "Название",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "description",
+          "caption": "Описание",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "aCL",
+          "caption": "Доступ",
+          "hidden": false,
+          "index": 2
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    }
+  ],
+  "stored": false,
+  "offline": true
+}

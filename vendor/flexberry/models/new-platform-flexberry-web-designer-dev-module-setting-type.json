@@ -1,0 +1,51 @@
+﻿{
+  "name": "NewPlatformFlexberryWebDesignerDevModuleSettingType",
+  "modelName": "new-platform-flexberry-web-designer-dev-module-setting-type",
+  "className": "DevModuleSettingType",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [
+    {
+      "name": "name",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "ModuleSettingTypeE",
+      "modelName": "new-platform-flexberry-web-designer-dev-module-setting-type",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "Name",
+          "hidden": false,
+          "index": 0
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "ModuleSettingTypeL",
+      "modelName": "new-platform-flexberry-web-designer-dev-module-setting-type",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

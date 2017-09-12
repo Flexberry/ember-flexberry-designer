@@ -1,0 +1,333 @@
+﻿{
+  "name": "NewPlatformFlexberryWebDesignerDevInheritance",
+  "modelName": "new-platform-flexberry-web-designer-dev-inheritance",
+  "className": "DevInheritance",
+  "parentModelName": "new-platform-flexberry-web-designer-inheritance",
+  "parentClassName": "Inheritance",
+  "attrs": [],
+  "belongsTo": [],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "Edit",
+      "modelName": "new-platform-flexberry-web-designer-dev-inheritance",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "EditFormView",
+      "modelName": "new-platform-flexberry-web-designer-dev-inheritance",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "Name",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "description",
+          "caption": "Description",
+          "hidden": false,
+          "index": 1
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "EditPropertyLookups",
+      "modelName": "new-platform-flexberry-web-designer-dev-inheritance",
+      "attrs": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Parent",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "",
+              "hidden": false,
+              "index": 0
+            }
+          ],
+          "index": -1,
+          "caption": "",
+          "name": "parent",
+          "relatedTo": "new-platform-flexberry-web-designer-class",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Child",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "",
+              "hidden": false,
+              "index": 1
+            }
+          ],
+          "index": -1,
+          "caption": "",
+          "name": "child",
+          "relatedTo": "new-platform-flexberry-web-designer-class",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "Generator",
+      "modelName": "new-platform-flexberry-web-designer-dev-inheritance",
+      "attrs": [
+        {
+          "name": "referenceCount",
+          "caption": "ReferenceCount",
+          "hidden": true,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "Name",
+          "hidden": true,
+          "index": 1
+        },
+        {
+          "name": "description",
+          "caption": "Description",
+          "hidden": true,
+          "index": 2
+        },
+        {
+          "name": "nameStr",
+          "caption": "NameStr",
+          "hidden": true,
+          "index": 3
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Child",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [],
+          "index": 4,
+          "caption": "Child",
+          "name": "child",
+          "relatedTo": "new-platform-flexberry-web-designer-class",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Parent",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [],
+          "index": 5,
+          "caption": "Parent",
+          "name": "parent",
+          "relatedTo": "new-platform-flexberry-web-designer-class",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "InhList",
+      "modelName": "new-platform-flexberry-web-designer-dev-inheritance",
+      "attrs": [
+        {
+          "name": "referenceCount",
+          "caption": "Количество упоминаний",
+          "hidden": false,
+          "index": 0
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Parent",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "nameStr",
+              "caption": "Предок",
+              "hidden": false,
+              "index": 1
+            }
+          ],
+          "index": -1,
+          "caption": "Предок",
+          "name": "parent",
+          "relatedTo": "new-platform-flexberry-web-designer-class",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Child",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "nameStr",
+              "caption": "Наследник",
+              "hidden": false,
+              "index": 2
+            }
+          ],
+          "index": -1,
+          "caption": "Наследник",
+          "name": "child",
+          "relatedTo": "new-platform-flexberry-web-designer-class",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Stage",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "",
+              "hidden": true,
+              "index": 4
+            }
+          ],
+          "index": 3,
+          "caption": "",
+          "name": "stage",
+          "relatedTo": "new-platform-flexberry-web-designer-stage",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "ListDataObjectTypes",
+      "modelName": "new-platform-flexberry-web-designer-dev-inheritance",
+      "attrs": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Parent",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "",
+              "hidden": false,
+              "index": 0
+            }
+          ],
+          "index": -1,
+          "caption": "",
+          "name": "parent",
+          "relatedTo": "new-platform-flexberry-web-designer-class",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Child",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "",
+              "hidden": false,
+              "index": 1
+            }
+          ],
+          "index": -1,
+          "caption": "",
+          "name": "child",
+          "relatedTo": "new-platform-flexberry-web-designer-class",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "ListFormView",
+      "modelName": "new-platform-flexberry-web-designer-dev-inheritance",
+      "attrs": [
+        {
+          "name": "referenceCount",
+          "caption": "Reference count",
+          "hidden": false,
+          "index": 0
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Parent",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "Parent",
+              "hidden": false,
+              "index": 2
+            }
+          ],
+          "index": 1,
+          "caption": "",
+          "name": "parent",
+          "relatedTo": "new-platform-flexberry-web-designer-class",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Child",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "Child",
+              "hidden": false,
+              "index": 4
+            }
+          ],
+          "index": 3,
+          "caption": "",
+          "name": "child",
+          "relatedTo": "new-platform-flexberry-web-designer-class",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}
