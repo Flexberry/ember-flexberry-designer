@@ -12,7 +12,7 @@ echo "Clone ${repositoryRelativeGitHubAddress} repository & checkout latest vers
 git clone --recursive "https://github.com/${repositoryRelativeGitHubAddress}.git" repository
 cd repository
 
-# Checkout gh-pages brunch & pull it's latest version.
+# Checkout gh-pages branch & pull it's latest version.
 git checkout gh-pages
 git pull
 
