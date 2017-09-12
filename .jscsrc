@@ -1,6 +1,5 @@
 {
   "excludeFiles": [ "tests/unit/models/*" ],
-  "esnext": true,
   "preset": "airbnb",
   "requirePaddingNewLinesAfterBlocks": {
     "allExcept": ["inCallExpressions", "inArrayExpressions", "inProperties"]
@@ -10,7 +9,7 @@
   "validateQuoteMarks": { "mark": "'", "escape": true },
   "requireSpacesInAnonymousFunctionExpression": null,
   "maximumLineLength": {
-    value: 160,
-    allExcept: ["regex", "comments", "urlComments"]
+    "value": 160,
+    "allExcept": ["regex", "comments", "urlComments"]
   }
 }

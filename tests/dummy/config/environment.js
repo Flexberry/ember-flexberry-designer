@@ -1,8 +1,7 @@
 /* jshint node: true */
 
-module.exports = function(environment) {
-  // Replace this local address to remote when backed will be published.
-  var backendUrl = 'http://localhost:6500';
+module.exports = function (environment) {
+  var backendUrl = 'http://flexberry-designer-web.azurewebsites.net';
 
   if (environment === 'development-loc') {
     // Use `ember s -e development-loc` command for local backend usage.
@@ -10,6 +9,7 @@ module.exports = function(environment) {
   }
 
   var ENV = {
+    repositoryName: 'ember-flexberry-designer/dummy',
     modulePrefix: 'dummy',
     environment: environment,
     baseURL: '/',
@@ -25,7 +25,7 @@ module.exports = function(environment) {
 
     APP: {
       // Application name. Used in `user-settings` service.
-      name: 'ember-app',
+      name: 'flexberry-designer',
 
       backendUrl: backendUrl,
 
@@ -155,6 +155,24 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
 
+  }
+
+  // Change paths to application assets if build has been started with the following parameters:
+  // ember build --gh-pages --gh-pages-branch=<branch-to-publish-on-gh-pages>.
+  if (process.argv.indexOf('--gh-pages') >= 0) {
+    var branch;
+
+    // Retrieve branch name from process arguments.
+    process.argv.forEach(function (value) {
+      if (value.indexOf('--gh-pages-branch=') >= 0) {
+        branch = value.split('=')[1];
+        return;
+      }
+    });
+
+    // Change base URL to force paths to application assets be relative.
+    ENV.baseURL = '/' + ENV.repositoryName + '/' + branch + '/';
+    ENV.locationType = 'none';
   }
 
   return ENV;
