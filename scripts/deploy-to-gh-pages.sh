@@ -12,43 +12,12 @@ echo "Clone ${repositoryRelativeGitHubAddress} repository & checkout latest vers
 git clone --recursive "https://github.com/${repositoryRelativeGitHubAddress}.git" repository
 cd repository
 
-# Remember existing remote branches in array.
-existingRemoteBranches=()
-for branch in `git branch -r`;
-do
-  if [ "${branch}" != "origin/HEAD" ] && [ "${branch}" != "origin/gh-pages" ] && [ "${branch}" != "->" ];
-  then
-    echo "Add remote branch ${branch} into existing branches array"
-    existingRemoteBranches=("${existingRemoteBranches[@]}" "${branch#origin/}")
-  fi
-done
-existingRemoteBranches=($(echo "${existingRemoteBranches[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
-
 # Checkout gh-pages brunch & pull it's latest version.
 git checkout gh-pages
 git pull
 
-# Itarate over 'gh-pages'-branch directories (except 'stylesheets' and 'images').
-shopt -s dotglob
-find * -prune -type d | while read directory; do
-  if [ "${directory}" != "stylesheets" ] && [ "${directory}" != "images" ] && [ "${directory}" != ".git" ];
-  then
-    branch="${directory}"
-
-    branchExists=false
-    if [ $(echo ${existingRemoteBranches[@]} | grep -o "${branch}" | wc -w) -ne 0 ];
-    then
-      branchExists=true
-    fi
-
-    # Remove directories for those branches which doesn't exist anymore.
-    if [ $branchExists = false ];
-    then
-      echo "Remove results of previous deploy (for ${branch} branch), because it doesn't exist anymore."
-      rm -rf "${branch}"
-    fi
-  fi
-done
+# Navigate into dummy deploy folder.
+cd dummy
 
 # Remove results of previous deploy (for current branch) & recreate directory.
 echo "Remove results of previous deploy (for ${TRAVIS_BRANCH} branch)."
@@ -57,7 +26,12 @@ mkdir "${TRAVIS_BRANCH}"
 
 # Copy builded ember application from 'dist' folder into 'repository/${TRAVIS_BRANCH}'.
 echo "Copy builded ember application (for ${TRAVIS_BRANCH} branch)."
-cp -r ../dist/* "${TRAVIS_BRANCH}"
+cp -r ../../dist/* "${TRAVIS_BRANCH}"
+
+# Generate autodoc.
+cd ..
+# cd autodoc
+# TODO: set autodoc generator config and theme.
 
 # Configure git.
 git config user.name "Flexberry-man"
