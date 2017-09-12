@@ -176,9 +176,6 @@ export default {
           stereotype: {
             caption: 'stereotype'
           },
-          caption: {
-            caption: 'caption'
-          },
           stage: {
             caption: 'stage'
           }

@@ -35,9 +35,6 @@ export default {
         type: {
           caption: 'type'
         },
-        caption: {
-          caption: 'caption'
-        },
         description: {
           caption: 'description'
         },
@@ -251,17 +248,17 @@ export default {
         parameters: {
           caption: 'parameters',
           name: {
-          caption: 'name'
-        },
+            caption: 'name'
+          },
           modifier: {
-          caption: 'modifier'
-        },
+            caption: 'modifier'
+          },
           type: {
-          caption: 'type'
-        },
+            caption: 'type'
+          },
           description: {
-          caption: 'description'
-        }
+            caption: 'description'
+          }
         }
       }
     },
@@ -407,17 +404,17 @@ export default {
         parameters: {
           caption: 'parameters',
           name: {
-          caption: 'name'
-        },
+            caption: 'name'
+          },
           modifier: {
-          caption: 'modifier'
-        },
+            caption: 'modifier'
+          },
           type: {
-          caption: 'type'
-        },
+            caption: 'type'
+          },
           description: {
-          caption: 'description'
-        }
+            caption: 'description'
+          }
         }
       }
     },
@@ -630,17 +627,17 @@ export default {
         parameters: {
           caption: 'parameters',
           name: {
-          caption: 'name'
-        },
+            caption: 'name'
+          },
           modifier: {
-          caption: 'modifier'
-        },
+            caption: 'modifier'
+          },
           type: {
-          caption: 'type'
-        },
+            caption: 'type'
+          },
           description: {
-          caption: 'description'
-        }
+            caption: 'description'
+          }
         }
       },
       devViews: {
@@ -749,9 +746,6 @@ export default {
         name: {
           caption: 'name'
         },
-        caption: {
-          caption: 'caption'
-        },
         description: {
           caption: 'description'
         },
@@ -776,17 +770,17 @@ export default {
         parameters: {
           caption: 'parameters',
           name: {
-          caption: 'name'
-        },
+            caption: 'name'
+          },
           modifier: {
-          caption: 'modifier'
-        },
+            caption: 'modifier'
+          },
           type: {
-          caption: 'type'
-        },
+            caption: 'type'
+          },
           description: {
-          caption: 'description'
-        }
+            caption: 'description'
+          }
         }
       }
     },
@@ -817,9 +811,6 @@ export default {
         defaultValue: {
           caption: 'defaultValue'
         },
-        caption: {
-          caption: 'caption'
-        }
       }
     },
     EditEventArg: {
@@ -900,17 +891,17 @@ export default {
         parameters: {
           caption: 'parameters',
           name: {
-          caption: 'name'
-        },
+            caption: 'name'
+          },
           modifier: {
-          caption: 'modifier'
-        },
+            caption: 'modifier'
+          },
           type: {
-          caption: 'type'
-        },
+            caption: 'type'
+          },
           description: {
-          caption: 'description'
-        }
+            caption: 'description'
+          }
         }
       }
     },
@@ -1044,17 +1035,17 @@ export default {
         parameters: {
           caption: 'parameters',
           name: {
-          caption: 'name'
-        },
+            caption: 'name'
+          },
           modifier: {
-          caption: 'modifier'
-        },
+            caption: 'modifier'
+          },
           type: {
-          caption: 'type'
-        },
+            caption: 'type'
+          },
           description: {
-          caption: 'description'
-        }
+            caption: 'description'
+          }
         }
       }
     },
@@ -1151,9 +1142,6 @@ export default {
         name: {
           caption: 'name'
         },
-        caption: {
-          caption: 'caption'
-        },
         description: {
           caption: 'description'
         },
@@ -1178,17 +1166,17 @@ export default {
         parameters: {
           caption: 'parameters',
           name: {
-          caption: 'name'
-        },
+            caption: 'name'
+          },
           modifier: {
-          caption: 'modifier'
-        },
+            caption: 'modifier'
+          },
           type: {
-          caption: 'type'
-        },
+            caption: 'type'
+          },
           description: {
-          caption: 'description'
-        }
+            caption: 'description'
+          }
         }
       }
     },
@@ -1273,9 +1261,6 @@ export default {
         name: {
           caption: 'name'
         },
-        caption: {
-          caption: 'caption'
-        },
         description: {
           caption: 'description'
         },
@@ -1294,17 +1279,17 @@ export default {
         parameters: {
           caption: 'parameters',
           name: {
-          caption: 'name'
-        },
+            caption: 'name'
+          },
           modifier: {
-          caption: 'modifier'
-        },
+            caption: 'modifier'
+          },
           type: {
-          caption: 'type'
-        },
+            caption: 'type'
+          },
           description: {
-          caption: 'description'
-        }
+            caption: 'description'
+          }
         }
       }
     },
@@ -1433,17 +1418,17 @@ export default {
         parameters: {
           caption: 'parameters',
           name: {
-          caption: 'name'
-        },
+            caption: 'name'
+          },
           modifier: {
-          caption: 'modifier'
-        },
+            caption: 'modifier'
+          },
           type: {
-          caption: 'type'
-        },
+            caption: 'type'
+          },
           description: {
-          caption: 'description'
-        }
+            caption: 'description'
+          }
         }
       }
     },
@@ -1513,9 +1498,6 @@ export default {
         name: {
           caption: 'name'
         },
-        caption: {
-          caption: 'caption'
-        },
         description: {
           caption: 'description'
         },
@@ -1540,17 +1522,17 @@ export default {
         parameters: {
           caption: 'parameters',
           name: {
-          caption: 'name'
-        },
+            caption: 'name'
+          },
           modifier: {
-          caption: 'modifier'
-        },
+            caption: 'modifier'
+          },
           type: {
-          caption: 'type'
-        },
+            caption: 'type'
+          },
           description: {
-          caption: 'description'
-        }
+            caption: 'description'
+          }
         }
       }
     },
@@ -1749,9 +1731,6 @@ export default {
         autoincrement: {
           caption: 'autoincrement'
         },
-        caption: {
-          caption: 'caption'
-        },
         dataServiceExpression: {
           caption: 'dataServiceExpression'
         },
@@ -1824,9 +1803,6 @@ export default {
         accessType: {
           caption: 'accessType'
         },
-        caption: {
-          caption: 'caption'
-        },
         isEvent: {
           caption: 'isEvent'
         },
@@ -1862,30 +1838,27 @@ export default {
         },
         parameters: {
           caption: 'parameters',
-          caption: {
-          caption: 'caption'
-        },
           modifier: {
-          caption: 'modifier'
-        },
+            caption: 'modifier'
+          },
           orderNum: {
-          caption: 'orderNum'
-        },
+            caption: 'orderNum'
+          },
           realCaption: {
-          caption: 'realCaption'
-        },
+            caption: 'realCaption'
+          },
           type: {
-          caption: 'type'
-        },
+            caption: 'type'
+          },
           name: {
-          caption: 'name'
-        },
+            caption: 'name'
+          },
           description: {
-          caption: 'description'
-        },
+            caption: 'description'
+          },
           nameStr: {
-          caption: 'nameStr'
-        }
+            caption: 'nameStr'
+          }
         }
       },
       formViews: {
@@ -1941,17 +1914,17 @@ export default {
         controls: {
           caption: 'controls',
           name: {
-          caption: 'name'
-        },
+            caption: 'name'
+          },
           propertyPath: {
-          caption: 'propertyPath'
-        },
+            caption: 'propertyPath'
+          },
           settingsXml: {
-          caption: 'settingsXml'
-        },
+            caption: 'settingsXml'
+          },
           order: {
-          caption: 'order'
-        },
+            caption: 'order'
+          },
           controlType: {
             caption: 'controlType',
             name: {

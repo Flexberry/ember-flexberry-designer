@@ -434,9 +434,6 @@ export default {
       },
       parameters: {
         caption: '',
-        caption: {
-          caption: 'Caption'
-        },
         modifier: {
           caption: 'Modifier'
         },

@@ -35,9 +35,6 @@ export default {
         type: {
           caption: ''
         },
-        caption: {
-          caption: ''
-        },
         description: {
           caption: ''
         },
@@ -749,9 +746,6 @@ export default {
         name: {
           caption: ''
         },
-        caption: {
-          caption: ''
-        },
         description: {
           caption: ''
         },
@@ -815,9 +809,6 @@ export default {
           caption: ''
         },
         defaultValue: {
-          caption: ''
-        },
-        caption: {
           caption: ''
         }
       }
@@ -1151,9 +1142,6 @@ export default {
         name: {
           caption: ''
         },
-        caption: {
-          caption: ''
-        },
         description: {
           caption: ''
         },
@@ -1271,9 +1259,6 @@ export default {
           caption: ''
         },
         name: {
-          caption: ''
-        },
-        caption: {
           caption: ''
         },
         description: {
@@ -1513,9 +1498,6 @@ export default {
         name: {
           caption: ''
         },
-        caption: {
-          caption: ''
-        },
         description: {
           caption: ''
         },
@@ -1749,9 +1731,6 @@ export default {
         autoincrement: {
           caption: 'Autoincrement'
         },
-        caption: {
-          caption: 'Caption'
-        },
         dataServiceExpression: {
           caption: 'DataServiceExpression'
         },
@@ -1824,9 +1803,6 @@ export default {
         accessType: {
           caption: 'AccessType'
         },
-        caption: {
-          caption: 'Caption'
-        },
         isEvent: {
           caption: 'IsEvent'
         },
@@ -1862,9 +1838,6 @@ export default {
         },
         parameters: {
           caption: '',
-          caption: {
-          caption: 'Caption'
-        },
           modifier: {
           caption: 'Modifier'
         },

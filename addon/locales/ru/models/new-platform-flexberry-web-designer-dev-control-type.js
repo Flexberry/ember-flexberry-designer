@@ -54,9 +54,6 @@ export default {
         name: {
           caption: ''
         },
-        caption: {
-          caption: ''
-        },
         mapTypeName: {
           caption: ''
         },
