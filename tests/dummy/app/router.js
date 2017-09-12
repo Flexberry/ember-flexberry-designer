@@ -6,6 +6,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function () {
+  this.route('new-platform-flexberry-web-designer-appstruct-list-form');
   this.route('new-platform-flexberry-web-designer-association-list-form');
   this.route('new-platform-flexberry-web-designer-association-edit-form',
   { path: 'new-platform-flexberry-web-designer-association-edit-form/:id' });

@@ -73,6 +73,12 @@ Ember.$.extend(true, translations, {
         root: {
           caption: 'root',
           title: 'root',
+          'new-platform-flexberry-web-designer-appstruct-list-form': {
+            caption: 'Application structure',
+            title: '',
+
+          },
+
           'new-platform-flexberry-web-designer-stage-list-form': {
             caption: 'new-platform-flexberry-web-designer-stage-list-form',
             title: 'new-platform-flexberry-web-designer-stage-list-form',

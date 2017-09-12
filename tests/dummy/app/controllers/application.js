@@ -26,6 +26,11 @@ export default Ember.Controller.extend({
             title: i18n.t('forms.application.sitemap.root.new-platform-flexberry-web-designer-system-list-form.title'),
             children: null
           }, {
+            link: 'new-platform-flexberry-web-designer-appstruct-list-form',
+            caption: i18n.t('forms.application.sitemap.root.new-platform-flexberry-web-designer-appstruct-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.new-platform-flexberry-web-designer-appstruct-list-form.title'),
+            children: null
+          }, {
             link: 'new-platform-flexberry-web-designer-diagram-list-form',
             caption: i18n.t('forms.application.sitemap.root.new-platform-flexberry-web-designer-diagram-list-form.caption'),
             title: i18n.t('forms.application.sitemap.root.new-platform-flexberry-web-designer-diagram-list-form.title'),

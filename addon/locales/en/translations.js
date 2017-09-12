@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import EmberFlexberryTranslations from 'ember-flexberry/locales/en/translations';
 
+import NewPlatformFlexberryWebDesignerAppstructListFormForm from './forms/new-platform-flexberry-web-designer-appstruct-list-form';
 import NewPlatformFlexberryWebDesignerAssociationListFormForm from './forms/new-platform-flexberry-web-designer-association-list-form';
 import NewPlatformFlexberryWebDesignerClassListFormForm from './forms/new-platform-flexberry-web-designer-class-list-form';
 import NewPlatformFlexberryWebDesignerDiagramListFormForm from './forms/new-platform-flexberry-web-designer-diagram-list-form';
@@ -146,6 +147,7 @@ Ember.$.extend(true, translations, {
   },
 
   forms: {
+    'new-platform-flexberry-web-designer-appstruct-list-form': NewPlatformFlexberryWebDesignerAppstructListFormForm,
     'new-platform-flexberry-web-designer-association-list-form': NewPlatformFlexberryWebDesignerAssociationListFormForm,
     'new-platform-flexberry-web-designer-class-list-form': NewPlatformFlexberryWebDesignerClassListFormForm,
     'new-platform-flexberry-web-designer-diagram-list-form': NewPlatformFlexberryWebDesignerDiagramListFormForm,
