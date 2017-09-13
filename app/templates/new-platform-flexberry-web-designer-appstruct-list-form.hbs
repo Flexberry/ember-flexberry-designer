@@ -2,19 +2,19 @@
 
 
 <table>
-  <tr valign='center' align='center'>
-    <td align='left'>
+  <tr >
+    <td>
       <i class="large remove icon"></i>
       <i class="large plus icon"></i>
       <i class="large write icon"></i>
       <i class="large list icon"></i>
     </td>
-    <td rowspan='2'>
+    <td rowspan='2' valign='center' align='center'>
       <i class="large chevron left icon"></i>
       <br>
       <i class="large chevron right icon"></i>
     </td>
-    <td  align='left'>
+    <td>
       <i class="large plus icon"></i>
       <i class="large remove icon"></i>
       <i class="large folder icon"></i>
@@ -22,7 +22,7 @@
       <i class="large arrow down icon"></i>
     </td>
   </tr>
-  <tr>
+  <tr valign='top'>
     <td>
         {{flexberry-tree
         class=jsonTreeClass
@@ -30,7 +30,7 @@
         collapsible=jsonTreeCollapsible
         animateChildren=jsonTreeAnimateChildren
         duration=jsonTreeDuration
-        nodes=(get-with-dynamic-actions this "jsonTreeNodes"
+        nodes=(get-with-dynamic-actions this "jsonTreeNodesLeft"
           hierarchyPropertyName="nodes"
           pathKeyword="nodePath"
           dynamicActions=(array
@@ -50,7 +50,7 @@
         collapsible=jsonTreeCollapsible
         animateChildren=jsonTreeAnimateChildren
         duration=jsonTreeDuration
-        nodes=(get-with-dynamic-actions this "jsonTreeNodes"
+        nodes=(get-with-dynamic-actions this "jsonTreeNodesRight"
           hierarchyPropertyName="nodes"
           pathKeyword="nodePath"
           dynamicActions=(array
@@ -63,6 +63,6 @@
         )
       }}
     </td>
-  ></tr>
+  </tr>
 </table>
 
