@@ -53,14 +53,14 @@ echo "Execute yuidoc autodocumentation generator."
 yuidoc
 
 echo "Navigate to target directory for autodoc in gh-pages."
-cd "../${repository}/autodoc"
+cd "../repository/autodoc"
 
 # Remove results of previous deploy (for current branch) & recreate directory.
 rm -rf "${TRAVIS_BRANCH}"
 mkdir "${TRAVIS_BRANCH}"
 
 echo "Copy autodoc result into ${TRAVIS_BRANCH} directory."
-cp -r "../${repositoryYuidocTheme}/autodoc-result/*" ${TRAVIS_BRANCH}
+cp -r "../repositoryYuidocTheme/autodoc-result/*" ${TRAVIS_BRANCH}
 
 cd ..
 
