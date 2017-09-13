@@ -44,7 +44,7 @@ git checkout ${TRAVIS_BRANCH}
 git pull
 
 echo "Copy ember addon source (for ${TRAVIS_BRANCH} branch) into addon directory."
-cp -r "../../addon/*" "/addon/"
+cp -r "../addon/*" "/addon/"
 
 echo "Execute yuidoc autodocumentation generator."
 yuidoc
