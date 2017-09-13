@@ -3,9 +3,6 @@
 # Exit with nonzero exit code if anything fails.
 set -e
 
-echo "List directory"
-ls
-
 # Define repository relative GitHub address.
 repositoryRelativeGitHubAddress="Flexberry/ember-flexberry-designer"
 
@@ -34,9 +31,6 @@ cp -r ../../dist/* "${TRAVIS_BRANCH}"
 # Generate autodoc.
 cd ../..
 
-echo "List directory"
-ls
-
 # Define yuidoc theme repository relative GitHub address.
 repositoryYuidocTheme="Flexberry/flexberry-yuidoc-theme"
 
@@ -51,7 +45,8 @@ git checkout ${TRAVIS_BRANCH}
 git pull
 
 echo "Copy ember addon source (for ${TRAVIS_BRANCH} branch) into addon directory."
-cp -r "../addon/*" "/addon/"
+mkdir addon
+cp -r ../addon/* addon
 
 echo "Execute yuidoc autodocumentation generator."
 yuidoc
@@ -65,6 +60,8 @@ mkdir "${TRAVIS_BRANCH}"
 
 echo "Copy autodoc result into ${TRAVIS_BRANCH} directory."
 cp -r "../${repositoryYuidocTheme}/autodoc-result/*" ${TRAVIS_BRANCH}
+
+cd ..
 
 # Configure git.
 git config user.name "Flexberry-man"
