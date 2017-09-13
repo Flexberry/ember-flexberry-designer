@@ -134,11 +134,12 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     },
 
     moveLeftHighlighted() {
-      let lastRightClicked = this.lastClicked.left;
+      let lastClicked = this.lastClicked.right;
+      let path = lastClicked.path;
     },
     
     moveRightHighlighted() {
-      let lastLeftClicked = this.lastClicked.right;
+      let lastClicked = this.lastClicked.left;
     }
     
     
