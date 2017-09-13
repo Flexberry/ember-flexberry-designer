@@ -27,9 +27,10 @@ mkdir "${TRAVIS_BRANCH}"
 # Copy builded ember application from 'dist' directory into 'repository/${TRAVIS_BRANCH}'.
 echo "Copy builded ember application (for ${TRAVIS_BRANCH} branch)."
 cp -r ../../dist/* "${TRAVIS_BRANCH}"
+cd ../..
 
 # Generate autodoc.
-cd ../..
+npm install -g yuidocjs
 
 # Define yuidoc theme repository relative GitHub address.
 repositoryYuidocTheme="Flexberry/flexberry-yuidoc-theme"
