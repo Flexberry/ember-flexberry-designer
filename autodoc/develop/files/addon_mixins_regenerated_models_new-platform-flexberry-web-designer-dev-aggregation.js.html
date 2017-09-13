@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>addon/mixins/regenerated/models/new-platform-flexberry-web-designer-dev-aggregation.js - Flexberry Documentation</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="Flexberry Documentation" src="../assets/css/logo.png" style="max-height: 65%;" title="Flexberry Documentation">
+            Flexberry Documentation
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>develop</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='[]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <h3>APIs</h3>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Type to filter APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Show:
+                    <label for="api-show-inherited" class="checkbox">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>addon/mixins/regenerated/models/new-platform-flexberry-web-designer-dev-aggregation.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+import Ember from &#x27;ember&#x27;;
+import DS from &#x27;ember-data&#x27;;
+import { Projection } from &#x27;ember-flexberry-data&#x27;;
+export let Model = Ember.Mixin.create({
+  /**
+    Non-stored property.
+
+    @property assocType
+  */
+  assocType: DS.attr(&#x27;string&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;assocTypeCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;assocType&#x27; property.
+
+    @method _assocTypeCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _assocTypeChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;assocType&#x27;, function() {
+        Ember.run.once(this, &#x27;_assocTypeCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _assocTypeCompute: function() {
+    let result = (this.assocTypeCompute &amp;&amp; typeof this.assocTypeCompute === &#x27;function&#x27;) ? this.assocTypeCompute() : null;
+    this.set(&#x27;assocType&#x27;, result);
+  },
+  autoGenerateDetailTypeUsage: DS.attr(&#x27;boolean&#x27;),
+  autoGenerateTypeUsage: DS.attr(&#x27;boolean&#x27;),
+  detailTypeUsage: DS.attr(&#x27;string&#x27;),
+  pBAggregatorCustomAttributes: DS.attr(&#x27;boolean&#x27;),
+  pBAggregatorGetEnd: DS.attr(&#x27;boolean&#x27;),
+  pBAggregatorGetStart: DS.attr(&#x27;boolean&#x27;),
+  pBAggregatorSetEnd: DS.attr(&#x27;boolean&#x27;),
+  pBAggregatorSetStart: DS.attr(&#x27;boolean&#x27;),
+  pBDetailCustomAttributes: DS.attr(&#x27;boolean&#x27;),
+  pBDetailGetEnd: DS.attr(&#x27;boolean&#x27;),
+  pBDetailGetStart: DS.attr(&#x27;boolean&#x27;),
+  pBDetailSetEnd: DS.attr(&#x27;boolean&#x27;),
+  pBDetailSetStart: DS.attr(&#x27;boolean&#x27;),
+  pBMasterCustomAttributes: DS.attr(&#x27;boolean&#x27;),
+  pBMasterGetEnd: DS.attr(&#x27;boolean&#x27;),
+  pBMasterGetStart: DS.attr(&#x27;boolean&#x27;),
+  pBMasterSetEnd: DS.attr(&#x27;boolean&#x27;),
+  pBMasterSetStart: DS.attr(&#x27;boolean&#x27;),
+  /**
+    Non-stored property.
+
+    @property realStorage
+  */
+  realStorage: DS.attr(&#x27;string&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;realStorageCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;realStorage&#x27; property.
+
+    @method _realStorageCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _realStorageChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;realStorage&#x27;, function() {
+        Ember.run.once(this, &#x27;_realStorageCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _realStorageCompute: function() {
+    let result = (this.realStorageCompute &amp;&amp; typeof this.realStorageCompute === &#x27;function&#x27;) ? this.realStorageCompute() : null;
+    this.set(&#x27;realStorage&#x27;, result);
+  },
+  typeUsage: DS.attr(&#x27;string&#x27;),
+  getValidations: function () {
+    let parentValidations = this._super();
+    let thisValidations = {
+    };
+    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+  },
+  init: function () {
+    this.set(&#x27;validations&#x27;, this.getValidations());
+    this._super.apply(this, arguments);
+  }
+});
+export let defineBaseModel = function (modelClass) {
+  modelClass.reopenClass({
+    _parentModelName: &#x27;new-platform-flexberry-web-designer-dev-base-association&#x27;
+  });
+};
+
+export let defineProjections = function (modelClass) {
+  modelClass.defineProjection(&#x27;Edit&#x27;, &#x27;new-platform-flexberry-web-designer-dev-aggregation&#x27;, {
+    description: Projection.attr(&#x27;&#x27;),
+    startRole: Projection.attr(&#x27;&#x27;),
+    endRole: Projection.attr(&#x27;&#x27;),
+    startMultiplicity: Projection.attr(&#x27;&#x27;),
+    endRoleStored: Projection.attr(&#x27;&#x27;),
+    autoGenerateTypeUsage: Projection.attr(&#x27;Aggregator AutoGenerateTypeUsage&#x27;),
+    typeUsage: Projection.attr(&#x27;Aggregator TypeUsage&#x27;),
+    storage: Projection.attr(&#x27;Aggregator Storage&#x27;),
+    autoStoreMasterDisabled: Projection.attr(&#x27;&#x27;),
+    autoGenerateDetailTypeUsage: Projection.attr(&#x27;Detail AutoGenerateTypeUsage&#x27;),
+    detailTypeUsage: Projection.attr(&#x27;&#x27;),
+    pBAggregatorCustomAttributes: Projection.attr(&#x27;&#x27;),
+    pBAggregatorGetStart: Projection.attr(&#x27;&#x27;),
+    pBAggregatorGetEnd: Projection.attr(&#x27;&#x27;),
+    pBAggregatorSetStart: Projection.attr(&#x27;&#x27;),
+    pBAggregatorSetEnd: Projection.attr(&#x27;&#x27;),
+    pBDetailCustomAttributes: Projection.attr(&#x27;&#x27;),
+    pBDetailGetStart: Projection.attr(&#x27;&#x27;),
+    pBDetailGetEnd: Projection.attr(&#x27;&#x27;),
+    pBDetailSetStart: Projection.attr(&#x27;&#x27;),
+    pBDetailSetEnd: Projection.attr(&#x27;&#x27;)
+  });
+  modelClass.defineProjection(&#x27;Gen&#x27;, &#x27;new-platform-flexberry-web-designer-dev-aggregation&#x27;, {
+    pBAggregatorCustomAttributes: Projection.attr(&#x27;&#x27;),
+    pBAggregatorGetEnd: Projection.attr(&#x27;&#x27;),
+    pBAggregatorGetStart: Projection.attr(&#x27;&#x27;),
+    pBAggregatorSetEnd: Projection.attr(&#x27;&#x27;),
+    pBAggregatorSetStart: Projection.attr(&#x27;&#x27;),
+    pBDetailCustomAttributes: Projection.attr(&#x27;&#x27;),
+    pBDetailGetEnd: Projection.attr(&#x27;&#x27;),
+    pBDetailGetStart: Projection.attr(&#x27;&#x27;),
+    pBDetailSetEnd: Projection.attr(&#x27;&#x27;),
+    pBDetailSetStart: Projection.attr(&#x27;&#x27;),
+    pBMasterCustomAttributes: Projection.attr(&#x27;&#x27;),
+    pBMasterGetEnd: Projection.attr(&#x27;&#x27;),
+    pBMasterGetStart: Projection.attr(&#x27;&#x27;),
+    pBMasterSetEnd: Projection.attr(&#x27;&#x27;),
+    pBMasterSetStart: Projection.attr(&#x27;&#x27;),
+    storage: Projection.attr(&#x27;&#x27;),
+    autoStoreMasterDisabled: Projection.attr(&#x27;&#x27;),
+    typeUsage: Projection.attr(&#x27;&#x27;),
+    autoGenerateTypeUsage: Projection.attr(&#x27;&#x27;),
+    autoGenerateDetailTypeUsage: Projection.attr(&#x27;&#x27;),
+    description: Projection.attr(&#x27;&#x27;)
+  });
+  modelClass.defineProjection(&#x27;Generator&#x27;, &#x27;new-platform-flexberry-web-designer-dev-aggregation&#x27;, {
+    assocType: Projection.attr(&#x27;AssocType&#x27;, { hidden: true }),
+    autoGenerateDetailTypeUsage: Projection.attr(&#x27;AutoGenerateDetailTypeUsage&#x27;, { hidden: true }),
+    autoGenerateTypeUsage: Projection.attr(&#x27;AutoGenerateTypeUsage&#x27;, { hidden: true }),
+    detailTypeUsage: Projection.attr(&#x27;DetailTypeUsage&#x27;, { hidden: true }),
+    pBAggregatorCustomAttributes: Projection.attr(&#x27;PBAggregatorCustomAttributes&#x27;, { hidden: true }),
+    pBAggregatorGetEnd: Projection.attr(&#x27;PBAggregatorGetEnd&#x27;, { hidden: true }),
+    pBAggregatorGetStart: Projection.attr(&#x27;PBAggregatorGetStart&#x27;, { hidden: true }),
+    pBAggregatorSetEnd: Projection.attr(&#x27;PBAggregatorSetEnd&#x27;, { hidden: true }),
+    pBAggregatorSetStart: Projection.attr(&#x27;PBAggregatorSetStart&#x27;, { hidden: true }),
+    pBDetailCustomAttributes: Projection.attr(&#x27;PBDetailCustomAttributes&#x27;, { hidden: true }),
+    pBDetailGetEnd: Projection.attr(&#x27;PBDetailGetEnd&#x27;, { hidden: true }),
+    pBDetailGetStart: Projection.attr(&#x27;PBDetailGetStart&#x27;, { hidden: true }),
+    pBDetailSetEnd: Projection.attr(&#x27;PBDetailSetEnd&#x27;, { hidden: true }),
+    pBDetailSetStart: Projection.attr(&#x27;PBDetailSetStart&#x27;, { hidden: true }),
+    pBMasterCustomAttributes: Projection.attr(&#x27;PBMasterCustomAttributes&#x27;, { hidden: true }),
+    pBMasterGetEnd: Projection.attr(&#x27;PBMasterGetEnd&#x27;, { hidden: true }),
+    pBMasterGetStart: Projection.attr(&#x27;PBMasterGetStart&#x27;, { hidden: true }),
+    pBMasterSetEnd: Projection.attr(&#x27;PBMasterSetEnd&#x27;, { hidden: true }),
+    pBMasterSetStart: Projection.attr(&#x27;PBMasterSetStart&#x27;, { hidden: true }),
+    realStorage: Projection.attr(&#x27;RealStorage&#x27;, { hidden: true }),
+    typeUsage: Projection.attr(&#x27;TypeUsage&#x27;, { hidden: true }),
+    autoStoreMasterDisabled: Projection.attr(&#x27;AutoStoreMasterDisabled&#x27;, { hidden: true }),
+    realEndRole: Projection.attr(&#x27;RealEndRole&#x27;, { hidden: true }),
+    realStartRole: Projection.attr(&#x27;RealStartRole&#x27;, { hidden: true }),
+    storage: Projection.attr(&#x27;Storage&#x27;, { hidden: true }),
+    endMultiplicity: Projection.attr(&#x27;EndMultiplicity&#x27;, { hidden: true }),
+    endRole: Projection.attr(&#x27;EndRole&#x27;, { hidden: true }),
+    endRoleAccessModifier: Projection.attr(&#x27;EndRoleAccessModifier&#x27;, { hidden: true }),
+    endRoleStored: Projection.attr(&#x27;EndRoleStored&#x27;, { hidden: true }),
+    endRoleStr: Projection.attr(&#x27;EndRoleStr&#x27;, { hidden: true }),
+    notNullStart: Projection.attr(&#x27;NotNullStart&#x27;, { hidden: true }),
+    startMultiplicity: Projection.attr(&#x27;StartMultiplicity&#x27;, { hidden: true }),
+    startRole: Projection.attr(&#x27;StartRole&#x27;, { hidden: true }),
+    startRoleAccessModifier: Projection.attr(&#x27;StartRoleAccessModifier&#x27;, { hidden: true }),
+    startRoleStored: Projection.attr(&#x27;StartRoleStored&#x27;, { hidden: true }),
+    startRoleStr: Projection.attr(&#x27;StartRoleStr&#x27;, { hidden: true }),
+    referenceCount: Projection.attr(&#x27;ReferenceCount&#x27;, { hidden: true }),
+    name: Projection.attr(&#x27;Name&#x27;, { hidden: true }),
+    description: Projection.attr(&#x27;Description&#x27;, { hidden: true }),
+    nameStr: Projection.attr(&#x27;NameStr&#x27;, { hidden: true }),
+    endClass: Projection.belongsTo(&#x27;new-platform-flexberry-web-designer-class&#x27;, &#x27;EndClass&#x27;, {
+
+    }, { hidden: true }),
+    startClass: Projection.belongsTo(&#x27;new-platform-flexberry-web-designer-class&#x27;, &#x27;StartClass&#x27;, {
+
+    }, { hidden: true })
+  });
+};
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>
