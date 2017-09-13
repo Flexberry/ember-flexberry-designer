@@ -60,7 +60,7 @@ rm -rf "${TRAVIS_BRANCH}"
 mkdir "${TRAVIS_BRANCH}"
 
 echo "Copy autodoc result into ${TRAVIS_BRANCH} directory."
-cp -r "../repositoryYuidocTheme/autodoc-result/*" ${TRAVIS_BRANCH}
+cp -r "../../repositoryYuidocTheme/autodoc-result/*" ${TRAVIS_BRANCH}
 
 cd ..
 
