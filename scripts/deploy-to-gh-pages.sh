@@ -3,6 +3,9 @@
 # Exit with nonzero exit code if anything fails.
 set -e
 
+echo "List directory"
+ls
+
 # Define repository relative GitHub address.
 repositoryRelativeGitHubAddress="Flexberry/ember-flexberry-designer"
 
@@ -30,6 +33,10 @@ cp -r ../../dist/* "${TRAVIS_BRANCH}"
 
 # Generate autodoc.
 cd ../..
+
+echo "List directory"
+ls
+
 # Define yuidoc theme repository relative GitHub address.
 repositoryYuidocTheme="Flexberry/flexberry-yuidoc-theme"
 
