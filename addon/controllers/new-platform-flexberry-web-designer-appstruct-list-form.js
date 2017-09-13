@@ -131,18 +131,18 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
           lastClicked.path = clickedNodePropertiesPath;
         }
       }
-//       if (this.clickedElement) {
-//         this.clickedElement.style.backgroundColor='';
-//       }
-//       this.clickedElement = actionEventObject.originalEvent.toElement;
-//       this.clickedElement.style.backgroundColor='#cccccc'
-        
-      // Remember latest clicked node path to a tree-related controller's property.
-//       this.set(clickedNodeSettingsPrefix + 'LatestClickedNodePath', clickedNodePropertiesPath);
-    }
-  }
+    },
 
-  
+    moveLeftHighlighted() {
+      let lastRightClicked = this.lastClicked.left;
+    },
+    
+    moveRightHighlighted() {
+      let lastLeftClicked = this.lastClicked.right;
+    }
+    
+    
+  }
   
   
 });

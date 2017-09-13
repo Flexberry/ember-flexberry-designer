@@ -10,9 +10,15 @@
       <i class="large list icon"></i>
     </td>
     <td rowspan='2' valign='center' align='center'>
-      <i class="large chevron left icon"></i>
-      <br>
-      <i class="large chevron right icon"></i>
+      <div
+        {{action "moveLeftHighlighted" on="click" }}
+        ><i class="large chevron left icon"></i
+      ></div>
+      <br />
+      <div
+        {{action "moveRightHighlighted" on="click" }}
+        ><i class="large chevron right icon"></i
+      ></div>
     </td>
     <td>
       <i class="large plus icon"></i>
