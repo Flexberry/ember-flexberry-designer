@@ -1,0 +1,68 @@
+<h3>{{t 'forms.new-platform-flexberry-web-designer-appstruct-list-form.caption'}}</h3>
+
+
+<table>
+  <tr valign='center' align='center'>
+    <td align='left'>
+      <i class="large remove icon"></i>
+      <i class="large plus icon"></i>
+      <i class="large write icon"></i>
+      <i class="large list icon"></i>
+    </td>
+    <td rowspan='2'>
+      <i class="large chevron left icon"></i>
+      <br>
+      <i class="large chevron right icon"></i>
+    </td>
+    <td  align='left'>
+      <i class="large plus icon"></i>
+      <i class="large remove icon"></i>
+      <i class="large folder icon"></i>
+      <i class="large arrow up icon"></i>
+      <i class="large arrow down icon"></i>
+    </td>
+  </tr>
+  <tr>
+    <td>
+        {{flexberry-tree
+        class=jsonTreeClass
+        exclusive=jsonTreeExclusive
+        collapsible=jsonTreeCollapsible
+        animateChildren=jsonTreeAnimateChildren
+        duration=jsonTreeDuration
+        nodes=(get-with-dynamic-actions this "jsonTreeNodes"
+          hierarchyPropertyName="nodes"
+          pathKeyword="nodePath"
+          dynamicActions=(array
+            (hash
+              on="headerClick"
+              actionName="onTreenodeHeaderClick"
+              actionArguments=(array "{% nodePath %}")
+            )
+          )
+        )
+      }}
+    </td>
+    <td>
+        {{flexberry-tree
+        class=jsonTreeClass
+        exclusive=jsonTreeExclusive
+        collapsible=jsonTreeCollapsible
+        animateChildren=jsonTreeAnimateChildren
+        duration=jsonTreeDuration
+        nodes=(get-with-dynamic-actions this "jsonTreeNodes"
+          hierarchyPropertyName="nodes"
+          pathKeyword="nodePath"
+          dynamicActions=(array
+            (hash
+              on="headerClick"
+              actionName="onTreenodeHeaderClick"
+              actionArguments=(array "{% nodePath %}")
+            )
+          )
+        )
+      }}
+    </td>
+  ></tr>
+</table>
+
