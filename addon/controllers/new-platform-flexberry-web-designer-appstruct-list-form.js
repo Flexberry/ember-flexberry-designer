@@ -3,8 +3,14 @@ import FlexberryTreenodeActionsHandlerMixin from 'ember-flexberry/mixins/flexber
 import TreeNodeObject from 'ember-flexberry/objects/tree-node';
 
 export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
+  
+  leftClickedElement: null,
+  leftClickedPath: null,
+  
+  jsonLeftTreeCollapsible: true,
+  jsonLeftTreeClass: 'styled',
 
-  jsonTreeNodesLeft: Ember.A([
+  jsonLeftTreeNodes: Ember.A([
       TreeNodeObject.create({
         caption: 'Файл',
         nodes: null
@@ -50,7 +56,14 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
 
     ]),
 
-  jsonTreeNodesRight: Ember.A([
+
+  rightClickedElement: null,
+  rightClickedPath: null,
+  
+  jsonRightTreeCollapsible: true,
+  jsonRightTreeClass: 'styled',
+
+  jsonRightTreeNodes: Ember.A([
       TreeNodeObject.create({
         caption: 'Folder',
         nodes: Ember.A([
@@ -79,7 +92,56 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
         ])
       }),
 
-  ])
+  ]),
+  
+  lastClicked: {
+    'left': {
+      path: null,
+      element: null
+    },
+    'right': {
+      path: null,
+      element: null
+    }    
+  },
+  
+  actions: {
+  
+    onTreenodeHeaderClick(...args) {
+      let actionEventObject = args[args.length - 1];
+      let clickedNodePropertiesPath = args[0];
+      let clickedNodeSettingsPrefix = Ember.$(actionEventObject.originalEvent.currentTarget)
+        .closest('.tab.segment')
+        .attr('data-tab');
+
+      let lastClicked = null;
+      let clickedElement = actionEventObject.originalEvent.toElement;
+      if (clickedElement.tagName == 'DIV') {
+        if (clickedNodePropertiesPath.substr(0,8) == 'jsonLeft') {
+          lastClicked = this.lastClicked.left;
+        } else if (clickedNodePropertiesPath.substr(0,9) == 'jsonRight') {
+            lastClicked = this.lastClicked.right;
+        }
+        if (lastClicked) {
+          if (lastClicked.element) {
+            lastClicked.element.style.backgroundColor = '';
+          }
+          lastClicked.element = clickedElement;
+          lastClicked.element.style.backgroundColor='#cccccc';
+          lastClicked.path = clickedNodePropertiesPath;
+        }
+      }
+//       if (this.clickedElement) {
+//         this.clickedElement.style.backgroundColor='';
+//       }
+//       this.clickedElement = actionEventObject.originalEvent.toElement;
+//       this.clickedElement.style.backgroundColor='#cccccc'
+        
+      // Remember latest clicked node path to a tree-related controller's property.
+//       this.set(clickedNodeSettingsPrefix + 'LatestClickedNodePath', clickedNodePropertiesPath);
+    }
+  }
+
   
   
   

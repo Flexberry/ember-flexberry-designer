@@ -25,12 +25,12 @@
   <tr valign='top'>
     <td>
         {{flexberry-tree
-        class=jsonTreeClass
+        class=jsonLeftTreeClass
         exclusive=jsonTreeExclusive
-        collapsible=jsonTreeCollapsible
+        collapsible=jsonLeftTreeCollapsible
         animateChildren=jsonTreeAnimateChildren
         duration=jsonTreeDuration
-        nodes=(get-with-dynamic-actions this "jsonTreeNodesLeft"
+        nodes=(get-with-dynamic-actions this "jsonLeftTreeNodes"
           hierarchyPropertyName="nodes"
           pathKeyword="nodePath"
           dynamicActions=(array
@@ -45,12 +45,12 @@
     </td>
     <td>
         {{flexberry-tree
-        class=jsonTreeClass
+        class=jsonRightTreeClass
         exclusive=jsonTreeExclusive
-        collapsible=jsonTreeCollapsible
+        collapsible=jsonRightTreeCollapsible
         animateChildren=jsonTreeAnimateChildren
         duration=jsonTreeDuration
-        nodes=(get-with-dynamic-actions this "jsonTreeNodesRight"
+        nodes=(get-with-dynamic-actions this "jsonRightTreeNodes"
           hierarchyPropertyName="nodes"
           pathKeyword="nodePath"
           dynamicActions=(array
