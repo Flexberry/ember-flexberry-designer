@@ -1,4 +1,0 @@
-import NewPlatformFlexberryWebDesignerAssociationEditFormController from '../new-platform-flexberry-web-designer-association-edit-form';
-
-var NewPlatformFlexberryWebDesignerAssociationEditFormNewController = NewPlatformFlexberryWebDesignerAssociationEditFormController;
-export default NewPlatformFlexberryWebDesignerAssociationEditFormNewController;
