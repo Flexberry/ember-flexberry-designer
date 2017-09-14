@@ -70,6 +70,10 @@ Ember.$.extend(true, translations, {
           caption: 'Главная',
           title: ''
         },
+        'new-platform-flexberry-web-designer-visual-edit-form': {
+          caption: 'Форма визуального редактирования',
+          title: ''
+        },
         root: {
           caption: 'Root',
           title: 'Root',

@@ -41,6 +41,8 @@ Router.map(function () {
   { path: 'new-platform-flexberry-web-designer-view-edit-form/:id' });
   this.route('new-platform-flexberry-web-designer-view-edit-form.new',
   { path: 'new-platform-flexberry-web-designer-view-edit-form/new' });
+  this.route('new-platform-flexberry-web-designer-visual-edit-form',
+  { path: 'new-platform-flexberry-web-designer-visual-edit-form' });
 });
 
 export default Router;
