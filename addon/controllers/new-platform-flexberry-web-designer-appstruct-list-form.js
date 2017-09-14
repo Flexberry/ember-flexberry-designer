@@ -62,6 +62,10 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
   
   jsonRightTreeCollapsible: true,
   jsonRightTreeClass: 'styled',
+  
+  jsonRightTree: {
+    caption: 'Folder',
+  },
 
   jsonRightTreeNodes: Ember.A([
       TreeNodeObject.create({
@@ -133,10 +137,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       }
     },
 
-    moveLeftHighlighted() {
-      let lastClicked = this.lastClicked.right;
-      let path = lastClicked.path;
-    },
+
     
     moveRightHighlighted() {
       let lastClicked = this.lastClicked.left;
