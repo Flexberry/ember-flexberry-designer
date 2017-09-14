@@ -3,12 +3,34 @@ import FlexberryTreenodeActionsHandlerMixin from 'ember-flexberry/mixins/flexber
 import TreeNodeObject from 'ember-flexberry/objects/tree-node';
 
 export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
-  
+
   leftClickedElement: null,
   leftClickedPath: null,
-  
+
   jsonLeftTreeCollapsible: true,
   jsonLeftTreeClass: 'styled',
+
+  model: {
+    jsonLeftTreeNodes : [
+      { caption: 'Файл' },
+      { caption: 'Документация по конкурсу' },
+      { caption: 'Критерий оценки' },
+      { caption: 'Конкурсы', nodes: [{ caption: 'Конкурс1'}, { caption: 'Конкурс2' }]},
+      { caption: 'Пользователь' },
+      { caption: 'Идеи', nodes: [{ caption: 'Идея11'},{ caption: 'Идея12'}]},
+    ],
+
+    jsonRightTreeNodes: [
+      {
+        caption: 'Рабочий стол',
+        nodes: [
+          { caption: 'Пользователь1' },
+          { caption: 'Пользователь2' },
+          { caption: 'Конкурсы', nodes: [{ caption: 'Конкурс1'},{ caption: 'Конкурс2'}]}
+        ],
+      }
+    ],
+  },
 
   jsonLeftTreeNodes: Ember.A([
       TreeNodeObject.create({
@@ -56,18 +78,37 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
 
     ]),
 
-
   rightClickedElement: null,
   rightClickedPath: null,
-  
+
   jsonRightTreeCollapsible: true,
   jsonRightTreeClass: 'styled',
-  
+
   jsonRightTree: {
     caption: 'Folder',
   },
 
-  jsonRightTreeNodes: Ember.A([
+  jsonRightTreeNodes: Ember.computed('i18n.locale', 'model.jsonRightTreeNodes', function() {
+    let treeNodes = this._jsTreeToFlexberryTree(this.model.jsonRightTreeNodes);
+    return treeNodes;
+  }),
+
+  _jsTreeToFlexberryTree: function (jsTree) {
+    if (!jsTree) return null;
+    let ret = Ember.A([]);
+    for (let i=0; i < jsTree.length; i++) {
+      let node = jsTree[i];
+      let caption = node.caption;
+      let nodes = node.nodes;
+      if (nodes && nodes.length > 0) {
+        nodes = this._jsTreeToFlexberryTree(nodes);
+      }
+      let treeNodeObject = TreeNodeObject.create({ caption: caption, nodes:nodes });
+      ret.addObject(treeNodeObject);
+    }
+    return ret;
+  },
+  /*Ember.A([
       TreeNodeObject.create({
         caption: 'Folder',
         nodes: Ember.A([
@@ -96,21 +137,21 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
         ])
       }),
 
-  ]),
-  
+  ])*/
+
   lastClicked: {
-    'left': {
+    left: {
       path: null,
       element: null
     },
-    'right': {
+    right: {
       path: null,
       element: null
-    }    
+    }
   },
-  
+
   actions: {
-  
+
     onTreenodeHeaderClick(...args) {
       let actionEventObject = args[args.length - 1];
       let clickedNodePropertiesPath = args[0];
@@ -120,16 +161,18 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
 
       let lastClicked = null;
       let clickedElement = actionEventObject.originalEvent.toElement;
-      if (clickedElement.tagName == 'DIV') {
-        if (clickedNodePropertiesPath.substr(0,8) == 'jsonLeft') {
+      if (clickedElement.tagName === 'DIV') {
+        if (clickedNodePropertiesPath.substr(0, 8) === 'jsonLeft') {
           lastClicked = this.lastClicked.left;
-        } else if (clickedNodePropertiesPath.substr(0,9) == 'jsonRight') {
-            lastClicked = this.lastClicked.right;
+        } else if (clickedNodePropertiesPath.substr(0, 9) === 'jsonRight') {
+          lastClicked = this.lastClicked.right;
         }
+
         if (lastClicked) {
           if (lastClicked.element) {
             lastClicked.element.style.backgroundColor = '';
           }
+
           lastClicked.element = clickedElement;
           lastClicked.element.style.backgroundColor='#cccccc';
           lastClicked.path = clickedNodePropertiesPath;
@@ -138,13 +181,11 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     },
 
 
-    
+
     moveRightHighlighted() {
       let lastClicked = this.lastClicked.left;
     }
-    
-    
+
   }
-  
-  
+
 });
