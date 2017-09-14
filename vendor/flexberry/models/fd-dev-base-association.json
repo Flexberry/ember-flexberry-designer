@@ -1,0 +1,464 @@
+﻿{
+  "name": "FdDevBaseAssociation",
+  "modelName": "fd-dev-base-association",
+  "className": "DevBaseAssociation",
+  "parentModelName": "fd-base-association",
+  "parentClassName": "BaseAssociation",
+  "attrs": [
+    {
+      "name": "assocType",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "autoStoreMasterDisabled",
+      "type": "boolean",
+      "flexberryType": "bool",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "realEndRole",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "realStartRole",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "storage",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "AssocList",
+      "modelName": "fd-dev-base-association",
+      "attrs": [
+        {
+          "name": "referenceCount",
+          "caption": "Количество упоминаний",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "assocType",
+          "caption": "Тип связи",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "startRole",
+          "caption": "Начальная роль",
+          "hidden": false,
+          "index": 6
+        },
+        {
+          "name": "endRole",
+          "caption": "Конечная роль",
+          "hidden": false,
+          "index": 7
+        },
+        {
+          "name": "storage",
+          "caption": "Хранилище",
+          "hidden": false,
+          "index": 10
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "StartClass",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [
+            {
+              "name": "nameStr",
+              "caption": "Начальный класс",
+              "hidden": false,
+              "index": 3
+            }
+          ],
+          "index": 2,
+          "caption": "",
+          "name": "startClass",
+          "relatedTo": "fd-class",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "EndClass",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [
+            {
+              "name": "nameStr",
+              "caption": "Конечный класс",
+              "hidden": false,
+              "index": 5
+            }
+          ],
+          "index": 4,
+          "caption": "",
+          "name": "endClass",
+          "relatedTo": "fd-class",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Stage",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "",
+              "hidden": true,
+              "index": 9
+            }
+          ],
+          "index": 8,
+          "caption": "",
+          "name": "stage",
+          "relatedTo": "fd-stage",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "EditPropertyLookups",
+      "modelName": "fd-dev-base-association",
+      "attrs": [
+        {
+          "name": "assocType",
+          "caption": "AssocType",
+          "hidden": true,
+          "index": 0
+        },
+        {
+          "name": "autoStoreMasterDisabled",
+          "caption": "AutoStoreMasterDisabled",
+          "hidden": true,
+          "index": 1
+        },
+        {
+          "name": "realEndRole",
+          "caption": "RealEndRole",
+          "hidden": true,
+          "index": 2
+        },
+        {
+          "name": "realStartRole",
+          "caption": "RealStartRole",
+          "hidden": true,
+          "index": 3
+        },
+        {
+          "name": "storage",
+          "caption": "Storage",
+          "hidden": true,
+          "index": 4
+        },
+        {
+          "name": "endMultiplicity",
+          "caption": "EndMultiplicity",
+          "hidden": true,
+          "index": 5
+        },
+        {
+          "name": "endRole",
+          "caption": "EndRole",
+          "hidden": true,
+          "index": 6
+        },
+        {
+          "name": "endRoleAccessModifier",
+          "caption": "EndRoleAccessModifier",
+          "hidden": true,
+          "index": 7
+        },
+        {
+          "name": "endRoleStored",
+          "caption": "EndRoleStored",
+          "hidden": true,
+          "index": 8
+        },
+        {
+          "name": "endRoleStr",
+          "caption": "EndRoleStr",
+          "hidden": true,
+          "index": 9
+        },
+        {
+          "name": "notNullStart",
+          "caption": "NotNullStart",
+          "hidden": true,
+          "index": 10
+        },
+        {
+          "name": "startMultiplicity",
+          "caption": "StartMultiplicity",
+          "hidden": true,
+          "index": 11
+        },
+        {
+          "name": "startRole",
+          "caption": "StartRole",
+          "hidden": true,
+          "index": 12
+        },
+        {
+          "name": "startRoleAccessModifier",
+          "caption": "StartRoleAccessModifier",
+          "hidden": true,
+          "index": 13
+        },
+        {
+          "name": "startRoleStored",
+          "caption": "StartRoleStored",
+          "hidden": true,
+          "index": 14
+        },
+        {
+          "name": "startRoleStr",
+          "caption": "StartRoleStr",
+          "hidden": true,
+          "index": 15
+        },
+        {
+          "name": "referenceCount",
+          "caption": "ReferenceCount",
+          "hidden": true,
+          "index": 16
+        },
+        {
+          "name": "name",
+          "caption": "Name",
+          "hidden": true,
+          "index": 17
+        },
+        {
+          "name": "description",
+          "caption": "Description",
+          "hidden": true,
+          "index": 18
+        },
+        {
+          "name": "nameStr",
+          "caption": "NameStr",
+          "hidden": true,
+          "index": 19
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "EndClass",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [],
+          "index": 20,
+          "caption": "EndClass",
+          "name": "endClass",
+          "relatedTo": "fd-class",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "StartClass",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [],
+          "index": 21,
+          "caption": "StartClass",
+          "name": "startClass",
+          "relatedTo": "fd-class",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "Generator",
+      "modelName": "fd-dev-base-association",
+      "attrs": [
+        {
+          "name": "assocType",
+          "caption": "AssocType",
+          "hidden": true,
+          "index": 0
+        },
+        {
+          "name": "autoStoreMasterDisabled",
+          "caption": "AutoStoreMasterDisabled",
+          "hidden": true,
+          "index": 1
+        },
+        {
+          "name": "realEndRole",
+          "caption": "RealEndRole",
+          "hidden": true,
+          "index": 2
+        },
+        {
+          "name": "realStartRole",
+          "caption": "RealStartRole",
+          "hidden": true,
+          "index": 3
+        },
+        {
+          "name": "storage",
+          "caption": "Storage",
+          "hidden": true,
+          "index": 4
+        },
+        {
+          "name": "endMultiplicity",
+          "caption": "EndMultiplicity",
+          "hidden": true,
+          "index": 5
+        },
+        {
+          "name": "endRole",
+          "caption": "EndRole",
+          "hidden": true,
+          "index": 6
+        },
+        {
+          "name": "endRoleAccessModifier",
+          "caption": "EndRoleAccessModifier",
+          "hidden": true,
+          "index": 7
+        },
+        {
+          "name": "endRoleStored",
+          "caption": "EndRoleStored",
+          "hidden": true,
+          "index": 8
+        },
+        {
+          "name": "endRoleStr",
+          "caption": "EndRoleStr",
+          "hidden": true,
+          "index": 9
+        },
+        {
+          "name": "notNullStart",
+          "caption": "NotNullStart",
+          "hidden": true,
+          "index": 10
+        },
+        {
+          "name": "startMultiplicity",
+          "caption": "StartMultiplicity",
+          "hidden": true,
+          "index": 11
+        },
+        {
+          "name": "startRole",
+          "caption": "StartRole",
+          "hidden": true,
+          "index": 12
+        },
+        {
+          "name": "startRoleAccessModifier",
+          "caption": "StartRoleAccessModifier",
+          "hidden": true,
+          "index": 13
+        },
+        {
+          "name": "startRoleStored",
+          "caption": "StartRoleStored",
+          "hidden": true,
+          "index": 14
+        },
+        {
+          "name": "startRoleStr",
+          "caption": "StartRoleStr",
+          "hidden": true,
+          "index": 15
+        },
+        {
+          "name": "referenceCount",
+          "caption": "ReferenceCount",
+          "hidden": true,
+          "index": 16
+        },
+        {
+          "name": "name",
+          "caption": "Name",
+          "hidden": true,
+          "index": 17
+        },
+        {
+          "name": "description",
+          "caption": "Description",
+          "hidden": true,
+          "index": 18
+        },
+        {
+          "name": "nameStr",
+          "caption": "NameStr",
+          "hidden": true,
+          "index": 19
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "EndClass",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [],
+          "index": 20,
+          "caption": "EndClass",
+          "name": "endClass",
+          "relatedTo": "fd-class",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "StartClass",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [],
+          "index": 21,
+          "caption": "StartClass",
+          "name": "startClass",
+          "relatedTo": "fd-class",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

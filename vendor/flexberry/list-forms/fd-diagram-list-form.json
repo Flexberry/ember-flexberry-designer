@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "fd-diagram-edit-form",
+  "editForm": "fd-diagram-edit-form",
+  "caption": "Diagrams",
+  "name": "FdDiagramListForm",
+  "className": "DiagramListForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-dev-uml-cad",
+      "modelProjection": "ListFormView"
+    }
+  ]
+}

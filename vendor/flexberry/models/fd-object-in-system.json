@@ -1,0 +1,13 @@
+﻿{
+  "name": "FdObjectInSystem",
+  "modelName": "fd-object-in-system",
+  "className": "ObjectInSystem",
+  "parentModelName": "fd-repository-browser-data-object",
+  "parentClassName": "RepositoryBrowserDataObject",
+  "attrs": [],
+  "belongsTo": [],
+  "hasMany": [],
+  "projections": [],
+  "stored": false,
+  "offline": true
+}

@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "fd-association-edit-form",
+  "editForm": "fd-association-edit-form",
+  "caption": "Associations",
+  "name": "FdAssociationListForm",
+  "className": "AssociationListForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-dev-association",
+      "modelProjection": "ListFormView"
+    }
+  ]
+}

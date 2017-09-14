@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "fd-class-edit-form",
+  "editForm": "fd-class-edit-form",
+  "caption": "Classes",
+  "name": "FdClassListForm",
+  "className": "ClassListForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-dev-class",
+      "modelProjection": "ListFormView"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+﻿{
+  "name": "FdDevDiagramLink",
+  "modelName": "fd-dev-diagram-link",
+  "className": "DevDiagramLink",
+  "parentModelName": "fd-diagram-link",
+  "parentClassName": "DiagramLink",
+  "attrs": [],
+  "belongsTo": [],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "DiagramLink",
+      "modelName": "fd-dev-diagram-link",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "Название",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "description",
+          "caption": "Описание",
+          "hidden": false,
+          "index": 1
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

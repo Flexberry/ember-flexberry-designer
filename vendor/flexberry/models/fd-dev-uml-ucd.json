@@ -1,0 +1,46 @@
+﻿{
+  "name": "FdDevUmlUcd",
+  "modelName": "fd-dev-uml-ucd",
+  "className": "DevUMLUCD",
+  "parentModelName": "fd-ucd",
+  "parentClassName": "UCD",
+  "attrs": [
+    {
+      "name": "name",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "primitiveTypes",
+      "type": "string",
+      "flexberryType": "ArrayList",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "primitives",
+      "type": "string",
+      "flexberryType": "ArrayList",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "helpKeyword",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    }
+  ],
+  "belongsTo": [],
+  "hasMany": [],
+  "projections": [],
+  "stored": true,
+  "offline": true
+}

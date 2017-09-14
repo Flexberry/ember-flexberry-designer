@@ -1,0 +1,97 @@
+﻿{
+  "name": "FdInheritance",
+  "modelName": "fd-inheritance",
+  "className": "Inheritance",
+  "parentModelName": "fd-repository-ref-data-object",
+  "parentClassName": "RepositoryRefDataObject",
+  "attrs": [],
+  "belongsTo": [
+    {
+      "polymorphic": true,
+      "presence": true,
+      "name": "child",
+      "relatedTo": "fd-class",
+      "inverse": null
+    },
+    {
+      "polymorphic": true,
+      "presence": true,
+      "name": "parent",
+      "relatedTo": "fd-class",
+      "inverse": null
+    },
+    {
+      "polymorphic": true,
+      "presence": true,
+      "name": "stage",
+      "relatedTo": "fd-stage",
+      "inverse": "inheritances"
+    }
+  ],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "Import",
+      "modelName": "fd-inheritance",
+      "attrs": [
+        {
+          "name": "referenceCount",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Parent",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [],
+          "index": 2,
+          "caption": "",
+          "name": "parent",
+          "relatedTo": "fd-class",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Child",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [],
+          "index": 3,
+          "caption": "",
+          "name": "child",
+          "relatedTo": "fd-class",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "References",
+      "modelName": "fd-inheritance",
+      "attrs": [
+        {
+          "name": "referenceCount",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

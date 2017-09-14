@@ -1,0 +1,13 @@
+﻿{
+  "propertyLookup": [],
+  "caption": "Stage",
+  "name": "FdStageEditForm",
+  "className": "StageEditForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-dev-stage",
+      "modelProjection": "EditFormView"
+    }
+  ]
+}
