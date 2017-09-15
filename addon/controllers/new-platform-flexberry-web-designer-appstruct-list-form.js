@@ -4,6 +4,19 @@ import TreeNodeObject from 'ember-flexberry/objects/tree-node';
 
 export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
 
+  removeLeftNodeDisabled: 'disabled',
+  addLeftNodeDisabled: '',
+  editLeftNodeDisabled: 'disabled',
+  listLeftDisabled: '',
+
+  moveRightDisabled: 'disabled',
+
+  addRightNodeDisabled: 'disabled',
+  removeRightNodeDisabled: 'disabled',
+  addFolderNodeDisabled: 'disabled',
+  upRightNodeDisabled: 'disabled',
+  downRightNodeDisabled: 'disabled',
+
   leftClickedElement: null,
   leftClickedPath: null,
 
@@ -112,8 +125,16 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       if (clickedElement.tagName === 'DIV') {
         if (clickedNodePropertiesPath.substr(0, 8) === 'jsonLeft') {
           lastClicked = this.lastClicked.left;
+          Ember.set(this, 'removeLeftNodeDisabled', '');
+          Ember.set(this, 'editLeftNodeDisabled', '');
+          Ember.set(this, 'moveRightDisabled', '');
         } else if (clickedNodePropertiesPath.substr(0, 9) === 'jsonRight') {
           lastClicked = this.lastClicked.right;
+          Ember.set(this, 'addRightNodeDisabled', '');
+          Ember.set(this, 'removeRightNodeDisabled', '');
+          Ember.set(this, 'addFolderNodeDisabled', '');
+          Ember.set(this, 'upRightNodeDisabled', '');
+          Ember.set(this, 'downRightNodeDisabled', '');
         }
 
         if (lastClicked) {
@@ -142,6 +163,33 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       let i=0;
     }
 
+  },
+
+  removeLeftNode() {
+  },
+
+  addLeftNode() {
+  },
+
+  editLeftNode() {
+  },
+
+  listLeft() {
+  },
+
+  addRightNode() {
+  },
+
+  removeRightNode() {
+  },
+
+  addFolderNode() {
+  },
+
+  upRightNode() {
+  },
+
+  downRightNode() {
   }
 
 });
