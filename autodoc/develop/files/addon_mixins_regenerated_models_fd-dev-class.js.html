@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>addon/mixins/regenerated/models/fd-dev-class.js - Flexberry Documentation</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="Flexberry Documentation" src="../assets/css/logo.png" style="max-height: 65%;" title="Flexberry Documentation">
+            Flexberry Documentation
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>develop</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='[]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <h3>APIs</h3>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Type to filter APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Show:
+                    <label for="api-show-inherited" class="checkbox">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>addon/mixins/regenerated/models/fd-dev-class.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+import Ember from &#x27;ember&#x27;;
+import DS from &#x27;ember-data&#x27;;
+import { Projection } from &#x27;ember-flexberry-data&#x27;;
+export let Model = Ember.Mixin.create({
+  accessType: DS.attr(&#x27;new-platform-flexberry-web-designer-access-type&#x27;),
+  addAuditFields: DS.attr(&#x27;boolean&#x27;),
+  appConfig: DS.attr(&#x27;string&#x27;),
+  /**
+    Non-stored property.
+
+    @property appConfigFile
+  */
+  appConfigFile: DS.attr(&#x27;string&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;appConfigFileCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;appConfigFile&#x27; property.
+
+    @method _appConfigFileCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _appConfigFileChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;appConfigFile&#x27;, function() {
+        Ember.run.once(this, &#x27;_appConfigFileCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _appConfigFileCompute: function() {
+    let result = (this.appConfigFileCompute &amp;&amp; typeof this.appConfigFileCompute === &#x27;function&#x27;) ? this.appConfigFileCompute() : null;
+    this.set(&#x27;appConfigFile&#x27;, result);
+  },
+  auditConnectionStringName: DS.attr(&#x27;string&#x27;),
+  auditEnabled: DS.attr(&#x27;boolean&#x27;),
+  auditWinServiceUrl: DS.attr(&#x27;string&#x27;),
+  autoAltered: DS.attr(&#x27;boolean&#x27;),
+  /**
+    Non-stored property.
+
+    @property bSClass
+  */
+  bSClass: DS.attr(&#x27;new-platform-flexberry-web-designer-business-server-class&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;bSClassCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;bSClass&#x27; property.
+
+    @method _bSClassCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _bSClassChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;bSClass&#x27;, function() {
+        Ember.run.once(this, &#x27;_bSClassCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _bSClassCompute: function() {
+    let result = (this.bSClassCompute &amp;&amp; typeof this.bSClassCompute === &#x27;function&#x27;) ? this.bSClassCompute() : null;
+    this.set(&#x27;bSClass&#x27;, result);
+  },
+  /**
+    Non-stored property.
+
+    @property bSEvents
+  */
+  bSEvents: DS.attr(&#x27;string&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;bSEventsCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;bSEvents&#x27; property.
+
+    @method _bSEventsCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _bSEventsChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;bSEvents&#x27;, function() {
+        Ember.run.once(this, &#x27;_bSEventsCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _bSEventsCompute: function() {
+    let result = (this.bSEventsCompute &amp;&amp; typeof this.bSEventsCompute === &#x27;function&#x27;) ? this.bSEventsCompute() : null;
+    this.set(&#x27;bSEvents&#x27;, result);
+  },
+  businessServerEvents: DS.attr(&#x27;string&#x27;),
+  caption: DS.attr(&#x27;string&#x27;),
+  /**
+    Non-stored property.
+
+    @property comPlusServerOptions
+  */
+  comPlusServerOptions: DS.attr(&#x27;string&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;comPlusServerOptionsCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;comPlusServerOptions&#x27; property.
+
+    @method _comPlusServerOptionsCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _comPlusServerOptionsChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;comPlusServerOptions&#x27;, function() {
+        Ember.run.once(this, &#x27;_comPlusServerOptionsCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _comPlusServerOptionsCompute: function() {
+    let result = (this.comPlusServerOptionsCompute &amp;&amp; typeof this.comPlusServerOptionsCompute === &#x27;function&#x27;) ? this.comPlusServerOptionsCompute() : null;
+    this.set(&#x27;comPlusServerOptions&#x27;, result);
+  },
+  comPlusServerPropertiesStr: DS.attr(&#x27;string&#x27;),
+  /**
+    Non-stored property.
+
+    @property containers
+  */
+  containers: DS.attr(&#x27;string&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;containersCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;containers&#x27; property.
+
+    @method _containersCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _containersChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;containers&#x27;, function() {
+        Ember.run.once(this, &#x27;_containersCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _containersCompute: function() {
+    let result = (this.containersCompute &amp;&amp; typeof this.containersCompute === &#x27;function&#x27;) ? this.containersCompute() : null;
+    this.set(&#x27;containers&#x27;, result);
+  },
+  containersStr: DS.attr(&#x27;string&#x27;),
+  /**
+    Non-stored property.
+
+    @property dataObjectTypes
+  */
+  dataObjectTypes: DS.attr(&#x27;string&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;dataObjectTypesCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;dataObjectTypes&#x27; property.
+
+    @method _dataObjectTypesCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _dataObjectTypesChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;dataObjectTypes&#x27;, function() {
+        Ember.run.once(this, &#x27;_dataObjectTypesCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _dataObjectTypesCompute: function() {
+    let result = (this.dataObjectTypesCompute &amp;&amp; typeof this.dataObjectTypesCompute === &#x27;function&#x27;) ? this.dataObjectTypesCompute() : null;
+    this.set(&#x27;dataObjectTypes&#x27;, result);
+  },
+  dataObjectTypesStr: DS.attr(&#x27;string&#x27;),
+  deleteAudit: DS.attr(&#x27;boolean&#x27;),
+  deleteAuditViewName: DS.attr(&#x27;string&#x27;),
+  disableAllRightChecks: DS.attr(&#x27;boolean&#x27;),
+  /**
+    Non-stored property.
+
+    @property editFormOperations
+  */
+  editFormOperations: DS.attr(&#x27;string&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;editFormOperationsCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;editFormOperations&#x27; property.
+
+    @method _editFormOperationsCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _editFormOperationsChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;editFormOperations&#x27;, function() {
+        Ember.run.once(this, &#x27;_editFormOperationsCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _editFormOperationsCompute: function() {
+    let result = (this.editFormOperationsCompute &amp;&amp; typeof this.editFormOperationsCompute === &#x27;function&#x27;) ? this.editFormOperationsCompute() : null;
+    this.set(&#x27;editFormOperations&#x27;, result);
+  },
+  editFormOperationsStr: DS.attr(&#x27;string&#x27;),
+  expandOperations: DS.attr(&#x27;boolean&#x27;),
+  fixDependedForm: DS.attr(&#x27;boolean&#x27;),
+  formUrl: DS.attr(&#x27;string&#x27;),
+  generateCatcher: DS.attr(&#x27;boolean&#x27;),
+  generateComPlusServer: DS.attr(&#x27;boolean&#x27;),
+  generateDependedForm: DS.attr(&#x27;boolean&#x27;),
+  generateHttpRemoteServer: DS.attr(&#x27;boolean&#x27;),
+  hierarchicalMaster: DS.attr(&#x27;string&#x27;),
+  insertAudit: DS.attr(&#x27;boolean&#x27;),
+  insertAuditViewName: DS.attr(&#x27;string&#x27;),
+  /**
+    Non-stored property.
+
+    @property listFormOperations
+  */
+  listFormOperations: DS.attr(&#x27;string&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;listFormOperationsCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;listFormOperations&#x27; property.
+
+    @method _listFormOperationsCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _listFormOperationsChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;listFormOperations&#x27;, function() {
+        Ember.run.once(this, &#x27;_listFormOperationsCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _listFormOperationsCompute: function() {
+    let result = (this.listFormOperationsCompute &amp;&amp; typeof this.listFormOperationsCompute === &#x27;function&#x27;) ? this.listFormOperationsCompute() : null;
+    this.set(&#x27;listFormOperations&#x27;, result);
+  },
+  listFormOperationsStr: DS.attr(&#x27;string&#x27;),
+  loadingOrder: DS.attr(&#x27;string&#x27;),
+  /**
+    Non-stored property.
+
+    @property loadingOrderXML
+  */
+  loadingOrderXML: DS.attr(&#x27;string&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;loadingOrderXMLCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;loadingOrderXML&#x27; property.
+
+    @method _loadingOrderXMLCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _loadingOrderXMLChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;loadingOrderXML&#x27;, function() {
+        Ember.run.once(this, &#x27;_loadingOrderXMLCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _loadingOrderXMLCompute: function() {
+    let result = (this.loadingOrderXMLCompute &amp;&amp; typeof this.loadingOrderXMLCompute === &#x27;function&#x27;) ? this.loadingOrderXMLCompute() : null;
+    this.set(&#x27;loadingOrderXML&#x27;, result);
+  },
+  namespacePostfix: DS.attr(&#x27;string&#x27;),
+  onlyShowSelectedValue: DS.attr(&#x27;boolean&#x27;),
+  packet: DS.attr(&#x27;string&#x27;),
+  pBCustomAttributes: DS.attr(&#x27;boolean&#x27;),
+  pBGetViewsForForm: DS.attr(&#x27;boolean&#x27;),
+  pBMembers: DS.attr(&#x27;boolean&#x27;),
+  primaryKeyStorage: DS.attr(&#x27;string&#x27;),
+  printContainer: DS.attr(&#x27;string&#x27;),
+  /**
+    Non-stored property.
+
+    @property propertyLookup
+  */
+  propertyLookup: DS.attr(&#x27;string&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;propertyLookupCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;propertyLookup&#x27; property.
+
+    @method _propertyLookupCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _propertyLookupChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;propertyLookup&#x27;, function() {
+        Ember.run.once(this, &#x27;_propertyLookupCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _propertyLookupCompute: function() {
+    let result = (this.propertyLookupCompute &amp;&amp; typeof this.propertyLookupCompute === &#x27;function&#x27;) ? this.propertyLookupCompute() : null;
+    this.set(&#x27;propertyLookup&#x27;, result);
+  },
+  propertyLookupStr: DS.attr(&#x27;string&#x27;),
+  publishToEBSD: DS.attr(&#x27;boolean&#x27;),
+  /**
+    Non-stored property.
+
+    @property realCaption
+  */
+  realCaption: DS.attr(&#x27;string&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;realCaptionCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;realCaption&#x27; property.
+
+    @method _realCaptionCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _realCaptionChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;realCaption&#x27;, function() {
+        Ember.run.once(this, &#x27;_realCaptionCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _realCaptionCompute: function() {
+    let result = (this.realCaptionCompute &amp;&amp; typeof this.realCaptionCompute === &#x27;function&#x27;) ? this.realCaptionCompute() : null;
+    this.set(&#x27;realCaption&#x27;, result);
+  },
+  /**
+    Non-stored property.
+
+    @property realNamespace
+  */
+  realNamespace: DS.attr(&#x27;string&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;realNamespaceCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;realNamespace&#x27; property.
+
+    @method _realNamespaceCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _realNamespaceChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;realNamespace&#x27;, function() {
+        Ember.run.once(this, &#x27;_realNamespaceCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _realNamespaceCompute: function() {
+    let result = (this.realNamespaceCompute &amp;&amp; typeof this.realNamespaceCompute === &#x27;function&#x27;) ? this.realNamespaceCompute() : null;
+    this.set(&#x27;realNamespace&#x27;, result);
+  },
+  /**
+    Non-stored property.
+
+    @property realPacket
+  */
+  realPacket: DS.attr(&#x27;string&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;realPacketCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;realPacket&#x27; property.
+
+    @method _realPacketCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _realPacketChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;realPacket&#x27;, function() {
+        Ember.run.once(this, &#x27;_realPacketCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _realPacketCompute: function() {
+    let result = (this.realPacketCompute &amp;&amp; typeof this.realPacketCompute === &#x27;function&#x27;) ? this.realPacketCompute() : null;
+    this.set(&#x27;realPacket&#x27;, result);
+  },
+  /**
+    Non-stored property.
+
+    @property realPrimaryKeyStorage
+  */
+  realPrimaryKeyStorage: DS.attr(&#x27;string&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;realPrimaryKeyStorageCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;realPrimaryKeyStorage&#x27; property.
+
+    @method _realPrimaryKeyStorageCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _realPrimaryKeyStorageChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;realPrimaryKeyStorage&#x27;, function() {
+        Ember.run.once(this, &#x27;_realPrimaryKeyStorageCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _realPrimaryKeyStorageCompute: function() {
+    let result = (this.realPrimaryKeyStorageCompute &amp;&amp; typeof this.realPrimaryKeyStorageCompute === &#x27;function&#x27;) ? this.realPrimaryKeyStorageCompute() : null;
+    this.set(&#x27;realPrimaryKeyStorage&#x27;, result);
+  },
+  /**
+    Non-stored property.
+
+    @property realStorage
+  */
+  realStorage: DS.attr(&#x27;string&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;realStorageCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;realStorage&#x27; property.
+
+    @method _realStorageCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _realStorageChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;realStorage&#x27;, function() {
+        Ember.run.once(this, &#x27;_realStorageCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _realStorageCompute: function() {
+    let result = (this.realStorageCompute &amp;&amp; typeof this.realStorageCompute === &#x27;function&#x27;) ? this.realStorageCompute() : null;
+    this.set(&#x27;realStorage&#x27;, result);
+  },
+  scriptName: DS.attr(&#x27;string&#x27;),
+  selectAudit: DS.attr(&#x27;boolean&#x27;),
+  selectAuditViewName: DS.attr(&#x27;string&#x27;),
+  standartDesktop: DS.attr(&#x27;boolean&#x27;),
+  storage: DS.attr(&#x27;string&#x27;),
+  storeInstancesInType: DS.attr(&#x27;string&#x27;),
+  /**
+    Non-stored property.
+
+    @property storeInstancesInTypeXML
+  */
+  storeInstancesInTypeXML: DS.attr(&#x27;string&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;storeInstancesInTypeXMLCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;storeInstancesInTypeXML&#x27; property.
+
+    @method _storeInstancesInTypeXMLCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _storeInstancesInTypeXMLChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;storeInstancesInTypeXML&#x27;, function() {
+        Ember.run.once(this, &#x27;_storeInstancesInTypeXMLCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _storeInstancesInTypeXMLCompute: function() {
+    let result = (this.storeInstancesInTypeXMLCompute &amp;&amp; typeof this.storeInstancesInTypeXMLCompute === &#x27;function&#x27;) ? this.storeInstancesInTypeXMLCompute() : null;
+    this.set(&#x27;storeInstancesInTypeXML&#x27;, result);
+  },
+  trim: DS.attr(&#x27;boolean&#x27;),
+  updateAudit: DS.attr(&#x27;boolean&#x27;),
+  updateAuditViewName: DS.attr(&#x27;string&#x27;),
+  /**
+    Non-stored property.
+
+    @property useCache
+  */
+  useCache: DS.attr(&#x27;boolean&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;useCacheCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;useCache&#x27; property.
+
+    @method _useCacheCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _useCacheChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;useCache&#x27;, function() {
+        Ember.run.once(this, &#x27;_useCacheCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _useCacheCompute: function() {
+    let result = (this.useCacheCompute &amp;&amp; typeof this.useCacheCompute === &#x27;function&#x27;) ? this.useCacheCompute() : null;
+    this.set(&#x27;useCache&#x27;, result);
+  },
+  useDefaultView: DS.attr(&#x27;boolean&#x27;),
+  writeMode: DS.attr(&#x27;new-platform-flexberry-web-designer-t-write-mode&#x27;),
+  writeSessions: DS.attr(&#x27;boolean&#x27;),
+  businessServerClass: DS.belongsTo(&#x27;fd-dev-class&#x27;, { inverse: null, async: false }),
+  devViews: DS.hasMany(&#x27;fd-dev-view&#x27;, { inverse: &#x27;class&#x27;, async: false }),
+  methods: DS.hasMany(&#x27;fd-dev-method&#x27;, { inverse: &#x27;class&#x27;, async: false }),
+  formViews: DS.hasMany(&#x27;fd-dev-form-view&#x27;, { inverse: &#x27;class&#x27;, async: false }),
+  attributes: DS.hasMany(&#x27;fd-dev-attribute&#x27;, { inverse: &#x27;class&#x27;, async: false }),
+  getValidations: function () {
+    let parentValidations = this._super();
+    let thisValidations = {
+    };
+    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+  },
+  init: function () {
+    this.set(&#x27;validations&#x27;, this.getValidations());
+    this._super.apply(this, arguments);
+  }
+});
+export let defineBaseModel = function (modelClass) {
+  modelClass.reopenClass({
+    _parentModelName: &#x27;fd-class&#x27;
+  });
+};
+
+export let defineProjections = function (modelClass) {
+  modelClass.defineProjection(&#x27;ApplicationClassView&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    containersStr: Projection.attr(&#x27;&#x27;)
+  });
+  modelClass.defineProjection(&#x27;AttributesChangeView&#x27;, &#x27;fd-dev-class&#x27;, {
+    attributesStr: Projection.attr(&#x27;&#x27;),
+    name: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      caption: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+      })
+    }),
+    devViews: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      properties: Projection.attr(&#x27;&#x27;),
+      definition: Projection.attr(&#x27;&#x27;),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+      })
+    })
+  });
+  modelClass.defineProjection(&#x27;AttributesView&#x27;, &#x27;fd-dev-class&#x27;, {
+    attributesStr: Projection.attr(&#x27;&#x27;),
+    name: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+      })
+    })
+  });
+  modelClass.defineProjection(&#x27;AuditPrototyping&#x27;, &#x27;fd-dev-class&#x27;, {
+    stereotype: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;),
+    name: Projection.attr(&#x27;&#x27;),
+    auditEnabled: Projection.attr(&#x27;&#x27;),
+    addAuditFields: Projection.attr(&#x27;&#x27;),
+    useDefaultView: Projection.attr(&#x27;&#x27;),
+    insertAudit: Projection.attr(&#x27;&#x27;),
+    insertAuditViewName: Projection.attr(&#x27;&#x27;),
+    deleteAudit: Projection.attr(&#x27;&#x27;),
+    deleteAuditViewName: Projection.attr(&#x27;&#x27;),
+    updateAudit: Projection.attr(&#x27;&#x27;),
+    updateAuditViewName: Projection.attr(&#x27;&#x27;),
+    selectAudit: Projection.attr(&#x27;&#x27;),
+    selectAuditViewName: Projection.attr(&#x27;&#x27;),
+    attributesStr: Projection.attr(&#x27;&#x27;),
+    stored: Projection.attr(&#x27;&#x27;),
+    attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+      accessModifier: Projection.attr(&#x27;&#x27;),
+      stored: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      defaultValue: Projection.attr(&#x27;&#x27;),
+      notNull: Projection.attr(&#x27;&#x27;),
+      dataServiceExpressionXML: Projection.attr(&#x27;DataService Expression&#x27;),
+      order: Projection.attr(&#x27;&#x27;),
+      storage: Projection.attr(&#x27;&#x27;),
+      trim: Projection.attr(&#x27;&#x27;)
+    }),
+    devViews: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      definition: Projection.attr(&#x27;&#x27;)
+    })
+  });
+  modelClass.defineProjection(&#x27;BusinessServer&#x27;, &#x27;fd-dev-class&#x27;, {
+    nameStr: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+      accessModifier: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      defaultValue: Projection.attr(&#x27;&#x27;),
+      pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+      pBGetEnd: Projection.attr(&#x27;&#x27;),
+      pBGetStart: Projection.attr(&#x27;&#x27;),
+      pBSetEnd: Projection.attr(&#x27;&#x27;),
+      pBSetStart: Projection.attr(&#x27;&#x27;)
+    }),
+    methods: Projection.hasMany(&#x27;fd-dev-method&#x27;, &#x27;&#x27;, {
+      accessModifier: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      parametersStr: Projection.attr(&#x27;&#x27;, { hidden: true }),
+      isEvent: Projection.attr(&#x27;&#x27;),
+      accessType: Projection.attr(&#x27;&#x27;),
+      pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+      parameters: Projection.hasMany(&#x27;fd-dev-parameter&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;),
+        modifier: Projection.attr(&#x27;&#x27;),
+        type: Projection.attr(&#x27;&#x27;),
+        description: Projection.attr(&#x27;&#x27;)
+      })
+    })
+  });
+  modelClass.defineProjection(&#x27;BusinessServerExtra&#x27;, &#x27;fd-dev-class&#x27;, {
+    nameStr: Projection.attr(&#x27;&#x27;),
+    name: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    devViews: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;)
+    })
+  });
+  modelClass.defineProjection(&#x27;ClassV&#x27;, &#x27;fd-dev-class&#x27;, {
+    referenceCount: Projection.attr(&#x27;Количество упоминаний&#x27;),
+    stereotype: Projection.attr(&#x27;Стереотип&#x27;),
+    nameStr: Projection.attr(&#x27;Название&#x27;),
+    description: Projection.attr(&#x27;Описание&#x27;),
+    packet: Projection.attr(&#x27;&#x27;),
+    namespacePostfix: Projection.attr(&#x27;Namespace postfix&#x27;),
+    stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;, { hidden: true })
+    }, { hidden: true })
+  });
+  modelClass.defineProjection(&#x27;EditApplication&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    description: Projection.attr(&#x27;&#x27;),
+    caption: Projection.attr(&#x27;&#x27;),
+    standartDesktop: Projection.attr(&#x27;&#x27;),
+    namespacePostfix: Projection.attr(&#x27;&#x27;),
+    pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+    disableAllRightChecks: Projection.attr(&#x27;&#x27;),
+    containers: Projection.attr(&#x27;&#x27;),
+    appConfigFile: Projection.attr(&#x27;&#x27;),
+    auditConnectionStringName: Projection.attr(&#x27;Имя строки соединения с БД аудита&#x27;),
+    auditWinServiceUrl: Projection.attr(&#x27;Адрес сервиса аудита&#x27;),
+    writeSessions: Projection.attr(&#x27;Вести аудит сессий пользователей&#x27;),
+    attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+      accessModifier: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      defaultValue: Projection.attr(&#x27;&#x27;),
+      pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+      pBGetEnd: Projection.attr(&#x27;&#x27;),
+      pBGetStart: Projection.attr(&#x27;&#x27;),
+      pBSetEnd: Projection.attr(&#x27;&#x27;),
+      pBSetStart: Projection.attr(&#x27;&#x27;)
+    }),
+    methods: Projection.hasMany(&#x27;fd-dev-method&#x27;, &#x27;&#x27;, {
+      accessModifier: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      parametersStr: Projection.attr(&#x27;&#x27;, { hidden: true }),
+      pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+      isEvent: Projection.attr(&#x27;&#x27;),
+      accessType: Projection.attr(&#x27;&#x27;),
+      parameters: Projection.hasMany(&#x27;fd-dev-parameter&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;),
+        modifier: Projection.attr(&#x27;&#x27;),
+        type: Projection.attr(&#x27;&#x27;),
+        description: Projection.attr(&#x27;&#x27;)
+      })
+    })
+  });
+  modelClass.defineProjection(&#x27;EditBusinessServer&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    description: Projection.attr(&#x27;&#x27;),
+    packet: Projection.attr(&#x27;&#x27;),
+    namespacePostfix: Projection.attr(&#x27;&#x27;),
+    pBMembers: Projection.attr(&#x27;&#x27;),
+    generateComPlusServer: Projection.attr(&#x27;&#x27;),
+    comPlusServerOptions: Projection.attr(&#x27;&#x27;),
+    generateHttpRemoteServer: Projection.attr(&#x27;&#x27;),
+    publishToEBSD: Projection.attr(&#x27;&#x27;)
+  });
+  modelClass.defineProjection(&#x27;EditDataObjectClass&#x27;, &#x27;fd-dev-class&#x27;, {
+    accessType: Projection.attr(&#x27;Access check type&#x27;),
+    addAuditFields: Projection.attr(&#x27;Добавить поля аудита&#x27;),
+    auditEnabled: Projection.attr(&#x27;Вести аудит класса&#x27;),
+    autoAltered: Projection.attr(&#x27;&#x27;),
+    bSClass: Projection.attr(&#x27;Business Server&#x27;),
+    bSEvents: Projection.attr(&#x27;BS Events&#x27;),
+    businessServerClass: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+      stereotype: Projection.attr(&#x27;&#x27;, { hidden: true })
+    }, { hidden: true }),
+    caption: Projection.attr(&#x27;&#x27;),
+    deleteAudit: Projection.attr(&#x27;Вести аудит операции удаления&#x27;),
+    deleteAuditViewName: Projection.attr(&#x27;Имя представления для аудита операции удаления&#x27;),
+    description: Projection.attr(&#x27;&#x27;),
+    formUrl: Projection.attr(&#x27;Путь к форме просмотра объекта&#x27;),
+    insertAudit: Projection.attr(&#x27;Вести аудит операции создания&#x27;),
+    insertAuditViewName: Projection.attr(&#x27;Имя представления для аудита операции создания&#x27;),
+    loadingOrderXML: Projection.attr(&#x27;LoadingOrder&#x27;),
+    name: Projection.attr(&#x27;&#x27;),
+    namespacePostfix: Projection.attr(&#x27;&#x27;),
+    packet: Projection.attr(&#x27;&#x27;),
+    pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+    pBMembers: Projection.attr(&#x27;&#x27;),
+    primaryKeyStorage: Projection.attr(&#x27;&#x27;),
+    publishToEBSD: Projection.attr(&#x27;&#x27;),
+    selectAudit: Projection.attr(&#x27;Вести аудит операции чтения&#x27;),
+    selectAuditViewName: Projection.attr(&#x27;Имя представления для аудита операции чтения&#x27;),
+    storage: Projection.attr(&#x27;&#x27;),
+    stored: Projection.attr(&#x27;&#x27;),
+    trim: Projection.attr(&#x27;&#x27;),
+    updateAudit: Projection.attr(&#x27;Вести аудит операции изменения&#x27;),
+    updateAuditViewName: Projection.attr(&#x27;Имя представления для аудита операции изменения&#x27;),
+    useDefaultView: Projection.attr(&#x27;Использовать представление по умолчанию&#x27;),
+    writeMode: Projection.attr(&#x27;Режим записи аудита&#x27;),
+    attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+      accessModifier: Projection.attr(&#x27;&#x27;),
+      stored: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      defaultValue: Projection.attr(&#x27;&#x27;),
+      notNull: Projection.attr(&#x27;&#x27;),
+      dataServiceExpressionXML: Projection.attr(&#x27;DataService Expression&#x27;),
+      storage: Projection.attr(&#x27;&#x27;),
+      hint: Projection.attr(&#x27;&#x27;),
+      order: Projection.attr(&#x27;&#x27;),
+      trim: Projection.attr(&#x27;&#x27;),
+      pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+      pBGetEnd: Projection.attr(&#x27;&#x27;),
+      pBGetStart: Projection.attr(&#x27;&#x27;),
+      pBSetEnd: Projection.attr(&#x27;&#x27;),
+      pBSetStart: Projection.attr(&#x27;&#x27;),
+      autoincrement: Projection.attr(&#x27;&#x27;)
+    }),
+    methods: Projection.hasMany(&#x27;fd-dev-method&#x27;, &#x27;&#x27;, {
+      accessModifier: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      parametersStr: Projection.attr(&#x27;&#x27;, { hidden: true }),
+      isEvent: Projection.attr(&#x27;&#x27;),
+      pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      parameters: Projection.hasMany(&#x27;fd-dev-parameter&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;),
+        modifier: Projection.attr(&#x27;&#x27;),
+        type: Projection.attr(&#x27;&#x27;),
+        description: Projection.attr(&#x27;&#x27;)
+      })
+    }),
+    devViews: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      properties: Projection.attr(&#x27;&#x27;)
+    })
+  });
+  modelClass.defineProjection(&#x27;EditEditForm&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    description: Projection.attr(&#x27;&#x27;),
+    caption: Projection.attr(&#x27;&#x27;),
+    generateDependedForm: Projection.attr(&#x27;&#x27;),
+    fixDependedForm: Projection.attr(&#x27;&#x27;),
+    packet: Projection.attr(&#x27;&#x27;),
+    namespacePostfix: Projection.attr(&#x27;&#x27;),
+    pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+    pBMembers: Projection.attr(&#x27;&#x27;),
+    propertyLookup: Projection.attr(&#x27;&#x27;),
+    editFormOperations: Projection.attr(&#x27;&#x27;),
+    printContainer: Projection.attr(&#x27;&#x27;),
+    scriptName: Projection.attr(&#x27;&#x27;),
+    publishToEBSD: Projection.attr(&#x27;&#x27;),
+    attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+      accessModifier: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      defaultValue: Projection.attr(&#x27;&#x27;),
+      pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+      pBGetEnd: Projection.attr(&#x27;&#x27;),
+      pBGetStart: Projection.attr(&#x27;&#x27;),
+      pBSetEnd: Projection.attr(&#x27;&#x27;),
+      pBSetStart: Projection.attr(&#x27;&#x27;)
+    }),
+    formViews: Projection.hasMany(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
+      viewForForm: Projection.attr(&#x27;&#x27;),
+      view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+
+      }, { hidden: true })
+    }),
+    methods: Projection.hasMany(&#x27;fd-dev-method&#x27;, &#x27;&#x27;, {
+      accessModifier: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;&#x27;),
+      caption: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      parametersStr: Projection.attr(&#x27;&#x27;, { hidden: true }),
+      pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+      publishToUser: Projection.attr(&#x27;&#x27;),
+      isEvent: Projection.attr(&#x27;&#x27;),
+      accessType: Projection.attr(&#x27;&#x27;),
+      parameters: Projection.hasMany(&#x27;fd-dev-parameter&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;),
+        modifier: Projection.attr(&#x27;&#x27;),
+        type: Projection.attr(&#x27;&#x27;),
+        description: Projection.attr(&#x27;&#x27;)
+      })
+    })
+  });
+  modelClass.defineProjection(&#x27;EditEnum&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    description: Projection.attr(&#x27;&#x27;),
+    onlyShowSelectedValue: Projection.attr(&#x27;&#x27;),
+    packet: Projection.attr(&#x27;&#x27;),
+    namespacePostfix: Projection.attr(&#x27;&#x27;),
+    attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      defaultValue: Projection.attr(&#x27;&#x27;),
+      caption: Projection.attr(&#x27;&#x27;)
+    })
+  });
+  modelClass.defineProjection(&#x27;EditEventArg&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    description: Projection.attr(&#x27;&#x27;),
+    generateCatcher: Projection.attr(&#x27;&#x27;),
+    packet: Projection.attr(&#x27;&#x27;),
+    namespacePostfix: Projection.attr(&#x27;&#x27;),
+    pBMembers: Projection.attr(&#x27;&#x27;),
+    attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+      accessModifier: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      defaultValue: Projection.attr(&#x27;&#x27;),
+      pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+      pBGetEnd: Projection.attr(&#x27;&#x27;),
+      pBGetStart: Projection.attr(&#x27;&#x27;),
+      pBSetEnd: Projection.attr(&#x27;&#x27;),
+      pBSetStart: Projection.attr(&#x27;&#x27;)
+    }),
+    methods: Projection.hasMany(&#x27;fd-dev-method&#x27;, &#x27;&#x27;, {
+      accessModifier: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      parametersStr: Projection.attr(&#x27;&#x27;, { hidden: true }),
+      isEvent: Projection.attr(&#x27;&#x27;),
+      pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+      parameters: Projection.hasMany(&#x27;fd-dev-parameter&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;),
+        modifier: Projection.attr(&#x27;&#x27;),
+        type: Projection.attr(&#x27;&#x27;),
+        description: Projection.attr(&#x27;&#x27;)
+      })
+    })
+  });
+  modelClass.defineProjection(&#x27;EditExternal&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;, { hidden: true }),
+    description: Projection.attr(&#x27;Template class&#x27;),
+    storeInstancesInTypeXML: Projection.attr(&#x27;StoreInstancesInType&#x27;),
+    packet: Projection.attr(&#x27;&#x27;),
+    namespacePostfix: Projection.attr(&#x27;&#x27;),
+    pBMembers: Projection.attr(&#x27;&#x27;),
+    pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+    publishToEBSD: Projection.attr(&#x27;&#x27;),
+    stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      configuration: Projection.belongsTo(&#x27;fd-configuration&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;, { hidden: true }),
+        project: Projection.belongsTo(&#x27;fd-project&#x27;, &#x27;&#x27;, {
+          name: Projection.attr(&#x27;&#x27;, { hidden: true }),
+          repository: Projection.belongsTo(&#x27;fd-repository&#x27;, &#x27;&#x27;, {
+            name: Projection.attr(&#x27;&#x27;, { hidden: true })
+          }, { hidden: true })
+        }, { hidden: true })
+      }, { hidden: true })
+    }, { hidden: true })
+  });
+  modelClass.defineProjection(&#x27;EditFormView&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;Name&#x27;),
+    description: Projection.attr(&#x27;Description&#x27;)
+  });
+  modelClass.defineProjection(&#x27;EditInterface&#x27;, &#x27;fd-dev-class&#x27;, {
+    bSClass: Projection.attr(&#x27;Business Server&#x27;),
+    bSEvents: Projection.attr(&#x27;BS Events&#x27;),
+    businessServerClass: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+      stereotype: Projection.attr(&#x27;&#x27;, { hidden: true })
+    }, { hidden: true }),
+    description: Projection.attr(&#x27;&#x27;),
+    name: Projection.attr(&#x27;&#x27;),
+    namespacePostfix: Projection.attr(&#x27;&#x27;),
+    packet: Projection.attr(&#x27;&#x27;),
+    pBMembers: Projection.attr(&#x27;&#x27;),
+    publishToEBSD: Projection.attr(&#x27;&#x27;),
+    attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;)
+    }),
+    methods: Projection.hasMany(&#x27;fd-dev-method&#x27;, &#x27;&#x27;, {
+      accessModifier: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      parametersStr: Projection.attr(&#x27;&#x27;, { hidden: true }),
+      isEvent: Projection.attr(&#x27;&#x27;),
+      pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+      parameters: Projection.hasMany(&#x27;fd-dev-parameter&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;),
+        modifier: Projection.attr(&#x27;&#x27;),
+        type: Projection.attr(&#x27;&#x27;),
+        description: Projection.attr(&#x27;&#x27;)
+      })
+    })
+  });
+  modelClass.defineProjection(&#x27;EditListForm&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    description: Projection.attr(&#x27;&#x27;),
+    caption: Projection.attr(&#x27;&#x27;),
+    generateDependedForm: Projection.attr(&#x27;&#x27;),
+    fixDependedForm: Projection.attr(&#x27;&#x27;),
+    packet: Projection.attr(&#x27;&#x27;),
+    namespacePostfix: Projection.attr(&#x27;&#x27;),
+    pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+    pBMembers: Projection.attr(&#x27;&#x27;),
+    scriptName: Projection.attr(&#x27;&#x27;),
+    publishToEBSD: Projection.attr(&#x27;&#x27;),
+    attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+      accessModifier: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      defaultValue: Projection.attr(&#x27;&#x27;),
+      pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+      pBGetEnd: Projection.attr(&#x27;&#x27;),
+      pBGetStart: Projection.attr(&#x27;&#x27;),
+      pBSetEnd: Projection.attr(&#x27;&#x27;),
+      pBSetStart: Projection.attr(&#x27;&#x27;)
+    }),
+    formViews: Projection.hasMany(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
+      viewForForm: Projection.attr(&#x27;&#x27;),
+      dataObjectTypes: Projection.attr(&#x27;&#x27;),
+      listFormOperations: Projection.attr(&#x27;&#x27;),
+      hierarchicalMaster: Projection.attr(&#x27;&#x27;),
+      view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+
+      }, { hidden: true })
+    }),
+    methods: Projection.hasMany(&#x27;fd-dev-method&#x27;, &#x27;&#x27;, {
+      accessModifier: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;&#x27;),
+      caption: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      parametersStr: Projection.attr(&#x27;&#x27;, { hidden: true }),
+      pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+      publishToUser: Projection.attr(&#x27;&#x27;),
+      isEvent: Projection.attr(&#x27;&#x27;),
+      accessType: Projection.attr(&#x27;&#x27;),
+      parameters: Projection.hasMany(&#x27;fd-dev-parameter&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;),
+        modifier: Projection.attr(&#x27;&#x27;),
+        type: Projection.attr(&#x27;&#x27;),
+        description: Projection.attr(&#x27;&#x27;)
+      })
+    })
+  });
+  modelClass.defineProjection(&#x27;EditPrintForm&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    description: Projection.attr(&#x27;&#x27;),
+    caption: Projection.attr(&#x27;&#x27;),
+    generateDependedForm: Projection.attr(&#x27;&#x27;),
+    packet: Projection.attr(&#x27;&#x27;),
+    namespacePostfix: Projection.attr(&#x27;&#x27;),
+    pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+    pBGetViewsForForm: Projection.attr(&#x27;&#x27;),
+    pBMembers: Projection.attr(&#x27;&#x27;),
+    publishToEBSD: Projection.attr(&#x27;&#x27;),
+    attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+      accessModifier: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      defaultValue: Projection.attr(&#x27;&#x27;),
+      pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+      pBGetEnd: Projection.attr(&#x27;&#x27;),
+      pBGetStart: Projection.attr(&#x27;&#x27;),
+      pBSetEnd: Projection.attr(&#x27;&#x27;),
+      pBSetStart: Projection.attr(&#x27;&#x27;)
+    }),
+    formViews: Projection.hasMany(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
+      viewForForm: Projection.attr(&#x27;&#x27;),
+      view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+
+      }, { hidden: true })
+    }),
+    methods: Projection.hasMany(&#x27;fd-dev-method&#x27;, &#x27;&#x27;, {
+      accessModifier: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;&#x27;),
+      caption: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      parametersStr: Projection.attr(&#x27;&#x27;, { hidden: true }),
+      pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+      isEvent: Projection.attr(&#x27;&#x27;),
+      parameters: Projection.hasMany(&#x27;fd-dev-parameter&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;),
+        modifier: Projection.attr(&#x27;&#x27;),
+        type: Projection.attr(&#x27;&#x27;),
+        description: Projection.attr(&#x27;&#x27;)
+      })
+    })
+  });
+  modelClass.defineProjection(&#x27;EditPropertyLookups&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    formViews: Projection.hasMany(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
+      view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;),
+        class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+          name: Projection.attr(&#x27;&#x27;)
+        }, { hidden: true })
+      }, { hidden: true })
+    }),
+    devViews: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      definition: Projection.attr(&#x27;&#x27;),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;)
+      }, { hidden: true })
+    })
+  });
+  modelClass.defineProjection(&#x27;EditType&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    description: Projection.attr(&#x27;&#x27;),
+    storeInstancesInTypeXML: Projection.attr(&#x27;StoreInstancesInType&#x27;),
+    packet: Projection.attr(&#x27;&#x27;),
+    namespacePostfix: Projection.attr(&#x27;&#x27;),
+    pBMembers: Projection.attr(&#x27;&#x27;),
+    pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+    publishToEBSD: Projection.attr(&#x27;&#x27;),
+    attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+      accessModifier: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      defaultValue: Projection.attr(&#x27;&#x27;),
+      pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+      pBGetEnd: Projection.attr(&#x27;&#x27;),
+      pBGetStart: Projection.attr(&#x27;&#x27;),
+      pBSetEnd: Projection.attr(&#x27;&#x27;),
+      pBSetStart: Projection.attr(&#x27;&#x27;)
+    }),
+    methods: Projection.hasMany(&#x27;fd-dev-method&#x27;, &#x27;&#x27;, {
+      accessModifier: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      parametersStr: Projection.attr(&#x27;&#x27;, { hidden: true }),
+      isEvent: Projection.attr(&#x27;&#x27;),
+      pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+      parameters: Projection.hasMany(&#x27;fd-dev-parameter&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;),
+        modifier: Projection.attr(&#x27;&#x27;),
+        type: Projection.attr(&#x27;&#x27;),
+        description: Projection.attr(&#x27;&#x27;)
+      })
+    })
+  });
+  modelClass.defineProjection(&#x27;EditUserForm&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    description: Projection.attr(&#x27;&#x27;),
+    pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+    pBMembers: Projection.attr(&#x27;&#x27;),
+    packet: Projection.attr(&#x27;&#x27;),
+    namespacePostfix: Projection.attr(&#x27;&#x27;),
+    scriptName: Projection.attr(&#x27;&#x27;),
+    publishToEBSD: Projection.attr(&#x27;&#x27;),
+    attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+      accessModifier: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      defaultValue: Projection.attr(&#x27;&#x27;),
+      pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+      pBGetEnd: Projection.attr(&#x27;&#x27;),
+      pBGetStart: Projection.attr(&#x27;&#x27;),
+      pBSetEnd: Projection.attr(&#x27;&#x27;),
+      pBSetStart: Projection.attr(&#x27;&#x27;)
+    }),
+    methods: Projection.hasMany(&#x27;fd-dev-method&#x27;, &#x27;&#x27;, {
+      accessModifier: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;&#x27;),
+      caption: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      parametersStr: Projection.attr(&#x27;&#x27;, { hidden: true }),
+      pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+      publishToUser: Projection.attr(&#x27;&#x27;),
+      isEvent: Projection.attr(&#x27;&#x27;),
+      accessType: Projection.attr(&#x27;&#x27;),
+      parameters: Projection.hasMany(&#x27;fd-dev-parameter&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;),
+        modifier: Projection.attr(&#x27;&#x27;),
+        type: Projection.attr(&#x27;&#x27;),
+        description: Projection.attr(&#x27;&#x27;)
+      })
+    })
+  });
+  modelClass.defineProjection(&#x27;Generator&#x27;, &#x27;fd-dev-class&#x27;, {
+    referenceCount: Projection.attr(&#x27;&#x27;),
+    stored: Projection.attr(&#x27;&#x27;),
+    attributesStr: Projection.attr(&#x27;&#x27;),
+    methodsStr: Projection.attr(&#x27;&#x27;),
+    name: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    pBMembers: Projection.attr(&#x27;&#x27;),
+    autoAltered: Projection.attr(&#x27;&#x27;),
+    caption: Projection.attr(&#x27;&#x27;),
+    loadingOrder: Projection.attr(&#x27;&#x27;),
+    onlyShowSelectedValue: Projection.attr(&#x27;&#x27;),
+    pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+    primaryKeyStorage: Projection.attr(&#x27;&#x27;),
+    storage: Projection.attr(&#x27;&#x27;),
+    storeInstancesInType: Projection.attr(&#x27;&#x27;),
+    trim: Projection.attr(&#x27;&#x27;),
+    description: Projection.attr(&#x27;&#x27;),
+    generateDependedForm: Projection.attr(&#x27;&#x27;),
+    fixDependedForm: Projection.attr(&#x27;&#x27;),
+    packet: Projection.attr(&#x27;&#x27;),
+    namespacePostfix: Projection.attr(&#x27;&#x27;),
+    pBGetViewsForForm: Projection.attr(&#x27;&#x27;),
+    businessServerEvents: Projection.attr(&#x27;&#x27;),
+    businessServerClass: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+      nameStr: Projection.attr(&#x27;&#x27;),
+      attributesStr: Projection.attr(&#x27;&#x27;),
+      methodsStr: Projection.attr(&#x27;&#x27;)
+    }),
+    disableAllRightChecks: Projection.attr(&#x27;&#x27;),
+    dataObjectTypesStr: Projection.attr(&#x27;&#x27;),
+    propertyLookupStr: Projection.attr(&#x27;&#x27;),
+    standartDesktop: Projection.attr(&#x27;&#x27;),
+    containersStr: Projection.attr(&#x27;&#x27;),
+    appConfig: Projection.attr(&#x27;&#x27;),
+    hierarchicalMaster: Projection.attr(&#x27;&#x27;),
+    listFormOperationsStr: Projection.attr(&#x27;&#x27;),
+    editFormOperationsStr: Projection.attr(&#x27;&#x27;),
+    printContainer: Projection.attr(&#x27;&#x27;),
+    generateComPlusServer: Projection.attr(&#x27;&#x27;),
+    comPlusServerPropertiesStr: Projection.attr(&#x27;&#x27;),
+    generateHttpRemoteServer: Projection.attr(&#x27;&#x27;),
+    scriptName: Projection.attr(&#x27;&#x27;),
+    publishToEBSD: Projection.attr(&#x27;&#x27;),
+    generateCatcher: Projection.attr(&#x27;&#x27;),
+    expandOperations: Projection.attr(&#x27;&#x27;),
+    accessType: Projection.attr(&#x27;&#x27;),
+    auditEnabled: Projection.attr(&#x27;&#x27;),
+    useDefaultView: Projection.attr(&#x27;&#x27;),
+    insertAudit: Projection.attr(&#x27;&#x27;),
+    insertAuditViewName: Projection.attr(&#x27;&#x27;),
+    deleteAudit: Projection.attr(&#x27;&#x27;),
+    deleteAuditViewName: Projection.attr(&#x27;&#x27;),
+    updateAudit: Projection.attr(&#x27;&#x27;),
+    updateAuditViewName: Projection.attr(&#x27;&#x27;),
+    selectAudit: Projection.attr(&#x27;&#x27;),
+    selectAuditViewName: Projection.attr(&#x27;&#x27;),
+    formUrl: Projection.attr(&#x27;&#x27;),
+    writeMode: Projection.attr(&#x27;&#x27;),
+    auditConnectionStringName: Projection.attr(&#x27;&#x27;),
+    auditWinServiceUrl: Projection.attr(&#x27;&#x27;),
+    addAuditFields: Projection.attr(&#x27;&#x27;),
+    writeSessions: Projection.attr(&#x27;&#x27;),
+    attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+      accessModifier: Projection.attr(&#x27;AccessModifier&#x27;, { hidden: true }),
+      autoincrement: Projection.attr(&#x27;Autoincrement&#x27;, { hidden: true }),
+      caption: Projection.attr(&#x27;Caption&#x27;, { hidden: true }),
+      dataServiceExpression: Projection.attr(&#x27;DataServiceExpression&#x27;, { hidden: true }),
+      dataServiceExpressionXML: Projection.attr(&#x27;DataServiceExpressionXML&#x27;, { hidden: true }),
+      defaultValue: Projection.attr(&#x27;DefaultValue&#x27;, { hidden: true }),
+      hint: Projection.attr(&#x27;Hint&#x27;, { hidden: true }),
+      notNull: Projection.attr(&#x27;NotNull&#x27;, { hidden: true }),
+      order: Projection.attr(&#x27;Order&#x27;, { hidden: true }),
+      orderNum: Projection.attr(&#x27;OrderNum&#x27;, { hidden: true }),
+      pBCustomAttributes: Projection.attr(&#x27;PBCustomAttributes&#x27;, { hidden: true }),
+      pBGetEnd: Projection.attr(&#x27;PBGetEnd&#x27;, { hidden: true }),
+      pBSetEnd: Projection.attr(&#x27;PBSetEnd&#x27;, { hidden: true }),
+      pBGetStart: Projection.attr(&#x27;PBGetStart&#x27;, { hidden: true }),
+      pBSetStart: Projection.attr(&#x27;PBSetStart&#x27;, { hidden: true }),
+      realCaption: Projection.attr(&#x27;RealCaption&#x27;, { hidden: true }),
+      realStorage: Projection.attr(&#x27;RealStorage&#x27;, { hidden: true }),
+      storage: Projection.attr(&#x27;Storage&#x27;, { hidden: true }),
+      stored: Projection.attr(&#x27;Stored&#x27;, { hidden: true }),
+      trim: Projection.attr(&#x27;Trim&#x27;, { hidden: true }),
+      type: Projection.attr(&#x27;Type&#x27;, { hidden: true }),
+      name: Projection.attr(&#x27;Name&#x27;, { hidden: true }),
+      description: Projection.attr(&#x27;Description&#x27;, { hidden: true }),
+      nameStr: Projection.attr(&#x27;NameStr&#x27;, { hidden: true })
+    }),
+    methods: Projection.hasMany(&#x27;fd-dev-method&#x27;, &#x27;&#x27;, {
+      accessModifier: Projection.attr(&#x27;AccessModifier&#x27;, { hidden: true }),
+      accessType: Projection.attr(&#x27;AccessType&#x27;, { hidden: true }),
+      caption: Projection.attr(&#x27;Caption&#x27;, { hidden: true }),
+      isEvent: Projection.attr(&#x27;IsEvent&#x27;, { hidden: true }),
+      orderNum: Projection.attr(&#x27;OrderNum&#x27;, { hidden: true }),
+      parametersStr: Projection.attr(&#x27;ParametersStr&#x27;, { hidden: true }),
+      pBCustomAttributes: Projection.attr(&#x27;PBCustomAttributes&#x27;, { hidden: true }),
+      publishToUser: Projection.attr(&#x27;PublishToUser&#x27;, { hidden: true }),
+      realCaption: Projection.attr(&#x27;RealCaption&#x27;, { hidden: true }),
+      type: Projection.attr(&#x27;Type&#x27;, { hidden: true }),
+      typeParametersStr: Projection.attr(&#x27;TypeParametersStr&#x27;, { hidden: true }),
+      name: Projection.attr(&#x27;Name&#x27;, { hidden: true }),
+      description: Projection.attr(&#x27;Description&#x27;, { hidden: true }),
+      nameStr: Projection.attr(&#x27;NameStr&#x27;, { hidden: true }),
+      parameters: Projection.hasMany(&#x27;fd-dev-parameter&#x27;, &#x27;&#x27;, {
+        caption: Projection.attr(&#x27;Caption&#x27;, { hidden: true }),
+        modifier: Projection.attr(&#x27;Modifier&#x27;, { hidden: true }),
+        orderNum: Projection.attr(&#x27;OrderNum&#x27;, { hidden: true }),
+        realCaption: Projection.attr(&#x27;RealCaption&#x27;, { hidden: true }),
+        type: Projection.attr(&#x27;Type&#x27;, { hidden: true }),
+        name: Projection.attr(&#x27;Name&#x27;, { hidden: true }),
+        description: Projection.attr(&#x27;Description&#x27;, { hidden: true }),
+        nameStr: Projection.attr(&#x27;NameStr&#x27;, { hidden: true })
+      })
+    }),
+    formViews: Projection.hasMany(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
+      view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;),
+        class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+          name: Projection.attr(&#x27;&#x27;)
+        }, { hidden: true })
+      }),
+      dataObjectTypes: Projection.attr(&#x27;DataObjectTypes&#x27;, { hidden: true }),
+      dataObjectTypesStr: Projection.attr(&#x27;DataObjectTypesStr&#x27;, { hidden: true }),
+      hierarchicalMaster: Projection.attr(&#x27;HierarchicalMaster&#x27;, { hidden: true }),
+      listFormOperations: Projection.attr(&#x27;ListFormOperations&#x27;, { hidden: true }),
+      listFormOperationsStr: Projection.attr(&#x27;ListFormOperationsStr&#x27;, { hidden: true }),
+      orderNum: Projection.attr(&#x27;OrderNum&#x27;, { hidden: true }),
+      propertyLookup: Projection.attr(&#x27;PropertyLookup&#x27;, { hidden: true }),
+      propertyLookupStr: Projection.attr(&#x27;PropertyLookupStr&#x27;, { hidden: true }),
+      viewForForm: Projection.attr(&#x27;ViewForForm&#x27;, { hidden: true }),
+      name: Projection.attr(&#x27;Name&#x27;, { hidden: true }),
+      description: Projection.attr(&#x27;Description&#x27;, { hidden: true }),
+      nameStr: Projection.attr(&#x27;NameStr&#x27;, { hidden: true }),
+      controls: Projection.hasMany(&#x27;fd-dev-form-control&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;),
+        propertyPath: Projection.attr(&#x27;&#x27;),
+        settingsXml: Projection.attr(&#x27;&#x27;),
+        order: Projection.attr(&#x27;&#x27;),
+        controlType: Projection.belongsTo(&#x27;fd-dev-control-type&#x27;, &#x27;&#x27;, {
+          name: Projection.attr(&#x27;&#x27;)
+        }),
+        propertyType: Projection.belongsTo(&#x27;fd-dev-type-definition&#x27;, &#x27;&#x27;, {
+          name: Projection.attr(&#x27;&#x27;)
+        }),
+        formView: Projection.belongsTo(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
+          view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+
+          })
+        })
+      })
+    }),
+    devViews: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      definition: Projection.attr(&#x27;&#x27;),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+      })
+    })
+  });
+  modelClass.defineProjection(&#x27;GetClassByGuid&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    description: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    caption: Projection.attr(&#x27;&#x27;),
+    attributesStr: Projection.attr(&#x27;&#x27;),
+    stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {
+
+    })
+  });
+  modelClass.defineProjection(&#x27;LightStage&#x27;, &#x27;fd-dev-class&#x27;, {
+    generateCatcher: Projection.attr(&#x27;&#x27;),
+    generateComPlusServer: Projection.attr(&#x27;&#x27;),
+    generateHttpRemoteServer: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;),
+    packet: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;)
+  });
+  modelClass.defineProjection(&#x27;ListDataObjectTypes&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    formViews: Projection.hasMany(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
+      view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;),
+        class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+          name: Projection.attr(&#x27;&#x27;)
+        }, { hidden: true })
+      }, { hidden: true })
+    })
+  });
+  modelClass.defineProjection(&#x27;ListFormView&#x27;, &#x27;fd-dev-class&#x27;, {
+    referenceCount: Projection.attr(&#x27;Reference count&#x27;),
+    stereotype: Projection.attr(&#x27;Stereotype&#x27;),
+    name: Projection.attr(&#x27;Name&#x27;),
+    description: Projection.attr(&#x27;Description&#x27;),
+    packet: Projection.attr(&#x27;Packet&#x27;),
+    namespacePostfix: Projection.attr(&#x27;Namespace postfix&#x27;)
+  });
+  modelClass.defineProjection(&#x27;LoadNameView&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    description: Projection.attr(&#x27;&#x27;),
+    caption: Projection.attr(&#x27;&#x27;)
+  });
+  modelClass.defineProjection(&#x27;Prototyping&#x27;, &#x27;fd-dev-class&#x27;, {
+    stereotype: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;),
+    devViews: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      definition: Projection.attr(&#x27;&#x27;)
+    })
+  });
+  modelClass.defineProjection(&#x27;SearchAppClassAndEditContainers&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    caption: Projection.attr(&#x27;&#x27;),
+    containersStr: Projection.attr(&#x27;&#x27;),
+    stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {
+
+    })
+  });
+  modelClass.defineProjection(&#x27;SearchClass&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    caption: Projection.attr(&#x27;&#x27;),
+    stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {
+
+    })
+  });
+  modelClass.defineProjection(&#x27;SearchClassLoadView&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    caption: Projection.attr(&#x27;&#x27;),
+    stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {
+
+    }),
+    formViews: Projection.hasMany(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
+      dataObjectTypesStr: Projection.attr(&#x27;&#x27;),
+      view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+        class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+          name: Projection.attr(&#x27;&#x27;)
+        }),
+        definition: Projection.attr(&#x27;&#x27;)
+      }),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+      })
+    })
+  });
+  modelClass.defineProjection(&#x27;SearchFormClassView&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    containersStr: Projection.attr(&#x27;&#x27;),
+    stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {
+
+    })
+  });
+  modelClass.defineProjection(&#x27;SearchListFormAndEditLink&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    caption: Projection.attr(&#x27;&#x27;),
+    dataObjectTypesStr: Projection.attr(&#x27;&#x27;),
+    stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {
+
+    }),
+    formViews: Projection.hasMany(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
+      dataObjectTypesStr: Projection.attr(&#x27;&#x27;),
+      view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+        class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+          name: Projection.attr(&#x27;&#x27;)
+        }),
+        definition: Projection.attr(&#x27;&#x27;)
+      }),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+      })
+    })
+  });
+  modelClass.defineProjection(&#x27;ViewPeeker&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    description: Projection.attr(&#x27;&#x27;),
+    devViews: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;)
+    })
+  });
+};
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>
