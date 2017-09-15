@@ -50,7 +50,7 @@ export default {
         caption: 'designerMetadataXml'
       },
       editedType: {
-        caption: 'editedType',
+        __caption__: 'editedType',
         name: {
           caption: 'name'
         },

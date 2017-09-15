@@ -433,7 +433,7 @@ export default {
         caption: 'NameStr'
       },
       parameters: {
-        caption: '',
+        __caption__: '',
         caption: {
           caption: 'Caption'
         },

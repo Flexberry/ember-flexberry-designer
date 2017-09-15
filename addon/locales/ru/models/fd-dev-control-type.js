@@ -50,7 +50,7 @@ export default {
         caption: 'Метаданные дизайна'
       },
       editedType: {
-        caption: '',
+        __caption__: '',
         name: {
           caption: ''
         },

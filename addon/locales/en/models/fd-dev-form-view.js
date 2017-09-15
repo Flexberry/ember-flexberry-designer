@@ -169,7 +169,7 @@ export default {
       view: {
         caption: 'view',
         class: {
-          caption: 'class',
+          __caption__: 'class',
           name: {
             caption: 'name'
           },

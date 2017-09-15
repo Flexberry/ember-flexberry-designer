@@ -448,7 +448,7 @@ export default {
       }
     },
     EditPropertyLookups: {
-      
+
     },
     EditRightManagementGenerator: {
       name: {
@@ -690,7 +690,7 @@ export default {
         caption: 'isReportDatabaseLocal'
       },
       typeDefinitions: {
-        caption: 'typeDefinitions',
+        __caption__: 'typeDefinitions',
         name: {
           caption: 'name'
         },
@@ -855,7 +855,7 @@ export default {
       }
     },
     ListDataObjectTypes: {
-      
+
     },
     ListFormView: {
       name: {
@@ -878,7 +878,7 @@ export default {
       }
     },
     Prototyping: {
-      
+
     },
     SearchRepObjView: {
       name: {
@@ -886,7 +886,7 @@ export default {
       }
     },
     ViewPeeker: {
-      
+
     }
   }
 };
