@@ -110,6 +110,17 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     return ret;
   },
 
+  _findParentNodeByPath: function(jsonTree, path) {
+    let ret = jsonTree;
+    let steps = path.split('.');
+    for (let i = 0; i < steps.length -1; i++) {
+      let step = steps[i];
+      ret = ret[step];
+    }
+    ret = { parentNode: ret, index: parseInt(steps[steps.length -1])};
+    return ret;
+  },
+
 
   actions: {
 
@@ -161,35 +172,55 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       Ember.set (this, 'jsonRightTreeNodes', this._jsTreeToFlexberryTree(this.model.jsonRightTreeNodes));
 //       this.jsonRightTreeNodes = this._jsTreeToFlexberryTree(this.model.jsonRightTreeNodes);
       let i=0;
-    }
+    },
 
-  },
+    removeLeftNode() {
+    },
 
-  removeLeftNode() {
-  },
+    addLeftNode() {
+    },
 
-  addLeftNode() {
-  },
+    editLeftNode() {
+    },
 
-  editLeftNode() {
-  },
+    listLeft() {
+    },
 
-  listLeft() {
-  },
+    addRightNode() {
+    },
 
-  addRightNode() {
-  },
+    removeRightNode() {
+    },
 
-  removeRightNode() {
-  },
+    addFolderNode() {
+    },
 
-  addFolderNode() {
-  },
+    upRightNode() {
+      let lastClicked = this.lastClicked.right;
+      let {parentNode, index} = this._findParentNodeByPath(this.model,lastClicked.path);
+      if (index == 0) {
+        return false;
+      }
+      let node = parentNode[index];
+      let prevNode = parentNode[index-1];
+      parentNode[index-1] = node;
+      parentNode[index] = prevNode;
+      Ember.set (this, 'jsonRightTreeNodes', this._jsTreeToFlexberryTree(this.model.jsonRightTreeNodes));
+    },
 
-  upRightNode() {
-  },
+    downRightNode() {
+      let lastClicked = this.lastClicked.right;
+      let {parentNode, index} = this._findParentNodeByPath(this.model,lastClicked.path);
+      if (index >= parentNode.length-1) {
+        return false;
+      }
+      let node = parentNode[index];
+      let nextNode = parentNode[index+1];
+      parentNode[index+1] = node;
+      parentNode[index] = nextNode;
+      Ember.set (this, 'jsonRightTreeNodes', this._jsTreeToFlexberryTree(this.model.jsonRightTreeNodes));    }
 
-  downRightNode() {
   }
+
 
 });
