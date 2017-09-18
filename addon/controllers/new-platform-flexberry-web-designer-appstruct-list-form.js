@@ -4,6 +4,12 @@ import TreeNodeObject from 'ember-flexberry/objects/tree-node';
 
 export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
 
+  approveButtonCaption: 'OK',
+
+  cancelButtonCaption: "Cancel",
+
+  treeChanged: false,
+
   removeLeftNodeDisabled: 'disabled',
   addLeftNodeDisabled: '',
   editLeftNodeDisabled: 'disabled',
@@ -166,14 +172,11 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       let lastClickedPath = this.lastClicked.left.path;
       let node = this._findNodeByPath(this.model,lastClickedPath);
       let toPath = this.lastClicked.right.path ? this.lastClicked.right.path : "jsonRightTreeNodes.0";
-      let toNode = this._findNodeByPath(this.model,toPath);
-      if (!toNode.nodes) {
-        toNode.nodes = [];
-      }
-      toNode.nodes.push(node);
-      Ember.set (this, 'jsonRightTreeNodes', this._jsTreeToFlexberryTree(this.model.jsonRightTreeNodes));
+      let toNode = this._findNodeByPath(this,toPath);
+      toNode.nodes.pushObject(node);
+//       Ember.set (this, 'jsonRightTreeNodes', this._jsTreeToFlexberryTree(this.model.jsonRightTreeNodes));
 //       this.jsonRightTreeNodes = this._jsTreeToFlexberryTree(this.model.jsonRightTreeNodes);
-      let i=0;
+//       let i=0;
     },
 
     removeLeftNode() {
@@ -193,9 +196,10 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       if (lastClickedPath.split('.').length < 3 ) {
         return false;
       }
-      let {parentNodes, index} = this._findParentNodesByPath(this.model,lastClickedPath);
-      parentNodes.splice(index,1);
-      Ember.set (this, 'jsonRightTreeNodes', this._jsTreeToFlexberryTree(this.model.jsonRightTreeNodes));
+      let {parentNodes, index} = this._findParentNodesByPath(this,lastClickedPath);
+      let removedNode = parentNodes[index];
+      parentNodes.removeObject(removedNode);
+//       Ember.set (this, 'jsonRightTreeNodes', this._jsTreeToFlexberryTree(this.model.jsonRightTreeNodes));
     },
 
     addRightNode() {
@@ -227,9 +231,16 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       let nextNode = parentNodes[index+1];
       parentNodes[index+1] = node;
       parentNodes[index] = nextNode;
-      Ember.set (this, 'jsonRightTreeNodes', this._jsTreeToFlexberryTree(this.model.jsonRightTreeNodes));    }
+      Ember.set (this, 'jsonRightTreeNodes', this._jsTreeToFlexberryTree(this.model.jsonRightTreeNodes));
+    },
 
-  }
+    saveTree() {
+      alert('Save');
+    }
+
+  },
+
+
 
 
 });
