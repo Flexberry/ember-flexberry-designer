@@ -1,0 +1,46 @@
+﻿{
+  "name": "FdDevUmlDpd",
+  "modelName": "fd-dev-uml-dpd",
+  "className": "DevUMLDPD",
+  "parentModelName": "fd-dpd",
+  "parentClassName": "DPD",
+  "attrs": [
+    {
+      "name": "name",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "primitiveTypes",
+      "type": "string",
+      "flexberryType": "ArrayList",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "primitives",
+      "type": "string",
+      "flexberryType": "ArrayList",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "helpKeyword",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    }
+  ],
+  "belongsTo": [],
+  "hasMany": [],
+  "projections": [],
+  "stored": true,
+  "offline": true
+}

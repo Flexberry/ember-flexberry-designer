@@ -1,0 +1,84 @@
+﻿{
+  "name": "FdFormView",
+  "modelName": "fd-form-view",
+  "className": "FormView",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [
+    {
+      "name": "name",
+      "type": "string",
+      "flexberryType": "char",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "flexberryType": "char",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "ordernum",
+      "type": "number",
+      "flexberryType": "int",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "dataObjectTypesStr",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "propertyLookupStr",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "listFormOperationsStr",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "hierarchicalMaster",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "view",
+      "relatedTo": "fd-view",
+      "inverse": null
+    }
+  ],
+  "hasMany": [
+    {
+      "name": "formControl",
+      "relatedTo": "fd-form-control",
+      "inverse": "formView"
+    }
+  ],
+  "projections": [],
+  "stored": true,
+  "offline": true
+}

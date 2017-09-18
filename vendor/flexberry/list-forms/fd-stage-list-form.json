@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "fd-stage-edit-form",
+  "editForm": "fd-stage-edit-form",
+  "caption": "Stages",
+  "name": "FdStageListForm",
+  "className": "StageListForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-dev-stage",
+      "modelProjection": "ListFormView"
+    }
+  ]
+}

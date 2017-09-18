@@ -1,0 +1,239 @@
+﻿{
+  "name": "FdDiagram",
+  "modelName": "fd-diagram",
+  "className": "Diagram",
+  "parentModelName": "fd-object-in-system",
+  "parentClassName": "ObjectInSystem",
+  "attrs": [
+    {
+      "name": "caseObjectsString",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "Empty",
+      "stored": true
+    },
+    {
+      "name": "primitivesStream",
+      "type": "string",
+      "flexberryType": "MemoryStream",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "primitivesStreamString",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "Empty",
+      "stored": true
+    },
+    {
+      "name": "elements",
+      "type": "string",
+      "flexberryType": "ArrayList",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [
+    {
+      "polymorphic": true,
+      "presence": true,
+      "name": "subsystem",
+      "relatedTo": "fd-subsystem",
+      "inverse": "diagrams"
+    }
+  ],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "Diagram",
+      "modelName": "fd-diagram",
+      "attrs": [
+        {
+          "name": "primitivesStreamString",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "caseObjectsString",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "createDate",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "createUser",
+          "caption": "",
+          "hidden": false,
+          "index": 4
+        },
+        {
+          "name": "changeDate",
+          "caption": "",
+          "hidden": false,
+          "index": 5
+        },
+        {
+          "name": "changeUser",
+          "caption": "",
+          "hidden": false,
+          "index": 6
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "DiagramWithStage",
+      "modelName": "fd-diagram",
+      "attrs": [
+        {
+          "name": "primitivesStreamString",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "caseObjectsString",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "createDate",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "createUser",
+          "caption": "",
+          "hidden": false,
+          "index": 4
+        },
+        {
+          "name": "changeDate",
+          "caption": "",
+          "hidden": false,
+          "index": 5
+        },
+        {
+          "name": "changeUser",
+          "caption": "",
+          "hidden": false,
+          "index": 6
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "DiagramWithSystem",
+      "modelName": "fd-diagram",
+      "attrs": [
+        {
+          "name": "primitivesStreamString",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "caseObjectsString",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "createDate",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "createUser",
+          "caption": "",
+          "hidden": false,
+          "index": 4
+        },
+        {
+          "name": "changeDate",
+          "caption": "",
+          "hidden": false,
+          "index": 5
+        },
+        {
+          "name": "changeUser",
+          "caption": "",
+          "hidden": false,
+          "index": 6
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "ExportToWmf",
+      "modelName": "fd-diagram",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "SearchSystem",
+      "modelName": "fd-diagram",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

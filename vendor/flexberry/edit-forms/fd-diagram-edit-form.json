@@ -1,0 +1,13 @@
+﻿{
+  "propertyLookup": [],
+  "caption": "Diagram",
+  "name": "FdDiagramEditForm",
+  "className": "DiagramEditForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-dev-uml-cad",
+      "modelProjection": "EditFormView"
+    }
+  ]
+}

@@ -1,4 +1,0 @@
-import NewPlatformFlexberryWebDesignerStageEditFormController from '../new-platform-flexberry-web-designer-stage-edit-form';
-
-var NewPlatformFlexberryWebDesignerStageEditFormNewController = NewPlatformFlexberryWebDesignerStageEditFormController;
-export default NewPlatformFlexberryWebDesignerStageEditFormNewController;

@@ -1,0 +1,46 @@
+﻿{
+  "name": "FdDevUmlStd",
+  "modelName": "fd-dev-uml-std",
+  "className": "DevUMLSTD",
+  "parentModelName": "fd-std",
+  "parentClassName": "STD",
+  "attrs": [
+    {
+      "name": "name",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "primitiveTypes",
+      "type": "string",
+      "flexberryType": "ArrayList",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "primitives",
+      "type": "string",
+      "flexberryType": "ArrayList",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    },
+    {
+      "name": "helpKeyword",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": false
+    }
+  ],
+  "belongsTo": [],
+  "hasMany": [],
+  "projections": [],
+  "stored": true,
+  "offline": true
+}

@@ -73,45 +73,43 @@ Ember.$.extend(true, translations, {
         root: {
           caption: 'root',
           title: 'root',
-          'new-platform-flexberry-web-designer-appstruct-list-form': {
+          'fd-appstruct-list-form': {
             caption: 'Application structure',
             title: '',
 
           },
-
-          'new-platform-flexberry-web-designer-stage-list-form': {
-            caption: 'new-platform-flexberry-web-designer-stage-list-form',
-            title: 'new-platform-flexberry-web-designer-stage-list-form',
+          'fd-stage-list-form': {
+            caption: 'fd-stage-list-form',
+            title: 'fd-stage-list-form',
+          },
+          'fd-system-list-form': {
+            caption: 'fd-system-list-form',
+            title: 'fd-system-list-form',
 
           },
-          'new-platform-flexberry-web-designer-system-list-form': {
-            caption: 'new-platform-flexberry-web-designer-system-list-form',
-            title: 'new-platform-flexberry-web-designer-system-list-form',
+          'fd-diagram-list-form': {
+            caption: 'fd-diagram-list-form',
+            title: 'fd-diagram-list-form',
 
           },
-          'new-platform-flexberry-web-designer-diagram-list-form': {
-            caption: 'new-platform-flexberry-web-designer-diagram-list-form',
-            title: 'new-platform-flexberry-web-designer-diagram-list-form',
+          'fd-class-list-form': {
+            caption: 'fd-class-list-form',
+            title: 'fd-class-list-form',
 
           },
-          'new-platform-flexberry-web-designer-class-list-form': {
-            caption: 'new-platform-flexberry-web-designer-class-list-form',
-            title: 'new-platform-flexberry-web-designer-class-list-form',
+          'fd-association-list-form': {
+            caption: 'fd-association-list-form',
+            title: 'fd-association-list-form',
 
           },
-          'new-platform-flexberry-web-designer-association-list-form': {
-            caption: 'new-platform-flexberry-web-designer-association-list-form',
-            title: 'new-platform-flexberry-web-designer-association-list-form',
+          'fd-inheritance-list-form': {
+            caption: 'fd-inheritance-list-form',
+            title: 'fd-inheritance-list-form',
 
           },
-          'new-platform-flexberry-web-designer-inheritance-list-form': {
-            caption: 'new-platform-flexberry-web-designer-inheritance-list-form',
-            title: 'new-platform-flexberry-web-designer-inheritance-list-form',
-
-          },
-          'new-platform-flexberry-web-designer-view-list-form': {
-            caption: 'new-platform-flexberry-web-designer-view-list-form',
-            title: 'new-platform-flexberry-web-designer-view-list-form',
+          'fd-view-list-form': {
+            caption: 'fd-view-list-form',
+            title: 'fd-view-list-form',
 
           }
         },

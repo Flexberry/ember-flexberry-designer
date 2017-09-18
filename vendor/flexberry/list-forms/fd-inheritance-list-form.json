@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "fd-inheritance-edit-form",
+  "editForm": "fd-inheritance-edit-form",
+  "caption": "Inheritance",
+  "name": "FdInheritanceListForm",
+  "className": "InheritanceListForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-dev-inheritance",
+      "modelProjection": "ListFormView"
+    }
+  ]
+}

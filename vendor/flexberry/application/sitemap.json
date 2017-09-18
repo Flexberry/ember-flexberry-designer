@@ -9,49 +9,49 @@
       "title": "Root",
       "children": [
         {
-          "link": "new-platform-flexberry-web-designer-stage-list-form",
+          "link": "fd-stage-list-form",
           "menuName": null,
           "caption": "Stages",
           "title": "",
           "children": null
         },
         {
-          "link": "new-platform-flexberry-web-designer-system-list-form",
+          "link": "fd-system-list-form",
           "menuName": null,
           "caption": "Systems",
           "title": "",
           "children": null
         },
         {
-          "link": "new-platform-flexberry-web-designer-diagram-list-form",
+          "link": "fd-diagram-list-form",
           "menuName": null,
           "caption": "Diagrams",
           "title": "",
           "children": null
         },
         {
-          "link": "new-platform-flexberry-web-designer-class-list-form",
+          "link": "fd-class-list-form",
           "menuName": null,
           "caption": "Classes",
           "title": "",
           "children": null
         },
         {
-          "link": "new-platform-flexberry-web-designer-association-list-form",
+          "link": "fd-association-list-form",
           "menuName": null,
           "caption": "Associations",
           "title": "",
           "children": null
         },
         {
-          "link": "new-platform-flexberry-web-designer-inheritance-list-form",
+          "link": "fd-inheritance-list-form",
           "menuName": null,
           "caption": "Inheritance",
           "title": "",
           "children": null
         },
         {
-          "link": "new-platform-flexberry-web-designer-view-list-form",
+          "link": "fd-view-list-form",
           "menuName": null,
           "caption": "Views",
           "title": "",

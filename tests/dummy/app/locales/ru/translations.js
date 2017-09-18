@@ -73,42 +73,42 @@ Ember.$.extend(true, translations, {
         root: {
           caption: 'Root',
           title: 'Root',
-          'new-platform-flexberry-web-designer-appstruct-list-form': {
+          'fd-appstruct-list-form': {
             caption: 'Структура приложения',
             title: '',
 
           },
-          'new-platform-flexberry-web-designer-stage-list-form': {
+          'fd-stage-list-form': {
             caption: 'Stages',
             title: '',
 
           },
-          'new-platform-flexberry-web-designer-system-list-form': {
+          'fd-system-list-form': {
             caption: 'Systems',
             title: '',
 
           },
-          'new-platform-flexberry-web-designer-diagram-list-form': {
+          'fd-diagram-list-form': {
             caption: 'Diagrams',
             title: '',
 
           },
-          'new-platform-flexberry-web-designer-class-list-form': {
+          'fd-class-list-form': {
             caption: 'Classes',
             title: '',
 
           },
-          'new-platform-flexberry-web-designer-association-list-form': {
+          'fd-association-list-form': {
             caption: 'Associations',
             title: '',
 
           },
-          'new-platform-flexberry-web-designer-inheritance-list-form': {
+          'fd-inheritance-list-form': {
             caption: 'Inheritance',
             title: '',
 
           },
-          'new-platform-flexberry-web-designer-view-list-form': {
+          'fd-view-list-form': {
             caption: 'Views',
             title: '',
 
