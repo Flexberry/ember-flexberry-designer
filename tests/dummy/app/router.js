@@ -42,6 +42,7 @@ Router.map(function () {
   { path: 'fd-view-edit-form/:id' });
   this.route('fd-view-edit-form.new',
   { path: 'fd-view-edit-form/new' });
+  this.route('fd-generation-process-form');
 });
 
 export default Router;
