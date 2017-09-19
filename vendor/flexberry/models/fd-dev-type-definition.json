@@ -1,0 +1,139 @@
+﻿{
+  "name": "FdDevTypeDefinition",
+  "modelName": "fd-dev-type-definition",
+  "className": "DevTypeDefinition",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [
+    {
+      "name": "caption",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "formatAttribute",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "mapTypeAssemblyName",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "mapTypeName",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": true,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "stage",
+      "relatedTo": "fd-dev-stage",
+      "inverse": "typeDefinitions"
+    }
+  ],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "TypeDefinitionE",
+      "modelName": "fd-dev-type-definition",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "caption",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "mapTypeName",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "mapTypeAssemblyName",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "formatAttribute",
+          "caption": "",
+          "hidden": false,
+          "index": 4
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "TypeDefinitionL",
+      "modelName": "fd-dev-type-definition",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "caption",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "mapTypeName",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "mapTypeAssemblyName",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "formatAttribute",
+          "caption": "",
+          "hidden": false,
+          "index": 4
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

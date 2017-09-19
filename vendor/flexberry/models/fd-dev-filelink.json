@@ -1,0 +1,13 @@
+﻿{
+  "name": "FdDevFilelink",
+  "modelName": "fd-dev-filelink",
+  "className": "DevFilelink",
+  "parentModelName": "fd-filelink",
+  "parentClassName": "Filelink",
+  "attrs": [],
+  "belongsTo": [],
+  "hasMany": [],
+  "projections": [],
+  "stored": true,
+  "offline": true
+}

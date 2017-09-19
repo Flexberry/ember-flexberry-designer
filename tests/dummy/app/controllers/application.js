@@ -16,39 +16,45 @@ export default Ember.Controller.extend({
           caption: i18n.t('forms.application.sitemap.root.caption'),
           title: i18n.t('forms.application.sitemap.root.title'),
           children: [{
-            link: 'new-platform-flexberry-web-designer-stage-list-form',
-            caption: i18n.t('forms.application.sitemap.root.new-platform-flexberry-web-designer-stage-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.new-platform-flexberry-web-designer-stage-list-form.title'),
+            link: 'fd-stage-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-stage-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-stage-list-form.title'),
             children: null
           }, {
-            link: 'new-platform-flexberry-web-designer-system-list-form',
-            caption: i18n.t('forms.application.sitemap.root.new-platform-flexberry-web-designer-system-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.new-platform-flexberry-web-designer-system-list-form.title'),
+            link: 'fd-system-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-system-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-system-list-form.title'),
             children: null
           }, {
-            link: 'new-platform-flexberry-web-designer-diagram-list-form',
-            caption: i18n.t('forms.application.sitemap.root.new-platform-flexberry-web-designer-diagram-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.new-platform-flexberry-web-designer-diagram-list-form.title'),
+            link: 'fd-diagram-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.title'),
             children: null
           }, {
-            link: 'new-platform-flexberry-web-designer-class-list-form',
-            caption: i18n.t('forms.application.sitemap.root.new-platform-flexberry-web-designer-class-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.new-platform-flexberry-web-designer-class-list-form.title'),
+            link: 'fd-class-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-class-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-class-list-form.title'),
             children: null
           }, {
-            link: 'new-platform-flexberry-web-designer-association-list-form',
-            caption: i18n.t('forms.application.sitemap.root.new-platform-flexberry-web-designer-association-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.new-platform-flexberry-web-designer-association-list-form.title'),
+            link: 'fd-association-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-association-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-association-list-form.title'),
             children: null
           }, {
-            link: 'new-platform-flexberry-web-designer-inheritance-list-form',
-            caption: i18n.t('forms.application.sitemap.root.new-platform-flexberry-web-designer-inheritance-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.new-platform-flexberry-web-designer-inheritance-list-form.title'),
+            link: 'fd-inheritance-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.title'),
             children: null
           }, {
-            link: 'new-platform-flexberry-web-designer-view-list-form',
-            caption: i18n.t('forms.application.sitemap.root.new-platform-flexberry-web-designer-view-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.new-platform-flexberry-web-designer-view-list-form.title'),
+            link: 'fd-view-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-view-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-view-list-form.title'),
+            children: null
+          },
+          {
+            link: 'fd-generation-process-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-generation-process-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-generation-process-form.title'),
             children: null
           }]
         }
@@ -71,7 +77,7 @@ export default Ember.Controller.extend({
     @method _userSettingsServiceChanged
     @private
   */
-  _userSettingsServiceChanged: Ember.observer('userSettingsService.isUserSettingsServiceEnabled', function() {
+  _userSettingsServiceChanged: Ember.observer('userSettingsService.isUserSettingsServiceEnabled', function () {
     this.get('target.router').refresh();
   }),
 
@@ -115,14 +121,14 @@ export default Ember.Controller.extend({
       sidebar.sidebar({
         closable: false,
         dimPage: false,
-        onHide: function() {
+        onHide: function () {
           Ember.$('.sidebar.icon.text-menu-show').removeClass('hidden');
           Ember.$('.sidebar.icon.text-menu-hide').addClass('hidden');
         },
-        onHidden: function() {
+        onHidden: function () {
           objectlistviewEventsService.updateWidthTrigger();
         },
-        onShow: function() {
+        onShow: function () {
           objectlistviewEventsService.updateWidthTrigger();
         }
       }).sidebar('toggle');
@@ -146,14 +152,14 @@ export default Ember.Controller.extend({
       let sidebar = Ember.$('.ui.sidebar.main.menu');
       let objectlistviewEventsService = this.get('objectlistviewEventsService');
       sidebar.sidebar({
-        onHide: function() {
+        onHide: function () {
           Ember.$('.sidebar.icon.text-menu-show').removeClass('hidden');
           Ember.$('.sidebar.icon.text-menu-hide').addClass('hidden');
         },
-        onHidden: function() {
+        onHidden: function () {
           objectlistviewEventsService.updateWidthTrigger();
         },
-        onShow: function() {
+        onShow: function () {
           objectlistviewEventsService.updateWidthTrigger();
         }
       }).sidebar('toggle');

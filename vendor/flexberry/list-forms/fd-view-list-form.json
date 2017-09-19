@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "fd-view-edit-form",
+  "editForm": "fd-view-edit-form",
+  "caption": "Views",
+  "name": "FdViewListForm",
+  "className": "ViewListForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-dev-view",
+      "modelProjection": "ListFormView"
+    }
+  ]
+}

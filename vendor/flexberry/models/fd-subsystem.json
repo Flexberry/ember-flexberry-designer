@@ -1,0 +1,243 @@
+﻿{
+  "name": "FdSubsystem",
+  "modelName": "fd-subsystem",
+  "className": "Subsystem",
+  "parentModelName": "fd-repository-browser-data-object",
+  "parentClassName": "RepositoryBrowserDataObject",
+  "attrs": [],
+  "belongsTo": [
+    {
+      "polymorphic": true,
+      "presence": true,
+      "name": "stage",
+      "relatedTo": "fd-stage",
+      "inverse": "systems"
+    }
+  ],
+  "hasMany": [
+    {
+      "name": "diagrams",
+      "relatedTo": "fd-diagram",
+      "inverse": "subsystem"
+    },
+    {
+      "name": "diagramLinks",
+      "relatedTo": "fd-diagram-link",
+      "inverse": "subsystem"
+    },
+    {
+      "name": "filelinks",
+      "relatedTo": "fd-filelink",
+      "inverse": "subsystem"
+    }
+  ],
+  "projections": [
+    {
+      "name": "Convert",
+      "modelName": "fd-subsystem",
+      "attrs": [
+        {
+          "name": "createUser",
+          "caption": "CreateUser",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "createDate",
+          "caption": "CreateDate",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "changeUser",
+          "caption": "ChangeUser",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "changeDate",
+          "caption": "ChangeDate",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "name",
+          "caption": "Name",
+          "hidden": false,
+          "index": 4
+        },
+        {
+          "name": "description",
+          "caption": "Description",
+          "hidden": false,
+          "index": 5
+        },
+        {
+          "name": "nameStr",
+          "caption": "NameStr",
+          "hidden": false,
+          "index": 6
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": [
+        {
+          "projectionName": "DiagramLink",
+          "caption": "",
+          "name": "diagramLinks",
+          "relatedTo": "fd-diagram-link",
+          "inverse": null
+        },
+        {
+          "projectionName": "Diagram",
+          "caption": "",
+          "name": "diagrams",
+          "relatedTo": "fd-diagram",
+          "inverse": null
+        },
+        {
+          "projectionName": "FileLink",
+          "caption": "",
+          "name": "filelinks",
+          "relatedTo": "fd-filelink",
+          "inverse": null
+        }
+      ]
+    },
+    {
+      "name": "PathSearchView",
+      "modelName": "fd-subsystem",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Stage",
+          "belongsTo": [
+            {
+              "lookupValue": null,
+              "lookupValueField": null,
+              "relationName": "Stage.Configuration",
+              "belongsTo": [
+                {
+                  "lookupValue": null,
+                  "lookupValueField": null,
+                  "relationName": "Stage.Configuration.Project",
+                  "belongsTo": [
+                    {
+                      "lookupValue": null,
+                      "lookupValueField": null,
+                      "relationName": "Stage.Configuration.Project.Repository",
+                      "belongsTo": [],
+                      "hidden": false,
+                      "attrs": [
+                        {
+                          "name": "name",
+                          "caption": "",
+                          "hidden": false,
+                          "index": 8
+                        }
+                      ],
+                      "index": 7,
+                      "caption": "",
+                      "name": "repository",
+                      "relatedTo": "fd-repository",
+                      "inverse": null
+                    }
+                  ],
+                  "hidden": false,
+                  "attrs": [
+                    {
+                      "name": "name",
+                      "caption": "",
+                      "hidden": false,
+                      "index": 6
+                    }
+                  ],
+                  "index": 5,
+                  "caption": "",
+                  "name": "project",
+                  "relatedTo": "fd-project",
+                  "inverse": null
+                }
+              ],
+              "hidden": false,
+              "attrs": [
+                {
+                  "name": "name",
+                  "caption": "",
+                  "hidden": false,
+                  "index": 4
+                }
+              ],
+              "index": 3,
+              "caption": "",
+              "name": "configuration",
+              "relatedTo": "fd-configuration",
+              "inverse": null
+            }
+          ],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "",
+              "hidden": false,
+              "index": 2
+            }
+          ],
+          "index": 1,
+          "caption": "",
+          "name": "stage",
+          "relatedTo": "fd-stage",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "SearchSystem",
+      "modelName": "fd-subsystem",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Stage",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "",
+              "hidden": false,
+              "index": 2
+            }
+          ],
+          "index": 1,
+          "caption": "",
+          "name": "stage",
+          "relatedTo": "fd-stage",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

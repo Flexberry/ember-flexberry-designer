@@ -1,0 +1,13 @@
+﻿{
+  "propertyLookup": [],
+  "caption": "System",
+  "name": "FdSystemEditForm",
+  "className": "SystemEditForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-dev-system",
+      "modelProjection": "EditFormView"
+    }
+  ]
+}

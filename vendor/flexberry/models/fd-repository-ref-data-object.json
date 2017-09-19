@@ -1,0 +1,22 @@
+﻿{
+  "name": "FdRepositoryRefDataObject",
+  "modelName": "fd-repository-ref-data-object",
+  "className": "RepositoryRefDataObject",
+  "parentModelName": "fd-repository-data-object",
+  "parentClassName": "RepositoryDataObject",
+  "attrs": [
+    {
+      "name": "referenceCount",
+      "type": "number",
+      "flexberryType": "int",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [],
+  "hasMany": [],
+  "projections": [],
+  "stored": true,
+  "offline": true
+}

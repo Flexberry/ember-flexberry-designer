@@ -1,0 +1,13 @@
+﻿{
+  "propertyLookup": [],
+  "caption": "Inheritance",
+  "name": "FdInheritanceEditForm",
+  "className": "InheritanceEditForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-dev-inheritance",
+      "modelProjection": "EditFormView"
+    }
+  ]
+}

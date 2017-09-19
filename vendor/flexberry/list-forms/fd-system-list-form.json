@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "fd-system-edit-form",
+  "editForm": "fd-system-edit-form",
+  "caption": "Systems",
+  "name": "FdSystemListForm",
+  "className": "SystemListForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-dev-system",
+      "modelProjection": "ListFormView"
+    }
+  ]
+}

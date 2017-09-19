@@ -1,0 +1,13 @@
+﻿{
+  "propertyLookup": [],
+  "caption": "Association",
+  "name": "FdAssociationEditForm",
+  "className": "AssociationEditForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-dev-association",
+      "modelProjection": "EditFormView"
+    }
+  ]
+}

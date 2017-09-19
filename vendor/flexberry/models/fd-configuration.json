@@ -1,0 +1,105 @@
+﻿{
+  "name": "FdConfiguration",
+  "modelName": "fd-configuration",
+  "className": "Configuration",
+  "parentModelName": "fd-repository-object-with-plugins",
+  "parentClassName": "RepositoryObjectWithPlugins",
+  "attrs": [],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "project",
+      "relatedTo": "fd-project",
+      "inverse": "configurations"
+    }
+  ],
+  "hasMany": [
+    {
+      "name": "stages",
+      "relatedTo": "fd-stage",
+      "inverse": "configuration"
+    }
+  ],
+  "projections": [
+    {
+      "name": "PathSearchView",
+      "modelName": "fd-configuration",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Project",
+          "belongsTo": [
+            {
+              "lookupValue": null,
+              "lookupValueField": null,
+              "relationName": "Project.Repository",
+              "belongsTo": [],
+              "hidden": false,
+              "attrs": [],
+              "index": 3,
+              "caption": "",
+              "name": "repository",
+              "relatedTo": "fd-repository",
+              "inverse": null
+            }
+          ],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "",
+              "hidden": false,
+              "index": 2
+            }
+          ],
+          "index": 1,
+          "caption": "",
+          "name": "project",
+          "relatedTo": "fd-project",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "SearchRepObjView",
+      "modelName": "fd-configuration",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "TestStageName",
+      "modelName": "fd-configuration",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}
