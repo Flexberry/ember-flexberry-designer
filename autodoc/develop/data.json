@@ -1015,7 +1015,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
-            "line": 43,
+            "line": 44,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realCaption",
@@ -1023,7 +1023,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
-            "line": 49,
+            "line": 50,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'realCaptionCompute' method in model class (outside of this mixin) if you want to compute value of 'realCaption' property.",
             "itemtype": "method",
             "name": "_realCaptionCompute",
@@ -1036,7 +1036,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
-            "line": 67,
+            "line": 68,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realStorage",
@@ -1044,7 +1044,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
-            "line": 73,
+            "line": 74,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'realStorageCompute' method in model class (outside of this mixin) if you want to compute value of 'realStorage' property.",
             "itemtype": "method",
             "name": "_realStorageCompute",
@@ -1456,7 +1456,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 436,
+            "line": 437,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "useCache",
@@ -1464,7 +1464,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 442,
+            "line": 443,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'useCacheCompute' method in model class (outside of this mixin) if you want to compute value of 'useCache' property.",
             "itemtype": "method",
             "name": "_useCacheCompute",
@@ -1666,7 +1666,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 31,
+            "line": 32,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "chosenPalette",
@@ -1674,7 +1674,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 37,
+            "line": 38,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'chosenPaletteCompute' method in model class (outside of this mixin) if you want to compute value of 'chosenPalette' property.",
             "itemtype": "method",
             "name": "_chosenPaletteCompute",
@@ -1687,7 +1687,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 59,
+            "line": 60,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "defaultAccessType",
@@ -1695,7 +1695,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 65,
+            "line": 66,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'defaultAccessTypeCompute' method in model class (outside of this mixin) if you want to compute value of 'defaultAccessType' property.",
             "itemtype": "method",
             "name": "_defaultAccessTypeCompute",
@@ -1708,7 +1708,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 87,
+            "line": 88,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "defaultTypeMapTypes",
@@ -1716,7 +1716,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 93,
+            "line": 94,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'defaultTypeMapTypesCompute' method in model class (outside of this mixin) if you want to compute value of 'defaultTypeMapTypes' property.",
             "itemtype": "method",
             "name": "_defaultTypeMapTypesCompute",
@@ -1729,7 +1729,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 112,
+            "line": 113,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "doNotDeleteExtraTables",
@@ -1737,7 +1737,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 118,
+            "line": 119,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'doNotDeleteExtraTablesCompute' method in model class (outside of this mixin) if you want to compute value of 'doNotDeleteExtraTables' property.",
             "itemtype": "method",
             "name": "_doNotDeleteExtraTablesCompute",
@@ -1750,7 +1750,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 136,
+            "line": 137,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "enableAuElement",
@@ -1758,7 +1758,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 142,
+            "line": 143,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'enableAuElementCompute' method in model class (outside of this mixin) if you want to compute value of 'enableAuElement' property.",
             "itemtype": "method",
             "name": "_enableAuElementCompute",
@@ -1771,7 +1771,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 163,
+            "line": 164,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "lastIndexDate",
@@ -1779,7 +1779,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 169,
+            "line": 170,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'lastIndexDateCompute' method in model class (outside of this mixin) if you want to compute value of 'lastIndexDate' property.",
             "itemtype": "method",
             "name": "_lastIndexDateCompute",
@@ -1792,7 +1792,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 192,
+            "line": 193,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realDataObjectNameSpace",
@@ -1800,7 +1800,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 198,
+            "line": 199,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'realDataObjectNameSpaceCompute' method in model class (outside of this mixin) if you want to compute value of 'realDataObjectNameSpace' property.",
             "itemtype": "method",
             "name": "_realDataObjectNameSpaceCompute",
@@ -1813,7 +1813,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 225,
+            "line": 227,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapAccess",
@@ -1821,7 +1821,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 231,
+            "line": 233,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'typeMapAccessCompute' method in model class (outside of this mixin) if you want to compute value of 'typeMapAccess' property.",
             "itemtype": "method",
             "name": "_typeMapAccessCompute",
@@ -1834,7 +1834,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 250,
+            "line": 252,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapCS",
@@ -1842,7 +1842,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 256,
+            "line": 258,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'typeMapCSCompute' method in model class (outside of this mixin) if you want to compute value of 'typeMapCS' property.",
             "itemtype": "method",
             "name": "_typeMapCSCompute",
@@ -1855,7 +1855,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 275,
+            "line": 277,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapOracle",
@@ -1863,7 +1863,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 281,
+            "line": 283,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'typeMapOracleCompute' method in model class (outside of this mixin) if you want to compute value of 'typeMapOracle' property.",
             "itemtype": "method",
             "name": "_typeMapOracleCompute",
@@ -1876,7 +1876,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 300,
+            "line": 302,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapPostgre",
@@ -1884,7 +1884,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 306,
+            "line": 308,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'typeMapPostgreCompute' method in model class (outside of this mixin) if you want to compute value of 'typeMapPostgre' property.",
             "itemtype": "method",
             "name": "_typeMapPostgreCompute",
@@ -1897,7 +1897,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 325,
+            "line": 327,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapSQL",
@@ -1905,7 +1905,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 331,
+            "line": 333,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'typeMapSQLCompute' method in model class (outside of this mixin) if you want to compute value of 'typeMapSQL' property.",
             "itemtype": "method",
             "name": "_typeMapSQLCompute",
@@ -1918,7 +1918,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 350,
+            "line": 352,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapVB",
@@ -1926,7 +1926,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
-            "line": 356,
+            "line": 358,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'typeMapVBCompute' method in model class (outside of this mixin) if you want to compute value of 'typeMapVB' property.",
             "itemtype": "method",
             "name": "_typeMapVBCompute",

@@ -1063,7 +1063,7 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/en
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-t-write-mode.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/enums');
   test('modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-t-write-mode.js should pass jscs', function () {
-    ok(false, 'modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-t-write-mode.js should pass jscs.\nIllegal trailing whitespace at modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-t-write-mode.js :\n     2 |\n     3 |export default createEnum({\n     4 |  \n----------^\n     5 |});\n     6 |');
+    ok(true, 'modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-t-write-mode.js should pass jscs.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-t-write-mode.jshint', ['exports'], function (exports) {
@@ -3124,7 +3124,7 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
   QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/models/fd-aggregation.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-aggregation.js should pass jshint.\nmodules/ember-flexberry-designer/mixins/regenerated/models/fd-aggregation.js: line 2, col 8, \'DS\' is defined but never used.\n\n1 error');
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-aggregation.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-association.jscs-test', ['exports'], function (exports) {
@@ -3137,7 +3137,7 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
   QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/models/fd-association.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-association.js should pass jshint.\nmodules/ember-flexberry-designer/mixins/regenerated/models/fd-association.js: line 2, col 8, \'DS\' is defined but never used.\n\n1 error');
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-association.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-base-association.jscs-test', ['exports'], function (exports) {
@@ -3260,7 +3260,7 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-attribute.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/models');
   test('modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-attribute.js should pass jscs', function () {
-    ok(false, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-attribute.js should pass jscs.\nLine must be at most 160 characters at modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-attribute.js :\n    28 |  */\n    29 |  _dataServiceExpressionXMLCompute: function() {\n    30 |    let result = (this.dataServiceExpressionXMLCompute && typeof this.dataServiceExpressionXMLCompute === \'function\') ? this.dataServiceExpressionXMLCompute() : null;\n------------------------------------------------------------------------------------------------------------------------------------------------------------------------------^\n    31 |    this.set(\'dataServiceExpressionXML\', result);\n    32 |  },');
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-attribute.js should pass jscs.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-attribute.jshint', ['exports'], function (exports) {
@@ -3286,7 +3286,7 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-class.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/models');
   test('modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-class.js should pass jscs', function () {
-    ok(false, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-class.js should pass jscs.\nLine must be at most 160 characters at modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-class.js :\n   428 |  */\n   429 |  _storeInstancesInTypeXMLCompute: function() {\n   430 |    let result = (this.storeInstancesInTypeXMLCompute && typeof this.storeInstancesInTypeXMLCompute === \'function\') ? this.storeInstancesInTypeXMLCompute() : null;\n---------------------------------------------------------------------------------------------------------------------------------------------------------------------------^\n   431 |    this.set(\'storeInstancesInTypeXML\', result);\n   432 |  },');
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-class.js should pass jscs.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-class.jshint', ['exports'], function (exports) {
@@ -3319,7 +3319,7 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
   QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-diagram-link.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-diagram-link.js should pass jshint.\nmodules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-diagram-link.js: line 2, col 8, \'DS\' is defined but never used.\n\n1 error');
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-diagram-link.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-filelink.jscs-test', ['exports'], function (exports) {
@@ -3332,7 +3332,7 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
   QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-filelink.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-filelink.js should pass jshint.\nmodules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-filelink.js: line 2, col 8, \'DS\' is defined but never used.\n\n1 error');
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-filelink.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-form-control.jscs-test', ['exports'], function (exports) {
@@ -3371,7 +3371,7 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
   QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-inheritance.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-inheritance.js should pass jshint.\nmodules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-inheritance.js: line 2, col 8, \'DS\' is defined but never used.\n\n1 error');
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-inheritance.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-method.jscs-test', ['exports'], function (exports) {
@@ -3455,7 +3455,7 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-stage.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/models');
   test('modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-stage.js should pass jscs', function () {
-    ok(false, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-stage.js should pass jscs.\nLine must be at most 160 characters at modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-stage.js :\n    24 |  */\n    25 |  _additionalPluginsSettingsCompute: function() {\n    26 |    let result = (this.additionalPluginsSettingsCompute && typeof this.additionalPluginsSettingsCompute === \'function\') ? this.additionalPluginsSettingsCompute() : null;\n---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------^\n    27 |    this.set(\'additionalPluginsSettings\', result);\n    28 |  },\nLine must be at most 160 characters at modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-stage.js :\n   211 |  */\n   212 |  _realDataObjectNameSpaceCompute: function() {\n   213 |    let result = (this.realDataObjectNameSpaceCompute && typeof this.realDataObjectNameSpaceCompute === \'function\') ? this.realDataObjectNameSpaceCompute() : null;\n---------------------------------------------------------------------------------------------------------------------------------------------------------------------------^\n   214 |    this.set(\'realDataObjectNameSpace\', result);\n   215 |  },\nIllegal trailing whitespace at modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-stage.js :\n   578 |  });\n   579 |  modelClass.defineProjection(\'EditPropertyLookups\', \'fd-dev-stage\', {\n   580 |    \n------------^\n   581 |  });\n   582 |  modelClass.defineProjection(\'EditRightManagementGenerator\', \'fd-dev-stage\', {\nIllegal trailing whitespace at modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-stage.js :\n   758 |  });\n   759 |  modelClass.defineProjection(\'ListDataObjectTypes\', \'fd-dev-stage\', {\n   760 |    \n------------^\n   761 |  });\n   762 |  modelClass.defineProjection(\'ListFormView\', \'fd-dev-stage\', {\nIllegal trailing whitespace at modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-stage.js :\n   769 |  });\n   770 |  modelClass.defineProjection(\'Prototyping\', \'fd-dev-stage\', {\n   771 |    \n------------^\n   772 |  });\n   773 |  modelClass.defineProjection(\'SearchRepObjView\', \'fd-dev-stage\', {\nIllegal trailing whitespace at modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-stage.js :\n   775 |  });\n   776 |  modelClass.defineProjection(\'ViewPeeker\', \'fd-dev-stage\', {\n   777 |    \n------------^\n   778 |  });\n   779 |};');
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-stage.js should pass jscs.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-stage.jshint', ['exports'], function (exports) {
@@ -3475,7 +3475,7 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
   QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-system.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-system.js should pass jshint.\nmodules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-system.js: line 2, col 8, \'DS\' is defined but never used.\n\n1 error');
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-system.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-dev-task.jscs-test', ['exports'], function (exports) {
@@ -3709,7 +3709,7 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
   QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/models/fd-object-in-system.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-object-in-system.js should pass jshint.\nmodules/ember-flexberry-designer/mixins/regenerated/models/fd-object-in-system.js: line 2, col 8, \'DS\' is defined but never used.\n\n1 error');
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-object-in-system.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-plugin-on-rep-object.jscs-test', ['exports'], function (exports) {
@@ -3910,7 +3910,7 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/objects/new-platform-flexberry-web-designer-business-server-class.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/objects');
   test('modules/ember-flexberry-designer/mixins/regenerated/objects/new-platform-flexberry-web-designer-business-server-class.js should pass jscs', function () {
-    ok(false, 'modules/ember-flexberry-designer/mixins/regenerated/objects/new-platform-flexberry-web-designer-business-server-class.js should pass jscs.\nIllegal trailing whitespace at modules/ember-flexberry-designer/mixins/regenerated/objects/new-platform-flexberry-web-designer-business-server-class.js :\n     2 |\n     3 |export let ObjectMix = Ember.Mixin.create({\n     4 |  \n----------^\n     5 |});\n     6 |');
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/objects/new-platform-flexberry-web-designer-business-server-class.js should pass jscs.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/objects/new-platform-flexberry-web-designer-business-server-class.jshint', ['exports'], function (exports) {
@@ -30748,7 +30748,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://flexberry-designer-web.azurewebsites.net","backendUrls":{"root":"https://flexberry-designer-web.azurewebsites.net","api":"https://flexberry-designer-web.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://flexberry-designer-web.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.1.0-alpha01+300bfc92"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://flexberry-designer-web.azurewebsites.net","backendUrls":{"root":"https://flexberry-designer-web.azurewebsites.net","api":"https://flexberry-designer-web.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://flexberry-designer-web.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.1.0-alpha01+8e0d3fbd"});
 }
 
 /* jshint ignore:end */

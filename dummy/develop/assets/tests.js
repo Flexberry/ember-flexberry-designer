@@ -5379,7 +5379,7 @@ define('dummy/tests/unit/transforms/new-platform-flexberry-web-designer-business
 
   module('JSCS - unit/transforms');
   test('unit/transforms/new-platform-flexberry-web-designer-business-server-class-test.js should pass jscs', function () {
-    ok(false, 'unit/transforms/new-platform-flexberry-web-designer-business-server-class-test.js should pass jscs.\nLine must be at most 160 characters at unit/transforms/new-platform-flexberry-web-designer-business-server-class-test.js :\n     1 |import { moduleFor, test } from \'ember-qunit\';\n     2 |\n     3 |moduleFor(\'transform:new-platform-flexberry-web-designer-business-server-class\', \'Unit | Transform | new platform flexberry web designer business server class\', {\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------^\n     4 |  // Specify the other units that are required for this test.\n     5 |  // needs: [\'serializer:foo\']');
+    ok(true, 'unit/transforms/new-platform-flexberry-web-designer-business-server-class-test.js should pass jscs.');
   });
 });
 define('dummy/tests/unit/transforms/new-platform-flexberry-web-designer-business-server-class-test.jshint', ['exports'], function (exports) {

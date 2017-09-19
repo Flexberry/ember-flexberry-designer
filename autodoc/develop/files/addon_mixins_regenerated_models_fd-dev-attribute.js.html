@@ -121,7 +121,8 @@ export let Model = Ember.Mixin.create({
       &#x60;&#x60;&#x60;
   */
   _dataServiceExpressionXMLCompute: function() {
-    let result = (this.dataServiceExpressionXMLCompute &amp;&amp; typeof this.dataServiceExpressionXMLCompute === &#x27;function&#x27;) ? this.dataServiceExpressionXMLCompute() : null;
+    let result = (this.dataServiceExpressionXMLCompute &amp;&amp; typeof this.dataServiceExpressionXMLCompute === &#x27;function&#x27;) ?
+      this.dataServiceExpressionXMLCompute() : null;
     this.set(&#x27;dataServiceExpressionXML&#x27;, result);
   },
   defaultValue: DS.attr(&#x27;string&#x27;),

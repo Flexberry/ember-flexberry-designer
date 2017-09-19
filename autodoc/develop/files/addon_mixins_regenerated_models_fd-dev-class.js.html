@@ -521,7 +521,8 @@ export let Model = Ember.Mixin.create({
       &#x60;&#x60;&#x60;
   */
   _storeInstancesInTypeXMLCompute: function() {
-    let result = (this.storeInstancesInTypeXMLCompute &amp;&amp; typeof this.storeInstancesInTypeXMLCompute === &#x27;function&#x27;) ? this.storeInstancesInTypeXMLCompute() : null;
+    let result = (this.storeInstancesInTypeXMLCompute &amp;&amp; typeof this.storeInstancesInTypeXMLCompute === &#x27;function&#x27;) ?
+      this.storeInstancesInTypeXMLCompute() : null;
     this.set(&#x27;storeInstancesInTypeXML&#x27;, result);
   },
   trim: DS.attr(&#x27;boolean&#x27;),
