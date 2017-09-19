@@ -628,6 +628,36 @@ define('dummy/tests/unit/controllers/fd-diagram-list-form-test.jshint', ['export
     assert.ok(true, 'unit/controllers/fd-diagram-list-form-test.js should pass jshint.');
   });
 });
+define('dummy/tests/unit/controllers/fd-generation-process-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('controller:fd-generation-process-form', 'Unit | Controller | fd generation process form', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  // Replace this with your real tests.
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var controller = this.subject();
+    assert.ok(controller);
+  });
+});
+define('dummy/tests/unit/controllers/fd-generation-process-form-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/controllers');
+  test('unit/controllers/fd-generation-process-form-test.js should pass jscs', function () {
+    ok(true, 'unit/controllers/fd-generation-process-form-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/controllers/fd-generation-process-form-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/controllers/fd-generation-process-form-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/controllers/fd-generation-process-form-test.js should pass jshint.');
+  });
+});
 define('dummy/tests/unit/controllers/fd-inheritance-edit-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
   (0, _emberQunit.moduleFor)('controller:fd-inheritance-edit-form', 'Unit | Controller | fd inheritance edit form', {
@@ -2964,6 +2994,35 @@ define('dummy/tests/unit/routes/fd-diagram-list-form-test.jshint', ['exports'], 
     assert.ok(true, 'unit/routes/fd-diagram-list-form-test.js should pass jshint.');
   });
 });
+define('dummy/tests/unit/routes/fd-generation-process-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('route:fd-generation-process-form', 'Unit | Route | fd generation process form', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var route = this.subject();
+    assert.ok(route);
+  });
+});
+define('dummy/tests/unit/routes/fd-generation-process-form-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/routes');
+  test('unit/routes/fd-generation-process-form-test.js should pass jscs', function () {
+    ok(true, 'unit/routes/fd-generation-process-form-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/routes/fd-generation-process-form-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/routes/fd-generation-process-form-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/routes/fd-generation-process-form-test.js should pass jshint.');
+  });
+});
 define('dummy/tests/unit/routes/fd-inheritance-edit-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
   (0, _emberQunit.moduleFor)('route:fd-inheritance-edit-form', 'Unit | Route | fd inheritance edit form', {
@@ -5240,6 +5299,66 @@ define('dummy/tests/unit/serializers/fd-view-test.jshint', ['exports'], function
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/serializers/fd-view-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/unit/services/fd-current-project-context-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('service:fd-current-project-context', 'Unit | Service | fd current project context', {
+    // Specify the other units that are required for this test.
+    // needs: ['service:foo']
+  });
+
+  // Replace this with your real tests.
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var service = this.subject();
+    assert.ok(service);
+  });
+});
+define('dummy/tests/unit/services/fd-current-project-context-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/services');
+  test('unit/services/fd-current-project-context-test.js should pass jscs', function () {
+    ok(true, 'unit/services/fd-current-project-context-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/services/fd-current-project-context-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/services/fd-current-project-context-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/services/fd-current-project-context-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/unit/services/fd-generation-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('service:fd-generation', 'Unit | Service | fd generation', {
+    // Specify the other units that are required for this test.
+    // needs: ['service:foo']
+  });
+
+  // Replace this with your real tests.
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var service = this.subject();
+    assert.ok(service);
+  });
+});
+define('dummy/tests/unit/services/fd-generation-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/services');
+  test('unit/services/fd-generation-test.js should pass jscs', function () {
+    ok(true, 'unit/services/fd-generation-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/services/fd-generation-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/services/fd-generation-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/services/fd-generation-test.js should pass jshint.');
   });
 });
 define('dummy/tests/unit/transforms/new-platform-flexberry-web-designer-business-server-class-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {

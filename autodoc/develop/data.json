@@ -25,6 +25,13 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/controllers/fd-generation-process-form.js": {
+            "name": "addon/controllers/fd-generation-process-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/controllers/fd-inheritance-list-form.js": {
             "name": "addon/controllers/fd-inheritance-list-form.js",
             "modules": {},
@@ -744,6 +751,16 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-diagram-edit-form'",
+            "class": ""
+        },
+        {
+            "file": "addon/controllers/fd-generation-process-form.js",
+            "line": 4,
+            "description": "Current store.",
+            "itemtype": "property",
+            "name": "store",
+            "type": "DS.Store",
+            "readonly": "",
             "class": ""
         },
         {
