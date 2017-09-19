@@ -1,0 +1,3487 @@
+{
+    "project": {
+        "name": "Flexberry Documentation",
+        "version": "master"
+    },
+    "files": {
+        "addon/controllers/fd-association-list-form.js": {
+            "name": "addon/controllers/fd-association-list-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/controllers/fd-class-list-form.js": {
+            "name": "addon/controllers/fd-class-list-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/controllers/fd-diagram-list-form.js": {
+            "name": "addon/controllers/fd-diagram-list-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/controllers/fd-generation-process-form.js": {
+            "name": "addon/controllers/fd-generation-process-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/controllers/fd-inheritance-list-form.js": {
+            "name": "addon/controllers/fd-inheritance-list-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/controllers/fd-stage-list-form.js": {
+            "name": "addon/controllers/fd-stage-list-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/controllers/fd-system-list-form.js": {
+            "name": "addon/controllers/fd-system-list-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/controllers/fd-view-list-form.js": {
+            "name": "addon/controllers/fd-view-list-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-base-association.js": {
+            "name": "addon/mixins/regenerated/models/fd-base-association.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-case-property.js": {
+            "name": "addon/mixins/regenerated/models/fd-case-property.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-class.js": {
+            "name": "addon/mixins/regenerated/models/fd-class.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-dev-aggregation.js": {
+            "name": "addon/mixins/regenerated/models/fd-dev-aggregation.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-dev-association.js": {
+            "name": "addon/mixins/regenerated/models/fd-dev-association.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-dev-attribute.js": {
+            "name": "addon/mixins/regenerated/models/fd-dev-attribute.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-dev-base-association.js": {
+            "name": "addon/mixins/regenerated/models/fd-dev-base-association.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-dev-class.js": {
+            "name": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-dev-form-view.js": {
+            "name": "addon/mixins/regenerated/models/fd-dev-form-view.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-dev-method.js": {
+            "name": "addon/mixins/regenerated/models/fd-dev-method.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-dev-parameter.js": {
+            "name": "addon/mixins/regenerated/models/fd-dev-parameter.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-dev-stage.js": {
+            "name": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-dev-uml-ad.js": {
+            "name": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-dev-uml-cad.js": {
+            "name": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-dev-uml-cod.js": {
+            "name": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-dev-uml-dpd.js": {
+            "name": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-dev-uml-sd.js": {
+            "name": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-dev-uml-std.js": {
+            "name": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-dev-uml-ucd.js": {
+            "name": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-dev-view.js": {
+            "name": "addon/mixins/regenerated/models/fd-dev-view.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-diagram.js": {
+            "name": "addon/mixins/regenerated/models/fd-diagram.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-filelink.js": {
+            "name": "addon/mixins/regenerated/models/fd-filelink.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-registered-plug-in.js": {
+            "name": "addon/mixins/regenerated/models/fd-registered-plug-in.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-repository-data-object.js": {
+            "name": "addon/mixins/regenerated/models/fd-repository-data-object.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/mixins/regenerated/models/fd-stage.js": {
+            "name": "addon/mixins/regenerated/models/fd-stage.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/routes/fd-association-list-form.js": {
+            "name": "addon/routes/fd-association-list-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/routes/fd-class-list-form.js": {
+            "name": "addon/routes/fd-class-list-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/routes/fd-diagram-list-form.js": {
+            "name": "addon/routes/fd-diagram-list-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/routes/fd-inheritance-list-form.js": {
+            "name": "addon/routes/fd-inheritance-list-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/routes/fd-stage-list-form.js": {
+            "name": "addon/routes/fd-stage-list-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/routes/fd-system-list-form.js": {
+            "name": "addon/routes/fd-system-list-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/routes/fd-view-list-form.js": {
+            "name": "addon/routes/fd-view-list-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-ad.js": {
+            "name": "addon/serializers/fd-ad.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-aggregation.js": {
+            "name": "addon/serializers/fd-aggregation.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-association.js": {
+            "name": "addon/serializers/fd-association.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-base-association.js": {
+            "name": "addon/serializers/fd-base-association.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-cad.js": {
+            "name": "addon/serializers/fd-cad.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-case-property.js": {
+            "name": "addon/serializers/fd-case-property.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-class.js": {
+            "name": "addon/serializers/fd-class.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-cod.js": {
+            "name": "addon/serializers/fd-cod.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-configuration.js": {
+            "name": "addon/serializers/fd-configuration.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-aggregation.js": {
+            "name": "addon/serializers/fd-dev-aggregation.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-associated-detail-view.js": {
+            "name": "addon/serializers/fd-dev-associated-detail-view.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-association.js": {
+            "name": "addon/serializers/fd-dev-association.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-attribute.js": {
+            "name": "addon/serializers/fd-dev-attribute.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-base-association.js": {
+            "name": "addon/serializers/fd-dev-base-association.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-class.js": {
+            "name": "addon/serializers/fd-dev-class.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-control-type.js": {
+            "name": "addon/serializers/fd-dev-control-type.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-diagram-link.js": {
+            "name": "addon/serializers/fd-dev-diagram-link.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-filelink.js": {
+            "name": "addon/serializers/fd-dev-filelink.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-form-control.js": {
+            "name": "addon/serializers/fd-dev-form-control.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-form-view.js": {
+            "name": "addon/serializers/fd-dev-form-view.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-inheritance.js": {
+            "name": "addon/serializers/fd-dev-inheritance.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-method.js": {
+            "name": "addon/serializers/fd-dev-method.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-module-setting-type.js": {
+            "name": "addon/serializers/fd-dev-module-setting-type.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-module-setting.js": {
+            "name": "addon/serializers/fd-dev-module-setting.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-parameter.js": {
+            "name": "addon/serializers/fd-dev-parameter.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-process-status.js": {
+            "name": "addon/serializers/fd-dev-process-status.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-stage-history.js": {
+            "name": "addon/serializers/fd-dev-stage-history.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-stage.js": {
+            "name": "addon/serializers/fd-dev-stage.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-system.js": {
+            "name": "addon/serializers/fd-dev-system.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-task.js": {
+            "name": "addon/serializers/fd-dev-task.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-type-definition.js": {
+            "name": "addon/serializers/fd-dev-type-definition.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-uml-ad.js": {
+            "name": "addon/serializers/fd-dev-uml-ad.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-uml-cad.js": {
+            "name": "addon/serializers/fd-dev-uml-cad.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-uml-cod.js": {
+            "name": "addon/serializers/fd-dev-uml-cod.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-uml-dpd.js": {
+            "name": "addon/serializers/fd-dev-uml-dpd.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-uml-sd.js": {
+            "name": "addon/serializers/fd-dev-uml-sd.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-uml-std.js": {
+            "name": "addon/serializers/fd-dev-uml-std.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-uml-ucd.js": {
+            "name": "addon/serializers/fd-dev-uml-ucd.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dev-view.js": {
+            "name": "addon/serializers/fd-dev-view.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-diagram-link.js": {
+            "name": "addon/serializers/fd-diagram-link.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-diagram.js": {
+            "name": "addon/serializers/fd-diagram.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-dpd.js": {
+            "name": "addon/serializers/fd-dpd.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-filelink.js": {
+            "name": "addon/serializers/fd-filelink.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-form-control.js": {
+            "name": "addon/serializers/fd-form-control.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-form-view.js": {
+            "name": "addon/serializers/fd-form-view.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-inheritance.js": {
+            "name": "addon/serializers/fd-inheritance.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-object-in-system.js": {
+            "name": "addon/serializers/fd-object-in-system.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-plugin-on-rep-object.js": {
+            "name": "addon/serializers/fd-plugin-on-rep-object.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-project.js": {
+            "name": "addon/serializers/fd-project.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-registered-plug-in.js": {
+            "name": "addon/serializers/fd-registered-plug-in.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-repository-browser-data-object-with-a-c-l.js": {
+            "name": "addon/serializers/fd-repository-browser-data-object-with-a-c-l.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-repository-browser-data-object.js": {
+            "name": "addon/serializers/fd-repository-browser-data-object.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-repository-data-object.js": {
+            "name": "addon/serializers/fd-repository-data-object.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-repository-object-with-plugins.js": {
+            "name": "addon/serializers/fd-repository-object-with-plugins.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-repository-ref-data-object.js": {
+            "name": "addon/serializers/fd-repository-ref-data-object.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-repository.js": {
+            "name": "addon/serializers/fd-repository.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-sd.js": {
+            "name": "addon/serializers/fd-sd.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-stage.js": {
+            "name": "addon/serializers/fd-stage.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-std.js": {
+            "name": "addon/serializers/fd-std.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-subsystem.js": {
+            "name": "addon/serializers/fd-subsystem.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-ucd.js": {
+            "name": "addon/serializers/fd-ucd.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-view.js": {
+            "name": "addon/serializers/fd-view.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {},
+    "elements": {},
+    "classitems": [
+        {
+            "file": "addon/controllers/fd-association-list-form.js",
+            "line": 4,
+            "description": "Name of related edit form route.",
+            "itemtype": "property",
+            "name": "editFormRoute",
+            "type": "String",
+            "default": "'fd-association-edit-form'",
+            "class": ""
+        },
+        {
+            "file": "addon/controllers/fd-class-list-form.js",
+            "line": 4,
+            "description": "Name of related edit form route.",
+            "itemtype": "property",
+            "name": "editFormRoute",
+            "type": "String",
+            "default": "'fd-class-edit-form'",
+            "class": ""
+        },
+        {
+            "file": "addon/controllers/fd-diagram-list-form.js",
+            "line": 4,
+            "description": "Name of related edit form route.",
+            "itemtype": "property",
+            "name": "editFormRoute",
+            "type": "String",
+            "default": "'fd-diagram-edit-form'",
+            "class": ""
+        },
+        {
+            "file": "addon/controllers/fd-generation-process-form.js",
+            "line": 4,
+            "description": "Current store.",
+            "itemtype": "property",
+            "name": "store",
+            "type": "DS.Store",
+            "readonly": "",
+            "class": ""
+        },
+        {
+            "file": "addon/controllers/fd-inheritance-list-form.js",
+            "line": 4,
+            "description": "Name of related edit form route.",
+            "itemtype": "property",
+            "name": "editFormRoute",
+            "type": "String",
+            "default": "'fd-inheritance-edit-form'",
+            "class": ""
+        },
+        {
+            "file": "addon/controllers/fd-stage-list-form.js",
+            "line": 4,
+            "description": "Name of related edit form route.",
+            "itemtype": "property",
+            "name": "editFormRoute",
+            "type": "String",
+            "default": "'fd-stage-edit-form'",
+            "class": ""
+        },
+        {
+            "file": "addon/controllers/fd-system-list-form.js",
+            "line": 4,
+            "description": "Name of related edit form route.",
+            "itemtype": "property",
+            "name": "editFormRoute",
+            "type": "String",
+            "default": "'fd-system-edit-form'",
+            "class": ""
+        },
+        {
+            "file": "addon/controllers/fd-view-list-form.js",
+            "line": 4,
+            "description": "Name of related edit form route.",
+            "itemtype": "property",
+            "name": "editFormRoute",
+            "type": "String",
+            "default": "'fd-view-edit-form'",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-base-association.js",
+            "line": 9,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "endRoleStr",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-base-association.js",
+            "line": 15,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'endRoleStrCompute' method in model class (outside of this mixin) if you want to compute value of 'endRoleStr' property.",
+            "itemtype": "method",
+            "name": "_endRoleStrCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _endRoleStrChanged: Ember.on('init', Ember.observer('endRoleStr', function() {\n    Ember.run.once(this, '_endRoleStrCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-base-association.js",
+            "line": 33,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "notNullStart",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-base-association.js",
+            "line": 39,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'notNullStartCompute' method in model class (outside of this mixin) if you want to compute value of 'notNullStart' property.",
+            "itemtype": "method",
+            "name": "_notNullStartCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _notNullStartChanged: Ember.on('init', Ember.observer('notNullStart', function() {\n    Ember.run.once(this, '_notNullStartCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-base-association.js",
+            "line": 61,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "startRoleStr",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-base-association.js",
+            "line": 67,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'startRoleStrCompute' method in model class (outside of this mixin) if you want to compute value of 'startRoleStr' property.",
+            "itemtype": "method",
+            "name": "_startRoleStrCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _startRoleStrChanged: Ember.on('init', Ember.observer('startRoleStr', function() {\n    Ember.run.once(this, '_startRoleStrCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-case-property.js",
+            "line": 5,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "name",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-case-property.js",
+            "line": 11,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'nameCompute' method in model class (outside of this mixin) if you want to compute value of 'name' property.",
+            "itemtype": "method",
+            "name": "_nameCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-class.js",
+            "line": 5,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "nameStr",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-class.js",
+            "line": 11,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'nameStrCompute' method in model class (outside of this mixin) if you want to compute value of 'nameStr' property.",
+            "itemtype": "method",
+            "name": "_nameStrCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _nameStrChanged: Ember.on('init', Ember.observer('nameStr', function() {\n    Ember.run.once(this, '_nameStrCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-aggregation.js",
+            "line": 5,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "assocType",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-aggregation.js",
+            "line": 11,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'assocTypeCompute' method in model class (outside of this mixin) if you want to compute value of 'assocType' property.",
+            "itemtype": "method",
+            "name": "_assocTypeCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _assocTypeChanged: Ember.on('init', Ember.observer('assocType', function() {\n    Ember.run.once(this, '_assocTypeCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-aggregation.js",
+            "line": 47,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "realStorage",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-aggregation.js",
+            "line": 53,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'realStorageCompute' method in model class (outside of this mixin) if you want to compute value of 'realStorage' property.",
+            "itemtype": "method",
+            "name": "_realStorageCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _realStorageChanged: Ember.on('init', Ember.observer('realStorage', function() {\n    Ember.run.once(this, '_realStorageCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-association.js",
+            "line": 5,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "assocType",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-association.js",
+            "line": 11,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'assocTypeCompute' method in model class (outside of this mixin) if you want to compute value of 'assocType' property.",
+            "itemtype": "method",
+            "name": "_assocTypeCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _assocTypeChanged: Ember.on('init', Ember.observer('assocType', function() {\n    Ember.run.once(this, '_assocTypeCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-association.js",
+            "line": 35,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "realStorage",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-association.js",
+            "line": 41,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'realStorageCompute' method in model class (outside of this mixin) if you want to compute value of 'realStorage' property.",
+            "itemtype": "method",
+            "name": "_realStorageCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _realStorageChanged: Ember.on('init', Ember.observer('realStorage', function() {\n    Ember.run.once(this, '_realStorageCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
+            "line": 9,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "dataServiceExpressionXML",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
+            "line": 15,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'dataServiceExpressionXMLCompute' method in model class (outside of this mixin) if you want to compute value of 'dataServiceExpressionXML' property.",
+            "itemtype": "method",
+            "name": "_dataServiceExpressionXMLCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _dataServiceExpressionXMLChanged: Ember.on('init', Ember.observer('dataServiceExpressionXML', function() {\n    Ember.run.once(this, '_dataServiceExpressionXMLCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
+            "line": 44,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "realCaption",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
+            "line": 50,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'realCaptionCompute' method in model class (outside of this mixin) if you want to compute value of 'realCaption' property.",
+            "itemtype": "method",
+            "name": "_realCaptionCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _realCaptionChanged: Ember.on('init', Ember.observer('realCaption', function() {\n    Ember.run.once(this, '_realCaptionCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
+            "line": 68,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "realStorage",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
+            "line": 74,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'realStorageCompute' method in model class (outside of this mixin) if you want to compute value of 'realStorage' property.",
+            "itemtype": "method",
+            "name": "_realStorageCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _realStorageChanged: Ember.on('init', Ember.observer('realStorage', function() {\n    Ember.run.once(this, '_realStorageCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
+            "line": 5,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "assocType",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
+            "line": 11,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'assocTypeCompute' method in model class (outside of this mixin) if you want to compute value of 'assocType' property.",
+            "itemtype": "method",
+            "name": "_assocTypeCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _assocTypeChanged: Ember.on('init', Ember.observer('assocType', function() {\n    Ember.run.once(this, '_assocTypeCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
+            "line": 30,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "realEndRole",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
+            "line": 36,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'realEndRoleCompute' method in model class (outside of this mixin) if you want to compute value of 'realEndRole' property.",
+            "itemtype": "method",
+            "name": "_realEndRoleCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _realEndRoleChanged: Ember.on('init', Ember.observer('realEndRole', function() {\n    Ember.run.once(this, '_realEndRoleCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
+            "line": 54,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "realStartRole",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
+            "line": 60,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'realStartRoleCompute' method in model class (outside of this mixin) if you want to compute value of 'realStartRole' property.",
+            "itemtype": "method",
+            "name": "_realStartRoleCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _realStartRoleChanged: Ember.on('init', Ember.observer('realStartRole', function() {\n    Ember.run.once(this, '_realStartRoleCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 8,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "appConfigFile",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 14,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'appConfigFileCompute' method in model class (outside of this mixin) if you want to compute value of 'appConfigFile' property.",
+            "itemtype": "method",
+            "name": "_appConfigFileCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _appConfigFileChanged: Ember.on('init', Ember.observer('appConfigFile', function() {\n    Ember.run.once(this, '_appConfigFileCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 36,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "bSClass",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 42,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'bSClassCompute' method in model class (outside of this mixin) if you want to compute value of 'bSClass' property.",
+            "itemtype": "method",
+            "name": "_bSClassCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _bSClassChanged: Ember.on('init', Ember.observer('bSClass', function() {\n    Ember.run.once(this, '_bSClassCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 60,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "bSEvents",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 66,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'bSEventsCompute' method in model class (outside of this mixin) if you want to compute value of 'bSEvents' property.",
+            "itemtype": "method",
+            "name": "_bSEventsCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _bSEventsChanged: Ember.on('init', Ember.observer('bSEvents', function() {\n    Ember.run.once(this, '_bSEventsCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 86,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "comPlusServerOptions",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 92,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'comPlusServerOptionsCompute' method in model class (outside of this mixin) if you want to compute value of 'comPlusServerOptions' property.",
+            "itemtype": "method",
+            "name": "_comPlusServerOptionsCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _comPlusServerOptionsChanged: Ember.on('init', Ember.observer('comPlusServerOptions', function() {\n    Ember.run.once(this, '_comPlusServerOptionsCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 111,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "containers",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 117,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'containersCompute' method in model class (outside of this mixin) if you want to compute value of 'containers' property.",
+            "itemtype": "method",
+            "name": "_containersCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _containersChanged: Ember.on('init', Ember.observer('containers', function() {\n    Ember.run.once(this, '_containersCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 136,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "dataObjectTypes",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 142,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'dataObjectTypesCompute' method in model class (outside of this mixin) if you want to compute value of 'dataObjectTypes' property.",
+            "itemtype": "method",
+            "name": "_dataObjectTypesCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _dataObjectTypesChanged: Ember.on('init', Ember.observer('dataObjectTypes', function() {\n    Ember.run.once(this, '_dataObjectTypesCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 164,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "editFormOperations",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 170,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'editFormOperationsCompute' method in model class (outside of this mixin) if you want to compute value of 'editFormOperations' property.",
+            "itemtype": "method",
+            "name": "_editFormOperationsCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _editFormOperationsChanged: Ember.on('init', Ember.observer('editFormOperations', function() {\n    Ember.run.once(this, '_editFormOperationsCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 199,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "listFormOperations",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 205,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'listFormOperationsCompute' method in model class (outside of this mixin) if you want to compute value of 'listFormOperations' property.",
+            "itemtype": "method",
+            "name": "_listFormOperationsCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _listFormOperationsChanged: Ember.on('init', Ember.observer('listFormOperations', function() {\n    Ember.run.once(this, '_listFormOperationsCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 225,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "loadingOrderXML",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 231,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'loadingOrderXMLCompute' method in model class (outside of this mixin) if you want to compute value of 'loadingOrderXML' property.",
+            "itemtype": "method",
+            "name": "_loadingOrderXMLCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _loadingOrderXMLChanged: Ember.on('init', Ember.observer('loadingOrderXML', function() {\n    Ember.run.once(this, '_loadingOrderXMLCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 257,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "propertyLookup",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 263,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'propertyLookupCompute' method in model class (outside of this mixin) if you want to compute value of 'propertyLookup' property.",
+            "itemtype": "method",
+            "name": "_propertyLookupCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _propertyLookupChanged: Ember.on('init', Ember.observer('propertyLookup', function() {\n    Ember.run.once(this, '_propertyLookupCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 283,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "realCaption",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 289,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'realCaptionCompute' method in model class (outside of this mixin) if you want to compute value of 'realCaption' property.",
+            "itemtype": "method",
+            "name": "_realCaptionCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _realCaptionChanged: Ember.on('init', Ember.observer('realCaption', function() {\n    Ember.run.once(this, '_realCaptionCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 307,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "realNamespace",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 313,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'realNamespaceCompute' method in model class (outside of this mixin) if you want to compute value of 'realNamespace' property.",
+            "itemtype": "method",
+            "name": "_realNamespaceCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _realNamespaceChanged: Ember.on('init', Ember.observer('realNamespace', function() {\n    Ember.run.once(this, '_realNamespaceCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 331,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "realPacket",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 337,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'realPacketCompute' method in model class (outside of this mixin) if you want to compute value of 'realPacket' property.",
+            "itemtype": "method",
+            "name": "_realPacketCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _realPacketChanged: Ember.on('init', Ember.observer('realPacket', function() {\n    Ember.run.once(this, '_realPacketCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 355,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "realPrimaryKeyStorage",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 361,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'realPrimaryKeyStorageCompute' method in model class (outside of this mixin) if you want to compute value of 'realPrimaryKeyStorage' property.",
+            "itemtype": "method",
+            "name": "_realPrimaryKeyStorageCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _realPrimaryKeyStorageChanged: Ember.on('init', Ember.observer('realPrimaryKeyStorage', function() {\n    Ember.run.once(this, '_realPrimaryKeyStorageCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 379,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "realStorage",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 385,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'realStorageCompute' method in model class (outside of this mixin) if you want to compute value of 'realStorage' property.",
+            "itemtype": "method",
+            "name": "_realStorageCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _realStorageChanged: Ember.on('init', Ember.observer('realStorage', function() {\n    Ember.run.once(this, '_realStorageCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 409,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "storeInstancesInTypeXML",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 415,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'storeInstancesInTypeXMLCompute' method in model class (outside of this mixin) if you want to compute value of 'storeInstancesInTypeXML' property.",
+            "itemtype": "method",
+            "name": "_storeInstancesInTypeXMLCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _storeInstancesInTypeXMLChanged: Ember.on('init', Ember.observer('storeInstancesInTypeXML', function() {\n    Ember.run.once(this, '_storeInstancesInTypeXMLCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 437,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "useCache",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-class.js",
+            "line": 443,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'useCacheCompute' method in model class (outside of this mixin) if you want to compute value of 'useCache' property.",
+            "itemtype": "method",
+            "name": "_useCacheCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _useCacheChanged: Ember.on('init', Ember.observer('useCache', function() {\n    Ember.run.once(this, '_useCacheCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
+            "line": 5,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "dataObjectTypes",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
+            "line": 11,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'dataObjectTypesCompute' method in model class (outside of this mixin) if you want to compute value of 'dataObjectTypes' property.",
+            "itemtype": "method",
+            "name": "_dataObjectTypesCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _dataObjectTypesChanged: Ember.on('init', Ember.observer('dataObjectTypes', function() {\n    Ember.run.once(this, '_dataObjectTypesCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
+            "line": 31,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "listFormOperations",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
+            "line": 37,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'listFormOperationsCompute' method in model class (outside of this mixin) if you want to compute value of 'listFormOperations' property.",
+            "itemtype": "method",
+            "name": "_listFormOperationsCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _listFormOperationsChanged: Ember.on('init', Ember.observer('listFormOperations', function() {\n    Ember.run.once(this, '_listFormOperationsCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
+            "line": 57,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "propertyLookup",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
+            "line": 63,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'propertyLookupCompute' method in model class (outside of this mixin) if you want to compute value of 'propertyLookup' property.",
+            "itemtype": "method",
+            "name": "_propertyLookupCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _propertyLookupChanged: Ember.on('init', Ember.observer('propertyLookup', function() {\n    Ember.run.once(this, '_propertyLookupCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
+            "line": 82,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "viewForForm",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
+            "line": 88,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'viewForFormCompute' method in model class (outside of this mixin) if you want to compute value of 'viewForForm' property.",
+            "itemtype": "method",
+            "name": "_viewForFormCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _viewForFormChanged: Ember.on('init', Ember.observer('viewForForm', function() {\n    Ember.run.once(this, '_viewForFormCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-method.js",
+            "line": 10,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "parametersStr",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-method.js",
+            "line": 16,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'parametersStrCompute' method in model class (outside of this mixin) if you want to compute value of 'parametersStr' property.",
+            "itemtype": "method",
+            "name": "_parametersStrCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _parametersStrChanged: Ember.on('init', Ember.observer('parametersStr', function() {\n    Ember.run.once(this, '_parametersStrCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-method.js",
+            "line": 36,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "realCaption",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-method.js",
+            "line": 42,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'realCaptionCompute' method in model class (outside of this mixin) if you want to compute value of 'realCaption' property.",
+            "itemtype": "method",
+            "name": "_realCaptionCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _realCaptionChanged: Ember.on('init', Ember.observer('realCaption', function() {\n    Ember.run.once(this, '_realCaptionCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-method.js",
+            "line": 61,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "typeParametersStr",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-method.js",
+            "line": 67,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'typeParametersStrCompute' method in model class (outside of this mixin) if you want to compute value of 'typeParametersStr' property.",
+            "itemtype": "method",
+            "name": "_typeParametersStrCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _typeParametersStrChanged: Ember.on('init', Ember.observer('typeParametersStr', function() {\n    Ember.run.once(this, '_typeParametersStrCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-parameter.js",
+            "line": 8,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "realCaption",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-parameter.js",
+            "line": 14,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'realCaptionCompute' method in model class (outside of this mixin) if you want to compute value of 'realCaption' property.",
+            "itemtype": "method",
+            "name": "_realCaptionCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _realCaptionChanged: Ember.on('init', Ember.observer('realCaption', function() {\n    Ember.run.once(this, '_realCaptionCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 5,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "additionalPluginsSettings",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 11,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'additionalPluginsSettingsCompute' method in model class (outside of this mixin) if you want to compute value of 'additionalPluginsSettings' property.",
+            "itemtype": "method",
+            "name": "_additionalPluginsSettingsCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _additionalPluginsSettingsChanged: Ember.on('init', Ember.observer('additionalPluginsSettings', function() {\n    Ember.run.once(this, '_additionalPluginsSettingsCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 32,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "chosenPalette",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 38,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'chosenPaletteCompute' method in model class (outside of this mixin) if you want to compute value of 'chosenPalette' property.",
+            "itemtype": "method",
+            "name": "_chosenPaletteCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _chosenPaletteChanged: Ember.on('init', Ember.observer('chosenPalette', function() {\n    Ember.run.once(this, '_chosenPaletteCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 60,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "defaultAccessType",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 66,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'defaultAccessTypeCompute' method in model class (outside of this mixin) if you want to compute value of 'defaultAccessType' property.",
+            "itemtype": "method",
+            "name": "_defaultAccessTypeCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _defaultAccessTypeChanged: Ember.on('init', Ember.observer('defaultAccessType', function() {\n    Ember.run.once(this, '_defaultAccessTypeCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 88,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "defaultTypeMapTypes",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 94,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'defaultTypeMapTypesCompute' method in model class (outside of this mixin) if you want to compute value of 'defaultTypeMapTypes' property.",
+            "itemtype": "method",
+            "name": "_defaultTypeMapTypesCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _defaultTypeMapTypesChanged: Ember.on('init', Ember.observer('defaultTypeMapTypes', function() {\n    Ember.run.once(this, '_defaultTypeMapTypesCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 113,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "doNotDeleteExtraTables",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 119,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'doNotDeleteExtraTablesCompute' method in model class (outside of this mixin) if you want to compute value of 'doNotDeleteExtraTables' property.",
+            "itemtype": "method",
+            "name": "_doNotDeleteExtraTablesCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _doNotDeleteExtraTablesChanged: Ember.on('init', Ember.observer('doNotDeleteExtraTables', function() {\n    Ember.run.once(this, '_doNotDeleteExtraTablesCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 137,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "enableAuElement",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 143,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'enableAuElementCompute' method in model class (outside of this mixin) if you want to compute value of 'enableAuElement' property.",
+            "itemtype": "method",
+            "name": "_enableAuElementCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _enableAuElementChanged: Ember.on('init', Ember.observer('enableAuElement', function() {\n    Ember.run.once(this, '_enableAuElementCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 164,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "lastIndexDate",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 170,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'lastIndexDateCompute' method in model class (outside of this mixin) if you want to compute value of 'lastIndexDate' property.",
+            "itemtype": "method",
+            "name": "_lastIndexDateCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _lastIndexDateChanged: Ember.on('init', Ember.observer('lastIndexDate', function() {\n    Ember.run.once(this, '_lastIndexDateCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 193,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "realDataObjectNameSpace",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 199,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'realDataObjectNameSpaceCompute' method in model class (outside of this mixin) if you want to compute value of 'realDataObjectNameSpace' property.",
+            "itemtype": "method",
+            "name": "_realDataObjectNameSpaceCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _realDataObjectNameSpaceChanged: Ember.on('init', Ember.observer('realDataObjectNameSpace', function() {\n    Ember.run.once(this, '_realDataObjectNameSpaceCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 227,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "typeMapAccess",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 233,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'typeMapAccessCompute' method in model class (outside of this mixin) if you want to compute value of 'typeMapAccess' property.",
+            "itemtype": "method",
+            "name": "_typeMapAccessCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _typeMapAccessChanged: Ember.on('init', Ember.observer('typeMapAccess', function() {\n    Ember.run.once(this, '_typeMapAccessCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 252,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "typeMapCS",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 258,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'typeMapCSCompute' method in model class (outside of this mixin) if you want to compute value of 'typeMapCS' property.",
+            "itemtype": "method",
+            "name": "_typeMapCSCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _typeMapCSChanged: Ember.on('init', Ember.observer('typeMapCS', function() {\n    Ember.run.once(this, '_typeMapCSCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 277,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "typeMapOracle",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 283,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'typeMapOracleCompute' method in model class (outside of this mixin) if you want to compute value of 'typeMapOracle' property.",
+            "itemtype": "method",
+            "name": "_typeMapOracleCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _typeMapOracleChanged: Ember.on('init', Ember.observer('typeMapOracle', function() {\n    Ember.run.once(this, '_typeMapOracleCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 302,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "typeMapPostgre",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 308,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'typeMapPostgreCompute' method in model class (outside of this mixin) if you want to compute value of 'typeMapPostgre' property.",
+            "itemtype": "method",
+            "name": "_typeMapPostgreCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _typeMapPostgreChanged: Ember.on('init', Ember.observer('typeMapPostgre', function() {\n    Ember.run.once(this, '_typeMapPostgreCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 327,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "typeMapSQL",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 333,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'typeMapSQLCompute' method in model class (outside of this mixin) if you want to compute value of 'typeMapSQL' property.",
+            "itemtype": "method",
+            "name": "_typeMapSQLCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _typeMapSQLChanged: Ember.on('init', Ember.observer('typeMapSQL', function() {\n    Ember.run.once(this, '_typeMapSQLCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 352,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "typeMapVB",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
+            "line": 358,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'typeMapVBCompute' method in model class (outside of this mixin) if you want to compute value of 'typeMapVB' property.",
+            "itemtype": "method",
+            "name": "_typeMapVBCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _typeMapVBChanged: Ember.on('init', Ember.observer('typeMapVB', function() {\n    Ember.run.once(this, '_typeMapVBCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
+            "line": 5,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "name",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
+            "line": 11,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'nameCompute' method in model class (outside of this mixin) if you want to compute value of 'name' property.",
+            "itemtype": "method",
+            "name": "_nameCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
+            "line": 29,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "primitiveTypes",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
+            "line": 35,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'primitiveTypesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitiveTypes' property.",
+            "itemtype": "method",
+            "name": "_primitiveTypesCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
+            "line": 53,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "primitives",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
+            "line": 59,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'primitivesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitives' property.",
+            "itemtype": "method",
+            "name": "_primitivesCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
+            "line": 77,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "helpKeyword",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
+            "line": 83,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'helpKeywordCompute' method in model class (outside of this mixin) if you want to compute value of 'helpKeyword' property.",
+            "itemtype": "method",
+            "name": "_helpKeywordCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
+            "line": 5,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "name",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
+            "line": 11,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'nameCompute' method in model class (outside of this mixin) if you want to compute value of 'name' property.",
+            "itemtype": "method",
+            "name": "_nameCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
+            "line": 29,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "primitiveTypes",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
+            "line": 35,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'primitiveTypesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitiveTypes' property.",
+            "itemtype": "method",
+            "name": "_primitiveTypesCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
+            "line": 53,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "primitives",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
+            "line": 59,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'primitivesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitives' property.",
+            "itemtype": "method",
+            "name": "_primitivesCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
+            "line": 77,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "helpKeyword",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
+            "line": 83,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'helpKeywordCompute' method in model class (outside of this mixin) if you want to compute value of 'helpKeyword' property.",
+            "itemtype": "method",
+            "name": "_helpKeywordCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
+            "line": 5,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "name",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
+            "line": 11,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'nameCompute' method in model class (outside of this mixin) if you want to compute value of 'name' property.",
+            "itemtype": "method",
+            "name": "_nameCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
+            "line": 29,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "primitiveTypes",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
+            "line": 35,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'primitiveTypesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitiveTypes' property.",
+            "itemtype": "method",
+            "name": "_primitiveTypesCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
+            "line": 53,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "primitives",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
+            "line": 59,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'primitivesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitives' property.",
+            "itemtype": "method",
+            "name": "_primitivesCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
+            "line": 77,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "helpKeyword",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
+            "line": 83,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'helpKeywordCompute' method in model class (outside of this mixin) if you want to compute value of 'helpKeyword' property.",
+            "itemtype": "method",
+            "name": "_helpKeywordCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
+            "line": 5,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "name",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
+            "line": 11,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'nameCompute' method in model class (outside of this mixin) if you want to compute value of 'name' property.",
+            "itemtype": "method",
+            "name": "_nameCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
+            "line": 29,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "primitiveTypes",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
+            "line": 35,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'primitiveTypesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitiveTypes' property.",
+            "itemtype": "method",
+            "name": "_primitiveTypesCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
+            "line": 53,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "primitives",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
+            "line": 59,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'primitivesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitives' property.",
+            "itemtype": "method",
+            "name": "_primitivesCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
+            "line": 77,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "helpKeyword",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
+            "line": 83,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'helpKeywordCompute' method in model class (outside of this mixin) if you want to compute value of 'helpKeyword' property.",
+            "itemtype": "method",
+            "name": "_helpKeywordCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
+            "line": 5,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "name",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
+            "line": 11,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'nameCompute' method in model class (outside of this mixin) if you want to compute value of 'name' property.",
+            "itemtype": "method",
+            "name": "_nameCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
+            "line": 29,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "primitiveTypes",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
+            "line": 35,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'primitiveTypesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitiveTypes' property.",
+            "itemtype": "method",
+            "name": "_primitiveTypesCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
+            "line": 53,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "primitives",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
+            "line": 59,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'primitivesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitives' property.",
+            "itemtype": "method",
+            "name": "_primitivesCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
+            "line": 77,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "helpKeyword",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
+            "line": 83,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'helpKeywordCompute' method in model class (outside of this mixin) if you want to compute value of 'helpKeyword' property.",
+            "itemtype": "method",
+            "name": "_helpKeywordCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
+            "line": 5,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "name",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
+            "line": 11,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'nameCompute' method in model class (outside of this mixin) if you want to compute value of 'name' property.",
+            "itemtype": "method",
+            "name": "_nameCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
+            "line": 29,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "primitiveTypes",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
+            "line": 35,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'primitiveTypesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitiveTypes' property.",
+            "itemtype": "method",
+            "name": "_primitiveTypesCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
+            "line": 53,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "primitives",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
+            "line": 59,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'primitivesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitives' property.",
+            "itemtype": "method",
+            "name": "_primitivesCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
+            "line": 77,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "helpKeyword",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
+            "line": 83,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'helpKeywordCompute' method in model class (outside of this mixin) if you want to compute value of 'helpKeyword' property.",
+            "itemtype": "method",
+            "name": "_helpKeywordCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
+            "line": 5,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "name",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
+            "line": 11,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'nameCompute' method in model class (outside of this mixin) if you want to compute value of 'name' property.",
+            "itemtype": "method",
+            "name": "_nameCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
+            "line": 29,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "primitiveTypes",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
+            "line": 35,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'primitiveTypesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitiveTypes' property.",
+            "itemtype": "method",
+            "name": "_primitiveTypesCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
+            "line": 53,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "primitives",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
+            "line": 59,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'primitivesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitives' property.",
+            "itemtype": "method",
+            "name": "_primitivesCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
+            "line": 77,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "helpKeyword",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
+            "line": 83,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'helpKeywordCompute' method in model class (outside of this mixin) if you want to compute value of 'helpKeyword' property.",
+            "itemtype": "method",
+            "name": "_helpKeywordCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-view.js",
+            "line": 6,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "properties",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-dev-view.js",
+            "line": 12,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'propertiesCompute' method in model class (outside of this mixin) if you want to compute value of 'properties' property.",
+            "itemtype": "method",
+            "name": "_propertiesCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _propertiesChanged: Ember.on('init', Ember.observer('properties', function() {\n    Ember.run.once(this, '_propertiesCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-diagram.js",
+            "line": 6,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "primitivesStream",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-diagram.js",
+            "line": 12,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'primitivesStreamCompute' method in model class (outside of this mixin) if you want to compute value of 'primitivesStream' property.",
+            "itemtype": "method",
+            "name": "_primitivesStreamCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _primitivesStreamChanged: Ember.on('init', Ember.observer('primitivesStream', function() {\n    Ember.run.once(this, '_primitivesStreamCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-filelink.js",
+            "line": 5,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "fileName",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-filelink.js",
+            "line": 11,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'fileNameCompute' method in model class (outside of this mixin) if you want to compute value of 'fileName' property.",
+            "itemtype": "method",
+            "name": "_fileNameCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _fileNameChanged: Ember.on('init', Ember.observer('fileName', function() {\n    Ember.run.once(this, '_fileNameCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-registered-plug-in.js",
+            "line": 8,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "type",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-registered-plug-in.js",
+            "line": 14,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'typeCompute' method in model class (outside of this mixin) if you want to compute value of 'type' property.",
+            "itemtype": "method",
+            "name": "_typeCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _typeChanged: Ember.on('init', Ember.observer('type', function() {\n    Ember.run.once(this, '_typeCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-repository-data-object.js",
+            "line": 7,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "nameStr",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-repository-data-object.js",
+            "line": 13,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'nameStrCompute' method in model class (outside of this mixin) if you want to compute value of 'nameStr' property.",
+            "itemtype": "method",
+            "name": "_nameStrCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _nameStrChanged: Ember.on('init', Ember.observer('nameStr', function() {\n    Ember.run.once(this, '_nameStrCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-stage.js",
+            "line": 5,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "chosenPalette",
+            "class": ""
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-stage.js",
+            "line": 11,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'chosenPaletteCompute' method in model class (outside of this mixin) if you want to compute value of 'chosenPalette' property.",
+            "itemtype": "method",
+            "name": "_chosenPaletteCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _chosenPaletteChanged: Ember.on('init', Ember.observer('chosenPalette', function() {\n    Ember.run.once(this, '_chosenPaletteCompute');\n  }))\n  ```"
+            ],
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-association-list-form.js",
+            "line": 4,
+            "description": "Name of model projection to be used as record's properties limitation.",
+            "itemtype": "property",
+            "name": "modelProjection",
+            "type": "String",
+            "default": "'ListFormView'",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-association-list-form.js",
+            "line": 13,
+            "description": "Name of model to be used as list's records types.",
+            "itemtype": "property",
+            "name": "modelName",
+            "type": "String",
+            "default": "'fd-dev-association'",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-association-list-form.js",
+            "line": 22,
+            "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
+            "itemtype": "property",
+            "name": "developerUserSettings",
+            "type": "Object",
+            "default": "{}",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-class-list-form.js",
+            "line": 4,
+            "description": "Name of model projection to be used as record's properties limitation.",
+            "itemtype": "property",
+            "name": "modelProjection",
+            "type": "String",
+            "default": "'ListFormView'",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-class-list-form.js",
+            "line": 13,
+            "description": "Name of model to be used as list's records types.",
+            "itemtype": "property",
+            "name": "modelName",
+            "type": "String",
+            "default": "'fd-dev-class'",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-class-list-form.js",
+            "line": 22,
+            "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
+            "itemtype": "property",
+            "name": "developerUserSettings",
+            "type": "Object",
+            "default": "{}",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-diagram-list-form.js",
+            "line": 4,
+            "description": "Name of model projection to be used as record's properties limitation.",
+            "itemtype": "property",
+            "name": "modelProjection",
+            "type": "String",
+            "default": "'ListFormView'",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-diagram-list-form.js",
+            "line": 13,
+            "description": "Name of model to be used as list's records types.",
+            "itemtype": "property",
+            "name": "modelName",
+            "type": "String",
+            "default": "'fd-dev-uml-cad'",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-diagram-list-form.js",
+            "line": 22,
+            "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
+            "itemtype": "property",
+            "name": "developerUserSettings",
+            "type": "Object",
+            "default": "{}",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-inheritance-list-form.js",
+            "line": 4,
+            "description": "Name of model projection to be used as record's properties limitation.",
+            "itemtype": "property",
+            "name": "modelProjection",
+            "type": "String",
+            "default": "'ListFormView'",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-inheritance-list-form.js",
+            "line": 13,
+            "description": "Name of model to be used as list's records types.",
+            "itemtype": "property",
+            "name": "modelName",
+            "type": "String",
+            "default": "'fd-dev-inheritance'",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-inheritance-list-form.js",
+            "line": 22,
+            "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
+            "itemtype": "property",
+            "name": "developerUserSettings",
+            "type": "Object",
+            "default": "{}",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-stage-list-form.js",
+            "line": 4,
+            "description": "Name of model projection to be used as record's properties limitation.",
+            "itemtype": "property",
+            "name": "modelProjection",
+            "type": "String",
+            "default": "'ListFormView'",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-stage-list-form.js",
+            "line": 13,
+            "description": "Name of model to be used as list's records types.",
+            "itemtype": "property",
+            "name": "modelName",
+            "type": "String",
+            "default": "'fd-dev-stage'",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-stage-list-form.js",
+            "line": 22,
+            "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
+            "itemtype": "property",
+            "name": "developerUserSettings",
+            "type": "Object",
+            "default": "{}",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-system-list-form.js",
+            "line": 4,
+            "description": "Name of model projection to be used as record's properties limitation.",
+            "itemtype": "property",
+            "name": "modelProjection",
+            "type": "String",
+            "default": "'ListFormView'",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-system-list-form.js",
+            "line": 13,
+            "description": "Name of model to be used as list's records types.",
+            "itemtype": "property",
+            "name": "modelName",
+            "type": "String",
+            "default": "'fd-dev-system'",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-system-list-form.js",
+            "line": 22,
+            "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
+            "itemtype": "property",
+            "name": "developerUserSettings",
+            "type": "Object",
+            "default": "{}",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-view-list-form.js",
+            "line": 4,
+            "description": "Name of model projection to be used as record's properties limitation.",
+            "itemtype": "property",
+            "name": "modelProjection",
+            "type": "String",
+            "default": "'ListFormView'",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-view-list-form.js",
+            "line": 13,
+            "description": "Name of model to be used as list's records types.",
+            "itemtype": "property",
+            "name": "modelName",
+            "type": "String",
+            "default": "'fd-dev-view'",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-view-list-form.js",
+            "line": 22,
+            "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
+            "itemtype": "property",
+            "name": "developerUserSettings",
+            "type": "Object",
+            "default": "{}",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-ad.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-aggregation.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-association.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-base-association.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-cad.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-case-property.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-class.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-cod.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-configuration.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-aggregation.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-associated-detail-view.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-association.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-attribute.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-base-association.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-class.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-control-type.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-diagram-link.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-filelink.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-form-control.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-form-view.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-inheritance.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-method.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-module-setting-type.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-module-setting.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-parameter.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-process-status.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-stage-history.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-stage.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-system.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-task.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-type-definition.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-uml-ad.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-uml-cad.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-uml-cod.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-uml-dpd.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-uml-sd.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-uml-std.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-uml-ucd.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dev-view.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-diagram-link.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-diagram.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-dpd.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-filelink.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-form-control.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-form-view.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-inheritance.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-object-in-system.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-plugin-on-rep-object.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-project.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-registered-plug-in.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-repository-browser-data-object-with-a-c-l.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-repository-browser-data-object.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-repository-data-object.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-repository-object-with-plugins.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-repository-ref-data-object.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-repository.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-sd.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-stage.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-std.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-subsystem.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-ucd.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        },
+        {
+            "file": "addon/serializers/fd-view.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": ""
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-ad.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-aggregation.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-association.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-base-association.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-cad.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-case-property.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-class.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-cod.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-configuration.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-aggregation.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-associated-detail-view.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-association.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-attribute.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-base-association.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-class.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-control-type.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-diagram-link.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-filelink.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-form-control.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-form-view.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-inheritance.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-method.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-module-setting-type.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-module-setting.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-parameter.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-process-status.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-stage-history.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-stage.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-system.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-task.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-type-definition.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-uml-ad.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-uml-cad.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-uml-cod.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-uml-dpd.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-uml-sd.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-uml-std.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-uml-ucd.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dev-view.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-diagram-link.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-diagram.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-dpd.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-filelink.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-form-control.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-form-view.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-inheritance.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-object-in-system.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-plugin-on-rep-object.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-project.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-registered-plug-in.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-repository-browser-data-object-with-a-c-l.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-repository-browser-data-object.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-repository-data-object.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-repository-object-with-plugins.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-repository-ref-data-object.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-repository.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-sd.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-stage.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-std.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-subsystem.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-ucd.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-view.js:6"
+        }
+    ]
+}

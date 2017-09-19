@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>addon/mixins/regenerated/models/fd-dev-form-view.js - Flexberry Documentation</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="Flexberry Documentation" src="../assets/css/logo.png" style="max-height: 65%;" title="Flexberry Documentation">
+            Flexberry Documentation
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>master</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='[]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <h3>APIs</h3>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Type to filter APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Show:
+                    <label for="api-show-inherited" class="checkbox">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>addon/mixins/regenerated/models/fd-dev-form-view.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+import Ember from &#x27;ember&#x27;;
+import DS from &#x27;ember-data&#x27;;
+import { Projection } from &#x27;ember-flexberry-data&#x27;;
+export let Model = Ember.Mixin.create({
+  /**
+    Non-stored property.
+
+    @property dataObjectTypes
+  */
+  dataObjectTypes: DS.attr(&#x27;string&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;dataObjectTypesCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;dataObjectTypes&#x27; property.
+
+    @method _dataObjectTypesCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _dataObjectTypesChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;dataObjectTypes&#x27;, function() {
+        Ember.run.once(this, &#x27;_dataObjectTypesCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _dataObjectTypesCompute: function() {
+    let result = (this.dataObjectTypesCompute &amp;&amp; typeof this.dataObjectTypesCompute === &#x27;function&#x27;) ? this.dataObjectTypesCompute() : null;
+    this.set(&#x27;dataObjectTypes&#x27;, result);
+  },
+  dataObjectTypesStr: DS.attr(&#x27;string&#x27;),
+  hierarchicalMaster: DS.attr(&#x27;string&#x27;),
+  /**
+    Non-stored property.
+
+    @property listFormOperations
+  */
+  listFormOperations: DS.attr(&#x27;string&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;listFormOperationsCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;listFormOperations&#x27; property.
+
+    @method _listFormOperationsCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _listFormOperationsChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;listFormOperations&#x27;, function() {
+        Ember.run.once(this, &#x27;_listFormOperationsCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _listFormOperationsCompute: function() {
+    let result = (this.listFormOperationsCompute &amp;&amp; typeof this.listFormOperationsCompute === &#x27;function&#x27;) ? this.listFormOperationsCompute() : null;
+    this.set(&#x27;listFormOperations&#x27;, result);
+  },
+  listFormOperationsStr: DS.attr(&#x27;string&#x27;),
+  orderNum: DS.attr(&#x27;number&#x27;),
+  /**
+    Non-stored property.
+
+    @property propertyLookup
+  */
+  propertyLookup: DS.attr(&#x27;string&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;propertyLookupCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;propertyLookup&#x27; property.
+
+    @method _propertyLookupCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _propertyLookupChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;propertyLookup&#x27;, function() {
+        Ember.run.once(this, &#x27;_propertyLookupCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _propertyLookupCompute: function() {
+    let result = (this.propertyLookupCompute &amp;&amp; typeof this.propertyLookupCompute === &#x27;function&#x27;) ? this.propertyLookupCompute() : null;
+    this.set(&#x27;propertyLookup&#x27;, result);
+  },
+  propertyLookupStr: DS.attr(&#x27;string&#x27;),
+  /**
+    Non-stored property.
+
+    @property viewForForm
+  */
+  viewForForm: DS.attr(&#x27;string&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;viewForFormCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;viewForForm&#x27; property.
+
+    @method _viewForFormCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _viewForFormChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;viewForForm&#x27;, function() {
+        Ember.run.once(this, &#x27;_viewForFormCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _viewForFormCompute: function() {
+    let result = (this.viewForFormCompute &amp;&amp; typeof this.viewForFormCompute === &#x27;function&#x27;) ? this.viewForFormCompute() : null;
+    this.set(&#x27;viewForForm&#x27;, result);
+  },
+  view: DS.belongsTo(&#x27;fd-dev-view&#x27;, { inverse: null, async: false }),
+  class: DS.belongsTo(&#x27;fd-dev-class&#x27;, { inverse: &#x27;formViews&#x27;, async: false }),
+  controls: DS.hasMany(&#x27;fd-dev-form-control&#x27;, { inverse: &#x27;formView&#x27;, async: false }),
+  getValidations: function () {
+    let parentValidations = this._super();
+    let thisValidations = {
+      view: { presence: true },
+      class: { presence: true }
+    };
+    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+  },
+  init: function () {
+    this.set(&#x27;validations&#x27;, this.getValidations());
+    this._super.apply(this, arguments);
+  }
+});
+export let defineBaseModel = function (modelClass) {
+  modelClass.reopenClass({
+    _parentModelName: &#x27;fd-repository-data-object&#x27;
+  });
+};
+
+export let defineProjections = function (modelClass) {
+  modelClass.defineProjection(&#x27;EditEditForm&#x27;, &#x27;fd-dev-form-view&#x27;, {
+    viewForForm: Projection.attr(&#x27;&#x27;),
+    view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+
+    }, { hidden: true })
+  });
+  modelClass.defineProjection(&#x27;EditListForm&#x27;, &#x27;fd-dev-form-view&#x27;, {
+    viewForForm: Projection.attr(&#x27;&#x27;),
+    dataObjectTypes: Projection.attr(&#x27;&#x27;),
+    listFormOperations: Projection.attr(&#x27;&#x27;),
+    hierarchicalMaster: Projection.attr(&#x27;&#x27;),
+    view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+
+    }, { hidden: true })
+  });
+  modelClass.defineProjection(&#x27;EditPrintForm&#x27;, &#x27;fd-dev-form-view&#x27;, {
+    viewForForm: Projection.attr(&#x27;&#x27;),
+    view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+
+    }, { hidden: true })
+  });
+  modelClass.defineProjection(&#x27;EditPropertyLookups&#x27;, &#x27;fd-dev-form-view&#x27;, {
+    view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;)
+      }, { hidden: true })
+    }, { hidden: true })
+  });
+  modelClass.defineProjection(&#x27;ForFormControls&#x27;, &#x27;fd-dev-form-view&#x27;, {
+    controls: Projection.hasMany(&#x27;fd-dev-form-control&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      propertyPath: Projection.attr(&#x27;&#x27;),
+      settingsXml: Projection.attr(&#x27;&#x27;),
+      order: Projection.attr(&#x27;&#x27;),
+      controlType: Projection.belongsTo(&#x27;fd-dev-control-type&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;)
+      }),
+      propertyType: Projection.belongsTo(&#x27;fd-dev-type-definition&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;)
+      }),
+      formView: Projection.belongsTo(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
+        view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+
+        })
+      })
+    })
+  });
+  modelClass.defineProjection(&#x27;Generator&#x27;, &#x27;fd-dev-form-view&#x27;, {
+    view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;)
+      }, { hidden: true })
+    }),
+    dataObjectTypes: Projection.attr(&#x27;DataObjectTypes&#x27;, { hidden: true }),
+    dataObjectTypesStr: Projection.attr(&#x27;DataObjectTypesStr&#x27;, { hidden: true }),
+    hierarchicalMaster: Projection.attr(&#x27;HierarchicalMaster&#x27;, { hidden: true }),
+    listFormOperations: Projection.attr(&#x27;ListFormOperations&#x27;, { hidden: true }),
+    listFormOperationsStr: Projection.attr(&#x27;ListFormOperationsStr&#x27;, { hidden: true }),
+    orderNum: Projection.attr(&#x27;OrderNum&#x27;, { hidden: true }),
+    propertyLookup: Projection.attr(&#x27;PropertyLookup&#x27;, { hidden: true }),
+    propertyLookupStr: Projection.attr(&#x27;PropertyLookupStr&#x27;, { hidden: true }),
+    viewForForm: Projection.attr(&#x27;ViewForForm&#x27;, { hidden: true }),
+    name: Projection.attr(&#x27;Name&#x27;, { hidden: true }),
+    description: Projection.attr(&#x27;Description&#x27;, { hidden: true }),
+    nameStr: Projection.attr(&#x27;NameStr&#x27;, { hidden: true }),
+    controls: Projection.hasMany(&#x27;fd-dev-form-control&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      propertyPath: Projection.attr(&#x27;&#x27;),
+      settingsXml: Projection.attr(&#x27;&#x27;),
+      order: Projection.attr(&#x27;&#x27;),
+      controlType: Projection.belongsTo(&#x27;fd-dev-control-type&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;)
+      }),
+      propertyType: Projection.belongsTo(&#x27;fd-dev-type-definition&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;)
+      }),
+      formView: Projection.belongsTo(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
+        view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+
+        })
+      })
+    })
+  });
+  modelClass.defineProjection(&#x27;GetDataObjectByFormView&#x27;, &#x27;fd-dev-form-view&#x27;, {
+    view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;),
+        stereotype: Projection.attr(&#x27;&#x27;),
+        caption: Projection.attr(&#x27;&#x27;),
+        stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {
+
+        })
+      })
+    }),
+    class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+      stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {
+
+      })
+    })
+  });
+  modelClass.defineProjection(&#x27;GetFormControlsByFormView&#x27;, &#x27;fd-dev-form-view&#x27;, {
+    view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+
+    }),
+    class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+    })
+  });
+  modelClass.defineProjection(&#x27;GetFormWithView&#x27;, &#x27;fd-dev-form-view&#x27;, {
+    dataObjectTypesStr: Projection.attr(&#x27;&#x27;),
+    view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;)
+      }),
+      definition: Projection.attr(&#x27;&#x27;)
+    }),
+    class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+    })
+  });
+  modelClass.defineProjection(&#x27;ListDataObjectTypes&#x27;, &#x27;fd-dev-form-view&#x27;, {
+    view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;)
+      }, { hidden: true })
+    }, { hidden: true })
+  });
+};
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>
