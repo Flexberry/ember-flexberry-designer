@@ -5,7 +5,7 @@ const { Builder, FilterOperator } = Query;
 
 export default Ember.Route.extend({
   model: function() {
-    let builder = new  Builder(this.store, 'fd-dev-class').select('id,name,description,stereotype,containersStr,formViews,formViews.view,formViews.view.class');
+    let builder = new  Builder(this.store, 'fd-dev-class').select('id,name,description,stereotype,containersStr,formViews,formViews.view,formViews.view.class,formViews.view.class.name');
     let promise = this.store.query('fd-dev-class',builder.build());
     return promise;
   },
@@ -14,16 +14,24 @@ export default Ember.Route.extend({
   setupController: function (controller, model) {
     let parser = new DOMParser();
     let itemList = [];
+    let leftParents = [];
+    let leftLeaves = [];
     let n = model.get('length');
     for (let i=0; i < n; i++) {
       let record = model.nextObject(i);
       switch (record.get('stereotype')) {
         case null:
+          leftParents.push( {id: record.get('id'), name: record.get('name'), description: record.get('description')} );
           break;
         case '«listform»':
         case '«editform»':
+          let parentId = record.get('formViews').nextObject(0).get('view.class.id');
+          leftLeaves.push ({parentId:parentId, name: record.get('name'), description: record.get('description') });
           break;
         case '«application»':
+          if (record.get('id') != '44c730df-5cc6-45b3-9297-e4e39ad32094') {
+            continue;
+          }
           let xml = record.get('containersStr');
           let xmlDoc = parser.parseFromString(xml,"text/xml");
           let items = xmlDoc.getElementsByTagName("Item");
@@ -36,11 +44,41 @@ export default Ember.Route.extend({
           break;
       }
     }
-    controller.initLeftTree({});
+
+    let leftNodes = this._getLeftTree(leftParents, leftLeaves);
+    controller.initLeftTree(leftNodes);
+
     let rightNodes = this._getRightTree(itemList);
     controller.initRightTree(rightNodes);
 
     return this._super(controller, model);
+  },
+
+  _getLeftTree: function(leftParents, leftLeaves) {
+    leftParents.sort(
+      function(a, b){
+        let ret = (a.id > b.id) ? 1 : ((a.id < b.id) ? -1 :0);
+        return ret;
+      }
+    );
+    leftLeaves.sort(
+      function(a, b){
+        let ret = (a.parentId > b.parentId) ? 1 : ((a.parentId < b.parentId) ? -1 :
+        ((a.name > b.name) ? 1 : ((a.name < b.name) ? -1 :0)));
+        return ret;
+      }
+    );
+    let leftNodes = [];
+    let leaveIndex = 0;
+    for (let i = 0; i < leftParents.length;  i++) {
+      let leftParent = leftParents[i];
+      let leftNode = {caption: leftParent.name, nodes: []};
+      for (; leaveIndex < leftLeaves.length && leftLeaves[leaveIndex].parentId == leftParent.id; leaveIndex++) {
+        leftNode.nodes.push({caption: leftLeaves[leaveIndex].name});
+      }
+      leftNodes.push(leftNode);
+    }
+    return leftNodes;
   },
 
   _getRightTree: function(itemList) {

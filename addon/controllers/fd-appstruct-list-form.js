@@ -29,18 +29,18 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
   jsonLeftTreeCollapsible: true,
   jsonLeftTreeClass: 'styled',
 
-  /* MODEL HOOK WILL BE REMOVED */
-  model: {
-    jsonLeftTreeNodes : [
-      { caption: 'Файл' },
-      { caption: 'Документация по конкурсу' },
-      { caption: 'Критерий оценки' },
-      { caption: 'Конкурсы', nodes: [{ caption: 'Конкурс1'}, { caption: 'Конкурс2' }]},
-      { caption: 'Пользователь' },
-      { caption: 'Идеи', nodes: [{ caption: 'Идея11'},{ caption: 'Идея12'}]},
-    ],
-
-   },
+//   /* MODEL HOOK WILL BE REMOVED */
+//   model: {
+//     jsonLeftTreeNodes : [
+//       { caption: 'Файл' },
+//       { caption: 'Документация по конкурсу' },
+//       { caption: 'Критерий оценки' },
+//       { caption: 'Конкурсы', nodes: [{ caption: 'Конкурс1'}, { caption: 'Конкурс2' }]},
+//       { caption: 'Пользователь' },
+//       { caption: 'Идеи', nodes: [{ caption: 'Идея11'},{ caption: 'Идея12'}]},
+//     ],
+//
+//    },
 
 
   rightClickedElement: null,
@@ -67,7 +67,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
 //   },
 
   initLeftTree: function(jsTree) {
-    Ember.set(this, 'jsonLeftTreeNodes',  this._jsTreeToFlexberryTree(this.model.jsonLeftTreeNodes));
+    Ember.set(this, 'jsonLeftTreeNodes',  this._jsTreeToFlexberryTree(jsTree));
   },
 
   initRightTree: function(jsTree) {
