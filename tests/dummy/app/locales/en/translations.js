@@ -107,6 +107,10 @@ Ember.$.extend(true, translations, {
             caption: 'fd-view-list-form',
             title: 'fd-view-list-form',
 
+          },
+          'fd-generation-process-form': {
+            caption: 'Generation',
+            title: '',
           }
         },
       }
