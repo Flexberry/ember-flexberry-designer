@@ -15,6 +15,7 @@ import FdInheritanceEditFormForm from './forms/fd-inheritance-edit-form';
 import FdStageEditFormForm from './forms/fd-stage-edit-form';
 import FdSystemEditFormForm from './forms/fd-system-edit-form';
 import FdViewEditFormForm from './forms/fd-view-edit-form';
+import FdGenerationProcessForm from './forms/fd-generation-process-form';
 import FdAdModel from './models/fd-ad';
 import FdAggregationModel from './models/fd-aggregation';
 import FdAssociationModel from './models/fd-association';
@@ -162,6 +163,7 @@ Ember.$.extend(true, translations, {
     'fd-stage-edit-form': FdStageEditFormForm,
     'fd-system-edit-form': FdSystemEditFormForm,
     'fd-view-edit-form': FdViewEditFormForm,
+    'fd-generation-process-form': FdGenerationProcessForm
   },
 });
 
