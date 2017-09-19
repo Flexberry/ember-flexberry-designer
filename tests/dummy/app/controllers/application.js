@@ -26,12 +26,12 @@ export default Ember.Controller.extend({
             title: i18n.t('forms.application.sitemap.root.fd-system-list-form.title'),
             children: null
           }, {
-          link: 'fd-appstruct-list-form',
+            link: 'fd-appstruct-list-form',
             caption: i18n.t('forms.application.sitemap.root.fd-appstruct-list-form.caption'),
             title: i18n.t('forms.application.sitemap.root.fd-appstruct-list-form.title'),
             children: null
           }, {
-          link: 'fd-diagram-list-form',
+            link: 'fd-diagram-list-form',
             caption: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.caption'),
             title: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.title'),
             children: null
