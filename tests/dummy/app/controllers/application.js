@@ -50,6 +50,12 @@ export default Ember.Controller.extend({
             caption: i18n.t('forms.application.sitemap.root.fd-view-list-form.caption'),
             title: i18n.t('forms.application.sitemap.root.fd-view-list-form.title'),
             children: null
+          },
+          {
+            link: 'fd-generation-process-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-generation-process-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-generation-process-form.title'),
+            children: null
           }]
         }
       ]
