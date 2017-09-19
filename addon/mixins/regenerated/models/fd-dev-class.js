@@ -427,7 +427,8 @@ export let Model = Ember.Mixin.create({
       ```
   */
   _storeInstancesInTypeXMLCompute: function() {
-    let result = (this.storeInstancesInTypeXMLCompute && typeof this.storeInstancesInTypeXMLCompute === 'function') ? this.storeInstancesInTypeXMLCompute() : null;
+    let result = (this.storeInstancesInTypeXMLCompute && typeof this.storeInstancesInTypeXMLCompute === 'function') ?
+      this.storeInstancesInTypeXMLCompute() : null;
     this.set('storeInstancesInTypeXML', result);
   },
   trim: DS.attr('boolean'),

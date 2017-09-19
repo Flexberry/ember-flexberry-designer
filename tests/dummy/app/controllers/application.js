@@ -77,7 +77,7 @@ export default Ember.Controller.extend({
     @method _userSettingsServiceChanged
     @private
   */
-  _userSettingsServiceChanged: Ember.observer('userSettingsService.isUserSettingsServiceEnabled', function() {
+  _userSettingsServiceChanged: Ember.observer('userSettingsService.isUserSettingsServiceEnabled', function () {
     this.get('target.router').refresh();
   }),
 
@@ -121,14 +121,14 @@ export default Ember.Controller.extend({
       sidebar.sidebar({
         closable: false,
         dimPage: false,
-        onHide: function() {
+        onHide: function () {
           Ember.$('.sidebar.icon.text-menu-show').removeClass('hidden');
           Ember.$('.sidebar.icon.text-menu-hide').addClass('hidden');
         },
-        onHidden: function() {
+        onHidden: function () {
           objectlistviewEventsService.updateWidthTrigger();
         },
-        onShow: function() {
+        onShow: function () {
           objectlistviewEventsService.updateWidthTrigger();
         }
       }).sidebar('toggle');
@@ -152,14 +152,14 @@ export default Ember.Controller.extend({
       let sidebar = Ember.$('.ui.sidebar.main.menu');
       let objectlistviewEventsService = this.get('objectlistviewEventsService');
       sidebar.sidebar({
-        onHide: function() {
+        onHide: function () {
           Ember.$('.sidebar.icon.text-menu-show').removeClass('hidden');
           Ember.$('.sidebar.icon.text-menu-hide').addClass('hidden');
         },
-        onHidden: function() {
+        onHidden: function () {
           objectlistviewEventsService.updateWidthTrigger();
         },
-        onShow: function() {
+        onShow: function () {
           objectlistviewEventsService.updateWidthTrigger();
         }
       }).sidebar('toggle');
