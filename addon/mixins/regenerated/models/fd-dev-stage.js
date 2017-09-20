@@ -23,7 +23,8 @@ export let Model = Ember.Mixin.create({
       ```
   */
   _additionalPluginsSettingsCompute: function() {
-    let result = (this.additionalPluginsSettingsCompute && typeof this.additionalPluginsSettingsCompute === 'function') ? this.additionalPluginsSettingsCompute() : null;
+    let result = (this.additionalPluginsSettingsCompute && typeof this.additionalPluginsSettingsCompute === 'function') ?
+      this.additionalPluginsSettingsCompute() : null;
     this.set('additionalPluginsSettings', result);
   },
   additionalPluginsSettingsStr: DS.attr('string'),
@@ -210,7 +211,8 @@ export let Model = Ember.Mixin.create({
       ```
   */
   _realDataObjectNameSpaceCompute: function() {
-    let result = (this.realDataObjectNameSpaceCompute && typeof this.realDataObjectNameSpaceCompute === 'function') ? this.realDataObjectNameSpaceCompute() : null;
+    let result = (this.realDataObjectNameSpaceCompute && typeof this.realDataObjectNameSpaceCompute === 'function') ?
+    this.realDataObjectNameSpaceCompute() : null;
     this.set('realDataObjectNameSpace', result);
   },
   scriptNamespace: DS.attr('string'),
@@ -577,7 +579,7 @@ export let defineProjections = function (modelClass) {
     })
   });
   modelClass.defineProjection('EditPropertyLookups', 'fd-dev-stage', {
-    
+
   });
   modelClass.defineProjection('EditRightManagementGenerator', 'fd-dev-stage', {
     name: Projection.attr('Название стадии'),
@@ -757,7 +759,7 @@ export let defineProjections = function (modelClass) {
     })
   });
   modelClass.defineProjection('ListDataObjectTypes', 'fd-dev-stage', {
-    
+
   });
   modelClass.defineProjection('ListFormView', 'fd-dev-stage', {
     name: Projection.attr('Name'),
@@ -768,12 +770,12 @@ export let defineProjections = function (modelClass) {
     createDate: Projection.attr('Create date')
   });
   modelClass.defineProjection('Prototyping', 'fd-dev-stage', {
-    
+
   });
   modelClass.defineProjection('SearchRepObjView', 'fd-dev-stage', {
     name: Projection.attr('')
   });
   modelClass.defineProjection('ViewPeeker', 'fd-dev-stage', {
-    
+
   });
 };
