@@ -5,13 +5,12 @@ const { Builder, FilterOperator } = Query;
 export default Ember.Route.extend({
   model: function() {
     let builder = new  Builder(this.store, 'fd-dev-class').
-      select('id,name,description,stereotype,containersStr,formViews,formViews.view,formViews.view.class,formViews.view.class.name');
+      select('id,name,description,stereotype,containersStr,formViews,formViews.view,formViews');
     let promise = this.store.query('fd-dev-class', builder.build());
     return promise;
   },
 
   setupController: function (controller, model) {
-    let parser = new DOMParser();
     let itemList = [];
     let leftParents = [];
     let leftLeaves = [];
@@ -32,25 +31,25 @@ export default Ember.Route.extend({
             continue;
           }
 
-          let xml = record.get('containersStr');
-          let xmlDoc = parser.parseFromString(xml, 'text/xml');
-          let items = xmlDoc.getElementsByTagName('Item');
-          for (let i = 0; i < items.length; i++) {
-            let item = items[i];
-            itemList[itemList.length] = item;
-          }
-
+          let itemList = record.get('containersStr');
           break;
         default:
           break;
       }
     }
 
-    let leftNodes = this._getLeftTree(leftParents, leftLeaves);
-    controller.initLeftTree(leftNodes);
+    let leftTreeNodes = this._getLeftTree(leftParents, leftLeaves);
 
-    let rightNodes = this._getRightTree(itemList);
-    controller.initRightTree(rightNodes);
+    let rightTreeNodes = [{
+      caption:'Рабочий стол',
+      nodes: itemList
+    }];
+    model = {
+      leftTreeNodes: leftTreeNodes,
+      rightTreeNodes: rightTreeNodes
+    };
+//     controller.initLeftTree(leftTreeNodes);
+//     controller.initRightTree(rightTreeNodes);
 
     return this._super(controller, model);
   },
@@ -82,51 +81,6 @@ export default Ember.Route.extend({
     }
 
     return leftNodes;
-  },
-
-  _getRightTree: function(itemList) {
-    let jsonRightTreeNodes = [{ caption:'Рабочий стол', nodes:[] }];
-    itemList.sort(
-      function(a, b) {
-        let aPath = a.getAttribute('MenuPath');
-        let bPath = b.getAttribute('MenuPath');
-        let ret = (aPath > bPath) ? 1 : ((bPath > aPath) ? -1 : 0);
-        return ret;
-      }
-    );
-    let currentPath = '';
-    let currentNodes = null;
-    for (let item of itemList) {
-      let menuPath = item.getAttribute('MenuPath');
-      if (currentPath !== menuPath) {
-        currentNodes = this._findCurrentNodes(jsonRightTreeNodes[0].nodes, menuPath.split('\\'));
-        currentPath = menuPath;
-      }
-
-      let className =  item.getAttribute('ClassName');
-      if (className !== '##########') {
-        currentNodes.push({ caption: className });
-      }
-    }
-
-    return jsonRightTreeNodes;
-  },
-
-  _findCurrentNodes: function (nodes, steps) {
-    if (steps.length === 0) {
-      return nodes;
-    }
-
-    let step = steps.shift();
-    for (let node of nodes) {
-      if (node.caption === step) {
-        return this._findCurrentNodes(node.nodes, steps);
-      }
-    }
-
-    let node = { caption: step, nodes: [] };
-    nodes[nodes.length] = node;
-    return this._findCurrentNodes(node.nodes, steps);
   }
 
 });

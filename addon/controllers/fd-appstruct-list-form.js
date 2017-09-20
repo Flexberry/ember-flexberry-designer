@@ -46,21 +46,26 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     }
   },
 
-  jsonLeftTreeNodes: null,
-  jsonRightTreeNodes: null,
+  jsonLeftTreeNodes: Ember.computed('model.leftTreeNodes', function() {
+    return this._jsTreeToFlexberryTree(this.model.leftTreeNodes);
+  }),
+
+  jsonRightTreeNodes: Ember.computed('model.rightTreeNodes', function() {
+    return this._jsTreeToFlexberryTree(this.model.rightTreeNodes);
+  }),
 
   /*
   init: function() {
    },
   */
 
-  initLeftTree: function(jsTree) {
-    Ember.set(this, 'jsonLeftTreeNodes', this._jsTreeToFlexberryTree(jsTree));
-  },
-
-  initRightTree: function(jsTree) {
-    Ember.set(this, 'jsonRightTreeNodes', this._jsTreeToFlexberryTree(jsTree));
-  },
+//   initLeftTree: function(jsTree) {
+//     Ember.set(this, 'jsonLeftTreeNodes', this._jsTreeToFlexberryTree(jsTree));
+//   },
+//
+//   initRightTree: function(jsTree) {
+//     Ember.set(this, 'jsonRightTreeNodes', this._jsTreeToFlexberryTree(jsTree));
+//   },
 
   _jsTreeToFlexberryTree: function (jsTree) {
     if (!jsTree) {
