@@ -62,7 +62,7 @@ export let Model = Ember.Mixin.create({
 
     @property defaultAccessType
   */
-  defaultAccessType: DS.attr('new-platform-flexberry-web-designer-access-type'),
+  defaultAccessType: DS.attr('i-c-s-soft-s-t-o-r-m-n-e-t-access-type'),
   /**
     Method to set non-stored property.
     Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
@@ -109,7 +109,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.defaultTypeMapTypesCompute && typeof this.defaultTypeMapTypesCompute === 'function') ? this.defaultTypeMapTypesCompute() : null;
     this.set('defaultTypeMapTypes', result);
   },
-  defaultWriteMode: DS.attr('new-platform-flexberry-web-designer-t-write-mode'),
+  defaultWriteMode: DS.attr('i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode'),
   /**
     Non-stored property.
 

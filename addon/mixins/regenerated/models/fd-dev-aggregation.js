@@ -90,7 +90,9 @@ export let defineProjections = function (modelClass) {
   modelClass.defineProjection('Edit', 'fd-dev-aggregation', {
     description: Projection.attr(''),
     startRole: Projection.attr(''),
+    startRolePublishName: Projection.attr(''),
     endRole: Projection.attr(''),
+    endRolePublishName: Projection.attr(''),
     startMultiplicity: Projection.attr(''),
     endRoleStored: Projection.attr(''),
     autoGenerateTypeUsage: Projection.attr('Aggregator AutoGenerateTypeUsage'),
@@ -159,6 +161,8 @@ export let defineProjections = function (modelClass) {
     realEndRole: Projection.attr('RealEndRole', { hidden: true }),
     realStartRole: Projection.attr('RealStartRole', { hidden: true }),
     storage: Projection.attr('Storage', { hidden: true }),
+    startRolePublishName: Projection.attr('StartRolePublishName', { hidden: true }),
+    endRolePublishName: Projection.attr('EndRolePublishName', { hidden: true }),
     endMultiplicity: Projection.attr('EndMultiplicity', { hidden: true }),
     endRole: Projection.attr('EndRole', { hidden: true }),
     endRoleAccessModifier: Projection.attr('EndRoleAccessModifier', { hidden: true }),

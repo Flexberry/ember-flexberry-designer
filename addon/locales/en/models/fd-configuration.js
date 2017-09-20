@@ -1,5 +1,30 @@
 export default {
   projections: {
+    EditFormView: {
+      name: {
+        caption: 'name'
+      },
+      description: {
+        caption: 'description'
+      }
+    },
+    ListFormView: {
+      name: {
+        caption: 'name'
+      },
+      changeUser: {
+        caption: 'changeUser'
+      },
+      changeDate: {
+        caption: 'changeDate'
+      },
+      createUser: {
+        caption: 'createUser'
+      },
+      createDate: {
+        caption: 'createDate'
+      }
+    },
     PathSearchView: {
       name: {
         caption: 'name'

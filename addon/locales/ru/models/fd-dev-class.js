@@ -529,6 +529,9 @@ export default {
       storage: {
         caption: ''
       },
+      publishName: {
+        caption: ''
+      },
       stored: {
         caption: ''
       },
@@ -536,7 +539,7 @@ export default {
         caption: ''
       },
       updateAudit: {
-        caption: 'Вести аудит операции изменения\''
+        caption: 'Вести аудит операции изменения'
       },
       updateAuditViewName: {
         caption: 'Имя представления для аудита операции изменения'
@@ -574,6 +577,9 @@ export default {
           caption: 'DataService Expression'
         },
         storage: {
+          caption: ''
+        },
+        publishName: {
           caption: ''
         },
         hint: {
@@ -1600,6 +1606,9 @@ export default {
       storage: {
         caption: ''
       },
+      publishName: {
+        caption: ''
+      },
       storeInstancesInType: {
         caption: ''
       },
@@ -1796,6 +1805,9 @@ export default {
         },
         storage: {
           caption: 'Storage'
+        },
+        publishName: {
+          caption: 'PublishName'
         },
         stored: {
           caption: 'Stored'

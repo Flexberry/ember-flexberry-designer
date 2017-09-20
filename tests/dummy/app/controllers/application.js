@@ -16,6 +16,11 @@ export default Ember.Controller.extend({
           caption: i18n.t('forms.application.sitemap.root.caption'),
           title: i18n.t('forms.application.sitemap.root.title'),
           children: [{
+            link: 'fd-configuration-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.title'),
+            children: null
+          }, {
             link: 'fd-stage-list-form',
             caption: i18n.t('forms.application.sitemap.root.fd-stage-list-form.caption'),
             title: i18n.t('forms.application.sitemap.root.fd-stage-list-form.title'),
@@ -77,7 +82,7 @@ export default Ember.Controller.extend({
     @method _userSettingsServiceChanged
     @private
   */
-  _userSettingsServiceChanged: Ember.observer('userSettingsService.isUserSettingsServiceEnabled', function () {
+  _userSettingsServiceChanged: Ember.observer('userSettingsService.isUserSettingsServiceEnabled', function() {
     this.get('target.router').refresh();
   }),
 
@@ -121,14 +126,14 @@ export default Ember.Controller.extend({
       sidebar.sidebar({
         closable: false,
         dimPage: false,
-        onHide: function () {
+        onHide: function() {
           Ember.$('.sidebar.icon.text-menu-show').removeClass('hidden');
           Ember.$('.sidebar.icon.text-menu-hide').addClass('hidden');
         },
-        onHidden: function () {
+        onHidden: function() {
           objectlistviewEventsService.updateWidthTrigger();
         },
-        onShow: function () {
+        onShow: function() {
           objectlistviewEventsService.updateWidthTrigger();
         }
       }).sidebar('toggle');
@@ -152,14 +157,14 @@ export default Ember.Controller.extend({
       let sidebar = Ember.$('.ui.sidebar.main.menu');
       let objectlistviewEventsService = this.get('objectlistviewEventsService');
       sidebar.sidebar({
-        onHide: function () {
+        onHide: function() {
           Ember.$('.sidebar.icon.text-menu-show').removeClass('hidden');
           Ember.$('.sidebar.icon.text-menu-hide').addClass('hidden');
         },
-        onHidden: function () {
+        onHidden: function() {
           objectlistviewEventsService.updateWidthTrigger();
         },
-        onShow: function () {
+        onShow: function() {
           objectlistviewEventsService.updateWidthTrigger();
         }
       }).sidebar('toggle');

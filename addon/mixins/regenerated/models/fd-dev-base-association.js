@@ -76,6 +76,8 @@ export let Model = Ember.Mixin.create({
     this.set('realStartRole', result);
   },
   storage: DS.attr('string'),
+  startRolePublishName: DS.attr('string'),
+  endRolePublishName: DS.attr('string'),
   getValidations: function () {
     let parentValidations = this._super();
     let thisValidations = {
@@ -116,6 +118,8 @@ export let defineProjections = function (modelClass) {
     realEndRole: Projection.attr('RealEndRole', { hidden: true }),
     realStartRole: Projection.attr('RealStartRole', { hidden: true }),
     storage: Projection.attr('Storage', { hidden: true }),
+    startRolePublishName: Projection.attr('StartRolePublishName', { hidden: true }),
+    endRolePublishName: Projection.attr('EndRolePublishName', { hidden: true }),
     endMultiplicity: Projection.attr('EndMultiplicity', { hidden: true }),
     endRole: Projection.attr('EndRole', { hidden: true }),
     endRoleAccessModifier: Projection.attr('EndRoleAccessModifier', { hidden: true }),
@@ -144,6 +148,8 @@ export let defineProjections = function (modelClass) {
     realEndRole: Projection.attr('RealEndRole', { hidden: true }),
     realStartRole: Projection.attr('RealStartRole', { hidden: true }),
     storage: Projection.attr('Storage', { hidden: true }),
+    startRolePublishName: Projection.attr('StartRolePublishName', { hidden: true }),
+    endRolePublishName: Projection.attr('EndRolePublishName', { hidden: true }),
     endMultiplicity: Projection.attr('EndMultiplicity', { hidden: true }),
     endRole: Projection.attr('EndRole', { hidden: true }),
     endRoleAccessModifier: Projection.attr('EndRoleAccessModifier', { hidden: true }),

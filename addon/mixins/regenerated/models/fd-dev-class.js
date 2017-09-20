@@ -2,7 +2,7 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import { Projection } from 'ember-flexberry-data';
 export let Model = Ember.Mixin.create({
-  accessType: DS.attr('new-platform-flexberry-web-designer-access-type'),
+  accessType: DS.attr('i-c-s-soft-s-t-o-r-m-n-e-t-access-type'),
   addAuditFields: DS.attr('boolean'),
   appConfig: DS.attr('string'),
   /**
@@ -405,6 +405,7 @@ export let Model = Ember.Mixin.create({
   selectAuditViewName: DS.attr('string'),
   standartDesktop: DS.attr('boolean'),
   storage: DS.attr('string'),
+  publishName: DS.attr('string'),
   storeInstancesInType: DS.attr('string'),
   /**
     Non-stored property.
@@ -459,7 +460,7 @@ export let Model = Ember.Mixin.create({
     this.set('useCache', result);
   },
   useDefaultView: DS.attr('boolean'),
-  writeMode: DS.attr('new-platform-flexberry-web-designer-t-write-mode'),
+  writeMode: DS.attr('i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode'),
   writeSessions: DS.attr('boolean'),
   businessServerClass: DS.belongsTo('fd-dev-class', { inverse: null, async: false }),
   devViews: DS.hasMany('fd-dev-view', { inverse: 'class', async: false }),
@@ -693,6 +694,7 @@ export let defineProjections = function (modelClass) {
     selectAudit: Projection.attr('Вести аудит операции чтения'),
     selectAuditViewName: Projection.attr('Имя представления для аудита операции чтения'),
     storage: Projection.attr(''),
+    publishName: Projection.attr(''),
     stored: Projection.attr(''),
     trim: Projection.attr(''),
     updateAudit: Projection.attr('Вести аудит операции изменения'),
@@ -709,6 +711,7 @@ export let defineProjections = function (modelClass) {
       notNull: Projection.attr(''),
       dataServiceExpressionXML: Projection.attr('DataService Expression'),
       storage: Projection.attr(''),
+      publishName: Projection.attr(''),
       hint: Projection.attr(''),
       order: Projection.attr(''),
       trim: Projection.attr(''),
@@ -1111,6 +1114,7 @@ export let defineProjections = function (modelClass) {
     pBCustomAttributes: Projection.attr(''),
     primaryKeyStorage: Projection.attr(''),
     storage: Projection.attr(''),
+    publishName: Projection.attr(''),
     storeInstancesInType: Projection.attr(''),
     trim: Projection.attr(''),
     description: Projection.attr(''),
@@ -1178,6 +1182,7 @@ export let defineProjections = function (modelClass) {
       realCaption: Projection.attr('RealCaption', { hidden: true }),
       realStorage: Projection.attr('RealStorage', { hidden: true }),
       storage: Projection.attr('Storage', { hidden: true }),
+      publishName: Projection.attr('PublishName', { hidden: true }),
       stored: Projection.attr('Stored', { hidden: true }),
       trim: Projection.attr('Trim', { hidden: true }),
       type: Projection.attr('Type', { hidden: true }),

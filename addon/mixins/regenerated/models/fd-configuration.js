@@ -23,6 +23,17 @@ export let defineBaseModel = function (modelClass) {
 };
 
 export let defineProjections = function (modelClass) {
+  modelClass.defineProjection('EditFormView', 'fd-configuration', {
+    name: Projection.attr('Name'),
+    description: Projection.attr('Description')
+  });
+  modelClass.defineProjection('ListFormView', 'fd-configuration', {
+    name: Projection.attr('Name'),
+    changeUser: Projection.attr('Change user'),
+    changeDate: Projection.attr('Change date'),
+    createUser: Projection.attr('Create user'),
+    createDate: Projection.attr('Create date')
+  });
   modelClass.defineProjection('PathSearchView', 'fd-configuration', {
     name: Projection.attr(''),
     project: Projection.belongsTo('fd-project', '', {
