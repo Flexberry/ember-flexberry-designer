@@ -23,6 +23,64 @@
   ],
   "projections": [
     {
+      "name": "EditFormView",
+      "modelName": "fd-configuration",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "Name",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "description",
+          "caption": "Description",
+          "hidden": false,
+          "index": 1
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "ListFormView",
+      "modelName": "fd-configuration",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "Name",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "changeUser",
+          "caption": "Change user",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "changeDate",
+          "caption": "Change date",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "createUser",
+          "caption": "Create user",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "createDate",
+          "caption": "Create date",
+          "hidden": false,
+          "index": 4
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
       "name": "PathSearchView",
       "modelName": "fd-configuration",
       "attrs": [
@@ -101,5 +159,6 @@
     }
   ],
   "stored": true,
-  "offline": true
+  "offline": true,
+  "external": false
 }

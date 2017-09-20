@@ -1,6 +1,7 @@
 ﻿{
   "newForm": "fd-system-edit-form",
   "editForm": "fd-system-edit-form",
+  "external": false,
   "caption": "Systems",
   "name": "FdSystemListForm",
   "className": "SystemListForm",

@@ -1,13 +1,13 @@
 ﻿{
   "propertyLookup": [],
   "external": false,
-  "caption": "Inheritance",
-  "name": "FdInheritanceEditForm",
-  "className": "InheritanceEditForm",
+  "caption": "Configuration",
+  "name": "FdConfigurationEditForm",
+  "className": "ConfigurationEditForm",
   "attrs": [],
   "projections": [
     {
-      "modelName": "fd-dev-inheritance",
+      "modelName": "fd-configuration",
       "modelProjection": "EditFormView"
     }
   ]

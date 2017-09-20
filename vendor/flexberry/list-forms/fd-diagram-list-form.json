@@ -1,6 +1,7 @@
 ﻿{
   "newForm": "fd-diagram-edit-form",
   "editForm": "fd-diagram-edit-form",
+  "external": false,
   "caption": "Diagrams",
   "name": "FdDiagramListForm",
   "className": "DiagramListForm",

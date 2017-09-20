@@ -1,5 +1,6 @@
 ﻿{
   "propertyLookup": [],
+  "external": false,
   "caption": "Diagram",
   "name": "FdDiagramEditForm",
   "className": "DiagramEditForm",
