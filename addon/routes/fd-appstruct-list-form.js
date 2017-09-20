@@ -11,6 +11,7 @@ export default Ember.Route.extend({
   },
 
   setupController: function (controller, model) {
+    let applicationRecordId = null;
     let itemList = [];
     let leftParents = [];
     let leftLeaves = [];
@@ -27,10 +28,12 @@ export default Ember.Route.extend({
           leftLeaves.push({ parentId:parentId, name: record.get('name'), description: record.get('description') });
           break;
         case '«application»':
-          if (record.get('id') !== '44c730df-5cc6-45b3-9297-e4e39ad32094') {
+          let recordId = record.get('id');
+          if (recordId !== '44c730df-5cc6-45b3-9297-e4e39ad32094') {
             continue;
           }
 
+          applicationRecordId = recordId;
           itemList = record.get('containersStr');
           break;
         default:
@@ -45,6 +48,7 @@ export default Ember.Route.extend({
       nodes: itemList
     }];
     model = {
+      id: applicationRecordId,
       jsonLeftTreeNodes: leftTreeNodes,
       jsonRightTreeNodes: rightTreeNodes
     };

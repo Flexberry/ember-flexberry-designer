@@ -94,6 +94,29 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     return ret;
   },
 
+  _jsFlexberryTreeToTree: function (jsFlexberryTree) {
+    if (!jsFlexberryTree) {
+      return null;
+    }
+
+    let ret = [];
+    for (let i = 0; i < jsFlexberryTree.length; i++) {
+      let node = jsFlexberryTree[i];
+      let caption = node.caption;
+      let nodes = node.nodes;
+      if (nodes && nodes.length > 0) {
+        nodes = this._jsFlexberryTreeToTree(nodes);
+      } else {
+        nodes = [];
+      }
+
+      let treeNodeObject = { caption: caption, nodes: nodes };
+      ret.push(treeNodeObject);
+    }
+
+    return ret;
+  },
+
   _findNodeByPath: function(jsonTree, path) {
     let ret = jsonTree;
     let steps = path.split('.');
@@ -191,7 +214,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
 
       let { parentNodes, index } = this._findParentNodesByPath(this, lastClickedPath);
       let removedNode = parentNodes[index];
-      parentNodes.removeObject(removedNode);
+//       parentNodes.removeObject(removedNode);
       Ember.set(parentNodes, index.toString(), undefined);
     },
 
@@ -232,6 +255,10 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     },
 
     saveTree() {
+      let rightTree = this._jsFlexberryTreeToTree(this.jsonRightTreeNodes[0].nodes);
+      this.get('store').findRecord('fd-dev-class', this.model.id).then(function(record) {
+        record.set('containersStr',rightTree);
+      });
       alert('Save');
     }
 
