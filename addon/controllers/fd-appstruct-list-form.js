@@ -79,15 +79,16 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     let ret = Ember.A([]);
     for (let i = 0; i < jsTree.length; i++) {
       let node = jsTree[i];
-      let caption = node.caption;
-      let nodes = node.nodes;
-      if (nodes && nodes.length > 0) {
-        nodes = this._jsTreeToFlexberryTree(nodes);
-      } else {
-        nodes = Ember.A([]);
+      let nodes = null;
+      if (node.nodes) {
+        nodes = this._jsTreeToFlexberryTree(node.nodes);
       }
 
-      let treeNodeObject = TreeNodeObject.create({ caption: caption, nodes: nodes });
+      let treeNode = { caption: node.caption };
+      if (nodes) {
+        treeNode.nodes = nodes;
+      }
+      let treeNodeObject = TreeNodeObject.create(treeNode);
       ret.addObject(treeNodeObject);
     }
 
@@ -102,16 +103,16 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     let ret = [];
     for (let i = 0; i < jsFlexberryTree.length; i++) {
       let node = jsFlexberryTree[i];
-      let caption = node.caption;
-      let nodes = node.nodes;
-      if (nodes && nodes.length > 0) {
+      let nodes = null;
+      if (node.nodes) {
         nodes = this._jsFlexberryTreeToTree(nodes);
-      } else {
-        nodes = [];
       }
 
-      let treeNodeObject = { caption: caption, nodes: nodes };
-      ret.push(treeNodeObject);
+      let treeNode = { caption: node.caption };
+      if (nodes) {
+        treeNode.nodes = nodes;
+      }
+      ret.push(treeNode);
     }
 
     return ret;
@@ -191,6 +192,13 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       let node = this._findNodeByPath(this, lastClickedPath);
       let toPath = this.lastClicked.right.path ? this.lastClicked.right.path : 'jsonRightTreeNodes.0';
       let toNode = this._findNodeByPath(this, toPath);
+      if (!toNode.nodes) {
+        let steps = toPath.split('.');
+        steps.pop();
+        steps.pop();
+        toPath = steps.join('.');
+        toNode = this._findNodeByPath(this, toPath);
+      }
       toNode.nodes.pushObject(node);
     },
 
