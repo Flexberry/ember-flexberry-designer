@@ -5,7 +5,7 @@ const { Builder, FilterOperator } = Query;
 export default Ember.Route.extend({
   model: function() {
     let builder = new  Builder(this.store, 'fd-dev-class').
-      select('id,name,description,stereotype,containersStr,formViews,formViews.view,formViews');
+    select('id,name,description,stereotype,containersStr,formViews,formViews.view,formViews.view.class,formViews.view.class.id');
     let promise = this.store.query('fd-dev-class', builder.build());
     return promise;
   },
@@ -31,7 +31,7 @@ export default Ember.Route.extend({
             continue;
           }
 
-          let itemList = record.get('containersStr');
+          itemList = record.get('containersStr');
           break;
         default:
           break;
