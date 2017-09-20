@@ -50,14 +50,15 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
 
   jsonRightTreeNodes: null,
 
-//   jsonLeftTreeNodes: Ember.computed('model.jsonLeftTreeNodes', function() {
-//     return this._jsTreeToFlexberryTree(this.model.jsonLeftTreeNodes);
-//   }),
-//
-//   jsonRightTreeNodes: Ember.computed('model.jsonRightTreeNodes', function() {
-//     return this._jsTreeToFlexberryTree(this.model.jsonRightTreeNodes);
-//   }),
+  /*
+  jsonLeftTreeNodes: Ember.computed('model.jsonLeftTreeNodes', function() {
+    return this._jsTreeToFlexberryTree(this.model.jsonLeftTreeNodes);
+  }),
 
+  jsonRightTreeNodes: Ember.computed('model.jsonRightTreeNodes', function() {
+    return this._jsTreeToFlexberryTree(this.model.jsonRightTreeNodes);
+  }),
+  */
   /*
   init: function() {
    },
@@ -88,6 +89,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       if (nodes) {
         treeNode.nodes = nodes;
       }
+
       let treeNodeObject = TreeNodeObject.create(treeNode);
       ret.addObject(treeNodeObject);
     }
@@ -112,6 +114,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       if (nodes) {
         treeNode.nodes = nodes;
       }
+
       ret.push(treeNode);
     }
 
@@ -149,7 +152,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
   },
 
   _isLeaf: function(element) {
-    let ret = element.children.length > 0 && element.children[0].style.visibility == 'hidden';
+    let ret = element.children.length > 0 && element.children[0].style.visibility === 'hidden';
     return ret;
   },
 
@@ -169,6 +172,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
           if (!this._isLeaf(clickedElement)) {
             return;
           }
+
           lastClicked = this.lastClicked.left;
           Ember.set(this, 'removeLeftNodeDisabled', '');
           Ember.set(this, 'editLeftNodeDisabled', '');
@@ -179,10 +183,10 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
           let node = this._findNodeByPath(this, clickedPath);
           let { parentNodes, index } = this._findParentNodesByPath(this, clickedPath);
           let parentNodeChilds = parentNodes.length;
-          Ember.set(this, 'removeRightNodeDisabled',clickedPath.split('.').length > 2 ? '' : 'disabled');
-          Ember.set(this, 'addFolderNodeDisabled', node.nodes? '' : 'disabled');
-          Ember.set(this, 'upRightNodeDisabled', index > 0 ? '': 'disabled');
-          Ember.set(this, 'downRightNodeDisabled', index < parentNodeChilds - 1 ? '': 'disabled');
+          Ember.set(this, 'removeRightNodeDisabled', clickedPath.split('.').length > 2 ? '' : 'disabled');
+          Ember.set(this, 'addFolderNodeDisabled', node.nodes ? '' : 'disabled');
+          Ember.set(this, 'upRightNodeDisabled', index > 0 ? '' : 'disabled');
+          Ember.set(this, 'downRightNodeDisabled', index < parentNodeChilds - 1 ? '' : 'disabled');
         }
 
         if (lastClicked) {
@@ -205,6 +209,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       if (!toNode.nodes) {
         toNode = this._findParentNodeByPath(this, toPath);
       }
+
       toNode.nodes.pushObject(node);
     },
 
@@ -229,14 +234,12 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
 
       let { parentNodes, index } = this._findParentNodesByPath(this, lastClickedPath);
       let removedNode = parentNodes[index];
-//       parentNodes.removeObject(removedNode);
+      /*parentNodes.removeObject(removedNode);*/
       Ember.set(parentNodes, index.toString(), undefined);
     },
 
     addFolderNode() {
       let toPath = this.lastClicked.right.path ? this.lastClicked.right.path : 'jsonRightTreeNodes.0';
-
-
     },
 
     upRightNode() {
@@ -272,9 +275,9 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     saveTree() {
       let rightTree = this._jsFlexberryTreeToTree(this.jsonRightTreeNodes[0].nodes);
       this.get('store').findRecord('fd-dev-class', this.model.id).then(function(record) {
-        record.set('containersStr',rightTree);
+        record.set('containersStr', rightTree);
       });
-      alert('Save');
+      /*alert('Save');*/
     }
 
   }

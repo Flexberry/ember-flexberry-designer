@@ -8,15 +8,15 @@ export default DS.Transform.extend({
       let xmlDoc = parser.parseFromString(serialized, 'text/xml');
       if (xmlDoc) {
         let containers = xmlDoc.getElementsByTagName('Containers');
-        if (containers.length >0) {
+        if (containers.length > 0) {
           let containersList = containers[0].getElementsByTagName('ContainersList');
-          if (containersList.length >0) {
+          if (containersList.length > 0) {
             itemList = containersList[0].getElementsByTagName('Item');
           }
         }
       }
 
-      serialized = itemList? this._getTree(itemList) : [];
+      serialized = itemList ? this._getTree(itemList) : [];
     }
 
     return serialized;
