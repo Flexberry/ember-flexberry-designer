@@ -45,11 +45,11 @@ export default Ember.Route.extend({
       nodes: itemList
     }];
     model = {
-      leftTreeNodes: leftTreeNodes,
-      rightTreeNodes: rightTreeNodes
+      jsonLeftTreeNodes: leftTreeNodes,
+      jsonRightTreeNodes: rightTreeNodes
     };
-//     controller.initLeftTree(leftTreeNodes);
-//     controller.initRightTree(rightTreeNodes);
+    controller.initLeftTree(leftTreeNodes);
+    controller.initRightTree(rightTreeNodes);
 
     return this._super(controller, model);
   },

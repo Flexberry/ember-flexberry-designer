@@ -46,26 +46,30 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     }
   },
 
-  jsonLeftTreeNodes: Ember.computed('model.leftTreeNodes', function() {
-    return this._jsTreeToFlexberryTree(this.model.leftTreeNodes);
-  }),
+  jsonLeftTreeNodes:null,
 
-  jsonRightTreeNodes: Ember.computed('model.rightTreeNodes', function() {
-    return this._jsTreeToFlexberryTree(this.model.rightTreeNodes);
-  }),
+  jsonRightTreeNodes: null,
+
+//   jsonLeftTreeNodes: Ember.computed('model.jsonLeftTreeNodes', function() {
+//     return this._jsTreeToFlexberryTree(this.model.jsonLeftTreeNodes);
+//   }),
+//
+//   jsonRightTreeNodes: Ember.computed('model.jsonRightTreeNodes', function() {
+//     return this._jsTreeToFlexberryTree(this.model.jsonRightTreeNodes);
+//   }),
 
   /*
   init: function() {
    },
   */
 
-//   initLeftTree: function(jsTree) {
-//     Ember.set(this, 'jsonLeftTreeNodes', this._jsTreeToFlexberryTree(jsTree));
-//   },
-//
-//   initRightTree: function(jsTree) {
-//     Ember.set(this, 'jsonRightTreeNodes', this._jsTreeToFlexberryTree(jsTree));
-//   },
+  initLeftTree: function(jsTree) {
+    Ember.set(this, 'jsonLeftTreeNodes', this._jsTreeToFlexberryTree(jsTree));
+  },
+
+  initRightTree: function(jsTree) {
+    Ember.set(this, 'jsonRightTreeNodes', this._jsTreeToFlexberryTree(jsTree));
+  },
 
   _jsTreeToFlexberryTree: function (jsTree) {
     if (!jsTree) {
@@ -83,7 +87,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
         nodes = Ember.A([]);
       }
 
-      let treeNodeObject = TreeNodeObject.create({ caption: caption, nodes:nodes });
+      let treeNodeObject = TreeNodeObject.create({ caption: caption, nodes: nodes });
       ret.addObject(treeNodeObject);
     }
 
@@ -113,6 +117,11 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     return ret;
   },
 
+  _isLeaf: function(element) {
+    let ret = element.children.length > 0 && element.children[0].style.visibility == 'hidden';
+    return ret;
+  },
+
   actions: {
 
     onTreenodeHeaderClick(...args) {
@@ -126,6 +135,9 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       let clickedElement = actionEventObject.originalEvent.toElement;
       if (clickedElement.tagName === 'DIV') {
         if (clickedNodePropertiesPath.substr(0, 8) === 'jsonLeft') {
+          if (!this._isLeaf(clickedElement)) {
+            return;
+          }
           lastClicked = this.lastClicked.left;
           Ember.set(this, 'removeLeftNodeDisabled', '');
           Ember.set(this, 'editLeftNodeDisabled', '');
@@ -153,13 +165,10 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
 
     moveRightHighlighted() {
       let lastClickedPath = this.lastClicked.left.path;
-      let node = this._findNodeByPath(this.model, lastClickedPath);
+      let node = this._findNodeByPath(this, lastClickedPath);
       let toPath = this.lastClicked.right.path ? this.lastClicked.right.path : 'jsonRightTreeNodes.0';
       let toNode = this._findNodeByPath(this, toPath);
       toNode.nodes.pushObject(node);
-
-      //Ember.set(this, 'jsonRightTreeNodes', this._jsTreeToFlexberryTree(this.model.jsonRightTreeNodes));
-      //this.jsonRightTreeNodes = this._jsTreeToFlexberryTree(this.model.jsonRightTreeNodes);
     },
 
     removeLeftNode() {
