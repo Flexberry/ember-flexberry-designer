@@ -18,6 +18,13 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/controllers/fd-configuration-list-form.js": {
+            "name": "addon/controllers/fd-configuration-list-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/controllers/fd-diagram-list-form.js": {
             "name": "addon/controllers/fd-diagram-list-form.js",
             "modules": {},
@@ -244,6 +251,13 @@
         },
         "addon/routes/fd-class-list-form.js": {
             "name": "addon/routes/fd-class-list-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/routes/fd-configuration-list-form.js": {
+            "name": "addon/routes/fd-configuration-list-form.js",
             "modules": {},
             "classes": {},
             "fors": {},
@@ -741,6 +755,16 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-class-edit-form'",
+            "class": ""
+        },
+        {
+            "file": "addon/controllers/fd-configuration-list-form.js",
+            "line": 4,
+            "description": "Name of related edit form route.",
+            "itemtype": "property",
+            "name": "editFormRoute",
+            "type": "String",
+            "default": "'fd-configuration-edit-form'",
             "class": ""
         },
         {
@@ -1435,7 +1459,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 409,
+            "line": 410,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "storeInstancesInTypeXML",
@@ -1443,7 +1467,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 415,
+            "line": 416,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'storeInstancesInTypeXMLCompute' method in model class (outside of this mixin) if you want to compute value of 'storeInstancesInTypeXML' property.",
             "itemtype": "method",
             "name": "_storeInstancesInTypeXMLCompute",
@@ -1456,7 +1480,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 437,
+            "line": 438,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "useCache",
@@ -1464,7 +1488,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 443,
+            "line": 444,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'useCacheCompute' method in model class (outside of this mixin) if you want to compute value of 'useCache' property.",
             "itemtype": "method",
             "name": "_useCacheCompute",
@@ -2703,6 +2727,36 @@
         },
         {
             "file": "addon/routes/fd-class-list-form.js",
+            "line": 22,
+            "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
+            "itemtype": "property",
+            "name": "developerUserSettings",
+            "type": "Object",
+            "default": "{}",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-configuration-list-form.js",
+            "line": 4,
+            "description": "Name of model projection to be used as record's properties limitation.",
+            "itemtype": "property",
+            "name": "modelProjection",
+            "type": "String",
+            "default": "'ListFormView'",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-configuration-list-form.js",
+            "line": 13,
+            "description": "Name of model to be used as list's records types.",
+            "itemtype": "property",
+            "name": "modelName",
+            "type": "String",
+            "default": "'fd-configuration'",
+            "class": ""
+        },
+        {
+            "file": "addon/routes/fd-configuration-list-form.js",
             "line": 22,
             "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
             "itemtype": "property",

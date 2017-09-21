@@ -370,6 +370,11 @@ define('dummy/controllers/application', ['exports', 'ember'], function (exports,
           caption: i18n.t('forms.application.sitemap.root.caption'),
           title: i18n.t('forms.application.sitemap.root.title'),
           children: [{
+            link: 'fd-configuration-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.title'),
+            children: null
+          }, {
             link: 'fd-stage-list-form',
             caption: i18n.t('forms.application.sitemap.root.fd-stage-list-form.caption'),
             title: i18n.t('forms.application.sitemap.root.fd-stage-list-form.title'),
@@ -574,6 +579,22 @@ define('dummy/controllers/fd-class-list-form', ['exports', 'ember-flexberry-desi
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerControllersFdClassListForm['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-configuration-edit-form', ['exports', 'ember-flexberry-designer/controllers/fd-configuration-edit-form'], function (exports, _emberFlexberryDesignerControllersFdConfigurationEditForm) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdConfigurationEditForm['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-configuration-list-form', ['exports', 'ember-flexberry-designer/controllers/fd-configuration-list-form'], function (exports, _emberFlexberryDesignerControllersFdConfigurationListForm) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdConfigurationListForm['default'];
     }
   });
 });
@@ -813,6 +834,45 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
     assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-class-list-form.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-configuration-edit-form.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers');
+  test('modules/ember-flexberry-designer/controllers/fd-configuration-edit-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/fd-configuration-edit-form.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-configuration-edit-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/fd-configuration-edit-form.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-configuration-edit-form.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-configuration-edit-form/new.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers/fd-configuration-edit-form');
+  test('modules/ember-flexberry-designer/controllers/fd-configuration-edit-form/new.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/fd-configuration-edit-form/new.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-configuration-edit-form/new.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/fd-configuration-edit-form/new.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-configuration-edit-form/new.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-configuration-list-form.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers');
+  test('modules/ember-flexberry-designer/controllers/fd-configuration-list-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/fd-configuration-list-form.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-configuration-list-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/fd-configuration-list-form.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-configuration-list-form.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-diagram-edit-form.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/controllers');
   test('modules/ember-flexberry-designer/controllers/fd-diagram-edit-form.js should pass jscs', function () {
@@ -1021,56 +1081,56 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
     assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-view-list-form.js should pass jshint.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-access-modifier.jscs-test', ['exports'], function (exports) {
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-access-type.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/enums');
-  test('modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-access-modifier.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-access-modifier.js should pass jscs.');
+  test('modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-access-type.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-access-type.js should pass jscs.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-access-modifier.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-access-modifier.js');
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-access-type.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-access-type.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-access-modifier.js should pass jshint.');
+    assert.ok(true, 'modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-access-type.js should pass jshint.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-access-type.jscs-test', ['exports'], function (exports) {
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/enums');
-  test('modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-access-type.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-access-type.js should pass jscs.');
+  test('modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode.js should pass jscs.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-access-type.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-access-type.js');
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-access-type.js should pass jshint.');
+    assert.ok(true, 'modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode.js should pass jshint.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-parameter-modifier.jscs-test', ['exports'], function (exports) {
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/s-t-o-r-m-c-a-s-e-repository-access-modifier.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/enums');
-  test('modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-parameter-modifier.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-parameter-modifier.js should pass jscs.');
+  test('modules/ember-flexberry-designer/enums/s-t-o-r-m-c-a-s-e-repository-access-modifier.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/enums/s-t-o-r-m-c-a-s-e-repository-access-modifier.js should pass jscs.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-parameter-modifier.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-parameter-modifier.js');
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/s-t-o-r-m-c-a-s-e-repository-access-modifier.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/enums/s-t-o-r-m-c-a-s-e-repository-access-modifier.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-parameter-modifier.js should pass jshint.');
+    assert.ok(true, 'modules/ember-flexberry-designer/enums/s-t-o-r-m-c-a-s-e-repository-access-modifier.js should pass jshint.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-t-write-mode.jscs-test', ['exports'], function (exports) {
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/enums');
-  test('modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-t-write-mode.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-t-write-mode.js should pass jscs.');
+  test('modules/ember-flexberry-designer/enums/s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/enums/s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier.js should pass jscs.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-t-write-mode.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-t-write-mode.js');
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/enums/s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-t-write-mode.js should pass jshint.');
+    assert.ok(true, 'modules/ember-flexberry-designer/enums/s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-association-edit-form.jscs-test', ['exports'], function (exports) {
@@ -1123,6 +1183,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-class-list-form.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-configuration-edit-form.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/forms');
+  test('modules/ember-flexberry-designer/locales/en/forms/fd-configuration-edit-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-configuration-edit-form.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-configuration-edit-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/forms/fd-configuration-edit-form.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-configuration-edit-form.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-configuration-list-form.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/forms');
+  test('modules/ember-flexberry-designer/locales/en/forms/fd-configuration-list-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-configuration-list-form.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-configuration-list-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/forms/fd-configuration-list-form.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-configuration-list-form.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-diagram-edit-form.jscs-test', ['exports'], function (exports) {
@@ -2137,6 +2223,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-class-list-form.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-configuration-edit-form.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/forms');
+  test('modules/ember-flexberry-designer/locales/ru/forms/fd-configuration-edit-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-configuration-edit-form.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-configuration-edit-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/forms/fd-configuration-edit-form.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-configuration-edit-form.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-configuration-list-form.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/forms');
+  test('modules/ember-flexberry-designer/locales/ru/forms/fd-configuration-list-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-configuration-list-form.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-configuration-list-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/forms/fd-configuration-list-form.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-configuration-list-form.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-diagram-edit-form.jscs-test', ['exports'], function (exports) {
@@ -6429,6 +6541,45 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ro
     assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-class-list-form.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-configuration-edit-form.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes');
+  test('modules/ember-flexberry-designer/routes/fd-configuration-edit-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/fd-configuration-edit-form.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-configuration-edit-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-configuration-edit-form.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-configuration-edit-form.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-configuration-edit-form/new.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes/fd-configuration-edit-form');
+  test('modules/ember-flexberry-designer/routes/fd-configuration-edit-form/new.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/fd-configuration-edit-form/new.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-configuration-edit-form/new.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-configuration-edit-form/new.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-configuration-edit-form/new.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-configuration-list-form.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes');
+  test('modules/ember-flexberry-designer/routes/fd-configuration-list-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/fd-configuration-list-form.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-configuration-list-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-configuration-list-form.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-configuration-list-form.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-diagram-edit-form.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/routes');
   test('modules/ember-flexberry-designer/routes/fd-diagram-edit-form.js should pass jscs', function () {
@@ -8301,30 +8452,30 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/se
     assert.ok(true, 'modules/ember-flexberry-designer/services/fd-generation.js should pass jshint.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-access-modifier.jscs-test', ['exports'], function (exports) {
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-access-type.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/transforms');
-  test('modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-access-modifier.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-access-modifier.js should pass jscs.');
+  test('modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-access-type.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-access-type.js should pass jscs.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-access-modifier.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-access-modifier.js');
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-access-type.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-access-type.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-access-modifier.js should pass jshint.');
+    assert.ok(true, 'modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-access-type.js should pass jshint.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-access-type.jscs-test', ['exports'], function (exports) {
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/transforms');
-  test('modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-access-type.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-access-type.js should pass jscs.');
+  test('modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode.js should pass jscs.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-access-type.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-access-type.js');
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-access-type.js should pass jshint.');
+    assert.ok(true, 'modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-business-server-class.jscs-test', ['exports'], function (exports) {
@@ -8340,30 +8491,38 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/tr
     assert.ok(true, 'modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-business-server-class.js should pass jshint.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-parameter-modifier.jscs-test', ['exports'], function (exports) {
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/s-t-o-r-m-c-a-s-e-repository-access-modifier.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/transforms');
-  test('modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-parameter-modifier.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-parameter-modifier.js should pass jscs.');
+  test('modules/ember-flexberry-designer/transforms/s-t-o-r-m-c-a-s-e-repository-access-modifier.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/transforms/s-t-o-r-m-c-a-s-e-repository-access-modifier.js should pass jscs.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-parameter-modifier.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-parameter-modifier.js');
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/s-t-o-r-m-c-a-s-e-repository-access-modifier.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/transforms/s-t-o-r-m-c-a-s-e-repository-access-modifier.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-parameter-modifier.js should pass jshint.');
+    assert.ok(true, 'modules/ember-flexberry-designer/transforms/s-t-o-r-m-c-a-s-e-repository-access-modifier.js should pass jshint.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-t-write-mode.jscs-test', ['exports'], function (exports) {
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/transforms');
-  test('modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-t-write-mode.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-t-write-mode.js should pass jscs.');
+  test('modules/ember-flexberry-designer/transforms/s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/transforms/s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier.js should pass jscs.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-t-write-mode.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-t-write-mode.js');
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/transforms/s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-t-write-mode.js should pass jshint.');
+    assert.ok(true, 'modules/ember-flexberry-designer/transforms/s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier.js should pass jshint.');
+  });
+});
+define('dummy/enums/i-c-s-soft-s-t-o-r-m-n-e-t-access-type', ['exports', 'ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-access-type'], function (exports, _emberFlexberryDesignerEnumsICSSoftSTORMNETAccessType) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerEnumsICSSoftSTORMNETAccessType['default'];
+    }
   });
 });
 define('dummy/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-execution-variant', ['exports', 'ember-flexberry-data/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-execution-variant'], function (exports, _emberFlexberryDataEnumsICSSoftSTORMNETBusinessAuditObjectsTExecutionVariant) {
@@ -8382,35 +8541,27 @@ define('dummy/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-type-of-
     }
   });
 });
-define('dummy/enums/new-platform-flexberry-web-designer-access-modifier', ['exports', 'ember-flexberry-designer/enums/new-platform-flexberry-web-designer-access-modifier'], function (exports, _emberFlexberryDesignerEnumsNewPlatformFlexberryWebDesignerAccessModifier) {
+define('dummy/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode', ['exports', 'ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode'], function (exports, _emberFlexberryDesignerEnumsICSSoftSTORMNETBusinessAuditObjectsTWriteMode) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
-      return _emberFlexberryDesignerEnumsNewPlatformFlexberryWebDesignerAccessModifier['default'];
+      return _emberFlexberryDesignerEnumsICSSoftSTORMNETBusinessAuditObjectsTWriteMode['default'];
     }
   });
 });
-define('dummy/enums/new-platform-flexberry-web-designer-access-type', ['exports', 'ember-flexberry-designer/enums/new-platform-flexberry-web-designer-access-type'], function (exports, _emberFlexberryDesignerEnumsNewPlatformFlexberryWebDesignerAccessType) {
+define('dummy/enums/s-t-o-r-m-c-a-s-e-repository-access-modifier', ['exports', 'ember-flexberry-designer/enums/s-t-o-r-m-c-a-s-e-repository-access-modifier'], function (exports, _emberFlexberryDesignerEnumsSTORMCASERepositoryAccessModifier) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
-      return _emberFlexberryDesignerEnumsNewPlatformFlexberryWebDesignerAccessType['default'];
+      return _emberFlexberryDesignerEnumsSTORMCASERepositoryAccessModifier['default'];
     }
   });
 });
-define('dummy/enums/new-platform-flexberry-web-designer-parameter-modifier', ['exports', 'ember-flexberry-designer/enums/new-platform-flexberry-web-designer-parameter-modifier'], function (exports, _emberFlexberryDesignerEnumsNewPlatformFlexberryWebDesignerParameterModifier) {
+define('dummy/enums/s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier', ['exports', 'ember-flexberry-designer/enums/s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier'], function (exports, _emberFlexberryDesignerEnumsSTORMCASESTORMNETRepositoryParameterModifier) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
-      return _emberFlexberryDesignerEnumsNewPlatformFlexberryWebDesignerParameterModifier['default'];
-    }
-  });
-});
-define('dummy/enums/new-platform-flexberry-web-designer-t-write-mode', ['exports', 'ember-flexberry-designer/enums/new-platform-flexberry-web-designer-t-write-mode'], function (exports, _emberFlexberryDesignerEnumsNewPlatformFlexberryWebDesignerTWriteMode) {
-  Object.defineProperty(exports, 'default', {
-    enumerable: true,
-    get: function get() {
-      return _emberFlexberryDesignerEnumsNewPlatformFlexberryWebDesignerTWriteMode['default'];
+      return _emberFlexberryDesignerEnumsSTORMCASESTORMNETRepositoryParameterModifier['default'];
     }
   });
 });
@@ -9272,6 +9423,11 @@ define('dummy/locales/en/translations', ['exports', 'ember', 'ember-flexberry-de
           root: {
             caption: 'root',
             title: 'root',
+            'fd-configuration-list-form': {
+              caption: 'fd-configuration-list-form',
+              title: 'fd-configuration-list-form'
+
+            },
             'fd-stage-list-form': {
               caption: 'fd-stage-list-form',
               title: 'fd-stage-list-form'
@@ -9399,6 +9555,11 @@ define('dummy/locales/ru/translations', ['exports', 'ember', 'ember-flexberry-de
           root: {
             caption: 'Root',
             title: 'Root',
+            'fd-configuration-list-form': {
+              caption: 'Configurations',
+              title: ''
+
+            },
             'fd-stage-list-form': {
               caption: 'Stages',
               title: ''
@@ -10118,6 +10279,9 @@ define('dummy/router', ['exports', 'ember', 'dummy/config/environment'], functio
     this.route('fd-class-list-form');
     this.route('fd-class-edit-form', { path: 'fd-class-edit-form/:id' });
     this.route('fd-class-edit-form.new', { path: 'fd-class-edit-form/new' });
+    this.route('fd-configuration-list-form');
+    this.route('fd-configuration-edit-form', { path: 'fd-configuration-edit-form/:id' });
+    this.route('fd-configuration-edit-form.new', { path: 'fd-configuration-edit-form/new' });
     this.route('fd-diagram-list-form');
     this.route('fd-diagram-edit-form', { path: 'fd-diagram-edit-form/:id' });
     this.route('fd-diagram-edit-form.new', { path: 'fd-diagram-edit-form/new' });
@@ -10178,6 +10342,22 @@ define('dummy/routes/fd-class-list-form', ['exports', 'ember-flexberry-designer/
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerRoutesFdClassListForm['default'];
+    }
+  });
+});
+define('dummy/routes/fd-configuration-edit-form', ['exports', 'ember-flexberry-designer/routes/fd-configuration-edit-form'], function (exports, _emberFlexberryDesignerRoutesFdConfigurationEditForm) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdConfigurationEditForm['default'];
+    }
+  });
+});
+define('dummy/routes/fd-configuration-list-form', ['exports', 'ember-flexberry-designer/routes/fd-configuration-list-form'], function (exports, _emberFlexberryDesignerRoutesFdConfigurationListForm) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdConfigurationListForm['default'];
     }
   });
 });
@@ -22700,6 +22880,462 @@ define("dummy/templates/fd-class-list-form/loading", ["exports"], function (expo
     };
   })());
 });
+define("dummy/templates/fd-configuration-edit-form", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    var child0 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 4,
+                "column": 2
+              },
+              "end": {
+                "line": 12,
+                "column": 2
+              }
+            },
+            "moduleName": "dummy/templates/fd-configuration-edit-form.hbs"
+          },
+          isEmpty: false,
+          arity: 1,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("    ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "ui-message", [], ["type", "error", "closeable", true, "visible", true, "title", "Error occurred", "message", ["subexpr", "@mut", [["get", "currentError", ["loc", [null, [10, 14], [10, 26]]]]], [], []]], ["loc", [null, [5, 4], [11, 6]]]]],
+          locals: ["currentError"],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 3,
+              "column": 0
+            },
+            "end": {
+              "line": 13,
+              "column": 0
+            }
+          },
+          "moduleName": "dummy/templates/fd-configuration-edit-form.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [["block", "each", [["get", "errorMessages", ["loc", [null, [4, 10], [4, 23]]]]], [], 0, null, ["loc", [null, [4, 2], [12, 11]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child1 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 26,
+                "column": 8
+              },
+              "end": {
+                "line": 30,
+                "column": 8
+              }
+            },
+            "moduleName": "dummy/templates/fd-configuration-edit-form.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("          ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("button");
+            dom.setAttribute(el1, "type", "submit");
+            dom.setAttribute(el1, "class", "ui button save-del-button");
+            var el2 = dom.createTextNode("\n            ");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n          ");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var element0 = dom.childAt(fragment, [1]);
+            var morphs = new Array(2);
+            morphs[0] = dom.createElementMorph(element0);
+            morphs[1] = dom.createMorphAt(element0, 1, 1);
+            return morphs;
+          },
+          statements: [["element", "action", ["delete"], [], ["loc", [null, [27, 66], [27, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [28, 12], [28, 54]]]]],
+          locals: [],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 22,
+              "column": 6
+            },
+            "end": {
+              "line": 31,
+              "column": 6
+            }
+          },
+          "moduleName": "dummy/templates/fd-configuration-edit-form.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("        ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("button");
+          dom.setAttribute(el1, "type", "submit");
+          dom.setAttribute(el1, "class", "ui button save-button");
+          var el2 = dom.createTextNode("\n          ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n        ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element1 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createElementMorph(element1);
+          morphs[1] = dom.createMorphAt(element1, 1, 1);
+          morphs[2] = dom.createMorphAt(fragment, 3, 3, contextualElement);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [["element", "action", ["save"], [], ["loc", [null, [23, 60], [23, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [24, 10], [24, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [26, 18], [26, 29]]]]], [], 0, null, ["loc", [null, [26, 8], [30, 19]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["multiple-nodes", "wrong-type"]
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 64,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/fd-configuration-edit-form.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("h3");
+        dom.setAttribute(el1, "class", "ui header");
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("form");
+        dom.setAttribute(el1, "class", "ui form flexberry-vertical-form");
+        dom.setAttribute(el1, "role", "form");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "field");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "sixteen wide");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "field");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "flexberry-edit-panel");
+        var el4 = dom.createTextNode("\n");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("button");
+        dom.setAttribute(el4, "type", "submit");
+        dom.setAttribute(el4, "class", "ui button close-button");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "field");
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "field");
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var element2 = dom.childAt(fragment, [3]);
+        var element3 = dom.childAt(element2, [3, 1]);
+        var element4 = dom.childAt(element3, [3]);
+        var element5 = dom.childAt(element2, [5]);
+        var element6 = dom.childAt(element2, [7]);
+        var morphs = new Array(10);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
+        morphs[1] = dom.createMorphAt(fragment, 2, 2, contextualElement);
+        morphs[2] = dom.createMorphAt(dom.childAt(element2, [1, 1]), 1, 1);
+        morphs[3] = dom.createMorphAt(element3, 1, 1);
+        morphs[4] = dom.createElementMorph(element4);
+        morphs[5] = dom.createMorphAt(element4, 1, 1);
+        morphs[6] = dom.createMorphAt(element5, 1, 1);
+        morphs[7] = dom.createMorphAt(element5, 3, 3);
+        morphs[8] = dom.createMorphAt(element6, 1, 1);
+        morphs[9] = dom.createMorphAt(element6, 3, 3);
+        return morphs;
+      },
+      statements: [["inline", "t", ["forms.fd-configuration-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 70]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [17, 43], [17, 55]]]]], [], []]], ["loc", [null, [17, 6], [17, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [22, 16], [22, 24]]]]], [], 1, null, ["loc", [null, [22, 6], [31, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [32, 59], [32, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [33, 8], [33, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [40, 16], [40, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [41, 13], [41, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [43, 10], [43, 20]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [44, 14], [44, 31]]]], "error", ""], [], ["loc", [null, [44, 10], [44, 43]]]], "label", ["subexpr", "t", ["forms.fd-configuration-edit-form.name-caption"], [], ["loc", [null, [45, 10], [45, 61]]]]], ["loc", [null, [38, 2], [46, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [47, 38], [47, 55]]]]], [], []], "pointing", "pointing"], ["loc", [null, [47, 2], [47, 77]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [53, 16], [53, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [54, 13], [54, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [56, 10], [56, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [57, 14], [57, 38]]]], "error", ""], [], ["loc", [null, [57, 10], [57, 50]]]], "label", ["subexpr", "t", ["forms.fd-configuration-edit-form.description-caption"], [], ["loc", [null, [58, 10], [58, 68]]]]], ["loc", [null, [51, 2], [59, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [60, 38], [60, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [60, 2], [60, 84]]]]],
+      locals: [],
+      templates: [child0, child1]
+    };
+  })());
+});
+define("dummy/templates/fd-configuration-list-form", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["multiple-nodes"]
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 26,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/fd-configuration-list-form.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("h3");
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "class", "row");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(2);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
+        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 1, 1);
+        return morphs;
+      },
+      statements: [["inline", "t", ["forms.fd-configuration-list-form.caption"], [], ["loc", [null, [1, 4], [1, 52]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-configuration", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [5, 20], [5, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [6, 18], [6, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [7, 12], [7, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [10, 12], [10, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [12, 17], [12, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [13, 23], [13, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [14, 10], [14, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [15, 17], [15, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [16, 18], [16, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [17, 22], [17, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [18, 20], [18, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [19, 16], [19, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [20, 17], [20, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [21, 13], [21, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [22, 13], [22, 32]]]], "componentName", "FdConfigurationListForm"], ["loc", [null, [3, 2], [24, 4]]]]],
+      locals: [],
+      templates: []
+    };
+  })());
+});
+define("dummy/templates/fd-configuration-list-form/loading", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "triple-curlies"
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 7,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/fd-configuration-list-form/loading.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "class", "loading-pane");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "loading-message");
+        var el3 = dom.createTextNode("\n    Loading ...\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "spinner");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes() {
+        return [];
+      },
+      statements: [],
+      locals: [],
+      templates: []
+    };
+  })());
+});
 define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     var child0 = (function () {
@@ -30571,6 +31207,14 @@ define('dummy/transforms/guid', ['exports', 'ember-flexberry-data/transforms/gui
     }
   });
 });
+define('dummy/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-access-type', ['exports', 'ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-access-type'], function (exports, _emberFlexberryDesignerTransformsICSSoftSTORMNETAccessType) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerTransformsICSSoftSTORMNETAccessType['default'];
+    }
+  });
+});
 define('dummy/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-execution-variant', ['exports', 'ember-flexberry-data/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-execution-variant'], function (exports, _emberFlexberryDataTransformsICSSoftSTORMNETBusinessAuditObjectsTExecutionVariant) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -30587,19 +31231,11 @@ define('dummy/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-typ
     }
   });
 });
-define('dummy/transforms/new-platform-flexberry-web-designer-access-modifier', ['exports', 'ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-access-modifier'], function (exports, _emberFlexberryDesignerTransformsNewPlatformFlexberryWebDesignerAccessModifier) {
+define('dummy/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode', ['exports', 'ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode'], function (exports, _emberFlexberryDesignerTransformsICSSoftSTORMNETBusinessAuditObjectsTWriteMode) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
-      return _emberFlexberryDesignerTransformsNewPlatformFlexberryWebDesignerAccessModifier['default'];
-    }
-  });
-});
-define('dummy/transforms/new-platform-flexberry-web-designer-access-type', ['exports', 'ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-access-type'], function (exports, _emberFlexberryDesignerTransformsNewPlatformFlexberryWebDesignerAccessType) {
-  Object.defineProperty(exports, 'default', {
-    enumerable: true,
-    get: function get() {
-      return _emberFlexberryDesignerTransformsNewPlatformFlexberryWebDesignerAccessType['default'];
+      return _emberFlexberryDesignerTransformsICSSoftSTORMNETBusinessAuditObjectsTWriteMode['default'];
     }
   });
 });
@@ -30611,19 +31247,19 @@ define('dummy/transforms/new-platform-flexberry-web-designer-business-server-cla
     }
   });
 });
-define('dummy/transforms/new-platform-flexberry-web-designer-parameter-modifier', ['exports', 'ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-parameter-modifier'], function (exports, _emberFlexberryDesignerTransformsNewPlatformFlexberryWebDesignerParameterModifier) {
+define('dummy/transforms/s-t-o-r-m-c-a-s-e-repository-access-modifier', ['exports', 'ember-flexberry-designer/transforms/s-t-o-r-m-c-a-s-e-repository-access-modifier'], function (exports, _emberFlexberryDesignerTransformsSTORMCASERepositoryAccessModifier) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
-      return _emberFlexberryDesignerTransformsNewPlatformFlexberryWebDesignerParameterModifier['default'];
+      return _emberFlexberryDesignerTransformsSTORMCASERepositoryAccessModifier['default'];
     }
   });
 });
-define('dummy/transforms/new-platform-flexberry-web-designer-t-write-mode', ['exports', 'ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-t-write-mode'], function (exports, _emberFlexberryDesignerTransformsNewPlatformFlexberryWebDesignerTWriteMode) {
+define('dummy/transforms/s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier', ['exports', 'ember-flexberry-designer/transforms/s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier'], function (exports, _emberFlexberryDesignerTransformsSTORMCASESTORMNETRepositoryParameterModifier) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
-      return _emberFlexberryDesignerTransformsNewPlatformFlexberryWebDesignerTWriteMode['default'];
+      return _emberFlexberryDesignerTransformsSTORMCASESTORMNETRepositoryParameterModifier['default'];
     }
   });
 });
@@ -30722,7 +31358,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://flexberry-designer-web.azurewebsites.net","backendUrls":{"root":"https://flexberry-designer-web.azurewebsites.net","api":"https://flexberry-designer-web.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://flexberry-designer-web.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.1.0-alpha01+01458ca6"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://flexberry-designer-web.azurewebsites.net","backendUrls":{"root":"https://flexberry-designer-web.azurewebsites.net","api":"https://flexberry-designer-web.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://flexberry-designer-web.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.1.0-alpha01+bae82eeb"});
 }
 
 /* jshint ignore:end */
