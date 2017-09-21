@@ -18,6 +18,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
   moveRightDisabled: 'disabled',
 
   addRightNodeDisabled: 'disabled',
+  editRightNodeDisabled: 'disabled',
   removeRightNodeDisabled: 'disabled',
   addFolderNodeDisabled: 'disabled',
   upRightNodeDisabled: 'disabled',
@@ -156,6 +157,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     let { parentNodes, index } = this._findParentNodesByPath(this, path);
     let parentNodeChilds = parentNodes.length;
     Ember.set(this, 'removeRightNodeDisabled', path.split('.').length > 2 ? '' : 'disabled');
+    Ember.set(this, 'editRightNodeDisabled', '');
     Ember.set(this, 'addFolderNodeDisabled', node.nodes ? '' : 'disabled');
     Ember.set(this, 'upRightNodeDisabled', index > 0 ? '' : 'disabled');
     Ember.set(this, 'downRightNodeDisabled', index < parentNodeChilds - 1 ? '' : 'disabled');
@@ -259,6 +261,9 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     listLeft() {
     },
 
+    editRightNode() {
+    },
+
     removeRightNode() {
       alert('removeRightNode');
       let lastClickedPath = this.lastClicked.right.path;
@@ -267,13 +272,13 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       }
 
       let { parentNodes, index } = this._findParentNodesByPath(this, lastClickedPath);
-      let removedNode = parentNodes[index];
-      /*parentNodes.removeObject(removedNode);*/
+      /*let removedNode = parentNodes[index];
+      parentNodes.removeObject(removedNode);*/
       Ember.set(parentNodes, index.toString(), undefined);
     },
 
     addFolderNode() {
-      let toPath = this.lastClicked.right.path ? this.lastClicked.right.path : 'jsonRightTreeNodes.0';
+      /*let toPath = this.lastClicked.right.path ? this.lastClicked.right.path : 'jsonRightTreeNodes.0';*/
     },
 
     upRightNode() {
