@@ -1,5 +1,8 @@
 ﻿{
   "nameSpace": "NewPlatform.Flexberry.WebDesigner",
   "className": "tWriteMode",
-  "enumObjects": {}
+  "enumObjects": {
+    "Synchronous": null,
+    "Asynchronous": null
+  }
 }
