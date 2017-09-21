@@ -151,6 +151,44 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     return ret;
   },
 
+  _setRightIconState: function(path) {
+    let node = this._findNodeByPath(this, path);
+    let { parentNodes, index } = this._findParentNodesByPath(this, path);
+    let parentNodeChilds = parentNodes.length;
+    Ember.set(this, 'removeRightNodeDisabled', path.split('.').length > 2 ? '' : 'disabled');
+    Ember.set(this, 'addFolderNodeDisabled', node.nodes ? '' : 'disabled');
+    Ember.set(this, 'upRightNodeDisabled', index > 0 ? '' : 'disabled');
+    Ember.set(this, 'downRightNodeDisabled', index < parentNodeChilds - 1 ? '' : 'disabled');
+  },
+
+  _findPathOfNode(path, root, node) {
+    if (node === root) {
+      return path;
+    }
+    if (!root.nodes) {
+      return false;
+    }
+    for (let i in root.nodes) {
+      let subNode = root.nodes[i];
+      let subPath=this._findPathOfNode(path + '.nodes.' + i.toString(), subNode, node);
+      if (subPath !== false) {
+        return subPath;
+      }
+    }
+
+    return false;
+  },
+
+  _findRighTreetPathOfNode(node) {
+    let ret = this._findPathOfNode("jsonRightTreeNodes.nodes.0", this.jsonRightTreeNodes[0], node);
+    return ret;
+  },
+
+  _findLeftTreePathOfNode(node) {
+    let ret = this._findPathOfNode("jsonLeftTreeNodes.nodes.0", this.jsonLeftTreeNodes[0], node);
+    return ret;
+  },
+
   _isLeaf: function(element) {
     let ret = element.children.length > 0 && element.children[0].style.visibility === 'hidden';
     return ret;
@@ -180,13 +218,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
           Ember.set(this, 'addRightNodeDisabled', '');
         } else if (clickedPath.substr(0, 9) === 'jsonRight') {
           lastClicked = this.lastClicked.right;
-          let node = this._findNodeByPath(this, clickedPath);
-          let { parentNodes, index } = this._findParentNodesByPath(this, clickedPath);
-          let parentNodeChilds = parentNodes.length;
-          Ember.set(this, 'removeRightNodeDisabled', clickedPath.split('.').length > 2 ? '' : 'disabled');
-          Ember.set(this, 'addFolderNodeDisabled', node.nodes ? '' : 'disabled');
-          Ember.set(this, 'upRightNodeDisabled', index > 0 ? '' : 'disabled');
-          Ember.set(this, 'downRightNodeDisabled', index < parentNodeChilds - 1 ? '' : 'disabled');
+          this._setRightIconState(clickedPath);
         }
 
         if (lastClicked) {
