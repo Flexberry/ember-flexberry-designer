@@ -4,6 +4,20 @@
         "version": "develop"
     },
     "files": {
+        "addon/components/visual-edit-control.js": {
+            "name": "addon/components/visual-edit-control.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/components/visual-edit-form.js": {
+            "name": "addon/components/visual-edit-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/controllers/fd-association-list-form.js": {
             "name": "addon/controllers/fd-association-list-form.js",
             "modules": {},
@@ -737,6 +751,104 @@
     "classes": {},
     "elements": {},
     "classitems": [
+        {
+            "file": "addon/components/visual-edit-control.js",
+            "line": 5,
+            "description": "Label for field.",
+            "itemtype": "property",
+            "name": "label",
+            "type": "String",
+            "class": ""
+        },
+        {
+            "file": "addon/components/visual-edit-control.js",
+            "line": 13,
+            "description": "Input value.",
+            "itemtype": "property",
+            "name": "value",
+            "type": "String",
+            "class": ""
+        },
+        {
+            "file": "addon/components/visual-edit-control.js",
+            "line": 21,
+            "description": "Type of html input.",
+            "itemtype": "property",
+            "name": "type",
+            "type": "String",
+            "default": "'text'",
+            "class": ""
+        },
+        {
+            "file": "addon/components/visual-edit-control.js",
+            "line": 30,
+            "description": "Dialog's 'name' textbox caption.",
+            "itemtype": "property",
+            "name": "nameTextboxCaption",
+            "type": "String",
+            "default": "t('components.fd-visual-control.name')",
+            "class": ""
+        },
+        {
+            "file": "addon/components/visual-edit-control.js",
+            "line": 39,
+            "description": "Dialog's 'name' textbox caption.",
+            "itemtype": "property",
+            "name": "typeDropdownCaption",
+            "type": "String",
+            "default": "t('components.fd-visual-control.type')",
+            "class": ""
+        },
+        {
+            "file": "addon/components/visual-edit-control.js",
+            "line": 48,
+            "description": "Dialog's 'name' textbox caption.",
+            "itemtype": "property",
+            "name": "isNullCheckboxCaption",
+            "type": "String",
+            "default": "t('components.fd-visual-control.isNull')",
+            "class": ""
+        },
+        {
+            "file": "addon/components/visual-edit-control.js",
+            "line": 57,
+            "description": "Dialog's 'name' textbox caption.",
+            "itemtype": "property",
+            "name": "defaultValueTextboxCaption",
+            "type": "String",
+            "default": "t('components.fd-visual-control.defaultValue')",
+            "class": ""
+        },
+        {
+            "file": "addon/components/visual-edit-control.js",
+            "line": 66,
+            "description": "Dialog's 'name' textbox caption.",
+            "itemtype": "property",
+            "name": "readonlyCheckboxCaption",
+            "type": "String",
+            "default": "t('components.fd-visual-control.readonly')",
+            "class": ""
+        },
+        {
+            "file": "addon/components/visual-edit-form.js",
+            "line": 4,
+            "description": "Flag: indicates whether to show creation button at toolbar.",
+            "itemtype": "property",
+            "name": "createNewButton",
+            "type": "Boolean",
+            "default": "true",
+            "class": ""
+        },
+        {
+            "file": "addon/components/visual-edit-form.js",
+            "line": 13,
+            "description": "Flag: indicates whether to show delete button at toolbar.",
+            "itemtype": "property",
+            "name": "deleteButton",
+            "type": "Boolean",
+            "default": "true",
+            "class": ""
+        },
         {
             "file": "addon/controllers/fd-association-list-form.js",
             "line": 4,

@@ -308,6 +308,348 @@ define('dummy/tests/helpers/validate-properties', ['exports', 'ember', 'ember-qu
     testPropertyValues(propertyName, values, false, context);
   }
 });
+define('dummy/tests/integration/components/visual-edit-control-test', ['exports', 'ember', 'ember-i18n/services/i18n', 'ember-flexberry/locales/ru/translations', 'ember-flexberry/locales/en/translations', 'ember-qunit'], function (exports, _ember, _emberI18nServicesI18n, _emberFlexberryLocalesRuTranslations, _emberFlexberryLocalesEnTranslations, _emberQunit) {
+
+  (0, _emberQunit.moduleForComponent)('visual-edit-control', 'Integration | Component | visual edit control', {
+    integration: true,
+
+    beforeEach: function beforeEach() {
+      this.register('locale:ru/translations', _emberFlexberryLocalesRuTranslations['default']);
+      this.register('locale:en/translations', _emberFlexberryLocalesEnTranslations['default']);
+      this.register('service:i18n', _emberI18nServicesI18n['default']);
+
+      this.inject.service('i18n', { as: 'i18n' });
+      _ember['default'].Component.reopen({
+        i18n: _ember['default'].inject.service('i18n')
+      });
+
+      // Set 'ru' as initial locale.
+      this.set('i18n.locale', 'ru');
+    }
+  });
+
+  (0, _emberQunit.test)('it renders', function (assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
+
+    this.render(_ember['default'].HTMLBars.template((function () {
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.4.6',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 1,
+              'column': 23
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [['content', 'visual-edit-control', ['loc', [null, [1, 0], [1, 23]]]]],
+        locals: [],
+        templates: []
+      };
+    })()));
+
+    assert.notEqual(this.$().text().trim(), '');
+
+    // Template block usage:
+    this.render(_ember['default'].HTMLBars.template((function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            'fragmentReason': false,
+            'revision': 'Ember@2.4.6',
+            'loc': {
+              'source': null,
+              'start': {
+                'line': 2,
+                'column': 4
+              },
+              'end': {
+                'line': 4,
+                'column': 4
+              }
+            }
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode('      template block text\n');
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes() {
+            return [];
+          },
+          statements: [],
+          locals: [],
+          templates: []
+        };
+      })();
+
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.4.6',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 5,
+              'column': 2
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode('\n');
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode('  ');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+          return morphs;
+        },
+        statements: [['block', 'visual-edit-control', [], [], 0, null, ['loc', [null, [2, 4], [4, 28]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })()));
+
+    assert.notEqual(this.$().text().trim(), 'template block text');
+  });
+});
+define('dummy/tests/integration/components/visual-edit-control-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - integration/components');
+  test('integration/components/visual-edit-control-test.js should pass jscs', function () {
+    ok(true, 'integration/components/visual-edit-control-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/integration/components/visual-edit-control-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/visual-edit-control-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/visual-edit-control-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/integration/components/visual-edit-form-test', ['exports', 'ember', 'ember-i18n/services/i18n', 'ember-flexberry/locales/ru/translations', 'ember-flexberry/locales/en/translations', 'ember-qunit'], function (exports, _ember, _emberI18nServicesI18n, _emberFlexberryLocalesRuTranslations, _emberFlexberryLocalesEnTranslations, _emberQunit) {
+
+  (0, _emberQunit.moduleForComponent)('visual-edit-form', 'Integration | Component | visual edit form', {
+    integration: true,
+
+    beforeEach: function beforeEach() {
+      this.register('locale:ru/translations', _emberFlexberryLocalesRuTranslations['default']);
+      this.register('locale:en/translations', _emberFlexberryLocalesEnTranslations['default']);
+      this.register('service:i18n', _emberI18nServicesI18n['default']);
+
+      this.inject.service('i18n', { as: 'i18n' });
+      _ember['default'].Component.reopen({
+        i18n: _ember['default'].inject.service('i18n')
+      });
+
+      // Set 'ru' as initial locale.
+      this.set('i18n.locale', 'ru');
+    }
+  });
+
+  (0, _emberQunit.test)('it renders', function (assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
+
+    this.render(_ember['default'].HTMLBars.template((function () {
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.4.6',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 1,
+              'column': 20
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [['content', 'visual-edit-form', ['loc', [null, [1, 0], [1, 20]]]]],
+        locals: [],
+        templates: []
+      };
+    })()));
+
+    assert.equal(this.$().text().trim(), '');
+
+    // Template block usage:
+    this.render(_ember['default'].HTMLBars.template((function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            'fragmentReason': false,
+            'revision': 'Ember@2.4.6',
+            'loc': {
+              'source': null,
+              'start': {
+                'line': 2,
+                'column': 4
+              },
+              'end': {
+                'line': 4,
+                'column': 4
+              }
+            }
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode('      template block text\n');
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes() {
+            return [];
+          },
+          statements: [],
+          locals: [],
+          templates: []
+        };
+      })();
+
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.4.6',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 5,
+              'column': 2
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode('\n');
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode('  ');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+          return morphs;
+        },
+        statements: [['block', 'visual-edit-form', [], [], 0, null, ['loc', [null, [2, 4], [4, 25]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })()));
+
+    assert.notEqual(this.$().text().trim(), 'template block text');
+  });
+});
+define('dummy/tests/integration/components/visual-edit-form-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - integration/components');
+  test('integration/components/visual-edit-form-test.js should pass jscs', function () {
+    ok(true, 'integration/components/visual-edit-form-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/integration/components/visual-edit-form-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/visual-edit-form-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/visual-edit-form-test.js should pass jshint.');
+  });
+});
 define('dummy/tests/locales/en/translations.jscs-test', ['exports'], function (exports) {
   'use strict';
 
@@ -3371,6 +3713,35 @@ define('dummy/tests/unit/routes/fd-view-list-form-test.jshint', ['exports'], fun
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/routes/fd-view-list-form-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/unit/routes/fd-visual-edit-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('route:fd-visual-edit-form', 'Unit | Route | new platform flexberry web designer visual edit form', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var route = this.subject();
+    assert.ok(route);
+  });
+});
+define('dummy/tests/unit/routes/fd-visual-edit-form-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/routes');
+  test('unit/routes/fd-visual-edit-form-test.js should pass jscs', function () {
+    ok(true, 'unit/routes/fd-visual-edit-form-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/routes/fd-visual-edit-form-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/routes/fd-visual-edit-form-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/routes/fd-visual-edit-form-test.js should pass jshint.');
   });
 });
 define('dummy/tests/unit/serializers/fd-ad-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
