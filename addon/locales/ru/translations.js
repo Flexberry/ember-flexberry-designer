@@ -17,6 +17,7 @@ import FdInheritanceEditFormForm from './forms/fd-inheritance-edit-form';
 import FdStageEditFormForm from './forms/fd-stage-edit-form';
 import FdSystemEditFormForm from './forms/fd-system-edit-form';
 import FdViewEditFormForm from './forms/fd-view-edit-form';
+import FdVisualEditFormForm from './forms/fd-visual-edit-form';
 import FdGenerationProcessForm from './forms/fd-generation-process-form';
 import FdAdModel from './models/fd-ad';
 import FdAggregationModel from './models/fd-aggregation';
@@ -80,6 +81,8 @@ import FdStdModel from './models/fd-std';
 import FdSubsystemModel from './models/fd-subsystem';
 import FdUcdModel from './models/fd-ucd';
 import FdViewModel from './models/fd-view';
+import FdVisualControlModel from './models/fd-visual-control';
+import FdVisualControlComponent from './components/fd-visual-control';
 
 const translations = {};
 Ember.$.extend(true, translations, EmberFlexberryTranslations);
@@ -148,6 +151,7 @@ Ember.$.extend(true, translations, {
     'fd-subsystem': FdSubsystemModel,
     'fd-ucd': FdUcdModel,
     'fd-view': FdViewModel,
+    'fd-visual-control': FdVisualControlModel,
   },
 
   forms: {
@@ -168,8 +172,14 @@ Ember.$.extend(true, translations, {
     'fd-stage-edit-form': FdStageEditFormForm,
     'fd-system-edit-form': FdSystemEditFormForm,
     'fd-view-edit-form': FdViewEditFormForm,
+    'fd-visual-edit-form': FdVisualEditFormForm,
     'fd-generation-process-form': FdGenerationProcessForm
   },
+
+  components: {
+    'fd-visual-control': FdVisualControlComponent
+  }
+
 });
 
 export default translations;

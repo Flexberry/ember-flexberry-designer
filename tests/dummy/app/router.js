@@ -47,6 +47,8 @@ Router.map(function () {
   { path: 'fd-view-edit-form/:id' });
   this.route('fd-view-edit-form.new',
   { path: 'fd-view-edit-form/new' });
+  this.route('fd-visual-edit-form',
+  { path: 'fd-visual-edit-form' });
   this.route('fd-generation-process-form');
 });
 
