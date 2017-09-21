@@ -1,15 +1,16 @@
 import Ember from 'ember';
 import { Query } from 'ember-flexberry-data';
-/*const { Builder, FilterOperator} = Query;*/
-const { Builder } = Query;
+const { Builder, FilterOperator } = Query;
 
 export default Ember.Route.extend({
 
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
   model: function() {
+    let stagePk = this.get('currentProjectContext').getCurrentStagePk();
     let builder = new  Builder(this.store, 'fd-dev-class').
-    select('id,name,description,stereotype,containersStr,formViews,formViews.view,formViews.view.class,formViews.view.class.id,stage.id');
+    select('id,name,description,stereotype,containersStr,formViews,formViews.view,formViews.view.class,formViews.view.class.id').
+    where('stage.id', FilterOperator.Eq, stagePk);
     let promise = this.store.query('fd-dev-class', builder.build());
     return promise;
   },
@@ -20,14 +21,8 @@ export default Ember.Route.extend({
     let leftParents = [];
     let leftLeaves = [];
     let n = model.get('length');
-    let stagePk = this.get('currentProjectContext').getCurrentStagePk();
     for (let i = 0; i < n; i++) {
       let record = model.nextObject(i);
-      let stageId = record.get('stage.id');
-      if (stageId !== stagePk) {
-        continue;
-      }
-
       switch (record.get('stereotype')) {
         case null:
           leftParents.push({ id: record.get('id'), name: record.get('name'), description: record.get('description') });
