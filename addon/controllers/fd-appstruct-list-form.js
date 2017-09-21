@@ -282,6 +282,8 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       inputElement.lastClickedPath = lastClickedPath;
       inputElement.setAttribute('value', caption);
       inputElement.style.display = 'inline-block';
+      inputElement.style.position = 'absolute';
+      inputElement.style.padding = '6px 0px 0px 2px';
       inputElement.onblur = function (event) {
         let inputElement = event.target;
         let caption = inputElement.value;
