@@ -1,0 +1,14 @@
+﻿{
+  "propertyLookup": [],
+  "external": false,
+  "caption": "Configuration",
+  "name": "FdConfigurationEditForm",
+  "className": "ConfigurationEditForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-configuration",
+      "modelProjection": "EditFormView"
+    }
+  ]
+}

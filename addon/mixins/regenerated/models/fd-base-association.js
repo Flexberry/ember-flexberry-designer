@@ -4,7 +4,7 @@ import { Projection } from 'ember-flexberry-data';
 export let Model = Ember.Mixin.create({
   endMultiplicity: DS.attr('string'),
   endRole: DS.attr('string'),
-  endRoleAccessModifier: DS.attr('new-platform-flexberry-web-designer-access-modifier'),
+  endRoleAccessModifier: DS.attr('s-t-o-r-m-c-a-s-e-repository-access-modifier'),
   endRoleStored: DS.attr('boolean'),
   /**
     Non-stored property.
@@ -56,7 +56,7 @@ export let Model = Ember.Mixin.create({
   },
   startMultiplicity: DS.attr('string'),
   startRole: DS.attr('string'),
-  startRoleAccessModifier: DS.attr('new-platform-flexberry-web-designer-access-modifier'),
+  startRoleAccessModifier: DS.attr('s-t-o-r-m-c-a-s-e-repository-access-modifier'),
   startRoleStored: DS.attr('boolean'),
   /**
     Non-stored property.

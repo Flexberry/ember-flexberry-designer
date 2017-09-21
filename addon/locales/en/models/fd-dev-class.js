@@ -28,7 +28,7 @@ export default {
         caption: 'stereotype'
       },
       attributes: {
-        caption: 'attributes',
+        __caption__: 'attributes',
         name: {
           caption: 'name'
         },
@@ -529,6 +529,9 @@ export default {
       storage: {
         caption: 'storage'
       },
+      publishName: {
+        caption: 'publishName'
+      },
       stored: {
         caption: 'stored'
       },
@@ -575,6 +578,9 @@ export default {
         },
         storage: {
           caption: 'storage'
+        },
+        publishName: {
+          caption: 'publishName'
         },
         hint: {
           caption: 'hint'
@@ -742,7 +748,7 @@ export default {
         }
       },
       methods: {
-        caption: 'methods',
+        __caption__: 'methods',
         accessModifier: {
           caption: 'accessModifier'
         },
@@ -807,7 +813,7 @@ export default {
         caption: 'namespacePostfix'
       },
       attributes: {
-        caption: 'attributes',
+        __caption__: 'attributes',
         name: {
           caption: 'name'
         },
@@ -1144,7 +1150,7 @@ export default {
         }
       },
       methods: {
-        caption: 'methods',
+        __caption__: 'methods',
         accessModifier: {
           caption: 'accessModifier'
         },
@@ -1266,7 +1272,7 @@ export default {
         }
       },
       methods: {
-        caption: 'methods',
+        __caption__: 'methods',
         accessModifier: {
           caption: 'accessModifier'
         },
@@ -1506,7 +1512,7 @@ export default {
         }
       },
       methods: {
-        caption: 'methods',
+        __caption__: 'methods',
         accessModifier: {
           caption: 'accessModifier'
         },
@@ -1599,6 +1605,9 @@ export default {
       },
       storage: {
         caption: 'storage'
+      },
+      publishName: {
+        caption: 'publishName'
       },
       storeInstancesInType: {
         caption: 'storeInstancesInType'
@@ -1742,7 +1751,7 @@ export default {
         caption: 'writeSessions'
       },
       attributes: {
-        caption: 'attributes',
+        __caption__: 'attributes',
         accessModifier: {
           caption: 'accessModifier'
         },
@@ -1797,6 +1806,9 @@ export default {
         storage: {
           caption: 'storage'
         },
+        publishName: {
+          caption: 'publishName'
+        },
         stored: {
           caption: 'stored'
         },
@@ -1817,7 +1829,7 @@ export default {
         }
       },
       methods: {
-        caption: 'methods',
+        __caption__: 'methods',
         accessModifier: {
           caption: 'accessModifier'
         },
@@ -1861,7 +1873,7 @@ export default {
           caption: 'nameStr'
         },
         parameters: {
-          caption: 'parameters',
+          __caption__: 'parameters',
           caption: {
           caption: 'caption'
         },

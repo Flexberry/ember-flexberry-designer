@@ -3,6 +3,7 @@ import EmberFlexberryTranslations from 'ember-flexberry/locales/ru/translations'
 
 import FdAssociationListFormForm from './forms/fd-association-list-form';
 import FdClassListFormForm from './forms/fd-class-list-form';
+import FdConfigurationListFormForm from './forms/fd-configuration-list-form';
 import FdDiagramListFormForm from './forms/fd-diagram-list-form';
 import FdInheritanceListFormForm from './forms/fd-inheritance-list-form';
 import FdStageListFormForm from './forms/fd-stage-list-form';
@@ -10,11 +11,13 @@ import FdSystemListFormForm from './forms/fd-system-list-form';
 import FdViewListFormForm from './forms/fd-view-list-form';
 import FdAssociationEditFormForm from './forms/fd-association-edit-form';
 import FdClassEditFormForm from './forms/fd-class-edit-form';
+import FdConfigurationEditFormForm from './forms/fd-configuration-edit-form';
 import FdDiagramEditFormForm from './forms/fd-diagram-edit-form';
 import FdInheritanceEditFormForm from './forms/fd-inheritance-edit-form';
 import FdStageEditFormForm from './forms/fd-stage-edit-form';
 import FdSystemEditFormForm from './forms/fd-system-edit-form';
 import FdViewEditFormForm from './forms/fd-view-edit-form';
+import FdGenerationProcessForm from './forms/fd-generation-process-form';
 import FdAdModel from './models/fd-ad';
 import FdAggregationModel from './models/fd-aggregation';
 import FdAssociationModel from './models/fd-association';
@@ -150,6 +153,7 @@ Ember.$.extend(true, translations, {
   forms: {
     'fd-association-list-form': FdAssociationListFormForm,
     'fd-class-list-form': FdClassListFormForm,
+    'fd-configuration-list-form': FdConfigurationListFormForm,
     'fd-diagram-list-form': FdDiagramListFormForm,
     'fd-inheritance-list-form': FdInheritanceListFormForm,
     'fd-stage-list-form': FdStageListFormForm,
@@ -157,11 +161,13 @@ Ember.$.extend(true, translations, {
     'fd-view-list-form': FdViewListFormForm,
     'fd-association-edit-form': FdAssociationEditFormForm,
     'fd-class-edit-form': FdClassEditFormForm,
+    'fd-configuration-edit-form': FdConfigurationEditFormForm,
     'fd-diagram-edit-form': FdDiagramEditFormForm,
     'fd-inheritance-edit-form': FdInheritanceEditFormForm,
     'fd-stage-edit-form': FdStageEditFormForm,
     'fd-system-edit-form': FdSystemEditFormForm,
     'fd-view-edit-form': FdViewEditFormForm,
+    'fd-generation-process-form': FdGenerationProcessForm
   },
 });
 

@@ -87,5 +87,6 @@
     }
   ],
   "stored": false,
-  "offline": true
+  "offline": true,
+  "external": false
 }

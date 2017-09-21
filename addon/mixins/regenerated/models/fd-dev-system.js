@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import DS from 'ember-data';
 import { Projection } from 'ember-flexberry-data';
 export let Model = Ember.Mixin.create({
   getValidations: function () {

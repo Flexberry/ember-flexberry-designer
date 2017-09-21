@@ -7,10 +7,10 @@ moduleForModel('fd-case-property', 'Unit | Serializer | fd-case-property', {
     'transform:file',
     'transform:decimal',
 
-    'transform:new-platform-flexberry-web-designer-access-modifier',
-    'transform:new-platform-flexberry-web-designer-access-type',
-    'transform:new-platform-flexberry-web-designer-parameter-modifier',
-    'transform:new-platform-flexberry-web-designer-t-write-mode',
+    'transform:i-c-s-soft-s-t-o-r-m-n-e-t-access-type',
+    'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode',
+    'transform:s-t-o-r-m-c-a-s-e-repository-access-modifier',
+    'transform:s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier',
 
     'transform:new-platform-flexberry-web-designer-business-server-class',
 

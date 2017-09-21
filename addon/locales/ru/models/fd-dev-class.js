@@ -28,7 +28,7 @@ export default {
         caption: ''
       },
       attributes: {
-        caption: '',
+        __caption__: '',
         name: {
           caption: ''
         },
@@ -529,6 +529,9 @@ export default {
       storage: {
         caption: ''
       },
+      publishName: {
+        caption: ''
+      },
       stored: {
         caption: ''
       },
@@ -536,7 +539,7 @@ export default {
         caption: ''
       },
       updateAudit: {
-        caption: 'Вести аудит операции изменения\''
+        caption: 'Вести аудит операции изменения'
       },
       updateAuditViewName: {
         caption: 'Имя представления для аудита операции изменения'
@@ -574,6 +577,9 @@ export default {
           caption: 'DataService Expression'
         },
         storage: {
+          caption: ''
+        },
+        publishName: {
           caption: ''
         },
         hint: {
@@ -742,7 +748,7 @@ export default {
         }
       },
       methods: {
-        caption: '',
+        __caption__: '',
         accessModifier: {
           caption: ''
         },
@@ -807,7 +813,7 @@ export default {
         caption: ''
       },
       attributes: {
-        caption: '',
+        __caption__: '',
         name: {
           caption: ''
         },
@@ -1144,7 +1150,7 @@ export default {
         }
       },
       methods: {
-        caption: '',
+        __caption__: '',
         accessModifier: {
           caption: ''
         },
@@ -1266,7 +1272,7 @@ export default {
         }
       },
       methods: {
-        caption: '',
+        __caption__: '',
         accessModifier: {
           caption: ''
         },
@@ -1506,7 +1512,7 @@ export default {
         }
       },
       methods: {
-        caption: '',
+        __caption__: '',
         accessModifier: {
           caption: ''
         },
@@ -1598,6 +1604,9 @@ export default {
         caption: ''
       },
       storage: {
+        caption: ''
+      },
+      publishName: {
         caption: ''
       },
       storeInstancesInType: {
@@ -1742,7 +1751,7 @@ export default {
         caption: ''
       },
       attributes: {
-        caption: '',
+        __caption__: '',
         accessModifier: {
           caption: 'AccessModifier'
         },
@@ -1797,6 +1806,9 @@ export default {
         storage: {
           caption: 'Storage'
         },
+        publishName: {
+          caption: 'PublishName'
+        },
         stored: {
           caption: 'Stored'
         },
@@ -1817,7 +1829,7 @@ export default {
         }
       },
       methods: {
-        caption: '',
+        __caption__: '',
         accessModifier: {
           caption: 'AccessModifier'
         },
@@ -1861,7 +1873,7 @@ export default {
           caption: 'NameStr'
         },
         parameters: {
-          caption: '',
+          __caption__: '',
           caption: {
           caption: 'Caption'
         },

@@ -21,6 +21,11 @@ export default Ember.Controller.extend({
           caption: i18n.t('forms.application.sitemap.root.caption'),
           title: i18n.t('forms.application.sitemap.root.title'),
           children: [{
+            link: 'fd-configuration-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.title'),
+            children: null
+          }, {
             link: 'fd-stage-list-form',
             caption: i18n.t('forms.application.sitemap.root.fd-stage-list-form.caption'),
             title: i18n.t('forms.application.sitemap.root.fd-stage-list-form.title'),
@@ -54,6 +59,12 @@ export default Ember.Controller.extend({
             link: 'fd-view-list-form',
             caption: i18n.t('forms.application.sitemap.root.fd-view-list-form.caption'),
             title: i18n.t('forms.application.sitemap.root.fd-view-list-form.title'),
+            children: null
+          },
+          {
+            link: 'fd-generation-process-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-generation-process-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-generation-process-form.title'),
             children: null
           }]
         }

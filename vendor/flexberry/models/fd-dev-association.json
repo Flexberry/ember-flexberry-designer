@@ -98,88 +98,100 @@
           "index": 1
         },
         {
-          "name": "startMultiplicity",
+          "name": "startRolePublishName",
           "caption": "",
           "hidden": false,
           "index": 2
         },
         {
-          "name": "startRoleAccessModifier",
+          "name": "startMultiplicity",
           "caption": "",
           "hidden": false,
           "index": 3
         },
         {
-          "name": "startRoleStored",
+          "name": "startRoleAccessModifier",
           "caption": "",
           "hidden": false,
           "index": 4
         },
         {
-          "name": "endRole",
+          "name": "startRoleStored",
           "caption": "",
           "hidden": false,
           "index": 5
         },
         {
-          "name": "endMultiplicity",
+          "name": "endRole",
           "caption": "",
           "hidden": false,
           "index": 6
         },
         {
-          "name": "autoGenerateTypeUsage",
+          "name": "endRolePublishName",
           "caption": "",
           "hidden": false,
           "index": 7
         },
         {
-          "name": "typeUsage",
+          "name": "endMultiplicity",
           "caption": "",
           "hidden": false,
           "index": 8
         },
         {
-          "name": "storage",
+          "name": "autoGenerateTypeUsage",
           "caption": "",
           "hidden": false,
           "index": 9
         },
         {
-          "name": "autoStoreMasterDisabled",
+          "name": "typeUsage",
           "caption": "",
           "hidden": false,
           "index": 10
         },
         {
-          "name": "pBMasterCustomAttributes",
+          "name": "storage",
           "caption": "",
           "hidden": false,
           "index": 11
         },
         {
-          "name": "pBMasterGetStart",
+          "name": "autoStoreMasterDisabled",
           "caption": "",
           "hidden": false,
           "index": 12
         },
         {
-          "name": "pBMasterGetEnd",
+          "name": "pBMasterCustomAttributes",
           "caption": "",
           "hidden": false,
           "index": 13
         },
         {
-          "name": "pBMasterSetStart",
+          "name": "pBMasterGetStart",
           "caption": "",
           "hidden": false,
           "index": 14
         },
         {
-          "name": "pBMasterSetEnd",
+          "name": "pBMasterGetEnd",
           "caption": "",
           "hidden": false,
           "index": 15
+        },
+        {
+          "name": "pBMasterSetStart",
+          "caption": "",
+          "hidden": false,
+          "index": 16
+        },
+        {
+          "name": "pBMasterSetEnd",
+          "caption": "",
+          "hidden": false,
+          "index": 17
         }
       ],
       "belongsTo": [],
@@ -423,94 +435,106 @@
           "index": 12
         },
         {
+          "name": "startRolePublishName",
+          "caption": "StartRolePublishName",
+          "hidden": true,
+          "index": 13
+        },
+        {
+          "name": "endRolePublishName",
+          "caption": "EndRolePublishName",
+          "hidden": true,
+          "index": 14
+        },
+        {
           "name": "endMultiplicity",
           "caption": "EndMultiplicity",
           "hidden": true,
-          "index": 13
+          "index": 15
         },
         {
           "name": "endRole",
           "caption": "EndRole",
           "hidden": true,
-          "index": 14
+          "index": 16
         },
         {
           "name": "endRoleAccessModifier",
           "caption": "EndRoleAccessModifier",
           "hidden": true,
-          "index": 15
+          "index": 17
         },
         {
           "name": "endRoleStored",
           "caption": "EndRoleStored",
           "hidden": true,
-          "index": 16
+          "index": 18
         },
         {
           "name": "endRoleStr",
           "caption": "EndRoleStr",
           "hidden": true,
-          "index": 17
+          "index": 19
         },
         {
           "name": "notNullStart",
           "caption": "NotNullStart",
           "hidden": true,
-          "index": 18
+          "index": 20
         },
         {
           "name": "startMultiplicity",
           "caption": "StartMultiplicity",
           "hidden": true,
-          "index": 19
+          "index": 21
         },
         {
           "name": "startRole",
           "caption": "StartRole",
           "hidden": true,
-          "index": 20
+          "index": 22
         },
         {
           "name": "startRoleAccessModifier",
           "caption": "StartRoleAccessModifier",
           "hidden": true,
-          "index": 21
+          "index": 23
         },
         {
           "name": "startRoleStored",
           "caption": "StartRoleStored",
           "hidden": true,
-          "index": 22
+          "index": 24
         },
         {
           "name": "startRoleStr",
           "caption": "StartRoleStr",
           "hidden": true,
-          "index": 23
+          "index": 25
         },
         {
           "name": "referenceCount",
           "caption": "ReferenceCount",
           "hidden": true,
-          "index": 24
+          "index": 26
         },
         {
           "name": "name",
           "caption": "Name",
           "hidden": true,
-          "index": 25
+          "index": 27
         },
         {
           "name": "description",
           "caption": "Description",
           "hidden": true,
-          "index": 26
+          "index": 28
         },
         {
           "name": "nameStr",
           "caption": "NameStr",
           "hidden": true,
-          "index": 27
+          "index": 29
         }
       ],
       "belongsTo": [
@@ -521,7 +545,7 @@
           "belongsTo": [],
           "hidden": true,
           "attrs": [],
-          "index": 28,
+          "index": 30,
           "caption": "EndClass",
           "name": "endClass",
           "relatedTo": "fd-class",
@@ -534,7 +558,7 @@
           "belongsTo": [],
           "hidden": true,
           "attrs": [],
-          "index": 29,
+          "index": 31,
           "caption": "StartClass",
           "name": "startClass",
           "relatedTo": "fd-class",
@@ -624,5 +648,6 @@
     }
   ],
   "stored": true,
-  "offline": true
+  "offline": true,
+  "external": false
 }

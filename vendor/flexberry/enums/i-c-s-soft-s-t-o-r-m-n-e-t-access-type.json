@@ -2,9 +2,9 @@
   "nameSpace": "NewPlatform.Flexberry.WebDesigner",
   "className": "AccessType",
   "enumObjects": {
-    "none": "",
-    "this": "",
-    "base": "",
-    "this_and_base": ""
+    "none": null,
+    "this": null,
+    "base": null,
+    "this_and_base": null
   }
 }

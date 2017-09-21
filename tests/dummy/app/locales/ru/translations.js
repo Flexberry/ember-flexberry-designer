@@ -77,6 +77,11 @@ Ember.$.extend(true, translations, {
         root: {
           caption: 'Root',
           title: 'Root',
+          'fd-configuration-list-form': {
+            caption: 'Configurations',
+            title: '',
+
+          },
           'fd-stage-list-form': {
             caption: 'Stages',
             title: '',
@@ -111,6 +116,10 @@ Ember.$.extend(true, translations, {
             caption: 'Views',
             title: '',
 
+          },
+          'fd-generation-process-form': {
+            caption: 'Генерация',
+            title: '',
           }
         },
       }

@@ -23,7 +23,7 @@
     },
     {
       "name": "endRoleAccessModifier",
-      "type": "new-platform-flexberry-web-designer-access-modifier",
+      "type": "s-t-o-r-m-c-a-s-e-repository-access-modifier",
       "flexberryType": "AccessModifier",
       "notNull": false,
       "defaultValue": "Public",
@@ -71,7 +71,7 @@
     },
     {
       "name": "startRoleAccessModifier",
-      "type": "new-platform-flexberry-web-designer-access-modifier",
+      "type": "s-t-o-r-m-c-a-s-e-repository-access-modifier",
       "flexberryType": "AccessModifier",
       "notNull": false,
       "defaultValue": "Public",
@@ -242,5 +242,6 @@
     }
   ],
   "stored": true,
-  "offline": true
+  "offline": true,
+  "external": false
 }
