@@ -226,7 +226,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.containersCompute &amp;&amp; typeof this.containersCompute === &#x27;function&#x27;) ? this.containersCompute() : null;
     this.set(&#x27;containers&#x27;, result);
   },
-  containersStr: DS.attr(&#x27;string&#x27;),
+  containersStr: DS.attr(&#x27;containers-tree&#x27;),
   /**
     Non-stored property.
 

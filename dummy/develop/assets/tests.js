@@ -790,6 +790,36 @@ define('dummy/tests/test-helper.jshint', ['exports'], function (exports) {
     assert.ok(true, 'test-helper.js should pass jshint.');
   });
 });
+define('dummy/tests/unit/controllers/fd-appstruct-list-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('controller:fd-appstruct-list-form', 'Unit | Controller | new platform flexberry web designer appstruct list form', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  // Replace this with your real tests.
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var controller = this.subject();
+    assert.ok(controller);
+  });
+});
+define('dummy/tests/unit/controllers/fd-appstruct-list-form-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/controllers');
+  test('unit/controllers/fd-appstruct-list-form-test.js should pass jscs', function () {
+    ok(true, 'unit/controllers/fd-appstruct-list-form-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/controllers/fd-appstruct-list-form-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/controllers/fd-appstruct-list-form-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/controllers/fd-appstruct-list-form-test.js should pass jshint.');
+  });
+});
 define('dummy/tests/unit/controllers/fd-association-edit-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
   (0, _emberQunit.moduleFor)('controller:fd-association-edit-form', 'Unit | Controller | fd association edit form', {
@@ -4210,7 +4240,7 @@ define('dummy/tests/unit/serializers/fd-dev-class-test', ['exports', 'ember-quni
 
   (0, _emberQunit.moduleForModel)('fd-dev-class', 'Unit | Serializer | fd-dev-class', {
     // Specify the other units that are required for this test.
-    needs: ['serializer:fd-dev-class', 'transform:file', 'transform:decimal', 'transform:i-c-s-soft-s-t-o-r-m-n-e-t-access-type', 'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode', 'transform:s-t-o-r-m-c-a-s-e-repository-access-modifier', 'transform:s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier', 'transform:new-platform-flexberry-web-designer-business-server-class', 'model:fd-ad', 'model:fd-aggregation', 'model:fd-association', 'model:fd-base-association', 'model:fd-cad', 'model:fd-case-property', 'model:fd-class', 'model:fd-cod', 'model:fd-configuration', 'model:fd-dev-aggregation', 'model:fd-dev-associated-detail-view', 'model:fd-dev-association', 'model:fd-dev-attribute', 'model:fd-dev-base-association', 'model:fd-dev-class', 'model:fd-dev-control-type', 'model:fd-dev-diagram-link', 'model:fd-dev-filelink', 'model:fd-dev-form-control', 'model:fd-dev-form-view', 'model:fd-dev-inheritance', 'model:fd-dev-method', 'model:fd-dev-module-setting-type', 'model:fd-dev-module-setting', 'model:fd-dev-parameter', 'model:fd-dev-process-status', 'model:fd-dev-stage-history', 'model:fd-dev-stage', 'model:fd-dev-system', 'model:fd-dev-task', 'model:fd-dev-type-definition', 'model:fd-dev-uml-ad', 'model:fd-dev-uml-cad', 'model:fd-dev-uml-cod', 'model:fd-dev-uml-dpd', 'model:fd-dev-uml-sd', 'model:fd-dev-uml-std', 'model:fd-dev-uml-ucd', 'model:fd-dev-view', 'model:fd-diagram-link', 'model:fd-diagram', 'model:fd-dpd', 'model:fd-filelink', 'model:fd-form-control', 'model:fd-form-view', 'model:fd-inheritance', 'model:fd-object-in-system', 'model:fd-plugin-on-rep-object', 'model:fd-project', 'model:fd-registered-plug-in', 'model:fd-repository-browser-data-object-with-a-c-l', 'model:fd-repository-browser-data-object', 'model:fd-repository-data-object', 'model:fd-repository-object-with-plugins', 'model:fd-repository-ref-data-object', 'model:fd-repository', 'model:fd-sd', 'model:fd-stage', 'model:fd-std', 'model:fd-subsystem', 'model:fd-ucd', 'model:fd-view']
+    needs: ['serializer:fd-dev-class', 'transform:file', 'transform:decimal', 'transform:containers-tree', 'transform:i-c-s-soft-s-t-o-r-m-n-e-t-access-type', 'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode', 'transform:s-t-o-r-m-c-a-s-e-repository-access-modifier', 'transform:s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier', 'transform:new-platform-flexberry-web-designer-business-server-class', 'model:fd-ad', 'model:fd-aggregation', 'model:fd-association', 'model:fd-base-association', 'model:fd-cad', 'model:fd-case-property', 'model:fd-class', 'model:fd-cod', 'model:fd-configuration', 'model:fd-dev-aggregation', 'model:fd-dev-associated-detail-view', 'model:fd-dev-association', 'model:fd-dev-attribute', 'model:fd-dev-base-association', 'model:fd-dev-class', 'model:fd-dev-control-type', 'model:fd-dev-diagram-link', 'model:fd-dev-filelink', 'model:fd-dev-form-control', 'model:fd-dev-form-view', 'model:fd-dev-inheritance', 'model:fd-dev-method', 'model:fd-dev-module-setting-type', 'model:fd-dev-module-setting', 'model:fd-dev-parameter', 'model:fd-dev-process-status', 'model:fd-dev-stage-history', 'model:fd-dev-stage', 'model:fd-dev-system', 'model:fd-dev-task', 'model:fd-dev-type-definition', 'model:fd-dev-uml-ad', 'model:fd-dev-uml-cad', 'model:fd-dev-uml-cod', 'model:fd-dev-uml-dpd', 'model:fd-dev-uml-sd', 'model:fd-dev-uml-std', 'model:fd-dev-uml-ucd', 'model:fd-dev-view', 'model:fd-diagram-link', 'model:fd-diagram', 'model:fd-dpd', 'model:fd-filelink', 'model:fd-form-control', 'model:fd-form-view', 'model:fd-inheritance', 'model:fd-object-in-system', 'model:fd-plugin-on-rep-object', 'model:fd-project', 'model:fd-registered-plug-in', 'model:fd-repository-browser-data-object-with-a-c-l', 'model:fd-repository-browser-data-object', 'model:fd-repository-data-object', 'model:fd-repository-object-with-plugins', 'model:fd-repository-ref-data-object', 'model:fd-repository', 'model:fd-sd', 'model:fd-stage', 'model:fd-std', 'model:fd-subsystem', 'model:fd-ucd', 'model:fd-view']
   });
 
   // Replace this with your real tests.
@@ -5848,6 +5878,36 @@ define('dummy/tests/unit/services/fd-generation-test.jshint', ['exports'], funct
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/services/fd-generation-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/unit/transforms/containers-tree-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('transform:containers-tree', 'Unit | Transform | containers tree', {
+    // Specify the other units that are required for this test.
+    // needs: ['serializer:foo']
+  });
+
+  // Replace this with your real tests.
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var transform = this.subject();
+    assert.ok(transform);
+  });
+});
+define('dummy/tests/unit/transforms/containers-tree-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/transforms');
+  test('unit/transforms/containers-tree-test.js should pass jscs', function () {
+    ok(true, 'unit/transforms/containers-tree-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/transforms/containers-tree-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/transforms/containers-tree-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/transforms/containers-tree-test.js should pass jshint.');
   });
 });
 define('dummy/tests/unit/transforms/new-platform-flexberry-web-designer-business-server-class-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {

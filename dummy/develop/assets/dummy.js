@@ -406,6 +406,11 @@ define('dummy/controllers/application', ['exports', 'ember'], function (exports,
             title: i18n.t('forms.application.sitemap.root.fd-system-list-form.title'),
             children: null
           }, {
+            link: 'fd-appstruct-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-appstruct-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-appstruct-list-form.title'),
+            children: null
+          }, {
             link: 'fd-diagram-list-form',
             caption: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.caption'),
             title: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.title'),
@@ -568,6 +573,14 @@ define('dummy/controllers/edit-form', ['exports', 'ember-flexberry/controllers/e
     enumerable: true,
     get: function get() {
       return _emberFlexberryControllersEditForm['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-appstruct-list-form', ['exports', 'ember-flexberry-designer/controllers/fd-appstruct-list-form'], function (exports, _emberFlexberryDesignerControllersFdAppstructListForm) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdAppstructListForm['default'];
     }
   });
 });
@@ -801,6 +814,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/components/visual-edit-form.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-appstruct-list-form.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers');
+  test('modules/ember-flexberry-designer/controllers/fd-appstruct-list-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/fd-appstruct-list-form.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-appstruct-list-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/fd-appstruct-list-form.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-appstruct-list-form.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-association-edit-form.jscs-test', ['exports'], function (exports) {
@@ -1191,6 +1217,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/components/fd-visual-control.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-appstruct-list-form.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/forms');
+  test('modules/ember-flexberry-designer/locales/en/forms/fd-appstruct-list-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-appstruct-list-form.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-appstruct-list-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/forms/fd-appstruct-list-form.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-appstruct-list-form.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-association-edit-form.jscs-test', ['exports'], function (exports) {
@@ -2270,6 +2309,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/components/fd-visual-control.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-appstruct-list-form.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/forms');
+  test('modules/ember-flexberry-designer/locales/ru/forms/fd-appstruct-list-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-appstruct-list-form.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-appstruct-list-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/forms/fd-appstruct-list-form.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-appstruct-list-form.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-association-edit-form.jscs-test', ['exports'], function (exports) {
@@ -6588,6 +6640,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ob
     assert.ok(true, 'modules/ember-flexberry-designer/objects/new-platform-flexberry-web-designer-business-server-class.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-appstruct-list-form.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes');
+  test('modules/ember-flexberry-designer/routes/fd-appstruct-list-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/fd-appstruct-list-form.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-appstruct-list-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-appstruct-list-form.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-appstruct-list-form.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-association-edit-form.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/routes');
   test('modules/ember-flexberry-designer/routes/fd-association-edit-form.js should pass jscs', function () {
@@ -8590,6 +8655,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/se
     assert.ok(true, 'modules/ember-flexberry-designer/services/fd-generation.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/containers-tree.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/transforms');
+  test('modules/ember-flexberry-designer/transforms/containers-tree.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/transforms/containers-tree.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/containers-tree.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/transforms/containers-tree.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/transforms/containers-tree.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-access-type.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/transforms');
   test('modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-access-type.js should pass jscs', function () {
@@ -9565,6 +9643,12 @@ define('dummy/locales/en/translations', ['exports', 'ember', 'ember-flexberry-de
           root: {
             caption: 'root',
             title: 'root',
+
+            'fd-appstruct-list-form': {
+              caption: 'Application structure',
+              title: ''
+            },
+
             'fd-configuration-list-form': {
               caption: 'fd-configuration-list-form',
               title: 'fd-configuration-list-form'
@@ -9573,7 +9657,6 @@ define('dummy/locales/en/translations', ['exports', 'ember', 'ember-flexberry-de
             'fd-stage-list-form': {
               caption: 'fd-stage-list-form',
               title: 'fd-stage-list-form'
-
             },
             'fd-system-list-form': {
               caption: 'fd-system-list-form',
@@ -9701,6 +9784,12 @@ define('dummy/locales/ru/translations', ['exports', 'ember', 'ember-flexberry-de
           root: {
             caption: 'Root',
             title: 'Root',
+
+            'fd-appstruct-list-form': {
+              caption: 'Структура приложения',
+              title: ''
+
+            },
             'fd-configuration-list-form': {
               caption: 'Configurations',
               title: ''
@@ -9827,6 +9916,14 @@ define('dummy/models/fd-aggregation', ['exports', 'ember-flexberry-designer/mode
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerModelsFdAggregation['default'];
+    }
+  });
+});
+define('dummy/models/fd-appstruct-list-form', ['exports', 'ember-flexberry-designer/models/fd-appstruct-list-form'], function (exports, _emberFlexberryDesignerModelsFdAppstructListForm) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerModelsFdAppstructListForm['default'];
     }
   });
 });
@@ -10419,6 +10516,7 @@ define('dummy/router', ['exports', 'ember', 'dummy/config/environment'], functio
   });
 
   Router.map(function () {
+    this.route('fd-appstruct-list-form');
     this.route('fd-association-list-form');
     this.route('fd-association-edit-form', { path: 'fd-association-edit-form/:id' });
     this.route('fd-association-edit-form.new', { path: 'fd-association-edit-form/new' });
@@ -10457,6 +10555,14 @@ define('dummy/routes/edit-form', ['exports', 'ember-flexberry/routes/edit-form']
     enumerable: true,
     get: function get() {
       return _emberFlexberryRoutesEditForm['default'];
+    }
+  });
+});
+define('dummy/routes/fd-appstruct-list-form', ['exports', 'ember-flexberry-designer/routes/fd-appstruct-list-form'], function (exports, _emberFlexberryDesignerRoutesFdAppstructListForm) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdAppstructListForm['default'];
     }
   });
 });
@@ -22356,6 +22462,308 @@ define("dummy/templates/components/visual-edit-form", ["exports"], function (exp
     };
   })());
 });
+define("dummy/templates/fd-appstruct-list-form", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["multiple-nodes"]
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 103,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/fd-appstruct-list-form.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("h3");
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n\n\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("table");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("tr");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("td");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("div");
+        dom.setAttribute(el4, "class", "ui buttons");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("button");
+        var el6 = dom.createTextNode("\n          ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("i");
+        dom.setAttribute(el6, "class", "remove icon");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n        ");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("button");
+        var el6 = dom.createTextNode("\n          ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("i");
+        dom.setAttribute(el6, "class", "plus icon");
+        dom.setAttribute(el6, "disabled", "");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n        ");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("button");
+        var el6 = dom.createTextNode("\n          ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("i");
+        dom.setAttribute(el6, "class", "edit icon");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n        ");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("button");
+        var el6 = dom.createTextNode("\n          ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("i");
+        dom.setAttribute(el6, "class", "list icon");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n        ");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("td");
+        var el4 = dom.createTextNode(" ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("td");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("div");
+        dom.setAttribute(el4, "class", "ui buttons");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("button");
+        var el6 = dom.createTextNode("\n          ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("i");
+        dom.setAttribute(el6, "class", "plus icon");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n        ");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n          ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("button");
+        var el6 = dom.createTextNode("\n          ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("i");
+        dom.setAttribute(el6, "class", "edit icon");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n        ");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("button");
+        var el6 = dom.createTextNode("\n          ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("i");
+        dom.setAttribute(el6, "class", "remove icon");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n        ");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("button");
+        var el6 = dom.createTextNode("\n          ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("i");
+        dom.setAttribute(el6, "class", "folder icon");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n        ");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("button");
+        var el6 = dom.createTextNode("\n          ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("i");
+        dom.setAttribute(el6, "class", "arrow up icon");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n        ");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("button");
+        var el6 = dom.createTextNode("\n          ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("i");
+        dom.setAttribute(el6, "class", "arrow down icon");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n        ");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("tr");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("td");
+        dom.setAttribute(el3, "valign", "top");
+        var el4 = dom.createTextNode("\n        ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("td");
+        dom.setAttribute(el3, "valign", "center");
+        dom.setAttribute(el3, "align", "center");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("button");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("i");
+        dom.setAttribute(el5, "class", "chevron right icon");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("td");
+        dom.setAttribute(el3, "valign", "top");
+        var el4 = dom.createTextNode("\n        ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n\n\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("button");
+        var el2 = dom.createTextNode("\n  Save\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("i class=\"remove icon\" ></i");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n\n\n\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var element0 = dom.childAt(fragment, [2]);
+        var element1 = dom.childAt(element0, [1]);
+        var element2 = dom.childAt(element1, [1, 1]);
+        var element3 = dom.childAt(element2, [1]);
+        var element4 = dom.childAt(element2, [3]);
+        var element5 = dom.childAt(element2, [5]);
+        var element6 = dom.childAt(element2, [7]);
+        var element7 = dom.childAt(element1, [5, 1]);
+        var element8 = dom.childAt(element7, [1]);
+        var element9 = dom.childAt(element7, [3]);
+        var element10 = dom.childAt(element7, [5]);
+        var element11 = dom.childAt(element7, [7]);
+        var element12 = dom.childAt(element7, [9]);
+        var element13 = dom.childAt(element7, [11]);
+        var element14 = dom.childAt(element0, [3]);
+        var element15 = dom.childAt(element14, [3, 1]);
+        var element16 = dom.childAt(fragment, [4]);
+        var morphs = new Array(27);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
+        morphs[1] = dom.createAttrMorph(element3, 'class');
+        morphs[2] = dom.createElementMorph(element3);
+        morphs[3] = dom.createAttrMorph(element4, 'class');
+        morphs[4] = dom.createElementMorph(element4);
+        morphs[5] = dom.createAttrMorph(element5, 'class');
+        morphs[6] = dom.createElementMorph(element5);
+        morphs[7] = dom.createAttrMorph(element6, 'class');
+        morphs[8] = dom.createElementMorph(element6);
+        morphs[9] = dom.createAttrMorph(element8, 'class');
+        morphs[10] = dom.createElementMorph(element8);
+        morphs[11] = dom.createAttrMorph(element9, 'class');
+        morphs[12] = dom.createElementMorph(element9);
+        morphs[13] = dom.createAttrMorph(element10, 'class');
+        morphs[14] = dom.createElementMorph(element10);
+        morphs[15] = dom.createAttrMorph(element11, 'class');
+        morphs[16] = dom.createElementMorph(element11);
+        morphs[17] = dom.createAttrMorph(element12, 'class');
+        morphs[18] = dom.createElementMorph(element12);
+        morphs[19] = dom.createAttrMorph(element13, 'class');
+        morphs[20] = dom.createElementMorph(element13);
+        morphs[21] = dom.createMorphAt(dom.childAt(element14, [1]), 1, 1);
+        morphs[22] = dom.createAttrMorph(element15, 'class');
+        morphs[23] = dom.createElementMorph(element15);
+        morphs[24] = dom.createMorphAt(dom.childAt(element14, [5]), 1, 1);
+        morphs[25] = dom.createAttrMorph(element16, 'class');
+        morphs[26] = dom.createElementMorph(element16);
+        return morphs;
+      },
+      statements: [["inline", "t", ["forms.fd-appstruct-list-form.caption"], [], ["loc", [null, [1, 4], [1, 48]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "removeLeftNodeDisabled", ["loc", [null, [8, 40], [8, 62]]]]]]], ["element", "action", ["removeLeftNode"], ["on", "click"], ["loc", [null, [8, 66], [8, 105]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "addLeftNodeDisabled", ["loc", [null, [11, 40], [11, 59]]]]]]], ["element", "action", ["addLeftNode"], ["on", "click"], ["loc", [null, [11, 63], [11, 99]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "editLeftNodeDisabled", ["loc", [null, [14, 40], [14, 60]]]]]]], ["element", "action", ["editLeftNode"], ["on", "click"], ["loc", [null, [14, 64], [14, 101]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "listLeftDisabled", ["loc", [null, [17, 40], [17, 56]]]]]]], ["element", "action", ["listLeft"], ["on", "click"], ["loc", [null, [17, 60], [17, 93]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "addRightNodeDisabled", ["loc", [null, [25, 40], [25, 60]]]]]]], ["element", "action", ["moveRightHighlighted"], ["on", "click"], ["loc", [null, [25, 64], [25, 109]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "editRightNodeDisabled", ["loc", [null, [28, 42], [28, 63]]]]]]], ["element", "action", ["editRightNode"], ["on", "click"], ["loc", [null, [28, 67], [28, 105]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "removeRightNodeDisabled", ["loc", [null, [31, 40], [31, 63]]]]]]], ["element", "action", ["removeRightNode"], ["on", "click"], ["loc", [null, [31, 67], [31, 107]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "addFolderNodeDisabled", ["loc", [null, [34, 40], [34, 61]]]]]]], ["element", "action", ["addFolderNode"], ["on", "click"], ["loc", [null, [34, 65], [34, 103]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "upRightNodeDisabled", ["loc", [null, [37, 40], [37, 59]]]]]]], ["element", "action", ["upRightNode"], ["on", "click"], ["loc", [null, [37, 63], [37, 99]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "downRightNodeDisabled", ["loc", [null, [40, 40], [40, 61]]]]]]], ["element", "action", ["downRightNode"], ["on", "click"], ["loc", [null, [40, 65], [40, 103]]]], ["inline", "flexberry-tree", [], ["class", ["subexpr", "@mut", [["get", "jsonLeftTreeClass", ["loc", [null, [49, 14], [49, 31]]]]], [], []], "exclusive", ["subexpr", "@mut", [["get", "jsonTreeExclusive", ["loc", [null, [50, 18], [50, 35]]]]], [], []], "collapsible", ["subexpr", "@mut", [["get", "jsonLeftTreeCollapsible", ["loc", [null, [51, 20], [51, 43]]]]], [], []], "animateChildren", ["subexpr", "@mut", [["get", "jsonTreeAnimateChildren", ["loc", [null, [52, 24], [52, 47]]]]], [], []], "duration", ["subexpr", "@mut", [["get", "jsonTreeDuration", ["loc", [null, [53, 17], [53, 33]]]]], [], []], "nodes", ["subexpr", "get-with-dynamic-actions", [["get", "this", ["loc", [null, [54, 40], [54, 44]]]], "jsonLeftTreeNodes"], ["hierarchyPropertyName", "nodes", "pathKeyword", "nodePath", "dynamicActions", ["subexpr", "array", [["subexpr", "hash", [], ["on", "headerClick", "actionName", "onTreenodeHeaderClick", "actionArguments", ["subexpr", "array", ["{% nodePath %}"], [], ["loc", [null, [61, 30], [61, 54]]]]], ["loc", [null, [58, 12], [62, 13]]]]], [], ["loc", [null, [57, 25], [63, 11]]]]], ["loc", [null, [54, 14], [64, 9]]]]], ["loc", [null, [48, 8], [65, 8]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "moveRightDisabled", ["loc", [null, [68, 38], [68, 55]]]]]]], ["element", "action", ["moveRightHighlighted"], ["on", "click"], ["loc", [null, [68, 59], [68, 104]]]], ["inline", "flexberry-tree", [], ["class", ["subexpr", "@mut", [["get", "jsonRightTreeClass", ["loc", [null, [74, 14], [74, 32]]]]], [], []], "exclusive", ["subexpr", "@mut", [["get", "jsonTreeExclusive", ["loc", [null, [75, 18], [75, 35]]]]], [], []], "collapsible", ["subexpr", "@mut", [["get", "jsonRightTreeCollapsible", ["loc", [null, [76, 20], [76, 44]]]]], [], []], "animateChildren", ["subexpr", "@mut", [["get", "jsonTreeAnimateChildren", ["loc", [null, [77, 24], [77, 47]]]]], [], []], "duration", ["subexpr", "@mut", [["get", "jsonTreeDuration", ["loc", [null, [78, 17], [78, 33]]]]], [], []], "nodes", ["subexpr", "get-with-dynamic-actions", [["get", "this", ["loc", [null, [79, 40], [79, 44]]]], "jsonRightTreeNodes"], ["hierarchyPropertyName", "nodes", "pathKeyword", "nodePath", "dynamicActions", ["subexpr", "array", [["subexpr", "hash", [], ["on", "headerClick", "actionName", "onTreenodeHeaderClick", "actionArguments", ["subexpr", "array", ["{% nodePath %}"], [], ["loc", [null, [86, 30], [86, 54]]]]], ["loc", [null, [83, 12], [87, 13]]]]], [], ["loc", [null, [82, 25], [88, 11]]]]], ["loc", [null, [79, 14], [89, 9]]]]], ["loc", [null, [73, 8], [90, 8]]]], ["attribute", "class", ["concat", ["ui icon ", ["get", "saveButtonClass", ["loc", [null, [96, 25], [96, 40]]]], "  button"]]], ["element", "action", ["saveTree"], [], ["loc", [null, [96, 52], [96, 73]]]]],
+      locals: [],
+      templates: []
+    };
+  })());
+});
 define("dummy/templates/fd-association-edit-form", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     var child0 = (function () {
@@ -31947,6 +32355,14 @@ define("dummy/templates/sitemap", ["exports"], function (exports) {
     };
   })());
 });
+define('dummy/transforms/containers-tree', ['exports', 'ember-flexberry-designer/transforms/containers-tree'], function (exports, _emberFlexberryDesignerTransformsContainersTree) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerTransformsContainersTree['default'];
+    }
+  });
+});
 define('dummy/transforms/decimal', ['exports', 'ember-flexberry-data/transforms/decimal'], function (exports, _emberFlexberryDataTransformsDecimal) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -32125,7 +32541,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://flexberry-designer-web.azurewebsites.net","backendUrls":{"root":"https://flexberry-designer-web.azurewebsites.net","api":"https://flexberry-designer-web.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://flexberry-designer-web.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.1.0-alpha01+ec6ae581"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://flexberry-designer-web.azurewebsites.net","backendUrls":{"root":"https://flexberry-designer-web.azurewebsites.net","api":"https://flexberry-designer-web.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://flexberry-designer-web.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.1.0-alpha01+0e322317"});
 }
 
 /* jshint ignore:end */
