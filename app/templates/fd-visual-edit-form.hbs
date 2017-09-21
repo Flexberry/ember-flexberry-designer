@@ -1,4 +1,4 @@
-<h3 class="ui header">{{t 'forms.fd-class-edit-form.caption'}}</h3>
+<h3 class="ui header">{{t 'forms.fd-visual-edit-form.caption'}}</h3>
 {{#if errorMessages}}
   {{#each errorMessages as |currentError|}}
     {{ui-message
@@ -30,13 +30,13 @@
   </div>
   <div class="ui grid row">
     <div class="field eight wide column">
-        <label>Название формы</label>
+        <label>{{t 'forms.fd-visual-edit-form.name'}}</label>
         {{flexberry-textbox
           value=undefined
         }}
     </div>
     <div class="field eight wide column">
-        <label>Описание</label>
+        <label>{{t 'forms.fd-visual-edit-form.description'}}</label>
         {{flexberry-textbox
           value=undefined
         }}
