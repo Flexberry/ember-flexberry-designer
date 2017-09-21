@@ -1,11 +1,19 @@
 <div class="field">
-  {{flexberry-groupedit
-      componentName="visualFormGroupedit"
-      content=model.details
-      readonly=false
-      createNewButton=true
-      deleteButton=true
-      orderable=false
-      readonly=readonly
-  }}
+  <button
+    class="ui ui-add button"
+    title="Добавить">
+      <i class="plus icon"></i>
+  </button>
+  <button
+    class="ui ui-delete button"
+    title="Удалить">
+      <i class="minus icon"></i>
+  </button>
+</div>
+<div class="field">
+    <label>{{label}}</label>
+    {{flexberry-textbox
+      type=type
+      value=value
+    }}
 </div>

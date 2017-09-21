@@ -70,6 +70,10 @@ Ember.$.extend(true, translations, {
           caption: 'Home',
           title: ''
         },
+        'fd-visual-edit-form': {
+          caption: 'Visual edit form',
+          title: ''
+        },
         root: {
           caption: 'root',
           title: 'root',
