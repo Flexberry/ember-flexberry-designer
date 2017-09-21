@@ -2,8 +2,8 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import { Projection } from 'ember-flexberry-data';
 export let Model = Ember.Mixin.create({
-  accessModifier: DS.attr('new-platform-flexberry-web-designer-access-modifier'),
-  accessType: DS.attr('new-platform-flexberry-web-designer-access-type'),
+  accessModifier: DS.attr('s-t-o-r-m-c-a-s-e-repository-access-modifier'),
+  accessType: DS.attr('i-c-s-soft-s-t-o-r-m-n-e-t-access-type'),
   caption: DS.attr('string'),
   isEvent: DS.attr('boolean'),
   orderNum: DS.attr('number'),

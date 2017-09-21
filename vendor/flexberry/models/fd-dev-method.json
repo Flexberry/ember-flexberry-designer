@@ -7,7 +7,7 @@
   "attrs": [
     {
       "name": "accessModifier",
-      "type": "new-platform-flexberry-web-designer-access-modifier",
+      "type": "s-t-o-r-m-c-a-s-e-repository-access-modifier",
       "flexberryType": "AccessModifier",
       "notNull": false,
       "defaultValue": "",
@@ -15,7 +15,7 @@
     },
     {
       "name": "accessType",
-      "type": "new-platform-flexberry-web-designer-access-type",
+      "type": "i-c-s-soft-s-t-o-r-m-n-e-t-access-type",
       "flexberryType": "AccessType",
       "notNull": false,
       "defaultValue": "",
@@ -833,5 +833,6 @@
     }
   ],
   "stored": true,
-  "offline": true
+  "offline": true,
+  "external": false
 }

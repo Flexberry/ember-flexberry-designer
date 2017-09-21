@@ -3,7 +3,7 @@ import DS from 'ember-data';
 import { Projection } from 'ember-flexberry-data';
 export let Model = Ember.Mixin.create({
   caption: DS.attr('string'),
-  modifier: DS.attr('new-platform-flexberry-web-designer-parameter-modifier'),
+  modifier: DS.attr('s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier'),
   orderNum: DS.attr('number'),
   /**
     Non-stored property.

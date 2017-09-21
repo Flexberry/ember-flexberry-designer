@@ -7,6 +7,9 @@ export default {
       startRole: {
         caption: ''
       },
+      startRolePublishName: {
+        caption: ''
+      },
       startMultiplicity: {
         caption: ''
       },
@@ -17,6 +20,9 @@ export default {
         caption: ''
       },
       endRole: {
+        caption: ''
+      },
+      endRolePublishName: {
         caption: ''
       },
       endMultiplicity: {
@@ -149,6 +155,12 @@ export default {
       },
       storage: {
         caption: 'Storage'
+      },
+      startRolePublishName: {
+        caption: 'StartRolePublishName'
+      },
+      endRolePublishName: {
+        caption: 'EndRolePublishName'
       },
       endMultiplicity: {
         caption: 'EndMultiplicity'

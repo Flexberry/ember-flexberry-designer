@@ -17,6 +17,11 @@ Router.map(function () {
   { path: 'fd-class-edit-form/:id' });
   this.route('fd-class-edit-form.new',
   { path: 'fd-class-edit-form/new' });
+  this.route('fd-configuration-list-form');
+  this.route('fd-configuration-edit-form',
+  { path: 'fd-configuration-edit-form/:id' });
+  this.route('fd-configuration-edit-form.new',
+  { path: 'fd-configuration-edit-form/new' });
   this.route('fd-diagram-list-form');
   this.route('fd-diagram-edit-form',
   { path: 'fd-diagram-edit-form/:id' });
