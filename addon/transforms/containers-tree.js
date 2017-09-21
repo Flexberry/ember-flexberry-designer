@@ -50,7 +50,11 @@ export default DS.Transform.extend({
 
       let className =  item.getAttribute('ClassName');
       if (className !== this._emptyFolderClassName) {
-        currentNodes.push({ caption: className });
+        currentNodes.push({
+          itemCaption: item.getAttribute('Caption'),
+          caption: className,
+          description: item.getAttribute('Description')
+        });
       }
     }
 
