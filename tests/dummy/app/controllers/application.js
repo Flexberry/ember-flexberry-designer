@@ -12,6 +12,11 @@ export default Ember.Controller.extend({
           title: i18n.t('forms.application.sitemap.index.title'),
           children: null
         }, {
+          link: 'fd-visual-edit-form',
+          caption: i18n.t('forms.application.sitemap.fd-visual-edit-form.caption'),
+          title: i18n.t('forms.application.sitemap.fd-visual-edit-form.title'),
+          children: null
+        }, {
           link: null,
           caption: i18n.t('forms.application.sitemap.root.caption'),
           title: i18n.t('forms.application.sitemap.root.title'),
