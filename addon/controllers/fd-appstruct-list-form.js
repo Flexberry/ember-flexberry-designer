@@ -215,7 +215,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
         .attr('data-tab');*/
 
       let lastClicked = null;
-      let clickedElement = actionEventObject.originalEvent.toElement;
+      let clickedElement = actionEventObject.originalEvent.target;
       if (clickedElement.tagName === 'DIV') {
         if (clickedPath.substr(0, 8) === 'jsonLeft') {
           if (!this._isLeaf(clickedElement)) {
