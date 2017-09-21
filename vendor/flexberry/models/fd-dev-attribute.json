@@ -7,7 +7,7 @@
   "attrs": [
     {
       "name": "accessModifier",
-      "type": "new-platform-flexberry-web-designer-access-modifier",
+      "type": "s-t-o-r-m-c-a-s-e-repository-access-modifier",
       "flexberryType": "AccessModifier",
       "notNull": false,
       "defaultValue": "",
@@ -143,6 +143,14 @@
     },
     {
       "name": "storage",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "publishName",
       "type": "string",
       "flexberryType": "string",
       "notNull": false,
@@ -386,58 +394,64 @@
           "index": 8
         },
         {
-          "name": "hint",
+          "name": "publishName",
           "caption": "",
           "hidden": false,
           "index": 9
         },
         {
-          "name": "order",
+          "name": "hint",
           "caption": "",
           "hidden": false,
           "index": 10
         },
         {
-          "name": "trim",
+          "name": "order",
           "caption": "",
           "hidden": false,
           "index": 11
         },
         {
-          "name": "pBCustomAttributes",
+          "name": "trim",
           "caption": "",
           "hidden": false,
           "index": 12
         },
         {
-          "name": "pBGetEnd",
+          "name": "pBCustomAttributes",
           "caption": "",
           "hidden": false,
           "index": 13
         },
         {
-          "name": "pBGetStart",
+          "name": "pBGetEnd",
           "caption": "",
           "hidden": false,
           "index": 14
         },
         {
-          "name": "pBSetEnd",
+          "name": "pBGetStart",
           "caption": "",
           "hidden": false,
           "index": 15
         },
         {
-          "name": "pBSetStart",
+          "name": "pBSetEnd",
           "caption": "",
           "hidden": false,
           "index": 16
         },
         {
-          "name": "autoincrement",
+          "name": "pBSetStart",
           "caption": "",
           "hidden": false,
           "index": 17
+        },
+        {
+          "name": "autoincrement",
+          "caption": "",
+          "hidden": false,
+          "index": 18
         }
       ],
       "belongsTo": [],
@@ -1000,40 +1014,46 @@
           "index": 17
         },
         {
+          "name": "publishName",
+          "caption": "PublishName",
+          "hidden": true,
+          "index": 18
+        },
+        {
           "name": "stored",
           "caption": "Stored",
           "hidden": true,
-          "index": 18
+          "index": 19
         },
         {
           "name": "trim",
           "caption": "Trim",
           "hidden": true,
-          "index": 19
+          "index": 20
         },
         {
           "name": "type",
           "caption": "Type",
           "hidden": true,
-          "index": 20
+          "index": 21
         },
         {
           "name": "name",
           "caption": "Name",
           "hidden": true,
-          "index": 21
+          "index": 22
         },
         {
           "name": "description",
           "caption": "Description",
           "hidden": true,
-          "index": 22
+          "index": 23
         },
         {
           "name": "nameStr",
           "caption": "NameStr",
           "hidden": true,
-          "index": 23
+          "index": 24
         }
       ],
       "belongsTo": [],
@@ -1075,5 +1095,6 @@
     }
   ],
   "stored": true,
-  "offline": true
+  "offline": true,
+  "external": false
 }

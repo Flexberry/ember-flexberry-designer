@@ -15,7 +15,7 @@
     },
     {
       "name": "modifier",
-      "type": "new-platform-flexberry-web-designer-parameter-modifier",
+      "type": "s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier",
       "flexberryType": "ParameterModifier",
       "notNull": false,
       "defaultValue": "",
@@ -371,5 +371,6 @@
     }
   ],
   "stored": true,
-  "offline": true
+  "offline": true,
+  "external": false
 }

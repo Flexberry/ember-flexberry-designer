@@ -2,7 +2,7 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import { Projection } from 'ember-flexberry-data';
 export let Model = Ember.Mixin.create({
-  accessModifier: DS.attr('new-platform-flexberry-web-designer-access-modifier'),
+  accessModifier: DS.attr('s-t-o-r-m-c-a-s-e-repository-access-modifier'),
   autoincrement: DS.attr('boolean'),
   caption: DS.attr('string'),
   dataServiceExpression: DS.attr('string'),
@@ -90,6 +90,7 @@ export let Model = Ember.Mixin.create({
     this.set('realStorage', result);
   },
   storage: DS.attr('string'),
+  publishName: DS.attr('string'),
   stored: DS.attr('boolean'),
   trim: DS.attr('boolean'),
   type: DS.attr('string'),
@@ -148,6 +149,7 @@ export let defineProjections = function (modelClass) {
     notNull: Projection.attr(''),
     dataServiceExpressionXML: Projection.attr('DataService Expression'),
     storage: Projection.attr(''),
+    publishName: Projection.attr(''),
     hint: Projection.attr(''),
     order: Projection.attr(''),
     trim: Projection.attr(''),
@@ -257,6 +259,7 @@ export let defineProjections = function (modelClass) {
     realCaption: Projection.attr('RealCaption', { hidden: true }),
     realStorage: Projection.attr('RealStorage', { hidden: true }),
     storage: Projection.attr('Storage', { hidden: true }),
+    publishName: Projection.attr('PublishName', { hidden: true }),
     stored: Projection.attr('Stored', { hidden: true }),
     trim: Projection.attr('Trim', { hidden: true }),
     type: Projection.attr('Type', { hidden: true }),

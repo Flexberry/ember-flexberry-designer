@@ -1,5 +1,6 @@
 ﻿{
   "propertyLookup": [],
+  "external": false,
   "caption": "View",
   "name": "FdViewEditForm",
   "className": "ViewEditForm",

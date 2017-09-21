@@ -9,6 +9,13 @@
       "title": "Root",
       "children": [
         {
+          "link": "fd-configuration-list-form",
+          "menuName": null,
+          "caption": "Configurations",
+          "title": "",
+          "children": null
+        },
+        {
           "link": "fd-stage-list-form",
           "menuName": null,
           "caption": "Stages",

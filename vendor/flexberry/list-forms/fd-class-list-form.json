@@ -1,6 +1,7 @@
 ﻿{
   "newForm": "fd-class-edit-form",
   "editForm": "fd-class-edit-form",
+  "external": false,
   "caption": "Classes",
   "name": "FdClassListForm",
   "className": "ClassListForm",

@@ -71,7 +71,7 @@
     },
     {
       "name": "defaultAccessType",
-      "type": "new-platform-flexberry-web-designer-access-type",
+      "type": "i-c-s-soft-s-t-o-r-m-n-e-t-access-type",
       "flexberryType": "AccessType",
       "notNull": false,
       "defaultValue": "",
@@ -119,7 +119,7 @@
     },
     {
       "name": "defaultWriteMode",
-      "type": "new-platform-flexberry-web-designer-t-write-mode",
+      "type": "i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode",
       "flexberryType": "tWriteMode",
       "notNull": false,
       "defaultValue": "",
@@ -2159,5 +2159,6 @@
     }
   ],
   "stored": true,
-  "offline": true
+  "offline": true,
+  "external": false
 }

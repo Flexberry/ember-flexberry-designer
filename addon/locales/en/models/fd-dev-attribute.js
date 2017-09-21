@@ -95,6 +95,9 @@ export default {
       storage: {
         caption: 'storage'
       },
+      publishName: {
+        caption: 'publishName'
+      },
       hint: {
         caption: 'hint'
       },
@@ -379,6 +382,9 @@ export default {
       },
       storage: {
         caption: 'storage'
+      },
+      publishName: {
+        caption: 'publishName'
       },
       stored: {
         caption: 'stored'
