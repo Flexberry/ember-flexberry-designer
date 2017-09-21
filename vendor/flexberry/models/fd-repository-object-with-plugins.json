@@ -1,0 +1,69 @@
+﻿{
+  "name": "FdRepositoryObjectWithPlugins",
+  "modelName": "fd-repository-object-with-plugins",
+  "className": "RepositoryObjectWithPlugins",
+  "parentModelName": "fd-repository-browser-data-object-with-a-c-l",
+  "parentClassName": "RepositoryBrowserDataObjectWithACL",
+  "attrs": [],
+  "belongsTo": [],
+  "hasMany": [
+    {
+      "name": "plugins",
+      "relatedTo": "fd-plugin-on-rep-object",
+      "inverse": "plugOutObject"
+    }
+  ],
+  "projections": [
+    {
+      "name": "Edit",
+      "modelName": "fd-repository-object-with-plugins",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "aCL",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": [
+        {
+          "projectionName": "DetailEditView",
+          "caption": "",
+          "name": "plugins",
+          "relatedTo": "fd-plugin-on-rep-object",
+          "inverse": null
+        }
+      ]
+    },
+    {
+      "name": "PluginsOnly",
+      "modelName": "fd-repository-object-with-plugins",
+      "attrs": [],
+      "belongsTo": [],
+      "hasMany": [
+        {
+          "projectionName": "DetailEditView",
+          "caption": "",
+          "name": "plugins",
+          "relatedTo": "fd-plugin-on-rep-object",
+          "inverse": null
+        }
+      ]
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

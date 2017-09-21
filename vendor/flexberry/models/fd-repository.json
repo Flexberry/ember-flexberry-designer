@@ -1,0 +1,62 @@
+﻿{
+  "name": "FdRepository",
+  "modelName": "fd-repository",
+  "className": "Repository",
+  "parentModelName": "fd-repository-object-with-plugins",
+  "parentClassName": "RepositoryObjectWithPlugins",
+  "attrs": [],
+  "belongsTo": [],
+  "hasMany": [
+    {
+      "name": "projects",
+      "relatedTo": "fd-project",
+      "inverse": "repository"
+    }
+  ],
+  "projections": [
+    {
+      "name": "PathSearchView",
+      "modelName": "fd-repository",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "SearchRepObjView",
+      "modelName": "fd-repository",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "Test",
+      "modelName": "fd-repository",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

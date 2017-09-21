@@ -1,0 +1,13 @@
+﻿{
+  "name": "FdAssociation",
+  "modelName": "fd-association",
+  "className": "Association",
+  "parentModelName": "fd-base-association",
+  "parentClassName": "BaseAssociation",
+  "attrs": [],
+  "belongsTo": [],
+  "hasMany": [],
+  "projections": [],
+  "stored": true,
+  "offline": true
+}

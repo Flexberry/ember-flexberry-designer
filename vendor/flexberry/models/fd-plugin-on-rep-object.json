@@ -1,0 +1,73 @@
+﻿{
+  "name": "FdPluginOnRepObject",
+  "modelName": "fd-plugin-on-rep-object",
+  "className": "PluginOnRepObject",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [
+    {
+      "name": "settings",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "plugin",
+      "relatedTo": "fd-registered-plug-in",
+      "inverse": null
+    },
+    {
+      "polymorphic": true,
+      "presence": true,
+      "name": "plugOutObject",
+      "relatedTo": "fd-repository-object-with-plugins",
+      "inverse": "plugins"
+    }
+  ],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "DetailEditView",
+      "modelName": "fd-plugin-on-rep-object",
+      "attrs": [
+        {
+          "name": "settings",
+          "caption": "",
+          "hidden": true,
+          "index": 2
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": "Name",
+          "lookupValueField": "name",
+          "relationName": "Plugin",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "storedType",
+              "caption": "Тип",
+              "hidden": false,
+              "index": 1
+            }
+          ],
+          "index": 0,
+          "caption": "Модуль",
+          "name": "plugin",
+          "relatedTo": "fd-registered-plug-in",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}
