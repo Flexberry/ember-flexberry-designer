@@ -85,7 +85,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
         nodes = this._jsTreeToFlexberryTree(node.nodes);
       }
 
-      let treeNode = { caption: node.caption };
+      let treeNode = { caption: node.caption, description: node.description};
       if (nodes) {
         treeNode.nodes = nodes;
       }
@@ -110,7 +110,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
         nodes = this._jsFlexberryTreeToTree(nodes);
       }
 
-      let treeNode = { caption: node.caption };
+      let treeNode = { caption: node.caption, description: node.description };
       if (nodes) {
         treeNode.nodes = nodes;
       }
@@ -165,12 +165,14 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     if (node === root) {
       return path;
     }
+
     if (!root.nodes) {
       return false;
     }
+
     for (let i in root.nodes) {
       let subNode = root.nodes[i];
-      let subPath=this._findPathOfNode(path + '.nodes.' + i.toString(), subNode, node);
+      let subPath = this._findPathOfNode(path + '.nodes.' + i.toString(), subNode, node);
       if (subPath !== false) {
         return subPath;
       }
@@ -180,12 +182,12 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
   },
 
   _findRighTreetPathOfNode(node) {
-    let ret = this._findPathOfNode("jsonRightTreeNodes.nodes.0", this.jsonRightTreeNodes[0], node);
+    let ret = this._findPathOfNode('jsonRightTreeNodes.nodes.0', this.jsonRightTreeNodes[0], node);
     return ret;
   },
 
   _findLeftTreePathOfNode(node) {
-    let ret = this._findPathOfNode("jsonLeftTreeNodes.nodes.0", this.jsonLeftTreeNodes[0], node);
+    let ret = this._findPathOfNode('jsonLeftTreeNodes.nodes.0', this.jsonLeftTreeNodes[0], node);
     return ret;
   },
 

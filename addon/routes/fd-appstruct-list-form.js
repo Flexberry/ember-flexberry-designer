@@ -76,9 +76,10 @@ export default Ember.Route.extend({
     let leaveIndex = 0;
     for (let i = 0; i < leftParents.length; i++) {
       let leftParent = leftParents[i];
-      let leftNode = { caption: leftParent.name, nodes: [] };
+      let leftNode = { caption: leftParent.name, description: leftParent.description , nodes: [] };
       for (; leaveIndex < leftLeaves.length && leftLeaves[leaveIndex].parentId === leftParent.id; leaveIndex++) {
-        leftNode.nodes.push({ caption: leftLeaves[leaveIndex].name });
+        let leafLeaf = leftLeaves[leaveIndex];
+        leftNode.nodes.push({ caption: leafLeaf.name, description: leafLeaf.description });
       }
 
       leftNodes.push(leftNode);
