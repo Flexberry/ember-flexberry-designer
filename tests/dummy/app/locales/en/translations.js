@@ -77,6 +77,12 @@ Ember.$.extend(true, translations, {
         root: {
           caption: 'root',
           title: 'root',
+
+          'fd-appstruct-list-form': {
+            caption: 'Application structure',
+            title: '',
+          },
+
           'fd-configuration-list-form': {
             caption: 'fd-configuration-list-form',
             title: 'fd-configuration-list-form',
@@ -85,7 +91,6 @@ Ember.$.extend(true, translations, {
           'fd-stage-list-form': {
             caption: 'fd-stage-list-form',
             title: 'fd-stage-list-form',
-
           },
           'fd-system-list-form': {
             caption: 'fd-system-list-form',

@@ -6,6 +6,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function () {
+  this.route('fd-appstruct-list-form');
   this.route('fd-association-list-form');
   this.route('fd-association-edit-form',
   { path: 'fd-association-edit-form/:id' });

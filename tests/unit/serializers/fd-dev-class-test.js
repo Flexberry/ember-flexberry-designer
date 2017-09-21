@@ -7,6 +7,7 @@ moduleForModel('fd-dev-class', 'Unit | Serializer | fd-dev-class', {
     'transform:file',
     'transform:decimal',
 
+    'transform:containers-tree',
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-access-type',
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode',
     'transform:s-t-o-r-m-c-a-s-e-repository-access-modifier',
