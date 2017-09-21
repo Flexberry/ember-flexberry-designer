@@ -1,9 +1,6 @@
 import Ember from 'ember';
-import layout from '../templates/components/visual-edit-control';
 
 export default Ember.Component.extend({
-  layout,
-
   /**
     Label for field.
 
@@ -11,7 +8,7 @@ export default Ember.Component.extend({
     @type String
   */
   label: undefined,
-  
+
   /**
     Input value.
 
