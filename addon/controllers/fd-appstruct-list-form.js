@@ -85,7 +85,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
         nodes = this._jsTreeToFlexberryTree(node.nodes);
       }
 
-      let treeNode = { caption: node.caption, description: node.description};
+      let treeNode = { caption: node.caption, description: node.description };
       if (nodes) {
         treeNode.nodes = nodes;
       }
