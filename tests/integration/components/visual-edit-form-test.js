@@ -24,7 +24,6 @@ moduleForComponent('visual-edit-form', 'Integration | Component | visual edit fo
     this.set('i18n.locale', 'ru');
   }
 });
-});
 
 test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
@@ -32,7 +31,7 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{visual-edit-form}}`);
 
-  assert.notEqual(this.$().text().trim(), '');
+  assert.equal(this.$().text().trim(), '');
 
   // Template block usage:
   this.render(hbs`
