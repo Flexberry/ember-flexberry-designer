@@ -4,9 +4,12 @@ import { Query } from 'ember-flexberry-data';
 const { Builder } = Query;
 
 export default Ember.Route.extend({
+
+  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+
   model: function() {
     let builder = new  Builder(this.store, 'fd-dev-class').
-    select('id,name,description,stereotype,containersStr,formViews,formViews.view,formViews.view.class,formViews.view.class.id');
+    select('id,name,description,stereotype,containersStr,formViews,formViews.view,formViews.view.class,formViews.view.class.id,stage.id');
     let promise = this.store.query('fd-dev-class', builder.build());
     return promise;
   },
@@ -17,8 +20,13 @@ export default Ember.Route.extend({
     let leftParents = [];
     let leftLeaves = [];
     let n = model.get('length');
+    let stagePk = this.get('currentProjectContext').getCurrentStagePk();
     for (let i = 0; i < n; i++) {
       let record = model.nextObject(i);
+      let stageId = record.get('stage.id');
+      if (stageId != stagePk) {
+        continue;
+      }
       switch (record.get('stereotype')) {
         case null:
           leftParents.push({ id: record.get('id'), name: record.get('name'), description: record.get('description') });
@@ -30,10 +38,6 @@ export default Ember.Route.extend({
           break;
         case '«application»':
           let recordId = record.get('id');
-          if (recordId !== '44c730df-5cc6-45b3-9297-e4e39ad32094') {
-            continue;
-          }
-
           applicationRecordId = recordId;
           itemList = record.get('containersStr');
           break;
