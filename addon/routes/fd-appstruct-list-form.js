@@ -24,9 +24,10 @@ export default Ember.Route.extend({
     for (let i = 0; i < n; i++) {
       let record = model.nextObject(i);
       let stageId = record.get('stage.id');
-      if (stageId != stagePk) {
+      if (stageId !== stagePk) {
         continue;
       }
+
       switch (record.get('stereotype')) {
         case null:
           leftParents.push({ id: record.get('id'), name: record.get('name'), description: record.get('description') });
