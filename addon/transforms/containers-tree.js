@@ -1,6 +1,9 @@
 import DS from 'ember-data';
 
 export default DS.Transform.extend({
+
+  _emptyFolderClassName: '##########',
+
   deserialize(serialized) {
     if (serialized) {
       let parser = new DOMParser();
@@ -23,10 +26,47 @@ export default DS.Transform.extend({
   },
 
   serialize(deserialized) {
+    let containers = document.createElement('Containers');
+    let containersList = document.createElement('ContainersList');
+    containersList.appendChild(this._getXMLNodes(deserialized, []));
+    containers.appendChild(containersList);
+    deserialized = containers.outerHTML;
     return deserialized;
   },
 
-  _emptyFolderClassName: '##########',
+  _getXMLNodes(nodes, steps) {
+    let itemList = document.createDocumentFragment();
+    for (let i in  nodes) {
+      let node = nodes[i];
+      let currentPath = steps.join('\\');
+      if (node.nodes) {
+        steps.push(node.caption);
+        let containers = this._getXMLNodes(node.nodes, steps);
+        if (containers.childNodes.length === 0) {
+          let folder = document.createElement('Item');
+          folder.setAttribute('ClassName', this._emptyFolderClassName);
+          folder.setAttribute('MenuPath', steps.join('\\'));
+          folder.setAttribute('Caption', '');
+          folder.setAttribute('Description', '');
+          itemList.appendChild(folder);
+        } else {
+          itemList.appendChild(containers);
+        }
+
+        steps.pop();
+      } else {
+        let leaf = document.createElement('Item');
+        leaf.setAttribute('ClassName', node.className);
+        leaf.setAttribute('MenuPath', currentPath);
+        leaf.setAttribute('Caption', node.caption);
+        leaf.setAttribute('Description', node.description);
+        itemList.appendChild(leaf);
+      }
+
+    }
+
+    return itemList;
+  },
 
   _getTree: function(itemList) {
     let rootTree = [];
