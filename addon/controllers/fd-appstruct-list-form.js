@@ -4,6 +4,8 @@ import TreeNodeObject from 'ember-flexberry/objects/tree-node';
 
 export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
 
+  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+
   approveButtonCaption: 'OK',
 
   cancelButtonCaption: 'Cancel',
@@ -108,10 +110,10 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       let node = jsFlexberryTree[i];
       let nodes = null;
       if (node.nodes) {
-        nodes = this._jsFlexberryTreeToTree(nodes);
+        nodes = this._jsFlexberryTreeToTree(node.nodes);
       }
 
-      let treeNode = { caption: node.caption, description: node.description };
+      let treeNode = { caption: node.caption, description: node.description || '' };
       if (nodes) {
         treeNode.nodes = nodes;
       }
@@ -348,8 +350,20 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
 
     saveTree() {
       let rightTree = this._jsFlexberryTreeToTree(this.jsonRightTreeNodes[0].nodes);
+      let _this = this;
       this.get('store').findRecord('fd-dev-class', this.model.id).then(function(record) {
+        let stagePk = _this.get('currentProjectContext').getCurrentStagePk();
         record.set('containersStr', rightTree);
+//         record.set('stage', stagePk);
+        record.save().then(
+          function(data) {
+            alert('Success' + data);
+          },
+          function(data) {
+            alert('Error' + data);
+          }
+        );
+//         _this.get('store').pushPayload('fd-dev-class', record);
       });
       /*alert('Save');*/
     }
