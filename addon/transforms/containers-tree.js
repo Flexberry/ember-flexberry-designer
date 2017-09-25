@@ -36,7 +36,6 @@ export default DS.Transform.extend({
 
 
   _getXMLNodes(nodes, steps) {
-    let ret;
     let itemList = document.createDocumentFragment();
     for (let i in  nodes) {
       let node = nodes[i];
@@ -44,7 +43,7 @@ export default DS.Transform.extend({
       if (node.nodes) {
         steps.push(node.caption);
         let containers = this._getXMLNodes(node.nodes, steps);
-        if (containers.childNodes.length == 0) {
+        if (containers.childNodes.length === 0) {
           let folder = document.createElement('Item');
           folder.setAttribute('ClassName', this._emptyFolderClassName);
           folder.setAttribute('MenuPath', steps.join('\\') );
