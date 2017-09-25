@@ -34,7 +34,6 @@ export default DS.Transform.extend({
     return deserialized;
   },
 
-
   _getXMLNodes(nodes, steps) {
     let itemList = document.createDocumentFragment();
     for (let i in  nodes) {
@@ -46,13 +45,14 @@ export default DS.Transform.extend({
         if (containers.childNodes.length === 0) {
           let folder = document.createElement('Item');
           folder.setAttribute('ClassName', this._emptyFolderClassName);
-          folder.setAttribute('MenuPath', steps.join('\\') );
+          folder.setAttribute('MenuPath', steps.join('\\'));
           folder.setAttribute('Caption', '');
           folder.setAttribute('Description', '');
           itemList.appendChild(folder);
         } else {
           itemList.appendChild(containers);
         }
+
         steps.pop();
       } else {
         let leaf = document.createElement('Item');
@@ -64,6 +64,7 @@ export default DS.Transform.extend({
       }
 
     }
+
     return itemList;
   },
 

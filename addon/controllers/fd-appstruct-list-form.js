@@ -350,11 +350,10 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
 
     saveTree() {
       let rightTree = this._jsFlexberryTreeToTree(this.jsonRightTreeNodes[0].nodes);
-//       let _this = this;
       this.get('store').findRecord('fd-dev-class', this.model.id).then(function(record) {
-//         let stagePk = _this.get('currentProjectContext').getCurrentStagePk();
+        //let stagePk = _this.get('currentProjectContext').getCurrentStagePk();
         record.set('containersStr', rightTree);
-//         record.set('stage', stagePk);
+        //record.set('stage', stagePk);
         record.save().then(
           function(data) {
             alert('Success' + data);
@@ -363,7 +362,6 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
             alert('Error' + data);
           }
         );
-//         _this.get('store').pushPayload('fd-dev-class', record);
       });
       /*alert('Save');*/
     }
