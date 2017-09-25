@@ -767,7 +767,10 @@ export let defineProjections = function (modelClass) {
     changeUser: Projection.attr('Change user'),
     changeDate: Projection.attr('Change date'),
     createUser: Projection.attr('Create user'),
-    createDate: Projection.attr('Create date')
+    createDate: Projection.attr('Create date'),
+    configuration: Projection.belongsTo('fd-configuration', '', {
+
+    }, { hidden: true })
   });
   modelClass.defineProjection('Prototyping', 'fd-dev-stage', {
 

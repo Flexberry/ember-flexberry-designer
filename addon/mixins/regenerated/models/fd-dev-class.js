@@ -1299,7 +1299,10 @@ export let defineProjections = function (modelClass) {
     name: Projection.attr('Name'),
     description: Projection.attr('Description'),
     packet: Projection.attr('Packet'),
-    namespacePostfix: Projection.attr('Namespace postfix')
+    namespacePostfix: Projection.attr('Namespace postfix'),
+    stage: Projection.belongsTo('fd-stage', '', {
+
+    }, { hidden: true })
   });
   modelClass.defineProjection('LoadNameView', 'fd-dev-class', {
     name: Projection.attr(''),
