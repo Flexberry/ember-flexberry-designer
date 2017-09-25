@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>addon/services/fd-current-project-context.js - Flexberry Documentation</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="Flexberry Documentation" src="../assets/css/logo.png" style="max-height: 65%;" title="Flexberry Documentation">
+            Flexberry Documentation
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>develop</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/FdCurrentProjectContextService", "classes/FdLimitByStageMixin", "modules/ember-flexberry-designer"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <h3>APIs</h3>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Type to filter APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
+	                            <li><a href="../classes/FdLimitByStageMixin.html">FdLimitByStageMixin</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Show:
+                    <label for="api-show-inherited" class="checkbox">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>addon/services/fd-current-project-context.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+  @module ember-flexberry-designer
+*/
+
+import Ember from &#x27;ember&#x27;;
+
+/**
+  Service allows to save current application context.
+
+  @class FdCurrentProjectContextService
+  @extends &lt;a href=&quot;http://emberjs.com/api/classes/Ember.Service.html&quot;&gt;Ember.Service&lt;/a&gt;
+*/
+export default Ember.Service.extend({
+  /**
+    Stores current configuration, stage, class.
+
+    @property context
+    @type Object
+  */
+  context: {},
+
+  /**
+    Set current configuration.
+
+    @method setCurrentConfiguration
+    @param {DS.Model} configuration New current configuration.
+  */
+  setCurrentConfiguration(configuration) {
+    this.set(&#x27;context.configuration&#x27;, configuration.get(&#x27;id&#x27;));
+    this.set(&#x27;context.stage&#x27;, undefined);
+    this.set(&#x27;context.class&#x27;, undefined);
+  },
+
+  /**
+    Get &#x60;id&#x60; of current configuration.
+
+    @method getCurrentConfiguration
+    @return {String} Id of current configuration.
+  */
+  getCurrentConfiguration() {
+    let configuration = this.get(&#x27;context.configuration&#x27;);
+
+    Ember.assert(&#x27;Current configuration not set.&#x27;, configuration);
+
+    return configuration;
+  },
+
+  /**
+    Set current stage.
+
+    @method setCurrentStage
+    @param {DS.Model} stage New current stage.
+  */
+  setCurrentStage(stage) {
+    Ember.assert(&#x27;Stage must belong to the current configuration.&#x27;, this.get(&#x27;context.configuration&#x27;) === stage.get(&#x27;configuration.id&#x27;));
+
+    this.set(&#x27;context.stage&#x27;, stage.get(&#x27;id&#x27;));
+    this.set(&#x27;context.class&#x27;, undefined);
+  },
+
+  /**
+    Get &#x60;id&#x60; of current stage.
+
+    @method getCurrentStage
+    @return {String} Id of current stage.
+  */
+  getCurrentStage() {
+    let stage = this.get(&#x27;context.stage&#x27;);
+
+    Ember.assert(&#x27;Current stage not set.&#x27;, stage);
+
+    return stage;
+  },
+
+  /**
+    Set current class.
+
+    @method setCurrentClass
+    @param {DS.Model} clazz New current class.
+  */
+  setCurrentClass(clazz) {
+    Ember.assert(&#x27;Class must belong to the current stage.&#x27;, this.get(&#x27;context.stage&#x27;) === clazz.get(&#x27;stage.id&#x27;));
+
+    this.set(&#x27;context.class&#x27;, clazz.get(&#x27;id&#x27;));
+  },
+
+  /**
+    Get &#x60;id&#x60; of current class.
+
+    @method getCurrentClass
+    @return {String} Id of current class.
+  */
+  getCurrentClass() {
+    let clazz = this.get(&#x27;context.class&#x27;);
+
+    Ember.assert(&#x27;Current class not set.&#x27;, clazz);
+
+    return clazz;
+  },
+});
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

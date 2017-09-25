@@ -769,6 +769,23 @@ define('dummy/tests/services/store.jshint', ['exports'], function (exports) {
     assert.ok(true, 'services/store.js should pass jshint.');
   });
 });
+define('dummy/tests/services/user-settings.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - services');
+  test('services/user-settings.js should pass jscs', function () {
+    ok(true, 'services/user-settings.js should pass jscs.');
+  });
+});
+define('dummy/tests/services/user-settings.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - services/user-settings.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'services/user-settings.js should pass jshint.');
+  });
+});
 define('dummy/tests/test-helper', ['exports', 'dummy/tests/helpers/resolver', 'ember-qunit'], function (exports, _dummyTestsHelpersResolver, _emberQunit) {
 
   (0, _emberQunit.setResolver)(_dummyTestsHelpersResolver['default']);
@@ -1328,6 +1345,38 @@ define('dummy/tests/unit/controllers/fd-view-list-form-test.jshint', ['exports']
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/controllers/fd-view-list-form-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/unit/mixins/fd-limit-by-stage-test', ['exports', 'ember', 'qunit', 'ember-flexberry-data', 'ember-flexberry-designer/mixins/fd-limit-by-stage'], function (exports, _ember, _qunit, _emberFlexberryData, _emberFlexberryDesignerMixinsFdLimitByStage) {
+
+  (0, _qunit.module)('Unit | Mixin | fd limit by stage');
+
+  (0, _qunit.test)('it really works', function (assert) {
+    var subject = _ember['default'].Object.extend(_emberFlexberryDesignerMixinsFdLimitByStage['default']).create();
+
+    // Imitation the service.
+    subject.set('currentContext', _ember['default'].Object.create({ getCurrentStage: function getCurrentStage() {
+        return 'stage';
+      } }));
+
+    assert.ok(subject.objectListViewLimitPredicate() instanceof _emberFlexberryData.Query.SimplePredicate);
+  });
+});
+define('dummy/tests/unit/mixins/fd-limit-by-stage-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/mixins');
+  test('unit/mixins/fd-limit-by-stage-test.js should pass jscs', function () {
+    ok(true, 'unit/mixins/fd-limit-by-stage-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/mixins/fd-limit-by-stage-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/mixins/fd-limit-by-stage-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/mixins/fd-limit-by-stage-test.js should pass jshint.');
   });
 });
 define('dummy/tests/unit/models/fd-ad-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
@@ -5820,17 +5869,43 @@ define('dummy/tests/unit/serializers/fd-view-test.jshint', ['exports'], function
     assert.ok(true, 'unit/serializers/fd-view-test.js should pass jshint.');
   });
 });
-define('dummy/tests/unit/services/fd-current-project-context-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+define('dummy/tests/unit/services/fd-current-project-context-test', ['exports', 'ember', 'ember-qunit'], function (exports, _ember, _emberQunit) {
 
-  (0, _emberQunit.moduleFor)('service:fd-current-project-context', 'Unit | Service | fd current project context', {
-    // Specify the other units that are required for this test.
-    // needs: ['service:foo']
-  });
+  (0, _emberQunit.moduleFor)('service:fd-current-project-context', 'Unit | Service | fd current project context');
 
-  // Replace this with your real tests.
-  (0, _emberQunit.test)('it exists', function (assert) {
+  (0, _emberQunit.test)('it exists and works', function (assert) {
     var service = this.subject();
     assert.ok(service);
+
+    var configuration = _ember['default'].Object.create({ id: 'configuration' });
+    var stage = _ember['default'].Object.create({ id: 'stage' });
+    var clazz = _ember['default'].Object.create({ id: 'class' });
+
+    assert.throws(service.getCurrentConfiguration);
+    service.setCurrentConfiguration(configuration);
+    assert.equal(service.getCurrentConfiguration(), 'configuration');
+
+    assert.throws(service.getCurrentStage);
+    assert.throws(function () {
+      service.setCurrentStage(stage);
+    });
+    stage.set('configuration', configuration);
+    service.setCurrentStage(stage);
+    assert.equal(service.getCurrentStage(), 'stage');
+
+    assert.throws(service.getCurrentClass);
+    assert.throws(function () {
+      service.setCurrentClass(clazz);
+    });
+    clazz.set('stage', stage);
+    service.setCurrentClass(clazz);
+    assert.equal(service.getCurrentClass(), 'class');
+
+    service.setCurrentStage(stage);
+    assert.throws(service.getCurrentClass);
+
+    service.setCurrentConfiguration(configuration);
+    assert.throws(service.getCurrentStage);
   });
 });
 define('dummy/tests/unit/services/fd-current-project-context-test.jscs-test', ['exports'], function (exports) {

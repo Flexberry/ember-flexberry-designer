@@ -256,6 +256,17 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/mixins/fd-limit-by-stage.js": {
+            "name": "addon/mixins/fd-limit-by-stage.js",
+            "modules": {
+                "ember-flexberry-designer": 1
+            },
+            "classes": {
+                "FdLimitByStageMixin": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/routes/fd-association-list-form.js": {
             "name": "addon/routes/fd-association-list-form.js",
             "modules": {},
@@ -745,10 +756,65 @@
             "classes": {},
             "fors": {},
             "namespaces": {}
+        },
+        "addon/services/fd-current-project-context.js": {
+            "name": "addon/services/fd-current-project-context.js",
+            "modules": {},
+            "classes": {
+                "FdCurrentProjectContextService": 1
+            },
+            "fors": {},
+            "namespaces": {}
         }
     },
-    "modules": {},
-    "classes": {},
+    "modules": {
+        "ember-flexberry-designer": {
+            "name": "ember-flexberry-designer",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "FdLimitByStageMixin": 1,
+                "FdCurrentProjectContextService": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "addon/services/fd-current-project-context.js",
+            "line": 7
+        }
+    },
+    "classes": {
+        "FdLimitByStageMixin": {
+            "name": "FdLimitByStageMixin",
+            "shortname": "FdLimitByStageMixin",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "",
+            "file": "addon/mixins/fd-limit-by-stage.js",
+            "line": 8,
+            "description": "Simple way of inject {{#crossLink \"FdCurrentProjectContextService\"}}FdCurrentProjectContextService{{/crossLink}} and limit list objects by stage.",
+            "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Mixin.html\">Ember.Mixin</a>"
+        },
+        "FdCurrentProjectContextService": {
+            "name": "FdCurrentProjectContextService",
+            "shortname": "FdCurrentProjectContextService",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "",
+            "file": "addon/services/fd-current-project-context.js",
+            "line": 7,
+            "description": "Service allows to save current application context.",
+            "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Service.html\">Ember.Service</a>"
+        }
+    },
     "elements": {},
     "classitems": [
         {
@@ -758,7 +824,7 @@
             "itemtype": "property",
             "name": "label",
             "type": "String",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/components/visual-edit-control.js",
@@ -767,7 +833,7 @@
             "itemtype": "property",
             "name": "value",
             "type": "String",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/components/visual-edit-control.js",
@@ -777,7 +843,7 @@
             "name": "type",
             "type": "String",
             "default": "'text'",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/components/visual-edit-control.js",
@@ -787,7 +853,7 @@
             "name": "nameTextboxCaption",
             "type": "String",
             "default": "t('components.fd-visual-control.name')",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/components/visual-edit-control.js",
@@ -797,7 +863,7 @@
             "name": "typeDropdownCaption",
             "type": "String",
             "default": "t('components.fd-visual-control.type')",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/components/visual-edit-control.js",
@@ -807,7 +873,7 @@
             "name": "isNullCheckboxCaption",
             "type": "String",
             "default": "t('components.fd-visual-control.isNull')",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/components/visual-edit-control.js",
@@ -817,7 +883,7 @@
             "name": "defaultValueTextboxCaption",
             "type": "String",
             "default": "t('components.fd-visual-control.defaultValue')",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/components/visual-edit-control.js",
@@ -827,7 +893,7 @@
             "name": "readonlyCheckboxCaption",
             "type": "String",
             "default": "t('components.fd-visual-control.readonly')",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/components/visual-edit-form.js",
@@ -837,7 +903,7 @@
             "name": "createNewButton",
             "type": "Boolean",
             "default": "true",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/components/visual-edit-form.js",
@@ -847,7 +913,7 @@
             "name": "deleteButton",
             "type": "Boolean",
             "default": "true",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/controllers/fd-association-list-form.js",
@@ -857,7 +923,7 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-association-edit-form'",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/controllers/fd-class-list-form.js",
@@ -867,7 +933,7 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-class-edit-form'",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/controllers/fd-configuration-list-form.js",
@@ -877,7 +943,7 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-configuration-edit-form'",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/controllers/fd-diagram-list-form.js",
@@ -887,7 +953,7 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-diagram-edit-form'",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/controllers/fd-generation-process-form.js",
@@ -897,7 +963,7 @@
             "name": "store",
             "type": "DS.Store",
             "readonly": "",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/controllers/fd-inheritance-list-form.js",
@@ -907,7 +973,7 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-inheritance-edit-form'",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/controllers/fd-stage-list-form.js",
@@ -917,7 +983,7 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-stage-edit-form'",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/controllers/fd-system-list-form.js",
@@ -927,7 +993,7 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-system-edit-form'",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/controllers/fd-view-list-form.js",
@@ -937,7 +1003,7 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-view-edit-form'",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-base-association.js",
@@ -945,7 +1011,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "endRoleStr",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-base-association.js",
@@ -958,7 +1024,7 @@
             "example": [
                 "\n  ```javascript\n  _endRoleStrChanged: Ember.on('init', Ember.observer('endRoleStr', function() {\n    Ember.run.once(this, '_endRoleStrCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-base-association.js",
@@ -966,7 +1032,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "notNullStart",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-base-association.js",
@@ -979,7 +1045,7 @@
             "example": [
                 "\n  ```javascript\n  _notNullStartChanged: Ember.on('init', Ember.observer('notNullStart', function() {\n    Ember.run.once(this, '_notNullStartCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-base-association.js",
@@ -987,7 +1053,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "startRoleStr",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-base-association.js",
@@ -1000,7 +1066,7 @@
             "example": [
                 "\n  ```javascript\n  _startRoleStrChanged: Ember.on('init', Ember.observer('startRoleStr', function() {\n    Ember.run.once(this, '_startRoleStrCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-case-property.js",
@@ -1008,7 +1074,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-case-property.js",
@@ -1021,7 +1087,7 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-class.js",
@@ -1029,7 +1095,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "nameStr",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-class.js",
@@ -1042,7 +1108,7 @@
             "example": [
                 "\n  ```javascript\n  _nameStrChanged: Ember.on('init', Ember.observer('nameStr', function() {\n    Ember.run.once(this, '_nameStrCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-aggregation.js",
@@ -1050,7 +1116,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "assocType",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-aggregation.js",
@@ -1063,7 +1129,7 @@
             "example": [
                 "\n  ```javascript\n  _assocTypeChanged: Ember.on('init', Ember.observer('assocType', function() {\n    Ember.run.once(this, '_assocTypeCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-aggregation.js",
@@ -1071,7 +1137,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realStorage",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-aggregation.js",
@@ -1084,7 +1150,7 @@
             "example": [
                 "\n  ```javascript\n  _realStorageChanged: Ember.on('init', Ember.observer('realStorage', function() {\n    Ember.run.once(this, '_realStorageCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-association.js",
@@ -1092,7 +1158,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "assocType",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-association.js",
@@ -1105,7 +1171,7 @@
             "example": [
                 "\n  ```javascript\n  _assocTypeChanged: Ember.on('init', Ember.observer('assocType', function() {\n    Ember.run.once(this, '_assocTypeCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-association.js",
@@ -1113,7 +1179,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realStorage",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-association.js",
@@ -1126,7 +1192,7 @@
             "example": [
                 "\n  ```javascript\n  _realStorageChanged: Ember.on('init', Ember.observer('realStorage', function() {\n    Ember.run.once(this, '_realStorageCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
@@ -1134,7 +1200,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "dataServiceExpressionXML",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
@@ -1147,7 +1213,7 @@
             "example": [
                 "\n  ```javascript\n  _dataServiceExpressionXMLChanged: Ember.on('init', Ember.observer('dataServiceExpressionXML', function() {\n    Ember.run.once(this, '_dataServiceExpressionXMLCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
@@ -1155,7 +1221,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realCaption",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
@@ -1168,7 +1234,7 @@
             "example": [
                 "\n  ```javascript\n  _realCaptionChanged: Ember.on('init', Ember.observer('realCaption', function() {\n    Ember.run.once(this, '_realCaptionCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
@@ -1176,7 +1242,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realStorage",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
@@ -1189,7 +1255,7 @@
             "example": [
                 "\n  ```javascript\n  _realStorageChanged: Ember.on('init', Ember.observer('realStorage', function() {\n    Ember.run.once(this, '_realStorageCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
@@ -1197,7 +1263,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "assocType",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
@@ -1210,7 +1276,7 @@
             "example": [
                 "\n  ```javascript\n  _assocTypeChanged: Ember.on('init', Ember.observer('assocType', function() {\n    Ember.run.once(this, '_assocTypeCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
@@ -1218,7 +1284,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realEndRole",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
@@ -1231,7 +1297,7 @@
             "example": [
                 "\n  ```javascript\n  _realEndRoleChanged: Ember.on('init', Ember.observer('realEndRole', function() {\n    Ember.run.once(this, '_realEndRoleCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
@@ -1239,7 +1305,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realStartRole",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
@@ -1252,7 +1318,7 @@
             "example": [
                 "\n  ```javascript\n  _realStartRoleChanged: Ember.on('init', Ember.observer('realStartRole', function() {\n    Ember.run.once(this, '_realStartRoleCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1260,7 +1326,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "appConfigFile",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1273,7 +1339,7 @@
             "example": [
                 "\n  ```javascript\n  _appConfigFileChanged: Ember.on('init', Ember.observer('appConfigFile', function() {\n    Ember.run.once(this, '_appConfigFileCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1281,7 +1347,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "bSClass",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1294,7 +1360,7 @@
             "example": [
                 "\n  ```javascript\n  _bSClassChanged: Ember.on('init', Ember.observer('bSClass', function() {\n    Ember.run.once(this, '_bSClassCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1302,7 +1368,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "bSEvents",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1315,7 +1381,7 @@
             "example": [
                 "\n  ```javascript\n  _bSEventsChanged: Ember.on('init', Ember.observer('bSEvents', function() {\n    Ember.run.once(this, '_bSEventsCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1323,7 +1389,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "comPlusServerOptions",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1336,7 +1402,7 @@
             "example": [
                 "\n  ```javascript\n  _comPlusServerOptionsChanged: Ember.on('init', Ember.observer('comPlusServerOptions', function() {\n    Ember.run.once(this, '_comPlusServerOptionsCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1344,7 +1410,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "containers",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1357,7 +1423,7 @@
             "example": [
                 "\n  ```javascript\n  _containersChanged: Ember.on('init', Ember.observer('containers', function() {\n    Ember.run.once(this, '_containersCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1365,7 +1431,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "dataObjectTypes",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1378,7 +1444,7 @@
             "example": [
                 "\n  ```javascript\n  _dataObjectTypesChanged: Ember.on('init', Ember.observer('dataObjectTypes', function() {\n    Ember.run.once(this, '_dataObjectTypesCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1386,7 +1452,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "editFormOperations",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1399,7 +1465,7 @@
             "example": [
                 "\n  ```javascript\n  _editFormOperationsChanged: Ember.on('init', Ember.observer('editFormOperations', function() {\n    Ember.run.once(this, '_editFormOperationsCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1407,7 +1473,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "listFormOperations",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1420,7 +1486,7 @@
             "example": [
                 "\n  ```javascript\n  _listFormOperationsChanged: Ember.on('init', Ember.observer('listFormOperations', function() {\n    Ember.run.once(this, '_listFormOperationsCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1428,7 +1494,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "loadingOrderXML",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1441,7 +1507,7 @@
             "example": [
                 "\n  ```javascript\n  _loadingOrderXMLChanged: Ember.on('init', Ember.observer('loadingOrderXML', function() {\n    Ember.run.once(this, '_loadingOrderXMLCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1449,7 +1515,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "propertyLookup",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1462,7 +1528,7 @@
             "example": [
                 "\n  ```javascript\n  _propertyLookupChanged: Ember.on('init', Ember.observer('propertyLookup', function() {\n    Ember.run.once(this, '_propertyLookupCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1470,7 +1536,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realCaption",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1483,7 +1549,7 @@
             "example": [
                 "\n  ```javascript\n  _realCaptionChanged: Ember.on('init', Ember.observer('realCaption', function() {\n    Ember.run.once(this, '_realCaptionCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1491,7 +1557,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realNamespace",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1504,7 +1570,7 @@
             "example": [
                 "\n  ```javascript\n  _realNamespaceChanged: Ember.on('init', Ember.observer('realNamespace', function() {\n    Ember.run.once(this, '_realNamespaceCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1512,7 +1578,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realPacket",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1525,7 +1591,7 @@
             "example": [
                 "\n  ```javascript\n  _realPacketChanged: Ember.on('init', Ember.observer('realPacket', function() {\n    Ember.run.once(this, '_realPacketCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1533,7 +1599,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realPrimaryKeyStorage",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1546,7 +1612,7 @@
             "example": [
                 "\n  ```javascript\n  _realPrimaryKeyStorageChanged: Ember.on('init', Ember.observer('realPrimaryKeyStorage', function() {\n    Ember.run.once(this, '_realPrimaryKeyStorageCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1554,7 +1620,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realStorage",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1567,7 +1633,7 @@
             "example": [
                 "\n  ```javascript\n  _realStorageChanged: Ember.on('init', Ember.observer('realStorage', function() {\n    Ember.run.once(this, '_realStorageCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1575,7 +1641,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "storeInstancesInTypeXML",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1588,7 +1654,7 @@
             "example": [
                 "\n  ```javascript\n  _storeInstancesInTypeXMLChanged: Ember.on('init', Ember.observer('storeInstancesInTypeXML', function() {\n    Ember.run.once(this, '_storeInstancesInTypeXMLCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1596,7 +1662,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "useCache",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1609,7 +1675,7 @@
             "example": [
                 "\n  ```javascript\n  _useCacheChanged: Ember.on('init', Ember.observer('useCache', function() {\n    Ember.run.once(this, '_useCacheCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -1617,7 +1683,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "dataObjectTypes",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -1630,7 +1696,7 @@
             "example": [
                 "\n  ```javascript\n  _dataObjectTypesChanged: Ember.on('init', Ember.observer('dataObjectTypes', function() {\n    Ember.run.once(this, '_dataObjectTypesCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -1638,7 +1704,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "listFormOperations",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -1651,7 +1717,7 @@
             "example": [
                 "\n  ```javascript\n  _listFormOperationsChanged: Ember.on('init', Ember.observer('listFormOperations', function() {\n    Ember.run.once(this, '_listFormOperationsCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -1659,7 +1725,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "propertyLookup",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -1672,7 +1738,7 @@
             "example": [
                 "\n  ```javascript\n  _propertyLookupChanged: Ember.on('init', Ember.observer('propertyLookup', function() {\n    Ember.run.once(this, '_propertyLookupCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -1680,7 +1746,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "viewForForm",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -1693,7 +1759,7 @@
             "example": [
                 "\n  ```javascript\n  _viewForFormChanged: Ember.on('init', Ember.observer('viewForForm', function() {\n    Ember.run.once(this, '_viewForFormCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-method.js",
@@ -1701,7 +1767,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "parametersStr",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-method.js",
@@ -1714,7 +1780,7 @@
             "example": [
                 "\n  ```javascript\n  _parametersStrChanged: Ember.on('init', Ember.observer('parametersStr', function() {\n    Ember.run.once(this, '_parametersStrCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-method.js",
@@ -1722,7 +1788,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realCaption",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-method.js",
@@ -1735,7 +1801,7 @@
             "example": [
                 "\n  ```javascript\n  _realCaptionChanged: Ember.on('init', Ember.observer('realCaption', function() {\n    Ember.run.once(this, '_realCaptionCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-method.js",
@@ -1743,7 +1809,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeParametersStr",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-method.js",
@@ -1756,7 +1822,7 @@
             "example": [
                 "\n  ```javascript\n  _typeParametersStrChanged: Ember.on('init', Ember.observer('typeParametersStr', function() {\n    Ember.run.once(this, '_typeParametersStrCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-parameter.js",
@@ -1764,7 +1830,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realCaption",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-parameter.js",
@@ -1777,7 +1843,7 @@
             "example": [
                 "\n  ```javascript\n  _realCaptionChanged: Ember.on('init', Ember.observer('realCaption', function() {\n    Ember.run.once(this, '_realCaptionCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -1785,7 +1851,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "additionalPluginsSettings",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -1798,7 +1864,7 @@
             "example": [
                 "\n  ```javascript\n  _additionalPluginsSettingsChanged: Ember.on('init', Ember.observer('additionalPluginsSettings', function() {\n    Ember.run.once(this, '_additionalPluginsSettingsCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -1806,7 +1872,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "chosenPalette",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -1819,7 +1885,7 @@
             "example": [
                 "\n  ```javascript\n  _chosenPaletteChanged: Ember.on('init', Ember.observer('chosenPalette', function() {\n    Ember.run.once(this, '_chosenPaletteCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -1827,7 +1893,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "defaultAccessType",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -1840,7 +1906,7 @@
             "example": [
                 "\n  ```javascript\n  _defaultAccessTypeChanged: Ember.on('init', Ember.observer('defaultAccessType', function() {\n    Ember.run.once(this, '_defaultAccessTypeCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -1848,7 +1914,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "defaultTypeMapTypes",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -1861,7 +1927,7 @@
             "example": [
                 "\n  ```javascript\n  _defaultTypeMapTypesChanged: Ember.on('init', Ember.observer('defaultTypeMapTypes', function() {\n    Ember.run.once(this, '_defaultTypeMapTypesCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -1869,7 +1935,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "doNotDeleteExtraTables",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -1882,7 +1948,7 @@
             "example": [
                 "\n  ```javascript\n  _doNotDeleteExtraTablesChanged: Ember.on('init', Ember.observer('doNotDeleteExtraTables', function() {\n    Ember.run.once(this, '_doNotDeleteExtraTablesCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -1890,7 +1956,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "enableAuElement",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -1903,7 +1969,7 @@
             "example": [
                 "\n  ```javascript\n  _enableAuElementChanged: Ember.on('init', Ember.observer('enableAuElement', function() {\n    Ember.run.once(this, '_enableAuElementCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -1911,7 +1977,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "lastIndexDate",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -1924,7 +1990,7 @@
             "example": [
                 "\n  ```javascript\n  _lastIndexDateChanged: Ember.on('init', Ember.observer('lastIndexDate', function() {\n    Ember.run.once(this, '_lastIndexDateCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -1932,7 +1998,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realDataObjectNameSpace",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -1945,7 +2011,7 @@
             "example": [
                 "\n  ```javascript\n  _realDataObjectNameSpaceChanged: Ember.on('init', Ember.observer('realDataObjectNameSpace', function() {\n    Ember.run.once(this, '_realDataObjectNameSpaceCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -1953,7 +2019,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapAccess",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -1966,7 +2032,7 @@
             "example": [
                 "\n  ```javascript\n  _typeMapAccessChanged: Ember.on('init', Ember.observer('typeMapAccess', function() {\n    Ember.run.once(this, '_typeMapAccessCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -1974,7 +2040,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapCS",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -1987,7 +2053,7 @@
             "example": [
                 "\n  ```javascript\n  _typeMapCSChanged: Ember.on('init', Ember.observer('typeMapCS', function() {\n    Ember.run.once(this, '_typeMapCSCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -1995,7 +2061,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapOracle",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2008,7 +2074,7 @@
             "example": [
                 "\n  ```javascript\n  _typeMapOracleChanged: Ember.on('init', Ember.observer('typeMapOracle', function() {\n    Ember.run.once(this, '_typeMapOracleCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2016,7 +2082,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapPostgre",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2029,7 +2095,7 @@
             "example": [
                 "\n  ```javascript\n  _typeMapPostgreChanged: Ember.on('init', Ember.observer('typeMapPostgre', function() {\n    Ember.run.once(this, '_typeMapPostgreCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2037,7 +2103,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapSQL",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2050,7 +2116,7 @@
             "example": [
                 "\n  ```javascript\n  _typeMapSQLChanged: Ember.on('init', Ember.observer('typeMapSQL', function() {\n    Ember.run.once(this, '_typeMapSQLCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2058,7 +2124,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapVB",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2071,7 +2137,7 @@
             "example": [
                 "\n  ```javascript\n  _typeMapVBChanged: Ember.on('init', Ember.observer('typeMapVB', function() {\n    Ember.run.once(this, '_typeMapVBCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -2079,7 +2145,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -2092,7 +2158,7 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -2100,7 +2166,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitiveTypes",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -2113,7 +2179,7 @@
             "example": [
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -2121,7 +2187,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitives",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -2134,7 +2200,7 @@
             "example": [
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -2142,7 +2208,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "helpKeyword",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -2155,7 +2221,7 @@
             "example": [
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -2163,7 +2229,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -2176,7 +2242,7 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -2184,7 +2250,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitiveTypes",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -2197,7 +2263,7 @@
             "example": [
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -2205,7 +2271,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitives",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -2218,7 +2284,7 @@
             "example": [
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -2226,7 +2292,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "helpKeyword",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -2239,7 +2305,7 @@
             "example": [
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -2247,7 +2313,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -2260,7 +2326,7 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -2268,7 +2334,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitiveTypes",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -2281,7 +2347,7 @@
             "example": [
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -2289,7 +2355,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitives",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -2302,7 +2368,7 @@
             "example": [
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -2310,7 +2376,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "helpKeyword",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -2323,7 +2389,7 @@
             "example": [
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -2331,7 +2397,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -2344,7 +2410,7 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -2352,7 +2418,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitiveTypes",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -2365,7 +2431,7 @@
             "example": [
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -2373,7 +2439,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitives",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -2386,7 +2452,7 @@
             "example": [
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -2394,7 +2460,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "helpKeyword",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -2407,7 +2473,7 @@
             "example": [
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -2415,7 +2481,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -2428,7 +2494,7 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -2436,7 +2502,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitiveTypes",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -2449,7 +2515,7 @@
             "example": [
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -2457,7 +2523,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitives",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -2470,7 +2536,7 @@
             "example": [
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -2478,7 +2544,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "helpKeyword",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -2491,7 +2557,7 @@
             "example": [
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -2499,7 +2565,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -2512,7 +2578,7 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -2520,7 +2586,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitiveTypes",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -2533,7 +2599,7 @@
             "example": [
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -2541,7 +2607,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitives",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -2554,7 +2620,7 @@
             "example": [
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -2562,7 +2628,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "helpKeyword",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -2575,7 +2641,7 @@
             "example": [
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -2583,7 +2649,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -2596,7 +2662,7 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -2604,7 +2670,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitiveTypes",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -2617,7 +2683,7 @@
             "example": [
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -2625,7 +2691,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitives",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -2638,7 +2704,7 @@
             "example": [
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -2646,7 +2712,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "helpKeyword",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -2659,7 +2725,7 @@
             "example": [
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-view.js",
@@ -2667,7 +2733,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "properties",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-view.js",
@@ -2680,7 +2746,7 @@
             "example": [
                 "\n  ```javascript\n  _propertiesChanged: Ember.on('init', Ember.observer('properties', function() {\n    Ember.run.once(this, '_propertiesCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-diagram.js",
@@ -2688,7 +2754,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitivesStream",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-diagram.js",
@@ -2701,7 +2767,7 @@
             "example": [
                 "\n  ```javascript\n  _primitivesStreamChanged: Ember.on('init', Ember.observer('primitivesStream', function() {\n    Ember.run.once(this, '_primitivesStreamCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-filelink.js",
@@ -2709,7 +2775,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "fileName",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-filelink.js",
@@ -2722,7 +2788,7 @@
             "example": [
                 "\n  ```javascript\n  _fileNameChanged: Ember.on('init', Ember.observer('fileName', function() {\n    Ember.run.once(this, '_fileNameCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-registered-plug-in.js",
@@ -2730,7 +2796,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "type",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-registered-plug-in.js",
@@ -2743,7 +2809,7 @@
             "example": [
                 "\n  ```javascript\n  _typeChanged: Ember.on('init', Ember.observer('type', function() {\n    Ember.run.once(this, '_typeCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-repository-data-object.js",
@@ -2751,7 +2817,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "nameStr",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-repository-data-object.js",
@@ -2764,7 +2830,7 @@
             "example": [
                 "\n  ```javascript\n  _nameStrChanged: Ember.on('init', Ember.observer('nameStr', function() {\n    Ember.run.once(this, '_nameStrCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-stage.js",
@@ -2772,7 +2838,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "chosenPalette",
-            "class": ""
+            "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-stage.js",
@@ -2785,619 +2851,865 @@
             "example": [
                 "\n  ```javascript\n  _chosenPaletteChanged: Ember.on('init', Ember.observer('chosenPalette', function() {\n    Ember.run.once(this, '_chosenPaletteCompute');\n  }))\n  ```"
             ],
-            "class": ""
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/mixins/fd-limit-by-stage.js",
+            "line": 15,
+            "description": "Link to {{#crossLink \"FdCurrentProjectContextService\"}}FdCurrentProjectContextService{{/crossLink}}.",
+            "itemtype": "property",
+            "name": "currentContext",
+            "type": "FdCurrentProjectContextService",
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/mixins/fd-limit-by-stage.js",
+            "line": 23,
+            "description": "Return `SimplePredicate` for limit list objects by stage.",
+            "itemtype": "method",
+            "name": "objectListViewLimitPredicate",
+            "return": {
+                "description": "",
+                "type": "Query.SimplePredicate"
+            },
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-association-list-form.js",
-            "line": 4,
+            "line": 5,
             "description": "Name of model projection to be used as record's properties limitation.",
             "itemtype": "property",
             "name": "modelProjection",
             "type": "String",
             "default": "'ListFormView'",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-association-list-form.js",
-            "line": 13,
+            "line": 14,
             "description": "Name of model to be used as list's records types.",
             "itemtype": "property",
             "name": "modelName",
             "type": "String",
             "default": "'fd-dev-association'",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-association-list-form.js",
-            "line": 22,
+            "line": 23,
             "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
             "itemtype": "property",
             "name": "developerUserSettings",
             "type": "Object",
             "default": "{}",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-class-list-form.js",
-            "line": 4,
+            "line": 6,
             "description": "Name of model projection to be used as record's properties limitation.",
             "itemtype": "property",
             "name": "modelProjection",
             "type": "String",
             "default": "'ListFormView'",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-class-list-form.js",
-            "line": 13,
+            "line": 15,
             "description": "Name of model to be used as list's records types.",
             "itemtype": "property",
             "name": "modelName",
             "type": "String",
             "default": "'fd-dev-class'",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-class-list-form.js",
-            "line": 22,
+            "line": 24,
             "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
             "itemtype": "property",
             "name": "developerUserSettings",
             "type": "Object",
             "default": "{}",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-class-list-form.js",
+            "line": 49,
+            "description": "Link to {{#crossLink \"FdCurrentProjectContextService\"}}FdCurrentProjectContextService{{/crossLink}}.",
+            "itemtype": "property",
+            "name": "currentContext",
+            "type": "FdCurrentProjectContextService",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-configuration-list-form.js",
-            "line": 4,
+            "line": 5,
             "description": "Name of model projection to be used as record's properties limitation.",
             "itemtype": "property",
             "name": "modelProjection",
             "type": "String",
             "default": "'ListFormView'",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-configuration-list-form.js",
-            "line": 13,
+            "line": 14,
             "description": "Name of model to be used as list's records types.",
             "itemtype": "property",
             "name": "modelName",
             "type": "String",
             "default": "'fd-configuration'",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-configuration-list-form.js",
-            "line": 22,
+            "line": 23,
             "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
             "itemtype": "property",
             "name": "developerUserSettings",
             "type": "Object",
             "default": "{}",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-configuration-list-form.js",
+            "line": 48,
+            "description": "Link to {{#crossLink \"FdCurrentProjectContextService\"}}FdCurrentProjectContextService{{/crossLink}}.",
+            "itemtype": "property",
+            "name": "currentContext",
+            "type": "FdCurrentProjectContextService",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-diagram-list-form.js",
-            "line": 4,
+            "line": 5,
             "description": "Name of model projection to be used as record's properties limitation.",
             "itemtype": "property",
             "name": "modelProjection",
             "type": "String",
             "default": "'ListFormView'",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-diagram-list-form.js",
-            "line": 13,
+            "line": 14,
             "description": "Name of model to be used as list's records types.",
             "itemtype": "property",
             "name": "modelName",
             "type": "String",
             "default": "'fd-dev-uml-cad'",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-diagram-list-form.js",
-            "line": 22,
+            "line": 23,
             "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
             "itemtype": "property",
             "name": "developerUserSettings",
             "type": "Object",
             "default": "{}",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-inheritance-list-form.js",
-            "line": 4,
+            "line": 5,
             "description": "Name of model projection to be used as record's properties limitation.",
             "itemtype": "property",
             "name": "modelProjection",
             "type": "String",
             "default": "'ListFormView'",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-inheritance-list-form.js",
-            "line": 13,
+            "line": 14,
             "description": "Name of model to be used as list's records types.",
             "itemtype": "property",
             "name": "modelName",
             "type": "String",
             "default": "'fd-dev-inheritance'",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-inheritance-list-form.js",
-            "line": 22,
+            "line": 23,
             "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
             "itemtype": "property",
             "name": "developerUserSettings",
             "type": "Object",
             "default": "{}",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-stage-list-form.js",
-            "line": 4,
+            "line": 6,
             "description": "Name of model projection to be used as record's properties limitation.",
             "itemtype": "property",
             "name": "modelProjection",
             "type": "String",
             "default": "'ListFormView'",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-stage-list-form.js",
-            "line": 13,
+            "line": 15,
             "description": "Name of model to be used as list's records types.",
             "itemtype": "property",
             "name": "modelName",
             "type": "String",
             "default": "'fd-dev-stage'",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-stage-list-form.js",
-            "line": 22,
+            "line": 24,
             "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
             "itemtype": "property",
             "name": "developerUserSettings",
             "type": "Object",
             "default": "{}",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-stage-list-form.js",
+            "line": 49,
+            "description": "Link to {{#crossLink \"FdCurrentProjectContextService\"}}FdCurrentProjectContextService{{/crossLink}}.",
+            "itemtype": "property",
+            "name": "currentContext",
+            "type": "FdCurrentProjectContextService",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-system-list-form.js",
-            "line": 4,
+            "line": 5,
             "description": "Name of model projection to be used as record's properties limitation.",
             "itemtype": "property",
             "name": "modelProjection",
             "type": "String",
             "default": "'ListFormView'",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-system-list-form.js",
-            "line": 13,
+            "line": 14,
             "description": "Name of model to be used as list's records types.",
             "itemtype": "property",
             "name": "modelName",
             "type": "String",
             "default": "'fd-dev-system'",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-system-list-form.js",
-            "line": 22,
+            "line": 23,
             "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
             "itemtype": "property",
             "name": "developerUserSettings",
             "type": "Object",
             "default": "{}",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-view-list-form.js",
-            "line": 4,
+            "line": 6,
             "description": "Name of model projection to be used as record's properties limitation.",
             "itemtype": "property",
             "name": "modelProjection",
             "type": "String",
             "default": "'ListFormView'",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-view-list-form.js",
-            "line": 13,
+            "line": 15,
             "description": "Name of model to be used as list's records types.",
             "itemtype": "property",
             "name": "modelName",
             "type": "String",
             "default": "'fd-dev-view'",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/routes/fd-view-list-form.js",
-            "line": 22,
+            "line": 24,
             "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
             "itemtype": "property",
             "name": "developerUserSettings",
             "type": "Object",
             "default": "{}",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-view-list-form.js",
+            "line": 49,
+            "description": "Link to {{#crossLink \"FdCurrentProjectContextService\"}}FdCurrentProjectContextService{{/crossLink}}.",
+            "itemtype": "property",
+            "name": "currentContext",
+            "type": "FdCurrentProjectContextService",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-ad.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-aggregation.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-association.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-base-association.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-cad.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-case-property.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-class.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-cod.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-configuration.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-aggregation.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-associated-detail-view.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-association.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-attribute.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-base-association.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-class.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-control-type.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-diagram-link.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-filelink.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-form-control.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-form-view.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-inheritance.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-method.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-module-setting-type.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-module-setting.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-parameter.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-process-status.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-stage-history.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-stage.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-system.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-task.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-type-definition.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-uml-ad.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-uml-cad.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-uml-cod.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-uml-dpd.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-uml-sd.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-uml-std.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-uml-ucd.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dev-view.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-diagram-link.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-diagram.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-dpd.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-filelink.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-form-control.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-form-view.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-inheritance.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-object-in-system.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-plugin-on-rep-object.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-project.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-registered-plug-in.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-repository-browser-data-object-with-a-c-l.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-repository-browser-data-object.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-repository-data-object.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-repository-object-with-plugins.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-repository-ref-data-object.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-repository.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-sd.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-stage.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-std.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-subsystem.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-ucd.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/serializers/fd-view.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
-            "class": ""
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/services/fd-current-project-context.js",
+            "line": 14,
+            "description": "Stores current configuration, stage, class.",
+            "itemtype": "property",
+            "name": "context",
+            "type": "Object",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/services/fd-current-project-context.js",
+            "line": 22,
+            "description": "Set current configuration.",
+            "itemtype": "method",
+            "name": "setCurrentConfiguration",
+            "params": [
+                {
+                    "name": "configuration",
+                    "description": "New current configuration.",
+                    "type": "DS.Model"
+                }
+            ],
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/services/fd-current-project-context.js",
+            "line": 34,
+            "description": "Get `id` of current configuration.",
+            "itemtype": "method",
+            "name": "getCurrentConfiguration",
+            "return": {
+                "description": "Id of current configuration.",
+                "type": "String"
+            },
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/services/fd-current-project-context.js",
+            "line": 48,
+            "description": "Set current stage.",
+            "itemtype": "method",
+            "name": "setCurrentStage",
+            "params": [
+                {
+                    "name": "stage",
+                    "description": "New current stage.",
+                    "type": "DS.Model"
+                }
+            ],
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/services/fd-current-project-context.js",
+            "line": 61,
+            "description": "Get `id` of current stage.",
+            "itemtype": "method",
+            "name": "getCurrentStage",
+            "return": {
+                "description": "Id of current stage.",
+                "type": "String"
+            },
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/services/fd-current-project-context.js",
+            "line": 75,
+            "description": "Set current class.",
+            "itemtype": "method",
+            "name": "setCurrentClass",
+            "params": [
+                {
+                    "name": "clazz",
+                    "description": "New current class.",
+                    "type": "DS.Model"
+                }
+            ],
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/services/fd-current-project-context.js",
+            "line": 87,
+            "description": "Get `id` of current class.",
+            "itemtype": "method",
+            "name": "getCurrentClass",
+            "return": {
+                "description": "Id of current class.",
+                "type": "String"
+            },
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
         }
     ],
     "warnings": [

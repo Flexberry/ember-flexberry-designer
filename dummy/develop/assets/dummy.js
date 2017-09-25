@@ -372,77 +372,87 @@ define('dummy/components/yield-slot', ['exports', 'ember-block-slots/components/
 });
 define('dummy/controllers/application', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Controller.extend({
-    sitemap: _ember['default'].computed('i18n.locale', function () {
-      var i18n = this.get('i18n');
+    /**
+      Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
+       @property currentContext
+      @type FdCurrentProjectContextService
+    */
+    currentContext: _ember['default'].inject.service('fd-current-project-context'),
 
-      return {
+    sitemap: _ember['default'].computed('i18n.locale', 'currentContext.context.configuration', 'currentContext.context.stage', 'currentContext.context.class', function () {
+      var i18n = this.get('i18n');
+      var sitemap = {
         nodes: [{
           link: 'index',
           caption: i18n.t('forms.application.sitemap.index.caption'),
-          title: i18n.t('forms.application.sitemap.index.title'),
-          children: null
+          title: i18n.t('forms.application.sitemap.index.title')
         }, {
           link: 'fd-visual-edit-form',
           caption: i18n.t('forms.application.sitemap.fd-visual-edit-form.caption'),
-          title: i18n.t('forms.application.sitemap.fd-visual-edit-form.title'),
-          children: null
+          title: i18n.t('forms.application.sitemap.fd-visual-edit-form.title')
         }, {
-          link: null,
-          caption: i18n.t('forms.application.sitemap.root.caption'),
-          title: i18n.t('forms.application.sitemap.root.title'),
-          children: [{
-            link: 'fd-configuration-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.title'),
-            children: null
-          }, {
-            link: 'fd-stage-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-stage-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-stage-list-form.title'),
-            children: null
-          }, {
-            link: 'fd-system-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-system-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-system-list-form.title'),
-            children: null
-          }, {
-            link: 'fd-appstruct-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-appstruct-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-appstruct-list-form.title'),
-            children: null
-          }, {
-            link: 'fd-diagram-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.title'),
-            children: null
-          }, {
-            link: 'fd-class-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-class-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-class-list-form.title'),
-            children: null
-          }, {
-            link: 'fd-association-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-association-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-association-list-form.title'),
-            children: null
-          }, {
-            link: 'fd-inheritance-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.title'),
-            children: null
-          }, {
-            link: 'fd-view-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-view-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-view-list-form.title'),
-            children: null
-          }, {
-            link: 'fd-generation-process-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-generation-process-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-generation-process-form.title'),
-            children: null
-          }]
+          link: 'fd-configuration-list-form',
+          caption: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.title')
         }]
       };
+
+      var context = this.get('currentContext.context');
+      if (context.configuration) {
+        sitemap.nodes.push({
+          link: 'fd-stage-list-form',
+          caption: i18n.t('forms.application.sitemap.root.fd-stage-list-form.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-stage-list-form.title')
+        });
+      }
+
+      if (context.stage) {
+        sitemap.nodes.push({
+          link: 'fd-appstruct-list-form',
+          caption: i18n.t('forms.application.sitemap.root.fd-appstruct-list-form.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-appstruct-list-form.title')
+        });
+        sitemap.nodes.push({
+          link: 'fd-generation-process-form',
+          caption: i18n.t('forms.application.sitemap.root.fd-generation-process-form.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-generation-process-form.title')
+        });
+        sitemap.nodes.push({
+          link: 'fd-system-list-form',
+          caption: i18n.t('forms.application.sitemap.root.fd-system-list-form.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-system-list-form.title')
+        });
+        sitemap.nodes.push({
+          link: 'fd-diagram-list-form',
+          caption: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.title')
+        });
+        sitemap.nodes.push({
+          link: 'fd-class-list-form',
+          caption: i18n.t('forms.application.sitemap.root.fd-class-list-form.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-class-list-form.title')
+        });
+        sitemap.nodes.push({
+          link: 'fd-association-list-form',
+          caption: i18n.t('forms.application.sitemap.root.fd-association-list-form.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-association-list-form.title')
+        });
+        sitemap.nodes.push({
+          link: 'fd-inheritance-list-form',
+          caption: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.title')
+        });
+      }
+
+      if (context['class']) {
+        sitemap.nodes.push({
+          link: 'fd-view-list-form',
+          caption: i18n.t('forms.application.sitemap.root.fd-view-list-form.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-view-list-form.title')
+        });
+      }
+
+      return sitemap;
     }),
 
     /**
@@ -3388,6 +3398,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/translations.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/fd-limit-by-stage.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins');
+  test('modules/ember-flexberry-designer/mixins/fd-limit-by-stage.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/fd-limit-by-stage.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/fd-limit-by-stage.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/fd-limit-by-stage.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/fd-limit-by-stage.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-ad.jscs-test', ['exports'], function (exports) {
@@ -11553,18 +11576,12 @@ define('dummy/services/syncer', ['exports', 'ember-flexberry-data/services/synce
     }
   });
 });
-define('dummy/services/user-settings', ['exports', 'ember', 'ember-flexberry/services/user-settings', 'dummy/config/environment'], function (exports, _ember, _emberFlexberryServicesUserSettings, _dummyConfigEnvironment) {
-
-  var enabled = _ember['default'].get(_dummyConfigEnvironment['default'], 'APP.useUserSettingsService');
-  var appName = _ember['default'].get(_dummyConfigEnvironment['default'], 'APP.name');
-  if (_ember['default'].typeOf(enabled) === 'boolean') {
-    _emberFlexberryServicesUserSettings['default'].reopen({
-      isUserSettingsServiceEnabled: enabled,
-      appName: appName
-    });
-  }
-
-  exports['default'] = _emberFlexberryServicesUserSettings['default'];
+define('dummy/services/user-settings', ['exports', 'ember-flexberry/services/user-settings'], function (exports, _emberFlexberryServicesUserSettings) {
+  exports['default'] = _emberFlexberryServicesUserSettings['default'].extend({
+    getCurrentUser: function getCurrentUser() {
+      return 'admin';
+    }
+  });
 });
 define('dummy/services/user', ['exports', 'ember-flexberry-data/services/user'], function (exports, _emberFlexberryDataServicesUser) {
   Object.defineProperty(exports, 'default', {
@@ -23576,7 +23593,7 @@ define("dummy/templates/fd-class-list-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 26,
+            "line": 28,
             "column": 0
           }
         },
@@ -23613,7 +23630,7 @@ define("dummy/templates/fd-class-list-form", ["exports"], function (exports) {
         morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 1, 1);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-class-list-form.caption"], [], ["loc", [null, [1, 4], [1, 44]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-class", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [5, 20], [5, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [6, 18], [6, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [7, 12], [7, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [10, 12], [10, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [12, 17], [12, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [13, 23], [13, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [14, 10], [14, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [15, 17], [15, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [16, 18], [16, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [17, 22], [17, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [18, 20], [18, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [19, 16], [19, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [20, 17], [20, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [21, 13], [21, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [22, 13], [22, 32]]]], "componentName", "FdClassListForm"], ["loc", [null, [3, 2], [24, 4]]]]],
+      statements: [["inline", "t", ["forms.fd-class-list-form.caption"], [], ["loc", [null, [1, 4], [1, 44]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-class", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [5, 20], [5, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [6, 18], [6, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [7, 12], [7, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [12, 12], [12, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [14, 17], [14, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [15, 23], [15, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [16, 10], [16, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [17, 17], [17, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [18, 18], [18, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [19, 22], [19, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [20, 20], [20, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [21, 16], [21, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [22, 17], [22, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [23, 13], [23, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [24, 13], [24, 32]]]], "componentName", "FdClassListForm"], ["loc", [null, [3, 2], [26, 4]]]]],
       locals: [],
       templates: []
     };
@@ -24032,7 +24049,7 @@ define("dummy/templates/fd-configuration-list-form", ["exports"], function (expo
             "column": 0
           },
           "end": {
-            "line": 26,
+            "line": 28,
             "column": 0
           }
         },
@@ -24069,7 +24086,7 @@ define("dummy/templates/fd-configuration-list-form", ["exports"], function (expo
         morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 1, 1);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-configuration-list-form.caption"], [], ["loc", [null, [1, 4], [1, 52]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-configuration", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [5, 20], [5, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [6, 18], [6, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [7, 12], [7, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [10, 12], [10, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [12, 17], [12, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [13, 23], [13, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [14, 10], [14, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [15, 17], [15, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [16, 18], [16, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [17, 22], [17, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [18, 20], [18, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [19, 16], [19, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [20, 17], [20, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [21, 13], [21, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [22, 13], [22, 32]]]], "componentName", "FdConfigurationListForm"], ["loc", [null, [3, 2], [24, 4]]]]],
+      statements: [["inline", "t", ["forms.fd-configuration-list-form.caption"], [], ["loc", [null, [1, 4], [1, 52]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-configuration", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [5, 20], [5, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [6, 18], [6, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [7, 12], [7, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [12, 12], [12, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [14, 17], [14, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [15, 23], [15, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [16, 10], [16, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [17, 17], [17, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [18, 18], [18, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [19, 22], [19, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [20, 20], [20, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [21, 16], [21, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [22, 17], [22, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [23, 13], [23, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [24, 13], [24, 32]]]], "componentName", "FdConfigurationListForm"], ["loc", [null, [3, 2], [26, 4]]]]],
       locals: [],
       templates: []
     };
@@ -25526,7 +25543,7 @@ define("dummy/templates/fd-stage-list-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 26,
+            "line": 28,
             "column": 0
           }
         },
@@ -25563,7 +25580,7 @@ define("dummy/templates/fd-stage-list-form", ["exports"], function (exports) {
         morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 1, 1);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-stage-list-form.caption"], [], ["loc", [null, [1, 4], [1, 44]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-stage", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [5, 20], [5, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [6, 18], [6, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [7, 12], [7, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [10, 12], [10, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [12, 17], [12, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [13, 23], [13, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [14, 10], [14, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [15, 17], [15, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [16, 18], [16, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [17, 22], [17, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [18, 20], [18, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [19, 16], [19, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [20, 17], [20, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [21, 13], [21, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [22, 13], [22, 32]]]], "componentName", "FdStageListForm"], ["loc", [null, [3, 2], [24, 4]]]]],
+      statements: [["inline", "t", ["forms.fd-stage-list-form.caption"], [], ["loc", [null, [1, 4], [1, 44]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-stage", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [5, 20], [5, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [6, 18], [6, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [7, 12], [7, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [12, 12], [12, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [14, 17], [14, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [15, 23], [15, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [16, 10], [16, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [17, 17], [17, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [18, 18], [18, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [19, 22], [19, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [20, 20], [20, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [21, 16], [21, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [22, 17], [22, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [23, 13], [23, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [24, 13], [24, 32]]]], "componentName", "FdStageListForm"], ["loc", [null, [3, 2], [26, 4]]]]],
       locals: [],
       templates: []
     };
@@ -32541,7 +32558,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://flexberry-designer-web.azurewebsites.net","backendUrls":{"root":"https://flexberry-designer-web.azurewebsites.net","api":"https://flexberry-designer-web.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://flexberry-designer-web.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.1.0-alpha01+942abd65"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://flexberry-designer-web.azurewebsites.net","backendUrls":{"root":"https://flexberry-designer-web.azurewebsites.net","api":"https://flexberry-designer-web.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://flexberry-designer-web.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.1.0-alpha01+a4096e64"});
 }
 
 /* jshint ignore:end */
