@@ -13,7 +13,7 @@ module.exports = function (environment) {
     modulePrefix: 'dummy',
     environment: environment,
     baseURL: '/',
-    locationType: 'auto',
+    locationType: 'hash',
     EmberENV: {
       LOG_STACKTRACE_ON_DEPRECATION: false,
 
