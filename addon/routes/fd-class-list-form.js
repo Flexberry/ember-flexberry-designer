@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { Query } from 'ember-flexberry-data';
 import ListFormRoute from 'ember-flexberry/routes/list-form';
 
 export default ListFormRoute.extend({
@@ -58,5 +59,10 @@ export default ListFormRoute.extend({
       this.get('currentContext').setCurrentClass(clazz);
       this.transitionTo('fd-view-list-form');
     },
+  },
+
+  objectListViewLimitPredicate() {
+    let stage = this.get('currentContext').getCurrentStage();
+    return new Query.SimplePredicate('stage', '==', stage);
   },
 });
