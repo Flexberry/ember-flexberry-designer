@@ -875,6 +875,9 @@ export default {
       },
       createDate: {
         caption: 'Create date'
+      },
+      configuration: {
+        caption: ''
       }
     },
     Prototyping: {

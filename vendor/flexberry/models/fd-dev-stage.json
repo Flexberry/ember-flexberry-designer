@@ -2126,7 +2126,21 @@
           "index": 5
         }
       ],
-      "belongsTo": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Configuration",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [],
+          "index": 6,
+          "caption": "",
+          "name": "configuration",
+          "relatedTo": "fd-configuration",
+          "inverse": null
+        }
+      ],
       "hasMany": []
     },
     {
