@@ -331,7 +331,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       Ember.set(parentNodes, prev.toString(), node);
       Ember.set(parentNodes, index.toString(), prevNode);
 
-      //Ember.set(this, 'jsonRightTreeNodes', this._jsTreeToFlexberryTree(this.model.jsonRightTreeNodes));
+      /*Ember.set(this, 'jsonRightTreeNodes', this._jsTreeToFlexberryTree(this.model.jsonRightTreeNodes));*/
     },
 
     downRightNode() {
@@ -351,9 +351,9 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     saveTree() {
       let rightTree = this._jsFlexberryTreeToTree(this.jsonRightTreeNodes[0].nodes);
       this.get('store').findRecord('fd-dev-class', this.model.id).then(function(record) {
-        //let stagePk = _this.get('currentProjectContext').getCurrentStagePk();
+        /*let stagePk = _this.get('currentProjectContext').getCurrentStagePk();*/
         record.set('containersStr', rightTree);
-        //record.set('stage', stagePk);
+        /*record.set('stage', stagePk);*/
         record.save().then(
           function(data) {
             alert('Success' + data);
