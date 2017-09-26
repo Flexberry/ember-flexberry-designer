@@ -387,10 +387,6 @@ define('dummy/controllers/application', ['exports', 'ember'], function (exports,
           caption: i18n.t('forms.application.sitemap.index.caption'),
           title: i18n.t('forms.application.sitemap.index.title')
         }, {
-          link: 'fd-visual-edit-form',
-          caption: i18n.t('forms.application.sitemap.fd-visual-edit-form.caption'),
-          title: i18n.t('forms.application.sitemap.fd-visual-edit-form.title')
-        }, {
           link: 'fd-configuration-list-form',
           caption: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.caption'),
           title: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.title')
@@ -411,6 +407,11 @@ define('dummy/controllers/application', ['exports', 'ember'], function (exports,
           link: 'fd-appstruct-list-form',
           caption: i18n.t('forms.application.sitemap.root.fd-appstruct-list-form.caption'),
           title: i18n.t('forms.application.sitemap.root.fd-appstruct-list-form.title')
+        });
+        sitemap.nodes.push({
+          link: 'fd-visual-edit-form',
+          caption: i18n.t('forms.application.sitemap.fd-visual-edit-form.caption'),
+          title: i18n.t('forms.application.sitemap.fd-visual-edit-form.title')
         });
         sitemap.nodes.push({
           link: 'fd-generation-process-form',
@@ -32558,7 +32559,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://flexberry-designer-web.azurewebsites.net","backendUrls":{"root":"https://flexberry-designer-web.azurewebsites.net","api":"https://flexberry-designer-web.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://flexberry-designer-web.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.1.0-alpha01+8ddf081f"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://flexberry-designer-web.azurewebsites.net","backendUrls":{"root":"https://flexberry-designer-web.azurewebsites.net","api":"https://flexberry-designer-web.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://flexberry-designer-web.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.1.0-alpha01+e7d3d390"});
 }
 
 /* jshint ignore:end */
