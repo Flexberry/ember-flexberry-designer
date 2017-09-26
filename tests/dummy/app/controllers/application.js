@@ -19,11 +19,6 @@ export default Ember.Controller.extend({
           title: i18n.t('forms.application.sitemap.index.title'),
         },
         {
-          link: 'fd-visual-edit-form',
-          caption: i18n.t('forms.application.sitemap.fd-visual-edit-form.caption'),
-          title: i18n.t('forms.application.sitemap.fd-visual-edit-form.title'),
-        },
-        {
           link: 'fd-configuration-list-form',
           caption: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.caption'),
           title: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.title'),
@@ -45,6 +40,11 @@ export default Ember.Controller.extend({
         link: 'fd-appstruct-list-form',
         caption: i18n.t('forms.application.sitemap.root.fd-appstruct-list-form.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-appstruct-list-form.title'),
+      });
+      sitemap.nodes.push({
+        link: 'fd-visual-edit-form',
+        caption: i18n.t('forms.application.sitemap.fd-visual-edit-form.caption'),
+        title: i18n.t('forms.application.sitemap.fd-visual-edit-form.title'),
       });
       sitemap.nodes.push({
         link: 'fd-generation-process-form',
