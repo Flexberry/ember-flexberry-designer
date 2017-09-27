@@ -1,3 +1,5 @@
+import Ember from 'ember';
+import { Query } from 'ember-flexberry-data';
 import ListFormRoute from 'ember-flexberry/routes/list-form';
 
 export default ListFormRoute.extend({
@@ -43,4 +45,24 @@ export default ListFormRoute.extend({
     @default {}
   */
   developerUserSettings: { FdStageListForm: {} },
+
+  /**
+    Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
+
+    @property currentContext
+    @type FdCurrentProjectContextService
+  */
+  currentContext: Ember.inject.service('fd-current-project-context'),
+
+  actions: {
+    objectListViewRowClick(stage) {
+      this.get('currentContext').setCurrentStage(stage);
+      this.transitionTo('fd-appstruct-list-form');
+    },
+  },
+
+  objectListViewLimitPredicate() {
+    let configuration = this.get('currentContext').getCurrentConfiguration();
+    return new Query.SimplePredicate('configuration', '==', configuration);
+  },
 });

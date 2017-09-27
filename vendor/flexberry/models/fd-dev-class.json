@@ -2789,7 +2789,21 @@
           "index": 5
         }
       ],
-      "belongsTo": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Stage",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [],
+          "index": 6,
+          "caption": "",
+          "name": "stage",
+          "relatedTo": "fd-stage",
+          "inverse": null
+        }
+      ],
       "hasMany": []
     },
     {

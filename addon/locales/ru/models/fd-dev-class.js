@@ -2084,6 +2084,9 @@ export default {
       },
       namespacePostfix: {
         caption: 'Namespace postfix'
+      },
+      stage: {
+        caption: ''
       }
     },
     LoadNameView: {

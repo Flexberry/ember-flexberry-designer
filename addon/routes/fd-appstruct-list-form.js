@@ -7,9 +7,9 @@ export default Ember.Route.extend({
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
   model: function() {
-    let stagePk = this.get('currentProjectContext').getCurrentStagePk();
+    let stagePk = this.get('currentProjectContext').getCurrentStage();
     let builder = new  Builder(this.store, 'fd-dev-class').
-    select('id,name,description,stereotype,containersStr,formViews,formViews.view,formViews.view.class,formViews.view.class.id').
+    select('id,name,description,stereotype,containersStr,formViews,formViews.view,formViews.view.class,formViews.view.class.id,stage,stage.id').
     where('stage.id', FilterOperator.Eq, stagePk);
     let promise = this.store.query('fd-dev-class', builder.build());
     return promise;
