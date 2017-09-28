@@ -25,7 +25,12 @@ export let defineBaseModel = function (modelClass) {
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('EditFormView', 'fd-configuration', {
     name: Projection.attr('Name'),
-    description: Projection.attr('Description')
+    description: Projection.attr('Description'),
+    project: Projection.belongsTo('fd-project', '', {
+      repository: Projection.belongsTo('fd-repository', '', {
+
+      }, { hidden: true })
+    }, { hidden: true })
   });
   modelClass.defineProjection('ListFormView', 'fd-configuration', {
     name: Projection.attr('Name'),
