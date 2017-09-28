@@ -17,6 +17,7 @@ import FdInheritanceEditFormForm from './forms/fd-inheritance-edit-form';
 import FdStageEditFormForm from './forms/fd-stage-edit-form';
 import FdSystemEditFormForm from './forms/fd-system-edit-form';
 import FdViewEditFormForm from './forms/fd-view-edit-form';
+import FdVisualEditFormForm from './forms/fd-visual-edit-form-form';
 import FdVisualEditListFormForm from './forms/fd-visual-edit-list-form';
 import FdGenerationProcessForm from './forms/fd-generation-process-form';
 import FdAdModel from './models/fd-ad';
