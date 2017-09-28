@@ -1,19 +1,45 @@
-<div class="field">
-  <button
-    class="ui ui-add button"
-    title="Добавить">
-      <i class="plus icon"></i>
-  </button>
-  <button
-    class="ui ui-delete button"
-    title="Удалить">
-      <i class="minus icon"></i>
-  </button>
+<div class="ui grid row">
+  <div class="field eight wide column">
+      <label>{{t 'forms.fd-visual-edit-form.name'}}</label>
+      {{flexberry-textbox
+        value=model.name
+      }}
+  </div>
+  <div class="field eight wide column">
+      <label>{{t 'forms.fd-visual-edit-form.description'}}</label>
+      {{flexberry-textbox
+        value=model.description
+      }}
+  </div>
 </div>
-<div class="field">
-    <label>{{label}}</label>
-    {{flexberry-textbox
-      type=type
-      value=value
-    }}
+<div class="ui segment grid">
+  <div class="row">
+    <div class="ten wide column">
+      <div class="field">
+        <button {{action "addComponent"}}
+          class="ui ui-add button"
+          title="Добавить">
+            <i class="plus icon"></i>
+        </button>
+        <button
+          class="ui ui-delete button"
+          title="Удалить">
+            <i class="minus icon"></i>
+        </button>
+      </div>
+      <!-- components model here -->
+      <div class="field">
+          <label>{{label}}</label>
+          {{flexberry-textbox
+            type=type
+            value=model.components.name
+          }}
+      </div>
+    </div>
+    <div class="six wide column">
+      <div class="ui segment">
+        {{fd-visual-edit-control}}
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import { translationMacro as t } from 'ember-i18n';
+import FdVisualEditControlModel from 'ember-flexberry-designer/models/fd-visual-edit-control';
 
 export default Ember.Component.extend({
   /**
@@ -26,6 +27,17 @@ export default Ember.Component.extend({
     @default 'text'
    */
   type: 'text',
+
+  /**
+    Type of component.
+
+    @property componentTypes
+    @type String[]
+   */
+  componentTypes: {
+    bool: 'boolean',
+    string: 'string'
+  },
 
   /**
     Control's 'prototypeBy' dropdown caption.
@@ -71,5 +83,20 @@ export default Ember.Component.extend({
     @default t('components.fd-visual-control.defaultValue')
   */
   defaultValueTextboxCaption: t('components.fd-visual-control.defaultValue'),
+
+  /**
+      Initializes component.
+  */
+  init() {
+    this._super(...arguments);
+  }
+
+  // didInsertElement() {
+  //   this._super(...arguments);
+  // },
+  //
+  // didReceiveAttrs() {
+  //   let _name = this.get('_name');
+  // },
 
 });
