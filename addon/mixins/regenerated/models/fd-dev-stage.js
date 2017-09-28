@@ -24,7 +24,7 @@ export let Model = Ember.Mixin.create({
   */
   _additionalPluginsSettingsCompute: function() {
     let result = (this.additionalPluginsSettingsCompute && typeof this.additionalPluginsSettingsCompute === 'function') ?
-      this.additionalPluginsSettingsCompute() : null;
+    this.additionalPluginsSettingsCompute() : null;
     this.set('additionalPluginsSettings', result);
   },
   additionalPluginsSettingsStr: DS.attr('string'),
@@ -512,7 +512,14 @@ export let defineProjections = function (modelClass) {
     description: Projection.attr('Description'),
     company: Projection.attr('Company'),
     copyright: Projection.attr('Copyright'),
-    product: Projection.attr('Product')
+    product: Projection.attr('Product'),
+    configuration: Projection.belongsTo('fd-configuration', '', {
+      project: Projection.belongsTo('fd-project', '', {
+        repository: Projection.belongsTo('fd-repository', '', {
+
+        }, { hidden: true })
+      }, { hidden: true })
+    }, { hidden: true })
   });
   modelClass.defineProjection('EditMSSQLDirectGenerator', 'fd-dev-stage', {
     name: Projection.attr('Название стадии'),
