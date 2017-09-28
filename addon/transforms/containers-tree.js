@@ -3,7 +3,6 @@ import DS from 'ember-data';
 export default DS.Transform.extend({
 
   _emptyFolderClassName: '##########',
-  _xml: '',
 
   deserialize(serialized) {
     if (serialized) {
