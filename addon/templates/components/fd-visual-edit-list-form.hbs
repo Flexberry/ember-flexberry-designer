@@ -4,10 +4,10 @@
     <div class="ui grid">
       <div class="white eight wide right aligned column">Форма для редактирования:</div>
       <div class="white eight wide column">
-        <select>
+        <select id='selectForm' class="ui compact dropdown selection sort-direction-dropdown" {{action 'showForm' n on='change'}}>
           <option></option>
           {{#each listforms as |form|}}
-          <option name='{{form.id}}'>{{form.name}}</option>
+          <option value='{{form.id}}'>{{form.name}}</option>
           {{/each}}
         </select>
         </div>
