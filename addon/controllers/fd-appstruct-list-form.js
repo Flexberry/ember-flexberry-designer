@@ -77,7 +77,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     Ember.set(this, 'jsonRightTreeNodes', this._jsTreeToFlexberryTree(jsTree));
   },
 
-  _jsTreeToFlexberryTree: function (jsTree) {
+  _jsTreeToFlexberryTree: function(jsTree) {
     if (!jsTree) {
       return null;
     }
