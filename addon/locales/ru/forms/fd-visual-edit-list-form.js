@@ -1,5 +1,5 @@
 export default {
-  caption: 'Редактирование представления',
+  caption: 'Редактирование списковой формы',
   name: 'Наименование',
   description: '',
   'refresh-button-text': 'Обновить',
@@ -14,5 +14,7 @@ export default {
   'listform-forward': 'Вперед',
   'listform-back': 'Назад',
 
-  'checkmark-button-text': 'Отметить все записи на текущей странице',
+  'checkmark-button-text': 'Отметить на текущей странице',
+  'checkmarkall-button-text': 'Отметить на всех страницах',
+  'sort-button-text': 'Установить сортироку по умолчанию',
 };

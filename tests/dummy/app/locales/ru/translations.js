@@ -85,7 +85,7 @@ Ember.$.extend(true, translations, {
           },
 
           'fd-visual-edit-list-form': {
-            caption: 'Редактирование представления',
+            caption: 'Редактирование списковой формы',
             title: '',
           },
 

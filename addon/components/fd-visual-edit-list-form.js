@@ -8,6 +8,10 @@ export default Ember.Component.extend({
 
   store: Ember.inject.service('store'),
 
+  fieldList: [],
+
+  formId: null,
+
   init: function() {
     this._super();
   },
