@@ -269,7 +269,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       let nodeId = node.get('id');
       switch (node.get('stereotype')) {
         case '«listform»':
-          let url = '/fd-visual-edit-form?formId=' + nodeId;
+          let url = '/fd-visual-edit-list-form?formId=' + nodeId;
           this.transitionToRoute(url);
           break;
       }
