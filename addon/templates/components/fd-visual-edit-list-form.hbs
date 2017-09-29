@@ -6,8 +6,9 @@
       <div class="white eight wide column">
         <select>
           <option></option>
-          <option>Дом</option>
-          <option>Город</option>
+          {{#each listforms as |form|}}
+          <option name='{{form.id}}'>{{form.name}}</option>
+          {{/each}}
         </select>
         </div>
     </div>
