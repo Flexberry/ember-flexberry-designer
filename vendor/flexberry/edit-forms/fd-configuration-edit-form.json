@@ -1,5 +1,22 @@
 ﻿{
-  "propertyLookup": [],
+  "propertyLookup": [
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "Project",
+      "projection": "",
+      "detailModelName": null
+    },
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "Project.Repository",
+      "projection": "",
+      "detailModelName": null
+    }
+  ],
   "external": false,
   "caption": "Configuration",
   "name": "FdConfigurationEditForm",
