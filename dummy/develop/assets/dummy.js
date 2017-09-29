@@ -587,6 +587,22 @@ define('dummy/controllers/edit-form', ['exports', 'ember-flexberry/controllers/e
     }
   });
 });
+define('dummy/controllers/fd-ad/new', ['exports', 'ember-flexberry-designer/controllers/fd-ad/new'], function (exports, _emberFlexberryDesignerControllersFdAdNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdAdNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-aggregation/new', ['exports', 'ember-flexberry-designer/controllers/fd-aggregation/new'], function (exports, _emberFlexberryDesignerControllersFdAggregationNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdAggregationNew['default'];
+    }
+  });
+});
 define('dummy/controllers/fd-appstruct-list-form', ['exports', 'ember-flexberry-designer/controllers/fd-appstruct-list-form'], function (exports, _emberFlexberryDesignerControllersFdAppstructListForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -603,11 +619,59 @@ define('dummy/controllers/fd-association-edit-form', ['exports', 'ember-flexberr
     }
   });
 });
+define('dummy/controllers/fd-association-edit-form/new', ['exports', 'ember-flexberry-designer/controllers/fd-association-edit-form/new'], function (exports, _emberFlexberryDesignerControllersFdAssociationEditFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdAssociationEditFormNew['default'];
+    }
+  });
+});
 define('dummy/controllers/fd-association-list-form', ['exports', 'ember-flexberry-designer/controllers/fd-association-list-form'], function (exports, _emberFlexberryDesignerControllersFdAssociationListForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerControllersFdAssociationListForm['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-association-list-form/new', ['exports', 'ember-flexberry-designer/controllers/fd-association-list-form/new'], function (exports, _emberFlexberryDesignerControllersFdAssociationListFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdAssociationListFormNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-association/new', ['exports', 'ember-flexberry-designer/controllers/fd-association/new'], function (exports, _emberFlexberryDesignerControllersFdAssociationNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdAssociationNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-base-association/new', ['exports', 'ember-flexberry-designer/controllers/fd-base-association/new'], function (exports, _emberFlexberryDesignerControllersFdBaseAssociationNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdBaseAssociationNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-cad/new', ['exports', 'ember-flexberry-designer/controllers/fd-cad/new'], function (exports, _emberFlexberryDesignerControllersFdCadNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdCadNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-case-property/new', ['exports', 'ember-flexberry-designer/controllers/fd-case-property/new'], function (exports, _emberFlexberryDesignerControllersFdCasePropertyNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdCasePropertyNew['default'];
     }
   });
 });
@@ -619,11 +683,43 @@ define('dummy/controllers/fd-class-edit-form', ['exports', 'ember-flexberry-desi
     }
   });
 });
+define('dummy/controllers/fd-class-edit-form/new', ['exports', 'ember-flexberry-designer/controllers/fd-class-edit-form/new'], function (exports, _emberFlexberryDesignerControllersFdClassEditFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdClassEditFormNew['default'];
+    }
+  });
+});
 define('dummy/controllers/fd-class-list-form', ['exports', 'ember-flexberry-designer/controllers/fd-class-list-form'], function (exports, _emberFlexberryDesignerControllersFdClassListForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerControllersFdClassListForm['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-class-list-form/new', ['exports', 'ember-flexberry-designer/controllers/fd-class-list-form/new'], function (exports, _emberFlexberryDesignerControllersFdClassListFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdClassListFormNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-class/new', ['exports', 'ember-flexberry-designer/controllers/fd-class/new'], function (exports, _emberFlexberryDesignerControllersFdClassNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdClassNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-cod/new', ['exports', 'ember-flexberry-designer/controllers/fd-cod/new'], function (exports, _emberFlexberryDesignerControllersFdCodNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdCodNew['default'];
     }
   });
 });
@@ -635,11 +731,275 @@ define('dummy/controllers/fd-configuration-edit-form', ['exports', 'ember-flexbe
     }
   });
 });
+define('dummy/controllers/fd-configuration-edit-form/new', ['exports', 'ember-flexberry-designer/controllers/fd-configuration-edit-form/new'], function (exports, _emberFlexberryDesignerControllersFdConfigurationEditFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdConfigurationEditFormNew['default'];
+    }
+  });
+});
 define('dummy/controllers/fd-configuration-list-form', ['exports', 'ember-flexberry-designer/controllers/fd-configuration-list-form'], function (exports, _emberFlexberryDesignerControllersFdConfigurationListForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerControllersFdConfigurationListForm['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-configuration-list-form/new', ['exports', 'ember-flexberry-designer/controllers/fd-configuration-list-form/new'], function (exports, _emberFlexberryDesignerControllersFdConfigurationListFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdConfigurationListFormNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-configuration/new', ['exports', 'ember-flexberry-designer/controllers/fd-configuration/new'], function (exports, _emberFlexberryDesignerControllersFdConfigurationNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdConfigurationNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-aggregation/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-aggregation/new'], function (exports, _emberFlexberryDesignerControllersFdDevAggregationNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevAggregationNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-associated-detail-view/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-associated-detail-view/new'], function (exports, _emberFlexberryDesignerControllersFdDevAssociatedDetailViewNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevAssociatedDetailViewNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-association/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-association/new'], function (exports, _emberFlexberryDesignerControllersFdDevAssociationNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevAssociationNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-attribute/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-attribute/new'], function (exports, _emberFlexberryDesignerControllersFdDevAttributeNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevAttributeNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-base-association/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-base-association/new'], function (exports, _emberFlexberryDesignerControllersFdDevBaseAssociationNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevBaseAssociationNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-class/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-class/new'], function (exports, _emberFlexberryDesignerControllersFdDevClassNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevClassNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-control-type/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-control-type/new'], function (exports, _emberFlexberryDesignerControllersFdDevControlTypeNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevControlTypeNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-diagram-link/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-diagram-link/new'], function (exports, _emberFlexberryDesignerControllersFdDevDiagramLinkNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevDiagramLinkNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-filelink/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-filelink/new'], function (exports, _emberFlexberryDesignerControllersFdDevFilelinkNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevFilelinkNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-form-control/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-form-control/new'], function (exports, _emberFlexberryDesignerControllersFdDevFormControlNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevFormControlNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-form-view/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-form-view/new'], function (exports, _emberFlexberryDesignerControllersFdDevFormViewNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevFormViewNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-inheritance/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-inheritance/new'], function (exports, _emberFlexberryDesignerControllersFdDevInheritanceNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevInheritanceNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-method/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-method/new'], function (exports, _emberFlexberryDesignerControllersFdDevMethodNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevMethodNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-module-setting-type/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-module-setting-type/new'], function (exports, _emberFlexberryDesignerControllersFdDevModuleSettingTypeNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevModuleSettingTypeNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-module-setting/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-module-setting/new'], function (exports, _emberFlexberryDesignerControllersFdDevModuleSettingNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevModuleSettingNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-parameter/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-parameter/new'], function (exports, _emberFlexberryDesignerControllersFdDevParameterNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevParameterNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-process-status/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-process-status/new'], function (exports, _emberFlexberryDesignerControllersFdDevProcessStatusNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevProcessStatusNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-stage-history/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-stage-history/new'], function (exports, _emberFlexberryDesignerControllersFdDevStageHistoryNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevStageHistoryNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-stage/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-stage/new'], function (exports, _emberFlexberryDesignerControllersFdDevStageNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevStageNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-system/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-system/new'], function (exports, _emberFlexberryDesignerControllersFdDevSystemNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevSystemNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-task/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-task/new'], function (exports, _emberFlexberryDesignerControllersFdDevTaskNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevTaskNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-type-definition/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-type-definition/new'], function (exports, _emberFlexberryDesignerControllersFdDevTypeDefinitionNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevTypeDefinitionNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-uml-ad/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-uml-ad/new'], function (exports, _emberFlexberryDesignerControllersFdDevUmlAdNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevUmlAdNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-uml-cad/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-uml-cad/new'], function (exports, _emberFlexberryDesignerControllersFdDevUmlCadNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevUmlCadNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-uml-cod/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-uml-cod/new'], function (exports, _emberFlexberryDesignerControllersFdDevUmlCodNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevUmlCodNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-uml-dpd/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-uml-dpd/new'], function (exports, _emberFlexberryDesignerControllersFdDevUmlDpdNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevUmlDpdNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-uml-sd/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-uml-sd/new'], function (exports, _emberFlexberryDesignerControllersFdDevUmlSdNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevUmlSdNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-uml-std/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-uml-std/new'], function (exports, _emberFlexberryDesignerControllersFdDevUmlStdNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevUmlStdNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-uml-ucd/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-uml-ucd/new'], function (exports, _emberFlexberryDesignerControllersFdDevUmlUcdNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevUmlUcdNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dev-view/new', ['exports', 'ember-flexberry-designer/controllers/fd-dev-view/new'], function (exports, _emberFlexberryDesignerControllersFdDevViewNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDevViewNew['default'];
     }
   });
 });
@@ -651,11 +1011,75 @@ define('dummy/controllers/fd-diagram-edit-form', ['exports', 'ember-flexberry-de
     }
   });
 });
+define('dummy/controllers/fd-diagram-edit-form/new', ['exports', 'ember-flexberry-designer/controllers/fd-diagram-edit-form/new'], function (exports, _emberFlexberryDesignerControllersFdDiagramEditFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDiagramEditFormNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-diagram-link/new', ['exports', 'ember-flexberry-designer/controllers/fd-diagram-link/new'], function (exports, _emberFlexberryDesignerControllersFdDiagramLinkNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDiagramLinkNew['default'];
+    }
+  });
+});
 define('dummy/controllers/fd-diagram-list-form', ['exports', 'ember-flexberry-designer/controllers/fd-diagram-list-form'], function (exports, _emberFlexberryDesignerControllersFdDiagramListForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerControllersFdDiagramListForm['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-diagram-list-form/new', ['exports', 'ember-flexberry-designer/controllers/fd-diagram-list-form/new'], function (exports, _emberFlexberryDesignerControllersFdDiagramListFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDiagramListFormNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-diagram/new', ['exports', 'ember-flexberry-designer/controllers/fd-diagram/new'], function (exports, _emberFlexberryDesignerControllersFdDiagramNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDiagramNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-dpd/new', ['exports', 'ember-flexberry-designer/controllers/fd-dpd/new'], function (exports, _emberFlexberryDesignerControllersFdDpdNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDpdNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-filelink/new', ['exports', 'ember-flexberry-designer/controllers/fd-filelink/new'], function (exports, _emberFlexberryDesignerControllersFdFilelinkNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdFilelinkNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-form-control/new', ['exports', 'ember-flexberry-designer/controllers/fd-form-control/new'], function (exports, _emberFlexberryDesignerControllersFdFormControlNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdFormControlNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-form-view/new', ['exports', 'ember-flexberry-designer/controllers/fd-form-view/new'], function (exports, _emberFlexberryDesignerControllersFdFormViewNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdFormViewNew['default'];
     }
   });
 });
@@ -675,11 +1099,123 @@ define('dummy/controllers/fd-inheritance-edit-form', ['exports', 'ember-flexberr
     }
   });
 });
+define('dummy/controllers/fd-inheritance-edit-form/new', ['exports', 'ember-flexberry-designer/controllers/fd-inheritance-edit-form/new'], function (exports, _emberFlexberryDesignerControllersFdInheritanceEditFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdInheritanceEditFormNew['default'];
+    }
+  });
+});
 define('dummy/controllers/fd-inheritance-list-form', ['exports', 'ember-flexberry-designer/controllers/fd-inheritance-list-form'], function (exports, _emberFlexberryDesignerControllersFdInheritanceListForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerControllersFdInheritanceListForm['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-inheritance-list-form/new', ['exports', 'ember-flexberry-designer/controllers/fd-inheritance-list-form/new'], function (exports, _emberFlexberryDesignerControllersFdInheritanceListFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdInheritanceListFormNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-inheritance/new', ['exports', 'ember-flexberry-designer/controllers/fd-inheritance/new'], function (exports, _emberFlexberryDesignerControllersFdInheritanceNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdInheritanceNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-object-in-system/new', ['exports', 'ember-flexberry-designer/controllers/fd-object-in-system/new'], function (exports, _emberFlexberryDesignerControllersFdObjectInSystemNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdObjectInSystemNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-plugin-on-rep-object/new', ['exports', 'ember-flexberry-designer/controllers/fd-plugin-on-rep-object/new'], function (exports, _emberFlexberryDesignerControllersFdPluginOnRepObjectNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdPluginOnRepObjectNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-project/new', ['exports', 'ember-flexberry-designer/controllers/fd-project/new'], function (exports, _emberFlexberryDesignerControllersFdProjectNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdProjectNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-registered-plug-in/new', ['exports', 'ember-flexberry-designer/controllers/fd-registered-plug-in/new'], function (exports, _emberFlexberryDesignerControllersFdRegisteredPlugInNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdRegisteredPlugInNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-repository-browser-data-object-with-a-c-l/new', ['exports', 'ember-flexberry-designer/controllers/fd-repository-browser-data-object-with-a-c-l/new'], function (exports, _emberFlexberryDesignerControllersFdRepositoryBrowserDataObjectWithACLNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdRepositoryBrowserDataObjectWithACLNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-repository-browser-data-object/new', ['exports', 'ember-flexberry-designer/controllers/fd-repository-browser-data-object/new'], function (exports, _emberFlexberryDesignerControllersFdRepositoryBrowserDataObjectNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdRepositoryBrowserDataObjectNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-repository-data-object/new', ['exports', 'ember-flexberry-designer/controllers/fd-repository-data-object/new'], function (exports, _emberFlexberryDesignerControllersFdRepositoryDataObjectNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdRepositoryDataObjectNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-repository-object-with-plugins/new', ['exports', 'ember-flexberry-designer/controllers/fd-repository-object-with-plugins/new'], function (exports, _emberFlexberryDesignerControllersFdRepositoryObjectWithPluginsNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdRepositoryObjectWithPluginsNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-repository-ref-data-object/new', ['exports', 'ember-flexberry-designer/controllers/fd-repository-ref-data-object/new'], function (exports, _emberFlexberryDesignerControllersFdRepositoryRefDataObjectNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdRepositoryRefDataObjectNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-repository/new', ['exports', 'ember-flexberry-designer/controllers/fd-repository/new'], function (exports, _emberFlexberryDesignerControllersFdRepositoryNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdRepositoryNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-sd/new', ['exports', 'ember-flexberry-designer/controllers/fd-sd/new'], function (exports, _emberFlexberryDesignerControllersFdSdNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdSdNew['default'];
     }
   });
 });
@@ -691,11 +1227,51 @@ define('dummy/controllers/fd-stage-edit-form', ['exports', 'ember-flexberry-desi
     }
   });
 });
+define('dummy/controllers/fd-stage-edit-form/new', ['exports', 'ember-flexberry-designer/controllers/fd-stage-edit-form/new'], function (exports, _emberFlexberryDesignerControllersFdStageEditFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdStageEditFormNew['default'];
+    }
+  });
+});
 define('dummy/controllers/fd-stage-list-form', ['exports', 'ember-flexberry-designer/controllers/fd-stage-list-form'], function (exports, _emberFlexberryDesignerControllersFdStageListForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerControllersFdStageListForm['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-stage-list-form/new', ['exports', 'ember-flexberry-designer/controllers/fd-stage-list-form/new'], function (exports, _emberFlexberryDesignerControllersFdStageListFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdStageListFormNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-stage/new', ['exports', 'ember-flexberry-designer/controllers/fd-stage/new'], function (exports, _emberFlexberryDesignerControllersFdStageNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdStageNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-std/new', ['exports', 'ember-flexberry-designer/controllers/fd-std/new'], function (exports, _emberFlexberryDesignerControllersFdStdNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdStdNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-subsystem/new', ['exports', 'ember-flexberry-designer/controllers/fd-subsystem/new'], function (exports, _emberFlexberryDesignerControllersFdSubsystemNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdSubsystemNew['default'];
     }
   });
 });
@@ -707,11 +1283,35 @@ define('dummy/controllers/fd-system-edit-form', ['exports', 'ember-flexberry-des
     }
   });
 });
+define('dummy/controllers/fd-system-edit-form/new', ['exports', 'ember-flexberry-designer/controllers/fd-system-edit-form/new'], function (exports, _emberFlexberryDesignerControllersFdSystemEditFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdSystemEditFormNew['default'];
+    }
+  });
+});
 define('dummy/controllers/fd-system-list-form', ['exports', 'ember-flexberry-designer/controllers/fd-system-list-form'], function (exports, _emberFlexberryDesignerControllersFdSystemListForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerControllersFdSystemListForm['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-system-list-form/new', ['exports', 'ember-flexberry-designer/controllers/fd-system-list-form/new'], function (exports, _emberFlexberryDesignerControllersFdSystemListFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdSystemListFormNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-ucd/new', ['exports', 'ember-flexberry-designer/controllers/fd-ucd/new'], function (exports, _emberFlexberryDesignerControllersFdUcdNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdUcdNew['default'];
     }
   });
 });
@@ -723,6 +1323,14 @@ define('dummy/controllers/fd-view-edit-form', ['exports', 'ember-flexberry-desig
     }
   });
 });
+define('dummy/controllers/fd-view-edit-form/new', ['exports', 'ember-flexberry-designer/controllers/fd-view-edit-form/new'], function (exports, _emberFlexberryDesignerControllersFdViewEditFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdViewEditFormNew['default'];
+    }
+  });
+});
 define('dummy/controllers/fd-view-list-form', ['exports', 'ember-flexberry-designer/controllers/fd-view-list-form'], function (exports, _emberFlexberryDesignerControllersFdViewListForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -731,8 +1339,40 @@ define('dummy/controllers/fd-view-list-form', ['exports', 'ember-flexberry-desig
     }
   });
 });
+define('dummy/controllers/fd-view-list-form/new', ['exports', 'ember-flexberry-designer/controllers/fd-view-list-form/new'], function (exports, _emberFlexberryDesignerControllersFdViewListFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdViewListFormNew['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-view/new', ['exports', 'ember-flexberry-designer/controllers/fd-view/new'], function (exports, _emberFlexberryDesignerControllersFdViewNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdViewNew['default'];
+    }
+  });
+});
 define('dummy/controllers/flexberry-file-view-dialog', ['exports', 'ember-flexberry/controllers/flexberry-file-view-dialog'], function (exports, _emberFlexberryControllersFlexberryFileViewDialog) {
   exports['default'] = _emberFlexberryControllersFlexberryFileViewDialog['default'];
+});
+define('dummy/controllers/i-c-s-soft-s-t-o-r-m-n-e-t-access-type/new', ['exports', 'ember-flexberry-designer/controllers/i-c-s-soft-s-t-o-r-m-n-e-t-access-type/new'], function (exports, _emberFlexberryDesignerControllersICSSoftSTORMNETAccessTypeNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersICSSoftSTORMNETAccessTypeNew['default'];
+    }
+  });
+});
+define('dummy/controllers/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode/new', ['exports', 'ember-flexberry-designer/controllers/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode/new'], function (exports, _emberFlexberryDesignerControllersICSSoftSTORMNETBusinessAuditObjectsTWriteModeNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersICSSoftSTORMNETBusinessAuditObjectsTWriteModeNew['default'];
+    }
+  });
 });
 define('dummy/controllers/i-i-s-caseberry-logging-objects-application-log-e', ['exports', 'ember-flexberry/controllers/i-i-s-caseberry-logging-objects-application-log-e'], function (exports, _emberFlexberryControllersIISCaseberryLoggingObjectsApplicationLogE) {
   Object.defineProperty(exports, 'default', {
@@ -769,6 +1409,30 @@ define('dummy/controllers/new-platform-flexberry-services-lock-list', ['exports'
     enumerable: true,
     get: function get() {
       return _emberFlexberryControllersNewPlatformFlexberryServicesLockList['default'];
+    }
+  });
+});
+define('dummy/controllers/new-platform-flexberry-web-designer-business-server-class/new', ['exports', 'ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-business-server-class/new'], function (exports, _emberFlexberryDesignerControllersNewPlatformFlexberryWebDesignerBusinessServerClassNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersNewPlatformFlexberryWebDesignerBusinessServerClassNew['default'];
+    }
+  });
+});
+define('dummy/controllers/s-t-o-r-m-c-a-s-e-repository-access-modifier/new', ['exports', 'ember-flexberry-designer/controllers/s-t-o-r-m-c-a-s-e-repository-access-modifier/new'], function (exports, _emberFlexberryDesignerControllersSTORMCASERepositoryAccessModifierNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersSTORMCASERepositoryAccessModifierNew['default'];
+    }
+  });
+});
+define('dummy/controllers/s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier/new', ['exports', 'ember-flexberry-designer/controllers/s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier/new'], function (exports, _emberFlexberryDesignerControllersSTORMCASESTORMNETRepositoryParameterModifierNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersSTORMCASESTORMNETRepositoryParameterModifierNew['default'];
     }
   });
 });
@@ -10582,6 +11246,22 @@ define('dummy/routes/edit-form', ['exports', 'ember-flexberry/routes/edit-form']
     }
   });
 });
+define('dummy/routes/fd-ad/new', ['exports', 'ember-flexberry-designer/routes/fd-ad/new'], function (exports, _emberFlexberryDesignerRoutesFdAdNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdAdNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-aggregation/new', ['exports', 'ember-flexberry-designer/routes/fd-aggregation/new'], function (exports, _emberFlexberryDesignerRoutesFdAggregationNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdAggregationNew['default'];
+    }
+  });
+});
 define('dummy/routes/fd-appstruct-list-form', ['exports', 'ember-flexberry-designer/routes/fd-appstruct-list-form'], function (exports, _emberFlexberryDesignerRoutesFdAppstructListForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -10598,11 +11278,59 @@ define('dummy/routes/fd-association-edit-form', ['exports', 'ember-flexberry-des
     }
   });
 });
+define('dummy/routes/fd-association-edit-form/new', ['exports', 'ember-flexberry-designer/routes/fd-association-edit-form/new'], function (exports, _emberFlexberryDesignerRoutesFdAssociationEditFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdAssociationEditFormNew['default'];
+    }
+  });
+});
 define('dummy/routes/fd-association-list-form', ['exports', 'ember-flexberry-designer/routes/fd-association-list-form'], function (exports, _emberFlexberryDesignerRoutesFdAssociationListForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerRoutesFdAssociationListForm['default'];
+    }
+  });
+});
+define('dummy/routes/fd-association-list-form/new', ['exports', 'ember-flexberry-designer/routes/fd-association-list-form/new'], function (exports, _emberFlexberryDesignerRoutesFdAssociationListFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdAssociationListFormNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-association/new', ['exports', 'ember-flexberry-designer/routes/fd-association/new'], function (exports, _emberFlexberryDesignerRoutesFdAssociationNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdAssociationNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-base-association/new', ['exports', 'ember-flexberry-designer/routes/fd-base-association/new'], function (exports, _emberFlexberryDesignerRoutesFdBaseAssociationNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdBaseAssociationNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-cad/new', ['exports', 'ember-flexberry-designer/routes/fd-cad/new'], function (exports, _emberFlexberryDesignerRoutesFdCadNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdCadNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-case-property/new', ['exports', 'ember-flexberry-designer/routes/fd-case-property/new'], function (exports, _emberFlexberryDesignerRoutesFdCasePropertyNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdCasePropertyNew['default'];
     }
   });
 });
@@ -10614,11 +11342,43 @@ define('dummy/routes/fd-class-edit-form', ['exports', 'ember-flexberry-designer/
     }
   });
 });
+define('dummy/routes/fd-class-edit-form/new', ['exports', 'ember-flexberry-designer/routes/fd-class-edit-form/new'], function (exports, _emberFlexberryDesignerRoutesFdClassEditFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdClassEditFormNew['default'];
+    }
+  });
+});
 define('dummy/routes/fd-class-list-form', ['exports', 'ember-flexberry-designer/routes/fd-class-list-form'], function (exports, _emberFlexberryDesignerRoutesFdClassListForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerRoutesFdClassListForm['default'];
+    }
+  });
+});
+define('dummy/routes/fd-class-list-form/new', ['exports', 'ember-flexberry-designer/routes/fd-class-list-form/new'], function (exports, _emberFlexberryDesignerRoutesFdClassListFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdClassListFormNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-class/new', ['exports', 'ember-flexberry-designer/routes/fd-class/new'], function (exports, _emberFlexberryDesignerRoutesFdClassNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdClassNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-cod/new', ['exports', 'ember-flexberry-designer/routes/fd-cod/new'], function (exports, _emberFlexberryDesignerRoutesFdCodNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdCodNew['default'];
     }
   });
 });
@@ -10630,11 +11390,275 @@ define('dummy/routes/fd-configuration-edit-form', ['exports', 'ember-flexberry-d
     }
   });
 });
+define('dummy/routes/fd-configuration-edit-form/new', ['exports', 'ember-flexberry-designer/routes/fd-configuration-edit-form/new'], function (exports, _emberFlexberryDesignerRoutesFdConfigurationEditFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdConfigurationEditFormNew['default'];
+    }
+  });
+});
 define('dummy/routes/fd-configuration-list-form', ['exports', 'ember-flexberry-designer/routes/fd-configuration-list-form'], function (exports, _emberFlexberryDesignerRoutesFdConfigurationListForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerRoutesFdConfigurationListForm['default'];
+    }
+  });
+});
+define('dummy/routes/fd-configuration-list-form/new', ['exports', 'ember-flexberry-designer/routes/fd-configuration-list-form/new'], function (exports, _emberFlexberryDesignerRoutesFdConfigurationListFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdConfigurationListFormNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-configuration/new', ['exports', 'ember-flexberry-designer/routes/fd-configuration/new'], function (exports, _emberFlexberryDesignerRoutesFdConfigurationNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdConfigurationNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-aggregation/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-aggregation/new'], function (exports, _emberFlexberryDesignerRoutesFdDevAggregationNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevAggregationNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-associated-detail-view/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-associated-detail-view/new'], function (exports, _emberFlexberryDesignerRoutesFdDevAssociatedDetailViewNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevAssociatedDetailViewNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-association/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-association/new'], function (exports, _emberFlexberryDesignerRoutesFdDevAssociationNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevAssociationNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-attribute/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-attribute/new'], function (exports, _emberFlexberryDesignerRoutesFdDevAttributeNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevAttributeNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-base-association/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-base-association/new'], function (exports, _emberFlexberryDesignerRoutesFdDevBaseAssociationNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevBaseAssociationNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-class/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-class/new'], function (exports, _emberFlexberryDesignerRoutesFdDevClassNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevClassNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-control-type/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-control-type/new'], function (exports, _emberFlexberryDesignerRoutesFdDevControlTypeNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevControlTypeNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-diagram-link/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-diagram-link/new'], function (exports, _emberFlexberryDesignerRoutesFdDevDiagramLinkNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevDiagramLinkNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-filelink/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-filelink/new'], function (exports, _emberFlexberryDesignerRoutesFdDevFilelinkNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevFilelinkNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-form-control/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-form-control/new'], function (exports, _emberFlexberryDesignerRoutesFdDevFormControlNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevFormControlNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-form-view/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-form-view/new'], function (exports, _emberFlexberryDesignerRoutesFdDevFormViewNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevFormViewNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-inheritance/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-inheritance/new'], function (exports, _emberFlexberryDesignerRoutesFdDevInheritanceNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevInheritanceNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-method/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-method/new'], function (exports, _emberFlexberryDesignerRoutesFdDevMethodNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevMethodNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-module-setting-type/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-module-setting-type/new'], function (exports, _emberFlexberryDesignerRoutesFdDevModuleSettingTypeNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevModuleSettingTypeNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-module-setting/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-module-setting/new'], function (exports, _emberFlexberryDesignerRoutesFdDevModuleSettingNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevModuleSettingNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-parameter/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-parameter/new'], function (exports, _emberFlexberryDesignerRoutesFdDevParameterNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevParameterNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-process-status/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-process-status/new'], function (exports, _emberFlexberryDesignerRoutesFdDevProcessStatusNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevProcessStatusNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-stage-history/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-stage-history/new'], function (exports, _emberFlexberryDesignerRoutesFdDevStageHistoryNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevStageHistoryNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-stage/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-stage/new'], function (exports, _emberFlexberryDesignerRoutesFdDevStageNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevStageNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-system/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-system/new'], function (exports, _emberFlexberryDesignerRoutesFdDevSystemNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevSystemNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-task/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-task/new'], function (exports, _emberFlexberryDesignerRoutesFdDevTaskNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevTaskNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-type-definition/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-type-definition/new'], function (exports, _emberFlexberryDesignerRoutesFdDevTypeDefinitionNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevTypeDefinitionNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-uml-ad/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-uml-ad/new'], function (exports, _emberFlexberryDesignerRoutesFdDevUmlAdNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevUmlAdNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-uml-cad/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-uml-cad/new'], function (exports, _emberFlexberryDesignerRoutesFdDevUmlCadNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevUmlCadNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-uml-cod/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-uml-cod/new'], function (exports, _emberFlexberryDesignerRoutesFdDevUmlCodNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevUmlCodNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-uml-dpd/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-uml-dpd/new'], function (exports, _emberFlexberryDesignerRoutesFdDevUmlDpdNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevUmlDpdNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-uml-sd/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-uml-sd/new'], function (exports, _emberFlexberryDesignerRoutesFdDevUmlSdNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevUmlSdNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-uml-std/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-uml-std/new'], function (exports, _emberFlexberryDesignerRoutesFdDevUmlStdNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevUmlStdNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-uml-ucd/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-uml-ucd/new'], function (exports, _emberFlexberryDesignerRoutesFdDevUmlUcdNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevUmlUcdNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dev-view/new', ['exports', 'ember-flexberry-designer/routes/fd-dev-view/new'], function (exports, _emberFlexberryDesignerRoutesFdDevViewNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDevViewNew['default'];
     }
   });
 });
@@ -10646,11 +11670,75 @@ define('dummy/routes/fd-diagram-edit-form', ['exports', 'ember-flexberry-designe
     }
   });
 });
+define('dummy/routes/fd-diagram-edit-form/new', ['exports', 'ember-flexberry-designer/routes/fd-diagram-edit-form/new'], function (exports, _emberFlexberryDesignerRoutesFdDiagramEditFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDiagramEditFormNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-diagram-link/new', ['exports', 'ember-flexberry-designer/routes/fd-diagram-link/new'], function (exports, _emberFlexberryDesignerRoutesFdDiagramLinkNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDiagramLinkNew['default'];
+    }
+  });
+});
 define('dummy/routes/fd-diagram-list-form', ['exports', 'ember-flexberry-designer/routes/fd-diagram-list-form'], function (exports, _emberFlexberryDesignerRoutesFdDiagramListForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerRoutesFdDiagramListForm['default'];
+    }
+  });
+});
+define('dummy/routes/fd-diagram-list-form/new', ['exports', 'ember-flexberry-designer/routes/fd-diagram-list-form/new'], function (exports, _emberFlexberryDesignerRoutesFdDiagramListFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDiagramListFormNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-diagram/new', ['exports', 'ember-flexberry-designer/routes/fd-diagram/new'], function (exports, _emberFlexberryDesignerRoutesFdDiagramNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDiagramNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-dpd/new', ['exports', 'ember-flexberry-designer/routes/fd-dpd/new'], function (exports, _emberFlexberryDesignerRoutesFdDpdNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDpdNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-filelink/new', ['exports', 'ember-flexberry-designer/routes/fd-filelink/new'], function (exports, _emberFlexberryDesignerRoutesFdFilelinkNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdFilelinkNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-form-control/new', ['exports', 'ember-flexberry-designer/routes/fd-form-control/new'], function (exports, _emberFlexberryDesignerRoutesFdFormControlNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdFormControlNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-form-view/new', ['exports', 'ember-flexberry-designer/routes/fd-form-view/new'], function (exports, _emberFlexberryDesignerRoutesFdFormViewNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdFormViewNew['default'];
     }
   });
 });
@@ -10670,11 +11758,123 @@ define('dummy/routes/fd-inheritance-edit-form', ['exports', 'ember-flexberry-des
     }
   });
 });
+define('dummy/routes/fd-inheritance-edit-form/new', ['exports', 'ember-flexberry-designer/routes/fd-inheritance-edit-form/new'], function (exports, _emberFlexberryDesignerRoutesFdInheritanceEditFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdInheritanceEditFormNew['default'];
+    }
+  });
+});
 define('dummy/routes/fd-inheritance-list-form', ['exports', 'ember-flexberry-designer/routes/fd-inheritance-list-form'], function (exports, _emberFlexberryDesignerRoutesFdInheritanceListForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerRoutesFdInheritanceListForm['default'];
+    }
+  });
+});
+define('dummy/routes/fd-inheritance-list-form/new', ['exports', 'ember-flexberry-designer/routes/fd-inheritance-list-form/new'], function (exports, _emberFlexberryDesignerRoutesFdInheritanceListFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdInheritanceListFormNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-inheritance/new', ['exports', 'ember-flexberry-designer/routes/fd-inheritance/new'], function (exports, _emberFlexberryDesignerRoutesFdInheritanceNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdInheritanceNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-object-in-system/new', ['exports', 'ember-flexberry-designer/routes/fd-object-in-system/new'], function (exports, _emberFlexberryDesignerRoutesFdObjectInSystemNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdObjectInSystemNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-plugin-on-rep-object/new', ['exports', 'ember-flexberry-designer/routes/fd-plugin-on-rep-object/new'], function (exports, _emberFlexberryDesignerRoutesFdPluginOnRepObjectNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdPluginOnRepObjectNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-project/new', ['exports', 'ember-flexberry-designer/routes/fd-project/new'], function (exports, _emberFlexberryDesignerRoutesFdProjectNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdProjectNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-registered-plug-in/new', ['exports', 'ember-flexberry-designer/routes/fd-registered-plug-in/new'], function (exports, _emberFlexberryDesignerRoutesFdRegisteredPlugInNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdRegisteredPlugInNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-repository-browser-data-object-with-a-c-l/new', ['exports', 'ember-flexberry-designer/routes/fd-repository-browser-data-object-with-a-c-l/new'], function (exports, _emberFlexberryDesignerRoutesFdRepositoryBrowserDataObjectWithACLNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdRepositoryBrowserDataObjectWithACLNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-repository-browser-data-object/new', ['exports', 'ember-flexberry-designer/routes/fd-repository-browser-data-object/new'], function (exports, _emberFlexberryDesignerRoutesFdRepositoryBrowserDataObjectNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdRepositoryBrowserDataObjectNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-repository-data-object/new', ['exports', 'ember-flexberry-designer/routes/fd-repository-data-object/new'], function (exports, _emberFlexberryDesignerRoutesFdRepositoryDataObjectNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdRepositoryDataObjectNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-repository-object-with-plugins/new', ['exports', 'ember-flexberry-designer/routes/fd-repository-object-with-plugins/new'], function (exports, _emberFlexberryDesignerRoutesFdRepositoryObjectWithPluginsNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdRepositoryObjectWithPluginsNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-repository-ref-data-object/new', ['exports', 'ember-flexberry-designer/routes/fd-repository-ref-data-object/new'], function (exports, _emberFlexberryDesignerRoutesFdRepositoryRefDataObjectNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdRepositoryRefDataObjectNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-repository/new', ['exports', 'ember-flexberry-designer/routes/fd-repository/new'], function (exports, _emberFlexberryDesignerRoutesFdRepositoryNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdRepositoryNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-sd/new', ['exports', 'ember-flexberry-designer/routes/fd-sd/new'], function (exports, _emberFlexberryDesignerRoutesFdSdNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdSdNew['default'];
     }
   });
 });
@@ -10686,11 +11886,51 @@ define('dummy/routes/fd-stage-edit-form', ['exports', 'ember-flexberry-designer/
     }
   });
 });
+define('dummy/routes/fd-stage-edit-form/new', ['exports', 'ember-flexberry-designer/routes/fd-stage-edit-form/new'], function (exports, _emberFlexberryDesignerRoutesFdStageEditFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdStageEditFormNew['default'];
+    }
+  });
+});
 define('dummy/routes/fd-stage-list-form', ['exports', 'ember-flexberry-designer/routes/fd-stage-list-form'], function (exports, _emberFlexberryDesignerRoutesFdStageListForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerRoutesFdStageListForm['default'];
+    }
+  });
+});
+define('dummy/routes/fd-stage-list-form/new', ['exports', 'ember-flexberry-designer/routes/fd-stage-list-form/new'], function (exports, _emberFlexberryDesignerRoutesFdStageListFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdStageListFormNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-stage/new', ['exports', 'ember-flexberry-designer/routes/fd-stage/new'], function (exports, _emberFlexberryDesignerRoutesFdStageNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdStageNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-std/new', ['exports', 'ember-flexberry-designer/routes/fd-std/new'], function (exports, _emberFlexberryDesignerRoutesFdStdNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdStdNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-subsystem/new', ['exports', 'ember-flexberry-designer/routes/fd-subsystem/new'], function (exports, _emberFlexberryDesignerRoutesFdSubsystemNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdSubsystemNew['default'];
     }
   });
 });
@@ -10702,11 +11942,35 @@ define('dummy/routes/fd-system-edit-form', ['exports', 'ember-flexberry-designer
     }
   });
 });
+define('dummy/routes/fd-system-edit-form/new', ['exports', 'ember-flexberry-designer/routes/fd-system-edit-form/new'], function (exports, _emberFlexberryDesignerRoutesFdSystemEditFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdSystemEditFormNew['default'];
+    }
+  });
+});
 define('dummy/routes/fd-system-list-form', ['exports', 'ember-flexberry-designer/routes/fd-system-list-form'], function (exports, _emberFlexberryDesignerRoutesFdSystemListForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerRoutesFdSystemListForm['default'];
+    }
+  });
+});
+define('dummy/routes/fd-system-list-form/new', ['exports', 'ember-flexberry-designer/routes/fd-system-list-form/new'], function (exports, _emberFlexberryDesignerRoutesFdSystemListFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdSystemListFormNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-ucd/new', ['exports', 'ember-flexberry-designer/routes/fd-ucd/new'], function (exports, _emberFlexberryDesignerRoutesFdUcdNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdUcdNew['default'];
     }
   });
 });
@@ -10718,6 +11982,14 @@ define('dummy/routes/fd-view-edit-form', ['exports', 'ember-flexberry-designer/r
     }
   });
 });
+define('dummy/routes/fd-view-edit-form/new', ['exports', 'ember-flexberry-designer/routes/fd-view-edit-form/new'], function (exports, _emberFlexberryDesignerRoutesFdViewEditFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdViewEditFormNew['default'];
+    }
+  });
+});
 define('dummy/routes/fd-view-list-form', ['exports', 'ember-flexberry-designer/routes/fd-view-list-form'], function (exports, _emberFlexberryDesignerRoutesFdViewListForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -10726,11 +11998,43 @@ define('dummy/routes/fd-view-list-form', ['exports', 'ember-flexberry-designer/r
     }
   });
 });
+define('dummy/routes/fd-view-list-form/new', ['exports', 'ember-flexberry-designer/routes/fd-view-list-form/new'], function (exports, _emberFlexberryDesignerRoutesFdViewListFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdViewListFormNew['default'];
+    }
+  });
+});
+define('dummy/routes/fd-view/new', ['exports', 'ember-flexberry-designer/routes/fd-view/new'], function (exports, _emberFlexberryDesignerRoutesFdViewNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdViewNew['default'];
+    }
+  });
+});
 define('dummy/routes/fd-visual-edit-form', ['exports', 'ember-flexberry-designer/routes/fd-visual-edit-form'], function (exports, _emberFlexberryDesignerRoutesFdVisualEditForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerRoutesFdVisualEditForm['default'];
+    }
+  });
+});
+define('dummy/routes/i-c-s-soft-s-t-o-r-m-n-e-t-access-type/new', ['exports', 'ember-flexberry-designer/routes/i-c-s-soft-s-t-o-r-m-n-e-t-access-type/new'], function (exports, _emberFlexberryDesignerRoutesICSSoftSTORMNETAccessTypeNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesICSSoftSTORMNETAccessTypeNew['default'];
+    }
+  });
+});
+define('dummy/routes/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode/new', ['exports', 'ember-flexberry-designer/routes/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode/new'], function (exports, _emberFlexberryDesignerRoutesICSSoftSTORMNETBusinessAuditObjectsTWriteModeNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesICSSoftSTORMNETBusinessAuditObjectsTWriteModeNew['default'];
     }
   });
 });
@@ -10763,6 +12067,30 @@ define('dummy/routes/new-platform-flexberry-services-lock-list', ['exports', 'em
     enumerable: true,
     get: function get() {
       return _emberFlexberryRoutesNewPlatformFlexberryServicesLockList['default'];
+    }
+  });
+});
+define('dummy/routes/new-platform-flexberry-web-designer-business-server-class/new', ['exports', 'ember-flexberry-designer/routes/new-platform-flexberry-web-designer-business-server-class/new'], function (exports, _emberFlexberryDesignerRoutesNewPlatformFlexberryWebDesignerBusinessServerClassNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesNewPlatformFlexberryWebDesignerBusinessServerClassNew['default'];
+    }
+  });
+});
+define('dummy/routes/s-t-o-r-m-c-a-s-e-repository-access-modifier/new', ['exports', 'ember-flexberry-designer/routes/s-t-o-r-m-c-a-s-e-repository-access-modifier/new'], function (exports, _emberFlexberryDesignerRoutesSTORMCASERepositoryAccessModifierNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesSTORMCASERepositoryAccessModifierNew['default'];
+    }
+  });
+});
+define('dummy/routes/s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier/new', ['exports', 'ember-flexberry-designer/routes/s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier/new'], function (exports, _emberFlexberryDesignerRoutesSTORMCASESTORMNETRepositoryParameterModifierNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesSTORMCASESTORMNETRepositoryParameterModifierNew['default'];
     }
   });
 });
@@ -32559,7 +33887,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://flexberry-designer-web.azurewebsites.net","backendUrls":{"root":"https://flexberry-designer-web.azurewebsites.net","api":"https://flexberry-designer-web.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://flexberry-designer-web.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.1.0-alpha01+9c89a13b"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://flexberry-designer-web.azurewebsites.net","backendUrls":{"root":"https://flexberry-designer-web.azurewebsites.net","api":"https://flexberry-designer-web.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://flexberry-designer-web.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.1.0-alpha01+17e34c2b"});
 }
 
 /* jshint ignore:end */

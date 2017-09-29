@@ -267,6 +267,13 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/routes/fd-stage-edit-form/new.js": {
+            "name": "addon/routes/fd-stage-edit-form/new.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/routes/fd-association-list-form.js": {
             "name": "addon/routes/fd-association-list-form.js",
             "modules": {},
@@ -2874,6 +2881,16 @@
                 "type": "Query.SimplePredicate"
             },
             "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-stage-edit-form/new.js",
+            "line": 10,
+            "description": "Link to {{#crossLink \"FdCurrentProjectContextService\"}}FdCurrentProjectContextService{{/crossLink}}.",
+            "itemtype": "property",
+            "name": "currentContext",
+            "type": "FdCurrentProjectContextService",
+            "class": "FdCurrentProjectContextService",
             "module": "ember-flexberry-designer"
         },
         {
