@@ -14,6 +14,11 @@ export default {
   'listform-forward': 'Next',
   'listform-back': 'Back',
 
+
+  'move-left-attr': 'Move left',
+  'move-right-attr': 'Move right',
+  'remove-attr': 'Remove attribute',
+
   'checkmark-button-text': 'Mark on this page',
   'checkmarkall-button-text': 'Mark on all pages',
   'sort-button-text': 'Set sorting by default',

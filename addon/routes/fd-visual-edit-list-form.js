@@ -4,16 +4,26 @@ const { Builder, FilterOperator } = Query;
 
 export default Ember.Route.extend({
 
+  formId: null,
+
+  queryParams: {
+    formId: {
+      refreshModel: false
+    }
+  },
+
+  beforeModel: function(params){
+    this.formId = params.queryParams.formId;
+  },
+
   /*currentProjectContext: Ember.inject.service('fd-current-project-context'),*/
 
   model: function() {
-    /*let stagePk = this.get('currentProjectContext').getCurrentStage();
-    let p1 = new Query.SimplePredicate('stage.id', FilterOperator.Eq, stagePk);*/
-    let p2 = new Query.SimplePredicate('stereotype', Query.FilterOperator.Eq, null);
+    //    select('id,name,description,stereotype,containersStr,formViews,formViews.view,formViews.view.class,formViews.view.class.id,stage,stage.id').
+
     let builder = new  Builder(this.store, 'fd-dev-class').
-    select('id,name,description,stereotype,containersStr,formViews,formViews.view,formViews.view.class,formViews.view.class.id,stage,stage.id').
-    where(p2);  //FOR DEBUGGING GOALS
-    /*where(p1.and(p2));  //CORRECT CONDITION*/
+    select('id,name,description,stereotype,containersStr,attributes,attributes.name').
+    byId(this.formId);
     let promise = this.store.query('fd-dev-class', builder.build());
     return promise;
   },
@@ -25,7 +35,11 @@ export default Ember.Route.extend({
       let record = model.nextObject(i);
       model.listforms.push({ id: record.get('id'), name: record.get('name'), description: record.get('description') }) ;
     }
-
+    let attributes = controller.attributes;
+    attributes.sort(function(a, b) { return a.orderNum = b.orderNum; });
+    attributes[0].firstPosition = true;
+    attributes[attributes.length - 1].lastPosition = true;
+    model.attributes = attributes;
     return this._super(controller, model);
   }
 

@@ -58,8 +58,28 @@
   </div>
 </div>
 
-<table class="ui unstackable fixed selectable celled table">
+<table class="unstackable fixed selectable celled table">
   <thead>
+    <tr>
+      <th colspan='3'>&nbsp;</th>
+      {{#each attributes as |attribute index|}}
+      <th>
+        <button class="ui button  {{if attribute.firstPosition "disabled" ""}}" title='{{t "forms.fd-visual-edit-list-form.move-left-attr"}}'>
+          <i class="long arrow left icon"></i>
+        </button>
+      </th>
+      <th>
+          <button class="ui button {{if attribute.lastPosition "disabled" ""}}" title='{{t "forms.fd-visual-edit-list-form.move-right-attr"}}' >
+          <i class="long arrow right icon"></i>
+        </button>
+      </th>
+      <th>
+          <button class="ui button" title='{{t "forms.fd-visual-edit-list-form.remove-attr"}}'>
+          <i class="remove icon"></i>
+        </button>
+      </th>
+      {{/each}}
+    </tr>
     <tr>
       <th>
           <button class="ui button" title='{{t "forms.fd-visual-edit-list-form.checkmark-button-text"}}'>
@@ -76,6 +96,9 @@
           <i class="sort icon"></i>
         </button>
       </th>
+      {{#each attributes as |attribute|}}
+      <th colspan='3' align='left'>{{attribute.name}}</th>
+      {{/each}}
     </tr>
   </thead>
 </table>
