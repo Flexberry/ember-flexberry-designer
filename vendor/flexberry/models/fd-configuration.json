@@ -39,7 +39,35 @@
           "index": 1
         }
       ],
-      "belongsTo": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Project",
+          "belongsTo": [
+            {
+              "lookupValue": null,
+              "lookupValueField": null,
+              "relationName": "Project.Repository",
+              "belongsTo": [],
+              "hidden": true,
+              "attrs": [],
+              "index": 3,
+              "caption": "",
+              "name": "repository",
+              "relatedTo": "fd-repository",
+              "inverse": null
+            }
+          ],
+          "hidden": true,
+          "attrs": [],
+          "index": 2,
+          "caption": "",
+          "name": "project",
+          "relatedTo": "fd-project",
+          "inverse": null
+        }
+      ],
       "hasMany": []
     },
     {

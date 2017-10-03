@@ -1,0 +1,117 @@
+<h3>{{formId}}</h3>
+<div class="ui two column grid">
+  <div class="white column">text</div>
+  <div class="column">
+    <div class="ui grid">
+      <div class="white eight wide right aligned column">Форма для редактирования:</div>
+      <div class="white eight wide column">
+        <select id='selectForm' class="ui compact dropdown selection sort-direction-dropdown" {{action 'showForm' n on='change'}}>
+          <option></option>
+          {{#each listforms as |form|}}
+          <option value='{{form.id}}'>{{form.name}}</option>
+          {{/each}}
+        </select>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="ui segment grid">
+  <div class="row">
+    <div class="twelve wide column">
+      <div class="field">
+        <button class="ui button" title='{{t "forms.fd-visual-edit-list-form.refresh-button-text"}}'>
+          <i class="refresh icon"></i>
+        </button>
+        <button class="ui button create-button" {{action 'create'}}>
+          <i class="add circle icon"></i>
+          {{t "forms.fd-visual-edit-list-form.add-button-text"}}
+        </button>
+        <button class="ui button">
+          <i class="remove icon"></i>
+          {{t "forms.fd-visual-edit-list-form.delete-button-text"}}
+        </button>
+        <button class="ui button" title=' {{t "forms.fd-visual-edit-list-form.find-button-text"}}'>
+          <i class="find icon"></i>
+        </button>
+        <button class="ui button" title=' {{t "forms.fd-visual-edit-list-form.filter-button-text"}}'>
+          <i class="filter icon"></i>
+        </button>
+        <button class="ui button" title=' {{t "forms.fd-visual-edit-list-form.wizard-button-text"}}'>
+          <i class="wizard icon"></i>
+        </button>
+        <button class="ui button" title=' {{t "forms.fd-visual-edit-list-form.edit-button-text"}}'>
+          <i class="edit icon"></i>
+        </button>
+        <button class="ui button" title=' {{t "forms.fd-visual-edit-list-form.unknown-button-text"}}'>
+          <i class="help icon"></i>
+        </button>
+      </div>
+    </div>
+    <div class="four wide column" align='right'>
+      <button class="ui button">
+        {{t "forms.fd-visual-edit-list-form.listform-back"}}
+      </button>
+      <button class="ui button">
+        {{t "forms.fd-visual-edit-list-form.listform-forward"}}
+      </button>
+    </div>
+  </div>
+</div>
+
+<table class="unstackable fixed selectable celled table">
+  <thead>
+    <tr>
+      <th colspan='3'>&nbsp;</th>
+      {{#each attributes as |attribute index|}}
+      <th>
+        <button
+          class="ui button  {{if attribute.firstPosition "disabled" ""}}"
+          title='{{t "forms.fd-visual-edit-list-form.move-left-attr"}}'
+          {{action "attributeLeft"  index}}
+          >
+            <i class="long arrow left icon"></i>
+        </button>
+      </th>
+      <th>
+          <button
+          class="ui button {{if attribute.lastPosition "disabled" ""}}"
+          title='{{t "forms.fd-visual-edit-list-form.move-right-attr"}}'
+          {{action "attributeRight"  index}}
+          >
+            <i class="long arrow right icon"></i>
+        </button>
+      </th>
+      <th>
+          <button
+            class="ui button"
+            title='{{t "forms.fd-visual-edit-list-form.remove-attr"}}'
+            {{action "attributeDelete"  index}}
+            >
+          <i class="remove icon"></i>
+        </button>
+      </th>
+      {{/each}}
+    </tr>
+    <tr>
+      <th>
+          <button class="ui button" title='{{t "forms.fd-visual-edit-list-form.checkmark-button-text"}}'>
+            <i class="checkmark icon"></i>
+          </button>
+      </th>
+      <th>
+        <button class="ui button" title='{{t "forms.fd-visual-edit-list-form.checkmarkall-button-text"}}'>
+          <i class="checkmark box icon"></i>
+        </button>
+      </th>
+      <th>
+        <button class="ui button" title='{{t "forms.fd-visual-edit-list-form.sort-button-text"}}'>
+          <i class="sort icon"></i>
+        </button>
+      </th>
+      {{#each attributes as |attribute|}}
+      <th colspan='3' align='left'>{{attribute.name}}</th>
+      {{/each}}
+    </tr>
+  </thead>
+</table>
+{{! yield}}

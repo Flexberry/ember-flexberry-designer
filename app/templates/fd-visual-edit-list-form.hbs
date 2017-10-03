@@ -1,0 +1,53 @@
+<h3 class="ui header">{{t 'forms.fd-visual-edit-list-form.caption'}}</h3>
+{{#if errorMessages}}
+  {{#each errorMessages as |currentError|}}
+    {{ui-message
+      type='error'
+      closeable=true
+      visible=true
+      title='Error occurred'
+      message=currentError
+    }}
+  {{/each}}
+{{/if}}
+<form class="ui form flexberry-vertical-form" role="form">
+  <div class="field">
+    <div class="flexberry-edit-panel">
+      {{#unless readonly}}
+        <button type="submit" class="ui button save-button" {{action 'save'}}>
+          {{t "forms.edit-form.save-button-text"}}
+        </button>
+        {{#unless model.isNew}}
+          <button type="submit" class="ui button save-close-button" {{action 'save-close'}}>
+            {{t "forms.edit-form.saveAndClose-button-text"}}
+          </button>
+        {{/unless}}
+      {{/unless}}
+      <button type="submit" class="ui button close-button" {{action 'close'}}>
+        {{t "forms.edit-form.close-button-text"}}
+      </button>
+    </div>
+  </div>
+  <div class="ui grid row">
+    <div class="field eight wide column">
+        <label>{{t 'forms.fd-visual-edit-list-form.name'}}</label>
+        {{flexberry-textbox
+          value=undefined
+        }}
+    </div>
+  </div>
+  <div class="ui segment grid">
+    <div class="row">
+      <div class="six wide column">
+        <div class="ui segment">
+          {{fd-visual-edit-control}}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="ten wide column">
+        {{fd-visual-edit-list-form listforms=model.listforms formId=formId attributes=attributes}}
+      </div>
+    </div>
+  </div>
+</form>

@@ -77,7 +77,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     Ember.set(this, 'jsonRightTreeNodes', this._jsTreeToFlexberryTree(jsTree));
   },
 
-  _jsTreeToFlexberryTree: function (jsTree) {
+  _jsTreeToFlexberryTree: function(jsTree) {
     if (!jsTree) {
       return null;
     }
@@ -90,7 +90,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
         nodes = this._jsTreeToFlexberryTree(node.nodes);
       }
 
-      let treeNode = { caption: node.caption, description: node.description };
+      let treeNode = { id: node.id, stereotype: node.stereotype, caption: node.caption, description: node.description };
       if (nodes) {
         treeNode.nodes = nodes;
       }
@@ -115,7 +115,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
         nodes = this._jsFlexberryTreeToTree(node.nodes);
       }
 
-      let treeNode = { caption: node.caption, description: node.description || '' };
+      let treeNode = { id: node.id, stereotype: node.stereotype, caption: node.caption, description: node.description || '' };
       if (nodes) {
         treeNode.nodes = nodes;
       }
@@ -264,6 +264,15 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     },
 
     editLeftNode() {
+      let lastClickedPath = this.lastClicked.left.path;
+      let node = this._findNodeByPath(this, lastClickedPath);
+      let nodeId = node.get('id');
+      switch (node.get('stereotype')) {
+        case '«listform»':
+          let url = '/fd-visual-edit-list-form?formId=' + nodeId;
+          this.transitionToRoute(url);
+          break;
+      }
     },
 
     listLeft() {
