@@ -64,17 +64,29 @@
       <th colspan='3'>&nbsp;</th>
       {{#each attributes as |attribute index|}}
       <th>
-        <button class="ui button  {{if attribute.firstPosition "disabled" ""}}" title='{{t "forms.fd-visual-edit-list-form.move-left-attr"}}'>
-          <i class="long arrow left icon"></i>
+        <button
+          class="ui button  {{if attribute.firstPosition "disabled" ""}}"
+          title='{{t "forms.fd-visual-edit-list-form.move-left-attr"}}'
+          {{action "attributeLeft"  index}}
+          >
+            <i class="long arrow left icon"></i>
         </button>
       </th>
       <th>
-          <button class="ui button {{if attribute.lastPosition "disabled" ""}}" title='{{t "forms.fd-visual-edit-list-form.move-right-attr"}}' >
-          <i class="long arrow right icon"></i>
+          <button
+          class="ui button {{if attribute.lastPosition "disabled" ""}}"
+          title='{{t "forms.fd-visual-edit-list-form.move-right-attr"}}'
+          {{action "attributeRight"  index}}
+          >
+            <i class="long arrow right icon"></i>
         </button>
       </th>
       <th>
-          <button class="ui button" title='{{t "forms.fd-visual-edit-list-form.remove-attr"}}'>
+          <button
+            class="ui button"
+            title='{{t "forms.fd-visual-edit-list-form.remove-attr"}}'
+            {{action "attributeDelete"  index}}
+            >
           <i class="remove icon"></i>
         </button>
       </th>

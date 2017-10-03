@@ -39,7 +39,10 @@ export default Ember.Route.extend({
     attributes.sort(function(a, b) { return a.orderNum = b.orderNum; });
     attributes[0].firstPosition = true;
     attributes[attributes.length - 1].lastPosition = true;
-    model.attributes = attributes;
+    model.attributes = Ember.A();
+    for (let i in attributes) {
+      model.attributes.addObject(attributes[i]);
+    }
     return this._super(controller, model);
   }
 
