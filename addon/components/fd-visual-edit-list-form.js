@@ -8,16 +8,22 @@ export default Ember.Component.extend({
 
   store: Ember.inject.service('store'),
 
-  fieldList: [],
-
   formId: null,
 
-  listAttrubutes: [],
+  selectedCol: undefined,
 
-  attributes:  Ember.computed('listAttrubutes', function() {
+  selectedCols:  Ember.computed( 'selectedCol', 'model.listform.listAttributes', function() {
+    let ret = [];
+    for (let i=0; i < this.model.listform.listAttributes.length; i++) {
+      ret[i] = (typeof (this.selectedCol) !== 'undefined' && this.selectedCol === i);
+    }
+    return ret;
+  }),
+
+  attributes:  Ember.computed('model.listform.listAttributes', function() {
     let ret = Ember.A();
-    for (let i=0; i < this.listAttrubutes.length; i++) {
-      let obj = Ember.Object.create(this.listAttrubutes[i]);
+    for (let i=0; i < this.model.listform.listAttributes.length; i++) {
+      let obj = Ember.Object.create(this.model.listform.listAttributes[i]);
       ret.addObject(obj);
     }
     return ret;
@@ -64,6 +70,21 @@ export default Ember.Component.extend({
 
   actions: {
 
+    attributeShow(index) {
+      let attribute = this.model.listform.listAttributes[index];
+      let editControl = this.model.editControl;
+      let type;
+      switch (attribute.type) {
+        case 'bool': type = 'boolean'; break;
+        default: type = attribute.type;
+      }
+      Ember.set(editControl, 'name', attribute.name);
+      Ember.set(editControl, 'type', type);
+      Ember.set(editControl, 'isNull', attribute.notNull);
+      Ember.set(editControl, 'defaultValue', attribute.defaultValue);
+      Ember.set(this, 'selectedCol', index);
+    },
+
     attributeLeft(index) {
 
       alert('Left ' + index);
@@ -80,9 +101,7 @@ export default Ember.Component.extend({
         newAttributes.addObject(this.listAttrubutes[i]);
       }
 //       alert('Right ' + index + ' ' + newAttributes);
-      Ember.set(this, 'listAttrubutes', newAttributes);
-//       this.set(this.attributes, );
-//       this.attributes = newAttributes;
+      Ember.set(this.model.listform, 'listAttrubutes', newAttributes);
     },
 
     attributeDelete(index) {

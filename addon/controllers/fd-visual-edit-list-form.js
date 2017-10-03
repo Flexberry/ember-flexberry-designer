@@ -75,7 +75,7 @@ export default Ember.Controller.extend({
     "storage": null,
     "publishName": null,
     "realStorage": "Актуально",
-    "notNull": false,
+    "notNull": true,
     "order": false,
     "pBCustomAttributes": true,
     "pBGetEnd": true,

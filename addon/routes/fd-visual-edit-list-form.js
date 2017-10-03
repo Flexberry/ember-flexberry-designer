@@ -36,11 +36,13 @@ export default Ember.Route.extend({
 //       model.listforms.push({ id: record.get('id'), name: record.get('name'), description: record.get('description') }) ;
 //     }
     model.listform = model.nextObject(0);
+    model.editControl={};
     let attributes = controller.attributes;
     attributes.sort(function(a, b) { return a.orderNum - b.orderNum; });
     attributes[0].firstPosition = true;
     attributes[attributes.length - 1].lastPosition = true;
-    model.attributes = attributes;
+    model.listform.listAttributes = attributes;
+    model.editControl.name = 'attribut1';
 //     model.attributes = Ember.A();
 //     for (let i in attributes) {
 //       let obj = Ember.Object.create(attributes[i]);

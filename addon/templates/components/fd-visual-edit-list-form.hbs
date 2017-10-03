@@ -1,5 +1,5 @@
 <div class="ui two column grid">
-  <div class="column"><h3>{{listform.name}}</h3></div>
+  <div class="column"><h3>{{model.listform.name}}</h3></div>
   <div class="column">
     <div class="ui grid">
       <div class="white eight wide right aligned column">Форма для редактирования:</div>
@@ -105,8 +105,8 @@
             <i class="sort icon"></i>
           </button>
         </th>
-        {{#each attributes as |attribute|}}
-        <th colspan='2' align='left'>{{attribute.name}}</th>
+        {{#each attributes as |attribute index|}}
+        <th colspan='2' align='left' style='bachgroundColor:{{if selectedCols  "#aaaaaa" ""}}' {{action 'attributeShow' index}}>{{attribute.name}}</th>
         {{/each}}
       </tr>
     </thead>
