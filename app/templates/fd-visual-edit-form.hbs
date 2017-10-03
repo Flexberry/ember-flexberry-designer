@@ -28,30 +28,5 @@
       </button>
     </div>
   </div>
-  <div class="ui grid row">
-    <div class="field eight wide column">
-        <label>{{t 'forms.fd-visual-edit-form.name'}}</label>
-        {{flexberry-textbox
-          value=undefined
-        }}
-    </div>
-    <div class="field eight wide column">
-        <label>{{t 'forms.fd-visual-edit-form.description'}}</label>
-        {{flexberry-textbox
-          value=undefined
-        }}
-    </div>
-  </div>
-  <div class="ui segment grid">
-    <div class="row">
-      <div class="ten wide column">
-        {{fd-visual-edit-form}}
-      </div>
-      <div class="six wide column">
-        <div class="ui segment">
-          {{fd-visual-edit-control}}
-        </div>
-      </div>
-    </div>
-  </div>
+  {{fd-visual-edit-form}}
 </form>

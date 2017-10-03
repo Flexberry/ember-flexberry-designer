@@ -3,10 +3,11 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
   queryParams: ['formId'],
+  listform: null,
   listforms: [],
   attributes: [
   {
-    "name": "Логин",
+    "name": "НуОченьДлинноеНазваниеАттрибута",
     "nameStr": "Логин",
     "description": null,
     "id": "20fea097-0dab-45ed-957e-542acccdf623",

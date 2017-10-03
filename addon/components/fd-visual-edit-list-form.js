@@ -12,9 +12,33 @@ export default Ember.Component.extend({
 
   formId: null,
 
+  listAttrubutes: [],
+
+  attributes:  Ember.computed('listAttrubutes', function() {
+    let ret = Ember.A();
+    for (let i=0; i < this.listAttrubutes.length; i++) {
+      let obj = Ember.Object.create(this.listAttrubutes[i]);
+      ret.addObject(obj);
+    }
+    return ret;
+  }),
+
 
   init: function() {
-    this._super();
+    this._super(...arguments);
+  },
+
+  didUpdateAttrs: function() {
+    this._super(...arguments);
+  },
+
+
+  willUpdate: function() {
+    this._super(...arguments);
+  },
+
+  willRender: function() {
+    this._super(...arguments);
   },
 
   _parseDefinition: function(definition) {
@@ -48,21 +72,25 @@ export default Ember.Component.extend({
     attributeRight(index) {
       let newAttributes = Ember.A();
       for (let i = 0; i < index; i++) {
-        newAttributes.addObject(this.attributes[i]);
+        newAttributes.addObject(this.listAttrubutes[i]);
       }
-      newAttributes.addObject(this.attributes[index]);
-      newAttributes.addObject(this.attributes[index+1]);
-      for (let i=index+2; i < this.attributes.length; i++) {
-        newAttributes.addObject(this.attributes[i]);
+      newAttributes.addObject(this.listAttrubutes[index]);
+      newAttributes.addObject(this.listAttrubutes[index+1]);
+      for (let i=index+2; i < this.listAttrubutes.length; i++) {
+        newAttributes.addObject(this.listAttrubutes[i]);
       }
-      alert('Right ' + index + ' ' + newAttributes);
-      Ember.set(this, 'attributes', newAttributes);
+//       alert('Right ' + index + ' ' + newAttributes);
+      Ember.set(this, 'listAttrubutes', newAttributes);
 //       this.set(this.attributes, );
 //       this.attributes = newAttributes;
     },
 
     attributeDelete(index) {
       alert('Delete ' + index);
+    },
+
+    attributeCreate() {
+      alert('Create ');
     },
 
     showForm: function() {

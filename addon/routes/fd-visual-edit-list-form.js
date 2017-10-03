@@ -29,20 +29,23 @@ export default Ember.Route.extend({
   },
 
   setupController: function (controller, model) {
-    model.listforms = [];
-    let n = model.get('length');
-    for (let i = 0; i < n; i++) {
-      let record = model.nextObject(i);
-      model.listforms.push({ id: record.get('id'), name: record.get('name'), description: record.get('description') }) ;
-    }
+//     model.listforms = [];
+//     let n = model.get('length');
+//     for (let i = 0; i < n; i++) {
+//       let record = model.nextObject(i);
+//       model.listforms.push({ id: record.get('id'), name: record.get('name'), description: record.get('description') }) ;
+//     }
+    model.listform = model.nextObject(0);
     let attributes = controller.attributes;
     attributes.sort(function(a, b) { return a.orderNum = b.orderNum; });
     attributes[0].firstPosition = true;
     attributes[attributes.length - 1].lastPosition = true;
-    model.attributes = Ember.A();
-    for (let i in attributes) {
-      model.attributes.addObject(attributes[i]);
-    }
+    model.attributes = attributes;
+//     model.attributes = Ember.A();
+//     for (let i in attributes) {
+//       let obj = Ember.Object.create(attributes[i]);
+//       model.attributes.addObject(obj);
+//     }
     return this._super(controller, model);
   }
 
