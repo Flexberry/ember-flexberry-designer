@@ -12,6 +12,8 @@ export default Ember.Component.extend({
 
   selectedCol: undefined,
 
+  previousSelectedCol: undefined,
+
   selectedCols:  Ember.computed( 'selectedCol', 'model.listform.listAttributes', function() {
     let ret = [];
     for (let i=0; i < this.model.listform.listAttributes.length; i++) {
@@ -47,6 +49,12 @@ export default Ember.Component.extend({
     this._super(...arguments);
   },
 
+
+  didRender: function() {
+    this._super(...arguments);
+    this._setDOMSelectedColumn();
+  },
+
   _parseDefinition: function(definition) {
     let ret = [];
     let parser = new DOMParser();
@@ -68,6 +76,58 @@ export default Ember.Component.extend({
     return ret;
   },
 
+  _reNumberAttributes(listAttributes) {
+    for (let i=0; i < listAttributes.length; i++) {
+      let attribute = listAttributes[i];
+      attribute.orderNum = i+1;
+      attribute.firstPosition = undefined;
+      attribute.lastPosition = undefined;
+    }
+    listAttributes[0].firstPosition = true;
+    listAttributes[listAttributes.length - 1].lastPosition = true;
+  },
+
+  _attributeRight(index) {
+    let posLeft = index;
+    let posRight = index + 1;
+    let listAttributes = this.model.listform.listAttributes;
+    let newAttributes = Ember.A();
+    for (let i = 0; i < index; i++) {
+      newAttributes.addObject(listAttributes[i]);
+    }
+    let newLeftAttr = listAttributes[posRight];
+    let newRightAttr = listAttributes[index];
+    newAttributes.addObject(newLeftAttr);
+    newAttributes.addObject(newRightAttr);
+    for (let i=index+2; i < listAttributes.length; i++) {
+      newAttributes.addObject(listAttributes[i]);
+    }
+
+    this._reNumberAttributes(newAttributes);
+    Ember.set(this.model.listform, 'listAttributes', newAttributes);
+    if (this.selectedCol === posLeft) {
+      this.selectedCol = posRight;
+    } else {
+      if (this.selectedCol === posRight)
+        this.selectedCol = posLeft;
+    }
+  },
+
+  //To be removed after handelbar tuning
+  _setDOMSelectedColumn: function() {
+    if (typeof this.selectedCol === 'undefined') {
+      return;
+    }
+    let tr =  Ember.$('#attributeList');
+    let tds = tr.find('td');
+    if (typeof this.previousSelectedCol !== 'undefined') {
+      tds[this.previousSelectedCol].className = '';
+    }
+    tds[this.selectedCol].className = 'active';
+    this.previousSelectedCol = this.selectedCol;
+  },
+
+
   actions: {
 
     attributeShow(index) {
@@ -83,25 +143,15 @@ export default Ember.Component.extend({
       Ember.set(editControl, 'isNull', attribute.notNull);
       Ember.set(editControl, 'defaultValue', attribute.defaultValue);
       Ember.set(this, 'selectedCol', index);
+      this._setDOMSelectedColumn();  /*To be removed after handelbar tuning*/
     },
 
     attributeLeft(index) {
-
-      alert('Left ' + index);
+      this._attributeRight(index - 1);
     },
 
     attributeRight(index) {
-      let newAttributes = Ember.A();
-      for (let i = 0; i < index; i++) {
-        newAttributes.addObject(this.listAttrubutes[i]);
-      }
-      newAttributes.addObject(this.listAttrubutes[index]);
-      newAttributes.addObject(this.listAttrubutes[index+1]);
-      for (let i=index+2; i < this.listAttrubutes.length; i++) {
-        newAttributes.addObject(this.listAttrubutes[i]);
-      }
-//       alert('Right ' + index + ' ' + newAttributes);
-      Ember.set(this.model.listform, 'listAttrubutes', newAttributes);
+      this._attributeRight(index);
     },
 
     attributeDelete(index) {
