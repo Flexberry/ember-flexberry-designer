@@ -46,6 +46,7 @@ export default Ember.Component.extend({
       if (typeof this.previousSelectedCol !== 'undefined') {
         tds[this.previousSelectedCol + 1].className = '';
       }
+
       tds[this.selectedCol + 1].className = 'active';
 
     }
@@ -71,6 +72,7 @@ export default Ember.Component.extend({
         }
       }
     }
+
     return ret;
   },
 
@@ -81,6 +83,7 @@ export default Ember.Component.extend({
       attribute.firstPosition = undefined;
       attribute.lastPosition = undefined;
     }
+
     listAttributes[0].firstPosition = true;
     listAttributes[listAttributes.length - 1].lastPosition = true;
   },
@@ -138,6 +141,7 @@ export default Ember.Component.extend({
     for (let i = 0; i < listAttributes.length; i++) {
       newAttributes.push(listAttributes[i]);
     }
+
     newAttributes.push(attribute);
     this._reNumberAttributes(newAttributes);
     return newAttributes;

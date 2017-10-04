@@ -14,7 +14,6 @@ export default {
   'listform-forward': 'Next',
   'listform-back': 'Back',
 
-
   'move-left-attr': 'Move left',
   'move-right-attr': 'Move right',
   'remove-attr': 'Remove attribute',

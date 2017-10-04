@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import { Query } from 'ember-flexberry-data';
-const { Builder/*, FilterOperator*/ } = Query;
+const { Builder } = Query;
 
 export default Ember.Route.extend({
 
@@ -12,7 +12,7 @@ export default Ember.Route.extend({
     }
   },
 
-  beforeModel: function(params){
+  beforeModel: function(params) {
     this.formId = params.queryParams.formId;
   },
 
@@ -29,25 +29,14 @@ export default Ember.Route.extend({
   },
 
   setupController: function (controller, model) {
-//     model.listforms = [];
-//     let n = model.get('length');
-//     for (let i = 0; i < n; i++) {
-//       let record = model.nextObject(i);
-//       model.listforms.push({ id: record.get('id'), name: record.get('name'), description: record.get('description') }) ;
-//     }
     model.listform = model.nextObject(0);
-    model.editControl={};
+    model.editControl = {};
     let attributes = controller.attributes;
     attributes.sort(function(a, b) { return a.orderNum - b.orderNum; });
     attributes[0].firstPosition = true;
     attributes[attributes.length - 1].lastPosition = true;
     model.listform.listAttributes = attributes;
     model.editControl.name = 'attribut1';
-//     model.attributes = Ember.A();
-//     for (let i in attributes) {
-//       let obj = Ember.Object.create(attributes[i]);
-//       model.attributes.addObject(obj);
-//     }
     return this._super(controller, model);
   }
 
