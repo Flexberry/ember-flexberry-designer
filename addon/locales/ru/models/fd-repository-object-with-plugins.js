@@ -2,38 +2,38 @@ export default {
   projections: {
     Edit: {
       name: {
-        caption: ''
+        __caption__: ''
       },
       description: {
-        caption: ''
+        __caption__: ''
       },
       aCL: {
-        caption: ''
+        __caption__: ''
       },
       plugins: {
-        caption: '',
+        __caption__: '',
         plugin: {
-          caption: 'Модуль',
+          __caption__: 'Модуль',
           storedType: {
-            caption: 'Тип'
+            __caption__: 'Тип'
           }
         },
         settings: {
-          caption: ''
+          __caption__: ''
         }
       }
     },
     PluginsOnly: {
       plugins: {
-        caption: '',
+        __caption__: '',
         plugin: {
-          caption: 'Модуль',
+          __caption__: 'Модуль',
           storedType: {
-            caption: 'Тип'
+            __caption__: 'Тип'
           }
         },
         settings: {
-          caption: ''
+          __caption__: ''
         }
       }
     }

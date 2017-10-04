@@ -2,21 +2,21 @@ export default {
   projections: {
     Import: {
       referenceCount: {
-        caption: 'referenceCount'
+        __caption__: 'referenceCount'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       parent: {
-        caption: 'parent'
+        __caption__: 'parent'
       },
       child: {
-        caption: 'child'
+        __caption__: 'child'
       }
     },
     References: {
       referenceCount: {
-        caption: 'referenceCount'
+        __caption__: 'referenceCount'
       }
     }
   }

@@ -2,10 +2,10 @@ export default {
   projections: {
     FileLink: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       }
     }
   }

@@ -2,30 +2,30 @@ export default {
   projections: {
     ModuleSettingE: {
       moduleSettingType: {
-        caption: 'ModuleSettingTyp',
+        __caption__: 'ModuleSettingTyp',
         name: {
-          caption: 'Name ModuleSettingType'
+          __caption__: 'Name ModuleSettingType'
         }
       },
       valueXML: {
-        caption: 'ValueXML'
+        __caption__: 'ValueXML'
       },
       stage: {
-        caption: 'Stage'
+        __caption__: 'Stage'
       }
     },
     ModuleSettingL: {
       moduleSettingType: {
-        caption: 'ModuleSettingType',
+        __caption__: 'ModuleSettingType',
         name: {
-          caption: 'Name ModuleSettingType'
+          __caption__: 'Name ModuleSettingType'
         }
       },
       valueXML: {
-        caption: 'ValueXML'
+        __caption__: 'ValueXML'
       },
       stage: {
-        caption: 'Stage'
+        __caption__: 'Stage'
       }
     }
   }

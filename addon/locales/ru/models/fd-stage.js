@@ -2,170 +2,170 @@ export default {
   projections: {
     Convert: {
       systems: {
-        caption: '',
+        __caption__: '',
         createUser: {
-          caption: 'CreateUser'
+          __caption__: 'CreateUser'
         },
         createDate: {
-          caption: 'CreateDate'
+          __caption__: 'CreateDate'
         },
         changeUser: {
-          caption: 'ChangeUser'
+          __caption__: 'ChangeUser'
         },
         changeDate: {
-          caption: 'ChangeDate'
+          __caption__: 'ChangeDate'
         },
         name: {
-          caption: 'Name'
+          __caption__: 'Name'
         },
         description: {
-          caption: 'Description'
+          __caption__: 'Description'
         },
         nameStr: {
-          caption: 'NameStr'
+          __caption__: 'NameStr'
         },
         diagramLinks: {
-          caption: '',
+          __caption__: '',
           name: {
-          caption: 'Название'
+          __caption__: 'Название'
         },
           description: {
-          caption: 'Описание'
+          __caption__: 'Описание'
         }
         },
         diagrams: {
-          caption: '',
+          __caption__: '',
           primitivesStreamString: {
-          caption: ''
+          __caption__: ''
         },
           caseObjectsString: {
-          caption: ''
+          __caption__: ''
         },
           name: {
-          caption: ''
+          __caption__: ''
         },
           createDate: {
-          caption: ''
+          __caption__: ''
         },
           createUser: {
-          caption: ''
+          __caption__: ''
         },
           changeDate: {
-          caption: ''
+          __caption__: ''
         },
           changeUser: {
-          caption: ''
+          __caption__: ''
         }
         },
         filelinks: {
-          caption: '',
+          __caption__: '',
           name: {
-          caption: 'Название'
+          __caption__: 'Название'
         },
           description: {
-          caption: 'Описание'
+          __caption__: 'Описание'
         }
         }
       }
     },
     DependensiesSearchView: {
       classes: {
-        caption: '',
+        __caption__: '',
         name: {
-          caption: ''
+          __caption__: ''
         },
         stereotype: {
-          caption: ''
+          __caption__: ''
         },
         nameStr: {
-          caption: ''
+          __caption__: ''
         }
       }
     },
     Import: {
       associations: {
-        caption: '',
+        __caption__: '',
         startRole: {
-          caption: ''
+          __caption__: ''
         },
         endRole: {
-          caption: ''
+          __caption__: ''
         },
         referenceCount: {
-          caption: ''
+          __caption__: ''
         },
         startClass: {
-          caption: ''
+          __caption__: ''
         },
         endClass: {
-          caption: ''
+          __caption__: ''
         }
       },
       classes: {
-        caption: '',
+        __caption__: '',
         referenceCount: {
-          caption: ''
+          __caption__: ''
         },
         nameStr: {
-          caption: ''
+          __caption__: ''
         }
       },
       inheritances: {
-        caption: '',
+        __caption__: '',
         referenceCount: {
-          caption: ''
+          __caption__: ''
         },
         name: {
-          caption: ''
+          __caption__: ''
         },
         parent: {
-          caption: ''
+          __caption__: ''
         },
         child: {
-          caption: ''
+          __caption__: ''
         }
       }
     },
     InheritanceCyclesCheckView: {
       inheritances: {
-        caption: '',
+        __caption__: '',
         referenceCount: {
-          caption: ''
+          __caption__: ''
         },
         name: {
-          caption: ''
+          __caption__: ''
         },
         parent: {
-          caption: ''
+          __caption__: ''
         },
         child: {
-          caption: ''
+          __caption__: ''
         }
       }
     },
     NameOnly: {
       name: {
-        caption: ''
+        __caption__: ''
       }
     },
     PathSearchView: {
       name: {
-        caption: ''
+        __caption__: ''
       },
       configuration: {
-        caption: '',
+        __caption__: '',
         name: {
-          caption: ''
+          __caption__: ''
         },
         project: {
-          caption: '',
+          __caption__: '',
           name: {
-            caption: ''
+            __caption__: ''
           },
           repository: {
-            caption: '',
+            __caption__: '',
             name: {
-              caption: ''
+              __caption__: ''
             }
           }
         }
@@ -173,21 +173,21 @@ export default {
     },
     References: {
       associations: {
-        caption: '',
+        __caption__: '',
         referenceCount: {
-          caption: ''
+          __caption__: ''
         }
       },
       classes: {
-        caption: '',
+        __caption__: '',
         referenceCount: {
-          caption: ''
+          __caption__: ''
         }
       },
       inheritances: {
-        caption: '',
+        __caption__: '',
         referenceCount: {
-          caption: ''
+          __caption__: ''
         }
       }
     }

@@ -2,132 +2,132 @@ export default {
   projections: {
     AttributesView: {
       name: {
-        caption: ''
+        __caption__: ''
       },
       properties: {
-        caption: ''
+        __caption__: ''
       },
       definition: {
-        caption: ''
+        __caption__: ''
       },
       class: {
-        caption: ''
+        __caption__: ''
       }
     },
     BusinessServer: {
       name: {
-        caption: ''
+        __caption__: ''
       },
       description: {
-        caption: ''
+        __caption__: ''
       },
       class: {
-        caption: '',
+        __caption__: '',
         stage: {
-          caption: ''
+          __caption__: ''
         }
       }
     },
     EditDataObjectClass: {
       name: {
-        caption: ''
+        __caption__: ''
       },
       description: {
-        caption: ''
+        __caption__: ''
       },
       properties: {
-        caption: ''
+        __caption__: ''
       }
     },
     EditFormView: {
       name: {
-        caption: 'Name'
+        __caption__: 'Name'
       },
       description: {
-        caption: 'Description'
+        __caption__: 'Description'
       }
     },
     EditPropertyLookups: {
       name: {
-        caption: ''
+        __caption__: ''
       },
       definition: {
-        caption: ''
+        __caption__: ''
       },
       class: {
-        caption: '',
+        __caption__: '',
         name: {
-          caption: ''
+          __caption__: ''
         }
       }
     },
     Generator: {
       name: {
-        caption: ''
+        __caption__: ''
       },
       description: {
-        caption: ''
+        __caption__: ''
       },
       definition: {
-        caption: ''
+        __caption__: ''
       },
       class: {
-        caption: ''
+        __caption__: ''
       }
     },
     ListFormView: {
       class: {
-        caption: '',
+        __caption__: '',
         name: {
-          caption: 'Class'
+          __caption__: 'Class'
         }
       },
       name: {
-        caption: 'View name'
+        __caption__: 'View name'
       },
       properties: {
-        caption: 'View properties'
+        __caption__: 'View properties'
       }
     },
     Prototyping: {
       name: {
-        caption: ''
+        __caption__: ''
       },
       definition: {
-        caption: ''
+        __caption__: ''
       }
     },
     SearchView: {
       name: {
-        caption: ''
+        __caption__: ''
       },
       class: {
-        caption: ''
+        __caption__: ''
       }
     },
     ViewManager: {
       class: {
-        caption: 'Класс',
+        __caption__: 'Класс',
         name: {
-          caption: 'Класс'
+          __caption__: 'Класс'
         },
         stage: {
-          caption: ''
+          __caption__: ''
         }
       },
       name: {
-        caption: 'Название представления'
+        __caption__: 'Название представления'
       },
       properties: {
-        caption: 'Свойства в представлении'
+        __caption__: 'Свойства в представлении'
       },
       definition: {
-        caption: ''
+        __caption__: ''
       }
     },
     ViewPeeker: {
       name: {
-        caption: ''
+        __caption__: ''
       }
     }
   }

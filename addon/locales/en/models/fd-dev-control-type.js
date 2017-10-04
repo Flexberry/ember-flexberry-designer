@@ -2,69 +2,69 @@ export default {
   projections: {
     ControlTypeE: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       designerHtmlTemplate: {
-        caption: 'designerHtmlTemplate'
+        __caption__: 'designerHtmlTemplate'
       },
       designerMetadataXml: {
-        caption: 'designerMetadataXml'
+        __caption__: 'designerMetadataXml'
       },
       editedType: {
-        caption: 'editedType',
+        __caption__: 'editedType',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       }
     },
     ControlTypeL: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       designerHtmlTemplate: {
-        caption: 'designerHtmlTemplate'
+        __caption__: 'designerHtmlTemplate'
       },
       designerMetadataXml: {
-        caption: 'designerMetadataXml'
+        __caption__: 'designerMetadataXml'
       },
       editedType: {
-        caption: 'editedType',
+        __caption__: 'editedType',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       }
     },
     ControlTypeXmlView: {
       designerMetadataXml: {
-        caption: 'designerMetadataXml'
+        __caption__: 'designerMetadataXml'
       }
     },
     Full: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       designerHtmlTemplate: {
-        caption: 'designerHtmlTemplate'
+        __caption__: 'designerHtmlTemplate'
       },
       designerMetadataXml: {
-        caption: 'designerMetadataXml'
+        __caption__: 'designerMetadataXml'
       },
       editedType: {
         __caption__: 'editedType',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         caption: {
-          caption: 'caption'
+          __caption__: 'caption'
         },
         mapTypeName: {
-          caption: 'mapTypeName'
+          __caption__: 'mapTypeName'
         },
         mapTypeAssemblyName: {
-          caption: 'mapTypeAssemblyName'
+          __caption__: 'mapTypeAssemblyName'
         },
         formatAttribute: {
-          caption: 'formatAttribute'
+          __caption__: 'formatAttribute'
         }
       }
     }

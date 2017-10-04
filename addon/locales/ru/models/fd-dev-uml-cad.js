@@ -2,35 +2,35 @@ export default {
   projections: {
     EditFormView: {
       name: {
-        caption: 'Name'
+        __caption__: 'Name'
       },
       description: {
-        caption: 'Description'
+        __caption__: 'Description'
       }
     },
     ListFormView: {
       name: {
-        caption: 'Name'
+        __caption__: 'Name'
       },
       description: {
-        caption: 'Description'
+        __caption__: 'Description'
       },
       changeUser: {
-        caption: 'Change user'
+        __caption__: 'Change user'
       },
       changeDate: {
-        caption: 'Change date'
+        __caption__: 'Change date'
       },
       createUser: {
-        caption: 'Create user'
+        __caption__: 'Create user'
       },
       createDate: {
-        caption: 'Create date'
+        __caption__: 'Create date'
       }
     },
     SearchDiagram: {
       name: {
-        caption: ''
+        __caption__: ''
       }
     }
   }

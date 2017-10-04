@@ -2,41 +2,41 @@ export default {
   projections: {
     Import: {
       startRole: {
-        caption: ''
+        __caption__: ''
       },
       endRole: {
-        caption: ''
+        __caption__: ''
       },
       referenceCount: {
-        caption: ''
+        __caption__: ''
       },
       startClass: {
-        caption: ''
+        __caption__: ''
       },
       endClass: {
-        caption: ''
+        __caption__: ''
       }
     },
     PropertySearch: {
       startRole: {
-        caption: ''
+        __caption__: ''
       },
       endRole: {
-        caption: ''
+        __caption__: ''
       },
       startClass: {
-        caption: '',
+        __caption__: '',
         nameStr: {
-          caption: ''
+          __caption__: ''
         }
       },
       endClass: {
-        caption: ''
+        __caption__: ''
       }
     },
     References: {
       referenceCount: {
-        caption: ''
+        __caption__: ''
       }
     }
   }

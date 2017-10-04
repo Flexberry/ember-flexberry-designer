@@ -2,18 +2,18 @@ export default {
   projections: {
     PathSearchView: {
       name: {
-        caption: ''
+        __caption__: ''
       },
       repository: {
-        caption: '',
+        __caption__: '',
         name: {
-          caption: ''
+          __caption__: ''
         }
       }
     },
     SearchRepObjView: {
       name: {
-        caption: ''
+        __caption__: ''
       }
     }
   }
