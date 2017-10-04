@@ -16,53 +16,16 @@
 </div>
 <div class="ui segment grid">
   <div class="row">
-    <div class="twelve wide column">
-      <div class="field">
-        <button class="ui button" title='{{t "forms.fd-visual-edit-list-form.refresh-button-text"}}'>
-          <i class="refresh icon"></i>
-        </button>
-        <button class="ui button create-button" {{action 'create'}}>
-          <i class="add circle icon"></i>
-          {{t "forms.fd-visual-edit-list-form.add-button-text"}}
-        </button>
-        <button class="ui button">
-          <i class="remove icon"></i>
-          {{t "forms.fd-visual-edit-list-form.delete-button-text"}}
-        </button>
-        <button class="ui button" title=' {{t "forms.fd-visual-edit-list-form.find-button-text"}}'>
-          <i class="find icon"></i>
-        </button>
-        <button class="ui button" title=' {{t "forms.fd-visual-edit-list-form.filter-button-text"}}'>
-          <i class="filter icon"></i>
-        </button>
-        <button class="ui button" title=' {{t "forms.fd-visual-edit-list-form.wizard-button-text"}}'>
-          <i class="wizard icon"></i>
-        </button>
-        <button class="ui button" title=' {{t "forms.fd-visual-edit-list-form.edit-button-text"}}'>
-          <i class="edit icon"></i>
-        </button>
-        <button class="ui button" title=' {{t "forms.fd-visual-edit-list-form.unknown-button-text"}}'>
-          <i class="help icon"></i>
-        </button>
-      </div>
-    </div>
-    <div class="four wide column" align='right'>
-      <button class="ui button">
-        {{t "forms.fd-visual-edit-list-form.listform-back"}}
-      </button>
-      <button class="ui button">
-        {{t "forms.fd-visual-edit-list-form.listform-forward"}}
-      </button>
-    </div>
+    <img src='/assets/images/visualEditListFormTop.png' />
   </div>
 </div>
 <table cellspacing='0' cellpadding='0' border='0'>
 <tr>
 <td>
   <table class="ui celled table">
-    <thead>
+    <tbody>
       <tr>
-        <th colspan='3'>&nbsp;</th>
+        <th>&nbsp;</th>
         {{#each attributes as |attribute index|}}
         <td align='left'>
         <nobr>
@@ -97,21 +60,21 @@
               <i class="checkmark icon"></i>
             </button>
         </th>
-        <th>
-          <button class="ui button" title='{{t "forms.fd-visual-edit-list-form.checkmarkall-button-text"}}'>
-            <i class="checkmark box icon"></i>
-          </button>
-        </th>
-        <th>
-          <button class="ui button" title='{{t "forms.fd-visual-edit-list-form.sort-button-text"}}'>
-            <i class="sort icon"></i>
-          </button>
-        </th>
         {{#each attributes as |attribute index|}}
-        <td colspan='2' align='left' class='{{if selectedCols.[{{index}}]  "active" ""}}' {{action 'attributeShow' index}}>{{attribute.name}}</td>
+        <td colspan='2' align='left' class='' {{action 'attributeShow' index}}>{{attribute.name}}</td>
         {{/each}}
       </tr>
-    </thead>
+      <tr title='Значения по умолчанию'>
+          <th>
+            <button class="ui button">
+              <i class="checkmark icon"></i>
+            </button>
+        </th>
+        {{#each attributes as |attribute index|}}
+        <td colspan='2' align='left' class='' {{action 'attributeShow' index}}>{{attribute.defaultValue}}</td>
+        {{/each}}
+      </tr>
+    </tbody>
   </table>
 </td>
 <td valign='top'>
@@ -122,4 +85,7 @@
 </td>
 </tr>
 </table>
+
+<img src='/assets/images/visualEditListFormBottom.png' />
+
 {{! yield}}

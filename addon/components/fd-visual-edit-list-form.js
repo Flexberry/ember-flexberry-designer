@@ -55,6 +55,23 @@ export default Ember.Component.extend({
     this._setDOMSelectedColumn();
   },
 
+  _setDOMSelectedColumn: function() {
+    if (typeof this.selectedCol === 'undefined') {
+      return;
+    }
+
+    for (let tr =  Ember.$('#attributeList')[0]; tr; tr = tr.nextElementSibling) {
+      let tds = tr.children;
+      if (typeof this.previousSelectedCol !== 'undefined') {
+        tds[this.previousSelectedCol + 1].className = '';
+      }
+      tds[this.selectedCol + 1].className = 'active';
+
+    }
+
+    this.previousSelectedCol = this.selectedCol;
+  },
+
   _parseDefinition: function(definition) {
     let ret = [];
     let parser = new DOMParser();
@@ -142,23 +159,6 @@ export default Ember.Component.extend({
     this._reNumberAttributes(newAttributes);
     return newAttributes;
   },
-
-  //To be removed after handelbar tuning
-  _setDOMSelectedColumn: function() {
-    if (typeof this.selectedCol === 'undefined') {
-      return;
-    }
-
-    let tr =  Ember.$('#attributeList');
-    let tds = tr.find('td');
-    if (typeof this.previousSelectedCol !== 'undefined') {
-      tds[this.previousSelectedCol].className = '';
-    }
-
-    tds[this.selectedCol].className = 'active';
-    this.previousSelectedCol = this.selectedCol;
-  },
-
 
   actions: {
 
