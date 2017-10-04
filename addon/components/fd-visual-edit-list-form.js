@@ -17,6 +17,7 @@ export default Ember.Component.extend({
     for (let i = 0; i < this.model.listform.listAttributes.length; i++) {
       ret[i] = (typeof (this.selectedCol) !== 'undefined' && this.selectedCol === i);
     }
+
     return ret;
   }),
 
@@ -26,27 +27,9 @@ export default Ember.Component.extend({
       let obj = Ember.Object.create(this.model.listform.listAttributes[i]);
       ret.addObject(obj);
     }
+
     return ret;
   }),
-
-
-  init: function() {
-    this._super(...arguments);
-  },
-
-  didUpdateAttrs: function() {
-    this._super(...arguments);
-  },
-
-
-  willUpdate: function() {
-    this._super(...arguments);
-  },
-
-  willRender: function() {
-    this._super(...arguments);
-  },
-
 
   didRender: function() {
     this._super(...arguments);
@@ -94,7 +77,7 @@ export default Ember.Component.extend({
   _reNumberAttributes: function(listAttributes) {
     for (let i = 0; i < listAttributes.length; i++) {
       let attribute = listAttributes[i];
-      attribute.orderNum = i+1;
+      attribute.orderNum = i + 1;
       attribute.firstPosition = undefined;
       attribute.lastPosition = undefined;
     }
@@ -109,11 +92,12 @@ export default Ember.Component.extend({
     for (let i = 0; i < index; i++) {
       newAttributes.push(listAttributes[i]);
     }
+
     let newLeftAttr = listAttributes[posRight];
     let newRightAttr = listAttributes[index];
     newAttributes.push(newLeftAttr);
     newAttributes.push(newRightAttr);
-    for (let i=index+2; i < listAttributes.length; i++) {
+    for (let i = index + 2; i < listAttributes.length; i++) {
       newAttributes.push(listAttributes[i]);
     }
 
@@ -140,8 +124,8 @@ export default Ember.Component.extend({
     for (; i < listAttributes.length; i++) {
       newAttributes.push(listAttributes[i]);
     }
-    this._reNumberAttributes(newAttributes);
 
+    this._reNumberAttributes(newAttributes);
     if (this.selectedCol === index) {
       Ember.set(this, 'selectedCol', undefined);
     }
@@ -184,6 +168,7 @@ export default Ember.Component.extend({
         alert('Не указан тип атрибута');
         return;
       }
+
       switch (editControl.type) {
         case 'boolean': type = 'bool'; break;
         default: type = editControl.type;
@@ -194,7 +179,6 @@ export default Ember.Component.extend({
         notNull: editControl.isNull,
         defaultValue: editControl.defaultValue
       };
-
       let newAttributes = this._attributeCreate(this.model.listform.listAttributes, attribute);
       Ember.set(this.model.listform, 'listAttributes', newAttributes);
     },
@@ -218,6 +202,5 @@ export default Ember.Component.extend({
     }
 
   }
-
 
 });
