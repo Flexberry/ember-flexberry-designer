@@ -88,29 +88,51 @@ export default Ember.Component.extend({
   },
 
   _attributeRight(index) {
+    let listAttributes = this.model.listform.listAttributes;
     let posLeft = index;
     let posRight = index + 1;
-    let listAttributes = this.model.listform.listAttributes;
-    let newAttributes = Ember.A();
+    let newAttributes = [];
     for (let i = 0; i < index; i++) {
-      newAttributes.addObject(listAttributes[i]);
+      newAttributes.push(listAttributes[i]);
     }
     let newLeftAttr = listAttributes[posRight];
     let newRightAttr = listAttributes[index];
-    newAttributes.addObject(newLeftAttr);
-    newAttributes.addObject(newRightAttr);
+    newAttributes.push(newLeftAttr);
+    newAttributes.push(newRightAttr);
     for (let i=index+2; i < listAttributes.length; i++) {
-      newAttributes.addObject(listAttributes[i]);
+      newAttributes.push(listAttributes[i]);
     }
+    this._reNumberAttributes(newAttributes);
 
     this._reNumberAttributes(newAttributes);
-    Ember.set(this.model.listform, 'listAttributes', newAttributes);
     if (this.selectedCol === posLeft) {
       this.selectedCol = posRight;
     } else {
       if (this.selectedCol === posRight)
         this.selectedCol = posLeft;
     }
+
+    return newAttributes;
+  },
+
+  _attributeDelete(index) {
+    let listAttributes = this.model.listform.listAttributes;
+    let newAttributes = [];
+    let i=0;
+    for (; i < index; i++) {
+      newAttributes.push(listAttributes[i]);
+    }
+
+    i++;
+    for (; i < listAttributes.length; i++) {
+      newAttributes.push(listAttributes[i]);
+    }
+
+    if (this.selectedCol === index) {
+      this.selectedCol = undefined;
+    }
+
+    return newAttributes;
   },
 
   //To be removed after handelbar tuning
@@ -118,11 +140,13 @@ export default Ember.Component.extend({
     if (typeof this.selectedCol === 'undefined') {
       return;
     }
+
     let tr =  Ember.$('#attributeList');
     let tds = tr.find('td');
     if (typeof this.previousSelectedCol !== 'undefined') {
       tds[this.previousSelectedCol].className = '';
     }
+
     tds[this.selectedCol].className = 'active';
     this.previousSelectedCol = this.selectedCol;
   },
@@ -147,15 +171,19 @@ export default Ember.Component.extend({
     },
 
     attributeLeft(index) {
-      this._attributeRight(index - 1);
+      let newAttributes = this._attributeRight(index - 1);
+      Ember.set(this.model.listform, 'listAttributes', newAttributes);
+
     },
 
     attributeRight(index) {
-      this._attributeRight(index);
+      let newAttributes = this._attributeRight(index);
+      Ember.set(this.model.listform, 'listAttributes', newAttributes);
     },
 
     attributeDelete(index) {
-      alert('Delete ' + index);
+      let newAttributes = this._attributeDelete(index);
+      Ember.set(this.model.listform, 'listAttributes', newAttributes);
     },
 
     attributeCreate() {
