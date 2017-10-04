@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import { Query } from 'ember-flexberry-data';
-const { Builder, FilterOperator } = Query;
+const { Builder/*, FilterOperator*/ } = Query;
 
 export default Ember.Route.extend({
 

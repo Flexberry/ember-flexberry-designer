@@ -1,7 +1,5 @@
 import Ember from 'ember';
 import layout from '../templates/components/fd-visual-edit-list-form';
-import { Query } from 'ember-flexberry-data';
-const { Builder, FilterOperator } = Query;
 
 export default Ember.Component.extend({
   layout,
@@ -14,9 +12,9 @@ export default Ember.Component.extend({
 
   previousSelectedCol: undefined,
 
-  selectedCols:  Ember.computed( 'selectedCol', 'model.listform.listAttributes', function() {
+  selectedCols:  Ember.computed('selectedCol', 'model.listform.listAttributes', function() {
     let ret = [];
-    for (let i=0; i < this.model.listform.listAttributes.length; i++) {
+    for (let i = 0; i < this.model.listform.listAttributes.length; i++) {
       ret[i] = (typeof (this.selectedCol) !== 'undefined' && this.selectedCol === i);
     }
     return ret;
@@ -24,7 +22,7 @@ export default Ember.Component.extend({
 
   attributes:  Ember.computed('model.listform.listAttributes', function() {
     let ret = Ember.A();
-    for (let i=0; i < this.model.listform.listAttributes.length; i++) {
+    for (let i = 0; i < this.model.listform.listAttributes.length; i++) {
       let obj = Ember.Object.create(this.model.listform.listAttributes[i]);
       ret.addObject(obj);
     }
@@ -94,7 +92,7 @@ export default Ember.Component.extend({
   },
 
   _reNumberAttributes: function(listAttributes) {
-    for (let i=0; i < listAttributes.length; i++) {
+    for (let i = 0; i < listAttributes.length; i++) {
       let attribute = listAttributes[i];
       attribute.orderNum = i+1;
       attribute.firstPosition = undefined;
@@ -123,8 +121,9 @@ export default Ember.Component.extend({
     if (this.selectedCol === posLeft) {
       Ember.set(this, 'selectedCol', posRight);
     } else {
-      if (this.selectedCol === posRight)
+      if (this.selectedCol === posRight) {
         Ember.set(this, 'selectedCol', posLeft);
+      }
     }
 
     return newAttributes;
@@ -132,7 +131,7 @@ export default Ember.Component.extend({
 
   _attributeDelete: function(listAttributes, index) {
     let newAttributes = [];
-    let i=0;
+    let i = 0;
     for (; i < index; i++) {
       newAttributes.push(listAttributes[i]);
     }
@@ -187,7 +186,7 @@ export default Ember.Component.extend({
       }
       switch (editControl.type) {
         case 'boolean': type = 'bool'; break;
-        default: type = attribute.type;
+        default: type = editControl.type;
       }
       let attribute = {
         name: editControl.name,
@@ -216,51 +215,6 @@ export default Ember.Component.extend({
     },
 
     showForm: function() {
-      let store = this.get('store');
-      let select = Ember.$('#selectForm').get(0);
-      let option = select.options[select.selectedIndex];
-      let formId = option.value;
-      let formName = option.innerText;
-      let _this = this;
-      let p1 = new Query.SimplePredicate('stereotype', FilterOperator.Eq, '«listform»');
-      let p2 = new Query.SimplePredicate('formViews.view.class.id', FilterOperator.Eq, formId);
-
-      let builder = new  Builder(store, 'fd-dev-class').
-      select('id,name,description,stereotype,formViews,formViews.view,formViews.view.class,formViews.view.class.id').
-      where(p1);
-      let promise = store.query('fd-dev-class', builder.build());
-      promise.then(
-        function(records) {
-          let n = records.get('length');
-          for (let i = 0; i < n; i++) {
-            let record = records.nextObject(i);
-            let parentId = record.get('formViews').nextObject(0).get('view.class.id');
-            if (parentId === formId) {
-              let nameL = record.get('name');
-              let builder = new  Builder(store, 'fd-dev-view').
-              select('id,name,description,definition').
-              where('name', FilterOperator.Eq, nameL);
-              store.query('fd-dev-view', builder.build()).then(
-                function(records) {
-                  let record = records.nextObject(0);
-                  let definition = record.get('definition');
-                  this.fieldList = _this._parseDefinition(definition);
-                },
-                function(data) {
-                  alert(data);
-                }
-              );
-              break;
-            }
-          }
-        },
-        function(data) {
-          alert(data);
-        }
-      );
-
-
-
     }
 
   }

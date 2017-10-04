@@ -7,6 +7,6 @@ moduleForModel('fd-visual-edit-form', 'Unit | Model | fd visual edit form', {
 
 test('it exists', function(assert) {
   let model = this.subject();
-  // let store = this.store();
+  /* let store = this.store();*/
   assert.ok(!!model);
 });

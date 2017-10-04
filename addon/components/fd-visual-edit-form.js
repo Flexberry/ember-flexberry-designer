@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import FdVisualEditFormModel from 'ember-flexberry-designer/models/fd-visual-edit-form';
+/*import FdVisualEditFormModel from 'ember-flexberry-designer/models/fd-visual-edit-form';*/
 
 export default Ember.Component.extend({
   /**

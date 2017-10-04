@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import { translationMacro as t } from 'ember-i18n';
-import FdVisualEditControlModel from 'ember-flexberry-designer/models/fd-visual-edit-control';
+/*import FdVisualEditControlModel from 'ember-flexberry-designer/models/fd-visual-edit-control';*/
 
 export default Ember.Component.extend({
   /**
