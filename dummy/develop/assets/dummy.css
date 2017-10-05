@@ -1271,6 +1271,9 @@ input::selection {
   z-index: 999;
   width: 100%;
 }
+.background-logo.mobile {
+  height: 50px;
+}
 .background-logo a {
   background: #fff;
   border-radius: 15px;
@@ -1286,6 +1289,9 @@ input::selection {
 .flex-container {
   width: 100%!important;
   justify-content: space-between;
+}
+.flex-container.mobile-footer {
+  height: 30px;
 }
 .stackable > .ui.message {
   top: 70px;
@@ -4800,13 +4806,14 @@ lang {
 div.ui.secondary.menu.no-margin {
   display: flex;
   align-items: center;
+  min-height: 0em;
 }
 .ui.button.refresh-button {
   border: none;
   font-size: 0px;
   width: 25px;
-  padding: 0px 20px 0px 0px;
-  height: 0px;
+  padding: 10px 20px 0px 0px;
+  height: 25px;
 }
 .ui.button.refresh-button:hover {
   border: none;
@@ -4820,14 +4827,13 @@ div.ui.secondary.menu.no-margin {
 .ui.button.delete-button {
   border: none;
   font-size: 0px;
+  padding-top: 10px;
   padding-left: 10px;
-  height: 0px;
+  height: 25px;
 }
 .ui.button.delete-button:hover {
   background: none;
   border: none;
-  color: #FFFFFF;
-  background-color: #DB2828;
 }
 .ui.button.icon.hierarchical-button {
   border: 0px;
@@ -4964,24 +4970,15 @@ div.ui.secondary.menu.no-margin {
       Components buttons section
 *******************************************/
 /* Lookup select button */
-.ui.button.ui-change {
-  font-size: 0px;
-  width: 35px;
-  border: none;
-}
-.ui.button.ui-change:before {
-  content: "";
-  font-family: 'Crimean';
-  visibility: visible;
-  color: #7ba7d9;
-  font-size: 13px;
-}
-.ui.button.ui-change:hover:before {
-  color: #3c87dc;
-  opacity: 1;
-}
-.ui.loading.button.ui-change:before {
+.ui.loading.button.ui-change:before,
+.ui.loading.button.ui-change i.icon.change,
+.ui.loading.button.ui-change i.icon.change:before {
   content: '';
+}
+.ui.button.ui-change i.icon,
+.ui.button.ui-clear i.icon {
+  margin: 0em 0.5em 0em 0.5em;
+  font-size: 1em;
 }
 ui.button.ui-clear:hover {
   color: #FF7500;
@@ -5000,7 +4997,7 @@ ui.button.ui-clear:hover {
 }
 .ui.fluid.action.input .ui.button.ui-change {
   position: absolute;
-  right: 20px;
+  right: 30px;
 }
 .ui.fluid.action.input .ui.button.ui-clear {
   position: absolute;
@@ -5008,7 +5005,7 @@ ui.button.ui-clear:hover {
 }
 .ui.fluid.action.input .ui.loading.button.ui-change {
   position: absolute;
-  right: 27px;
+  right: 30px;
 }
 /* Table cell buttons */
 .cell .button:hover {
@@ -5167,9 +5164,6 @@ ui.button.ui-clear:hover {
 }
 .ui.right.floated.tiny.primary.compact.button:hover {
   border: 1px solid #7ba7d9;
-}
-.showing-entries {
-  color: #777;
 }
 /*!
  * # Semantic UI - Container
@@ -5584,6 +5578,7 @@ ui.button.ui-clear:hover {
 .full.height {
   height: 87.2vh!important;
   overflow: auto;
+  padding-bottom: 40px;
 }
 .ui.attached.segment {
   width: 100%!important;
@@ -9162,6 +9157,18 @@ i.icon.remove:before {
 i.icon.remove:before:hover {
   color: #FF7500;
 }
+i.icon.change:before {
+  font-family: 'Crimean';
+  content: "";
+  font-size: 17px;
+  position: relative;
+  top: -1px;
+  opacity: 1;
+}
+i.icon.change:before:hover {
+  color: #3c87dc;
+  opacity: 1;
+}
 /**************************************
       Edit panel buttons section
 ***************************************/
@@ -9251,22 +9258,22 @@ i.icon.download:before {
 /******************************************
       Page navigation buttons section
 *******************************************/
-i.icon.prev-page:before {
+.prev-page-button:before {
   content: "\e81a";
   font-family: 'Crimean';
   font-size: 14px;
   opacity: 1;
 }
-i.icon.prev-page:hover:before {
+.prev-page-button:hover:before {
   color: #FF7500;
 }
-i.icon.next-page:before {
+.next-page-button:before {
   content: "\e81b";
   font-family: 'Crimean';
   font-size: 14px;
   opacity: 1;
 }
-i.icon.next-page:hover:before {
+.next-page-button:hover:before {
   color: #FF7500;
 }
 /******************************************
@@ -9331,6 +9338,11 @@ i.icon.text-menu-hide:before {
 }
 .flexberry-lookup > .ui.fluid > button > i.icon.remove:before {
   content: "\e806";
+  font-family: 'Crimean';
+  font-size: 13px;
+}
+.flexberry-lookup > .ui.fluid > button > i.icon.change:before {
+  content: "";
   font-family: 'Crimean';
   font-size: 13px;
 }
@@ -10649,6 +10661,11 @@ input {
 }
 .ui.secondary.menu > .ui.action.input {
   margin: 0 10px;
+}
+::-ms-clear,
+::-ms-reveal {
+  width: 0;
+  height: 0;
 }
 /*!
  * # Semantic UI - Label
@@ -22203,6 +22220,17 @@ i.icon.hand.paper:before {
   background: none;
   margin-bottom: 0;
 }
+.showing-entries {
+  color: #777;
+  margin: 0.65em;
+}
+div.ui.secondary.menu.no-margin.nav-bar .ui.basic.buttons {
+  align-self: flex-start;
+}
+div.ui.secondary.menu.no-margin.nav-bar .right.menu {
+  flex-wrap: wrap-reverse;
+  justify-content: flex-end;
+}
 /*!
  * # Semantic UI - Message
  * http://github.com/semantic-org/semantic-ui/
@@ -24168,7 +24196,12 @@ tr {
   overflow: hidden;
 }
 .ui.table.object-list-view tr td {
-  overflow: inherit;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+.ui.table.object-list-view tr td.overflowed-cell,
+.ui.table.object-list-view tr td.object-list-view-menu {
+  overflow: visible;
 }
 .object-list-view-container {
   margin: 1em 0;
@@ -24180,12 +24213,12 @@ tr {
 .object-list-view-container .object-list-view {
   margin: 0;
 }
+.object-list-view-container.groupedit-container {
+  overflow: visible;
+}
 table.object-list-view.selectable tbody,
 table.object-list-view.selectable thead {
   cursor: pointer;
-}
-.object-list-view-menu {
-  overflow: initial!important;
 }
 .object-list-view-helper-column-cell div.cell {
   float: left;
@@ -31693,6 +31726,11 @@ select.ui.dropdown {
 .ui.upward.pointing.dropdown > .menu:after {
   background: #dcebfc;
 }
+.ui.buttons.cols-config > .ui.dropdown:last-child .menu,
+.ui.buttons.export-config > .ui.dropdown:last-child .menu {
+  left: auto;
+  right: -5em;
+}
 /*!
  * # Semantic UI - Video
  * http://github.com/semantic-org/semantic-ui/
@@ -32825,13 +32863,10 @@ select.ui.dropdown {
   max-height: 618px;
 }
 .ui.modal .content .object-list-view-container {
-  height: 300px;
-}
-.ui.modal .content .ui.secondary.menu.no-margin.ember-view {
-  display: none;
+  max-height: 300px;
 }
 .ui.modal .content .flexberry-colsconfig.content {
-  height: 585px;
+  max-height: 585px;
   overflow: auto;
 }
 .ui.modal > ui.table {
@@ -36886,6 +36921,7 @@ body.pushable {
 .inverted.vertical.menu.sidebar {
   height: 85.3vh !important;
   background: #f1f7ff;
+  padding-bottom: 40px;
 }
 .mobile.inverted.vertical.menu.sidebar {
   height: 87.6vh !important;
@@ -38866,7 +38902,7 @@ img.item-minus {
   }
 }
 .spinner {
-  background: url('/assets/images/nyan.gif') no-repeat;
+  background: url('images/nyan.gif') no-repeat;
   background-size: contain;
   height: 100px;
   width: 100px;
