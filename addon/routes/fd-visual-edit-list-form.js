@@ -6,6 +6,12 @@ export default Ember.Route.extend({
 
   formId: null,
 
+  listform: {
+    listAttributes: {}
+  },
+
+  editControl: {},
+
   queryParams: {
     formId: {
       refreshModel: false

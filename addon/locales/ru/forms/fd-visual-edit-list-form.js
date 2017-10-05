@@ -2,14 +2,9 @@ export default {
   caption: 'Редактирование списковой формы',
   name: 'Наименование',
   description: '',
-  'refresh-button-text': 'Обновить',
+  'edit-form-header': 'Форма для редактирования: ',
+
   'add-button-text': 'Добавить',
-  'delete-button-text': 'Удалить',
-  'find-button-text': 'Найти',
-  'filter-button-text': 'Фильтровать зеписи',
-  'wizard-button-text': 'Редактировать текущее ограничение',
-  'edit-button-text': 'Редактировать',
-  'unknown-button-text': '?',
 
   'listform-forward': 'Вперед',
   'listform-back': 'Назад',

@@ -2,7 +2,7 @@
   <div class="column"><h3>{{model.listform.name}}</h3></div>
   <div class="column">
     <div class="ui grid">
-      <div class="white eight wide right aligned column">Форма для редактирования:</div>
+      <div class="white eight wide right aligned column">{{t "forms.fd-visual-edit-list-form.edit-form-header"}}</div>
       <div class="white eight wide column">
         <select id='selectForm' class="ui compact dropdown selection sort-direction-dropdown" {{action 'showForm' n on='change'}}>
           <option></option>
@@ -70,15 +70,14 @@
         <td colspan='2' align='left' class='' {{action 'attributeShow' index}}>{{attribute.defaultValue}}</td>
         {{/each}}
       </tr>
-      {{#each formRows as |formRow index|}}
+      {{#each formRows as |formRow rowIndex|}}
       <tr>
         <td>
           {{flexberry-checkbox value=formRow.checked readonly=true}}
         </td>
         {{#each attributes as |attribute index|}}
         <td colspan='2' align='left' class='' {{action 'attributeShow' index}}>
-        --{{attribute.type}}
-        {{rowValues.[attribute.type].[index]}}
+        {{get rowValues (concat attribute.type "." rowIndex)}}
         </td>
         {{/each}}
       </tr>
