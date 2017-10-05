@@ -29,11 +29,12 @@
       </div>
       <!-- components model here -->
       <div class="field">
-          <label>{{label}}</label>
-          {{flexberry-textbox
-            type=type
-            value=model.components.name
-          }}
+          {{#each components as |component|}}
+          <label>{{component.name}}</label>
+            {{flexberry-textbox
+              value=component.name
+            }}
+          {{/each}}
       </div>
     </div>
     <div class="six wide column">

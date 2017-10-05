@@ -1,5 +1,4 @@
 import Ember from 'ember';
-/*import FdVisualEditFormModel from 'ember-flexberry-designer/models/fd-visual-edit-form';*/
 
 export default Ember.Component.extend({
   /**
@@ -27,7 +26,7 @@ export default Ember.Component.extend({
     @type Object
     @default null
   */
-  component: undefined,
+  component: Ember.inject.service('fd-visual-edit-control'),
 
   /**
     Content to be displayed (models collection).
@@ -36,13 +35,16 @@ export default Ember.Component.extend({
     @type DS.ManyArray
     @default null
   */
-  components: null,
+  components: undefined,
 
   actions: {
-    addComponent(component) {
+    addComponent() {
+      let store = this.get('store');
+      let component = this.get('fd-visual-edit-control');
       let components = this.get('components');
-      components = Ember.A();
-      components.pushObject(component);
+      components = this.get('fd-visual-edit-form.components');
+      this.store.createRecord(component, {});
+      store.createRecord(components, {});
     }
   },
 
