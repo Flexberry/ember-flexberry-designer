@@ -4,10 +4,10 @@ export default Ember.Route.extend({
   model() {
     this.get('store').pushPayload({
       data: {
-          id: 1,
-          name: 'Some name',
-          description: 'Description',
-          components: {}
+        id: 1,
+        name: 'Some name',
+        description: 'Description',
+        components: {}
       }
     });
 

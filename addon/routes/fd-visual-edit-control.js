@@ -4,11 +4,11 @@ export default Ember.Route.extend({
   model() {
     this.get('store').pushPayload({
       data: {
-          prototypeBy: undefined,
-          name: 'Some name',
-          type: undefined,
-          isNull: false,
-          defaultValue: undefined
+        prototypeBy: undefined,
+        name: 'Some name',
+        type: undefined,
+        isNull: false,
+        defaultValue: undefined
       }
     });
 
