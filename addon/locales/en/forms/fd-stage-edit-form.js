@@ -4,5 +4,6 @@ export default {
   'description-caption': 'description',
   'company-caption': 'company',
   'copyright-caption': 'copyright',
-  'product-caption': 'product'
+  'product-caption': 'product',
+  'configuration-caption': 'configuration'
 };

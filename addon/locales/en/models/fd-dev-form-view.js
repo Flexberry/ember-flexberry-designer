@@ -2,233 +2,233 @@ export default {
   projections: {
     EditEditForm: {
       viewForForm: {
-        caption: 'viewForForm'
+        __caption__: 'viewForForm'
       },
       view: {
-        caption: 'view'
+        __caption__: 'view'
       }
     },
     EditListForm: {
       viewForForm: {
-        caption: 'viewForForm'
+        __caption__: 'viewForForm'
       },
       dataObjectTypes: {
-        caption: 'dataObjectTypes'
+        __caption__: 'dataObjectTypes'
       },
       listFormOperations: {
-        caption: 'listFormOperations'
+        __caption__: 'listFormOperations'
       },
       hierarchicalMaster: {
-        caption: 'hierarchicalMaster'
+        __caption__: 'hierarchicalMaster'
       },
       view: {
-        caption: 'view'
+        __caption__: 'view'
       }
     },
     EditPrintForm: {
       viewForForm: {
-        caption: 'viewForForm'
+        __caption__: 'viewForForm'
       },
       view: {
-        caption: 'view'
+        __caption__: 'view'
       }
     },
     EditPropertyLookups: {
       view: {
-        caption: 'view',
+        __caption__: 'view',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         class: {
-          caption: 'class',
+          __caption__: 'class',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           }
         }
       }
     },
     ForFormControls: {
       controls: {
-        caption: 'controls',
+        __caption__: 'controls',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         propertyPath: {
-          caption: 'propertyPath'
+          __caption__: 'propertyPath'
         },
         settingsXml: {
-          caption: 'settingsXml'
+          __caption__: 'settingsXml'
         },
         order: {
-          caption: 'order'
+          __caption__: 'order'
         },
         controlType: {
-          caption: 'controlType',
+          __caption__: 'controlType',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           }
         },
         propertyType: {
-          caption: 'propertyType',
+          __caption__: 'propertyType',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           }
         },
         formView: {
-          caption: 'formView',
+          __caption__: 'formView',
           view: {
-            caption: 'view'
+            __caption__: 'view'
           }
         }
       }
     },
     Generator: {
       view: {
-        caption: 'view',
+        __caption__: 'view',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         class: {
-          caption: 'class',
+          __caption__: 'class',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           }
         }
       },
       dataObjectTypes: {
-        caption: 'dataObjectTypes'
+        __caption__: 'dataObjectTypes'
       },
       dataObjectTypesStr: {
-        caption: 'dataObjectTypesStr'
+        __caption__: 'dataObjectTypesStr'
       },
       hierarchicalMaster: {
-        caption: 'hierarchicalMaster'
+        __caption__: 'hierarchicalMaster'
       },
       listFormOperations: {
-        caption: 'listFormOperations'
+        __caption__: 'listFormOperations'
       },
       listFormOperationsStr: {
-        caption: 'listFormOperationsStr'
+        __caption__: 'listFormOperationsStr'
       },
       orderNum: {
-        caption: 'orderNum'
+        __caption__: 'orderNum'
       },
       propertyLookup: {
-        caption: 'propertyLookup'
+        __caption__: 'propertyLookup'
       },
       propertyLookupStr: {
-        caption: 'propertyLookupStr'
+        __caption__: 'propertyLookupStr'
       },
       viewForForm: {
-        caption: 'viewForForm'
+        __caption__: 'viewForForm'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       controls: {
-        caption: 'controls',
+        __caption__: 'controls',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         propertyPath: {
-          caption: 'propertyPath'
+          __caption__: 'propertyPath'
         },
         settingsXml: {
-          caption: 'settingsXml'
+          __caption__: 'settingsXml'
         },
         order: {
-          caption: 'order'
+          __caption__: 'order'
         },
         controlType: {
-          caption: 'controlType',
+          __caption__: 'controlType',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           }
         },
         propertyType: {
-          caption: 'propertyType',
+          __caption__: 'propertyType',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           }
         },
         formView: {
-          caption: 'formView',
+          __caption__: 'formView',
           view: {
-            caption: 'view'
+            __caption__: 'view'
           }
         }
       }
     },
     GetDataObjectByFormView: {
       view: {
-        caption: 'view',
+        __caption__: 'view',
         class: {
           __caption__: 'class',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           },
           stereotype: {
-            caption: 'stereotype'
+            __caption__: 'stereotype'
           },
           caption: {
-            caption: 'caption'
+            __caption__: 'caption'
           },
           stage: {
-            caption: 'stage'
+            __caption__: 'stage'
           }
         }
       },
       class: {
-        caption: 'class',
+        __caption__: 'class',
         stage: {
-          caption: 'stage'
+          __caption__: 'stage'
         }
       }
     },
     GetFormControlsByFormView: {
       view: {
-        caption: 'view'
+        __caption__: 'view'
       },
       class: {
-        caption: 'class'
+        __caption__: 'class'
       }
     },
     GetFormWithView: {
       dataObjectTypesStr: {
-        caption: 'dataObjectTypesStr'
+        __caption__: 'dataObjectTypesStr'
       },
       view: {
-        caption: 'view',
+        __caption__: 'view',
         class: {
-          caption: 'class',
+          __caption__: 'class',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           }
         },
         definition: {
-          caption: 'definition'
+          __caption__: 'definition'
         }
       },
       class: {
-        caption: 'class'
+        __caption__: 'class'
       }
     },
     ListDataObjectTypes: {
       view: {
-        caption: 'view',
+        __caption__: 'view',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         class: {
-          caption: 'class',
+          __caption__: 'class',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           }
         }
       }

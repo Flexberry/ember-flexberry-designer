@@ -2,69 +2,69 @@ export default {
   projections: {
     ControlTypeE: {
       name: {
-        caption: 'Имя'
+        __caption__: 'Имя'
       },
       designerHtmlTemplate: {
-        caption: 'Шаблон'
+        __caption__: 'Шаблон'
       },
       designerMetadataXml: {
-        caption: 'Метаданные дизайна'
+        __caption__: 'Метаданные дизайна'
       },
       editedType: {
-        caption: '',
+        __caption__: '',
         name: {
-          caption: ''
+          __caption__: ''
         }
       }
     },
     ControlTypeL: {
       name: {
-        caption: ''
+        __caption__: ''
       },
       designerHtmlTemplate: {
-        caption: ''
+        __caption__: ''
       },
       designerMetadataXml: {
-        caption: ''
+        __caption__: ''
       },
       editedType: {
-        caption: '',
+        __caption__: '',
         name: {
-          caption: ''
+          __caption__: ''
         }
       }
     },
     ControlTypeXmlView: {
       designerMetadataXml: {
-        caption: ''
+        __caption__: ''
       }
     },
     Full: {
       name: {
-        caption: 'Имя'
+        __caption__: 'Имя'
       },
       designerHtmlTemplate: {
-        caption: 'Шаблон'
+        __caption__: 'Шаблон'
       },
       designerMetadataXml: {
-        caption: 'Метаданные дизайна'
+        __caption__: 'Метаданные дизайна'
       },
       editedType: {
         __caption__: '',
         name: {
-          caption: ''
+          __caption__: ''
         },
         caption: {
-          caption: ''
+          __caption__: ''
         },
         mapTypeName: {
-          caption: ''
+          __caption__: ''
         },
         mapTypeAssemblyName: {
-          caption: ''
+          __caption__: ''
         },
         formatAttribute: {
-          caption: ''
+          __caption__: ''
         }
       }
     }

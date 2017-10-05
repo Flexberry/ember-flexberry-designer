@@ -2,102 +2,102 @@ export default {
   projections: {
     Backup: {
       createUser: {
-        caption: 'createUser'
+        __caption__: 'createUser'
       },
       createDate: {
-        caption: 'createDate'
+        __caption__: 'createDate'
       },
       changeUser: {
-        caption: 'changeUser'
+        __caption__: 'changeUser'
       },
       changeDate: {
-        caption: 'changeDate'
+        __caption__: 'changeDate'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       diagrams: {
-        caption: 'diagrams',
+        __caption__: 'diagrams',
         primitivesStreamString: {
-          caption: 'primitivesStreamString'
+          __caption__: 'primitivesStreamString'
         },
         caseObjectsString: {
-          caption: 'caseObjectsString'
+          __caption__: 'caseObjectsString'
         },
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         createDate: {
-          caption: 'createDate'
+          __caption__: 'createDate'
         },
         createUser: {
-          caption: 'createUser'
+          __caption__: 'createUser'
         },
         changeDate: {
-          caption: 'changeDate'
+          __caption__: 'changeDate'
         },
         changeUser: {
-          caption: 'changeUser'
+          __caption__: 'changeUser'
         }
       },
       filelinks: {
-        caption: 'filelinks',
+        __caption__: 'filelinks',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         }
       }
     },
     EditFormView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       }
     },
     ListFormView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       changeUser: {
-        caption: 'changeUser'
+        __caption__: 'changeUser'
       },
       changeDate: {
-        caption: 'changeDate'
+        __caption__: 'changeDate'
       },
       createUser: {
-        caption: 'createUser'
+        __caption__: 'createUser'
       },
       createDate: {
-        caption: 'createDate'
+        __caption__: 'createDate'
       }
     },
     SearchSystem: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       stage: {
-        caption: 'stage',
+        __caption__: 'stage',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       },
       diagrams: {
-        caption: 'diagrams',
+        __caption__: 'diagrams',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       }
     }

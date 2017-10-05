@@ -2,22 +2,22 @@ export default {
   projections: {
     Browser: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       changeUser: {
-        caption: 'changeUser'
+        __caption__: 'changeUser'
       },
       changeDate: {
-        caption: 'changeDate'
+        __caption__: 'changeDate'
       },
       createUser: {
-        caption: 'createUser'
+        __caption__: 'createUser'
       },
       createDate: {
-        caption: 'createDate'
+        __caption__: 'createDate'
       }
     }
   }

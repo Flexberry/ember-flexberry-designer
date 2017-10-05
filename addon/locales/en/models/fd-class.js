@@ -2,40 +2,40 @@ export default {
   projections: {
     DependensiesSearchView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       stereotype: {
-        caption: 'stereotype'
+        __caption__: 'stereotype'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       }
     },
     Import: {
       referenceCount: {
-        caption: 'referenceCount'
+        __caption__: 'referenceCount'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       }
     },
     References: {
       referenceCount: {
-        caption: 'referenceCount'
+        __caption__: 'referenceCount'
       }
     },
     SearchClass: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       stereotype: {
-        caption: 'stereotype'
+        __caption__: 'stereotype'
       },
       stage: {
-        caption: 'stage'
+        __caption__: 'stage'
       }
     }
   }
