@@ -55,7 +55,7 @@ export default Ember.Component.extend({
         tds[this.previousSelectedCol + 1].className = '';
       }
 
-      tds[this.selectedCol + 1].className = 'active';
+      tds[this.selectedCol + 1].className = 'positive';
 
     }
 

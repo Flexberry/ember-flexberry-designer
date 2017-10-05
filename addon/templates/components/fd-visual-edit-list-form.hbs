@@ -22,7 +22,7 @@
 <table cellspacing='0' cellpadding='0' border='0'>
 <tr>
 <td>
-  <table class="ui celled table">
+  <table class="ui celled selectable collapsing table">
     <tbody>
       <tr>
         <th>&nbsp;</th>
@@ -67,7 +67,7 @@
           {{flexberry-checkbox value=true readonly=true}}
         </td>
         {{#each attributes as |attribute index|}}
-        <td colspan='2' align='left' class='' {{action 'attributeShow' index}}>{{attribute.defaultValue}}</td>
+        <td colspan='2' align='left' class='' {{action 'attributeShow' index}}><div class="ui ribbon label">{{attribute.defaultValue}}</div></td>
         {{/each}}
       </tr>
       {{#each formRows as |formRow rowIndex|}}
