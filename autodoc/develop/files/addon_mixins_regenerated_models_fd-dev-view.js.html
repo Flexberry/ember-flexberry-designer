@@ -124,7 +124,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.propertiesCompute &amp;&amp; typeof this.propertiesCompute === &#x27;function&#x27;) ? this.propertiesCompute() : null;
     this.set(&#x27;properties&#x27;, result);
   },
-  class: DS.belongsTo(&#x27;fd-dev-class&#x27;, { inverse: &#x27;devViews&#x27;, async: false }),
+  class: DS.belongsTo(&#x27;fd-dev-class&#x27;, { inverse: &#x27;views&#x27;, async: false }),
   getValidations: function () {
     let parentValidations = this._super();
     let thisValidations = {
