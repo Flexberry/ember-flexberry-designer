@@ -2,13 +2,13 @@ export default {
   projections: {
     DetailEditView: {
       plugin: {
-        caption: 'Модуль',
+        __caption__: 'Модуль',
         storedType: {
-          caption: 'Тип'
+          __caption__: 'Тип'
         }
       },
       settings: {
-        caption: ''
+        __caption__: ''
       }
     }
   }

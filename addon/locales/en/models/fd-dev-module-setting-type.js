@@ -2,12 +2,12 @@ export default {
   projections: {
     ModuleSettingTypeE: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       }
     },
     ModuleSettingTypeL: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       }
     }
   }

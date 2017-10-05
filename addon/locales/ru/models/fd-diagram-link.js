@@ -2,10 +2,10 @@ export default {
   projections: {
     DiagramLink: {
       name: {
-        caption: 'Название'
+        __caption__: 'Название'
       },
       description: {
-        caption: 'Описание'
+        __caption__: 'Описание'
       }
     }
   }

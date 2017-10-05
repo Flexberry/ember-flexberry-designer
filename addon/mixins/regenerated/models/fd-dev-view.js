@@ -27,7 +27,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.propertiesCompute && typeof this.propertiesCompute === 'function') ? this.propertiesCompute() : null;
     this.set('properties', result);
   },
-  class: DS.belongsTo('fd-dev-class', { inverse: 'devViews', async: false }),
+  class: DS.belongsTo('fd-dev-class', { inverse: 'views', async: false }),
   getValidations: function () {
     let parentValidations = this._super();
     let thisValidations = {

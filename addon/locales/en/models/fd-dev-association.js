@@ -2,245 +2,245 @@ export default {
   projections: {
     Edit: {
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       startRole: {
-        caption: 'startRole'
+        __caption__: 'startRole'
       },
       startRolePublishName: {
-        caption: 'startRolePublishName'
+        __caption__: 'startRolePublishName'
       },
       startMultiplicity: {
-        caption: 'startMultiplicity'
+        __caption__: 'startMultiplicity'
       },
       startRoleAccessModifier: {
-        caption: 'startRoleAccessModifier'
+        __caption__: 'startRoleAccessModifier'
       },
       startRoleStored: {
-        caption: 'startRoleStored'
+        __caption__: 'startRoleStored'
       },
       endRole: {
-        caption: 'endRole'
+        __caption__: 'endRole'
       },
       endRolePublishName: {
-        caption: 'endRolePublishName'
+        __caption__: 'endRolePublishName'
       },
       endMultiplicity: {
-        caption: 'endMultiplicity'
+        __caption__: 'endMultiplicity'
       },
       autoGenerateTypeUsage: {
-        caption: 'autoGenerateTypeUsage'
+        __caption__: 'autoGenerateTypeUsage'
       },
       typeUsage: {
-        caption: 'typeUsage'
+        __caption__: 'typeUsage'
       },
       storage: {
-        caption: 'storage'
+        __caption__: 'storage'
       },
       autoStoreMasterDisabled: {
-        caption: 'autoStoreMasterDisabled'
+        __caption__: 'autoStoreMasterDisabled'
       },
       pBMasterCustomAttributes: {
-        caption: 'pBMasterCustomAttributes'
+        __caption__: 'pBMasterCustomAttributes'
       },
       pBMasterGetStart: {
-        caption: 'pBMasterGetStart'
+        __caption__: 'pBMasterGetStart'
       },
       pBMasterGetEnd: {
-        caption: 'pBMasterGetEnd'
+        __caption__: 'pBMasterGetEnd'
       },
       pBMasterSetStart: {
-        caption: 'pBMasterSetStart'
+        __caption__: 'pBMasterSetStart'
       },
       pBMasterSetEnd: {
-        caption: 'pBMasterSetEnd'
+        __caption__: 'pBMasterSetEnd'
       }
     },
     EditFormView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       }
     },
     FormDesigner: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       startRole: {
-        caption: 'startRole'
+        __caption__: 'startRole'
       },
       startClass: {
-        caption: 'startClass',
+        __caption__: 'startClass',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         }
       },
       stage: {
-        caption: 'stage'
+        __caption__: 'stage'
       },
       endClass: {
-        caption: 'endClass'
+        __caption__: 'endClass'
       }
     },
     Gen: {
       pBMasterCustomAttributes: {
-        caption: 'pBMasterCustomAttributes'
+        __caption__: 'pBMasterCustomAttributes'
       },
       pBMasterGetEnd: {
-        caption: 'pBMasterGetEnd'
+        __caption__: 'pBMasterGetEnd'
       },
       pBMasterGetStart: {
-        caption: 'pBMasterGetStart'
+        __caption__: 'pBMasterGetStart'
       },
       storage: {
-        caption: 'storage'
+        __caption__: 'storage'
       },
       autoStoreMasterDisabled: {
-        caption: 'autoStoreMasterDisabled'
+        __caption__: 'autoStoreMasterDisabled'
       },
       typeUsage: {
-        caption: 'typeUsage'
+        __caption__: 'typeUsage'
       },
       autoGenerateTypeUsage: {
-        caption: 'autoGenerateTypeUsage'
+        __caption__: 'autoGenerateTypeUsage'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       }
     },
     Generator: {
       assocType: {
-        caption: 'assocType'
+        __caption__: 'assocType'
       },
       autoGenerateTypeUsage: {
-        caption: 'autoGenerateTypeUsage'
+        __caption__: 'autoGenerateTypeUsage'
       },
       pBMasterCustomAttributes: {
-        caption: 'pBMasterCustomAttributes'
+        __caption__: 'pBMasterCustomAttributes'
       },
       pBMasterGetEnd: {
-        caption: 'pBMasterGetEnd'
+        __caption__: 'pBMasterGetEnd'
       },
       pBMasterSetEnd: {
-        caption: 'pBMasterSetEnd'
+        __caption__: 'pBMasterSetEnd'
       },
       pBMasterGetStart: {
-        caption: 'pBMasterGetStart'
+        __caption__: 'pBMasterGetStart'
       },
       pBMasterSetStart: {
-        caption: 'pBMasterSetStart'
+        __caption__: 'pBMasterSetStart'
       },
       realStorage: {
-        caption: 'realStorage'
+        __caption__: 'realStorage'
       },
       typeUsage: {
-        caption: 'typeUsage'
+        __caption__: 'typeUsage'
       },
       autoStoreMasterDisabled: {
-        caption: 'autoStoreMasterDisabled'
+        __caption__: 'autoStoreMasterDisabled'
       },
       realEndRole: {
-        caption: 'realEndRole'
+        __caption__: 'realEndRole'
       },
       realStartRole: {
-        caption: 'realStartRole'
+        __caption__: 'realStartRole'
       },
       storage: {
-        caption: 'storage'
+        __caption__: 'storage'
       },
       startRolePublishName: {
-        caption: 'startRolePublishName'
+        __caption__: 'startRolePublishName'
       },
       endRolePublishName: {
-        caption: 'endRolePublishName'
+        __caption__: 'endRolePublishName'
       },
       endMultiplicity: {
-        caption: 'endMultiplicity'
+        __caption__: 'endMultiplicity'
       },
       endRole: {
-        caption: 'endRole'
+        __caption__: 'endRole'
       },
       endRoleAccessModifier: {
-        caption: 'endRoleAccessModifier'
+        __caption__: 'endRoleAccessModifier'
       },
       endRoleStored: {
-        caption: 'endRoleStored'
+        __caption__: 'endRoleStored'
       },
       endRoleStr: {
-        caption: 'endRoleStr'
+        __caption__: 'endRoleStr'
       },
       notNullStart: {
-        caption: 'notNullStart'
+        __caption__: 'notNullStart'
       },
       startMultiplicity: {
-        caption: 'startMultiplicity'
+        __caption__: 'startMultiplicity'
       },
       startRole: {
-        caption: 'startRole'
+        __caption__: 'startRole'
       },
       startRoleAccessModifier: {
-        caption: 'startRoleAccessModifier'
+        __caption__: 'startRoleAccessModifier'
       },
       startRoleStored: {
-        caption: 'startRoleStored'
+        __caption__: 'startRoleStored'
       },
       startRoleStr: {
-        caption: 'startRoleStr'
+        __caption__: 'startRoleStr'
       },
       referenceCount: {
-        caption: 'referenceCount'
+        __caption__: 'referenceCount'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       endClass: {
-        caption: 'endClass'
+        __caption__: 'endClass'
       },
       startClass: {
-        caption: 'startClass'
+        __caption__: 'startClass'
       }
     },
     ListFormView: {
       referenceCount: {
-        caption: 'referenceCount'
+        __caption__: 'referenceCount'
       },
       assocType: {
-        caption: 'assocType'
+        __caption__: 'assocType'
       },
       startClass: {
-        caption: 'startClass',
+        __caption__: 'startClass',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       },
       endClass: {
-        caption: 'endClass',
+        __caption__: 'endClass',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       },
       startRole: {
-        caption: 'startRole'
+        __caption__: 'startRole'
       },
       endRole: {
-        caption: 'endRole'
+        __caption__: 'endRole'
       },
       storage: {
-        caption: 'storage'
+        __caption__: 'storage'
       }
     }
   }

@@ -2,38 +2,38 @@ export default {
   projections: {
     Edit: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       aCL: {
-        caption: 'aCL'
+        __caption__: 'aCL'
       },
       plugins: {
-        caption: 'plugins',
+        __caption__: 'plugins',
         plugin: {
-          caption: 'plugin',
+          __caption__: 'plugin',
           storedType: {
-            caption: 'storedType'
+            __caption__: 'storedType'
           }
         },
         settings: {
-          caption: 'settings'
+          __caption__: 'settings'
         }
       }
     },
     PluginsOnly: {
       plugins: {
-        caption: 'plugins',
+        __caption__: 'plugins',
         plugin: {
-          caption: 'plugin',
+          __caption__: 'plugin',
           storedType: {
-            caption: 'storedType'
+            __caption__: 'storedType'
           }
         },
         settings: {
-          caption: 'settings'
+          __caption__: 'settings'
         }
       }
     }

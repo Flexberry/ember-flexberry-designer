@@ -2,79 +2,79 @@ export default {
   projections: {
     FormControlE: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       propertyPath: {
-        caption: 'propertyPath'
+        __caption__: 'propertyPath'
       },
       settingsXml: {
-        caption: 'settingsXml'
+        __caption__: 'settingsXml'
       },
       controlType: {
-        caption: 'controlType',
+        __caption__: 'controlType',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       },
       order: {
-        caption: 'order'
+        __caption__: 'order'
       },
       propertyType: {
-        caption: 'propertyType',
+        __caption__: 'propertyType',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       }
     },
     FormControlFullGet: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       propertyPath: {
-        caption: 'propertyPath'
+        __caption__: 'propertyPath'
       },
       settingsXml: {
-        caption: 'settingsXml'
+        __caption__: 'settingsXml'
       },
       order: {
-        caption: 'order'
+        __caption__: 'order'
       },
       controlType: {
-        caption: 'controlType',
+        __caption__: 'controlType',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       },
       propertyType: {
-        caption: 'propertyType',
+        __caption__: 'propertyType',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       },
       formView: {
-        caption: 'formView',
+        __caption__: 'formView',
         view: {
-          caption: 'view'
+          __caption__: 'view'
         }
       }
     },
     FormControlL: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       controlType: {
-        caption: 'controlType',
+        __caption__: 'controlType',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       },
       order: {
-        caption: 'order'
+        __caption__: 'order'
       },
       propertyType: {
-        caption: 'propertyType',
+        __caption__: 'propertyType',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       }
     }

@@ -2,92 +2,92 @@ export default {
   projections: {
     Convert: {
       createUser: {
-        caption: 'CreateUser'
+        __caption__: 'CreateUser'
       },
       createDate: {
-        caption: 'CreateDate'
+        __caption__: 'CreateDate'
       },
       changeUser: {
-        caption: 'ChangeUser'
+        __caption__: 'ChangeUser'
       },
       changeDate: {
-        caption: 'ChangeDate'
+        __caption__: 'ChangeDate'
       },
       name: {
-        caption: 'Name'
+        __caption__: 'Name'
       },
       description: {
-        caption: 'Description'
+        __caption__: 'Description'
       },
       nameStr: {
-        caption: 'NameStr'
+        __caption__: 'NameStr'
       },
       diagramLinks: {
-        caption: '',
+        __caption__: '',
         name: {
-          caption: 'Название'
+          __caption__: 'Название'
         },
         description: {
-          caption: 'Описание'
+          __caption__: 'Описание'
         }
       },
       diagrams: {
-        caption: '',
+        __caption__: '',
         primitivesStreamString: {
-          caption: ''
+          __caption__: ''
         },
         caseObjectsString: {
-          caption: ''
+          __caption__: ''
         },
         name: {
-          caption: ''
+          __caption__: ''
         },
         createDate: {
-          caption: ''
+          __caption__: ''
         },
         createUser: {
-          caption: ''
+          __caption__: ''
         },
         changeDate: {
-          caption: ''
+          __caption__: ''
         },
         changeUser: {
-          caption: ''
+          __caption__: ''
         }
       },
       filelinks: {
-        caption: '',
+        __caption__: '',
         name: {
-          caption: 'Название'
+          __caption__: 'Название'
         },
         description: {
-          caption: 'Описание'
+          __caption__: 'Описание'
         }
       }
     },
     PathSearchView: {
       name: {
-        caption: ''
+        __caption__: ''
       },
       stage: {
-        caption: '',
+        __caption__: '',
         name: {
-          caption: ''
+          __caption__: ''
         },
         configuration: {
-          caption: '',
+          __caption__: '',
           name: {
-            caption: ''
+            __caption__: ''
           },
           project: {
-            caption: '',
+            __caption__: '',
             name: {
-              caption: ''
+              __caption__: ''
             },
             repository: {
-              caption: '',
+              __caption__: '',
               name: {
-                caption: ''
+                __caption__: ''
               }
             }
           }
@@ -96,12 +96,12 @@ export default {
     },
     SearchSystem: {
       name: {
-        caption: ''
+        __caption__: ''
       },
       stage: {
-        caption: '',
+        __caption__: '',
         name: {
-          caption: ''
+          __caption__: ''
         }
       }
     }

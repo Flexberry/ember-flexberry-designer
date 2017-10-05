@@ -46,7 +46,7 @@
     "ember-data": "2.13.1",
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^1.0.5",
-    "ember-flexberry": "0.9.0-beta.17",
+    "ember-flexberry": "0.9.2-beta.0",
     "ember-link-action": "0.0.34",
     "ember-load-initializers": "^0.5.1",
     "ember-moment": "6.0.0",

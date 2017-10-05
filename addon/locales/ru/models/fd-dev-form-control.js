@@ -2,79 +2,79 @@ export default {
   projections: {
     FormControlE: {
       name: {
-        caption: 'Имя'
+        __caption__: 'Имя'
       },
       propertyPath: {
-        caption: 'Свойство'
+        __caption__: 'Свойство'
       },
       settingsXml: {
-        caption: 'Настройки'
+        __caption__: 'Настройки'
       },
       controlType: {
-        caption: 'Тип элемента управления',
+        __caption__: 'Тип элемента управления',
         name: {
-          caption: ''
+          __caption__: ''
         }
       },
       order: {
-        caption: ''
+        __caption__: ''
       },
       propertyType: {
-        caption: 'Тип свойства',
+        __caption__: 'Тип свойства',
         name: {
-          caption: ''
+          __caption__: ''
         }
       }
     },
     FormControlFullGet: {
       name: {
-        caption: ''
+        __caption__: ''
       },
       propertyPath: {
-        caption: ''
+        __caption__: ''
       },
       settingsXml: {
-        caption: ''
+        __caption__: ''
       },
       order: {
-        caption: ''
+        __caption__: ''
       },
       controlType: {
-        caption: '',
+        __caption__: '',
         name: {
-          caption: ''
+          __caption__: ''
         }
       },
       propertyType: {
-        caption: '',
+        __caption__: '',
         name: {
-          caption: ''
+          __caption__: ''
         }
       },
       formView: {
-        caption: '',
+        __caption__: '',
         view: {
-          caption: ''
+          __caption__: ''
         }
       }
     },
     FormControlL: {
       name: {
-        caption: 'Имя'
+        __caption__: 'Имя'
       },
       controlType: {
-        caption: '',
+        __caption__: '',
         name: {
-          caption: 'Тип эдемента управления'
+          __caption__: 'Тип эдемента управления'
         }
       },
       order: {
-        caption: ''
+        __caption__: ''
       },
       propertyType: {
-        caption: '',
+        __caption__: '',
         name: {
-          caption: 'Тип свойства'
+          __caption__: 'Тип свойства'
         }
       }
     }

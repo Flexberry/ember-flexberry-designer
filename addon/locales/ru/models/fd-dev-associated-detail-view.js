@@ -2,27 +2,27 @@ export default {
   projections: {
     Edit: {
       detailLoadOnLoadAgregator: {
-        caption: ''
+        __caption__: ''
       },
       detailName: {
-        caption: ''
+        __caption__: ''
       },
       detailViewName: {
-        caption: ''
+        __caption__: ''
       }
     },
     Generator: {
       detailLoadOnLoadAgregator: {
-        caption: ''
+        __caption__: ''
       },
       detailName: {
-        caption: ''
+        __caption__: ''
       },
       detailViewName: {
-        caption: ''
+        __caption__: ''
       },
       view: {
-        caption: ''
+        __caption__: ''
       }
     }
   }

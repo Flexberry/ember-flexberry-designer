@@ -9,6 +9,9 @@
     "flatpickr-calendar": "git://github.com/chmln/flatpickr.git#2.3.4",
     "blueimp-file-upload": "9.11.2",
     "devicejs": "0.2.7",
-    "semantic-ui": "git://github.com/Flexberry/Semantic-UI.git#fixed-abort"
+    "semantic-ui": "git://github.com/Flexberry/Semantic-UI.git#fixed-abort",
+    "seiyria-bootstrap-slider": "6.0.6",
+    "jquery-minicolors": "2.2.6",
+    "js-beautify": "1.6.4"
   }
 }
