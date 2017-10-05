@@ -55,25 +55,34 @@
         {{/each}}
       </tr>
       <tr id='attributeList'>
-        <th>
-            <button class="ui button" title='{{t "forms.fd-visual-edit-list-form.checkmark-button-text"}}'>
-              <i class="checkmark icon"></i>
-            </button>
-        </th>
+        <td>
+          {{flexberry-checkbox value=false readonly=true}}
+        </td>
         {{#each attributes as |attribute index|}}
         <td colspan='2' align='left' class='' {{action 'attributeShow' index}}>{{attribute.name}}</td>
         {{/each}}
       </tr>
       <tr title='Значения по умолчанию'>
-          <th>
-            <button class="ui button">
-              <i class="checkmark icon"></i>
-            </button>
-        </th>
+        <td>
+          {{flexberry-checkbox value=true readonly=true}}
+        </td>
         {{#each attributes as |attribute index|}}
         <td colspan='2' align='left' class='' {{action 'attributeShow' index}}>{{attribute.defaultValue}}</td>
         {{/each}}
       </tr>
+      {{#each formRows as |formRow index|}}
+      <tr>
+        <td>
+          {{flexberry-checkbox value=formRow.checked readonly=true}}
+        </td>
+        {{#each attributes as |attribute index|}}
+        <td colspan='2' align='left' class='' {{action 'attributeShow' index}}>
+        --{{attribute.type}}
+        {{rowValues.[attribute.type].[index]}}
+        </td>
+        {{/each}}
+      </tr>
+      {{/each}}
     </tbody>
   </table>
 </td>

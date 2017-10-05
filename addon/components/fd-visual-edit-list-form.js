@@ -6,7 +6,15 @@ export default Ember.Component.extend({
 
   store: Ember.inject.service('store'),
 
-  formId: null,
+  formRows: [{ checked: false}, { checked: true}, { checked: false}, { checked: true}],
+
+  rowValues: {
+    int: 5,
+    string: ['Реверс инжиниринг', 'Конференция', 'Эйяфь-ядлайё-кюдль', 'WEB интерфейс'],
+    boolean: true,
+    nullableDateTime: ['24.10.1959', '01.10.2017', null, '07.11.1917'],
+    dateTime: ['03.01.1956', '11.09.2001', '12.04.1959', '01.01.1899'],
+  },
 
   selectedCol: undefined,
 
