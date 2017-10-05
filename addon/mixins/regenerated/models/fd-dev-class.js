@@ -463,7 +463,7 @@ export let Model = Ember.Mixin.create({
   writeMode: DS.attr('i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode'),
   writeSessions: DS.attr('boolean'),
   businessServerClass: DS.belongsTo('fd-dev-class', { inverse: null, async: false }),
-  devViews: DS.hasMany('fd-dev-view', { inverse: 'class', async: false }),
+  views: DS.hasMany('fd-dev-view', { inverse: 'class', async: false }),
   methods: DS.hasMany('fd-dev-method', { inverse: 'class', async: false }),
   formViews: DS.hasMany('fd-dev-form-view', { inverse: 'class', async: false }),
   attributes: DS.hasMany('fd-dev-attribute', { inverse: 'class', async: false }),
@@ -505,7 +505,7 @@ export let defineProjections = function (modelClass) {
 
       })
     }),
-    devViews: Projection.hasMany('fd-dev-view', '', {
+    views: Projection.hasMany('fd-dev-view', '', {
       name: Projection.attr(''),
       properties: Projection.attr(''),
       definition: Projection.attr(''),
@@ -557,7 +557,7 @@ export let defineProjections = function (modelClass) {
       storage: Projection.attr(''),
       trim: Projection.attr('')
     }),
-    devViews: Projection.hasMany('fd-dev-view', '', {
+    views: Projection.hasMany('fd-dev-view', '', {
       name: Projection.attr(''),
       definition: Projection.attr('')
     })
@@ -598,7 +598,7 @@ export let defineProjections = function (modelClass) {
     nameStr: Projection.attr(''),
     name: Projection.attr(''),
     stereotype: Projection.attr(''),
-    devViews: Projection.hasMany('fd-dev-view', '', {
+    views: Projection.hasMany('fd-dev-view', '', {
       name: Projection.attr('')
     })
   });
@@ -737,7 +737,7 @@ export let defineProjections = function (modelClass) {
         description: Projection.attr('')
       })
     }),
-    devViews: Projection.hasMany('fd-dev-view', '', {
+    views: Projection.hasMany('fd-dev-view', '', {
       name: Projection.attr(''),
       description: Projection.attr(''),
       properties: Projection.attr('')
@@ -1013,7 +1013,7 @@ export let defineProjections = function (modelClass) {
         }, { hidden: true })
       }, { hidden: true })
     }),
-    devViews: Projection.hasMany('fd-dev-view', '', {
+    views: Projection.hasMany('fd-dev-view', '', {
       name: Projection.attr(''),
       definition: Projection.attr(''),
       class: Projection.belongsTo('fd-dev-class', '', {
@@ -1253,7 +1253,7 @@ export let defineProjections = function (modelClass) {
         })
       })
     }),
-    devViews: Projection.hasMany('fd-dev-view', '', {
+    views: Projection.hasMany('fd-dev-view', '', {
       name: Projection.attr(''),
       description: Projection.attr(''),
       definition: Projection.attr(''),
@@ -1314,7 +1314,7 @@ export let defineProjections = function (modelClass) {
   modelClass.defineProjection('Prototyping', 'fd-dev-class', {
     stereotype: Projection.attr(''),
     nameStr: Projection.attr(''),
-    devViews: Projection.hasMany('fd-dev-view', '', {
+    views: Projection.hasMany('fd-dev-view', '', {
       name: Projection.attr(''),
       definition: Projection.attr('')
     })
@@ -1395,8 +1395,30 @@ export let defineProjections = function (modelClass) {
     nameStr: Projection.attr(''),
     stereotype: Projection.attr(''),
     description: Projection.attr(''),
-    devViews: Projection.hasMany('fd-dev-view', '', {
+    views: Projection.hasMany('fd-dev-view', '', {
       name: Projection.attr('')
+    })
+  });
+  modelClass.defineProjection('FdAttributesChangeView', 'fd-dev-class', {
+    attributesStr: Projection.attr(''),
+    name: Projection.attr(''),
+    nameStr: Projection.attr(''),
+    stereotype: Projection.attr(''),
+    attributes: Projection.hasMany('fd-dev-attribute', '', {
+      name: Projection.attr(''),
+      type: Projection.attr(''),
+      caption: Projection.attr(''),
+      description: Projection.attr(''),
+      class: Projection.belongsTo('fd-dev-class', '', {
+
+      })
+    }),
+    views: Projection.hasMany('fd-dev-view', '', {
+      name: Projection.attr(''),
+      definition: Projection.attr(''),
+      class: Projection.belongsTo('fd-dev-class', '', {
+
+      })
     })
   });
 };

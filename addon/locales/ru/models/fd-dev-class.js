@@ -45,7 +45,7 @@ export default {
           __caption__: ''
         }
       },
-      devViews: {
+      views: {
         __caption__: '',
         name: {
           __caption__: ''
@@ -172,7 +172,7 @@ export default {
           __caption__: ''
         }
       },
-      devViews: {
+      views: {
         __caption__: '',
         name: {
           __caption__: ''
@@ -275,7 +275,7 @@ export default {
       stereotype: {
         __caption__: ''
       },
-      devViews: {
+      views: {
         __caption__: '',
         name: {
           __caption__: ''
@@ -649,7 +649,7 @@ export default {
         }
         }
       },
-      devViews: {
+      views: {
         __caption__: '',
         name: {
           __caption__: ''
@@ -1339,7 +1339,7 @@ export default {
           }
         }
       },
-      devViews: {
+      views: {
         __caption__: '',
         name: {
           __caption__: ''
@@ -1984,7 +1984,7 @@ export default {
           }
         }
       },
-      devViews: {
+      views: {
         __caption__: '',
         name: {
           __caption__: ''
@@ -2113,7 +2113,7 @@ export default {
       nameStr: {
         __caption__: ''
       },
-      devViews: {
+      views: {
         __caption__: '',
         name: {
           __caption__: ''
@@ -2269,7 +2269,7 @@ export default {
       description: {
         __caption__: ''
       },
-      devViews: {
+      views: {
         __caption__: '',
         name: {
           __caption__: ''
