@@ -31,7 +31,7 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{fd-visual-edit-form}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.notEqual(this.$().text().trim(), '');
 
   // Template block usage:
   this.render(hbs`

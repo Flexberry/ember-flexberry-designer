@@ -1,8 +1,15 @@
 import Ember from 'ember';
 import { translationMacro as t } from 'ember-i18n';
-import FdVisualEditControlModel from 'ember-flexberry-designer/models/fd-visual-edit-control';
 
 export default Ember.Component.extend({
+  /**
+    Form component.
+
+    @property component
+    @type Object
+  */
+  component: Ember.inject.service(),
+
   /**
     Label for field.
 
@@ -27,6 +34,25 @@ export default Ember.Component.extend({
     @default 'text'
    */
   type: 'text',
+
+  /**
+    Prototipes.
+
+    @property prototypeBy
+    @type String[]
+   */
+  prototypeBy: {
+    bool: 'boolean',
+    string: 'string'
+  },
+
+  /**
+    Is null value.
+
+    @property isNull
+    @type Boolean
+   */
+  isNull: false,
 
   /**
     Type of component.
