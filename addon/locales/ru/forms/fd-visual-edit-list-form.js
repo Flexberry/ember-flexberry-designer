@@ -13,7 +13,6 @@ export default {
   'move-right-attr': 'Переместить вправо',
   'remove-attr': 'Удалить атрибут',
 
-  'checkmark-button-text': 'Отметить на текущей странице',
-  'checkmarkall-button-text': 'Отметить на всех страницах',
-  'sort-button-text': 'Установить сортироку по умолчанию',
+  'unknown-attribute-type': 'Не указан тип атрибута',
+  'unknown-attribute-name': 'Не указано название атрибута',
 };

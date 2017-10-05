@@ -4,6 +4,8 @@ import layout from '../templates/components/fd-visual-edit-list-form';
 export default Ember.Component.extend({
   layout,
 
+  errorMessages: null,
+
   store: Ember.inject.service('store'),
 
   formRows: [{ checked: false }, { checked: true }, { checked: false }, { checked: true }],
@@ -175,10 +177,15 @@ export default Ember.Component.extend({
 
     attributeCreate() {
       let editControl = this.model.editControl;
+      let errorMessages = [];
       let type;
+      let i18n = this.get('i18n');
       if (typeof editControl.type === 'undefined') {
-        alert('Не указан тип атрибута');
-        return;
+        errorMessages.push(i18n.t('forms.fd-visual-edit-list-form.unknown-attribute-type'));
+      }
+
+      if (editControl.name.trim() === '') {
+        errorMessages.push(i18n.t('forms.fd-visual-edit-list-form.unknown-attribute-name'));
       }
 
       switch (editControl.type) {
@@ -192,6 +199,11 @@ export default Ember.Component.extend({
         defaultValue: editControl.defaultValue
       };
       let newAttributes = this._attributeCreate(this.model.listform.listAttributes, attribute);
+      if (errorMessages.length > 0) {
+        Ember.set(this, 'errorMessages', errorMessages);
+        return;
+      }
+
       Ember.set(this.model.listform, 'listAttributes', newAttributes);
     },
 

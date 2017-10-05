@@ -14,7 +14,6 @@ export default {
   'move-right-attr': 'Move right',
   'remove-attr': 'Remove attribute',
 
-  'checkmark-button-text': 'Mark on this page',
-  'checkmarkall-button-text': 'Mark on all pages',
-  'sort-button-text': 'Set sorting by default',
+  'unknown-attribute-type': 'Unknown attribute type',
+  'unknown-attribute-name': 'Unknown attribute name',
 };
