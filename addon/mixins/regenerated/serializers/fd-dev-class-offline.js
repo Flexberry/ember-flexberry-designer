@@ -5,7 +5,7 @@ export let OfflineSerializer = Ember.Mixin.create({
     let parentAttrs = this._super();
     let attrs = {
       businessServerClass: { serialize: 'id', deserialize: 'records' },
-      devViews: { serialize: 'ids', deserialize: 'records' },
+      views: { serialize: 'ids', deserialize: 'records' },
       methods: { serialize: 'ids', deserialize: 'records' },
       formViews: { serialize: 'ids', deserialize: 'records' },
       attributes: { serialize: 'ids', deserialize: 'records' }
