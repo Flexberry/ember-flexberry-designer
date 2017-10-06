@@ -9,25 +9,36 @@ export default Ember.Service.extend({
     },
 
     char: function() {
-      let ret = String.fromCharCode(Math.floor(Math.random() * 94)+ 33);
+      let ret = String.fromCharCode(Math.floor(Math.random() * 94) + 33);
       return ret;
     },
 
     string: function() {
-      let strs = ['Реверс инжиниринг', 'Конференция', 'Эйяфь-ядлайё-кюдль', 'WEB интерфейс'];
+      let strs = [
+        'Реверс инжиниринг',
+        'Конференция',
+        'Эйяфь-ядлайё-кюдль',
+        'WEB интерфейс'
+      ];
       let ret = strs[Math.floor(Math.random() * strs.length)];
       return ret;
     },
 
     WebFile: function() {
-      let strs = ['http://flexberry.ru', 'https://vk.com/flexberry', 'hhtps://www.facebook.com/groups/Flexberry', 'hhtp://twitter.com/Flexberry', 'https://www.youtube.com/user/FlexberryPLATFORM'];
+      let strs = [
+        'http://flexberry.ru',
+        'https://vk.com/flexberry',
+        'hhtps://www.facebook.com/groups/Flexberry',
+        'hhtp://twitter.com/Flexberry',
+        'https://www.youtube.com/user/FlexberryPLATFORM'
+      ];
       let ret = strs[Math.floor(Math.random() * strs.length)];
       return ret;
     },
 
     guid: function() {
       return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        let r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
       });
     },
@@ -47,40 +58,40 @@ export default Ember.Service.extend({
     },
 
     int: function() {
-      return Math.floor((Math.random() * 2**32) - (Math.random() * 2**31));
+      return Math.floor((Math.random() * 4294967296) - (Math.random() * 2147483648));
     },
 
     short: function() {
-      return Math.floor((Math.random() * 2**16) - (Math.random() * 2**16));
+      return Math.floor((Math.random() * 65536) - (Math.random() * 32768));
     },
 
     long: function() {
-      return Math.floor((Math.random() * 2**64) - (Math.random() * 2**63));
+      return Math.floor((Math.random() * 18446744073709552000) - (Math.random() * 9223372036854776000));
     },
 
     uint: function() {
-      return Math.floor((Math.random() * 2**32));
+      return Math.floor((Math.random() * 4294967296));
     },
 
     ushort: function() {
-      return Math.floor((Math.random() * 2**16));
+      return Math.floor((Math.random() * 65536));
     },
 
     ulong: function() {
-      return Math.floor((Math.random() * 2**64));
+      return Math.floor((Math.random() * 18446744073709552000));
     },
 
     byte: function() {
-      return Math.floor((Math.random() * 2**8));
+      return Math.floor((Math.random() * 256));
 
     },
 
     sbyte: function() {
-      return Math.floor((Math.random() * 2**8) - (Math.random() * 2**7));
+      return Math.floor((Math.random() * 256) - (Math.random() * 128));
     },
 
     NullableInt: function() {
-      let ret = (Math.random() > 0.5) ? Math.floor((Math.random() * 2**32) - (Math.random() * 2**31)) : null;
+      let ret = (Math.random() > 0.5) ? Math.floor((Math.random() * 4294967296) - (Math.random() * 2147483648)) : null;
       return ret;
     },
 
@@ -90,12 +101,12 @@ export default Ember.Service.extend({
     },
 
     DateTime: function() {
-      let ret = new Date(Math.floor(Math.random()*(2**31)*1000));
+      let ret = new Date(Math.floor(Math.random()*(2147483648)*1000));
       return ret;
     },
 
     NullableDateTime: function() {
-      let ret =  (Math.random() > 0.5) ? new Date(Math.floor(Math.random()*(2**31)*1000)) : null;
+      let ret =  (Math.random() > 0.5) ? new Date(Math.floor(Math.random()*(2147483648)*1000)) : null;
       return ret;
     },
 
@@ -107,7 +118,7 @@ export default Ember.Service.extend({
 
   _checkValue: {
     bool: function(value) {
-      let ret = value === 'true' || value === 'false';
+      let ret = value === 'true' || value === 'false' ;
       return ret;
     },
 
@@ -132,64 +143,64 @@ export default Ember.Service.extend({
     },
 
     decimal: function(value) {
-      return +value == parseFloat(value);
+      return +value === parseFloat(value);
     },
 
     double: function(value) {
-      return +value == parseFloat(value);
+      return +value === parseFloat(value);
     },
 
     float: function(value) {
-      return +value == parseFloat(value);
+      return +value === parseFloat(value);
     },
 
     int: function(value) {
       let val =  parseInt(value);
-      return +value == val && val < 2**31 && val > -2**31;
+      return +value === val && val < 2147483648 && val > -2147483648;
     },
 
     short: function(value) {
       let val =  parseInt(value);
-      return +value == val && val < 2**15 && val > -2**15;
+      return +value === val && val < 32768 && val > -32768;
     },
 
     long: function(value) {
       let val =  parseInt(value);
-      return +value == val && val < 2**63 && val > -2**63;
+      return +value === val && val < 9223372036854776000 && val > -9223372036854776000;
     },
 
     uint: function(value) {
       let val =  parseInt(value);
-      return +value == val && val < 2**32;
+      return +value === val && val < 4294967296;
     },
 
     ushort: function(value) {
       let val =  parseInt(value);
-      return +value == val && val < 2**16;
+      return +value === val && val < 65536;
     },
 
     ulong: function(value) {
       let val =  parseInt(value);
-      return +value == val && val < 2**64;
+      return +value === val && val < 18446744073709552000;
     },
 
     byte: function(value) {
       let val =  parseInt(value);
-      return +value == val && val < 256;
+      return +value === val && val < 256;
     },
 
     sbyte: function(value) {
       let val =  parseInt(value);
-      return +value == val && val < 128 && val > -128;
+      return +value === val && val < 128 && val > -128;
     },
 
     NullableInt: function(value) {
       let val =  parseInt(value);
-      return value.toLowerCase() === 'null' || +value == val && val < 2**31 && val > -2**31;
+      return value.toLowerCase() === 'null' || +value === val && val < 2147483648 && val > -2147483648;
     },
 
     NullableDecimal: function(value) {
-      return value.toLowerCase() === 'null' || +value == parseInt(value);
+      return value.toLowerCase() === 'null' || +value === parseInt(value);
     },
 
     DateTime: function(value) {
@@ -246,7 +257,9 @@ export default Ember.Service.extend({
 
   fDTypeToFlexberry(type) {
     for (let val in this._flexberryTypeToFD) {
-      if (val === type) return val;
+      if (val === type) {
+        return val;
+      }
     }
 
     return null;
