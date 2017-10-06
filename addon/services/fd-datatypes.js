@@ -4,7 +4,7 @@ export default Ember.Service.extend({
 
   _randomValue: {
     bool: function() {
-      let ret = Math.floor(Math.random() * 2) > 1 ? 'true' : 'false';
+      let ret = Math.random() * 2 > 1.0 ? 'true' : 'false';
       return ret;
     },
 
@@ -18,7 +18,12 @@ export default Ember.Service.extend({
         'Реверс инжиниринг',
         'Конференция',
         'Эйяфь-ядлайё-кюдль',
-        'WEB интерфейс'
+        'WEB интерфейс',
+        'Метод',
+        'Контрагент',
+        'Геокоординаты',
+        'Недостроенное здание',
+        'Референдум о независимости'
       ];
       let ret = strs[Math.floor(Math.random() * strs.length)];
       return ret;
