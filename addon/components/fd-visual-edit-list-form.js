@@ -22,7 +22,9 @@ export default Ember.Component.extend({
     function() {
       let editControlType =this.get('dataTypes').flexberryTypeToFD(this.model.editControl.type);
       if (this.selectedCol === undefined && this._prevRowsValues !== undefined ||
-        this.selectedCol !== undefined && this._prevRowsTypes[this.selectedCol] === editControlType ) {
+        this.selectedCol !== undefined &&
+        this._prevRowsTypes[this.selectedCol] >= 0 &&
+        this._prevRowsTypes[this.selectedCol] === editControlType ) {
         return this._prevRowsValues;
       }
       let ret = [];
@@ -221,38 +223,14 @@ export default Ember.Component.extend({
     },
 
     attributeCreate() {
-      let editControl = this.model.editControl;
-      let errorMessages = [];
-      let i18n = this.get('i18n');
-      let type = this.get('dataTypes').flexberryTypeToFD(editControl.type);
-      if (type === undefined) {
-        errorMessages.push(i18n.t('forms.fd-visual-edit-list-form.unknown-attribute-type'));
-      } else {
-        if (type === null) {
-          errorMessages.push(i18n.t('forms.fd-visual-edit-list-form.incorrect-attribute-type') + ' ' + editControl.type);
-        }
-      }
-
-      if (editControl.name.trim() === '') {
-        errorMessages.push(i18n.t('forms.fd-visual-edit-list-form.unknown-attribute-name'));
-      }
-
-      if (type !== undefined && this.get('dataTypes').checkValue(type, editControl.defaultValue) === false) {
-        errorMessages.push(i18n.t('forms.fd-visual-edit-list-form.incorrect-default-value'));
-      }
-
       let attribute = {
-        name: editControl.name,
-        type: type,
-        notNull: editControl.isNull,
-        defaultValue: editControl.defaultValue
+        name: '',
+        type: 'string',
+        notNull: false,
+        defaultValue: ''
       };
       let newAttributes = this._attributeCreate(this.model.listform.listAttributes, attribute);
-      if (errorMessages.length > 0) {
-        Ember.set(this, 'errorMessages', errorMessages);
-        return;
-      }
-
+      Ember.set(this, 'selectedCol', newAttributes.length - 1);
       Ember.set(this.model.listform, 'listAttributes', newAttributes);
     },
 

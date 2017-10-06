@@ -271,6 +271,9 @@ export default Ember.Service.extend({
   },
 
   randomValue: function(type) {
+    if (type === undefined) {
+      type = 'string';
+    }
     return this._randomValue[type]();
   },
 
