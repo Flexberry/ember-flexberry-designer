@@ -15,4 +15,5 @@ export default {
 
   'unknown-attribute-type': 'Не указан тип атрибута',
   'unknown-attribute-name': 'Не указано название атрибута',
+  'incorrect-default-value': "Неверное значение по умолчанию",
 };

@@ -8,15 +8,21 @@ export default Ember.Component.extend({
 
   store: Ember.inject.service('store'),
 
-  formRows: [{ checked: false }, { checked: true }, { checked: false }, { checked: true }],
+  dataTypes: Ember.inject.service('fd-datatypes'),
 
-  rowValues: {
-    int:  [1, 2, 3, 4],
-    string: ['Реверс инжиниринг', 'Конференция', 'Эйяфь-ядлайё-кюдль', 'WEB интерфейс'],
-    bool: [true, false, true, false],
-    nullableDateTime: ['24.10.1959', '01.10.2017', null, '07.11.1917'],
-    dateTime: ['03.01.1956', '11.09.2001', '12.04.1959', '01.01.1899'],
-  },
+  rowsValues:  Ember.computed('model.listform.listAttributes', function() {
+    let ret = [];
+    for (let i = 0; i < 4; i++) {
+      ret[i] = [];
+      for (let j = 0; j < this.model.listform.listAttributes.length; j++) {
+        let attribute = this.model.listform.listAttributes[j];
+        let value = this.get('dataTypes').randomValue(attribute.type);
+        ret[i][j] = value;
+      }
+    }
+
+    return ret;
+  }),
 
   selectedCol: undefined,
 
@@ -178,20 +184,24 @@ export default Ember.Component.extend({
     attributeCreate() {
       let editControl = this.model.editControl;
       let errorMessages = [];
-      let type;
       let i18n = this.get('i18n');
-      if (typeof editControl.type === 'undefined') {
+      let type = this.get('dataTypes').flexberryTypeToFD(editControl.type);
+      if (type === undefined) {
         errorMessages.push(i18n.t('forms.fd-visual-edit-list-form.unknown-attribute-type'));
+      } else {
+        if (type === null) {
+          errorMessages.push(i18n.t('forms.fd-visual-edit-list-form.incorrect-attribute-type') + ' ' + editControl.type);
+        }
       }
 
       if (editControl.name.trim() === '') {
         errorMessages.push(i18n.t('forms.fd-visual-edit-list-form.unknown-attribute-name'));
       }
 
-      switch (editControl.type) {
-        case 'boolean': type = 'bool'; break;
-        default: type = editControl.type;
+      if (type !== undefined && this.get('dataTypes').checkValue(type, editControl.defaultValue) === false) {
+        errorMessages.push(i18n.t('forms.fd-visual-edit-list-form.incorrect-default-value'));
       }
+
       let attribute = {
         name: editControl.name,
         type: type,

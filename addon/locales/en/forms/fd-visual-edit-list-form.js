@@ -16,4 +16,5 @@ export default {
 
   'unknown-attribute-type': 'Unknown attribute type',
   'unknown-attribute-name': 'Unknown attribute name',
+  'incorrect-default-value': "Incorrect default value"
 };

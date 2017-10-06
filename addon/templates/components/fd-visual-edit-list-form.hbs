@@ -81,18 +81,20 @@
         <td colspan='2' align='left' class='' {{action 'attributeShow' index}}><div class="ui ribbon label">{{attribute.defaultValue}}</div></td>
         {{/each}}
       </tr>
-      {{#each formRows as |formRow rowIndex|}}
+
+      {{#each rowsValues as |rowsValue rowIndex|}}
       <tr>
         <td>
-          {{flexberry-checkbox value=formRow.checked readonly=true}}
+          {{flexberry-checkbox value=false readonly=true}}
         </td>
-        {{#each attributes as |attribute index|}}
+        {{#each rowsValue as |value index|}}
         <td colspan='2' align='left' class='' {{action 'attributeShow' index}}>
-        {{get rowValues (concat attribute.type "." rowIndex)}}
+        {{value}}
         </td>
         {{/each}}
       </tr>
       {{/each}}
+
     </tbody>
   </table>
 </td>
