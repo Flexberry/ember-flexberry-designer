@@ -28,8 +28,9 @@ export default Ember.Route.extend({
     //    select('id,name,description,stereotype,containersStr,formViews,formViews.view,formViews.view.class,formViews.view.class.id,stage,stage.id').
 
     let builder = new  Builder(this.store, 'fd-dev-class').
-    select('id,name,description,stereotype,containersStr,attributes,attributes.name').
+    selectByProjection('FdAttributesChangeView').
     byId(this.formId);
+    //select('id,name,description,stereotype,containersStr,attributes,attributes.name').
     let promise = this.store.query('fd-dev-class', builder.build());
     return promise;
   },
@@ -42,7 +43,6 @@ export default Ember.Route.extend({
     attributes[0].firstPosition = true;
     attributes[attributes.length - 1].lastPosition = true;
     model.listform.listAttributes = attributes;
-    model.editControl.name = 'attribut1';
     return this._super(controller, model);
   }
 

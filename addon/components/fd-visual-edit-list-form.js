@@ -10,21 +10,47 @@ export default Ember.Component.extend({
 
   dataTypes: Ember.inject.service('fd-datatypes'),
 
-  rowsValues:  Ember.computed('model.listform.listAttributes', function() {
-    let ret = [];
-    for (let i = 0; i < 4; i++) {
-      ret[i] = [];
-      for (let j = 0; j < this.model.listform.listAttributes.length; j++) {
-        let attribute = this.model.listform.listAttributes[j];
-        let value = this.get('dataTypes').randomValue(attribute.type);
-        ret[i][j] = value;
-      }
-    }
+  selectedCol: undefined,
 
-    return ret;
+  _prevRowsValues: undefined,
+
+  _prevRowsTypes: undefined,
+
+  rowsValues:  Ember.computed(
+    'model.listform.listAttributes',
+    'model.editControl.type',
+    function() {
+      let editControlType =this.get('dataTypes').flexberryTypeToFD(this.model.editControl.type);
+      if (this.selectedCol === undefined && this._prevRowsValues !== undefined ||
+        this.selectedCol !== undefined && this._prevRowsTypes[this.selectedCol] === editControlType ) {
+        return this._prevRowsValues;
+      }
+      let ret = [];
+      this._prevRowsTypes = [];
+      let attributes = this.model.listform.listAttributes;
+      for (let i = 0; i < 4; i++) {
+        ret[i] = [];
+        for (let j = 0; j < attributes.length; j++) {
+          let attribute = attributes[j];
+          this._prevRowsTypes[j] = attribute.type;
+//           let value = this.get('dataTypes').randomValue(attribute.type);
+          let value;
+          if (this.selectedCol !== undefined &&  this.selectedCol !== j && this._prevRowsValues !== undefined) {
+            value = this._prevRowsValues[i][j];
+          } else {
+            value = this.get('dataTypes').randomValue(attribute.type);
+          }
+//           let value = (this.selectedCol !== undefined &&  this.selectedCol !== j && this._prevRowsValues !== undefined) ?
+//             this._prevRowsValues[this.selectedCol] :
+//             this.get('dataTypes').randomValue(attribute.type);
+          ret[i][j] = value;
+        }
+      }
+
+      this._prevRowsValues = ret;
+      return ret;
   }),
 
-  selectedCol: undefined,
 
   previousSelectedCol: undefined,
 
@@ -37,10 +63,23 @@ export default Ember.Component.extend({
     return ret;
   }),
 
-  attributes:  Ember.computed('model.listform.listAttributes', function() {
+  attributes:  Ember.computed(
+    'model.listform.listAttributes',
+    'model.editControl.name',
+    'model.editControl.type',
+    'model.editControl.defaultValue',
+    function() {
     let ret = Ember.A();
-    for (let i = 0; i < this.model.listform.listAttributes.length; i++) {
-      let obj = Ember.Object.create(this.model.listform.listAttributes[i]);
+    let attributes = this.model.listform.listAttributes
+    for (let i = 0; i < attributes.length; i++) {
+      let attribute = attributes[i];
+      if (this.selectedCol === i) {
+        let editControl = this.model.editControl;
+        attribute.name = editControl.name;
+        attribute.type =this.get('dataTypes').flexberryTypeToFD(editControl.type);
+        attribute.defaultValue = editControl.defaultValue;
+      }
+      let obj = Ember.Object.create(attribute);
       ret.addObject(obj);
     }
 
