@@ -9,7 +9,7 @@ test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.set('model', { listform: { listAttributes: [] } });
+  this.set('model', { listform: { listAttributes: [], editControl: [] } });
 
   this.render(hbs`{{fd-visual-edit-list-form model=model}}`);
 
