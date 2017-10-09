@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import EmberFlexberryTranslations from 'ember-flexberry/locales/en/translations';
-
+import FdAppstructListFormForm from './forms/fd-appstruct-list-form';
 import FdAssociationListFormForm from './forms/fd-association-list-form';
 import FdClassListFormForm from './forms/fd-class-list-form';
 import FdConfigurationListFormForm from './forms/fd-configuration-list-form';
@@ -17,7 +17,8 @@ import FdInheritanceEditFormForm from './forms/fd-inheritance-edit-form';
 import FdStageEditFormForm from './forms/fd-stage-edit-form';
 import FdSystemEditFormForm from './forms/fd-system-edit-form';
 import FdViewEditFormForm from './forms/fd-view-edit-form';
-import FdVisualEditFormForm from './forms/fd-visual-edit-form';
+import FdVisualEditFormForm from './forms/fd-visual-edit-form-form';
+import FdVisualEditListFormForm from './forms/fd-visual-edit-list-form';
 import FdGenerationProcessForm from './forms/fd-generation-process-form';
 import FdAdModel from './models/fd-ad';
 import FdAggregationModel from './models/fd-aggregation';
@@ -155,6 +156,7 @@ Ember.$.extend(true, translations, {
   },
 
   forms: {
+    'fd-appstruct-list-form': FdAppstructListFormForm,
     'fd-association-list-form': FdAssociationListFormForm,
     'fd-class-list-form': FdClassListFormForm,
     'fd-configuration-list-form': FdConfigurationListFormForm,
@@ -172,6 +174,7 @@ Ember.$.extend(true, translations, {
     'fd-system-edit-form': FdSystemEditFormForm,
     'fd-view-edit-form': FdViewEditFormForm,
     'fd-visual-edit-form': FdVisualEditFormForm,
+    'fd-visual-edit-list-form': FdVisualEditListFormForm,
     'fd-generation-process-form': FdGenerationProcessForm
   },
 

@@ -2,51 +2,57 @@ export default {
   projections: {
     EditFormView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
+      },
+      project: {
+        __caption__: 'project',
+        repository: {
+          __caption__: 'repository'
+        }
       }
     },
     ListFormView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       changeUser: {
-        caption: 'changeUser'
+        __caption__: 'changeUser'
       },
       changeDate: {
-        caption: 'changeDate'
+        __caption__: 'changeDate'
       },
       createUser: {
-        caption: 'createUser'
+        __caption__: 'createUser'
       },
       createDate: {
-        caption: 'createDate'
+        __caption__: 'createDate'
       }
     },
     PathSearchView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       project: {
-        caption: 'project',
+        __caption__: 'project',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         repository: {
-          caption: 'repository'
+          __caption__: 'repository'
         }
       }
     },
     SearchRepObjView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       }
     },
     TestStageName: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       }
     }
   }

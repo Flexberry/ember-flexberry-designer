@@ -2,13 +2,13 @@ export default {
   projections: {
     Properties: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       aCL: {
-        caption: 'aCL'
+        __caption__: 'aCL'
       }
     }
   }

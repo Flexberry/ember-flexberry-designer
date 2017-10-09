@@ -2,418 +2,418 @@ export default {
   projections: {
     AuditPrototyping: {
       accessModifier: {
-        caption: 'accessModifier'
+        __caption__: 'accessModifier'
       },
       stored: {
-        caption: 'stored'
+        __caption__: 'stored'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       defaultValue: {
-        caption: 'defaultValue'
+        __caption__: 'defaultValue'
       },
       notNull: {
-        caption: 'notNull'
+        __caption__: 'notNull'
       },
       dataServiceExpressionXML: {
-        caption: 'dataServiceExpressionXML'
+        __caption__: 'dataServiceExpressionXML'
       },
       order: {
-        caption: 'order'
+        __caption__: 'order'
       },
       storage: {
-        caption: 'storage'
+        __caption__: 'storage'
       },
       trim: {
-        caption: 'trim'
+        __caption__: 'trim'
       }
     },
     EditApplication: {
       accessModifier: {
-        caption: 'accessModifier'
+        __caption__: 'accessModifier'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       defaultValue: {
-        caption: 'defaultValue'
+        __caption__: 'defaultValue'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       pBGetEnd: {
-        caption: 'pBGetEnd'
+        __caption__: 'pBGetEnd'
       },
       pBGetStart: {
-        caption: 'pBGetStart'
+        __caption__: 'pBGetStart'
       },
       pBSetEnd: {
-        caption: 'pBSetEnd'
+        __caption__: 'pBSetEnd'
       },
       pBSetStart: {
-        caption: 'pBSetStart'
+        __caption__: 'pBSetStart'
       }
     },
     EditDataObjectClass: {
       accessModifier: {
-        caption: 'accessModifier'
+        __caption__: 'accessModifier'
       },
       stored: {
-        caption: 'stored'
+        __caption__: 'stored'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       defaultValue: {
-        caption: 'defaultValue'
+        __caption__: 'defaultValue'
       },
       notNull: {
-        caption: 'notNull'
+        __caption__: 'notNull'
       },
       dataServiceExpressionXML: {
-        caption: 'dataServiceExpressionXML'
+        __caption__: 'dataServiceExpressionXML'
       },
       storage: {
-        caption: 'storage'
+        __caption__: 'storage'
       },
       publishName: {
-        caption: 'publishName'
+        __caption__: 'publishName'
       },
       hint: {
-        caption: 'hint'
+        __caption__: 'hint'
       },
       order: {
-        caption: 'order'
+        __caption__: 'order'
       },
       trim: {
-        caption: 'trim'
+        __caption__: 'trim'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       pBGetEnd: {
-        caption: 'pBGetEnd'
+        __caption__: 'pBGetEnd'
       },
       pBGetStart: {
-        caption: 'pBGetStart'
+        __caption__: 'pBGetStart'
       },
       pBSetEnd: {
-        caption: 'pBSetEnd'
+        __caption__: 'pBSetEnd'
       },
       pBSetStart: {
-        caption: 'pBSetStart'
+        __caption__: 'pBSetStart'
       },
       autoincrement: {
-        caption: 'autoincrement'
+        __caption__: 'autoincrement'
       }
     },
     EditEditForm: {
       accessModifier: {
-        caption: 'accessModifier'
+        __caption__: 'accessModifier'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       defaultValue: {
-        caption: 'defaultValue'
+        __caption__: 'defaultValue'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       pBGetEnd: {
-        caption: 'pBGetEnd'
+        __caption__: 'pBGetEnd'
       },
       pBGetStart: {
-        caption: 'pBGetStart'
+        __caption__: 'pBGetStart'
       },
       pBSetEnd: {
-        caption: 'pBSetEnd'
+        __caption__: 'pBSetEnd'
       },
       pBSetStart: {
-        caption: 'pBSetStart'
+        __caption__: 'pBSetStart'
       }
     },
     EditEnum: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       defaultValue: {
-        caption: 'defaultValue'
+        __caption__: 'defaultValue'
       },
       caption: {
-        caption: 'caption'
+        __caption__: 'caption'
       }
     },
     EditInterface: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       }
     },
     EditListForm: {
       accessModifier: {
-        caption: 'accessModifier'
+        __caption__: 'accessModifier'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       defaultValue: {
-        caption: 'defaultValue'
+        __caption__: 'defaultValue'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       pBGetEnd: {
-        caption: 'pBGetEnd'
+        __caption__: 'pBGetEnd'
       },
       pBGetStart: {
-        caption: 'pBGetStart'
+        __caption__: 'pBGetStart'
       },
       pBSetEnd: {
-        caption: 'pBSetEnd'
+        __caption__: 'pBSetEnd'
       },
       pBSetStart: {
-        caption: 'pBSetStart'
+        __caption__: 'pBSetStart'
       }
     },
     EditPrintForm: {
       accessModifier: {
-        caption: 'accessModifier'
+        __caption__: 'accessModifier'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       defaultValue: {
-        caption: 'defaultValue'
+        __caption__: 'defaultValue'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       pBGetEnd: {
-        caption: 'pBGetEnd'
+        __caption__: 'pBGetEnd'
       },
       pBGetStart: {
-        caption: 'pBGetStart'
+        __caption__: 'pBGetStart'
       },
       pBSetEnd: {
-        caption: 'pBSetEnd'
+        __caption__: 'pBSetEnd'
       },
       pBSetStart: {
-        caption: 'pBSetStart'
+        __caption__: 'pBSetStart'
       }
     },
     EditType: {
       accessModifier: {
-        caption: 'accessModifier'
+        __caption__: 'accessModifier'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       defaultValue: {
-        caption: 'defaultValue'
+        __caption__: 'defaultValue'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       pBGetEnd: {
-        caption: 'pBGetEnd'
+        __caption__: 'pBGetEnd'
       },
       pBGetStart: {
-        caption: 'pBGetStart'
+        __caption__: 'pBGetStart'
       },
       pBSetEnd: {
-        caption: 'pBSetEnd'
+        __caption__: 'pBSetEnd'
       },
       pBSetStart: {
-        caption: 'pBSetStart'
+        __caption__: 'pBSetStart'
       }
     },
     EditUserForm: {
       accessModifier: {
-        caption: 'accessModifier'
+        __caption__: 'accessModifier'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       defaultValue: {
-        caption: 'defaultValue'
+        __caption__: 'defaultValue'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       pBGetEnd: {
-        caption: 'pBGetEnd'
+        __caption__: 'pBGetEnd'
       },
       pBGetStart: {
-        caption: 'pBGetStart'
+        __caption__: 'pBGetStart'
       },
       pBSetEnd: {
-        caption: 'pBSetEnd'
+        __caption__: 'pBSetEnd'
       },
       pBSetStart: {
-        caption: 'pBSetStart'
+        __caption__: 'pBSetStart'
       }
     },
     FormDesigner: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       caption: {
-        caption: 'caption'
+        __caption__: 'caption'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       class: {
-        caption: 'class'
+        __caption__: 'class'
       }
     },
     Generator: {
       accessModifier: {
-        caption: 'accessModifier'
+        __caption__: 'accessModifier'
       },
       autoincrement: {
-        caption: 'autoincrement'
+        __caption__: 'autoincrement'
       },
       caption: {
-        caption: 'caption'
+        __caption__: 'caption'
       },
       dataServiceExpression: {
-        caption: 'dataServiceExpression'
+        __caption__: 'dataServiceExpression'
       },
       dataServiceExpressionXML: {
-        caption: 'dataServiceExpressionXML'
+        __caption__: 'dataServiceExpressionXML'
       },
       defaultValue: {
-        caption: 'defaultValue'
+        __caption__: 'defaultValue'
       },
       hint: {
-        caption: 'hint'
+        __caption__: 'hint'
       },
       notNull: {
-        caption: 'notNull'
+        __caption__: 'notNull'
       },
       order: {
-        caption: 'order'
+        __caption__: 'order'
       },
       orderNum: {
-        caption: 'orderNum'
+        __caption__: 'orderNum'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       pBGetEnd: {
-        caption: 'pBGetEnd'
+        __caption__: 'pBGetEnd'
       },
       pBSetEnd: {
-        caption: 'pBSetEnd'
+        __caption__: 'pBSetEnd'
       },
       pBGetStart: {
-        caption: 'pBGetStart'
+        __caption__: 'pBGetStart'
       },
       pBSetStart: {
-        caption: 'pBSetStart'
+        __caption__: 'pBSetStart'
       },
       realCaption: {
-        caption: 'realCaption'
+        __caption__: 'realCaption'
       },
       realStorage: {
-        caption: 'realStorage'
+        __caption__: 'realStorage'
       },
       storage: {
-        caption: 'storage'
+        __caption__: 'storage'
       },
       publishName: {
-        caption: 'publishName'
+        __caption__: 'publishName'
       },
       stored: {
-        caption: 'stored'
+        __caption__: 'stored'
       },
       trim: {
-        caption: 'trim'
+        __caption__: 'trim'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       }
     },
     SearchAttribute: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       class: {
-        caption: 'class'
+        __caption__: 'class'
       }
     }
   }

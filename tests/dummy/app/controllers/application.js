@@ -1,75 +1,97 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  sitemap: Ember.computed('i18n.locale', function () {
-    let i18n = this.get('i18n');
+  /**
+    Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
 
-    return {
+    @property currentContext
+    @type FdCurrentProjectContextService
+  */
+  currentContext: Ember.inject.service('fd-current-project-context'),
+
+  sitemap: Ember.computed('i18n.locale', 'currentContext.context.configuration', 'currentContext.context.stage', 'currentContext.context.class', function() {
+    let i18n = this.get('i18n');
+    let sitemap = {
       nodes: [
         {
           link: 'index',
           caption: i18n.t('forms.application.sitemap.index.caption'),
           title: i18n.t('forms.application.sitemap.index.title'),
-          children: null
-        }, {
-          link: 'fd-visual-edit-form',
-          caption: i18n.t('forms.application.sitemap.fd-visual-edit-form.caption'),
-          title: i18n.t('forms.application.sitemap.fd-visual-edit-form.title'),
-          children: null
-        }, {
-          link: null,
-          caption: i18n.t('forms.application.sitemap.root.caption'),
-          title: i18n.t('forms.application.sitemap.root.title'),
-          children: [{
-            link: 'fd-configuration-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.title'),
-            children: null
-          }, {
-            link: 'fd-stage-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-stage-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-stage-list-form.title'),
-            children: null
-          }, {
-            link: 'fd-system-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-system-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-system-list-form.title'),
-            children: null
-          }, {
-            link: 'fd-diagram-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.title'),
-            children: null
-          }, {
-            link: 'fd-class-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-class-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-class-list-form.title'),
-            children: null
-          }, {
-            link: 'fd-association-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-association-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-association-list-form.title'),
-            children: null
-          }, {
-            link: 'fd-inheritance-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.title'),
-            children: null
-          }, {
-            link: 'fd-view-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-view-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-view-list-form.title'),
-            children: null
-          },
-          {
-            link: 'fd-generation-process-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-generation-process-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-generation-process-form.title'),
-            children: null
-          }]
-        }
+        },
+        {
+          link: 'fd-configuration-list-form',
+          caption: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.title'),
+        },
       ]
     };
+
+    let context = this.get('currentContext.context');
+    if (context.configuration) {
+      sitemap.nodes.push({
+        link: 'fd-stage-list-form',
+        caption: i18n.t('forms.application.sitemap.root.fd-stage-list-form.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-stage-list-form.title'),
+      });
+    }
+
+    if (context.stage) {
+      sitemap.nodes.push({
+        link: 'fd-appstruct-list-form',
+        caption: i18n.t('forms.application.sitemap.root.fd-appstruct-list-form.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-appstruct-list-form.title'),
+      });
+      sitemap.nodes.push({
+        link: 'fd-visual-edit-list-form',
+        caption: i18n.t('forms.application.sitemap.root.fd-visual-edit-list-form.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-visual-edit-list-form.title'),
+      });
+      sitemap.nodes.push({
+        link: 'fd-visual-edit-form',
+        caption: i18n.t('forms.application.sitemap.fd-visual-edit-form.caption'),
+        title: i18n.t('forms.application.sitemap.fd-visual-edit-form.title'),
+      });
+      sitemap.nodes.push({
+        link: 'fd-generation-process-form',
+        caption: i18n.t('forms.application.sitemap.root.fd-generation-process-form.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-generation-process-form.title'),
+      });
+      sitemap.nodes.push({
+        link: 'fd-system-list-form',
+        caption: i18n.t('forms.application.sitemap.root.fd-system-list-form.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-system-list-form.title'),
+      });
+      sitemap.nodes.push({
+        link: 'fd-diagram-list-form',
+        caption: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.title'),
+      });
+      sitemap.nodes.push({
+        link: 'fd-class-list-form',
+        caption: i18n.t('forms.application.sitemap.root.fd-class-list-form.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-class-list-form.title'),
+      });
+      sitemap.nodes.push({
+        link: 'fd-association-list-form',
+        caption: i18n.t('forms.application.sitemap.root.fd-association-list-form.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-association-list-form.title'),
+      });
+      sitemap.nodes.push({
+        link: 'fd-inheritance-list-form',
+        caption: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.title'),
+      });
+    }
+
+    if (context.class) {
+      sitemap.nodes.push({
+        link: 'fd-view-list-form',
+        caption: i18n.t('forms.application.sitemap.root.fd-view-list-form.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-view-list-form.title'),
+      });
+    }
+
+    return sitemap;
   }),
 
   /**

@@ -2,132 +2,132 @@ export default {
   projections: {
     AttributesView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       properties: {
-        caption: 'properties'
+        __caption__: 'properties'
       },
       definition: {
-        caption: 'definition'
+        __caption__: 'definition'
       },
       class: {
-        caption: 'class'
+        __caption__: 'class'
       }
     },
     BusinessServer: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       class: {
-        caption: 'class',
+        __caption__: 'class',
         stage: {
-          caption: 'stage'
+          __caption__: 'stage'
         }
       }
     },
     EditDataObjectClass: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       properties: {
-        caption: 'properties'
+        __caption__: 'properties'
       }
     },
     EditFormView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       }
     },
     EditPropertyLookups: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       definition: {
-        caption: 'definition'
+        __caption__: 'definition'
       },
       class: {
-        caption: 'class',
+        __caption__: 'class',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       }
     },
     Generator: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       definition: {
-        caption: 'definition'
+        __caption__: 'definition'
       },
       class: {
-        caption: 'class'
+        __caption__: 'class'
       }
     },
     ListFormView: {
       class: {
-        caption: 'class',
+        __caption__: 'class',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       properties: {
-        caption: 'properties'
+        __caption__: 'properties'
       }
     },
     Prototyping: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       definition: {
-        caption: 'definition'
+        __caption__: 'definition'
       }
     },
     SearchView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       class: {
-        caption: 'class'
+        __caption__: 'class'
       }
     },
     ViewManager: {
       class: {
-        caption: 'class',
+        __caption__: 'class',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         stage: {
-          caption: 'stage'
+          __caption__: 'stage'
         }
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       properties: {
-        caption: 'properties'
+        __caption__: 'properties'
       },
       definition: {
-        caption: 'definition'
+        __caption__: 'definition'
       }
     },
     ViewPeeker: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       }
     }
   }

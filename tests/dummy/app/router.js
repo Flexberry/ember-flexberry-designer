@@ -6,6 +6,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function () {
+  this.route('fd-appstruct-list-form');
   this.route('fd-association-list-form');
   this.route('fd-association-edit-form',
   { path: 'fd-association-edit-form/:id' });
@@ -47,6 +48,7 @@ Router.map(function () {
   this.route('fd-view-edit-form.new',
   { path: 'fd-view-edit-form/new' });
   this.route('fd-visual-edit-form');
+  this.route('fd-visual-edit-list-form');
   this.route('fd-generation-process-form');
 });
 

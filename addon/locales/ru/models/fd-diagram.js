@@ -2,84 +2,84 @@ export default {
   projections: {
     Diagram: {
       primitivesStreamString: {
-        caption: ''
+        __caption__: ''
       },
       caseObjectsString: {
-        caption: ''
+        __caption__: ''
       },
       name: {
-        caption: ''
+        __caption__: ''
       },
       createDate: {
-        caption: ''
+        __caption__: ''
       },
       createUser: {
-        caption: ''
+        __caption__: ''
       },
       changeDate: {
-        caption: ''
+        __caption__: ''
       },
       changeUser: {
-        caption: ''
+        __caption__: ''
       }
     },
     DiagramWithStage: {
       primitivesStreamString: {
-        caption: ''
+        __caption__: ''
       },
       caseObjectsString: {
-        caption: ''
+        __caption__: ''
       },
       name: {
-        caption: ''
+        __caption__: ''
       },
       createDate: {
-        caption: ''
+        __caption__: ''
       },
       createUser: {
-        caption: ''
+        __caption__: ''
       },
       changeDate: {
-        caption: ''
+        __caption__: ''
       },
       changeUser: {
-        caption: ''
+        __caption__: ''
       }
     },
     DiagramWithSystem: {
       primitivesStreamString: {
-        caption: ''
+        __caption__: ''
       },
       caseObjectsString: {
-        caption: ''
+        __caption__: ''
       },
       name: {
-        caption: ''
+        __caption__: ''
       },
       createDate: {
-        caption: ''
+        __caption__: ''
       },
       createUser: {
-        caption: ''
+        __caption__: ''
       },
       changeDate: {
-        caption: ''
+        __caption__: ''
       },
       changeUser: {
-        caption: ''
+        __caption__: ''
       }
     },
     ExportToWmf: {
       name: {
-        caption: ''
+        __caption__: ''
       },
       description: {
-        caption: ''
+        __caption__: ''
       }
     },
     SearchSystem: {
       name: {
-        caption: ''
+        __caption__: ''
       }
     }
   }

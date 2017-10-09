@@ -1008,7 +1008,49 @@
           "index": 4
         }
       ],
-      "belongsTo": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Configuration",
+          "belongsTo": [
+            {
+              "lookupValue": null,
+              "lookupValueField": null,
+              "relationName": "Configuration.Project",
+              "belongsTo": [
+                {
+                  "lookupValue": null,
+                  "lookupValueField": null,
+                  "relationName": "Configuration.Project.Repository",
+                  "belongsTo": [],
+                  "hidden": true,
+                  "attrs": [],
+                  "index": 7,
+                  "caption": "",
+                  "name": "repository",
+                  "relatedTo": "fd-repository",
+                  "inverse": null
+                }
+              ],
+              "hidden": true,
+              "attrs": [],
+              "index": 6,
+              "caption": "",
+              "name": "project",
+              "relatedTo": "fd-project",
+              "inverse": null
+            }
+          ],
+          "hidden": true,
+          "attrs": [],
+          "index": 5,
+          "caption": "",
+          "name": "configuration",
+          "relatedTo": "fd-configuration",
+          "inverse": null
+        }
+      ],
       "hasMany": []
     },
     {
@@ -2126,7 +2168,21 @@
           "index": 5
         }
       ],
-      "belongsTo": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Configuration",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [],
+          "index": 6,
+          "caption": "",
+          "name": "configuration",
+          "relatedTo": "fd-configuration",
+          "inverse": null
+        }
+      ],
       "hasMany": []
     },
     {

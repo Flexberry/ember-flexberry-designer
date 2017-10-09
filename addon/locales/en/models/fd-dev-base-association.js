@@ -2,185 +2,185 @@ export default {
   projections: {
     AssocList: {
       referenceCount: {
-        caption: 'referenceCount'
+        __caption__: 'referenceCount'
       },
       assocType: {
-        caption: 'assocType'
+        __caption__: 'assocType'
       },
       startClass: {
-        caption: 'startClass',
+        __caption__: 'startClass',
         nameStr: {
-          caption: 'nameStr'
+          __caption__: 'nameStr'
         }
       },
       endClass: {
-        caption: 'endClass',
+        __caption__: 'endClass',
         nameStr: {
-          caption: 'nameStr'
+          __caption__: 'nameStr'
         }
       },
       startRole: {
-        caption: 'startRole'
+        __caption__: 'startRole'
       },
       endRole: {
-        caption: 'endRole'
+        __caption__: 'endRole'
       },
       stage: {
-        caption: 'stage',
+        __caption__: 'stage',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       },
       storage: {
-        caption: 'storage'
+        __caption__: 'storage'
       }
     },
     EditPropertyLookups: {
       assocType: {
-        caption: 'assocType'
+        __caption__: 'assocType'
       },
       autoStoreMasterDisabled: {
-        caption: 'autoStoreMasterDisabled'
+        __caption__: 'autoStoreMasterDisabled'
       },
       realEndRole: {
-        caption: 'realEndRole'
+        __caption__: 'realEndRole'
       },
       realStartRole: {
-        caption: 'realStartRole'
+        __caption__: 'realStartRole'
       },
       storage: {
-        caption: 'storage'
+        __caption__: 'storage'
       },
       startRolePublishName: {
-        caption: 'startRolePublishName'
+        __caption__: 'startRolePublishName'
       },
       endRolePublishName: {
-        caption: 'endRolePublishName'
+        __caption__: 'endRolePublishName'
       },
       endMultiplicity: {
-        caption: 'endMultiplicity'
+        __caption__: 'endMultiplicity'
       },
       endRole: {
-        caption: 'endRole'
+        __caption__: 'endRole'
       },
       endRoleAccessModifier: {
-        caption: 'endRoleAccessModifier'
+        __caption__: 'endRoleAccessModifier'
       },
       endRoleStored: {
-        caption: 'endRoleStored'
+        __caption__: 'endRoleStored'
       },
       endRoleStr: {
-        caption: 'endRoleStr'
+        __caption__: 'endRoleStr'
       },
       notNullStart: {
-        caption: 'notNullStart'
+        __caption__: 'notNullStart'
       },
       startMultiplicity: {
-        caption: 'startMultiplicity'
+        __caption__: 'startMultiplicity'
       },
       startRole: {
-        caption: 'startRole'
+        __caption__: 'startRole'
       },
       startRoleAccessModifier: {
-        caption: 'startRoleAccessModifier'
+        __caption__: 'startRoleAccessModifier'
       },
       startRoleStored: {
-        caption: 'startRoleStored'
+        __caption__: 'startRoleStored'
       },
       startRoleStr: {
-        caption: 'startRoleStr'
+        __caption__: 'startRoleStr'
       },
       referenceCount: {
-        caption: 'referenceCount'
+        __caption__: 'referenceCount'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       endClass: {
-        caption: 'endClass'
+        __caption__: 'endClass'
       },
       startClass: {
-        caption: 'startClass'
+        __caption__: 'startClass'
       }
     },
     Generator: {
       assocType: {
-        caption: 'assocType'
+        __caption__: 'assocType'
       },
       autoStoreMasterDisabled: {
-        caption: 'autoStoreMasterDisabled'
+        __caption__: 'autoStoreMasterDisabled'
       },
       realEndRole: {
-        caption: 'realEndRole'
+        __caption__: 'realEndRole'
       },
       realStartRole: {
-        caption: 'realStartRole'
+        __caption__: 'realStartRole'
       },
       storage: {
-        caption: 'storage'
+        __caption__: 'storage'
       },
       startRolePublishName: {
-        caption: 'startRolePublishName'
+        __caption__: 'startRolePublishName'
       },
       endRolePublishName: {
-        caption: 'endRolePublishName'
+        __caption__: 'endRolePublishName'
       },
       endMultiplicity: {
-        caption: 'endMultiplicity'
+        __caption__: 'endMultiplicity'
       },
       endRole: {
-        caption: 'endRole'
+        __caption__: 'endRole'
       },
       endRoleAccessModifier: {
-        caption: 'endRoleAccessModifier'
+        __caption__: 'endRoleAccessModifier'
       },
       endRoleStored: {
-        caption: 'endRoleStored'
+        __caption__: 'endRoleStored'
       },
       endRoleStr: {
-        caption: 'endRoleStr'
+        __caption__: 'endRoleStr'
       },
       notNullStart: {
-        caption: 'notNullStart'
+        __caption__: 'notNullStart'
       },
       startMultiplicity: {
-        caption: 'startMultiplicity'
+        __caption__: 'startMultiplicity'
       },
       startRole: {
-        caption: 'startRole'
+        __caption__: 'startRole'
       },
       startRoleAccessModifier: {
-        caption: 'startRoleAccessModifier'
+        __caption__: 'startRoleAccessModifier'
       },
       startRoleStored: {
-        caption: 'startRoleStored'
+        __caption__: 'startRoleStored'
       },
       startRoleStr: {
-        caption: 'startRoleStr'
+        __caption__: 'startRoleStr'
       },
       referenceCount: {
-        caption: 'referenceCount'
+        __caption__: 'referenceCount'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       endClass: {
-        caption: 'endClass'
+        __caption__: 'endClass'
       },
       startClass: {
-        caption: 'startClass'
+        __caption__: 'startClass'
       }
     }
   }

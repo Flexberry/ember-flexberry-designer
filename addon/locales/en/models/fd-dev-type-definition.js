@@ -2,36 +2,36 @@ export default {
   projections: {
     TypeDefinitionE: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       caption: {
-        caption: 'caption'
+        __caption__: 'caption'
       },
       mapTypeName: {
-        caption: 'mapTypeName'
+        __caption__: 'mapTypeName'
       },
       mapTypeAssemblyName: {
-        caption: 'mapTypeAssemblyName'
+        __caption__: 'mapTypeAssemblyName'
       },
       formatAttribute: {
-        caption: 'formatAttribute'
+        __caption__: 'formatAttribute'
       }
     },
     TypeDefinitionL: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       caption: {
-        caption: 'caption'
+        __caption__: 'caption'
       },
       mapTypeName: {
-        caption: 'mapTypeName'
+        __caption__: 'mapTypeName'
       },
       mapTypeAssemblyName: {
-        caption: 'mapTypeAssemblyName'
+        __caption__: 'mapTypeAssemblyName'
       },
       formatAttribute: {
-        caption: 'formatAttribute'
+        __caption__: 'formatAttribute'
       }
     }
   }

@@ -2,448 +2,457 @@ export default {
   projections: {
     AuditPrototyping: {
       typeMapCS: {
-        caption: 'typeMapCS'
+        __caption__: 'typeMapCS'
       },
       typeMapCSStr: {
-        caption: 'typeMapCSStr'
+        __caption__: 'typeMapCSStr'
       }
     },
     Backup: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       company: {
-        caption: 'company'
+        __caption__: 'company'
       },
       product: {
-        caption: 'product'
+        __caption__: 'product'
       },
       copyright: {
-        caption: 'copyright'
+        __caption__: 'copyright'
       },
       version: {
-        caption: 'version'
+        __caption__: 'version'
       },
       dataObjectNameSpace: {
-        caption: 'dataObjectNameSpace'
+        __caption__: 'dataObjectNameSpace'
       },
       sourceCodeCSPath: {
-        caption: 'sourceCodeCSPath'
+        __caption__: 'sourceCodeCSPath'
       },
       sourceCodeVBPath: {
-        caption: 'sourceCodeVBPath'
+        __caption__: 'sourceCodeVBPath'
       },
       sQLPath: {
-        caption: 'sQLPath'
+        __caption__: 'sQLPath'
       },
       typeMapCSStr: {
-        caption: 'typeMapCSStr'
+        __caption__: 'typeMapCSStr'
       },
       typeMapVBStr: {
-        caption: 'typeMapVBStr'
+        __caption__: 'typeMapVBStr'
       },
       typeMapSQLStr: {
-        caption: 'typeMapSQLStr'
+        __caption__: 'typeMapSQLStr'
       },
       typeMapAccessStr: {
-        caption: 'typeMapAccessStr'
+        __caption__: 'typeMapAccessStr'
       },
       typeMapOracleStr: {
-        caption: 'typeMapOracleStr'
+        __caption__: 'typeMapOracleStr'
       },
       defaultBaseClass: {
-        caption: 'defaultBaseClass'
+        __caption__: 'defaultBaseClass'
       },
       defaultDetailArrayClass: {
-        caption: 'defaultDetailArrayClass'
+        __caption__: 'defaultDetailArrayClass'
       },
       connectionString: {
-        caption: 'connectionString'
+        __caption__: 'connectionString'
       },
       oracleConnectionString: {
-        caption: 'oracleConnectionString'
+        __caption__: 'oracleConnectionString'
       },
       postgreConnectionString: {
-        caption: 'postgreConnectionString'
+        __caption__: 'postgreConnectionString'
       },
       additionalPluginsSettingsStr: {
-        caption: 'additionalPluginsSettingsStr'
+        __caption__: 'additionalPluginsSettingsStr'
       },
       defaultEditScriptName: {
-        caption: 'defaultEditScriptName'
+        __caption__: 'defaultEditScriptName'
       },
       defaultListScriptName: {
-        caption: 'defaultListScriptName'
+        __caption__: 'defaultListScriptName'
       },
       sourceAzStoragePath: {
-        caption: 'sourceAzStoragePath'
+        __caption__: 'sourceAzStoragePath'
       },
       operationsEnumPacket: {
-        caption: 'operationsEnumPacket'
+        __caption__: 'operationsEnumPacket'
       },
       operationsEnumNamespace: {
-        caption: 'operationsEnumNamespace'
+        __caption__: 'operationsEnumNamespace'
       },
       signAssemblies: {
-        caption: 'signAssemblies'
+        __caption__: 'signAssemblies'
       },
       auditEnabled: {
-        caption: 'auditEnabled'
+        __caption__: 'auditEnabled'
       },
       isAuditDatabaseLocal: {
-        caption: 'isAuditDatabaseLocal'
+        __caption__: 'isAuditDatabaseLocal'
       },
       isReportDatabaseLocal: {
-        caption: 'isReportDatabaseLocal'
+        __caption__: 'isReportDatabaseLocal'
       },
       defaultWriteMode: {
-        caption: 'defaultWriteMode'
+        __caption__: 'defaultWriteMode'
       }
     },
     Compiler: {
       company: {
-        caption: 'company'
+        __caption__: 'company'
       },
       product: {
-        caption: 'product'
+        __caption__: 'product'
       },
       copyright: {
-        caption: 'copyright'
+        __caption__: 'copyright'
       },
       version: {
-        caption: 'version'
+        __caption__: 'version'
       },
       dataObjectNameSpace: {
-        caption: 'dataObjectNameSpace'
+        __caption__: 'dataObjectNameSpace'
       },
       sourceCodeCSPath: {
-        caption: 'sourceCodeCSPath'
+        __caption__: 'sourceCodeCSPath'
       },
       sourceCodeVBPath: {
-        caption: 'sourceCodeVBPath'
+        __caption__: 'sourceCodeVBPath'
       },
       sQLPath: {
-        caption: 'sQLPath'
+        __caption__: 'sQLPath'
       },
       typeMapCSStr: {
-        caption: 'typeMapCSStr'
+        __caption__: 'typeMapCSStr'
       },
       typeMapVBStr: {
-        caption: 'typeMapVBStr'
+        __caption__: 'typeMapVBStr'
       },
       typeMapSQLStr: {
-        caption: 'typeMapSQLStr'
+        __caption__: 'typeMapSQLStr'
       },
       typeMapAccessStr: {
-        caption: 'typeMapAccessStr'
+        __caption__: 'typeMapAccessStr'
       },
       defaultBaseClass: {
-        caption: 'defaultBaseClass'
+        __caption__: 'defaultBaseClass'
       },
       defaultDetailArrayClass: {
-        caption: 'defaultDetailArrayClass'
+        __caption__: 'defaultDetailArrayClass'
       },
       defaultEditScriptName: {
-        caption: 'defaultEditScriptName'
+        __caption__: 'defaultEditScriptName'
       },
       defaultListScriptName: {
-        caption: 'defaultListScriptName'
+        __caption__: 'defaultListScriptName'
       },
       signAssemblies: {
-        caption: 'signAssemblies'
+        __caption__: 'signAssemblies'
       },
       additionalPluginsSettingsStr: {
-        caption: 'additionalPluginsSettingsStr'
+        __caption__: 'additionalPluginsSettingsStr'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       }
     },
     EditAccessGenerator: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       sQLPath: {
-        caption: 'sQLPath'
+        __caption__: 'sQLPath'
       },
       typeMapAccessStr: {
-        caption: 'typeMapAccessStr'
+        __caption__: 'typeMapAccessStr'
       },
       typeMapAccess: {
-        caption: 'typeMapAccess'
+        __caption__: 'typeMapAccess'
       },
       additionalPluginsSettings: {
-        caption: 'additionalPluginsSettings'
+        __caption__: 'additionalPluginsSettings'
       },
       additionalPluginsSettingsStr: {
-        caption: 'additionalPluginsSettingsStr'
+        __caption__: 'additionalPluginsSettingsStr'
       },
       moduleSettings: {
-        caption: 'moduleSettings',
+        __caption__: 'moduleSettings',
         moduleSettingType: {
-          caption: 'moduleSettingType',
+          __caption__: 'moduleSettingType',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           }
         },
         valueXML: {
-          caption: 'valueXML'
+          __caption__: 'valueXML'
         },
         stage: {
-          caption: 'stage'
+          __caption__: 'stage'
         }
       }
     },
     EditCSGenerator: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       company: {
-        caption: 'company'
+        __caption__: 'company'
       },
       product: {
-        caption: 'product'
+        __caption__: 'product'
       },
       copyright: {
-        caption: 'copyright'
+        __caption__: 'copyright'
       },
       version: {
-        caption: 'version'
+        __caption__: 'version'
       },
       sourceCodeCSPath: {
-        caption: 'sourceCodeCSPath'
+        __caption__: 'sourceCodeCSPath'
       },
       typeMapCSStr: {
-        caption: 'typeMapCSStr'
+        __caption__: 'typeMapCSStr'
       },
       typeMapCS: {
-        caption: 'typeMapCS'
+        __caption__: 'typeMapCS'
       },
       enableAuElement: {
-        caption: 'enableAuElement'
+        __caption__: 'enableAuElement'
       },
       auditEnabled: {
-        caption: 'auditEnabled'
+        __caption__: 'auditEnabled'
       },
       defaultWriteMode: {
-        caption: 'defaultWriteMode'
+        __caption__: 'defaultWriteMode'
       },
       dataObjectNameSpace: {
-        caption: 'dataObjectNameSpace'
+        __caption__: 'dataObjectNameSpace'
       },
       defaultBaseClass: {
-        caption: 'defaultBaseClass'
+        __caption__: 'defaultBaseClass'
       },
       defaultDetailArrayClass: {
-        caption: 'defaultDetailArrayClass'
+        __caption__: 'defaultDetailArrayClass'
       },
       defaultEditScriptName: {
-        caption: 'defaultEditScriptName'
+        __caption__: 'defaultEditScriptName'
       },
       defaultListScriptName: {
-        caption: 'defaultListScriptName'
+        __caption__: 'defaultListScriptName'
       },
       scriptPacket: {
-        caption: 'scriptPacket'
+        __caption__: 'scriptPacket'
       },
       scriptNamespace: {
-        caption: 'scriptNamespace'
+        __caption__: 'scriptNamespace'
       },
       signAssemblies: {
-        caption: 'signAssemblies'
+        __caption__: 'signAssemblies'
       },
       additionalPluginsSettings: {
-        caption: 'additionalPluginsSettings'
+        __caption__: 'additionalPluginsSettings'
       },
       additionalPluginsSettingsStr: {
-        caption: 'additionalPluginsSettingsStr'
+        __caption__: 'additionalPluginsSettingsStr'
       },
       moduleSettings: {
-        caption: 'moduleSettings',
+        __caption__: 'moduleSettings',
         moduleSettingType: {
-          caption: 'moduleSettingType',
+          __caption__: 'moduleSettingType',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           }
         },
         valueXML: {
-          caption: 'valueXML'
+          __caption__: 'valueXML'
         },
         stage: {
-          caption: 'stage'
+          __caption__: 'stage'
         }
       }
     },
     EditFormView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       company: {
-        caption: 'company'
+        __caption__: 'company'
       },
       copyright: {
-        caption: 'copyright'
+        __caption__: 'copyright'
       },
       product: {
-        caption: 'product'
+        __caption__: 'product'
+      },
+      configuration: {
+        __caption__: 'configuration',
+        project: {
+          __caption__: 'project',
+          repository: {
+            __caption__: 'repository'
+          }
+        }
       }
     },
     EditMSSQLDirectGenerator: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       typeMapSQLStr: {
-        caption: 'typeMapSQLStr'
+        __caption__: 'typeMapSQLStr'
       },
       typeMapSQL: {
-        caption: 'typeMapSQL'
+        __caption__: 'typeMapSQL'
       },
       connectionString: {
-        caption: 'connectionString'
+        __caption__: 'connectionString'
       },
       additionalPluginsSettings: {
-        caption: 'additionalPluginsSettings'
+        __caption__: 'additionalPluginsSettings'
       },
       additionalPluginsSettingsStr: {
-        caption: 'additionalPluginsSettingsStr'
+        __caption__: 'additionalPluginsSettingsStr'
       },
       doNotDeleteExtraTables: {
-        caption: 'doNotDeleteExtraTables'
+        __caption__: 'doNotDeleteExtraTables'
       },
       isAuditDatabaseLocal: {
-        caption: 'isAuditDatabaseLocal'
+        __caption__: 'isAuditDatabaseLocal'
       },
       isReportDatabaseLocal: {
-        caption: 'isReportDatabaseLocal'
+        __caption__: 'isReportDatabaseLocal'
       },
       moduleSettings: {
-        caption: 'moduleSettings',
+        __caption__: 'moduleSettings',
         moduleSettingType: {
-          caption: 'moduleSettingType',
+          __caption__: 'moduleSettingType',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           }
         },
         valueXML: {
-          caption: 'valueXML'
+          __caption__: 'valueXML'
         },
         stage: {
-          caption: 'stage'
+          __caption__: 'stage'
         }
       }
     },
     EditOracleGenerator: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       sQLPath: {
-        caption: 'sQLPath'
+        __caption__: 'sQLPath'
       },
       typeMapOracle: {
-        caption: 'typeMapOracle'
+        __caption__: 'typeMapOracle'
       },
       doNotDeleteExtraTables: {
-        caption: 'doNotDeleteExtraTables'
+        __caption__: 'doNotDeleteExtraTables'
       },
       typeMapOracleStr: {
-        caption: 'typeMapOracleStr'
+        __caption__: 'typeMapOracleStr'
       },
       isAuditDatabaseLocal: {
-        caption: 'isAuditDatabaseLocal'
+        __caption__: 'isAuditDatabaseLocal'
       },
       isReportDatabaseLocal: {
-        caption: 'isReportDatabaseLocal'
+        __caption__: 'isReportDatabaseLocal'
       },
       additionalPluginsSettings: {
-        caption: 'additionalPluginsSettings'
+        __caption__: 'additionalPluginsSettings'
       },
       additionalPluginsSettingsStr: {
-        caption: 'additionalPluginsSettingsStr'
+        __caption__: 'additionalPluginsSettingsStr'
       },
       oracleConnectionString: {
-        caption: 'oracleConnectionString'
+        __caption__: 'oracleConnectionString'
       },
       moduleSettings: {
-        caption: 'moduleSettings',
+        __caption__: 'moduleSettings',
         moduleSettingType: {
-          caption: 'moduleSettingType',
+          __caption__: 'moduleSettingType',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           }
         },
         valueXML: {
-          caption: 'valueXML'
+          __caption__: 'valueXML'
         },
         stage: {
-          caption: 'stage'
+          __caption__: 'stage'
         }
       }
     },
     EditPostgreSqlDirectGenerator: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       typeMapPostgre: {
-        caption: 'typeMapPostgre'
+        __caption__: 'typeMapPostgre'
       },
       postgreConnectionString: {
-        caption: 'postgreConnectionString'
+        __caption__: 'postgreConnectionString'
       },
       typeMapPostgreStr: {
-        caption: 'typeMapPostgreStr'
+        __caption__: 'typeMapPostgreStr'
       },
       additionalPluginsSettingsStr: {
-        caption: 'additionalPluginsSettingsStr'
+        __caption__: 'additionalPluginsSettingsStr'
       },
       doNotDeleteExtraTables: {
-        caption: 'doNotDeleteExtraTables'
+        __caption__: 'doNotDeleteExtraTables'
       },
       additionalPluginsSettings: {
-        caption: 'additionalPluginsSettings'
+        __caption__: 'additionalPluginsSettings'
       },
       isAuditDatabaseLocal: {
-        caption: 'isAuditDatabaseLocal'
+        __caption__: 'isAuditDatabaseLocal'
       },
       isReportDatabaseLocal: {
-        caption: 'isReportDatabaseLocal'
+        __caption__: 'isReportDatabaseLocal'
       },
       moduleSettings: {
-        caption: 'moduleSettings',
+        __caption__: 'moduleSettings',
         moduleSettingType: {
-          caption: 'moduleSettingType',
+          __caption__: 'moduleSettingType',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           }
         },
         valueXML: {
-          caption: 'valueXML'
+          __caption__: 'valueXML'
         },
         stage: {
-          caption: 'stage'
+          __caption__: 'stage'
         }
       }
     },
@@ -452,342 +461,342 @@ export default {
     },
     EditRightManagementGenerator: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       sourceAzStoragePath: {
-        caption: 'sourceAzStoragePath'
+        __caption__: 'sourceAzStoragePath'
       },
       defaultAccessType: {
-        caption: 'defaultAccessType'
+        __caption__: 'defaultAccessType'
       },
       additionalPluginsSettingsStr: {
-        caption: 'additionalPluginsSettingsStr'
+        __caption__: 'additionalPluginsSettingsStr'
       }
     },
     EditSQLGenerator: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       sQLPath: {
-        caption: 'sQLPath'
+        __caption__: 'sQLPath'
       },
       typeMapSQLStr: {
-        caption: 'typeMapSQLStr'
+        __caption__: 'typeMapSQLStr'
       },
       typeMapSQL: {
-        caption: 'typeMapSQL'
+        __caption__: 'typeMapSQL'
       },
       additionalPluginsSettings: {
-        caption: 'additionalPluginsSettings'
+        __caption__: 'additionalPluginsSettings'
       },
       additionalPluginsSettingsStr: {
-        caption: 'additionalPluginsSettingsStr'
+        __caption__: 'additionalPluginsSettingsStr'
       },
       moduleSettings: {
-        caption: 'moduleSettings',
+        __caption__: 'moduleSettings',
         moduleSettingType: {
-          caption: 'moduleSettingType',
+          __caption__: 'moduleSettingType',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           }
         },
         valueXML: {
-          caption: 'valueXML'
+          __caption__: 'valueXML'
         },
         stage: {
-          caption: 'stage'
+          __caption__: 'stage'
         }
       }
     },
     EditVBGenerator: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       company: {
-        caption: 'company'
+        __caption__: 'company'
       },
       product: {
-        caption: 'product'
+        __caption__: 'product'
       },
       copyright: {
-        caption: 'copyright'
+        __caption__: 'copyright'
       },
       version: {
-        caption: 'version'
+        __caption__: 'version'
       },
       dataObjectNameSpace: {
-        caption: 'dataObjectNameSpace'
+        __caption__: 'dataObjectNameSpace'
       },
       sourceCodeVBPath: {
-        caption: 'sourceCodeVBPath'
+        __caption__: 'sourceCodeVBPath'
       },
       typeMapVBStr: {
-        caption: 'typeMapVBStr'
+        __caption__: 'typeMapVBStr'
       },
       typeMapVB: {
-        caption: 'typeMapVB'
+        __caption__: 'typeMapVB'
       },
       defaultBaseClass: {
-        caption: 'defaultBaseClass'
+        __caption__: 'defaultBaseClass'
       },
       defaultDetailArrayClass: {
-        caption: 'defaultDetailArrayClass'
+        __caption__: 'defaultDetailArrayClass'
       },
       defaultEditScriptName: {
-        caption: 'defaultEditScriptName'
+        __caption__: 'defaultEditScriptName'
       },
       defaultListScriptName: {
-        caption: 'defaultListScriptName'
+        __caption__: 'defaultListScriptName'
       },
       signAssemblies: {
-        caption: 'signAssemblies'
+        __caption__: 'signAssemblies'
       }
     },
     FormDesigner_ProjectE: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       product: {
-        caption: 'product'
+        __caption__: 'product'
       },
       configuration: {
-        caption: 'configuration',
+        __caption__: 'configuration',
         project: {
-          caption: 'project',
+          __caption__: 'project',
           repository: {
-            caption: 'repository'
+            __caption__: 'repository'
           }
         }
       }
     },
     FormDesigner_ProjectL: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       product: {
-        caption: 'product'
+        __caption__: 'product'
       },
       configuration: {
-        caption: 'configuration',
+        __caption__: 'configuration',
         project: {
-          caption: 'project',
+          __caption__: 'project',
           repository: {
-            caption: 'repository'
+            __caption__: 'repository'
           }
         }
       }
     },
     Generator: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       company: {
-        caption: 'company'
+        __caption__: 'company'
       },
       product: {
-        caption: 'product'
+        __caption__: 'product'
       },
       copyright: {
-        caption: 'copyright'
+        __caption__: 'copyright'
       },
       version: {
-        caption: 'version'
+        __caption__: 'version'
       },
       dataObjectNameSpace: {
-        caption: 'dataObjectNameSpace'
+        __caption__: 'dataObjectNameSpace'
       },
       sourceCodeCSPath: {
-        caption: 'sourceCodeCSPath'
+        __caption__: 'sourceCodeCSPath'
       },
       sourceCodeVBPath: {
-        caption: 'sourceCodeVBPath'
+        __caption__: 'sourceCodeVBPath'
       },
       sQLPath: {
-        caption: 'sQLPath'
+        __caption__: 'sQLPath'
       },
       typeMapCSStr: {
-        caption: 'typeMapCSStr'
+        __caption__: 'typeMapCSStr'
       },
       typeMapVBStr: {
-        caption: 'typeMapVBStr'
+        __caption__: 'typeMapVBStr'
       },
       typeMapSQLStr: {
-        caption: 'typeMapSQLStr'
+        __caption__: 'typeMapSQLStr'
       },
       typeMapAccessStr: {
-        caption: 'typeMapAccessStr'
+        __caption__: 'typeMapAccessStr'
       },
       typeMapOracleStr: {
-        caption: 'typeMapOracleStr'
+        __caption__: 'typeMapOracleStr'
       },
       typeMapPostgreStr: {
-        caption: 'typeMapPostgreStr'
+        __caption__: 'typeMapPostgreStr'
       },
       defaultBaseClass: {
-        caption: 'defaultBaseClass'
+        __caption__: 'defaultBaseClass'
       },
       defaultDetailArrayClass: {
-        caption: 'defaultDetailArrayClass'
+        __caption__: 'defaultDetailArrayClass'
       },
       connectionString: {
-        caption: 'connectionString'
+        __caption__: 'connectionString'
       },
       oracleConnectionString: {
-        caption: 'oracleConnectionString'
+        __caption__: 'oracleConnectionString'
       },
       postgreConnectionString: {
-        caption: 'postgreConnectionString'
+        __caption__: 'postgreConnectionString'
       },
       additionalPluginsSettingsStr: {
-        caption: 'additionalPluginsSettingsStr'
+        __caption__: 'additionalPluginsSettingsStr'
       },
       defaultEditScriptName: {
-        caption: 'defaultEditScriptName'
+        __caption__: 'defaultEditScriptName'
       },
       defaultListScriptName: {
-        caption: 'defaultListScriptName'
+        __caption__: 'defaultListScriptName'
       },
       sourceAzStoragePath: {
-        caption: 'sourceAzStoragePath'
+        __caption__: 'sourceAzStoragePath'
       },
       operationsEnumPacket: {
-        caption: 'operationsEnumPacket'
+        __caption__: 'operationsEnumPacket'
       },
       operationsEnumNamespace: {
-        caption: 'operationsEnumNamespace'
+        __caption__: 'operationsEnumNamespace'
       },
       signAssemblies: {
-        caption: 'signAssemblies'
+        __caption__: 'signAssemblies'
       },
       auditEnabled: {
-        caption: 'auditEnabled'
+        __caption__: 'auditEnabled'
       },
       isAuditDatabaseLocal: {
-        caption: 'isAuditDatabaseLocal'
+        __caption__: 'isAuditDatabaseLocal'
       },
       defaultWriteMode: {
-        caption: 'defaultWriteMode'
+        __caption__: 'defaultWriteMode'
       },
       isReportDatabaseLocal: {
-        caption: 'isReportDatabaseLocal'
+        __caption__: 'isReportDatabaseLocal'
       },
       typeDefinitions: {
         __caption__: 'typeDefinitions',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         caption: {
-          caption: 'caption'
+          __caption__: 'caption'
         },
         mapTypeName: {
-          caption: 'mapTypeName'
+          __caption__: 'mapTypeName'
         },
         mapTypeAssemblyName: {
-          caption: 'mapTypeAssemblyName'
+          __caption__: 'mapTypeAssemblyName'
         },
         formatAttribute: {
-          caption: 'formatAttribute'
+          __caption__: 'formatAttribute'
         }
       },
       controlTypes: {
-        caption: 'controlTypes',
+        __caption__: 'controlTypes',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         designerHtmlTemplate: {
-          caption: 'designerHtmlTemplate'
+          __caption__: 'designerHtmlTemplate'
         },
         designerMetadataXml: {
-          caption: 'designerMetadataXml'
+          __caption__: 'designerMetadataXml'
         },
         editedType: {
-          caption: 'editedType',
+          __caption__: 'editedType',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           }
         }
       },
       moduleSettings: {
-        caption: 'moduleSettings',
+        __caption__: 'moduleSettings',
         moduleSettingType: {
-          caption: 'moduleSettingType',
+          __caption__: 'moduleSettingType',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           }
         },
         valueXML: {
-          caption: 'valueXML'
+          __caption__: 'valueXML'
         },
         stage: {
-          caption: 'stage'
+          __caption__: 'stage'
         }
       }
     },
     IntelliSearchPluginIndexing: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       changeDate: {
-        caption: 'changeDate'
+        __caption__: 'changeDate'
       },
       lastIndexDate: {
-        caption: 'lastIndexDate'
+        __caption__: 'lastIndexDate'
       },
       indexComment: {
-        caption: 'indexComment'
+        __caption__: 'indexComment'
       },
       typeMapCSStr: {
-        caption: 'typeMapCSStr'
+        __caption__: 'typeMapCSStr'
       },
       serializedIndex: {
-        caption: 'serializedIndex'
+        __caption__: 'serializedIndex'
       }
     },
     IntelliSearchPluginLight: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       changeDate: {
-        caption: 'changeDate'
+        __caption__: 'changeDate'
       },
       lastIndexDate: {
-        caption: 'lastIndexDate'
+        __caption__: 'lastIndexDate'
       },
       indexComment: {
-        caption: 'indexComment'
+        __caption__: 'indexComment'
       },
       configuration: {
-        caption: 'configuration',
+        __caption__: 'configuration',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         project: {
-          caption: 'project',
+          __caption__: 'project',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           },
           repository: {
-            caption: 'repository',
+            __caption__: 'repository',
             name: {
-              caption: 'name'
+              __caption__: 'name'
             }
           }
         }
@@ -795,62 +804,62 @@ export default {
     },
     IntelliSearchPluginSearch: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       changeDate: {
-        caption: 'changeDate'
+        __caption__: 'changeDate'
       },
       lastIndexDate: {
-        caption: 'lastIndexDate'
+        __caption__: 'lastIndexDate'
       },
       indexComment: {
-        caption: 'indexComment'
+        __caption__: 'indexComment'
       },
       configuration: {
-        caption: 'configuration',
+        __caption__: 'configuration',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         project: {
-          caption: 'project',
+          __caption__: 'project',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           },
           repository: {
-            caption: 'repository',
+            __caption__: 'repository',
             name: {
-              caption: 'name'
+              __caption__: 'name'
             }
           }
         }
       },
       serializedIndex: {
-        caption: 'serializedIndex'
+        __caption__: 'serializedIndex'
       }
     },
     LightStage: {
       company: {
-        caption: 'company'
+        __caption__: 'company'
       },
       product: {
-        caption: 'product'
+        __caption__: 'product'
       },
       sourceCodeCSPath: {
-        caption: 'sourceCodeCSPath'
+        __caption__: 'sourceCodeCSPath'
       },
       moduleSettings: {
-        caption: 'moduleSettings',
+        __caption__: 'moduleSettings',
         moduleSettingType: {
-          caption: 'moduleSettingType',
+          __caption__: 'moduleSettingType',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           }
         },
         valueXML: {
-          caption: 'valueXML'
+          __caption__: 'valueXML'
         },
         stage: {
-          caption: 'stage'
+          __caption__: 'stage'
         }
       }
     },
@@ -859,22 +868,25 @@ export default {
     },
     ListFormView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       changeUser: {
-        caption: 'changeUser'
+        __caption__: 'changeUser'
       },
       changeDate: {
-        caption: 'changeDate'
+        __caption__: 'changeDate'
       },
       createUser: {
-        caption: 'createUser'
+        __caption__: 'createUser'
       },
       createDate: {
-        caption: 'createDate'
+        __caption__: 'createDate'
+      },
+      configuration: {
+        __caption__: 'configuration'
       }
     },
     Prototyping: {
@@ -882,7 +894,7 @@ export default {
     },
     SearchRepObjView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       }
     },
     ViewPeeker: {

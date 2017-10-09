@@ -1,3 +1,5 @@
+import Ember from 'ember';
+import { Query } from 'ember-flexberry-data';
 import ListFormRoute from 'ember-flexberry/routes/list-form';
 
 export default ListFormRoute.extend({
@@ -43,4 +45,17 @@ export default ListFormRoute.extend({
     @default {}
   */
   developerUserSettings: { FdViewListForm: {} },
+
+  /**
+    Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
+
+    @property currentContext
+    @type FdCurrentProjectContextService
+  */
+  currentContext: Ember.inject.service('fd-current-project-context'),
+
+  objectListViewLimitPredicate() {
+    let clazz = this.get('currentContext').getCurrentClass();
+    return new Query.SimplePredicate('class', '==', clazz);
+  },
 });
