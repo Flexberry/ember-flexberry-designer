@@ -23,7 +23,7 @@ export default Ember.Component.extend({
       let editControlType =this.get('dataTypes').flexberryTypeToFD(this.model.editControl.type);
       if (this.selectedCol === undefined && this._prevRowsValues !== undefined ||
         this.selectedCol !== undefined &&
-        this._prevRowsTypes[this.selectedCol] >= 0 &&
+        typeof this._prevRowsTypes == 'object' &&
         this._prevRowsTypes[this.selectedCol] === editControlType ) {
         return this._prevRowsValues;
       }
