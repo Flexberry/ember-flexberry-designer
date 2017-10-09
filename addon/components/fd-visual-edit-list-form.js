@@ -23,7 +23,7 @@ export default Ember.Component.extend({
       let editControlType =this.get('dataTypes').flexberryTypeToFD(this.model.editControl.type);
       if (this.selectedCol === undefined && this._prevRowsValues !== undefined ||
         this.selectedCol !== undefined &&
-        this._prevRowsTypes[this.selectedCol] >= 0 &&
+        typeof this._prevRowsTypes == 'object' &&
         this._prevRowsTypes[this.selectedCol] === editControlType ) {
         return this._prevRowsValues;
       }
@@ -149,19 +149,35 @@ export default Ember.Component.extend({
     let posLeft = index;
     let posRight = index + 1;
     let newAttributes = [];
+    let newPrevRowsTypes = [];
+    let newPrevRowsValues = [];
     for (let i = 0; i < index; i++) {
       newAttributes.push(listAttributes[i]);
+      newPrevRowsTypes.push(this._prevRowsTypes[i]);
+      newPrevRowsValues.push(this._prevRowsValues[i]);
     }
 
     let newLeftAttr = listAttributes[posRight];
+    let newLeftType = this._prevRowsTypes[posRight];
+    let newLeftValues = this._prevRowsValues[posRight];
     let newRightAttr = listAttributes[index];
+    let newRightType = this._prevRowsTypes[index];
+    let newRightValues = this._prevRowsValues[index];
     newAttributes.push(newLeftAttr);
+    newPrevRowsTypes.push(newLeftType);
+    newPrevRowsValues.push(newLeftValues);
     newAttributes.push(newRightAttr);
+    newPrevRowsTypes.push(newRightType);
+    newPrevRowsValues.push(newRightValues);
     for (let i = index + 2; i < listAttributes.length; i++) {
       newAttributes.push(listAttributes[i]);
+      newPrevRowsTypes.push(this._prevRowsTypes[i]);
+      newPrevRowsValues.push(this._prevRowsValues[i]);
     }
 
     this._reNumberAttributes(newAttributes);
+    this._prevRowsTypes = newPrevRowsTypes;
+    this._prevRowsValues = newPrevRowsValues;
     if (this.selectedCol === posLeft) {
       Ember.set(this, 'selectedCol', posRight);
     } else {
