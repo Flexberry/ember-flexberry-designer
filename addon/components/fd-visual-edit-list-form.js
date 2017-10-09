@@ -28,27 +28,24 @@ export default Ember.Component.extend({
         return this._prevRowsValues;
       }
       let ret = [];
+      for (let nRow = 0; nRow < 4; nRow++) {
+        ret[nRow] = [];
+      }
       this._prevRowsTypes = [];
       let attributes = this.model.listform.listAttributes;
-      for (let i = 0; i < 4; i++) {
-        ret[i] = [];
-        for (let j = 0; j < attributes.length; j++) {
-          let attribute = attributes[j];
-          this._prevRowsTypes[j] = attribute.type;
-//           let value = this.get('dataTypes').randomValue(attribute.type);
+      for (let nCol=0; nCol < attributes.length; nCol++) {
+        let attribute = attributes[nCol];
+        this._prevRowsTypes[nCol] = attribute.type;
+        for (let nRow = 0; nRow < 4; nRow++) {
           let value;
-          if (this.selectedCol !== undefined &&  this.selectedCol !== j && this._prevRowsValues !== undefined) {
-            value = this._prevRowsValues[i][j];
+          if (this.selectedCol !== undefined &&  this.selectedCol !== nCol && this._prevRowsValues !== undefined) {
+            value = this._prevRowsValues[nRow][nCol];
           } else {
             value = this.get('dataTypes').randomValue(attribute.type);
           }
-//           let value = (this.selectedCol !== undefined &&  this.selectedCol !== j && this._prevRowsValues !== undefined) ?
-//             this._prevRowsValues[this.selectedCol] :
-//             this.get('dataTypes').randomValue(attribute.type);
-          ret[i][j] = value;
+          ret[nRow][nCol] = value;
         }
       }
-
       this._prevRowsValues = ret;
       return ret;
   }),
@@ -151,28 +148,37 @@ export default Ember.Component.extend({
     let newAttributes = [];
     let newPrevRowsTypes = [];
     let newPrevRowsValues = [];
-    for (let i = 0; i < index; i++) {
-      newAttributes.push(listAttributes[i]);
-      newPrevRowsTypes.push(this._prevRowsTypes[i]);
-      newPrevRowsValues.push(this._prevRowsValues[i]);
+    let nCol;
+    for (let nRow = 0; nRow < this._prevRowsValues.length; nRow++) {
+      newPrevRowsValues[nRow] = [];
     }
 
-    let newLeftAttr = listAttributes[posRight];
-    let newLeftType = this._prevRowsTypes[posRight];
-    let newLeftValues = this._prevRowsValues[posRight];
-    let newRightAttr = listAttributes[index];
-    let newRightType = this._prevRowsTypes[index];
-    let newRightValues = this._prevRowsValues[index];
-    newAttributes.push(newLeftAttr);
-    newPrevRowsTypes.push(newLeftType);
-    newPrevRowsValues.push(newLeftValues);
-    newAttributes.push(newRightAttr);
-    newPrevRowsTypes.push(newRightType);
-    newPrevRowsValues.push(newRightValues);
-    for (let i = index + 2; i < listAttributes.length; i++) {
-      newAttributes.push(listAttributes[i]);
-      newPrevRowsTypes.push(this._prevRowsTypes[i]);
-      newPrevRowsValues.push(this._prevRowsValues[i]);
+    for (nCol = 0; nCol < posLeft; nCol++) {
+      newAttributes[nCol] = listAttributes[nCol];
+      newPrevRowsTypes[nCol] = this._prevRowsTypes[nCol];
+      for (let nRow = 0; nRow < this._prevRowsValues.length; nRow++) {
+        newPrevRowsValues[nRow][nCol] =  this._prevRowsValues[nRow][nCol];
+      }
+    }
+
+    newAttributes[posLeft] = listAttributes[posRight];
+    newPrevRowsTypes[posLeft] = this._prevRowsTypes[posRight];
+    for (let nRow = 0; nRow < this._prevRowsValues.length; nRow++) {
+      newPrevRowsValues[nRow][posLeft] =  this._prevRowsValues[nRow][posRight];
+    }
+
+    newAttributes[posRight] = listAttributes[posLeft];
+    newPrevRowsTypes[posRight] = this._prevRowsTypes[posLeft];
+    for (let nRow = 0; nRow < this._prevRowsValues.length; nRow++) {
+      newPrevRowsValues[nRow][posRight] =  this._prevRowsValues[nRow][posLeft];
+    }
+
+    for (nCol += 2; nCol < listAttributes.length; nCol++) {
+      newAttributes[nCol] = listAttributes[nCol];
+      newPrevRowsTypes[nCol] = this._prevRowsTypes[nCol];
+      for (let nRow = 0; nRow < this._prevRowsValues.length; nRow++) {
+        newPrevRowsValues[nRow][nCol] =  this._prevRowsValues[nRow][nCol];
+      }
     }
 
     this._reNumberAttributes(newAttributes);
