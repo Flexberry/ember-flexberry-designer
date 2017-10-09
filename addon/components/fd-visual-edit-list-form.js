@@ -72,7 +72,7 @@ export default Ember.Component.extend({
     'model.editControl.defaultValue',
     function() {
     let ret = Ember.A();
-    let attributes = this.model.listform.listAttributes
+    let attributes = this.model.listform.listAttributes;
     for (let i = 0; i < attributes.length; i++) {
       let attribute = attributes[i];
       if (this.selectedCol === i) {
