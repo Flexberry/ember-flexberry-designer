@@ -561,7 +561,7 @@
   ],
   "hasMany": [
     {
-      "name": "devViews",
+      "name": "views",
       "relatedTo": "fd-dev-view",
       "inverse": "class"
     },
@@ -655,7 +655,7 @@
         {
           "projectionName": "AttributesView",
           "caption": "",
-          "name": "devViews",
+          "name": "views",
           "relatedTo": "fd-dev-view",
           "inverse": null
         }
@@ -814,7 +814,7 @@
         {
           "projectionName": "Prototyping",
           "caption": "",
-          "name": "devViews",
+          "name": "views",
           "relatedTo": "fd-dev-view",
           "inverse": null
         }
@@ -883,7 +883,7 @@
         {
           "projectionName": "ViewPeeker",
           "caption": "",
-          "name": "devViews",
+          "name": "views",
           "relatedTo": "fd-dev-view",
           "inverse": null
         }
@@ -1342,7 +1342,7 @@
         {
           "projectionName": "EditDataObjectClass",
           "caption": "",
-          "name": "devViews",
+          "name": "views",
           "relatedTo": "fd-dev-view",
           "inverse": null
         }
@@ -2046,7 +2046,7 @@
         {
           "projectionName": "EditPropertyLookups",
           "caption": "",
-          "name": "devViews",
+          "name": "views",
           "relatedTo": "fd-dev-view",
           "inverse": null
         }
@@ -2612,7 +2612,7 @@
         {
           "projectionName": "Generator",
           "caption": "",
-          "name": "devViews",
+          "name": "views",
           "relatedTo": "fd-dev-view",
           "inverse": null
         }
@@ -2866,7 +2866,7 @@
         {
           "projectionName": "Prototyping",
           "caption": "",
-          "name": "devViews",
+          "name": "views",
           "relatedTo": "fd-dev-view",
           "inverse": null
         }
@@ -3164,7 +3164,7 @@
         {
           "projectionName": "ViewPeeker",
           "caption": "",
-          "name": "devViews",
+          "name": "views",
           "relatedTo": "fd-dev-view",
           "inverse": null
         }

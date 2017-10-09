@@ -45,8 +45,8 @@ export default {
           __caption__: 'class'
         }
       },
-      devViews: {
-        __caption__: 'devViews',
+      views: {
+        __caption__: 'views',
         name: {
           __caption__: 'name'
         },
@@ -172,8 +172,8 @@ export default {
           __caption__: 'trim'
         }
       },
-      devViews: {
-        __caption__: 'devViews',
+      viwes: {
+        __caption__: 'viwes',
         name: {
           __caption__: 'name'
         },
@@ -275,8 +275,8 @@ export default {
       stereotype: {
         __caption__: 'stereotype'
       },
-      devViews: {
-        __caption__: 'devViews',
+      viwes: {
+        __caption__: 'viwes',
         name: {
           __caption__: 'name'
         }
@@ -649,8 +649,8 @@ export default {
         }
         }
       },
-      devViews: {
-        __caption__: 'devViews',
+      viwes: {
+        __caption__: 'viwes',
         name: {
           __caption__: 'name'
         },
@@ -1339,8 +1339,8 @@ export default {
           }
         }
       },
-      devViews: {
-        __caption__: 'devViews',
+      viwes: {
+        __caption__: 'viwes',
         name: {
           __caption__: 'name'
         },
@@ -1984,8 +1984,8 @@ export default {
           }
         }
       },
-      devViews: {
-        __caption__: 'devViews',
+      viwes: {
+        __caption__: 'viwes',
         name: {
           __caption__: 'name'
         },
@@ -2113,8 +2113,8 @@ export default {
       nameStr: {
         __caption__: 'nameStr'
       },
-      devViews: {
-        __caption__: 'devViews',
+      viwes: {
+        __caption__: 'viwes',
         name: {
           __caption__: 'name'
         },
@@ -2269,8 +2269,8 @@ export default {
       description: {
         __caption__: 'description'
       },
-      devViews: {
-        __caption__: 'devViews',
+      viwes: {
+        __caption__: 'viwes',
         name: {
           __caption__: 'name'
         }
