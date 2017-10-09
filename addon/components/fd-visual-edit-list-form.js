@@ -20,20 +20,22 @@ export default Ember.Component.extend({
     'model.listform.listAttributes',
     'model.editControl.type',
     function() {
-      let editControlType =this.get('dataTypes').flexberryTypeToFD(this.model.editControl.type);
+      let editControlType = this.get('dataTypes').flexberryTypeToFD(this.model.editControl.type);
       if (this.selectedCol === undefined && this._prevRowsValues !== undefined ||
         this.selectedCol !== undefined &&
         typeof this._prevRowsTypes === 'object' &&
-        this._prevRowsTypes[this.selectedCol] === editControlType ) {
+        this._prevRowsTypes[this.selectedCol] === editControlType) {
         return this._prevRowsValues;
       }
+
       let ret = [];
       for (let nRow = 0; nRow < 4; nRow++) {
         ret[nRow] = [];
       }
+
       this._prevRowsTypes = [];
       let attributes = this.model.listform.listAttributes;
-      for (let nCol=0; nCol < attributes.length; nCol++) {
+      for (let nCol = 0; nCol < attributes.length; nCol++) {
         let attribute = attributes[nCol];
         this._prevRowsTypes[nCol] = attribute.type;
         for (let nRow = 0; nRow < 4; nRow++) {
@@ -43,13 +45,15 @@ export default Ember.Component.extend({
           } else {
             value = this.get('dataTypes').randomValue(attribute.type);
           }
+
           ret[nRow][nCol] = value;
         }
       }
+
       this._prevRowsValues = ret;
       return ret;
-  }),
-
+    }
+  ),
 
   previousSelectedCol: undefined,
 
@@ -75,9 +79,10 @@ export default Ember.Component.extend({
       if (this.selectedCol === i) {
         let editControl = this.model.editControl;
         attribute.name = editControl.name;
-        attribute.type =this.get('dataTypes').flexberryTypeToFD(editControl.type);
+        attribute.type = this.get('dataTypes').flexberryTypeToFD(editControl.type);
         attribute.defaultValue = editControl.defaultValue;
       }
+
       let obj = Ember.Object.create(attribute);
       ret.addObject(obj);
     }
@@ -266,7 +271,7 @@ export default Ember.Component.extend({
       editName += maxIndex;
       Ember.set(editControl, 'name', editName);
       Ember.set(editControl, 'type', editType);
-      newAttributes.push({ name: editName, type: editType});
+      newAttributes.push({ name: editName, type: editType });
 
       Ember.set(this, 'selectedCol', newAttributes.length - 1);
       Ember.set(this.model.listform, 'listAttributes', newAttributes);

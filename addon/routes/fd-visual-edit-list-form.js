@@ -30,7 +30,7 @@ export default Ember.Route.extend({
     let builder = new  Builder(this.store, 'fd-dev-class').
     selectByProjection('FdAttributesChangeView').
     byId(this.formId);
-    //select('id,name,description,stereotype,containersStr,attributes,attributes.name').
+    /*select('id,name,description,stereotype,containersStr,attributes,attributes.name').*/
     let promise = this.store.query('fd-dev-class', builder.build());
     return promise;
   },
