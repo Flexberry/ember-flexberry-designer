@@ -245,13 +245,29 @@ export default Ember.Component.extend({
     },
 
     attributeCreate() {
-      let attribute = {
-        name: '',
-        type: 'string',
-        notNull: false,
-        defaultValue: ''
-      };
-      let newAttributes = this._attributeCreate(this.model.listform.listAttributes, attribute);
+      let editControl = this.model.editControl;
+      let listAttributes = this.model.listform.listAttributes;
+      let editType = editControl.type === undefined ? 'string' : editControl.type;
+      let editName = this.selectedCol === undefined || editControl.name === undefined ? 'NewAttribute_' : editControl.name.trim() + '_';
+      Ember.set(this, 'selectedCol', undefined);
+      let newAttributes = [];
+      let maxIndex = 1;
+      for (let i = 0; i < listAttributes.length; i++) {
+        let attribute = listAttributes[i];
+        newAttributes.push(attribute);
+        if (attribute.name.substr(0, editName.length) === editName) {
+          let copy = parseInt(attribute.name.substr(editName.length));
+          if (!isNaN(copy)) {
+            maxIndex = copy + 1;
+          }
+        }
+      }
+
+      editName += maxIndex;
+      Ember.set(editControl, 'name', editName);
+      Ember.set(editControl, 'type', editType);
+      newAttributes.push({ name: editName, type: editType});
+
       Ember.set(this, 'selectedCol', newAttributes.length - 1);
       Ember.set(this.model.listform, 'listAttributes', newAttributes);
     },
