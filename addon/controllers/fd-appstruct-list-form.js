@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import FlexberryTreenodeActionsHandlerMixin from 'ember-flexberry/mixins/flexberry-treenode-actions-handler';
 import TreeNodeObject from 'ember-flexberry/objects/tree-node';
+import { Query } from 'ember-flexberry-data';
+/*const { Builder, FilterOperator } = Query;*/
 
 export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
 
@@ -75,7 +77,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     Ember.set(this, 'jsonRightTreeNodes', this._jsTreeToFlexberryTree(jsTree));
   },
 
-  _jsTreeToFlexberryTree: function (jsTree) {
+  _jsTreeToFlexberryTree: function(jsTree) {
     if (!jsTree) {
       return null;
     }
@@ -88,7 +90,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
         nodes = this._jsTreeToFlexberryTree(node.nodes);
       }
 
-      let treeNode = { caption: node.caption, description: node.description };
+      let treeNode = { id: node.id, stereotype: node.stereotype, caption: node.caption, description: node.description };
       if (nodes) {
         treeNode.nodes = nodes;
       }
@@ -113,7 +115,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
         nodes = this._jsFlexberryTreeToTree(node.nodes);
       }
 
-      let treeNode = { caption: node.caption, description: node.description || '' };
+      let treeNode = { id: node.id, stereotype: node.stereotype, caption: node.caption, description: node.description || '' };
       if (nodes) {
         treeNode.nodes = nodes;
       }
@@ -262,6 +264,15 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     },
 
     editLeftNode() {
+      let lastClickedPath = this.lastClicked.left.path;
+      let node = this._findNodeByPath(this, lastClickedPath);
+      let nodeId = node.get('id');
+      switch (node.get('stereotype')) {
+        case '«listform»':
+          let url = '/fd-visual-edit-list-form?formId=' + nodeId;
+          this.transitionToRoute(url);
+          break;
+      }
     },
 
     listLeft() {
@@ -350,7 +361,14 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
 
     saveTree() {
       let rightTree = this._jsFlexberryTreeToTree(this.jsonRightTreeNodes[0].nodes);
-      this.get('store').findRecord('fd-dev-class', this.model.id).then(function(record) {
+
+      let builder = new Query.Builder(this.store)
+      .from('fd-dev-class')
+      .selectByProjection('SearchFormClassView')
+      .byId(this.model.id);
+      this.store.query('fd-dev-class', builder.build()).
+      /*this.get('store').findRecord('fd-dev-class', this.model.id).*/
+      then(function(record) {
         /*let stagePk = _this.get('currentProjectContext').getCurrentStagePk();*/
         record.set('containersStr', rightTree);
         /*record.set('stage', stagePk);*/

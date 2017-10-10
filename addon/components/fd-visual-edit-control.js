@@ -3,6 +3,14 @@ import { translationMacro as t } from 'ember-i18n';
 
 export default Ember.Component.extend({
   /**
+    Form component.
+
+    @property component
+    @type Object
+  */
+  component: Ember.inject.service(),
+
+  /**
     Label for field.
 
     @property label
@@ -28,7 +36,46 @@ export default Ember.Component.extend({
   type: 'text',
 
   /**
-    Dialog's 'name' textbox caption.
+    Prototipes.
+
+    @property prototypeBy
+    @type String[]
+   */
+  prototypeBy: {
+    bool: 'boolean',
+    string: 'string'
+  },
+
+  /**
+    Is null value.
+
+    @property isNull
+    @type Boolean
+   */
+  isNull: false,
+
+  /**
+    Type of component.
+
+    @property componentTypes
+    @type String[]
+   */
+  componentTypes: {
+    bool: 'boolean',
+    string: 'string'
+  },
+
+  /**
+    Control's 'prototypeBy' dropdown caption.
+
+    @property prototypeByDropdownCaption
+    @type String
+    @default t('components.fd-visual-control.prototypeBy')
+  */
+  prototypeByDropdownCaption: t('components.fd-visual-control.prototypeBy'),
+
+  /**
+    Control's 'name' textbox caption.
 
     @property nameTextboxCaption
     @type String
@@ -37,7 +84,7 @@ export default Ember.Component.extend({
   nameTextboxCaption: t('components.fd-visual-control.name'),
 
   /**
-    Dialog's 'name' textbox caption.
+    Control's 'type' dropdown caption.
 
     @property typeDropdownCaption
     @type String
@@ -46,7 +93,7 @@ export default Ember.Component.extend({
   typeDropdownCaption: t('components.fd-visual-control.type'),
 
   /**
-    Dialog's 'name' textbox caption.
+    Control's 'isNull' checkbox caption.
 
     @property isNullCheckboxCaption
     @type String
@@ -55,7 +102,7 @@ export default Ember.Component.extend({
   isNullCheckboxCaption: t('components.fd-visual-control.isNull'),
 
   /**
-    Dialog's 'name' textbox caption.
+    Control's 'defaultValue' textbox caption.
 
     @property defaultValueTextboxCaption
     @type String
@@ -64,12 +111,18 @@ export default Ember.Component.extend({
   defaultValueTextboxCaption: t('components.fd-visual-control.defaultValue'),
 
   /**
-    Dialog's 'name' textbox caption.
-
-    @property readonlyCheckboxCaption
-    @type String
-    @default t('components.fd-visual-control.readonly')
+      Initializes component.
   */
-  readonlyCheckboxCaption: t('components.fd-visual-control.readonly'),
+  init() {
+    this._super(...arguments);
+  }
+
+  // didInsertElement() {
+  //   this._super(...arguments);
+  // },
+  //
+  // didReceiveAttrs() {
+  //   let _name = this.get('_name');
+  // },
 
 });

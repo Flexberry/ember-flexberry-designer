@@ -4,14 +4,15 @@ export default Ember.Route.extend({
   model() {
     this.get('store').pushPayload({
       data: {
-        id: 1,
+        prototypeBy: undefined,
         name: 'Some name',
-        description: 'Description',
-        components: {}
+        type: undefined,
+        isNull: false,
+        defaultValue: undefined
       }
     });
 
     let store = this.get('store');
-    return store.createRecord('fd-visual-edit-form', {});
+    return store.createRecord('fd-visual-edit-control', {});
   }
 });

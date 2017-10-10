@@ -18,6 +18,7 @@ import FdStageEditFormForm from './forms/fd-stage-edit-form';
 import FdSystemEditFormForm from './forms/fd-system-edit-form';
 import FdViewEditFormForm from './forms/fd-view-edit-form';
 import FdVisualEditFormForm from './forms/fd-visual-edit-form';
+import FdVisualEditListFormForm from './forms/fd-visual-edit-list-form';
 import FdGenerationProcessForm from './forms/fd-generation-process-form';
 import FdAdModel from './models/fd-ad';
 import FdAggregationModel from './models/fd-aggregation';
@@ -173,6 +174,7 @@ Ember.$.extend(true, translations, {
     'fd-system-edit-form': FdSystemEditFormForm,
     'fd-view-edit-form': FdViewEditFormForm,
     'fd-visual-edit-form': FdVisualEditFormForm,
+    'fd-visual-edit-list-form': FdVisualEditListFormForm,
     'fd-generation-process-form': FdGenerationProcessForm
   },
 
