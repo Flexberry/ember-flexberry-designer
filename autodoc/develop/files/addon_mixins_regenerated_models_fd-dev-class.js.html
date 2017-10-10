@@ -868,10 +868,15 @@ export let defineProjections = function (modelClass) {
       pBSetStart: Projection.attr(&#x27;&#x27;)
     }),
     formViews: Projection.hasMany(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
-      viewForForm: Projection.attr(&#x27;&#x27;),
+      dataObjectTypesStr: Projection.attr(&#x27;&#x27;),
       view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+        class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
 
-      }, { hidden: true })
+        })
+      }),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+      })
     }),
     methods: Projection.hasMany(&#x27;fd-dev-method&#x27;, &#x27;&#x27;, {
       accessModifier: Projection.attr(&#x27;&#x27;),
@@ -1515,6 +1520,21 @@ export let defineProjections = function (modelClass) {
       definition: Projection.attr(&#x27;&#x27;),
       class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
 
+      })
+    })
+  });
+  modelClass.defineProjection(&#x27;FdAttributesForForm&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    formViews: Projection.hasMany(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+      }),
+      views: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+        definition: Projection.attr(&#x27;&#x27;),
+        class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+          name: Projection.attr(&#x27;&#x27;)
+        })
       })
     })
   });
