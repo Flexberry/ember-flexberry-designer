@@ -102,7 +102,7 @@ export default Ember.Component.extend({
 
     for (let tr =  Ember.$('#attributeList')[0]; tr; tr = tr.nextElementSibling) {
       let tds = tr.children;
-      if (typeof this.previousSelectedCol !== 'undefined') {
+      if (typeof this.previousSelectedCol !== 'undefined' && this.previousSelectedCol < tds.length - 1) {
         tds[this.previousSelectedCol + 1].className = '';
       }
 
@@ -220,17 +220,6 @@ export default Ember.Component.extend({
     return newAttributes;
   },
 
-  _attributeCreate: function(listAttributes, attribute) {
-    let newAttributes = [];
-    for (let i = 0; i < listAttributes.length; i++) {
-      newAttributes.push(listAttributes[i]);
-    }
-
-    newAttributes.push(attribute);
-    this._reNumberAttributes(newAttributes);
-    return newAttributes;
-  },
-
   actions: {
 
     attributeShow(index) {
@@ -277,6 +266,49 @@ export default Ember.Component.extend({
       Ember.set(this.model.listform, 'listAttributes', newAttributes);
     },
 
+    attributeDelete(index) {
+      let newAttributes = [];
+      let listAttributes = this.model.listform.listAttributes;
+      let newPrevRowsTypes = [];
+      let newPrevRowsValues = [];
+      let nCol;
+
+      for (let nRow = 0; nRow < this._prevRowsValues.length; nRow++) {
+        newPrevRowsValues[nRow] = [];
+      }
+
+      for (nCol = 0; nCol < index; nCol++) {
+        newAttributes.push(listAttributes[nCol]);
+        newPrevRowsTypes[nCol] = this._prevRowsTypes[nCol];
+        for (let nRow = 0; nRow < this._prevRowsValues.length; nRow++) {
+          newPrevRowsValues[nRow][nCol] =  this._prevRowsValues[nRow][nCol];
+        }
+      }
+      let newNCol = nCol;
+      nCol = nCol + 1 ;
+      for (; nCol < listAttributes.length; nCol++) {
+        newAttributes.push(listAttributes[nCol]);
+        newPrevRowsTypes[newNCol] = this._prevRowsTypes[nCol];
+        for (let nRow = 0; nRow < this._prevRowsValues.length; nRow++) {
+          newPrevRowsValues[nRow][newNCol] =  this._prevRowsValues[nRow][nCol];
+          newNCol++;
+        }
+      }
+
+      this._prevRowsTypes = newPrevRowsTypes;
+      this._prevRowsValues = newPrevRowsValues;
+      this._reNumberAttributes(newAttributes);
+      if (this.selectedCol === index) {
+        Ember.set(this, 'selectedCol', undefined);
+      } else {
+        if (this.selectedCol > index) {
+          this.selectedCol -= 1;
+        }
+      }
+
+      Ember.set(this.model.listform, 'listAttributes', newAttributes);
+    },
+
     attributeLeft(index) {
       let newAttributes = this._attributeRight(this.model.listform.listAttributes, index - 1);
       Ember.set(this.model.listform, 'listAttributes', newAttributes);
@@ -284,11 +316,6 @@ export default Ember.Component.extend({
 
     attributeRight(index) {
       let newAttributes = this._attributeRight(this.model.listform.listAttributes, index);
-      Ember.set(this.model.listform, 'listAttributes', newAttributes);
-    },
-
-    attributeDelete(index) {
-      let newAttributes = this._attributeDelete(this.model.listform.listAttributes, index);
       Ember.set(this.model.listform, 'listAttributes', newAttributes);
     },
 
