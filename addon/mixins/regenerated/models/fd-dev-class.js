@@ -1433,7 +1433,7 @@ export let defineProjections = function (modelClass) {
       class: Projection.belongsTo('fd-dev-class', '', {
 
       }),
-      views: Projection.hasMany('fd-dev-view', '', {
+      view: Projection.belongsTo('fd-dev-view', '', {
         definition: Projection.attr(''),
         class: Projection.belongsTo('fd-dev-class', '', {
           name: Projection.attr('')
