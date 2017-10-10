@@ -284,8 +284,9 @@ export default Ember.Component.extend({
           newPrevRowsValues[nRow][nCol] =  this._prevRowsValues[nRow][nCol];
         }
       }
+
       let newNCol = nCol;
-      nCol = nCol + 1 ;
+      nCol = nCol + 1;
       for (; nCol < listAttributes.length; nCol++) {
         newAttributes.push(listAttributes[nCol]);
         newPrevRowsTypes[newNCol] = this._prevRowsTypes[nCol];
