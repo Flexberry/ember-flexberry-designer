@@ -771,10 +771,15 @@ export let defineProjections = function (modelClass) {
       pBSetStart: Projection.attr('')
     }),
     formViews: Projection.hasMany('fd-dev-form-view', '', {
-      viewForForm: Projection.attr(''),
+      dataObjectTypesStr: Projection.attr(''),
       view: Projection.belongsTo('fd-dev-view', '', {
+        class: Projection.belongsTo('fd-dev-class', '', {
 
-      }, { hidden: true })
+        })
+      }),
+      class: Projection.belongsTo('fd-dev-class', '', {
+
+      })
     }),
     methods: Projection.hasMany('fd-dev-method', '', {
       accessModifier: Projection.attr(''),
@@ -1418,6 +1423,21 @@ export let defineProjections = function (modelClass) {
       definition: Projection.attr(''),
       class: Projection.belongsTo('fd-dev-class', '', {
 
+      })
+    })
+  });
+  modelClass.defineProjection('FdAttributesForForm', 'fd-dev-class', {
+    name: Projection.attr(''),
+    stereotype: Projection.attr(''),
+    formViews: Projection.hasMany('fd-dev-form-view', '', {
+      class: Projection.belongsTo('fd-dev-class', '', {
+
+      }),
+      views: Projection.hasMany('fd-dev-view', '', {
+        definition: Projection.attr(''),
+        class: Projection.belongsTo('fd-dev-class', '', {
+          name: Projection.attr('')
+        })
       })
     })
   });
