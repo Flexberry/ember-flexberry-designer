@@ -4,10 +4,6 @@ import layout from '../templates/components/fd-visual-edit-list-form';
 export default Ember.Component.extend({
   layout,
 
-  errorMessages: null,
-
-  store: Ember.inject.service('store'),
-
   dataTypes: Ember.inject.service('fd-datatypes'),
 
   selectedCol: undefined,

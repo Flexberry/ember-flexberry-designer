@@ -248,7 +248,7 @@ export default Ember.Service.extend({
     object: 'object'
   },
 
-  flexberryTypeToFD(type) {
+  flexberryTypeToFD: function(type) {
     if (type === undefined) {
       return undefined;
     }
@@ -261,7 +261,7 @@ export default Ember.Service.extend({
     return ret;
   },
 
-  fDTypeToFlexberry(type) {
+  fDTypeToFlexberry: function(type) {
     for (let val in this._flexberryTypeToFD) {
       if (val === type) {
         return val;
