@@ -109,28 +109,6 @@ export default Ember.Component.extend({
     this.previousSelectedCol = this.selectedCol;
   },
 
-  _parseDefinition: function(definition) {
-    let ret = [];
-    let parser = new DOMParser();
-    let xmlDoc = parser.parseFromString(definition, 'text/xml');
-    if (xmlDoc) {
-      let view = xmlDoc.getElementsByTagName('View');
-      if (view.length > 0) {
-        let viewPropertiesList = view[0].getElementsByTagName('ViewPropertiesList');
-        if (viewPropertiesList.length > 0) {
-          let itemList = viewPropertiesList[0].getElementsByTagName('Item');
-          for (let item of itemList) {
-            let propertyName = item.getAttribute('PropertyName');
-            let caption = item.getAttribute('Caption');
-            ret.push({ propertyName:propertyName, caption:caption });
-          }
-        }
-      }
-    }
-
-    return ret;
-  },
-
   _reNumberAttributes: function(listAttributes) {
     for (let i = 0; i < listAttributes.length; i++) {
       let attribute = listAttributes[i];
