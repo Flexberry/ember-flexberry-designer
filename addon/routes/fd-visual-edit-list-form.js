@@ -37,9 +37,9 @@ export default Ember.Route.extend({
 
   setupController: function (controller, model) {
     let devClass = model.objectAt(0);
-    let formView=devClass.get('formViews').objectAt(0);
-    let view=formView.get('view');
-    let definition=controller._parseDefinition(view.get('definition'));
+    let formView = devClass.get('formViews').objectAt(0);
+    let view = formView.get('view');
+    let definition = controller._parseDefinition(view.get('definition'));
     model.listform = model.nextObject(0);
     model.editControl = {};
     let attributes = controller.attributes;
