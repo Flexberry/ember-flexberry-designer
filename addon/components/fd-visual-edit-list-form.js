@@ -92,6 +92,7 @@ export default Ember.Component.extend({
     if (!this.get('dataTypes')) {
       this.set('dataTypes', FdDataTypes.create());
     }
+
     return this._super();
   },
 
