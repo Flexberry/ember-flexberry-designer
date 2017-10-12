@@ -1,10 +1,12 @@
 import Ember from 'ember';
 import layout from '../templates/components/fd-visual-edit-list-form';
 
+import FdDataTypes from '../utils/fd-datatypes';
+
 export default Ember.Component.extend({
   layout,
 
-  dataTypes: Ember.inject.service('fd-datatypes'),
+  dataTypes: undefined,
 
   selectedCol: undefined,
 
@@ -85,6 +87,13 @@ export default Ember.Component.extend({
 
     return ret;
   }),
+
+  init() {
+    if (!this.get('dataTypes')) {
+      this.set('dataTypes', FdDataTypes.create());
+    }
+    return this._super();
+  },
 
   didRender: function() {
     this._super(...arguments);
