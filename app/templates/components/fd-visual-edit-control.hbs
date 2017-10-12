@@ -1,7 +1,7 @@
 <div class="field">
     <label>{{prototypeByDropdownCaption}}</label>
     {{flexberry-dropdown
-      items=popertyBy
+      items=avaliableControls
       value=model.prototypeBy
       class=undefined
     }}
@@ -15,9 +15,10 @@
 <div class="field">
     <label>{{typeDropdownCaption}}</label>
     {{flexberry-dropdown
-      items=componentTypes
+      items=controlTypes
       value=model.type
       class=undefined
+      onChange=(action 'controlTypeChange' model.type)
     }}
 </div>
 <div class="field">

@@ -3,12 +3,12 @@ import { translationMacro as t } from 'ember-i18n';
 
 export default Ember.Component.extend({
   /**
-    Form component.
+    Form control.
 
-    @property component
+    @property control
     @type Object
   */
-  component: Ember.inject.service(),
+  control: Ember.inject.service(),
 
   /**
     Label for field.
@@ -17,6 +17,8 @@ export default Ember.Component.extend({
     @type String
   */
   label: undefined,
+
+  model: undefined,
 
   /**
     Input value.
@@ -41,10 +43,7 @@ export default Ember.Component.extend({
     @property prototypeBy
     @type String[]
    */
-  prototypeBy: {
-    bool: 'boolean',
-    string: 'string'
-  },
+  prototypeBy: undefined,
 
   /**
     Is null value.
@@ -55,15 +54,46 @@ export default Ember.Component.extend({
   isNull: false,
 
   /**
-    Type of component.
+    Type of control.
 
-    @property componentTypes
+    @property controlTypes
     @type String[]
    */
-  componentTypes: {
-    bool: 'boolean',
-    string: 'string'
-  },
+  controlTypes: [
+    'bool',
+    'WebFile',
+    'char',
+    'string',
+    'guid',
+    'decimal',
+    'double',
+    'float',
+    'sbyte',
+    'short',
+    'byte',
+    'int',
+    'long',
+    'uint',
+    'ushort',
+    'ulong',
+    'DateTime',
+    'NullableDateTime',
+    'NullableDecimal',
+    'NullableInt',
+    'object',
+    'flexberry-textbox',
+    'flexberry-checkbox',
+    'flexberry-datepicker'
+  ],
+
+  controlType: undefined,
+
+  controls: undefined,
+
+  avaliableControls: Ember.computed('avaliableControls', function() {
+    let controls = this.get('controls');
+    return controls;
+  }),
 
   /**
     Control's 'prototypeBy' dropdown caption.
@@ -110,19 +140,64 @@ export default Ember.Component.extend({
   */
   defaultValueTextboxCaption: t('components.fd-visual-control.defaultValue'),
 
+  actions: {
+    controlTypeChange() {
+      switch (this.get('model.type')) {
+          case 'bool':
+            this.set('model.controlType', 'flexberry-checkbox');
+            break;
+
+          case 'char':
+          case 'string':
+            this.set('model.controlType', 'flexberry-textbox');
+            break;
+
+          case 'decimal':
+          case 'double':
+          case 'float':
+          case 'sbyte':
+          case 'short':
+          case 'byte':
+          case 'int':
+          case 'long':
+          case 'uint':
+          case 'ushort':
+          case 'ulong':
+            this.set('model.controlType', 'flexberry-textbox');
+            break;
+
+          case 'DateTime':
+            this.set('model.controlType', 'flexberry-datepicker');
+            break;
+          case 'NullableDateTime':
+            this.set('model.controlType', 'flexberry-datepicker');
+            break;
+
+          case 'NullableDecimal':
+            this.set('model.controlType', 'flexberry-textbox');
+            break;
+          case 'NullableInt':
+            this.set('model.controlType', 'flexberry-textbox');
+            break;
+
+          case 'object':
+            this.set('model.controlType', 'flexberry-textbox');
+            break;
+
+          default:
+            this.set('model.controlType', 'flexberry-textbox');
+        }
+    },
+  },
+
   /**
       Initializes component.
   */
   init() {
     this._super(...arguments);
-  }
+  },
 
-  // didInsertElement() {
-  //   this._super(...arguments);
-  // },
-  //
-  // didReceiveAttrs() {
-  //   let _name = this.get('_name');
-  // },
-
+  didInsertElement() {
+    this._super(...arguments);
+  },
 });

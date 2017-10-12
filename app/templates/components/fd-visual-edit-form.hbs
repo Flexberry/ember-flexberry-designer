@@ -27,19 +27,16 @@
             <i class="minus icon"></i>
         </button>
       </div>
-      <!-- components model here -->
-      <div class="field">
-          {{#each components as |component|}}
-          <label>{{component.name}}</label>
-            {{flexberry-textbox
-              value=component.name
-            }}
-          {{/each}}
-      </div>
+        {{#each controls as |control|}}
+          <div class="field control-field" onclick={{action "controlClick" control }}>
+            <label>{{control.name}}</label>
+            {{component control.controlType value=control.defaultValue}}
+          </div>
+        {{/each}}
     </div>
     <div class="six wide column">
       <div class="ui segment">
-        {{fd-visual-edit-control}}
+        {{fd-visual-edit-control model=selectedControl controls=model.controls}}
       </div>
     </div>
   </div>
