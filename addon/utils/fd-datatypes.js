@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export default Ember.Service.extend({
+export default Ember.Object.extend({
 
   _randomValue: {
     bool: function() {
@@ -43,23 +43,22 @@ export default Ember.Service.extend({
 
     guid: function() {
       return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        let r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+        let r = Math.random() * 16 | 0;
+        let v = c === 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
       });
     },
 
     decimal: function() {
-      return   (Math.random() * 1000000 - 500000).toFixed(2);
+      return (Math.random() * 1000000 - 500000).toFixed(2);
     },
-
 
     double: function() {
-      return   (Math.random() * 1000000 - 500000).toFixed(2);
+      return (Math.random() * 1000000 - 500000).toFixed(2);
     },
 
-
     float: function() {
-      return   (Math.random() * 1000000 - 500000).toFixed(2);
+      return (Math.random() * 1000000 - 500000).toFixed(2);
     },
 
     int: function() {
@@ -106,12 +105,12 @@ export default Ember.Service.extend({
     },
 
     DateTime: function() {
-      let ret = new Date(Math.floor(Math.random()*(2147483648)*1000));
+      let ret = new Date(Math.floor(Math.random() * 2147483648 * 1000));
       return ret;
     },
 
     NullableDateTime: function() {
-      let ret =  (Math.random() > 0.5) ? new Date(Math.floor(Math.random()*(2147483648)*1000)) : null;
+      let ret =  (Math.random() > 0.5) ? new Date(Math.floor(Math.random() * 2147483648 * 1000)) : null;
       return ret;
     },
 
@@ -123,7 +122,7 @@ export default Ember.Service.extend({
 
   _checkValue: {
     bool: function(value) {
-      let ret = value === 'true' || value === 'false' ;
+      let ret = value === 'true' || value === 'false';
       return ret;
     },
 
@@ -249,18 +248,20 @@ export default Ember.Service.extend({
     object: 'object'
   },
 
-  flexberryTypeToFD(type) {
+  flexberryTypeToFD: function(type) {
     if (type === undefined) {
       return undefined;
     }
+
     let ret = this._flexberryTypeToFD[type];
     if (ret === undefined) {
       ret = null;
     }
+
     return ret;
   },
 
-  fDTypeToFlexberry(type) {
+  fDTypeToFlexberry: function(type) {
     for (let val in this._flexberryTypeToFD) {
       if (val === type) {
         return val;
@@ -274,6 +275,7 @@ export default Ember.Service.extend({
     if (type === undefined) {
       type = 'string';
     }
+
     return this._randomValue[type]();
   },
 

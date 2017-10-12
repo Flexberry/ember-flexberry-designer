@@ -28,14 +28,18 @@ export default Ember.Route.extend({
     //    select('id,name,description,stereotype,containersStr,formViews,formViews.view,formViews.view.class,formViews.view.class.id,stage,stage.id').
 
     let builder = new  Builder(this.store, 'fd-dev-class').
-    selectByProjection('FdAttributesChangeView').
+    selectByProjection('FdAttributesForForm').
     byId(this.formId);
-    //select('id,name,description,stereotype,containersStr,attributes,attributes.name').
+    /*select('id,name,description,stereotype,containersStr,attributes,attributes.name').*/
     let promise = this.store.query('fd-dev-class', builder.build());
     return promise;
   },
 
   setupController: function (controller, model) {
+    /*let devClass = model.objectAt(0);
+    let formView = devClass.get('formViews').objectAt(0);
+    let view = formView.get('view');
+    let definition = controller._parseDefinition(view.get('definition'));*/
     model.listform = model.nextObject(0);
     model.editControl = {};
     let attributes = controller.attributes;

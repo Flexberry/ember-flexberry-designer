@@ -13,7 +13,4 @@ export default {
   'move-right-attr': 'Переместить вправо',
   'remove-attr': 'Удалить атрибут',
 
-  'unknown-attribute-type': 'Не указан тип атрибута',
-  'unknown-attribute-name': 'Не указано название атрибута',
-  'incorrect-default-value': "Неверное значение по умолчанию",
 };

@@ -80,6 +80,13 @@ export let defineProjections = function (modelClass) {
       name: Projection.attr('')
     }, { hidden: true })
   });
+  modelClass.defineProjection('FdAttributesView', 'fd-dev-view', {
+    name: Projection.attr(''),
+    definition: Projection.attr(''),
+    class: Projection.belongsTo('fd-dev-class', '', {
+
+    })
+  });
   modelClass.defineProjection('Generator', 'fd-dev-view', {
     name: Projection.attr(''),
     description: Projection.attr(''),
