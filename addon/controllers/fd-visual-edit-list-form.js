@@ -3,9 +3,16 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
   queryParams: ['formId'],
+
   listform: null,
+
   listforms: [],
-  attributes: [
+
+  listAttributes: [],
+
+  editControl: {},
+
+  attributes: [/*
   {
     name: 'Логин',
     nameStr: 'Логин',
@@ -106,7 +113,7 @@ export default Ember.Controller.extend({
     defaultValue: 'true',
     stored: true,
     accessModifier: 'Public'
-  },
+  },*/
   ],
 
   _parseDefinition: function(definition) {
@@ -142,6 +149,10 @@ export default Ember.Controller.extend({
     }
 
     return ret;
+  },
+
+  setAttributes: function(attributes) {
+    Ember.set(this, 'listAttributes', attributes);
   },
 
 });

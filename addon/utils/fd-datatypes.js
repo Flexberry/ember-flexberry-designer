@@ -29,7 +29,7 @@ export default Ember.Object.extend({
       return ret;
     },
 
-    WebFile: function() {
+    tFile: function() {
       let strs = [
         'http://flexberry.ru',
         'https://vk.com/flexberry',
@@ -136,7 +136,7 @@ export default Ember.Object.extend({
       return ret;
     },
 
-    WebFile: function(value) {
+    tFile: function(value) {
       let ret = typeof value === 'string';
       return ret;
     },
@@ -226,7 +226,8 @@ export default Ember.Object.extend({
 
   _flexberryTypeToFD: {
     boolean: 'bool',
-    WebFile: 'file',
+/*    WebFile: 'file',*/
+    WebFile: 'tFile',
     char: 'char',
     string: 'string',
     guid: 'guid',

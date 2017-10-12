@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import { Query } from 'ember-flexberry-data';
-const { Builder } = Query;
+// const { Builder } = Query;
+const { Builder, FilterOperator } = Query;
+
 
 export default Ember.Route.extend({
 
@@ -30,23 +32,61 @@ export default Ember.Route.extend({
     let builder = new  Builder(this.store, 'fd-dev-class').
     selectByProjection('FdAttributesForForm').
     byId(this.formId);
-    /*select('id,name,description,stereotype,containersStr,attributes,attributes.name').*/
+    /*selectByProjection('FdAttributesForForm').
+     *select('id,name,description,stereotype,containersStr,attributes,attributes.name').*/
     let promise = this.store.query('fd-dev-class', builder.build());
     return promise;
   },
 
   setupController: function (controller, model) {
-    /*let devClass = model.objectAt(0);
+    let devClass = model.objectAt(0);
     let formView = devClass.get('formViews').objectAt(0);
     let view = formView.get('view');
-    let definition = controller._parseDefinition(view.get('definition'));*/
-    model.listform = model.nextObject(0);
-    model.editControl = {};
-    let attributes = controller.attributes;
-    attributes.sort(function(a, b) { return a.orderNum - b.orderNum; });
-    attributes[0].firstPosition = true;
-    attributes[attributes.length - 1].lastPosition = true;
-    model.listform.listAttributes = attributes;
+    let definitions = controller._parseDefinition(view.get('definition'));
+    let viewClassId = view.get('class.id');
+    let builder = new  Builder(this.store, 'fd-dev-attribute').
+    selectByProjection('EditListForm').
+    where('class', FilterOperator.Eq, viewClassId);
+    let _this = this;
+    this.store.query('fd-dev-attribute', builder.build()).then(
+      function(classAttrs) {
+        let classAttributes = {};
+        for (let i=0; i< classAttrs.get('length'); i++) {
+          let classAttr = classAttrs.objectAt(i);
+          name =  classAttr.get('name');
+          classAttributes[name] = {
+            type: classAttr.get('type'),
+            defaultValue: classAttr.get('defaultValue'),
+          };
+         }
+        let attributes = [];
+        for (let i = 0; i < definitions.length; i++) {
+          let definition = definitions[i];
+          let propertyName = definition.propertyName;
+          if (propertyName in classAttributes) {
+            let classAttribute = classAttributes[propertyName];
+            attributes.push({
+              name: propertyName,
+              type: classAttribute.type,
+              defaultValue: classAttribute.defaultValue
+            });
+          }
+        }
+        /*alert(JSON.stringify(attributes));*/
+        controller.setAttributes(attributes);
+      },
+      function(data) {
+        alert('Error' + data);
+      }
+    );
+
+//     model.listform = model.nextObject(0);
+//     model.editControl = {};
+//     let attributes = controller.attributes;
+//     attributes.sort(function(a, b) { return a.orderNum - b.orderNum; });
+//     attributes[0].firstPosition = true;
+//     attributes[attributes.length - 1].lastPosition = true;
+//     model.listform.listAttributes = attributes;
     return this._super(controller, model);
   }
 
