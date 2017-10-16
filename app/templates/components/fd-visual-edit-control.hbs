@@ -4,6 +4,7 @@
       items=avaliableControls
       value=model.prototypeBy
       class=undefined
+      onChange=(action 'avaliableControlChange' model.prototypeBy)
     }}
 </div>
 <div class="field">
@@ -26,6 +27,7 @@
     {{flexberry-checkbox
       class="fluid"
       value=model.isNull
+      readonly=model.notNullable
     }}
 </div>
 <div class="field">

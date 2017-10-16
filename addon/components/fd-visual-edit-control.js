@@ -46,6 +46,14 @@ export default Ember.Component.extend({
   prototypeBy: undefined,
 
   /**
+    Is control not Nullable.
+
+    @property notNullable
+    @type Boolean
+   */
+  notNullable: false,
+
+  /**
     Is null value.
 
     @property isNull
@@ -81,18 +89,21 @@ export default Ember.Component.extend({
     'NullableDecimal',
     'NullableInt',
     'object',
-    'flexberry-textbox',
-    'flexberry-checkbox',
-    'flexberry-datepicker'
+    'flexberry-groupedit',
+    'flexberry-lookup'
   ],
 
   controlType: undefined,
 
   controls: undefined,
 
-  avaliableControls: Ember.computed('avaliableControls', function() {
+  avaliableControls: Ember.computed('avaliableControls', 'controls.[]', function() {
     let controls = this.get('controls');
-    return controls;
+    if (controls) {
+      return controls.map(item => item.get('name'));
+    } else {
+      return undefined;
+    }
   }),
 
   /**
@@ -141,53 +152,82 @@ export default Ember.Component.extend({
   defaultValueTextboxCaption: t('components.fd-visual-control.defaultValue'),
 
   actions: {
-    controlTypeChange() {
-      switch (this.get('model.type')) {
-          case 'bool':
-            this.set('model.controlType', 'flexberry-checkbox');
-            break;
 
-          case 'char':
-          case 'string':
-            this.set('model.controlType', 'flexberry-textbox');
-            break;
-
-          case 'decimal':
-          case 'double':
-          case 'float':
-          case 'sbyte':
-          case 'short':
-          case 'byte':
-          case 'int':
-          case 'long':
-          case 'uint':
-          case 'ushort':
-          case 'ulong':
-            this.set('model.controlType', 'flexberry-textbox');
-            break;
-
-          case 'DateTime':
-            this.set('model.controlType', 'flexberry-datepicker');
-            break;
-          case 'NullableDateTime':
-            this.set('model.controlType', 'flexberry-datepicker');
-            break;
-
-          case 'NullableDecimal':
-            this.set('model.controlType', 'flexberry-textbox');
-            break;
-          case 'NullableInt':
-            this.set('model.controlType', 'flexberry-textbox');
-            break;
-
-          case 'object':
-            this.set('model.controlType', 'flexberry-textbox');
-            break;
-
-          default:
-            this.set('model.controlType', 'flexberry-textbox');
-        }
+    avaliableControlChange() {
+      //TODO задать свойства модели из выбранного контрола.
     },
+
+    controlTypeChange() {
+      this.resetControl();
+      switch (this.get('model.type')) {
+        case 'bool':
+          this.set('model.controlType', 'flexberry-checkbox');
+          break;
+
+        case 'WebFile':
+          this.set('model.controlType', 'flexberry-file');
+          break;
+
+        case 'char':
+        case 'string':
+          this.set('model.controlType', 'flexberry-textbox');
+          break;
+
+        case 'decimal':
+        case 'double':
+        case 'float':
+        case 'sbyte':
+        case 'short':
+        case 'byte':
+        case 'int':
+        case 'long':
+        case 'uint':
+        case 'ushort':
+        case 'ulong':
+          this.set('model.controlType', 'flexberry-textbox');
+          break;
+
+        case 'DateTime':
+          this.set('model.controlType', 'flexberry-simpledatetime');
+          break;
+        case 'NullableDateTime':
+          this.set('model.controlType', 'flexberry-simpledatetime');
+          this.set('model.notNullable', false);
+          break;
+
+        case 'NullableDecimal':
+          this.set('model.controlType', 'flexberry-textbox');
+          this.set('model.notNullable', false);
+          break;
+        case 'NullableInt':
+          this.set('model.controlType', 'flexberry-textbox');
+          this.set('model.notNullable', false);
+          break;
+
+        case 'object':
+          this.set('model.controlType', 'flexberry-textbox');
+          break;
+
+        case 'flexberry-groupedit':
+          this.set('model.controlType', 'flexberry-groupedit');
+          break;
+
+        case 'flexberry-lookup':
+          this.set('model.controlType', 'flexberry-lookup');
+          break;
+
+        default:
+          this.set('model.controlType', 'flexberry-textbox');
+      }
+    },
+  },
+
+  resetControl() {
+    this.set('model.prototypeBy', undefined);
+    this.set('model.notNullable', true);
+    this.set('model.isNull', false);
+    this.set('model.value', undefined);
+    this.set('model.defaultValue', undefined);
   },
 
   /**

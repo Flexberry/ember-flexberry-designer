@@ -63,33 +63,34 @@ export default Ember.Component.extend({
   controls: undefined,
 
   actions: {
-    addComponent() {
+    addControl() {
       let store = this.get('store');
-      let model = this.get('model');
-
       let fdControlModel = store.createRecord('fd-visual-edit-control',
       {
-        name: 'New control'
+        isSelected: true,
+        name: 'New control',
+        notNullable: true,
       });
 
-      model.get('controls').pushObject(fdControlModel);
+      this.clearSelection();
+      this.get('model.controls').pushObject(fdControlModel);
+      this.set('selectedControl', fdControlModel);
     },
 
-    controlClick(control, event) {
+    controlClick(control) {
       this.set('selectedControl', control);
-
-      let selectedField = this.get('selectedField');
-      if (selectedField && selectedField.hasClass('selected-field')) {
-        selectedField.removeClass('selected-field ');
-      }
-
-      let $this = Ember.$(event.currentTarget);
-      $this.addClass('selected-field ');
-      this.set('selectedField', $this);
+      this.clearSelection();
+      control.set('isSelected', true);
     },
 
   },
 
+  clearSelection() {
+    let controls = this.get('model.controls');
+    controls.forEach(function(item) {
+      item.set('isSelected', false);
+    });
+  },
 
   /**
       Initializes component.
@@ -101,5 +102,4 @@ export default Ember.Component.extend({
   didInsertElement() {
     this._super(...arguments);
   },
-
 });

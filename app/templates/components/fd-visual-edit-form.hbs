@@ -16,7 +16,7 @@
   <div class="row">
     <div class="ten wide column">
       <div class="field">
-        <button {{action "addComponent"}}
+        <button {{action "addControl"}}
           class="ui ui-add button"
           title="Добавить">
             <i class="plus icon"></i>
@@ -28,9 +28,13 @@
         </button>
       </div>
         {{#each controls as |control|}}
-          <div class="field control-field" onclick={{action "controlClick" control }}>
+          <div class="field control-field {{if control.isSelected 'selected-field'}}" onclick={{action "controlClick" control }}>
             <label>{{control.name}}</label>
-            {{component control.controlType value=control.defaultValue}}
+            {{component control.controlType
+              value=control.value
+              readonly=control.isNull
+              componentName=control.name
+            }}
           </div>
         {{/each}}
     </div>
