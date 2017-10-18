@@ -18,6 +18,8 @@ export default Ember.Route.extend({
 
   associations: [],
 
+  aggregations: [],
+
   devClasses: {},
 
   queryParams: {
@@ -34,9 +36,20 @@ export default Ember.Route.extend({
 
   _getAssocListByStage(stagePk) {
     let builder = new  Builder(this.store, 'fd-dev-association').
-    selectByProjection('FormDesigner').
+    select('startRole,assocType,startClass,startClass.id,startClass.name,endClass.id,endClass.name,stage,stage.id').
     where('stage.id', FilterOperator.Eq, stagePk);
+    //        selectByProjection('FormDesigner').
     let promise = this.store.query('fd-dev-association', builder.build());
+    return promise;
+  },
+  _getAggregListByStage(stagePk) {
+    let builder = new  Builder(this.store, 'fd-dev-aggregation').
+    select('startRole,startClass,startClass.id,stage,stage.id').
+    //select('startRole,assocType,startClass,startClass.id,stage,stage.id').
+    //     selectByProjection('Edit').
+//     byId('04cdf5a0-4aa3-4f67-85d1-225420e465d6')
+   where('stage.id', FilterOperator.Eq, stagePk);
+    let promise = this.store.query('fd-dev-aggregation', builder.build());
     return promise;
   },
 
@@ -81,33 +94,50 @@ export default Ember.Route.extend({
 //     }
 //     );
 
-
-    this._getAssocListByStage(stagePk).then(
-      function (associationList) {
+    let promises = [];
+    promises.push(this._getAssocListByStage(stagePk));
+    promises.push(this._getAggregListByStage(stagePk));
+    Promise.all(promises).then(values => {
+      _this.associations = [];
+      _this.aggregations = [];
+      for (let i = 0; i < values.length; i++) {
+        let baseAssociationList = values[i];
         let startClassesIds = [];
-        for (let i = 0; i < associationList.get('length'); i++) {
-          let association = associationList.objectAt(i);
-          _this.devClasses[association.get('startClass.id')] = true;
-          _this.devClasses[association.get('endClass.id')] = true;
-          //           startClassesIds.push(association.get('startClass').id);
-          let startRole = association.get('startRole') === null ?
-            association.get('startClass.name'):
-            association.get('startRole');
-          _this.associations.push({
-            id: association.id,
-            startRole: startRole,
-            startClass:{
-              id: association.get('startClass').id,
-              name: association.get('startClass.name'),
-            },
-            endClass:{
-              id: association.get('endClass').id,
-              name: association.get('endClass.name'),
-            },
-          });
+        for (let i = 0; i < baseAssociationList.get('length'); i++) {
+          let baseAssociation = baseAssociationList.objectAt(i);
+          _this.devClasses[baseAssociation.get('startClass.id')] = true;
+          //           startClassesIds.push(baseAssociation.get('startClass').id);
+          let startRole = baseAssociation.get('startRole') === null ?
+            baseAssociation.get('startClass.name'):
+            baseAssociation.get('startRole');
+            if (baseAssociationList.modelName === 'fd-dev-association') {
+              _this.associations.push({
+                id: baseAssociation.id,
+                startRole: startRole,
+                startClass:{
+                  id: baseAssociation.get('startClass').id,
+                  name: baseAssociation.get('startClass.name'),
+                },
+                endClass:{
+                  id: baseAssociation.get('endClass').id,
+                  name: baseAssociation.get('endClass.name'),
+                },
+              });
+              _this.devClasses[baseAssociation.get('endClass.id')] = true;
+            } else {
+              _this.aggregations.push({
+                id: baseAssociation.id,
+                startRole: startRole,
+                startClass:{
+                  id: baseAssociation.get('startClass').id,
+                  name: baseAssociation.get('startClass.name'),
+                }
+              });
+            }
         }
-        let promises = [];
-        for (let classId in  _this.devClasses) {
+      }
+      let promises = [];
+      for (let classId in  _this.devClasses) {
           let builder = new  Builder(_this.store, 'fd-dev-class').
           select('id,name,stereotype,attributes,attributes.name,attributes.type,attributes.defaultValue,attributes.class').
           byId(classId);
@@ -115,7 +145,7 @@ export default Ember.Route.extend({
           //           selectByProjection('AttributesView').
         }
 //         alert('startClassesIds=' + _this.devClasses);
-        Promise.all(promises).then( values => {
+      Promise.all(promises).then( values => {
           for (let i = 0; i < values.length; i++) {
             let value = values[i];
             let devClass = values[i].objectAt(0);
@@ -138,11 +168,10 @@ export default Ember.Route.extend({
           }
 //            alert('Devs=' + JSON.stringify(_this.devClasses));
 //            alert('viewClassId='+_this.viewClassId + '\ndefinition=' + JSON.stringify(_this.definition));
-          _this.controller.setClassTree(_this.associations, _this.devClasses);
+          _this.controller.setClassTree(_this.associations, _this.aggregations, _this.devClasses);
           _this.controller.setListAttributes(_this.viewClassId, _this.definition);
 //           alert('Assoc=' + JSON.stringify(_this.associations));
-        }
-        );
+        });
       },
       function(data) {
         alert('Error' + data);

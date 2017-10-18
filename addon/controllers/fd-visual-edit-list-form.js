@@ -12,6 +12,8 @@ export default Ember.Controller.extend({
 
   associations: undefined,
 
+  aggregations: undefined,
+
   devClasses: undefined,
 
   viewClassId: null,
@@ -65,8 +67,9 @@ export default Ember.Controller.extend({
 //     Ember.set(this, 'listAttributes', attributes);
 //   },
 
-  setClassTree: function(associations, devClasses) {
+  setClassTree: function(associations, aggregations, devClasses) {
     Ember.set(this, 'associations', associations);
+    Ember.set(this, 'aggregations', aggregations);
     Ember.set(this, 'devClasses', devClasses);
   },
 
