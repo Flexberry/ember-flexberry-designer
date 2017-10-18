@@ -18,146 +18,48 @@ export default Ember.Controller.extend({
 
   definition: null,
 
+  attrNames: {},
+
+  notUsedAttrs: [],
+
+  attrsTree: {},
+
   editControl: {},
 
-  attributes: [/*
-  {
-    name: 'Логин',
-    nameStr: 'Логин',
-    description: null,
-    id: '20fea097-0dab-45ed-957e-542acccdf623',
-    hint: null,
-    orderNum: 2,
-    autoincrement: false,
-    caption: null,
-    realCaption: 'Логин',
-    trim: true,
-    dataServiceExpression: null,
-    storage: null,
-    publishName: null,
-    realStorage: 'Логин',
-    notNull: false,
-    order: false,
-    pBCustomAttributes: true,
-    pBGetEnd: true,
-    pBSetEnd: true,
-    pBGetStart: true,
-    pBSetStart: true,
-    type: 'string',
-    defaultValue: null,
-    stored: true,
-    accessModifier: 'Public'
-  },
-  {
-    name: 'Name',
-    nameStr: 'Name',
-    description: null,
-    id: '6f8cbbb3-abe1-4a60-b3d2-43882d5a7781',
-    hint: null,
-    orderNum: 1,
-    autoincrement: false,
-    caption: null,
-    realCaption: 'Name',
-    trim: true,
-    dataServiceExpression: null,
-    storage: null,
-    publishName: null,
-    realStorage: 'Name',
-    notNull: false,  _parseDefinition: function(definition) {
-      let ret = [];
-      let parser = new DOMParser();
-      let xmlDoc = parser.parseFromString(definition, 'text/xml');
-      if (xmlDoc) {
-        let view = xmlDoc.getElementsByTagName('View');
-        if (view.length > 0) {
-          let viewPropertiesList = view[0].getElementsByTagName('ViewPropertiesList');
-          if (viewPropertiesList.length > 0) {
-            let itemList = viewPropertiesList[0].getElementsByTagName('Item');
-            for (let item of itemList) {
-              let propertyName = item.getAttribute('PropertyName');
-              let caption = item.getAttribute('Caption');
-              ret.push({ propertyName:propertyName, caption:caption });
-            }
-          }
-        }
-      }
-
-      return ret;
-    },
-    order: false,
-    pBCustomAttributes: true,
-    pBGetEnd: true,
-    pBSetEnd: true,
-    pBGetStart: true,
-    pBSetStart: true,
-    type: 'string',
-    defaultValue: null,
-    stored: true,
-    accessModifier: 'Public'
-  },
-  {
-    name: 'Актуально',
-    nameStr: 'Актуально',
-    description: null,
-    id: 'ad2adac3-fe78-4dc7-b2d2-59717b0875c7',
-    hint: null,
-    orderNum: 3,
-    autoincrement: false,
-    caption: null,
-    realCaption: 'Актуально',
-    trim: true,
-    dataServiceExpression: null,
-    storage: null,
-    publishName: null,
-    realStorage: 'Актуально',
-    notNull: true,
-    order: false,
-    pBCustomAttributes: true,
-    pBGetEnd: true,
-    pBSetEnd: true,
-    pBGetStart: true,
-    pBSetStart: true,
-    type: 'bool',
-    defaultValue: 'true',
-    stored: true,
-    accessModifier: 'Public'
-  },*/
-  ],
-
-  _parseDefinition: function(definition) {
-    let ret = [];
-    let parser = new DOMParser();
-    let xmlDoc = parser.parseFromString(definition, 'text/xml');
-    if (xmlDoc) {
-      let view = xmlDoc.getElementsByTagName('View');
-      if (view.length > 0) {
-        let viewPropertiesList = view[0].getElementsByTagName('ViewPropertiesList');
-        if (viewPropertiesList.length > 0) {
-          let itemList = viewPropertiesList[0].getElementsByTagName('Item');
-          for (let item of itemList) {
-            let propertyName = item.getAttribute('PropertyName');
-            let caption = item.getAttribute('Caption');
-            let visible =  item.getAttribute('Visible');
-            let isMaster =  item.getAttribute('IsMaster');
-            let lookupType =  item.getAttribute('LookupType');
-            let masterPropertyName =  item.getAttribute('MasterPropertyName');
-            let masterCustomizationString =  item.getAttribute('MasterCustomizationString');
-            ret.push({
-              propertyName:propertyName,
-              caption:caption,
-              visible: visible,
-              isMaster: isMaster,
-              lookupType: lookupType,
-              masterPropertyName: masterPropertyName,
-              masterCustomizationString: masterCustomizationString
-            });
-          }
-        }
-      }
-    }
-
-    return ret;
-  },
+//   _parseDefinition: function(definition) {
+//     let ret = [];
+//     let parser = new DOMParser();
+//     let xmlDoc = parser.parseFromString(definition, 'text/xml');
+//     if (xmlDoc) {
+//       let view = xmlDoc.getElementsByTagName('View');
+//       if (view.length > 0) {
+//         let viewPropertiesList = view[0].getElementsByTagName('ViewPropertiesList');
+//         if (viewPropertiesList.length > 0) {
+//           let itemList = viewPropertiesList[0].getElementsByTagName('Item');
+//           for (let item of itemList) {
+//             let propertyName = item.getAttribute('PropertyName');
+//             let caption = item.getAttribute('Caption');
+//             let visible =  item.getAttribute('Visible');
+//             let isMaster =  item.getAttribute('IsMaster');
+//             let lookupType =  item.getAttribute('LookupType');
+//             let masterPropertyName =  item.getAttribute('MasterPropertyName');
+//             let masterCustomizationString =  item.getAttribute('MasterCustomizationString');
+//             ret.push({
+//               propertyName:propertyName,
+//               caption:caption,
+//               visible: visible,
+//               isMaster: isMaster,
+//               lookupType: lookupType,
+//               masterPropertyName: masterPropertyName,
+//               masterCustomizationString: masterCustomizationString
+//             });
+//           }
+//         }
+//       }
+//     }
+//
+//     return ret;
+//   },
 
 //   setAttributes: function(attributes) {
 //     Ember.set(this, 'listAttributes', attributes);
@@ -168,8 +70,79 @@ export default Ember.Controller.extend({
     Ember.set(this, 'devClasses', devClasses);
   },
 
-  setDefinition: function(viewClassId, definition) {
+
+
+  _notUsedAttrs: function (path, classId) {
+    let ret = [];
+    let devClass = this.devClasses[classId];
+    for (let attrName in devClass.attributes) {
+      let fullName = path.concat(attrName).join('.');
+      if (!(fullName in this.attrNames)  || this.attrNames[fullName].visible === 'False') {
+        ret.push(fullName);
+      }
+    }
+    for (let i in this.associations) {
+      let association = this.associations[i];
+      if (association.endClass.id === classId) {
+        let role = association.startRole;
+        let newPath = path.concat(role);
+        let fullName = newPath.join('.');
+        if (!(fullName in this.attrNames)  || this.attrNames[fullName].visible === 'False') {
+          ret.push(fullName);
+        }
+        ret = ret.concat(this._notUsedAttrs(newPath, association.startClass.id));
+      }
+    }
+    return ret;
+  },
+
+  _attrsTree: function (path, classId) {
+    let ret = [];
+    let devClass = this.devClasses[classId];
+    for (let attrName in devClass.attributes) {
+      let attribute = Object.assign({}, devClass.attributes[attrName]);
+      let fullName = path.concat(attrName).join('.');
+      attribute.fullName = fullName;
+      attribute.visible = (fullName in this.attrNames) && this.attrNames[fullName].visible === 'True';
+      attribute.hidden = (fullName in this.attrNames) && this.attrNames[fullName].visible === 'False';
+      ret.push(attribute);
+    }
+    for (let i in this.associations) {
+      let association = this.associations[i];
+      if (association.endClass.id === classId) {
+        let role = association.startRole;
+        let newPath = path.concat(role);
+        let fullName = newPath.join('.');
+        let node = { role: role , fullName: fullName};
+        node.visible = (fullName in this.attrNames) && this.attrNames[fullName].visible === 'True';
+        node.hidden = (fullName in this.attrNames) && this.attrNames[fullName].visible === 'False';
+        node.children = this._attrsTree(newPath, association.startClass.id);
+        ret.push(node);
+      }
+    }
+    return ret;
+  },
+
+  findAttrsNames: function(ok, nodes) {
+    let ret = [];
+    if (nodes === undefined) {
+      nodes = this.attrsTree;
+    }
+    for (let i in nodes) {
+      let node = nodes[i];
+      if (ok(node)) {
+        ret.push(node.fullName);
+        if ('role' in node) {
+          ret = ret.concat(ok, node.children);
+        }
+      }
+    }
+    return ret;
+  },
+
+  setListAttributes: function(viewClassId, definition) {
     Ember.set(this, 'viewClassId', viewClassId);
+    Ember.set(this, 'definition', definition);
     let viewClass = this.devClasses[viewClassId];
     let _this = this;
     for (let i in  definition) {
@@ -238,8 +211,19 @@ export default Ember.Controller.extend({
       };
       listAttributes.push(attribute);
     }
-    alert("N=" + listAttributes.length + "\n" + JSON.stringify(listAttributes));
+
+    this.attrNames = {};
+    for (let i = 0; i < this.definition.length; i++) {
+      let attr = this.definition[i];
+      this.attrNames[attr.propertyName] = attr;
+    }
+    this.notUsedAttrs = this._notUsedAttrs([], viewClassId);
+    this.attrsTree = this._attrsTree([], viewClassId);
+    alert('Invisible: ' + this.findAttrsNames(function(node){ return !node.visible}));
+    alert('Hidden: ' + this.findAttrsNames(function(node){ return node.hidden}));
+    //     alert("N=" + listAttributes.length + "\n" + JSON.stringify(listAttributes));
     Ember.set(this, 'listAttributes', listAttributes);
-  }
+  },
+
 
 });

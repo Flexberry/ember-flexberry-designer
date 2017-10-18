@@ -69,7 +69,8 @@ export default Ember.Route.extend({
     let devClass = model.objectAt(0);
     let formView = devClass.get('formViews').objectAt(0);
     let view = formView.get('view');
-    this.definition = controller._parseDefinition(view.get('definition'));
+    //     this.definition = controller._parseDefinition(view.get('definition'));
+    this.definition = view.get('definition');
     this.viewClassId = view.get('class.id');
     this.devClasses[this.viewClassId] = true;
 //     this._getAssocListByEndClass('МестоВОчереди').then(function (associationList) {
@@ -89,7 +90,9 @@ export default Ember.Route.extend({
           _this.devClasses[association.get('startClass.id')] = true;
           _this.devClasses[association.get('endClass.id')] = true;
           //           startClassesIds.push(association.get('startClass').id);
-          let startRole = association.get('startRole') || association.get('startClass.name');
+          let startRole = association.get('startRole') === null ?
+            association.get('startClass.name'):
+            association.get('startRole');
           _this.associations.push({
             id: association.id,
             startRole: startRole,
@@ -136,50 +139,15 @@ export default Ember.Route.extend({
 //            alert('Devs=' + JSON.stringify(_this.devClasses));
 //            alert('viewClassId='+_this.viewClassId + '\ndefinition=' + JSON.stringify(_this.definition));
           _this.controller.setClassTree(_this.associations, _this.devClasses);
-          _this.controller.setDefinition(_this.viewClassId, _this.definition);
+          _this.controller.setListAttributes(_this.viewClassId, _this.definition);
 //           alert('Assoc=' + JSON.stringify(_this.associations));
         }
         );
-
       },
       function(data) {
         alert('Error' + data);
       }
     );
-
-
-
-    /*let builder = new  Builder(this.store, 'fd-dev-attribute').
-    selectByProjection('EditListForm').
-    where('class', FilterOperator.Eq, viewClassId);
-    let _this = this;
-    this.store.query('fd-dev-attribute', builder.build()).then(
-      function(classAttrs) {
-        let classAttributes = {};
-        for (let i = 0; i < classAttrs.get('length'); i++) {
-          let classAttr = classAttrs.objectAt(i);
-          let name =  classAttr.get('name');
-          classAttributes[name] = {
-            type: classAttr.get('type'),
-            defaultValue: classAttr.get('defaultValue'),
-          };
-         }
-        let attributes = [];
-        for (let i = 0; i < definition.length; i++) {
-          let definition = definition[i];
-          let propertyName = definition.propertyName;
-          if (propertyName in classAttributes) {
-            let classAttribute = classAttributes[propertyName];
-            attributes.push({ name: propertyName, type: classAttribute.type, defaultValue: classAttribute.defaultValue});
-          }
-        }
-        /*alert(JSON.stringify(attributes));
-        controller.setAttributes(attributes);
-      },
-      function(data) {
-        alert('Error' + data);
-      }
-    );*/
 
     return this._super(controller, model);
   }

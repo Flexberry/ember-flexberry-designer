@@ -2,7 +2,7 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import { Projection } from 'ember-flexberry-data';
 export let Model = Ember.Mixin.create({
-  definition: DS.attr('string'),
+  definition: DS.attr('fd-definition'),
   /**
     Non-stored property.
 
