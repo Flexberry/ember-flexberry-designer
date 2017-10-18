@@ -18,7 +18,6 @@ export default Ember.Component.extend({
 
   editControl: {},
 
-
   rowsValues:  Ember.computed(
     'listAttributes',
     'editControl.type',

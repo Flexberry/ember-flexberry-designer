@@ -56,14 +56,15 @@ export default Ember.Route.extend({
             type: classAttr.get('type'),
             defaultValue: classAttr.get('defaultValue'),
           };
-         }
+        }
+
         let attributes = [];
         for (let i = 0; i < definitions.length; i++) {
           let definition = definitions[i];
           let propertyName = definition.propertyName;
           if (propertyName in classAttributes) {
             let classAttribute = classAttributes[propertyName];
-            attributes.push({ name: propertyName, type: classAttribute.type, defaultValue: classAttribute.defaultValue});
+            attributes.push({ name: propertyName, type: classAttribute.type, defaultValue: classAttribute.defaultValue });
           }
         }
         /*alert(JSON.stringify(attributes));*/
