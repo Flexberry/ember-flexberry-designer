@@ -8,13 +8,25 @@ export default DS.Transform.extend({
     if (serialized) {
       let parser = new DOMParser();
       let itemList = null;
+      let containersTag = 'Containers';
+      let containersListTag = 'ContainersList';
+      let itemTag = 'Item';
       let xmlDoc = parser.parseFromString(serialized, 'text/xml');
       if (xmlDoc) {
-        let containers = xmlDoc.getElementsByTagName('Containers');
+        let containers = xmlDoc.getElementsByTagName(containersTag);
+        if (containers.length === 0) {
+          containers = xmlDoc.getElementsByTagName('containers');
+          if (containers.length > 0) {
+            containersTag = 'containers';
+            containersListTag = 'containerslist';
+            itemTag = 'item';
+          }
+        }
+
         if (containers.length > 0) {
-          let containersList = containers[0].getElementsByTagName('ContainersList');
+          let containersList = containers[0].getElementsByTagName(containersListTag);
           if (containersList.length > 0) {
-            itemList = containersList[0].getElementsByTagName('Item');
+            itemList = containersList[0].getElementsByTagName(itemTag);
           }
         }
       }
@@ -26,46 +38,48 @@ export default DS.Transform.extend({
   },
 
   serialize(deserialized) {
-    let containers = document.createElement('Containers');
-    let containersList = document.createElement('ContainersList');
-    containersList.appendChild(this._getXMLNodes(deserialized, []));
-    containers.appendChild(containersList);
-    deserialized = containers.outerHTML;
-    return deserialized;
+    let xml = '<Containers><ContainersList>' + this._getXMLNodes(deserialized, []) + '</ContainersList></Containers>';
+    return xml;
   },
 
   _getXMLNodes(nodes, steps) {
-    let itemList = document.createDocumentFragment();
+    let ret = '';
     for (let i in  nodes) {
       let node = nodes[i];
       let currentPath = steps.join('\\');
       if (node.nodes) {
         steps.push(node.caption);
-        let containers = this._getXMLNodes(node.nodes, steps);
-        if (containers.childNodes.length === 0) {
-          let folder = document.createElement('Item');
-          folder.setAttribute('ClassName', this._emptyFolderClassName);
-          folder.setAttribute('MenuPath', steps.join('\\'));
-          folder.setAttribute('Caption', '');
-          folder.setAttribute('Description', '');
-          itemList.appendChild(folder);
+        let xmlItems = this._getXMLNodes(node.nodes, steps);
+        if (xmlItems.length === 0) {
+          let xmlItem = '<Item' +
+            ' ClassName="' + this._emptyFolderClassName + '"' +
+            ' MenuPath="' + steps.join('\\').replace(/"/g, '\\"') + '"' +
+            ' Caption="" Description=""' +
+            ' />';
+          ret += xmlItem;
         } else {
-          itemList.appendChild(containers);
+          ret += xmlItems;
         }
 
         steps.pop();
       } else {
-        let leaf = document.createElement('Item');
-        leaf.setAttribute('ClassName', node.className);
-        leaf.setAttribute('MenuPath', currentPath);
-        leaf.setAttribute('Caption', node.caption);
-        leaf.setAttribute('Description', node.description);
-        itemList.appendChild(leaf);
+        let classname = node.className;
+        if (classname === 'undefined') {
+          classname = node.caption;
+        }
+
+        let xmlItem = '<Item' +
+        ' ClassName="' + classname.replace(/"/g, '\\"') + '"' +
+        ' MenuPath="' + currentPath.replace(/"/g, '\\"') + '"' +
+        ' Caption="' +  node.caption.replace(/"/g, '\\"') + '"' +
+        ' Description="' + node.description.replace(/"/g, '\\"') + '"' +
+        ' />';
+        ret += xmlItem;
       }
 
     }
 
-    return itemList;
+    return ret;
   },
 
   _getTree: function(itemList) {
@@ -82,18 +96,18 @@ export default DS.Transform.extend({
     let currentPath = '';
     let currentNodes = null;
     for (let item of itemList) {
-      let menuPath = item.getAttribute('MenuPath');
+      let menuPath = item.getAttribute('MenuPath') || item.getAttribute('menupath');
       if (currentPath !== menuPath) {
         currentNodes = this._findOrCreateCurrentNodes(rootTree, menuPath.split('\\'));
         currentPath = menuPath;
       }
 
-      let className =  item.getAttribute('ClassName');
+      let className =  item.getAttribute('ClassName') || item.getAttribute('classname');
       if (className !== this._emptyFolderClassName) {
         currentNodes.push({
-          caption: item.getAttribute('Caption'),
+          caption: item.getAttribute('Caption') || item.getAttribute('caption'),
           className: className,
-          description: item.getAttribute('Description')
+          description: item.getAttribute('Description') || item.getAttribute('description')
         });
       }
     }

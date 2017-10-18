@@ -7,7 +7,7 @@ import I18nEnLocale from 'ember-flexberry/locales/en/translations';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('visual-edit-form', 'Integration | Component | visual edit form', {
+moduleForComponent('fd-visual-edit-control', 'Integration | Component | fd visual edit control', {
   integration: true,
 
   beforeEach: function () {
@@ -29,15 +29,15 @@ test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{visual-edit-form}}`);
+  this.render(hbs`{{fd-visual-edit-control}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.notEqual(this.$().text().trim(), '');
 
   // Template block usage:
   this.render(hbs`
-    {{#visual-edit-form}}
+    {{#fd-visual-edit-control}}
       template block text
-    {{/visual-edit-form}}
+    {{/fd-visual-edit-control}}
   `);
 
   assert.notEqual(this.$().text().trim(), 'template block text');

@@ -30,7 +30,13 @@ export default Ember.Route.extend({
         case '«listform»':
         case '«editform»':
           let parentId = record.get('formViews').nextObject(0).get('view.class.id');
-          leftLeaves.push({ parentId:parentId, name: record.get('name'), description: record.get('description') });
+          leftLeaves.push({
+            id: record.get('id'),
+            stereotype: record.get('stereotype'),
+            parentId:parentId,
+            name: record.get('name'),
+            description: record.get('description')
+          });
           break;
         case '«application»':
           let recordId = record.get('id');
@@ -77,10 +83,20 @@ export default Ember.Route.extend({
     let leaveIndex = 0;
     for (let i = 0; i < leftParents.length; i++) {
       let leftParent = leftParents[i];
-      let leftNode = { caption: leftParent.name, description: leftParent.description, nodes: [] };
+      let leftNode = {
+        id: leftParent.id,
+        caption: leftParent.name,
+        description: leftParent.description,
+        nodes: []
+      };
       for (; leaveIndex < leftLeaves.length && leftLeaves[leaveIndex].parentId === leftParent.id; leaveIndex++) {
         let leafLeaf = leftLeaves[leaveIndex];
-        leftNode.nodes.push({ caption: leafLeaf.name, description: leafLeaf.description });
+        leftNode.nodes.push({
+          id: leafLeaf.id,
+          stereotype: leafLeaf.stereotype,
+          caption: leafLeaf.name,
+          description: leafLeaf.description
+        });
       }
 
       leftNodes.push(leftNode);
