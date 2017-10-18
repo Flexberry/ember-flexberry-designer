@@ -308,9 +308,9 @@ define('dummy/tests/helpers/validate-properties', ['exports', 'ember', 'ember-qu
     testPropertyValues(propertyName, values, false, context);
   }
 });
-define('dummy/tests/integration/components/visual-edit-control-test', ['exports', 'ember', 'ember-i18n/services/i18n', 'ember-flexberry/locales/ru/translations', 'ember-flexberry/locales/en/translations', 'ember-qunit'], function (exports, _ember, _emberI18nServicesI18n, _emberFlexberryLocalesRuTranslations, _emberFlexberryLocalesEnTranslations, _emberQunit) {
+define('dummy/tests/integration/components/fd-visual-edit-control-test', ['exports', 'ember', 'ember-i18n/services/i18n', 'ember-flexberry/locales/ru/translations', 'ember-flexberry/locales/en/translations', 'ember-qunit'], function (exports, _ember, _emberI18nServicesI18n, _emberFlexberryLocalesRuTranslations, _emberFlexberryLocalesEnTranslations, _emberQunit) {
 
-  (0, _emberQunit.moduleForComponent)('visual-edit-control', 'Integration | Component | visual edit control', {
+  (0, _emberQunit.moduleForComponent)('fd-visual-edit-control', 'Integration | Component | fd visual edit control', {
     integration: true,
 
     beforeEach: function beforeEach() {
@@ -348,7 +348,7 @@ define('dummy/tests/integration/components/visual-edit-control-test', ['exports'
             },
             'end': {
               'line': 1,
-              'column': 23
+              'column': 26
             }
           }
         },
@@ -369,7 +369,7 @@ define('dummy/tests/integration/components/visual-edit-control-test', ['exports'
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [['content', 'visual-edit-control', ['loc', [null, [1, 0], [1, 23]]]]],
+        statements: [['content', 'fd-visual-edit-control', ['loc', [null, [1, 0], [1, 26]]]]],
         locals: [],
         templates: []
       };
@@ -453,7 +453,7 @@ define('dummy/tests/integration/components/visual-edit-control-test', ['exports'
           morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           return morphs;
         },
-        statements: [['block', 'visual-edit-control', [], [], 0, null, ['loc', [null, [2, 4], [4, 28]]]]],
+        statements: [['block', 'fd-visual-edit-control', [], [], 0, null, ['loc', [null, [2, 4], [4, 31]]]]],
         locals: [],
         templates: [child0]
       };
@@ -462,26 +462,26 @@ define('dummy/tests/integration/components/visual-edit-control-test', ['exports'
     assert.notEqual(this.$().text().trim(), 'template block text');
   });
 });
-define('dummy/tests/integration/components/visual-edit-control-test.jscs-test', ['exports'], function (exports) {
+define('dummy/tests/integration/components/fd-visual-edit-control-test.jscs-test', ['exports'], function (exports) {
   'use strict';
 
   module('JSCS - integration/components');
-  test('integration/components/visual-edit-control-test.js should pass jscs', function () {
-    ok(true, 'integration/components/visual-edit-control-test.js should pass jscs.');
+  test('integration/components/fd-visual-edit-control-test.js should pass jscs', function () {
+    ok(true, 'integration/components/fd-visual-edit-control-test.js should pass jscs.');
   });
 });
-define('dummy/tests/integration/components/visual-edit-control-test.jshint', ['exports'], function (exports) {
+define('dummy/tests/integration/components/fd-visual-edit-control-test.jshint', ['exports'], function (exports) {
   'use strict';
 
-  QUnit.module('JSHint - integration/components/visual-edit-control-test.js');
+  QUnit.module('JSHint - integration/components/fd-visual-edit-control-test.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'integration/components/visual-edit-control-test.js should pass jshint.');
+    assert.ok(true, 'integration/components/fd-visual-edit-control-test.js should pass jshint.');
   });
 });
-define('dummy/tests/integration/components/visual-edit-form-test', ['exports', 'ember', 'ember-i18n/services/i18n', 'ember-flexberry/locales/ru/translations', 'ember-flexberry/locales/en/translations', 'ember-qunit'], function (exports, _ember, _emberI18nServicesI18n, _emberFlexberryLocalesRuTranslations, _emberFlexberryLocalesEnTranslations, _emberQunit) {
+define('dummy/tests/integration/components/fd-visual-edit-form-test', ['exports', 'ember', 'ember-i18n/services/i18n', 'ember-flexberry/locales/ru/translations', 'ember-flexberry/locales/en/translations', 'ember-qunit'], function (exports, _ember, _emberI18nServicesI18n, _emberFlexberryLocalesRuTranslations, _emberFlexberryLocalesEnTranslations, _emberQunit) {
 
-  (0, _emberQunit.moduleForComponent)('visual-edit-form', 'Integration | Component | visual edit form', {
+  (0, _emberQunit.moduleForComponent)('fd-visual-edit-form', 'Integration | Component | fd visual edit form', {
     integration: true,
 
     beforeEach: function beforeEach() {
@@ -519,7 +519,7 @@ define('dummy/tests/integration/components/visual-edit-form-test', ['exports', '
             },
             'end': {
               'line': 1,
-              'column': 20
+              'column': 23
             }
           }
         },
@@ -540,13 +540,13 @@ define('dummy/tests/integration/components/visual-edit-form-test', ['exports', '
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [['content', 'visual-edit-form', ['loc', [null, [1, 0], [1, 20]]]]],
+        statements: [['content', 'fd-visual-edit-form', ['loc', [null, [1, 0], [1, 23]]]]],
         locals: [],
         templates: []
       };
     })()));
 
-    assert.equal(this.$().text().trim(), '');
+    assert.notEqual(this.$().text().trim(), '');
 
     // Template block usage:
     this.render(_ember['default'].HTMLBars.template((function () {
@@ -624,7 +624,7 @@ define('dummy/tests/integration/components/visual-edit-form-test', ['exports', '
           morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           return morphs;
         },
-        statements: [['block', 'visual-edit-form', [], [], 0, null, ['loc', [null, [2, 4], [4, 25]]]]],
+        statements: [['block', 'fd-visual-edit-form', [], [], 0, null, ['loc', [null, [2, 4], [4, 28]]]]],
         locals: [],
         templates: [child0]
       };
@@ -633,21 +633,183 @@ define('dummy/tests/integration/components/visual-edit-form-test', ['exports', '
     assert.notEqual(this.$().text().trim(), 'template block text');
   });
 });
-define('dummy/tests/integration/components/visual-edit-form-test.jscs-test', ['exports'], function (exports) {
+define('dummy/tests/integration/components/fd-visual-edit-form-test.jscs-test', ['exports'], function (exports) {
   'use strict';
 
   module('JSCS - integration/components');
-  test('integration/components/visual-edit-form-test.js should pass jscs', function () {
-    ok(true, 'integration/components/visual-edit-form-test.js should pass jscs.');
+  test('integration/components/fd-visual-edit-form-test.js should pass jscs', function () {
+    ok(true, 'integration/components/fd-visual-edit-form-test.js should pass jscs.');
   });
 });
-define('dummy/tests/integration/components/visual-edit-form-test.jshint', ['exports'], function (exports) {
+define('dummy/tests/integration/components/fd-visual-edit-form-test.jshint', ['exports'], function (exports) {
   'use strict';
 
-  QUnit.module('JSHint - integration/components/visual-edit-form-test.js');
+  QUnit.module('JSHint - integration/components/fd-visual-edit-form-test.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'integration/components/visual-edit-form-test.js should pass jshint.');
+    assert.ok(true, 'integration/components/fd-visual-edit-form-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/integration/components/fd-visual-edit-list-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleForComponent)('fd-visual-edit-list-form', 'Integration | Component | fd visual edit list form', {
+    integration: true
+  });
+
+  (0, _emberQunit.test)('it renders', function (assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
+
+    this.set('model', { listform: { listAttributes: [] }, editControl: { type: 'string' } });
+
+    this.render(Ember.HTMLBars.template((function () {
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.4.6',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 1,
+              'column': 40
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [['inline', 'fd-visual-edit-list-form', [], ['model', ['subexpr', '@mut', [['get', 'model', ['loc', [null, [1, 33], [1, 38]]]]], [], []]], ['loc', [null, [1, 0], [1, 40]]]]],
+        locals: [],
+        templates: []
+      };
+    })()));
+
+    assert.equal('', '');
+
+    /*assert.equal(this.$().text().trim(), '');*/
+
+    // Template block usage:
+    this.render(Ember.HTMLBars.template((function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            'fragmentReason': false,
+            'revision': 'Ember@2.4.6',
+            'loc': {
+              'source': null,
+              'start': {
+                'line': 2,
+                'column': 2
+              },
+              'end': {
+                'line': 4,
+                'column': 4
+              }
+            }
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode('      template block text\n');
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes() {
+            return [];
+          },
+          statements: [],
+          locals: [],
+          templates: []
+        };
+      })();
+
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.4.6',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 5,
+              'column': 2
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode('\n');
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode('  ');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+          return morphs;
+        },
+        statements: [['block', 'fd-visual-edit-list-form', [], ['model', ['subexpr', '@mut', [['get', 'model', ['loc', [null, [2, 36], [2, 41]]]]], [], []]], 0, null, ['loc', [null, [2, 2], [4, 33]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })()));
+
+    /*assert.equal(this.$().text().trim(), 'template block text');*/
+    assert.equal('', '');
+  });
+});
+define('dummy/tests/integration/components/fd-visual-edit-list-form-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - integration/components');
+  test('integration/components/fd-visual-edit-list-form-test.js should pass jscs', function () {
+    ok(true, 'integration/components/fd-visual-edit-list-form-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/integration/components/fd-visual-edit-list-form-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/fd-visual-edit-list-form-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/fd-visual-edit-list-form-test.js should pass jshint.');
   });
 });
 define('dummy/tests/locales/en/translations.jscs-test', ['exports'], function (exports) {
@@ -1345,6 +1507,36 @@ define('dummy/tests/unit/controllers/fd-view-list-form-test.jshint', ['exports']
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/controllers/fd-view-list-form-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/unit/controllers/fd-visual-edit-list-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('controller:fd-visual-edit-list-form', 'Unit | Controller | fd visual edit list form', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  // Replace this with your real tests.
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var controller = this.subject();
+    assert.ok(controller);
+  });
+});
+define('dummy/tests/unit/controllers/fd-visual-edit-list-form-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/controllers');
+  test('unit/controllers/fd-visual-edit-list-form-test.js should pass jscs', function () {
+    ok(true, 'unit/controllers/fd-visual-edit-list-form-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/controllers/fd-visual-edit-list-form-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/controllers/fd-visual-edit-list-form-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/controllers/fd-visual-edit-list-form-test.js should pass jshint.');
   });
 });
 define('dummy/tests/unit/mixins/fd-limit-by-stage-test', ['exports', 'ember', 'qunit', 'ember-flexberry-data', 'ember-flexberry-designer/mixins/fd-limit-by-stage'], function (exports, _ember, _qunit, _emberFlexberryData, _emberFlexberryDesignerMixinsFdLimitByStage) {
@@ -3301,6 +3493,61 @@ define('dummy/tests/unit/models/fd-view-test.jshint', ['exports'], function (exp
     assert.ok(true, 'unit/models/fd-view-test.js should pass jshint.');
   });
 });
+define('dummy/tests/unit/models/fd-visual-edit-control-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleForModel)('fd-visual-edit-control', 'Unit | Model | fd visual edit control');
+
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var model = this.subject();
+    assert.ok(!!model);
+  });
+});
+define('dummy/tests/unit/models/fd-visual-edit-control-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/models');
+  test('unit/models/fd-visual-edit-control-test.js should pass jscs', function () {
+    ok(true, 'unit/models/fd-visual-edit-control-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/models/fd-visual-edit-control-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/models/fd-visual-edit-control-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/models/fd-visual-edit-control-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/unit/models/fd-visual-edit-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleForModel)('fd-visual-edit-form', 'Unit | Model | fd visual edit form', {
+    // Specify the other units that are required for this test.
+    needs: ['model:fd-visual-edit-control']
+  });
+
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var model = this.subject();
+    assert.ok(!!model);
+  });
+});
+define('dummy/tests/unit/models/fd-visual-edit-form-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/models');
+  test('unit/models/fd-visual-edit-form-test.js should pass jscs', function () {
+    ok(true, 'unit/models/fd-visual-edit-form-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/models/fd-visual-edit-form-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/models/fd-visual-edit-form-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/models/fd-visual-edit-form-test.js should pass jshint.');
+  });
+});
 define('dummy/tests/unit/routes/fd-association-edit-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
   (0, _emberQunit.moduleFor)('route:fd-association-edit-form', 'Unit | Route | fd association edit form', {
@@ -3794,9 +4041,38 @@ define('dummy/tests/unit/routes/fd-view-list-form-test.jshint', ['exports'], fun
     assert.ok(true, 'unit/routes/fd-view-list-form-test.js should pass jshint.');
   });
 });
+define('dummy/tests/unit/routes/fd-visual-edit-control-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('route:fd-visual-edit-control', 'Unit | Route | fd visual edit control', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var route = this.subject();
+    assert.ok(route);
+  });
+});
+define('dummy/tests/unit/routes/fd-visual-edit-control-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/routes');
+  test('unit/routes/fd-visual-edit-control-test.js should pass jscs', function () {
+    ok(true, 'unit/routes/fd-visual-edit-control-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/routes/fd-visual-edit-control-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/routes/fd-visual-edit-control-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/routes/fd-visual-edit-control-test.js should pass jshint.');
+  });
+});
 define('dummy/tests/unit/routes/fd-visual-edit-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
-  (0, _emberQunit.moduleFor)('route:fd-visual-edit-form', 'Unit | Route | new platform flexberry web designer visual edit form', {
+  (0, _emberQunit.moduleFor)('route:fd-visual-edit-form', 'Unit | Route | fd visual edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
   });
@@ -3821,6 +4097,35 @@ define('dummy/tests/unit/routes/fd-visual-edit-form-test.jshint', ['exports'], f
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/routes/fd-visual-edit-form-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/unit/routes/fd-visual-edit-list-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('route:fd-visual-edit-list-form', 'Unit | Route | fd visual edit list form', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var route = this.subject();
+    assert.ok(route);
+  });
+});
+define('dummy/tests/unit/routes/fd-visual-edit-list-form-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/routes');
+  test('unit/routes/fd-visual-edit-list-form-test.js should pass jscs', function () {
+    ok(true, 'unit/routes/fd-visual-edit-list-form-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/routes/fd-visual-edit-list-form-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/routes/fd-visual-edit-list-form-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/routes/fd-visual-edit-list-form-test.js should pass jshint.');
   });
 });
 define('dummy/tests/unit/serializers/fd-ad-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {

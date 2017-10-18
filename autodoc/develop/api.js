@@ -2,7 +2,9 @@ YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
         "FdCurrentProjectContextService",
-        "FdLimitByStageMixin"
+        "FdLimitByStageMixin",
+        "NewPlatformFlexberryFlexberryDesignerVisualEditControl",
+        "NewPlatformFlexberryFlexberryDesignerVisualEditForm"
     ],
     "modules": [
         "ember-flexberry-designer"

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>addon/components/fd-visual-edit-control.js - Flexberry Documentation</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="Flexberry Documentation" src="../assets/css/logo.png" style="max-height: 65%;" title="Flexberry Documentation">
+            Flexberry Documentation
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>develop</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/FdCurrentProjectContextService", "classes/FdLimitByStageMixin", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/ember-flexberry-designer"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <h3>APIs</h3>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Type to filter APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
+	                            <li><a href="../classes/FdLimitByStageMixin.html">FdLimitByStageMixin</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">NewPlatformFlexberryFlexberryDesignerVisualEditControl</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">NewPlatformFlexberryFlexberryDesignerVisualEditForm</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Show:
+                    <label for="api-show-inherited" class="checkbox">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>addon/components/fd-visual-edit-control.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+import Ember from &#x27;ember&#x27;;
+import { translationMacro as t } from &#x27;ember-i18n&#x27;;
+
+export default Ember.Component.extend({
+  /**
+    Form control.
+
+    @property control
+    @type Object
+  */
+  control: Ember.inject.service(),
+
+  /**
+    Label for field.
+
+    @property label
+    @type String
+  */
+  label: undefined,
+
+  model: undefined,
+
+  /**
+    Input value.
+
+    @property value
+    @type String
+  */
+  value: undefined,
+
+  /**
+    Type of html input.
+
+    @property type
+    @type String
+    @default &#x27;text&#x27;
+   */
+  type: &#x27;text&#x27;,
+
+  /**
+    Prototipes.
+
+    @property prototypeBy
+    @type String[]
+   */
+  prototypeBy: undefined,
+
+  /**
+    Is control not Nullable.
+
+    @property notNullable
+    @type Boolean
+   */
+  notNullable: false,
+
+  /**
+    Is null value.
+
+    @property isNull
+    @type Boolean
+   */
+  isNull: false,
+
+  controlType: undefined,
+
+  controls: undefined,
+
+  avaliableControls: Ember.computed(&#x27;avaliableControls&#x27;, &#x27;controls.[]&#x27;, function() {
+    let controls = this.get(&#x27;controls&#x27;);
+    if (controls) {
+      return controls.map(item =&gt; item.get(&#x27;name&#x27;));
+    } else {
+      return undefined;
+    }
+  }),
+
+  /**
+    Control&#x27;s &#x27;prototypeBy&#x27; dropdown caption.
+
+    @property prototypeByDropdownCaption
+    @type String
+    @default t(&#x27;components.fd-visual-control.prototypeBy&#x27;)
+  */
+  prototypeByDropdownCaption: t(&#x27;components.fd-visual-control.prototypeBy&#x27;),
+
+  /**
+    Control&#x27;s &#x27;name&#x27; textbox caption.
+
+    @property nameTextboxCaption
+    @type String
+    @default t(&#x27;components.fd-visual-control.name&#x27;)
+  */
+  nameTextboxCaption: t(&#x27;components.fd-visual-control.name&#x27;),
+
+  /**
+    Control&#x27;s &#x27;type&#x27; dropdown caption.
+
+    @property typeDropdownCaption
+    @type String
+    @default t(&#x27;components.fd-visual-control.type&#x27;)
+  */
+  typeDropdownCaption: t(&#x27;components.fd-visual-control.type&#x27;),
+
+  /**
+    Control&#x27;s &#x27;isNull&#x27; checkbox caption.
+
+    @property isNullCheckboxCaption
+    @type String
+    @default t(&#x27;components.fd-visual-control.isNull&#x27;)
+  */
+  isNullCheckboxCaption: t(&#x27;components.fd-visual-control.isNull&#x27;),
+
+  /**
+    Control&#x27;s &#x27;defaultValue&#x27; textbox caption.
+
+    @property defaultValueTextboxCaption
+    @type String
+    @default t(&#x27;components.fd-visual-control.defaultValue&#x27;)
+  */
+  defaultValueTextboxCaption: t(&#x27;components.fd-visual-control.defaultValue&#x27;),
+
+  stringControlType: t(&#x27;components.fd-visual-control.typeName.stringControlType&#x27;),
+  boolControlType: t(&#x27;components.fd-visual-control.typeName.boolControlType&#x27;),
+  dateControlType: t(&#x27;components.fd-visual-control.typeName.dateControlType&#x27;),
+  fileControlType: t(&#x27;components.fd-visual-control.typeName.fileControlType&#x27;),
+  drowdownControlType: t(&#x27;components.fd-visual-control.typeName.drowdownControlType&#x27;),
+  lookupControlType: t(&#x27;components.fd-visual-control.typeName.lookupControlType&#x27;),
+
+  controlTypes: Ember.computed(&#x27;controlTypes.[]&#x27;,
+  &#x27;stringControlType&#x27;,
+  &#x27;boolControlType&#x27;,
+  &#x27;dateControlType&#x27;,
+  &#x27;fileControlType&#x27;,
+  &#x27;drowdownControlType&#x27;,
+  &#x27;lookupControlType&#x27;,
+  function() {
+    let arr = Ember.A();
+    arr.pushObject(this.get(&#x27;stringControlType&#x27;));
+    arr.pushObject(this.get(&#x27;boolControlType&#x27;));
+    arr.pushObject(this.get(&#x27;dateControlType&#x27;));
+    arr.pushObject(this.get(&#x27;fileControlType&#x27;));
+    arr.pushObject(this.get(&#x27;drowdownControlType&#x27;));
+    arr.pushObject(this.get(&#x27;lookupControlType&#x27;));
+    return arr;
+  }),
+
+  actions: {
+
+    avaliableControlChange() {
+      let model = this.get(&#x27;model&#x27;);
+      let controls = this.get(&#x27;controls&#x27;);
+      let selectedControl = controls.find(item =&gt; item.get(&#x27;name&#x27;) === model.get(&#x27;prototypeBy&#x27;));
+      model.set(&#x27;type&#x27;, selectedControl.get(&#x27;type&#x27;));
+      model.set(&#x27;controlType&#x27;, selectedControl.get(&#x27;controlType&#x27;));
+      model.set(&#x27;notNullable&#x27;, selectedControl.get(&#x27;notNullable&#x27;));
+      model.set(&#x27;isNull&#x27;, selectedControl.get(&#x27;isNull&#x27;));
+    },
+
+    controlTypeChange() {
+      this.resetControl();
+      let controlTypes = this.get(&#x27;controlTypes&#x27;);
+      switch (this.get(&#x27;model.type&#x27;)) {
+        case controlTypes.objectAt(0).toString():
+          this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-textbox&#x27;);
+          break;
+        case controlTypes.objectAt(1).toString():
+          this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-checkbox&#x27;);
+          break;
+        case controlTypes.objectAt(2).toString():
+          this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-simpledatetime&#x27;);
+          break;
+        case controlTypes.objectAt(3).toString():
+          this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-file&#x27;);
+          break;
+        case controlTypes.objectAt(4).toString():
+          this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-dropdown&#x27;);
+          break;
+        case controlTypes.objectAt(5).toString():
+          this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-lookup&#x27;);
+          break;
+        default:
+          this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-textbox&#x27;);
+      }
+    },
+  },
+
+  resetControl() {
+    this.set(&#x27;model.prototypeBy&#x27;, undefined);
+    this.set(&#x27;model.notNullable&#x27;, true);
+    this.set(&#x27;model.isNull&#x27;, false);
+    this.set(&#x27;model.value&#x27;, undefined);
+    this.set(&#x27;model.defaultValue&#x27;, undefined);
+  },
+
+  /**
+      Initializes component.
+  */
+  init() {
+    this._super(...arguments);
+  },
+
+  didInsertElement() {
+    this._super(...arguments);
+  },
+});
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>
