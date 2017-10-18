@@ -126,7 +126,14 @@ export default Ember.Component.extend({
   drowdownControlType: t('components.fd-visual-control.typeName.drowdownControlType'),
   lookupControlType: t('components.fd-visual-control.typeName.lookupControlType'),
 
-  controlTypes: Ember.computed('controlTypes.[]', 'stringControlType', 'boolControlType', 'dateControlType', 'fileControlType', 'drowdownControlType', 'lookupControlType', function() {
+  controlTypes: Ember.computed('controlTypes.[]',
+  'stringControlType',
+  'boolControlType',
+  'dateControlType',
+  'fileControlType',
+  'drowdownControlType',
+  'lookupControlType',
+  function() {
     let arr = Ember.A();
     arr.pushObject(this.get('stringControlType'));
     arr.pushObject(this.get('boolControlType'));

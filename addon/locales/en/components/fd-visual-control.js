@@ -5,11 +5,11 @@ export default {
   isNull: 'Null',
   defaultValue: 'Default value',
   typeName: {
-      stringControlType: 'String/Number',
-      boolControlType: 'Checkbox',
-      dateControlType: 'Date/time',
-      fileControlType: 'File',
-      drowdownControlType: 'Dropdow',
-      lookupControlType: 'Lookup',
+    stringControlType: 'String/Number',
+    boolControlType: 'Checkbox',
+    dateControlType: 'Date/time',
+    fileControlType: 'File',
+    drowdownControlType: 'Dropdow',
+    lookupControlType: 'Lookup',
   }
 };
