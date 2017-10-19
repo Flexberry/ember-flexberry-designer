@@ -46,6 +46,15 @@ export default Ember.Component.extend({
   type: undefined,
 
   /**
+    Type of control input.
+
+    @property type
+    @type string
+    @default text
+   */
+  inputType: 'text',
+
+  /**
     Prototipes.
 
     @property prototypeBy
@@ -140,6 +149,7 @@ export default Ember.Component.extend({
   defaultValueTextboxCaption: t('components.fd-visual-control.defaultValue'),
 
   stringControlType: t('components.fd-visual-control.typeName.stringControlType'),
+  numberControlType: t('components.fd-visual-control.typeName.numberControlType'),
   boolControlType: t('components.fd-visual-control.typeName.boolControlType'),
   dateControlType: t('components.fd-visual-control.typeName.dateControlType'),
   fileControlType: t('components.fd-visual-control.typeName.fileControlType'),
@@ -155,6 +165,7 @@ export default Ember.Component.extend({
   */
   controlTypes: Ember.computed('controlTypes.[]',
   'stringControlType',
+  'numberControlType',
   'boolControlType',
   'dateControlType',
   'fileControlType',
@@ -163,6 +174,7 @@ export default Ember.Component.extend({
   function() {
     let arr = Ember.A();
     arr.pushObject(this.get('stringControlType'));
+    arr.pushObject(this.get('numberControlType'));
     arr.pushObject(this.get('boolControlType'));
     arr.pushObject(this.get('dateControlType'));
     arr.pushObject(this.get('fileControlType'));
@@ -201,21 +213,26 @@ export default Ember.Component.extend({
       let controlTypes = this.get('controlTypes');
       switch (this.get('model.type')) {
         case controlTypes.objectAt(0).toString():
-          this.set('model.controlType', 'flexberry-textbox');
+          this.set('model.inputType', 'text');
+          this.set('model.controlType', 'flexberry-field');
           break;
         case controlTypes.objectAt(1).toString():
-          this.set('model.controlType', 'flexberry-checkbox');
+          this.set('model.inputType', 'number');
+          this.set('model.controlType', 'flexberry-field');
           break;
         case controlTypes.objectAt(2).toString():
-          this.set('model.controlType', 'flexberry-simpledatetime');
+          this.set('model.controlType', 'flexberry-checkbox');
           break;
         case controlTypes.objectAt(3).toString():
-          this.set('model.controlType', 'flexberry-file');
+          this.set('model.controlType', 'flexberry-simpledatetime');
           break;
         case controlTypes.objectAt(4).toString():
-          this.set('model.controlType', 'flexberry-dropdown');
+          this.set('model.controlType', 'flexberry-file');
           break;
         case controlTypes.objectAt(5).toString():
+          this.set('model.controlType', 'flexberry-dropdown');
+          break;
+        case controlTypes.objectAt(6).toString():
           this.set('model.controlType', 'flexberry-lookup');
           break;
         default:

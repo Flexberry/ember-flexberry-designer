@@ -5,7 +5,8 @@ export default {
   isNull: 'Null',
   defaultValue: 'Default value',
   typeName: {
-    stringControlType: 'String/Number',
+    stringControlType: 'String',
+    numberControlType: 'Number',
     boolControlType: 'Checkbox',
     dateControlType: 'Date/time',
     fileControlType: 'File',

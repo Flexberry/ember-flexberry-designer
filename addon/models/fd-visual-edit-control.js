@@ -13,6 +13,7 @@ let Model = Projection.Model.extend({
   name: DS.attr('string'),
   value: DS.attr('string'),
   type: DS.attr('string'),
+  inputType: DS.attr('string'),
   controlType: DS.attr('string'),
   isNull: DS.attr('boolean'),
   defaultValue: DS.attr('string')

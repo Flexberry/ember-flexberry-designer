@@ -5,7 +5,8 @@ export default {
   isNull: 'Null',
   defaultValue: 'Значение по умолчанию',
   typeName: {
-    stringControlType: 'Строка/число',
+    stringControlType: 'Строка',
+    numberControlType: 'Число',
     boolControlType: 'Чекбокс',
     dateControlType: 'Дата/время',
     fileControlType: 'Файл',
