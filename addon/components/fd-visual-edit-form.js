@@ -86,7 +86,6 @@ export default Ember.Component.extend({
       let fdControlModel = store.createRecord('fd-visual-edit-control',
       {
         isSelected: true,
-        id: Ember.generateGuid(),
         name: 'New control',
         notNullable: true,
       });
