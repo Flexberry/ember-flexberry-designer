@@ -194,8 +194,8 @@ export default Ember.Component.extend({
 
   _attributeDelete: function(listAttributes, index) {
     let newAttributes = [];
-    let i;
-    for (i = 0; i < index; i++) {
+    let i = 0;
+    for (; i < index; i++) {
       newAttributes.push(listAttributes[i]);
     }
 
