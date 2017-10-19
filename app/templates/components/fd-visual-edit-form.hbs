@@ -16,7 +16,7 @@
   <div class="row">
     <div class="ten wide column">
       <div class="field">
-        <button {{action "addComponent"}}
+        <button {{action "addControl"}}
           class="ui ui-add button"
           title="Добавить">
             <i class="plus icon"></i>
@@ -27,19 +27,19 @@
             <i class="minus icon"></i>
         </button>
       </div>
-      <!-- components model here -->
-      <div class="field">
-          {{#each components as |component|}}
-          <label>{{component.name}}</label>
-            {{flexberry-textbox
-              value=component.name
+        {{#each controls as |control|}}
+          <div class="field control-field {{if control.isSelected 'selected-field'}}" onclick={{action "controlClick" control }}>
+            <label>{{control.name}}</label>
+            {{component control.controlType
+              value=control.value
+              readonly=control.isNull
             }}
-          {{/each}}
-      </div>
+          </div>
+        {{/each}}
     </div>
     <div class="six wide column">
       <div class="ui segment">
-        {{fd-visual-edit-control}}
+        {{fd-visual-edit-control model=selectedControl controls=model.controls}}
       </div>
     </div>
   </div>

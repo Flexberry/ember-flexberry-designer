@@ -10,7 +10,8 @@ import { Projection } from 'ember-flexberry-data';
 let Model = Projection.Model.extend({
   name: DS.attr('string'),
   description: DS.attr('string'),
-  components: DS.hasMany('fd-visual-edit-control')
+
+  controls: DS.hasMany('fd-visual-edit-control')
 });
 
 export default Model;

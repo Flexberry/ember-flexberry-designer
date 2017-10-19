@@ -1,9 +1,10 @@
 <div class="field">
     <label>{{prototypeByDropdownCaption}}</label>
     {{flexberry-dropdown
-      items=popertyBy
+      items=avaliableControls
       value=model.prototypeBy
       class=undefined
+      onChange=(action 'avaliableControlChange')
     }}
 </div>
 <div class="field">
@@ -15,9 +16,10 @@
 <div class="field">
     <label>{{typeDropdownCaption}}</label>
     {{flexberry-dropdown
-      items=componentTypes
+      items=controlTypes
       value=model.type
       class=undefined
+      onChange=(action 'controlTypeChange' model.type)
     }}
 </div>
 <div class="field">
@@ -25,6 +27,7 @@
     {{flexberry-checkbox
       class="fluid"
       value=model.isNull
+      readonly=model.notNullable
     }}
 </div>
 <div class="field">

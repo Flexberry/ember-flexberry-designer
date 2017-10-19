@@ -1,18 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  model() {
-    this.get('store').pushPayload({
-      data: {
-        prototypeBy: undefined,
-        name: 'Some name',
-        type: undefined,
-        isNull: false,
-        defaultValue: undefined
-      }
-    });
-
+  model(control) {
     let store = this.get('store');
-    return store.createRecord('fd-visual-edit-control', {});
-  }
+    return store.find('fd-visual-edit-control', control);
+  },
+
+  setupController: function(controller, model) {
+    this._super(controller, model);
+  },
 });

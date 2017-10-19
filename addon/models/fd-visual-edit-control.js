@@ -8,9 +8,13 @@ import { Projection } from 'ember-flexberry-data';
   @extends Projection.Model
 */
 let Model = Projection.Model.extend({
-  prototypeBy: DS.attr('object'),
+  isSelected: DS.attr('boolean'),
+  prototypeBy: DS.attr('string'),
   name: DS.attr('string'),
-  type: DS.attr('object'),
+  value: DS.attr('string'),
+  type: DS.attr('string'),
+  controlType: DS.attr('string'),
+  notNullable: DS.attr('boolean'),
   isNull: DS.attr('boolean'),
   defaultValue: DS.attr('string')
 });
