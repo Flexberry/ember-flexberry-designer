@@ -83,11 +83,10 @@ export default Ember.Component.extend({
     */
     addControl() {
       let store = this.get('store');
-      let controlId = this.get('controls').toArray().length + 1;
       let fdControlModel = store.createRecord('fd-visual-edit-control',
       {
         isSelected: true,
-        id: controlId,
+        id: Ember.generateGuid(),
         name: 'New control',
         notNullable: true,
       });
@@ -111,7 +110,7 @@ export default Ember.Component.extend({
           selectedControl.unloadRecord();
         });
         this._clearSelection();
-        let lastControl = controls.get('lastObject');
+        let lastControl = controls.get('firstObject');
         lastControl.set('isSelected', true);
         this.set('selectedControl', lastControl);
       }
