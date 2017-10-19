@@ -18,24 +18,32 @@ export default Ember.Component.extend({
   */
   label: undefined,
 
+  /**
+    Model view.
+
+    @property model
+    @type Object
+    @default undefined
+  */
   model: undefined,
 
   /**
     Input value.
 
     @property value
-    @type String
+    @type Object
+    @default undefined
   */
   value: undefined,
 
   /**
-    Type of html input.
+    Type of form control.
 
     @property type
-    @type String
-    @default 'text'
+    @type Object
+    @default undefined
    */
-  type: 'text',
+  type: undefined,
 
   /**
     Prototipes.
@@ -46,14 +54,6 @@ export default Ember.Component.extend({
   prototypeBy: undefined,
 
   /**
-    Is control not Nullable.
-
-    @property notNullable
-    @type Boolean
-   */
-  notNullable: false,
-
-  /**
     Is null value.
 
     @property isNull
@@ -61,11 +61,31 @@ export default Ember.Component.extend({
    */
   isNull: false,
 
+  /**
+    Type of component in control.
+
+    @property controlType
+    @type string
+   */
   controlType: undefined,
 
+  /**
+    Controls array from Form model.
+
+    @property controls
+    @type DS.ManyArray
+    @default undefined
+  */
   controls: undefined,
 
-  avaliableControls: Ember.computed('avaliableControls', 'controls.[]', function() {
+  /**
+    Array of avaliable controls for prototyping.
+
+    @property avaliableControls
+    @type DS.ManyArray
+    @default undefined
+  */
+  avaliableControls: Ember.computed('controls.[]', 'model', function() {
     let controls = this.get('controls');
     if (controls) {
       return controls.map(item => item.get('name'));
@@ -126,6 +146,13 @@ export default Ember.Component.extend({
   drowdownControlType: t('components.fd-visual-control.typeName.drowdownControlType'),
   lookupControlType: t('components.fd-visual-control.typeName.lookupControlType'),
 
+  /**
+    Array of control types.
+
+    @property controlTypes
+    @type DS.ManyArray
+    @default undefined
+  */
   controlTypes: Ember.computed('controlTypes.[]',
   'stringControlType',
   'boolControlType',
@@ -146,18 +173,31 @@ export default Ember.Component.extend({
 
   actions: {
 
+    /**
+      Handles prototypeByDropdown 'onChange' action.
+
+      @method controlTypeChange
+      @public
+    */
     avaliableControlChange() {
       let model = this.get('model');
       let controls = this.get('controls');
       let selectedControl = controls.find(item => item.get('name') === model.get('prototypeBy'));
+      model.set('value', selectedControl.get('value'));
       model.set('type', selectedControl.get('type'));
       model.set('controlType', selectedControl.get('controlType'));
-      model.set('notNullable', selectedControl.get('notNullable'));
       model.set('isNull', selectedControl.get('isNull'));
+      model.set('defaultValue', selectedControl.get('defaultValue'));
     },
 
+    /**
+      Handles typeDropdown 'onChange' action.
+
+      @method controlTypeChange
+      @public
+    */
     controlTypeChange() {
-      this.resetControl();
+      this._resetControl();
       let controlTypes = this.get('controlTypes');
       switch (this.get('model.type')) {
         case controlTypes.objectAt(0).toString():
@@ -184,9 +224,14 @@ export default Ember.Component.extend({
     },
   },
 
-  resetControl() {
+  /**
+    Reset displaying control's value.
+
+    @method _resetControl
+    @private
+  */
+  _resetControl() {
     this.set('model.prototypeBy', undefined);
-    this.set('model.notNullable', true);
     this.set('model.isNull', false);
     this.set('model.value', undefined);
     this.set('model.defaultValue', undefined);
@@ -199,6 +244,9 @@ export default Ember.Component.extend({
     this._super(...arguments);
   },
 
+  /**
+    Initializes DOM-related component's properties.
+  */
   didInsertElement() {
     this._super(...arguments);
   },

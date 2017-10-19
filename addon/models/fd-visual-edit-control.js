@@ -14,7 +14,6 @@ let Model = Projection.Model.extend({
   value: DS.attr('string'),
   type: DS.attr('string'),
   controlType: DS.attr('string'),
-  notNullable: DS.attr('boolean'),
   isNull: DS.attr('boolean'),
   defaultValue: DS.attr('string')
 });

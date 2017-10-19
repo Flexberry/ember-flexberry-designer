@@ -21,7 +21,7 @@
           title="Добавить">
             <i class="plus icon"></i>
         </button>
-        <button
+        <button {{action "deleteControl"}}
           class="ui ui-delete button"
           title="Удалить">
             <i class="minus icon"></i>
@@ -32,7 +32,6 @@
             <label>{{control.name}}</label>
             {{component control.controlType
               value=control.value
-              readonly=control.isNull
             }}
           </div>
         {{/each}}
