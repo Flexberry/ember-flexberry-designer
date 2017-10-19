@@ -15,6 +15,7 @@ export default Ember.Component.extend({
 
     @property label
     @type String
+    @default undefined
   */
   label: undefined,
 
@@ -26,6 +27,24 @@ export default Ember.Component.extend({
     @default undefined
   */
   model: undefined,
+
+  /**
+    Input value.
+
+    @property value
+    @type Object
+    @default undefined
+  */
+  defaultValue: undefined,
+
+  /**
+    Input value.
+
+    @property value
+    @type string
+    @default flexberry-textbox
+  */
+  defaultValueControl: 'flexberry-textbox',
 
   /**
     Input value.
@@ -59,6 +78,7 @@ export default Ember.Component.extend({
 
     @property prototypeBy
     @type String[]
+    @default undefined
    */
   prototypeBy: undefined,
 
@@ -67,6 +87,7 @@ export default Ember.Component.extend({
 
     @property isNull
     @type Boolean
+    @default false
    */
   isNull: false,
 
@@ -75,6 +96,7 @@ export default Ember.Component.extend({
 
     @property controlType
     @type string
+    @default undefined
    */
   controlType: undefined,
 
@@ -197,9 +219,11 @@ export default Ember.Component.extend({
       let selectedControl = controls.find(item => item.get('name') === model.get('prototypeBy'));
       model.set('value', selectedControl.get('value'));
       model.set('type', selectedControl.get('type'));
+      model.set('inputType', selectedControl.get('inputType'));
       model.set('controlType', selectedControl.get('controlType'));
       model.set('isNull', selectedControl.get('isNull'));
       model.set('defaultValue', selectedControl.get('defaultValue'));
+      model.set('defaultValueControl', selectedControl.get('defaultValueControl'));
     },
 
     /**
@@ -215,28 +239,38 @@ export default Ember.Component.extend({
         case controlTypes.objectAt(0).toString():
           this.set('model.inputType', 'text');
           this.set('model.controlType', 'flexberry-field');
+          this.set('model.defaultValueControl', 'flexberry-field');
           break;
         case controlTypes.objectAt(1).toString():
           this.set('model.inputType', 'number');
           this.set('model.controlType', 'flexberry-field');
+          this.set('model.defaultValue', 0);
+          this.set('model.defaultValueControl', 'flexberry-field');
           break;
         case controlTypes.objectAt(2).toString():
           this.set('model.controlType', 'flexberry-checkbox');
+          this.set('model.defaultValue', false);
+          this.set('model.defaultValueControl', 'flexberry-checkbox');
           break;
         case controlTypes.objectAt(3).toString():
           this.set('model.controlType', 'flexberry-simpledatetime');
+          this.set('model.defaultValueControl', 'flexberry-simpledatetime');
           break;
         case controlTypes.objectAt(4).toString():
           this.set('model.controlType', 'flexberry-file');
+          this.set('model.defaultValueControl', undefined);
           break;
         case controlTypes.objectAt(5).toString():
           this.set('model.controlType', 'flexberry-dropdown');
+          this.set('model.defaultValueControl', 'flexberry-dropdown');
           break;
         case controlTypes.objectAt(6).toString():
           this.set('model.controlType', 'flexberry-lookup');
+          this.set('model.defaultValueControl', 'flexberry-lookup');
           break;
         default:
           this.set('model.controlType', 'flexberry-textbox');
+          this.set('model.defaultValueControl', undefined);
       }
     },
   },
@@ -249,9 +283,10 @@ export default Ember.Component.extend({
   */
   _resetControl() {
     this.set('model.prototypeBy', undefined);
+    this.set('model.inputType', 'text');
     this.set('model.isNull', false);
     this.set('model.value', undefined);
-    this.set('model.defaultValue', undefined);
+    this.set('model.defaultValue', '');
   },
 
   /**
