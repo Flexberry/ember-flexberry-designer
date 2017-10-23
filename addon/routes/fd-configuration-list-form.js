@@ -54,9 +54,13 @@ export default ListFormRoute.extend({
   currentContext: Ember.inject.service('fd-current-project-context'),
 
   actions: {
-    objectListViewRowClick(configuration) {
-      this.get('currentContext').setCurrentConfiguration(configuration);
-      this.transitionTo('fd-stage-list-form');
+    objectListViewRowClick(configuration, options) {
+      if (options.column === null) {
+        return this._super(...arguments);
+      } else {
+        this.get('currentContext').setCurrentConfiguration(configuration);
+        this.transitionTo('fd-stage-list-form');
+      }
     },
   },
 });
