@@ -6,7 +6,6 @@ export default Ember.Route.extend({
 
     let fdControlModel = store.createRecord('fd-visual-edit-control',
     {
-      id: 1,
       isSelected: true,
       name: 'Some control',
       notNullable: true,
@@ -14,7 +13,6 @@ export default Ember.Route.extend({
 
     let editFormModel = store.createRecord('fd-visual-edit-form',
     {
-      id: 1,
       name: 'Some name',
       description: 'Description',
     });
