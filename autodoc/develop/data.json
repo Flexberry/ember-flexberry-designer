@@ -890,57 +890,122 @@
             "itemtype": "property",
             "name": "label",
             "type": "String",
+            "default": "undefined",
             "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 23,
-            "description": "Input value.",
+            "line": 22,
+            "description": "Model view.",
             "itemtype": "property",
-            "name": "value",
-            "type": "String",
+            "name": "model",
+            "type": "Object",
+            "default": "undefined",
             "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
             "line": 31,
-            "description": "Type of html input.",
+            "description": "Input value.",
             "itemtype": "property",
-            "name": "type",
-            "type": "String",
-            "default": "'text'",
+            "name": "value",
+            "type": "Object",
+            "default": "undefined",
             "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
             "line": 40,
+            "description": "Input value.",
+            "itemtype": "property",
+            "name": "value",
+            "type": "string",
+            "default": "flexberry-textbox",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 49,
+            "description": "Input value.",
+            "itemtype": "property",
+            "name": "value",
+            "type": "Object",
+            "default": "undefined",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 58,
+            "description": "Type of form control.",
+            "itemtype": "property",
+            "name": "type",
+            "type": "Object",
+            "default": "undefined",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 67,
+            "description": "Type of control input.",
+            "itemtype": "property",
+            "name": "type",
+            "type": "string",
+            "default": "text",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 76,
             "description": "Prototipes.",
             "itemtype": "property",
             "name": "prototypeBy",
             "type": "String[]",
+            "default": "undefined",
             "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 48,
-            "description": "Is control not Nullable.",
-            "itemtype": "property",
-            "name": "notNullable",
-            "type": "Boolean",
-            "class": "FdLimitByStageMixin"
-        },
-        {
-            "file": "addon/components/fd-visual-edit-control.js",
-            "line": 56,
+            "line": 85,
             "description": "Is null value.",
             "itemtype": "property",
             "name": "isNull",
             "type": "Boolean",
+            "default": "false",
             "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 77,
+            "line": 94,
+            "description": "Type of component in control.",
+            "itemtype": "property",
+            "name": "controlType",
+            "type": "string",
+            "default": "undefined",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 103,
+            "description": "Controls array from Form model.",
+            "itemtype": "property",
+            "name": "controls",
+            "type": "DS.ManyArray",
+            "default": "undefined",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 112,
+            "description": "Array of avaliable controls for prototyping.",
+            "itemtype": "property",
+            "name": "avaliableControls",
+            "type": "DS.ManyArray",
+            "default": "undefined",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 128,
             "description": "Control's 'prototypeBy' dropdown caption.",
             "itemtype": "property",
             "name": "prototypeByDropdownCaption",
@@ -950,7 +1015,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 86,
+            "line": 137,
             "description": "Control's 'name' textbox caption.",
             "itemtype": "property",
             "name": "nameTextboxCaption",
@@ -960,7 +1025,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 95,
+            "line": 146,
             "description": "Control's 'type' dropdown caption.",
             "itemtype": "property",
             "name": "typeDropdownCaption",
@@ -970,7 +1035,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 104,
+            "line": 155,
             "description": "Control's 'isNull' checkbox caption.",
             "itemtype": "property",
             "name": "isNullCheckboxCaption",
@@ -980,7 +1045,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 113,
+            "line": 164,
             "description": "Control's 'defaultValue' textbox caption.",
             "itemtype": "property",
             "name": "defaultValueTextboxCaption",
@@ -990,13 +1055,67 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 195,
+            "line": 181,
+            "description": "Array of control types.",
+            "itemtype": "property",
+            "name": "controlTypes",
+            "type": "DS.ManyArray",
+            "default": "undefined",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 210,
+            "description": "Handles prototypeByDropdown 'onChange' action.",
+            "itemtype": "method",
+            "name": "controlTypeChange",
+            "access": "public",
+            "tagname": "",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 229,
+            "description": "Handles typeDropdown 'onChange' action.",
+            "itemtype": "method",
+            "name": "controlTypeChange",
+            "access": "public",
+            "tagname": "",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 278,
+            "description": "Reset displaying control's value.",
+            "itemtype": "method",
+            "name": "_resetControl",
+            "access": "private",
+            "tagname": "",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 292,
             "description": "Initializes component.",
             "class": "FdLimitByStageMixin"
         },
         {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 299,
+            "description": "Initializes DOM-related component's properties.",
+            "class": "FdLimitByStageMixin"
+        },
+        {
             "file": "addon/components/fd-visual-edit-form.js",
-            "line": 7,
+            "line": 5,
+            "itemtype": "property",
+            "name": "store",
+            "type": "Service",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-form.js",
+            "line": 11,
             "description": "Flag: indicates whether to show creation button at toolbar.",
             "itemtype": "property",
             "name": "createNewButton",
@@ -1006,7 +1125,17 @@
         },
         {
             "file": "addon/components/fd-visual-edit-form.js",
-            "line": 18,
+            "line": 20,
+            "description": "Model view.",
+            "itemtype": "property",
+            "name": "model",
+            "type": "Object",
+            "default": "undefined",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-form.js",
+            "line": 29,
             "description": "Flag: indicates whether to show delete button at toolbar.",
             "itemtype": "property",
             "name": "deleteButton",
@@ -1016,17 +1145,27 @@
         },
         {
             "file": "addon/components/fd-visual-edit-form.js",
-            "line": 27,
+            "line": 38,
             "description": "Control view.",
             "itemtype": "property",
             "name": "control",
             "type": "Object",
-            "default": "null",
+            "default": "undefined",
             "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/components/fd-visual-edit-form.js",
-            "line": 36,
+            "line": 47,
+            "description": "Current selected control.",
+            "itemtype": "property",
+            "name": "selectedControl",
+            "type": "Object",
+            "default": "undefined",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-form.js",
+            "line": 57,
             "description": "Current selected control.",
             "itemtype": "property",
             "name": "selectedControl",
@@ -1036,28 +1175,64 @@
         },
         {
             "file": "addon/components/fd-visual-edit-form.js",
-            "line": 46,
-            "description": "Current selected control.",
-            "itemtype": "property",
-            "name": "selectedControl",
-            "type": "Object",
-            "default": "null",
-            "class": "FdLimitByStageMixin"
-        },
-        {
-            "file": "addon/components/fd-visual-edit-form.js",
-            "line": 56,
+            "line": 67,
             "description": "Controls array from model.",
             "itemtype": "property",
             "name": "controls",
             "type": "DS.ManyArray",
-            "default": "null",
+            "default": "undefined",
             "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/components/fd-visual-edit-form.js",
-            "line": 95,
+            "line": 78,
+            "description": "Handles form 'addControl' button click.",
+            "itemtype": "method",
+            "name": "addControl",
+            "access": "public",
+            "tagname": "",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-form.js",
+            "line": 98,
+            "description": "Handles form 'deleteControl' button click.",
+            "itemtype": "method",
+            "name": "deleteControl",
+            "access": "public",
+            "tagname": "",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-form.js",
+            "line": 118,
+            "description": "Handles control-field 'controlClick' action.",
+            "itemtype": "method",
+            "name": "controlClick",
+            "access": "public",
+            "tagname": "",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-form.js",
+            "line": 132,
+            "description": "Reset selection of controls in model.",
+            "itemtype": "method",
+            "name": "_clearSelection",
+            "access": "private",
+            "tagname": "",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-form.js",
+            "line": 145,
             "description": "Initializes component.",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-form.js",
+            "line": 155,
+            "description": "Initializes DOM-related component's properties.",
             "class": "FdLimitByStageMixin"
         },
         {
@@ -3870,11 +4045,19 @@
     "warnings": [
         {
             "message": "Missing item type\nInitializes component.",
-            "line": " addon/components/fd-visual-edit-control.js:195"
+            "line": " addon/components/fd-visual-edit-control.js:292"
+        },
+        {
+            "message": "Missing item type\nInitializes DOM-related component's properties.",
+            "line": " addon/components/fd-visual-edit-control.js:299"
         },
         {
             "message": "Missing item type\nInitializes component.",
-            "line": " addon/components/fd-visual-edit-form.js:95"
+            "line": " addon/components/fd-visual-edit-form.js:145"
+        },
+        {
+            "message": "Missing item type\nInitializes DOM-related component's properties.",
+            "line": " addon/components/fd-visual-edit-form.js:155"
         },
         {
             "message": "Missing item type\nField name where object identifier is kept.",

@@ -101,6 +101,10 @@ import Ember from &#x27;ember&#x27;;
 
 export default Ember.Component.extend({
 
+  /**
+    @property store
+    @type Service
+  */
   store: Ember.inject.service(),
 
   /**
@@ -112,6 +116,13 @@ export default Ember.Component.extend({
   */
   createNewButton: true,
 
+  /**
+    Model view.
+
+    @property model
+    @type Object
+    @default undefined
+  */
   model: undefined,
 
   /**
@@ -128,7 +139,7 @@ export default Ember.Component.extend({
 
     @property control
     @type Object
-    @default null
+    @default undefined
   */
   control: undefined,
 
@@ -137,7 +148,7 @@ export default Ember.Component.extend({
 
     @property selectedControl
     @type Object
-    @default null
+    @default undefined
   */
 
   selectedControl: undefined,
@@ -157,11 +168,18 @@ export default Ember.Component.extend({
 
     @property controls
     @type DS.ManyArray
-    @default null
+    @default undefined
   */
   controls: undefined,
 
   actions: {
+
+    /**
+      Handles form &#x27;addControl&#x27; button click.
+
+      @method addControl
+      @public
+    */
     addControl() {
       let store = this.get(&#x27;store&#x27;);
       let fdControlModel = store.createRecord(&#x27;fd-visual-edit-control&#x27;,
@@ -171,20 +189,52 @@ export default Ember.Component.extend({
         notNullable: true,
       });
 
-      this.clearSelection();
+      this._clearSelection();
       this.get(&#x27;model.controls&#x27;).pushObject(fdControlModel);
       this.set(&#x27;selectedControl&#x27;, fdControlModel);
     },
 
+    /**
+      Handles form &#x27;deleteControl&#x27; button click.
+
+      @method deleteControl
+      @public
+    */
+    deleteControl() {
+      let controls = this.get(&#x27;controls&#x27;);
+      let selectedControl = this.get(&#x27;selectedControl&#x27;);
+      if (selectedControl &amp;&amp; selectedControl !== controls.get(&#x27;firstObject&#x27;) &amp;&amp; controls.toArray().length !== 1) {
+        selectedControl.destroyRecord().then(() =&gt; {
+          selectedControl.unloadRecord();
+        });
+        this._clearSelection();
+        let lastControl = controls.get(&#x27;firstObject&#x27;);
+        lastControl.set(&#x27;isSelected&#x27;, true);
+        this.set(&#x27;selectedControl&#x27;, lastControl);
+      }
+    },
+
+    /**
+      Handles control-field &#x27;controlClick&#x27; action.
+
+      @method controlClick
+      @public
+    */
     controlClick(control) {
       this.set(&#x27;selectedControl&#x27;, control);
-      this.clearSelection();
+      this._clearSelection();
       control.set(&#x27;isSelected&#x27;, true);
     },
 
   },
 
-  clearSelection() {
+  /**
+    Reset selection of controls in model.
+
+    @method _clearSelection
+    @private
+  */
+  _clearSelection() {
     let controls = this.get(&#x27;model.controls&#x27;);
     controls.forEach(function(item) {
       item.set(&#x27;isSelected&#x27;, false);
@@ -196,8 +246,14 @@ export default Ember.Component.extend({
   */
   init() {
     this._super(...arguments);
+
+    let controls = this.get(&#x27;controls&#x27;);
+    this.set(&#x27;selectedControl&#x27;, controls ? controls.get(&#x27;firstObject&#x27;) : undefined);
   },
 
+  /**
+    Initializes DOM-related component&#x27;s properties.
+  */
   didInsertElement() {
     this._super(...arguments);
   },

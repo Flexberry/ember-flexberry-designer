@@ -114,57 +114,108 @@ export default Ember.Component.extend({
 
     @property label
     @type String
+    @default undefined
   */
   label: undefined,
 
+  /**
+    Model view.
+
+    @property model
+    @type Object
+    @default undefined
+  */
   model: undefined,
 
   /**
     Input value.
 
     @property value
-    @type String
+    @type Object
+    @default undefined
+  */
+  defaultValue: undefined,
+
+  /**
+    Input value.
+
+    @property value
+    @type string
+    @default flexberry-textbox
+  */
+  defaultValueControl: &#x27;flexberry-textbox&#x27;,
+
+  /**
+    Input value.
+
+    @property value
+    @type Object
+    @default undefined
   */
   value: undefined,
 
   /**
-    Type of html input.
+    Type of form control.
 
     @property type
-    @type String
-    @default &#x27;text&#x27;
+    @type Object
+    @default undefined
    */
-  type: &#x27;text&#x27;,
+  type: undefined,
+
+  /**
+    Type of control input.
+
+    @property type
+    @type string
+    @default text
+   */
+  inputType: &#x27;text&#x27;,
 
   /**
     Prototipes.
 
     @property prototypeBy
     @type String[]
+    @default undefined
    */
   prototypeBy: undefined,
-
-  /**
-    Is control not Nullable.
-
-    @property notNullable
-    @type Boolean
-   */
-  notNullable: false,
 
   /**
     Is null value.
 
     @property isNull
     @type Boolean
+    @default false
    */
   isNull: false,
 
+  /**
+    Type of component in control.
+
+    @property controlType
+    @type string
+    @default undefined
+   */
   controlType: undefined,
 
+  /**
+    Controls array from Form model.
+
+    @property controls
+    @type DS.ManyArray
+    @default undefined
+  */
   controls: undefined,
 
-  avaliableControls: Ember.computed(&#x27;avaliableControls&#x27;, &#x27;controls.[]&#x27;, function() {
+  /**
+    Array of avaliable controls for prototyping.
+
+    @property avaliableControls
+    @type DS.ManyArray
+    @default undefined
+  */
+  avaliableControls: Ember.computed(&#x27;controls.[]&#x27;, &#x27;model&#x27;, function() {
     let controls = this.get(&#x27;controls&#x27;);
     if (controls) {
       return controls.map(item =&gt; item.get(&#x27;name&#x27;));
@@ -219,14 +270,23 @@ export default Ember.Component.extend({
   defaultValueTextboxCaption: t(&#x27;components.fd-visual-control.defaultValue&#x27;),
 
   stringControlType: t(&#x27;components.fd-visual-control.typeName.stringControlType&#x27;),
+  numberControlType: t(&#x27;components.fd-visual-control.typeName.numberControlType&#x27;),
   boolControlType: t(&#x27;components.fd-visual-control.typeName.boolControlType&#x27;),
   dateControlType: t(&#x27;components.fd-visual-control.typeName.dateControlType&#x27;),
   fileControlType: t(&#x27;components.fd-visual-control.typeName.fileControlType&#x27;),
   drowdownControlType: t(&#x27;components.fd-visual-control.typeName.drowdownControlType&#x27;),
   lookupControlType: t(&#x27;components.fd-visual-control.typeName.lookupControlType&#x27;),
 
+  /**
+    Array of control types.
+
+    @property controlTypes
+    @type DS.ManyArray
+    @default undefined
+  */
   controlTypes: Ember.computed(&#x27;controlTypes.[]&#x27;,
   &#x27;stringControlType&#x27;,
+  &#x27;numberControlType&#x27;,
   &#x27;boolControlType&#x27;,
   &#x27;dateControlType&#x27;,
   &#x27;fileControlType&#x27;,
@@ -235,6 +295,7 @@ export default Ember.Component.extend({
   function() {
     let arr = Ember.A();
     arr.pushObject(this.get(&#x27;stringControlType&#x27;));
+    arr.pushObject(this.get(&#x27;numberControlType&#x27;));
     arr.pushObject(this.get(&#x27;boolControlType&#x27;));
     arr.pushObject(this.get(&#x27;dateControlType&#x27;));
     arr.pushObject(this.get(&#x27;fileControlType&#x27;));
@@ -245,50 +306,86 @@ export default Ember.Component.extend({
 
   actions: {
 
+    /**
+      Handles prototypeByDropdown &#x27;onChange&#x27; action.
+
+      @method controlTypeChange
+      @public
+    */
     avaliableControlChange() {
       let model = this.get(&#x27;model&#x27;);
       let controls = this.get(&#x27;controls&#x27;);
       let selectedControl = controls.find(item =&gt; item.get(&#x27;name&#x27;) === model.get(&#x27;prototypeBy&#x27;));
+      model.set(&#x27;value&#x27;, selectedControl.get(&#x27;value&#x27;));
       model.set(&#x27;type&#x27;, selectedControl.get(&#x27;type&#x27;));
+      model.set(&#x27;inputType&#x27;, selectedControl.get(&#x27;inputType&#x27;));
       model.set(&#x27;controlType&#x27;, selectedControl.get(&#x27;controlType&#x27;));
-      model.set(&#x27;notNullable&#x27;, selectedControl.get(&#x27;notNullable&#x27;));
       model.set(&#x27;isNull&#x27;, selectedControl.get(&#x27;isNull&#x27;));
+      model.set(&#x27;defaultValue&#x27;, selectedControl.get(&#x27;defaultValue&#x27;));
+      model.set(&#x27;defaultValueControl&#x27;, selectedControl.get(&#x27;defaultValueControl&#x27;));
     },
 
+    /**
+      Handles typeDropdown &#x27;onChange&#x27; action.
+
+      @method controlTypeChange
+      @public
+    */
     controlTypeChange() {
-      this.resetControl();
+      this._resetControl();
       let controlTypes = this.get(&#x27;controlTypes&#x27;);
       switch (this.get(&#x27;model.type&#x27;)) {
         case controlTypes.objectAt(0).toString():
-          this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-textbox&#x27;);
+          this.set(&#x27;model.inputType&#x27;, &#x27;text&#x27;);
+          this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-field&#x27;);
+          this.set(&#x27;model.defaultValueControl&#x27;, &#x27;flexberry-field&#x27;);
           break;
         case controlTypes.objectAt(1).toString():
-          this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-checkbox&#x27;);
+          this.set(&#x27;model.inputType&#x27;, &#x27;number&#x27;);
+          this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-field&#x27;);
+          this.set(&#x27;model.defaultValue&#x27;, 0);
+          this.set(&#x27;model.defaultValueControl&#x27;, &#x27;flexberry-field&#x27;);
           break;
         case controlTypes.objectAt(2).toString():
-          this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-simpledatetime&#x27;);
+          this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-checkbox&#x27;);
+          this.set(&#x27;model.defaultValue&#x27;, false);
+          this.set(&#x27;model.defaultValueControl&#x27;, &#x27;flexberry-checkbox&#x27;);
           break;
         case controlTypes.objectAt(3).toString():
-          this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-file&#x27;);
+          this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-simpledatetime&#x27;);
+          this.set(&#x27;model.defaultValueControl&#x27;, &#x27;flexberry-simpledatetime&#x27;);
           break;
         case controlTypes.objectAt(4).toString():
-          this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-dropdown&#x27;);
+          this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-file&#x27;);
+          this.set(&#x27;model.defaultValueControl&#x27;, undefined);
           break;
         case controlTypes.objectAt(5).toString():
+          this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-dropdown&#x27;);
+          this.set(&#x27;model.defaultValueControl&#x27;, &#x27;flexberry-dropdown&#x27;);
+          break;
+        case controlTypes.objectAt(6).toString():
           this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-lookup&#x27;);
+          this.set(&#x27;model.defaultValueControl&#x27;, &#x27;flexberry-lookup&#x27;);
           break;
         default:
           this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-textbox&#x27;);
+          this.set(&#x27;model.defaultValueControl&#x27;, undefined);
       }
     },
   },
 
-  resetControl() {
+  /**
+    Reset displaying control&#x27;s value.
+
+    @method _resetControl
+    @private
+  */
+  _resetControl() {
     this.set(&#x27;model.prototypeBy&#x27;, undefined);
-    this.set(&#x27;model.notNullable&#x27;, true);
+    this.set(&#x27;model.inputType&#x27;, &#x27;text&#x27;);
     this.set(&#x27;model.isNull&#x27;, false);
     this.set(&#x27;model.value&#x27;, undefined);
-    this.set(&#x27;model.defaultValue&#x27;, undefined);
+    this.set(&#x27;model.defaultValue&#x27;, &#x27;&#x27;);
   },
 
   /**
@@ -298,6 +395,9 @@ export default Ember.Component.extend({
     this._super(...arguments);
   },
 
+  /**
+    Initializes DOM-related component&#x27;s properties.
+  */
   didInsertElement() {
     this._super(...arguments);
   },
