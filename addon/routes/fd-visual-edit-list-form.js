@@ -6,6 +6,8 @@ export default Ember.Route.extend({
 
   formId: null,
 
+  classId: null,
+
   listform: {
     listAttributes: {}
   },
@@ -20,6 +22,7 @@ export default Ember.Route.extend({
 
   beforeModel: function(params) {
     this.formId = params.queryParams.formId;
+    this.classId = params.queryParams.classId;
   },
 
   /*currentProjectContext: Ember.inject.service('fd-current-project-context'),*/

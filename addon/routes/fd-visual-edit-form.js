@@ -1,6 +1,16 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+
+  formId: null,
+
+  classId: null,
+
+  beforeModel: function(params) {
+    this.formId = params.queryParams.formId;
+    this.classId = params.queryParams.classId;
+  },
+
   model() {
     let store = this.get('store');
 

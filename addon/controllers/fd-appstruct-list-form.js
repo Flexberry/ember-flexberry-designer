@@ -15,7 +15,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
   treeChanged: false,
 
   removeLeftNodeDisabled: 'disabled',
-  addLeftNodeDisabled: '',
+  addLeftNodeDisabled: 'disabled',
   editLeftNodeDisabled: 'disabled',
   listLeftDisabled: '',
 
@@ -169,6 +169,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
 
   _setLeftIconState: function(/*path*/) {
     Ember.set(this, 'removeLeftNodeDisabled', '');
+    Ember.set(this, 'addLeftNodeDisabled', '');
     Ember.set(this, 'editLeftNodeDisabled', '');
     Ember.set(this, 'moveRightDisabled', '');
     Ember.set(this, 'addRightNodeDisabled', '');
@@ -206,6 +207,21 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
 
   _isLeaf: function(element) {
     let ret = element.children.length > 0 && element.children[0].style.visibility === 'hidden';
+    return ret;
+  },
+
+  _getTopId: function(path) {
+    if (typeof path !== 'string') {
+      return;
+    }
+
+    let steps = path.split('.');
+    if (steps.length < 2) {
+      return;
+    }
+
+    let node = this._findNodeByPath(this, steps.join('.'));
+    let ret = node.get('id');
     return ret;
   },
 
@@ -260,16 +276,41 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     removeLeftNode() {
     },
 
-    addLeftNode() {
+    addLeftClass() {
+      let url = '/fd-class-edit-form/new';
+      this.transitionToRoute(url);
+    },
+
+    addLeftEditForm() {
+      let classId = this._getTopId(this.lastClicked.left.path);
+      if (classId) {
+        let url = '/fd-visual-edit-form?classId=' + classId;
+        this.transitionToRoute(url);
+      }
+
+    },
+
+    addLeftListForm() {
+      let classId = this._getTopId(this.lastClicked.left.path);
+      if (classId) {
+        let url = '/fd-visual-edit-list-form?classId=' + classId;
+        this.transitionToRoute(url);
+      }
+
     },
 
     editLeftNode() {
       let lastClickedPath = this.lastClicked.left.path;
       let node = this._findNodeByPath(this, lastClickedPath);
       let nodeId = node.get('id');
+      let url;
       switch (node.get('stereotype')) {
         case '«listform»':
-          let url = '/fd-visual-edit-list-form?formId=' + nodeId;
+          url = '/fd-visual-edit-list-form?formId=' + nodeId;
+          this.transitionToRoute(url);
+          break;
+        case '«editform»':
+          url = '/fd-visual-edit-form?formId=' + nodeId;
           this.transitionToRoute(url);
           break;
       }

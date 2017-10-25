@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
-  queryParams: ['formId'],
+  queryParams: ['formId', 'classId'],
   listform: null,
   listforms: [],
   attributes: [
