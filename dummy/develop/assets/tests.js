@@ -1509,6 +1509,36 @@ define('dummy/tests/unit/controllers/fd-view-list-form-test.jshint', ['exports']
     assert.ok(true, 'unit/controllers/fd-view-list-form-test.js should pass jshint.');
   });
 });
+define('dummy/tests/unit/controllers/fd-visual-edit-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('controller:fd-visual-edit-form', 'Unit | Controller | fd visual edit form', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  // Replace this with your real tests.
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var controller = this.subject();
+    assert.ok(controller);
+  });
+});
+define('dummy/tests/unit/controllers/fd-visual-edit-form-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/controllers');
+  test('unit/controllers/fd-visual-edit-form-test.js should pass jscs', function () {
+    ok(true, 'unit/controllers/fd-visual-edit-form-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/controllers/fd-visual-edit-form-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/controllers/fd-visual-edit-form-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/controllers/fd-visual-edit-form-test.js should pass jshint.');
+  });
+});
 define('dummy/tests/unit/controllers/fd-visual-edit-list-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
   (0, _emberQunit.moduleFor)('controller:fd-visual-edit-list-form', 'Unit | Controller | fd visual edit list form', {
