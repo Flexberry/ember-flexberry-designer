@@ -8,9 +8,21 @@
         <button class='ui button icon {{removeLeftNodeDisabled}}' {{action "removeLeftNode" on="click" }}>
           <i class="remove icon" ></i>
         </button>
-        <button class='ui button icon {{addLeftNodeDisabled}}' {{action "addLeftNode" on="click" }}>
-          <i class="plus icon" disabled></i>
+        <button class="ui button create-button" {{action 'addLeftClass'}}>
+          <i class="add circle icon"></i>
+          {{t "forms.fd-appstruct-list-form.add-class-text"}}
         </button>
+        <button class="ui button create-button {{addLeftNodeDisabled}}" {{action 'addLeftEditForm'}}>
+          <i class="add circle icon"></i>
+          {{t "forms.fd-appstruct-list-form.add-editform-text"}}
+        </button>
+        <button class="ui button create-button {{addLeftNodeDisabled}}" {{action 'addLeftListForm'}}>
+          <i class="add circle icon"></i>
+          {{t "forms.fd-appstruct-list-form.add-listform-text"}}
+        </button>
+        <!--button class='ui button icon {{addLeftNodeDisabled}}' {{action "addLeftNode" on="click" }}>
+          <i class="plus icon" disabled></i>
+        </button-->
         <button class='ui button icon {{editLeftNodeDisabled}}' {{action "editLeftNode" on="click" }}>
           <i class="edit icon"></i>
         </button>
