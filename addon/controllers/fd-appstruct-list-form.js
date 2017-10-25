@@ -215,7 +215,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       return;
     }
 
-    let steps=path.split('.');
+    let steps = path.split('.');
     if (steps.length < 2) {
       return;
     }
