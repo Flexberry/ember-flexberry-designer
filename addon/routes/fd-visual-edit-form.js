@@ -1,6 +1,10 @@
 import Ember from 'ember';
+import { Query } from 'ember-flexberry-data';
+const { Builder } = Query;
 
 export default Ember.Route.extend({
+
+  currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
   formId: null,
 
@@ -13,23 +17,32 @@ export default Ember.Route.extend({
 
   model() {
     let store = this.get('store');
+    let stagePk = this.get('currentProjectContext').getCurrentStage();
 
-    let fdControlModel = store.createRecord('fd-visual-edit-control',
-    {
-      isSelected: true,
-      name: 'Some control',
-      notNullable: true,
+    let promise = new Ember.RSVP.Promise((resolve, reject) => {
+      let fdControlModel = store.createRecord('fd-visual-edit-control',
+      {
+        isSelected: true,
+        name: 'Some control',
+        notNullable: true,
+      });
+
+      let editFormModel = store.createRecord('fd-visual-edit-form', {});
+      editFormModel.get('controls').pushObject(fdControlModel);
+
+      let modelBuilder = new Builder(this.store, 'fd-dev-class').
+      selectByProjection('EditFormView').
+      byId(this.formId);
+      this.store.query('fd-dev-class', modelBuilder.build()).then((data)=> {
+        editFormModel.set('id', this.formId);
+        editFormModel.set('name', data.objectAt(0).get('name'));
+        editFormModel.set('description', data.objectAt(0).get('description'));
+        resolve(editFormModel);
+      }).catch(reject);
     });
 
-    let editFormModel = store.createRecord('fd-visual-edit-form',
-    {
-      name: 'Some name',
-      description: 'Description',
-    });
-
-    editFormModel.get('controls').pushObject(fdControlModel);
-    return editFormModel;
-  },
+    return promise;
+},
 
   setupController: function(controller, model) {
     this._super(controller, model);
