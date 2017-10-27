@@ -402,6 +402,9 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
 
     saveTree() {
       let rightTree = this._jsFlexberryTreeToTree(this.jsonRightTreeNodes[0].nodes);
+      while (rightTree && rightTree.length === 1 && rightTree[0].caption === 'Рабочий стол') {
+        rightTree = rightTree[0].nodes;
+      }
 
       let builder = new Query.Builder(this.store)
       .from('fd-dev-class')
