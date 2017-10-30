@@ -1,12 +1,21 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+
+  formId: null,
+
+  classId: null,
+
+  beforeModel: function(params) {
+    this.formId = params.queryParams.formId;
+    this.classId = params.queryParams.classId;
+  },
+
   model() {
     let store = this.get('store');
 
     let fdControlModel = store.createRecord('fd-visual-edit-control',
     {
-      id: 1,
       isSelected: true,
       name: 'Some control',
       notNullable: true,
@@ -14,7 +23,6 @@ export default Ember.Route.extend({
 
     let editFormModel = store.createRecord('fd-visual-edit-form',
     {
-      id: 1,
       name: 'Some name',
       description: 'Description',
     });

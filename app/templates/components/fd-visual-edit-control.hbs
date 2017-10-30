@@ -27,12 +27,12 @@
     {{flexberry-checkbox
       class="fluid"
       value=model.isNull
-      readonly=model.notNullable
     }}
 </div>
 <div class="field">
     <label>{{defaultValueTextboxCaption}}</label>
-    {{flexberry-textbox
+    {{component model.defaultValueControl
       value=model.defaultValue
+      type=model.inputType
     }}
 </div>
