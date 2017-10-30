@@ -1,17 +1,37 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+
+  formId: null,
+
+  classId: null,
+
+  beforeModel: function(params) {
+    this.formId = params.queryParams.formId;
+    this.classId = params.queryParams.classId;
+  },
+
   model() {
-    this.get('store').pushPayload({
-      data: {
-        id: 1,
-        name: 'Some name',
-        description: 'Description',
-        components: {}
-      }
+    let store = this.get('store');
+
+    let fdControlModel = store.createRecord('fd-visual-edit-control',
+    {
+      isSelected: true,
+      name: 'Some control',
+      notNullable: true,
     });
 
-    let store = this.get('store');
-    return store.createRecord('fd-visual-edit-form', {});
-  }
+    let editFormModel = store.createRecord('fd-visual-edit-form',
+    {
+      name: 'Some name',
+      description: 'Description',
+    });
+
+    editFormModel.get('controls').pushObject(fdControlModel);
+    return editFormModel;
+  },
+
+  setupController: function(controller, model) {
+    this._super(controller, model);
+  },
 });

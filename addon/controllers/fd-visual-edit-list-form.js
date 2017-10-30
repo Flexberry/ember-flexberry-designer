@@ -1,8 +1,12 @@
 import Ember from 'ember';
 
+import FdDataTypes from '../utils/fd-datatypes';
+
 export default Ember.Controller.extend({
 
-  queryParams: ['formId'],
+  queryParams: ['formId', 'classId'],
+
+  dataTypes: undefined,
 
   listform: null,
 
@@ -27,6 +31,14 @@ export default Ember.Controller.extend({
   attrsTree: {},
 
   editControl: {},
+
+  controlTypes: Ember.computed(
+    function() {
+      this.dataTypes = FdDataTypes.create();
+      let ret =  this.dataTypes.fDTypes();
+      return ret;
+    }
+  ),
 
 //   _parseDefinition: function(definition) {
 //     let ret = [];

@@ -1,6 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+
+  /**
+    @property store
+    @type Service
+  */
+  store: Ember.inject.service(),
+
   /**
   Flag: indicates whether to show creation button at toolbar.
 
@@ -9,6 +16,15 @@ export default Ember.Component.extend({
   @default true
   */
   createNewButton: true,
+
+  /**
+    Model view.
+
+    @property model
+    @type Object
+    @default undefined
+  */
+  model: undefined,
 
   /**
     Flag: indicates whether to show delete button at toolbar.
@@ -20,32 +36,110 @@ export default Ember.Component.extend({
   deleteButton: true,
 
   /**
-    Content to be displayed (models collection).
+    Control view.
 
-    @property content
+    @property control
+    @type Object
+    @default undefined
+  */
+  control: undefined,
+
+  /**
+    Current selected control.
+
+    @property selectedControl
+    @type Object
+    @default undefined
+  */
+
+  selectedControl: undefined,
+
+  /**
+    Current selected control.
+
+    @property selectedControl
     @type Object
     @default null
   */
-  component: Ember.inject.service('fd-visual-edit-control'),
+
+  selectedField: undefined,
 
   /**
-    Content to be displayed (models collection).
+    Controls array from model.
 
-    @property content
+    @property controls
     @type DS.ManyArray
-    @default null
+    @default undefined
   */
-  components: undefined,
+  controls: undefined,
 
   actions: {
-    addComponent() {
+
+    /**
+      Handles form 'addControl' button click.
+
+      @method addControl
+      @public
+    */
+    addControl() {
       let store = this.get('store');
-      let component = this.get('fd-visual-edit-control');
-      let components = this.get('components');
-      components = this.get('fd-visual-edit-form.components');
-      this.store.createRecord(component, {});
-      store.createRecord(components, {});
-    }
+      let fdControlModel = store.createRecord('fd-visual-edit-control',
+      {
+        isSelected: true,
+        name: 'New control',
+        notNullable: true,
+      });
+
+      this._clearSelection();
+      this.get('model.controls').pushObject(fdControlModel);
+      this.set('selectedControl', fdControlModel);
+    },
+
+    /**
+      Handles form 'deleteControl' button click.
+
+      @method deleteControl
+      @public
+    */
+    deleteControl() {
+      let controls = this.get('controls');
+      let selectedControl = this.get('selectedControl');
+      if (selectedControl && selectedControl !== controls.get('firstObject') && controls.toArray().length !== 1) {
+        selectedControl.destroyRecord().then(() => {
+          selectedControl.unloadRecord();
+        });
+        this._clearSelection();
+        let lastControl = controls.get('firstObject');
+        lastControl.set('isSelected', true);
+        this.set('selectedControl', lastControl);
+      }
+    },
+
+    /**
+      Handles control-field 'controlClick' action.
+
+      @method controlClick
+      @public
+    */
+    controlClick(control) {
+      this.set('selectedControl', control);
+      this._clearSelection();
+      control.set('isSelected', true);
+    },
+
+  },
+
+  /**
+    Reset selection of controls in model.
+
+    @method _clearSelection
+    @private
+  */
+  _clearSelection() {
+    let controls = this.get('model.controls');
+    controls.forEach(function(item) {
+      item.set('isSelected', false);
+    });
   },
 
   /**
@@ -53,10 +147,15 @@ export default Ember.Component.extend({
   */
   init() {
     this._super(...arguments);
+
+    let controls = this.get('controls');
+    this.set('selectedControl', controls ? controls.get('firstObject') : undefined);
   },
 
+  /**
+    Initializes DOM-related component's properties.
+  */
   didInsertElement() {
     this._super(...arguments);
   },
-
 });
