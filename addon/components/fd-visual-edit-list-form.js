@@ -14,6 +14,8 @@ export default Ember.Component.extend({
 
   selectedCol: undefined,
 
+  listformName: '',
+
   listAttributes: [],
 
   editControl: {},
@@ -218,12 +220,12 @@ export default Ember.Component.extend({
       let attribute = this.listAttributes[index];
       let editControl = this.editControl;
       let type;
-      switch (attribute.type) {
-        case 'bool': type = 'boolean'; break;
-        default: type = attribute.type;
-      }
+//       switch (attribute.type) {
+//         case 'bool': type = 'boolean'; break;
+//         default: type = attribute.type;
+//       }
       Ember.set(editControl, 'name', attribute.name);
-      Ember.set(editControl, 'type', type);
+      Ember.set(editControl, 'type', attribute.type);
       Ember.set(editControl, 'isNull', attribute.notNull);
       Ember.set(editControl, 'defaultValue', attribute.defaultValue);
       Ember.set(this, 'selectedCol', index);

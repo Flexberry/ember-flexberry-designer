@@ -233,45 +233,45 @@ export default Ember.Component.extend({
       @public
     */
     controlTypeChange() {
-      this._resetControl();
-      let controlTypes = this.get('controlTypes');
-      switch (this.get('model.type')) {
-        case controlTypes.objectAt(0).toString():
-          this.set('model.inputType', 'text');
-          this.set('model.controlType', 'flexberry-field');
-          this.set('model.defaultValueControl', 'flexberry-field');
-          break;
-        case controlTypes.objectAt(1).toString():
-          this.set('model.inputType', 'number');
-          this.set('model.controlType', 'flexberry-field');
-          this.set('model.defaultValue', 0);
-          this.set('model.defaultValueControl', 'flexberry-field');
-          break;
-        case controlTypes.objectAt(2).toString():
-          this.set('model.controlType', 'flexberry-checkbox');
-          this.set('model.defaultValue', false);
-          this.set('model.defaultValueControl', 'flexberry-checkbox');
-          break;
-        case controlTypes.objectAt(3).toString():
-          this.set('model.controlType', 'flexberry-simpledatetime');
-          this.set('model.defaultValueControl', 'flexberry-simpledatetime');
-          break;
-        case controlTypes.objectAt(4).toString():
-          this.set('model.controlType', 'flexberry-file');
-          this.set('model.defaultValueControl', undefined);
-          break;
-        case controlTypes.objectAt(5).toString():
-          this.set('model.controlType', 'flexberry-dropdown');
-          this.set('model.defaultValueControl', 'flexberry-dropdown');
-          break;
-        case controlTypes.objectAt(6).toString():
-          this.set('model.controlType', 'flexberry-lookup');
-          this.set('model.defaultValueControl', 'flexberry-lookup');
-          break;
-        default:
-          this.set('model.controlType', 'flexberry-textbox');
-          this.set('model.defaultValueControl', undefined);
-      }
+//       this._resetControl();
+//       let controlTypes = this.get('controlTypes');
+//       switch (this.get('model.type')) {
+//         case controlTypes.objectAt(0).toString():
+//           this.set('model.inputType', 'text');
+//           this.set('model.controlType', 'flexberry-field');
+//           this.set('model.defaultValueControl', 'flexberry-field');
+//           break;
+//         case controlTypes.objectAt(1).toString():
+//           this.set('model.inputType', 'number');
+//           this.set('model.controlType', 'flexberry-field');
+//           this.set('model.defaultValue', 0);
+//           this.set('model.defaultValueControl', 'flexberry-field');
+//           break;
+//         case controlTypes.objectAt(2).toString():
+//           this.set('model.controlType', 'flexberry-checkbox');
+//           this.set('model.defaultValue', false);
+//           this.set('model.defaultValueControl', 'flexberry-checkbox');
+//           break;
+//         case controlTypes.objectAt(3).toString():
+//           this.set('model.controlType', 'flexberry-simpledatetime');
+//           this.set('model.defaultValueControl', 'flexberry-simpledatetime');
+//           break;
+//         case controlTypes.objectAt(4).toString():
+//           this.set('model.controlType', 'flexberry-file');
+//           this.set('model.defaultValueControl', undefined);
+//           break;
+//         case controlTypes.objectAt(5).toString():
+//           this.set('model.controlType', 'flexberry-dropdown');
+//           this.set('model.defaultValueControl', 'flexberry-dropdown');
+//           break;
+//         case controlTypes.objectAt(6).toString():
+//           this.set('model.controlType', 'flexberry-lookup');
+//           this.set('model.defaultValueControl', 'flexberry-lookup');
+//           break;
+//         default:
+//           this.set('model.controlType', 'flexberry-textbox');
+//           this.set('model.defaultValueControl', undefined);
+//       }
     },
   },
 

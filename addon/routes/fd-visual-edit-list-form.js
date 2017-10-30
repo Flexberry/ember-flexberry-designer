@@ -78,6 +78,7 @@ export default Ember.Route.extend({
 
   setupController: function (controller, model) {
     this.controller = controller;
+    this.controller.listformName = model.objectAt(0).get('name');
     let stagePk = this.get('currentProjectContext').getCurrentStage();
     let _this = this;
     let devClass = model.objectAt(0);

@@ -263,7 +263,7 @@ export default Ember.Object.extend({
   },
 
   flexberryTypeToFD: function(type) {
-    if (type === undefined) {
+    if (!type) {
       return undefined;
     }
 

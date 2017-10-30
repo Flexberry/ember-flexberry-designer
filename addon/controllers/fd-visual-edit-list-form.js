@@ -8,9 +8,7 @@ export default Ember.Controller.extend({
 
   dataTypes: undefined,
 
-  listform: null,
-
-  listforms: [],
+  listformName: '',
 
   listAttributes: [],
 
@@ -40,52 +38,9 @@ export default Ember.Controller.extend({
     }
   ),
 
-//   _parseDefinition: function(definition) {
-//     let ret = [];
-//     let parser = new DOMParser();
-//     let xmlDoc = parser.parseFromString(definition, 'text/xml');
-//     if (xmlDoc) {
-//       let view = xmlDoc.getElementsByTagName('View');
-//       if (view.length > 0) {
-//         let viewPropertiesList = view[0].getElementsByTagName('ViewPropertiesList');
-//         if (viewPropertiesList.length > 0) {
-//           let itemList = viewPropertiesList[0].getElementsByTagName('Item');
-//           for (let item of itemList) {
-//             let propertyName = item.getAttribute('PropertyName');
-//             let caption = item.getAttribute('Caption');
-//             let visible =  item.getAttribute('Visible');
-//             let isMaster =  item.getAttribute('IsMaster');
-//             let lookupType =  item.getAttribute('LookupType');
-//             let masterPropertyName =  item.getAttribute('MasterPropertyName');
-//             let masterCustomizationString =  item.getAttribute('MasterCustomizationString');
-//             ret.push({
-//               propertyName:propertyName,
-//               caption:caption,
-//               visible: visible,
-//               isMaster: isMaster,
-//               lookupType: lookupType,
-//               masterPropertyName: masterPropertyName,
-//               masterCustomizationString: masterCustomizationString
-//             });
-//           }
-//         }
-//       }
-//     }
-//
-//     return ret;
-//   },
+  avaliableControls: undefined,
 
-//   setAttributes: function(attributes) {
-//     Ember.set(this, 'listAttributes', attributes);
-//   },
-
-  setClassTree: function(associations, aggregations, devClasses) {
-    Ember.set(this, 'associations', associations);
-    Ember.set(this, 'aggregations', aggregations);
-    Ember.set(this, 'devClasses', devClasses);
-  },
-
-
+  usedAttrs: [],
 
   _notUsedAttrs: function (path, classId) {
     let ret = [];
@@ -136,6 +91,13 @@ export default Ember.Controller.extend({
       }
     }
     return ret;
+  },
+
+
+  setClassTree: function(associations, aggregations, devClasses) {
+    Ember.set(this, 'associations', associations);
+    Ember.set(this, 'aggregations', aggregations);
+    Ember.set(this, 'devClasses', devClasses);
   },
 
   findAttrsNames: function(ok, nodes) {
@@ -230,12 +192,15 @@ export default Ember.Controller.extend({
     this.attrNames = {};
     for (let i = 0; i < this.definition.length; i++) {
       let attr = this.definition[i];
+      if (attr.visible === 'True') {
+        this.usedAttrs.push(attr.propertyName);
+      }
       this.attrNames[attr.propertyName] = attr;
     }
-    this.notUsedAttrs = this._notUsedAttrs([], viewClassId);
-    this.attrsTree = this._attrsTree([], viewClassId);
-    alert('Invisible: ' + this.findAttrsNames(function(node){ return !node.visible}));
-    alert('Hidden: ' + this.findAttrsNames(function(node){ return node.hidden}));
+//     this.notUsedAttrs = this._notUsedAttrs([], viewClassId);
+//     this.attrsTree = this._attrsTree([], viewClassId);
+//     alert('Invisible: ' + this.findAttrsNames(function(node){ return !node.visible}));
+//     alert('Hidden: ' + this.findAttrsNames(function(node){ return node.hidden}));
     //     alert("N=" + listAttributes.length + "\n" + JSON.stringify(listAttributes));
     Ember.set(this, 'listAttributes', listAttributes);
   },
