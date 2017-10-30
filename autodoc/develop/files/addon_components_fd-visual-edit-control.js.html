@@ -164,15 +164,6 @@ export default Ember.Component.extend({
   type: undefined,
 
   /**
-    Type of control input.
-
-    @property type
-    @type string
-    @default text
-   */
-  inputType: &#x27;text&#x27;,
-
-  /**
     Prototipes.
 
     @property prototypeBy
@@ -270,8 +261,20 @@ export default Ember.Component.extend({
   defaultValueTextboxCaption: t(&#x27;components.fd-visual-control.defaultValue&#x27;),
 
   stringControlType: t(&#x27;components.fd-visual-control.typeName.stringControlType&#x27;),
-  numberControlType: t(&#x27;components.fd-visual-control.typeName.numberControlType&#x27;),
   boolControlType: t(&#x27;components.fd-visual-control.typeName.boolControlType&#x27;),
+  charControlType: t(&#x27;components.fd-visual-control.typeName.charControlType&#x27;),
+  guidControlType: t(&#x27;components.fd-visual-control.typeName.guidControlType&#x27;),
+  decimalControlType: t(&#x27;components.fd-visual-control.typeName.decimalControlType&#x27;),
+  doubleControlType: t(&#x27;components.fd-visual-control.typeName.doubleControlType&#x27;),
+  floatControlType: t(&#x27;components.fd-visual-control.typeName.floatControlType&#x27;),
+  sbyteControlType: t(&#x27;components.fd-visual-control.typeName.sbyteControlType&#x27;),
+  shortControlType: t(&#x27;components.fd-visual-control.typeName.shortControlType&#x27;),
+  byteControlType: t(&#x27;components.fd-visual-control.typeName.byteControlType&#x27;),
+  intControlType: t(&#x27;components.fd-visual-control.typeName.intControlType&#x27;),
+  longControlType: t(&#x27;components.fd-visual-control.typeName.longControlType&#x27;),
+  uintControlType: t(&#x27;components.fd-visual-control.typeName.uintControlType&#x27;),
+  ushortControlType: t(&#x27;components.fd-visual-control.typeName.ushortControlType&#x27;),
+  ulongControlType: t(&#x27;components.fd-visual-control.typeName.ulongControlType&#x27;),
   dateControlType: t(&#x27;components.fd-visual-control.typeName.dateControlType&#x27;),
   fileControlType: t(&#x27;components.fd-visual-control.typeName.fileControlType&#x27;),
   drowdownControlType: t(&#x27;components.fd-visual-control.typeName.drowdownControlType&#x27;),
@@ -286,8 +289,20 @@ export default Ember.Component.extend({
   */
   controlTypes: Ember.computed(&#x27;controlTypes.[]&#x27;,
   &#x27;stringControlType&#x27;,
-  &#x27;numberControlType&#x27;,
   &#x27;boolControlType&#x27;,
+  &#x27;charControlType&#x27;,
+  &#x27;guidControlType&#x27;,
+  &#x27;decimalControlType&#x27;,
+  &#x27;doubleControlType&#x27;,
+  &#x27;floatControlType&#x27;,
+  &#x27;sbyteControlType&#x27;,
+  &#x27;shortControlType&#x27;,
+  &#x27;byteControlType&#x27;,
+  &#x27;intControlType&#x27;,
+  &#x27;longControlType&#x27;,
+  &#x27;uintControlType&#x27;,
+  &#x27;ushortControlType&#x27;,
+  &#x27;ulongControlType&#x27;,
   &#x27;dateControlType&#x27;,
   &#x27;fileControlType&#x27;,
   &#x27;drowdownControlType&#x27;,
@@ -295,8 +310,20 @@ export default Ember.Component.extend({
   function() {
     let arr = Ember.A();
     arr.pushObject(this.get(&#x27;stringControlType&#x27;));
-    arr.pushObject(this.get(&#x27;numberControlType&#x27;));
     arr.pushObject(this.get(&#x27;boolControlType&#x27;));
+    arr.pushObject(this.get(&#x27;charControlType&#x27;));
+    arr.pushObject(this.get(&#x27;guidControlType&#x27;));
+    arr.pushObject(this.get(&#x27;decimalControlType&#x27;));
+    arr.pushObject(this.get(&#x27;doubleControlType&#x27;));
+    arr.pushObject(this.get(&#x27;floatControlType&#x27;));
+    arr.pushObject(this.get(&#x27;sbyteControlType&#x27;));
+    arr.pushObject(this.get(&#x27;shortControlType&#x27;));
+    arr.pushObject(this.get(&#x27;byteControlType&#x27;));
+    arr.pushObject(this.get(&#x27;intControlType&#x27;));
+    arr.pushObject(this.get(&#x27;longControlType&#x27;));
+    arr.pushObject(this.get(&#x27;uintControlType&#x27;));
+    arr.pushObject(this.get(&#x27;ushortControlType&#x27;));
+    arr.pushObject(this.get(&#x27;ulongControlType&#x27;));
     arr.pushObject(this.get(&#x27;dateControlType&#x27;));
     arr.pushObject(this.get(&#x27;fileControlType&#x27;));
     arr.pushObject(this.get(&#x27;drowdownControlType&#x27;));
@@ -334,41 +361,83 @@ export default Ember.Component.extend({
     controlTypeChange() {
       this._resetControl();
       let controlTypes = this.get(&#x27;controlTypes&#x27;);
-      switch (this.get(&#x27;model.type&#x27;)) {
-        case controlTypes.objectAt(0).toString():
-          this.set(&#x27;model.inputType&#x27;, &#x27;text&#x27;);
-          this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-field&#x27;);
-          this.set(&#x27;model.defaultValueControl&#x27;, &#x27;flexberry-field&#x27;);
+      switch (this.get(&#x27;model.typeName&#x27;)) {
+        case controlTypes.objectAt(0).toString(): // stringControlType
+          this.set(&#x27;model.type&#x27;, &#x27;string&#x27;);
+          this.set(&#x27;model.defaultValue&#x27;, &#x27;&#x27;);
           break;
-        case controlTypes.objectAt(1).toString():
-          this.set(&#x27;model.inputType&#x27;, &#x27;number&#x27;);
-          this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-field&#x27;);
-          this.set(&#x27;model.defaultValue&#x27;, 0);
-          this.set(&#x27;model.defaultValueControl&#x27;, &#x27;flexberry-field&#x27;);
-          break;
-        case controlTypes.objectAt(2).toString():
+        case controlTypes.objectAt(1).toString(): // boolControlType
           this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-checkbox&#x27;);
+          this.set(&#x27;model.type&#x27;, &#x27;boolean&#x27;);
           this.set(&#x27;model.defaultValue&#x27;, false);
           this.set(&#x27;model.defaultValueControl&#x27;, &#x27;flexberry-checkbox&#x27;);
           break;
-        case controlTypes.objectAt(3).toString():
+        case controlTypes.objectAt(2).toString(): // charControlType
+          this.set(&#x27;model.type&#x27;, &#x27;char&#x27;);
+          this.set(&#x27;model.defaultValue&#x27;, &#x27;&#x27;);
+          break;
+        case controlTypes.objectAt(3).toString(): // guidControlType
+          this.set(&#x27;model.type&#x27;, &#x27;guid&#x27;);
+          this.set(&#x27;model.defaultValue&#x27;, &#x27;&#x27;);
+          break;
+        case controlTypes.objectAt(4).toString(): // decimalControlType
+          this.set(&#x27;model.type&#x27;, &#x27;decimal&#x27;);
+          break;
+        case controlTypes.objectAt(5).toString(): // doubleControlType
+          this.set(&#x27;model.type&#x27;, &#x27;double&#x27;);
+          break;
+        case controlTypes.objectAt(6).toString(): // floatControlType
+          this.set(&#x27;model.type&#x27;, &#x27;float&#x27;);
+          break;
+        case controlTypes.objectAt(7).toString(): // sbyteControlType
+          this.set(&#x27;model.type&#x27;, &#x27;sbyte&#x27;);
+          break;
+        case controlTypes.objectAt(8).toString(): // shortControlType
+          this.set(&#x27;model.type&#x27;, &#x27;short&#x27;);
+          break;
+        case controlTypes.objectAt(9).toString(): // byteControlType
+          this.set(&#x27;model.type&#x27;, &#x27;byte&#x27;);
+          break;
+        case controlTypes.objectAt(10).toString(): // intControlType
+          this.set(&#x27;model.type&#x27;, &#x27;int&#x27;);
+          break;
+        case controlTypes.objectAt(11).toString(): // longControlType
+          this.set(&#x27;model.type&#x27;, &#x27;long&#x27;);
+          break;
+        case controlTypes.objectAt(12).toString(): // uintControlType
+          this.set(&#x27;model.type&#x27;, &#x27;uint&#x27;);
+          break;
+        case controlTypes.objectAt(13).toString(): // ushortControlType
+          this.set(&#x27;model.type&#x27;, &#x27;ushort&#x27;);
+          break;
+        case controlTypes.objectAt(14).toString(): // ulongControlType
+          this.set(&#x27;model.type&#x27;, &#x27;ulong&#x27;);
+          break;
+        case controlTypes.objectAt(15).toString(): // dateControlType
           this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-simpledatetime&#x27;);
+          this.set(&#x27;model.type&#x27;, &#x27;DateTime&#x27;);
+          this.set(&#x27;model.defaultValue&#x27;, &#x27;&#x27;);
           this.set(&#x27;model.defaultValueControl&#x27;, &#x27;flexberry-simpledatetime&#x27;);
           break;
-        case controlTypes.objectAt(4).toString():
+        case controlTypes.objectAt(16).toString(): // fileControlType
           this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-file&#x27;);
+          this.set(&#x27;model.type&#x27;, &#x27;WebFile&#x27;);
+          this.set(&#x27;model.defaultValue&#x27;, &#x27;&#x27;);
           this.set(&#x27;model.defaultValueControl&#x27;, undefined);
           break;
-        case controlTypes.objectAt(5).toString():
+        case controlTypes.objectAt(17).toString(): // drowdownControlType
           this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-dropdown&#x27;);
+          this.set(&#x27;model.defaultValue&#x27;, &#x27;&#x27;);
           this.set(&#x27;model.defaultValueControl&#x27;, &#x27;flexberry-dropdown&#x27;);
           break;
-        case controlTypes.objectAt(6).toString():
+        case controlTypes.objectAt(18).toString(): // lookupControlType
           this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-lookup&#x27;);
+          this.set(&#x27;model.defaultValue&#x27;, &#x27;&#x27;);
           this.set(&#x27;model.defaultValueControl&#x27;, &#x27;flexberry-lookup&#x27;);
           break;
         default:
-          this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-textbox&#x27;);
+          this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-field&#x27;);
+          this.set(&#x27;model.defaultValue&#x27;, &#x27;&#x27;);
           this.set(&#x27;model.defaultValueControl&#x27;, undefined);
       }
     },
@@ -382,10 +451,11 @@ export default Ember.Component.extend({
   */
   _resetControl() {
     this.set(&#x27;model.prototypeBy&#x27;, undefined);
-    this.set(&#x27;model.inputType&#x27;, &#x27;text&#x27;);
     this.set(&#x27;model.isNull&#x27;, false);
     this.set(&#x27;model.value&#x27;, undefined);
-    this.set(&#x27;model.defaultValue&#x27;, &#x27;&#x27;);
+    this.set(&#x27;model.defaultValue&#x27;, 0);
+    this.set(&#x27;model.controlType&#x27;, &#x27;flexberry-field&#x27;);
+    this.set(&#x27;model.defaultValueControl&#x27;, &#x27;flexberry-field&#x27;);
   },
 
   /**

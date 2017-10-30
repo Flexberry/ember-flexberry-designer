@@ -946,16 +946,6 @@
         {
             "file": "addon/components/fd-visual-edit-control.js",
             "line": 67,
-            "description": "Type of control input.",
-            "itemtype": "property",
-            "name": "type",
-            "type": "string",
-            "default": "text",
-            "class": "FdLimitByStageMixin"
-        },
-        {
-            "file": "addon/components/fd-visual-edit-control.js",
-            "line": 76,
             "description": "Prototipes.",
             "itemtype": "property",
             "name": "prototypeBy",
@@ -965,7 +955,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 85,
+            "line": 76,
             "description": "Is null value.",
             "itemtype": "property",
             "name": "isNull",
@@ -975,7 +965,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 94,
+            "line": 85,
             "description": "Type of component in control.",
             "itemtype": "property",
             "name": "controlType",
@@ -985,7 +975,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 103,
+            "line": 94,
             "description": "Controls array from Form model.",
             "itemtype": "property",
             "name": "controls",
@@ -995,7 +985,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 112,
+            "line": 103,
             "description": "Array of avaliable controls for prototyping.",
             "itemtype": "property",
             "name": "avaliableControls",
@@ -1005,7 +995,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 128,
+            "line": 119,
             "description": "Control's 'prototypeBy' dropdown caption.",
             "itemtype": "property",
             "name": "prototypeByDropdownCaption",
@@ -1015,7 +1005,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 137,
+            "line": 128,
             "description": "Control's 'name' textbox caption.",
             "itemtype": "property",
             "name": "nameTextboxCaption",
@@ -1025,7 +1015,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 146,
+            "line": 137,
             "description": "Control's 'type' dropdown caption.",
             "itemtype": "property",
             "name": "typeDropdownCaption",
@@ -1035,7 +1025,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 155,
+            "line": 146,
             "description": "Control's 'isNull' checkbox caption.",
             "itemtype": "property",
             "name": "isNullCheckboxCaption",
@@ -1045,7 +1035,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 164,
+            "line": 155,
             "description": "Control's 'defaultValue' textbox caption.",
             "itemtype": "property",
             "name": "defaultValueTextboxCaption",
@@ -1055,7 +1045,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 181,
+            "line": 184,
             "description": "Array of control types.",
             "itemtype": "property",
             "name": "controlTypes",
@@ -1065,7 +1055,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 210,
+            "line": 237,
             "description": "Handles prototypeByDropdown 'onChange' action.",
             "itemtype": "method",
             "name": "controlTypeChange",
@@ -1075,7 +1065,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 229,
+            "line": 256,
             "description": "Handles typeDropdown 'onChange' action.",
             "itemtype": "method",
             "name": "controlTypeChange",
@@ -1085,7 +1075,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 278,
+            "line": 347,
             "description": "Reset displaying control's value.",
             "itemtype": "method",
             "name": "_resetControl",
@@ -1095,13 +1085,13 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 292,
+            "line": 362,
             "description": "Initializes component.",
             "class": "FdLimitByStageMixin"
         },
         {
             "file": "addon/components/fd-visual-edit-control.js",
-            "line": 299,
+            "line": 369,
             "description": "Initializes DOM-related component's properties.",
             "class": "FdLimitByStageMixin"
         },
@@ -4045,11 +4035,11 @@
     "warnings": [
         {
             "message": "Missing item type\nInitializes component.",
-            "line": " addon/components/fd-visual-edit-control.js:292"
+            "line": " addon/components/fd-visual-edit-control.js:362"
         },
         {
             "message": "Missing item type\nInitializes DOM-related component's properties.",
-            "line": " addon/components/fd-visual-edit-control.js:299"
+            "line": " addon/components/fd-visual-edit-control.js:369"
         },
         {
             "message": "Missing item type\nInitializes component.",
