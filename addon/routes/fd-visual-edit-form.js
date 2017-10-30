@@ -4,8 +4,6 @@ const { Builder } = Query;
 
 export default Ember.Route.extend({
 
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
-
   formId: null,
 
   classId: null,
@@ -17,7 +15,6 @@ export default Ember.Route.extend({
 
   model() {
     let store = this.get('store');
-    let stagePk = this.get('currentProjectContext').getCurrentStage();
 
     let promise = new Ember.RSVP.Promise((resolve, reject) => {
       let fdControlModel = store.createRecord('fd-visual-edit-control',
@@ -42,7 +39,7 @@ export default Ember.Route.extend({
     });
 
     return promise;
-},
+  },
 
   setupController: function(controller, model) {
     this._super(controller, model);
