@@ -219,7 +219,7 @@ export default Ember.Component.extend({
     attributeShow(index) {
       let attribute = this.listAttributes[index];
       let editControl = this.editControl;
-      let type;
+//       let type;
 //       switch (attribute.type) {
 //         case 'bool': type = 'boolean'; break;
 //         default: type = attribute.type;

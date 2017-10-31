@@ -1,3 +1,4 @@
+
 import Ember from 'ember';
 
 import FdDataTypes from '../utils/fd-datatypes';
@@ -12,21 +13,35 @@ export default Ember.Controller.extend({
 
   listAttributes: [],
 
-  associations: undefined,
+//   associations: undefined,
+//
+//   aggregations: undefined,
+//
+//   devClasses: undefined,
+//
+//   viewClassId: null,
 
-  aggregations: undefined,
+//   definition: null,
 
-  devClasses: undefined,
+    /**
+    Prototipes.
 
-  viewClassId: null,
-
-  definition: null,
+    @property prototypeBy
+    @type Object contained:
+      classId - class identificator
+      devClasses - list classes with attributes
+      assosiations - assosiations list
+      aggregations - aggregations list
+      usedAttrs  - list keys used attributes names
+    @default undefined
+   */
+  prototypeBy: {},
 
   attrNames: {},
 
-  notUsedAttrs: [],
+//   notUsedAttrs: [],
 
-  attrsTree: {},
+//   attrsTree: {},
 
   editControl: {},
 
@@ -38,90 +53,93 @@ export default Ember.Controller.extend({
     }
   ),
 
-  avaliableControls: undefined,
+//   avaliableControls: undefined,
 
-  usedAttrs: [],
+//   usedAttrs: [],
 
-  _notUsedAttrs: function (path, classId) {
-    let ret = [];
-    let devClass = this.devClasses[classId];
-    for (let attrName in devClass.attributes) {
-      let fullName = path.concat(attrName).join('.');
-      if (!(fullName in this.attrNames)  || this.attrNames[fullName].visible === 'False') {
-        ret.push(fullName);
-      }
-    }
-    for (let i in this.associations) {
-      let association = this.associations[i];
-      if (association.endClass.id === classId) {
-        let role = association.startRole;
-        let newPath = path.concat(role);
-        let fullName = newPath.join('.');
-        if (!(fullName in this.attrNames)  || this.attrNames[fullName].visible === 'False') {
-          ret.push(fullName);
-        }
-        ret = ret.concat(this._notUsedAttrs(newPath, association.startClass.id));
-      }
-    }
-    return ret;
+  init: function() {
+    this.prototypeBy = { classId:undefined, devClasses:{}, associations: [], aggregations: [], usedAttrs: []};
   },
 
-  _attrsTree: function (path, classId) {
-    let ret = [];
-    let devClass = this.devClasses[classId];
-    for (let attrName in devClass.attributes) {
-      let attribute = Object.assign({}, devClass.attributes[attrName]);
-      let fullName = path.concat(attrName).join('.');
-      attribute.fullName = fullName;
-      attribute.visible = (fullName in this.attrNames) && this.attrNames[fullName].visible === 'True';
-      attribute.hidden = (fullName in this.attrNames) && this.attrNames[fullName].visible === 'False';
-      ret.push(attribute);
-    }
-    for (let i in this.associations) {
-      let association = this.associations[i];
-      if (association.endClass.id === classId) {
-        let role = association.startRole;
-        let newPath = path.concat(role);
-        let fullName = newPath.join('.');
-        let node = { role: role , fullName: fullName};
-        node.visible = (fullName in this.attrNames) && this.attrNames[fullName].visible === 'True';
-        node.hidden = (fullName in this.attrNames) && this.attrNames[fullName].visible === 'False';
-        node.children = this._attrsTree(newPath, association.startClass.id);
-        ret.push(node);
-      }
-    }
-    return ret;
-  },
+//   _notUsedAttrs: function (path, classId) {
+//     let ret = [];
+//     let devClass = this.devClasses[classId];
+//     for (let attrName in devClass.attributes) {
+//       let fullName = path.concat(attrName).join('.');
+//       if (!(fullName in this.attrNames)  || this.attrNames[fullName].visible === 'False') {
+//         ret.push(fullName);
+//       }
+//     }
+//     for (let i in this.associations) {
+//       let association = this.associations[i];
+//       if (association.endClass.id === classId) {
+//         let role = association.startRole;
+//         let newPath = path.concat(role);
+//         let fullName = newPath.join('.');
+//         if (!(fullName in this.attrNames)  || this.attrNames[fullName].visible === 'False') {
+//           ret.push(fullName);
+//         }
+//         ret = ret.concat(this._notUsedAttrs(newPath, association.startClass.id));
+//       }
+//     }
+//     return ret;
+//   },
+//
+//   _attrsTree: function (path, classId) {
+//     let ret = [];
+//     let devClass = this.devClasses[classId];
+//     for (let attrName in devClass.attributes) {
+//       let attribute = Object.assign({}, devClass.attributes[attrName]);
+//       let fullName = path.concat(attrName).join('.');
+//       attribute.fullName = fullName;
+//       attribute.visible = (fullName in this.attrNames) && this.attrNames[fullName].visible === 'True';
+//       attribute.hidden = (fullName in this.attrNames) && this.attrNames[fullName].visible === 'False';
+//       ret.push(attribute);
+//     }
+//     for (let i in this.associations) {
+//       let association = this.associations[i];
+//       if (association.endClass.id === classId) {
+//         let role = association.startRole;
+//         let newPath = path.concat(role);
+//         let fullName = newPath.join('.');
+//         let node = { role: role , fullName: fullName};
+//         node.visible = (fullName in this.attrNames) && this.attrNames[fullName].visible === 'True';
+//         node.hidden = (fullName in this.attrNames) && this.attrNames[fullName].visible === 'False';
+//         node.children = this._attrsTree(newPath, association.startClass.id);
+//         ret.push(node);
+//       }
+//     }
+//     return ret;
+//   },
 
 
-  setClassTree: function(associations, aggregations, devClasses) {
-    Ember.set(this, 'associations', associations);
-    Ember.set(this, 'aggregations', aggregations);
-    Ember.set(this, 'devClasses', devClasses);
-  },
+//   setClassTree: function(associations, aggregations, devClasses) {
+//
+//   },
 
-  findAttrsNames: function(ok, nodes) {
-    let ret = [];
-    if (nodes === undefined) {
-      nodes = this.attrsTree;
-    }
-    for (let i in nodes) {
-      let node = nodes[i];
-      if (ok(node)) {
-        ret.push(node.fullName);
-        if ('role' in node) {
-          ret = ret.concat(ok, node.children);
-        }
-      }
-    }
-    return ret;
-  },
+//   findAttrsNames: function(ok, nodes) {
+//     let ret = [];
+//     if (nodes === undefined) {
+//       nodes = this.attrsTree;
+//     }
+//     for (let i in nodes) {
+//       let node = nodes[i];
+//       if (ok(node)) {
+//         ret.push(node.fullName);
+//         if ('role' in node) {
+//           ret = ret.concat(ok, node.children);
+//         }
+//       }
+//     }
+//     return ret;
+//   },
 
-  setListAttributes: function(viewClassId, definition) {
-    Ember.set(this, 'viewClassId', viewClassId);
-    Ember.set(this, 'definition', definition);
-    let viewClass = this.devClasses[viewClassId];
-    let _this = this;
+  setListAttributes: function(classId, definition, devClasses, associations) {
+    Ember.set(this.prototypeBy, 'devClasses', devClasses);
+    Ember.set(this.prototypeBy, 'associations', associations);
+    Ember.set(this.prototypeBy, 'classId', classId);
+    //     Ember.set(this, 'definition', definition);
+    let viewClass = devClasses[classId];
     for (let i in  definition) {
       let attr = definition[i];
       if (attr.isMaster === "False") {
@@ -137,19 +155,19 @@ export default Ember.Controller.extend({
           for (let j=0; j < steps.length -1; j++) {
             let step = steps[j];
             let k;
-            for (k = 0; k < this.associations.length; k++) {
-              association = this.associations[k];
+            for (k = 0; k < associations.length; k++) {
+              association = associations[k];
               if (association.endClass.name === startClassName && association.startRole === step) {
                 startClassName = step;
                 break;
               }
             }
-            if (k >= this.associations.length) {
+            if (k >= associations.length) {
               continue;
             }
             Ember.assert('PropertyName: ' + propertyName +
               ' Association for startClass "' +  startClassName + '" and role "' + step + '" not found',
-              k < this.associations.length);
+              k < associations.length);
           }
           attrName = steps[steps.length-1];
           let classId = association.startClass.id;
@@ -157,8 +175,8 @@ export default Ember.Controller.extend({
             ' startClass "' +  association.startClass.name +
             '(' + classId +') of association "' + association.startRole +
             '" not found in attribute "' + attrName + '"',
-            classId in this.devClasses);
-          attrClass = this.devClasses[classId];
+            classId in devClasses);
+          attrClass = devClasses[classId];
         }
         if (! (attrName in attrClass.attributes)) {
           continue;
@@ -176,33 +194,26 @@ export default Ember.Controller.extend({
     }
 //     alert(JSON.stringify(definition));
     let listAttributes = [];
+    this.attrNames = {};
+    let usedAttrs = {};
     for (let i =0; i < definition.length; i++) {
-      let defAttribute = definition[i];
-      if (defAttribute.visible === 'False') {
+      let attr = definition[i];
+      this.attrNames[attr.propertyName] = attr;
+      if (attr.visible === 'False') {
         continue;
       }
+      usedAttrs[attr.propertyName] = true;
       let attribute = {
-        name: defAttribute.propertyName,
-        type: defAttribute.type,
-        defaultValue: defAttribute.defaultValue
+        name: attr.propertyName,
+        type: attr.type,
+        defaultValue: attr.defaultValue
       };
       listAttributes.push(attribute);
     }
 
-    this.attrNames = {};
-    for (let i = 0; i < this.definition.length; i++) {
-      let attr = this.definition[i];
-      if (attr.visible === 'True') {
-        this.usedAttrs.push(attr.propertyName);
-      }
-      this.attrNames[attr.propertyName] = attr;
-    }
-//     this.notUsedAttrs = this._notUsedAttrs([], viewClassId);
-//     this.attrsTree = this._attrsTree([], viewClassId);
-//     alert('Invisible: ' + this.findAttrsNames(function(node){ return !node.visible}));
-//     alert('Hidden: ' + this.findAttrsNames(function(node){ return node.hidden}));
-    //     alert("N=" + listAttributes.length + "\n" + JSON.stringify(listAttributes));
     Ember.set(this, 'listAttributes', listAttributes);
+    Ember.set(this.prototypeBy, 'usedAttrs', usedAttrs);
+
   },
 
 
