@@ -93,8 +93,9 @@ export default Ember.Component.extend({
     if (!this.prototypeBy.devClasses || !this.prototypeBy.classId || !(this.prototypeBy.classId in this.prototypeBy.devClasses)) {
       return [];
     }
+
     let devClass = this.prototypeBy.devClasses[this.prototypeBy.classId];
-    if (!('attributes' in devClass)){
+    if (!('attributes' in devClass)) {
       return [];
     }
 
@@ -120,8 +121,8 @@ export default Ember.Component.extend({
           className = '✔' + className;
           break;
         }
-
       }
+
       ret.push(className + ' ▶');
     }
 
