@@ -30,7 +30,7 @@ export default Ember.Controller.extend({
     @type Object contained:
       classId - class identificator
       devClasses - list classes with attributes
-      assosiations - assosiations list
+      associations - associations list
       aggregations - aggregations list
       usedAttrs  - list keys used attributes names
     @default undefined

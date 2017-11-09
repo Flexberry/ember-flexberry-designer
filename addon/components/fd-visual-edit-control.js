@@ -80,14 +80,14 @@ export default Ember.Component.extend({
     @type Object contained:
       classId - class identificator
       devClasses - list classes with attributes
-      assosiations - assosiations list
+      associations - associations list
       usedAttrs  - list keys used attributes names
     @default undefined
    */
   prototypeBy: {
     classId: undefined,
     devClasses: {},
-    assosiations: [],
+    associations: [],
     usedAttrs: {}
   },
 
@@ -102,15 +102,18 @@ export default Ember.Component.extend({
     if (!this.prototypeBy.devClasses || !this.prototypeBy.classId || ! (this.prototypeBy.classId in this.prototypeBy.devClasses)) {
       return [];
     }
+
     let devClass = this.prototypeBy.devClasses[this.prototypeBy.classId];
-    if (! ('attributes' in devClass)){
+    if (!('attributes' in devClass)) {
       return [];
     }
-    let ret = [ '' ];
+
+    let ret = [''];
     for (let attrName in devClass.attributes) {
       if (attrName in this.prototypeBy.usedAttrs) {
         attrName = '✔' + attrName;
       }
+
       ret.push(attrName);
     }
 
@@ -118,6 +121,7 @@ export default Ember.Component.extend({
       if (devClassId === this.prototypeBy.classId) {
         continue;
       }
+
       let className = this.prototypeBy.devClasses[devClassId].name;
       let dotName = className + '.';
       for (let usedAttr in this.prototypeBy.usedAttrs) {
@@ -127,9 +131,10 @@ export default Ember.Component.extend({
           break;
         }
       }
+
       ret.push(className + ' ▶');
     }
-//     alert(ret);
+    //alert(ret);
     return ret;
   }),
   /**
@@ -149,15 +154,6 @@ export default Ember.Component.extend({
     @default undefined
    */
   controlType: undefined,
-
-//   /**
-//     Controls array from Form model.
-//
-//     @property controls
-//     @type DS.ManyArray
-//     @default undefined
-//   */
-//   controls: undefined,
 
   /**
     Control's 'prototypeBy' dropdown caption.
@@ -223,16 +219,6 @@ export default Ember.Component.extend({
     */
     avaliableControlChange() {
       alert('change');
-//       let model = this.get('model');
-//       let controls = this.get('controls');
-//       let selectedControl = controls.find(item => item.get('name') === model.get('prototypeBy'));
-//       model.set('value', selectedControl.get('value'));
-//       model.set('type', selectedControl.get('type'));
-//       model.set('inputType', selectedControl.get('inputType'));
-//       model.set('controlType', selectedControl.get('controlType'));
-//       model.set('isNull', selectedControl.get('isNull'));
-//       model.set('defaultValue', selectedControl.get('defaultValue'));
-//       model.set('defaultValueControl', selectedControl.get('defaultValueControl'));
     },
 
     /**
@@ -242,45 +228,7 @@ export default Ember.Component.extend({
       @public
     */
     controlTypeChange() {
-//       this._resetControl();
-//       let controlTypes = this.get('controlTypes');
-//       switch (this.get('model.type')) {
-//         case controlTypes.objectAt(0).toString():
-//           this.set('model.inputType', 'text');
-//           this.set('model.controlType', 'flexberry-field');
-//           this.set('model.defaultValueControl', 'flexberry-field');
-//           break;
-//         case controlTypes.objectAt(1).toString():
-//           this.set('model.inputType', 'number');
-//           this.set('model.controlType', 'flexberry-field');
-//           this.set('model.defaultValue', 0);
-//           this.set('model.defaultValueControl', 'flexberry-field');
-//           break;
-//         case controlTypes.objectAt(2).toString():
-//           this.set('model.controlType', 'flexberry-checkbox');
-//           this.set('model.defaultValue', false);
-//           this.set('model.defaultValueControl', 'flexberry-checkbox');
-//           break;
-//         case controlTypes.objectAt(3).toString():
-//           this.set('model.controlType', 'flexberry-simpledatetime');
-//           this.set('model.defaultValueControl', 'flexberry-simpledatetime');
-//           break;
-//         case controlTypes.objectAt(4).toString():
-//           this.set('model.controlType', 'flexberry-file');
-//           this.set('model.defaultValueControl', undefined);
-//           break;
-//         case controlTypes.objectAt(5).toString():
-//           this.set('model.controlType', 'flexberry-dropdown');
-//           this.set('model.defaultValueControl', 'flexberry-dropdown');
-//           break;
-//         case controlTypes.objectAt(6).toString():
-//           this.set('model.controlType', 'flexberry-lookup');
-//           this.set('model.defaultValueControl', 'flexberry-lookup');
-//           break;
-//         default:
-//           this.set('model.controlType', 'flexberry-textbox');
-//           this.set('model.defaultValueControl', undefined);
-//       }
+
     },
   },
 
