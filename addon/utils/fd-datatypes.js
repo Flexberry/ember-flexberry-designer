@@ -258,6 +258,7 @@ export default Ember.Object.extend({
     for (let i in this._flexberryTypeToFD) {
       types[this._flexberryTypeToFD[i]] = true;
     }
+
     let ret = Object.keys(types);
     return ret;
   },
