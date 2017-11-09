@@ -16,14 +16,14 @@ export default Ember.Route.extend({
 
   definition: {},
 
-//   associations: [],
-//
+  //   associations: [],
+  //
   //   aggregations: [],const { RSVP}
 
-//
-//   devClasses: {},
-//
-//   classKeys: {},
+  //
+  //   devClasses: {},
+  //
+  //   classKeys: {},
 
   queryParams: {
     formId: {
@@ -65,13 +65,13 @@ export default Ember.Route.extend({
     return promise;
   },
 
-//   _getAssocListByEndClass(endClass) {
-//     let builder = new  Builder(this.store, 'fd-dev-association').
-//     selectByProjection('ListFormView').
-//     where('endClass.name', FilterOperator.Eq, endClass);
-//     let promise = this.store.query('fd-dev-association', builder.build());
-//     return promise;
-//   },
+  //   _getAssocListByEndClass(endClass) {
+  //     let builder = new  Builder(this.store, 'fd-dev-association').
+  //     selectByProjection('ListFormView').
+  //     where('endClass.name', FilterOperator.Eq, endClass);
+  //     let promise = this.store.query('fd-dev-association', builder.build());
+  //     return promise;
+  //   },
 
 
 
@@ -81,6 +81,7 @@ export default Ember.Route.extend({
     let builder = new  Builder(this.store, 'fd-dev-class').
     selectByProjection('FdAttributesForForm').
     byId(this.formId);
+
     /*selectByProjection('FdAttributesForForm').
      *select('id,name,description,stereotype,containersStr,attributes,attributes.name').*/
     let promise = this.store.query('fd-dev-class', builder.build());
@@ -95,6 +96,7 @@ export default Ember.Route.extend({
     let devClass = model.objectAt(0);
     let formView = devClass.get('formViews').objectAt(0);
     let view = formView.get('view');
+
     //     this.definition = controller._parseDefinition(view.get('definition'));
     this.definition = view.get('definition');
     this.viewClassId = view.get('class.id');
@@ -107,32 +109,35 @@ export default Ember.Route.extend({
       let devClasses = {};
       for (let i = 0; i < values.length; i++) {
         let recordList = values[i];
-        switch(recordList.modelName) {
+        switch (recordList.modelName) {
           case 'fd-dev-association':
           case 'fd-dev-aggregation':
             for (let i = 0; i < recordList.get('length'); i++) {
               let record = recordList.objectAt(i);
-              let startRole = record.get(record.get('startRole') === null? 'startClass.name': 'startRole');
+              let startRole = record.get(record.get('startRole') === null ? 'startClass.name' : 'startRole');
               let association = {
                 id: record.id,
                 startRole: startRole,
                 startClass:{ id: record.get('startClass').id, name: record.get('startClass.name') }
-                };
-                if (recordList.modelName === 'fd-dev-association') {
-                  association.endClass = { id: record.get('endClass').id, name: record.get('endClass.name') };
-                } else {
-                  association.endClass = { id: null, name: null };
-                }
+              };
+
+              if (recordList.modelName === 'fd-dev-association') {
+                association.endClass = { id: record.get('endClass').id, name: record.get('endClass.name') };
+              } else {
+                association.endClass = { id: null, name: null };
+              }
+
               associations.push(association);
             }
 
-          break;
+            break;
           case 'fd-dev-class':
             for (let i = 0; i < recordList.get('length'); i++) {
               let record = recordList.objectAt(i);
               if (record.get('stereotype')) {
                 continue;
               }
+
               devClasses[record.id] = { name: record.get('name'), attributes: {} };
               let attributes = record.get('attributes');
               for (let j = 0; j < attributes.get('length') ; j++) {
@@ -146,13 +151,12 @@ export default Ember.Route.extend({
                 };
               }
             }
-          }
-
         }
+      }
 
-        let classId = JSON.parse(JSON.stringify(_this.viewClassId));
-        let definition = _this.definition;
-        _this.controller.setListAttributes(classId , definition, devClasses, associations);
+      let classId = JSON.parse(JSON.stringify(_this.viewClassId));
+      let definition = _this.definition;
+      _this.controller.setListAttributes(classId , definition, devClasses, associations);
     });
 
     return this._super(controller, model);
