@@ -70,8 +70,6 @@ export default Ember.Route.extend({
   //     return promise;
   //   },
 
-
-
   model: function() {
     //    select('id,name,description,stereotype,containersStr,formViews,formViews.view,formViews.view.class,formViews.view.class.id,stage,stage.id').
 
@@ -153,7 +151,7 @@ export default Ember.Route.extend({
 
       let classId = JSON.parse(JSON.stringify(_this.viewClassId));
       let definition = _this.definition;
-      _this.controller.setListAttributes(classId , definition, devClasses, associations);
+      _this.controller.setListAttributes(classId, definition, devClasses, associations);
     });
 
     return this._super(controller, model);
