@@ -17,9 +17,9 @@
     <label>{{typeDropdownCaption}}</label>
     {{flexberry-dropdown
       items=controlTypes
-      value=model.type
+      value=model.typeName
       class=undefined
-      onChange=(action 'controlTypeChange' model.type)
+      onChange=(action 'controlTypeChange' model.typeName)
     }}
 </div>
 <div class="field">
