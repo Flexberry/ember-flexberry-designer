@@ -23,25 +23,25 @@ export default Ember.Controller.extend({
 
   //   definition: null,
 
-    /**
-    Prototipes.
+  /**
+  Prototypes.
 
-    @property prototypeBy
-    @type Object contained:
-      classId - class identificator
-      devClasses - list classes with attributes
-      assosiations - assosiations list
-      aggregations - aggregations list
-      usedAttrs  - list keys used attributes names
-    @default undefined
-   */
+  @property prototypeBy
+  @type Object contained:
+    classId - class identificator
+    devClasses - list classes with attributes
+    assosiations - assosiations list
+    aggregations - aggregations list
+    usedAttrs  - list keys used attributes names
+  @default undefined
+  */
   prototypeBy: {},
 
   attrNames: {},
 
-//   notUsedAttrs: [],
+  //   notUsedAttrs: [],
 
-//   attrsTree: {},
+  //   attrsTree: {},
 
   editControl: {},
 
@@ -112,7 +112,6 @@ export default Ember.Controller.extend({
   //     return ret;
   //   },
 
-
   //   setClassTree: function(associations, aggregations, devClasses) {
   //
   //   },
@@ -143,7 +142,7 @@ export default Ember.Controller.extend({
     let viewClass = devClasses[classId];
     for (let i in  definition) {
       let attr = definition[i];
-      if (attr.isMaster === "False") {
+      if (attr.isMaster === 'False') {
         let attrClass = viewClass;
         let propertyName = attr.propertyName;
         let steps = propertyName.split('.');
@@ -153,7 +152,7 @@ export default Ember.Controller.extend({
         } else {
           let association;
           let startClassName = viewClass.name;
-          for (let j=0; j < steps.length -1; j++) {
+          for (let j = 0; j < steps.length - 1; j++) {
             let step = steps[j];
             let k;
             for (k = 0; k < associations.length; k++) {
@@ -173,11 +172,11 @@ export default Ember.Controller.extend({
               k < associations.length);
           }
 
-          attrName = steps[steps.length-1];
+          attrName = steps[steps.length - 1];
           let classId = association.startClass.id;
           Ember.assert('PropertyName: ' + propertyName +
             ' startClass "' +  association.startClass.name +
-            '(' + classId +') of association "' + association.startRole +
+            '(' + classId + ') of association "' + association.startRole +
             '" not found in attribute "' + attrName + '"',
             classId in devClasses);
           attrClass = devClasses[classId];
@@ -191,11 +190,11 @@ export default Ember.Controller.extend({
           ' attribute name "' +  attrName + '" not found in class "' + attrClass.name,
           attrName in attrClass.attributes);
         let classAttr = attrClass.attributes[attrName];
-        attr['type'] = classAttr['type'];
-        attr['defaultValue'] = classAttr['defaultValue'];
+        attr.type = classAttr.type;
+        attr.defaultValue = classAttr.defaultValue;
       } else {
-        attr['type'] = 'guid';
-        attr['defaultValue'] = null;
+        attr.type = 'guid';
+        attr.defaultValue = null;
       }
 
     }
@@ -204,7 +203,7 @@ export default Ember.Controller.extend({
     let listAttributes = [];
     this.attrNames = {};
     let usedAttrs = {};
-    for (let i =0; i < definition.length; i++) {
+    for (let i = 0; i < definition.length; i++) {
       let attr = definition[i];
       this.attrNames[attr.propertyName] = attr;
       if (attr.visible === 'False') {
