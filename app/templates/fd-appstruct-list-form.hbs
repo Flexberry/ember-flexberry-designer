@@ -1,29 +1,23 @@
 <h3>{{t 'forms.fd-appstruct-list-form.caption'}}</h3>
 
-
-<table>
+<div class="sixteen wide column" style="width: 100%; overflow-x: scroll;">
+<table >
   <tr >
     <td>
       <div class="ui buttons">
-        <button class='ui button icon {{removeLeftNodeDisabled}}' {{action "removeLeftNode" on="click" }}>
+        <button class='ui button icon {{removeLeftNodeDisabled}}' title="{{t "forms.fd-appstruct-list-form.remove-text"}}" {{action "removeLeftNode" on="click" }}>
           <i class="remove icon" ></i>
         </button>
-        <button class="ui button create-button" {{action 'addLeftClass'}}>
+        <button class="ui button create-button" title="{{t "forms.fd-appstruct-list-form.add-class-text"}}" {{action 'addLeftClass'}}>
           <i class="add circle icon"></i>
-          {{t "forms.fd-appstruct-list-form.add-class-text"}}
         </button>
-        <button class="ui button create-button {{addLeftNodeDisabled}}" {{action 'addLeftEditForm'}}>
-          <i class="add circle icon"></i>
-          {{t "forms.fd-appstruct-list-form.add-editform-text"}}
+        <button class="ui button create-button {{addLeftNodeDisabled}}" title="{{t "forms.fd-appstruct-list-form.add-editform-text"}}" {{action 'addLeftEditForm'}}>
+          <i class="add circle icon"></i>E
         </button>
-        <button class="ui button create-button {{addLeftNodeDisabled}}" {{action 'addLeftListForm'}}>
-          <i class="add circle icon"></i>
-          {{t "forms.fd-appstruct-list-form.add-listform-text"}}
+        <button class="ui button create-button {{addLeftNodeDisabled}}" title="{{t "forms.fd-appstruct-list-form.add-listform-text"}}" {{action 'addLeftListForm'}}>
+          <i class="add circle icon"></i>L
         </button>
-        <!--button class='ui button icon {{addLeftNodeDisabled}}' {{action "addLeftNode" on="click" }}>
-          <i class="plus icon" disabled></i>
-        </button-->
-        <button class='ui button icon {{editLeftNodeDisabled}}' {{action "editLeftNode" on="click" }}>
+        <button class='ui button icon {{editLeftNodeDisabled}}' title="{{t "forms.fd-appstruct-list-form.edit-text"}}" {{action "editLeftNode" on="click" }}>
           <i class="edit icon"></i>
         </button>
         <button class='ui button icon {{listLeftDisabled}}' {{action "listLeft" on="click" }}>
@@ -103,6 +97,7 @@
     </td>
   </tr>
 </table>
+</div>
 
 
 <button class="ui icon {{saveButtonClass}}  button" {{action "saveTree"}}>

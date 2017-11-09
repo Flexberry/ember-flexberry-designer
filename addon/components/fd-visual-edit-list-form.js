@@ -6,20 +6,26 @@ import FdDataTypes from '../utils/fd-datatypes';
 export default Ember.Component.extend({
   layout,
 
-  dataTypes: undefined,
-
-  selectedCol: undefined,
-
   _prevRowsValues: undefined,
 
   _prevRowsTypes: undefined,
 
+  dataTypes: undefined,
+
+  selectedCol: undefined,
+
+  listformName: '',
+
+  listAttributes: [],
+
+  editControl: {},
+
   rowsValues:  Ember.computed(
-    'model.listform.listAttributes',
-    'model.editControl.type',
+    'listAttributes',
+    'editControl.type',
     function() {
-      let editControlType = this.get('dataTypes').flexberryTypeToFD(this.model.editControl.type);
-      if (this.selectedCol === undefined && this._prevRowsValues !== undefined ||
+      let editControlType = this.get('dataTypes').flexberryTypeToFD(this.editControl.type);
+      if (/*this.selectedCol === undefined && this._prevRowsValues !== undefined && this._prevRowsValues.length === this.listAttributes.length ||*/
         this.selectedCol !== undefined &&
         typeof this._prevRowsTypes === 'object' &&
         this._prevRowsTypes[this.selectedCol] === editControlType) {
@@ -32,7 +38,7 @@ export default Ember.Component.extend({
       }
 
       this._prevRowsTypes = [];
-      let attributes = this.model.listform.listAttributes;
+      let attributes = this.listAttributes;
       for (let nCol = 0; nCol < attributes.length; nCol++) {
         let attribute = attributes[nCol];
         this._prevRowsTypes[nCol] = attribute.type;
@@ -55,9 +61,9 @@ export default Ember.Component.extend({
 
   previousSelectedCol: undefined,
 
-  selectedCols:  Ember.computed('selectedCol', 'model.listform.listAttributes', function() {
+  selectedCols:  Ember.computed('selectedCol', 'listAttributes', function() {
     let ret = [];
-    for (let i = 0; i < this.model.listform.listAttributes.length; i++) {
+    for (let i = 0; i < this.listAttributes.length; i++) {
       ret[i] = (typeof (this.selectedCol) !== 'undefined' && this.selectedCol === i);
     }
 
@@ -65,17 +71,18 @@ export default Ember.Component.extend({
   }),
 
   attributes:  Ember.computed(
-    'model.listform.listAttributes',
-    'model.editControl.name',
-    'model.editControl.type',
-    'model.editControl.defaultValue',
+    'listAttributes',
+    'editControl.name',
+    'editControl.type',
+    'editControl.defaultValue',
     function() {
+    this._reNumberAttributes(this.listAttributes);
     let ret = Ember.A();
-    let attributes = this.model.listform.listAttributes;
+    let attributes = this.listAttributes;
     for (let i = 0; i < attributes.length; i++) {
       let attribute = attributes[i];
       if (this.selectedCol === i) {
-        let editControl = this.model.editControl;
+        let editControl = this.editControl;
         attribute.name = editControl.name;
         attribute.type = this.get('dataTypes').flexberryTypeToFD(editControl.type);
         attribute.defaultValue = editControl.defaultValue;
@@ -127,8 +134,11 @@ export default Ember.Component.extend({
       attribute.lastPosition = undefined;
     }
 
-    listAttributes[0].firstPosition = true;
-    listAttributes[listAttributes.length - 1].lastPosition = true;
+    if (listAttributes.length > 0) {
+      listAttributes[0].firstPosition = true;
+      listAttributes[listAttributes.length - 1].lastPosition = true;
+    }
+
   },
 
   _attributeRight: function(listAttributes, index) {
@@ -207,15 +217,16 @@ export default Ember.Component.extend({
   actions: {
 
     attributeShow(index) {
-      let attribute = this.model.listform.listAttributes[index];
-      let editControl = this.model.editControl;
-      let type;
-      switch (attribute.type) {
-        case 'bool': type = 'boolean'; break;
-        default: type = attribute.type;
-      }
+      let attribute = this.listAttributes[index];
+      let editControl = this.editControl;
+
+      //       let type;
+      //       switch (attribute.type) {
+      //         case 'bool': type = 'boolean'; break;
+      //         default: type = attribute.type;
+      //       }
       Ember.set(editControl, 'name', attribute.name);
-      Ember.set(editControl, 'type', type);
+      Ember.set(editControl, 'type', attribute.type);
       Ember.set(editControl, 'isNull', attribute.notNull);
       Ember.set(editControl, 'defaultValue', attribute.defaultValue);
       Ember.set(this, 'selectedCol', index);
@@ -223,8 +234,8 @@ export default Ember.Component.extend({
     },
 
     attributeCreate() {
-      let editControl = this.model.editControl;
-      let listAttributes = this.model.listform.listAttributes;
+      let editControl = this.editControl;
+      let listAttributes = this.listAttributes;
       let editType = editControl.type === undefined ? 'string' : editControl.type;
       let editName = this.selectedCol === undefined || editControl.name === undefined ? 'NewAttribute_' : editControl.name.trim() + '_';
       Ember.set(this, 'selectedCol', undefined);
@@ -247,12 +258,12 @@ export default Ember.Component.extend({
       newAttributes.push({ name: editName, type: editType });
 
       Ember.set(this, 'selectedCol', newAttributes.length - 1);
-      Ember.set(this.model.listform, 'listAttributes', newAttributes);
+      Ember.set(this, 'listAttributes', newAttributes);
     },
 
     attributeDelete(index) {
       let newAttributes = [];
-      let listAttributes = this.model.listform.listAttributes;
+      let listAttributes = this.listAttributes;
       let newPrevRowsTypes = [];
       let newPrevRowsValues = [];
       let nCol;
@@ -291,17 +302,17 @@ export default Ember.Component.extend({
         }
       }
 
-      Ember.set(this.model.listform, 'listAttributes', newAttributes);
+      Ember.set(this, 'listAttributes', newAttributes);
     },
 
     attributeLeft(index) {
-      let newAttributes = this._attributeRight(this.model.listform.listAttributes, index - 1);
-      Ember.set(this.model.listform, 'listAttributes', newAttributes);
+      let newAttributes = this._attributeRight(this.listAttributes, index - 1);
+      Ember.set(this, 'listAttributes', newAttributes);
     },
 
     attributeRight(index) {
-      let newAttributes = this._attributeRight(this.model.listform.listAttributes, index);
-      Ember.set(this.model.listform, 'listAttributes', newAttributes);
+      let newAttributes = this._attributeRight(this.listAttributes, index);
+      Ember.set(this, 'listAttributes', newAttributes);
     },
 
     showForm: function() {

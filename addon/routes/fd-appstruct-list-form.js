@@ -50,6 +50,10 @@ export default Ember.Route.extend({
 
     let leftTreeNodes = this._getLeftTree(leftParents, leftLeaves);
 
+    while (itemList && itemList.length === 1 && itemList[0].caption === 'Рабочий стол') {
+      itemList = itemList[0].nodes;
+    }
+
     let rightTreeNodes = [{
       caption:'Рабочий стол',
       nodes: itemList

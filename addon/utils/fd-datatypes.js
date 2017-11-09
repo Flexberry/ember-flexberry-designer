@@ -29,7 +29,7 @@ export default Ember.Object.extend({
       return ret;
     },
 
-    WebFile: function() {
+    tFile: function() {
       let strs = [
         'http://flexberry.ru',
         'https://vk.com/flexberry',
@@ -136,7 +136,7 @@ export default Ember.Object.extend({
       return ret;
     },
 
-    WebFile: function(value) {
+    tFile: function(value) {
       let ret = typeof value === 'string';
       return ret;
     },
@@ -226,8 +226,8 @@ export default Ember.Object.extend({
 
   _flexberryTypeToFD: {
     boolean: 'bool',
-    WebFile: 'file',
-    char: 'char',
+    WebFile: 'tFile',
+    char: 'string',
     string: 'string',
     guid: 'guid',
     decimal: 'decimal',
@@ -242,14 +242,29 @@ export default Ember.Object.extend({
     ushort: 'ushort',
     ulong: 'ulong',
     DateTime: 'DateTime',
-    NullableDateTime: 'NullableDateTime',
-    NullableDecimal: 'NullableDecimal',
-    NullableInt: 'NullableInt',
+    NullableDateTime: 'DateTime',
+    NullableDecimal: 'Decimal',
+    NullableInt: 'Int',
     object: 'object'
   },
 
+  flexberryTypes: function() {
+    let ret = Object.keys(this._flexberryTypeToFD);
+    return ret;
+  },
+
+  fDTypes: function() {
+    let types = {};
+    for (let i in this._flexberryTypeToFD) {
+      types[this._flexberryTypeToFD[i]] = true;
+    }
+
+    let ret = Object.keys(types);
+    return ret;
+  },
+
   flexberryTypeToFD: function(type) {
-    if (type === undefined) {
+    if (!type) {
       return undefined;
     }
 
