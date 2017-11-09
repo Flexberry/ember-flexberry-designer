@@ -167,11 +167,66 @@ export default Ember.Component.extend({
     Prototipes.
 
     @property prototypeBy
-    @type String[]
+    @type Object contained:
+      classId - class identificator
+      devClasses - list classes with attributes
+      assosiations - assosiations list
+      usedAttrs  - list keys used attributes names
     @default undefined
    */
-  prototypeBy: undefined,
+  prototypeBy: {
+    classId: undefined,
+    devClasses: {},
+    assosiations: [],
+    usedAttrs: {}
+  },
 
+  /**
+    Array of avaliable controls for prototyping.
+
+    @property avaliableControls
+    @type DS.ManyArray
+    @default undefined
+  */
+  avaliableControls: Ember.computed(&#x27;prototypeBy.classId&#x27;, function() {
+    if (!this.prototypeBy.devClasses || !this.prototypeBy.classId || !(this.prototypeBy.classId in this.prototypeBy.devClasses)) {
+      return [];
+    }
+
+    let devClass = this.prototypeBy.devClasses[this.prototypeBy.classId];
+    if (!(&#x27;attributes&#x27; in devClass)) {
+      return [];
+    }
+
+    let ret = [&#x27;&#x27;];
+    for (let attrName in devClass.attributes) {
+      if (attrName in this.prototypeBy.usedAttrs) {
+        attrName = &#x27;✔&#x27; + attrName;
+      }
+
+      ret.push(attrName);
+    }
+
+    for (let devClassId in this.prototypeBy.devClasses) {
+      if (devClassId === this.prototypeBy.classId) {
+        continue;
+      }
+
+      let className = this.prototypeBy.devClasses[devClassId].name;
+      let dotName = className + &#x27;.&#x27;;
+      for (let usedAttr in this.prototypeBy.usedAttrs) {
+        if (className === usedAttr || dotName === usedAttr.substr(0, dotName.length)
+        ) {
+          className = &#x27;✔&#x27; + className;
+          break;
+        }
+      }
+
+      ret.push(className + &#x27; ▶&#x27;);
+    }
+
+    return ret;
+  }),
   /**
     Is null value.
 
@@ -190,30 +245,14 @@ export default Ember.Component.extend({
    */
   controlType: undefined,
 
-  /**
-    Controls array from Form model.
-
-    @property controls
-    @type DS.ManyArray
-    @default undefined
-  */
-  controls: undefined,
-
-  /**
-    Array of avaliable controls for prototyping.
-
-    @property avaliableControls
-    @type DS.ManyArray
-    @default undefined
-  */
-  avaliableControls: Ember.computed(&#x27;controls.[]&#x27;, &#x27;model&#x27;, function() {
-    let controls = this.get(&#x27;controls&#x27;);
-    if (controls) {
-      return controls.map(item =&gt; item.get(&#x27;name&#x27;));
-    } else {
-      return undefined;
-    }
-  }),
+  //   /**
+  //     Controls array from Form model.
+  //
+  //     @property controls
+  //     @type DS.ManyArray
+  //     @default undefined
+  //   */
+  //   controls: undefined,
 
   /**
     Control&#x27;s &#x27;prototypeBy&#x27; dropdown caption.
@@ -340,16 +379,18 @@ export default Ember.Component.extend({
       @public
     */
     avaliableControlChange() {
-      let model = this.get(&#x27;model&#x27;);
-      let controls = this.get(&#x27;controls&#x27;);
-      let selectedControl = controls.find(item =&gt; item.get(&#x27;name&#x27;) === model.get(&#x27;prototypeBy&#x27;));
-      model.set(&#x27;value&#x27;, selectedControl.get(&#x27;value&#x27;));
-      model.set(&#x27;type&#x27;, selectedControl.get(&#x27;type&#x27;));
-      model.set(&#x27;inputType&#x27;, selectedControl.get(&#x27;inputType&#x27;));
-      model.set(&#x27;controlType&#x27;, selectedControl.get(&#x27;controlType&#x27;));
-      model.set(&#x27;isNull&#x27;, selectedControl.get(&#x27;isNull&#x27;));
-      model.set(&#x27;defaultValue&#x27;, selectedControl.get(&#x27;defaultValue&#x27;));
-      model.set(&#x27;defaultValueControl&#x27;, selectedControl.get(&#x27;defaultValueControl&#x27;));
+      alert(&#x27;change&#x27;);
+
+      //       let model = this.get(&#x27;model&#x27;);
+      //       let controls = this.get(&#x27;controls&#x27;);
+      //       let selectedControl = controls.find(item =&gt; item.get(&#x27;name&#x27;) === model.get(&#x27;prototypeBy&#x27;));
+      //       model.set(&#x27;value&#x27;, selectedControl.get(&#x27;value&#x27;));
+      //       model.set(&#x27;type&#x27;, selectedControl.get(&#x27;type&#x27;));
+      //       model.set(&#x27;inputType&#x27;, selectedControl.get(&#x27;inputType&#x27;));
+      //       model.set(&#x27;controlType&#x27;, selectedControl.get(&#x27;controlType&#x27;));
+      //       model.set(&#x27;isNull&#x27;, selectedControl.get(&#x27;isNull&#x27;));
+      //       model.set(&#x27;defaultValue&#x27;, selectedControl.get(&#x27;defaultValue&#x27;));
+      //       model.set(&#x27;defaultValueControl&#x27;, selectedControl.get(&#x27;defaultValueControl&#x27;));
     },
 
     /**

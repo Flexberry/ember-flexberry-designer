@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>addon/controllers/fd-visual-edit-list-form.js - Flexberry Documentation</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="Flexberry Documentation" src="../assets/css/logo.png" style="max-height: 65%;" title="Flexberry Documentation">
+            Flexberry Documentation
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>develop</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/FdCurrentProjectContextService", "classes/FdLimitByStageMixin", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/ember-flexberry-designer"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <h3>APIs</h3>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Type to filter APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
+	                            <li><a href="../classes/FdLimitByStageMixin.html">FdLimitByStageMixin</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">NewPlatformFlexberryFlexberryDesignerVisualEditControl</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">NewPlatformFlexberryFlexberryDesignerVisualEditForm</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Show:
+                    <label for="api-show-inherited" class="checkbox">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>addon/controllers/fd-visual-edit-list-form.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+
+import Ember from &#x27;ember&#x27;;
+
+import FdDataTypes from &#x27;../utils/fd-datatypes&#x27;;
+
+export default Ember.Controller.extend({
+
+  queryParams: [&#x27;formId&#x27;, &#x27;classId&#x27;],
+
+  dataTypes: undefined,
+
+  listformName: &#x27;&#x27;,
+
+  listAttributes: [],
+
+  //   associations: undefined,
+  //
+  //   aggregations: undefined,
+  //
+  //   devClasses: undefined,
+  //
+  //   viewClassId: null,
+
+  //   definition: null,
+
+  /**
+  Prototypes.
+
+  @property prototypeBy
+  @type Object contained:
+    classId - class identificator
+    devClasses - list classes with attributes
+    assosiations - assosiations list
+    aggregations - aggregations list
+    usedAttrs  - list keys used attributes names
+  @default undefined
+  */
+  prototypeBy: {},
+
+  attrNames: {},
+
+  //   notUsedAttrs: [],
+
+  //   attrsTree: {},
+
+  editControl: {},
+
+  controlTypes: Ember.computed(
+    function() {
+      this.dataTypes = FdDataTypes.create();
+      let ret =  this.dataTypes.fDTypes();
+      return ret;
+    }
+  ),
+
+  //   avaliableControls: undefined,
+
+  //   usedAttrs: [],
+
+  init: function() {
+    this.prototypeBy = { classId:undefined, devClasses:{}, associations: [], aggregations: [], usedAttrs: [] };
+  },
+
+  //   _notUsedAttrs: function (path, classId) {
+  //     let ret = [];
+  //     let devClass = this.devClasses[classId];
+  //     for (let attrName in devClass.attributes) {
+  //       let fullName = path.concat(attrName).join(&#x27;.&#x27;);
+  //       if (!(fullName in this.attrNames)  || this.attrNames[fullName].visible === &#x27;False&#x27;) {
+  //         ret.push(fullName);
+  //       }
+  //     }
+  //     for (let i in this.associations) {
+  //       let association = this.associations[i];
+  //       if (association.endClass.id === classId) {
+  //         let role = association.startRole;
+  //         let newPath = path.concat(role);
+  //         let fullName = newPath.join(&#x27;.&#x27;);
+  //         if (!(fullName in this.attrNames)  || this.attrNames[fullName].visible === &#x27;False&#x27;) {
+  //           ret.push(fullName);
+  //         }
+  //         ret = ret.concat(this._notUsedAttrs(newPath, association.startClass.id));
+  //       }
+  //     }
+  //     return ret;
+  //   },
+  //
+  //   _attrsTree: function (path, classId) {
+  //     let ret = [];
+  //     let devClass = this.devClasses[classId];
+  //     for (let attrName in devClass.attributes) {
+  //       let attribute = Object.assign({}, devClass.attributes[attrName]);
+  //       let fullName = path.concat(attrName).join(&#x27;.&#x27;);
+  //       attribute.fullName = fullName;
+  //       attribute.visible = (fullName in this.attrNames) &amp;&amp; this.attrNames[fullName].visible === &#x27;True&#x27;;
+  //       attribute.hidden = (fullName in this.attrNames) &amp;&amp; this.attrNames[fullName].visible === &#x27;False&#x27;;
+  //       ret.push(attribute);
+  //     }
+  //     for (let i in this.associations) {
+  //       let association = this.associations[i];
+  //       if (association.endClass.id === classId) {
+  //         let role = association.startRole;
+  //         let newPath = path.concat(role);
+  //         let fullName = newPath.join(&#x27;.&#x27;);
+  //         let node = { role: role , fullName: fullName};
+  //         node.visible = (fullName in this.attrNames) &amp;&amp; this.attrNames[fullName].visible === &#x27;True&#x27;;
+  //         node.hidden = (fullName in this.attrNames) &amp;&amp; this.attrNames[fullName].visible === &#x27;False&#x27;;
+  //         node.children = this._attrsTree(newPath, association.startClass.id);
+  //         ret.push(node);
+  //       }
+  //     }
+  //     return ret;
+  //   },
+
+  //   setClassTree: function(associations, aggregations, devClasses) {
+  //
+  //   },
+
+  //   findAttrsNames: function(ok, nodes) {
+  //     let ret = [];
+  //     if (nodes === undefined) {
+  //       nodes = this.attrsTree;
+  //     }
+  //     for (let i in nodes) {
+  //       let node = nodes[i];
+  //       if (ok(node)) {
+  //         ret.push(node.fullName);
+  //         if (&#x27;role&#x27; in node) {
+  //           ret = ret.concat(ok, node.children);
+  //         }
+  //       }
+  //     }
+  //     return ret;
+  //   },
+
+  setListAttributes: function(classId, definition, devClasses, associations) {
+    Ember.set(this.prototypeBy, &#x27;devClasses&#x27;, devClasses);
+    Ember.set(this.prototypeBy, &#x27;associations&#x27;, associations);
+    Ember.set(this.prototypeBy, &#x27;classId&#x27;, classId);
+
+    //     Ember.set(this, &#x27;definition&#x27;, definition);
+    let viewClass = devClasses[classId];
+    for (let i in  definition) {
+      let attr = definition[i];
+      if (attr.isMaster === &#x27;False&#x27;) {
+        let attrClass = viewClass;
+        let propertyName = attr.propertyName;
+        let steps = propertyName.split(&#x27;.&#x27;);
+        let attrName;
+        if (steps.length === 1 &amp;&amp; propertyName in attrClass.attributes) {
+          attrName = propertyName;
+        } else {
+          let association;
+          let startClassName = viewClass.name;
+          for (let j = 0; j &lt; steps.length - 1; j++) {
+            let step = steps[j];
+            let k;
+            for (k = 0; k &lt; associations.length; k++) {
+              association = associations[k];
+              if (association.endClass.name === startClassName &amp;&amp; association.startRole === step) {
+                startClassName = step;
+                break;
+              }
+            }
+
+            if (k &gt;= associations.length) {
+              continue;
+            }
+
+            Ember.assert(&#x27;PropertyName: &#x27; + propertyName +
+              &#x27; Association for startClass &quot;&#x27; +  startClassName + &#x27;&quot; and role &quot;&#x27; + step + &#x27;&quot; not found&#x27;,
+              k &lt; associations.length);
+          }
+
+          attrName = steps[steps.length - 1];
+          let classId = association.startClass.id;
+          Ember.assert(&#x27;PropertyName: &#x27; + propertyName +
+            &#x27; startClass &quot;&#x27; +  association.startClass.name +
+            &#x27;(&#x27; + classId + &#x27;) of association &quot;&#x27; + association.startRole +
+            &#x27;&quot; not found in attribute &quot;&#x27; + attrName + &#x27;&quot;&#x27;,
+            classId in devClasses);
+          attrClass = devClasses[classId];
+        }
+
+        if (!(attrName in attrClass.attributes)) {
+          continue;
+        }
+
+        Ember.assert(&#x27;PropertyName: &#x27; + propertyName +
+          &#x27; attribute name &quot;&#x27; +  attrName + &#x27;&quot; not found in class &quot;&#x27; + attrClass.name,
+          attrName in attrClass.attributes);
+        let classAttr = attrClass.attributes[attrName];
+        attr.type = classAttr.type;
+        attr.defaultValue = classAttr.defaultValue;
+      } else {
+        attr.type = &#x27;guid&#x27;;
+        attr.defaultValue = null;
+      }
+
+    }
+
+    //     alert(JSON.stringify(definition));
+    let listAttributes = [];
+    this.attrNames = {};
+    let usedAttrs = {};
+    for (let i = 0; i &lt; definition.length; i++) {
+      let attr = definition[i];
+      this.attrNames[attr.propertyName] = attr;
+      if (attr.visible === &#x27;False&#x27;) {
+        continue;
+      }
+
+      usedAttrs[attr.propertyName] = true;
+      let attribute = {
+        name: attr.propertyName,
+        type: attr.type,
+        defaultValue: attr.defaultValue
+      };
+
+      listAttributes.push(attribute);
+    }
+
+    Ember.set(this, &#x27;listAttributes&#x27;, listAttributes);
+    Ember.set(this.prototypeBy, &#x27;usedAttrs&#x27;, usedAttrs);
+  },
+});
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>
