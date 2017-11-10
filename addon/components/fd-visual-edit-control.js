@@ -273,7 +273,6 @@ export default Ember.Component.extend({
     avaliableControlChange() {
       alert('change');
 
-
       //       let model = this.get('model');
       //       let controls = this.get('controls');
       //       let selectedControl = controls.find(item => item.get('name') === model.get('prototypeBy'));

@@ -138,7 +138,7 @@ export default Ember.Route.extend({
 
               devClasses[record.id] = { name: record.get('name'), attributes: {} };
               let attributes = record.get('attributes');
-              for (let j = 0; j < attributes.get('length') ; j++) {
+              for (let j = 0; j < attributes.get('length'); j++) {
                 let attribute = attributes.objectAt(j);
                 let name =  attribute.get('name');
                 devClasses[record.id].attributes[name] = {
