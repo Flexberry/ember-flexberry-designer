@@ -8,8 +8,6 @@ export default Ember.Route.extend({
 
   formId: null,
 
-  editControl: {},
-
   controller: undefined,
 
   viewClassId: undefined,
@@ -63,6 +61,97 @@ export default Ember.Route.extend({
     return promise;
   },
 
+  _setListAttributes: function(model, classId, definition, devClasses, associations) {
+    Ember.set(model.prototypeBy, 'devClasses', devClasses);
+    Ember.set(model.prototypeBy, 'associations', associations);
+    Ember.set(model.prototypeBy, 'classId', classId);
+
+    //     Ember.set(this, 'definition', definition);
+    let viewClass = devClasses[classId];
+    for (let i in  definition) {
+      let attr = definition[i];
+      if (attr.isMaster === 'False') {
+        let attrClass = viewClass;
+        let propertyName = attr.propertyName;
+        let steps = propertyName.split('.');
+        let attrName;
+        if (steps.length === 1 && propertyName in attrClass.attributes) {
+          attrName = propertyName;
+        } else {
+          let association;
+          let startClassName = viewClass.name;
+          for (let j = 0; j < steps.length - 1; j++) {
+            let step = steps[j];
+            let k;
+            for (k = 0; k < associations.length; k++) {
+              association = associations[k];
+              if (association.endClass.name === startClassName && association.startRole === step) {
+                startClassName = step;
+                break;
+              }
+            }
+
+            if (k >= associations.length) {
+              continue;
+            }
+
+            Ember.assert('PropertyName: ' + propertyName +
+            ' Association for startClass "' +  startClassName + '" and role "' + step + '" not found',
+            k < associations.length);
+          }
+
+          attrName = steps[steps.length - 1];
+          let classId = association.startClass.id;
+          Ember.assert('PropertyName: ' + propertyName +
+          ' startClass "' +  association.startClass.name +
+          '(' + classId + ') of association "' + association.startRole +
+          '" not found in attribute "' + attrName + '"',
+          classId in devClasses);
+          attrClass = devClasses[classId];
+        }
+
+        if (!(attrName in attrClass.attributes)) {
+          continue;
+        }
+
+        Ember.assert('PropertyName: ' + propertyName +
+        ' attribute name "' +  attrName + '" not found in class "' + attrClass.name,
+        attrName in attrClass.attributes);
+        let classAttr = attrClass.attributes[attrName];
+        attr.type = classAttr.type;
+        attr.defaultValue = classAttr.defaultValue;
+      } else {
+        attr.type = 'guid';
+        attr.defaultValue = null;
+      }
+
+    }
+
+    //     alert(JSON.stringify(definition));
+    let listAttributes = [];
+    this.attrNames = {};
+    let usedAttrs = {};
+    for (let i = 0; i < definition.length; i++) {
+      let attr = definition[i];
+      this.attrNames[attr.propertyName] = attr;
+      if (attr.visible === 'False') {
+        continue;
+      }
+
+      usedAttrs[attr.propertyName] = true;
+      let attribute = {
+        name: attr.propertyName,
+        type: attr.type,
+        defaultValue: attr.defaultValue
+      };
+
+      listAttributes.push(attribute);
+    }
+
+    Ember.set(model, 'listAttributes', listAttributes);
+    Ember.set(model.prototypeBy, 'usedAttrs', usedAttrs);
+  },
+
   //   _getAssocListByEndClass(endClass) {
   //     let builder = new  Builder(this.store, 'fd-dev-association').
   //     selectByProjection('ListFormView').
@@ -86,7 +175,18 @@ export default Ember.Route.extend({
 
   setupController: function (controller, model) {
     this.controller = controller;
-    this.controller.listformName = model.objectAt(0).get('name');
+    model.formName = model.objectAt(0).get('name');
+    model.editControl=  {
+      name: '',
+      type: '',
+      defaultValue: ''
+    };
+    model.listAttributes = [];
+    model.prototypeBy = {
+      devClasses: {},
+      associations: [],
+      classId: ''
+    };
     let stagePk = this.get('currentProjectContext').getCurrentStage();
     let _this = this;
     let devClass = model.objectAt(0);
@@ -152,7 +252,7 @@ export default Ember.Route.extend({
 
       let classId = JSON.parse(JSON.stringify(_this.viewClassId));
       let definition = _this.definition;
-      _this.controller.setListAttributes(classId, definition, devClasses, associations);
+      _this._setListAttributes(model, classId, definition, devClasses, associations);
     });
 
     return this._super(controller, model);
