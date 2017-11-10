@@ -87,6 +87,13 @@ export let defineProjections = function (modelClass) {
 
     })
   });
+  modelClass.defineProjection('FdEditClassForm', 'fd-dev-view', {
+    name: Projection.attr('Имя'),
+    description: Projection.attr('Описание'),
+    class: Projection.belongsTo('fd-dev-class', '', {
+
+    }, { hidden: true })
+  });
   modelClass.defineProjection('Generator', 'fd-dev-view', {
     name: Projection.attr(''),
     description: Projection.attr(''),

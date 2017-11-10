@@ -231,6 +231,15 @@ export let defineProjections = function (modelClass) {
     pBSetEnd: Projection.attr(''),
     pBSetStart: Projection.attr('')
   });
+  modelClass.defineProjection('FdClassEditForm', 'fd-dev-attribute', {
+    name: Projection.attr('Имя'),
+    caption: Projection.attr('Заголовок'),
+    type: Projection.attr('Тип'),
+    description: Projection.attr('Описание'),
+    class: Projection.belongsTo('fd-dev-class', '', {
+
+    }, { hidden: true })
+  });
   modelClass.defineProjection('FormDesigner', 'fd-dev-attribute', {
     name: Projection.attr(''),
     type: Projection.attr(''),

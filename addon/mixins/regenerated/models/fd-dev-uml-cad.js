@@ -129,6 +129,20 @@ export let defineProjections = function (modelClass) {
     createDate: Projection.attr('Create date')
   });
   modelClass.defineProjection('SearchDiagram', 'fd-dev-uml-cad', {
-    name: Projection.attr('')
+    name: Projection.attr(''),
+    subsystem: Projection.belongsTo('fd-subsystem', '', {
+      stage: Projection.belongsTo('fd-stage', '', {
+
+      }),
+    }),
+  });
+  modelClass.defineProjection('FdUmlCad', 'fd-dev-uml-cad', {
+    name: Projection.attr(''),
+    primitivesJsonString: Projection.attr(''),
+    primitivesStreamString: Projection.attr(''),
+    caseObjectsString: Projection.attr(''),
+    subsystem: Projection.belongsTo('fd-subsystem', '', {
+
+    })
   });
 };
