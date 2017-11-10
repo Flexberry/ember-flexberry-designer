@@ -16,8 +16,6 @@ export default Ember.Route.extend({
 
   definition: {},
 
-  //   associations: [],
-  //
   //   aggregations: [],const { RSVP}
 
   //
