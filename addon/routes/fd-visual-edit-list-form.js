@@ -62,9 +62,9 @@ export default Ember.Route.extend({
   },
 
   _setListAttributes: function(model, classId, definition, devClasses, associations) {
-    Ember.set(model.prototypeBy, 'devClasses', devClasses);
-    Ember.set(model.prototypeBy, 'associations', associations);
-    Ember.set(model.prototypeBy, 'classId', classId);
+    Ember.set(model.classTree, 'devClasses', devClasses);
+    Ember.set(model.classTree, 'associations', associations);
+    Ember.set(model.classTree, 'classId', classId);
 
     //     Ember.set(this, 'definition', definition);
     let viewClass = devClasses[classId];
@@ -149,7 +149,7 @@ export default Ember.Route.extend({
     }
 
     Ember.set(model, 'listAttributes', listAttributes);
-    Ember.set(model.prototypeBy, 'usedAttrs', usedAttrs);
+    Ember.set(model.classTree, 'usedAttrs', usedAttrs);
   },
 
   //   _getAssocListByEndClass(endClass) {
@@ -176,13 +176,13 @@ export default Ember.Route.extend({
   setupController: function (controller, model) {
     this.controller = controller;
     model.formName = model.objectAt(0).get('name');
-    model.editControl=  {
+    model.editControl =  {
       name: '',
       type: '',
       defaultValue: ''
     };
     model.listAttributes = [];
-    model.prototypeBy = {
+    model.classTree = {
       devClasses: {},
       associations: [],
       classId: ''

@@ -218,7 +218,6 @@ export default Ember.Component.extend({
 
     attributeShow(index) {
       let attribute = this.model.listAttributes[index];
-      let editControl = this.model.editControl;
 
       //       let type;
       //       switch (attribute.type) {
@@ -253,8 +252,8 @@ export default Ember.Component.extend({
       }
 
       editName += maxIndex;
-      Ember.set(model.editControl, 'name', editName);
-      Ember.set(model.editControl, 'type', editType);
+      Ember.set(this.model.editControl, 'name', editName);
+      Ember.set(this.model.editControl, 'type', editType);
       newAttributes.push({ name: editName, type: editType });
 
       Ember.set(this, 'selectedCol', newAttributes.length - 1);

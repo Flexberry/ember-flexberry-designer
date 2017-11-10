@@ -26,7 +26,14 @@ export default Ember.Component.extend({
     @type Object
     @default undefined
   */
-  model: undefined,
+  model: {
+    prototypeBy: {
+      classId: '',
+      devClasses: {},
+      associations: []
+    }
+
+  },
 
   /**
     Input value.
@@ -74,13 +81,9 @@ export default Ember.Component.extend({
       associations - associations list
       usedAttrs  - list keys used attributes names
     @default undefined
+    */
 
-  prototypeBy: {
-    classId: undefined,
-    devClasses: {},
-    associations: [],
-    usedAttrs: {}
-  },*/
+  prototypeBy: '',
 
   /**
     Array of avaliable controls for prototyping.
