@@ -1,8 +1,6 @@
-// import Ember from 'ember';
-
 import ClassModel from './fd-class';
 import { Model as DevClassMixin, defineProjections, defineBaseModel  } from
-'../mixins/regenerated/models/fd-dev-class';
+  '../mixins/regenerated/models/fd-dev-class';
 
 let Model = ClassModel.extend(DevClassMixin, {
   namePropertyeCompute: function() {
