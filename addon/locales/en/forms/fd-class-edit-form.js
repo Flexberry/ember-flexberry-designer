@@ -1,5 +1,5 @@
 export default {
-  caption: 'FdClassEditForm',
+  caption: 'Class metadata',
   'caption-caption': 'Caption',
   'name-caption': 'Name',
   'publishName-caption': 'Alias',
