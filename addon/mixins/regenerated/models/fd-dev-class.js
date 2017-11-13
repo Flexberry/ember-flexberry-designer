@@ -473,7 +473,8 @@ export let Model = Ember.Mixin.create({
     let thisValidations = {
       caption: {
         presence: {
-          message: this.get('i18n').t('models.fd-dev-class.validations.caption')
+          // message: this.get('i18n').t('models.fd-dev-class.validations.caption')
+          message: 'Caption is rquired'
         }
       }
     };
