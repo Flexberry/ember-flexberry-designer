@@ -32,7 +32,7 @@
     <div class="field eight wide column">
         <label>{{t 'forms.fd-visual-edit-list-form.name'}}</label>
         {{flexberry-textbox
-          value=listformName
+          value=model.formName
         }}
     </div>
   </div>
@@ -41,9 +41,7 @@
       <div class="six wide column">
         <div class="ui segment">
           {{fd-visual-edit-control
-          model=editControl
-          controlTypes=controlTypes
-          prototypeBy=prototypeBy
+          model=model
         }}
         </div>
       </div>
@@ -51,9 +49,7 @@
     <div class="row">
       <div class="sixteen wide column" style="width: 100%; overflow-x: scroll;">
         {{fd-visual-edit-list-form
-          listformName=listformName
-          editControl=editControl
-          listAttributes=listAttributes
+          model=model
         }}
       </div>
     </div>
