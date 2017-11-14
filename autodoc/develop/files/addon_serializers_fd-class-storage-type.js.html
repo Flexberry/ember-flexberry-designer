@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>ember-flexberry-designer - Flexberry Documentation</title>
+    <title>addon/serializers/fd-class-storage-type.js - Flexberry Documentation</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -92,54 +92,23 @@
                 <div id="docs-main">
                     <div class="content">
 <div class="page-header">
-    <h1>ember-flexberry-designer <small>Module</small></h1>
+    <h1>addon/serializers/fd-class-storage-type.js <small>File</small></h1>
 </div>
 
-<div class="clearfix well well-small">
+<div class="file">
+    <pre class="prettyprint linenums">
+import { Serializer as ClassStorageTypeSerializer } from
+  &#x27;../mixins/regenerated/serializers/fd-class-storage-type&#x27;;
+import __ApplicationSerializer from &#x27;./application&#x27;;
 
+export default __ApplicationSerializer.extend(ClassStorageTypeSerializer, {
+  /**
+  * Field name where object identifier is kept.
+  */
+  primaryKey: &#x27;__PrimaryKey&#x27;
+});
 
-        <div class="foundat">
-            Defined in: <a href="../files/addon_services_fd-current-project-context.js.html#l17"><code>addon&#x2F;services&#x2F;fd-current-project-context.js:17</code></a>
-        </div>
-
-</div>
-
-
-<div class="moduledesc well well-small">
-    
-</div>
-
-
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-            <p>This module provides the following classes:</p>
-
-            <ul class="module-classes">
-                <li class="module-class">
-                    <a href="../classes/FdCurrentProjectContextService.html">
-                        FdCurrentProjectContextService
-                    </a>
-                </li>
-                <li class="module-class">
-                    <a href="../classes/FdLimitByStageMixin.html">
-                        FdLimitByStageMixin
-                    </a>
-                </li>
-                <li class="module-class">
-                    <a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">
-                        NewPlatformFlexberryFlexberryDesignerVisualEditControl
-                    </a>
-                </li>
-                <li class="module-class">
-                    <a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">
-                        NewPlatformFlexberryFlexberryDesignerVisualEditForm
-                    </a>
-                </li>
-            </ul>
-    </div>
-
-    <div class="yui3-u-1-2">
-    </div>
+    </pre>
 </div>
                     </div>
                 </div>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>ember-flexberry-designer - Flexberry Documentation</title>
+    <title>addon/routes/fd-class-edit-form/new.js - Flexberry Documentation</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -92,54 +92,43 @@
                 <div id="docs-main">
                     <div class="content">
 <div class="page-header">
-    <h1>ember-flexberry-designer <small>Module</small></h1>
+    <h1>addon/routes/fd-class-edit-form/new.js <small>File</small></h1>
 </div>
 
-<div class="clearfix well well-small">
+<div class="file">
+    <pre class="prettyprint linenums">
+import Ember from &#x27;ember&#x27;;
+import EditFormNewRoute from &#x27;ember-flexberry/routes/edit-form-new&#x27;;
 
+export default EditFormNewRoute.extend({
+  modelProjection: &#x27;FdEditClassForm&#x27;,
+  modelName: &#x27;fd-dev-class&#x27;,
+  templateName: &#x27;fd-class-edit-form&#x27;,
 
-        <div class="foundat">
-            Defined in: <a href="../files/addon_services_fd-current-project-context.js.html#l17"><code>addon&#x2F;services&#x2F;fd-current-project-context.js:17</code></a>
-        </div>
+  /**
+    Link to {{#crossLink &quot;FdCurrentProjectContextService&quot;}}FdCurrentProjectContextService{{/crossLink}}.
 
-</div>
+    @property currentContext
+    @type FdCurrentProjectContextService
+  */
+  currentContext: Ember.inject.service(&#x27;fd-current-project-context&#x27;),
 
+  /**
+    A hook you can use to setup the controller for the current route.
+    [More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).
 
-<div class="moduledesc well well-small">
-    
-</div>
+    @method setupController
+    @param {Ember.Controller} controller
+    @param {Object} model
+   */
+  setupController(controller, model) {
+    let stage = this.get(&#x27;currentContext&#x27;).getCurrentStageModel();
+    model.set(&#x27;stage&#x27;, stage);
+    this._super(...arguments);
+  }
+});
 
-
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-            <p>This module provides the following classes:</p>
-
-            <ul class="module-classes">
-                <li class="module-class">
-                    <a href="../classes/FdCurrentProjectContextService.html">
-                        FdCurrentProjectContextService
-                    </a>
-                </li>
-                <li class="module-class">
-                    <a href="../classes/FdLimitByStageMixin.html">
-                        FdLimitByStageMixin
-                    </a>
-                </li>
-                <li class="module-class">
-                    <a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">
-                        NewPlatformFlexberryFlexberryDesignerVisualEditControl
-                    </a>
-                </li>
-                <li class="module-class">
-                    <a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">
-                        NewPlatformFlexberryFlexberryDesignerVisualEditForm
-                    </a>
-                </li>
-            </ul>
-    </div>
-
-    <div class="yui3-u-1-2">
-    </div>
+    </pre>
 </div>
                     </div>
                 </div>

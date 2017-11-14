@@ -562,6 +562,7 @@ export let Model = Ember.Mixin.create({
   writeMode: DS.attr(&#x27;i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode&#x27;),
   writeSessions: DS.attr(&#x27;boolean&#x27;),
   businessServerClass: DS.belongsTo(&#x27;fd-dev-class&#x27;, { inverse: null, async: false }),
+  classStorageTypes: DS.hasMany(&#x27;fd-class-storage-type&#x27;, { inverse: &#x27;class&#x27;, async: false }),
   views: DS.hasMany(&#x27;fd-dev-view&#x27;, { inverse: &#x27;class&#x27;, async: false }),
   methods: DS.hasMany(&#x27;fd-dev-method&#x27;, { inverse: &#x27;class&#x27;, async: false }),
   formViews: DS.hasMany(&#x27;fd-dev-form-view&#x27;, { inverse: &#x27;class&#x27;, async: false }),
@@ -569,6 +570,12 @@ export let Model = Ember.Mixin.create({
   getValidations: function () {
     let parentValidations = this._super();
     let thisValidations = {
+      caption: {
+        presence: {
+          // message: this.get(&#x27;i18n&#x27;).t(&#x27;models.fd-dev-class.validations.caption&#x27;)
+          message: &#x27;Caption is rquired&#x27;
+        }
+      }
     };
     return Ember.$.extend(true, {}, parentValidations, thisValidations);
   },
@@ -870,15 +877,10 @@ export let defineProjections = function (modelClass) {
       pBSetStart: Projection.attr(&#x27;&#x27;)
     }),
     formViews: Projection.hasMany(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
-      dataObjectTypesStr: Projection.attr(&#x27;&#x27;),
+      viewForForm: Projection.attr(&#x27;&#x27;),
       view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
-        class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
 
-        })
-      }),
-      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
-
-      })
+      }, { hidden: true })
     }),
     methods: Projection.hasMany(&#x27;fd-dev-method&#x27;, &#x27;&#x27;, {
       accessModifier: Projection.attr(&#x27;&#x27;),
@@ -1202,6 +1204,75 @@ export let defineProjections = function (modelClass) {
       })
     })
   });
+  modelClass.defineProjection(&#x27;FdAttributesChangeView&#x27;, &#x27;fd-dev-class&#x27;, {
+    attributesStr: Projection.attr(&#x27;&#x27;),
+    name: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      caption: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+      })
+    }),
+    views: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      definition: Projection.attr(&#x27;&#x27;),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+      })
+    })
+  });
+  modelClass.defineProjection(&#x27;FdAttributesForForm&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    formViews: Projection.hasMany(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
+      dataObjectTypesStr: Projection.attr(&#x27;&#x27;),
+      view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+        class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+          name: Projection.attr(&#x27;&#x27;)
+        }),
+        definition: Projection.attr(&#x27;&#x27;)
+      }),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+      })
+    })
+  });
+  modelClass.defineProjection(&#x27;FdEditClassForm&#x27;, &#x27;fd-dev-class&#x27;, {
+    caption: Projection.attr(&#x27;&#x27;),
+    name: Projection.attr(&#x27;&#x27;),
+    publishName: Projection.attr(&#x27;&#x27;),
+    attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      caption: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+      }, { hidden: true })
+    }),
+    views: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+      }, { hidden: true })
+    }),
+    classStorageTypes: Projection.hasMany(&#x27;fd-class-storage-type&#x27;, &#x27;&#x27;, {
+      connectionName: Projection.attr(&#x27;&#x27;),
+      connectionString: Projection.attr(&#x27;&#x27;),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+      }, { hidden: true }),
+      storageType: Projection.belongsTo(&#x27;fd-storage-type&#x27;, &#x27;&#x27;, {
+
+      }, { displayMemberPath: &#x27;shortName&#x27; })
+    })
+  });
   modelClass.defineProjection(&#x27;Generator&#x27;, &#x27;fd-dev-class&#x27;, {
     referenceCount: Projection.attr(&#x27;&#x27;),
     stored: Projection.attr(&#x27;&#x27;),
@@ -1364,6 +1435,13 @@ export let defineProjections = function (modelClass) {
       class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
 
       })
+    }),
+    classStorageTypes: Projection.hasMany(&#x27;fd-class-storage-type&#x27;, &#x27;&#x27;, {
+      connectionName: Projection.attr(&#x27;&#x27;),
+      connectionString: Projection.attr(&#x27;&#x27;),
+      storageType: Projection.belongsTo(&#x27;fd-storage-type&#x27;, &#x27;&#x27;, {
+
+      })
     })
   });
   modelClass.defineProjection(&#x27;GetClassByGuid&#x27;, &#x27;fd-dev-class&#x27;, {
@@ -1501,43 +1579,6 @@ export let defineProjections = function (modelClass) {
     description: Projection.attr(&#x27;&#x27;),
     views: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
       name: Projection.attr(&#x27;&#x27;)
-    })
-  });
-  modelClass.defineProjection(&#x27;FdAttributesChangeView&#x27;, &#x27;fd-dev-class&#x27;, {
-    attributesStr: Projection.attr(&#x27;&#x27;),
-    name: Projection.attr(&#x27;&#x27;),
-    nameStr: Projection.attr(&#x27;&#x27;),
-    stereotype: Projection.attr(&#x27;&#x27;),
-    attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
-      name: Projection.attr(&#x27;&#x27;),
-      type: Projection.attr(&#x27;&#x27;),
-      caption: Projection.attr(&#x27;&#x27;),
-      description: Projection.attr(&#x27;&#x27;),
-      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
-
-      })
-    }),
-    views: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
-      name: Projection.attr(&#x27;&#x27;),
-      definition: Projection.attr(&#x27;&#x27;),
-      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
-
-      })
-    })
-  });
-  modelClass.defineProjection(&#x27;FdAttributesForForm&#x27;, &#x27;fd-dev-class&#x27;, {
-    name: Projection.attr(&#x27;&#x27;),
-    stereotype: Projection.attr(&#x27;&#x27;),
-    formViews: Projection.hasMany(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
-      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
-
-      }),
-      view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
-        definition: Projection.attr(&#x27;&#x27;),
-        class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
-          name: Projection.attr(&#x27;&#x27;)
-        })
-      })
     })
   });
 };

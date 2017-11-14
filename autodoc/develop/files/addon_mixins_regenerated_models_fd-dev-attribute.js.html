@@ -330,6 +330,15 @@ export let defineProjections = function (modelClass) {
     pBSetEnd: Projection.attr(&#x27;&#x27;),
     pBSetStart: Projection.attr(&#x27;&#x27;)
   });
+  modelClass.defineProjection(&#x27;FdClassEditForm&#x27;, &#x27;fd-dev-attribute&#x27;, {
+    name: Projection.attr(&#x27;Имя&#x27;),
+    caption: Projection.attr(&#x27;Заголовок&#x27;),
+    type: Projection.attr(&#x27;Тип&#x27;),
+    description: Projection.attr(&#x27;Описание&#x27;),
+    class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+    }, { hidden: true })
+  });
   modelClass.defineProjection(&#x27;FormDesigner&#x27;, &#x27;fd-dev-attribute&#x27;, {
     name: Projection.attr(&#x27;&#x27;),
     type: Projection.attr(&#x27;&#x27;),

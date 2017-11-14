@@ -258,6 +258,9 @@
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -914,6 +917,9 @@ th {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -1118,6 +1124,9 @@ th {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*******************************
              Mix-ins
@@ -1289,9 +1298,6 @@ input::selection {
 .flex-container {
   width: 100%!important;
   justify-content: space-between;
-}
-.flex-container.mobile-footer {
-  height: 30px;
 }
 .stackable > .ui.message {
   top: 70px;
@@ -1601,6 +1607,9 @@ lang {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -5413,6 +5422,9 @@ ui.button.ui-clear:hover {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -5576,9 +5588,8 @@ ui.button.ui-clear:hover {
   padding-top: 80px;
 }
 .full.height {
-  height: 87.2vh!important;
+  height: calc(100vh - 80px - 40px) !important;
   overflow: auto;
-  padding-bottom: 40px;
 }
 .ui.attached.segment {
   width: 100%!important;
@@ -5838,6 +5849,9 @@ ui.button.ui-clear:hover {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -6347,6 +6361,9 @@ ui.button.ui-clear:hover {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -7631,6 +7648,9 @@ i.flag.zimbabwe:before {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -8554,6 +8574,9 @@ a.ui.inverted.grey.header:hover {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -9605,6 +9628,9 @@ i.minus.icon {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -10168,6 +10194,9 @@ div.item-minus {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -10656,9 +10685,6 @@ input {
   height: 35px;
   min-width: 220px;
 }
-.flatpickr.flatpickr-input {
-  letter-spacing: 3px;
-}
 .ui.secondary.menu > .ui.action.input {
   margin: 0 10px;
 }
@@ -10915,6 +10941,9 @@ input {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -12335,6 +12364,9 @@ a.ui.basic.label:hover {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -13517,6 +13549,9 @@ ol.ui.horizontal.list li:before,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -14040,6 +14075,9 @@ ol.ui.horizontal.list li:before,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -14424,6 +14462,9 @@ ol.ui.horizontal.list li:before,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -14904,6 +14945,9 @@ ol.ui.horizontal.list li:before,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -15584,6 +15628,7 @@ ol.ui.horizontal.list li:before,
   position: fixed;
   bottom: 0px;
   z-index: 99;
+  height: 40px;
 }
 .daterangepicker .calendar td {
   color: #7ba7d9;
@@ -15867,6 +15912,9 @@ ol.ui.horizontal.list li:before,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -16654,6 +16702,9 @@ ol.ui.horizontal.list li:before,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -17028,6 +17079,9 @@ ol.ui.horizontal.list li:before,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -18309,6 +18363,9 @@ option {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -20413,6 +20470,9 @@ option {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -22479,6 +22539,9 @@ div.ui.secondary.menu.no-margin.nav-bar .right.menu {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -23161,6 +23224,9 @@ div.ui.secondary.menu.no-margin.nav-bar .right.menu {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -24475,6 +24541,9 @@ table.object-list-view.selectable thead {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -24951,6 +25020,9 @@ table.object-list-view.selectable thead {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -26105,6 +26177,9 @@ a.ui.card:hover,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -26620,6 +26695,9 @@ a.ui.card:hover,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -27173,6 +27251,9 @@ a.ui.card:hover,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -27872,6 +27953,9 @@ a.ui.card:hover,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -28659,6 +28743,9 @@ a.ui.card:hover,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -29191,6 +29278,9 @@ a.ui.card:hover,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -30010,6 +30100,9 @@ a.ui.card:hover,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -30447,6 +30540,9 @@ body.dimmable > .dimmer {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -31979,6 +32075,9 @@ select.ui.dropdown {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -32402,6 +32501,9 @@ select.ui.dropdown {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -33120,6 +33222,9 @@ select.ui.dropdown {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -33535,6 +33640,9 @@ a.ui.nag {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -34153,6 +34261,9 @@ a.ui.nag {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -34887,6 +34998,9 @@ a.ui.nag {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -35378,6 +35492,9 @@ a.ui.nag {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -36027,6 +36144,9 @@ a.ui.nag {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -36415,6 +36535,9 @@ a.ui.nag {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -36918,10 +37041,10 @@ body.pushable {
   margin: 20px 5px;
   width: 250px;
 }
-.inverted.vertical.menu.sidebar {
-  height: 85.3vh !important;
+.inverted.vertical.main.menu.sidebar {
+  height: calc(100vh - 80px - 40px) !important;
   background: #f1f7ff;
-  padding-bottom: 40px;
+  top: 80px;
 }
 .mobile.inverted.vertical.menu.sidebar {
   height: 87.6vh !important;
@@ -37230,6 +37353,9 @@ img.item-minus {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -37548,6 +37674,9 @@ img.item-minus {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -37890,6 +38019,9 @@ img.item-minus {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables

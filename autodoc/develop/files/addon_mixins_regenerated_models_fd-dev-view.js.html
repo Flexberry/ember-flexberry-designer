@@ -186,6 +186,13 @@ export let defineProjections = function (modelClass) {
 
     })
   });
+  modelClass.defineProjection(&#x27;FdEditClassForm&#x27;, &#x27;fd-dev-view&#x27;, {
+    name: Projection.attr(&#x27;Имя&#x27;),
+    description: Projection.attr(&#x27;Описание&#x27;),
+    class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+    }, { hidden: true })
+  });
   modelClass.defineProjection(&#x27;Generator&#x27;, &#x27;fd-dev-view&#x27;, {
     name: Projection.attr(&#x27;&#x27;),
     description: Projection.attr(&#x27;&#x27;),

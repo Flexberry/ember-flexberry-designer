@@ -2039,7 +2039,7 @@ define('dummy/tests/unit/models/fd-dev-class-test', ['exports', 'ember-qunit'], 
 
   (0, _emberQunit.moduleForModel)('fd-dev-class', 'Unit | Model | fd-dev-class', {
     // Specify the other units that are required for this test.
-    needs: ['model:fd-ad', 'model:fd-aggregation', 'model:fd-association', 'model:fd-base-association', 'model:fd-cad', 'model:fd-case-property', 'model:fd-class', 'model:fd-cod', 'model:fd-configuration', 'model:fd-dev-aggregation', 'model:fd-dev-associated-detail-view', 'model:fd-dev-association', 'model:fd-dev-attribute', 'model:fd-dev-base-association', 'model:fd-dev-class', 'model:fd-dev-control-type', 'model:fd-dev-diagram-link', 'model:fd-dev-filelink', 'model:fd-dev-form-control', 'model:fd-dev-form-view', 'model:fd-dev-inheritance', 'model:fd-dev-method', 'model:fd-dev-module-setting-type', 'model:fd-dev-module-setting', 'model:fd-dev-parameter', 'model:fd-dev-process-status', 'model:fd-dev-stage-history', 'model:fd-dev-stage', 'model:fd-dev-system', 'model:fd-dev-task', 'model:fd-dev-type-definition', 'model:fd-dev-uml-ad', 'model:fd-dev-uml-cad', 'model:fd-dev-uml-cod', 'model:fd-dev-uml-dpd', 'model:fd-dev-uml-sd', 'model:fd-dev-uml-std', 'model:fd-dev-uml-ucd', 'model:fd-dev-view', 'model:fd-diagram-link', 'model:fd-diagram', 'model:fd-dpd', 'model:fd-filelink', 'model:fd-form-control', 'model:fd-form-view', 'model:fd-inheritance', 'model:fd-object-in-system', 'model:fd-plugin-on-rep-object', 'model:fd-project', 'model:fd-registered-plug-in', 'model:fd-repository-browser-data-object-with-a-c-l', 'model:fd-repository-browser-data-object', 'model:fd-repository-data-object', 'model:fd-repository-object-with-plugins', 'model:fd-repository-ref-data-object', 'model:fd-repository', 'model:fd-sd', 'model:fd-stage', 'model:fd-std', 'model:fd-subsystem', 'model:fd-ucd', 'model:fd-view']
+    needs: ['service:i18n', 'model:fd-ad', 'model:fd-aggregation', 'model:fd-association', 'model:fd-base-association', 'model:fd-cad', 'model:fd-case-property', 'model:fd-class', 'model:fd-cod', 'model:fd-configuration', 'model:fd-dev-aggregation', 'model:fd-dev-associated-detail-view', 'model:fd-dev-association', 'model:fd-dev-attribute', 'model:fd-dev-base-association', 'model:fd-dev-class', 'model:fd-dev-control-type', 'model:fd-dev-diagram-link', 'model:fd-dev-filelink', 'model:fd-dev-form-control', 'model:fd-dev-form-view', 'model:fd-dev-inheritance', 'model:fd-dev-method', 'model:fd-dev-module-setting-type', 'model:fd-dev-module-setting', 'model:fd-dev-parameter', 'model:fd-dev-process-status', 'model:fd-dev-stage-history', 'model:fd-dev-stage', 'model:fd-dev-system', 'model:fd-dev-task', 'model:fd-dev-type-definition', 'model:fd-dev-uml-ad', 'model:fd-dev-uml-cad', 'model:fd-dev-uml-cod', 'model:fd-dev-uml-dpd', 'model:fd-dev-uml-sd', 'model:fd-dev-uml-std', 'model:fd-dev-uml-ucd', 'model:fd-dev-view', 'model:fd-diagram-link', 'model:fd-diagram', 'model:fd-dpd', 'model:fd-filelink', 'model:fd-form-control', 'model:fd-form-view', 'model:fd-inheritance', 'model:fd-object-in-system', 'model:fd-plugin-on-rep-object', 'model:fd-project', 'model:fd-registered-plug-in', 'model:fd-repository-browser-data-object-with-a-c-l', 'model:fd-repository-browser-data-object', 'model:fd-repository-data-object', 'model:fd-repository-object-with-plugins', 'model:fd-repository-ref-data-object', 'model:fd-repository', 'model:fd-sd', 'model:fd-stage', 'model:fd-std', 'model:fd-subsystem', 'model:fd-ucd', 'model:fd-view', 'model:fd-class-storage-type']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -3640,7 +3640,7 @@ define('dummy/tests/unit/routes/fd-class-edit-form-test', ['exports', 'ember-qun
 
   (0, _emberQunit.moduleFor)('route:fd-class-edit-form', 'Unit | Route | fd class edit form', {
     // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
+    needs: ['service:fd-current-project-context']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -3669,7 +3669,7 @@ define('dummy/tests/unit/routes/fd-class-list-form-test', ['exports', 'ember-qun
 
   (0, _emberQunit.moduleFor)('route:fd-class-list-form', 'Unit | Route | fd class list form', {
     // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
+    needs: ['service:fd-current-project-context']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4624,7 +4624,7 @@ define('dummy/tests/unit/serializers/fd-dev-class-test', ['exports', 'ember-quni
 
   (0, _emberQunit.moduleForModel)('fd-dev-class', 'Unit | Serializer | fd-dev-class', {
     // Specify the other units that are required for this test.
-    needs: ['serializer:fd-dev-class', 'transform:file', 'transform:decimal', 'transform:containers-tree', 'transform:i-c-s-soft-s-t-o-r-m-n-e-t-access-type', 'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode', 'transform:s-t-o-r-m-c-a-s-e-repository-access-modifier', 'transform:s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier', 'transform:new-platform-flexberry-web-designer-business-server-class', 'model:fd-ad', 'model:fd-aggregation', 'model:fd-association', 'model:fd-base-association', 'model:fd-cad', 'model:fd-case-property', 'model:fd-class', 'model:fd-cod', 'model:fd-configuration', 'model:fd-dev-aggregation', 'model:fd-dev-associated-detail-view', 'model:fd-dev-association', 'model:fd-dev-attribute', 'model:fd-dev-base-association', 'model:fd-dev-class', 'model:fd-dev-control-type', 'model:fd-dev-diagram-link', 'model:fd-dev-filelink', 'model:fd-dev-form-control', 'model:fd-dev-form-view', 'model:fd-dev-inheritance', 'model:fd-dev-method', 'model:fd-dev-module-setting-type', 'model:fd-dev-module-setting', 'model:fd-dev-parameter', 'model:fd-dev-process-status', 'model:fd-dev-stage-history', 'model:fd-dev-stage', 'model:fd-dev-system', 'model:fd-dev-task', 'model:fd-dev-type-definition', 'model:fd-dev-uml-ad', 'model:fd-dev-uml-cad', 'model:fd-dev-uml-cod', 'model:fd-dev-uml-dpd', 'model:fd-dev-uml-sd', 'model:fd-dev-uml-std', 'model:fd-dev-uml-ucd', 'model:fd-dev-view', 'model:fd-diagram-link', 'model:fd-diagram', 'model:fd-dpd', 'model:fd-filelink', 'model:fd-form-control', 'model:fd-form-view', 'model:fd-inheritance', 'model:fd-object-in-system', 'model:fd-plugin-on-rep-object', 'model:fd-project', 'model:fd-registered-plug-in', 'model:fd-repository-browser-data-object-with-a-c-l', 'model:fd-repository-browser-data-object', 'model:fd-repository-data-object', 'model:fd-repository-object-with-plugins', 'model:fd-repository-ref-data-object', 'model:fd-repository', 'model:fd-sd', 'model:fd-stage', 'model:fd-std', 'model:fd-subsystem', 'model:fd-ucd', 'model:fd-view']
+    needs: ['serializer:fd-dev-class', 'transform:file', 'transform:decimal', 'transform:containers-tree', 'transform:i-c-s-soft-s-t-o-r-m-n-e-t-access-type', 'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode', 'transform:s-t-o-r-m-c-a-s-e-repository-access-modifier', 'transform:s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier', 'transform:new-platform-flexberry-web-designer-business-server-class', 'service:i18n', 'model:fd-ad', 'model:fd-aggregation', 'model:fd-association', 'model:fd-base-association', 'model:fd-cad', 'model:fd-case-property', 'model:fd-class', 'model:fd-cod', 'model:fd-configuration', 'model:fd-dev-aggregation', 'model:fd-dev-associated-detail-view', 'model:fd-dev-association', 'model:fd-dev-attribute', 'model:fd-dev-base-association', 'model:fd-dev-class', 'model:fd-dev-control-type', 'model:fd-dev-diagram-link', 'model:fd-dev-filelink', 'model:fd-dev-form-control', 'model:fd-dev-form-view', 'model:fd-dev-inheritance', 'model:fd-dev-method', 'model:fd-dev-module-setting-type', 'model:fd-dev-module-setting', 'model:fd-dev-parameter', 'model:fd-dev-process-status', 'model:fd-dev-stage-history', 'model:fd-dev-stage', 'model:fd-dev-system', 'model:fd-dev-task', 'model:fd-dev-type-definition', 'model:fd-dev-uml-ad', 'model:fd-dev-uml-cad', 'model:fd-dev-uml-cod', 'model:fd-dev-uml-dpd', 'model:fd-dev-uml-sd', 'model:fd-dev-uml-std', 'model:fd-dev-uml-ucd', 'model:fd-dev-view', 'model:fd-diagram-link', 'model:fd-diagram', 'model:fd-dpd', 'model:fd-filelink', 'model:fd-form-control', 'model:fd-form-view', 'model:fd-inheritance', 'model:fd-object-in-system', 'model:fd-plugin-on-rep-object', 'model:fd-project', 'model:fd-registered-plug-in', 'model:fd-repository-browser-data-object-with-a-c-l', 'model:fd-repository-browser-data-object', 'model:fd-repository-data-object', 'model:fd-repository-object-with-plugins', 'model:fd-repository-ref-data-object', 'model:fd-repository', 'model:fd-sd', 'model:fd-stage', 'model:fd-std', 'model:fd-subsystem', 'model:fd-ucd', 'model:fd-view', 'model:fd-class-storage-type']
   });
 
   // Replace this with your real tests.
@@ -6204,11 +6204,39 @@ define('dummy/tests/unit/serializers/fd-view-test.jshint', ['exports'], function
     assert.ok(true, 'unit/serializers/fd-view-test.js should pass jshint.');
   });
 });
-define('dummy/tests/unit/services/fd-current-project-context-test', ['exports', 'ember', 'ember-qunit'], function (exports, _ember, _emberQunit) {
+define('dummy/tests/unit/services/fd-current-project-context-test', ['exports', 'ember', 'ember-qunit', 'ember-flexberry-designer/models/fd-dev-system'], function (exports, _ember, _emberQunit, _emberFlexberryDesignerModelsFdDevSystem) {
 
-  (0, _emberQunit.moduleFor)('service:fd-current-project-context', 'Unit | Service | fd current project context');
+  // Stub store service.
+  var storeStub = DS.Store.extend({
+    query: function query() {
+      return _ember['default'].RSVP.resolve(null);
+    }
+  });
+
+  // Stub fd-dev-system model.
+  var fdDevSystemModelStub = _emberFlexberryDesignerModelsFdDevSystem['default'].extend({
+    save: function save() {
+      var _this = this;
+      _this.set('id', 'subsystem');
+      return _ember['default'].RSVP.resolve(_this);
+    }
+  });
+
+  (0, _emberQunit.moduleFor)('service:fd-current-project-context', 'Unit | Service | fd current project context', {
+    needs: ['model:fd-dev-system', 'model:fd-stage', 'model:fd-diagram', 'model:fd-diagram-link', 'model:fd-filelink'],
+
+    beforeEach: function beforeEach() {
+      _ember['default'].getOwner(this).unregister('service:store');
+      _ember['default'].getOwner(this).unregister('model:fd-dev-system');
+      this.register('service:store', storeStub);
+      this.register('model:fd-dev-system', fdDevSystemModelStub);
+    }
+  });
 
   (0, _emberQunit.test)('it exists and works', function (assert) {
+    var done = assert.async();
+    assert.expect(14);
+
     var service = this.subject();
     assert.ok(service);
 
@@ -6226,21 +6254,32 @@ define('dummy/tests/unit/services/fd-current-project-context-test', ['exports', 
     });
     stage.set('configuration', configuration);
     service.setCurrentStage(stage);
+    assert.notOk(service.isAutogeneratedSystemSet());
     assert.equal(service.getCurrentStage(), 'stage');
 
-    assert.throws(service.getCurrentClass);
-    assert.throws(function () {
+    service.getAutogeneratedSystemPromise().then(function (system) {
+      assert.ok(service.isAutogeneratedSystemSet());
+      assert.equal(service.getAutogeneratedSystemModel(), system);
+
+      // Remove new model from the store.
+      system.rollbackAttributes();
+
+      assert.throws(service.getCurrentClass);
+      assert.throws(function () {
+        service.setCurrentClass(clazz);
+      });
+      clazz.set('stage', stage);
       service.setCurrentClass(clazz);
+      assert.equal(service.getCurrentClass(), 'class');
+
+      service.setCurrentStage(stage);
+      assert.throws(service.getCurrentClass);
+
+      service.setCurrentConfiguration(configuration);
+      assert.throws(service.getCurrentStage);
+
+      done();
     });
-    clazz.set('stage', stage);
-    service.setCurrentClass(clazz);
-    assert.equal(service.getCurrentClass(), 'class');
-
-    service.setCurrentStage(stage);
-    assert.throws(service.getCurrentClass);
-
-    service.setCurrentConfiguration(configuration);
-    assert.throws(service.getCurrentStage);
   });
 });
 define('dummy/tests/unit/services/fd-current-project-context-test.jscs-test', ['exports'], function (exports) {

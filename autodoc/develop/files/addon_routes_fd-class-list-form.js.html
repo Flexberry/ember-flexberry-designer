@@ -97,11 +97,10 @@
 
 <div class="file">
     <pre class="prettyprint linenums">
-import Ember from &#x27;ember&#x27;;
-import { Query } from &#x27;ember-flexberry-data&#x27;;
 import ListFormRoute from &#x27;ember-flexberry/routes/list-form&#x27;;
+import FdLimitByStageMixin from &#x27;../mixins/fd-limit-by-stage&#x27;;
 
-export default ListFormRoute.extend({
+export default ListFormRoute.extend(FdLimitByStageMixin, {
   /**
     Name of model projection to be used as record&#x27;s properties limitation.
 
@@ -145,29 +144,21 @@ export default ListFormRoute.extend({
   */
   developerUserSettings: { FdClassListForm: {} },
 
-  /**
-    Link to {{#crossLink &quot;FdCurrentProjectContextService&quot;}}FdCurrentProjectContextService{{/crossLink}}.
-
-    @property currentContext
-    @type FdCurrentProjectContextService
-  */
-  currentContext: Ember.inject.service(&#x27;fd-current-project-context&#x27;),
-
   actions: {
     objectListViewRowClick(clazz, options) {
       if (options.column === null) {
         return this._super(...arguments);
       } else {
         this.get(&#x27;currentContext&#x27;).setCurrentClass(clazz);
-        this.transitionTo(&#x27;fd-view-list-form&#x27;);
+        return this._super(...arguments);
       }
     },
   },
 
-  objectListViewLimitPredicate() {
-    let stage = this.get(&#x27;currentContext&#x27;).getCurrentStage();
-    return new Query.SimplePredicate(&#x27;stage&#x27;, &#x27;==&#x27;, stage);
-  },
+  willDestroy: function() {
+    this.get(&#x27;currentContext&#x27;).setCurrentClass(undefined);
+    this._super(...arguments);
+  }
 });
 
     </pre>

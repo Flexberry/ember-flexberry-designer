@@ -161,6 +161,14 @@ define('dummy/components/flexberry-dialog', ['exports', 'ember-flexberry/compone
 define('dummy/components/flexberry-dropdown', ['exports', 'ember-flexberry/components/flexberry-dropdown'], function (exports, _emberFlexberryComponentsFlexberryDropdown) {
   exports['default'] = _emberFlexberryComponentsFlexberryDropdown['default'];
 });
+define('dummy/components/flexberry-error', ['exports', 'ember-flexberry/components/flexberry-error'], function (exports, _emberFlexberryComponentsFlexberryError) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryComponentsFlexberryError['default'];
+    }
+  });
+});
 define('dummy/components/flexberry-field', ['exports', 'ember-flexberry/components/flexberry-field'], function (exports, _emberFlexberryComponentsFlexberryField) {
   exports['default'] = _emberFlexberryComponentsFlexberryField['default'];
 });
@@ -1721,6 +1729,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-case-property.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-class-storage-type.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/models');
+  test('modules/ember-flexberry-designer/locales/en/models/fd-class-storage-type.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-class-storage-type.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-class-storage-type.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/models/fd-class-storage-type.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-class-storage-type.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-class.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/locales/en/models');
   test('modules/ember-flexberry-designer/locales/en/models/fd-class.js should pass jscs', function () {
@@ -2410,6 +2431,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-std.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-storage-type.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/models');
+  test('modules/ember-flexberry-designer/locales/en/models/fd-storage-type.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-storage-type.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-storage-type.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/models/fd-storage-type.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-storage-type.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-subsystem.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/locales/en/models');
   test('modules/ember-flexberry-designer/locales/en/models/fd-subsystem.js should pass jscs', function () {
@@ -2824,6 +2858,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-case-property.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-class-storage-type.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/models');
+  test('modules/ember-flexberry-designer/locales/ru/models/fd-class-storage-type.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-class-storage-type.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-class-storage-type.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/models/fd-class-storage-type.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-class-storage-type.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-class.jscs-test', ['exports'], function (exports) {
@@ -3515,6 +3562,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-std.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-storage-type.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/models');
+  test('modules/ember-flexberry-designer/locales/ru/models/fd-storage-type.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-storage-type.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-storage-type.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/models/fd-storage-type.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-storage-type.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-subsystem.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/locales/ru/models');
   test('modules/ember-flexberry-designer/locales/ru/models/fd-subsystem.js should pass jscs', function () {
@@ -3669,6 +3729,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-case-property.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-class-storage-type.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/models');
+  test('modules/ember-flexberry-designer/mixins/regenerated/models/fd-class-storage-type.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-class-storage-type.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-class-storage-type.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/models/fd-class-storage-type.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-class-storage-type.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-class.jscs-test', ['exports'], function (exports) {
@@ -4360,6 +4433,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
     assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-std.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-storage-type.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/models');
+  test('modules/ember-flexberry-designer/mixins/regenerated/models/fd-storage-type.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-storage-type.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-storage-type.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/models/fd-storage-type.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-storage-type.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-subsystem.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/models');
   test('modules/ember-flexberry-designer/mixins/regenerated/models/fd-subsystem.js should pass jscs', function () {
@@ -4579,6 +4665,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-class-offline.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-class-storage-type-offline.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
+  test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-class-storage-type-offline.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-class-storage-type-offline.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-class-storage-type-offline.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-class-storage-type-offline.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-class-storage-type-offline.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-class-storage-type.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
+  test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-class-storage-type.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-class-storage-type.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-class-storage-type.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-class-storage-type.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-class-storage-type.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-class.jscs-test', ['exports'], function (exports) {
@@ -5946,6 +6058,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
     assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-std.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-storage-type-offline.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
+  test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-storage-type-offline.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-storage-type-offline.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-storage-type-offline.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-storage-type-offline.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-storage-type-offline.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-storage-type.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
+  test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-storage-type.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-storage-type.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-storage-type.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-storage-type.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-storage-type.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-subsystem-offline.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
   test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-subsystem-offline.js should pass jscs', function () {
@@ -6100,6 +6238,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/models/fd-case-property.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-class-storage-type.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/models');
+  test('modules/ember-flexberry-designer/models/fd-class-storage-type.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/models/fd-class-storage-type.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-class-storage-type.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/models/fd-class-storage-type.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/models/fd-class-storage-type.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-class.jscs-test', ['exports'], function (exports) {
@@ -6791,6 +6942,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mo
     assert.ok(true, 'modules/ember-flexberry-designer/models/fd-std.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-storage-type.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/models');
+  test('modules/ember-flexberry-designer/models/fd-storage-type.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/models/fd-storage-type.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-storage-type.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/models/fd-storage-type.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/models/fd-storage-type.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-subsystem.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/models');
   test('modules/ember-flexberry-designer/models/fd-subsystem.js should pass jscs', function () {
@@ -7439,6 +7603,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/se
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-class-offline.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-class-storage-type-offline.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/serializers');
+  test('modules/ember-flexberry-designer/serializers/fd-class-storage-type-offline.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/serializers/fd-class-storage-type-offline.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-class-storage-type-offline.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/serializers/fd-class-storage-type-offline.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-class-storage-type-offline.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-class-storage-type.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/serializers');
+  test('modules/ember-flexberry-designer/serializers/fd-class-storage-type.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/serializers/fd-class-storage-type.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-class-storage-type.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/serializers/fd-class-storage-type.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-class-storage-type.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-class.jscs-test', ['exports'], function (exports) {
@@ -8804,6 +8994,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/se
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-std.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-storage-type-offline.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/serializers');
+  test('modules/ember-flexberry-designer/serializers/fd-storage-type-offline.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/serializers/fd-storage-type-offline.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-storage-type-offline.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/serializers/fd-storage-type-offline.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-storage-type-offline.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-storage-type.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/serializers');
+  test('modules/ember-flexberry-designer/serializers/fd-storage-type.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/serializers/fd-storage-type.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-storage-type.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/serializers/fd-storage-type.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-storage-type.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-subsystem-offline.jscs-test', ['exports'], function (exports) {
@@ -10259,6 +10475,14 @@ define('dummy/models/fd-case-property', ['exports', 'ember-flexberry-designer/mo
     }
   });
 });
+define('dummy/models/fd-class-storage-type', ['exports', 'ember-flexberry-designer/models/fd-class-storage-type'], function (exports, _emberFlexberryDesignerModelsFdClassStorageType) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerModelsFdClassStorageType['default'];
+    }
+  });
+});
 define('dummy/models/fd-class', ['exports', 'ember-flexberry-designer/models/fd-class'], function (exports, _emberFlexberryDesignerModelsFdClass) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -10680,6 +10904,14 @@ define('dummy/models/fd-std', ['exports', 'ember-flexberry-designer/models/fd-st
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerModelsFdStd['default'];
+    }
+  });
+});
+define('dummy/models/fd-storage-type', ['exports', 'ember-flexberry-designer/models/fd-storage-type'], function (exports, _emberFlexberryDesignerModelsFdStorageType) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerModelsFdStorageType['default'];
     }
   });
 });
@@ -11195,6 +11427,14 @@ define('dummy/serializers/fd-case-property', ['exports', 'ember-flexberry-design
     }
   });
 });
+define('dummy/serializers/fd-class-storage-type', ['exports', 'ember-flexberry-designer/serializers/fd-class-storage-type'], function (exports, _emberFlexberryDesignerSerializersFdClassStorageType) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerSerializersFdClassStorageType['default'];
+    }
+  });
+});
 define('dummy/serializers/fd-class', ['exports', 'ember-flexberry-designer/serializers/fd-class'], function (exports, _emberFlexberryDesignerSerializersFdClass) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -11616,6 +11856,14 @@ define('dummy/serializers/fd-std', ['exports', 'ember-flexberry-designer/seriali
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerSerializersFdStd['default'];
+    }
+  });
+});
+define('dummy/serializers/fd-storage-type', ['exports', 'ember-flexberry-designer/serializers/fd-storage-type'], function (exports, _emberFlexberryDesignerSerializersFdStorageType) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerSerializersFdStorageType['default'];
     }
   });
 });
@@ -12571,7 +12819,6 @@ define("dummy/templates/application", ["exports"], function (exports) {
           dom.appendChild(el2, el3);
           var el3 = dom.createElement("div");
           dom.setAttribute(el3, "class", "full height");
-          dom.setAttribute(el3, "style", "min-height: 90vh");
           var el4 = dom.createTextNode("\n      ");
           dom.appendChild(el3, el4);
           var el4 = dom.createElement("div");
@@ -14715,6 +14962,712 @@ define("dummy/templates/components/flexberry-dropdown", ["exports"], function (e
     };
   })());
 });
+define("dummy/templates/components/flexberry-error", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    var child0 = (function () {
+      var child0 = (function () {
+        var child0 = (function () {
+          var child0 = (function () {
+            return {
+              meta: {
+                "fragmentReason": false,
+                "revision": "Ember@2.4.6",
+                "loc": {
+                  "source": null,
+                  "start": {
+                    "line": 10,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 12,
+                    "column": 8
+                  }
+                },
+                "moduleName": "dummy/templates/components/flexberry-error.hbs"
+              },
+              isEmpty: false,
+              arity: 0,
+              cachedFragment: null,
+              hasRendered: false,
+              buildFragment: function buildFragment(dom) {
+                var el0 = dom.createDocumentFragment();
+                var el1 = dom.createTextNode("          ");
+                dom.appendChild(el0, el1);
+                var el1 = dom.createComment("");
+                dom.appendChild(el0, el1);
+                var el1 = dom.createTextNode("\n");
+                dom.appendChild(el0, el1);
+                return el0;
+              },
+              buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+                var morphs = new Array(1);
+                morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+                return morphs;
+              },
+              statements: [["content", "error.message", ["loc", [null, [11, 10], [11, 27]]]]],
+              locals: [],
+              templates: []
+            };
+          })();
+          var child1 = (function () {
+            return {
+              meta: {
+                "fragmentReason": false,
+                "revision": "Ember@2.4.6",
+                "loc": {
+                  "source": null,
+                  "start": {
+                    "line": 12,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 14,
+                    "column": 8
+                  }
+                },
+                "moduleName": "dummy/templates/components/flexberry-error.hbs"
+              },
+              isEmpty: false,
+              arity: 0,
+              cachedFragment: null,
+              hasRendered: false,
+              buildFragment: function buildFragment(dom) {
+                var el0 = dom.createDocumentFragment();
+                var el1 = dom.createTextNode("          ");
+                dom.appendChild(el0, el1);
+                var el1 = dom.createComment("");
+                dom.appendChild(el0, el1);
+                var el1 = dom.createTextNode("\n");
+                dom.appendChild(el0, el1);
+                return el0;
+              },
+              buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+                var morphs = new Array(1);
+                morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+                return morphs;
+              },
+              statements: [["inline", "t", ["components.flexberry-error.unknown-error"], [], ["loc", [null, [13, 10], [13, 58]]]]],
+              locals: [],
+              templates: []
+            };
+          })();
+          var child2 = (function () {
+            var child0 = (function () {
+              var child0 = (function () {
+                return {
+                  meta: {
+                    "fragmentReason": false,
+                    "revision": "Ember@2.4.6",
+                    "loc": {
+                      "source": null,
+                      "start": {
+                        "line": 20,
+                        "column": 10
+                      },
+                      "end": {
+                        "line": 23,
+                        "column": 10
+                      }
+                    },
+                    "moduleName": "dummy/templates/components/flexberry-error.hbs"
+                  },
+                  isEmpty: false,
+                  arity: 1,
+                  cachedFragment: null,
+                  hasRendered: false,
+                  buildFragment: function buildFragment(dom) {
+                    var el0 = dom.createDocumentFragment();
+                    var el1 = dom.createTextNode("            ");
+                    dom.appendChild(el0, el1);
+                    var el1 = dom.createElement("h3");
+                    dom.setAttribute(el1, "class", "ui header");
+                    var el2 = dom.createComment("");
+                    dom.appendChild(el1, el2);
+                    dom.appendChild(el0, el1);
+                    var el1 = dom.createTextNode("\n            ");
+                    dom.appendChild(el0, el1);
+                    var el1 = dom.createElement("pre");
+                    var el2 = dom.createComment("");
+                    dom.appendChild(el1, el2);
+                    dom.appendChild(el0, el1);
+                    var el1 = dom.createTextNode("\n");
+                    dom.appendChild(el0, el1);
+                    return el0;
+                  },
+                  buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+                    var morphs = new Array(2);
+                    morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 0, 0);
+                    morphs[1] = dom.createMorphAt(dom.childAt(fragment, [3]), 0, 0);
+                    return morphs;
+                  },
+                  statements: [["content", "e.message", ["loc", [null, [21, 34], [21, 47]]]], ["content", "e.stack", ["loc", [null, [22, 17], [22, 28]]]]],
+                  locals: ["e"],
+                  templates: []
+                };
+              })();
+              return {
+                meta: {
+                  "fragmentReason": false,
+                  "revision": "Ember@2.4.6",
+                  "loc": {
+                    "source": null,
+                    "start": {
+                      "line": 17,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 24,
+                      "column": 8
+                    }
+                  },
+                  "moduleName": "dummy/templates/components/flexberry-error.hbs"
+                },
+                isEmpty: false,
+                arity: 0,
+                cachedFragment: null,
+                hasRendered: false,
+                buildFragment: function buildFragment(dom) {
+                  var el0 = dom.createDocumentFragment();
+                  var el1 = dom.createComment("");
+                  dom.appendChild(el0, el1);
+                  return el0;
+                },
+                buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+                  var morphs = new Array(1);
+                  morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+                  dom.insertBoundary(fragment, 0);
+                  dom.insertBoundary(fragment, null);
+                  return morphs;
+                },
+                statements: [["block", "each", [["get", "error.errors", ["loc", [null, [20, 18], [20, 30]]]]], [], 0, null, ["loc", [null, [20, 10], [23, 19]]]]],
+                locals: [],
+                templates: [child0]
+              };
+            })();
+            return {
+              meta: {
+                "fragmentReason": false,
+                "revision": "Ember@2.4.6",
+                "loc": {
+                  "source": null,
+                  "start": {
+                    "line": 16,
+                    "column": 6
+                  },
+                  "end": {
+                    "line": 25,
+                    "column": 6
+                  }
+                },
+                "moduleName": "dummy/templates/components/flexberry-error.hbs"
+              },
+              isEmpty: false,
+              arity: 0,
+              cachedFragment: null,
+              hasRendered: false,
+              buildFragment: function buildFragment(dom) {
+                var el0 = dom.createDocumentFragment();
+                var el1 = dom.createComment("");
+                dom.appendChild(el0, el1);
+                return el0;
+              },
+              buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+                var morphs = new Array(1);
+                morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+                dom.insertBoundary(fragment, 0);
+                dom.insertBoundary(fragment, null);
+                return morphs;
+              },
+              statements: [["block", "flexberry-toggler", [], ["caption", ["subexpr", "t", ["components.flexberry-error.show-more"], [], ["loc", [null, [18, 18], [18, 60]]]]], 0, null, ["loc", [null, [17, 8], [24, 30]]]]],
+              locals: [],
+              templates: [child0]
+            };
+          })();
+          return {
+            meta: {
+              "fragmentReason": false,
+              "revision": "Ember@2.4.6",
+              "loc": {
+                "source": null,
+                "start": {
+                  "line": 3,
+                  "column": 4
+                },
+                "end": {
+                  "line": 26,
+                  "column": 4
+                }
+              },
+              "moduleName": "dummy/templates/components/flexberry-error.hbs"
+            },
+            isEmpty: false,
+            arity: 0,
+            cachedFragment: null,
+            hasRendered: false,
+            buildFragment: function buildFragment(dom) {
+              var el0 = dom.createDocumentFragment();
+              var el1 = dom.createTextNode("      ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("h2");
+              dom.setAttribute(el1, "class", "ui header");
+              var el2 = dom.createTextNode("\n");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createComment("");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("      ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createComment("");
+              dom.appendChild(el0, el1);
+              return el0;
+            },
+            buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+              var morphs = new Array(2);
+              morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
+              morphs[1] = dom.createMorphAt(fragment, 3, 3, contextualElement);
+              dom.insertBoundary(fragment, null);
+              return morphs;
+            },
+            statements: [["block", "if", [["get", "error.message", ["loc", [null, [10, 14], [10, 27]]]]], [], 0, 1, ["loc", [null, [10, 8], [14, 15]]]], ["block", "if", [["get", "error.errors", ["loc", [null, [16, 12], [16, 24]]]]], [], 2, null, ["loc", [null, [16, 6], [25, 13]]]]],
+            locals: [],
+            templates: [child0, child1, child2]
+          };
+        })();
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 2,
+                "column": 2
+              },
+              "end": {
+                "line": 27,
+                "column": 2
+              }
+            },
+            "moduleName": "dummy/templates/components/flexberry-error.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+            dom.insertBoundary(fragment, 0);
+            dom.insertBoundary(fragment, null);
+            return morphs;
+          },
+          statements: [["block", "modal-dialog", [], ["title", ["subexpr", "t", ["components.flexberry-error.caption"], [], ["loc", [null, [4, 12], [4, 52]]]], "close", "close", "useOkButton", false, "settings", ["subexpr", "hash", [], ["context", ["get", "modalContext", ["loc", [null, [7, 29], [7, 41]]]]], ["loc", [null, [7, 15], [7, 42]]]]], 0, null, ["loc", [null, [3, 4], [26, 21]]]]],
+          locals: [],
+          templates: [child0]
+        };
+      })();
+      var child1 = (function () {
+        var child0 = (function () {
+          var child0 = (function () {
+            return {
+              meta: {
+                "fragmentReason": false,
+                "revision": "Ember@2.4.6",
+                "loc": {
+                  "source": null,
+                  "start": {
+                    "line": 34,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 36,
+                    "column": 8
+                  }
+                },
+                "moduleName": "dummy/templates/components/flexberry-error.hbs"
+              },
+              isEmpty: false,
+              arity: 0,
+              cachedFragment: null,
+              hasRendered: false,
+              buildFragment: function buildFragment(dom) {
+                var el0 = dom.createDocumentFragment();
+                var el1 = dom.createTextNode("          ");
+                dom.appendChild(el0, el1);
+                var el1 = dom.createComment("");
+                dom.appendChild(el0, el1);
+                var el1 = dom.createTextNode("\n");
+                dom.appendChild(el0, el1);
+                return el0;
+              },
+              buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+                var morphs = new Array(1);
+                morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+                return morphs;
+              },
+              statements: [["content", "error.message", ["loc", [null, [35, 10], [35, 27]]]]],
+              locals: [],
+              templates: []
+            };
+          })();
+          var child1 = (function () {
+            return {
+              meta: {
+                "fragmentReason": false,
+                "revision": "Ember@2.4.6",
+                "loc": {
+                  "source": null,
+                  "start": {
+                    "line": 36,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 38,
+                    "column": 8
+                  }
+                },
+                "moduleName": "dummy/templates/components/flexberry-error.hbs"
+              },
+              isEmpty: false,
+              arity: 0,
+              cachedFragment: null,
+              hasRendered: false,
+              buildFragment: function buildFragment(dom) {
+                var el0 = dom.createDocumentFragment();
+                var el1 = dom.createTextNode("          ");
+                dom.appendChild(el0, el1);
+                var el1 = dom.createComment("");
+                dom.appendChild(el0, el1);
+                var el1 = dom.createTextNode("\n");
+                dom.appendChild(el0, el1);
+                return el0;
+              },
+              buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+                var morphs = new Array(1);
+                morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+                return morphs;
+              },
+              statements: [["inline", "t", ["components.flexberry-error.unknown-error"], [], ["loc", [null, [37, 10], [37, 58]]]]],
+              locals: [],
+              templates: []
+            };
+          })();
+          var child2 = (function () {
+            var child0 = (function () {
+              var child0 = (function () {
+                return {
+                  meta: {
+                    "fragmentReason": false,
+                    "revision": "Ember@2.4.6",
+                    "loc": {
+                      "source": null,
+                      "start": {
+                        "line": 44,
+                        "column": 10
+                      },
+                      "end": {
+                        "line": 47,
+                        "column": 10
+                      }
+                    },
+                    "moduleName": "dummy/templates/components/flexberry-error.hbs"
+                  },
+                  isEmpty: false,
+                  arity: 1,
+                  cachedFragment: null,
+                  hasRendered: false,
+                  buildFragment: function buildFragment(dom) {
+                    var el0 = dom.createDocumentFragment();
+                    var el1 = dom.createTextNode("            ");
+                    dom.appendChild(el0, el1);
+                    var el1 = dom.createElement("h3");
+                    dom.setAttribute(el1, "class", "ui header");
+                    var el2 = dom.createComment("");
+                    dom.appendChild(el1, el2);
+                    dom.appendChild(el0, el1);
+                    var el1 = dom.createTextNode("\n            ");
+                    dom.appendChild(el0, el1);
+                    var el1 = dom.createElement("pre");
+                    var el2 = dom.createComment("");
+                    dom.appendChild(el1, el2);
+                    dom.appendChild(el0, el1);
+                    var el1 = dom.createTextNode("\n");
+                    dom.appendChild(el0, el1);
+                    return el0;
+                  },
+                  buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+                    var morphs = new Array(2);
+                    morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 0, 0);
+                    morphs[1] = dom.createMorphAt(dom.childAt(fragment, [3]), 0, 0);
+                    return morphs;
+                  },
+                  statements: [["content", "e.message", ["loc", [null, [45, 34], [45, 47]]]], ["content", "e.stack", ["loc", [null, [46, 17], [46, 28]]]]],
+                  locals: ["e"],
+                  templates: []
+                };
+              })();
+              return {
+                meta: {
+                  "fragmentReason": false,
+                  "revision": "Ember@2.4.6",
+                  "loc": {
+                    "source": null,
+                    "start": {
+                      "line": 41,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 48,
+                      "column": 8
+                    }
+                  },
+                  "moduleName": "dummy/templates/components/flexberry-error.hbs"
+                },
+                isEmpty: false,
+                arity: 0,
+                cachedFragment: null,
+                hasRendered: false,
+                buildFragment: function buildFragment(dom) {
+                  var el0 = dom.createDocumentFragment();
+                  var el1 = dom.createComment("");
+                  dom.appendChild(el0, el1);
+                  return el0;
+                },
+                buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+                  var morphs = new Array(1);
+                  morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+                  dom.insertBoundary(fragment, 0);
+                  dom.insertBoundary(fragment, null);
+                  return morphs;
+                },
+                statements: [["block", "each", [["get", "error.errors", ["loc", [null, [44, 18], [44, 30]]]]], [], 0, null, ["loc", [null, [44, 10], [47, 19]]]]],
+                locals: [],
+                templates: [child0]
+              };
+            })();
+            return {
+              meta: {
+                "fragmentReason": false,
+                "revision": "Ember@2.4.6",
+                "loc": {
+                  "source": null,
+                  "start": {
+                    "line": 40,
+                    "column": 6
+                  },
+                  "end": {
+                    "line": 49,
+                    "column": 6
+                  }
+                },
+                "moduleName": "dummy/templates/components/flexberry-error.hbs"
+              },
+              isEmpty: false,
+              arity: 0,
+              cachedFragment: null,
+              hasRendered: false,
+              buildFragment: function buildFragment(dom) {
+                var el0 = dom.createDocumentFragment();
+                var el1 = dom.createComment("");
+                dom.appendChild(el0, el1);
+                return el0;
+              },
+              buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+                var morphs = new Array(1);
+                morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+                dom.insertBoundary(fragment, 0);
+                dom.insertBoundary(fragment, null);
+                return morphs;
+              },
+              statements: [["block", "flexberry-toggler", [], ["caption", ["subexpr", "t", ["components.flexberry-error.show-more"], [], ["loc", [null, [42, 18], [42, 60]]]]], 0, null, ["loc", [null, [41, 8], [48, 30]]]]],
+              locals: [],
+              templates: [child0]
+            };
+          })();
+          return {
+            meta: {
+              "fragmentReason": false,
+              "revision": "Ember@2.4.6",
+              "loc": {
+                "source": null,
+                "start": {
+                  "line": 28,
+                  "column": 4
+                },
+                "end": {
+                  "line": 50,
+                  "column": 4
+                }
+              },
+              "moduleName": "dummy/templates/components/flexberry-error.hbs"
+            },
+            isEmpty: false,
+            arity: 0,
+            cachedFragment: null,
+            hasRendered: false,
+            buildFragment: function buildFragment(dom) {
+              var el0 = dom.createDocumentFragment();
+              var el1 = dom.createTextNode("      ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("h2");
+              dom.setAttribute(el1, "class", "ui header");
+              var el2 = dom.createTextNode("\n");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createComment("");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("      ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createComment("");
+              dom.appendChild(el0, el1);
+              return el0;
+            },
+            buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+              var morphs = new Array(2);
+              morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
+              morphs[1] = dom.createMorphAt(fragment, 3, 3, contextualElement);
+              dom.insertBoundary(fragment, null);
+              return morphs;
+            },
+            statements: [["block", "if", [["get", "error.message", ["loc", [null, [34, 14], [34, 27]]]]], [], 0, 1, ["loc", [null, [34, 8], [38, 15]]]], ["block", "if", [["get", "error.errors", ["loc", [null, [40, 12], [40, 24]]]]], [], 2, null, ["loc", [null, [40, 6], [49, 13]]]]],
+            locals: [],
+            templates: [child0, child1, child2]
+          };
+        })();
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 27,
+                "column": 2
+              },
+              "end": {
+                "line": 51,
+                "column": 2
+              }
+            },
+            "moduleName": "dummy/templates/components/flexberry-error.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+            dom.insertBoundary(fragment, 0);
+            dom.insertBoundary(fragment, null);
+            return morphs;
+          },
+          statements: [["block", "ui-message", [], ["type", "negative", "onHide", "close", "closeable", true], 0, null, ["loc", [null, [28, 4], [50, 19]]]]],
+          locals: [],
+          templates: [child0]
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": {
+            "name": "missing-wrapper",
+            "problems": ["wrong-type"]
+          },
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 52,
+              "column": 0
+            }
+          },
+          "moduleName": "dummy/templates/components/flexberry-error.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [["block", "if", [["get", "modal", ["loc", [null, [2, 8], [2, 13]]]]], [], 0, 1, ["loc", [null, [2, 2], [51, 9]]]]],
+        locals: [],
+        templates: [child0, child1]
+      };
+    })();
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["wrong-type"]
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 53,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/components/flexberry-error.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        dom.insertBoundary(fragment, 0);
+        dom.insertBoundary(fragment, null);
+        return morphs;
+      },
+      statements: [["block", "if", [["get", "error", ["loc", [null, [1, 6], [1, 11]]]]], [], 0, null, ["loc", [null, [1, 0], [52, 7]]]]],
+      locals: [],
+      templates: [child0]
+    };
+  })());
+});
 define("dummy/templates/components/flexberry-field", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     var child0 = (function () {
@@ -14773,7 +15726,7 @@ define("dummy/templates/components/flexberry-field", ["exports"], function (expo
             "column": 0
           },
           "end": {
-            "line": 11,
+            "line": 12,
             "column": 0
           }
         },
@@ -14800,7 +15753,7 @@ define("dummy/templates/components/flexberry-field", ["exports"], function (expo
         dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["block", "if", [["get", "label", ["loc", [null, [1, 6], [1, 11]]]]], [], 0, null, ["loc", [null, [1, 0], [3, 7]]]], ["inline", "flexberry-textbox", [], ["type", ["subexpr", "@mut", [["get", "type", ["loc", [null, [5, 7], [5, 11]]]]], [], []], "value", ["subexpr", "@mut", [["get", "value", ["loc", [null, [6, 8], [6, 13]]]]], [], []], "readonly", ["subexpr", "if", [["get", "readonly", ["loc", [null, [7, 15], [7, 23]]]], "readonly"], [], ["loc", [null, [7, 11], [7, 35]]]], "required", ["subexpr", "@mut", [["get", "required", ["loc", [null, [8, 11], [8, 19]]]]], [], []], "placeholder", ["subexpr", "@mut", [["get", "placeholder", ["loc", [null, [9, 14], [9, 25]]]]], [], []]], ["loc", [null, [4, 0], [10, 2]]]]],
+      statements: [["block", "if", [["get", "label", ["loc", [null, [1, 6], [1, 11]]]]], [], 0, null, ["loc", [null, [1, 0], [3, 7]]]], ["inline", "flexberry-textbox", [], ["type", ["subexpr", "@mut", [["get", "type", ["loc", [null, [5, 7], [5, 11]]]]], [], []], "value", ["subexpr", "@mut", [["get", "value", ["loc", [null, [6, 8], [6, 13]]]]], [], []], "readonly", ["subexpr", "if", [["get", "readonly", ["loc", [null, [7, 15], [7, 23]]]], "readonly"], [], ["loc", [null, [7, 11], [7, 35]]]], "required", ["subexpr", "@mut", [["get", "required", ["loc", [null, [8, 11], [8, 19]]]]], [], []], "placeholder", ["subexpr", "@mut", [["get", "placeholder", ["loc", [null, [9, 14], [9, 25]]]]], [], []], "maxlength", ["subexpr", "@mut", [["get", "maxlength", ["loc", [null, [10, 12], [10, 21]]]]], [], []]], ["loc", [null, [4, 0], [11, 2]]]]],
       locals: [],
       templates: [child0]
     };
@@ -16856,6 +17809,58 @@ define("dummy/templates/components/flexberry-simpledatetime", ["exports"], funct
       };
     })();
     var child1 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 6,
+                "column": 4
+              },
+              "end": {
+                "line": 13,
+                "column": 4
+              }
+            },
+            "moduleName": "dummy/templates/components/flexberry-simpledatetime.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("      ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("button");
+            var el2 = dom.createTextNode("\n        ");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("i");
+            dom.setAttribute(el2, "class", "remove icon");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n      ");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var element0 = dom.childAt(fragment, [1]);
+            var morphs = new Array(3);
+            morphs[0] = dom.createAttrMorph(element0, 'class');
+            morphs[1] = dom.createAttrMorph(element0, 'title');
+            morphs[2] = dom.createElementMorph(element0);
+            return morphs;
+          },
+          statements: [["attribute", "class", ["concat", ["ui ui-clear ", ["subexpr", "if", [["get", "readonlyAttr", ["loc", [null, [8, 32], [8, 44]]]], " disabled"], [], ["loc", [null, [8, 27], [8, 58]]]], " button"]]], ["attribute", "title", ["subexpr", "t", ["components.flexberry-lookup.remove-button-text"], [], ["loc", [null, [9, 14], [9, 68]]]]], ["element", "action", ["remove"], [], ["loc", [null, [10, 8], [10, 27]]]]],
+          locals: [],
+          templates: []
+        };
+      })();
       return {
         meta: {
           "fragmentReason": false,
@@ -16867,7 +17872,7 @@ define("dummy/templates/components/flexberry-simpledatetime", ["exports"], funct
               "column": 0
             },
             "end": {
-              "line": 5,
+              "line": 15,
               "column": 0
             }
           },
@@ -16881,23 +17886,35 @@ define("dummy/templates/components/flexberry-simpledatetime", ["exports"], funct
           var el0 = dom.createDocumentFragment();
           var el1 = dom.createTextNode("  ");
           dom.appendChild(el0, el1);
-          var el1 = dom.createElement("input");
-          dom.setAttribute(el1, "type", "text");
-          dom.setAttribute(el1, "class", "flatpickr");
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "ui fluid action input flatpickr");
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("input");
+          dom.setAttribute(el2, "type", "text");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("  ");
+          dom.appendChild(el1, el2);
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n");
           dom.appendChild(el0, el1);
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var element0 = dom.childAt(fragment, [1]);
-          var morphs = new Array(1);
-          morphs[0] = dom.createAttrMorph(element0, 'placeholder');
+          var element1 = dom.childAt(fragment, [1]);
+          var element2 = dom.childAt(element1, [1]);
+          var morphs = new Array(2);
+          morphs[0] = dom.createAttrMorph(element2, 'placeholder');
+          morphs[1] = dom.createMorphAt(element1, 3, 3);
           return morphs;
         },
-        statements: [["attribute", "placeholder", ["get", "placeholder", ["loc", [null, [4, 53], [4, 64]]]]]],
+        statements: [["attribute", "placeholder", ["get", "placeholder", ["loc", [null, [5, 37], [5, 48]]]]], ["block", "if", [["get", "removeButton", ["loc", [null, [6, 10], [6, 22]]]]], [], 0, null, ["loc", [null, [6, 4], [13, 11]]]]],
         locals: [],
-        templates: []
+        templates: [child0]
       };
     })();
     return {
@@ -16914,7 +17931,7 @@ define("dummy/templates/components/flexberry-simpledatetime", ["exports"], funct
             "column": 0
           },
           "end": {
-            "line": 6,
+            "line": 16,
             "column": 0
           }
         },
@@ -16937,13 +17954,13 @@ define("dummy/templates/components/flexberry-simpledatetime", ["exports"], funct
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["block", "if", [["subexpr", "and", [["get", "currentTypeSupported", ["loc", [null, [1, 11], [1, 31]]]], ["get", "useBrowserInput", ["loc", [null, [1, 32], [1, 47]]]]], [], ["loc", [null, [1, 6], [1, 48]]]]], [], 0, 1, ["loc", [null, [1, 0], [5, 7]]]]],
+      statements: [["block", "if", [["subexpr", "and", [["get", "currentTypeSupported", ["loc", [null, [1, 11], [1, 31]]]], ["get", "useBrowserInput", ["loc", [null, [1, 32], [1, 47]]]]], [], ["loc", [null, [1, 6], [1, 48]]]]], [], 0, 1, ["loc", [null, [1, 0], [15, 7]]]]],
       locals: [],
       templates: [child0, child1]
     };
   })());
 });
-define("dummy/templates/components/flexberry-simpleolv",["exports"],function(exports){exports["default"] = Ember.HTMLBars.template((function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":2,"column":2},"end":{"line":10,"column":2}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("    ");dom.appendChild(el0,el1);var el1=dom.createElement("button");var el2=dom.createTextNode("\n        ");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n        ");dom.appendChild(el1,el2);var el2=dom.createElement("i");dom.setAttribute(el2,"class","refresh icon");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n    ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element35=dom.childAt(fragment,[1]);var morphs=new Array(4);morphs[0] = dom.createAttrMorph(element35,'class');morphs[1] = dom.createAttrMorph(element35,'title');morphs[2] = dom.createElementMorph(element35);morphs[3] = dom.createMorphAt(element35,1,1);return morphs;},statements:[["attribute","class",["concat",["ui refresh-button ",["get","buttonClass",["loc",[null,[4,33],[4,44]]]]," button"]]],["attribute","title",["subexpr","t",["components.olv-toolbar.refresh-button-text"],[],["loc",[null,[5,12],[5,62]]]]],["element","action",["refresh"],[],["loc",[null,[6,6],[6,26]]]],["inline","t",["components.olv-toolbar.refresh-button-text"],[],["loc",[null,[7,8],[7,58]]]]],locals:[],templates:[]};})();var child1=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":11,"column":2},"end":{"line":18,"column":2}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("    ");dom.appendChild(el0,el1);var el1=dom.createElement("button");var el2=dom.createTextNode("\n        ");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n    ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element34=dom.childAt(fragment,[1]);var morphs=new Array(4);morphs[0] = dom.createAttrMorph(element34,'class');morphs[1] = dom.createAttrMorph(element34,'title');morphs[2] = dom.createElementMorph(element34);morphs[3] = dom.createMorphAt(element34,1,1);return morphs;},statements:[["attribute","class",["concat",["ui create-button ",["get","buttonClass",["loc",[null,[13,32],[13,43]]]]," ",["subexpr","if",[["get","enableCreateNewButton",["loc",[null,[13,51],[13,72]]]],"","disabled"],[],["loc",[null,[13,46],[13,88]]]]," button"]]],["attribute","title",["subexpr","t",["components.olv-toolbar.add-button-text"],[],["loc",[null,[14,12],[14,58]]]]],["element","action",["createNew"],[],["loc",[null,[15,6],[15,28]]]],["inline","t",["components.olv-toolbar.add-button-text"],[],["loc",[null,[16,8],[16,54]]]]],locals:[],templates:[]};})();var child2=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":19,"column":2},"end":{"line":26,"column":2}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("    ");dom.appendChild(el0,el1);var el1=dom.createElement("button");var el2=dom.createTextNode("\n        ");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n    ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element33=dom.childAt(fragment,[1]);var morphs=new Array(4);morphs[0] = dom.createAttrMorph(element33,'class');morphs[1] = dom.createAttrMorph(element33,'title');morphs[2] = dom.createElementMorph(element33);morphs[3] = dom.createMorphAt(element33,1,1);return morphs;},statements:[["attribute","class",["concat",["ui delete-button ",["get","buttonClass",["loc",[null,[21,32],[21,43]]]]," ",["subexpr","if",[["get","isDeleteButtonEnabled",["loc",[null,[21,51],[21,72]]]],"","disabled"],[],["loc",[null,[21,46],[21,88]]]]," button"]]],["attribute","title",["subexpr","t",["components.olv-toolbar.delete-button-text"],[],["loc",[null,[22,12],[22,61]]]]],["element","action",["delete"],[],["loc",[null,[23,7],[23,26]]]],["inline","t",["components.olv-toolbar.delete-button-text"],[],["loc",[null,[24,8],[24,57]]]]],locals:[],templates:[]};})();var child3=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":27,"column":2},"end":{"line":34,"column":2}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("    ");dom.appendChild(el0,el1);var el1=dom.createElement("button");var el2=dom.createTextNode("\n        ");dom.appendChild(el1,el2);var el2=dom.createElement("i");dom.setAttribute(el2,"class","sitemap icon");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n    ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element32=dom.childAt(fragment,[1]);var morphs=new Array(3);morphs[0] = dom.createAttrMorph(element32,'class');morphs[1] = dom.createAttrMorph(element32,'title');morphs[2] = dom.createElementMorph(element32);return morphs;},statements:[["attribute","class",["concat",["ui button icon hierarchical-button ",["get","buttonClass",["loc",[null,[29,50],[29,61]]]]," ",["subexpr","if",[["get","inHierarchicalMode",["loc",[null,[29,69],[29,87]]]],"active"],[],["loc",[null,[29,64],[29,98]]]]]]],["attribute","title",["subexpr","t",["components.olv-toolbar.hierarchy-button-text"],[],["loc",[null,[30,12],[30,64]]]]],["element","action",["switchHierarchicalMode"],[],["loc",[null,[31,6],[31,41]]]]],locals:[],templates:[]};})();var child4=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":43,"column":6},"end":{"line":51,"column":6}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("        ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","or");dom.setAttribute(el1,"data-text","•");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n        ");dom.appendChild(el0,el1);var el1=dom.createElement("button");var el2=dom.createTextNode("\n            ");dom.appendChild(el1,el2);var el2=dom.createElement("i");dom.setAttribute(el2,"class","remove icon");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n        ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element29=dom.childAt(fragment,[3]);var morphs=new Array(3);morphs[0] = dom.createAttrMorph(element29,'class');morphs[1] = dom.createAttrMorph(element29,'title');morphs[2] = dom.createElementMorph(element29);return morphs;},statements:[["attribute","class",["concat",["ui button removeFilter-button ",["get","buttonClass",["loc",[null,[46,49],[46,60]]]]]]],["attribute","title",["subexpr","t",["components.olv-toolbar.remove-filter-button-text"],[],["loc",[null,[47,16],[47,72]]]]],["element","action",["resetFilters",["get","this.attrs.resetFilters",["loc",[null,[48,34],[48,57]]]]],[],["loc",[null,[48,10],[48,59]]]]],locals:[],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":35,"column":2},"end":{"line":53,"column":2}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("    ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","ui icon buttons filter-active");var el2=dom.createTextNode("\n      ");dom.appendChild(el1,el2);var el2=dom.createElement("button");var el3=dom.createTextNode("\n          ");dom.appendChild(el2,el3);var el3=dom.createElement("i");dom.setAttribute(el3,"class","filter icon");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n      ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("    ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element30=dom.childAt(fragment,[1]);var element31=dom.childAt(element30,[1]);var morphs=new Array(4);morphs[0] = dom.createAttrMorph(element31,'class');morphs[1] = dom.createAttrMorph(element31,'title');morphs[2] = dom.createElementMorph(element31);morphs[3] = dom.createMorphAt(element30,3,3);return morphs;},statements:[["attribute","class",["concat",["ui button ",["get","buttonClass",["loc",[null,[38,27],[38,38]]]]," ",["subexpr","if",[["get","showFilters",["loc",[null,[38,46],[38,57]]]],"active"],[],["loc",[null,[38,41],[38,68]]]]]]],["attribute","title",["subexpr","t",["components.olv-toolbar.filter-button-text"],[],["loc",[null,[39,14],[39,63]]]]],["element","action",["toggleStateFilters"],[],["loc",[null,[40,8],[40,39]]]],["block","if",[["get","filters",["loc",[null,[43,12],[43,19]]]]],[],0,null,["loc",[null,[43,6],[51,13]]]]],locals:[],templates:[child0]};})();var child5=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":54,"column":2},"end":{"line":77,"column":2}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("    ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","ui action input");var el2=dom.createTextNode("\n      ");dom.appendChild(el1,el2);var el2=dom.createElement("div");dom.setAttribute(el2,"class","block-action-input");var el3=dom.createTextNode("\n        ");dom.appendChild(el2,el3);var el3=dom.createElement("input");dom.setAttribute(el3,"type","text");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n      ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n      ");dom.appendChild(el1,el2);var el2=dom.createElement("button");var el3=dom.createTextNode("\n          ");dom.appendChild(el2,el3);var el3=dom.createElement("i");dom.setAttribute(el3,"class","search icon");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n      ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n      ");dom.appendChild(el1,el2);var el2=dom.createElement("button");var el3=dom.createTextNode("\n          ");dom.appendChild(el2,el3);var el3=dom.createElement("i");dom.setAttribute(el3,"class","remove icon");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n      ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n    ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element25=dom.childAt(fragment,[1]);var element26=dom.childAt(element25,[1,1]);var element27=dom.childAt(element25,[3]);var element28=dom.childAt(element25,[5]);var morphs=new Array(9);morphs[0] = dom.createAttrMorph(element26,'value');morphs[1] = dom.createAttrMorph(element26,'placeholder');morphs[2] = dom.createAttrMorph(element26,'onkeyup');morphs[3] = dom.createAttrMorph(element27,'class');morphs[4] = dom.createAttrMorph(element27,'title');morphs[5] = dom.createElementMorph(element27);morphs[6] = dom.createAttrMorph(element28,'class');morphs[7] = dom.createAttrMorph(element28,'title');morphs[8] = dom.createElementMorph(element28);return morphs;},statements:[["attribute","value",["get","filterByAnyMatchText",["loc",[null,[59,18],[59,38]]]]],["attribute","placeholder",["subexpr","t",["components.olv-toolbar.filter-by-any-match-placeholder"],[],["loc",[null,[60,22],[60,84]]]]],["attribute","onkeyup",["subexpr","action",["filterByAnyMatch"],[],["loc",[null,[61,18],[61,47]]]]],["attribute","class",["concat",["ui ",["get","buttonClass",["loc",[null,[65,20],[65,31]]]]," icon button search-button"]]],["attribute","title",["subexpr","t",["components.olv-toolbar.search-button-text"],[],["loc",[null,[66,14],[66,63]]]]],["element","action",["filterByAnyMatch"],[],["loc",[null,[67,8],[67,37]]]],["attribute","class",["concat",["ui ",["get","buttonClass",["loc",[null,[71,20],[71,31]]]]," icon button clear-search-button"]]],["attribute","title",["subexpr","t",["components.olv-toolbar.clear-search-button-text"],[],["loc",[null,[72,14],[72,69]]]]],["element","action",["removeFilter"],[],["loc",[null,[73,8],[73,33]]]]],locals:[],templates:[]};})();var child6=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":78,"column":2},"end":{"line":91,"column":2}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("    ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","ui buttons export-config");var el2=dom.createTextNode("\n      ");dom.appendChild(el1,el2);var el2=dom.createElement("button");var el3=dom.createTextNode("\n          ");dom.appendChild(el2,el3);var el3=dom.createElement("i");dom.setAttribute(el3,"class","large file excel outline icon");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n      ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n      ");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n    ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element23=dom.childAt(fragment,[1]);var element24=dom.childAt(element23,[1]);var morphs=new Array(4);morphs[0] = dom.createAttrMorph(element24,'class');morphs[1] = dom.createAttrMorph(element24,'title');morphs[2] = dom.createElementMorph(element24);morphs[3] = dom.createMorphAt(element23,3,3);return morphs;},statements:[["attribute","class",["concat",["ui button icon export-button ",["get","buttonClass",["loc",[null,[81,46],[81,57]]]]]]],["attribute","title",["subexpr","t",["components.olv-toolbar.export-excel-button-text"],[],["loc",[null,[82,14],[82,69]]]]],["element","action",["showExportDialog"],[],["loc",[null,[83,8],[83,37]]]],["inline","flexberry-menu",[],["items",["subexpr","@mut",[["get","exportExcelItems",["loc",[null,[87,14],[87,30]]]]],[],[]],"onItemClick",["subexpr","action",["onExportMenuItemClick"],[],["loc",[null,[88,20],[88,52]]]]],["loc",[null,[86,6],[89,8]]]]],locals:[],templates:[]};})();var child7=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":100,"column":6},"end":{"line":105,"column":6}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("        ");dom.appendChild(el0,el1);var el1=dom.createComment("");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,1,1,contextualElement);return morphs;},statements:[["inline","flexberry-menu",[],["items",["subexpr","@mut",[["get","colsSettingsItems",["loc",[null,[102,16],[102,33]]]]],[],[]],"onItemClick",["subexpr","action",["onMenuItemClick"],[],["loc",[null,[103,22],[103,48]]]]],["loc",[null,[101,8],[104,10]]]]],locals:[],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":92,"column":2},"end":{"line":107,"column":2}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("    ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","ui buttons cols-config");var el2=dom.createTextNode("\n      ");dom.appendChild(el1,el2);var el2=dom.createElement("button");dom.setAttribute(el2,"class","ui icon button config-button");var el3=dom.createTextNode("\n          ");dom.appendChild(el2,el3);var el3=dom.createElement("i");dom.setAttribute(el3,"class","large table icon");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n      ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("    ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element21=dom.childAt(fragment,[1]);var element22=dom.childAt(element21,[1]);var morphs=new Array(3);morphs[0] = dom.createAttrMorph(element22,'title');morphs[1] = dom.createElementMorph(element22);morphs[2] = dom.createMorphAt(element21,3,3);return morphs;},statements:[["attribute","title",["subexpr","t",["components.colsconfig-dialog-content.title"],[],["loc",[null,[96,14],[96,64]]]]],["element","action",["showConfigDialog"],[],["loc",[null,[97,8],[97,37]]]],["block","if",[["get","colsSettingsItems",["loc",[null,[100,12],[100,29]]]]],[],0,null,["loc",[null,[100,6],[105,13]]]]],locals:[],templates:[child0]};})();var child8=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":108,"column":2},"end":{"line":115,"column":2}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:1,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("    ");dom.appendChild(el0,el1);var el1=dom.createElement("button");var el2=dom.createTextNode("\n      ");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n    ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element20=dom.childAt(fragment,[1]);var morphs=new Array(4);morphs[0] = dom.createAttrMorph(element20,'class');morphs[1] = dom.createAttrMorph(element20,'title');morphs[2] = dom.createElementMorph(element20);morphs[3] = dom.createMorphAt(element20,1,1);return morphs;},statements:[["attribute","class",["concat",["ui ",["subexpr","if",[["get","customButton.buttonClasses",["loc",[null,[110,21],[110,47]]]],["get","customButton.buttonClasses",["loc",[null,[110,48],[110,74]]]],""],[],["loc",[null,[110,16],[110,79]]]]," button"]]],["attribute","title",["subexpr","if",[["get","customButton.buttonTitle",["loc",[null,[111,17],[111,41]]]],["get","customButton.buttonTitle",["loc",[null,[111,42],[111,66]]]]],[],["loc",[null,[111,12],[111,68]]]]],["element","action",["customButtonAction",["get","customButton.buttonAction",["loc",[null,[112,36],[112,61]]]]],[],["loc",[null,[112,6],[112,63]]]],["inline","if",[["get","customButton.buttonName",["loc",[null,[113,11],[113,34]]]],["get","customButton.buttonName",["loc",[null,[113,35],[113,58]]]],["subexpr","t",["components.olv-toolbar.custom-button-text"],[],["loc",[null,[113,59],[113,106]]]]],[],["loc",[null,[113,6],[113,108]]]]],locals:["customButton"],templates:[]};})();var child9=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":147,"column":4},"end":{"line":155,"column":4}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:1,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("      ");dom.appendChild(el0,el1);var el1=dom.createComment("");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,1,1,contextualElement);return morphs;},statements:[["inline","ui-message",[],["type","error","closeable",true,"visible",true,"title","Error occurred","message",["subexpr","@mut",[["get","currentError",["loc",[null,[153,16],[153,28]]]]],[],[]]],["loc",[null,[148,6],[154,8]]]]],locals:["currentError"],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":146,"column":2},"end":{"line":156,"column":2}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createComment("");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,0,0,contextualElement);dom.insertBoundary(fragment,0);dom.insertBoundary(fragment,null);return morphs;},statements:[["block","each",[["get","errorMessages",["loc",[null,[147,12],[147,25]]]]],[],0,null,["loc",[null,[147,4],[155,13]]]]],locals:[],templates:[child0]};})();var child10=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":160,"column":8},"end":{"line":162,"column":8}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("          ");dom.appendChild(el0,el1);var el1=dom.createElement("th");dom.setAttribute(el1,"class","object-list-view-operations collapsing");dom.setAttribute(el1,"data-olv-header-property-name","OlvRowToolbar");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(){return [];},statements:[],locals:[],templates:[]};})();var child11=(function(){var child0=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":168,"column":16},"end":{"line":170,"column":16}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                  ");dom.appendChild(el0,el1);var el1=dom.createComment("");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,1,1,contextualElement);return morphs;},statements:[["inline","t",[["get","column.keyLocale",["loc",[null,[169,22],[169,38]]]]],[],["loc",[null,[169,18],[169,40]]]]],locals:[],templates:[]};})();var child1=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":170,"column":16},"end":{"line":172,"column":16}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                  ");dom.appendChild(el0,el1);var el1=dom.createComment("");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,1,1,contextualElement);return morphs;},statements:[["content","column.header",["loc",[null,[171,18],[171,35]]]]],locals:[],templates:[]};})();var child2=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":176,"column":20},"end":{"line":180,"column":20}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                      ");dom.appendChild(el0,el1);var el1=dom.createElement("div");var el2=dom.createTextNode("\n                      ▲");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n                      ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element17=dom.childAt(fragment,[1]);var morphs=new Array(2);morphs[0] = dom.createAttrMorph(element17,'title');morphs[1] = dom.createMorphAt(element17,1,1);return morphs;},statements:[["attribute","title",["concat",[["subexpr","t",["components.object-list-view.sort-ascending"],[],["loc",[null,[177,34],[177,84]]]]]]],["content","column.sortNumber",["loc",[null,[178,23],[178,44]]]]],locals:[],templates:[]};})();var child1=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":180,"column":20},"end":{"line":184,"column":20}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                      ");dom.appendChild(el0,el1);var el1=dom.createElement("div");var el2=dom.createTextNode("\n                      ▼");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n                      ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element16=dom.childAt(fragment,[1]);var morphs=new Array(2);morphs[0] = dom.createAttrMorph(element16,'title');morphs[1] = dom.createMorphAt(element16,1,1);return morphs;},statements:[["attribute","title",["concat",[["subexpr","t",["components.object-list-view.sort-descending"],[],["loc",[null,[181,34],[181,85]]]]]]],["content","column.sortNumber",["loc",[null,[182,23],[182,44]]]]],locals:[],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":174,"column":16},"end":{"line":186,"column":16}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                  ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"style","float:right;");var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("                  ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(dom.childAt(fragment,[1]),1,1);return morphs;},statements:[["block","if",[["get","column.sortAscending",["loc",[null,[176,26],[176,46]]]]],[],0,1,["loc",[null,[176,20],[184,27]]]]],locals:[],templates:[child0,child1]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":164,"column":10},"end":{"line":189,"column":10}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("            ");dom.appendChild(el0,el1);var el1=dom.createElement("th");dom.setAttribute(el1,"class","dt-head-left me class");var el2=dom.createTextNode("\n              ");dom.appendChild(el1,el2);var el2=dom.createElement("div");var el3=dom.createTextNode("\n                ");dom.appendChild(el2,el3);var el3=dom.createElement("span");var el4=dom.createTextNode("\n");dom.appendChild(el3,el4);var el4=dom.createComment("");dom.appendChild(el3,el4);var el4=dom.createTextNode("                ");dom.appendChild(el3,el4);dom.appendChild(el2,el3);var el3=dom.createTextNode("\n");dom.appendChild(el2,el3);var el3=dom.createComment("");dom.appendChild(el2,el3);var el3=dom.createTextNode("              ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n            ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element18=dom.childAt(fragment,[1]);var element19=dom.childAt(element18,[1]);var morphs=new Array(5);morphs[0] = dom.createAttrMorph(element18,'onclick');morphs[1] = dom.createAttrMorph(element19,'data-olv-header-property-name');morphs[2] = dom.createAttrMorph(element19,'title');morphs[3] = dom.createMorphAt(dom.childAt(element19,[1]),1,1);morphs[4] = dom.createMorphAt(element19,3,3);return morphs;},statements:[["attribute","onclick",["subexpr","action",["headerCellClick",["get","column",["loc",[null,[165,82],[165,88]]]]],[],["loc",[null,[165,54],[165,91]]]]],["attribute","data-olv-header-property-name",["get","column.propName",["loc",[null,[166,51],[166,66]]]]],["attribute","title",["get","sortTitleCompute",["loc",[null,[166,77],[166,93]]]]],["block","if",[["get","column.keyLocale",["loc",[null,[168,22],[168,38]]]]],[],0,1,["loc",[null,[168,16],[172,23]]]],["block","if",[["get","column.sorted",["loc",[null,[174,22],[174,35]]]]],[],2,null,["loc",[null,[174,16],[186,23]]]]],locals:[],templates:[child0,child1,child2]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":163,"column":8},"end":{"line":190,"column":8}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:1,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createComment("");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,0,0,contextualElement);dom.insertBoundary(fragment,0);dom.insertBoundary(fragment,null);return morphs;},statements:[["block","unless",[["get","column.hide",["loc",[null,[164,20],[164,31]]]]],[],0,null,["loc",[null,[164,10],[189,21]]]]],locals:["column"],templates:[child0]};})();var child12=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":191,"column":8},"end":{"line":193,"column":8}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("          ");dom.appendChild(el0,el1);var el1=dom.createElement("th");dom.setAttribute(el1,"class","object-list-view-menu collapsing");dom.setAttribute(el1,"data-olv-header-property-name","OlvRowMenu");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(){return [];},statements:[],locals:[],templates:[]};})();var child13=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":199,"column":10},"end":{"line":201,"column":10}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("            ");dom.appendChild(el0,el1);var el1=dom.createElement("td");dom.setAttribute(el1,"rowspan","1");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(){return [];},statements:[],locals:[],templates:[]};})();var child1=(function(){var child0=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":205,"column":16},"end":{"line":213,"column":16}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                  ");dom.appendChild(el0,el1);var el1=dom.createComment("");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,1,1,contextualElement);return morphs;},statements:[["inline","component",["flexberry-dropdown"],["value",["subexpr","@mut",[["get","column.filter.condition",["loc",[null,[207,26],[207,49]]]]],[],[]],"items",["subexpr","@mut",[["get","column.filter.conditions",["loc",[null,[208,26],[208,50]]]]],[],[]],"class","compact fluid","placeholder","","needChecksOnValue",false],["loc",[null,[206,18],[212,20]]]]],locals:[],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":203,"column":12},"end":{"line":215,"column":12}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("              ");dom.appendChild(el0,el1);var el1=dom.createElement("td");dom.setAttribute(el1,"class","overflowed-cell");var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("              ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element13=dom.childAt(fragment,[1]);var morphs=new Array(2);morphs[0] = dom.createAttrMorph(element13,'style');morphs[1] = dom.createMorphAt(element13,1,1);return morphs;},statements:[["attribute","style",["get","defaultPaddingStyle",["loc",[null,[204,26],[204,45]]]]],["block","if",[["get","column.filter.conditions",["loc",[null,[205,22],[205,46]]]]],[],0,null,["loc",[null,[205,16],[213,23]]]]],locals:[],templates:[child0]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":202,"column":10},"end":{"line":216,"column":10}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:1,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createComment("");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,0,0,contextualElement);dom.insertBoundary(fragment,0);dom.insertBoundary(fragment,null);return morphs;},statements:[["block","unless",[["get","column.hide",["loc",[null,[203,22],[203,33]]]]],[],0,null,["loc",[null,[203,12],[215,23]]]]],locals:["column"],templates:[child0]};})();var child2=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":217,"column":10},"end":{"line":219,"column":10}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("            ");dom.appendChild(el0,el1);var el1=dom.createElement("td");dom.setAttribute(el1,"rowspan","1");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(){return [];},statements:[],locals:[],templates:[]};})();var child3=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":222,"column":10},"end":{"line":224,"column":10}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("            ");dom.appendChild(el0,el1);var el1=dom.createElement("td");dom.setAttribute(el1,"rowspan","1");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(){return [];},statements:[],locals:[],templates:[]};})();var child4=(function(){var child0=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":228,"column":16},"end":{"line":233,"column":16}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                  ");dom.appendChild(el0,el1);var el1=dom.createComment("");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,1,1,contextualElement);return morphs;},statements:[["inline","component",[["get","column.filter.component.name",["loc",[null,[229,30],[229,58]]]]],["value",["subexpr","@mut",[["get","column.filter.pattern",["loc",[null,[230,26],[230,47]]]]],[],[]],"dynamicProperties",["subexpr","@mut",[["get","column.filter.component.properties",["loc",[null,[231,38],[231,72]]]]],[],[]]],["loc",[null,[229,18],[232,20]]]]],locals:[],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":226,"column":12},"end":{"line":235,"column":12}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("              ");dom.appendChild(el0,el1);var el1=dom.createElement("td");var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("              ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element12=dom.childAt(fragment,[1]);var morphs=new Array(3);morphs[0] = dom.createAttrMorph(element12,'style');morphs[1] = dom.createAttrMorph(element12,'class');morphs[2] = dom.createMorphAt(element12,1,1);return morphs;},statements:[["attribute","style",["get","defaultPaddingStyle",["loc",[null,[227,26],[227,45]]]]],["attribute","class",["concat",[["subexpr","if",[["subexpr","array-contains",[["get","overflowedComponents",["loc",[null,[227,76],[227,96]]]],["get","column.filter.component.name",["loc",[null,[227,97],[227,125]]]]],[],["loc",[null,[227,60],[227,126]]]],"overflowed-cell"],[],["loc",[null,[227,55],[227,146]]]]]]],["block","if",[["get","column.filter.component.name",["loc",[null,[228,22],[228,50]]]]],[],0,null,["loc",[null,[228,16],[233,23]]]]],locals:[],templates:[child0]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":225,"column":10},"end":{"line":236,"column":10}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:1,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createComment("");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,0,0,contextualElement);dom.insertBoundary(fragment,0);dom.insertBoundary(fragment,null);return morphs;},statements:[["block","unless",[["get","column.hide",["loc",[null,[226,22],[226,33]]]]],[],0,null,["loc",[null,[226,12],[235,23]]]]],locals:["column"],templates:[child0]};})();var child5=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":237,"column":10},"end":{"line":239,"column":10}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("            ");dom.appendChild(el0,el1);var el1=dom.createElement("td");dom.setAttribute(el1,"rowspan","1");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(){return [];},statements:[],locals:[],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":197,"column":6},"end":{"line":241,"column":6}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("        ");dom.appendChild(el0,el1);var el1=dom.createElement("tr");var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("        ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n        ");dom.appendChild(el0,el1);var el1=dom.createElement("tr");var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("        ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element14=dom.childAt(fragment,[1]);var element15=dom.childAt(fragment,[3]);var morphs=new Array(6);morphs[0] = dom.createMorphAt(element14,1,1);morphs[1] = dom.createMorphAt(element14,2,2);morphs[2] = dom.createMorphAt(element14,3,3);morphs[3] = dom.createMorphAt(element15,1,1);morphs[4] = dom.createMorphAt(element15,2,2);morphs[5] = dom.createMorphAt(element15,3,3);return morphs;},statements:[["block","if",[["get","showHelperColumn",["loc",[null,[199,16],[199,32]]]]],[],0,null,["loc",[null,[199,10],[201,17]]]],["block","each",[["get","columns",["loc",[null,[202,18],[202,25]]]]],[],1,null,["loc",[null,[202,10],[216,19]]]],["block","if",[["get","showMenuColumn",["loc",[null,[217,16],[217,30]]]]],[],2,null,["loc",[null,[217,10],[219,17]]]],["block","if",[["get","showHelperColumn",["loc",[null,[222,16],[222,32]]]]],[],3,null,["loc",[null,[222,10],[224,17]]]],["block","each",[["get","columns",["loc",[null,[225,18],[225,25]]]]],[],4,null,["loc",[null,[225,10],[236,19]]]],["block","if",[["get","showMenuColumn",["loc",[null,[237,16],[237,30]]]]],[],5,null,["loc",[null,[237,10],[239,17]]]]],locals:[],templates:[child0,child1,child2,child3,child4,child5]};})();var child14=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":242,"column":6},"end":{"line":248,"column":6}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("        ");dom.appendChild(el0,el1);var el1=dom.createElement("tr");var el2=dom.createTextNode("\n          ");dom.appendChild(el1,el2);var el2=dom.createElement("td");dom.setAttribute(el2,"style","text-align:center;");var el3=dom.createTextNode("\n              ");dom.appendChild(el2,el3);var el3=dom.createComment("");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n          ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n        ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element11=dom.childAt(fragment,[1,1]);var morphs=new Array(2);morphs[0] = dom.createAttrMorph(element11,'colspan');morphs[1] = dom.createMorphAt(element11,1,1);return morphs;},statements:[["attribute","colspan",["concat",[["get","colspan",["loc",[null,[244,25],[244,32]]]]]]],["content","placeholder",["loc",[null,[245,14],[245,29]]]]],locals:[],templates:[]};})();var child15=(function(){var child0=(function(){var child0=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":255,"column":20},"end":{"line":259,"column":20}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                      ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","cell");var el2=dom.createTextNode("\n                        ");dom.appendChild(el1,el2);var el2=dom.createElement("i");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n                      ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element7=dom.childAt(fragment,[1,1]);var morphs=new Array(1);morphs[0] = dom.createAttrMorph(element7,'class');return morphs;},statements:[["attribute","class",["concat",["asterisk small red icon ",["subexpr","unless",[["get","record.data.hasDirtyAttributes",["loc",[null,[257,67],[257,97]]]],"transparent"],[],["loc",[null,[257,58],[257,113]]]]]]]],locals:[],templates:[]};})();var child1=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":260,"column":20},"end":{"line":267,"column":20}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                      ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","cell");var el2=dom.createTextNode("\n                        ");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n                      ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(dom.childAt(fragment,[1]),1,1);return morphs;},statements:[["inline","flexberry-checkbox",[],["readonly",["subexpr","or",[["get","readonly",["loc",[null,[263,39],[263,47]]]],["subexpr","not",[["get","record.rowConfig.canBeSelected",["loc",[null,[263,53],[263,83]]]]],[],["loc",[null,[263,48],[263,84]]]]],[],["loc",[null,[263,35],[263,85]]]],"onChange",["subexpr","action",["selectRow",["get","record",["loc",[null,[264,55],[264,61]]]]],[],["loc",[null,[264,35],[264,62]]]]],["loc",[null,[262,24],[265,26]]]]],locals:[],templates:[]};})();var child2=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":268,"column":20},"end":{"line":274,"column":20}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                      ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","cell");var el2=dom.createTextNode("\n                        ");dom.appendChild(el1,el2);var el2=dom.createElement("button");var el3=dom.createTextNode("\n                          ");dom.appendChild(el2,el3);var el3=dom.createElement("i");dom.setAttribute(el3,"class","minus icon");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n                        ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n                      ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element6=dom.childAt(fragment,[1,1]);var morphs=new Array(2);morphs[0] = dom.createAttrMorph(element6,'class');morphs[1] = dom.createElementMorph(element6);return morphs;},statements:[["attribute","class",["concat",["ui ui-delete ",["get","buttonClass",["loc",[null,[270,54],[270,65]]]]," ",["subexpr","if",[["subexpr","or",[["get","readonly",["loc",[null,[270,77],[270,85]]]],["subexpr","not",[["get","record.rowConfig.canBeDeleted",["loc",[null,[270,91],[270,120]]]]],[],["loc",[null,[270,86],[270,121]]]]],[],["loc",[null,[270,73],[270,122]]]],"disabled"],[],["loc",[null,[270,68],[270,135]]]]," button"]]],["element","action",["deleteRow",["get","record",["loc",[null,[270,165],[270,171]]]]],[],["loc",[null,[270,144],[270,173]]]]],locals:[],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":253,"column":16},"end":{"line":276,"column":16}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                  ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","object-list-view-helper-column-cell");var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("                  ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element8=dom.childAt(fragment,[1]);var morphs=new Array(3);morphs[0] = dom.createMorphAt(element8,1,1);morphs[1] = dom.createMorphAt(element8,2,2);morphs[2] = dom.createMorphAt(element8,3,3);return morphs;},statements:[["block","if",[["get","showAsteriskInRow",["loc",[null,[255,26],[255,43]]]]],[],0,null,["loc",[null,[255,20],[259,27]]]],["block","if",[["get","showCheckBoxInRow",["loc",[null,[260,26],[260,43]]]]],[],1,null,["loc",[null,[260,20],[267,27]]]],["block","if",[["get","showDeleteButtonInRow",["loc",[null,[268,26],[268,47]]]]],[],2,null,["loc",[null,[268,20],[274,27]]]]],locals:[],templates:[child0,child1,child2]};})();var child1=(function(){var child0=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":282,"column":20},"end":{"line":290,"column":20}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                      ");dom.appendChild(el0,el1);var el1=dom.createComment("");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,1,1,contextualElement);return morphs;},statements:[["inline","component",[["get","column.cellComponent.componentName",["loc",[null,[283,34],[283,68]]]]],["dynamicProperties",["subexpr","@mut",[["get","column.cellComponent.componentProperties",["loc",[null,[284,42],[284,82]]]]],[],[]],"relatedModel",["subexpr","@mut",[["get","record.data",["loc",[null,[285,37],[285,48]]]]],[],[]],"value",["subexpr","mut",[["subexpr","get",[["get","record.data",["loc",[null,[286,40],[286,51]]]],["get","column.propName",["loc",[null,[286,52],[286,67]]]]],[],["loc",[null,[286,35],[286,68]]]]],[],["loc",[null,[286,30],[286,69]]]],"readonly",["subexpr","readonly-cell",[["get","record.rowConfig.readonlyColumns",["loc",[null,[287,48],[287,80]]]],["get","column.propName",["loc",[null,[287,81],[287,96]]]],["get","readonly",["loc",[null,[287,97],[287,105]]]]],[],["loc",[null,[287,33],[287,106]]]],"required",["subexpr","@mut",[["get","required",["loc",[null,[288,33],[288,41]]]]],[],[]]],["loc",[null,[283,22],[289,24]]]]],locals:[],templates:[]};})();var child1=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":290,"column":20},"end":{"line":297,"column":20}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                      ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","oveflow-text");var el2=dom.createTextNode("\n                        ");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n                      ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(dom.childAt(fragment,[1]),1,1);return morphs;},statements:[["inline","get-formatted",[["get","record.data",["loc",[null,[292,40],[292,51]]]],["get","column.propName",["loc",[null,[292,52],[292,67]]]]],["dateFormat",["subexpr","@mut",[["get","dateFormat",["loc",[null,[293,37],[293,47]]]]],[],[]],"moment",["subexpr","@mut",[["get","moment",["loc",[null,[294,33],[294,39]]]]],[],[]]],["loc",[null,[292,24],[295,26]]]]],locals:[],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":279,"column":16},"end":{"line":299,"column":16}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                  ");dom.appendChild(el0,el1);var el1=dom.createElement("td");var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("                  ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element5=dom.childAt(fragment,[1]);var morphs=new Array(4);morphs[0] = dom.createAttrMorph(element5,'class');morphs[1] = dom.createAttrMorph(element5,'style');morphs[2] = dom.createElementMorph(element5);morphs[3] = dom.createMorphAt(element5,1,1);return morphs;},statements:[["attribute","class",["concat",[["subexpr","if",[["subexpr","array-contains",[["get","overflowedComponents",["loc",[null,[280,50],[280,70]]]],["get","column.cellComponent.componentName",["loc",[null,[280,71],[280,105]]]]],[],["loc",[null,[280,34],[280,106]]]]," overflowed-cell"],[],["loc",[null,[280,29],[280,127]]]]]]],["attribute","style",["get","defaultPaddingStyle",["loc",[null,[281,92],[281,111]]]]],["element","action",["objectListViewRowClick",["get","record",["loc",[null,[281,54],[281,60]]]]],["preventDefault",false],["loc",[null,[281,20],[281,83]]]],["block","if",[["get","column.cellComponent.componentName",["loc",[null,[282,26],[282,60]]]]],[],0,1,["loc",[null,[282,20],[297,27]]]]],locals:[],templates:[child0,child1]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":278,"column":14},"end":{"line":300,"column":14}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:1,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createComment("");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,0,0,contextualElement);dom.insertBoundary(fragment,0);dom.insertBoundary(fragment,null);return morphs;},statements:[["block","unless",[["get","column.hide",["loc",[null,[279,26],[279,37]]]]],[],0,null,["loc",[null,[279,16],[299,27]]]]],locals:["column"],templates:[child0]};})();var child2=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":306,"column":22},"end":{"line":311,"column":22}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                        ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","item");var el2=dom.createTextNode("\n                          ");dom.appendChild(el1,el2);var el2=dom.createElement("i");dom.setAttribute(el2,"class","edit icon");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n                          ");dom.appendChild(el1,el2);var el2=dom.createElement("span");var el3=dom.createComment("");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n                        ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element2=dom.childAt(fragment,[1]);var morphs=new Array(2);morphs[0] = dom.createElementMorph(element2);morphs[1] = dom.createMorphAt(dom.childAt(element2,[3]),0,0);return morphs;},statements:[["element","action",["objectListViewRowClick",["get","record",["loc",[null,[307,77],[307,83]]]]],[],["loc",[null,[307,42],[307,86]]]],["inline","t",["components.object-list-view.menu-in-row.edit-menu-item-title"],[],["loc",[null,[309,32],[309,100]]]]],locals:[],templates:[]};})();var child1=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":312,"column":22},"end":{"line":317,"column":22}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                        ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","item");var el2=dom.createTextNode("\n                          ");dom.appendChild(el1,el2);var el2=dom.createElement("i");dom.setAttribute(el2,"class","trash icon");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n                          ");dom.appendChild(el1,el2);var el2=dom.createElement("span");var el3=dom.createComment("");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n                        ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element1=dom.childAt(fragment,[1]);var morphs=new Array(2);morphs[0] = dom.createElementMorph(element1);morphs[1] = dom.createMorphAt(dom.childAt(element1,[3]),0,0);return morphs;},statements:[["element","action",["deleteRow",["get","record",["loc",[null,[313,64],[313,70]]]]],[],["loc",[null,[313,42],[313,73]]]],["inline","t",["components.object-list-view.menu-in-row.delete-menu-item-title"],[],["loc",[null,[315,32],[315,102]]]]],locals:[],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":301,"column":14},"end":{"line":321,"column":14}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                ");dom.appendChild(el0,el1);var el1=dom.createElement("td");dom.setAttribute(el1,"class","object-list-view-menu");var el2=dom.createTextNode("\n                  ");dom.appendChild(el1,el2);var el2=dom.createElement("div");dom.setAttribute(el2,"class","right pointing ui icon dropdown button");var el3=dom.createTextNode("\n                    ");dom.appendChild(el2,el3);var el3=dom.createElement("i");dom.setAttribute(el3,"class","list layout icon");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n                    ");dom.appendChild(el2,el3);var el3=dom.createElement("div");dom.setAttribute(el3,"class","left menu");var el4=dom.createTextNode("\n");dom.appendChild(el3,el4);var el4=dom.createComment("");dom.appendChild(el3,el4);var el4=dom.createComment("");dom.appendChild(el3,el4);var el4=dom.createTextNode("                    ");dom.appendChild(el3,el4);dom.appendChild(el2,el3);var el3=dom.createTextNode("\n                  ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n                ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element3=dom.childAt(fragment,[1]);var element4=dom.childAt(element3,[1,3]);var morphs=new Array(3);morphs[0] = dom.createAttrMorph(element3,'style');morphs[1] = dom.createMorphAt(element4,1,1);morphs[2] = dom.createMorphAt(element4,2,2);return morphs;},statements:[["attribute","style",["get","defaultPaddingStyle",["loc",[null,[302,58],[302,77]]]]],["block","if",[["subexpr","and",[["get","showEditMenuItemInRow",["loc",[null,[306,33],[306,54]]]],["get","record.rowConfig.canBeSelected",["loc",[null,[306,55],[306,85]]]]],[],["loc",[null,[306,28],[306,86]]]]],[],0,null,["loc",[null,[306,22],[311,29]]]],["block","if",[["subexpr","and",[["get","showDeleteMenuItemInRow",["loc",[null,[312,33],[312,56]]]],["get","record.rowConfig.canBeDeleted",["loc",[null,[312,57],[312,86]]]]],[],["loc",[null,[312,28],[312,87]]]]],[],1,null,["loc",[null,[312,22],[317,29]]]]],locals:[],templates:[child0,child1]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":249,"column":8},"end":{"line":323,"column":8}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:1,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("            ");dom.appendChild(el0,el1);var el1=dom.createElement("tr");var el2=dom.createTextNode("\n              ");dom.appendChild(el1,el2);var el2=dom.createElement("td");var el3=dom.createTextNode("\n                ");dom.appendChild(el2,el3);var el3=dom.createElement("div");dom.setAttribute(el3,"class","hidden");var el4=dom.createComment("");dom.appendChild(el3,el4);dom.appendChild(el2,el3);var el3=dom.createTextNode("\n");dom.appendChild(el2,el3);var el3=dom.createComment("");dom.appendChild(el2,el3);var el3=dom.createTextNode("              ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("            ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element9=dom.childAt(fragment,[1]);var element10=dom.childAt(element9,[1]);var morphs=new Array(7);morphs[0] = dom.createAttrMorph(element9,'class');morphs[1] = dom.createAttrMorph(element10,'class');morphs[2] = dom.createAttrMorph(element10,'style');morphs[3] = dom.createMorphAt(dom.childAt(element10,[1]),0,0);morphs[4] = dom.createMorphAt(element10,3,3);morphs[5] = dom.createMorphAt(element9,3,3);morphs[6] = dom.createMorphAt(element9,4,4);return morphs;},statements:[["attribute","class",["concat",[["get","record.rowConfig.customClass",["loc",[null,[250,25],[250,53]]]]]]],["attribute","class",["concat",["object-list-view-helper-column ",["subexpr","unless",[["get","showHelperColumn",["loc",[null,[251,65],[251,81]]]],"hidden"],[],["loc",[null,[251,56],[251,92]]]]]]],["attribute","style",["get","defaultPaddingStyle",["loc",[null,[251,102],[251,121]]]]],["content","record.key",["loc",[null,[252,36],[252,50]]]],["block","if",[["get","showHelperColumn",["loc",[null,[253,22],[253,38]]]]],[],0,null,["loc",[null,[253,16],[276,23]]]],["block","each",[["get","columns",["loc",[null,[278,22],[278,29]]]]],[],1,null,["loc",[null,[278,14],[300,23]]]],["block","if",[["get","showMenuColumn",["loc",[null,[301,20],[301,34]]]]],[],2,null,["loc",[null,[301,14],[321,21]]]]],locals:["record"],templates:[child0,child1,child2]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":248,"column":6},"end":{"line":324,"column":6}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createComment("");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,0,0,contextualElement);dom.insertBoundary(fragment,0);dom.insertBoundary(fragment,null);return morphs;},statements:[["block","each",[["get","contentWithKeys",["loc",[null,[249,16],[249,31]]]]],["key","key"],0,null,["loc",[null,[249,8],[323,17]]]]],locals:[],templates:[child0]};})();var child16=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":332,"column":6},"end":{"line":334,"column":6}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("        ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","ui button");var el2=dom.createTextNode("...");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(){return [];},statements:[],locals:[],templates:[]};})();var child1=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":335,"column":8},"end":{"line":337,"column":8}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("          ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","ui active button");var el2=dom.createComment("");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(dom.childAt(fragment,[1]),0,0);return morphs;},statements:[["content","page.number",["loc",[null,[336,40],[336,55]]]]],locals:[],templates:[]};})();var child1=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":337,"column":8},"end":{"line":339,"column":8}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("          ");dom.appendChild(el0,el1);var el1=dom.createElement("button");dom.setAttribute(el1,"class","ui button");var el2=dom.createComment("");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element0=dom.childAt(fragment,[1]);var morphs=new Array(2);morphs[0] = dom.createElementMorph(element0);morphs[1] = dom.createMorphAt(element0,0,0);return morphs;},statements:[["element","action",["gotoPage",["get","this.attrs.gotoPage",["loc",[null,[338,56],[338,75]]]],["get","page.number",["loc",[null,[338,76],[338,87]]]]],[],["loc",[null,[338,36],[338,89]]]],["content","page.number",["loc",[null,[338,90],[338,105]]]]],locals:[],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":334,"column":6},"end":{"line":340,"column":6}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createComment("");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,0,0,contextualElement);dom.insertBoundary(fragment,0);dom.insertBoundary(fragment,null);return morphs;},statements:[["block","if",[["get","page.isCurrent",["loc",[null,[335,14],[335,28]]]]],[],0,1,["loc",[null,[335,8],[339,15]]]]],locals:[],templates:[child0,child1]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":331,"column":4},"end":{"line":341,"column":4}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:1,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createComment("");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,0,0,contextualElement);dom.insertBoundary(fragment,0);dom.insertBoundary(fragment,null);return morphs;},statements:[["block","if",[["get","page.isEllipsis",["loc",[null,[332,12],[332,27]]]]],[],0,1,["loc",[null,[332,6],[340,13]]]]],locals:["page"],templates:[child0,child1]};})();var child17=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":347,"column":8},"end":{"line":351,"column":8}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("          ");dom.appendChild(el0,el1);var el1=dom.createComment("");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,1,1,contextualElement);return morphs;},statements:[["inline","concat",[["subexpr","t",["components.flexberry-objectlistview.showing-entries.showing"],[],["loc",[null,[349,12],[349,77]]]],["get","currentIntervalRecords",["loc",[null,[349,78],[349,100]]]],["subexpr","t",["components.flexberry-objectlistview.showing-entries.of"],[],["loc",[null,[349,101],[349,161]]]],["get","recordsTotalCount",["loc",[null,[349,162],[349,179]]]],["subexpr","t",["components.flexberry-objectlistview.showing-entries.entries"],[],["loc",[null,[349,180],[349,245]]]]],[],["loc",[null,[348,10],[350,12]]]]],locals:[],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":345,"column":4},"end":{"line":353,"column":4}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("      ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","showing-entries");var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("      ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(dom.childAt(fragment,[1]),1,1);return morphs;},statements:[["block","if",[["subexpr","and",[["get","currentIntervalRecords",["loc",[null,[347,19],[347,41]]]],["get","recordsTotalCount",["loc",[null,[347,42],[347,59]]]]],[],["loc",[null,[347,14],[347,60]]]]],[],0,null,["loc",[null,[347,8],[351,15]]]]],locals:[],templates:[child0]};})();return {meta:{"fragmentReason":{"name":"missing-wrapper","problems":["multiple-nodes"]},"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":1,"column":0},"end":{"line":357,"column":0}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createElement("div");dom.setAttribute(el1,"class","ui secondary menu no-margin ");var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("  ");dom.appendChild(el1,el2);var el2=dom.createElement("div");dom.setAttribute(el2,"class","olv-toolbar-info-modal-dialog ui small basic modal");var el3=dom.createTextNode("\n    ");dom.appendChild(el2,el3);var el3=dom.createElement("div");dom.setAttribute(el3,"class","ui icon header");var el4=dom.createTextNode("\n      ");dom.appendChild(el3,el4);var el4=dom.createElement("i");dom.setAttribute(el4,"class","olvt icon");dom.appendChild(el3,el4);var el4=dom.createTextNode("\n      ");dom.appendChild(el3,el4);var el4=dom.createComment("");dom.appendChild(el3,el4);var el4=dom.createTextNode("\n    ");dom.appendChild(el3,el4);dom.appendChild(el2,el3);var el3=dom.createTextNode("\n    ");dom.appendChild(el2,el3);var el3=dom.createElement("div");dom.setAttribute(el3,"class","center aligned ui grid");var el4=dom.createTextNode("\n    ");dom.appendChild(el3,el4);var el4=dom.createElement("button");dom.setAttribute(el4,"class","ui icon button");dom.setAttribute(el4,"id","OLVToolbarInfoCopyButton");var el5=dom.createTextNode("\n        ");dom.appendChild(el4,el5);var el5=dom.createElement("i");dom.setAttribute(el5,"class","copy icon");dom.appendChild(el4,el5);var el5=dom.createTextNode("\n        ");dom.appendChild(el4,el5);var el5=dom.createComment("");dom.appendChild(el4,el5);var el5=dom.createTextNode("\n    ");dom.appendChild(el4,el5);dom.appendChild(el3,el4);var el4=dom.createTextNode("\n    ");dom.appendChild(el3,el4);var el4=dom.createElement("div");dom.setAttribute(el4,"class","actions");var el5=dom.createTextNode("\n      ");dom.appendChild(el4,el5);var el5=dom.createElement("div");dom.setAttribute(el5,"class","olv-toolbar-info-modal-dialog-ok-button ui approve green inverted button");var el6=dom.createTextNode("\n        ");dom.appendChild(el5,el6);var el6=dom.createElement("i");dom.setAttribute(el6,"class","remove icon");dom.appendChild(el5,el6);var el6=dom.createTextNode("\n        ");dom.appendChild(el5,el6);var el6=dom.createComment("");dom.appendChild(el5,el6);var el6=dom.createTextNode("\n      ");dom.appendChild(el5,el6);dom.appendChild(el4,el5);var el5=dom.createTextNode("\n    ");dom.appendChild(el4,el5);dom.appendChild(el3,el4);var el4=dom.createTextNode("\n    ");dom.appendChild(el3,el4);dom.appendChild(el2,el3);var el3=dom.createTextNode("\n    ");dom.appendChild(el2,el3);var el3=dom.createElement("div");dom.setAttribute(el3,"class","ui form");var el4=dom.createTextNode("\n      ");dom.appendChild(el3,el4);var el4=dom.createElement("div");dom.setAttribute(el4,"class","olv-toolbar-info-modal-dialog-content center aligned ui field");var el5=dom.createTextNode("\n        ");dom.appendChild(el4,el5);var el5=dom.createElement("textarea");dom.setAttribute(el5,"id","OLVToolbarInfoContent");dom.setAttribute(el5,"cols","80");dom.setAttribute(el5,"rows","20");var el6=dom.createComment("");dom.appendChild(el5,el6);dom.appendChild(el4,el5);var el5=dom.createTextNode("\n      ");dom.appendChild(el4,el5);dom.appendChild(el3,el4);var el4=dom.createTextNode("\n    ");dom.appendChild(el3,el4);dom.appendChild(el2,el3);var el3=dom.createTextNode("\n  ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n\n");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","object-list-view-container");var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("  ");dom.appendChild(el1,el2);var el2=dom.createElement("table");var el3=dom.createTextNode("\n    ");dom.appendChild(el2,el3);var el3=dom.createElement("thead");var el4=dom.createTextNode("\n      ");dom.appendChild(el3,el4);var el4=dom.createElement("tr");var el5=dom.createTextNode("\n");dom.appendChild(el4,el5);var el5=dom.createComment("");dom.appendChild(el4,el5);var el5=dom.createComment("");dom.appendChild(el4,el5);var el5=dom.createComment("");dom.appendChild(el4,el5);var el5=dom.createTextNode("      ");dom.appendChild(el4,el5);dom.appendChild(el3,el4);var el4=dom.createTextNode("\n    ");dom.appendChild(el3,el4);dom.appendChild(el2,el3);var el3=dom.createTextNode("\n    ");dom.appendChild(el2,el3);var el3=dom.createElement("tbody");var el4=dom.createTextNode("\n");dom.appendChild(el3,el4);var el4=dom.createComment("");dom.appendChild(el3,el4);var el4=dom.createComment("");dom.appendChild(el3,el4);var el4=dom.createTextNode("    ");dom.appendChild(el3,el4);dom.appendChild(el2,el3);var el3=dom.createTextNode("\n  ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","ui secondary menu no-margin nav-bar");var el2=dom.createTextNode("\n  ");dom.appendChild(el1,el2);var el2=dom.createElement("div");dom.setAttribute(el2,"class","ui basic buttons");var el3=dom.createTextNode("\n    ");dom.appendChild(el2,el3);var el3=dom.createElement("button");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n");dom.appendChild(el2,el3);var el3=dom.createComment("");dom.appendChild(el2,el3);var el3=dom.createTextNode("    ");dom.appendChild(el2,el3);var el3=dom.createElement("button");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n  ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n  ");dom.appendChild(el1,el2);var el2=dom.createElement("div");dom.setAttribute(el2,"class","right menu");var el3=dom.createTextNode("\n");dom.appendChild(el2,el3);var el3=dom.createComment("");dom.appendChild(el2,el3);var el3=dom.createTextNode("    ");dom.appendChild(el2,el3);var el3=dom.createComment("");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n  ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element36=dom.childAt(fragment,[0]);var element37=dom.childAt(element36,[11]);var element38=dom.childAt(element37,[3]);var element39=dom.childAt(element38,[1]);var element40=dom.childAt(fragment,[2]);var element41=dom.childAt(element40,[3]);var element42=dom.childAt(element41,[1,1]);var element43=dom.childAt(element41,[3]);var element44=dom.childAt(fragment,[4]);var element45=dom.childAt(element44,[1]);var element46=dom.childAt(element45,[1]);var element47=dom.childAt(element45,[5]);var element48=dom.childAt(element44,[3]);var morphs=new Array(29);morphs[0] = dom.createMorphAt(element36,1,1);morphs[1] = dom.createMorphAt(element36,2,2);morphs[2] = dom.createMorphAt(element36,3,3);morphs[3] = dom.createMorphAt(element36,4,4);morphs[4] = dom.createMorphAt(element36,5,5);morphs[5] = dom.createMorphAt(element36,6,6);morphs[6] = dom.createMorphAt(element36,7,7);morphs[7] = dom.createMorphAt(element36,8,8);morphs[8] = dom.createMorphAt(element36,9,9);morphs[9] = dom.createMorphAt(dom.childAt(element37,[1]),3,3);morphs[10] = dom.createAttrMorph(element39,'title');morphs[11] = dom.createElementMorph(element39);morphs[12] = dom.createMorphAt(element39,3,3);morphs[13] = dom.createMorphAt(dom.childAt(element38,[3,1]),3,3);morphs[14] = dom.createMorphAt(dom.childAt(element37,[5,1,1]),0,0);morphs[15] = dom.createMorphAt(element40,1,1);morphs[16] = dom.createAttrMorph(element41,'class');morphs[17] = dom.createMorphAt(element42,1,1);morphs[18] = dom.createMorphAt(element42,2,2);morphs[19] = dom.createMorphAt(element42,3,3);morphs[20] = dom.createMorphAt(element43,1,1);morphs[21] = dom.createMorphAt(element43,2,2);morphs[22] = dom.createAttrMorph(element46,'class');morphs[23] = dom.createElementMorph(element46);morphs[24] = dom.createMorphAt(element45,3,3);morphs[25] = dom.createAttrMorph(element47,'class');morphs[26] = dom.createElementMorph(element47);morphs[27] = dom.createMorphAt(element48,1,1);morphs[28] = dom.createMorphAt(element48,3,3);return morphs;},statements:[["block","if",[["get","refreshButton",["loc",[null,[2,8],[2,21]]]]],[],0,null,["loc",[null,[2,2],[10,9]]]],["block","if",[["get","createNewButton",["loc",[null,[11,8],[11,23]]]]],[],1,null,["loc",[null,[11,2],[18,9]]]],["block","if",[["get","deleteButton",["loc",[null,[19,8],[19,20]]]]],[],2,null,["loc",[null,[19,2],[26,9]]]],["block","if",[["get","availableHierarchicalMode",["loc",[null,[27,8],[27,33]]]]],[],3,null,["loc",[null,[27,2],[34,9]]]],["block","if",[["get","enableFilters",["loc",[null,[35,8],[35,21]]]]],[],4,null,["loc",[null,[35,2],[53,9]]]],["block","if",[["get","filterButton",["loc",[null,[54,8],[54,20]]]]],[],5,null,["loc",[null,[54,2],[77,9]]]],["block","if",[["get","exportExcelButton",["loc",[null,[78,8],[78,25]]]]],[],6,null,["loc",[null,[78,2],[91,9]]]],["block","if",[["get","colsConfigButton",["loc",[null,[92,8],[92,24]]]]],[],7,null,["loc",[null,[92,2],[107,9]]]],["block","each",[["get","customButtons",["loc",[null,[108,10],[108,23]]]]],[],8,null,["loc",[null,[108,2],[115,11]]]],["content","_infoModalDialogCaption",["loc",[null,[119,6],[119,33]]]],["attribute","title",["subexpr","t",["components.olv-toolbar.copy"],[],["loc",[null,[124,12],[124,47]]]]],["element","action",["copyJSONContent"],[],["loc",[null,[125,6],[125,34]]]],["inline","t",["components.olv-toolbar.copy"],[],["loc",[null,[128,8],[128,43]]]],["inline","t",["components.olv-toolbar.close"],[],["loc",[null,[133,8],[133,44]]]],["content","_infoModalDialogContent",["loc",[null,[139,65],[139,92]]]],["block","if",[["get","errorMessages",["loc",[null,[146,8],[146,21]]]]],[],9,null,["loc",[null,[146,2],[156,9]]]],["attribute","class",["concat",["object-list-view ui unstackable celled ",["subexpr","if",[["get","readonly",["loc",[null,[157,60],[157,68]]]],"readonly"],[],["loc",[null,[157,55],[157,81]]]]," ",["get","tableClass",["loc",[null,[157,84],[157,94]]]]," table"]]],["block","if",[["get","showHelperColumn",["loc",[null,[160,14],[160,30]]]]],[],10,null,["loc",[null,[160,8],[162,15]]]],["block","each",[["get","columns",["loc",[null,[163,16],[163,23]]]]],[],11,null,["loc",[null,[163,8],[190,17]]]],["block","if",[["get","showMenuColumn",["loc",[null,[191,14],[191,28]]]]],[],12,null,["loc",[null,[191,8],[193,15]]]],["block","if",[["get","showFilters",["loc",[null,[197,12],[197,23]]]]],[],13,null,["loc",[null,[197,6],[241,13]]]],["block","unless",[["get","content",["loc",[null,[242,16],[242,23]]]]],[],14,15,["loc",[null,[242,6],[324,17]]]],["attribute","class",["concat",["ui ",["subexpr","unless",[["get","hasPreviousPage",["loc",[null,[330,31],[330,46]]]],"disabled"],[],["loc",[null,[330,22],[330,59]]]]," button prev-page-button"]]],["element","action",["previousPage",["get","this.attrs.previousPage",["loc",[null,[330,109],[330,132]]]]],[],["loc",[null,[330,85],[330,134]]]],["block","each",[["get","pages",["loc",[null,[331,12],[331,17]]]]],[],16,null,["loc",[null,[331,4],[341,13]]]],["attribute","class",["concat",["ui ",["subexpr","unless",[["get","hasNextPage",["loc",[null,[342,31],[342,42]]]],"disabled"],[],["loc",[null,[342,22],[342,55]]]]," button next-page-button"]]],["element","action",["nextPage",["get","this.attrs.nextPage",["loc",[null,[342,101],[342,120]]]]],[],["loc",[null,[342,81],[342,122]]]],["block","if",[["get","showShowingEntries",["loc",[null,[345,10],[345,28]]]]],[],17,null,["loc",[null,[345,4],[353,11]]]],["inline","flexberry-dropdown",[],["items",["subexpr","@mut",[["get","perPageValues",["loc",[null,[354,31],[354,44]]]]],[],[]],"value",["subexpr","@mut",[["get","perPageValue",["loc",[null,[354,51],[354,63]]]]],[],[]],"class","compact selection","onChange",["subexpr","action",["perPageClick"],[],["loc",[null,[354,99],[354,122]]]],"needChecksOnValue",false,"direction","upward"],["loc",[null,[354,4],[354,167]]]]],locals:[],templates:[child0,child1,child2,child3,child4,child5,child6,child7,child8,child9,child10,child11,child12,child13,child14,child15,child16,child17]};})());});
+define("dummy/templates/components/flexberry-simpleolv",["exports"],function(exports){exports["default"] = Ember.HTMLBars.template((function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":2,"column":2},"end":{"line":10,"column":2}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("    ");dom.appendChild(el0,el1);var el1=dom.createElement("button");var el2=dom.createTextNode("\n        ");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n        ");dom.appendChild(el1,el2);var el2=dom.createElement("i");dom.setAttribute(el2,"class","refresh icon");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n    ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element35=dom.childAt(fragment,[1]);var morphs=new Array(4);morphs[0] = dom.createAttrMorph(element35,'class');morphs[1] = dom.createAttrMorph(element35,'title');morphs[2] = dom.createElementMorph(element35);morphs[3] = dom.createMorphAt(element35,1,1);return morphs;},statements:[["attribute","class",["concat",["ui refresh-button ",["get","buttonClass",["loc",[null,[4,33],[4,44]]]]," button"]]],["attribute","title",["subexpr","t",["components.olv-toolbar.refresh-button-text"],[],["loc",[null,[5,12],[5,62]]]]],["element","action",["refresh"],[],["loc",[null,[6,6],[6,26]]]],["inline","t",["components.olv-toolbar.refresh-button-text"],[],["loc",[null,[7,8],[7,58]]]]],locals:[],templates:[]};})();var child1=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":11,"column":2},"end":{"line":18,"column":2}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("    ");dom.appendChild(el0,el1);var el1=dom.createElement("button");var el2=dom.createTextNode("\n        ");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n    ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element34=dom.childAt(fragment,[1]);var morphs=new Array(4);morphs[0] = dom.createAttrMorph(element34,'class');morphs[1] = dom.createAttrMorph(element34,'title');morphs[2] = dom.createElementMorph(element34);morphs[3] = dom.createMorphAt(element34,1,1);return morphs;},statements:[["attribute","class",["concat",["ui create-button ",["get","buttonClass",["loc",[null,[13,32],[13,43]]]]," ",["subexpr","if",[["get","enableCreateNewButton",["loc",[null,[13,51],[13,72]]]],"","disabled"],[],["loc",[null,[13,46],[13,88]]]]," button"]]],["attribute","title",["subexpr","t",["components.olv-toolbar.add-button-text"],[],["loc",[null,[14,12],[14,58]]]]],["element","action",["createNew"],[],["loc",[null,[15,6],[15,28]]]],["inline","t",["components.olv-toolbar.add-button-text"],[],["loc",[null,[16,8],[16,54]]]]],locals:[],templates:[]};})();var child2=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":19,"column":2},"end":{"line":26,"column":2}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("    ");dom.appendChild(el0,el1);var el1=dom.createElement("button");var el2=dom.createTextNode("\n        ");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n    ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element33=dom.childAt(fragment,[1]);var morphs=new Array(4);morphs[0] = dom.createAttrMorph(element33,'class');morphs[1] = dom.createAttrMorph(element33,'title');morphs[2] = dom.createElementMorph(element33);morphs[3] = dom.createMorphAt(element33,1,1);return morphs;},statements:[["attribute","class",["concat",["ui delete-button ",["get","buttonClass",["loc",[null,[21,32],[21,43]]]]," ",["subexpr","if",[["get","isDeleteButtonEnabled",["loc",[null,[21,51],[21,72]]]],"","disabled"],[],["loc",[null,[21,46],[21,88]]]]," button"]]],["attribute","title",["subexpr","t",["components.olv-toolbar.delete-button-text"],[],["loc",[null,[22,12],[22,61]]]]],["element","action",["delete"],[],["loc",[null,[23,7],[23,26]]]],["inline","t",["components.olv-toolbar.delete-button-text"],[],["loc",[null,[24,8],[24,57]]]]],locals:[],templates:[]};})();var child3=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":27,"column":2},"end":{"line":34,"column":2}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("    ");dom.appendChild(el0,el1);var el1=dom.createElement("button");var el2=dom.createTextNode("\n        ");dom.appendChild(el1,el2);var el2=dom.createElement("i");dom.setAttribute(el2,"class","sitemap icon");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n    ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element32=dom.childAt(fragment,[1]);var morphs=new Array(3);morphs[0] = dom.createAttrMorph(element32,'class');morphs[1] = dom.createAttrMorph(element32,'title');morphs[2] = dom.createElementMorph(element32);return morphs;},statements:[["attribute","class",["concat",["ui button icon hierarchical-button ",["get","buttonClass",["loc",[null,[29,50],[29,61]]]]," ",["subexpr","if",[["get","inHierarchicalMode",["loc",[null,[29,69],[29,87]]]],"active"],[],["loc",[null,[29,64],[29,98]]]]]]],["attribute","title",["subexpr","t",["components.olv-toolbar.hierarchy-button-text"],[],["loc",[null,[30,12],[30,64]]]]],["element","action",["switchHierarchicalMode"],[],["loc",[null,[31,6],[31,41]]]]],locals:[],templates:[]};})();var child4=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":43,"column":6},"end":{"line":51,"column":6}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("        ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","or");dom.setAttribute(el1,"data-text","•");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n        ");dom.appendChild(el0,el1);var el1=dom.createElement("button");var el2=dom.createTextNode("\n            ");dom.appendChild(el1,el2);var el2=dom.createElement("i");dom.setAttribute(el2,"class","remove icon");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n        ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element29=dom.childAt(fragment,[3]);var morphs=new Array(3);morphs[0] = dom.createAttrMorph(element29,'class');morphs[1] = dom.createAttrMorph(element29,'title');morphs[2] = dom.createElementMorph(element29);return morphs;},statements:[["attribute","class",["concat",["ui button removeFilter-button ",["get","buttonClass",["loc",[null,[46,49],[46,60]]]]]]],["attribute","title",["subexpr","t",["components.olv-toolbar.remove-filter-button-text"],[],["loc",[null,[47,16],[47,72]]]]],["element","action",["resetFilters",["get","this.attrs.resetFilters",["loc",[null,[48,34],[48,57]]]]],[],["loc",[null,[48,10],[48,59]]]]],locals:[],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":35,"column":2},"end":{"line":53,"column":2}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("    ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","ui icon buttons filter-active");var el2=dom.createTextNode("\n      ");dom.appendChild(el1,el2);var el2=dom.createElement("button");var el3=dom.createTextNode("\n          ");dom.appendChild(el2,el3);var el3=dom.createElement("i");dom.setAttribute(el3,"class","filter icon");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n      ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("    ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element30=dom.childAt(fragment,[1]);var element31=dom.childAt(element30,[1]);var morphs=new Array(4);morphs[0] = dom.createAttrMorph(element31,'class');morphs[1] = dom.createAttrMorph(element31,'title');morphs[2] = dom.createElementMorph(element31);morphs[3] = dom.createMorphAt(element30,3,3);return morphs;},statements:[["attribute","class",["concat",["ui button ",["get","buttonClass",["loc",[null,[38,27],[38,38]]]]," ",["subexpr","if",[["get","showFilters",["loc",[null,[38,46],[38,57]]]],"active"],[],["loc",[null,[38,41],[38,68]]]]]]],["attribute","title",["subexpr","t",["components.olv-toolbar.filter-button-text"],[],["loc",[null,[39,14],[39,63]]]]],["element","action",["toggleStateFilters"],[],["loc",[null,[40,8],[40,39]]]],["block","if",[["get","filters",["loc",[null,[43,12],[43,19]]]]],[],0,null,["loc",[null,[43,6],[51,13]]]]],locals:[],templates:[child0]};})();var child5=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":54,"column":2},"end":{"line":77,"column":2}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("    ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","ui action input");var el2=dom.createTextNode("\n      ");dom.appendChild(el1,el2);var el2=dom.createElement("div");dom.setAttribute(el2,"class","block-action-input");var el3=dom.createTextNode("\n        ");dom.appendChild(el2,el3);var el3=dom.createElement("input");dom.setAttribute(el3,"type","text");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n      ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n      ");dom.appendChild(el1,el2);var el2=dom.createElement("button");var el3=dom.createTextNode("\n          ");dom.appendChild(el2,el3);var el3=dom.createElement("i");dom.setAttribute(el3,"class","search icon");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n      ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n      ");dom.appendChild(el1,el2);var el2=dom.createElement("button");var el3=dom.createTextNode("\n          ");dom.appendChild(el2,el3);var el3=dom.createElement("i");dom.setAttribute(el3,"class","remove icon");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n      ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n    ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element25=dom.childAt(fragment,[1]);var element26=dom.childAt(element25,[1,1]);var element27=dom.childAt(element25,[3]);var element28=dom.childAt(element25,[5]);var morphs=new Array(9);morphs[0] = dom.createAttrMorph(element26,'value');morphs[1] = dom.createAttrMorph(element26,'placeholder');morphs[2] = dom.createAttrMorph(element26,'onkeyup');morphs[3] = dom.createAttrMorph(element27,'class');morphs[4] = dom.createAttrMorph(element27,'title');morphs[5] = dom.createElementMorph(element27);morphs[6] = dom.createAttrMorph(element28,'class');morphs[7] = dom.createAttrMorph(element28,'title');morphs[8] = dom.createElementMorph(element28);return morphs;},statements:[["attribute","value",["get","filterByAnyMatchText",["loc",[null,[59,18],[59,38]]]]],["attribute","placeholder",["subexpr","t",["components.olv-toolbar.filter-by-any-match-placeholder"],[],["loc",[null,[60,22],[60,84]]]]],["attribute","onkeyup",["subexpr","action",["filterByAnyMatch"],[],["loc",[null,[61,18],[61,47]]]]],["attribute","class",["concat",["ui ",["get","buttonClass",["loc",[null,[65,20],[65,31]]]]," icon button search-button"]]],["attribute","title",["subexpr","t",["components.olv-toolbar.search-button-text"],[],["loc",[null,[66,14],[66,63]]]]],["element","action",["filterByAnyMatch"],[],["loc",[null,[67,8],[67,37]]]],["attribute","class",["concat",["ui ",["get","buttonClass",["loc",[null,[71,20],[71,31]]]]," icon button clear-search-button"]]],["attribute","title",["subexpr","t",["components.olv-toolbar.clear-search-button-text"],[],["loc",[null,[72,14],[72,69]]]]],["element","action",["removeFilter"],[],["loc",[null,[73,8],[73,33]]]]],locals:[],templates:[]};})();var child6=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":78,"column":2},"end":{"line":91,"column":2}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("    ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","ui buttons export-config");var el2=dom.createTextNode("\n      ");dom.appendChild(el1,el2);var el2=dom.createElement("button");var el3=dom.createTextNode("\n          ");dom.appendChild(el2,el3);var el3=dom.createElement("i");dom.setAttribute(el3,"class","large file excel outline icon");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n      ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n      ");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n    ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element23=dom.childAt(fragment,[1]);var element24=dom.childAt(element23,[1]);var morphs=new Array(4);morphs[0] = dom.createAttrMorph(element24,'class');morphs[1] = dom.createAttrMorph(element24,'title');morphs[2] = dom.createElementMorph(element24);morphs[3] = dom.createMorphAt(element23,3,3);return morphs;},statements:[["attribute","class",["concat",["ui button icon export-button ",["get","buttonClass",["loc",[null,[81,46],[81,57]]]]]]],["attribute","title",["subexpr","t",["components.olv-toolbar.export-excel-button-text"],[],["loc",[null,[82,14],[82,69]]]]],["element","action",["showExportDialog"],[],["loc",[null,[83,8],[83,37]]]],["inline","flexberry-menu",[],["items",["subexpr","@mut",[["get","exportExcelItems",["loc",[null,[87,14],[87,30]]]]],[],[]],"onItemClick",["subexpr","action",["onExportMenuItemClick"],[],["loc",[null,[88,20],[88,52]]]]],["loc",[null,[86,6],[89,8]]]]],locals:[],templates:[]};})();var child7=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":100,"column":6},"end":{"line":105,"column":6}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("        ");dom.appendChild(el0,el1);var el1=dom.createComment("");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,1,1,contextualElement);return morphs;},statements:[["inline","flexberry-menu",[],["items",["subexpr","@mut",[["get","colsSettingsItems",["loc",[null,[102,16],[102,33]]]]],[],[]],"onItemClick",["subexpr","action",["onMenuItemClick"],[],["loc",[null,[103,22],[103,48]]]]],["loc",[null,[101,8],[104,10]]]]],locals:[],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":92,"column":2},"end":{"line":107,"column":2}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("    ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","ui buttons cols-config");var el2=dom.createTextNode("\n      ");dom.appendChild(el1,el2);var el2=dom.createElement("button");dom.setAttribute(el2,"class","ui icon button config-button");var el3=dom.createTextNode("\n          ");dom.appendChild(el2,el3);var el3=dom.createElement("i");dom.setAttribute(el3,"class","large table icon");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n      ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("    ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element21=dom.childAt(fragment,[1]);var element22=dom.childAt(element21,[1]);var morphs=new Array(3);morphs[0] = dom.createAttrMorph(element22,'title');morphs[1] = dom.createElementMorph(element22);morphs[2] = dom.createMorphAt(element21,3,3);return morphs;},statements:[["attribute","title",["subexpr","t",["components.colsconfig-dialog-content.title"],[],["loc",[null,[96,14],[96,64]]]]],["element","action",["showConfigDialog"],[],["loc",[null,[97,8],[97,37]]]],["block","if",[["get","colsSettingsItems",["loc",[null,[100,12],[100,29]]]]],[],0,null,["loc",[null,[100,6],[105,13]]]]],locals:[],templates:[child0]};})();var child8=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":108,"column":2},"end":{"line":115,"column":2}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:1,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("    ");dom.appendChild(el0,el1);var el1=dom.createElement("button");var el2=dom.createTextNode("\n      ");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n    ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element20=dom.childAt(fragment,[1]);var morphs=new Array(4);morphs[0] = dom.createAttrMorph(element20,'class');morphs[1] = dom.createAttrMorph(element20,'title');morphs[2] = dom.createElementMorph(element20);morphs[3] = dom.createMorphAt(element20,1,1);return morphs;},statements:[["attribute","class",["concat",["ui ",["subexpr","if",[["get","customButton.buttonClasses",["loc",[null,[110,21],[110,47]]]],["get","customButton.buttonClasses",["loc",[null,[110,48],[110,74]]]],""],[],["loc",[null,[110,16],[110,79]]]]," button"]]],["attribute","title",["subexpr","if",[["get","customButton.buttonTitle",["loc",[null,[111,17],[111,41]]]],["get","customButton.buttonTitle",["loc",[null,[111,42],[111,66]]]]],[],["loc",[null,[111,12],[111,68]]]]],["element","action",["customButtonAction",["get","customButton.buttonAction",["loc",[null,[112,36],[112,61]]]]],[],["loc",[null,[112,6],[112,63]]]],["inline","if",[["get","customButton.buttonName",["loc",[null,[113,11],[113,34]]]],["get","customButton.buttonName",["loc",[null,[113,35],[113,58]]]],["subexpr","t",["components.olv-toolbar.custom-button-text"],[],["loc",[null,[113,59],[113,106]]]]],[],["loc",[null,[113,6],[113,108]]]]],locals:["customButton"],templates:[]};})();var child9=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":149,"column":8},"end":{"line":151,"column":8}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("          ");dom.appendChild(el0,el1);var el1=dom.createElement("th");dom.setAttribute(el1,"class","object-list-view-operations collapsing");dom.setAttribute(el1,"data-olv-header-property-name","OlvRowToolbar");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(){return [];},statements:[],locals:[],templates:[]};})();var child10=(function(){var child0=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":157,"column":16},"end":{"line":159,"column":16}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                  ");dom.appendChild(el0,el1);var el1=dom.createComment("");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,1,1,contextualElement);return morphs;},statements:[["inline","t",[["get","column.keyLocale",["loc",[null,[158,22],[158,38]]]]],[],["loc",[null,[158,18],[158,40]]]]],locals:[],templates:[]};})();var child1=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":159,"column":16},"end":{"line":161,"column":16}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                  ");dom.appendChild(el0,el1);var el1=dom.createComment("");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,1,1,contextualElement);return morphs;},statements:[["content","column.header",["loc",[null,[160,18],[160,35]]]]],locals:[],templates:[]};})();var child2=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":165,"column":20},"end":{"line":169,"column":20}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                      ");dom.appendChild(el0,el1);var el1=dom.createElement("div");var el2=dom.createTextNode("\n                      ▲");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n                      ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element17=dom.childAt(fragment,[1]);var morphs=new Array(2);morphs[0] = dom.createAttrMorph(element17,'title');morphs[1] = dom.createMorphAt(element17,1,1);return morphs;},statements:[["attribute","title",["concat",[["subexpr","t",["components.object-list-view.sort-ascending"],[],["loc",[null,[166,34],[166,84]]]]]]],["content","column.sortNumber",["loc",[null,[167,23],[167,44]]]]],locals:[],templates:[]};})();var child1=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":169,"column":20},"end":{"line":173,"column":20}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                      ");dom.appendChild(el0,el1);var el1=dom.createElement("div");var el2=dom.createTextNode("\n                      ▼");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n                      ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element16=dom.childAt(fragment,[1]);var morphs=new Array(2);morphs[0] = dom.createAttrMorph(element16,'title');morphs[1] = dom.createMorphAt(element16,1,1);return morphs;},statements:[["attribute","title",["concat",[["subexpr","t",["components.object-list-view.sort-descending"],[],["loc",[null,[170,34],[170,85]]]]]]],["content","column.sortNumber",["loc",[null,[171,23],[171,44]]]]],locals:[],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":163,"column":16},"end":{"line":175,"column":16}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                  ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"style","float:right;");var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("                  ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(dom.childAt(fragment,[1]),1,1);return morphs;},statements:[["block","if",[["get","column.sortAscending",["loc",[null,[165,26],[165,46]]]]],[],0,1,["loc",[null,[165,20],[173,27]]]]],locals:[],templates:[child0,child1]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":153,"column":10},"end":{"line":178,"column":10}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("            ");dom.appendChild(el0,el1);var el1=dom.createElement("th");dom.setAttribute(el1,"class","dt-head-left me class");var el2=dom.createTextNode("\n              ");dom.appendChild(el1,el2);var el2=dom.createElement("div");var el3=dom.createTextNode("\n                ");dom.appendChild(el2,el3);var el3=dom.createElement("span");var el4=dom.createTextNode("\n");dom.appendChild(el3,el4);var el4=dom.createComment("");dom.appendChild(el3,el4);var el4=dom.createTextNode("                ");dom.appendChild(el3,el4);dom.appendChild(el2,el3);var el3=dom.createTextNode("\n");dom.appendChild(el2,el3);var el3=dom.createComment("");dom.appendChild(el2,el3);var el3=dom.createTextNode("              ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n            ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element18=dom.childAt(fragment,[1]);var element19=dom.childAt(element18,[1]);var morphs=new Array(5);morphs[0] = dom.createAttrMorph(element18,'onclick');morphs[1] = dom.createAttrMorph(element19,'data-olv-header-property-name');morphs[2] = dom.createAttrMorph(element19,'title');morphs[3] = dom.createMorphAt(dom.childAt(element19,[1]),1,1);morphs[4] = dom.createMorphAt(element19,3,3);return morphs;},statements:[["attribute","onclick",["subexpr","action",["headerCellClick",["get","column",["loc",[null,[154,82],[154,88]]]]],[],["loc",[null,[154,54],[154,91]]]]],["attribute","data-olv-header-property-name",["get","column.propName",["loc",[null,[155,51],[155,66]]]]],["attribute","title",["get","sortTitleCompute",["loc",[null,[155,77],[155,93]]]]],["block","if",[["get","column.keyLocale",["loc",[null,[157,22],[157,38]]]]],[],0,1,["loc",[null,[157,16],[161,23]]]],["block","if",[["get","column.sorted",["loc",[null,[163,22],[163,35]]]]],[],2,null,["loc",[null,[163,16],[175,23]]]]],locals:[],templates:[child0,child1,child2]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":152,"column":8},"end":{"line":179,"column":8}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:1,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createComment("");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,0,0,contextualElement);dom.insertBoundary(fragment,0);dom.insertBoundary(fragment,null);return morphs;},statements:[["block","unless",[["get","column.hide",["loc",[null,[153,20],[153,31]]]]],[],0,null,["loc",[null,[153,10],[178,21]]]]],locals:["column"],templates:[child0]};})();var child11=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":180,"column":8},"end":{"line":182,"column":8}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("          ");dom.appendChild(el0,el1);var el1=dom.createElement("th");dom.setAttribute(el1,"class","object-list-view-menu collapsing");dom.setAttribute(el1,"data-olv-header-property-name","OlvRowMenu");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(){return [];},statements:[],locals:[],templates:[]};})();var child12=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":188,"column":10},"end":{"line":190,"column":10}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("            ");dom.appendChild(el0,el1);var el1=dom.createElement("td");dom.setAttribute(el1,"rowspan","1");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(){return [];},statements:[],locals:[],templates:[]};})();var child1=(function(){var child0=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":194,"column":16},"end":{"line":202,"column":16}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                  ");dom.appendChild(el0,el1);var el1=dom.createComment("");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,1,1,contextualElement);return morphs;},statements:[["inline","component",["flexberry-dropdown"],["value",["subexpr","@mut",[["get","column.filter.condition",["loc",[null,[196,26],[196,49]]]]],[],[]],"items",["subexpr","@mut",[["get","column.filter.conditions",["loc",[null,[197,26],[197,50]]]]],[],[]],"class","compact fluid","placeholder","","needChecksOnValue",false],["loc",[null,[195,18],[201,20]]]]],locals:[],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":192,"column":12},"end":{"line":204,"column":12}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("              ");dom.appendChild(el0,el1);var el1=dom.createElement("td");dom.setAttribute(el1,"class","overflowed-cell");var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("              ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element13=dom.childAt(fragment,[1]);var morphs=new Array(2);morphs[0] = dom.createAttrMorph(element13,'style');morphs[1] = dom.createMorphAt(element13,1,1);return morphs;},statements:[["attribute","style",["get","defaultPaddingStyle",["loc",[null,[193,26],[193,45]]]]],["block","if",[["get","column.filter.conditions",["loc",[null,[194,22],[194,46]]]]],[],0,null,["loc",[null,[194,16],[202,23]]]]],locals:[],templates:[child0]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":191,"column":10},"end":{"line":205,"column":10}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:1,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createComment("");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,0,0,contextualElement);dom.insertBoundary(fragment,0);dom.insertBoundary(fragment,null);return morphs;},statements:[["block","unless",[["get","column.hide",["loc",[null,[192,22],[192,33]]]]],[],0,null,["loc",[null,[192,12],[204,23]]]]],locals:["column"],templates:[child0]};})();var child2=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":206,"column":10},"end":{"line":208,"column":10}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("            ");dom.appendChild(el0,el1);var el1=dom.createElement("td");dom.setAttribute(el1,"rowspan","1");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(){return [];},statements:[],locals:[],templates:[]};})();var child3=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":211,"column":10},"end":{"line":213,"column":10}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("            ");dom.appendChild(el0,el1);var el1=dom.createElement("td");dom.setAttribute(el1,"rowspan","1");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(){return [];},statements:[],locals:[],templates:[]};})();var child4=(function(){var child0=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":217,"column":16},"end":{"line":222,"column":16}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                  ");dom.appendChild(el0,el1);var el1=dom.createComment("");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,1,1,contextualElement);return morphs;},statements:[["inline","component",[["get","column.filter.component.name",["loc",[null,[218,30],[218,58]]]]],["value",["subexpr","@mut",[["get","column.filter.pattern",["loc",[null,[219,26],[219,47]]]]],[],[]],"dynamicProperties",["subexpr","@mut",[["get","column.filter.component.properties",["loc",[null,[220,38],[220,72]]]]],[],[]]],["loc",[null,[218,18],[221,20]]]]],locals:[],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":215,"column":12},"end":{"line":224,"column":12}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("              ");dom.appendChild(el0,el1);var el1=dom.createElement("td");var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("              ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element12=dom.childAt(fragment,[1]);var morphs=new Array(3);morphs[0] = dom.createAttrMorph(element12,'style');morphs[1] = dom.createAttrMorph(element12,'class');morphs[2] = dom.createMorphAt(element12,1,1);return morphs;},statements:[["attribute","style",["get","defaultPaddingStyle",["loc",[null,[216,26],[216,45]]]]],["attribute","class",["concat",[["subexpr","if",[["subexpr","array-contains",[["get","overflowedComponents",["loc",[null,[216,76],[216,96]]]],["get","column.filter.component.name",["loc",[null,[216,97],[216,125]]]]],[],["loc",[null,[216,60],[216,126]]]],"overflowed-cell"],[],["loc",[null,[216,55],[216,146]]]]]]],["block","if",[["get","column.filter.component.name",["loc",[null,[217,22],[217,50]]]]],[],0,null,["loc",[null,[217,16],[222,23]]]]],locals:[],templates:[child0]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":214,"column":10},"end":{"line":225,"column":10}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:1,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createComment("");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,0,0,contextualElement);dom.insertBoundary(fragment,0);dom.insertBoundary(fragment,null);return morphs;},statements:[["block","unless",[["get","column.hide",["loc",[null,[215,22],[215,33]]]]],[],0,null,["loc",[null,[215,12],[224,23]]]]],locals:["column"],templates:[child0]};})();var child5=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":226,"column":10},"end":{"line":228,"column":10}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("            ");dom.appendChild(el0,el1);var el1=dom.createElement("td");dom.setAttribute(el1,"rowspan","1");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(){return [];},statements:[],locals:[],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":186,"column":6},"end":{"line":230,"column":6}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("        ");dom.appendChild(el0,el1);var el1=dom.createElement("tr");var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("        ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n        ");dom.appendChild(el0,el1);var el1=dom.createElement("tr");var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("        ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element14=dom.childAt(fragment,[1]);var element15=dom.childAt(fragment,[3]);var morphs=new Array(6);morphs[0] = dom.createMorphAt(element14,1,1);morphs[1] = dom.createMorphAt(element14,2,2);morphs[2] = dom.createMorphAt(element14,3,3);morphs[3] = dom.createMorphAt(element15,1,1);morphs[4] = dom.createMorphAt(element15,2,2);morphs[5] = dom.createMorphAt(element15,3,3);return morphs;},statements:[["block","if",[["get","showHelperColumn",["loc",[null,[188,16],[188,32]]]]],[],0,null,["loc",[null,[188,10],[190,17]]]],["block","each",[["get","columns",["loc",[null,[191,18],[191,25]]]]],[],1,null,["loc",[null,[191,10],[205,19]]]],["block","if",[["get","showMenuColumn",["loc",[null,[206,16],[206,30]]]]],[],2,null,["loc",[null,[206,10],[208,17]]]],["block","if",[["get","showHelperColumn",["loc",[null,[211,16],[211,32]]]]],[],3,null,["loc",[null,[211,10],[213,17]]]],["block","each",[["get","columns",["loc",[null,[214,18],[214,25]]]]],[],4,null,["loc",[null,[214,10],[225,19]]]],["block","if",[["get","showMenuColumn",["loc",[null,[226,16],[226,30]]]]],[],5,null,["loc",[null,[226,10],[228,17]]]]],locals:[],templates:[child0,child1,child2,child3,child4,child5]};})();var child13=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":231,"column":6},"end":{"line":237,"column":6}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("        ");dom.appendChild(el0,el1);var el1=dom.createElement("tr");var el2=dom.createTextNode("\n          ");dom.appendChild(el1,el2);var el2=dom.createElement("td");dom.setAttribute(el2,"style","text-align:center;");var el3=dom.createTextNode("\n              ");dom.appendChild(el2,el3);var el3=dom.createComment("");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n          ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n        ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element11=dom.childAt(fragment,[1,1]);var morphs=new Array(2);morphs[0] = dom.createAttrMorph(element11,'colspan');morphs[1] = dom.createMorphAt(element11,1,1);return morphs;},statements:[["attribute","colspan",["concat",[["get","colspan",["loc",[null,[233,25],[233,32]]]]]]],["content","placeholder",["loc",[null,[234,14],[234,29]]]]],locals:[],templates:[]};})();var child14=(function(){var child0=(function(){var child0=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":244,"column":20},"end":{"line":248,"column":20}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                      ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","cell");var el2=dom.createTextNode("\n                        ");dom.appendChild(el1,el2);var el2=dom.createElement("i");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n                      ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element7=dom.childAt(fragment,[1,1]);var morphs=new Array(1);morphs[0] = dom.createAttrMorph(element7,'class');return morphs;},statements:[["attribute","class",["concat",["asterisk small red icon ",["subexpr","unless",[["get","record.data.hasDirtyAttributes",["loc",[null,[246,67],[246,97]]]],"transparent"],[],["loc",[null,[246,58],[246,113]]]]]]]],locals:[],templates:[]};})();var child1=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":249,"column":20},"end":{"line":256,"column":20}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                      ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","cell");var el2=dom.createTextNode("\n                        ");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n                      ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(dom.childAt(fragment,[1]),1,1);return morphs;},statements:[["inline","flexberry-checkbox",[],["readonly",["subexpr","or",[["get","readonly",["loc",[null,[252,39],[252,47]]]],["subexpr","not",[["get","record.rowConfig.canBeSelected",["loc",[null,[252,53],[252,83]]]]],[],["loc",[null,[252,48],[252,84]]]]],[],["loc",[null,[252,35],[252,85]]]],"onChange",["subexpr","action",["selectRow",["get","record",["loc",[null,[253,55],[253,61]]]]],[],["loc",[null,[253,35],[253,62]]]]],["loc",[null,[251,24],[254,26]]]]],locals:[],templates:[]};})();var child2=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":257,"column":20},"end":{"line":263,"column":20}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                      ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","cell");var el2=dom.createTextNode("\n                        ");dom.appendChild(el1,el2);var el2=dom.createElement("button");var el3=dom.createTextNode("\n                          ");dom.appendChild(el2,el3);var el3=dom.createElement("i");dom.setAttribute(el3,"class","minus icon");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n                        ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n                      ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element6=dom.childAt(fragment,[1,1]);var morphs=new Array(2);morphs[0] = dom.createAttrMorph(element6,'class');morphs[1] = dom.createElementMorph(element6);return morphs;},statements:[["attribute","class",["concat",["ui ui-delete ",["get","buttonClass",["loc",[null,[259,54],[259,65]]]]," ",["subexpr","if",[["subexpr","or",[["get","readonly",["loc",[null,[259,77],[259,85]]]],["subexpr","not",[["get","record.rowConfig.canBeDeleted",["loc",[null,[259,91],[259,120]]]]],[],["loc",[null,[259,86],[259,121]]]]],[],["loc",[null,[259,73],[259,122]]]],"disabled"],[],["loc",[null,[259,68],[259,135]]]]," button"]]],["element","action",["deleteRow",["get","record",["loc",[null,[259,165],[259,171]]]]],[],["loc",[null,[259,144],[259,173]]]]],locals:[],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":242,"column":16},"end":{"line":265,"column":16}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                  ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","object-list-view-helper-column-cell");var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("                  ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element8=dom.childAt(fragment,[1]);var morphs=new Array(3);morphs[0] = dom.createMorphAt(element8,1,1);morphs[1] = dom.createMorphAt(element8,2,2);morphs[2] = dom.createMorphAt(element8,3,3);return morphs;},statements:[["block","if",[["get","showAsteriskInRow",["loc",[null,[244,26],[244,43]]]]],[],0,null,["loc",[null,[244,20],[248,27]]]],["block","if",[["get","showCheckBoxInRow",["loc",[null,[249,26],[249,43]]]]],[],1,null,["loc",[null,[249,20],[256,27]]]],["block","if",[["get","showDeleteButtonInRow",["loc",[null,[257,26],[257,47]]]]],[],2,null,["loc",[null,[257,20],[263,27]]]]],locals:[],templates:[child0,child1,child2]};})();var child1=(function(){var child0=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":271,"column":20},"end":{"line":279,"column":20}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                      ");dom.appendChild(el0,el1);var el1=dom.createComment("");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,1,1,contextualElement);return morphs;},statements:[["inline","component",[["get","column.cellComponent.componentName",["loc",[null,[272,34],[272,68]]]]],["dynamicProperties",["subexpr","@mut",[["get","column.cellComponent.componentProperties",["loc",[null,[273,42],[273,82]]]]],[],[]],"relatedModel",["subexpr","@mut",[["get","record.data",["loc",[null,[274,37],[274,48]]]]],[],[]],"value",["subexpr","mut",[["subexpr","get",[["get","record.data",["loc",[null,[275,40],[275,51]]]],["get","column.propName",["loc",[null,[275,52],[275,67]]]]],[],["loc",[null,[275,35],[275,68]]]]],[],["loc",[null,[275,30],[275,69]]]],"readonly",["subexpr","readonly-cell",[["get","record.rowConfig.readonlyColumns",["loc",[null,[276,48],[276,80]]]],["get","column.propName",["loc",[null,[276,81],[276,96]]]],["get","readonly",["loc",[null,[276,97],[276,105]]]]],[],["loc",[null,[276,33],[276,106]]]],"required",["subexpr","@mut",[["get","required",["loc",[null,[277,33],[277,41]]]]],[],[]]],["loc",[null,[272,22],[278,24]]]]],locals:[],templates:[]};})();var child1=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":279,"column":20},"end":{"line":286,"column":20}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                      ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","oveflow-text");var el2=dom.createTextNode("\n                        ");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n                      ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(dom.childAt(fragment,[1]),1,1);return morphs;},statements:[["inline","get-formatted",[["get","record.data",["loc",[null,[281,40],[281,51]]]],["get","column.propName",["loc",[null,[281,52],[281,67]]]]],["dateFormat",["subexpr","@mut",[["get","dateFormat",["loc",[null,[282,37],[282,47]]]]],[],[]],"moment",["subexpr","@mut",[["get","moment",["loc",[null,[283,33],[283,39]]]]],[],[]]],["loc",[null,[281,24],[284,26]]]]],locals:[],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":268,"column":16},"end":{"line":288,"column":16}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                  ");dom.appendChild(el0,el1);var el1=dom.createElement("td");var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("                  ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element5=dom.childAt(fragment,[1]);var morphs=new Array(4);morphs[0] = dom.createAttrMorph(element5,'class');morphs[1] = dom.createAttrMorph(element5,'style');morphs[2] = dom.createElementMorph(element5);morphs[3] = dom.createMorphAt(element5,1,1);return morphs;},statements:[["attribute","class",["concat",[["subexpr","if",[["subexpr","array-contains",[["get","overflowedComponents",["loc",[null,[269,50],[269,70]]]],["get","column.cellComponent.componentName",["loc",[null,[269,71],[269,105]]]]],[],["loc",[null,[269,34],[269,106]]]]," overflowed-cell"],[],["loc",[null,[269,29],[269,127]]]]]]],["attribute","style",["get","defaultPaddingStyle",["loc",[null,[270,92],[270,111]]]]],["element","action",["objectListViewRowClick",["get","record",["loc",[null,[270,54],[270,60]]]]],["preventDefault",false],["loc",[null,[270,20],[270,83]]]],["block","if",[["get","column.cellComponent.componentName",["loc",[null,[271,26],[271,60]]]]],[],0,1,["loc",[null,[271,20],[286,27]]]]],locals:[],templates:[child0,child1]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":267,"column":14},"end":{"line":289,"column":14}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:1,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createComment("");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,0,0,contextualElement);dom.insertBoundary(fragment,0);dom.insertBoundary(fragment,null);return morphs;},statements:[["block","unless",[["get","column.hide",["loc",[null,[268,26],[268,37]]]]],[],0,null,["loc",[null,[268,16],[288,27]]]]],locals:["column"],templates:[child0]};})();var child2=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":295,"column":22},"end":{"line":300,"column":22}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                        ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","item");var el2=dom.createTextNode("\n                          ");dom.appendChild(el1,el2);var el2=dom.createElement("i");dom.setAttribute(el2,"class","edit icon");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n                          ");dom.appendChild(el1,el2);var el2=dom.createElement("span");var el3=dom.createComment("");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n                        ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element2=dom.childAt(fragment,[1]);var morphs=new Array(2);morphs[0] = dom.createElementMorph(element2);morphs[1] = dom.createMorphAt(dom.childAt(element2,[3]),0,0);return morphs;},statements:[["element","action",["objectListViewRowClick",["get","record",["loc",[null,[296,77],[296,83]]]]],[],["loc",[null,[296,42],[296,86]]]],["inline","t",["components.object-list-view.menu-in-row.edit-menu-item-title"],[],["loc",[null,[298,32],[298,100]]]]],locals:[],templates:[]};})();var child1=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":301,"column":22},"end":{"line":306,"column":22}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                        ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","item");var el2=dom.createTextNode("\n                          ");dom.appendChild(el1,el2);var el2=dom.createElement("i");dom.setAttribute(el2,"class","trash icon");dom.appendChild(el1,el2);var el2=dom.createTextNode("\n                          ");dom.appendChild(el1,el2);var el2=dom.createElement("span");var el3=dom.createComment("");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n                        ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element1=dom.childAt(fragment,[1]);var morphs=new Array(2);morphs[0] = dom.createElementMorph(element1);morphs[1] = dom.createMorphAt(dom.childAt(element1,[3]),0,0);return morphs;},statements:[["element","action",["deleteRow",["get","record",["loc",[null,[302,64],[302,70]]]]],[],["loc",[null,[302,42],[302,73]]]],["inline","t",["components.object-list-view.menu-in-row.delete-menu-item-title"],[],["loc",[null,[304,32],[304,102]]]]],locals:[],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":290,"column":14},"end":{"line":310,"column":14}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("                ");dom.appendChild(el0,el1);var el1=dom.createElement("td");dom.setAttribute(el1,"class","object-list-view-menu");var el2=dom.createTextNode("\n                  ");dom.appendChild(el1,el2);var el2=dom.createElement("div");dom.setAttribute(el2,"class","right pointing ui icon dropdown button");var el3=dom.createTextNode("\n                    ");dom.appendChild(el2,el3);var el3=dom.createElement("i");dom.setAttribute(el3,"class","list layout icon");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n                    ");dom.appendChild(el2,el3);var el3=dom.createElement("div");dom.setAttribute(el3,"class","left menu");var el4=dom.createTextNode("\n");dom.appendChild(el3,el4);var el4=dom.createComment("");dom.appendChild(el3,el4);var el4=dom.createComment("");dom.appendChild(el3,el4);var el4=dom.createTextNode("                    ");dom.appendChild(el3,el4);dom.appendChild(el2,el3);var el3=dom.createTextNode("\n                  ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n                ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element3=dom.childAt(fragment,[1]);var element4=dom.childAt(element3,[1,3]);var morphs=new Array(3);morphs[0] = dom.createAttrMorph(element3,'style');morphs[1] = dom.createMorphAt(element4,1,1);morphs[2] = dom.createMorphAt(element4,2,2);return morphs;},statements:[["attribute","style",["get","defaultPaddingStyle",["loc",[null,[291,58],[291,77]]]]],["block","if",[["subexpr","and",[["get","showEditMenuItemInRow",["loc",[null,[295,33],[295,54]]]],["get","record.rowConfig.canBeSelected",["loc",[null,[295,55],[295,85]]]]],[],["loc",[null,[295,28],[295,86]]]]],[],0,null,["loc",[null,[295,22],[300,29]]]],["block","if",[["subexpr","and",[["get","showDeleteMenuItemInRow",["loc",[null,[301,33],[301,56]]]],["get","record.rowConfig.canBeDeleted",["loc",[null,[301,57],[301,86]]]]],[],["loc",[null,[301,28],[301,87]]]]],[],1,null,["loc",[null,[301,22],[306,29]]]]],locals:[],templates:[child0,child1]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":238,"column":8},"end":{"line":312,"column":8}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:1,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("            ");dom.appendChild(el0,el1);var el1=dom.createElement("tr");var el2=dom.createTextNode("\n              ");dom.appendChild(el1,el2);var el2=dom.createElement("td");var el3=dom.createTextNode("\n                ");dom.appendChild(el2,el3);var el3=dom.createElement("div");dom.setAttribute(el3,"class","hidden");var el4=dom.createComment("");dom.appendChild(el3,el4);dom.appendChild(el2,el3);var el3=dom.createTextNode("\n");dom.appendChild(el2,el3);var el3=dom.createComment("");dom.appendChild(el2,el3);var el3=dom.createTextNode("              ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("            ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element9=dom.childAt(fragment,[1]);var element10=dom.childAt(element9,[1]);var morphs=new Array(7);morphs[0] = dom.createAttrMorph(element9,'class');morphs[1] = dom.createAttrMorph(element10,'class');morphs[2] = dom.createAttrMorph(element10,'style');morphs[3] = dom.createMorphAt(dom.childAt(element10,[1]),0,0);morphs[4] = dom.createMorphAt(element10,3,3);morphs[5] = dom.createMorphAt(element9,3,3);morphs[6] = dom.createMorphAt(element9,4,4);return morphs;},statements:[["attribute","class",["concat",[["get","record.rowConfig.customClass",["loc",[null,[239,25],[239,53]]]]]]],["attribute","class",["concat",["object-list-view-helper-column ",["subexpr","unless",[["get","showHelperColumn",["loc",[null,[240,65],[240,81]]]],"hidden"],[],["loc",[null,[240,56],[240,92]]]]]]],["attribute","style",["get","defaultPaddingStyle",["loc",[null,[240,102],[240,121]]]]],["content","record.key",["loc",[null,[241,36],[241,50]]]],["block","if",[["get","showHelperColumn",["loc",[null,[242,22],[242,38]]]]],[],0,null,["loc",[null,[242,16],[265,23]]]],["block","each",[["get","columns",["loc",[null,[267,22],[267,29]]]]],[],1,null,["loc",[null,[267,14],[289,23]]]],["block","if",[["get","showMenuColumn",["loc",[null,[290,20],[290,34]]]]],[],2,null,["loc",[null,[290,14],[310,21]]]]],locals:["record"],templates:[child0,child1,child2]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":237,"column":6},"end":{"line":313,"column":6}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createComment("");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,0,0,contextualElement);dom.insertBoundary(fragment,0);dom.insertBoundary(fragment,null);return morphs;},statements:[["block","each",[["get","contentWithKeys",["loc",[null,[238,16],[238,31]]]]],["key","key"],0,null,["loc",[null,[238,8],[312,17]]]]],locals:[],templates:[child0]};})();var child15=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":321,"column":6},"end":{"line":323,"column":6}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("        ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","ui button");var el2=dom.createTextNode("...");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(){return [];},statements:[],locals:[],templates:[]};})();var child1=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":324,"column":8},"end":{"line":326,"column":8}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("          ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","ui active button");var el2=dom.createComment("");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(dom.childAt(fragment,[1]),0,0);return morphs;},statements:[["content","page.number",["loc",[null,[325,40],[325,55]]]]],locals:[],templates:[]};})();var child1=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":326,"column":8},"end":{"line":328,"column":8}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("          ");dom.appendChild(el0,el1);var el1=dom.createElement("button");dom.setAttribute(el1,"class","ui button");var el2=dom.createComment("");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element0=dom.childAt(fragment,[1]);var morphs=new Array(2);morphs[0] = dom.createElementMorph(element0);morphs[1] = dom.createMorphAt(element0,0,0);return morphs;},statements:[["element","action",["gotoPage",["get","this.attrs.gotoPage",["loc",[null,[327,56],[327,75]]]],["get","page.number",["loc",[null,[327,76],[327,87]]]]],[],["loc",[null,[327,36],[327,89]]]],["content","page.number",["loc",[null,[327,90],[327,105]]]]],locals:[],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":323,"column":6},"end":{"line":329,"column":6}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createComment("");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,0,0,contextualElement);dom.insertBoundary(fragment,0);dom.insertBoundary(fragment,null);return morphs;},statements:[["block","if",[["get","page.isCurrent",["loc",[null,[324,14],[324,28]]]]],[],0,1,["loc",[null,[324,8],[328,15]]]]],locals:[],templates:[child0,child1]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":320,"column":4},"end":{"line":330,"column":4}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:1,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createComment("");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,0,0,contextualElement);dom.insertBoundary(fragment,0);dom.insertBoundary(fragment,null);return morphs;},statements:[["block","if",[["get","page.isEllipsis",["loc",[null,[321,12],[321,27]]]]],[],0,1,["loc",[null,[321,6],[329,13]]]]],locals:["page"],templates:[child0,child1]};})();var child16=(function(){var child0=(function(){return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":336,"column":8},"end":{"line":340,"column":8}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("          ");dom.appendChild(el0,el1);var el1=dom.createComment("");dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(fragment,1,1,contextualElement);return morphs;},statements:[["inline","concat",[["subexpr","t",["components.flexberry-objectlistview.showing-entries.showing"],[],["loc",[null,[338,12],[338,77]]]],["get","currentIntervalRecords",["loc",[null,[338,78],[338,100]]]],["subexpr","t",["components.flexberry-objectlistview.showing-entries.of"],[],["loc",[null,[338,101],[338,161]]]],["get","recordsTotalCount",["loc",[null,[338,162],[338,179]]]],["subexpr","t",["components.flexberry-objectlistview.showing-entries.entries"],[],["loc",[null,[338,180],[338,245]]]]],[],["loc",[null,[337,10],[339,12]]]]],locals:[],templates:[]};})();return {meta:{"fragmentReason":false,"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":334,"column":4},"end":{"line":342,"column":4}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createTextNode("      ");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","showing-entries");var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("      ");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var morphs=new Array(1);morphs[0] = dom.createMorphAt(dom.childAt(fragment,[1]),1,1);return morphs;},statements:[["block","if",[["subexpr","and",[["get","currentIntervalRecords",["loc",[null,[336,19],[336,41]]]],["get","recordsTotalCount",["loc",[null,[336,42],[336,59]]]]],[],["loc",[null,[336,14],[336,60]]]]],[],0,null,["loc",[null,[336,8],[340,15]]]]],locals:[],templates:[child0]};})();return {meta:{"fragmentReason":{"name":"missing-wrapper","problems":["multiple-nodes"]},"revision":"Ember@2.4.6","loc":{"source":null,"start":{"line":1,"column":0},"end":{"line":346,"column":0}},"moduleName":"dummy/templates/components/flexberry-simpleolv.hbs"},isEmpty:false,arity:0,cachedFragment:null,hasRendered:false,buildFragment:function buildFragment(dom){var el0=dom.createDocumentFragment();var el1=dom.createElement("div");dom.setAttribute(el1,"class","ui secondary menu no-margin ");var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createComment("");dom.appendChild(el1,el2);var el2=dom.createTextNode("  ");dom.appendChild(el1,el2);var el2=dom.createElement("div");dom.setAttribute(el2,"class","olv-toolbar-info-modal-dialog ui small basic modal");var el3=dom.createTextNode("\n    ");dom.appendChild(el2,el3);var el3=dom.createElement("div");dom.setAttribute(el3,"class","ui icon header");var el4=dom.createTextNode("\n      ");dom.appendChild(el3,el4);var el4=dom.createElement("i");dom.setAttribute(el4,"class","olvt icon");dom.appendChild(el3,el4);var el4=dom.createTextNode("\n      ");dom.appendChild(el3,el4);var el4=dom.createComment("");dom.appendChild(el3,el4);var el4=dom.createTextNode("\n    ");dom.appendChild(el3,el4);dom.appendChild(el2,el3);var el3=dom.createTextNode("\n    ");dom.appendChild(el2,el3);var el3=dom.createElement("div");dom.setAttribute(el3,"class","center aligned ui grid");var el4=dom.createTextNode("\n    ");dom.appendChild(el3,el4);var el4=dom.createElement("button");dom.setAttribute(el4,"class","ui icon button");dom.setAttribute(el4,"id","OLVToolbarInfoCopyButton");var el5=dom.createTextNode("\n        ");dom.appendChild(el4,el5);var el5=dom.createElement("i");dom.setAttribute(el5,"class","copy icon");dom.appendChild(el4,el5);var el5=dom.createTextNode("\n        ");dom.appendChild(el4,el5);var el5=dom.createComment("");dom.appendChild(el4,el5);var el5=dom.createTextNode("\n    ");dom.appendChild(el4,el5);dom.appendChild(el3,el4);var el4=dom.createTextNode("\n    ");dom.appendChild(el3,el4);var el4=dom.createElement("div");dom.setAttribute(el4,"class","actions");var el5=dom.createTextNode("\n      ");dom.appendChild(el4,el5);var el5=dom.createElement("div");dom.setAttribute(el5,"class","olv-toolbar-info-modal-dialog-ok-button ui approve green inverted button");var el6=dom.createTextNode("\n        ");dom.appendChild(el5,el6);var el6=dom.createElement("i");dom.setAttribute(el6,"class","remove icon");dom.appendChild(el5,el6);var el6=dom.createTextNode("\n        ");dom.appendChild(el5,el6);var el6=dom.createComment("");dom.appendChild(el5,el6);var el6=dom.createTextNode("\n      ");dom.appendChild(el5,el6);dom.appendChild(el4,el5);var el5=dom.createTextNode("\n    ");dom.appendChild(el4,el5);dom.appendChild(el3,el4);var el4=dom.createTextNode("\n    ");dom.appendChild(el3,el4);dom.appendChild(el2,el3);var el3=dom.createTextNode("\n    ");dom.appendChild(el2,el3);var el3=dom.createElement("div");dom.setAttribute(el3,"class","ui form");var el4=dom.createTextNode("\n      ");dom.appendChild(el3,el4);var el4=dom.createElement("div");dom.setAttribute(el4,"class","olv-toolbar-info-modal-dialog-content center aligned ui field");var el5=dom.createTextNode("\n        ");dom.appendChild(el4,el5);var el5=dom.createElement("textarea");dom.setAttribute(el5,"id","OLVToolbarInfoContent");dom.setAttribute(el5,"cols","80");dom.setAttribute(el5,"rows","20");var el6=dom.createComment("");dom.appendChild(el5,el6);dom.appendChild(el4,el5);var el5=dom.createTextNode("\n      ");dom.appendChild(el4,el5);dom.appendChild(el3,el4);var el4=dom.createTextNode("\n    ");dom.appendChild(el3,el4);dom.appendChild(el2,el3);var el3=dom.createTextNode("\n  ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n\n");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","object-list-view-container");var el2=dom.createTextNode("\n  ");dom.appendChild(el1,el2);var el2=dom.createElement("table");var el3=dom.createTextNode("\n    ");dom.appendChild(el2,el3);var el3=dom.createElement("thead");var el4=dom.createTextNode("\n      ");dom.appendChild(el3,el4);var el4=dom.createElement("tr");var el5=dom.createTextNode("\n");dom.appendChild(el4,el5);var el5=dom.createComment("");dom.appendChild(el4,el5);var el5=dom.createComment("");dom.appendChild(el4,el5);var el5=dom.createComment("");dom.appendChild(el4,el5);var el5=dom.createTextNode("      ");dom.appendChild(el4,el5);dom.appendChild(el3,el4);var el4=dom.createTextNode("\n    ");dom.appendChild(el3,el4);dom.appendChild(el2,el3);var el3=dom.createTextNode("\n    ");dom.appendChild(el2,el3);var el3=dom.createElement("tbody");var el4=dom.createTextNode("\n");dom.appendChild(el3,el4);var el4=dom.createComment("");dom.appendChild(el3,el4);var el4=dom.createComment("");dom.appendChild(el3,el4);var el4=dom.createTextNode("    ");dom.appendChild(el3,el4);dom.appendChild(el2,el3);var el3=dom.createTextNode("\n  ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);var el1=dom.createElement("div");dom.setAttribute(el1,"class","ui secondary menu no-margin nav-bar");var el2=dom.createTextNode("\n  ");dom.appendChild(el1,el2);var el2=dom.createElement("div");dom.setAttribute(el2,"class","ui basic buttons");var el3=dom.createTextNode("\n    ");dom.appendChild(el2,el3);var el3=dom.createElement("button");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n");dom.appendChild(el2,el3);var el3=dom.createComment("");dom.appendChild(el2,el3);var el3=dom.createTextNode("    ");dom.appendChild(el2,el3);var el3=dom.createElement("button");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n  ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n  ");dom.appendChild(el1,el2);var el2=dom.createElement("div");dom.setAttribute(el2,"class","right menu");var el3=dom.createTextNode("\n");dom.appendChild(el2,el3);var el3=dom.createComment("");dom.appendChild(el2,el3);var el3=dom.createTextNode("    ");dom.appendChild(el2,el3);var el3=dom.createComment("");dom.appendChild(el2,el3);var el3=dom.createTextNode("\n  ");dom.appendChild(el2,el3);dom.appendChild(el1,el2);var el2=dom.createTextNode("\n");dom.appendChild(el1,el2);dom.appendChild(el0,el1);var el1=dom.createTextNode("\n");dom.appendChild(el0,el1);return el0;},buildRenderNodes:function buildRenderNodes(dom,fragment,contextualElement){var element36=dom.childAt(fragment,[0]);var element37=dom.childAt(element36,[11]);var element38=dom.childAt(element37,[3]);var element39=dom.childAt(element38,[1]);var element40=dom.childAt(fragment,[2,1]);var element41=dom.childAt(element40,[1,1]);var element42=dom.childAt(element40,[3]);var element43=dom.childAt(fragment,[4]);var element44=dom.childAt(element43,[1]);var element45=dom.childAt(element44,[1]);var element46=dom.childAt(element44,[5]);var element47=dom.childAt(element43,[3]);var morphs=new Array(28);morphs[0] = dom.createMorphAt(element36,1,1);morphs[1] = dom.createMorphAt(element36,2,2);morphs[2] = dom.createMorphAt(element36,3,3);morphs[3] = dom.createMorphAt(element36,4,4);morphs[4] = dom.createMorphAt(element36,5,5);morphs[5] = dom.createMorphAt(element36,6,6);morphs[6] = dom.createMorphAt(element36,7,7);morphs[7] = dom.createMorphAt(element36,8,8);morphs[8] = dom.createMorphAt(element36,9,9);morphs[9] = dom.createMorphAt(dom.childAt(element37,[1]),3,3);morphs[10] = dom.createAttrMorph(element39,'title');morphs[11] = dom.createElementMorph(element39);morphs[12] = dom.createMorphAt(element39,3,3);morphs[13] = dom.createMorphAt(dom.childAt(element38,[3,1]),3,3);morphs[14] = dom.createMorphAt(dom.childAt(element37,[5,1,1]),0,0);morphs[15] = dom.createAttrMorph(element40,'class');morphs[16] = dom.createMorphAt(element41,1,1);morphs[17] = dom.createMorphAt(element41,2,2);morphs[18] = dom.createMorphAt(element41,3,3);morphs[19] = dom.createMorphAt(element42,1,1);morphs[20] = dom.createMorphAt(element42,2,2);morphs[21] = dom.createAttrMorph(element45,'class');morphs[22] = dom.createElementMorph(element45);morphs[23] = dom.createMorphAt(element44,3,3);morphs[24] = dom.createAttrMorph(element46,'class');morphs[25] = dom.createElementMorph(element46);morphs[26] = dom.createMorphAt(element47,1,1);morphs[27] = dom.createMorphAt(element47,3,3);return morphs;},statements:[["block","if",[["get","refreshButton",["loc",[null,[2,8],[2,21]]]]],[],0,null,["loc",[null,[2,2],[10,9]]]],["block","if",[["get","createNewButton",["loc",[null,[11,8],[11,23]]]]],[],1,null,["loc",[null,[11,2],[18,9]]]],["block","if",[["get","deleteButton",["loc",[null,[19,8],[19,20]]]]],[],2,null,["loc",[null,[19,2],[26,9]]]],["block","if",[["get","availableHierarchicalMode",["loc",[null,[27,8],[27,33]]]]],[],3,null,["loc",[null,[27,2],[34,9]]]],["block","if",[["get","enableFilters",["loc",[null,[35,8],[35,21]]]]],[],4,null,["loc",[null,[35,2],[53,9]]]],["block","if",[["get","filterButton",["loc",[null,[54,8],[54,20]]]]],[],5,null,["loc",[null,[54,2],[77,9]]]],["block","if",[["get","exportExcelButton",["loc",[null,[78,8],[78,25]]]]],[],6,null,["loc",[null,[78,2],[91,9]]]],["block","if",[["get","colsConfigButton",["loc",[null,[92,8],[92,24]]]]],[],7,null,["loc",[null,[92,2],[107,9]]]],["block","each",[["get","customButtons",["loc",[null,[108,10],[108,23]]]]],[],8,null,["loc",[null,[108,2],[115,11]]]],["content","_infoModalDialogCaption",["loc",[null,[119,6],[119,33]]]],["attribute","title",["subexpr","t",["components.olv-toolbar.copy"],[],["loc",[null,[124,12],[124,47]]]]],["element","action",["copyJSONContent"],[],["loc",[null,[125,6],[125,34]]]],["inline","t",["components.olv-toolbar.copy"],[],["loc",[null,[128,8],[128,43]]]],["inline","t",["components.olv-toolbar.close"],[],["loc",[null,[133,8],[133,44]]]],["content","_infoModalDialogContent",["loc",[null,[139,65],[139,92]]]],["attribute","class",["concat",["object-list-view ui unstackable celled ",["subexpr","if",[["get","readonly",["loc",[null,[146,60],[146,68]]]],"readonly"],[],["loc",[null,[146,55],[146,81]]]]," ",["get","tableClass",["loc",[null,[146,84],[146,94]]]]," table"]]],["block","if",[["get","showHelperColumn",["loc",[null,[149,14],[149,30]]]]],[],9,null,["loc",[null,[149,8],[151,15]]]],["block","each",[["get","columns",["loc",[null,[152,16],[152,23]]]]],[],10,null,["loc",[null,[152,8],[179,17]]]],["block","if",[["get","showMenuColumn",["loc",[null,[180,14],[180,28]]]]],[],11,null,["loc",[null,[180,8],[182,15]]]],["block","if",[["get","showFilters",["loc",[null,[186,12],[186,23]]]]],[],12,null,["loc",[null,[186,6],[230,13]]]],["block","unless",[["get","content",["loc",[null,[231,16],[231,23]]]]],[],13,14,["loc",[null,[231,6],[313,17]]]],["attribute","class",["concat",["ui ",["subexpr","unless",[["get","hasPreviousPage",["loc",[null,[319,31],[319,46]]]],"disabled"],[],["loc",[null,[319,22],[319,59]]]]," button prev-page-button"]]],["element","action",["previousPage",["get","this.attrs.previousPage",["loc",[null,[319,109],[319,132]]]]],[],["loc",[null,[319,85],[319,134]]]],["block","each",[["get","pages",["loc",[null,[320,12],[320,17]]]]],[],15,null,["loc",[null,[320,4],[330,13]]]],["attribute","class",["concat",["ui ",["subexpr","unless",[["get","hasNextPage",["loc",[null,[331,31],[331,42]]]],"disabled"],[],["loc",[null,[331,22],[331,55]]]]," button next-page-button"]]],["element","action",["nextPage",["get","this.attrs.nextPage",["loc",[null,[331,101],[331,120]]]]],[],["loc",[null,[331,81],[331,122]]]],["block","if",[["get","showShowingEntries",["loc",[null,[334,10],[334,28]]]]],[],16,null,["loc",[null,[334,4],[342,11]]]],["inline","flexberry-dropdown",[],["items",["subexpr","@mut",[["get","perPageValues",["loc",[null,[343,31],[343,44]]]]],[],[]],"value",["subexpr","@mut",[["get","perPageValue",["loc",[null,[343,51],[343,63]]]]],[],[]],"class","compact selection","onChange",["subexpr","action",["perPageClick"],[],["loc",[null,[343,99],[343,122]]]],"needChecksOnValue",false,"direction","upward"],["loc",[null,[343,4],[343,167]]]]],locals:[],templates:[child0,child1,child2,child3,child4,child5,child6,child7,child8,child9,child10,child11,child12,child13,child14,child15,child16]};})());});
 define("dummy/templates/components/flexberry-tab-bar", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     var child0 = (function () {
@@ -17193,7 +18210,7 @@ define("dummy/templates/components/flexberry-textbox", ["exports"], function (ex
               "column": 0
             },
             "end": {
-              "line": 9,
+              "line": 10,
               "column": 0
             }
           },
@@ -17218,7 +18235,7 @@ define("dummy/templates/components/flexberry-textbox", ["exports"], function (ex
           morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           return morphs;
         },
-        statements: [["inline", "input", [], ["type", ["subexpr", "@mut", [["get", "type", ["loc", [null, [3, 9], [3, 13]]]]], [], []], "value", ["subexpr", "get", [["get", "this", ["loc", [null, [4, 15], [4, 19]]]], "value"], [], ["loc", [null, [4, 10], [4, 28]]]], "readonly", "readonly", "required", ["subexpr", "@mut", [["get", "required", ["loc", [null, [6, 13], [6, 21]]]]], [], []], "placeholder", ["subexpr", "@mut", [["get", "placeholder", ["loc", [null, [7, 16], [7, 27]]]]], [], []]], ["loc", [null, [2, 2], [8, 4]]]]],
+        statements: [["inline", "input", [], ["type", ["subexpr", "@mut", [["get", "type", ["loc", [null, [3, 9], [3, 13]]]]], [], []], "value", ["subexpr", "get", [["get", "this", ["loc", [null, [4, 15], [4, 19]]]], "value"], [], ["loc", [null, [4, 10], [4, 28]]]], "readonly", "readonly", "required", ["subexpr", "@mut", [["get", "required", ["loc", [null, [6, 13], [6, 21]]]]], [], []], "placeholder", ["subexpr", "@mut", [["get", "placeholder", ["loc", [null, [7, 16], [7, 27]]]]], [], []], "maxlength", ["subexpr", "@mut", [["get", "maxlength", ["loc", [null, [8, 14], [8, 23]]]]], [], []]], ["loc", [null, [2, 2], [9, 4]]]]],
         locals: [],
         templates: []
       };
@@ -17231,11 +18248,11 @@ define("dummy/templates/components/flexberry-textbox", ["exports"], function (ex
           "loc": {
             "source": null,
             "start": {
-              "line": 9,
+              "line": 10,
               "column": 0
             },
             "end": {
-              "line": 16,
+              "line": 18,
               "column": 0
             }
           },
@@ -17260,7 +18277,7 @@ define("dummy/templates/components/flexberry-textbox", ["exports"], function (ex
           morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           return morphs;
         },
-        statements: [["inline", "input", [], ["type", ["subexpr", "@mut", [["get", "type", ["loc", [null, [11, 9], [11, 13]]]]], [], []], "value", ["subexpr", "@mut", [["get", "value", ["loc", [null, [12, 10], [12, 15]]]]], [], []], "required", ["subexpr", "@mut", [["get", "required", ["loc", [null, [13, 13], [13, 21]]]]], [], []], "placeholder", ["subexpr", "@mut", [["get", "placeholder", ["loc", [null, [14, 16], [14, 27]]]]], [], []]], ["loc", [null, [10, 2], [15, 4]]]]],
+        statements: [["inline", "input", [], ["type", ["subexpr", "@mut", [["get", "type", ["loc", [null, [12, 9], [12, 13]]]]], [], []], "value", ["subexpr", "@mut", [["get", "value", ["loc", [null, [13, 10], [13, 15]]]]], [], []], "required", ["subexpr", "@mut", [["get", "required", ["loc", [null, [14, 13], [14, 21]]]]], [], []], "placeholder", ["subexpr", "@mut", [["get", "placeholder", ["loc", [null, [15, 16], [15, 27]]]]], [], []], "maxlength", ["subexpr", "@mut", [["get", "maxlength", ["loc", [null, [16, 14], [16, 23]]]]], [], []]], ["loc", [null, [11, 2], [17, 4]]]]],
         locals: [],
         templates: []
       };
@@ -17279,7 +18296,7 @@ define("dummy/templates/components/flexberry-textbox", ["exports"], function (ex
             "column": 0
           },
           "end": {
-            "line": 17,
+            "line": 19,
             "column": 0
           }
         },
@@ -17302,7 +18319,7 @@ define("dummy/templates/components/flexberry-textbox", ["exports"], function (ex
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["block", "if", [["get", "readonly", ["loc", [null, [1, 6], [1, 14]]]]], [], 0, 1, ["loc", [null, [1, 0], [16, 7]]]]],
+      statements: [["block", "if", [["get", "readonly", ["loc", [null, [1, 6], [1, 14]]]]], [], 0, 1, ["loc", [null, [1, 0], [18, 7]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -20343,91 +21360,6 @@ define("dummy/templates/components/object-list-view-single-column-cell", ["expor
 define("dummy/templates/components/object-list-view", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     var child0 = (function () {
-      var child0 = (function () {
-        return {
-          meta: {
-            "fragmentReason": false,
-            "revision": "Ember@2.4.6",
-            "loc": {
-              "source": null,
-              "start": {
-                "line": 2,
-                "column": 2
-              },
-              "end": {
-                "line": 10,
-                "column": 2
-              }
-            },
-            "moduleName": "dummy/templates/components/object-list-view.hbs"
-          },
-          isEmpty: false,
-          arity: 1,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode("    ");
-            dom.appendChild(el0, el1);
-            var el1 = dom.createComment("");
-            dom.appendChild(el0, el1);
-            var el1 = dom.createTextNode("\n");
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-            var morphs = new Array(1);
-            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
-            return morphs;
-          },
-          statements: [["inline", "ui-message", [], ["type", "error", "closeable", true, "visible", true, "title", "Error occurred", "message", ["subexpr", "@mut", [["get", "currentError", ["loc", [null, [8, 14], [8, 26]]]]], [], []]], ["loc", [null, [3, 4], [9, 6]]]]],
-          locals: ["currentError"],
-          templates: []
-        };
-      })();
-      return {
-        meta: {
-          "fragmentReason": {
-            "name": "missing-wrapper",
-            "problems": ["wrong-type"]
-          },
-          "revision": "Ember@2.4.6",
-          "loc": {
-            "source": null,
-            "start": {
-              "line": 1,
-              "column": 0
-            },
-            "end": {
-              "line": 11,
-              "column": 0
-            }
-          },
-          "moduleName": "dummy/templates/components/object-list-view.hbs"
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createComment("");
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-          dom.insertBoundary(fragment, 0);
-          dom.insertBoundary(fragment, null);
-          return morphs;
-        },
-        statements: [["block", "each", [["get", "errorMessages", ["loc", [null, [2, 10], [2, 23]]]]], [], 0, null, ["loc", [null, [2, 2], [10, 11]]]]],
-        locals: [],
-        templates: [child0]
-      };
-    })();
-    var child1 = (function () {
       return {
         meta: {
           "fragmentReason": false,
@@ -20435,11 +21367,11 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
           "loc": {
             "source": null,
             "start": {
-              "line": 15,
+              "line": 4,
               "column": 6
             },
             "end": {
-              "line": 17,
+              "line": 6,
               "column": 6
             }
           },
@@ -20469,7 +21401,7 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
         templates: []
       };
     })();
-    var child2 = (function () {
+    var child1 = (function () {
       var child0 = (function () {
         return {
           meta: {
@@ -20478,11 +21410,11 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
             "loc": {
               "source": null,
               "start": {
-                "line": 22,
+                "line": 11,
                 "column": 12
               },
               "end": {
-                "line": 24,
+                "line": 13,
                 "column": 12
               }
             },
@@ -20507,7 +21439,7 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
             morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
             return morphs;
           },
-          statements: [["inline", "t", [["get", "column.keyLocale", ["loc", [null, [23, 18], [23, 34]]]]], [], ["loc", [null, [23, 14], [23, 36]]]]],
+          statements: [["inline", "t", [["get", "column.keyLocale", ["loc", [null, [12, 18], [12, 34]]]]], [], ["loc", [null, [12, 14], [12, 36]]]]],
           locals: [],
           templates: []
         };
@@ -20520,11 +21452,11 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
             "loc": {
               "source": null,
               "start": {
-                "line": 24,
+                "line": 13,
                 "column": 12
               },
               "end": {
-                "line": 26,
+                "line": 15,
                 "column": 12
               }
             },
@@ -20549,7 +21481,7 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
             morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
             return morphs;
           },
-          statements: [["content", "column.header", ["loc", [null, [25, 14], [25, 31]]]]],
+          statements: [["content", "column.header", ["loc", [null, [14, 14], [14, 31]]]]],
           locals: [],
           templates: []
         };
@@ -20563,11 +21495,11 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 30,
+                  "line": 19,
                   "column": 16
                 },
                 "end": {
-                  "line": 34,
+                  "line": 23,
                   "column": 16
                 }
               },
@@ -20600,7 +21532,7 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
               morphs[1] = dom.createMorphAt(element7, 1, 1);
               return morphs;
             },
-            statements: [["attribute", "title", ["concat", [["subexpr", "t", ["components.object-list-view.sort-ascending"], [], ["loc", [null, [31, 30], [31, 80]]]]]]], ["content", "column.sortNumber", ["loc", [null, [32, 19], [32, 40]]]]],
+            statements: [["attribute", "title", ["concat", [["subexpr", "t", ["components.object-list-view.sort-ascending"], [], ["loc", [null, [20, 30], [20, 80]]]]]]], ["content", "column.sortNumber", ["loc", [null, [21, 19], [21, 40]]]]],
             locals: [],
             templates: []
           };
@@ -20613,11 +21545,11 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 34,
+                  "line": 23,
                   "column": 16
                 },
                 "end": {
-                  "line": 38,
+                  "line": 27,
                   "column": 16
                 }
               },
@@ -20650,7 +21582,7 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
               morphs[1] = dom.createMorphAt(element6, 1, 1);
               return morphs;
             },
-            statements: [["attribute", "title", ["concat", [["subexpr", "t", ["components.object-list-view.sort-descending"], [], ["loc", [null, [35, 30], [35, 81]]]]]]], ["content", "column.sortNumber", ["loc", [null, [36, 19], [36, 40]]]]],
+            statements: [["attribute", "title", ["concat", [["subexpr", "t", ["components.object-list-view.sort-descending"], [], ["loc", [null, [24, 30], [24, 81]]]]]]], ["content", "column.sortNumber", ["loc", [null, [25, 19], [25, 40]]]]],
             locals: [],
             templates: []
           };
@@ -20662,11 +21594,11 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
             "loc": {
               "source": null,
               "start": {
-                "line": 28,
+                "line": 17,
                 "column": 12
               },
               "end": {
-                "line": 40,
+                "line": 29,
                 "column": 12
               }
             },
@@ -20699,7 +21631,7 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
             morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
             return morphs;
           },
-          statements: [["block", "if", [["get", "column.sortAscending", ["loc", [null, [30, 22], [30, 42]]]]], [], 0, 1, ["loc", [null, [30, 16], [38, 23]]]]],
+          statements: [["block", "if", [["get", "column.sortAscending", ["loc", [null, [19, 22], [19, 42]]]]], [], 0, 1, ["loc", [null, [19, 16], [27, 23]]]]],
           locals: [],
           templates: [child0, child1]
         };
@@ -20711,11 +21643,11 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
           "loc": {
             "source": null,
             "start": {
-              "line": 18,
+              "line": 7,
               "column": 6
             },
             "end": {
-              "line": 43,
+              "line": 32,
               "column": 6
             }
           },
@@ -20769,12 +21701,12 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
           morphs[4] = dom.createMorphAt(element9, 3, 3);
           return morphs;
         },
-        statements: [["attribute", "onclick", ["subexpr", "action", ["headerCellClick", ["get", "column", ["loc", [null, [19, 77], [19, 83]]]]], [], ["loc", [null, [19, 50], [19, 86]]]]], ["attribute", "data-olv-header-property-name", ["get", "column.propName", ["loc", [null, [20, 47], [20, 62]]]]], ["attribute", "title", ["get", "sortTitleCompute", ["loc", [null, [20, 73], [20, 89]]]]], ["block", "if", [["get", "column.keyLocale", ["loc", [null, [22, 18], [22, 34]]]]], [], 0, 1, ["loc", [null, [22, 12], [26, 19]]]], ["block", "if", [["get", "column.sorted", ["loc", [null, [28, 18], [28, 31]]]]], [], 2, null, ["loc", [null, [28, 12], [40, 19]]]]],
+        statements: [["attribute", "onclick", ["subexpr", "action", ["headerCellClick", ["get", "column", ["loc", [null, [8, 77], [8, 83]]]]], [], ["loc", [null, [8, 50], [8, 86]]]]], ["attribute", "data-olv-header-property-name", ["get", "column.propName", ["loc", [null, [9, 47], [9, 62]]]]], ["attribute", "title", ["get", "sortTitleCompute", ["loc", [null, [9, 73], [9, 89]]]]], ["block", "if", [["get", "column.keyLocale", ["loc", [null, [11, 18], [11, 34]]]]], [], 0, 1, ["loc", [null, [11, 12], [15, 19]]]], ["block", "if", [["get", "column.sorted", ["loc", [null, [17, 18], [17, 31]]]]], [], 2, null, ["loc", [null, [17, 12], [29, 19]]]]],
         locals: ["column"],
         templates: [child0, child1, child2]
       };
     })();
-    var child3 = (function () {
+    var child2 = (function () {
       return {
         meta: {
           "fragmentReason": false,
@@ -20782,11 +21714,11 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
           "loc": {
             "source": null,
             "start": {
-              "line": 44,
+              "line": 33,
               "column": 6
             },
             "end": {
-              "line": 46,
+              "line": 35,
               "column": 6
             }
           },
@@ -20816,7 +21748,7 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
         templates: []
       };
     })();
-    var child4 = (function () {
+    var child3 = (function () {
       var child0 = (function () {
         return {
           meta: {
@@ -20825,11 +21757,11 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
             "loc": {
               "source": null,
               "start": {
-                "line": 52,
+                "line": 41,
                 "column": 8
               },
               "end": {
-                "line": 54,
+                "line": 43,
                 "column": 8
               }
             },
@@ -20867,11 +21799,11 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 57,
+                  "line": 46,
                   "column": 12
                 },
                 "end": {
-                  "line": 65,
+                  "line": 54,
                   "column": 12
                 }
               },
@@ -20896,7 +21828,7 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
               morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
               return morphs;
             },
-            statements: [["inline", "component", ["flexberry-dropdown"], ["value", ["subexpr", "@mut", [["get", "column.filter.condition", ["loc", [null, [59, 22], [59, 45]]]]], [], []], "items", ["subexpr", "@mut", [["get", "column.filter.conditions", ["loc", [null, [60, 22], [60, 46]]]]], [], []], "class", "compact fluid", "placeholder", "", "needChecksOnValue", false], ["loc", [null, [58, 14], [64, 16]]]]],
+            statements: [["inline", "component", ["flexberry-dropdown"], ["value", ["subexpr", "@mut", [["get", "column.filter.condition", ["loc", [null, [48, 22], [48, 45]]]]], [], []], "items", ["subexpr", "@mut", [["get", "column.filter.conditions", ["loc", [null, [49, 22], [49, 46]]]]], [], []], "class", "compact fluid", "placeholder", "", "needChecksOnValue", false], ["loc", [null, [47, 14], [53, 16]]]]],
             locals: [],
             templates: []
           };
@@ -20908,11 +21840,11 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
             "loc": {
               "source": null,
               "start": {
-                "line": 55,
+                "line": 44,
                 "column": 8
               },
               "end": {
-                "line": 67,
+                "line": 56,
                 "column": 8
               }
             },
@@ -20946,7 +21878,7 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
             morphs[1] = dom.createMorphAt(element3, 1, 1);
             return morphs;
           },
-          statements: [["attribute", "style", ["get", "defaultPaddingStyle", ["loc", [null, [56, 22], [56, 41]]]]], ["block", "if", [["get", "column.filter.conditions", ["loc", [null, [57, 18], [57, 42]]]]], [], 0, null, ["loc", [null, [57, 12], [65, 19]]]]],
+          statements: [["attribute", "style", ["get", "defaultPaddingStyle", ["loc", [null, [45, 22], [45, 41]]]]], ["block", "if", [["get", "column.filter.conditions", ["loc", [null, [46, 18], [46, 42]]]]], [], 0, null, ["loc", [null, [46, 12], [54, 19]]]]],
           locals: ["column"],
           templates: [child0]
         };
@@ -20959,11 +21891,11 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
             "loc": {
               "source": null,
               "start": {
-                "line": 68,
+                "line": 57,
                 "column": 8
               },
               "end": {
-                "line": 70,
+                "line": 59,
                 "column": 8
               }
             },
@@ -21000,11 +21932,11 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
             "loc": {
               "source": null,
               "start": {
-                "line": 73,
+                "line": 62,
                 "column": 8
               },
               "end": {
-                "line": 75,
+                "line": 64,
                 "column": 8
               }
             },
@@ -21042,11 +21974,11 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 78,
+                  "line": 67,
                   "column": 12
                 },
                 "end": {
-                  "line": 83,
+                  "line": 72,
                   "column": 12
                 }
               },
@@ -21071,7 +22003,7 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
               morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
               return morphs;
             },
-            statements: [["inline", "component", [["get", "column.filter.component.name", ["loc", [null, [79, 26], [79, 54]]]]], ["value", ["subexpr", "@mut", [["get", "column.filter.pattern", ["loc", [null, [80, 22], [80, 43]]]]], [], []], "dynamicProperties", ["subexpr", "@mut", [["get", "column.filter.component.properties", ["loc", [null, [81, 34], [81, 68]]]]], [], []]], ["loc", [null, [79, 14], [82, 16]]]]],
+            statements: [["inline", "component", [["get", "column.filter.component.name", ["loc", [null, [68, 26], [68, 54]]]]], ["value", ["subexpr", "@mut", [["get", "column.filter.pattern", ["loc", [null, [69, 22], [69, 43]]]]], [], []], "dynamicProperties", ["subexpr", "@mut", [["get", "column.filter.component.properties", ["loc", [null, [70, 34], [70, 68]]]]], [], []]], ["loc", [null, [68, 14], [71, 16]]]]],
             locals: [],
             templates: []
           };
@@ -21083,11 +22015,11 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
             "loc": {
               "source": null,
               "start": {
-                "line": 76,
+                "line": 65,
                 "column": 8
               },
               "end": {
-                "line": 85,
+                "line": 74,
                 "column": 8
               }
             },
@@ -21121,7 +22053,7 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
             morphs[2] = dom.createMorphAt(element2, 1, 1);
             return morphs;
           },
-          statements: [["attribute", "style", ["get", "defaultPaddingStyle", ["loc", [null, [77, 22], [77, 41]]]]], ["attribute", "class", ["concat", [["subexpr", "if", [["subexpr", "array-contains", [["get", "overflowedComponents", ["loc", [null, [77, 72], [77, 92]]]], ["get", "column.filter.component.name", ["loc", [null, [77, 93], [77, 121]]]]], [], ["loc", [null, [77, 56], [77, 122]]]], "overflowed-cell"], [], ["loc", [null, [77, 51], [77, 142]]]]]]], ["block", "if", [["get", "column.filter.component.name", ["loc", [null, [78, 18], [78, 46]]]]], [], 0, null, ["loc", [null, [78, 12], [83, 19]]]]],
+          statements: [["attribute", "style", ["get", "defaultPaddingStyle", ["loc", [null, [66, 22], [66, 41]]]]], ["attribute", "class", ["concat", [["subexpr", "if", [["subexpr", "array-contains", [["get", "overflowedComponents", ["loc", [null, [66, 72], [66, 92]]]], ["get", "column.filter.component.name", ["loc", [null, [66, 93], [66, 121]]]]], [], ["loc", [null, [66, 56], [66, 122]]]], "overflowed-cell"], [], ["loc", [null, [66, 51], [66, 142]]]]]]], ["block", "if", [["get", "column.filter.component.name", ["loc", [null, [67, 18], [67, 46]]]]], [], 0, null, ["loc", [null, [67, 12], [72, 19]]]]],
           locals: ["column"],
           templates: [child0]
         };
@@ -21134,11 +22066,11 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
             "loc": {
               "source": null,
               "start": {
-                "line": 86,
+                "line": 75,
                 "column": 8
               },
               "end": {
-                "line": 88,
+                "line": 77,
                 "column": 8
               }
             },
@@ -21174,11 +22106,11 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
           "loc": {
             "source": null,
             "start": {
-              "line": 50,
+              "line": 39,
               "column": 4
             },
             "end": {
-              "line": 90,
+              "line": 79,
               "column": 4
             }
           },
@@ -21234,12 +22166,12 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
           morphs[5] = dom.createMorphAt(element5, 3, 3);
           return morphs;
         },
-        statements: [["block", "if", [["get", "showHelperColumn", ["loc", [null, [52, 14], [52, 30]]]]], [], 0, null, ["loc", [null, [52, 8], [54, 15]]]], ["block", "each", [["get", "columns", ["loc", [null, [55, 16], [55, 23]]]]], [], 1, null, ["loc", [null, [55, 8], [67, 17]]]], ["block", "if", [["get", "showMenuColumn", ["loc", [null, [68, 14], [68, 28]]]]], [], 2, null, ["loc", [null, [68, 8], [70, 15]]]], ["block", "if", [["get", "showHelperColumn", ["loc", [null, [73, 14], [73, 30]]]]], [], 3, null, ["loc", [null, [73, 8], [75, 15]]]], ["block", "each", [["get", "columns", ["loc", [null, [76, 16], [76, 23]]]]], [], 4, null, ["loc", [null, [76, 8], [85, 17]]]], ["block", "if", [["get", "showMenuColumn", ["loc", [null, [86, 14], [86, 28]]]]], [], 5, null, ["loc", [null, [86, 8], [88, 15]]]]],
+        statements: [["block", "if", [["get", "showHelperColumn", ["loc", [null, [41, 14], [41, 30]]]]], [], 0, null, ["loc", [null, [41, 8], [43, 15]]]], ["block", "each", [["get", "columns", ["loc", [null, [44, 16], [44, 23]]]]], [], 1, null, ["loc", [null, [44, 8], [56, 17]]]], ["block", "if", [["get", "showMenuColumn", ["loc", [null, [57, 14], [57, 28]]]]], [], 2, null, ["loc", [null, [57, 8], [59, 15]]]], ["block", "if", [["get", "showHelperColumn", ["loc", [null, [62, 14], [62, 30]]]]], [], 3, null, ["loc", [null, [62, 8], [64, 15]]]], ["block", "each", [["get", "columns", ["loc", [null, [65, 16], [65, 23]]]]], [], 4, null, ["loc", [null, [65, 8], [74, 17]]]], ["block", "if", [["get", "showMenuColumn", ["loc", [null, [75, 14], [75, 28]]]]], [], 5, null, ["loc", [null, [75, 8], [77, 15]]]]],
         locals: [],
         templates: [child0, child1, child2, child3, child4, child5]
       };
     })();
-    var child5 = (function () {
+    var child4 = (function () {
       return {
         meta: {
           "fragmentReason": false,
@@ -21247,11 +22179,11 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
           "loc": {
             "source": null,
             "start": {
-              "line": 91,
+              "line": 80,
               "column": 4
             },
             "end": {
-              "line": 97,
+              "line": 86,
               "column": 4
             }
           },
@@ -21291,12 +22223,12 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
           morphs[1] = dom.createMorphAt(element1, 1, 1);
           return morphs;
         },
-        statements: [["attribute", "colspan", ["concat", [["get", "colspan", ["loc", [null, [93, 23], [93, 30]]]]]]], ["content", "placeholder", ["loc", [null, [94, 12], [94, 27]]]]],
+        statements: [["attribute", "colspan", ["concat", [["get", "colspan", ["loc", [null, [82, 23], [82, 30]]]]]]], ["content", "placeholder", ["loc", [null, [83, 12], [83, 27]]]]],
         locals: [],
         templates: []
       };
     })();
-    var child6 = (function () {
+    var child5 = (function () {
       var child0 = (function () {
         return {
           meta: {
@@ -21305,11 +22237,11 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
             "loc": {
               "source": null,
               "start": {
-                "line": 98,
+                "line": 87,
                 "column": 6
               },
               "end": {
-                "line": 125,
+                "line": 114,
                 "column": 6
               }
             },
@@ -21334,7 +22266,7 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
             morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
             return morphs;
           },
-          statements: [["inline", "object-list-view-row", [], ["record", ["subexpr", "@mut", [["get", "record", ["loc", [null, [100, 17], [100, 23]]]]], [], []], "columns", ["subexpr", "@mut", [["get", "columns", ["loc", [null, [101, 18], [101, 25]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [102, 19], [102, 27]]]]], [], []], "required", ["subexpr", "@mut", [["get", "required", ["loc", [null, [103, 19], [103, 27]]]]], [], []], "showMenuColumn", ["subexpr", "@mut", [["get", "showMenuColumn", ["loc", [null, [104, 25], [104, 39]]]]], [], []], "sendMenuItemAction", ["subexpr", "@mut", [["get", "sendMenuItemAction", ["loc", [null, [105, 29], [105, 47]]]]], [], []], "menuInRowAdditionalItems", ["subexpr", "@mut", [["get", "menuInRowAdditionalItems", ["loc", [null, [106, 35], [106, 59]]]]], [], []], "showHelperColumn", ["subexpr", "@mut", [["get", "showHelperColumn", ["loc", [null, [107, 27], [107, 43]]]]], [], []], "defaultRowConfig", ["subexpr", "@mut", [["get", "defaultRowConfig", ["loc", [null, [108, 27], [108, 43]]]]], [], []], "showValidationMessages", ["subexpr", "@mut", [["get", "showValidationMessagesInRow", ["loc", [null, [109, 33], [109, 60]]]]], [], []], "showAsteriskInRow", ["subexpr", "@mut", [["get", "showAsteriskInRow", ["loc", [null, [110, 28], [110, 45]]]]], [], []], "showCheckBoxInRow", ["subexpr", "@mut", [["get", "showCheckBoxInRow", ["loc", [null, [111, 28], [111, 45]]]]], [], []], "showDeleteButtonInRow", ["subexpr", "@mut", [["get", "showDeleteButtonInRow", ["loc", [null, [112, 32], [112, 53]]]]], [], []], "showDeleteMenuItemInRow", ["subexpr", "@mut", [["get", "showDeleteMenuItemInRow", ["loc", [null, [113, 34], [113, 57]]]]], [], []], "showEditMenuItemInRow", ["subexpr", "@mut", [["get", "showEditMenuItemInRow", ["loc", [null, [114, 32], [114, 53]]]]], [], []], "hierarchicalIndent", ["subexpr", "@mut", [["get", "hierarchicalIndent", ["loc", [null, [115, 29], [115, 47]]]]], [], []], "inHierarchicalMode", ["subexpr", "@mut", [["get", "inHierarchicalMode", ["loc", [null, [116, 29], [116, 47]]]]], [], []], "loadRecords", ["subexpr", "@mut", [["get", "loadRecords", ["loc", [null, [117, 22], [117, 33]]]]], [], []], "doRenderData", ["subexpr", "@mut", [["get", "record.doRenderData", ["loc", [null, [118, 23], [118, 42]]]]], [], []], "rowClick", ["subexpr", "action", ["rowClick"], [], ["loc", [null, [119, 19], [119, 38]]]], "selectRow", ["subexpr", "action", ["selectRow"], [], ["loc", [null, [120, 20], [120, 40]]]], "deleteRow", ["subexpr", "action", ["deleteRow"], [], ["loc", [null, [121, 20], [121, 40]]]], "defaultLeftPadding", ["subexpr", "@mut", [["get", "defaultLeftPadding", ["loc", [null, [122, 29], [122, 47]]]]], [], []], "overflowedComponents", ["subexpr", "@mut", [["get", "overflowedComponents", ["loc", [null, [123, 31], [123, 51]]]]], [], []]], ["loc", [null, [99, 8], [124, 10]]]]],
+          statements: [["inline", "object-list-view-row", [], ["record", ["subexpr", "@mut", [["get", "record", ["loc", [null, [89, 17], [89, 23]]]]], [], []], "columns", ["subexpr", "@mut", [["get", "columns", ["loc", [null, [90, 18], [90, 25]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [91, 19], [91, 27]]]]], [], []], "required", ["subexpr", "@mut", [["get", "required", ["loc", [null, [92, 19], [92, 27]]]]], [], []], "showMenuColumn", ["subexpr", "@mut", [["get", "showMenuColumn", ["loc", [null, [93, 25], [93, 39]]]]], [], []], "sendMenuItemAction", ["subexpr", "@mut", [["get", "sendMenuItemAction", ["loc", [null, [94, 29], [94, 47]]]]], [], []], "menuInRowAdditionalItems", ["subexpr", "@mut", [["get", "menuInRowAdditionalItems", ["loc", [null, [95, 35], [95, 59]]]]], [], []], "showHelperColumn", ["subexpr", "@mut", [["get", "showHelperColumn", ["loc", [null, [96, 27], [96, 43]]]]], [], []], "defaultRowConfig", ["subexpr", "@mut", [["get", "defaultRowConfig", ["loc", [null, [97, 27], [97, 43]]]]], [], []], "showValidationMessages", ["subexpr", "@mut", [["get", "showValidationMessagesInRow", ["loc", [null, [98, 33], [98, 60]]]]], [], []], "showAsteriskInRow", ["subexpr", "@mut", [["get", "showAsteriskInRow", ["loc", [null, [99, 28], [99, 45]]]]], [], []], "showCheckBoxInRow", ["subexpr", "@mut", [["get", "showCheckBoxInRow", ["loc", [null, [100, 28], [100, 45]]]]], [], []], "showDeleteButtonInRow", ["subexpr", "@mut", [["get", "showDeleteButtonInRow", ["loc", [null, [101, 32], [101, 53]]]]], [], []], "showDeleteMenuItemInRow", ["subexpr", "@mut", [["get", "showDeleteMenuItemInRow", ["loc", [null, [102, 34], [102, 57]]]]], [], []], "showEditMenuItemInRow", ["subexpr", "@mut", [["get", "showEditMenuItemInRow", ["loc", [null, [103, 32], [103, 53]]]]], [], []], "hierarchicalIndent", ["subexpr", "@mut", [["get", "hierarchicalIndent", ["loc", [null, [104, 29], [104, 47]]]]], [], []], "inHierarchicalMode", ["subexpr", "@mut", [["get", "inHierarchicalMode", ["loc", [null, [105, 29], [105, 47]]]]], [], []], "loadRecords", ["subexpr", "@mut", [["get", "loadRecords", ["loc", [null, [106, 22], [106, 33]]]]], [], []], "doRenderData", ["subexpr", "@mut", [["get", "record.doRenderData", ["loc", [null, [107, 23], [107, 42]]]]], [], []], "rowClick", ["subexpr", "action", ["rowClick"], [], ["loc", [null, [108, 19], [108, 38]]]], "selectRow", ["subexpr", "action", ["selectRow"], [], ["loc", [null, [109, 20], [109, 40]]]], "deleteRow", ["subexpr", "action", ["deleteRow"], [], ["loc", [null, [110, 20], [110, 40]]]], "defaultLeftPadding", ["subexpr", "@mut", [["get", "defaultLeftPadding", ["loc", [null, [111, 29], [111, 47]]]]], [], []], "overflowedComponents", ["subexpr", "@mut", [["get", "overflowedComponents", ["loc", [null, [112, 31], [112, 51]]]]], [], []]], ["loc", [null, [88, 8], [113, 10]]]]],
           locals: ["record"],
           templates: []
         };
@@ -21347,11 +22279,11 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
             "loc": {
               "source": null,
               "start": {
-                "line": 126,
+                "line": 115,
                 "column": 6
               },
               "end": {
-                "line": 133,
+                "line": 122,
                 "column": 6
               }
             },
@@ -21396,7 +22328,7 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
             morphs[1] = dom.createMorphAt(element0, 3, 3);
             return morphs;
           },
-          statements: [["attribute", "colspan", ["concat", [["get", "colspan", ["loc", [null, [128, 25], [128, 32]]]]]]], ["inline", "t", ["components.object-list-view.loading-text"], [], ["loc", [null, [130, 12], [130, 60]]]]],
+          statements: [["attribute", "colspan", ["concat", [["get", "colspan", ["loc", [null, [117, 25], [117, 32]]]]]]], ["inline", "t", ["components.object-list-view.loading-text"], [], ["loc", [null, [119, 12], [119, 60]]]]],
           locals: [],
           templates: []
         };
@@ -21408,11 +22340,11 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
           "loc": {
             "source": null,
             "start": {
-              "line": 97,
+              "line": 86,
               "column": 4
             },
             "end": {
-              "line": 134,
+              "line": 123,
               "column": 4
             }
           },
@@ -21438,7 +22370,7 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [["block", "each", [["get", "contentWithKeys", ["loc", [null, [98, 14], [98, 29]]]]], ["key", "key"], 0, null, ["loc", [null, [98, 6], [125, 15]]]], ["block", "if", [["get", "rowByRowLoadingProgress", ["loc", [null, [126, 12], [126, 35]]]]], [], 1, null, ["loc", [null, [126, 6], [133, 13]]]]],
+        statements: [["block", "each", [["get", "contentWithKeys", ["loc", [null, [87, 14], [87, 29]]]]], ["key", "key"], 0, null, ["loc", [null, [87, 6], [114, 15]]]], ["block", "if", [["get", "rowByRowLoadingProgress", ["loc", [null, [115, 12], [115, 35]]]]], [], 1, null, ["loc", [null, [115, 6], [122, 13]]]]],
         locals: [],
         templates: [child0, child1]
       };
@@ -21446,8 +22378,7 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
     return {
       meta: {
         "fragmentReason": {
-          "name": "missing-wrapper",
-          "problems": ["wrong-type", "multiple-nodes"]
+          "name": "triple-curlies"
         },
         "revision": "Ember@2.4.6",
         "loc": {
@@ -21457,7 +22388,7 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
             "column": 0
           },
           "end": {
-            "line": 137,
+            "line": 126,
             "column": 0
           }
         },
@@ -21469,8 +22400,6 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
         var el1 = dom.createElement("table");
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
@@ -21512,23 +22441,21 @@ define("dummy/templates/components/object-list-view", ["exports"], function (exp
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var element10 = dom.childAt(fragment, [1]);
+        var element10 = dom.childAt(fragment, [0]);
         var element11 = dom.childAt(element10, [1, 1]);
         var element12 = dom.childAt(element10, [3]);
-        var morphs = new Array(7);
-        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-        morphs[1] = dom.createAttrMorph(element10, 'class');
-        morphs[2] = dom.createMorphAt(element11, 1, 1);
-        morphs[3] = dom.createMorphAt(element11, 2, 2);
-        morphs[4] = dom.createMorphAt(element11, 3, 3);
-        morphs[5] = dom.createMorphAt(element12, 1, 1);
-        morphs[6] = dom.createMorphAt(element12, 2, 2);
-        dom.insertBoundary(fragment, 0);
+        var morphs = new Array(6);
+        morphs[0] = dom.createAttrMorph(element10, 'class');
+        morphs[1] = dom.createMorphAt(element11, 1, 1);
+        morphs[2] = dom.createMorphAt(element11, 2, 2);
+        morphs[3] = dom.createMorphAt(element11, 3, 3);
+        morphs[4] = dom.createMorphAt(element12, 1, 1);
+        morphs[5] = dom.createMorphAt(element12, 2, 2);
         return morphs;
       },
-      statements: [["block", "if", [["get", "errorMessages", ["loc", [null, [1, 6], [1, 19]]]]], [], 0, null, ["loc", [null, [1, 0], [11, 7]]]], ["attribute", "class", ["concat", ["object-list-view ui unstackable celled ", ["subexpr", "if", [["get", "readonly", ["loc", [null, [12, 58], [12, 66]]]], "readonly"], [], ["loc", [null, [12, 53], [12, 79]]]], " ", ["get", "tableClass", ["loc", [null, [12, 82], [12, 92]]]], " table"]]], ["block", "if", [["get", "showHelperColumn", ["loc", [null, [15, 12], [15, 28]]]]], [], 1, null, ["loc", [null, [15, 6], [17, 13]]]], ["block", "each", [["get", "columns", ["loc", [null, [18, 14], [18, 21]]]]], [], 2, null, ["loc", [null, [18, 6], [43, 15]]]], ["block", "if", [["get", "showMenuColumn", ["loc", [null, [44, 12], [44, 26]]]]], [], 3, null, ["loc", [null, [44, 6], [46, 13]]]], ["block", "if", [["get", "showFilters", ["loc", [null, [50, 10], [50, 21]]]]], [], 4, null, ["loc", [null, [50, 4], [90, 11]]]], ["block", "unless", [["get", "content", ["loc", [null, [91, 14], [91, 21]]]]], [], 5, 6, ["loc", [null, [91, 4], [134, 15]]]]],
+      statements: [["attribute", "class", ["concat", ["object-list-view ui unstackable celled ", ["subexpr", "if", [["get", "readonly", ["loc", [null, [1, 58], [1, 66]]]], "readonly"], [], ["loc", [null, [1, 53], [1, 79]]]], " ", ["get", "tableClass", ["loc", [null, [1, 82], [1, 92]]]], " table"]]], ["block", "if", [["get", "showHelperColumn", ["loc", [null, [4, 12], [4, 28]]]]], [], 0, null, ["loc", [null, [4, 6], [6, 13]]]], ["block", "each", [["get", "columns", ["loc", [null, [7, 14], [7, 21]]]]], [], 1, null, ["loc", [null, [7, 6], [32, 15]]]], ["block", "if", [["get", "showMenuColumn", ["loc", [null, [33, 12], [33, 26]]]]], [], 2, null, ["loc", [null, [33, 6], [35, 13]]]], ["block", "if", [["get", "showFilters", ["loc", [null, [39, 10], [39, 21]]]]], [], 3, null, ["loc", [null, [39, 4], [79, 11]]]], ["block", "unless", [["get", "content", ["loc", [null, [80, 14], [80, 21]]]]], [], 4, 5, ["loc", [null, [80, 4], [123, 15]]]]],
       locals: [],
-      templates: [child0, child1, child2, child3, child4, child5, child6]
+      templates: [child0, child1, child2, child3, child4, child5]
     };
   })());
 });
@@ -22987,13 +23914,139 @@ define("dummy/templates/components/ui-radio", ["exports"], function (exports) {
     };
   })());
 });
-define("dummy/templates/fd-appstruct-list-form", ["exports"], function (exports) {
+define("dummy/templates/error", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
+    var child0 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 7,
+                "column": 2
+              },
+              "end": {
+                "line": 11,
+                "column": 2
+              }
+            },
+            "moduleName": "dummy/templates/error.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("    ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("pre");
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 0, 0);
+            return morphs;
+          },
+          statements: [["content", "model.stack", ["loc", [null, [10, 9], [10, 24]]]]],
+          locals: [],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 6,
+              "column": 0
+            },
+            "end": {
+              "line": 12,
+              "column": 0
+            }
+          },
+          "moduleName": "dummy/templates/error.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [["block", "flexberry-toggler", [], ["caption", ["subexpr", "t", ["forms.error-form.show-more"], [], ["loc", [null, [8, 12], [8, 44]]]]], 0, null, ["loc", [null, [7, 2], [11, 24]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child1 = (function () {
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 13,
+              "column": 0
+            },
+            "end": {
+              "line": 19,
+              "column": 0
+            }
+          },
+          "moduleName": "dummy/templates/error.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("  ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+          return morphs;
+        },
+        statements: [["inline", "link-to", [["subexpr", "t", ["forms.error-form.retry"], [], ["loc", [null, [14, 12], [14, 40]]]], ["get", "model.retryRoute", ["loc", [null, [14, 41], [14, 57]]]]], ["tagName", "button", "activeClass", "", "class", "ui button"], ["loc", [null, [14, 2], [18, 4]]]]],
+        locals: [],
+        templates: []
+      };
+    })();
     return {
       meta: {
         "fragmentReason": {
           "name": "missing-wrapper",
-          "problems": ["multiple-nodes"]
+          "problems": ["multiple-nodes", "wrong-type"]
         },
         "revision": "Ember@2.4.6",
         "loc": {
@@ -23003,7 +24056,80 @@ define("dummy/templates/fd-appstruct-list-form", ["exports"], function (exports)
             "column": 0
           },
           "end": {
-            "line": 110,
+            "line": 19,
+            "column": 7
+          }
+        },
+        "moduleName": "dummy/templates/error.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("h1");
+        dom.setAttribute(el1, "class", "ui header");
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("h2");
+        dom.setAttribute(el1, "class", "ui header");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var element0 = dom.childAt(fragment, [2]);
+        var morphs = new Array(5);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
+        morphs[1] = dom.createMorphAt(element0, 1, 1);
+        morphs[2] = dom.createMorphAt(element0, 3, 3);
+        morphs[3] = dom.createMorphAt(fragment, 4, 4, contextualElement);
+        morphs[4] = dom.createMorphAt(fragment, 5, 5, contextualElement);
+        dom.insertBoundary(fragment, null);
+        return morphs;
+      },
+      statements: [["inline", "t", ["forms.error-form.caption"], [], ["loc", [null, [1, 22], [1, 54]]]], ["inline", "if", [["get", "model.name", ["loc", [null, [3, 7], [3, 17]]]], ["subexpr", "concat", [["get", "model.name", ["loc", [null, [3, 26], [3, 36]]]], ": "], [], ["loc", [null, [3, 18], [3, 42]]]]], [], ["loc", [null, [3, 2], [3, 44]]]], ["inline", "if", [["get", "model.message", ["loc", [null, [4, 7], [4, 20]]]], ["get", "model.message", ["loc", [null, [4, 21], [4, 34]]]]], [], ["loc", [null, [4, 2], [4, 36]]]], ["block", "if", [["get", "model.stack", ["loc", [null, [6, 6], [6, 17]]]]], [], 0, null, ["loc", [null, [6, 0], [12, 7]]]], ["block", "if", [["get", "model.retryRoute", ["loc", [null, [13, 6], [13, 22]]]]], [], 1, null, ["loc", [null, [13, 0], [19, 7]]]]],
+      locals: [],
+      templates: [child0, child1]
+    };
+  })());
+});
+define("dummy/templates/fd-appstruct-list-form", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["wrong-type", "multiple-nodes"]
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 111,
             "column": 0
           }
         },
@@ -23015,6 +24141,10 @@ define("dummy/templates/fd-appstruct-list-form", ["exports"], function (exports)
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         var el1 = dom.createElement("h3");
         var el2 = dom.createComment("");
         dom.appendChild(el1, el2);
@@ -23266,7 +24396,7 @@ define("dummy/templates/fd-appstruct-list-form", ["exports"], function (exports)
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var element0 = dom.childAt(fragment, [2, 1]);
+        var element0 = dom.childAt(fragment, [4, 1]);
         var element1 = dom.childAt(element0, [1]);
         var element2 = dom.childAt(element1, [1, 1]);
         var element3 = dom.childAt(element2, [1]);
@@ -23284,46 +24414,48 @@ define("dummy/templates/fd-appstruct-list-form", ["exports"], function (exports)
         var element15 = dom.childAt(element9, [11]);
         var element16 = dom.childAt(element0, [3]);
         var element17 = dom.childAt(element16, [3, 1]);
-        var element18 = dom.childAt(fragment, [4]);
-        var morphs = new Array(35);
-        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
-        morphs[1] = dom.createAttrMorph(element3, 'class');
-        morphs[2] = dom.createAttrMorph(element3, 'title');
-        morphs[3] = dom.createElementMorph(element3);
-        morphs[4] = dom.createAttrMorph(element4, 'title');
-        morphs[5] = dom.createElementMorph(element4);
-        morphs[6] = dom.createAttrMorph(element5, 'class');
-        morphs[7] = dom.createAttrMorph(element5, 'title');
-        morphs[8] = dom.createElementMorph(element5);
-        morphs[9] = dom.createAttrMorph(element6, 'class');
-        morphs[10] = dom.createAttrMorph(element6, 'title');
-        morphs[11] = dom.createElementMorph(element6);
-        morphs[12] = dom.createAttrMorph(element7, 'class');
-        morphs[13] = dom.createAttrMorph(element7, 'title');
-        morphs[14] = dom.createElementMorph(element7);
-        morphs[15] = dom.createAttrMorph(element8, 'class');
-        morphs[16] = dom.createElementMorph(element8);
-        morphs[17] = dom.createAttrMorph(element10, 'class');
-        morphs[18] = dom.createElementMorph(element10);
-        morphs[19] = dom.createAttrMorph(element11, 'class');
-        morphs[20] = dom.createElementMorph(element11);
-        morphs[21] = dom.createAttrMorph(element12, 'class');
-        morphs[22] = dom.createElementMorph(element12);
-        morphs[23] = dom.createAttrMorph(element13, 'class');
-        morphs[24] = dom.createElementMorph(element13);
-        morphs[25] = dom.createAttrMorph(element14, 'class');
-        morphs[26] = dom.createElementMorph(element14);
-        morphs[27] = dom.createAttrMorph(element15, 'class');
-        morphs[28] = dom.createElementMorph(element15);
-        morphs[29] = dom.createMorphAt(dom.childAt(element16, [1]), 1, 1);
-        morphs[30] = dom.createAttrMorph(element17, 'class');
-        morphs[31] = dom.createElementMorph(element17);
-        morphs[32] = dom.createMorphAt(dom.childAt(element16, [5]), 1, 1);
-        morphs[33] = dom.createAttrMorph(element18, 'class');
-        morphs[34] = dom.createElementMorph(element18);
+        var element18 = dom.childAt(fragment, [6]);
+        var morphs = new Array(36);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 0, 0);
+        morphs[2] = dom.createAttrMorph(element3, 'class');
+        morphs[3] = dom.createAttrMorph(element3, 'title');
+        morphs[4] = dom.createElementMorph(element3);
+        morphs[5] = dom.createAttrMorph(element4, 'title');
+        morphs[6] = dom.createElementMorph(element4);
+        morphs[7] = dom.createAttrMorph(element5, 'class');
+        morphs[8] = dom.createAttrMorph(element5, 'title');
+        morphs[9] = dom.createElementMorph(element5);
+        morphs[10] = dom.createAttrMorph(element6, 'class');
+        morphs[11] = dom.createAttrMorph(element6, 'title');
+        morphs[12] = dom.createElementMorph(element6);
+        morphs[13] = dom.createAttrMorph(element7, 'class');
+        morphs[14] = dom.createAttrMorph(element7, 'title');
+        morphs[15] = dom.createElementMorph(element7);
+        morphs[16] = dom.createAttrMorph(element8, 'class');
+        morphs[17] = dom.createElementMorph(element8);
+        morphs[18] = dom.createAttrMorph(element10, 'class');
+        morphs[19] = dom.createElementMorph(element10);
+        morphs[20] = dom.createAttrMorph(element11, 'class');
+        morphs[21] = dom.createElementMorph(element11);
+        morphs[22] = dom.createAttrMorph(element12, 'class');
+        morphs[23] = dom.createElementMorph(element12);
+        morphs[24] = dom.createAttrMorph(element13, 'class');
+        morphs[25] = dom.createElementMorph(element13);
+        morphs[26] = dom.createAttrMorph(element14, 'class');
+        morphs[27] = dom.createElementMorph(element14);
+        morphs[28] = dom.createAttrMorph(element15, 'class');
+        morphs[29] = dom.createElementMorph(element15);
+        morphs[30] = dom.createMorphAt(dom.childAt(element16, [1]), 1, 1);
+        morphs[31] = dom.createAttrMorph(element17, 'class');
+        morphs[32] = dom.createElementMorph(element17);
+        morphs[33] = dom.createMorphAt(dom.childAt(element16, [5]), 1, 1);
+        morphs[34] = dom.createAttrMorph(element18, 'class');
+        morphs[35] = dom.createElementMorph(element18);
+        dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-appstruct-list-form.caption"], [], ["loc", [null, [1, 4], [1, 48]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "removeLeftNodeDisabled", ["loc", [null, [8, 40], [8, 62]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-list-form.remove-text"], [], ["loc", [null, [8, 73], [8, 121]]]]]]], ["element", "action", ["removeLeftNode"], ["on", "click"], ["loc", [null, [8, 123], [8, 162]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-list-form.add-class-text"], [], ["loc", [null, [11, 55], [11, 106]]]]]]], ["element", "action", ["addLeftClass"], [], ["loc", [null, [11, 108], [11, 133]]]], ["attribute", "class", ["concat", ["ui button create-button ", ["get", "addLeftNodeDisabled", ["loc", [null, [14, 49], [14, 68]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-list-form.add-editform-text"], [], ["loc", [null, [14, 79], [14, 133]]]]]]], ["element", "action", ["addLeftEditForm"], [], ["loc", [null, [14, 135], [14, 163]]]], ["attribute", "class", ["concat", ["ui button create-button ", ["get", "addLeftNodeDisabled", ["loc", [null, [17, 49], [17, 68]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-list-form.add-listform-text"], [], ["loc", [null, [17, 79], [17, 133]]]]]]], ["element", "action", ["addLeftListForm"], [], ["loc", [null, [17, 135], [17, 163]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "editLeftNodeDisabled", ["loc", [null, [20, 40], [20, 60]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-list-form.edit-text"], [], ["loc", [null, [20, 71], [20, 117]]]]]]], ["element", "action", ["editLeftNode"], ["on", "click"], ["loc", [null, [20, 119], [20, 156]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "listLeftDisabled", ["loc", [null, [23, 40], [23, 56]]]]]]], ["element", "action", ["listLeft"], ["on", "click"], ["loc", [null, [23, 60], [23, 93]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "addRightNodeDisabled", ["loc", [null, [31, 40], [31, 60]]]]]]], ["element", "action", ["moveRightHighlighted"], ["on", "click"], ["loc", [null, [31, 64], [31, 109]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "editRightNodeDisabled", ["loc", [null, [34, 42], [34, 63]]]]]]], ["element", "action", ["editRightNode"], ["on", "click"], ["loc", [null, [34, 67], [34, 105]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "removeRightNodeDisabled", ["loc", [null, [37, 40], [37, 63]]]]]]], ["element", "action", ["removeRightNode"], ["on", "click"], ["loc", [null, [37, 67], [37, 107]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "addFolderNodeDisabled", ["loc", [null, [40, 40], [40, 61]]]]]]], ["element", "action", ["addFolderNode"], ["on", "click"], ["loc", [null, [40, 65], [40, 103]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "upRightNodeDisabled", ["loc", [null, [43, 40], [43, 59]]]]]]], ["element", "action", ["upRightNode"], ["on", "click"], ["loc", [null, [43, 63], [43, 99]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "downRightNodeDisabled", ["loc", [null, [46, 40], [46, 61]]]]]]], ["element", "action", ["downRightNode"], ["on", "click"], ["loc", [null, [46, 65], [46, 103]]]], ["inline", "flexberry-tree", [], ["class", ["subexpr", "@mut", [["get", "jsonLeftTreeClass", ["loc", [null, [55, 14], [55, 31]]]]], [], []], "exclusive", ["subexpr", "@mut", [["get", "jsonTreeExclusive", ["loc", [null, [56, 18], [56, 35]]]]], [], []], "collapsible", ["subexpr", "@mut", [["get", "jsonLeftTreeCollapsible", ["loc", [null, [57, 20], [57, 43]]]]], [], []], "animateChildren", ["subexpr", "@mut", [["get", "jsonTreeAnimateChildren", ["loc", [null, [58, 24], [58, 47]]]]], [], []], "duration", ["subexpr", "@mut", [["get", "jsonTreeDuration", ["loc", [null, [59, 17], [59, 33]]]]], [], []], "nodes", ["subexpr", "get-with-dynamic-actions", [["get", "this", ["loc", [null, [60, 40], [60, 44]]]], "jsonLeftTreeNodes"], ["hierarchyPropertyName", "nodes", "pathKeyword", "nodePath", "dynamicActions", ["subexpr", "array", [["subexpr", "hash", [], ["on", "headerClick", "actionName", "onTreenodeHeaderClick", "actionArguments", ["subexpr", "array", ["{% nodePath %}"], [], ["loc", [null, [67, 30], [67, 54]]]]], ["loc", [null, [64, 12], [68, 13]]]]], [], ["loc", [null, [63, 25], [69, 11]]]]], ["loc", [null, [60, 14], [70, 9]]]]], ["loc", [null, [54, 8], [71, 8]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "moveRightDisabled", ["loc", [null, [74, 38], [74, 55]]]]]]], ["element", "action", ["moveRightHighlighted"], ["on", "click"], ["loc", [null, [74, 59], [74, 104]]]], ["inline", "flexberry-tree", [], ["class", ["subexpr", "@mut", [["get", "jsonRightTreeClass", ["loc", [null, [80, 14], [80, 32]]]]], [], []], "exclusive", ["subexpr", "@mut", [["get", "jsonTreeExclusive", ["loc", [null, [81, 18], [81, 35]]]]], [], []], "collapsible", ["subexpr", "@mut", [["get", "jsonRightTreeCollapsible", ["loc", [null, [82, 20], [82, 44]]]]], [], []], "animateChildren", ["subexpr", "@mut", [["get", "jsonTreeAnimateChildren", ["loc", [null, [83, 24], [83, 47]]]]], [], []], "duration", ["subexpr", "@mut", [["get", "jsonTreeDuration", ["loc", [null, [84, 17], [84, 33]]]]], [], []], "nodes", ["subexpr", "get-with-dynamic-actions", [["get", "this", ["loc", [null, [85, 40], [85, 44]]]], "jsonRightTreeNodes"], ["hierarchyPropertyName", "nodes", "pathKeyword", "nodePath", "dynamicActions", ["subexpr", "array", [["subexpr", "hash", [], ["on", "headerClick", "actionName", "onTreenodeHeaderClick", "actionArguments", ["subexpr", "array", ["{% nodePath %}"], [], ["loc", [null, [92, 30], [92, 54]]]]], ["loc", [null, [89, 12], [93, 13]]]]], [], ["loc", [null, [88, 25], [94, 11]]]]], ["loc", [null, [85, 14], [95, 9]]]]], ["loc", [null, [79, 8], [96, 8]]]], ["attribute", "class", ["concat", ["ui icon ", ["get", "saveButtonClass", ["loc", [null, [103, 25], [103, 40]]]], "  button"]]], ["element", "action", ["saveTree"], [], ["loc", [null, [103, 52], [103, 73]]]]],
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-appstruct-list-form.caption"], [], ["loc", [null, [2, 4], [2, 48]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "removeLeftNodeDisabled", ["loc", [null, [9, 40], [9, 62]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-list-form.remove-text"], [], ["loc", [null, [9, 73], [9, 121]]]]]]], ["element", "action", ["removeLeftNode"], ["on", "click"], ["loc", [null, [9, 123], [9, 162]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-list-form.add-class-text"], [], ["loc", [null, [12, 55], [12, 106]]]]]]], ["element", "action", ["addLeftClass"], [], ["loc", [null, [12, 108], [12, 133]]]], ["attribute", "class", ["concat", ["ui button create-button ", ["get", "addLeftNodeDisabled", ["loc", [null, [15, 49], [15, 68]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-list-form.add-editform-text"], [], ["loc", [null, [15, 79], [15, 133]]]]]]], ["element", "action", ["addLeftEditForm"], [], ["loc", [null, [15, 135], [15, 163]]]], ["attribute", "class", ["concat", ["ui button create-button ", ["get", "addLeftNodeDisabled", ["loc", [null, [18, 49], [18, 68]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-list-form.add-listform-text"], [], ["loc", [null, [18, 79], [18, 133]]]]]]], ["element", "action", ["addLeftListForm"], [], ["loc", [null, [18, 135], [18, 163]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "editLeftNodeDisabled", ["loc", [null, [21, 40], [21, 60]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-list-form.edit-text"], [], ["loc", [null, [21, 71], [21, 117]]]]]]], ["element", "action", ["editLeftNode"], ["on", "click"], ["loc", [null, [21, 119], [21, 156]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "listLeftDisabled", ["loc", [null, [24, 40], [24, 56]]]]]]], ["element", "action", ["listLeft"], ["on", "click"], ["loc", [null, [24, 60], [24, 93]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "addRightNodeDisabled", ["loc", [null, [32, 40], [32, 60]]]]]]], ["element", "action", ["moveRightHighlighted"], ["on", "click"], ["loc", [null, [32, 64], [32, 109]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "editRightNodeDisabled", ["loc", [null, [35, 42], [35, 63]]]]]]], ["element", "action", ["editRightNode"], ["on", "click"], ["loc", [null, [35, 67], [35, 105]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "removeRightNodeDisabled", ["loc", [null, [38, 40], [38, 63]]]]]]], ["element", "action", ["removeRightNode"], ["on", "click"], ["loc", [null, [38, 67], [38, 107]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "addFolderNodeDisabled", ["loc", [null, [41, 40], [41, 61]]]]]]], ["element", "action", ["addFolderNode"], ["on", "click"], ["loc", [null, [41, 65], [41, 103]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "upRightNodeDisabled", ["loc", [null, [44, 40], [44, 59]]]]]]], ["element", "action", ["upRightNode"], ["on", "click"], ["loc", [null, [44, 63], [44, 99]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "downRightNodeDisabled", ["loc", [null, [47, 40], [47, 61]]]]]]], ["element", "action", ["downRightNode"], ["on", "click"], ["loc", [null, [47, 65], [47, 103]]]], ["inline", "flexberry-tree", [], ["class", ["subexpr", "@mut", [["get", "jsonLeftTreeClass", ["loc", [null, [56, 14], [56, 31]]]]], [], []], "exclusive", ["subexpr", "@mut", [["get", "jsonTreeExclusive", ["loc", [null, [57, 18], [57, 35]]]]], [], []], "collapsible", ["subexpr", "@mut", [["get", "jsonLeftTreeCollapsible", ["loc", [null, [58, 20], [58, 43]]]]], [], []], "animateChildren", ["subexpr", "@mut", [["get", "jsonTreeAnimateChildren", ["loc", [null, [59, 24], [59, 47]]]]], [], []], "duration", ["subexpr", "@mut", [["get", "jsonTreeDuration", ["loc", [null, [60, 17], [60, 33]]]]], [], []], "nodes", ["subexpr", "get-with-dynamic-actions", [["get", "this", ["loc", [null, [61, 40], [61, 44]]]], "jsonLeftTreeNodes"], ["hierarchyPropertyName", "nodes", "pathKeyword", "nodePath", "dynamicActions", ["subexpr", "array", [["subexpr", "hash", [], ["on", "headerClick", "actionName", "onTreenodeHeaderClick", "actionArguments", ["subexpr", "array", ["{% nodePath %}"], [], ["loc", [null, [68, 30], [68, 54]]]]], ["loc", [null, [65, 12], [69, 13]]]]], [], ["loc", [null, [64, 25], [70, 11]]]]], ["loc", [null, [61, 14], [71, 9]]]]], ["loc", [null, [55, 8], [72, 8]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "moveRightDisabled", ["loc", [null, [75, 38], [75, 55]]]]]]], ["element", "action", ["moveRightHighlighted"], ["on", "click"], ["loc", [null, [75, 59], [75, 104]]]], ["inline", "flexberry-tree", [], ["class", ["subexpr", "@mut", [["get", "jsonRightTreeClass", ["loc", [null, [81, 14], [81, 32]]]]], [], []], "exclusive", ["subexpr", "@mut", [["get", "jsonTreeExclusive", ["loc", [null, [82, 18], [82, 35]]]]], [], []], "collapsible", ["subexpr", "@mut", [["get", "jsonRightTreeCollapsible", ["loc", [null, [83, 20], [83, 44]]]]], [], []], "animateChildren", ["subexpr", "@mut", [["get", "jsonTreeAnimateChildren", ["loc", [null, [84, 24], [84, 47]]]]], [], []], "duration", ["subexpr", "@mut", [["get", "jsonTreeDuration", ["loc", [null, [85, 17], [85, 33]]]]], [], []], "nodes", ["subexpr", "get-with-dynamic-actions", [["get", "this", ["loc", [null, [86, 40], [86, 44]]]], "jsonRightTreeNodes"], ["hierarchyPropertyName", "nodes", "pathKeyword", "nodePath", "dynamicActions", ["subexpr", "array", [["subexpr", "hash", [], ["on", "headerClick", "actionName", "onTreenodeHeaderClick", "actionArguments", ["subexpr", "array", ["{% nodePath %}"], [], ["loc", [null, [93, 30], [93, 54]]]]], ["loc", [null, [90, 12], [94, 13]]]]], [], ["loc", [null, [89, 25], [95, 11]]]]], ["loc", [null, [86, 14], [96, 9]]]]], ["loc", [null, [80, 8], [97, 8]]]], ["attribute", "class", ["concat", ["ui icon ", ["get", "saveButtonClass", ["loc", [null, [104, 25], [104, 40]]]], "  button"]]], ["element", "action", ["saveTree"], [], ["loc", [null, [104, 52], [104, 73]]]]],
       locals: [],
       templates: []
     };
@@ -23422,11 +24554,11 @@ define("dummy/templates/fd-association-edit-form", ["exports"], function (export
             "loc": {
               "source": null,
               "start": {
-                "line": 26,
+                "line": 27,
                 "column": 8
               },
               "end": {
-                "line": 30,
+                "line": 31,
                 "column": 8
               }
             },
@@ -23461,7 +24593,7 @@ define("dummy/templates/fd-association-edit-form", ["exports"], function (export
             morphs[1] = dom.createMorphAt(element0, 1, 1);
             return morphs;
           },
-          statements: [["element", "action", ["delete"], [], ["loc", [null, [27, 66], [27, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [28, 12], [28, 54]]]]],
+          statements: [["element", "action", ["delete"], [], ["loc", [null, [28, 66], [28, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [29, 12], [29, 54]]]]],
           locals: [],
           templates: []
         };
@@ -23473,11 +24605,11 @@ define("dummy/templates/fd-association-edit-form", ["exports"], function (export
           "loc": {
             "source": null,
             "start": {
-              "line": 22,
+              "line": 23,
               "column": 6
             },
             "end": {
-              "line": 31,
+              "line": 32,
               "column": 6
             }
           },
@@ -23516,7 +24648,7 @@ define("dummy/templates/fd-association-edit-form", ["exports"], function (export
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [["element", "action", ["save"], [], ["loc", [null, [23, 60], [23, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [24, 10], [24, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [26, 18], [26, 29]]]]], [], 0, null, ["loc", [null, [26, 8], [30, 19]]]]],
+        statements: [["element", "action", ["save"], [], ["loc", [null, [24, 60], [24, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [25, 10], [25, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [27, 18], [27, 29]]]]], [], 0, null, ["loc", [null, [27, 8], [31, 19]]]]],
         locals: [],
         templates: [child0]
       };
@@ -23535,7 +24667,7 @@ define("dummy/templates/fd-association-edit-form", ["exports"], function (export
             "column": 0
           },
           "end": {
-            "line": 64,
+            "line": 65,
             "column": 0
           }
         },
@@ -23559,6 +24691,10 @@ define("dummy/templates/fd-association-edit-form", ["exports"], function (export
         var el1 = dom.createElement("form");
         dom.setAttribute(el1, "class", "ui form flexberry-vertical-form");
         dom.setAttribute(el1, "role", "form");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
@@ -23646,24 +24782,25 @@ define("dummy/templates/fd-association-edit-form", ["exports"], function (export
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element2 = dom.childAt(fragment, [3]);
-        var element3 = dom.childAt(element2, [3, 1]);
+        var element3 = dom.childAt(element2, [5, 1]);
         var element4 = dom.childAt(element3, [3]);
-        var element5 = dom.childAt(element2, [5]);
-        var element6 = dom.childAt(element2, [7]);
-        var morphs = new Array(10);
+        var element5 = dom.childAt(element2, [7]);
+        var element6 = dom.childAt(element2, [9]);
+        var morphs = new Array(11);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
         morphs[1] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        morphs[2] = dom.createMorphAt(dom.childAt(element2, [1, 1]), 1, 1);
-        morphs[3] = dom.createMorphAt(element3, 1, 1);
-        morphs[4] = dom.createElementMorph(element4);
-        morphs[5] = dom.createMorphAt(element4, 1, 1);
-        morphs[6] = dom.createMorphAt(element5, 1, 1);
-        morphs[7] = dom.createMorphAt(element5, 3, 3);
-        morphs[8] = dom.createMorphAt(element6, 1, 1);
-        morphs[9] = dom.createMorphAt(element6, 3, 3);
+        morphs[2] = dom.createMorphAt(element2, 1, 1);
+        morphs[3] = dom.createMorphAt(dom.childAt(element2, [3, 1]), 1, 1);
+        morphs[4] = dom.createMorphAt(element3, 1, 1);
+        morphs[5] = dom.createElementMorph(element4);
+        morphs[6] = dom.createMorphAt(element4, 1, 1);
+        morphs[7] = dom.createMorphAt(element5, 1, 1);
+        morphs[8] = dom.createMorphAt(element5, 3, 3);
+        morphs[9] = dom.createMorphAt(element6, 1, 1);
+        morphs[10] = dom.createMorphAt(element6, 3, 3);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-association-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 68]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [17, 43], [17, 55]]]]], [], []]], ["loc", [null, [17, 6], [17, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [22, 16], [22, 24]]]]], [], 1, null, ["loc", [null, [22, 6], [31, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [32, 59], [32, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [33, 8], [33, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [40, 16], [40, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [41, 13], [41, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [43, 10], [43, 20]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [44, 14], [44, 31]]]], "error", ""], [], ["loc", [null, [44, 10], [44, 43]]]], "label", ["subexpr", "t", ["forms.fd-association-edit-form.name-caption"], [], ["loc", [null, [45, 10], [45, 59]]]]], ["loc", [null, [38, 2], [46, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [47, 38], [47, 55]]]]], [], []], "pointing", "pointing"], ["loc", [null, [47, 2], [47, 77]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [53, 16], [53, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [54, 13], [54, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [56, 10], [56, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [57, 14], [57, 38]]]], "error", ""], [], ["loc", [null, [57, 10], [57, 50]]]], "label", ["subexpr", "t", ["forms.fd-association-edit-form.description-caption"], [], ["loc", [null, [58, 10], [58, 66]]]]], ["loc", [null, [51, 2], [59, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [60, 38], [60, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [60, 2], [60, 84]]]]],
+      statements: [["inline", "t", ["forms.fd-association-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 68]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [15, 26], [15, 31]]]]], [], []]], ["loc", [null, [15, 2], [15, 33]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [18, 43], [18, 55]]]]], [], []]], ["loc", [null, [18, 6], [18, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [23, 16], [23, 24]]]]], [], 1, null, ["loc", [null, [23, 6], [32, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [33, 59], [33, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [34, 8], [34, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [41, 16], [41, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [42, 13], [42, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [44, 10], [44, 20]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [45, 14], [45, 31]]]], "error", ""], [], ["loc", [null, [45, 10], [45, 43]]]], "label", ["subexpr", "t", ["forms.fd-association-edit-form.name-caption"], [], ["loc", [null, [46, 10], [46, 59]]]]], ["loc", [null, [39, 2], [47, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [48, 38], [48, 55]]]]], [], []], "pointing", "pointing"], ["loc", [null, [48, 2], [48, 77]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [54, 16], [54, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [55, 13], [55, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [57, 10], [57, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [58, 14], [58, 38]]]], "error", ""], [], ["loc", [null, [58, 10], [58, 50]]]], "label", ["subexpr", "t", ["forms.fd-association-edit-form.description-caption"], [], ["loc", [null, [59, 10], [59, 66]]]]], ["loc", [null, [52, 2], [60, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [61, 38], [61, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [61, 2], [61, 84]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -23675,7 +24812,7 @@ define("dummy/templates/fd-association-list-form", ["exports"], function (export
       meta: {
         "fragmentReason": {
           "name": "missing-wrapper",
-          "problems": ["multiple-nodes"]
+          "problems": ["wrong-type", "multiple-nodes"]
         },
         "revision": "Ember@2.4.6",
         "loc": {
@@ -23685,7 +24822,7 @@ define("dummy/templates/fd-association-list-form", ["exports"], function (export
             "column": 0
           },
           "end": {
-            "line": 26,
+            "line": 27,
             "column": 0
           }
         },
@@ -23697,6 +24834,10 @@ define("dummy/templates/fd-association-list-form", ["exports"], function (export
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         var el1 = dom.createElement("h3");
         var el2 = dom.createComment("");
         dom.appendChild(el1, el2);
@@ -23717,12 +24858,14 @@ define("dummy/templates/fd-association-list-form", ["exports"], function (export
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(2);
-        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
-        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 1, 1);
+        var morphs = new Array(3);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 0, 0);
+        morphs[2] = dom.createMorphAt(dom.childAt(fragment, [4]), 1, 1);
+        dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-association-list-form.caption"], [], ["loc", [null, [1, 4], [1, 50]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-association", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [5, 20], [5, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [6, 18], [6, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [7, 12], [7, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [10, 12], [10, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [12, 17], [12, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [13, 23], [13, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [14, 10], [14, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [15, 17], [15, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [16, 18], [16, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [17, 22], [17, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [18, 20], [18, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [19, 16], [19, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [20, 17], [20, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [21, 13], [21, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [22, 13], [22, 32]]]], "componentName", "FdAssociationListForm"], ["loc", [null, [3, 2], [24, 4]]]]],
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-association-list-form.caption"], [], ["loc", [null, [2, 4], [2, 50]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-association", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [11, 12], [11, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [13, 17], [13, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [14, 23], [14, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [15, 10], [15, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [16, 17], [16, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [17, 18], [17, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [18, 22], [18, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [19, 20], [19, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [20, 16], [20, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [21, 17], [21, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [22, 13], [22, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [23, 13], [23, 32]]]], "componentName", "FdAssociationListForm"], ["loc", [null, [4, 2], [25, 4]]]]],
       locals: [],
       templates: []
     };
@@ -23878,11 +25021,11 @@ define("dummy/templates/fd-class-edit-form", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 26,
+                "line": 27,
                 "column": 8
               },
               "end": {
-                "line": 30,
+                "line": 31,
                 "column": 8
               }
             },
@@ -23911,13 +25054,13 @@ define("dummy/templates/fd-class-edit-form", ["exports"], function (exports) {
             return el0;
           },
           buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-            var element0 = dom.childAt(fragment, [1]);
+            var element4 = dom.childAt(fragment, [1]);
             var morphs = new Array(2);
-            morphs[0] = dom.createElementMorph(element0);
-            morphs[1] = dom.createMorphAt(element0, 1, 1);
+            morphs[0] = dom.createElementMorph(element4);
+            morphs[1] = dom.createMorphAt(element4, 1, 1);
             return morphs;
           },
-          statements: [["element", "action", ["delete"], [], ["loc", [null, [27, 66], [27, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [28, 12], [28, 54]]]]],
+          statements: [["element", "action", ["delete"], [], ["loc", [null, [28, 66], [28, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [29, 12], [29, 54]]]]],
           locals: [],
           templates: []
         };
@@ -23929,11 +25072,11 @@ define("dummy/templates/fd-class-edit-form", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 22,
+              "line": 23,
               "column": 6
             },
             "end": {
-              "line": 31,
+              "line": 32,
               "column": 6
             }
           },
@@ -23964,17 +25107,140 @@ define("dummy/templates/fd-class-edit-form", ["exports"], function (exports) {
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var element1 = dom.childAt(fragment, [1]);
+          var element5 = dom.childAt(fragment, [1]);
           var morphs = new Array(3);
-          morphs[0] = dom.createElementMorph(element1);
-          morphs[1] = dom.createMorphAt(element1, 1, 1);
+          morphs[0] = dom.createElementMorph(element5);
+          morphs[1] = dom.createMorphAt(element5, 1, 1);
           morphs[2] = dom.createMorphAt(fragment, 3, 3, contextualElement);
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [["element", "action", ["save"], [], ["loc", [null, [23, 60], [23, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [24, 10], [24, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [26, 18], [26, 29]]]]], [], 0, null, ["loc", [null, [26, 8], [30, 19]]]]],
+        statements: [["element", "action", ["save"], [], ["loc", [null, [24, 60], [24, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [25, 10], [25, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [27, 18], [27, 29]]]]], [], 0, null, ["loc", [null, [27, 8], [31, 19]]]]],
         locals: [],
         templates: [child0]
+      };
+    })();
+    var child2 = (function () {
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 67,
+              "column": 2
+            },
+            "end": {
+              "line": 127,
+              "column": 2
+            }
+          },
+          "moduleName": "dummy/templates/fd-class-edit-form.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "field");
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n\n    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "field");
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n\n    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "field");
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("label");
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n\n    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "field");
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("label");
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element0 = dom.childAt(fragment, [1]);
+          var element1 = dom.childAt(fragment, [3]);
+          var element2 = dom.childAt(fragment, [5]);
+          var element3 = dom.childAt(fragment, [7]);
+          var morphs = new Array(10);
+          morphs[0] = dom.createMorphAt(element0, 1, 1);
+          morphs[1] = dom.createMorphAt(element0, 3, 3);
+          morphs[2] = dom.createMorphAt(element1, 1, 1);
+          morphs[3] = dom.createMorphAt(element1, 3, 3);
+          morphs[4] = dom.createMorphAt(dom.childAt(element2, [1]), 0, 0);
+          morphs[5] = dom.createMorphAt(element2, 3, 3);
+          morphs[6] = dom.createMorphAt(element2, 5, 5);
+          morphs[7] = dom.createMorphAt(dom.childAt(element3, [1]), 0, 0);
+          morphs[8] = dom.createMorphAt(element3, 3, 3);
+          morphs[9] = dom.createMorphAt(element3, 5, 5);
+          return morphs;
+        },
+        statements: [["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [75, 20], [75, 64]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [76, 17], [76, 25]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [78, 14], [78, 24]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [79, 18], [79, 35]]]], "error", ""], [], ["loc", [null, [79, 14], [79, 47]]]], "label", ["subexpr", "t", ["forms.fd-class-edit-form.name-caption"], [], ["loc", [null, [80, 14], [80, 57]]]]], ["loc", [null, [73, 6], [81, 8]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [82, 42], [82, 59]]]]], [], []], "pointing", "pointing"], ["loc", [null, [82, 6], [82, 81]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [88, 20], [88, 64]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [89, 17], [89, 25]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.publishName", ["loc", [null, [91, 14], [91, 31]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.publishName", ["loc", [null, [92, 18], [92, 42]]]], "error", ""], [], ["loc", [null, [92, 14], [92, 54]]]], "label", ["subexpr", "t", ["forms.fd-class-edit-form.publishName-caption"], [], ["loc", [null, [93, 14], [93, 64]]]]], ["loc", [null, [86, 6], [94, 8]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.publishName", ["loc", [null, [95, 42], [95, 66]]]]], [], []], "pointing", "pointing"], ["loc", [null, [95, 6], [95, 88]]]], ["inline", "t", ["forms.fd-class-edit-form.views-caption"], [], ["loc", [null, [99, 13], [99, 59]]]], ["inline", "flexberry-groupedit", [], ["componentName", "viewsGroupEdit", "mainModelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [103, 28], [103, 43]]]]], [], []], "modelProjection", ["subexpr", "@mut", [["get", "modelProjection.attributes.views", ["loc", [null, [104, 24], [104, 56]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model.views", ["loc", [null, [105, 16], [105, 27]]]]], [], []], "readonly", true, "orderable", false, "class", ["subexpr", "if", [["get", "model.errors.views", ["loc", [null, [108, 18], [108, 36]]]], "error", ""], [], ["loc", [null, [108, 14], [108, 48]]]]], ["loc", [null, [100, 6], [109, 8]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.views", ["loc", [null, [110, 42], [110, 60]]]]], [], []], "pointing", "pointing"], ["loc", [null, [110, 6], [110, 82]]]], ["inline", "t", ["forms.fd-class-edit-form.classStorageTypes-caption"], [], ["loc", [null, [114, 13], [114, 71]]]], ["inline", "flexberry-groupedit", [], ["componentName", "classStorageTypesGroupEdit", "mainModelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [118, 28], [118, 43]]]]], [], []], "modelProjection", ["subexpr", "@mut", [["get", "modelProjection.attributes.classStorageTypes", ["loc", [null, [119, 24], [119, 68]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model.classStorageTypes", ["loc", [null, [120, 16], [120, 39]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [121, 17], [121, 25]]]]], [], []], "orderable", false, "class", ["subexpr", "if", [["get", "model.errors.classStorageTypes", ["loc", [null, [123, 18], [123, 48]]]], "error", ""], [], ["loc", [null, [123, 14], [123, 60]]]]], ["loc", [null, [115, 6], [124, 8]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.classStorageTypes", ["loc", [null, [125, 42], [125, 72]]]]], [], []], "pointing", "pointing"], ["loc", [null, [125, 6], [125, 94]]]]],
+        locals: [],
+        templates: []
       };
     })();
     return {
@@ -23991,7 +25257,7 @@ define("dummy/templates/fd-class-edit-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 64,
+            "line": 129,
             "column": 0
           }
         },
@@ -24015,6 +25281,10 @@ define("dummy/templates/fd-class-edit-form", ["exports"], function (exports) {
         var el1 = dom.createElement("form");
         dom.setAttribute(el1, "class", "ui form flexberry-vertical-form");
         dom.setAttribute(el1, "role", "form");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
@@ -24063,37 +25333,45 @@ define("dummy/templates/fd-class-edit-form", ["exports"], function (exports) {
         var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n  ");
+        var el2 = dom.createTextNode("\n\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
         dom.setAttribute(el2, "class", "field");
-        var el3 = dom.createTextNode("\n  ");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
         var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "field");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("label");
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
         var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n\n");
         dom.appendChild(el1, el2);
-        var el2 = dom.createElement("div");
-        dom.setAttribute(el2, "class", "field");
-        var el3 = dom.createTextNode("\n  ");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createComment("");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n  ");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createComment("");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n");
-        dom.appendChild(el2, el3);
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n");
+        var el2 = dom.createComment("");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
@@ -24101,27 +25379,30 @@ define("dummy/templates/fd-class-edit-form", ["exports"], function (exports) {
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var element2 = dom.childAt(fragment, [3]);
-        var element3 = dom.childAt(element2, [3, 1]);
-        var element4 = dom.childAt(element3, [3]);
-        var element5 = dom.childAt(element2, [5]);
-        var element6 = dom.childAt(element2, [7]);
-        var morphs = new Array(10);
+        var element6 = dom.childAt(fragment, [3]);
+        var element7 = dom.childAt(element6, [5, 1]);
+        var element8 = dom.childAt(element7, [3]);
+        var element9 = dom.childAt(element6, [7]);
+        var element10 = dom.childAt(element6, [9]);
+        var morphs = new Array(13);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
         morphs[1] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        morphs[2] = dom.createMorphAt(dom.childAt(element2, [1, 1]), 1, 1);
-        morphs[3] = dom.createMorphAt(element3, 1, 1);
-        morphs[4] = dom.createElementMorph(element4);
-        morphs[5] = dom.createMorphAt(element4, 1, 1);
-        morphs[6] = dom.createMorphAt(element5, 1, 1);
-        morphs[7] = dom.createMorphAt(element5, 3, 3);
-        morphs[8] = dom.createMorphAt(element6, 1, 1);
-        morphs[9] = dom.createMorphAt(element6, 3, 3);
+        morphs[2] = dom.createMorphAt(element6, 1, 1);
+        morphs[3] = dom.createMorphAt(dom.childAt(element6, [3, 1]), 1, 1);
+        morphs[4] = dom.createMorphAt(element7, 1, 1);
+        morphs[5] = dom.createElementMorph(element8);
+        morphs[6] = dom.createMorphAt(element8, 1, 1);
+        morphs[7] = dom.createMorphAt(element9, 1, 1);
+        morphs[8] = dom.createMorphAt(element9, 3, 3);
+        morphs[9] = dom.createMorphAt(dom.childAt(element10, [1]), 0, 0);
+        morphs[10] = dom.createMorphAt(element10, 3, 3);
+        morphs[11] = dom.createMorphAt(element10, 5, 5);
+        morphs[12] = dom.createMorphAt(element6, 11, 11);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-class-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 62]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [17, 43], [17, 55]]]]], [], []]], ["loc", [null, [17, 6], [17, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [22, 16], [22, 24]]]]], [], 1, null, ["loc", [null, [22, 6], [31, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [32, 59], [32, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [33, 8], [33, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [40, 16], [40, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [41, 13], [41, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [43, 10], [43, 20]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [44, 14], [44, 31]]]], "error", ""], [], ["loc", [null, [44, 10], [44, 43]]]], "label", ["subexpr", "t", ["forms.fd-class-edit-form.name-caption"], [], ["loc", [null, [45, 10], [45, 53]]]]], ["loc", [null, [38, 2], [46, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [47, 38], [47, 55]]]]], [], []], "pointing", "pointing"], ["loc", [null, [47, 2], [47, 77]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [53, 16], [53, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [54, 13], [54, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [56, 10], [56, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [57, 14], [57, 38]]]], "error", ""], [], ["loc", [null, [57, 10], [57, 50]]]], "label", ["subexpr", "t", ["forms.fd-class-edit-form.description-caption"], [], ["loc", [null, [58, 10], [58, 60]]]]], ["loc", [null, [51, 2], [59, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [60, 38], [60, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [60, 2], [60, 84]]]]],
+      statements: [["inline", "t", ["forms.fd-class-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 62]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [15, 26], [15, 31]]]]], [], []]], ["loc", [null, [15, 2], [15, 33]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [18, 43], [18, 55]]]]], [], []]], ["loc", [null, [18, 6], [18, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [23, 16], [23, 24]]]]], [], 1, null, ["loc", [null, [23, 6], [32, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [33, 59], [33, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [34, 8], [34, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [42, 18], [42, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [43, 15], [43, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.caption", ["loc", [null, [45, 12], [45, 25]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.caption", ["loc", [null, [46, 16], [46, 36]]]], "error", ""], [], ["loc", [null, [46, 12], [46, 48]]]], "label", ["subexpr", "t", ["forms.fd-class-edit-form.caption-caption"], [], ["loc", [null, [47, 12], [47, 58]]]]], ["loc", [null, [40, 4], [48, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.caption", ["loc", [null, [49, 40], [49, 60]]]]], [], []], "pointing", "pointing"], ["loc", [null, [49, 4], [49, 82]]]], ["inline", "t", ["forms.fd-class-edit-form.attributes-caption"], [], ["loc", [null, [53, 11], [53, 62]]]], ["inline", "flexberry-groupedit", [], ["componentName", "attributesGroupEdit", "mainModelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [57, 26], [57, 41]]]]], [], []], "modelProjection", ["subexpr", "@mut", [["get", "modelProjection.attributes.attributes", ["loc", [null, [58, 22], [58, 59]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model.attributes", ["loc", [null, [59, 14], [59, 30]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [60, 15], [60, 23]]]]], [], []], "orderable", false, "class", ["subexpr", "if", [["get", "model.errors.attributes", ["loc", [null, [62, 16], [62, 39]]]], "error", ""], [], ["loc", [null, [62, 12], [62, 51]]]]], ["loc", [null, [54, 4], [63, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.attributes", ["loc", [null, [64, 40], [64, 63]]]]], [], []], "pointing", "pointing"], ["loc", [null, [64, 4], [64, 85]]]], ["block", "flexberry-toggler", [], ["caption", ["subexpr", "t", ["forms.fd-class-edit-form.toggler-caption"], [], ["loc", [null, [68, 12], [68, 58]]]], "expanded", true, "hasResizableOLV", true], 2, null, ["loc", [null, [67, 2], [127, 24]]]]],
       locals: [],
-      templates: [child0, child1]
+      templates: [child0, child1, child2]
     };
   })());
 });
@@ -24131,7 +25412,7 @@ define("dummy/templates/fd-class-list-form", ["exports"], function (exports) {
       meta: {
         "fragmentReason": {
           "name": "missing-wrapper",
-          "problems": ["multiple-nodes"]
+          "problems": ["wrong-type", "multiple-nodes"]
         },
         "revision": "Ember@2.4.6",
         "loc": {
@@ -24141,7 +25422,7 @@ define("dummy/templates/fd-class-list-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 28,
+            "line": 29,
             "column": 0
           }
         },
@@ -24153,6 +25434,10 @@ define("dummy/templates/fd-class-list-form", ["exports"], function (exports) {
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         var el1 = dom.createElement("h3");
         var el2 = dom.createComment("");
         dom.appendChild(el1, el2);
@@ -24173,12 +25458,14 @@ define("dummy/templates/fd-class-list-form", ["exports"], function (exports) {
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(2);
-        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
-        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 1, 1);
+        var morphs = new Array(3);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 0, 0);
+        morphs[2] = dom.createMorphAt(dom.childAt(fragment, [4]), 1, 1);
+        dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-class-list-form.caption"], [], ["loc", [null, [1, 4], [1, 44]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-class", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [5, 20], [5, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [6, 18], [6, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [7, 12], [7, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [12, 12], [12, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [14, 17], [14, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [15, 23], [15, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [16, 10], [16, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [17, 17], [17, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [18, 18], [18, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [19, 22], [19, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [20, 20], [20, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [21, 16], [21, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [22, 17], [22, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [23, 13], [23, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [24, 13], [24, 32]]]], "componentName", "FdClassListForm"], ["loc", [null, [3, 2], [26, 4]]]]],
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-class-list-form.caption"], [], ["loc", [null, [2, 4], [2, 44]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-class", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [13, 12], [13, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [15, 17], [15, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [16, 23], [16, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [17, 10], [17, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [18, 17], [18, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [19, 18], [19, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [20, 22], [20, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [21, 20], [21, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [22, 16], [22, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [23, 17], [23, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [24, 13], [24, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [25, 13], [25, 32]]]], "componentName", "FdClassListForm"], ["loc", [null, [4, 2], [27, 4]]]]],
       locals: [],
       templates: []
     };
@@ -24334,11 +25621,11 @@ define("dummy/templates/fd-configuration-edit-form", ["exports"], function (expo
             "loc": {
               "source": null,
               "start": {
-                "line": 26,
+                "line": 27,
                 "column": 8
               },
               "end": {
-                "line": 30,
+                "line": 31,
                 "column": 8
               }
             },
@@ -24373,7 +25660,7 @@ define("dummy/templates/fd-configuration-edit-form", ["exports"], function (expo
             morphs[1] = dom.createMorphAt(element0, 1, 1);
             return morphs;
           },
-          statements: [["element", "action", ["delete"], [], ["loc", [null, [27, 66], [27, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [28, 12], [28, 54]]]]],
+          statements: [["element", "action", ["delete"], [], ["loc", [null, [28, 66], [28, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [29, 12], [29, 54]]]]],
           locals: [],
           templates: []
         };
@@ -24385,11 +25672,11 @@ define("dummy/templates/fd-configuration-edit-form", ["exports"], function (expo
           "loc": {
             "source": null,
             "start": {
-              "line": 22,
+              "line": 23,
               "column": 6
             },
             "end": {
-              "line": 31,
+              "line": 32,
               "column": 6
             }
           },
@@ -24428,7 +25715,7 @@ define("dummy/templates/fd-configuration-edit-form", ["exports"], function (expo
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [["element", "action", ["save"], [], ["loc", [null, [23, 60], [23, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [24, 10], [24, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [26, 18], [26, 29]]]]], [], 0, null, ["loc", [null, [26, 8], [30, 19]]]]],
+        statements: [["element", "action", ["save"], [], ["loc", [null, [24, 60], [24, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [25, 10], [25, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [27, 18], [27, 29]]]]], [], 0, null, ["loc", [null, [27, 8], [31, 19]]]]],
         locals: [],
         templates: [child0]
       };
@@ -24447,7 +25734,7 @@ define("dummy/templates/fd-configuration-edit-form", ["exports"], function (expo
             "column": 0
           },
           "end": {
-            "line": 64,
+            "line": 65,
             "column": 0
           }
         },
@@ -24471,6 +25758,10 @@ define("dummy/templates/fd-configuration-edit-form", ["exports"], function (expo
         var el1 = dom.createElement("form");
         dom.setAttribute(el1, "class", "ui form flexberry-vertical-form");
         dom.setAttribute(el1, "role", "form");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
@@ -24558,24 +25849,25 @@ define("dummy/templates/fd-configuration-edit-form", ["exports"], function (expo
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element2 = dom.childAt(fragment, [3]);
-        var element3 = dom.childAt(element2, [3, 1]);
+        var element3 = dom.childAt(element2, [5, 1]);
         var element4 = dom.childAt(element3, [3]);
-        var element5 = dom.childAt(element2, [5]);
-        var element6 = dom.childAt(element2, [7]);
-        var morphs = new Array(10);
+        var element5 = dom.childAt(element2, [7]);
+        var element6 = dom.childAt(element2, [9]);
+        var morphs = new Array(11);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
         morphs[1] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        morphs[2] = dom.createMorphAt(dom.childAt(element2, [1, 1]), 1, 1);
-        morphs[3] = dom.createMorphAt(element3, 1, 1);
-        morphs[4] = dom.createElementMorph(element4);
-        morphs[5] = dom.createMorphAt(element4, 1, 1);
-        morphs[6] = dom.createMorphAt(element5, 1, 1);
-        morphs[7] = dom.createMorphAt(element5, 3, 3);
-        morphs[8] = dom.createMorphAt(element6, 1, 1);
-        morphs[9] = dom.createMorphAt(element6, 3, 3);
+        morphs[2] = dom.createMorphAt(element2, 1, 1);
+        morphs[3] = dom.createMorphAt(dom.childAt(element2, [3, 1]), 1, 1);
+        morphs[4] = dom.createMorphAt(element3, 1, 1);
+        morphs[5] = dom.createElementMorph(element4);
+        morphs[6] = dom.createMorphAt(element4, 1, 1);
+        morphs[7] = dom.createMorphAt(element5, 1, 1);
+        morphs[8] = dom.createMorphAt(element5, 3, 3);
+        morphs[9] = dom.createMorphAt(element6, 1, 1);
+        morphs[10] = dom.createMorphAt(element6, 3, 3);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-configuration-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 70]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [17, 43], [17, 55]]]]], [], []]], ["loc", [null, [17, 6], [17, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [22, 16], [22, 24]]]]], [], 1, null, ["loc", [null, [22, 6], [31, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [32, 59], [32, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [33, 8], [33, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [40, 16], [40, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [41, 13], [41, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [43, 10], [43, 20]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [44, 14], [44, 31]]]], "error", ""], [], ["loc", [null, [44, 10], [44, 43]]]], "label", ["subexpr", "t", ["forms.fd-configuration-edit-form.name-caption"], [], ["loc", [null, [45, 10], [45, 61]]]]], ["loc", [null, [38, 2], [46, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [47, 38], [47, 55]]]]], [], []], "pointing", "pointing"], ["loc", [null, [47, 2], [47, 77]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [53, 16], [53, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [54, 13], [54, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [56, 10], [56, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [57, 14], [57, 38]]]], "error", ""], [], ["loc", [null, [57, 10], [57, 50]]]], "label", ["subexpr", "t", ["forms.fd-configuration-edit-form.description-caption"], [], ["loc", [null, [58, 10], [58, 68]]]]], ["loc", [null, [51, 2], [59, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [60, 38], [60, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [60, 2], [60, 84]]]]],
+      statements: [["inline", "t", ["forms.fd-configuration-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 70]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [15, 26], [15, 31]]]]], [], []]], ["loc", [null, [15, 2], [15, 33]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [18, 43], [18, 55]]]]], [], []]], ["loc", [null, [18, 6], [18, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [23, 16], [23, 24]]]]], [], 1, null, ["loc", [null, [23, 6], [32, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [33, 59], [33, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [34, 8], [34, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [41, 16], [41, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [42, 13], [42, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [44, 10], [44, 20]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [45, 14], [45, 31]]]], "error", ""], [], ["loc", [null, [45, 10], [45, 43]]]], "label", ["subexpr", "t", ["forms.fd-configuration-edit-form.name-caption"], [], ["loc", [null, [46, 10], [46, 61]]]]], ["loc", [null, [39, 2], [47, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [48, 38], [48, 55]]]]], [], []], "pointing", "pointing"], ["loc", [null, [48, 2], [48, 77]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [54, 16], [54, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [55, 13], [55, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [57, 10], [57, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [58, 14], [58, 38]]]], "error", ""], [], ["loc", [null, [58, 10], [58, 50]]]], "label", ["subexpr", "t", ["forms.fd-configuration-edit-form.description-caption"], [], ["loc", [null, [59, 10], [59, 68]]]]], ["loc", [null, [52, 2], [60, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [61, 38], [61, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [61, 2], [61, 84]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -24587,7 +25879,7 @@ define("dummy/templates/fd-configuration-list-form", ["exports"], function (expo
       meta: {
         "fragmentReason": {
           "name": "missing-wrapper",
-          "problems": ["multiple-nodes"]
+          "problems": ["wrong-type", "multiple-nodes"]
         },
         "revision": "Ember@2.4.6",
         "loc": {
@@ -24597,7 +25889,7 @@ define("dummy/templates/fd-configuration-list-form", ["exports"], function (expo
             "column": 0
           },
           "end": {
-            "line": 28,
+            "line": 29,
             "column": 0
           }
         },
@@ -24609,6 +25901,10 @@ define("dummy/templates/fd-configuration-list-form", ["exports"], function (expo
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         var el1 = dom.createElement("h3");
         var el2 = dom.createComment("");
         dom.appendChild(el1, el2);
@@ -24629,12 +25925,14 @@ define("dummy/templates/fd-configuration-list-form", ["exports"], function (expo
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(2);
-        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
-        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 1, 1);
+        var morphs = new Array(3);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 0, 0);
+        morphs[2] = dom.createMorphAt(dom.childAt(fragment, [4]), 1, 1);
+        dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-configuration-list-form.caption"], [], ["loc", [null, [1, 4], [1, 52]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-configuration", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [5, 20], [5, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [6, 18], [6, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [7, 12], [7, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [12, 12], [12, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [14, 17], [14, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [15, 23], [15, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [16, 10], [16, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [17, 17], [17, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [18, 18], [18, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [19, 22], [19, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [20, 20], [20, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [21, 16], [21, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [22, 17], [22, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [23, 13], [23, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [24, 13], [24, 32]]]], "componentName", "FdConfigurationListForm"], ["loc", [null, [3, 2], [26, 4]]]]],
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-configuration-list-form.caption"], [], ["loc", [null, [2, 4], [2, 52]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-configuration", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [13, 12], [13, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [15, 17], [15, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [16, 23], [16, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [17, 10], [17, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [18, 17], [18, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [19, 18], [19, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [20, 22], [20, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [21, 20], [21, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [22, 16], [22, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [23, 17], [23, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [24, 13], [24, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [25, 13], [25, 32]]]], "componentName", "FdConfigurationListForm"], ["loc", [null, [4, 2], [27, 4]]]]],
       locals: [],
       templates: []
     };
@@ -24790,11 +26088,11 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 26,
+                "line": 27,
                 "column": 8
               },
               "end": {
-                "line": 30,
+                "line": 31,
                 "column": 8
               }
             },
@@ -24829,7 +26127,7 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
             morphs[1] = dom.createMorphAt(element0, 1, 1);
             return morphs;
           },
-          statements: [["element", "action", ["delete"], [], ["loc", [null, [27, 66], [27, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [28, 12], [28, 54]]]]],
+          statements: [["element", "action", ["delete"], [], ["loc", [null, [28, 66], [28, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [29, 12], [29, 54]]]]],
           locals: [],
           templates: []
         };
@@ -24841,11 +26139,11 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 22,
+              "line": 23,
               "column": 6
             },
             "end": {
-              "line": 31,
+              "line": 32,
               "column": 6
             }
           },
@@ -24884,7 +26182,7 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [["element", "action", ["save"], [], ["loc", [null, [23, 60], [23, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [24, 10], [24, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [26, 18], [26, 29]]]]], [], 0, null, ["loc", [null, [26, 8], [30, 19]]]]],
+        statements: [["element", "action", ["save"], [], ["loc", [null, [24, 60], [24, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [25, 10], [25, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [27, 18], [27, 29]]]]], [], 0, null, ["loc", [null, [27, 8], [31, 19]]]]],
         locals: [],
         templates: [child0]
       };
@@ -24903,7 +26201,7 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 64,
+            "line": 65,
             "column": 0
           }
         },
@@ -24927,6 +26225,10 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
         var el1 = dom.createElement("form");
         dom.setAttribute(el1, "class", "ui form flexberry-vertical-form");
         dom.setAttribute(el1, "role", "form");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
@@ -25014,24 +26316,25 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element2 = dom.childAt(fragment, [3]);
-        var element3 = dom.childAt(element2, [3, 1]);
+        var element3 = dom.childAt(element2, [5, 1]);
         var element4 = dom.childAt(element3, [3]);
-        var element5 = dom.childAt(element2, [5]);
-        var element6 = dom.childAt(element2, [7]);
-        var morphs = new Array(10);
+        var element5 = dom.childAt(element2, [7]);
+        var element6 = dom.childAt(element2, [9]);
+        var morphs = new Array(11);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
         morphs[1] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        morphs[2] = dom.createMorphAt(dom.childAt(element2, [1, 1]), 1, 1);
-        morphs[3] = dom.createMorphAt(element3, 1, 1);
-        morphs[4] = dom.createElementMorph(element4);
-        morphs[5] = dom.createMorphAt(element4, 1, 1);
-        morphs[6] = dom.createMorphAt(element5, 1, 1);
-        morphs[7] = dom.createMorphAt(element5, 3, 3);
-        morphs[8] = dom.createMorphAt(element6, 1, 1);
-        morphs[9] = dom.createMorphAt(element6, 3, 3);
+        morphs[2] = dom.createMorphAt(element2, 1, 1);
+        morphs[3] = dom.createMorphAt(dom.childAt(element2, [3, 1]), 1, 1);
+        morphs[4] = dom.createMorphAt(element3, 1, 1);
+        morphs[5] = dom.createElementMorph(element4);
+        morphs[6] = dom.createMorphAt(element4, 1, 1);
+        morphs[7] = dom.createMorphAt(element5, 1, 1);
+        morphs[8] = dom.createMorphAt(element5, 3, 3);
+        morphs[9] = dom.createMorphAt(element6, 1, 1);
+        morphs[10] = dom.createMorphAt(element6, 3, 3);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-diagram-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 64]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [17, 43], [17, 55]]]]], [], []]], ["loc", [null, [17, 6], [17, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [22, 16], [22, 24]]]]], [], 1, null, ["loc", [null, [22, 6], [31, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [32, 59], [32, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [33, 8], [33, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [40, 16], [40, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [41, 13], [41, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [43, 10], [43, 20]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [44, 14], [44, 31]]]], "error", ""], [], ["loc", [null, [44, 10], [44, 43]]]], "label", ["subexpr", "t", ["forms.fd-diagram-edit-form.name-caption"], [], ["loc", [null, [45, 10], [45, 55]]]]], ["loc", [null, [38, 2], [46, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [47, 38], [47, 55]]]]], [], []], "pointing", "pointing"], ["loc", [null, [47, 2], [47, 77]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [53, 16], [53, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [54, 13], [54, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [56, 10], [56, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [57, 14], [57, 38]]]], "error", ""], [], ["loc", [null, [57, 10], [57, 50]]]], "label", ["subexpr", "t", ["forms.fd-diagram-edit-form.description-caption"], [], ["loc", [null, [58, 10], [58, 62]]]]], ["loc", [null, [51, 2], [59, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [60, 38], [60, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [60, 2], [60, 84]]]]],
+      statements: [["inline", "t", ["forms.fd-diagram-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 64]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [15, 26], [15, 31]]]]], [], []]], ["loc", [null, [15, 2], [15, 33]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [18, 43], [18, 55]]]]], [], []]], ["loc", [null, [18, 6], [18, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [23, 16], [23, 24]]]]], [], 1, null, ["loc", [null, [23, 6], [32, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [33, 59], [33, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [34, 8], [34, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [41, 16], [41, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [42, 13], [42, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [44, 10], [44, 20]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [45, 14], [45, 31]]]], "error", ""], [], ["loc", [null, [45, 10], [45, 43]]]], "label", ["subexpr", "t", ["forms.fd-diagram-edit-form.name-caption"], [], ["loc", [null, [46, 10], [46, 55]]]]], ["loc", [null, [39, 2], [47, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [48, 38], [48, 55]]]]], [], []], "pointing", "pointing"], ["loc", [null, [48, 2], [48, 77]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [54, 16], [54, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [55, 13], [55, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [57, 10], [57, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [58, 14], [58, 38]]]], "error", ""], [], ["loc", [null, [58, 10], [58, 50]]]], "label", ["subexpr", "t", ["forms.fd-diagram-edit-form.description-caption"], [], ["loc", [null, [59, 10], [59, 62]]]]], ["loc", [null, [52, 2], [60, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [61, 38], [61, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [61, 2], [61, 84]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -25043,7 +26346,7 @@ define("dummy/templates/fd-diagram-list-form", ["exports"], function (exports) {
       meta: {
         "fragmentReason": {
           "name": "missing-wrapper",
-          "problems": ["multiple-nodes"]
+          "problems": ["wrong-type", "multiple-nodes"]
         },
         "revision": "Ember@2.4.6",
         "loc": {
@@ -25053,7 +26356,7 @@ define("dummy/templates/fd-diagram-list-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 26,
+            "line": 27,
             "column": 0
           }
         },
@@ -25065,6 +26368,10 @@ define("dummy/templates/fd-diagram-list-form", ["exports"], function (exports) {
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         var el1 = dom.createElement("h3");
         var el2 = dom.createComment("");
         dom.appendChild(el1, el2);
@@ -25085,12 +26392,14 @@ define("dummy/templates/fd-diagram-list-form", ["exports"], function (exports) {
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(2);
-        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
-        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 1, 1);
+        var morphs = new Array(3);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 0, 0);
+        morphs[2] = dom.createMorphAt(dom.childAt(fragment, [4]), 1, 1);
+        dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-diagram-list-form.caption"], [], ["loc", [null, [1, 4], [1, 46]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-uml-cad", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [5, 20], [5, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [6, 18], [6, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [7, 12], [7, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [10, 12], [10, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [12, 17], [12, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [13, 23], [13, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [14, 10], [14, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [15, 17], [15, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [16, 18], [16, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [17, 22], [17, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [18, 20], [18, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [19, 16], [19, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [20, 17], [20, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [21, 13], [21, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [22, 13], [22, 32]]]], "componentName", "FdDiagramListForm"], ["loc", [null, [3, 2], [24, 4]]]]],
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-diagram-list-form.caption"], [], ["loc", [null, [2, 4], [2, 46]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-uml-cad", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [11, 12], [11, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [13, 17], [13, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [14, 23], [14, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [15, 10], [15, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [16, 17], [16, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [17, 18], [17, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [18, 22], [18, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [19, 20], [19, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [20, 16], [20, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [21, 17], [21, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [22, 13], [22, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [23, 13], [23, 32]]]], "componentName", "FdDiagramListForm"], ["loc", [null, [4, 2], [25, 4]]]]],
       locals: [],
       templates: []
     };
@@ -25318,11 +26627,11 @@ define("dummy/templates/fd-inheritance-edit-form", ["exports"], function (export
             "loc": {
               "source": null,
               "start": {
-                "line": 26,
+                "line": 27,
                 "column": 8
               },
               "end": {
-                "line": 30,
+                "line": 31,
                 "column": 8
               }
             },
@@ -25357,7 +26666,7 @@ define("dummy/templates/fd-inheritance-edit-form", ["exports"], function (export
             morphs[1] = dom.createMorphAt(element0, 1, 1);
             return morphs;
           },
-          statements: [["element", "action", ["delete"], [], ["loc", [null, [27, 66], [27, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [28, 12], [28, 54]]]]],
+          statements: [["element", "action", ["delete"], [], ["loc", [null, [28, 66], [28, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [29, 12], [29, 54]]]]],
           locals: [],
           templates: []
         };
@@ -25369,11 +26678,11 @@ define("dummy/templates/fd-inheritance-edit-form", ["exports"], function (export
           "loc": {
             "source": null,
             "start": {
-              "line": 22,
+              "line": 23,
               "column": 6
             },
             "end": {
-              "line": 31,
+              "line": 32,
               "column": 6
             }
           },
@@ -25412,7 +26721,7 @@ define("dummy/templates/fd-inheritance-edit-form", ["exports"], function (export
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [["element", "action", ["save"], [], ["loc", [null, [23, 60], [23, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [24, 10], [24, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [26, 18], [26, 29]]]]], [], 0, null, ["loc", [null, [26, 8], [30, 19]]]]],
+        statements: [["element", "action", ["save"], [], ["loc", [null, [24, 60], [24, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [25, 10], [25, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [27, 18], [27, 29]]]]], [], 0, null, ["loc", [null, [27, 8], [31, 19]]]]],
         locals: [],
         templates: [child0]
       };
@@ -25431,7 +26740,7 @@ define("dummy/templates/fd-inheritance-edit-form", ["exports"], function (export
             "column": 0
           },
           "end": {
-            "line": 64,
+            "line": 65,
             "column": 0
           }
         },
@@ -25455,6 +26764,10 @@ define("dummy/templates/fd-inheritance-edit-form", ["exports"], function (export
         var el1 = dom.createElement("form");
         dom.setAttribute(el1, "class", "ui form flexberry-vertical-form");
         dom.setAttribute(el1, "role", "form");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
@@ -25542,24 +26855,25 @@ define("dummy/templates/fd-inheritance-edit-form", ["exports"], function (export
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element2 = dom.childAt(fragment, [3]);
-        var element3 = dom.childAt(element2, [3, 1]);
+        var element3 = dom.childAt(element2, [5, 1]);
         var element4 = dom.childAt(element3, [3]);
-        var element5 = dom.childAt(element2, [5]);
-        var element6 = dom.childAt(element2, [7]);
-        var morphs = new Array(10);
+        var element5 = dom.childAt(element2, [7]);
+        var element6 = dom.childAt(element2, [9]);
+        var morphs = new Array(11);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
         morphs[1] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        morphs[2] = dom.createMorphAt(dom.childAt(element2, [1, 1]), 1, 1);
-        morphs[3] = dom.createMorphAt(element3, 1, 1);
-        morphs[4] = dom.createElementMorph(element4);
-        morphs[5] = dom.createMorphAt(element4, 1, 1);
-        morphs[6] = dom.createMorphAt(element5, 1, 1);
-        morphs[7] = dom.createMorphAt(element5, 3, 3);
-        morphs[8] = dom.createMorphAt(element6, 1, 1);
-        morphs[9] = dom.createMorphAt(element6, 3, 3);
+        morphs[2] = dom.createMorphAt(element2, 1, 1);
+        morphs[3] = dom.createMorphAt(dom.childAt(element2, [3, 1]), 1, 1);
+        morphs[4] = dom.createMorphAt(element3, 1, 1);
+        morphs[5] = dom.createElementMorph(element4);
+        morphs[6] = dom.createMorphAt(element4, 1, 1);
+        morphs[7] = dom.createMorphAt(element5, 1, 1);
+        morphs[8] = dom.createMorphAt(element5, 3, 3);
+        morphs[9] = dom.createMorphAt(element6, 1, 1);
+        morphs[10] = dom.createMorphAt(element6, 3, 3);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-inheritance-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 68]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [17, 43], [17, 55]]]]], [], []]], ["loc", [null, [17, 6], [17, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [22, 16], [22, 24]]]]], [], 1, null, ["loc", [null, [22, 6], [31, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [32, 59], [32, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [33, 8], [33, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [40, 16], [40, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [41, 13], [41, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [43, 10], [43, 20]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [44, 14], [44, 31]]]], "error", ""], [], ["loc", [null, [44, 10], [44, 43]]]], "label", ["subexpr", "t", ["forms.fd-inheritance-edit-form.name-caption"], [], ["loc", [null, [45, 10], [45, 59]]]]], ["loc", [null, [38, 2], [46, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [47, 38], [47, 55]]]]], [], []], "pointing", "pointing"], ["loc", [null, [47, 2], [47, 77]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [53, 16], [53, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [54, 13], [54, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [56, 10], [56, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [57, 14], [57, 38]]]], "error", ""], [], ["loc", [null, [57, 10], [57, 50]]]], "label", ["subexpr", "t", ["forms.fd-inheritance-edit-form.description-caption"], [], ["loc", [null, [58, 10], [58, 66]]]]], ["loc", [null, [51, 2], [59, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [60, 38], [60, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [60, 2], [60, 84]]]]],
+      statements: [["inline", "t", ["forms.fd-inheritance-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 68]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [15, 26], [15, 31]]]]], [], []]], ["loc", [null, [15, 2], [15, 33]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [18, 43], [18, 55]]]]], [], []]], ["loc", [null, [18, 6], [18, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [23, 16], [23, 24]]]]], [], 1, null, ["loc", [null, [23, 6], [32, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [33, 59], [33, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [34, 8], [34, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [41, 16], [41, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [42, 13], [42, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [44, 10], [44, 20]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [45, 14], [45, 31]]]], "error", ""], [], ["loc", [null, [45, 10], [45, 43]]]], "label", ["subexpr", "t", ["forms.fd-inheritance-edit-form.name-caption"], [], ["loc", [null, [46, 10], [46, 59]]]]], ["loc", [null, [39, 2], [47, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [48, 38], [48, 55]]]]], [], []], "pointing", "pointing"], ["loc", [null, [48, 2], [48, 77]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [54, 16], [54, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [55, 13], [55, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [57, 10], [57, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [58, 14], [58, 38]]]], "error", ""], [], ["loc", [null, [58, 10], [58, 50]]]], "label", ["subexpr", "t", ["forms.fd-inheritance-edit-form.description-caption"], [], ["loc", [null, [59, 10], [59, 66]]]]], ["loc", [null, [52, 2], [60, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [61, 38], [61, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [61, 2], [61, 84]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -25571,7 +26885,7 @@ define("dummy/templates/fd-inheritance-list-form", ["exports"], function (export
       meta: {
         "fragmentReason": {
           "name": "missing-wrapper",
-          "problems": ["multiple-nodes"]
+          "problems": ["wrong-type", "multiple-nodes"]
         },
         "revision": "Ember@2.4.6",
         "loc": {
@@ -25581,7 +26895,7 @@ define("dummy/templates/fd-inheritance-list-form", ["exports"], function (export
             "column": 0
           },
           "end": {
-            "line": 26,
+            "line": 27,
             "column": 0
           }
         },
@@ -25593,6 +26907,10 @@ define("dummy/templates/fd-inheritance-list-form", ["exports"], function (export
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         var el1 = dom.createElement("h3");
         var el2 = dom.createComment("");
         dom.appendChild(el1, el2);
@@ -25613,12 +26931,14 @@ define("dummy/templates/fd-inheritance-list-form", ["exports"], function (export
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(2);
-        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
-        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 1, 1);
+        var morphs = new Array(3);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 0, 0);
+        morphs[2] = dom.createMorphAt(dom.childAt(fragment, [4]), 1, 1);
+        dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-inheritance-list-form.caption"], [], ["loc", [null, [1, 4], [1, 50]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-inheritance", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [5, 20], [5, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [6, 18], [6, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [7, 12], [7, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [10, 12], [10, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [12, 17], [12, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [13, 23], [13, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [14, 10], [14, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [15, 17], [15, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [16, 18], [16, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [17, 22], [17, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [18, 20], [18, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [19, 16], [19, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [20, 17], [20, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [21, 13], [21, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [22, 13], [22, 32]]]], "componentName", "FdInheritanceListForm"], ["loc", [null, [3, 2], [24, 4]]]]],
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-inheritance-list-form.caption"], [], ["loc", [null, [2, 4], [2, 50]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-inheritance", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [11, 12], [11, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [13, 17], [13, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [14, 23], [14, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [15, 10], [15, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [16, 17], [16, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [17, 18], [17, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [18, 22], [18, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [19, 20], [19, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [20, 16], [20, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [21, 17], [21, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [22, 13], [22, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [23, 13], [23, 32]]]], "componentName", "FdInheritanceListForm"], ["loc", [null, [4, 2], [25, 4]]]]],
       locals: [],
       templates: []
     };
@@ -25774,11 +27094,11 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 26,
+                "line": 27,
                 "column": 8
               },
               "end": {
-                "line": 30,
+                "line": 31,
                 "column": 8
               }
             },
@@ -25813,7 +27133,7 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
             morphs[1] = dom.createMorphAt(element0, 1, 1);
             return morphs;
           },
-          statements: [["element", "action", ["delete"], [], ["loc", [null, [27, 66], [27, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [28, 12], [28, 54]]]]],
+          statements: [["element", "action", ["delete"], [], ["loc", [null, [28, 66], [28, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [29, 12], [29, 54]]]]],
           locals: [],
           templates: []
         };
@@ -25825,11 +27145,11 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 22,
+              "line": 23,
               "column": 6
             },
             "end": {
-              "line": 31,
+              "line": 32,
               "column": 6
             }
           },
@@ -25868,7 +27188,7 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [["element", "action", ["save"], [], ["loc", [null, [23, 60], [23, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [24, 10], [24, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [26, 18], [26, 29]]]]], [], 0, null, ["loc", [null, [26, 8], [30, 19]]]]],
+        statements: [["element", "action", ["save"], [], ["loc", [null, [24, 60], [24, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [25, 10], [25, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [27, 18], [27, 29]]]]], [], 0, null, ["loc", [null, [27, 8], [31, 19]]]]],
         locals: [],
         templates: [child0]
       };
@@ -25887,7 +27207,7 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 103,
+            "line": 104,
             "column": 0
           }
         },
@@ -25911,6 +27231,10 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
         var el1 = dom.createElement("form");
         dom.setAttribute(el1, "class", "ui form flexberry-vertical-form");
         dom.setAttribute(el1, "role", "form");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
@@ -26043,33 +27367,34 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element2 = dom.childAt(fragment, [3]);
-        var element3 = dom.childAt(element2, [3, 1]);
+        var element3 = dom.childAt(element2, [5, 1]);
         var element4 = dom.childAt(element3, [3]);
-        var element5 = dom.childAt(element2, [5]);
-        var element6 = dom.childAt(element2, [7]);
-        var element7 = dom.childAt(element2, [9]);
-        var element8 = dom.childAt(element2, [11]);
-        var element9 = dom.childAt(element2, [13]);
-        var morphs = new Array(16);
+        var element5 = dom.childAt(element2, [7]);
+        var element6 = dom.childAt(element2, [9]);
+        var element7 = dom.childAt(element2, [11]);
+        var element8 = dom.childAt(element2, [13]);
+        var element9 = dom.childAt(element2, [15]);
+        var morphs = new Array(17);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
         morphs[1] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        morphs[2] = dom.createMorphAt(dom.childAt(element2, [1, 1]), 1, 1);
-        morphs[3] = dom.createMorphAt(element3, 1, 1);
-        morphs[4] = dom.createElementMorph(element4);
-        morphs[5] = dom.createMorphAt(element4, 1, 1);
-        morphs[6] = dom.createMorphAt(element5, 1, 1);
-        morphs[7] = dom.createMorphAt(element5, 3, 3);
-        morphs[8] = dom.createMorphAt(element6, 1, 1);
-        morphs[9] = dom.createMorphAt(element6, 3, 3);
-        morphs[10] = dom.createMorphAt(element7, 1, 1);
-        morphs[11] = dom.createMorphAt(element7, 3, 3);
-        morphs[12] = dom.createMorphAt(element8, 1, 1);
-        morphs[13] = dom.createMorphAt(element8, 3, 3);
-        morphs[14] = dom.createMorphAt(element9, 1, 1);
-        morphs[15] = dom.createMorphAt(element9, 3, 3);
+        morphs[2] = dom.createMorphAt(element2, 1, 1);
+        morphs[3] = dom.createMorphAt(dom.childAt(element2, [3, 1]), 1, 1);
+        morphs[4] = dom.createMorphAt(element3, 1, 1);
+        morphs[5] = dom.createElementMorph(element4);
+        morphs[6] = dom.createMorphAt(element4, 1, 1);
+        morphs[7] = dom.createMorphAt(element5, 1, 1);
+        morphs[8] = dom.createMorphAt(element5, 3, 3);
+        morphs[9] = dom.createMorphAt(element6, 1, 1);
+        morphs[10] = dom.createMorphAt(element6, 3, 3);
+        morphs[11] = dom.createMorphAt(element7, 1, 1);
+        morphs[12] = dom.createMorphAt(element7, 3, 3);
+        morphs[13] = dom.createMorphAt(element8, 1, 1);
+        morphs[14] = dom.createMorphAt(element8, 3, 3);
+        morphs[15] = dom.createMorphAt(element9, 1, 1);
+        morphs[16] = dom.createMorphAt(element9, 3, 3);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-stage-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 62]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [17, 43], [17, 55]]]]], [], []]], ["loc", [null, [17, 6], [17, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [22, 16], [22, 24]]]]], [], 1, null, ["loc", [null, [22, 6], [31, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [32, 59], [32, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [33, 8], [33, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [40, 16], [40, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [41, 13], [41, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [43, 10], [43, 20]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [44, 14], [44, 31]]]], "error", ""], [], ["loc", [null, [44, 10], [44, 43]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.name-caption"], [], ["loc", [null, [45, 10], [45, 53]]]]], ["loc", [null, [38, 2], [46, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [47, 38], [47, 55]]]]], [], []], "pointing", "pointing"], ["loc", [null, [47, 2], [47, 77]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [53, 16], [53, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [54, 13], [54, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [56, 10], [56, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [57, 14], [57, 38]]]], "error", ""], [], ["loc", [null, [57, 10], [57, 50]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.description-caption"], [], ["loc", [null, [58, 10], [58, 60]]]]], ["loc", [null, [51, 2], [59, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [60, 38], [60, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [60, 2], [60, 84]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [66, 16], [66, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [67, 13], [67, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.company", ["loc", [null, [69, 10], [69, 23]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.company", ["loc", [null, [70, 14], [70, 34]]]], "error", ""], [], ["loc", [null, [70, 10], [70, 46]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.company-caption"], [], ["loc", [null, [71, 10], [71, 56]]]]], ["loc", [null, [64, 2], [72, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.company", ["loc", [null, [73, 38], [73, 58]]]]], [], []], "pointing", "pointing"], ["loc", [null, [73, 2], [73, 80]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [79, 16], [79, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [80, 13], [80, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.copyright", ["loc", [null, [82, 10], [82, 25]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.copyright", ["loc", [null, [83, 14], [83, 36]]]], "error", ""], [], ["loc", [null, [83, 10], [83, 48]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.copyright-caption"], [], ["loc", [null, [84, 10], [84, 58]]]]], ["loc", [null, [77, 2], [85, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.copyright", ["loc", [null, [86, 38], [86, 60]]]]], [], []], "pointing", "pointing"], ["loc", [null, [86, 2], [86, 82]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [92, 16], [92, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [93, 13], [93, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.product", ["loc", [null, [95, 10], [95, 23]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.product", ["loc", [null, [96, 14], [96, 34]]]], "error", ""], [], ["loc", [null, [96, 10], [96, 46]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.product-caption"], [], ["loc", [null, [97, 10], [97, 56]]]]], ["loc", [null, [90, 2], [98, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.product", ["loc", [null, [99, 38], [99, 58]]]]], [], []], "pointing", "pointing"], ["loc", [null, [99, 2], [99, 80]]]]],
+      statements: [["inline", "t", ["forms.fd-stage-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 62]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [15, 26], [15, 31]]]]], [], []]], ["loc", [null, [15, 2], [15, 33]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [18, 43], [18, 55]]]]], [], []]], ["loc", [null, [18, 6], [18, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [23, 16], [23, 24]]]]], [], 1, null, ["loc", [null, [23, 6], [32, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [33, 59], [33, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [34, 8], [34, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [41, 16], [41, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [42, 13], [42, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [44, 10], [44, 20]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [45, 14], [45, 31]]]], "error", ""], [], ["loc", [null, [45, 10], [45, 43]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.name-caption"], [], ["loc", [null, [46, 10], [46, 53]]]]], ["loc", [null, [39, 2], [47, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [48, 38], [48, 55]]]]], [], []], "pointing", "pointing"], ["loc", [null, [48, 2], [48, 77]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [54, 16], [54, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [55, 13], [55, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [57, 10], [57, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [58, 14], [58, 38]]]], "error", ""], [], ["loc", [null, [58, 10], [58, 50]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.description-caption"], [], ["loc", [null, [59, 10], [59, 60]]]]], ["loc", [null, [52, 2], [60, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [61, 38], [61, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [61, 2], [61, 84]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [67, 16], [67, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [68, 13], [68, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.company", ["loc", [null, [70, 10], [70, 23]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.company", ["loc", [null, [71, 14], [71, 34]]]], "error", ""], [], ["loc", [null, [71, 10], [71, 46]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.company-caption"], [], ["loc", [null, [72, 10], [72, 56]]]]], ["loc", [null, [65, 2], [73, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.company", ["loc", [null, [74, 38], [74, 58]]]]], [], []], "pointing", "pointing"], ["loc", [null, [74, 2], [74, 80]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [80, 16], [80, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [81, 13], [81, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.copyright", ["loc", [null, [83, 10], [83, 25]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.copyright", ["loc", [null, [84, 14], [84, 36]]]], "error", ""], [], ["loc", [null, [84, 10], [84, 48]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.copyright-caption"], [], ["loc", [null, [85, 10], [85, 58]]]]], ["loc", [null, [78, 2], [86, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.copyright", ["loc", [null, [87, 38], [87, 60]]]]], [], []], "pointing", "pointing"], ["loc", [null, [87, 2], [87, 82]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [93, 16], [93, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [94, 13], [94, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.product", ["loc", [null, [96, 10], [96, 23]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.product", ["loc", [null, [97, 14], [97, 34]]]], "error", ""], [], ["loc", [null, [97, 10], [97, 46]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.product-caption"], [], ["loc", [null, [98, 10], [98, 56]]]]], ["loc", [null, [91, 2], [99, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.product", ["loc", [null, [100, 38], [100, 58]]]]], [], []], "pointing", "pointing"], ["loc", [null, [100, 2], [100, 80]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -26081,7 +27406,7 @@ define("dummy/templates/fd-stage-list-form", ["exports"], function (exports) {
       meta: {
         "fragmentReason": {
           "name": "missing-wrapper",
-          "problems": ["multiple-nodes"]
+          "problems": ["wrong-type", "multiple-nodes"]
         },
         "revision": "Ember@2.4.6",
         "loc": {
@@ -26091,7 +27416,7 @@ define("dummy/templates/fd-stage-list-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 28,
+            "line": 29,
             "column": 0
           }
         },
@@ -26103,6 +27428,10 @@ define("dummy/templates/fd-stage-list-form", ["exports"], function (exports) {
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         var el1 = dom.createElement("h3");
         var el2 = dom.createComment("");
         dom.appendChild(el1, el2);
@@ -26123,12 +27452,14 @@ define("dummy/templates/fd-stage-list-form", ["exports"], function (exports) {
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(2);
-        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
-        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 1, 1);
+        var morphs = new Array(3);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 0, 0);
+        morphs[2] = dom.createMorphAt(dom.childAt(fragment, [4]), 1, 1);
+        dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-stage-list-form.caption"], [], ["loc", [null, [1, 4], [1, 44]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-stage", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [5, 20], [5, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [6, 18], [6, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [7, 12], [7, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [12, 12], [12, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [14, 17], [14, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [15, 23], [15, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [16, 10], [16, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [17, 17], [17, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [18, 18], [18, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [19, 22], [19, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [20, 20], [20, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [21, 16], [21, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [22, 17], [22, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [23, 13], [23, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [24, 13], [24, 32]]]], "componentName", "FdStageListForm"], ["loc", [null, [3, 2], [26, 4]]]]],
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-stage-list-form.caption"], [], ["loc", [null, [2, 4], [2, 44]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-stage", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [13, 12], [13, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [15, 17], [15, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [16, 23], [16, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [17, 10], [17, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [18, 17], [18, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [19, 18], [19, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [20, 22], [20, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [21, 20], [21, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [22, 16], [22, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [23, 17], [23, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [24, 13], [24, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [25, 13], [25, 32]]]], "componentName", "FdStageListForm"], ["loc", [null, [4, 2], [27, 4]]]]],
       locals: [],
       templates: []
     };
@@ -26284,11 +27615,11 @@ define("dummy/templates/fd-system-edit-form", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 26,
+                "line": 27,
                 "column": 8
               },
               "end": {
-                "line": 30,
+                "line": 31,
                 "column": 8
               }
             },
@@ -26323,7 +27654,7 @@ define("dummy/templates/fd-system-edit-form", ["exports"], function (exports) {
             morphs[1] = dom.createMorphAt(element0, 1, 1);
             return morphs;
           },
-          statements: [["element", "action", ["delete"], [], ["loc", [null, [27, 66], [27, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [28, 12], [28, 54]]]]],
+          statements: [["element", "action", ["delete"], [], ["loc", [null, [28, 66], [28, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [29, 12], [29, 54]]]]],
           locals: [],
           templates: []
         };
@@ -26335,11 +27666,11 @@ define("dummy/templates/fd-system-edit-form", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 22,
+              "line": 23,
               "column": 6
             },
             "end": {
-              "line": 31,
+              "line": 32,
               "column": 6
             }
           },
@@ -26378,7 +27709,7 @@ define("dummy/templates/fd-system-edit-form", ["exports"], function (exports) {
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [["element", "action", ["save"], [], ["loc", [null, [23, 60], [23, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [24, 10], [24, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [26, 18], [26, 29]]]]], [], 0, null, ["loc", [null, [26, 8], [30, 19]]]]],
+        statements: [["element", "action", ["save"], [], ["loc", [null, [24, 60], [24, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [25, 10], [25, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [27, 18], [27, 29]]]]], [], 0, null, ["loc", [null, [27, 8], [31, 19]]]]],
         locals: [],
         templates: [child0]
       };
@@ -26397,7 +27728,7 @@ define("dummy/templates/fd-system-edit-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 64,
+            "line": 65,
             "column": 0
           }
         },
@@ -26421,6 +27752,10 @@ define("dummy/templates/fd-system-edit-form", ["exports"], function (exports) {
         var el1 = dom.createElement("form");
         dom.setAttribute(el1, "class", "ui form flexberry-vertical-form");
         dom.setAttribute(el1, "role", "form");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
@@ -26508,24 +27843,25 @@ define("dummy/templates/fd-system-edit-form", ["exports"], function (exports) {
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element2 = dom.childAt(fragment, [3]);
-        var element3 = dom.childAt(element2, [3, 1]);
+        var element3 = dom.childAt(element2, [5, 1]);
         var element4 = dom.childAt(element3, [3]);
-        var element5 = dom.childAt(element2, [5]);
-        var element6 = dom.childAt(element2, [7]);
-        var morphs = new Array(10);
+        var element5 = dom.childAt(element2, [7]);
+        var element6 = dom.childAt(element2, [9]);
+        var morphs = new Array(11);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
         morphs[1] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        morphs[2] = dom.createMorphAt(dom.childAt(element2, [1, 1]), 1, 1);
-        morphs[3] = dom.createMorphAt(element3, 1, 1);
-        morphs[4] = dom.createElementMorph(element4);
-        morphs[5] = dom.createMorphAt(element4, 1, 1);
-        morphs[6] = dom.createMorphAt(element5, 1, 1);
-        morphs[7] = dom.createMorphAt(element5, 3, 3);
-        morphs[8] = dom.createMorphAt(element6, 1, 1);
-        morphs[9] = dom.createMorphAt(element6, 3, 3);
+        morphs[2] = dom.createMorphAt(element2, 1, 1);
+        morphs[3] = dom.createMorphAt(dom.childAt(element2, [3, 1]), 1, 1);
+        morphs[4] = dom.createMorphAt(element3, 1, 1);
+        morphs[5] = dom.createElementMorph(element4);
+        morphs[6] = dom.createMorphAt(element4, 1, 1);
+        morphs[7] = dom.createMorphAt(element5, 1, 1);
+        morphs[8] = dom.createMorphAt(element5, 3, 3);
+        morphs[9] = dom.createMorphAt(element6, 1, 1);
+        morphs[10] = dom.createMorphAt(element6, 3, 3);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-system-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 63]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [17, 43], [17, 55]]]]], [], []]], ["loc", [null, [17, 6], [17, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [22, 16], [22, 24]]]]], [], 1, null, ["loc", [null, [22, 6], [31, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [32, 59], [32, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [33, 8], [33, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [40, 16], [40, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [41, 13], [41, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [43, 10], [43, 20]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [44, 14], [44, 31]]]], "error", ""], [], ["loc", [null, [44, 10], [44, 43]]]], "label", ["subexpr", "t", ["forms.fd-system-edit-form.name-caption"], [], ["loc", [null, [45, 10], [45, 54]]]]], ["loc", [null, [38, 2], [46, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [47, 38], [47, 55]]]]], [], []], "pointing", "pointing"], ["loc", [null, [47, 2], [47, 77]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [53, 16], [53, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [54, 13], [54, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [56, 10], [56, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [57, 14], [57, 38]]]], "error", ""], [], ["loc", [null, [57, 10], [57, 50]]]], "label", ["subexpr", "t", ["forms.fd-system-edit-form.description-caption"], [], ["loc", [null, [58, 10], [58, 61]]]]], ["loc", [null, [51, 2], [59, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [60, 38], [60, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [60, 2], [60, 84]]]]],
+      statements: [["inline", "t", ["forms.fd-system-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 63]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [15, 26], [15, 31]]]]], [], []]], ["loc", [null, [15, 2], [15, 33]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [18, 43], [18, 55]]]]], [], []]], ["loc", [null, [18, 6], [18, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [23, 16], [23, 24]]]]], [], 1, null, ["loc", [null, [23, 6], [32, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [33, 59], [33, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [34, 8], [34, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [41, 16], [41, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [42, 13], [42, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [44, 10], [44, 20]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [45, 14], [45, 31]]]], "error", ""], [], ["loc", [null, [45, 10], [45, 43]]]], "label", ["subexpr", "t", ["forms.fd-system-edit-form.name-caption"], [], ["loc", [null, [46, 10], [46, 54]]]]], ["loc", [null, [39, 2], [47, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [48, 38], [48, 55]]]]], [], []], "pointing", "pointing"], ["loc", [null, [48, 2], [48, 77]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [54, 16], [54, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [55, 13], [55, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [57, 10], [57, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [58, 14], [58, 38]]]], "error", ""], [], ["loc", [null, [58, 10], [58, 50]]]], "label", ["subexpr", "t", ["forms.fd-system-edit-form.description-caption"], [], ["loc", [null, [59, 10], [59, 61]]]]], ["loc", [null, [52, 2], [60, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [61, 38], [61, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [61, 2], [61, 84]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -26537,7 +27873,7 @@ define("dummy/templates/fd-system-list-form", ["exports"], function (exports) {
       meta: {
         "fragmentReason": {
           "name": "missing-wrapper",
-          "problems": ["multiple-nodes"]
+          "problems": ["wrong-type", "multiple-nodes"]
         },
         "revision": "Ember@2.4.6",
         "loc": {
@@ -26547,7 +27883,7 @@ define("dummy/templates/fd-system-list-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 26,
+            "line": 27,
             "column": 0
           }
         },
@@ -26559,6 +27895,10 @@ define("dummy/templates/fd-system-list-form", ["exports"], function (exports) {
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         var el1 = dom.createElement("h3");
         var el2 = dom.createComment("");
         dom.appendChild(el1, el2);
@@ -26579,12 +27919,14 @@ define("dummy/templates/fd-system-list-form", ["exports"], function (exports) {
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(2);
-        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
-        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 1, 1);
+        var morphs = new Array(3);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 0, 0);
+        morphs[2] = dom.createMorphAt(dom.childAt(fragment, [4]), 1, 1);
+        dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-system-list-form.caption"], [], ["loc", [null, [1, 4], [1, 45]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-system", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [5, 20], [5, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [6, 18], [6, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [7, 12], [7, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [10, 12], [10, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [12, 17], [12, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [13, 23], [13, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [14, 10], [14, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [15, 17], [15, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [16, 18], [16, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [17, 22], [17, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [18, 20], [18, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [19, 16], [19, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [20, 17], [20, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [21, 13], [21, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [22, 13], [22, 32]]]], "componentName", "FdSystemListForm"], ["loc", [null, [3, 2], [24, 4]]]]],
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-system-list-form.caption"], [], ["loc", [null, [2, 4], [2, 45]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-system", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [11, 12], [11, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [13, 17], [13, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [14, 23], [14, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [15, 10], [15, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [16, 17], [16, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [17, 18], [17, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [18, 22], [18, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [19, 20], [19, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [20, 16], [20, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [21, 17], [21, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [22, 13], [22, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [23, 13], [23, 32]]]], "componentName", "FdSystemListForm"], ["loc", [null, [4, 2], [25, 4]]]]],
       locals: [],
       templates: []
     };
@@ -26740,11 +28082,11 @@ define("dummy/templates/fd-view-edit-form", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 26,
+                "line": 27,
                 "column": 8
               },
               "end": {
-                "line": 30,
+                "line": 31,
                 "column": 8
               }
             },
@@ -26779,7 +28121,7 @@ define("dummy/templates/fd-view-edit-form", ["exports"], function (exports) {
             morphs[1] = dom.createMorphAt(element0, 1, 1);
             return morphs;
           },
-          statements: [["element", "action", ["delete"], [], ["loc", [null, [27, 66], [27, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [28, 12], [28, 54]]]]],
+          statements: [["element", "action", ["delete"], [], ["loc", [null, [28, 66], [28, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [29, 12], [29, 54]]]]],
           locals: [],
           templates: []
         };
@@ -26791,11 +28133,11 @@ define("dummy/templates/fd-view-edit-form", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 22,
+              "line": 23,
               "column": 6
             },
             "end": {
-              "line": 31,
+              "line": 32,
               "column": 6
             }
           },
@@ -26834,7 +28176,7 @@ define("dummy/templates/fd-view-edit-form", ["exports"], function (exports) {
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [["element", "action", ["save"], [], ["loc", [null, [23, 60], [23, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [24, 10], [24, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [26, 18], [26, 29]]]]], [], 0, null, ["loc", [null, [26, 8], [30, 19]]]]],
+        statements: [["element", "action", ["save"], [], ["loc", [null, [24, 60], [24, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [25, 10], [25, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [27, 18], [27, 29]]]]], [], 0, null, ["loc", [null, [27, 8], [31, 19]]]]],
         locals: [],
         templates: [child0]
       };
@@ -26853,7 +28195,7 @@ define("dummy/templates/fd-view-edit-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 64,
+            "line": 65,
             "column": 0
           }
         },
@@ -26877,6 +28219,10 @@ define("dummy/templates/fd-view-edit-form", ["exports"], function (exports) {
         var el1 = dom.createElement("form");
         dom.setAttribute(el1, "class", "ui form flexberry-vertical-form");
         dom.setAttribute(el1, "role", "form");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
@@ -26964,24 +28310,25 @@ define("dummy/templates/fd-view-edit-form", ["exports"], function (exports) {
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element2 = dom.childAt(fragment, [3]);
-        var element3 = dom.childAt(element2, [3, 1]);
+        var element3 = dom.childAt(element2, [5, 1]);
         var element4 = dom.childAt(element3, [3]);
-        var element5 = dom.childAt(element2, [5]);
-        var element6 = dom.childAt(element2, [7]);
-        var morphs = new Array(10);
+        var element5 = dom.childAt(element2, [7]);
+        var element6 = dom.childAt(element2, [9]);
+        var morphs = new Array(11);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
         morphs[1] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        morphs[2] = dom.createMorphAt(dom.childAt(element2, [1, 1]), 1, 1);
-        morphs[3] = dom.createMorphAt(element3, 1, 1);
-        morphs[4] = dom.createElementMorph(element4);
-        morphs[5] = dom.createMorphAt(element4, 1, 1);
-        morphs[6] = dom.createMorphAt(element5, 1, 1);
-        morphs[7] = dom.createMorphAt(element5, 3, 3);
-        morphs[8] = dom.createMorphAt(element6, 1, 1);
-        morphs[9] = dom.createMorphAt(element6, 3, 3);
+        morphs[2] = dom.createMorphAt(element2, 1, 1);
+        morphs[3] = dom.createMorphAt(dom.childAt(element2, [3, 1]), 1, 1);
+        morphs[4] = dom.createMorphAt(element3, 1, 1);
+        morphs[5] = dom.createElementMorph(element4);
+        morphs[6] = dom.createMorphAt(element4, 1, 1);
+        morphs[7] = dom.createMorphAt(element5, 1, 1);
+        morphs[8] = dom.createMorphAt(element5, 3, 3);
+        morphs[9] = dom.createMorphAt(element6, 1, 1);
+        morphs[10] = dom.createMorphAt(element6, 3, 3);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-view-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 61]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [17, 43], [17, 55]]]]], [], []]], ["loc", [null, [17, 6], [17, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [22, 16], [22, 24]]]]], [], 1, null, ["loc", [null, [22, 6], [31, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [32, 59], [32, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [33, 8], [33, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [40, 16], [40, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [41, 13], [41, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [43, 10], [43, 20]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [44, 14], [44, 31]]]], "error", ""], [], ["loc", [null, [44, 10], [44, 43]]]], "label", ["subexpr", "t", ["forms.fd-view-edit-form.name-caption"], [], ["loc", [null, [45, 10], [45, 52]]]]], ["loc", [null, [38, 2], [46, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [47, 38], [47, 55]]]]], [], []], "pointing", "pointing"], ["loc", [null, [47, 2], [47, 77]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [53, 16], [53, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [54, 13], [54, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [56, 10], [56, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [57, 14], [57, 38]]]], "error", ""], [], ["loc", [null, [57, 10], [57, 50]]]], "label", ["subexpr", "t", ["forms.fd-view-edit-form.description-caption"], [], ["loc", [null, [58, 10], [58, 59]]]]], ["loc", [null, [51, 2], [59, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [60, 38], [60, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [60, 2], [60, 84]]]]],
+      statements: [["inline", "t", ["forms.fd-view-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 61]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [15, 26], [15, 31]]]]], [], []]], ["loc", [null, [15, 2], [15, 33]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [18, 43], [18, 55]]]]], [], []]], ["loc", [null, [18, 6], [18, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [23, 16], [23, 24]]]]], [], 1, null, ["loc", [null, [23, 6], [32, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [33, 59], [33, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [34, 8], [34, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [41, 16], [41, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [42, 13], [42, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [44, 10], [44, 20]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [45, 14], [45, 31]]]], "error", ""], [], ["loc", [null, [45, 10], [45, 43]]]], "label", ["subexpr", "t", ["forms.fd-view-edit-form.name-caption"], [], ["loc", [null, [46, 10], [46, 52]]]]], ["loc", [null, [39, 2], [47, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [48, 38], [48, 55]]]]], [], []], "pointing", "pointing"], ["loc", [null, [48, 2], [48, 77]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [54, 16], [54, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [55, 13], [55, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [57, 10], [57, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [58, 14], [58, 38]]]], "error", ""], [], ["loc", [null, [58, 10], [58, 50]]]], "label", ["subexpr", "t", ["forms.fd-view-edit-form.description-caption"], [], ["loc", [null, [59, 10], [59, 59]]]]], ["loc", [null, [52, 2], [60, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [61, 38], [61, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [61, 2], [61, 84]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -26993,7 +28340,7 @@ define("dummy/templates/fd-view-list-form", ["exports"], function (exports) {
       meta: {
         "fragmentReason": {
           "name": "missing-wrapper",
-          "problems": ["multiple-nodes"]
+          "problems": ["wrong-type", "multiple-nodes"]
         },
         "revision": "Ember@2.4.6",
         "loc": {
@@ -27003,7 +28350,7 @@ define("dummy/templates/fd-view-list-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 26,
+            "line": 27,
             "column": 0
           }
         },
@@ -27015,6 +28362,10 @@ define("dummy/templates/fd-view-list-form", ["exports"], function (exports) {
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         var el1 = dom.createElement("h3");
         var el2 = dom.createComment("");
         dom.appendChild(el1, el2);
@@ -27035,12 +28386,14 @@ define("dummy/templates/fd-view-list-form", ["exports"], function (exports) {
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(2);
-        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
-        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 1, 1);
+        var morphs = new Array(3);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 0, 0);
+        morphs[2] = dom.createMorphAt(dom.childAt(fragment, [4]), 1, 1);
+        dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-view-list-form.caption"], [], ["loc", [null, [1, 4], [1, 43]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-view", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [5, 20], [5, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [6, 18], [6, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [7, 12], [7, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [10, 12], [10, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [12, 17], [12, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [13, 23], [13, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [14, 10], [14, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [15, 17], [15, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [16, 18], [16, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [17, 22], [17, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [18, 20], [18, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [19, 16], [19, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [20, 17], [20, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [21, 13], [21, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [22, 13], [22, 32]]]], "componentName", "FdViewListForm"], ["loc", [null, [3, 2], [24, 4]]]]],
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-view-list-form.caption"], [], ["loc", [null, [2, 4], [2, 43]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-view", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [11, 12], [11, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [13, 17], [13, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [14, 23], [14, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [15, 10], [15, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [16, 17], [16, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [17, 18], [17, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [18, 22], [18, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [19, 20], [19, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [20, 16], [20, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [21, 17], [21, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [22, 13], [22, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [23, 13], [23, 32]]]], "componentName", "FdViewListForm"], ["loc", [null, [4, 2], [25, 4]]]]],
       locals: [],
       templates: []
     };
@@ -27196,11 +28549,11 @@ define("dummy/templates/fd-visual-edit-form", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 20,
+                "line": 21,
                 "column": 8
               },
               "end": {
-                "line": 24,
+                "line": 25,
                 "column": 8
               }
             },
@@ -27235,7 +28588,7 @@ define("dummy/templates/fd-visual-edit-form", ["exports"], function (exports) {
             morphs[1] = dom.createMorphAt(element0, 1, 1);
             return morphs;
           },
-          statements: [["element", "action", ["save-close"], [], ["loc", [null, [21, 68], [21, 91]]]], ["inline", "t", ["forms.edit-form.saveAndClose-button-text"], [], ["loc", [null, [22, 12], [22, 60]]]]],
+          statements: [["element", "action", ["save-close"], [], ["loc", [null, [22, 68], [22, 91]]]], ["inline", "t", ["forms.edit-form.saveAndClose-button-text"], [], ["loc", [null, [23, 12], [23, 60]]]]],
           locals: [],
           templates: []
         };
@@ -27247,11 +28600,11 @@ define("dummy/templates/fd-visual-edit-form", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 16,
+              "line": 17,
               "column": 6
             },
             "end": {
-              "line": 25,
+              "line": 26,
               "column": 6
             }
           },
@@ -27290,7 +28643,7 @@ define("dummy/templates/fd-visual-edit-form", ["exports"], function (exports) {
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [["element", "action", ["save"], [], ["loc", [null, [17, 60], [17, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [18, 10], [18, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [20, 18], [20, 29]]]]], [], 0, null, ["loc", [null, [20, 8], [24, 19]]]]],
+        statements: [["element", "action", ["save"], [], ["loc", [null, [18, 60], [18, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [19, 10], [19, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [21, 18], [21, 29]]]]], [], 0, null, ["loc", [null, [21, 8], [25, 19]]]]],
         locals: [],
         templates: [child0]
       };
@@ -27309,7 +28662,7 @@ define("dummy/templates/fd-visual-edit-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 33,
+            "line": 34,
             "column": 0
           }
         },
@@ -27333,6 +28686,10 @@ define("dummy/templates/fd-visual-edit-form", ["exports"], function (exports) {
         var el1 = dom.createElement("form");
         dom.setAttribute(el1, "class", "ui form flexberry-vertical-form");
         dom.setAttribute(el1, "role", "form");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
@@ -27376,18 +28733,19 @@ define("dummy/templates/fd-visual-edit-form", ["exports"], function (exports) {
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element2 = dom.childAt(fragment, [3]);
-        var element3 = dom.childAt(element2, [1, 1]);
+        var element3 = dom.childAt(element2, [3, 1]);
         var element4 = dom.childAt(element3, [3]);
-        var morphs = new Array(6);
+        var morphs = new Array(7);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
         morphs[1] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        morphs[2] = dom.createMorphAt(element3, 1, 1);
-        morphs[3] = dom.createElementMorph(element4);
-        morphs[4] = dom.createMorphAt(element4, 1, 1);
-        morphs[5] = dom.createMorphAt(element2, 3, 3);
+        morphs[2] = dom.createMorphAt(element2, 1, 1);
+        morphs[3] = dom.createMorphAt(element3, 1, 1);
+        morphs[4] = dom.createElementMorph(element4);
+        morphs[5] = dom.createMorphAt(element4, 1, 1);
+        morphs[6] = dom.createMorphAt(element2, 5, 5);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-visual-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 63]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [2, 6], [2, 19]]]]], [], 0, null, ["loc", [null, [2, 0], [12, 7]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [16, 16], [16, 24]]]]], [], 1, null, ["loc", [null, [16, 6], [25, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [26, 59], [26, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [27, 8], [27, 49]]]], ["inline", "fd-visual-edit-form", [], ["controls", ["subexpr", "@mut", [["get", "model.controls", ["loc", [null, [31, 33], [31, 47]]]]], [], []], "model", ["subexpr", "@mut", [["get", "model", ["loc", [null, [31, 54], [31, 59]]]]], [], []]], ["loc", [null, [31, 2], [31, 61]]]]],
+      statements: [["inline", "t", ["forms.fd-visual-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 63]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [2, 6], [2, 19]]]]], [], 0, null, ["loc", [null, [2, 0], [12, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [14, 26], [14, 31]]]]], [], []]], ["loc", [null, [14, 2], [14, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [17, 16], [17, 24]]]]], [], 1, null, ["loc", [null, [17, 6], [26, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [27, 59], [27, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [28, 8], [28, 49]]]], ["inline", "fd-visual-edit-form", [], ["controls", ["subexpr", "@mut", [["get", "model.controls", ["loc", [null, [32, 33], [32, 47]]]]], [], []], "model", ["subexpr", "@mut", [["get", "model", ["loc", [null, [32, 54], [32, 59]]]]], [], []]], ["loc", [null, [32, 2], [32, 61]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -27486,11 +28844,11 @@ define("dummy/templates/fd-visual-edit-list-form", ["exports"], function (export
             "loc": {
               "source": null,
               "start": {
-                "line": 20,
+                "line": 21,
                 "column": 8
               },
               "end": {
-                "line": 24,
+                "line": 25,
                 "column": 8
               }
             },
@@ -27525,7 +28883,7 @@ define("dummy/templates/fd-visual-edit-list-form", ["exports"], function (export
             morphs[1] = dom.createMorphAt(element0, 1, 1);
             return morphs;
           },
-          statements: [["element", "action", ["save-close"], [], ["loc", [null, [21, 68], [21, 91]]]], ["inline", "t", ["forms.edit-form.saveAndClose-button-text"], [], ["loc", [null, [22, 12], [22, 60]]]]],
+          statements: [["element", "action", ["save-close"], [], ["loc", [null, [22, 68], [22, 91]]]], ["inline", "t", ["forms.edit-form.saveAndClose-button-text"], [], ["loc", [null, [23, 12], [23, 60]]]]],
           locals: [],
           templates: []
         };
@@ -27537,11 +28895,11 @@ define("dummy/templates/fd-visual-edit-list-form", ["exports"], function (export
           "loc": {
             "source": null,
             "start": {
-              "line": 16,
+              "line": 17,
               "column": 6
             },
             "end": {
-              "line": 25,
+              "line": 26,
               "column": 6
             }
           },
@@ -27580,7 +28938,7 @@ define("dummy/templates/fd-visual-edit-list-form", ["exports"], function (export
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [["element", "action", ["save"], [], ["loc", [null, [17, 60], [17, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [18, 10], [18, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [20, 18], [20, 29]]]]], [], 0, null, ["loc", [null, [20, 8], [24, 19]]]]],
+        statements: [["element", "action", ["save"], [], ["loc", [null, [18, 60], [18, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [19, 10], [19, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [21, 18], [21, 29]]]]], [], 0, null, ["loc", [null, [21, 8], [25, 19]]]]],
         locals: [],
         templates: [child0]
       };
@@ -27599,7 +28957,7 @@ define("dummy/templates/fd-visual-edit-list-form", ["exports"], function (export
             "column": 0
           },
           "end": {
-            "line": 62,
+            "line": 63,
             "column": 0
           }
         },
@@ -27623,6 +28981,10 @@ define("dummy/templates/fd-visual-edit-list-form", ["exports"], function (export
         var el1 = dom.createElement("form");
         dom.setAttribute(el1, "class", "ui form flexberry-vertical-form");
         dom.setAttribute(el1, "role", "form");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
@@ -27737,23 +29099,24 @@ define("dummy/templates/fd-visual-edit-list-form", ["exports"], function (export
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element2 = dom.childAt(fragment, [3]);
-        var element3 = dom.childAt(element2, [1, 1]);
+        var element3 = dom.childAt(element2, [3, 1]);
         var element4 = dom.childAt(element3, [3]);
-        var element5 = dom.childAt(element2, [3, 1]);
-        var element6 = dom.childAt(element2, [5]);
-        var morphs = new Array(9);
+        var element5 = dom.childAt(element2, [5, 1]);
+        var element6 = dom.childAt(element2, [7]);
+        var morphs = new Array(10);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
         morphs[1] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        morphs[2] = dom.createMorphAt(element3, 1, 1);
-        morphs[3] = dom.createElementMorph(element4);
-        morphs[4] = dom.createMorphAt(element4, 1, 1);
-        morphs[5] = dom.createMorphAt(dom.childAt(element5, [1]), 0, 0);
-        morphs[6] = dom.createMorphAt(element5, 3, 3);
-        morphs[7] = dom.createMorphAt(dom.childAt(element6, [1, 1, 1]), 1, 1);
-        morphs[8] = dom.createMorphAt(dom.childAt(element6, [3, 1]), 1, 1);
+        morphs[2] = dom.createMorphAt(element2, 1, 1);
+        morphs[3] = dom.createMorphAt(element3, 1, 1);
+        morphs[4] = dom.createElementMorph(element4);
+        morphs[5] = dom.createMorphAt(element4, 1, 1);
+        morphs[6] = dom.createMorphAt(dom.childAt(element5, [1]), 0, 0);
+        morphs[7] = dom.createMorphAt(element5, 3, 3);
+        morphs[8] = dom.createMorphAt(dom.childAt(element6, [1, 1, 1]), 1, 1);
+        morphs[9] = dom.createMorphAt(dom.childAt(element6, [3, 1]), 1, 1);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-visual-edit-list-form.caption"], [], ["loc", [null, [1, 22], [1, 68]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [2, 6], [2, 19]]]]], [], 0, null, ["loc", [null, [2, 0], [12, 7]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [16, 16], [16, 24]]]]], [], 1, null, ["loc", [null, [16, 6], [25, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [26, 59], [26, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [27, 8], [27, 49]]]], ["inline", "t", ["forms.fd-visual-edit-list-form.name"], [], ["loc", [null, [33, 15], [33, 58]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "listformName", ["loc", [null, [35, 16], [35, 28]]]]], [], []]], ["loc", [null, [34, 8], [36, 10]]]], ["inline", "fd-visual-edit-control", [], ["model", ["subexpr", "@mut", [["get", "editControl", ["loc", [null, [44, 16], [44, 27]]]]], [], []], "controlTypes", ["subexpr", "@mut", [["get", "controlTypes", ["loc", [null, [45, 23], [45, 35]]]]], [], []], "prototypeBy", ["subexpr", "@mut", [["get", "prototypeBy", ["loc", [null, [46, 22], [46, 33]]]]], [], []]], ["loc", [null, [43, 10], [47, 10]]]], ["inline", "fd-visual-edit-list-form", [], ["listformName", ["subexpr", "@mut", [["get", "listformName", ["loc", [null, [54, 23], [54, 35]]]]], [], []], "editControl", ["subexpr", "@mut", [["get", "editControl", ["loc", [null, [55, 22], [55, 33]]]]], [], []], "listAttributes", ["subexpr", "@mut", [["get", "listAttributes", ["loc", [null, [56, 25], [56, 39]]]]], [], []]], ["loc", [null, [53, 8], [57, 10]]]]],
+      statements: [["inline", "t", ["forms.fd-visual-edit-list-form.caption"], [], ["loc", [null, [1, 22], [1, 68]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [2, 6], [2, 19]]]]], [], 0, null, ["loc", [null, [2, 0], [12, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [14, 26], [14, 31]]]]], [], []]], ["loc", [null, [14, 2], [14, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [17, 16], [17, 24]]]]], [], 1, null, ["loc", [null, [17, 6], [26, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [27, 59], [27, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [28, 8], [28, 49]]]], ["inline", "t", ["forms.fd-visual-edit-list-form.name"], [], ["loc", [null, [34, 15], [34, 58]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "listformName", ["loc", [null, [36, 16], [36, 28]]]]], [], []]], ["loc", [null, [35, 8], [37, 10]]]], ["inline", "fd-visual-edit-control", [], ["model", ["subexpr", "@mut", [["get", "editControl", ["loc", [null, [45, 16], [45, 27]]]]], [], []], "controlTypes", ["subexpr", "@mut", [["get", "controlTypes", ["loc", [null, [46, 23], [46, 35]]]]], [], []], "prototypeBy", ["subexpr", "@mut", [["get", "prototypeBy", ["loc", [null, [47, 22], [47, 33]]]]], [], []]], ["loc", [null, [44, 10], [48, 10]]]], ["inline", "fd-visual-edit-list-form", [], ["listformName", ["subexpr", "@mut", [["get", "listformName", ["loc", [null, [55, 23], [55, 35]]]]], [], []], "editControl", ["subexpr", "@mut", [["get", "editControl", ["loc", [null, [56, 22], [56, 33]]]]], [], []], "listAttributes", ["subexpr", "@mut", [["get", "listAttributes", ["loc", [null, [57, 25], [57, 39]]]]], [], []]], ["loc", [null, [54, 8], [58, 10]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -29346,7 +30709,7 @@ define("dummy/templates/lookup-dialog-content", ["exports"], function (exports) 
             "column": 0
           },
           "end": {
-            "line": 38,
+            "line": 41,
             "column": 0
           }
         },
@@ -29377,7 +30740,7 @@ define("dummy/templates/lookup-dialog-content", ["exports"], function (exports) 
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 1, 1);
         return morphs;
       },
-      statements: [["inline", "flexberry-objectlistview", [], ["class", "ui bottom attached", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [4, 20], [4, 35]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [5, 12], [5, 17]]]]], [], []], "selectedRecord", ["subexpr", "@mut", [["get", "currentLookupRow", ["loc", [null, [6, 19], [6, 35]]]]], [], []], "componentMode", "lookupform", "componentName", "flexberry-objectlistview-at-lookup", "showEditMenuItemInRow", false, "createNewButton", false, "showCheckBoxInRow", false, "colsConfigButton", false, "columnsWidthAutoresize", true, "filterByAnyMatch", ["subexpr", "action", ["filterByAnyMatch"], [], ["loc", [null, [16, 21], [16, 48]]]], "filterText", ["subexpr", "@mut", [["get", "filter", ["loc", [null, [17, 15], [17, 21]]]]], [], []], "customProperties", ["subexpr", "@mut", [["get", "customPropertiesData", ["loc", [null, [19, 21], [19, 41]]]]], [], []], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [21, 10], [21, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [22, 17], [22, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [23, 18], [23, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [24, 22], [24, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [25, 20], [25, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [26, 16], [26, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [27, 17], [27, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [28, 13], [28, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [29, 13], [29, 32]]]], "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [31, 12], [31, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [33, 17], [33, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [34, 23], [34, 52]]]], "notUseUserSettings", true], ["loc", [null, [2, 2], [36, 4]]]]],
+      statements: [["inline", "flexberry-objectlistview", [], ["class", "ui bottom attached", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [4, 20], [4, 35]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [5, 12], [5, 17]]]]], [], []], "selectedRecord", ["subexpr", "@mut", [["get", "currentLookupRow", ["loc", [null, [6, 19], [6, 35]]]]], [], []], "componentMode", "lookupform", "componentName", "flexberry-objectlistview-at-lookup", "showEditMenuItemInRow", false, "createNewButton", false, "showCheckBoxInRow", false, "colsConfigButton", false, "columnsWidthAutoresize", true, "filterByAnyMatch", ["subexpr", "action", ["filterByAnyMatch"], [], ["loc", [null, [16, 21], [16, 48]]]], "filterText", ["subexpr", "@mut", [["get", "filter", ["loc", [null, [17, 15], [17, 21]]]]], [], []], "filters", ["subexpr", "@mut", [["get", "filters", ["loc", [null, [18, 12], [18, 19]]]]], [], []], "applyFilters", ["subexpr", "action", ["applyFilters"], [], ["loc", [null, [19, 17], [19, 40]]]], "resetFilters", ["subexpr", "action", ["resetFilters"], [], ["loc", [null, [20, 17], [20, 40]]]], "customProperties", ["subexpr", "@mut", [["get", "customPropertiesData", ["loc", [null, [22, 21], [22, 41]]]]], [], []], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [24, 10], [24, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [25, 17], [25, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [26, 18], [26, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [27, 22], [27, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [28, 20], [28, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [29, 16], [29, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [30, 17], [30, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [31, 13], [31, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [32, 13], [32, 32]]]], "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [34, 12], [34, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [36, 17], [36, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [37, 23], [37, 52]]]], "notUseUserSettings", true], ["loc", [null, [2, 2], [39, 4]]]]],
       locals: [],
       templates: []
     };
@@ -33352,7 +34715,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://flexberry-designer-web.azurewebsites.net","backendUrls":{"root":"https://flexberry-designer-web.azurewebsites.net","api":"https://flexberry-designer-web.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://flexberry-designer-web.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.1.0-alpha01+ebfc1c1e"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://flexberry-designer-web.azurewebsites.net","backendUrls":{"root":"https://flexberry-designer-web.azurewebsites.net","api":"https://flexberry-designer-web.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://flexberry-designer-web.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.1.0-alpha01+7e4d876b"});
 }
 
 /* jshint ignore:end */

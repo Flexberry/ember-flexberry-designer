@@ -292,6 +292,13 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/routes/fd-class-edit-form/new.js": {
+            "name": "addon/routes/fd-class-edit-form/new.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/routes/fd-stage-edit-form/new.js": {
             "name": "addon/routes/fd-stage-edit-form/new.js",
             "modules": {},
@@ -301,6 +308,13 @@
         },
         "addon/routes/fd-association-list-form.js": {
             "name": "addon/routes/fd-association-list-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/routes/fd-class-edit-form.js": {
+            "name": "addon/routes/fd-class-edit-form.js",
             "modules": {},
             "classes": {},
             "fors": {},
@@ -392,6 +406,13 @@
         },
         "addon/serializers/fd-case-property.js": {
             "name": "addon/serializers/fd-case-property.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-class-storage-type.js": {
+            "name": "addon/serializers/fd-class-storage-type.js",
             "modules": {},
             "classes": {},
             "fors": {},
@@ -768,6 +789,13 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/serializers/fd-storage-type.js": {
+            "name": "addon/serializers/fd-storage-type.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/serializers/fd-subsystem.js": {
             "name": "addon/serializers/fd-subsystem.js",
             "modules": {},
@@ -814,7 +842,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "addon/services/fd-current-project-context.js",
-            "line": 7
+            "line": 17
         }
     },
     "classes": {
@@ -874,7 +902,7 @@
             "module": "ember-flexberry-designer",
             "namespace": "",
             "file": "addon/services/fd-current-project-context.js",
-            "line": 7,
+            "line": 17,
             "description": "Service allows to save current application context.",
             "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Service.html\">Ember.Service</a>"
         }
@@ -3087,6 +3115,27 @@
             "class": "FdLimitByStageMixin"
         },
         {
+            "file": "addon/mixins/regenerated/models/fd-diagram.js",
+            "line": 30,
+            "description": "Non-stored property.",
+            "itemtype": "property",
+            "name": "primitivesJsonString",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/mixins/regenerated/models/fd-diagram.js",
+            "line": 36,
+            "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'primitivesStreamCompute' method in model class (outside of this mixin) if you want to compute value of 'primitivesStream' property.",
+            "itemtype": "method",
+            "name": "_primitivesJsonStringCompute",
+            "access": "private",
+            "tagname": "",
+            "example": [
+                "\n  ```javascript\n  _primitivesJsonStringChanged: Ember.on('init', Ember.observer('primitivesJsonString', function() {\n    Ember.run.once(this, '_primitivesJsonStringCompute');\n  }))\n  ```"
+            ],
+            "class": "FdLimitByStageMixin"
+        },
+        {
             "file": "addon/mixins/regenerated/models/fd-filelink.js",
             "line": 5,
             "description": "Non-stored property.",
@@ -3194,6 +3243,37 @@
             "module": "ember-flexberry-designer"
         },
         {
+            "file": "addon/routes/fd-class-edit-form/new.js",
+            "line": 9,
+            "description": "Link to {{#crossLink \"FdCurrentProjectContextService\"}}FdCurrentProjectContextService{{/crossLink}}.",
+            "itemtype": "property",
+            "name": "currentContext",
+            "type": "FdCurrentProjectContextService",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-class-edit-form/new.js",
+            "line": 17,
+            "description": "A hook you can use to setup the controller for the current route.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).",
+            "itemtype": "method",
+            "name": "setupController",
+            "params": [
+                {
+                    "name": "controller",
+                    "description": "",
+                    "type": "Ember.Controller"
+                },
+                {
+                    "name": "model",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
             "file": "addon/routes/fd-stage-edit-form/new.js",
             "line": 10,
             "description": "Link to {{#crossLink \"FdCurrentProjectContextService\"}}FdCurrentProjectContextService{{/crossLink}}.",
@@ -3237,8 +3317,18 @@
             "module": "ember-flexberry-designer"
         },
         {
+            "file": "addon/routes/fd-class-edit-form.js",
+            "line": 8,
+            "description": "Link to {{#crossLink \"FdCurrentProjectContextService\"}}FdCurrentProjectContextService{{/crossLink}}.",
+            "itemtype": "property",
+            "name": "currentContext",
+            "type": "FdCurrentProjectContextService",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
             "file": "addon/routes/fd-class-list-form.js",
-            "line": 6,
+            "line": 5,
             "description": "Name of model projection to be used as record's properties limitation.",
             "itemtype": "property",
             "name": "modelProjection",
@@ -3249,7 +3339,7 @@
         },
         {
             "file": "addon/routes/fd-class-list-form.js",
-            "line": 15,
+            "line": 14,
             "description": "Name of model to be used as list's records types.",
             "itemtype": "property",
             "name": "modelName",
@@ -3260,22 +3350,12 @@
         },
         {
             "file": "addon/routes/fd-class-list-form.js",
-            "line": 24,
+            "line": 23,
             "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
             "itemtype": "property",
             "name": "developerUserSettings",
             "type": "Object",
             "default": "{}",
-            "class": "FdCurrentProjectContextService",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/routes/fd-class-list-form.js",
-            "line": 49,
-            "description": "Link to {{#crossLink \"FdCurrentProjectContextService\"}}FdCurrentProjectContextService{{/crossLink}}.",
-            "itemtype": "property",
-            "name": "currentContext",
-            "type": "FdCurrentProjectContextService",
             "class": "FdCurrentProjectContextService",
             "module": "ember-flexberry-designer"
         },
@@ -3544,6 +3624,13 @@
         },
         {
             "file": "addon/serializers/fd-case-property.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/serializers/fd-class-storage-type.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
             "class": "FdCurrentProjectContextService",
@@ -3921,6 +4008,13 @@
             "module": "ember-flexberry-designer"
         },
         {
+            "file": "addon/serializers/fd-storage-type.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
             "file": "addon/serializers/fd-subsystem.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
@@ -3943,7 +4037,7 @@
         },
         {
             "file": "addon/services/fd-current-project-context.js",
-            "line": 14,
+            "line": 24,
             "description": "Stores current configuration, stage, class.",
             "itemtype": "property",
             "name": "context",
@@ -3953,7 +4047,17 @@
         },
         {
             "file": "addon/services/fd-current-project-context.js",
-            "line": 22,
+            "line": 32,
+            "description": "Store of current application.",
+            "itemtype": "property",
+            "name": "store",
+            "type": "DS.Store or subclass",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/services/fd-current-project-context.js",
+            "line": 40,
             "description": "Set current configuration.",
             "itemtype": "method",
             "name": "setCurrentConfiguration",
@@ -3969,7 +4073,7 @@
         },
         {
             "file": "addon/services/fd-current-project-context.js",
-            "line": 34,
+            "line": 59,
             "description": "Get `id` of current configuration.",
             "itemtype": "method",
             "name": "getCurrentConfiguration",
@@ -3982,7 +4086,20 @@
         },
         {
             "file": "addon/services/fd-current-project-context.js",
-            "line": 48,
+            "line": 73,
+            "description": "Get current configuration model.",
+            "itemtype": "method",
+            "name": "getCurrentConfigurationModel",
+            "return": {
+                "description": "Current configuration model.",
+                "type": "DS.Model"
+            },
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/services/fd-current-project-context.js",
+            "line": 87,
             "description": "Set current stage.",
             "itemtype": "method",
             "name": "setCurrentStage",
@@ -3998,7 +4115,7 @@
         },
         {
             "file": "addon/services/fd-current-project-context.js",
-            "line": 61,
+            "line": 149,
             "description": "Get `id` of current stage.",
             "itemtype": "method",
             "name": "getCurrentStage",
@@ -4011,7 +4128,72 @@
         },
         {
             "file": "addon/services/fd-current-project-context.js",
-            "line": 75,
+            "line": 163,
+            "description": "Get current stage model.",
+            "itemtype": "method",
+            "name": "getCurrentStageModel",
+            "return": {
+                "description": "Current stage model.",
+                "type": "DS.Model"
+            },
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/services/fd-current-project-context.js",
+            "line": 177,
+            "description": "Get promise for loading stage's autogenerated system.",
+            "itemtype": "method",
+            "name": "getAutogeneratedSystemPromise",
+            "return": {
+                "description": "Promise for loading stage's system.",
+                "type": "Ember.RSPV.Promise"
+            },
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/services/fd-current-project-context.js",
+            "line": 191,
+            "description": "Get flag indicating stage's autogenerated system model is set.",
+            "itemtype": "method",
+            "name": "isAutogeneratedSystemSet",
+            "return": {
+                "description": "Flag indicating stage's autogenerated system is set.",
+                "type": "Boolean"
+            },
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/services/fd-current-project-context.js",
+            "line": 201,
+            "description": "Get `id` of autogenerated system model for current stage.",
+            "itemtype": "method",
+            "name": "getAutogeneratedSystem",
+            "return": {
+                "description": "Id of autogenerated system for current stage.",
+                "type": "String"
+            },
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/services/fd-current-project-context.js",
+            "line": 215,
+            "description": "Get autogenerated system's model for current stage.",
+            "itemtype": "method",
+            "name": "getAutogeneratedSystemModel",
+            "return": {
+                "description": "Autogenerated system's model for current stage.",
+                "type": "DS.Model"
+            },
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/services/fd-current-project-context.js",
+            "line": 229,
             "description": "Set current class.",
             "itemtype": "method",
             "name": "setCurrentClass",
@@ -4027,13 +4209,26 @@
         },
         {
             "file": "addon/services/fd-current-project-context.js",
-            "line": 87,
+            "line": 247,
             "description": "Get `id` of current class.",
             "itemtype": "method",
             "name": "getCurrentClass",
             "return": {
                 "description": "Id of current class.",
                 "type": "String"
+            },
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/services/fd-current-project-context.js",
+            "line": 261,
+            "description": "Get current class model.",
+            "itemtype": "method",
+            "name": "getCurrentClassModel",
+            "return": {
+                "description": "Current class model.",
+                "type": "DS.Model"
             },
             "class": "FdCurrentProjectContextService",
             "module": "ember-flexberry-designer"
@@ -4079,6 +4274,10 @@
         {
             "message": "Missing item type\nField name where object identifier is kept.",
             "line": " addon/serializers/fd-case-property.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-class-storage-type.js:6"
         },
         {
             "message": "Missing item type\nField name where object identifier is kept.",
@@ -4291,6 +4490,10 @@
         {
             "message": "Missing item type\nField name where object identifier is kept.",
             "line": " addon/serializers/fd-std.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-storage-type.js:6"
         },
         {
             "message": "Missing item type\nField name where object identifier is kept.",
