@@ -43,8 +43,8 @@ export default Ember.Controller.extend({
       });
       sitemap.nodes.push({
         link: 'fd-visual-listform',
-        caption: i18n.t('forms.application.sitemap.root.fd-visual-edit-list-form.caption'),
-        title: i18n.t('forms.application.sitemap.root.fd-visual-edit-list-form.title'),
+        caption: i18n.t('forms.application.sitemap.root.fd-visual-listform.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-visual-listform.title'),
       });
       sitemap.nodes.push({
         link: 'fd-visual-edit-form',
