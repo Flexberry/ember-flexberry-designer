@@ -58,6 +58,6 @@ export default ListFormRoute.extend(FdLimitByStageMixin, {
 
   willDestroy: function() {
     this.get('currentContext').setCurrentClass(undefined);
-    this.super(...arguments);
+    this._super(...arguments);
   }
 });

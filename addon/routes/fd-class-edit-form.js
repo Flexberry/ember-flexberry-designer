@@ -24,6 +24,6 @@ export default EditFormRoute.extend({
 
   willDestroy: function() {
     this.get('currentContext').setCurrentClass(undefined);
-    this.super(...arguments);
+    this._super(...arguments);
   }
 });

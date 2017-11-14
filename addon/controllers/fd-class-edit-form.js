@@ -17,8 +17,8 @@ export default EditFormController.extend({
             projection: 'ListFormView',
             dropdown: true,
             dropdownIsSearch: false,
-            sorting: "desc",
-            direction: "downward"
+            sorting: 'desc',
+            direction: 'downward'
           };
           break;
 
