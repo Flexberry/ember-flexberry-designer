@@ -2,7 +2,7 @@ import { moduleFor, test } from 'ember-qunit';
 
 moduleFor('route:fd-class-list-form', 'Unit | Route | fd class list form', {
   // Specify the other units that are required for this test.
-  // needs: ['controller:foo']
+  needs: ['service:fd-current-project-context']
 });
 
 test('it exists', function(assert) {

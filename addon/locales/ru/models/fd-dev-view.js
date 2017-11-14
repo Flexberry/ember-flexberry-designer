@@ -61,6 +61,28 @@ export default {
         }
       }
     },
+    FdAttributesView: {
+      name: {
+        __caption__: 'Имя'
+      },
+      definition: {
+        __caption__: 'Определение'
+      },
+      class: {
+        __caption__: 'Класс'
+      }
+    },
+    FdEditClassForm: {
+      name: {
+        __caption__: 'Имя'
+      },
+      description: {
+        __caption__: 'Описание'
+      },
+      class: {
+        __caption__: 'Класс'
+      }
+    },
     Generator: {
       name: {
         __caption__: ''

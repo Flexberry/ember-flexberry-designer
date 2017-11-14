@@ -1560,6 +1560,135 @@ export default {
         }
       }
     },
+    FdAttributesChangeView: {
+      attributesStr: {
+        __caption__: 'attributesStr'
+      },
+      name: {
+        __caption__: 'name'
+      },
+      nameStr: {
+        __caption__: 'nameStr'
+      },
+      stereotype: {
+        __caption__: 'stereotype'
+      },
+      attributes: {
+        __caption__: 'attributes',
+        name: {
+          __caption__: 'name'
+        },
+        type: {
+          __caption__: 'type'
+        },
+        caption: {
+          __caption__: 'caption'
+        },
+        description: {
+          __caption__: 'description'
+        },
+        class: {
+          __caption__: 'class'
+        }
+      },
+      views: {
+        __caption__: 'views',
+        name: {
+          __caption__: 'name'
+        },
+        definition: {
+          __caption__: 'definition'
+        },
+        class: {
+          __caption__: 'class'
+        }
+      }
+    },
+    FdAttributesForForm: {
+      name: {
+        __caption__: 'name'
+      },
+      stereotype: {
+        __caption__: 'stereotype'
+      },
+      formViews: {
+        __caption__: 'formViews',
+        dataObjectTypesStr: {
+          __caption__: 'dataObjectTypesStr'
+        },
+        view: {
+          __caption__: 'view',
+          class: {
+            __caption__: 'class',
+            name: {
+              __caption__: 'name'
+            }
+          },
+          definition: {
+            __caption__: 'definition'
+          }
+        },
+        class: {
+          __caption__: 'class'
+        }
+      }
+    },
+    FdEditClassForm: {
+      caption: {
+        __caption__: 'Caption'
+      },
+      name: {
+        __caption__: 'Name'
+      },
+      publishName: {
+        __caption__: 'Alias'
+      },
+      attributes: {
+        __caption__: 'Attributes',
+        name: {
+          __caption__: 'Name'
+        },
+        caption: {
+          __caption__: 'Caption'
+        },
+        type: {
+          __caption__: 'Type'
+        },
+        description: {
+          __caption__: 'Description'
+        },
+        class: {
+          __caption__: 'Class'
+        }
+      },
+      views: {
+        __caption__: 'Views',
+        name: {
+          __caption__: 'Name'
+        },
+        description: {
+          __caption__: 'Description'
+        },
+        class: {
+          __caption__: 'Class'
+        }
+      },
+      classStorageTypes: {
+        __caption__: 'Storage types',
+        connectionName: {
+          __caption__: 'Connection name'
+        },
+        connectionString: {
+          __caption__: 'Connection string'
+        },
+        class: {
+          __caption__: 'Class'
+        },
+        storageType: {
+          __caption__: 'Storage type'
+        }
+      }
+    },
     Generator: {
       referenceCount: {
         __caption__: 'referenceCount'
@@ -2276,5 +2405,8 @@ export default {
         }
       }
     }
+  },
+  validations: {
+    caption: 'Caption is required'
   }
 };

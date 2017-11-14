@@ -463,6 +463,7 @@ export let Model = Ember.Mixin.create({
   writeMode: DS.attr('i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode'),
   writeSessions: DS.attr('boolean'),
   businessServerClass: DS.belongsTo('fd-dev-class', { inverse: null, async: false }),
+  classStorageTypes: DS.hasMany('fd-class-storage-type', { inverse: 'class', async: false }),
   views: DS.hasMany('fd-dev-view', { inverse: 'class', async: false }),
   methods: DS.hasMany('fd-dev-method', { inverse: 'class', async: false }),
   formViews: DS.hasMany('fd-dev-form-view', { inverse: 'class', async: false }),
@@ -470,6 +471,12 @@ export let Model = Ember.Mixin.create({
   getValidations: function () {
     let parentValidations = this._super();
     let thisValidations = {
+      caption: {
+        presence: {
+          // message: this.get('i18n').t('models.fd-dev-class.validations.caption')
+          message: 'Caption is rquired'
+        }
+      }
     };
     return Ember.$.extend(true, {}, parentValidations, thisValidations);
   },
@@ -771,15 +778,10 @@ export let defineProjections = function (modelClass) {
       pBSetStart: Projection.attr('')
     }),
     formViews: Projection.hasMany('fd-dev-form-view', '', {
-      dataObjectTypesStr: Projection.attr(''),
+      viewForForm: Projection.attr(''),
       view: Projection.belongsTo('fd-dev-view', '', {
-        class: Projection.belongsTo('fd-dev-class', '', {
 
-        })
-      }),
-      class: Projection.belongsTo('fd-dev-class', '', {
-
-      })
+      }, { hidden: true })
     }),
     methods: Projection.hasMany('fd-dev-method', '', {
       accessModifier: Projection.attr(''),
@@ -1103,6 +1105,75 @@ export let defineProjections = function (modelClass) {
       })
     })
   });
+  modelClass.defineProjection('FdAttributesChangeView', 'fd-dev-class', {
+    attributesStr: Projection.attr(''),
+    name: Projection.attr(''),
+    nameStr: Projection.attr(''),
+    stereotype: Projection.attr(''),
+    attributes: Projection.hasMany('fd-dev-attribute', '', {
+      name: Projection.attr(''),
+      type: Projection.attr(''),
+      caption: Projection.attr(''),
+      description: Projection.attr(''),
+      class: Projection.belongsTo('fd-dev-class', '', {
+
+      })
+    }),
+    views: Projection.hasMany('fd-dev-view', '', {
+      name: Projection.attr(''),
+      definition: Projection.attr(''),
+      class: Projection.belongsTo('fd-dev-class', '', {
+
+      })
+    })
+  });
+  modelClass.defineProjection('FdAttributesForForm', 'fd-dev-class', {
+    name: Projection.attr(''),
+    stereotype: Projection.attr(''),
+    formViews: Projection.hasMany('fd-dev-form-view', '', {
+      dataObjectTypesStr: Projection.attr(''),
+      view: Projection.belongsTo('fd-dev-view', '', {
+        class: Projection.belongsTo('fd-dev-class', '', {
+          name: Projection.attr('')
+        }),
+        definition: Projection.attr('')
+      }),
+      class: Projection.belongsTo('fd-dev-class', '', {
+
+      })
+    })
+  });
+  modelClass.defineProjection('FdEditClassForm', 'fd-dev-class', {
+    caption: Projection.attr(''),
+    name: Projection.attr(''),
+    publishName: Projection.attr(''),
+    attributes: Projection.hasMany('fd-dev-attribute', '', {
+      name: Projection.attr(''),
+      caption: Projection.attr(''),
+      type: Projection.attr(''),
+      description: Projection.attr(''),
+      class: Projection.belongsTo('fd-dev-class', '', {
+
+      }, { hidden: true })
+    }),
+    views: Projection.hasMany('fd-dev-view', '', {
+      name: Projection.attr(''),
+      description: Projection.attr(''),
+      class: Projection.belongsTo('fd-dev-class', '', {
+
+      }, { hidden: true })
+    }),
+    classStorageTypes: Projection.hasMany('fd-class-storage-type', '', {
+      connectionName: Projection.attr(''),
+      connectionString: Projection.attr(''),
+      class: Projection.belongsTo('fd-dev-class', '', {
+
+      }, { hidden: true }),
+      storageType: Projection.belongsTo('fd-storage-type', '', {
+
+      }, { displayMemberPath: 'shortName' })
+    })
+  });
   modelClass.defineProjection('Generator', 'fd-dev-class', {
     referenceCount: Projection.attr(''),
     stored: Projection.attr(''),
@@ -1265,6 +1336,13 @@ export let defineProjections = function (modelClass) {
       class: Projection.belongsTo('fd-dev-class', '', {
 
       })
+    }),
+    classStorageTypes: Projection.hasMany('fd-class-storage-type', '', {
+      connectionName: Projection.attr(''),
+      connectionString: Projection.attr(''),
+      storageType: Projection.belongsTo('fd-storage-type', '', {
+
+      })
     })
   });
   modelClass.defineProjection('GetClassByGuid', 'fd-dev-class', {
@@ -1402,43 +1480,6 @@ export let defineProjections = function (modelClass) {
     description: Projection.attr(''),
     views: Projection.hasMany('fd-dev-view', '', {
       name: Projection.attr('')
-    })
-  });
-  modelClass.defineProjection('FdAttributesChangeView', 'fd-dev-class', {
-    attributesStr: Projection.attr(''),
-    name: Projection.attr(''),
-    nameStr: Projection.attr(''),
-    stereotype: Projection.attr(''),
-    attributes: Projection.hasMany('fd-dev-attribute', '', {
-      name: Projection.attr(''),
-      type: Projection.attr(''),
-      caption: Projection.attr(''),
-      description: Projection.attr(''),
-      class: Projection.belongsTo('fd-dev-class', '', {
-
-      })
-    }),
-    views: Projection.hasMany('fd-dev-view', '', {
-      name: Projection.attr(''),
-      definition: Projection.attr(''),
-      class: Projection.belongsTo('fd-dev-class', '', {
-
-      })
-    })
-  });
-  modelClass.defineProjection('FdAttributesForForm', 'fd-dev-class', {
-    name: Projection.attr(''),
-    stereotype: Projection.attr(''),
-    formViews: Projection.hasMany('fd-dev-form-view', '', {
-      class: Projection.belongsTo('fd-dev-class', '', {
-
-      }),
-      view: Projection.belongsTo('fd-dev-view', '', {
-        definition: Projection.attr(''),
-        class: Projection.belongsTo('fd-dev-class', '', {
-          name: Projection.attr('')
-        })
-      })
     })
   });
 };

@@ -3,6 +3,8 @@ import { moduleForModel, test } from 'ember-qunit';
 moduleForModel('fd-dev-class', 'Unit | Model | fd-dev-class', {
   // Specify the other units that are required for this test.
   needs: [
+    'service:i18n',
+
     'model:fd-ad',
     'model:fd-aggregation',
     'model:fd-association',
@@ -64,7 +66,8 @@ moduleForModel('fd-dev-class', 'Unit | Model | fd-dev-class', {
     'model:fd-std',
     'model:fd-subsystem',
     'model:fd-ucd',
-    'model:fd-view'
+    'model:fd-view',
+    'model:fd-class-storage-type'
   ]
 });
 
