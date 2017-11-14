@@ -42,7 +42,7 @@ export default Ember.Controller.extend({
         title: i18n.t('forms.application.sitemap.root.fd-appstruct-list-form.title'),
       });
       sitemap.nodes.push({
-        link: 'fd-visual-edit-list-form',
+        link: 'fd-visual-listform',
         caption: i18n.t('forms.application.sitemap.root.fd-visual-edit-list-form.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-visual-edit-list-form.title'),
       });
