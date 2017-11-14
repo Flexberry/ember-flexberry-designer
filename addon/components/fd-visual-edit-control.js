@@ -26,14 +26,7 @@ export default Ember.Component.extend({
     @type Object
     @default undefined
   */
-  model: {
-    prototypeBy: {
-      classId: '',
-      devClasses: {},
-      associations: []
-    }
-
-  },
+  model: undefined,
 
   /**
     Input value.
@@ -81,9 +74,13 @@ export default Ember.Component.extend({
       associations - associations list
       usedAttrs  - list keys used attributes names
     @default undefined
-    */
-
-  prototypeBy: '',
+   */
+  prototypeBy: {
+    classId: undefined,
+    devClasses: {},
+    associations: [],
+    usedAttrs: {}
+  },
 
   /**
     Array of avaliable controls for prototyping.
@@ -92,33 +89,33 @@ export default Ember.Component.extend({
     @type DS.ManyArray
     @default undefined
   */
-  avaliableControls: Ember.computed('model.prototypeBy.classId', function() {
-    if (!this.model.prototypeBy.devClasses || !this.model.prototypeBy.classId || !(this.model.prototypeBy.classId in this.model.prototypeBy.devClasses)) {
+  avaliableControls: Ember.computed('prototypeBy.classId', function() {
+    if (!this.prototypeBy.devClasses || !this.prototypeBy.classId || !(this.prototypeBy.classId in this.prototypeBy.devClasses)) {
       return [];
     }
 
-    let devClass = this.model.prototypeBy.devClasses[this.model.prototypeBy.classId];
+    let devClass = this.prototypeBy.devClasses[this.prototypeBy.classId];
     if (!('attributes' in devClass)) {
       return [];
     }
 
     let ret = [''];
     for (let attrName in devClass.attributes) {
-      if (attrName in this.model.prototypeBy.usedAttrs) {
+      if (attrName in this.prototypeBy.usedAttrs) {
         attrName = '✔' + attrName;
       }
 
       ret.push(attrName);
     }
 
-    for (let devClassId in this.model.prototypeBy.devClasses) {
-      if (devClassId === this.model.prototypeBy.classId) {
+    for (let devClassId in this.prototypeBy.devClasses) {
+      if (devClassId === this.prototypeBy.classId) {
         continue;
       }
 
-      let className = this.model.prototypeBy.devClasses[devClassId].name;
+      let className = this.prototypeBy.devClasses[devClassId].name;
       let dotName = className + '.';
-      for (let usedAttr in this.model.prototypeBy.usedAttrs) {
+      for (let usedAttr in this.prototypeBy.usedAttrs) {
         if (className === usedAttr || dotName === usedAttr.substr(0, dotName.length)
         ) {
           className = '✔' + className;
@@ -191,7 +188,7 @@ export default Ember.Component.extend({
     @property defaultValueTextboxCaption
     @type String
     @default t('components.fd-visual-control.defaultValue')
-
+  */
   defaultValueTextboxCaption: t('components.fd-visual-control.defaultValue'),
 
   stringControlType: t('components.fd-visual-control.typeName.stringControlType'),
@@ -212,7 +209,7 @@ export default Ember.Component.extend({
   dateControlType: t('components.fd-visual-control.typeName.dateControlType'),
   fileControlType: t('components.fd-visual-control.typeName.fileControlType'),
   drowdownControlType: t('components.fd-visual-control.typeName.drowdownControlType'),
-  lookupControlType: t('components.fd-visual-control.typeName.lookupControlType'),*/
+  lookupControlType: t('components.fd-visual-control.typeName.lookupControlType'),
 
   /**
     Array of control types.
@@ -220,8 +217,8 @@ export default Ember.Component.extend({
     @property controlTypes
     @type DS.ManyArray
     @default undefined
-
-  controlTypes: Ember.computed('model.controlTypes.[]',
+  */
+  controlTypes: Ember.computed('controlTypes.[]',
   'stringControlType',
   'boolControlType',
   'charControlType',
@@ -263,7 +260,7 @@ export default Ember.Component.extend({
     arr.pushObject(this.get('drowdownControlType'));
     arr.pushObject(this.get('lookupControlType'));
     return arr;
-  }),*/
+  }),
 
   actions: {
 
@@ -294,7 +291,7 @@ export default Ember.Component.extend({
       @method controlTypeChange
       @public
     */
-    controlTypeChange() {/*
+    controlTypeChange() {
       this._resetControl();
       let controlTypes = this.get('controlTypes');
       switch (this.get('model.typeName')) {
@@ -375,7 +372,7 @@ export default Ember.Component.extend({
           this.set('model.controlType', 'flexberry-field');
           this.set('model.defaultValue', '');
           this.set('model.defaultValueControl', undefined);
-      }*/
+      }
     },
   },
 
