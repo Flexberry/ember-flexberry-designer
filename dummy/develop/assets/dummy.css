@@ -39033,6 +39033,25 @@ img.item-minus {
     margin-bottom: 3px;
   }
 }
+/* General styles */
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .ui.container {
+    width: 95% !important;
+  }
+}
+@media only screen and (max-width: 1199px) and (min-width: 992px) {
+  .ui.container {
+    width: 95% !important;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .ui.container {
+    width: 95% !important;
+  }
+}
+.ui.attached.menu {
+  background: #4f73b0 !important;
+}
 .spinner {
   background: url('images/nyan.gif') no-repeat;
   background-size: contain;
@@ -39050,6 +39069,17 @@ img.item-minus {
 #example-mobile .flexberry-content {
   padding: 6em 10px 2em;
   border-bottom: none;
+}
+.ui.footer .ui.container {
+  width: 100% !important;
+}
+/* Component styles */
+.ui.button.move {
+  margin: 0px 20px !important;
+}
+.ui.styled.accordion {
+  width: 520px;
+  margin: 1px;
 }
 /* Edit control form styles */
 .control-field {
