@@ -5,4 +5,7 @@ export default {
   'add-editform-text': 'Add edit form',
   'remove-text': 'Remove',
   'edit-text': 'Edit',
+  'button-save': 'Save',
+  'button-precess-editor': 'Process editor',
+  'button-generation': 'Generation',
 };

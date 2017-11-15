@@ -431,6 +431,14 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
         );
       });
       /*alert('Save');*/
+    },
+
+    openProcessEditorForm() {
+
+    },
+
+    openGenerationForm() {
+
     }
 
   }

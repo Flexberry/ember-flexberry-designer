@@ -5,4 +5,7 @@ export default {
   'add-editform-text': 'Добавить форму редактирования',
   'remove-text': 'Удалить',
   'edit-text': 'Редактировать',
+  'button-save': 'Сохранить',
+  'button-precess-editor': 'Редактор процессов',
+  'button-generation': 'Генерация',
 };
