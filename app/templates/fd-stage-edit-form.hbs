@@ -100,4 +100,167 @@
   {{flexberry-validationmessage error=model.errors.product pointing="pointing"}}
 </div>
 
+<div class="field">
+  {{#flexberry-toggler
+    caption=(t 'forms.fd-stage-edit-form.ember.caption')
+    expanded=expandedEmber
+    iconClass=iconClass
+  }}
+    <div class="ui segments">
+      <div class="ui segment">
+        <p>{{t 'forms.fd-stage-edit-form.ember.frontend.caption'}}</p>
+      </div>
+      <div class="ui segments">
+        <div class="field">
+          {{
+            flexberry-field
+            placeholder=(t 'components.flexberry-field.placeholder')
+            readonly=readonly
+            label=(t 'forms.fd-stage-edit-form.ember.frontend.git-url')
+          }}
+        </div>
+        <div class="field">
+          {{
+            flexberry-field
+            placeholder=(t 'components.flexberry-field.placeholder')
+            readonly=readonly
+            label=(t 'forms.fd-stage-edit-form.ember.frontend.login')
+          }}
+        </div>
+        <div class="field">
+          {{
+            flexberry-field
+            placeholder=(t 'components.flexberry-field.placeholder')
+            readonly=readonly
+            label=(t 'forms.fd-stage-edit-form.ember.frontend.password')
+          }}
+        </div>
+        <div class="field">
+          {{
+            flexberry-field
+            placeholder=(t 'components.flexberry-field.placeholder')
+            readonly=readonly
+            label=(t 'forms.fd-stage-edit-form.ember.frontend.branch')
+          }}
+        </div>
+        <div class="field">
+          {{
+            flexberry-checkbox
+            label=(t 'forms.fd-stage-edit-form.ember.frontend.publish')
+            readonly=readonly
+          }}
+        </div>
+      </div>
+    </div>
+
+    <div class="ui segments">
+      <div class="ui segment">
+        <p>{{t 'forms.fd-stage-edit-form.ember.backend.caption'}}</p>
+      </div>
+      <div class="ui segments">
+        <div class="field">
+          {{
+            flexberry-field
+            placeholder=(t 'components.flexberry-field.placeholder')
+            readonly=readonly
+            label=(t 'forms.fd-stage-edit-form.ember.backend.git-url')
+          }}
+        </div>
+        <div class="field">
+          {{
+            flexberry-field
+            placeholder=(t 'components.flexberry-field.placeholder')
+            readonly=readonly
+            label=(t 'forms.fd-stage-edit-form.ember.backend.login')
+          }}
+        </div>
+        <div class="field">
+          {{
+            flexberry-field
+            placeholder=(t 'components.flexberry-field.placeholder')
+            readonly=readonly
+            label=(t 'forms.fd-stage-edit-form.ember.backend.password')
+          }}
+        </div>
+        <div class="field">
+          {{
+            flexberry-field
+            placeholder=(t 'components.flexberry-field.placeholder')
+            readonly=readonly
+            label=(t 'forms.fd-stage-edit-form.ember.backend.branch')
+          }}
+        </div>
+      </div>
+    </div>
+
+    <div class="ui segments">
+      <div class="ui segment">
+        <p>{{t 'forms.fd-stage-edit-form.ember.mobile.caption'}}</p>
+      </div>
+      <div class="ui segments">
+        <div class="field">
+          {{
+            flexberry-checkbox
+            label=(t 'forms.fd-stage-edit-form.ember.mobile.cordova')
+            readonly=readonly
+          }}
+        </div>
+      </div>
+    </div>
+  {{/flexberry-toggler}}
+</div>
+
+<div class="field">
+  {{#flexberry-toggler
+    caption=(t 'forms.fd-stage-edit-form.bpm.caption')
+    expanded=expandedBPM
+    iconClass=iconClass
+  }}
+  <div class="ui segments">
+    <div class="field">
+      {{
+        flexberry-field
+        placeholder=(t 'components.flexberry-field.placeholder')
+        readonly=readonly
+        label=(t 'forms.fd-stage-edit-form.bpm.process-methodology')
+      }}
+    </div>
+    <div class="field">
+      {{
+        flexberry-checkbox
+        label=(t 'forms.fd-stage-edit-form.bpm.console-address')
+        readonly=readonly
+      }}
+    </div>
+  </div>
+  {{/flexberry-toggler}}
+</div>
+
+<div class="field">
+  {{#flexberry-toggler
+    caption=(t 'forms.fd-stage-edit-form.orm.caption')
+    expanded=expandedORM
+    iconClass=iconClass
+  }}
+  <div class="ui segments">
+    <div class="field">
+      <label>
+       {{t "forms.fd-stage-edit-form.orm.default-storage"}}
+      </label>
+      {{#if (await _storageType)}}
+        {{
+          flexberry-dropdown
+          items=(await _storageType)
+          placeholder=(t 'components.flexberry-field.placeholder')
+          readonly=readonly
+        }}
+      {{else}}
+        {{t "forms.fd-stage-edit-form.orm.load"}}Loaded!
+      {{/if}}
+
+    </div>
+  </div>
+  {{/flexberry-toggler}}
+</div>
+
 </form>
