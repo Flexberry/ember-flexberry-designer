@@ -6,9 +6,9 @@ export default {
   'copyright-caption': 'copyright',
   'product-caption': 'product',
   'configuration-caption': 'configuration',
-  'ember': {
+  ember: {
     'caption': 'Flexberry Ember',
-    'frontend': {
+    frontend: {
       'caption': 'Frontend',
       'git-url': 'Git URL repository',
       'login': 'Login',
@@ -16,26 +16,26 @@ export default {
       'branch': 'Branch',
       'publish': 'Publish to gh-pages'
     },
-    'backend': {
+    backend: {
       'caption': 'Backend',
       'git-url': 'Git URL repository',
       'login': 'Login',
       'password': 'Password or token',
       'branch': 'Branch'
     },
-    'mobile': {
+    mobile: {
       'caption': 'Mobile',
       'cordova': 'Generate Apache Cordova application'
     }
   },
-  'bpm': {
+  bpm: {
     'caption': 'Flexberry BPM',
     'process-methodology': 'Use the process methodology',
     'console-address': 'The console address of the installed process part of the application'
   },
-  'orm': {
+  orm: {
     'caption': 'Flexberry ORM',
     'default-storage': 'Default storage',
-    'load': 'Loaded'
+    'load': 'Loading'
   }
 };
