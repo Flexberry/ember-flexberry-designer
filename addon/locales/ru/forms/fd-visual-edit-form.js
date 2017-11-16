@@ -1,5 +1,7 @@
 export default {
-  caption: 'fdVisualEditForm',
-  name: 'Название формы',
+  caption: 'Конструктор формы редактирования',
+  name: 'Название',
   description: 'Описание',
+
+  'preview-mobile-variant': 'Предпросмотр мобильного варианта',
 };
