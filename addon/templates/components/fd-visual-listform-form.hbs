@@ -13,7 +13,7 @@
   <div class="column"><h3>{{listformName}}</h3></div>
   <div class="column">
     <div class="ui grid">
-      <div class="white eight wide right aligned column">{{t "forms.fd-visual-edit-list-form.edit-form-header"}}</div>
+      <div class="white eight wide right aligned column">{{t "forms.fd-visual-listform.edit-form-header"}}</div>
       <div class="white eight wide column">
         <select id='selectForm' class="ui compact dropdown selection sort-direction-dropdown" {{action 'showForm' n on='change'}}>
           <option></option>
@@ -42,13 +42,13 @@
         <nobr>
           <button
             class="ui button  {{if attribute.firstPosition "disabled" ""}}"
-            title='{{t "forms.fd-visual-edit-list-form.move-left-attr"}}'
+            title='{{t "forms.fd-visual-listform.move-left-attr"}}'
             {{action "attributeLeft"  index}}>
               <i class="long arrow left icon"></i>
           </button>
             <button
             class="ui button {{if attribute.lastPosition "disabled" ""}}"
-            title='{{t "forms.fd-visual-edit-list-form.move-right-attr"}}'
+            title='{{t "forms.fd-visual-listform.move-right-attr"}}'
             {{action "attributeRight"  index}}>
             <i class="long arrow right icon"></i>
           </button>
@@ -57,7 +57,7 @@
         <td align='right'>
             <button
               class="ui button"
-              title='{{t "forms.fd-visual-edit-list-form.remove-attr"}}'
+              title='{{t "forms.fd-visual-listform.remove-attr"}}'
               {{action "attributeDelete"  index}}
               >
             <i class="remove icon"></i>
@@ -101,7 +101,7 @@
 <td valign='top'>
   <button class="ui button create-button" {{action 'attributeCreate'}}>
     <i class="add circle icon"></i>
-    {{t "forms.fd-visual-edit-list-form.add-button-text"}}
+    {{t "forms.fd-visual-listform.add-button-text"}}
   </button>
 </td>
 </tr>

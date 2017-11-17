@@ -71,14 +71,14 @@ export default Ember.Component.extend({
     @type Object contained:
       classId - class identificator
       devClasses - list classes with attributes
-      assosiations - assosiations list
+      associations - associations list
       usedAttrs  - list keys used attributes names
     @default undefined
    */
   prototypeBy: {
     classId: undefined,
     devClasses: {},
-    assosiations: [],
+    associations: [],
     usedAttrs: {}
   },
 
@@ -145,15 +145,6 @@ export default Ember.Component.extend({
     @default undefined
    */
   controlType: undefined,
-
-  //   /**
-  //     Controls array from Form model.
-  //
-  //     @property controls
-  //     @type DS.ManyArray
-  //     @default undefined
-  //   */
-  //   controls: undefined,
 
   /**
     Control's 'prototypeBy' dropdown caption.

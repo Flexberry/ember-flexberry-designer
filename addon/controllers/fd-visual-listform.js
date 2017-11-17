@@ -35,6 +35,7 @@ export default Ember.Controller.extend({
     usedAttrs  - list keys used attributes names
   @default undefined
   */
+
   prototypeBy: {},
 
   attrNames: {},

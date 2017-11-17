@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import layout from '../templates/components/fd-visual-edit-list-form';
+import layout from '../templates/components/fd-visual-listform-form';
 
 import FdDataTypes from '../utils/fd-datatypes';
 
