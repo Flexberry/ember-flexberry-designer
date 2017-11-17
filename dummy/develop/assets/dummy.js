@@ -29896,7 +29896,7 @@ define("dummy/templates/fd-visual-listform", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 63,
+            "line": 66,
             "column": 0
           }
         },
@@ -29937,6 +29937,17 @@ define("dummy/templates/fd-visual-listform", ["exports"], function (exports) {
         var el4 = dom.createComment("");
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("button");
+        dom.setAttribute(el4, "class", "ui button");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("button");
         dom.setAttribute(el4, "type", "submit");
@@ -30039,23 +30050,24 @@ define("dummy/templates/fd-visual-listform", ["exports"], function (exports) {
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element2 = dom.childAt(fragment, [3]);
         var element3 = dom.childAt(element2, [3, 1]);
-        var element4 = dom.childAt(element3, [3]);
+        var element4 = dom.childAt(element3, [5]);
         var element5 = dom.childAt(element2, [5, 1]);
         var element6 = dom.childAt(element2, [7]);
-        var morphs = new Array(10);
+        var morphs = new Array(11);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
         morphs[1] = dom.createMorphAt(fragment, 2, 2, contextualElement);
         morphs[2] = dom.createMorphAt(element2, 1, 1);
         morphs[3] = dom.createMorphAt(element3, 1, 1);
-        morphs[4] = dom.createElementMorph(element4);
-        morphs[5] = dom.createMorphAt(element4, 1, 1);
-        morphs[6] = dom.createMorphAt(dom.childAt(element5, [1]), 0, 0);
-        morphs[7] = dom.createMorphAt(element5, 3, 3);
-        morphs[8] = dom.createMorphAt(dom.childAt(element6, [1, 1, 1]), 1, 1);
-        morphs[9] = dom.createMorphAt(dom.childAt(element6, [3, 1]), 1, 1);
+        morphs[4] = dom.createMorphAt(dom.childAt(element3, [3]), 1, 1);
+        morphs[5] = dom.createElementMorph(element4);
+        morphs[6] = dom.createMorphAt(element4, 1, 1);
+        morphs[7] = dom.createMorphAt(dom.childAt(element5, [1]), 0, 0);
+        morphs[8] = dom.createMorphAt(element5, 3, 3);
+        morphs[9] = dom.createMorphAt(dom.childAt(element6, [1, 1, 1]), 1, 1);
+        morphs[10] = dom.createMorphAt(dom.childAt(element6, [3, 1]), 1, 1);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-visual-listform.caption"], [], ["loc", [null, [1, 22], [1, 62]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [2, 6], [2, 19]]]]], [], 0, null, ["loc", [null, [2, 0], [12, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [14, 26], [14, 31]]]]], [], []]], ["loc", [null, [14, 2], [14, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [17, 16], [17, 24]]]]], [], 1, null, ["loc", [null, [17, 6], [26, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [27, 59], [27, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [28, 8], [28, 49]]]], ["inline", "t", ["forms.fd-visual-listform.name"], [], ["loc", [null, [34, 15], [34, 52]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "listformName", ["loc", [null, [36, 16], [36, 28]]]]], [], []]], ["loc", [null, [35, 8], [37, 10]]]], ["inline", "fd-visual-edit-control", [], ["model", ["subexpr", "@mut", [["get", "editControl", ["loc", [null, [45, 16], [45, 27]]]]], [], []], "controlTypes", ["subexpr", "@mut", [["get", "controlTypes", ["loc", [null, [46, 23], [46, 35]]]]], [], []], "prototypeBy", ["subexpr", "@mut", [["get", "prototypeBy", ["loc", [null, [47, 22], [47, 33]]]]], [], []]], ["loc", [null, [44, 10], [48, 10]]]], ["inline", "fd-visual-listform-form", [], ["listformName", ["subexpr", "@mut", [["get", "listformName", ["loc", [null, [55, 23], [55, 35]]]]], [], []], "editControl", ["subexpr", "@mut", [["get", "editControl", ["loc", [null, [56, 22], [56, 33]]]]], [], []], "listAttributes", ["subexpr", "@mut", [["get", "listAttributes", ["loc", [null, [57, 25], [57, 39]]]]], [], []]], ["loc", [null, [54, 8], [58, 10]]]]],
+      statements: [["inline", "t", ["forms.fd-visual-listform.caption"], [], ["loc", [null, [1, 22], [1, 62]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [2, 6], [2, 19]]]]], [], 0, null, ["loc", [null, [2, 0], [12, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [14, 26], [14, 31]]]]], [], []]], ["loc", [null, [14, 2], [14, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [17, 16], [17, 24]]]]], [], 1, null, ["loc", [null, [17, 6], [26, 17]]]], ["inline", "t", ["forms.fd-visual-edit-list-form.preview-mobile-variant"], [], ["loc", [null, [28, 8], [28, 69]]]], ["element", "action", ["close"], [], ["loc", [null, [30, 59], [30, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [31, 8], [31, 49]]]], ["inline", "t", ["forms.fd-visual-listform.name"], [], ["loc", [null, [37, 15], [37, 52]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "listformName", ["loc", [null, [39, 16], [39, 28]]]]], [], []]], ["loc", [null, [38, 8], [40, 10]]]], ["inline", "fd-visual-edit-control", [], ["model", ["subexpr", "@mut", [["get", "editControl", ["loc", [null, [48, 16], [48, 27]]]]], [], []], "controlTypes", ["subexpr", "@mut", [["get", "controlTypes", ["loc", [null, [49, 23], [49, 35]]]]], [], []], "prototypeBy", ["subexpr", "@mut", [["get", "prototypeBy", ["loc", [null, [50, 22], [50, 33]]]]], [], []]], ["loc", [null, [47, 10], [51, 10]]]], ["inline", "fd-visual-listform-form", [], ["listformName", ["subexpr", "@mut", [["get", "listformName", ["loc", [null, [58, 23], [58, 35]]]]], [], []], "editControl", ["subexpr", "@mut", [["get", "editControl", ["loc", [null, [59, 22], [59, 33]]]]], [], []], "listAttributes", ["subexpr", "@mut", [["get", "listAttributes", ["loc", [null, [60, 25], [60, 39]]]]], [], []]], ["loc", [null, [57, 8], [61, 10]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -35654,7 +35666,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://flexberry-designer-web.azurewebsites.net","backendUrls":{"root":"https://flexberry-designer-web.azurewebsites.net","api":"https://flexberry-designer-web.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://flexberry-designer-web.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.1.0-alpha01+5efc0e12"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://flexberry-designer-web.azurewebsites.net","backendUrls":{"root":"https://flexberry-designer-web.azurewebsites.net","api":"https://flexberry-designer-web.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://flexberry-designer-web.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.1.0-alpha01+3790fe2b"});
 }
 
 /* jshint ignore:end */
