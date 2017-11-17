@@ -50,6 +50,7 @@
     "ember-link-action": "0.0.34",
     "ember-load-initializers": "^0.5.1",
     "ember-moment": "6.0.0",
+    "ember-promise-helpers": "1.0.3",
     "ember-prop-types": "2.5.11",
     "ember-resolver": "^2.0.3",
     "ember-try": "^0.2.2",
