@@ -1,11 +1,11 @@
 export default {
-  caption: 'FdStageEditForm',
-  'name-caption': 'name',
-  'description-caption': 'description',
-  'company-caption': 'company',
-  'copyright-caption': 'copyright',
-  'product-caption': 'product',
-  'configuration-caption': 'configuration',
+  caption: 'Project',
+  'name-caption': 'Name',
+  'description-caption': 'Description',
+  'company-caption': 'Company',
+  'copyright-caption': 'Copyright',
+  'product-caption': 'Product',
+  'configuration-caption': 'Configuration',
   ember: {
     caption: 'Flexberry Ember',
     frontend: {

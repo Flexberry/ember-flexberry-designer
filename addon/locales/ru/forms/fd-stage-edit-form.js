@@ -1,11 +1,11 @@
 export default {
-  caption: 'Stage',
-  'name-caption': 'Name',
-  'description-caption': 'Description',
-  'company-caption': 'Company',
+  caption: 'Проект',
+  'name-caption': 'Название',
+  'description-caption': 'Описание',
+  'company-caption': 'Компания',
   'copyright-caption': 'Copyright',
-  'product-caption': 'Product',
-  'configuration-caption': '',
+  'product-caption': 'Продукт',
+  'configuration-caption': 'Configuration',
   ember: {
     caption: 'Flexberry Ember',
     frontend: {
