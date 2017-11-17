@@ -26,6 +26,7 @@ import FdAssociationModel from './models/fd-association';
 import FdBaseAssociationModel from './models/fd-base-association';
 import FdCadModel from './models/fd-cad';
 import FdCasePropertyModel from './models/fd-case-property';
+import FdClassStorageTypeModel from './models/fd-class-storage-type';
 import FdClassModel from './models/fd-class';
 import FdCodModel from './models/fd-cod';
 import FdConfigurationModel from './models/fd-configuration';
@@ -79,6 +80,7 @@ import FdRepositoryModel from './models/fd-repository';
 import FdSdModel from './models/fd-sd';
 import FdStageModel from './models/fd-stage';
 import FdStdModel from './models/fd-std';
+import FdStorageTypeModel from './models/fd-storage-type';
 import FdSubsystemModel from './models/fd-subsystem';
 import FdUcdModel from './models/fd-ucd';
 import FdViewModel from './models/fd-view';
@@ -96,6 +98,7 @@ Ember.$.extend(true, translations, {
     'fd-base-association': FdBaseAssociationModel,
     'fd-cad': FdCadModel,
     'fd-case-property': FdCasePropertyModel,
+    'fd-class-storage-type': FdClassStorageTypeModel,
     'fd-class': FdClassModel,
     'fd-cod': FdCodModel,
     'fd-configuration': FdConfigurationModel,
@@ -149,6 +152,7 @@ Ember.$.extend(true, translations, {
     'fd-sd': FdSdModel,
     'fd-stage': FdStageModel,
     'fd-std': FdStdModel,
+    'fd-storage-type': FdStorageTypeModel,
     'fd-subsystem': FdSubsystemModel,
     'fd-ucd': FdUcdModel,
     'fd-view': FdViewModel,

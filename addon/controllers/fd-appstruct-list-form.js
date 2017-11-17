@@ -314,6 +314,11 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
           url = '/fd-visual-edit-form?formId=' + nodeId;
           this.transitionToRoute(url);
           break;
+        case '«implementation»':
+        case undefined:
+          url = 'fd-class-edit-form';
+          this.transitionToRoute(url, nodeId);
+          break;
       }
     },
 
@@ -427,6 +432,14 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
         );
       });
       /*alert('Save');*/
+    },
+
+    openProcessEditorForm() {
+
+    },
+
+    openGenerationForm() {
+
     }
 
   }

@@ -14,6 +14,7 @@ moduleForModel('fd-dev-class', 'Unit | Serializer | fd-dev-class', {
     'transform:s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier',
 
     'transform:new-platform-flexberry-web-designer-business-server-class',
+    'service:i18n',
 
     'model:fd-ad',
     'model:fd-aggregation',
@@ -76,7 +77,8 @@ moduleForModel('fd-dev-class', 'Unit | Serializer | fd-dev-class', {
     'model:fd-std',
     'model:fd-subsystem',
     'model:fd-ucd',
-    'model:fd-view'
+    'model:fd-view',
+    'model:fd-class-storage-type'
   ]
 });
 

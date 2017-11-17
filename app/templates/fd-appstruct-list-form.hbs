@@ -1,4 +1,12 @@
+{{flexberry-error error=error}}
 <h3>{{t 'forms.fd-appstruct-list-form.caption'}}</h3>
+<div class="field">
+  <div class="flexberry-edit-panel">
+    <button class="ui {{saveButtonClass}} button save-button" {{action "saveTree"}}>{{t "forms.fd-appstruct-list-form.button-save"}}</button>
+    <button class="ui {{processButtonClass}} button" {{action "openProcessEditorForm"}}><i class="sitemap icon"></i>{{t "forms.fd-appstruct-list-form.button-precess-editor"}}</button>
+    <button class="ui {{generationButtonClass}} button" {{action "openGenerationForm"}}><i class="settings icon"></i>{{t "forms.fd-appstruct-list-form.button-generation"}}</button>
+  </div>
+</div>
 
 <div class="sixteen wide column" style="width: 100%; overflow-x: scroll;">
 <table >
@@ -12,10 +20,10 @@
           <i class="add circle icon"></i>
         </button>
         <button class="ui button create-button {{addLeftNodeDisabled}}" title="{{t "forms.fd-appstruct-list-form.add-editform-text"}}" {{action 'addLeftEditForm'}}>
-          <i class="add circle icon"></i>E
+          <i class="add circle icon"></i><i class="pencil icon"></i>
         </button>
         <button class="ui button create-button {{addLeftNodeDisabled}}" title="{{t "forms.fd-appstruct-list-form.add-listform-text"}}" {{action 'addLeftListForm'}}>
-          <i class="add circle icon"></i>L
+          <i class="add circle icon"></i><i class="list ul icon"></i>
         </button>
         <button class='ui button icon {{editLeftNodeDisabled}}' title="{{t "forms.fd-appstruct-list-form.edit-text"}}" {{action "editLeftNode" on="click" }}>
           <i class="edit icon"></i>
@@ -71,7 +79,7 @@
       }}
     </td>
     <td valign='center' align='center'>
-      <button class='ui button icon {{moveRightDisabled}}' {{action "moveRightHighlighted" on="click" }}>
+      <button class='ui button icon move {{moveRightDisabled}}' {{action "moveRightHighlighted" on="click" }}>
         <i class="chevron right icon"></i>
       </button>
     </td>
@@ -98,12 +106,3 @@
   </tr>
 </table>
 </div>
-
-
-<button class="ui icon {{saveButtonClass}}  button" {{action "saveTree"}}>
-  Save
-  <!--i class="remove icon" ></i-->
-</button>
-
-
-

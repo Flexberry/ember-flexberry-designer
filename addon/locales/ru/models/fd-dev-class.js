@@ -1560,6 +1560,135 @@ export default {
         }
       }
     },
+    FdAttributesChangeView: {
+      attributesStr: {
+        __caption__: ''
+      },
+      name: {
+        __caption__: ''
+      },
+      nameStr: {
+        __caption__: ''
+      },
+      stereotype: {
+        __caption__: ''
+      },
+      attributes: {
+        __caption__: '',
+        name: {
+          __caption__: ''
+        },
+        type: {
+          __caption__: ''
+        },
+        caption: {
+          __caption__: ''
+        },
+        description: {
+          __caption__: ''
+        },
+        class: {
+          __caption__: ''
+        }
+      },
+      views: {
+        __caption__: '',
+        name: {
+          __caption__: ''
+        },
+        definition: {
+          __caption__: ''
+        },
+        class: {
+          __caption__: ''
+        }
+      }
+    },
+    FdAttributesForForm: {
+      name: {
+        __caption__: ''
+      },
+      stereotype: {
+        __caption__: ''
+      },
+      formViews: {
+        __caption__: '',
+        dataObjectTypesStr: {
+          __caption__: ''
+        },
+        view: {
+          __caption__: '',
+          class: {
+            __caption__: '',
+            name: {
+              __caption__: ''
+            }
+          },
+          definition: {
+            __caption__: ''
+          }
+        },
+        class: {
+          __caption__: ''
+        }
+      }
+    },
+    FdEditClassForm: {
+      caption: {
+        __caption__: 'Заголовок'
+      },
+      name: {
+        __caption__: 'Имя'
+      },
+      publishName: {
+        __caption__: 'Алиас'
+      },
+      attributes: {
+        __caption__: 'Атрибуты',
+        name: {
+          __caption__: 'Имя'
+        },
+        caption: {
+          __caption__: 'Заголовок'
+        },
+        type: {
+          __caption__: 'Тип'
+        },
+        description: {
+          __caption__: 'Описание'
+        },
+        class: {
+          __caption__: 'Класс'
+        }
+      },
+      views: {
+        __caption__: 'Представления',
+        name: {
+          __caption__: 'Имя'
+        },
+        description: {
+          __caption__: 'Описание'
+        },
+        class: {
+          __caption__: 'Класс'
+        }
+      },
+      classStorageTypes: {
+        __caption__: 'Типы хранилищ',
+        connectionName: {
+          __caption__: 'Имя соединения'
+        },
+        connectionString: {
+          __caption__: 'Строка соединения'
+        },
+        class: {
+          __caption__: 'Класс'
+        },
+        storageType: {
+          __caption__: 'Тип хранилища'
+        }
+      }
+    },
     Generator: {
       referenceCount: {
         __caption__: ''
@@ -2276,5 +2405,8 @@ export default {
         }
       }
     }
+  },
+  validations: {
+    caption: 'Введите заголовок'
   }
 };
