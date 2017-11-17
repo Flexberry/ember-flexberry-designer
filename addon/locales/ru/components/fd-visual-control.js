@@ -2,7 +2,7 @@ export default {
   prototypeBy: 'На основе',
   name: 'Название',
   type: 'Тип',
-  isNull: 'Null',
+  isNull: 'Допустимы пустые значения',
   defaultValue: 'Значение по умолчанию',
   typeName: {
     stringControlType: 'string',
