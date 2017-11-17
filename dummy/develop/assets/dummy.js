@@ -27619,12 +27619,12 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 104,
-              "column": 2
+              "line": 99,
+              "column": 4
             },
             "end": {
-              "line": 210,
-              "column": 2
+              "line": 195,
+              "column": 4
             }
           },
           "moduleName": "dummy/templates/fd-stage-edit-form.hbs"
@@ -27635,195 +27635,195 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("    ");
+          var el1 = dom.createTextNode("      ");
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("div");
           dom.setAttribute(el1, "class", "ui segments");
-          var el2 = dom.createTextNode("\n      ");
+          var el2 = dom.createTextNode("\n        ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("div");
           dom.setAttribute(el2, "class", "ui segment");
-          var el3 = dom.createTextNode("\n        ");
+          var el3 = dom.createTextNode("\n          ");
           dom.appendChild(el2, el3);
           var el3 = dom.createElement("p");
           var el4 = dom.createComment("");
           dom.appendChild(el3, el4);
           dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n      ");
+          var el3 = dom.createTextNode("\n        ");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n      ");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("div");
-          dom.setAttribute(el2, "class", "ui segments");
-          var el3 = dom.createTextNode("\n        ");
-          dom.appendChild(el2, el3);
-          var el3 = dom.createElement("div");
-          dom.setAttribute(el3, "class", "field");
-          var el4 = dom.createTextNode("\n          ");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createComment("");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createTextNode("\n        ");
-          dom.appendChild(el3, el4);
-          dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n        ");
-          dom.appendChild(el2, el3);
-          var el3 = dom.createElement("div");
-          dom.setAttribute(el3, "class", "field");
-          var el4 = dom.createTextNode("\n          ");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createComment("");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createTextNode("\n        ");
-          dom.appendChild(el3, el4);
-          dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n        ");
-          dom.appendChild(el2, el3);
-          var el3 = dom.createElement("div");
-          dom.setAttribute(el3, "class", "field");
-          var el4 = dom.createTextNode("\n          ");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createComment("");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createTextNode("\n        ");
-          dom.appendChild(el3, el4);
-          dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n        ");
-          dom.appendChild(el2, el3);
-          var el3 = dom.createElement("div");
-          dom.setAttribute(el3, "class", "field");
-          var el4 = dom.createTextNode("\n          ");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createComment("");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createTextNode("\n        ");
-          dom.appendChild(el3, el4);
-          dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n        ");
-          dom.appendChild(el2, el3);
-          var el3 = dom.createElement("div");
-          dom.setAttribute(el3, "class", "field");
-          var el4 = dom.createTextNode("\n          ");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createComment("");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createTextNode("\n        ");
-          dom.appendChild(el3, el4);
-          dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n      ");
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n    ");
-          dom.appendChild(el1, el2);
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("\n\n    ");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createElement("div");
-          dom.setAttribute(el1, "class", "ui segments");
-          var el2 = dom.createTextNode("\n      ");
+          var el2 = dom.createTextNode("\n        ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("div");
           dom.setAttribute(el2, "class", "ui segment");
+          var el3 = dom.createTextNode("\n          ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "field");
+          var el4 = dom.createTextNode("\n            ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n          ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n          ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "field");
+          var el4 = dom.createTextNode("\n            ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n          ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n          ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "field");
+          var el4 = dom.createTextNode("\n            ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n          ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n          ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "field");
+          var el4 = dom.createTextNode("\n            ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n          ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n          ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "field");
+          var el4 = dom.createTextNode("\n            ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n          ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
           var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n\n      ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "ui segments");
+          var el2 = dom.createTextNode("\n        ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "ui segment");
+          var el3 = dom.createTextNode("\n          ");
           dom.appendChild(el2, el3);
           var el3 = dom.createElement("p");
           var el4 = dom.createComment("");
           dom.appendChild(el3, el4);
           dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n      ");
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n      ");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("div");
-          dom.setAttribute(el2, "class", "ui segments");
           var el3 = dom.createTextNode("\n        ");
           dom.appendChild(el2, el3);
-          var el3 = dom.createElement("div");
-          dom.setAttribute(el3, "class", "field");
-          var el4 = dom.createTextNode("\n          ");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createComment("");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createTextNode("\n        ");
-          dom.appendChild(el3, el4);
-          dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n        ");
-          dom.appendChild(el2, el3);
-          var el3 = dom.createElement("div");
-          dom.setAttribute(el3, "class", "field");
-          var el4 = dom.createTextNode("\n          ");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createComment("");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createTextNode("\n        ");
-          dom.appendChild(el3, el4);
-          dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n        ");
-          dom.appendChild(el2, el3);
-          var el3 = dom.createElement("div");
-          dom.setAttribute(el3, "class", "field");
-          var el4 = dom.createTextNode("\n          ");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createComment("");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createTextNode("\n        ");
-          dom.appendChild(el3, el4);
-          dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n        ");
-          dom.appendChild(el2, el3);
-          var el3 = dom.createElement("div");
-          dom.setAttribute(el3, "class", "field");
-          var el4 = dom.createTextNode("\n          ");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createComment("");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createTextNode("\n        ");
-          dom.appendChild(el3, el4);
-          dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n      ");
-          dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n    ");
-          dom.appendChild(el1, el2);
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("\n\n    ");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createElement("div");
-          dom.setAttribute(el1, "class", "ui segments");
-          var el2 = dom.createTextNode("\n      ");
+          var el2 = dom.createTextNode("\n        ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("div");
           dom.setAttribute(el2, "class", "ui segment");
+          var el3 = dom.createTextNode("\n          ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "field");
+          var el4 = dom.createTextNode("\n            ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n          ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n          ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "field");
+          var el4 = dom.createTextNode("\n            ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n          ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n          ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "field");
+          var el4 = dom.createTextNode("\n            ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n          ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n          ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "field");
+          var el4 = dom.createTextNode("\n            ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n          ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
           var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n\n      ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "ui segments");
+          var el2 = dom.createTextNode("\n        ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "ui segment");
+          var el3 = dom.createTextNode("\n          ");
           dom.appendChild(el2, el3);
           var el3 = dom.createElement("p");
           var el4 = dom.createComment("");
           dom.appendChild(el3, el4);
           dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n      ");
+          var el3 = dom.createTextNode("\n        ");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n      ");
+          var el2 = dom.createTextNode("\n        ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("div");
-          dom.setAttribute(el2, "class", "ui segments");
-          var el3 = dom.createTextNode("\n        ");
+          dom.setAttribute(el2, "class", "ui segment");
+          var el3 = dom.createTextNode("\n          ");
           dom.appendChild(el2, el3);
           var el3 = dom.createElement("div");
           dom.setAttribute(el3, "class", "field");
-          var el4 = dom.createTextNode("\n          ");
+          var el4 = dom.createTextNode("\n            ");
           dom.appendChild(el3, el4);
           var el4 = dom.createComment("");
           dom.appendChild(el3, el4);
-          var el4 = dom.createTextNode("\n        ");
+          var el4 = dom.createTextNode("\n          ");
           dom.appendChild(el3, el4);
           dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n      ");
+          var el3 = dom.createTextNode("\n        ");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n    ");
+          var el2 = dom.createTextNode("\n      ");
           dom.appendChild(el1, el2);
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n");
@@ -27852,7 +27852,7 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
           morphs[12] = dom.createMorphAt(dom.childAt(element6, [3, 1]), 1, 1);
           return morphs;
         },
-        statements: [["inline", "t", ["forms.fd-stage-edit-form.ember.frontend.caption"], [], ["loc", [null, [111, 11], [111, 66]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [117, 24], [117, 68]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [118, 21], [118, 29]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.frontend.git-url"], [], ["loc", [null, [119, 18], [119, 71]]]]], ["loc", [null, [115, 10], [120, 12]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [125, 24], [125, 68]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [126, 21], [126, 29]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.frontend.login"], [], ["loc", [null, [127, 18], [127, 69]]]]], ["loc", [null, [123, 10], [128, 12]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [133, 24], [133, 68]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [134, 21], [134, 29]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.frontend.password"], [], ["loc", [null, [135, 18], [135, 72]]]]], ["loc", [null, [131, 10], [136, 12]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [141, 24], [141, 68]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [142, 21], [142, 29]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.frontend.branch"], [], ["loc", [null, [143, 18], [143, 70]]]]], ["loc", [null, [139, 10], [144, 12]]]], ["inline", "flexberry-checkbox", [], ["label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.frontend.publish"], [], ["loc", [null, [149, 18], [149, 71]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [150, 21], [150, 29]]]]], [], []]], ["loc", [null, [147, 10], [151, 12]]]], ["inline", "t", ["forms.fd-stage-edit-form.ember.backend.caption"], [], ["loc", [null, [158, 11], [158, 65]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [164, 24], [164, 68]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [165, 21], [165, 29]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.backend.git-url"], [], ["loc", [null, [166, 18], [166, 70]]]]], ["loc", [null, [162, 10], [167, 12]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [172, 24], [172, 68]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [173, 21], [173, 29]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.backend.login"], [], ["loc", [null, [174, 18], [174, 68]]]]], ["loc", [null, [170, 10], [175, 12]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [180, 24], [180, 68]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [181, 21], [181, 29]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.backend.password"], [], ["loc", [null, [182, 18], [182, 71]]]]], ["loc", [null, [178, 10], [183, 12]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [188, 24], [188, 68]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [189, 21], [189, 29]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.backend.branch"], [], ["loc", [null, [190, 18], [190, 69]]]]], ["loc", [null, [186, 10], [191, 12]]]], ["inline", "t", ["forms.fd-stage-edit-form.ember.mobile.caption"], [], ["loc", [null, [198, 11], [198, 64]]]], ["inline", "flexberry-checkbox", [], ["label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.mobile.cordova"], [], ["loc", [null, [204, 18], [204, 69]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [205, 21], [205, 29]]]]], [], []]], ["loc", [null, [202, 10], [206, 12]]]]],
+        statements: [["inline", "t", ["forms.fd-stage-edit-form.ember.frontend.caption"], [], ["loc", [null, [106, 13], [106, 68]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [111, 26], [111, 70]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [112, 23], [112, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.frontend.git-url"], [], ["loc", [null, [113, 20], [113, 73]]]]], ["loc", [null, [110, 12], [114, 14]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [118, 26], [118, 70]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [119, 23], [119, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.frontend.login"], [], ["loc", [null, [120, 20], [120, 71]]]]], ["loc", [null, [117, 12], [121, 14]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [125, 26], [125, 70]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [126, 23], [126, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.frontend.password"], [], ["loc", [null, [127, 20], [127, 74]]]]], ["loc", [null, [124, 12], [128, 14]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [132, 26], [132, 70]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [133, 23], [133, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.frontend.branch"], [], ["loc", [null, [134, 20], [134, 72]]]]], ["loc", [null, [131, 12], [135, 14]]]], ["inline", "flexberry-checkbox", [], ["label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.frontend.publish"], [], ["loc", [null, [139, 20], [139, 73]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [140, 23], [140, 31]]]]], [], []]], ["loc", [null, [138, 12], [141, 14]]]], ["inline", "t", ["forms.fd-stage-edit-form.ember.backend.caption"], [], ["loc", [null, [148, 13], [148, 67]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [153, 26], [153, 70]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [154, 23], [154, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.backend.git-url"], [], ["loc", [null, [155, 20], [155, 72]]]]], ["loc", [null, [152, 12], [156, 14]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [160, 26], [160, 70]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [161, 23], [161, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.backend.login"], [], ["loc", [null, [162, 20], [162, 70]]]]], ["loc", [null, [159, 12], [163, 14]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [167, 26], [167, 70]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [168, 23], [168, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.backend.password"], [], ["loc", [null, [169, 20], [169, 73]]]]], ["loc", [null, [166, 12], [170, 14]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [174, 26], [174, 70]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [175, 23], [175, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.backend.branch"], [], ["loc", [null, [176, 20], [176, 71]]]]], ["loc", [null, [173, 12], [177, 14]]]], ["inline", "t", ["forms.fd-stage-edit-form.ember.mobile.caption"], [], ["loc", [null, [184, 13], [184, 66]]]], ["inline", "flexberry-checkbox", [], ["readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [189, 23], [189, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.mobile.cordova"], [], ["loc", [null, [190, 20], [190, 71]]]]], ["loc", [null, [188, 12], [191, 14]]]]],
         locals: [],
         templates: []
       };
@@ -27865,12 +27865,12 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 214,
-              "column": 2
+              "line": 199,
+              "column": 4
             },
             "end": {
-              "line": 236,
-              "column": 2
+              "line": 221,
+              "column": 4
             }
           },
           "moduleName": "dummy/templates/fd-stage-edit-form.hbs"
@@ -27881,33 +27881,40 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("  ");
+          var el1 = dom.createTextNode("      ");
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("div");
           dom.setAttribute(el1, "class", "ui segments");
-          var el2 = dom.createTextNode("\n    ");
+          var el2 = dom.createTextNode("\n        ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("div");
-          dom.setAttribute(el2, "class", "field");
-          var el3 = dom.createTextNode("\n      ");
+          dom.setAttribute(el2, "class", "ui segment");
+          var el3 = dom.createTextNode("\n          ");
           dom.appendChild(el2, el3);
-          var el3 = dom.createComment("");
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "field");
+          var el4 = dom.createTextNode("\n            ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n          ");
+          dom.appendChild(el3, el4);
           dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n    ");
+          var el3 = dom.createTextNode("\n          ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "field");
+          var el4 = dom.createTextNode("\n            ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n          ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n        ");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n    ");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("div");
-          dom.setAttribute(el2, "class", "field");
-          var el3 = dom.createTextNode("\n      ");
-          dom.appendChild(el2, el3);
-          var el3 = dom.createComment("");
-          dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n    ");
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n  ");
+          var el2 = dom.createTextNode("\n      ");
           dom.appendChild(el1, el2);
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n");
@@ -27915,13 +27922,13 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var element1 = dom.childAt(fragment, [1]);
+          var element1 = dom.childAt(fragment, [1, 1]);
           var morphs = new Array(2);
           morphs[0] = dom.createMorphAt(dom.childAt(element1, [1]), 1, 1);
           morphs[1] = dom.createMorphAt(dom.childAt(element1, [3]), 1, 1);
           return morphs;
         },
-        statements: [["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [223, 20], [223, 64]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [224, 17], [224, 25]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.bpm.process-methodology"], [], ["loc", [null, [225, 14], [225, 68]]]]], ["loc", [null, [221, 6], [226, 8]]]], ["inline", "flexberry-checkbox", [], ["label", ["subexpr", "t", ["forms.fd-stage-edit-form.bpm.console-address"], [], ["loc", [null, [231, 14], [231, 64]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [232, 17], [232, 25]]]]], [], []]], ["loc", [null, [229, 6], [233, 8]]]]],
+        statements: [["inline", "flexberry-checkbox", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [208, 26], [208, 70]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [209, 23], [209, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.bpm.process-methodology"], [], ["loc", [null, [210, 20], [210, 74]]]]], ["loc", [null, [207, 12], [211, 14]]]], ["inline", "flexberry-field", [], ["readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [215, 23], [215, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.bpm.console-address"], [], ["loc", [null, [216, 20], [216, 70]]]]], ["loc", [null, [214, 12], [217, 14]]]]],
         locals: [],
         templates: []
       };
@@ -27935,12 +27942,12 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 250,
-                "column": 6
+                "line": 234,
+                "column": 12
               },
               "end": {
-                "line": 257,
-                "column": 6
+                "line": 240,
+                "column": 12
               }
             },
             "moduleName": "dummy/templates/fd-stage-edit-form.hbs"
@@ -27951,7 +27958,7 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
           hasRendered: false,
           buildFragment: function buildFragment(dom) {
             var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode("        ");
+            var el1 = dom.createTextNode("              ");
             dom.appendChild(el0, el1);
             var el1 = dom.createComment("");
             dom.appendChild(el0, el1);
@@ -27964,7 +27971,7 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
             morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
             return morphs;
           },
-          statements: [["inline", "flexberry-dropdown", [], ["items", ["subexpr", "await", [["get", "_storageType", ["loc", [null, [253, 23], [253, 35]]]]], [], ["loc", [null, [253, 16], [253, 36]]]], "placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [254, 22], [254, 66]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [255, 19], [255, 27]]]]], [], []]], ["loc", [null, [251, 8], [256, 10]]]]],
+          statements: [["inline", "flexberry-dropdown", [], ["items", ["subexpr", "await", [["get", "_storageType", ["loc", [null, [236, 29], [236, 41]]]]], [], ["loc", [null, [236, 22], [236, 42]]]], "placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [237, 28], [237, 72]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [238, 25], [238, 33]]]]], [], []]], ["loc", [null, [235, 14], [239, 16]]]]],
           locals: [],
           templates: []
         };
@@ -27977,12 +27984,12 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 257,
-                "column": 6
+                "line": 240,
+                "column": 12
               },
               "end": {
-                "line": 259,
-                "column": 6
+                "line": 242,
+                "column": 12
               }
             },
             "moduleName": "dummy/templates/fd-stage-edit-form.hbs"
@@ -27993,7 +28000,7 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
           hasRendered: false,
           buildFragment: function buildFragment(dom) {
             var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode("        ");
+            var el1 = dom.createTextNode("              ");
             dom.appendChild(el0, el1);
             var el1 = dom.createComment("");
             dom.appendChild(el0, el1);
@@ -28006,7 +28013,7 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
             morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
             return morphs;
           },
-          statements: [["inline", "t", ["forms.fd-stage-edit-form.orm.load"], [], ["loc", [null, [258, 8], [258, 49]]]]],
+          statements: [["inline", "t", ["forms.fd-stage-edit-form.orm.load"], [], ["loc", [null, [241, 14], [241, 55]]]]],
           locals: [],
           templates: []
         };
@@ -28018,12 +28025,12 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 240,
-              "column": 2
+              "line": 225,
+              "column": 4
             },
             "end": {
-              "line": 263,
-              "column": 2
+              "line": 246,
+              "column": 4
             }
           },
           "moduleName": "dummy/templates/fd-stage-edit-form.hbs"
@@ -28034,32 +28041,35 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("  ");
+          var el1 = dom.createTextNode("      ");
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("div");
           dom.setAttribute(el1, "class", "ui segments");
-          var el2 = dom.createTextNode("\n    ");
+          var el2 = dom.createTextNode("\n        ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("div");
-          dom.setAttribute(el2, "class", "field");
-          var el3 = dom.createTextNode("\n      ");
+          dom.setAttribute(el2, "class", "ui segment");
+          var el3 = dom.createTextNode("\n          ");
           dom.appendChild(el2, el3);
-          var el3 = dom.createElement("label");
-          var el4 = dom.createTextNode("\n       ");
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "field");
+          var el4 = dom.createTextNode("\n            ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("label");
+          var el5 = dom.createComment("");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n");
           dom.appendChild(el3, el4);
           var el4 = dom.createComment("");
           dom.appendChild(el3, el4);
-          var el4 = dom.createTextNode("\n      ");
+          var el4 = dom.createTextNode("          ");
           dom.appendChild(el3, el4);
           dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n");
-          dom.appendChild(el2, el3);
-          var el3 = dom.createComment("");
-          dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n    ");
+          var el3 = dom.createTextNode("\n        ");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n  ");
+          var el2 = dom.createTextNode("\n      ");
           dom.appendChild(el1, el2);
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n");
@@ -28067,13 +28077,13 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var element0 = dom.childAt(fragment, [1, 1]);
+          var element0 = dom.childAt(fragment, [1, 1, 1]);
           var morphs = new Array(2);
-          morphs[0] = dom.createMorphAt(dom.childAt(element0, [1]), 1, 1);
+          morphs[0] = dom.createMorphAt(dom.childAt(element0, [1]), 0, 0);
           morphs[1] = dom.createMorphAt(element0, 3, 3);
           return morphs;
         },
-        statements: [["inline", "t", ["forms.fd-stage-edit-form.orm.default-storage"], [], ["loc", [null, [248, 7], [248, 59]]]], ["block", "if", [["subexpr", "await", [["get", "_storageType", ["loc", [null, [250, 19], [250, 31]]]]], [], ["loc", [null, [250, 12], [250, 32]]]]], [], 0, 1, ["loc", [null, [250, 6], [259, 13]]]]],
+        statements: [["inline", "t", ["forms.fd-stage-edit-form.orm.default-storage"], [], ["loc", [null, [233, 19], [233, 71]]]], ["block", "if", [["subexpr", "await", [["get", "_storageType", ["loc", [null, [234, 25], [234, 37]]]]], [], ["loc", [null, [234, 18], [234, 38]]]]], [], 0, 1, ["loc", [null, [234, 12], [242, 19]]]]],
         locals: [],
         templates: [child0, child1]
       };
@@ -28092,7 +28102,7 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 267,
+            "line": 250,
             "column": 0
           }
         },
@@ -28172,87 +28182,78 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
         dom.setAttribute(el2, "class", "field");
-        var el3 = dom.createTextNode("\n  ");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
         var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n  ");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createComment("");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n");
+        var el2 = dom.createTextNode("\n\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
         dom.setAttribute(el2, "class", "field");
-        var el3 = dom.createTextNode("\n  ");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
         var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n  ");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createComment("");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n");
+        var el2 = dom.createTextNode("\n\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
         dom.setAttribute(el2, "class", "field");
-        var el3 = dom.createTextNode("\n  ");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
         var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n  ");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createComment("");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n");
+        var el2 = dom.createTextNode("\n\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
         dom.setAttribute(el2, "class", "field");
-        var el3 = dom.createTextNode("\n  ");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
         var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n  ");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createComment("");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n");
+        var el2 = dom.createTextNode("\n\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
         dom.setAttribute(el2, "class", "field");
-        var el3 = dom.createTextNode("\n  ");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
         var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
-        var el3 = dom.createComment("");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n");
-        dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createElement("div");
-        dom.setAttribute(el2, "class", "field");
-        var el3 = dom.createTextNode("\n");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createComment("");
-        dom.appendChild(el2, el3);
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n");
+        var el2 = dom.createTextNode("\n\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
         dom.setAttribute(el2, "class", "field");
@@ -28260,14 +28261,29 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
         dom.appendChild(el2, el3);
         var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("  ");
+        dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n");
+        var el2 = dom.createTextNode("\n\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
         dom.setAttribute(el2, "class", "field");
         var el3 = dom.createTextNode("\n");
         dom.appendChild(el2, el3);
         var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "field");
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("  ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n\n");
@@ -28309,7 +28325,7 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
         morphs[19] = dom.createMorphAt(dom.childAt(element9, [21]), 1, 1);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-stage-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 62]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [15, 26], [15, 31]]]]], [], []]], ["loc", [null, [15, 2], [15, 33]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [18, 43], [18, 55]]]]], [], []]], ["loc", [null, [18, 6], [18, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [23, 16], [23, 24]]]]], [], 1, null, ["loc", [null, [23, 6], [32, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [33, 59], [33, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [34, 8], [34, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [41, 16], [41, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [42, 13], [42, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [44, 10], [44, 20]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [45, 14], [45, 31]]]], "error", ""], [], ["loc", [null, [45, 10], [45, 43]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.name-caption"], [], ["loc", [null, [46, 10], [46, 53]]]]], ["loc", [null, [39, 2], [47, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [48, 38], [48, 55]]]]], [], []], "pointing", "pointing"], ["loc", [null, [48, 2], [48, 77]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [54, 16], [54, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [55, 13], [55, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [57, 10], [57, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [58, 14], [58, 38]]]], "error", ""], [], ["loc", [null, [58, 10], [58, 50]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.description-caption"], [], ["loc", [null, [59, 10], [59, 60]]]]], ["loc", [null, [52, 2], [60, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [61, 38], [61, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [61, 2], [61, 84]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [67, 16], [67, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [68, 13], [68, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.company", ["loc", [null, [70, 10], [70, 23]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.company", ["loc", [null, [71, 14], [71, 34]]]], "error", ""], [], ["loc", [null, [71, 10], [71, 46]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.company-caption"], [], ["loc", [null, [72, 10], [72, 56]]]]], ["loc", [null, [65, 2], [73, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.company", ["loc", [null, [74, 38], [74, 58]]]]], [], []], "pointing", "pointing"], ["loc", [null, [74, 2], [74, 80]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [80, 16], [80, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [81, 13], [81, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.copyright", ["loc", [null, [83, 10], [83, 25]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.copyright", ["loc", [null, [84, 14], [84, 36]]]], "error", ""], [], ["loc", [null, [84, 10], [84, 48]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.copyright-caption"], [], ["loc", [null, [85, 10], [85, 58]]]]], ["loc", [null, [78, 2], [86, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.copyright", ["loc", [null, [87, 38], [87, 60]]]]], [], []], "pointing", "pointing"], ["loc", [null, [87, 2], [87, 82]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [93, 16], [93, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [94, 13], [94, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.product", ["loc", [null, [96, 10], [96, 23]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.product", ["loc", [null, [97, 14], [97, 34]]]], "error", ""], [], ["loc", [null, [97, 10], [97, 46]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.product-caption"], [], ["loc", [null, [98, 10], [98, 56]]]]], ["loc", [null, [91, 2], [99, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.product", ["loc", [null, [100, 38], [100, 58]]]]], [], []], "pointing", "pointing"], ["loc", [null, [100, 2], [100, 80]]]], ["block", "flexberry-toggler", [], ["caption", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.caption"], [], ["loc", [null, [105, 12], [105, 56]]]], "expanded", ["subexpr", "@mut", [["get", "expandedEmber", ["loc", [null, [106, 13], [106, 26]]]]], [], []], "iconClass", ["subexpr", "@mut", [["get", "iconClass", ["loc", [null, [107, 14], [107, 23]]]]], [], []]], 2, null, ["loc", [null, [104, 2], [210, 24]]]], ["block", "flexberry-toggler", [], ["caption", ["subexpr", "t", ["forms.fd-stage-edit-form.bpm.caption"], [], ["loc", [null, [215, 12], [215, 54]]]], "expanded", ["subexpr", "@mut", [["get", "expandedBPM", ["loc", [null, [216, 13], [216, 24]]]]], [], []], "iconClass", ["subexpr", "@mut", [["get", "iconClass", ["loc", [null, [217, 14], [217, 23]]]]], [], []]], 3, null, ["loc", [null, [214, 2], [236, 24]]]], ["block", "flexberry-toggler", [], ["caption", ["subexpr", "t", ["forms.fd-stage-edit-form.orm.caption"], [], ["loc", [null, [241, 12], [241, 54]]]], "expanded", ["subexpr", "@mut", [["get", "expandedORM", ["loc", [null, [242, 13], [242, 24]]]]], [], []], "iconClass", ["subexpr", "@mut", [["get", "iconClass", ["loc", [null, [243, 14], [243, 23]]]]], [], []]], 4, null, ["loc", [null, [240, 2], [263, 24]]]]],
+      statements: [["inline", "t", ["forms.fd-stage-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 62]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [15, 26], [15, 31]]]]], [], []]], ["loc", [null, [15, 2], [15, 33]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [18, 43], [18, 55]]]]], [], []]], ["loc", [null, [18, 6], [18, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [23, 16], [23, 24]]]]], [], 1, null, ["loc", [null, [23, 6], [32, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [33, 59], [33, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [34, 8], [34, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [40, 18], [40, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [41, 15], [41, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [43, 12], [43, 22]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [44, 16], [44, 33]]]], "error", ""], [], ["loc", [null, [44, 12], [44, 45]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.name-caption"], [], ["loc", [null, [45, 12], [45, 55]]]]], ["loc", [null, [39, 4], [46, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [47, 40], [47, 57]]]]], [], []], "pointing", "pointing"], ["loc", [null, [47, 4], [47, 79]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [52, 18], [52, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [53, 15], [53, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [55, 12], [55, 29]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [56, 16], [56, 40]]]], "error", ""], [], ["loc", [null, [56, 12], [56, 52]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.description-caption"], [], ["loc", [null, [57, 12], [57, 62]]]]], ["loc", [null, [51, 4], [58, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [59, 40], [59, 64]]]]], [], []], "pointing", "pointing"], ["loc", [null, [59, 4], [59, 86]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [64, 18], [64, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [65, 15], [65, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.company", ["loc", [null, [67, 12], [67, 25]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.company", ["loc", [null, [68, 16], [68, 36]]]], "error", ""], [], ["loc", [null, [68, 12], [68, 48]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.company-caption"], [], ["loc", [null, [69, 12], [69, 58]]]]], ["loc", [null, [63, 4], [70, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.company", ["loc", [null, [71, 40], [71, 60]]]]], [], []], "pointing", "pointing"], ["loc", [null, [71, 4], [71, 82]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [76, 18], [76, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [77, 15], [77, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.copyright", ["loc", [null, [79, 12], [79, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.copyright", ["loc", [null, [80, 16], [80, 38]]]], "error", ""], [], ["loc", [null, [80, 12], [80, 50]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.copyright-caption"], [], ["loc", [null, [81, 12], [81, 60]]]]], ["loc", [null, [75, 4], [82, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.copyright", ["loc", [null, [83, 40], [83, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [83, 4], [83, 84]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [88, 18], [88, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [89, 15], [89, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.product", ["loc", [null, [91, 12], [91, 25]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.product", ["loc", [null, [92, 16], [92, 36]]]], "error", ""], [], ["loc", [null, [92, 12], [92, 48]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.product-caption"], [], ["loc", [null, [93, 12], [93, 58]]]]], ["loc", [null, [87, 4], [94, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.product", ["loc", [null, [95, 40], [95, 60]]]]], [], []], "pointing", "pointing"], ["loc", [null, [95, 4], [95, 82]]]], ["block", "flexberry-toggler", [], ["caption", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.caption"], [], ["loc", [null, [100, 14], [100, 58]]]], "expanded", ["subexpr", "@mut", [["get", "expandedEmber", ["loc", [null, [101, 15], [101, 28]]]]], [], []], "iconClass", ["subexpr", "@mut", [["get", "iconClass", ["loc", [null, [102, 16], [102, 25]]]]], [], []]], 2, null, ["loc", [null, [99, 4], [195, 26]]]], ["block", "flexberry-toggler", [], ["caption", ["subexpr", "t", ["forms.fd-stage-edit-form.bpm.caption"], [], ["loc", [null, [200, 14], [200, 56]]]], "expanded", ["subexpr", "@mut", [["get", "expandedBPM", ["loc", [null, [201, 15], [201, 26]]]]], [], []], "iconClass", ["subexpr", "@mut", [["get", "iconClass", ["loc", [null, [202, 16], [202, 25]]]]], [], []]], 3, null, ["loc", [null, [199, 4], [221, 26]]]], ["block", "flexberry-toggler", [], ["caption", ["subexpr", "t", ["forms.fd-stage-edit-form.orm.caption"], [], ["loc", [null, [226, 14], [226, 56]]]], "expanded", ["subexpr", "@mut", [["get", "expandedORM", ["loc", [null, [227, 15], [227, 26]]]]], [], []], "iconClass", ["subexpr", "@mut", [["get", "iconClass", ["loc", [null, [228, 16], [228, 25]]]]], [], []]], 4, null, ["loc", [null, [225, 4], [246, 26]]]]],
       locals: [],
       templates: [child0, child1, child2, child3, child4]
     };
@@ -30067,7 +30083,7 @@ define("dummy/templates/fd-visual-listform", ["exports"], function (exports) {
         morphs[10] = dom.createMorphAt(dom.childAt(element6, [3, 1]), 1, 1);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-visual-listform.caption"], [], ["loc", [null, [1, 22], [1, 62]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [2, 6], [2, 19]]]]], [], 0, null, ["loc", [null, [2, 0], [12, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [14, 26], [14, 31]]]]], [], []]], ["loc", [null, [14, 2], [14, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [17, 16], [17, 24]]]]], [], 1, null, ["loc", [null, [17, 6], [26, 17]]]], ["inline", "t", ["forms.fd-visual-edit-list-form.preview-mobile-variant"], [], ["loc", [null, [28, 8], [28, 69]]]], ["element", "action", ["close"], [], ["loc", [null, [30, 59], [30, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [31, 8], [31, 49]]]], ["inline", "t", ["forms.fd-visual-listform.name"], [], ["loc", [null, [37, 15], [37, 52]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "listformName", ["loc", [null, [39, 16], [39, 28]]]]], [], []]], ["loc", [null, [38, 8], [40, 10]]]], ["inline", "fd-visual-edit-control", [], ["model", ["subexpr", "@mut", [["get", "editControl", ["loc", [null, [48, 16], [48, 27]]]]], [], []], "controlTypes", ["subexpr", "@mut", [["get", "controlTypes", ["loc", [null, [49, 23], [49, 35]]]]], [], []], "prototypeBy", ["subexpr", "@mut", [["get", "prototypeBy", ["loc", [null, [50, 22], [50, 33]]]]], [], []]], ["loc", [null, [47, 10], [51, 10]]]], ["inline", "fd-visual-listform-form", [], ["listformName", ["subexpr", "@mut", [["get", "listformName", ["loc", [null, [58, 23], [58, 35]]]]], [], []], "editControl", ["subexpr", "@mut", [["get", "editControl", ["loc", [null, [59, 22], [59, 33]]]]], [], []], "listAttributes", ["subexpr", "@mut", [["get", "listAttributes", ["loc", [null, [60, 25], [60, 39]]]]], [], []]], ["loc", [null, [57, 8], [61, 10]]]]],
+      statements: [["inline", "t", ["forms.fd-visual-listform.caption"], [], ["loc", [null, [1, 22], [1, 62]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [2, 6], [2, 19]]]]], [], 0, null, ["loc", [null, [2, 0], [12, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [14, 26], [14, 31]]]]], [], []]], ["loc", [null, [14, 2], [14, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [17, 16], [17, 24]]]]], [], 1, null, ["loc", [null, [17, 6], [26, 17]]]], ["inline", "t", ["forms.fd-visual-listform.preview-mobile-variant"], [], ["loc", [null, [28, 8], [28, 63]]]], ["element", "action", ["close"], [], ["loc", [null, [30, 59], [30, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [31, 8], [31, 49]]]], ["inline", "t", ["forms.fd-visual-listform.name"], [], ["loc", [null, [37, 15], [37, 52]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "listformName", ["loc", [null, [39, 16], [39, 28]]]]], [], []]], ["loc", [null, [38, 8], [40, 10]]]], ["inline", "fd-visual-edit-control", [], ["model", ["subexpr", "@mut", [["get", "editControl", ["loc", [null, [48, 16], [48, 27]]]]], [], []], "controlTypes", ["subexpr", "@mut", [["get", "controlTypes", ["loc", [null, [49, 23], [49, 35]]]]], [], []], "prototypeBy", ["subexpr", "@mut", [["get", "prototypeBy", ["loc", [null, [50, 22], [50, 33]]]]], [], []]], ["loc", [null, [47, 10], [51, 10]]]], ["inline", "fd-visual-listform-form", [], ["listformName", ["subexpr", "@mut", [["get", "listformName", ["loc", [null, [58, 23], [58, 35]]]]], [], []], "editControl", ["subexpr", "@mut", [["get", "editControl", ["loc", [null, [59, 22], [59, 33]]]]], [], []], "listAttributes", ["subexpr", "@mut", [["get", "listAttributes", ["loc", [null, [60, 25], [60, 39]]]]], [], []]], ["loc", [null, [57, 8], [61, 10]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -35666,7 +35682,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://flexberry-designer-web.azurewebsites.net","backendUrls":{"root":"https://flexberry-designer-web.azurewebsites.net","api":"https://flexberry-designer-web.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://flexberry-designer-web.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.1.0-alpha01+3790fe2b"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://flexberry-designer-web.azurewebsites.net","backendUrls":{"root":"https://flexberry-designer-web.azurewebsites.net","api":"https://flexberry-designer-web.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://flexberry-designer-web.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.1.0-alpha01+9a32da6c"});
 }
 
 /* jshint ignore:end */
