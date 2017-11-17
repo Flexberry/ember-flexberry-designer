@@ -16,8 +16,6 @@ export default Ember.Route.extend({
 
   definition: {},
 
-  //   associations: [],
-  //
   //   aggregations: [],const { RSVP}
 
   //
@@ -27,6 +25,9 @@ export default Ember.Route.extend({
 
   queryParams: {
     formId: {
+      refreshModel: false
+    },
+    classId: {
       refreshModel: false
     }
   },

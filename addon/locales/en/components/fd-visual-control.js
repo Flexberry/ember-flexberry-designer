@@ -2,7 +2,7 @@ export default {
   prototypeBy: 'Prototype by',
   name: 'Name',
   type: 'Type',
-  isNull: 'Null',
+  isNull: 'Null values are allowed',
   defaultValue: 'Default value',
   typeName: {
     stringControlType: 'string',

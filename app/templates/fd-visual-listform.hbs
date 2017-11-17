@@ -1,4 +1,4 @@
-<h3 class="ui header">{{t 'forms.fd-visual-edit-list-form.caption'}}</h3>
+<h3 class="ui header">{{t 'forms.fd-visual-listform.caption'}}</h3>
 {{#if errorMessages}}
   {{#each errorMessages as |currentError|}}
     {{ui-message
@@ -34,7 +34,7 @@
   </div>
   <div class="ui grid row">
     <div class="field eight wide column">
-        <label>{{t 'forms.fd-visual-edit-list-form.name'}}</label>
+        <label>{{t 'forms.fd-visual-listform.name'}}</label>
         {{flexberry-textbox
           value=listformName
         }}
@@ -54,7 +54,7 @@
     </div>
     <div class="row">
       <div class="sixteen wide column" style="width: 100%; overflow-x: scroll;">
-        {{fd-visual-edit-list-form
+        {{fd-visual-listform-form
           listformName=listformName
           editControl=editControl
           listAttributes=listAttributes

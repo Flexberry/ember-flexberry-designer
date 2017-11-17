@@ -1,7 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('fd-visual-edit-list-form', 'Integration | Component | fd visual edit list form', {
+moduleForComponent('fd-visual-listform-form', 'Integration | Component | fd visual edit list form', {
   integration: true
 });
 
@@ -11,7 +11,7 @@ test('it renders', function(assert) {
 
   this.set('model', { listform: { listAttributes: [] }, editControl: { type: 'string' } });
 
-  this.render(hbs`{{fd-visual-edit-list-form model=model}}`);
+  this.render(hbs`{{fd-visual-listform-form model=model}}`);
 
   assert.equal('', '');
 
@@ -19,9 +19,9 @@ test('it renders', function(assert) {
 
   // Template block usage:
   this.render(hbs`
-  {{#fd-visual-edit-list-form model=model}}
+  {{#fd-visual-listform-form model=model}}
       template block text
-    {{/fd-visual-edit-list-form}}
+    {{/fd-visual-listform-form}}
   `);
 
   /*assert.equal(this.$().text().trim(), 'template block text');*/
