@@ -104,11 +104,11 @@ define('dummy/components/fd-visual-edit-form', ['exports', 'ember-flexberry-desi
     }
   });
 });
-define('dummy/components/fd-visual-edit-list-form', ['exports', 'ember-flexberry-designer/components/fd-visual-edit-list-form'], function (exports, _emberFlexberryDesignerComponentsFdVisualEditListForm) {
+define('dummy/components/fd-visual-listform-form', ['exports', 'ember-flexberry-designer/components/fd-visual-listform-form'], function (exports, _emberFlexberryDesignerComponentsFdVisualListformForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
-      return _emberFlexberryDesignerComponentsFdVisualEditListForm['default'];
+      return _emberFlexberryDesignerComponentsFdVisualListformForm['default'];
     }
   });
 });
@@ -425,9 +425,9 @@ define('dummy/controllers/application', ['exports', 'ember'], function (exports,
           title: i18n.t('forms.application.sitemap.root.fd-appstruct-list-form.title')
         });
         sitemap.nodes.push({
-          link: 'fd-visual-edit-list-form',
-          caption: i18n.t('forms.application.sitemap.root.fd-visual-edit-list-form.caption'),
-          title: i18n.t('forms.application.sitemap.root.fd-visual-edit-list-form.title')
+          link: 'fd-visual-listform',
+          caption: i18n.t('forms.application.sitemap.root.fd-visual-listform.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-visual-listform.title')
         });
         sitemap.nodes.push({
           link: 'fd-visual-edit-form',
@@ -824,11 +824,11 @@ define('dummy/controllers/fd-visual-edit-form', ['exports', 'ember-flexberry-des
     }
   });
 });
-define('dummy/controllers/fd-visual-edit-list-form', ['exports', 'ember-flexberry-designer/controllers/fd-visual-edit-list-form'], function (exports, _emberFlexberryDesignerControllersFdVisualEditListForm) {
+define('dummy/controllers/fd-visual-listform', ['exports', 'ember-flexberry-designer/controllers/fd-visual-listform'], function (exports, _emberFlexberryDesignerControllersFdVisualListform) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
-      return _emberFlexberryDesignerControllersFdVisualEditListForm['default'];
+      return _emberFlexberryDesignerControllersFdVisualListform['default'];
     }
   });
 });
@@ -936,17 +936,17 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
     assert.ok(true, 'modules/ember-flexberry-designer/components/fd-visual-edit-form.js should pass jshint.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-visual-edit-list-form.jscs-test', ['exports'], function (exports) {
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-visual-listform-form.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/components');
-  test('modules/ember-flexberry-designer/components/fd-visual-edit-list-form.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/components/fd-visual-edit-list-form.js should pass jscs.');
+  test('modules/ember-flexberry-designer/components/fd-visual-listform-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-visual-listform-form.js should pass jscs.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-visual-edit-list-form.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-visual-edit-list-form.js');
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-visual-listform-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-visual-listform-form.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-visual-edit-list-form.js should pass jshint.');
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-visual-listform-form.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-appstruct-list-form.jscs-test', ['exports'], function (exports) {
@@ -1300,17 +1300,17 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
     assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-visual-edit-form.js should pass jshint.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-visual-edit-list-form.jscs-test', ['exports'], function (exports) {
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-visual-listform.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/controllers');
-  test('modules/ember-flexberry-designer/controllers/fd-visual-edit-list-form.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/controllers/fd-visual-edit-list-form.js should pass jscs.');
+  test('modules/ember-flexberry-designer/controllers/fd-visual-listform.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/fd-visual-listform.js should pass jscs.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-visual-edit-list-form.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/fd-visual-edit-list-form.js');
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-visual-listform.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/fd-visual-listform.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-visual-edit-list-form.js should pass jshint.');
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-visual-listform.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-access-type.jscs-test', ['exports'], function (exports) {
@@ -1638,17 +1638,17 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-visual-edit-form.js should pass jshint.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-visual-edit-list-form.jscs-test', ['exports'], function (exports) {
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-visual-listform.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/locales/en/forms');
-  test('modules/ember-flexberry-designer/locales/en/forms/fd-visual-edit-list-form.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-visual-edit-list-form.js should pass jscs.');
+  test('modules/ember-flexberry-designer/locales/en/forms/fd-visual-listform.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-visual-listform.js should pass jscs.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-visual-edit-list-form.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/forms/fd-visual-edit-list-form.js');
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-visual-listform.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/forms/fd-visual-listform.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-visual-edit-list-form.js should pass jshint.');
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-visual-listform.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-ad.jscs-test', ['exports'], function (exports) {
@@ -2769,17 +2769,17 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-visual-edit-form.js should pass jshint.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-visual-edit-list-form.jscs-test', ['exports'], function (exports) {
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-visual-listform.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/locales/ru/forms');
-  test('modules/ember-flexberry-designer/locales/ru/forms/fd-visual-edit-list-form.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-visual-edit-list-form.js should pass jscs.');
+  test('modules/ember-flexberry-designer/locales/ru/forms/fd-visual-listform.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-visual-listform.js should pass jscs.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-visual-edit-list-form.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/forms/fd-visual-edit-list-form.js');
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-visual-listform.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/forms/fd-visual-listform.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-visual-edit-list-form.js should pass jshint.');
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-visual-listform.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-ad.jscs-test', ['exports'], function (exports) {
@@ -7397,17 +7397,17 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ro
     assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-visual-edit-form.js should pass jshint.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-visual-edit-list-form.jscs-test', ['exports'], function (exports) {
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-visual-listform.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/routes');
-  test('modules/ember-flexberry-designer/routes/fd-visual-edit-list-form.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/routes/fd-visual-edit-list-form.js should pass jscs.');
+  test('modules/ember-flexberry-designer/routes/fd-visual-listform.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/fd-visual-listform.js should pass jscs.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-visual-edit-list-form.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-visual-edit-list-form.js');
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-visual-listform.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-visual-listform.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-visual-edit-list-form.js should pass jshint.');
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-visual-listform.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/application-offline.jscs-test', ['exports'], function (exports) {
@@ -10160,8 +10160,8 @@ define('dummy/locales/en/translations', ['exports', 'ember', 'ember-flexberry-de
               title: ''
             },
 
-            'fd-visual-edit-list-form': {
-              caption: 'Edit list form',
+            'fd-visual-listform': {
+              caption: 'Visual edit listform',
               title: ''
             },
 
@@ -10307,8 +10307,8 @@ define('dummy/locales/ru/translations', ['exports', 'ember', 'ember-flexberry-de
 
             },
 
-            'fd-visual-edit-list-form': {
-              caption: 'Редактирование списковой формы',
+            'fd-visual-listform': {
+              caption: 'Списковая форма визуального редактирования',
               title: ''
             },
 
@@ -11090,7 +11090,7 @@ define('dummy/router', ['exports', 'ember', 'dummy/config/environment'], functio
     this.route('fd-view-edit-form', { path: 'fd-view-edit-form/:id' });
     this.route('fd-view-edit-form.new', { path: 'fd-view-edit-form/new' });
     this.route('fd-visual-edit-form');
-    this.route('fd-visual-edit-list-form');
+    this.route('fd-visual-listform');
     this.route('fd-generation-process-form');
   });
 
@@ -11331,11 +11331,11 @@ define('dummy/routes/fd-visual-edit-form', ['exports', 'ember-flexberry-designer
     }
   });
 });
-define('dummy/routes/fd-visual-edit-list-form', ['exports', 'ember-flexberry-designer/routes/fd-visual-edit-list-form'], function (exports, _emberFlexberryDesignerRoutesFdVisualEditListForm) {
+define('dummy/routes/fd-visual-listform', ['exports', 'ember-flexberry-designer/routes/fd-visual-listform'], function (exports, _emberFlexberryDesignerRoutesFdVisualListform) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
-      return _emberFlexberryDesignerRoutesFdVisualEditListForm['default'];
+      return _emberFlexberryDesignerRoutesFdVisualListform['default'];
     }
   });
 });
@@ -28795,7 +28795,7 @@ define("dummy/templates/fd-visual-edit-form", ["exports"], function (exports) {
     };
   })());
 });
-define("dummy/templates/fd-visual-edit-list-form", ["exports"], function (exports) {
+define("dummy/templates/fd-visual-listform", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     var child0 = (function () {
       var child0 = (function () {
@@ -28814,7 +28814,7 @@ define("dummy/templates/fd-visual-edit-list-form", ["exports"], function (export
                 "column": 2
               }
             },
-            "moduleName": "dummy/templates/fd-visual-edit-list-form.hbs"
+            "moduleName": "dummy/templates/fd-visual-listform.hbs"
           },
           isEmpty: false,
           arity: 1,
@@ -28855,7 +28855,7 @@ define("dummy/templates/fd-visual-edit-list-form", ["exports"], function (export
               "column": 0
             }
           },
-          "moduleName": "dummy/templates/fd-visual-edit-list-form.hbs"
+          "moduleName": "dummy/templates/fd-visual-listform.hbs"
         },
         isEmpty: false,
         arity: 0,
@@ -28896,7 +28896,7 @@ define("dummy/templates/fd-visual-edit-list-form", ["exports"], function (export
                 "column": 8
               }
             },
-            "moduleName": "dummy/templates/fd-visual-edit-list-form.hbs"
+            "moduleName": "dummy/templates/fd-visual-listform.hbs"
           },
           isEmpty: false,
           arity: 0,
@@ -28947,7 +28947,7 @@ define("dummy/templates/fd-visual-edit-list-form", ["exports"], function (export
               "column": 6
             }
           },
-          "moduleName": "dummy/templates/fd-visual-edit-list-form.hbs"
+          "moduleName": "dummy/templates/fd-visual-listform.hbs"
         },
         isEmpty: false,
         arity: 0,
@@ -29005,7 +29005,7 @@ define("dummy/templates/fd-visual-edit-list-form", ["exports"], function (export
             "column": 0
           }
         },
-        "moduleName": "dummy/templates/fd-visual-edit-list-form.hbs"
+        "moduleName": "dummy/templates/fd-visual-listform.hbs"
       },
       isEmpty: false,
       arity: 0,
@@ -29160,7 +29160,7 @@ define("dummy/templates/fd-visual-edit-list-form", ["exports"], function (export
         morphs[9] = dom.createMorphAt(dom.childAt(element6, [3, 1]), 1, 1);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-visual-edit-list-form.caption"], [], ["loc", [null, [1, 22], [1, 68]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [2, 6], [2, 19]]]]], [], 0, null, ["loc", [null, [2, 0], [12, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [14, 26], [14, 31]]]]], [], []]], ["loc", [null, [14, 2], [14, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [17, 16], [17, 24]]]]], [], 1, null, ["loc", [null, [17, 6], [26, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [27, 59], [27, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [28, 8], [28, 49]]]], ["inline", "t", ["forms.fd-visual-edit-list-form.name"], [], ["loc", [null, [34, 15], [34, 58]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "listformName", ["loc", [null, [36, 16], [36, 28]]]]], [], []]], ["loc", [null, [35, 8], [37, 10]]]], ["inline", "fd-visual-edit-control", [], ["model", ["subexpr", "@mut", [["get", "editControl", ["loc", [null, [45, 16], [45, 27]]]]], [], []], "controlTypes", ["subexpr", "@mut", [["get", "controlTypes", ["loc", [null, [46, 23], [46, 35]]]]], [], []], "prototypeBy", ["subexpr", "@mut", [["get", "prototypeBy", ["loc", [null, [47, 22], [47, 33]]]]], [], []]], ["loc", [null, [44, 10], [48, 10]]]], ["inline", "fd-visual-edit-list-form", [], ["listformName", ["subexpr", "@mut", [["get", "listformName", ["loc", [null, [55, 23], [55, 35]]]]], [], []], "editControl", ["subexpr", "@mut", [["get", "editControl", ["loc", [null, [56, 22], [56, 33]]]]], [], []], "listAttributes", ["subexpr", "@mut", [["get", "listAttributes", ["loc", [null, [57, 25], [57, 39]]]]], [], []]], ["loc", [null, [54, 8], [58, 10]]]]],
+      statements: [["inline", "t", ["forms.fd-visual-listform.caption"], [], ["loc", [null, [1, 22], [1, 62]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [2, 6], [2, 19]]]]], [], 0, null, ["loc", [null, [2, 0], [12, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [14, 26], [14, 31]]]]], [], []]], ["loc", [null, [14, 2], [14, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [17, 16], [17, 24]]]]], [], 1, null, ["loc", [null, [17, 6], [26, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [27, 59], [27, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [28, 8], [28, 49]]]], ["inline", "t", ["forms.fd-visual-listform.name"], [], ["loc", [null, [34, 15], [34, 52]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "listformName", ["loc", [null, [36, 16], [36, 28]]]]], [], []]], ["loc", [null, [35, 8], [37, 10]]]], ["inline", "fd-visual-edit-control", [], ["model", ["subexpr", "@mut", [["get", "editControl", ["loc", [null, [45, 16], [45, 27]]]]], [], []], "controlTypes", ["subexpr", "@mut", [["get", "controlTypes", ["loc", [null, [46, 23], [46, 35]]]]], [], []], "prototypeBy", ["subexpr", "@mut", [["get", "prototypeBy", ["loc", [null, [47, 22], [47, 33]]]]], [], []]], ["loc", [null, [44, 10], [48, 10]]]], ["inline", "fd-visual-listform-form", [], ["listformName", ["subexpr", "@mut", [["get", "listformName", ["loc", [null, [55, 23], [55, 35]]]]], [], []], "editControl", ["subexpr", "@mut", [["get", "editControl", ["loc", [null, [56, 22], [56, 33]]]]], [], []], "listAttributes", ["subexpr", "@mut", [["get", "listAttributes", ["loc", [null, [57, 25], [57, 39]]]]], [], []]], ["loc", [null, [54, 8], [58, 10]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -34759,7 +34759,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://flexberry-designer-web.azurewebsites.net","backendUrls":{"root":"https://flexberry-designer-web.azurewebsites.net","api":"https://flexberry-designer-web.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://flexberry-designer-web.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.1.0-alpha01+a83b479f"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://flexberry-designer-web.azurewebsites.net","backendUrls":{"root":"https://flexberry-designer-web.azurewebsites.net","api":"https://flexberry-designer-web.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://flexberry-designer-web.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.1.0-alpha01+8dd2099f"});
 }
 
 /* jshint ignore:end */

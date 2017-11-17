@@ -650,9 +650,9 @@ define('dummy/tests/integration/components/fd-visual-edit-form-test.jshint', ['e
     assert.ok(true, 'integration/components/fd-visual-edit-form-test.js should pass jshint.');
   });
 });
-define('dummy/tests/integration/components/fd-visual-edit-list-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+define('dummy/tests/integration/components/fd-visual-listform-form', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
-  (0, _emberQunit.moduleForComponent)('fd-visual-edit-list-form', 'Integration | Component | fd visual edit list form', {
+  (0, _emberQunit.moduleForComponent)('fd-visual-listform-form', 'Integration | Component | fd visual edit list form', {
     integration: true
   });
 
@@ -678,7 +678,7 @@ define('dummy/tests/integration/components/fd-visual-edit-list-form-test', ['exp
             },
             'end': {
               'line': 1,
-              'column': 40
+              'column': 39
             }
           }
         },
@@ -699,7 +699,7 @@ define('dummy/tests/integration/components/fd-visual-edit-list-form-test', ['exp
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [['inline', 'fd-visual-edit-list-form', [], ['model', ['subexpr', '@mut', [['get', 'model', ['loc', [null, [1, 33], [1, 38]]]]], [], []]], ['loc', [null, [1, 0], [1, 40]]]]],
+        statements: [['inline', 'fd-visual-listform-form', [], ['model', ['subexpr', '@mut', [['get', 'model', ['loc', [null, [1, 32], [1, 37]]]]], [], []]], ['loc', [null, [1, 0], [1, 39]]]]],
         locals: [],
         templates: []
       };
@@ -785,7 +785,7 @@ define('dummy/tests/integration/components/fd-visual-edit-list-form-test', ['exp
           morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           return morphs;
         },
-        statements: [['block', 'fd-visual-edit-list-form', [], ['model', ['subexpr', '@mut', [['get', 'model', ['loc', [null, [2, 36], [2, 41]]]]], [], []]], 0, null, ['loc', [null, [2, 2], [4, 33]]]]],
+        statements: [['block', 'fd-visual-listform-form', [], ['model', ['subexpr', '@mut', [['get', 'model', ['loc', [null, [2, 35], [2, 40]]]]], [], []]], 0, null, ['loc', [null, [2, 2], [4, 32]]]]],
         locals: [],
         templates: [child0]
       };
@@ -795,21 +795,21 @@ define('dummy/tests/integration/components/fd-visual-edit-list-form-test', ['exp
     assert.equal('', '');
   });
 });
-define('dummy/tests/integration/components/fd-visual-edit-list-form-test.jscs-test', ['exports'], function (exports) {
+define('dummy/tests/integration/components/fd-visual-listform-form.jscs-test', ['exports'], function (exports) {
   'use strict';
 
   module('JSCS - integration/components');
-  test('integration/components/fd-visual-edit-list-form-test.js should pass jscs', function () {
-    ok(true, 'integration/components/fd-visual-edit-list-form-test.js should pass jscs.');
+  test('integration/components/fd-visual-listform-form.js should pass jscs', function () {
+    ok(true, 'integration/components/fd-visual-listform-form.js should pass jscs.');
   });
 });
-define('dummy/tests/integration/components/fd-visual-edit-list-form-test.jshint', ['exports'], function (exports) {
+define('dummy/tests/integration/components/fd-visual-listform-form.jshint', ['exports'], function (exports) {
   'use strict';
 
-  QUnit.module('JSHint - integration/components/fd-visual-edit-list-form-test.js');
+  QUnit.module('JSHint - integration/components/fd-visual-listform-form.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'integration/components/fd-visual-edit-list-form-test.js should pass jshint.');
+    assert.ok(true, 'integration/components/fd-visual-listform-form.js should pass jshint.');
   });
 });
 define('dummy/tests/locales/en/translations.jscs-test', ['exports'], function (exports) {
@@ -1539,9 +1539,9 @@ define('dummy/tests/unit/controllers/fd-visual-edit-form-test.jshint', ['exports
     assert.ok(true, 'unit/controllers/fd-visual-edit-form-test.js should pass jshint.');
   });
 });
-define('dummy/tests/unit/controllers/fd-visual-edit-list-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+define('dummy/tests/unit/controllers/fd-visual-listform', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
-  (0, _emberQunit.moduleFor)('controller:fd-visual-edit-list-form', 'Unit | Controller | fd visual edit list form', {
+  (0, _emberQunit.moduleFor)('controller:fd-visual-listform', 'Unit | Controller | fd visual edit list form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
   });
@@ -1552,21 +1552,21 @@ define('dummy/tests/unit/controllers/fd-visual-edit-list-form-test', ['exports',
     assert.ok(controller);
   });
 });
-define('dummy/tests/unit/controllers/fd-visual-edit-list-form-test.jscs-test', ['exports'], function (exports) {
+define('dummy/tests/unit/controllers/fd-visual-listform.jscs-test', ['exports'], function (exports) {
   'use strict';
 
   module('JSCS - unit/controllers');
-  test('unit/controllers/fd-visual-edit-list-form-test.js should pass jscs', function () {
-    ok(true, 'unit/controllers/fd-visual-edit-list-form-test.js should pass jscs.');
+  test('unit/controllers/fd-visual-listform.js should pass jscs', function () {
+    ok(true, 'unit/controllers/fd-visual-listform.js should pass jscs.');
   });
 });
-define('dummy/tests/unit/controllers/fd-visual-edit-list-form-test.jshint', ['exports'], function (exports) {
+define('dummy/tests/unit/controllers/fd-visual-listform.jshint', ['exports'], function (exports) {
   'use strict';
 
-  QUnit.module('JSHint - unit/controllers/fd-visual-edit-list-form-test.js');
+  QUnit.module('JSHint - unit/controllers/fd-visual-listform.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'unit/controllers/fd-visual-edit-list-form-test.js should pass jshint.');
+    assert.ok(true, 'unit/controllers/fd-visual-listform.js should pass jshint.');
   });
 });
 define('dummy/tests/unit/mixins/fd-limit-by-stage-test', ['exports', 'ember', 'qunit', 'ember-flexberry-data', 'ember-flexberry-designer/mixins/fd-limit-by-stage'], function (exports, _ember, _qunit, _emberFlexberryData, _emberFlexberryDesignerMixinsFdLimitByStage) {
@@ -4129,9 +4129,9 @@ define('dummy/tests/unit/routes/fd-visual-edit-form-test.jshint', ['exports'], f
     assert.ok(true, 'unit/routes/fd-visual-edit-form-test.js should pass jshint.');
   });
 });
-define('dummy/tests/unit/routes/fd-visual-edit-list-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+define('dummy/tests/unit/routes/fd-visual-listform', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
-  (0, _emberQunit.moduleFor)('route:fd-visual-edit-list-form', 'Unit | Route | fd visual edit list form', {
+  (0, _emberQunit.moduleFor)('route:fd-visual-listform', 'Unit | Route | fd visual edit list form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
   });
@@ -4141,21 +4141,21 @@ define('dummy/tests/unit/routes/fd-visual-edit-list-form-test', ['exports', 'emb
     assert.ok(route);
   });
 });
-define('dummy/tests/unit/routes/fd-visual-edit-list-form-test.jscs-test', ['exports'], function (exports) {
+define('dummy/tests/unit/routes/fd-visual-listform.jscs-test', ['exports'], function (exports) {
   'use strict';
 
   module('JSCS - unit/routes');
-  test('unit/routes/fd-visual-edit-list-form-test.js should pass jscs', function () {
-    ok(true, 'unit/routes/fd-visual-edit-list-form-test.js should pass jscs.');
+  test('unit/routes/fd-visual-listform.js should pass jscs', function () {
+    ok(true, 'unit/routes/fd-visual-listform.js should pass jscs.');
   });
 });
-define('dummy/tests/unit/routes/fd-visual-edit-list-form-test.jshint', ['exports'], function (exports) {
+define('dummy/tests/unit/routes/fd-visual-listform.jshint', ['exports'], function (exports) {
   'use strict';
 
-  QUnit.module('JSHint - unit/routes/fd-visual-edit-list-form-test.js');
+  QUnit.module('JSHint - unit/routes/fd-visual-listform.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'unit/routes/fd-visual-edit-list-form-test.js should pass jshint.');
+    assert.ok(true, 'unit/routes/fd-visual-listform.js should pass jshint.');
   });
 });
 define('dummy/tests/unit/serializers/fd-ad-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
