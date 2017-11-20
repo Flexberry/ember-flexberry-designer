@@ -95,7 +95,8 @@ export default DS.Transform.extend({
     );*/
     let currentPath = '';
     let currentNodes = null;
-    for (let item of itemList) {
+    for (let i = 0; i < itemList.length; i++) {
+      let item = itemList[i];
       let menuPath = item.getAttribute('MenuPath') || item.getAttribute('menupath');
       if (currentPath !== menuPath) {
         currentNodes = this._findOrCreateCurrentNodes(rootTree, menuPath.split('\\'));
