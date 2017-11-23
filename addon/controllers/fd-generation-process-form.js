@@ -15,7 +15,7 @@ export default Ember.Controller.extend({
   actions: {
     generate() {
       let _this = this;
-      let stagePk = _this.get('currentProjectContext').getCurrentStagePk();
+      let stagePk = _this.get('currentProjectContext').getCurrentStage();
       let host = _this.get('store').adapterFor('application').host;
       Ember.$.ajax({
         type: 'GET',
