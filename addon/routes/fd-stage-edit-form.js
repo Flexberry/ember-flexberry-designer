@@ -15,24 +15,61 @@ export default EditFormRoute.extend({
       xhrFields: { withCredentials: true },
       url: `${host}/GetCurrentModuleSetting(project=${stagePk})`,
       success(result) {
-        let moduleSettingValue = result.value.split(' ');
-        moduleSettingValue = moduleSettingValue.map(function(setting) {
-          return setting === 'null' ? null : setting;
-        });
+        let moduleSettingValue = JSON.parse(result.value);
 
-        controller.set('moduleSetting.FrontendGitRepoUrl', moduleSettingValue[0]);
-        controller.set('moduleSetting.FrontendLogin', moduleSettingValue[1]);
-        controller.set('moduleSetting.FrontendPassword', moduleSettingValue[2]);
-        controller.set('moduleSetting.FrontendBranch', moduleSettingValue[3]);
-        controller.set('moduleSetting.FrontendPublishGh', moduleSettingValue[4]);
-        controller.set('moduleSetting.BackendGitRepoUrl', moduleSettingValue[5]);
-        controller.set('moduleSetting.BackendLogin', moduleSettingValue[6]);
-        controller.set('moduleSetting.BackendPassword', moduleSettingValue[7]);
-        controller.set('moduleSetting.BackendBranch', moduleSettingValue[8]);
-        controller.set('moduleSetting.GenerateCordova', moduleSettingValue[9]);
-        controller.set('moduleSetting.ProcessMethodology', moduleSettingValue[10]);
-        controller.set('moduleSetting.ProcessConsoleAddress', moduleSettingValue[11]);
-        controller.set('moduleSetting.DefaultStorage', moduleSettingValue[12]);
+        for (let i = 0; i < moduleSettingValue.length; i++) {
+          switch (moduleSettingValue[i].Key) {
+            case 'frontendgitrepourl':
+              controller.set('moduleSetting.FrontendGitRepoUrl', moduleSettingValue[i].Value);
+            break;
+            case 'frontendlogin':
+              controller.set('moduleSetting.FrontendLogin', moduleSettingValue[i].Value);
+            break;
+            case 'frontendpassword':
+              let FrontendPassword = null;
+              if (moduleSettingValue[i].Value) {
+                FrontendPassword = '********';
+              }
+
+              controller.set('moduleSetting.FrontendPassword', FrontendPassword);
+            break;
+            case 'frontendbranch':
+              controller.set('moduleSetting.FrontendBranch', moduleSettingValue[i].Value);
+            break;
+            case 'frontendpublishgh':
+              controller.set('moduleSetting.FrontendPublishGh', moduleSettingValue[i].Value);
+            break;
+            case 'backendgitrepourl':
+              controller.set('moduleSetting.BackendGitRepoUrl', moduleSettingValue[i].Value);
+            break;
+            case 'backendlogin':
+              controller.set('moduleSetting.BackendLogin', moduleSettingValue[i].Value);
+            break;
+            case 'backendpassword':
+              let valueBackendPassword = null;
+              if (moduleSettingValue[i].Value) {
+                valueBackendPassword = '********';
+              }
+
+              controller.set('moduleSetting.BackendPassword', valueBackendPassword);
+            break;
+            case 'backendbranch':
+              controller.set('moduleSetting.BackendBranch', moduleSettingValue[i].Value);
+            break;
+            case 'generatecordova':
+              controller.set('moduleSetting.GenerateCordova', moduleSettingValue[i].Value);
+            break;
+            case 'processmethodology':
+              controller.set('moduleSetting.ProcessMethodology', moduleSettingValue[i].Value);
+            break;
+            case 'processconsoleaddress':
+              controller.set('moduleSetting.ProcessConsoleAddress', moduleSettingValue[i].Value);
+            break;
+            case 'defaultstorage':
+              controller.set('moduleSetting.DefaultStorage', moduleSettingValue[i].Value);
+            break;
+          }
+        }
       }
     });
   }
