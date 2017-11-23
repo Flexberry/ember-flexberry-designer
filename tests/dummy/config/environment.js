@@ -58,7 +58,7 @@ module.exports = function (environment) {
 
       // Lock settings.
       lock: {
-        enabled: false,
+        enabled: true,
         openReadOnly: true,
         unlockObject: true,
       },
