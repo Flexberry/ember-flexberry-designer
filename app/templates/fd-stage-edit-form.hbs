@@ -109,6 +109,7 @@
           <div class="field">
             {{flexberry-field
               placeholder=(t 'components.flexberry-field.placeholder')
+              value=moduleSetting.FrontendGitRepoUrl
               readonly=readonly
               label=(t 'forms.fd-stage-edit-form.ember.frontend.git-url')
             }}
@@ -116,6 +117,7 @@
           <div class="field">
             {{flexberry-field
               placeholder=(t 'components.flexberry-field.placeholder')
+              value=moduleSetting.FrontendLogin
               readonly=readonly
               label=(t 'forms.fd-stage-edit-form.ember.frontend.login')
             }}
@@ -123,6 +125,7 @@
           <div class="field">
             {{flexberry-field
               placeholder=(t 'components.flexberry-field.placeholder')
+              value=moduleSetting.FrontendPassword
               readonly=readonly
               label=(t 'forms.fd-stage-edit-form.ember.frontend.password')
             }}
@@ -130,6 +133,7 @@
           <div class="field">
             {{flexberry-field
               placeholder=(t 'components.flexberry-field.placeholder')
+              value=moduleSetting.FrontendBranch
               readonly=readonly
               label=(t 'forms.fd-stage-edit-form.ember.frontend.branch')
             }}
@@ -137,6 +141,7 @@
           <div class="field">
             {{flexberry-checkbox
               label=(t 'forms.fd-stage-edit-form.ember.frontend.publish')
+              value=moduleSetting.FrontendPublishGh
               readonly=readonly
             }}
           </div>
@@ -151,6 +156,7 @@
           <div class="field">
             {{flexberry-field
               placeholder=(t 'components.flexberry-field.placeholder')
+              value=moduleSetting.BackendGitRepoUrl
               readonly=readonly
               label=(t 'forms.fd-stage-edit-form.ember.backend.git-url')
             }}
@@ -158,6 +164,7 @@
           <div class="field">
             {{flexberry-field
               placeholder=(t 'components.flexberry-field.placeholder')
+              value=moduleSetting.BackendLogin
               readonly=readonly
               label=(t 'forms.fd-stage-edit-form.ember.backend.login')
             }}
@@ -165,6 +172,7 @@
           <div class="field">
             {{flexberry-field
               placeholder=(t 'components.flexberry-field.placeholder')
+              value=moduleSetting.BackendPassword
               readonly=readonly
               label=(t 'forms.fd-stage-edit-form.ember.backend.password')
             }}
@@ -172,6 +180,7 @@
           <div class="field">
             {{flexberry-field
               placeholder=(t 'components.flexberry-field.placeholder')
+              value=moduleSetting.BackendBranch
               readonly=readonly
               label=(t 'forms.fd-stage-edit-form.ember.backend.branch')
             }}
@@ -186,6 +195,7 @@
         <div class="ui segment">
           <div class="field">
             {{flexberry-checkbox
+              value=moduleSetting.GenerateCordova
               readonly=readonly
               label=(t 'forms.fd-stage-edit-form.ember.mobile.cordova')
             }}
@@ -206,12 +216,14 @@
           <div class="field">
             {{flexberry-checkbox
               placeholder=(t 'components.flexberry-field.placeholder')
+              value=moduleSetting.ProcessMethodology
               readonly=readonly
               label=(t 'forms.fd-stage-edit-form.bpm.process-methodology')
             }}
           </div>
           <div class="field">
             {{flexberry-field
+              value=moduleSetting.ProcessConsoleAddress
               readonly=readonly
               label=(t 'forms.fd-stage-edit-form.bpm.console-address')
             }}
@@ -233,6 +245,7 @@
             <label>{{t "forms.fd-stage-edit-form.orm.default-storage"}}</label>
             {{#if (await _storageType)}}
               {{flexberry-dropdown
+                value=moduleSetting.DefaultStorage
                 items=(await _storageType)
                 placeholder=(t 'components.flexberry-field.placeholder')
                 readonly=readonly
