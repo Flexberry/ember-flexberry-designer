@@ -25,7 +25,23 @@ export default EditFormController.extend({
     DefaultStorage: '',
   },
 
-  _storageType: Ember.computed(function() {
+  _changedModel: Ember.observer('model.id', function() {
+    this.set('moduleSetting.FrontendGitRepoUrl', '');
+    this.set('moduleSetting.FrontendLogin', '');
+    this.set('moduleSetting.FrontendPassword', '');
+    this.set('moduleSetting.FrontendBranch', '');
+    this.set('moduleSetting.FrontendPublishGh', false);
+    this.set('moduleSetting.BackendGitRepoUrl', '');
+    this.set('moduleSetting.BackendLogin', '');
+    this.set('moduleSetting.BackendPassword', '');
+    this.set('moduleSetting.BackendBranch', '');
+    this.set('moduleSetting.GenerateCordova', false);
+    this.set('moduleSetting.ProcessMethodology', false);
+    this.set('moduleSetting.ProcessConsoleAddress', '');
+    this.set('moduleSetting.DefaultStorage', '');
+  }),
+
+  _storageType: Ember.computed('model.id', function() {
     let currentStage = this.get('model.id');
 
     let stageEqualNull = new SimplePredicate('stage', '==', null);
