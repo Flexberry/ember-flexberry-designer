@@ -245,7 +245,7 @@
             <label>{{t "forms.fd-stage-edit-form.orm.default-storage"}}</label>
             {{#if (await _storageType)}}
               {{flexberry-dropdown
-                value=moduleSetting.DefaultStorage
+                value=(if (await _storageType) moduleSetting.DefaultStorage '')
                 items=(await _storageType)
                 placeholder=(t 'components.flexberry-field.placeholder')
                 readonly=readonly
