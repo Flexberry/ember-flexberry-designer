@@ -601,6 +601,38 @@ export default {
         }
       }
     },
+    Generations: {
+      name: {
+        __caption__: 'name'
+      },
+      generations: {
+        __caption__: 'generations',
+        userName: {
+          __caption__: 'userName'
+        },
+        state: {
+          __caption__: 'state'
+        },
+        startTime: {
+          __caption__: 'startTime'
+        },
+        percentComplete: {
+          __caption__: 'percentComplete'
+        },
+        endTime: {
+          __caption__: 'endTime'
+        },
+        stage: {
+          __caption__: 'stage',
+          name: {
+            __caption__: 'name'
+          }
+        },
+        generationReason: {
+          __caption__: 'generationReason'
+        }
+      }
+    },
     Generator: {
       name: {
         __caption__: 'name'

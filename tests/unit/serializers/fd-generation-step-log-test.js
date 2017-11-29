@@ -1,9 +1,9 @@
 import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('fd-dev-stage', 'Unit | Serializer | fd-dev-stage', {
+moduleForModel('fd-generation-step-log', 'Unit | Serializer | fd-generation-step-log', {
   // Specify the other units that are required for this test.
   needs: [
-    'serializer:fd-dev-stage',
+    'serializer:fd-generation-step-log',
     'transform:file',
     'transform:decimal',
 

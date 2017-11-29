@@ -601,6 +601,38 @@ export default {
         }
       }
     },
+    Generations: {
+      name: {
+        __caption__: ''
+      },
+      generations: {
+        __caption__: '',
+        userName: {
+          __caption__: 'Пользователь'
+        },
+        state: {
+          __caption__: 'Состояние'
+        },
+        startTime: {
+          __caption__: 'Время старта'
+        },
+        percentComplete: {
+          __caption__: '% выполнения'
+        },
+        endTime: {
+          __caption__: 'Время окончания'
+        },
+        stage: {
+          __caption__: 'Имя стадии',
+          name: {
+            __caption__: 'Имя стадии'
+          }
+        },
+        generationReason: {
+          __caption__: 'Действие'
+        }
+      }
+    },
     Generator: {
       name: {
         __caption__: ''

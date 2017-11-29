@@ -4,10 +4,8 @@ export let Serializer = Ember.Mixin.create({
   getAttrs: function () {
     let parentAttrs = this._super();
     let attrs = {
-      typeDefinitions: { serialize: false, deserialize: 'records' },
-      controlTypes: { serialize: false, deserialize: 'records' },
-      moduleSettings: { serialize: false, deserialize: 'records' },
-      generations: { serialize: false, deserialize: 'records' }
+      stage: { serialize: 'odata-id', deserialize: 'records' },
+      stepLogs: { serialize: false, deserialize: 'records' }
     };
 
     return Ember.$.extend(true, {}, parentAttrs, attrs);

@@ -1,0 +1,12 @@
+﻿{
+  "nameSpace": "NewPlatform.Flexberry.WebDesigner",
+  "className": "GenerationState",
+  "enumObjects": {
+    "Unknown": null,
+    "Success": null,
+    "Running": null,
+    "Error": null,
+    "Warn": null,
+    "Canceled": null
+  }
+}

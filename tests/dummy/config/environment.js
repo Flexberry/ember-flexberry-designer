@@ -1,6 +1,7 @@
 /* jshint node: true */
 
 module.exports = function (environment) {
+  //var backendUrl = 'https://ember-flexberry-designer-dummy.azurewebsites.net';
   var backendUrl = 'https://flexberry-designer-web.azurewebsites.net';
 
   if (environment === 'development-loc') {

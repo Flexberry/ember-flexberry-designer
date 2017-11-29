@@ -4,10 +4,7 @@ export let OfflineSerializer = Ember.Mixin.create({
   getAttrs: function () {
     let parentAttrs = this._super();
     let attrs = {
-      typeDefinitions: { serialize: 'ids', deserialize: 'records' },
-      controlTypes: { serialize: 'ids', deserialize: 'records' },
-      moduleSettings: { serialize: 'ids', deserialize: 'records' },
-      generations: { serialize: 'ids', deserialize: 'records' }
+      generation: { serialize: 'id', deserialize: 'records' }
     };
 
     return Ember.$.extend(true, {}, parentAttrs, attrs);

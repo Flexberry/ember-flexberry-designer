@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "fd-generation-process-form",
+  "editForm": "fd-generation-process-form",
+  "caption": "Менеджер запусков генераций",
+  "name": "FdGenerationL",
+  "className": "GenerationL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-generation",
+      "modelProjection": "ListFormView"
+    }
+  ]
+}

@@ -1,20 +1,8 @@
 import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('fd-dev-stage', 'Unit | Serializer | fd-dev-stage', {
+moduleForModel('fd-generation', 'Unit | Model | fd-generation', {
   // Specify the other units that are required for this test.
   needs: [
-    'serializer:fd-dev-stage',
-    'transform:file',
-    'transform:decimal',
-
-    'transform:fd-generation-state',
-    'transform:i-c-s-soft-s-t-o-r-m-n-e-t-access-type',
-    'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode',
-    'transform:s-t-o-r-m-c-a-s-e-repository-access-modifier',
-    'transform:s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier',
-
-    'transform:new-platform-flexberry-web-designer-business-server-class',
-
     'model:fd-ad',
     'model:fd-aggregation',
     'model:fd-association',
@@ -82,11 +70,9 @@ moduleForModel('fd-dev-stage', 'Unit | Serializer | fd-dev-stage', {
   ]
 });
 
-// Replace this with your real tests.
-test('it serializes records', function(assert) {
-  let record = this.subject();
+test('it exists', function(assert) {
+  let model = this.subject();
 
-  let serializedRecord = record.serialize();
-
-  assert.ok(serializedRecord);
+  // let store = this.store();
+  assert.ok(!!model);
 });
