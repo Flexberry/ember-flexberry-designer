@@ -1,5 +1,5 @@
 {{flexberry-error error=error}}
-<h3>{{t 'forms.fd-generation-l.caption'}}</h3>
+<h3>{{t 'forms.fd-generation-list-form.caption'}}</h3>
 <div class="row">
   {{flexberry-objectlistview
     modelName="fd-generation"
@@ -21,6 +21,9 @@
     previousPage=(action "previousPage")
     gotoPage=(action "gotoPage")
     nextPage=(action "nextPage")
-    componentName="FdGenerationL"
+    componentName="FdGenerationListForm"
+    columnsWidthAutoresize=true
+    customButtons=customButtons
+    generationStartButtonClick='generationStartButtonClick'
   }}
 </div>

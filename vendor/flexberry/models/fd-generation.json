@@ -184,7 +184,7 @@
           "lookupValueField": null,
           "relationName": "Stage",
           "belongsTo": [],
-          "hidden": false,
+          "hidden": true,
           "attrs": [
             {
               "name": "name",

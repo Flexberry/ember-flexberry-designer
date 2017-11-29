@@ -130,6 +130,10 @@ Ember.$.extend(true, translations, {
           'fd-generation-process-form': {
             caption: 'Generation',
             title: '',
+          },
+          'fd-generation-list-form': {
+            caption: 'Generations list form',
+            title: '',
           }
         },
       }

@@ -47,7 +47,7 @@ export let defineProjections = function (modelClass) {
     endTime: Projection.attr('Время окончания'),
     stage: Projection.belongsTo('fd-dev-stage', 'Имя стадии', {
       name: Projection.attr('Имя стадии')
-    }),
+    }, { hidden: true }),
     generationReason: Projection.attr('Действие')
   });
 };

@@ -31,7 +31,6 @@ inflector.irregular('link', 'Links');
 inflector.irregular('type', 'Types');
 inflector.irregular('task', 'Tasks');
 inflector.irregular('dpd', 'Dpds');
-inflector.irregular('log', 'Logs');
 inflector.irregular('ucd', 'Ucds');
 inflector.irregular('std', 'Stds');
 inflector.irregular('cad', 'Cads');

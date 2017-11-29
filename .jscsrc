@@ -12,5 +12,6 @@
   "maximumLineLength": {
     value: 160,
     allExcept: ["regex", "comments", "urlComments"]
-  }
+  },
+  "disallowQuotedKeysInObjects": false
 }
