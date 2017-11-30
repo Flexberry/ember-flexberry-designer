@@ -13,6 +13,9 @@
 {{#each sortedGenerationLog as |logRecord|}}
   <div class="log-record">
     <span class="{{if logRecord.thisIsError "error" (if logRecord.isWarn "warning" "default")}}-log-record">
+      {{concat (get-formatted logRecord "time" dateFormat="DD.MM.YYYY, HH:mm:ss" moment=moment) ": "}}
+      {{if logRecord.thisIsError (concat "[" (t "forms.fd-generation-process-form.log-message-types.error") "]: ")}}
+      {{if logRecord.isWarn (concat "[" (t "forms.fd-generation-process-form.log-message-types.warning") "]: ")}}
       {{logRecord.text}}
     </span>
   </div>
