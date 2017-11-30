@@ -33,9 +33,9 @@ export default ListFormController.extend({
 
   actions: {
     /**
-      Handler for click on custom user button.
+      Handler for click on generate button.
 
-      @method userButtonActionTest
+      @method actions.generationStartButtonClick
      */
     generationStartButtonClick() {
       let _this = this;
@@ -50,8 +50,8 @@ export default ListFormController.extend({
           result = result || {};
           _this.transitionToRoute(_this.get('editFormRoute'), Ember.get(result, 'value'));
         },
-        error(error) {
-          throw(error);
+        error() {
+
         },
       });
     }
@@ -73,7 +73,7 @@ export default ListFormController.extend({
       return {
         componentName: 'object-list-view-cell',
         componentProperties: {
-          dateFormat: 'DD.MM.YYYY, hh:mm:ss'
+          dateFormat: 'DD.MM.YYYY, HH:mm:ss'
         }
       };
     }

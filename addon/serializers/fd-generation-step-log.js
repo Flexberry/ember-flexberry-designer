@@ -11,11 +11,7 @@ export default __ApplicationSerializer.extend(GenerationStepLogSerializer, {
   /**
     Ember can't create models with 'isError' attribute.
   */
-  keyForAttribute(key) {
-    if (key === 'thisIsError') {
-      return 'isError';
-    } else {
-      this._super(...arguments);
-    }
+  keyForAttribute(attr) {
+    return attr === 'thisIsError' ? 'IsError' : this._super(...arguments);
   }
 });
