@@ -46,6 +46,13 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/controllers/fd-generation-list-form.js": {
+            "name": "addon/controllers/fd-generation-list-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/controllers/fd-generation-process-form.js": {
             "name": "addon/controllers/fd-generation-process-form.js",
             "modules": {},
@@ -299,6 +306,13 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/routes/fd-generation-process-form/new.js": {
+            "name": "addon/routes/fd-generation-process-form/new.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/routes/fd-stage-edit-form/new.js": {
             "name": "addon/routes/fd-stage-edit-form/new.js",
             "modules": {},
@@ -336,6 +350,20 @@
         },
         "addon/routes/fd-diagram-list-form.js": {
             "name": "addon/routes/fd-diagram-list-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/routes/fd-generation-list-form.js": {
+            "name": "addon/routes/fd-generation-list-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/routes/fd-generation-process-form.js": {
+            "name": "addon/routes/fd-generation-process-form.js",
             "modules": {},
             "classes": {},
             "fors": {},
@@ -686,6 +714,20 @@
         },
         "addon/serializers/fd-form-view.js": {
             "name": "addon/serializers/fd-form-view.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-generation-step-log.js": {
+            "name": "addon/serializers/fd-generation-step-log.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/serializers/fd-generation.js": {
+            "name": "addon/serializers/fd-generation.js",
             "modules": {},
             "classes": {},
             "fors": {},
@@ -1291,6 +1333,62 @@
             "class": "FdLimitByStageMixin"
         },
         {
+            "file": "addon/controllers/fd-generation-list-form.js",
+            "line": 5,
+            "description": "Name of related edit form route.",
+            "itemtype": "property",
+            "name": "editFormRoute",
+            "type": "String",
+            "default": "'fd-generation-process-form'",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/controllers/fd-generation-list-form.js",
+            "line": 18,
+            "description": "Property to form array of special structures of custom user buttons.",
+            "itemtype": "property",
+            "name": "customButtons",
+            "type": "Array",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/controllers/fd-generation-list-form.js",
+            "line": 35,
+            "description": "Handler for click on generate button.",
+            "itemtype": "method",
+            "name": "actions.generationStartButtonClick",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/controllers/fd-generation-list-form.js",
+            "line": 60,
+            "description": "Method to get type and attributes of a component,\nwhich will be embeded in object-list-view cell.",
+            "itemtype": "method",
+            "name": "getCellComponent.",
+            "params": [
+                {
+                    "name": "attr",
+                    "description": "Attribute of projection property related to current table cell.",
+                    "type": "Object"
+                },
+                {
+                    "name": "bindingPath",
+                    "description": "Path to model property related to current table cell.",
+                    "type": "String"
+                },
+                {
+                    "name": "modelClass",
+                    "description": "Model class of data record related to current table row.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Object containing name & properties of component, which will be used to render current table cell.\n{ componentName: 'my-component',  componentProperties: { ... } }.",
+                "type": "Object"
+            },
+            "class": "FdLimitByStageMixin"
+        },
+        {
             "file": "addon/controllers/fd-generation-process-form.js",
             "line": 4,
             "description": "Current store.",
@@ -1298,6 +1396,57 @@
             "name": "store",
             "type": "DS.Store",
             "readonly": "",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/controllers/fd-generation-process-form.js",
+            "line": 13,
+            "description": "Generation log records array.",
+            "itemtype": "property",
+            "name": "generationLog",
+            "type": "Array",
+            "readonly": "",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/controllers/fd-generation-process-form.js",
+            "line": 22,
+            "description": "Current generation object.",
+            "itemtype": "property",
+            "name": "currentGeneration",
+            "type": "Object",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/controllers/fd-generation-process-form.js",
+            "line": 30,
+            "description": "Sorted generation log records array.",
+            "itemtype": "property",
+            "name": "sortedGenerationLog",
+            "type": "Array",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/controllers/fd-generation-process-form.js",
+            "line": 46,
+            "description": "Handler for click on generate button.",
+            "itemtype": "method",
+            "name": "actions.generate",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/controllers/fd-generation-process-form.js",
+            "line": 70,
+            "description": "Update generation log records array.",
+            "itemtype": "method",
+            "name": "generationLogUpdate",
+            "params": [
+                {
+                    "name": "interval",
+                    "description": "Interval for sending OData requests",
+                    "type": "Integer"
+                }
+            ],
             "class": "FdLimitByStageMixin"
         },
         {
@@ -3274,6 +3423,15 @@
             "module": "ember-flexberry-designer"
         },
         {
+            "file": "addon/routes/fd-generation-process-form/new.js",
+            "line": 6,
+            "description": "A hook you can implement to convert the URL into the model for this route.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_model).",
+            "itemtype": "method",
+            "name": "model",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
             "file": "addon/routes/fd-stage-edit-form/new.js",
             "line": 10,
             "description": "Link to {{#crossLink \"FdCurrentProjectContextService\"}}FdCurrentProjectContextService{{/crossLink}}.",
@@ -3432,6 +3590,144 @@
             "name": "developerUserSettings",
             "type": "Object",
             "default": "{}",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-generation-list-form.js",
+            "line": 8,
+            "description": "Name of model projection to be used as record's properties limitation.",
+            "itemtype": "property",
+            "name": "modelProjection",
+            "type": "String",
+            "default": "'ListFormView'",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-generation-list-form.js",
+            "line": 17,
+            "description": "Name of model to be used as list's records types.",
+            "itemtype": "property",
+            "name": "modelName",
+            "type": "String",
+            "default": "'fd-generation'",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-generation-list-form.js",
+            "line": 26,
+            "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
+            "itemtype": "property",
+            "name": "developerUserSettings",
+            "type": "Object",
+            "default": "{}",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-generation-list-form.js",
+            "line": 64,
+            "description": "It overrides base method and forms the limit predicate for loaded data.\nIf there is displayed even number or records per page, records where 'address' attribute contains letter 'S' are filtered.\nIf there is displayed odd number or records per page, records where 'address' attribute contains letter 'п' are filtered.",
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "objectListViewLimitPredicate",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "Method options.",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "modelName",
+                            "description": "Type of records to load.",
+                            "type": "String",
+                            "optional": true
+                        },
+                        {
+                            "name": "projectionName",
+                            "description": "Projection name to load data by.",
+                            "type": "String",
+                            "optional": true
+                        },
+                        {
+                            "name": "params",
+                            "description": "Current route query parameters.",
+                            "type": "String",
+                            "optional": true
+                        }
+                    ]
+                }
+            ],
+            "return": {
+                "description": "The predicate to limit loaded data.",
+                "type": "BasePredicate"
+            },
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-generation-process-form.js",
+            "line": 7,
+            "description": "A hook you can implement to convert the URL into the model for this route.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_model).",
+            "itemtype": "method",
+            "name": "model",
+            "params": [
+                {
+                    "name": "params",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-generation-process-form.js",
+            "line": 24,
+            "description": "A hook you can use to reset controller values either when the model changes or the route is exiting.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_resetController).",
+            "itemtype": "method",
+            "name": "resetController",
+            "params": [
+                {
+                    "name": "controller",
+                    "description": "",
+                    "type": "Ember.Controller"
+                },
+                {
+                    "name": "isExisting",
+                    "description": "",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "transition",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-generation-process-form.js",
+            "line": 42,
+            "description": "A hook you can use to setup the controller for the current route.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).",
+            "itemtype": "method",
+            "name": "setupController",
+            "params": [
+                {
+                    "name": "controller",
+                    "description": "",
+                    "type": "Ember.Controller"
+                },
+                {
+                    "name": "model",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
             "class": "FdCurrentProjectContextService",
             "module": "ember-flexberry-designer"
         },
@@ -3904,6 +4200,27 @@
         },
         {
             "file": "addon/serializers/fd-form-view.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/serializers/fd-generation-step-log.js",
+            "line": 6,
+            "description": "Field name where object identifier is kept.",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/serializers/fd-generation-step-log.js",
+            "line": 11,
+            "description": "Ember can't create models with 'isError' attribute.",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/serializers/fd-generation.js",
             "line": 6,
             "description": "Field name where object identifier is kept.",
             "class": "FdCurrentProjectContextService",
@@ -4434,6 +4751,18 @@
         {
             "message": "Missing item type\nField name where object identifier is kept.",
             "line": " addon/serializers/fd-form-view.js:6"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-generation-step-log.js:6"
+        },
+        {
+            "message": "Missing item type\nEmber can't create models with 'isError' attribute.",
+            "line": " addon/serializers/fd-generation-step-log.js:11"
+        },
+        {
+            "message": "Missing item type\nField name where object identifier is kept.",
+            "line": " addon/serializers/fd-generation.js:6"
         },
         {
             "message": "Missing item type\nField name where object identifier is kept.",

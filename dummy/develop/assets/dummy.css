@@ -39091,4 +39091,10 @@ img.item-minus {
   border: 1px solid #e4e4e4;
   border-radius: 5px;
 }
+.error-log-record {
+  color: red;
+}
+.warning-log-record {
+  color: #c1c140;
+}
 /*# sourceMappingURL=/assets/dummy.css.map */

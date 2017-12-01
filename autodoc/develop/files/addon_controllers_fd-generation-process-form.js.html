@@ -108,10 +108,45 @@ export default Ember.Controller.extend({
     @readOnly
   */
   store: Ember.inject.service(&#x27;store&#x27;),
-  generationLog: &#x27;&#x27;,
+
+  /**
+    Generation log records array.
+
+    @property generationLog
+    @type Array
+    @readOnly
+  */
+  generationLog: Ember.A(),
+
+  /**
+    Current generation object.
+
+    @property currentGeneration
+    @type Object
+  */
+  currentGeneration: null,
+
+  /**
+    Sorted generation log records array.
+
+    @property sortedGenerationLog
+    @type Array
+  */
+  sortedGenerationLog: Ember.computed(&#x27;currentGeneration.stepLogs.[]&#x27;, function() {
+    let stepLogs = this.get(&#x27;currentGeneration.stepLogs&#x27;) || Ember.A();
+    return stepLogs.sortBy(&#x27;time&#x27;);
+  }),
+
   currentProjectContext: Ember.inject.service(&#x27;fd-current-project-context&#x27;),
+
   generationService: Ember.inject.service(&#x27;fd-generation&#x27;),
+
   actions: {
+    /**
+      Handler for click on generate button.
+
+      @method actions.generate
+     */
     generate() {
       let _this = this;
       let stagePk = _this.get(&#x27;currentProjectContext&#x27;).getCurrentStage();
@@ -122,13 +157,47 @@ export default Ember.Controller.extend({
         url: &#x60;${host}/Generate(project=${stagePk})&#x60;,
         success(result) {
           _this.set(&#x27;generationService.lastGenerationToken&#x27;, result);
+          _this.transitionToRoute(&#x27;fd-generation-process-form&#x27;, Ember.get(result, &#x27;value&#x27;));
         },
         error() {
-          // TODO: обработать ситуацию, когда произошла ошибка.
-          let i18n = _this.get(&#x27;i18n&#x27;);
-          let errorCaption = i18n.t(&#x27;forms.fd-generation-process-form.generation-start-error-caption&#x27;);
-          _this.set(&#x27;generationLog&#x27;, errorCaption);
+
         },
+      });
+    }
+  },
+
+  /**
+    Update generation log records array.
+
+    @method generationLogUpdate
+    @param {Integer} interval Interval for sending OData requests
+   */
+  generationLogUpdate(interval) {
+    let modelName = this.get(&#x27;modelName&#x27;);
+    let modelProjection = this.get(&#x27;modelProjection&#x27;);
+    let modelId = this.get(&#x27;generationId&#x27;);
+    let _this = this;
+    if (modelName &amp;&amp; modelProjection &amp;&amp; modelId) {
+      this.store.findRecord(modelName, modelId, { projection: modelProjection }).then(record =&gt; {
+        if (!Ember.isNone(record)) {
+          _this.set(&#x27;currentGeneration&#x27;, record);
+          Ember.$(&#x27;.generation-progress-bar&#x27;).progress({
+            text: {
+              active: &#x27;{percent}%&#x27;,
+              success: &#x27;{percent}%&#x27;
+            }
+          }).progress(&#x27;set percent&#x27;, record.get(&#x27;percentComplete&#x27;));
+          if (!record.get(&#x27;isRunning&#x27;)) {
+            return;
+          }
+        }
+
+        Ember.run.later(_this, function() {
+          let currentModelId = _this.get(&#x27;generationId&#x27;);
+          if (modelId === currentModelId) {
+            _this.generationLogUpdate(interval);
+          }
+        }, interval);
       });
     }
   }

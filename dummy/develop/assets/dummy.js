@@ -435,7 +435,12 @@ define('dummy/controllers/application', ['exports', 'ember'], function (exports,
           title: i18n.t('forms.application.sitemap.fd-visual-edit-form.title')
         });
         sitemap.nodes.push({
-          link: 'fd-generation-process-form',
+          link: 'fd-generation-list-form',
+          caption: i18n.t('forms.application.sitemap.root.fd-generation-list-form.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-generation-list-form.title')
+        });
+        sitemap.nodes.push({
+          link: 'fd-generation-process-form.new',
           caption: i18n.t('forms.application.sitemap.root.fd-generation-process-form.caption'),
           title: i18n.t('forms.application.sitemap.root.fd-generation-process-form.title')
         });
@@ -712,11 +717,27 @@ define('dummy/controllers/fd-diagram-list-form', ['exports', 'ember-flexberry-de
     }
   });
 });
+define('dummy/controllers/fd-generation-list-form', ['exports', 'ember-flexberry-designer/controllers/fd-generation-list-form'], function (exports, _emberFlexberryDesignerControllersFdGenerationListForm) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdGenerationListForm['default'];
+    }
+  });
+});
 define('dummy/controllers/fd-generation-process-form', ['exports', 'ember-flexberry-designer/controllers/fd-generation-process-form'], function (exports, _emberFlexberryDesignerControllersFdGenerationProcessForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerControllersFdGenerationProcessForm['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-generation-process-form/new', ['exports', 'ember-flexberry-designer/controllers/fd-generation-process-form/new'], function (exports, _emberFlexberryDesignerControllersFdGenerationProcessFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdGenerationProcessFormNew['default'];
     }
   });
 });
@@ -1118,6 +1139,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
     assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-diagram-list-form.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-generation-list-form.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers');
+  test('modules/ember-flexberry-designer/controllers/fd-generation-list-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/fd-generation-list-form.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-generation-list-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/fd-generation-list-form.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-generation-list-form.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-generation-process-form.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/controllers');
   test('modules/ember-flexberry-designer/controllers/fd-generation-process-form.js should pass jscs', function () {
@@ -1129,6 +1163,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-generation-process-form.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-generation-process-form/new.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers/fd-generation-process-form');
+  test('modules/ember-flexberry-designer/controllers/fd-generation-process-form/new.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/fd-generation-process-form/new.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-generation-process-form/new.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/fd-generation-process-form/new.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-generation-process-form/new.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-inheritance-edit-form.jscs-test', ['exports'], function (exports) {
@@ -1313,6 +1360,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
     assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-visual-listform.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/fd-generation-state.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/enums');
+  test('modules/ember-flexberry-designer/enums/fd-generation-state.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/enums/fd-generation-state.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/fd-generation-state.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/enums/fd-generation-state.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/enums/fd-generation-state.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-access-type.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/enums');
   test('modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-access-type.js should pass jscs', function () {
@@ -1493,6 +1553,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-diagram-list-form.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-generation-list-form.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/forms');
+  test('modules/ember-flexberry-designer/locales/en/forms/fd-generation-list-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-generation-list-form.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-generation-list-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/forms/fd-generation-list-form.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-generation-list-form.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-generation-process-form.jscs-test', ['exports'], function (exports) {
@@ -2249,6 +2322,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-form-view.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-generation-step-log.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/models');
+  test('modules/ember-flexberry-designer/locales/en/models/fd-generation-step-log.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-generation-step-log.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-generation-step-log.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/models/fd-generation-step-log.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-generation-step-log.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-generation.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/models');
+  test('modules/ember-flexberry-designer/locales/en/models/fd-generation.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-generation.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-generation.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/models/fd-generation.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-generation.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-inheritance.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/locales/en/models');
   test('modules/ember-flexberry-designer/locales/en/models/fd-inheritance.js should pass jscs', function () {
@@ -2637,6 +2736,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-diagram-list-form.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-generation-list-form.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/forms');
+  test('modules/ember-flexberry-designer/locales/ru/forms/fd-generation-list-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-generation-list-form.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-generation-list-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/forms/fd-generation-list-form.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-generation-list-form.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-generation-process-form.jscs-test', ['exports'], function (exports) {
@@ -3378,6 +3490,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-form-view.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-generation-step-log.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/models');
+  test('modules/ember-flexberry-designer/locales/ru/models/fd-generation-step-log.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-generation-step-log.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-generation-step-log.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/models/fd-generation-step-log.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-generation-step-log.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-generation.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/models');
+  test('modules/ember-flexberry-designer/locales/ru/models/fd-generation.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-generation.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-generation.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/models/fd-generation.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-generation.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-inheritance.jscs-test', ['exports'], function (exports) {
@@ -4249,6 +4387,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-form-view.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-generation-step-log.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/models');
+  test('modules/ember-flexberry-designer/mixins/regenerated/models/fd-generation-step-log.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-generation-step-log.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-generation-step-log.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/models/fd-generation-step-log.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-generation-step-log.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-generation.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/models');
+  test('modules/ember-flexberry-designer/mixins/regenerated/models/fd-generation.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-generation.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-generation.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/models/fd-generation.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-generation.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-inheritance.jscs-test', ['exports'], function (exports) {
@@ -5694,6 +5858,58 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
     assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-form-view.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation-offline.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
+  test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation-offline.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation-offline.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation-offline.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation-offline.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation-offline.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation-step-log-offline.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
+  test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation-step-log-offline.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation-step-log-offline.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation-step-log-offline.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation-step-log-offline.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation-step-log-offline.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation-step-log.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
+  test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation-step-log.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation-step-log.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation-step-log.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation-step-log.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation-step-log.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
+  test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-generation.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-inheritance-offline.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
   test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-inheritance-offline.js should pass jscs', function () {
@@ -6760,6 +6976,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mo
     assert.ok(true, 'modules/ember-flexberry-designer/models/fd-form-view.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-generation-step-log.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/models');
+  test('modules/ember-flexberry-designer/models/fd-generation-step-log.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/models/fd-generation-step-log.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-generation-step-log.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/models/fd-generation-step-log.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/models/fd-generation-step-log.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-generation.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/models');
+  test('modules/ember-flexberry-designer/models/fd-generation.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/models/fd-generation.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-generation.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/models/fd-generation.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/models/fd-generation.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-inheritance.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/models');
   test('modules/ember-flexberry-designer/models/fd-inheritance.js should pass jscs', function () {
@@ -7202,6 +7444,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ro
     assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-diagram-list-form.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-generation-list-form.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes');
+  test('modules/ember-flexberry-designer/routes/fd-generation-list-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/fd-generation-list-form.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-generation-list-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-generation-list-form.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-generation-list-form.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-generation-process-form.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/routes');
   test('modules/ember-flexberry-designer/routes/fd-generation-process-form.js should pass jscs', function () {
@@ -7213,6 +7468,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ro
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-generation-process-form.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-generation-process-form/new.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes/fd-generation-process-form');
+  test('modules/ember-flexberry-designer/routes/fd-generation-process-form/new.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/fd-generation-process-form/new.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-generation-process-form/new.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-generation-process-form/new.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-generation-process-form/new.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-inheritance-edit-form.jscs-test', ['exports'], function (exports) {
@@ -8632,6 +8900,58 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/se
     assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-form-view.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-generation-offline.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/serializers');
+  test('modules/ember-flexberry-designer/serializers/fd-generation-offline.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/serializers/fd-generation-offline.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-generation-offline.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/serializers/fd-generation-offline.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-generation-offline.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-generation-step-log-offline.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/serializers');
+  test('modules/ember-flexberry-designer/serializers/fd-generation-step-log-offline.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/serializers/fd-generation-step-log-offline.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-generation-step-log-offline.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/serializers/fd-generation-step-log-offline.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-generation-step-log-offline.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-generation-step-log.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/serializers');
+  test('modules/ember-flexberry-designer/serializers/fd-generation-step-log.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/serializers/fd-generation-step-log.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-generation-step-log.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/serializers/fd-generation-step-log.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-generation-step-log.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-generation.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/serializers');
+  test('modules/ember-flexberry-designer/serializers/fd-generation.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/serializers/fd-generation.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-generation.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/serializers/fd-generation.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-generation.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-inheritance-offline.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/serializers');
   test('modules/ember-flexberry-designer/serializers/fd-inheritance-offline.js should pass jscs', function () {
@@ -9152,6 +9472,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/tr
     assert.ok(true, 'modules/ember-flexberry-designer/transforms/fd-definition.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/fd-generation-state.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/transforms');
+  test('modules/ember-flexberry-designer/transforms/fd-generation-state.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/transforms/fd-generation-state.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/fd-generation-state.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/transforms/fd-generation-state.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/transforms/fd-generation-state.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-access-type.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/transforms');
   test('modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-access-type.js should pass jscs', function () {
@@ -9228,6 +9561,14 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ut
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/utils/fd-datatypes.js should pass jshint.');
+  });
+});
+define('dummy/enums/fd-generation-state', ['exports', 'ember-flexberry-designer/enums/fd-generation-state'], function (exports, _emberFlexberryDesignerEnumsFdGenerationState) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerEnumsFdGenerationState['default'];
+    }
   });
 });
 define('dummy/enums/i-c-s-soft-s-t-o-r-m-n-e-t-access-type', ['exports', 'ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-access-type'], function (exports, _emberFlexberryDesignerEnumsICSSoftSTORMNETAccessType) {
@@ -10293,6 +10634,10 @@ define('dummy/locales/en/translations', ['exports', 'ember', 'ember-flexberry-de
             'fd-generation-process-form': {
               caption: 'Generation',
               title: ''
+            },
+            'fd-generation-list-form': {
+              caption: 'Generations list form',
+              title: ''
             }
           }
         }
@@ -10441,6 +10786,10 @@ define('dummy/locales/ru/translations', ['exports', 'ember', 'ember-flexberry-de
             'fd-generation-process-form': {
               caption: 'Генерация',
               title: ''
+            },
+            'fd-generation-list-form': {
+              caption: 'Список генераций',
+              title: ''
             }
           }
         }
@@ -10477,6 +10826,7 @@ define('dummy/models/custom-inflector-rules', ['exports', 'ember-inflector'], fu
   inflector.irregular('aggregation', 'Aggregations');
   inflector.irregular('inheritance', 'Inheritances');
   inflector.irregular('definition', 'Definitions');
+  inflector.irregular('generation', 'Generations');
   inflector.irregular('repository', 'Repositorys');
   inflector.irregular('subsystem', 'Subsystems');
   inflector.irregular('parameter', 'Parameters');
@@ -10881,6 +11231,22 @@ define('dummy/models/fd-form-view', ['exports', 'ember-flexberry-designer/models
     }
   });
 });
+define('dummy/models/fd-generation-step-log', ['exports', 'ember-flexberry-designer/models/fd-generation-step-log'], function (exports, _emberFlexberryDesignerModelsFdGenerationStepLog) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerModelsFdGenerationStepLog['default'];
+    }
+  });
+});
+define('dummy/models/fd-generation', ['exports', 'ember-flexberry-designer/models/fd-generation'], function (exports, _emberFlexberryDesignerModelsFdGeneration) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerModelsFdGeneration['default'];
+    }
+  });
+});
 define('dummy/models/fd-inheritance', ['exports', 'ember-flexberry-designer/models/fd-inheritance'], function (exports, _emberFlexberryDesignerModelsFdInheritance) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -11177,7 +11543,9 @@ define('dummy/router', ['exports', 'ember', 'dummy/config/environment'], functio
     this.route('fd-view-edit-form.new', { path: 'fd-view-edit-form/new' });
     this.route('fd-visual-edit-form');
     this.route('fd-visual-listform');
-    this.route('fd-generation-process-form');
+    this.route('fd-generation-process-form.new', { path: 'fd-generation-process-form/new' });
+    this.route('fd-generation-process-form', { path: 'fd-generation-process-form/:id' });
+    this.route('fd-generation-list-form');
   });
 
   exports['default'] = Router;
@@ -11297,11 +11665,27 @@ define('dummy/routes/fd-diagram-list-form', ['exports', 'ember-flexberry-designe
     }
   });
 });
+define('dummy/routes/fd-generation-list-form', ['exports', 'ember-flexberry-designer/routes/fd-generation-list-form'], function (exports, _emberFlexberryDesignerRoutesFdGenerationListForm) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdGenerationListForm['default'];
+    }
+  });
+});
 define('dummy/routes/fd-generation-process-form', ['exports', 'ember-flexberry-designer/routes/fd-generation-process-form'], function (exports, _emberFlexberryDesignerRoutesFdGenerationProcessForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerRoutesFdGenerationProcessForm['default'];
+    }
+  });
+});
+define('dummy/routes/fd-generation-process-form/new', ['exports', 'ember-flexberry-designer/routes/fd-generation-process-form/new'], function (exports, _emberFlexberryDesignerRoutesFdGenerationProcessFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdGenerationProcessFormNew['default'];
     }
   });
 });
@@ -11830,6 +12214,22 @@ define('dummy/serializers/fd-form-view', ['exports', 'ember-flexberry-designer/s
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerSerializersFdFormView['default'];
+    }
+  });
+});
+define('dummy/serializers/fd-generation-step-log', ['exports', 'ember-flexberry-designer/serializers/fd-generation-step-log'], function (exports, _emberFlexberryDesignerSerializersFdGenerationStepLog) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerSerializersFdGenerationStepLog['default'];
+    }
+  });
+});
+define('dummy/serializers/fd-generation', ['exports', 'ember-flexberry-designer/serializers/fd-generation'], function (exports, _emberFlexberryDesignerSerializersFdGeneration) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerSerializersFdGeneration['default'];
     }
   });
 });
@@ -26571,8 +26971,391 @@ define("dummy/templates/fd-diagram-list-form/loading", ["exports"], function (ex
     };
   })());
 });
+define("dummy/templates/fd-generation-list-form", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["wrong-type", "multiple-nodes"]
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 30,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/fd-generation-list-form.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("h3");
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "class", "row");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(3);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 0, 0);
+        morphs[2] = dom.createMorphAt(dom.childAt(fragment, [4]), 1, 1);
+        dom.insertBoundary(fragment, 0);
+        return morphs;
+      },
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-generation-list-form.caption"], [], ["loc", [null, [2, 4], [2, 49]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-generation", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [11, 12], [11, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [13, 17], [13, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [14, 23], [14, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [15, 10], [15, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [16, 17], [16, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [17, 18], [17, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [18, 22], [18, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [19, 20], [19, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [20, 16], [20, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [21, 17], [21, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [22, 13], [22, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [23, 13], [23, 32]]]], "componentName", "FdGenerationListForm", "columnsWidthAutoresize", true, "customButtons", ["subexpr", "@mut", [["get", "customButtons", ["loc", [null, [26, 18], [26, 31]]]]], [], []], "generationStartButtonClick", "generationStartButtonClick"], ["loc", [null, [4, 2], [28, 4]]]]],
+      locals: [],
+      templates: []
+    };
+  })());
+});
+define("dummy/templates/fd-generation-list-form/loading", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "triple-curlies"
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 7,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/fd-generation-list-form/loading.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "class", "loading-pane");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "loading-message");
+        var el3 = dom.createTextNode("\n    Loading ...\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "spinner");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes() {
+        return [];
+      },
+      statements: [],
+      locals: [],
+      templates: []
+    };
+  })());
+});
 define("dummy/templates/fd-generation-process-form", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
+    var child0 = (function () {
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 5,
+              "column": 0
+            },
+            "end": {
+              "line": 10,
+              "column": 0
+            }
+          },
+          "moduleName": "dummy/templates/fd-generation-process-form.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("  ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "ui teal progress generation-progress-bar");
+          dom.setAttribute(el1, "data-percent", "0");
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "bar");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "label");
+          var el3 = dom.createTextNode("0%");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n  ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes() {
+          return [];
+        },
+        statements: [],
+        locals: [],
+        templates: []
+      };
+    })();
+    var child1 = (function () {
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 13,
+              "column": 0
+            },
+            "end": {
+              "line": 22,
+              "column": 0
+            }
+          },
+          "moduleName": "dummy/templates/fd-generation-process-form.hbs"
+        },
+        isEmpty: false,
+        arity: 1,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("  ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "log-record");
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("span");
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n    ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n  ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element0 = dom.childAt(fragment, [1, 1]);
+          var morphs = new Array(5);
+          morphs[0] = dom.createAttrMorph(element0, 'class');
+          morphs[1] = dom.createMorphAt(element0, 1, 1);
+          morphs[2] = dom.createMorphAt(element0, 3, 3);
+          morphs[3] = dom.createMorphAt(element0, 5, 5);
+          morphs[4] = dom.createMorphAt(element0, 7, 7);
+          return morphs;
+        },
+        statements: [["attribute", "class", ["concat", [["subexpr", "if", [["get", "logRecord.thisIsError", ["loc", [null, [15, 22], [15, 43]]]], "error", ["subexpr", "if", [["get", "logRecord.isWarn", ["loc", [null, [15, 56], [15, 72]]]], "warning", "default"], [], ["loc", [null, [15, 52], [15, 93]]]]], [], ["loc", [null, [15, 17], [15, 95]]]], "-log-record"]]], ["inline", "concat", [["subexpr", "get-formatted", [["get", "logRecord", ["loc", [null, [16, 30], [16, 39]]]], "time"], ["dateFormat", "DD.MM.YYYY, HH:mm:ss", "moment", ["get", "moment", ["loc", [null, [16, 88], [16, 94]]]]], ["loc", [null, [16, 15], [16, 95]]]], ": "], [], ["loc", [null, [16, 6], [16, 102]]]], ["inline", "if", [["get", "logRecord.thisIsError", ["loc", [null, [17, 11], [17, 32]]]], ["subexpr", "concat", ["[", ["subexpr", "t", ["forms.fd-generation-process-form.log-message-types.error"], [], ["loc", [null, [17, 45], [17, 107]]]], "]: "], [], ["loc", [null, [17, 33], [17, 114]]]]], [], ["loc", [null, [17, 6], [17, 116]]]], ["inline", "if", [["get", "logRecord.isWarn", ["loc", [null, [18, 11], [18, 27]]]], ["subexpr", "concat", ["[", ["subexpr", "t", ["forms.fd-generation-process-form.log-message-types.warning"], [], ["loc", [null, [18, 40], [18, 104]]]], "]: "], [], ["loc", [null, [18, 28], [18, 111]]]]], [], ["loc", [null, [18, 6], [18, 113]]]], ["content", "logRecord.text", ["loc", [null, [19, 6], [19, 24]]]]],
+        locals: ["logRecord"],
+        templates: []
+      };
+    })();
+    var child2 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 24,
+                "column": 4
+              },
+              "end": {
+                "line": 26,
+                "column": 4
+              }
+            },
+            "moduleName": "dummy/templates/fd-generation-process-form.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("      ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "t", ["forms.fd-generation-process-form.start-generation"], [], ["loc", [null, [25, 6], [25, 63]]]]],
+          locals: [],
+          templates: []
+        };
+      })();
+      var child1 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 26,
+                "column": 4
+              },
+              "end": {
+                "line": 28,
+                "column": 4
+              }
+            },
+            "moduleName": "dummy/templates/fd-generation-process-form.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("      ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "t", ["forms.fd-generation-process-form.no-log-caption"], [], ["loc", [null, [27, 6], [27, 61]]]]],
+          locals: [],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 22,
+              "column": 0
+            },
+            "end": {
+              "line": 30,
+              "column": 0
+            }
+          },
+          "moduleName": "dummy/templates/fd-generation-process-form.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("  ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "log-record");
+          var el2 = dom.createTextNode("\n");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("  ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
+          return morphs;
+        },
+        statements: [["block", "if", [["get", "generationId", ["loc", [null, [24, 10], [24, 22]]]]], [], 0, 1, ["loc", [null, [24, 4], [28, 11]]]]],
+        locals: [],
+        templates: [child0, child1]
+      };
+    })();
     return {
       meta: {
         "fragmentReason": {
@@ -26587,8 +27370,8 @@ define("dummy/templates/fd-generation-process-form", ["exports"], function (expo
             "column": 0
           },
           "end": {
-            "line": 83,
-            "column": 45
+            "line": 31,
+            "column": 0
           }
         },
         "moduleName": "dummy/templates/fd-generation-process-form.hbs"
@@ -26614,6 +27397,10 @@ define("dummy/templates/fd-generation-process-form", ["exports"], function (expo
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n\n");
         dom.appendChild(el0, el1);
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         var el1 = dom.createElement("h3");
         dom.setAttribute(el1, "class", "ui header");
         var el2 = dom.createComment("");
@@ -26623,332 +27410,23 @@ define("dummy/templates/fd-generation-process-form", ["exports"], function (expo
         dom.appendChild(el0, el1);
         var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n2017-11-16 16:43:11: Стадия: Реализация\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:12: Загрузка стадии...\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:12: завершена\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: Генерируем Eais.Leechnost.Objects\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: tTipAdresa.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: tTipPerioda.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: IzmenenieFIO.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: Prozhivanie.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: tPol.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: Peremeshchenie.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: IzmenenieNaznachVypl.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: OrganVydDok.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: Strana.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: NaznachenieVyplaty.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: Leechnost.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:15: Period.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: PrichinaSnyatiya.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: LgotKat.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: UchetLeechnosti.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: tPriznanInvalidom.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: Lgota.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: LgKatLeechnosti.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: PrichinaPeremeshcheniia.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: tLogicheskii.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: UdostDokument.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: tSposobOplaty.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: OrganSZ.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: tGruppaInvalidnosti.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: tTipVyplaty.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: Invalidnost.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: FaktLgot.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: tObrazovanieLeechn.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: VidUdostDok.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: успешно сгенерирован\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: Properties\\AssemblyInfo.cs -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: пропущен, перегенерация не требуется.\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: Загрузка информации об установленных пакетах из конфигурации d:\\git\\eais-web\\Eais.Leechnost\\Eais.Leechnost\\Objects\\packages.config\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: Загрузка информации об установленных пакетах завершена.\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: Устанавливаем NuGet-пакеты в каталог \"d:\\git\\eais-web\\Eais.Leechnost\\Eais.Leechnost\\packages\".\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16 [");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("]: NuGet пакет 'NewPlatform.Flexberry.ORM' уже установлен.\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:16: NuGet-пакеты успешно установлены.\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:17: packages.config -\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:17: успешно сгенерирован.\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:17: Eais.Leechnost.Objects.csproj создан.\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:17: Проставляем проектные ссылки.....\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:17: готово\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:17: Генерируем файл решения - \"d:\\git\\eais-web\\Eais.Leechnost\\Eais.Leechnost\\Eais.Leechnost.sln\"\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:17: готово\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("2017-11-16 16:43:17: Генерация завершена.");
-        dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var element0 = dom.childAt(fragment, [2]);
+        var element1 = dom.childAt(fragment, [2]);
         var morphs = new Array(6);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
-        morphs[1] = dom.createElementMorph(element0);
-        morphs[2] = dom.createMorphAt(element0, 0, 0);
-        morphs[3] = dom.createMorphAt(dom.childAt(fragment, [4]), 0, 0);
-        morphs[4] = dom.createMorphAt(fragment, 6, 6, contextualElement);
-        morphs[5] = dom.createMorphAt(fragment, 142, 142, contextualElement);
+        morphs[1] = dom.createElementMorph(element1);
+        morphs[2] = dom.createMorphAt(element1, 0, 0);
+        morphs[3] = dom.createMorphAt(fragment, 4, 4, contextualElement);
+        morphs[4] = dom.createMorphAt(dom.childAt(fragment, [6]), 0, 0);
+        morphs[5] = dom.createMorphAt(fragment, 8, 8, contextualElement);
+        dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-generation-process-form.caption"], [], ["loc", [null, [1, 22], [1, 70]]]], ["element", "action", ["generate"], [], ["loc", [null, [3, 40], [3, 61]]]], ["inline", "t", ["forms.fd-generation-process-form.generation-button-text"], [], ["loc", [null, [3, 62], [3, 125]]]], ["inline", "t", ["forms.fd-generation-process-form.generation-log-caption"], [], ["loc", [null, [5, 22], [5, 85]]]], ["content", "generationLog", ["loc", [null, [6, 0], [6, 17]]]], ["inline", "t", ["forms.fd-generation-process-form.log-message-types.warning"], [], ["loc", [null, [74, 25], [74, 91]]]]],
+      statements: [["inline", "t", ["forms.fd-generation-process-form.caption"], [], ["loc", [null, [1, 22], [1, 70]]]], ["element", "action", ["generate"], [], ["loc", [null, [3, 40], [3, 61]]]], ["inline", "t", ["forms.fd-generation-process-form.generation-button-text"], [], ["loc", [null, [3, 62], [3, 125]]]], ["block", "if", [["get", "generationId", ["loc", [null, [5, 6], [5, 18]]]]], [], 0, null, ["loc", [null, [5, 0], [10, 7]]]], ["inline", "t", ["forms.fd-generation-process-form.generation-log-caption"], [], ["loc", [null, [12, 22], [12, 85]]]], ["block", "each", [["get", "sortedGenerationLog", ["loc", [null, [13, 8], [13, 27]]]]], [], 1, 2, ["loc", [null, [13, 0], [30, 9]]]]],
       locals: [],
-      templates: []
+      templates: [child0, child1, child2]
     };
   })());
 });
@@ -35512,6 +35990,14 @@ define('dummy/transforms/fd-definition', ['exports', 'ember-flexberry-designer/t
     }
   });
 });
+define('dummy/transforms/fd-generation-state', ['exports', 'ember-flexberry-designer/transforms/fd-generation-state'], function (exports, _emberFlexberryDesignerTransformsFdGenerationState) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerTransformsFdGenerationState['default'];
+    }
+  });
+});
 define('dummy/transforms/file', ['exports', 'ember-flexberry-data/transforms/file'], function (exports, _emberFlexberryDataTransformsFile) {
   exports['default'] = _emberFlexberryDataTransformsFile['default'];
 });
@@ -35682,7 +36168,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.1+b91ab118"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.1+a3333188"});
 }
 
 /* jshint ignore:end */
