@@ -422,6 +422,11 @@
       "name": "moduleSettings",
       "relatedTo": "fd-dev-module-setting",
       "inverse": "stage"
+    },
+    {
+      "name": "generations",
+      "relatedTo": "fd-generation",
+      "inverse": "stage"
     }
   ],
   "projections": [
@@ -1623,6 +1628,28 @@
         }
       ],
       "hasMany": []
+    },
+    {
+      "name": "Generations",
+      "modelName": "fd-dev-stage",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": [
+        {
+          "projectionName": "ListFormView",
+          "caption": "",
+          "name": "generations",
+          "relatedTo": "fd-generation",
+          "inverse": null
+        }
+      ]
     },
     {
       "name": "Generator",

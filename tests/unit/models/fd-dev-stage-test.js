@@ -48,6 +48,8 @@ moduleForModel('fd-dev-stage', 'Unit | Model | fd-dev-stage', {
     'model:fd-filelink',
     'model:fd-form-control',
     'model:fd-form-view',
+    'model:fd-generation-step-log',
+    'model:fd-generation',
     'model:fd-inheritance',
     'model:fd-object-in-system',
     'model:fd-plugin-on-rep-object',

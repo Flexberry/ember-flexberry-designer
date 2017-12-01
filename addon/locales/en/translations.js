@@ -20,6 +20,7 @@ import FdViewEditFormForm from './forms/fd-view-edit-form';
 import FdVisualEditFormForm from './forms/fd-visual-edit-form-form';
 import FdVisualListform from './forms/fd-visual-listform';
 import FdGenerationProcessForm from './forms/fd-generation-process-form';
+import FdGenerationListForm from './forms/fd-generation-list-form';
 import FdAdModel from './models/fd-ad';
 import FdAggregationModel from './models/fd-aggregation';
 import FdAssociationModel from './models/fd-association';
@@ -66,6 +67,8 @@ import FdDpdModel from './models/fd-dpd';
 import FdFilelinkModel from './models/fd-filelink';
 import FdFormControlModel from './models/fd-form-control';
 import FdFormViewModel from './models/fd-form-view';
+import FdGenerationModel from './models/fd-generation';
+import FdGenerationStepLogModel from './models/fd-generation-step-log';
 import FdInheritanceModel from './models/fd-inheritance';
 import FdObjectInSystemModel from './models/fd-object-in-system';
 import FdPluginOnRepObjectModel from './models/fd-plugin-on-rep-object';
@@ -138,6 +141,8 @@ Ember.$.extend(true, translations, {
     'fd-filelink': FdFilelinkModel,
     'fd-form-control': FdFormControlModel,
     'fd-form-view': FdFormViewModel,
+    'fd-generation': FdGenerationModel,
+    'fd-generation-step-log': FdGenerationStepLogModel,
     'fd-inheritance': FdInheritanceModel,
     'fd-object-in-system': FdObjectInSystemModel,
     'fd-plugin-on-rep-object': FdPluginOnRepObjectModel,
@@ -179,7 +184,8 @@ Ember.$.extend(true, translations, {
     'fd-view-edit-form': FdViewEditFormForm,
     'fd-visual-edit-form': FdVisualEditFormForm,
     'fd-visual-listform': FdVisualListform,
-    'fd-generation-process-form': FdGenerationProcessForm
+    'fd-generation-process-form': FdGenerationProcessForm,
+    'fd-generation-list-form': FdGenerationListForm
   },
 
   components: {

@@ -52,7 +52,12 @@ export default Ember.Controller.extend({
         title: i18n.t('forms.application.sitemap.fd-visual-edit-form.title'),
       });
       sitemap.nodes.push({
-        link: 'fd-generation-process-form',
+        link: 'fd-generation-list-form',
+        caption: i18n.t('forms.application.sitemap.root.fd-generation-list-form.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-generation-list-form.title'),
+      });
+      sitemap.nodes.push({
+        link: 'fd-generation-process-form.new',
         caption: i18n.t('forms.application.sitemap.root.fd-generation-process-form.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-generation-process-form.title'),
       });

@@ -49,7 +49,11 @@ Router.map(function () {
   { path: 'fd-view-edit-form/new' });
   this.route('fd-visual-edit-form');
   this.route('fd-visual-listform');
-  this.route('fd-generation-process-form');
+  this.route('fd-generation-process-form.new',
+  { path: 'fd-generation-process-form/new' });
+  this.route('fd-generation-process-form',
+  { path: 'fd-generation-process-form/:id' });
+  this.route('fd-generation-list-form');
 });
 
 export default Router;

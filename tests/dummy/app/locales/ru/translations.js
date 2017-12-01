@@ -132,6 +132,10 @@ Ember.$.extend(true, translations, {
           'fd-generation-process-form': {
             caption: 'Генерация',
             title: '',
+          },
+          'fd-generation-list-form': {
+            caption: 'Список генераций',
+            title: '',
           }
         },
       }

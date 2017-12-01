@@ -6,7 +6,8 @@ export let Serializer = Ember.Mixin.create({
     let attrs = {
       typeDefinitions: { serialize: false, deserialize: 'records' },
       controlTypes: { serialize: false, deserialize: 'records' },
-      moduleSettings: { serialize: false, deserialize: 'records' }
+      moduleSettings: { serialize: false, deserialize: 'records' },
+      generations: { serialize: false, deserialize: 'records' }
     };
 
     return Ember.$.extend(true, {}, parentAttrs, attrs);
