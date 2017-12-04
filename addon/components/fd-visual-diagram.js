@@ -138,6 +138,7 @@ export default Ember.Component.extend({
       let jGeneralization = new joint.shapes.uml.Generalization({ source: { id: jCadClasses[endClassId].id }, target: { id: jCadClasses[startClassId].id } });
       this.graph.addCell(jGeneralization);
     }
+
     for (let i = 0; i < implemetnations.length; i++) {
       let implemetnation = implemetnations[i];
       let startClassId = implemetnation.StartPrimitive.$ref;
@@ -145,7 +146,6 @@ export default Ember.Component.extend({
       let jImplemetnation = new joint.shapes.uml.Implemetnation({ source: { id: jCadClasses[endClassId].id }, target: { id: jCadClasses[startClassId].id } });
       this.graph.addCell(jImplemetnation);
     }
-
 
   },
 

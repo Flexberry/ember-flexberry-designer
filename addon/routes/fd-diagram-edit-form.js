@@ -6,7 +6,6 @@ export default EditFormRoute.extend({
 
   modelName: 'fd-dev-uml-cad',
 
-
   setupController: function (controller, model) {
     this._super(...arguments);
     let primitivesJsonString = model.get('primitivesJsonString');
