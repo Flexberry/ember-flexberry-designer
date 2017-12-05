@@ -37,6 +37,7 @@ export default Ember.Component.extend({
             break;
           }
         }
+
         continue;
       }
 
@@ -139,27 +140,27 @@ export default Ember.Component.extend({
           x: targetPoint.X - targetElement.attributes.position.x,
           y: targetPoint.Y - targetElement.attributes.position.y,
         };
-        targetElement.addPort({group: 'out', args: targetPortArgs});
+        targetElement.addPort({ group: 'out', args: targetPortArgs });
         let targetPorts = targetElement.getPorts();
-        let targetPort =  targetPorts[targetPorts.length -1];
+        let targetPort =  targetPorts[targetPorts.length - 1];
         let sourcePortArgs = {
           x: sourcePoint.X - sourceElement.attributes.position.x,
           y: sourcePoint.Y - sourceElement.attributes.position.y,
         };
-        sourceElement.addPort({group: 'in', args: sourcePortArgs});
+        sourceElement.addPort({ group: 'in', args: sourcePortArgs });
         let sourcePorts = sourceElement.getPorts();
-        let sourcePort =  sourcePorts[sourcePorts.length -1];
+        let sourcePort =  sourcePorts[sourcePorts.length - 1];
 
         let attrs = {
-          source: { id: sourceElement.id , port: sourcePort.id},
-          target: { id: targetElement.id , port: targetPort.id},
+          source: { id: sourceElement.id, port: sourcePort.id },
+          target: { id: targetElement.id, port: targetPort.id },
           labels: [
           { position: 10, attrs: { text: { text:  endMultTxt } } },
           { position: -10, attrs: { text: { text:  startMultTxt } } }
           ]
         };
         let jLink = new joint.shapes.uml[linkType](attrs);
-        //jLink.set('vertices', vertices);
+        /*jLink.set('vertices', vertices);*/
         jLink.set('router', { name: 'manhattan' });
 
         this.graph.addCell(jLink);
