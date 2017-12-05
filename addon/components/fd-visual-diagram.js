@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import joint from 'npm:jointjs';
+import joint from '../external/jointjs';
 
 import layout from '../templates/components/fd-visual-diagram';
 
