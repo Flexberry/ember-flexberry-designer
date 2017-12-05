@@ -136,6 +136,7 @@ export default Ember.Component.extend({
           let point = link.Points[np];
           vertices.push({ x: point.X, y: point.Y });
         }
+
         let targetPortArgs = {
           x: targetPoint.X - targetElement.attributes.position.x,
           y: targetPoint.Y - targetElement.attributes.position.y,
