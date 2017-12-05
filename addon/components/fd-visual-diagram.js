@@ -8,6 +8,13 @@ export default Ember.Component.extend({
 
   primitives: [],
 
+  links: {
+    'Association': [],
+    'Composition': [],
+    'Generalization': [],
+    'Implemetnation': []
+  },
+
   init() {
     this.graph = new joint.dia.Graph();
     return this._super();
@@ -21,29 +28,15 @@ export default Ember.Component.extend({
     let maxX = 0;
     let maxY = 0;
     let cadClasses = {};
-    let assosiations = [];
-    let compositions = [];
-    let generalizations = [];
-    let implemetnations = [];
     for (let i = 0; i < this.primitives.length; i++) {
       let primitive = this.primitives[i];
       if (primitive.$type.indexOf('STORMCASE.STORMNET.Repository.CADClass') < 0) {
-        if (primitive.$type.indexOf('STORMCASE.UML.cad.Association') >= 0) {
-          assosiations.push(primitive);
+        for (let linkType in this.links) {
+          if (primitive.$type.indexOf('STORMCASE.UML.cad.' + linkType) >= 0) {
+            this.links[linkType].push(primitive);
+            break;
+          }
         }
-
-        if (primitive.$type.indexOf('STORMCASE.UML.cad.Composition') >= 0) {
-          compositions.push(primitive);
-        }
-
-        if (primitive.$type.indexOf('STORMCASE.UML.cad.Generalization') >= 0) {
-          generalizations.push(primitive);
-        }
-
-        if (primitive.$type.indexOf('STORMCASE.UML.cad.Implemetnation') >= 0) {
-          implemetnations.push(primitive);
-        }
-
         continue;
       }
 
@@ -85,6 +78,16 @@ export default Ember.Component.extend({
         name: cadClass.CaseName,
         attributes: attributes,
         methods: methods,
+        ports: {
+          groups: {
+            'in': {
+              position: 'absolute'
+            },
+            'out': {
+              position: 'absolute'
+            },
+          }
+        },
         attrs: {
           '.uml-class-name-rect': {
             fill: '#fff',
@@ -115,36 +118,52 @@ export default Ember.Component.extend({
       jCadClasses[cadId] = jCadClass;
     }
 
-    for (let i = 0; i < assosiations.length; i++) {
-      let assosiation = assosiations[i];
-      let startClassId = assosiation.StartPrimitive.$ref;
-      let endClassId = assosiation.EndPrimitive.$ref;
-      let jAssociation = new joint.shapes.uml.Association({ source: { id: jCadClasses[endClassId].id }, target: { id: jCadClasses[startClassId].id } });
-      this.graph.addCell(jAssociation);
-    }
+    for (let linkType in this.links) {
+      let links =  this.links[linkType];
+      for (let i = 0; i < links.length; i++) {
+        let link = links[i];
+        let startClassId = link.StartPrimitive.$ref;
+        let targetElement = jCadClasses[startClassId];
+        let endClassId = link.EndPrimitive.$ref;
+        let sourceElement = jCadClasses[endClassId];
+        let startMultTxt =  ('StartMultTxt' in link) ? link.StartMultTxt.Text : '';
+        let endMultTxt = ('EndMultTxt' in link) ? link.EndMultTxt.Text : '';
+        let targetPoint = link.Points.shift();
+        let sourcePoint = link.Points.pop();
+        let vertices = [];
+        for (let np = 0; np < link.Points.length; np++) {
+          let point = link.Points[np];
+          vertices.push({ x: point.X, y: point.Y });
+        }
+        let targetPortArgs = {
+          x: targetPoint.X - targetElement.attributes.position.x,
+          y: targetPoint.Y - targetElement.attributes.position.y,
+        };
+        targetElement.addPort({group: 'out', args: targetPortArgs});
+        let targetPorts = targetElement.getPorts();
+        let targetPort =  targetPorts[targetPorts.length -1];
+        let sourcePortArgs = {
+          x: sourcePoint.X - sourceElement.attributes.position.x,
+          y: sourcePoint.Y - sourceElement.attributes.position.y,
+        };
+        sourceElement.addPort({group: 'in', args: sourcePortArgs});
+        let sourcePorts = sourceElement.getPorts();
+        let sourcePort =  sourcePorts[sourcePorts.length -1];
 
-    for (let i = 0; i < compositions.length; i++) {
-      let composition = compositions[i];
-      let startClassId = composition.StartPrimitive.$ref;
-      let endClassId = composition.EndPrimitive.$ref;
-      let jComposition = new joint.shapes.uml.Composition({ source: { id: jCadClasses[endClassId].id }, target: { id: jCadClasses[startClassId].id } });
-      this.graph.addCell(jComposition);
-    }
+        let attrs = {
+          source: { id: sourceElement.id , port: sourcePort.id},
+          target: { id: targetElement.id , port: targetPort.id},
+          labels: [
+          { position: 10, attrs: { text: { text:  endMultTxt } } },
+          { position: -10, attrs: { text: { text:  startMultTxt } } }
+          ]
+        };
+        let jLink = new joint.shapes.uml[linkType](attrs);
+        //jLink.set('vertices', vertices);
+        jLink.set('router', { name: 'manhattan' });
 
-    for (let i = 0; i < generalizations.length; i++) {
-      let generalization = generalizations[i];
-      let startClassId = generalization.StartPrimitive.$ref;
-      let endClassId = generalization.EndPrimitive.$ref;
-      let jGeneralization = new joint.shapes.uml.Generalization({ source: { id: jCadClasses[endClassId].id }, target: { id: jCadClasses[startClassId].id } });
-      this.graph.addCell(jGeneralization);
-    }
-
-    for (let i = 0; i < implemetnations.length; i++) {
-      let implemetnation = implemetnations[i];
-      let startClassId = implemetnation.StartPrimitive.$ref;
-      let endClassId = implemetnation.EndPrimitive.$ref;
-      let jImplemetnation = new joint.shapes.uml.Implemetnation({ source: { id: jCadClasses[endClassId].id }, target: { id: jCadClasses[startClassId].id } });
-      this.graph.addCell(jImplemetnation);
+        this.graph.addCell(jLink);
+      }
     }
 
   },
