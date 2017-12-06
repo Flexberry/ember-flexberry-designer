@@ -30,9 +30,9 @@ export default Ember.Component.extend({
         sourcePoint.X = sourceAttributes.position.x + sourceAttributes.size.width;
       }
     } else {
-      let dxB = sourcePoint.X -sourceAttributes.position.x;
+      let dxB = sourcePoint.X - sourceAttributes.position.x;
       let dxE = sourceAttributes.position.x + sourceAttributes.size.width - sourcePoint.X;
-      let dyB = sourcePoint.Y -sourceAttributes.position.y;
+      let dyB = sourcePoint.Y - sourceAttributes.position.y;
       let dyE = sourceAttributes.position.y + sourceAttributes.size.height - sourcePoint.Y;
       let dx = dxB > dxE ? dxE : dxB;
       let dy = dyB > dyE ? dyE : dyB;
@@ -165,20 +165,21 @@ export default Ember.Component.extend({
         let targetPoint = link.Points.shift();
         let sourcePoint = link.Points.pop();
 
-        if (
-          (targetPoint.X !== targetElement.attributes.position.x && targetPoint.X !== targetElement.attributes.position.x + targetElement.attributes.size.width) &&
-          (targetPoint.Y !== targetElement.attributes.position.y && targetPoint.Y !== targetElement.attributes.position.y + targetElement.attributes.size.height)
-        ) {
+        if (targetPoint.X !== targetElement.attributes.position.x &&
+          targetPoint.X !== targetElement.attributes.position.x + targetElement.attributes.size.width &&
+          targetPoint.Y !== targetElement.attributes.position.y &&
+          targetPoint.Y !== targetElement.attributes.position.y + targetElement.attributes.size.height) {
           /*alert(sourceElement.attributes.name + '->' + targetElement.attributes.name  +
           ' TargetElement Position: ' + JSON.stringify(targetElement.attributes.position) + ' Size: ' + JSON.stringify(targetElement.attributes.size) +
           ' targetPoint:' + JSON.stringify(targetPoint) + ' POINTS' + Points
           );*/
           targetPoint = this._setIncorrectPoint(targetPoint, sourcePoint, targetElement.attributes);
         }
-        if (
-          (sourcePoint.X !== sourceElement.attributes.position.x && sourcePoint.X !== sourceElement.attributes.position.x + sourceElement.attributes.size.width) &&
-          (sourcePoint.Y !== sourceElement.attributes.position.y && sourcePoint.Y !== sourceElement.attributes.position.y + sourceElement.attributes.size.height)
-        ) {
+
+        if (sourcePoint.X !== sourceElement.attributes.position.x &&
+          sourcePoint.X !== sourceElement.attributes.position.x + sourceElement.attributes.size.width &&
+          sourcePoint.Y !== sourceElement.attributes.position.y &&
+          sourcePoint.Y !== sourceElement.attributes.position.y + sourceElement.attributes.size.height) {
           /*alert(sourceElement.attributes.name + '->' + targetElement.attributes.name  +
             ' SourceElement Position: ' + JSON.stringify(sourceElement.attributes.position) + ' Size: ' + JSON.stringify(sourceElement.attributes.size) +
             ' sourcePoint:' + JSON.stringify(sourcePoint) + ' POINTS' + Points
@@ -206,8 +207,6 @@ export default Ember.Component.extend({
         sourceElement.addPort({ group: 'in', args: sourcePortArgs });
         let sourcePorts = sourceElement.getPorts();
         let sourcePort =  sourcePorts[sourcePorts.length - 1];
-//         alert(sourceElement.attributes.name + ':' + JSON.stringify(sourcePortArgs) + ' -> ' +
-//           targetElement.attributes.name + ':' + JSON.stringify(targetPortArgs));
         let attrs = {
           source: { id: sourceElement.id, port: sourcePort.id },
           target: { id: targetElement.id, port: targetPort.id },
