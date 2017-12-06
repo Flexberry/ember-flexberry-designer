@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import joint from '../external/jointjs';
+import joint from 'npm:jointjs';
 
 import layout from '../templates/components/fd-visual-diagram';
 
@@ -13,6 +13,38 @@ export default Ember.Component.extend({
     'Composition': [],
     'Generalization': [],
     'Implemetnation': []
+  },
+
+  _setIncorrectPoint: function(sourcePoint, targetPoint, sourceAttributes) {
+    if (sourcePoint.X === targetPoint.X) {
+      if (sourcePoint.Y > targetPoint.Y) {
+        sourcePoint.Y = sourceAttributes.position.y;
+      } else {
+        sourcePoint.Y = sourceAttributes.position.y + sourceAttributes.size.height;
+      }
+
+    } else if (sourcePoint.Y === targetPoint.Y) {
+      if (sourcePoint.X > targetPoint.X) {
+        sourcePoint.X = sourceAttributes.position.x;
+      } else {
+        sourcePoint.X = sourceAttributes.position.x + sourceAttributes.size.width;
+      }
+    } else {
+      let dxB = sourcePoint.X -sourceAttributes.position.x;
+      let dxE = sourceAttributes.position.x + sourceAttributes.size.width - sourcePoint.X;
+      let dyB = sourcePoint.Y -sourceAttributes.position.y;
+      let dyE = sourceAttributes.position.y + sourceAttributes.size.height - sourcePoint.Y;
+      let dx = dxB > dxE ? dxE : dxB;
+      let dy = dyB > dyE ? dyE : dyB;
+      if (dx < dy) {
+        sourcePoint.X = dxB < dxE ? sourceAttributes.position.x : sourceAttributes.position.x + sourceAttributes.size.width;
+      } else {
+        sourcePoint.Y = dyB < dyE ? sourceAttributes.position.y : sourceAttributes.position.y + sourceAttributes.size.height;
+      }
+
+    }
+
+    return sourcePoint;
   },
 
   init() {
@@ -129,8 +161,31 @@ export default Ember.Component.extend({
         let sourceElement = jCadClasses[endClassId];
         let startMultTxt =  ('StartMultTxt' in link) ? link.StartMultTxt.Text : '';
         let endMultTxt = ('EndMultTxt' in link) ? link.EndMultTxt.Text : '';
+        let Points = JSON.stringify(link.Points);
         let targetPoint = link.Points.shift();
         let sourcePoint = link.Points.pop();
+
+        if (
+          (targetPoint.X != targetElement.attributes.position.x && targetPoint.X != targetElement.attributes.position.x + targetElement.attributes.size.width) &&
+          (targetPoint.Y != targetElement.attributes.position.y && targetPoint.Y != targetElement.attributes.position.y + targetElement.attributes.size.height)
+        ) {
+          alert(sourceElement.attributes.name + '->' + targetElement.attributes.name  +
+          ' TargetElement Position: ' + JSON.stringify(targetElement.attributes.position) + ' Size: ' + JSON.stringify(targetElement.attributes.size) +
+          ' targetPoint:' + JSON.stringify(targetPoint) + ' POINTS' + Points
+          );
+          targetPoint = this._setIncorrectPoint(targetPoint, sourcePoint, targetElement.attributes);
+        }
+        if (
+          (sourcePoint.X != sourceElement.attributes.position.x && sourcePoint.X != sourceElement.attributes.position.x + sourceElement.attributes.size.width) &&
+          (sourcePoint.Y != sourceElement.attributes.position.y && sourcePoint.Y != sourceElement.attributes.position.y + sourceElement.attributes.size.height)
+        ) {
+          alert(sourceElement.attributes.name + '->' + targetElement.attributes.name  +
+            ' SourceElement Position: ' + JSON.stringify(sourceElement.attributes.position) + ' Size: ' + JSON.stringify(sourceElement.attributes.size) +
+            ' sourcePoint:' + JSON.stringify(sourcePoint) + ' POINTS' + Points
+          );
+          sourcePoint = this._setIncorrectPoint(sourcePoint, targetPoint, sourceElement.attributes);
+        }
+
         let vertices = [];
         for (let np = 0; np < link.Points.length; np++) {
           let point = link.Points[np];
@@ -151,7 +206,8 @@ export default Ember.Component.extend({
         sourceElement.addPort({ group: 'in', args: sourcePortArgs });
         let sourcePorts = sourceElement.getPorts();
         let sourcePort =  sourcePorts[sourcePorts.length - 1];
-
+//         alert(sourceElement.attributes.name + ':' + JSON.stringify(sourcePortArgs) + ' -> ' +
+//           targetElement.attributes.name + ':' + JSON.stringify(targetPortArgs));
         let attrs = {
           source: { id: sourceElement.id, port: sourcePort.id },
           target: { id: targetElement.id, port: targetPort.id },
