@@ -1,38 +1,36 @@
 <div class="field">
-    <label>{{prototypeByDropdownCaption}}</label>
-    {{flexberry-dropdown
-      items=avaliableControls
-      value=model.prototypeBy
-      class=undefined
-      onChange=(action 'avaliableControlChange')
-    }}
+  <label>{{t "components.fd-visual-control.prototypeBy"}}</label>
+  {{flexberry-dropdown
+    readonly=true
+  }}
 </div>
 <div class="field">
-    <label>{{nameTextboxCaption}}</label>
-    {{flexberry-textbox
-      value=model.name
-    }}
+  <label>{{t "components.fd-visual-control.name"}}</label>
+  {{flexberry-textbox
+    value=attribute.name
+    readonly=_readonly
+  }}
 </div>
 <div class="field">
-    <label>{{typeDropdownCaption}}</label>
-    {{flexberry-dropdown
-      items=controlTypes
-      value=model.typeName
-      class=undefined
-      onChange=(action 'controlTypeChange' model.typeName)
-    }}
+  <label>{{t "components.fd-visual-control.type"}}</label>
+  {{flexberry-dropdown
+    items=types
+    value=attribute.type
+    readonly=_readonly
+  }}
 </div>
 <div class="field">
-    <label>{{isNullCheckboxCaption}}</label>
-    {{flexberry-checkbox
-      class="fluid"
-      value=model.isNull
-    }}
+  <label>{{t "components.fd-visual-control.isNull"}}</label>
+  {{flexberry-checkbox
+    class="fluid"
+    value=allowNull
+    readonly=_readonly
+  }}
 </div>
 <div class="field">
-    <label>{{defaultValueTextboxCaption}}</label>
-    {{component model.defaultValueControl
-      value=model.defaultValue
-      type=model.inputType
-    }}
+  <label>{{t "components.fd-visual-control.defaultValue"}}</label>
+  {{component defaultValueControl
+    value=attribute.defaultValue
+    readonly=_readonly
+  }}
 </div>
