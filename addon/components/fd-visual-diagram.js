@@ -161,28 +161,28 @@ export default Ember.Component.extend({
         let sourceElement = jCadClasses[endClassId];
         let startMultTxt =  ('StartMultTxt' in link) ? link.StartMultTxt.Text : '';
         let endMultTxt = ('EndMultTxt' in link) ? link.EndMultTxt.Text : '';
-        let Points = JSON.stringify(link.Points);
+        /*let Points = JSON.stringify(link.Points);*/
         let targetPoint = link.Points.shift();
         let sourcePoint = link.Points.pop();
 
         if (
-          (targetPoint.X != targetElement.attributes.position.x && targetPoint.X != targetElement.attributes.position.x + targetElement.attributes.size.width) &&
-          (targetPoint.Y != targetElement.attributes.position.y && targetPoint.Y != targetElement.attributes.position.y + targetElement.attributes.size.height)
+          (targetPoint.X !== targetElement.attributes.position.x && targetPoint.X !== targetElement.attributes.position.x + targetElement.attributes.size.width) &&
+          (targetPoint.Y !== targetElement.attributes.position.y && targetPoint.Y !== targetElement.attributes.position.y + targetElement.attributes.size.height)
         ) {
-          alert(sourceElement.attributes.name + '->' + targetElement.attributes.name  +
+          /*alert(sourceElement.attributes.name + '->' + targetElement.attributes.name  +
           ' TargetElement Position: ' + JSON.stringify(targetElement.attributes.position) + ' Size: ' + JSON.stringify(targetElement.attributes.size) +
           ' targetPoint:' + JSON.stringify(targetPoint) + ' POINTS' + Points
-          );
+          );*/
           targetPoint = this._setIncorrectPoint(targetPoint, sourcePoint, targetElement.attributes);
         }
         if (
-          (sourcePoint.X != sourceElement.attributes.position.x && sourcePoint.X != sourceElement.attributes.position.x + sourceElement.attributes.size.width) &&
-          (sourcePoint.Y != sourceElement.attributes.position.y && sourcePoint.Y != sourceElement.attributes.position.y + sourceElement.attributes.size.height)
+          (sourcePoint.X !== sourceElement.attributes.position.x && sourcePoint.X !== sourceElement.attributes.position.x + sourceElement.attributes.size.width) &&
+          (sourcePoint.Y !== sourceElement.attributes.position.y && sourcePoint.Y !== sourceElement.attributes.position.y + sourceElement.attributes.size.height)
         ) {
-          alert(sourceElement.attributes.name + '->' + targetElement.attributes.name  +
+          /*alert(sourceElement.attributes.name + '->' + targetElement.attributes.name  +
             ' SourceElement Position: ' + JSON.stringify(sourceElement.attributes.position) + ' Size: ' + JSON.stringify(sourceElement.attributes.size) +
             ' sourcePoint:' + JSON.stringify(sourcePoint) + ' POINTS' + Points
-          );
+          );*/
           sourcePoint = this._setIncorrectPoint(sourcePoint, targetPoint, sourceElement.attributes);
         }
 
