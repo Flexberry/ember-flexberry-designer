@@ -292,12 +292,16 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     },
 
     addLeftListForm() {
-      let classId = this._getTopId(this.lastClicked.left.path);
+      let pathToObject = this.lastClicked.left.path.split('.', 2).join('.');
+      let classId = this._getTopId(pathToObject);
       if (classId) {
-        let url = '/fd-visual-listform?classId=' + classId;
-        this.transitionToRoute(url);
+        this.transitionToRoute('fd-visual-listform', {
+          queryParams: {
+            form: undefined,
+            class: classId,
+          },
+        });
       }
-
     },
 
     editLeftNode() {
@@ -307,8 +311,12 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       let url;
       switch (node.get('stereotype')) {
         case '«listform»':
-          url = '/fd-visual-listform?formId=' + nodeId;
-          this.transitionToRoute(url);
+          this.transitionToRoute('fd-visual-listform', {
+            queryParams: {
+              form: nodeId,
+              class: undefined,
+            },
+          });
           break;
         case '«editform»':
           url = '/fd-visual-edit-form?formId=' + nodeId;
