@@ -19663,11 +19663,11 @@ define("dummy/templates/components/flexberry-validationsummary", ["exports"], fu
           "loc": {
             "source": null,
             "start": {
-              "line": 2,
+              "line": 3,
               "column": 2
             },
             "end": {
-              "line": 4,
+              "line": 5,
               "column": 2
             }
           },
@@ -19694,7 +19694,7 @@ define("dummy/templates/components/flexberry-validationsummary", ["exports"], fu
           morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 0, 0);
           return morphs;
         },
-        statements: [["content", "message", ["loc", [null, [3, 8], [3, 19]]]]],
+        statements: [["content", "message", ["loc", [null, [4, 8], [4, 19]]]]],
         locals: ["message"],
         templates: []
       };
@@ -19702,7 +19702,8 @@ define("dummy/templates/components/flexberry-validationsummary", ["exports"], fu
     return {
       meta: {
         "fragmentReason": {
-          "name": "triple-curlies"
+          "name": "missing-wrapper",
+          "problems": ["wrong-type", "multiple-nodes"]
         },
         "revision": "Ember@2.4.6",
         "loc": {
@@ -19712,8 +19713,8 @@ define("dummy/templates/components/flexberry-validationsummary", ["exports"], fu
             "column": 0
           },
           "end": {
-            "line": 5,
-            "column": 5
+            "line": 7,
+            "column": 0
           }
         },
         "moduleName": "dummy/templates/components/flexberry-validationsummary.hbs"
@@ -19724,6 +19725,10 @@ define("dummy/templates/components/flexberry-validationsummary", ["exports"], fu
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         var el1 = dom.createElement("ul");
         dom.setAttribute(el1, "class", "list");
         var el2 = dom.createTextNode("\n");
@@ -19731,14 +19736,18 @@ define("dummy/templates/components/flexberry-validationsummary", ["exports"], fu
         var el2 = dom.createComment("");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 1, 1);
+        var morphs = new Array(2);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 1, 1);
+        dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["block", "each", [["get", "messages", ["loc", [null, [2, 10], [2, 18]]]]], [], 0, null, ["loc", [null, [2, 2], [4, 11]]]]],
+      statements: [["content", "headerText", ["loc", [null, [1, 0], [1, 14]]]], ["block", "each", [["get", "messages", ["loc", [null, [3, 10], [3, 18]]]]], [], 0, null, ["loc", [null, [3, 2], [5, 11]]]]],
       locals: [],
       templates: [child0]
     };
@@ -36168,7 +36177,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.1+a3333188"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.1+5af24d35"});
 }
 
 /* jshint ignore:end */
