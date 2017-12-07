@@ -1,161 +1,97 @@
 import Ember from 'ember';
 import { Query } from 'ember-flexberry-data';
-const { Builder, FilterOperator } = Query;
+
+const { Builder, SimplePredicate } = Query;
 
 export default Ember.Route.extend({
-
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
-
-  formId: null,
-
-  editControl: {},
-
-  controller: undefined,
-
-  viewClassId: undefined,
-
-  definition: {},
-
-  //   aggregations: [],const { RSVP}
-
-  //
-  //   devClasses: {},
-  //
-  //   classKeys: {},
+  currentContext: Ember.inject.service('fd-current-project-context'),
 
   queryParams: {
-    formId: {
-      refreshModel: false
-    },
-    classId: {
-      refreshModel: false
+    form: { refreshModel: true },
+    class: { refreshModel: true },
+  },
+
+  beforeModel() {
+    let currentContext = this.get('currentContext');
+    if (currentContext.get('context.stage')) {
+      return Ember.RSVP.resolve();
     }
+
+    let configurationQuery = new Builder(this.store, 'fd-configuration')
+      .selectByProjection('ListFormView')
+      .byId('116b1c01-944d-499e-b772-538ec0c499cf')
+      .build();
+    let stageQuery = new Builder(this.store, 'fd-dev-stage')
+      .selectByProjection('ListFormView')
+      .byId('cd8030e4-c0b2-469d-8096-53c42c37576c')
+      .build();
+
+    return this.store.queryRecord('fd-configuration', configurationQuery).then((configuration) => {
+      currentContext.setCurrentConfiguration(configuration);
+      return this.store.queryRecord('fd-dev-stage', stageQuery).then(stage => currentContext.setCurrentStage(stage));
+    });
   },
 
-  beforeModel: function(params) {
-    this.formId = params.queryParams.formId;
-    this.classId = params.queryParams.classId;
-  },
+  model(params) {
+    let formPromise;
+    let stage = this.get('currentContext').getCurrentStageModel();
 
-  /*currentProjectContext: Ember.inject.service('fd-current-project-context'),*/
+    if (params.form) {
+      let formQuery = new Builder(this.store, 'fd-dev-class')
+        .selectByProjection('FormConstructor')
+        .byId(params.form).build();
 
-  _getAssocListByStage: function(stagePk) {
-    let builder = new  Builder(this.store, 'fd-dev-association').
-    select('startRole,assocType,startClass,startClass.id,startClass.name,endClass.id,endClass.name,stage,stage.id').
-    where('stage.id', FilterOperator.Eq, stagePk);
-    let promise = this.store.query('fd-dev-association', builder.build());
-    return promise;
-  },
+      formPromise =  this.store.queryRecord('fd-dev-class', formQuery);
+    } else {
+      let dataObjectPromise;
+      if (params.class) {
+        let dataObjectQuery = new Builder(this.store, 'fd-dev-class')
+          .selectByProjection('DataObjects')
+          .byId(params.class).build();
 
-  _getAggregListByStage: function(stagePk) {
-    let builder = new  Builder(this.store, 'fd-dev-aggregation').
-    select('startRole,startClass,startClass.id,stage,stage.id').
-    where('stage.id', FilterOperator.Eq, stagePk);
-    let promise = this.store.query('fd-dev-aggregation', builder.build());
-    return promise;
-  },
-
-  _getClassListByStage: function(stagePk) {
-    let builder = new  Builder(this.store, 'fd-dev-class').
-    select('id,name,stereotype,stage,stage.id,attributes,attributes.name,attributes.type,attributes.defaultValue,attributes.class').
-    where('stage.id', FilterOperator.Eq, stagePk);
-    let promise = this.store.query('fd-dev-class', builder.build());
-    return promise;
-  },
-
-  //   _getAssocListByEndClass(endClass) {
-  //     let builder = new  Builder(this.store, 'fd-dev-association').
-  //     selectByProjection('ListFormView').
-  //     where('endClass.name', FilterOperator.Eq, endClass);
-  //     let promise = this.store.query('fd-dev-association', builder.build());
-  //     return promise;
-  //   },
-
-  model: function() {
-    //    select('id,name,description,stereotype,containersStr,formViews,formViews.view,formViews.view.class,formViews.view.class.id,stage,stage.id').
-
-    let builder = new  Builder(this.store, 'fd-dev-class').
-    selectByProjection('FdAttributesForForm').
-    byId(this.formId);
-
-    /*selectByProjection('FdAttributesForForm').
-     *select('id,name,description,stereotype,containersStr,attributes,attributes.name').*/
-    let promise = this.store.query('fd-dev-class', builder.build());
-    return promise;
-  },
-
-  setupController: function (controller, model) {
-    this.controller = controller;
-    this.controller.listformName = model.objectAt(0).get('name');
-    let stagePk = this.get('currentProjectContext').getCurrentStage();
-    let _this = this;
-    let devClass = model.objectAt(0);
-    let formView = devClass.get('formViews').objectAt(0);
-    let view = formView.get('view');
-
-    //     this.definition = controller._parseDefinition(view.get('definition'));
-    this.definition = view.get('definition');
-    this.viewClassId = view.get('class.id');
-    let promises = [];
-    promises.push(this._getAssocListByStage(stagePk));
-    promises.push(this._getAggregListByStage(stagePk));
-    promises.push(this._getClassListByStage(stagePk));
-    Ember.RSVP.Promise.all(promises).then(values => {
-      let associations = [];
-      let devClasses = {};
-      for (let i = 0; i < values.length; i++) {
-        let recordList = values[i];
-        switch (recordList.modelName) {
-          case 'fd-dev-association':
-          case 'fd-dev-aggregation':
-            for (let i = 0; i < recordList.get('length'); i++) {
-              let record = recordList.objectAt(i);
-              let startRole = record.get(record.get('startRole') === null ? 'startClass.name' : 'startRole');
-              let association = {
-                id: record.id,
-                startRole: startRole,
-                startClass:{ id: record.get('startClass').id, name: record.get('startClass.name') }
-              };
-
-              if (recordList.modelName === 'fd-dev-association') {
-                association.endClass = { id: record.get('endClass').id, name: record.get('endClass.name') };
-              } else {
-                association.endClass = { id: null, name: null };
-              }
-
-              associations.push(association);
-            }
-
-            break;
-          case 'fd-dev-class':
-            for (let i = 0; i < recordList.get('length'); i++) {
-              let record = recordList.objectAt(i);
-              if (record.get('stereotype')) {
-                continue;
-              }
-
-              devClasses[record.id] = { name: record.get('name'), attributes: {} };
-              let attributes = record.get('attributes');
-              for (let j = 0; j < attributes.get('length'); j++) {
-                let attribute = attributes.objectAt(j);
-                let name =  attribute.get('name');
-                devClasses[record.id].attributes[name] = {
-                  id: attribute.id,
-                  name: name,
-                  type: attribute.get('type'),
-                  defaultValue: attribute.get('defaultValue')
-                };
-              }
-            }
-        }
+        dataObjectPromise = this.store.queryRecord('fd-dev-class', dataObjectQuery);
+      } else {
+        dataObjectPromise = Ember.RSVP.resolve(this.store.createRecord('fd-dev-class', { stage }));
       }
 
-      let classId = JSON.parse(JSON.stringify(_this.viewClassId));
-      let definition = _this.definition;
-      _this.controller.setListAttributes(classId, definition, devClasses, associations);
+      formPromise = dataObjectPromise.then((dataObject) => {
+        let view = this.store.createRecord('fd-dev-view', {
+          class: dataObject,
+          definition: Ember.A(),
+        });
+        let formView = this.store.createRecord('fd-dev-form-view', { view });
+        return Ember.RSVP.resolve(this.store.createRecord('fd-dev-class', {
+          stage: stage,
+          formViews: [formView],
+        }));
+      });
+    }
+
+    let builder = new Builder(this.store);
+    let associationsQuery = builder.from('fd-dev-association')
+      .selectByProjection('FormConstructor')
+      .where('stage', 'eq', stage.get('id'))
+      .build();
+
+    let aggregationsQuery = builder.from('fd-dev-aggregation')
+      .selectByProjection('FormConstructor')
+      .where('stage', 'eq', stage.get('id'))
+      .build();
+
+    let dataObjectsPredicate = new SimplePredicate('stereotype', 'eq', '«implementation»')
+      .or(new SimplePredicate('stereotype', 'eq', null))
+      .or(new SimplePredicate('stereotype', 'eq', ''))
+      .and(new SimplePredicate('stage.id', 'eq', stage.get('id')));
+    let dataObjectsQuery = builder.from('fd-dev-class')
+      .selectByProjection('DataObjects')
+      .where(dataObjectsPredicate)
+      .build();
+
+    return Ember.RSVP.hash({
+      form: formPromise,
+      dataObjects: this.store.query('fd-dev-class', dataObjectsQuery),
+      associations: this.store.query('fd-dev-association', associationsQuery),
+      aggregations: this.store.query('fd-dev-aggregation', aggregationsQuery),
     });
-
-    return this._super(controller, model);
-  }
-
+  },
 });

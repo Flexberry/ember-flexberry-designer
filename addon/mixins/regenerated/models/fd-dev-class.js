@@ -1482,4 +1482,44 @@ export let defineProjections = function (modelClass) {
       name: Projection.attr('')
     })
   });
+
+  modelClass.defineProjection('FormConstructor', 'fd-dev-class', {
+    name: Projection.attr(''),
+    caption: Projection.attr(''),
+    stage: Projection.belongsTo('fd-stage', '', {}),
+    formViews: Projection.hasMany('fd-dev-form-view', '', {
+      view: Projection.belongsTo('fd-dev-view', '', {
+        name: Projection.attr(''),
+        definition: Projection.attr(''),
+        class: Projection.belongsTo('fd-dev-class', '', {
+          name: Projection.attr(''),
+          caption: Projection.attr(''),
+          stage: Projection.belongsTo('fd-stage', '', {}),
+          attributes: Projection.hasMany('fd-dev-attribute', '', {
+            name: Projection.attr(''),
+            caption: Projection.attr(''),
+            type: Projection.attr(''),
+            notNull: Projection.attr(''),
+            defaultValue: Projection.attr(''),
+            class: Projection.belongsTo('fd-dev-class', '', {}),
+          }),
+        })
+      }),
+    }),
+  });
+
+  modelClass.defineProjection('DataObjects', 'fd-dev-class', {
+    name: Projection.attr(''),
+    caption: Projection.attr(''),
+    stereotype: Projection.attr(''),
+    stage: Projection.belongsTo('fd-stage', '', {}),
+    attributes: Projection.hasMany('fd-dev-attribute', '', {
+      name: Projection.attr(''),
+      caption: Projection.attr(''),
+      type: Projection.attr(''),
+      notNull: Projection.attr(''),
+      defaultValue: Projection.attr(''),
+      class: Projection.belongsTo('fd-dev-class', '', {}),
+    }),
+  });
 };

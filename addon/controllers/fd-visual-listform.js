@@ -1,227 +1,167 @@
-
 import Ember from 'ember';
 
-import FdDataTypes from '../utils/fd-datatypes';
-
 export default Ember.Controller.extend({
+  queryParams: ['form', 'class'],
 
-  queryParams: ['formId', 'classId'],
+  formClass: Ember.computed.alias('model.form'),
 
-  dataTypes: undefined,
+  view: Ember.computed.alias('model.form.formViews.firstObject.view'),
 
-  listformName: '',
+  dataObject: Ember.computed.alias('model.form.formViews.firstObject.view.class'),
 
-  listAttributes: [],
+  attributes: Ember.computed('view.definition', function() {
+    let attributes = Ember.A();
+    let definition = this.get('view.definition');
+    for (let i = 0; i < definition.length; i++) {
+      if (definition[i].visible === 'True') {
+        let attribute = attributes.pushObject({
+          propertyName: definition[i].propertyName,
+          name: definition[i].caption || definition[i].propertyName,
+        });
 
-  //   associations: undefined,
-  //
-  //   aggregations: undefined,
-  //
-  //   devClasses: undefined,
-  //
-  //   viewClassId: null,
-
-  //   definition: null,
-
-  /**
-  Prototypes.
-
-  @property prototypeBy
-  @type Object contained:
-    classId - class identificator
-    devClasses - list classes with attributes
-    assosiations - assosiations list
-    aggregations - aggregations list
-    usedAttrs  - list keys used attributes names
-  @default undefined
-  */
-
-  prototypeBy: {},
-
-  attrNames: {},
-
-  //   notUsedAttrs: [],
-
-  //   attrsTree: {},
-
-  editControl: {},
-
-  controlTypes: Ember.computed(
-    function() {
-      this.dataTypes = FdDataTypes.create();
-      let ret =  this.dataTypes.fDTypes();
-      return ret;
-    }
-  ),
-
-  //   avaliableControls: undefined,
-
-  //   usedAttrs: [],
-
-  init: function() {
-    this.prototypeBy = { classId:undefined, devClasses:{}, associations: [], aggregations: [], usedAttrs: [] };
-  },
-
-  //   _notUsedAttrs: function (path, classId) {
-  //     let ret = [];
-  //     let devClass = this.devClasses[classId];
-  //     for (let attrName in devClass.attributes) {
-  //       let fullName = path.concat(attrName).join('.');
-  //       if (!(fullName in this.attrNames)  || this.attrNames[fullName].visible === 'False') {
-  //         ret.push(fullName);
-  //       }
-  //     }
-  //     for (let i in this.associations) {
-  //       let association = this.associations[i];
-  //       if (association.endClass.id === classId) {
-  //         let role = association.startRole;
-  //         let newPath = path.concat(role);
-  //         let fullName = newPath.join('.');
-  //         if (!(fullName in this.attrNames)  || this.attrNames[fullName].visible === 'False') {
-  //           ret.push(fullName);
-  //         }
-  //         ret = ret.concat(this._notUsedAttrs(newPath, association.startClass.id));
-  //       }
-  //     }
-  //     return ret;
-  //   },
-  //
-  //   _attrsTree: function (path, classId) {
-  //     let ret = [];
-  //     let devClass = this.devClasses[classId];
-  //     for (let attrName in devClass.attributes) {
-  //       let attribute = Object.assign({}, devClass.attributes[attrName]);
-  //       let fullName = path.concat(attrName).join('.');
-  //       attribute.fullName = fullName;
-  //       attribute.visible = (fullName in this.attrNames) && this.attrNames[fullName].visible === 'True';
-  //       attribute.hidden = (fullName in this.attrNames) && this.attrNames[fullName].visible === 'False';
-  //       ret.push(attribute);
-  //     }
-  //     for (let i in this.associations) {
-  //       let association = this.associations[i];
-  //       if (association.endClass.id === classId) {
-  //         let role = association.startRole;
-  //         let newPath = path.concat(role);
-  //         let fullName = newPath.join('.');
-  //         let node = { role: role , fullName: fullName};
-  //         node.visible = (fullName in this.attrNames) && this.attrNames[fullName].visible === 'True';
-  //         node.hidden = (fullName in this.attrNames) && this.attrNames[fullName].visible === 'False';
-  //         node.children = this._attrsTree(newPath, association.startClass.id);
-  //         ret.push(node);
-  //       }
-  //     }
-  //     return ret;
-  //   },
-
-  //   setClassTree: function(associations, aggregations, devClasses) {
-  //
-  //   },
-
-  //   findAttrsNames: function(ok, nodes) {
-  //     let ret = [];
-  //     if (nodes === undefined) {
-  //       nodes = this.attrsTree;
-  //     }
-  //     for (let i in nodes) {
-  //       let node = nodes[i];
-  //       if (ok(node)) {
-  //         ret.push(node.fullName);
-  //         if ('role' in node) {
-  //           ret = ret.concat(ok, node.children);
-  //         }
-  //       }
-  //     }
-  //     return ret;
-  //   },
-
-  setListAttributes: function(classId, definition, devClasses, associations) {
-    Ember.set(this.prototypeBy, 'devClasses', devClasses);
-    Ember.set(this.prototypeBy, 'associations', associations);
-    Ember.set(this.prototypeBy, 'classId', classId);
-
-    //     Ember.set(this, 'definition', definition);
-    let viewClass = devClasses[classId];
-    for (let i in  definition) {
-      let attr = definition[i];
-      if (attr.isMaster === 'False') {
-        let attrClass = viewClass;
-        let propertyName = attr.propertyName;
-        let steps = propertyName.split('.');
-        let attrName;
-        if (steps.length === 1 && propertyName in attrClass.attributes) {
-          attrName = propertyName;
+        if (definition[i].isMaster === 'True') {
+          attribute.type = 'guid';
+          attribute.notNull = null;
+          attribute.defaultValue = null;
         } else {
-          let association;
-          let startClassName = viewClass.name;
-          for (let j = 0; j < steps.length - 1; j++) {
-            let step = steps[j];
-            let k;
-            for (k = 0; k < associations.length; k++) {
-              association = associations[k];
-              if (association.endClass.name === startClassName && association.startRole === step) {
-                startClassName = step;
-                break;
-              }
+          let propertyOwner = this.get('dataObject');
+          let propertyOwnerId = propertyOwner.get('id');
+          let path = definition[i].propertyName.split('.');
+          let attributeName = path.pop();
+          for (let i = 0; i < path.length; i++) {
+            let relationships = this.get('model.associations').filterBy('endClass.id', propertyOwnerId);
+            let relationship = relationships.findBy('startRole', path[i]) || relationships.findBy('startClass.name', path[i]);
+
+            if (!relationship) {
+              relationships = this.get('model.aggregations').filterBy('endClass.id', propertyOwnerId);
+              relationship = relationships.findBy('startRole', path[i]) || relationships.findBy('startClass.name', path[i]);
             }
 
-            if (k >= associations.length) {
-              continue;
-            }
-
-            Ember.assert('PropertyName: ' + propertyName +
-              ' Association for startClass "' +  startClassName + '" and role "' + step + '" not found',
-              k < associations.length);
+            propertyOwnerId = relationship.get('startClass.id');
           }
 
-          attrName = steps[steps.length - 1];
-          let classId = association.startClass.id;
-          Ember.assert('PropertyName: ' + propertyName +
-            ' startClass "' +  association.startClass.name +
-            '(' + classId + ') of association "' + association.startRole +
-            '" not found in attribute "' + attrName + '"',
-            classId in devClasses);
-          attrClass = devClasses[classId];
-        }
+          if (propertyOwner.get('id') !== propertyOwnerId) {
+            propertyOwner = this.get('model.dataObjects').findBy('id', propertyOwnerId);
+          }
 
-        if (!(attrName in attrClass.attributes)) {
-          continue;
+          let classAttribute = propertyOwner.get('attributes').findBy('name', attributeName);
+          attribute.classAttribute = classAttribute;
+          attribute.type = classAttribute.get('type');
+          attribute.notNull = classAttribute.get('notNull');
+          attribute.defaultValue = classAttribute.get('defaultValue');
         }
-
-        Ember.assert('PropertyName: ' + propertyName +
-          ' attribute name "' +  attrName + '" not found in class "' + attrClass.name,
-          attrName in attrClass.attributes);
-        let classAttr = attrClass.attributes[attrName];
-        attr.type = classAttr.type;
-        attr.defaultValue = classAttr.defaultValue;
-      } else {
-        attr.type = 'guid';
-        attr.defaultValue = null;
       }
-
     }
 
-    //     alert(JSON.stringify(definition));
-    let listAttributes = [];
-    this.attrNames = {};
-    let usedAttrs = {};
-    for (let i = 0; i < definition.length; i++) {
-      let attr = definition[i];
-      this.attrNames[attr.propertyName] = attr;
-      if (attr.visible === 'False') {
-        continue;
-      }
+    return attributes;
+  }),
 
-      usedAttrs[attr.propertyName] = true;
-      let attribute = {
-        name: attr.propertyName,
-        type: attr.type,
-        defaultValue: attr.defaultValue
-      };
-
-      listAttributes.push(attribute);
+  selectedAttribute: Ember.computed('attributes', 'indexSelectedAttribute', function() {
+    let attribute;
+    let index = this.get('indexSelectedAttribute');
+    if (typeof index === 'number') {
+      attribute = this.get('attributes').objectAt(index);
     }
 
-    Ember.set(this, 'listAttributes', listAttributes);
-    Ember.set(this.prototypeBy, 'usedAttrs', usedAttrs);
+    return attribute;
+  }),
+
+  actions: {
+    addAttribute() {
+      this.get('attributes').pushObject({ name: 'Property name' });
+    },
+
+    moveAttribute(from, to) {
+      let attributes = this.get('attributes');
+      let attribute = attributes.objectAt(from);
+
+      attributes.removeAt(from);
+      attributes.insertAt(to, attribute);
+
+      if (this.get('indexSelectedAttribute') === from) {
+        this.set('indexSelectedAttribute', to);
+      } else if (this.get('indexSelectedAttribute') === to) {
+        this.set('indexSelectedAttribute', from);
+      }
+    },
+
+    removeAttribute(index) {
+      if (this.get('indexSelectedAttribute') === index) {
+        this.set('indexSelectedAttribute', undefined);
+      } else if (index < this.get('indexSelectedAttribute')) {
+        this.decrementProperty('indexSelectedAttribute');
+      }
+
+      this.get('attributes').removeAt(index);
+    },
+
+    selectAttribute(index) {
+      this.set('indexSelectedAttribute', index);
+    },
+
+    save() {
+      let attributes = [];
+      let definition = Ember.A(this.get('view.definition'));
+      this.get('attributes').forEach((attribute) => {
+        let property = definition.findBy('propertyName', attribute.propertyName);
+        if (property) {
+          property.caption = attribute.name;
+        } else {
+          let attributeName = this._translate(attribute.name);
+          let classAttribute = this.get('dataObject.attributes').findBy('name', attributeName);
+          if (!classAttribute) {
+            classAttribute = this.get('dataObject.attributes').createRecord({ name: attributeName });
+          }
+
+          attribute.classAttribute = classAttribute;
+          property = { caption: attribute.name };
+          property.propertyName = attributeName;
+          property.visible = 'True';
+          property.isMaster = 'False';
+          property.lookupType = '';
+          property.masterPropertyName = '';
+          property.masterCustomizationString = '';
+        }
+
+        attribute.classAttribute.set('type', attribute.type);
+        attribute.classAttribute.set('notNull', attribute.notNull);
+        attribute.classAttribute.set('defaultValue', attribute.defaultValue);
+        attributes.push(property);
+      });
+
+      definition.filterBy('visible', 'False').forEach(attributes.push);
+      this.set('view.definition', attributes);
+
+      let formName = this.get('formClass.name');
+      if (this.get('formClass.isNew')) {
+        this.set('formClass.caption', formName);
+        this.set('formClass.stereotype', '«listform»');
+        this.set('view.name', `${formName}ViewL`);
+        this.set('formClass.formViews.firstObject.name', 'listview');
+      }
+
+      if (this.get('dataObject.isNew')) {
+        this.set('dataObject.name', `${formName}Object`);
+        this.set('dataObject.caption', `${formName}Object`);
+      }
+
+      this.get('dataObject').save().then(() => {
+        let promises = this.get('attributes').map(a => a.classAttribute.save());
+        Ember.RSVP.all(promises).then(() => {
+          this.get('view').save().then(() => {
+            this.get('formClass').save().then(() => {
+              this.get('formClass.formViews.firstObject').save().then(() => {
+                this.set('class', undefined);
+                this.set('form', this.get('formClass.id'));
+              });
+            });
+          });
+        });
+      });
+    },
+  },
+
+  _translate(propertyName) {
+    return propertyName;
   },
 });
