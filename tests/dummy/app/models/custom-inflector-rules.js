@@ -7,6 +7,7 @@ inflector.irregular('association', 'Associations');
 inflector.irregular('aggregation', 'Aggregations');
 inflector.irregular('inheritance', 'Inheritances');
 inflector.irregular('definition', 'Definitions');
+inflector.irregular('generation', 'Generations');
 inflector.irregular('repository', 'Repositorys');
 inflector.irregular('subsystem', 'Subsystems');
 inflector.irregular('parameter', 'Parameters');

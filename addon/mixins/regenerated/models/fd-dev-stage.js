@@ -379,6 +379,7 @@ export let Model = Ember.Mixin.create({
   typeDefinitions: DS.hasMany('fd-dev-type-definition', { inverse: 'stage', async: false }),
   controlTypes: DS.hasMany('fd-dev-control-type', { inverse: 'stage', async: false }),
   moduleSettings: DS.hasMany('fd-dev-module-setting', { inverse: 'stage', async: false }),
+  generations: DS.hasMany('fd-generation', { inverse: 'stage', async: false }),
   getValidations: function () {
     let parentValidations = this._super();
     let thisValidations = {
@@ -653,6 +654,20 @@ export let defineProjections = function (modelClass) {
         }, { hidden: true })
       }, { hidden: true })
     }, { hidden: true })
+  });
+  modelClass.defineProjection('Generations', 'fd-dev-stage', {
+    name: Projection.attr(''),
+    generations: Projection.hasMany('fd-generation', '', {
+      userName: Projection.attr('Пользователь'),
+      state: Projection.attr('Состояние'),
+      startTime: Projection.attr('Время старта'),
+      percentComplete: Projection.attr('% выполнения'),
+      endTime: Projection.attr('Время окончания'),
+      stage: Projection.belongsTo('fd-dev-stage', 'Имя стадии', {
+        name: Projection.attr('Имя стадии')
+      }),
+      generationReason: Projection.attr('Действие')
+    })
   });
   modelClass.defineProjection('Generator', 'fd-dev-stage', {
     name: Projection.attr(''),

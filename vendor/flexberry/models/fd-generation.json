@@ -1,0 +1,208 @@
+﻿{
+  "name": "FdGeneration",
+  "modelName": "fd-generation",
+  "className": "Generation",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [
+    {
+      "name": "startTime",
+      "type": "date",
+      "flexberryType": "DateTime",
+      "notNull": false,
+      "defaultValue": "Now",
+      "stored": true
+    },
+    {
+      "name": "endTime",
+      "type": "date",
+      "flexberryType": "DateTime",
+      "notNull": false,
+      "defaultValue": "Now",
+      "stored": true
+    },
+    {
+      "name": "state",
+      "type": "fd-generation-state",
+      "flexberryType": "GenerationState",
+      "notNull": false,
+      "defaultValue": "Running",
+      "stored": true
+    },
+    {
+      "name": "generationReason",
+      "type": "string",
+      "flexberryType": "StringMax",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "userName",
+      "type": "string",
+      "flexberryType": "StringMax",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "isRunning",
+      "type": "boolean",
+      "flexberryType": "bool",
+      "notNull": false,
+      "defaultValue": "true",
+      "stored": true
+    },
+    {
+      "name": "percentComplete",
+      "type": "number",
+      "flexberryType": "int",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "stage",
+      "relatedTo": "fd-dev-stage",
+      "inverse": "generations"
+    }
+  ],
+  "hasMany": [
+    {
+      "name": "stepLogs",
+      "relatedTo": "fd-generation-step-log",
+      "inverse": "generation"
+    }
+  ],
+  "projections": [
+    {
+      "name": "EditFormView",
+      "modelName": "fd-generation",
+      "attrs": [
+        {
+          "name": "startTime",
+          "caption": "StartTime",
+          "hidden": true,
+          "index": 0
+        },
+        {
+          "name": "endTime",
+          "caption": "EndTime",
+          "hidden": true,
+          "index": 1
+        },
+        {
+          "name": "state",
+          "caption": "State",
+          "hidden": true,
+          "index": 2
+        },
+        {
+          "name": "generationReason",
+          "caption": "GenerationReason",
+          "hidden": true,
+          "index": 3
+        },
+        {
+          "name": "userName",
+          "caption": "UserName",
+          "hidden": true,
+          "index": 4
+        },
+        {
+          "name": "isRunning",
+          "caption": "IsRunning",
+          "hidden": true,
+          "index": 5
+        },
+        {
+          "name": "percentComplete",
+          "caption": "PercentComplete",
+          "hidden": true,
+          "index": 6
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": [
+        {
+          "projectionName": "ListFormView",
+          "caption": "",
+          "name": "stepLogs",
+          "relatedTo": "fd-generation-step-log",
+          "inverse": null
+        }
+      ]
+    },
+    {
+      "name": "ListFormView",
+      "modelName": "fd-generation",
+      "attrs": [
+        {
+          "name": "userName",
+          "caption": "Пользователь",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "state",
+          "caption": "Состояние",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "startTime",
+          "caption": "Время старта",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "percentComplete",
+          "caption": "% выполнения",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "endTime",
+          "caption": "Время окончания",
+          "hidden": false,
+          "index": 4
+        },
+        {
+          "name": "generationReason",
+          "caption": "Действие",
+          "hidden": false,
+          "index": 6
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Stage",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "Имя стадии",
+              "hidden": false,
+              "index": 5
+            }
+          ],
+          "index": 7,
+          "caption": "Имя стадии",
+          "name": "stage",
+          "relatedTo": "fd-dev-stage",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

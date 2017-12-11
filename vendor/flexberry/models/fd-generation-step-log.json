@@ -1,0 +1,87 @@
+﻿{
+  "name": "FdGenerationStepLog",
+  "modelName": "fd-generation-step-log",
+  "className": "GenerationStepLog",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [
+    {
+      "name": "time",
+      "type": "date",
+      "flexberryType": "DateTime",
+      "notNull": false,
+      "defaultValue": "Now",
+      "stored": true
+    },
+    {
+      "name": "text",
+      "type": "string",
+      "flexberryType": "StringMax",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "thisIsError",
+      "type": "boolean",
+      "flexberryType": "bool",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "isWarn",
+      "type": "boolean",
+      "flexberryType": "bool",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "generation",
+      "relatedTo": "fd-generation",
+      "inverse": "stepLogs"
+    }
+  ],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "ListFormView",
+      "modelName": "fd-generation-step-log",
+      "attrs": [
+        {
+          "name": "time",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "thisIsError",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "isWarn",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "text",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

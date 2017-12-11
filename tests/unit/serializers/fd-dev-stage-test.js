@@ -7,6 +7,7 @@ moduleForModel('fd-dev-stage', 'Unit | Serializer | fd-dev-stage', {
     'transform:file',
     'transform:decimal',
 
+    'transform:fd-generation-state',
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-access-type',
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode',
     'transform:s-t-o-r-m-c-a-s-e-repository-access-modifier',
@@ -59,6 +60,8 @@ moduleForModel('fd-dev-stage', 'Unit | Serializer | fd-dev-stage', {
     'model:fd-filelink',
     'model:fd-form-control',
     'model:fd-form-view',
+    'model:fd-generation-step-log',
+    'model:fd-generation',
     'model:fd-inheritance',
     'model:fd-object-in-system',
     'model:fd-plugin-on-rep-object',
