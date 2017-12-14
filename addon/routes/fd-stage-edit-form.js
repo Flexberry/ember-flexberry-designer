@@ -26,12 +26,12 @@ export default EditFormRoute.extend({
               controller.set('moduleSetting.FrontendLogin', moduleSettingValue[i].Value);
               break;
             case 'frontendpassword':
-              let FrontendPassword = null;
+              let valueFrontendPassword = null;
               if (moduleSettingValue[i].Value) {
-                FrontendPassword = '********';
+                valueFrontendPassword = '********';
               }
 
-              controller.set('moduleSetting.FrontendPassword', FrontendPassword);
+              controller.set('moduleSetting.FrontendPassword', valueFrontendPassword);
               break;
             case 'frontendbranch':
               controller.set('moduleSetting.FrontendBranch', moduleSettingValue[i].Value);

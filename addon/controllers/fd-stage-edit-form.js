@@ -69,20 +69,31 @@ export default EditFormController.extend({
     let moduleSettingTypes = Object.keys(moduleSetting);
     let host = this.get('store').adapterFor('application').host;
 
+    let valueModuleSetting = Ember.A();
+    let moduleSettingData = Ember.A();
+
     for (let i = 0; i < moduleSettingTypes.length; i++) {
-      let moduleSettingType = moduleSettingTypes[i];
-      let valueModuleSetting = moduleSetting[moduleSettingType];
+      let valueModuleSettingData = {
+        'ValueXML': moduleSetting[moduleSettingTypes[i]]
+      };
 
-      Ember.$.ajax({
-        type: 'GET',
-        xhrFields: { withCredentials: true },
-        url: `${host}/SaveCurrentModuleSetting(` +
-          `project=${stagePk},` +
-          `moduleSettingType='${moduleSettingType}',` +
-          `valueModuleSetting='${valueModuleSetting}'` +
-          `)`
-      });
+      let moduleSettingTypeData = {
+        'Name': moduleSettingTypes[i]
+      };
+
+      valueModuleSetting.push(valueModuleSettingData);
+      moduleSettingData.push(moduleSettingTypeData);
     }
-  }
 
+    let data = { 'project': stagePk, 'moduleSettingType': moduleSettingData, 'valueModuleSetting': valueModuleSetting };
+
+    Ember.$.ajax({
+      type: 'POST',
+      xhrFields: { withCredentials: true },
+      url: `${host}/SaveCurrentModuleSetting`,
+      data: JSON.stringify(data),
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json',
+    });
+  }
 });
