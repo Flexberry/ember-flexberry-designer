@@ -1,7 +1,8 @@
+import Ember from 'ember';
+import { Query } from 'ember-flexberry-data';
 import ListFormRoute from 'ember-flexberry/routes/list-form';
-import LimitByStageMixin from '../mixins/fd-limit-by-stage';
 
-export default ListFormRoute.extend(LimitByStageMixin, {
+export default ListFormRoute.extend({
   /**
     Name of model projection to be used as record's properties limitation.
 
@@ -44,4 +45,23 @@ export default ListFormRoute.extend(LimitByStageMixin, {
     @default {}
   */
   developerUserSettings: { FdDiagramListForm: {} },
+
+  /**
+    Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
+
+    @property currentContext
+    @type FdCurrentProjectContextService
+  */
+  currentContext: Ember.inject.service('fd-current-project-context'),
+
+  /**
+    Return `SimplePredicate` for limit list objects by stage.
+
+    @method objectListViewLimitPredicate
+    @return {Query.SimplePredicate}
+  */
+  objectListViewLimitPredicate() {
+    let stage = this.get('currentContext').getCurrentStage();
+    return new Query.SimplePredicate('subsystem.stage', 'eq', stage);
+  },
 });
