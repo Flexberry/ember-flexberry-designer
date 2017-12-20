@@ -97,10 +97,11 @@
 
 <div class="file">
     <pre class="prettyprint linenums">
+import Ember from &#x27;ember&#x27;;
+import { Query } from &#x27;ember-flexberry-data&#x27;;
 import ListFormRoute from &#x27;ember-flexberry/routes/list-form&#x27;;
-import LimitByStageMixin from &#x27;../mixins/fd-limit-by-stage&#x27;;
 
-export default ListFormRoute.extend(LimitByStageMixin, {
+export default ListFormRoute.extend({
   /**
     Name of model projection to be used as record&#x27;s properties limitation.
 
@@ -143,6 +144,25 @@ export default ListFormRoute.extend(LimitByStageMixin, {
     @default {}
   */
   developerUserSettings: { FdDiagramListForm: {} },
+
+  /**
+    Link to {{#crossLink &quot;FdCurrentProjectContextService&quot;}}FdCurrentProjectContextService{{/crossLink}}.
+
+    @property currentContext
+    @type FdCurrentProjectContextService
+  */
+  currentContext: Ember.inject.service(&#x27;fd-current-project-context&#x27;),
+
+  /**
+    Return &#x60;SimplePredicate&#x60; for limit list objects by stage.
+
+    @method objectListViewLimitPredicate
+    @return {Query.SimplePredicate}
+  */
+  objectListViewLimitPredicate() {
+    let stage = this.get(&#x27;currentContext&#x27;).getCurrentStage();
+    return new Query.SimplePredicate(&#x27;subsystem.stage&#x27;, &#x27;eq&#x27;, stage);
+  },
 });
 
     </pre>

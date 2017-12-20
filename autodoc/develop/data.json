@@ -3562,7 +3562,7 @@
         },
         {
             "file": "addon/routes/fd-diagram-list-form.js",
-            "line": 5,
+            "line": 6,
             "description": "Name of model projection to be used as record's properties limitation.",
             "itemtype": "property",
             "name": "modelProjection",
@@ -3573,7 +3573,7 @@
         },
         {
             "file": "addon/routes/fd-diagram-list-form.js",
-            "line": 14,
+            "line": 15,
             "description": "Name of model to be used as list's records types.",
             "itemtype": "property",
             "name": "modelName",
@@ -3584,12 +3584,35 @@
         },
         {
             "file": "addon/routes/fd-diagram-list-form.js",
-            "line": 23,
+            "line": 24,
             "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
             "itemtype": "property",
             "name": "developerUserSettings",
             "type": "Object",
             "default": "{}",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-diagram-list-form.js",
+            "line": 49,
+            "description": "Link to {{#crossLink \"FdCurrentProjectContextService\"}}FdCurrentProjectContextService{{/crossLink}}.",
+            "itemtype": "property",
+            "name": "currentContext",
+            "type": "FdCurrentProjectContextService",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-diagram-list-form.js",
+            "line": 57,
+            "description": "Return `SimplePredicate` for limit list objects by stage.",
+            "itemtype": "method",
+            "name": "objectListViewLimitPredicate",
+            "return": {
+                "description": "",
+                "type": "Query.SimplePredicate"
+            },
             "class": "FdCurrentProjectContextService",
             "module": "ember-flexberry-designer"
         },

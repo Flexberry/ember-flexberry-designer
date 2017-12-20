@@ -225,7 +225,11 @@ export let defineProjections = function (modelClass) {
     changeUser: Projection.attr(&#x27;Change user&#x27;),
     changeDate: Projection.attr(&#x27;Change date&#x27;),
     createUser: Projection.attr(&#x27;Create user&#x27;),
-    createDate: Projection.attr(&#x27;Create date&#x27;)
+    createDate: Projection.attr(&#x27;Create date&#x27;),
+    subsystem: Projection.belongsTo(&#x27;fd-subsystem&#x27;, &#x27;&#x27;, {
+      stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {
+      }, { hidden: true }),
+    }, { hidden: true }),
   });
   modelClass.defineProjection(&#x27;SearchDiagram&#x27;, &#x27;fd-dev-uml-cad&#x27;, {
     name: Projection.attr(&#x27;&#x27;),
