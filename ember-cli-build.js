@@ -33,6 +33,8 @@ module.exports = function(defaults) {
     behave. You most likely want to be modifying `./index.js` or app's build file
   */
   app.import('vendor/font-icon.css');
+  app.import('vendor/joint.core.css');
+
   app.import('vendor/fonts/icons.eot', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/icons.otf', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/icons.svg', { destDir: 'assets/fonts' });
