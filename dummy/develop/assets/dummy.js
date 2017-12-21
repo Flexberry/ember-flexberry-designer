@@ -88,6 +88,14 @@ define('dummy/components/colsconfig-dialog-content', ['exports', 'ember-flexberr
     }
   });
 });
+define('dummy/components/fd-visual-diagram', ['exports', 'ember-flexberry-designer/components/fd-visual-diagram'], function (exports, _emberFlexberryDesignerComponentsFdVisualDiagram) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdVisualDiagram['default'];
+    }
+  });
+});
 define('dummy/components/fd-visual-edit-control', ['exports', 'ember-flexberry-designer/components/fd-visual-edit-control'], function (exports, _emberFlexberryDesignerComponentsFdVisualEditControl) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -931,6 +939,19 @@ define('dummy/controllers/sitemap-node', ['exports', 'ember'], function (exports
     }
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-visual-diagram.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components');
+  test('modules/ember-flexberry-designer/components/fd-visual-diagram.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-visual-diagram.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-visual-diagram.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-visual-diagram.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-visual-diagram.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-visual-edit-control.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/components');
   test('modules/ember-flexberry-designer/components/fd-visual-edit-control.js should pass jscs', function () {
@@ -1423,6 +1444,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/en
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/enums/s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/external/jointjs.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/external');
+  test('modules/ember-flexberry-designer/external/jointjs.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/external/jointjs.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/external/jointjs.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/external/jointjs.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/external/jointjs.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-visual-control.jscs-test', ['exports'], function (exports) {
@@ -9618,6 +9652,9 @@ define('dummy/enums/s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modif
       return _emberFlexberryDesignerEnumsSTORMCASESTORMNETRepositoryParameterModifier['default'];
     }
   });
+});
+define('dummy/external/jointjs', ['exports', 'npm:jointjs'], function (exports, _npmJointjs) {
+  exports['default'] = _npmJointjs['default'];
 });
 define('dummy/helpers/and', ['exports', 'ember', 'ember-truth-helpers/helpers/and'], function (exports, _ember, _emberTruthHelpersHelpersAnd) {
 
@@ -26705,6 +26742,47 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
         templates: [child0]
       };
     })();
+    var child2 = (function () {
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 65,
+              "column": 2
+            },
+            "end": {
+              "line": 67,
+              "column": 2
+            }
+          },
+          "moduleName": "dummy/templates/fd-diagram-edit-form.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "id", "paper");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes() {
+          return [];
+        },
+        statements: [],
+        locals: [],
+        templates: []
+      };
+    })();
     return {
       meta: {
         "fragmentReason": {
@@ -26719,7 +26797,7 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 65,
+            "line": 71,
             "column": 0
           }
         },
@@ -26755,11 +26833,9 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("div");
         dom.setAttribute(el3, "class", "sixteen wide");
-        var el4 = dom.createTextNode("\n      ");
+        var el4 = dom.createTextNode("\n");
         dom.appendChild(el3, el4);
-        var el4 = dom.createComment("");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n    ");
+        var el4 = dom.createTextNode("    ");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n  ");
@@ -26827,6 +26903,15 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n\n");
         dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "sixteen wide");
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n");
+        dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
@@ -26842,19 +26927,19 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
         morphs[1] = dom.createMorphAt(fragment, 2, 2, contextualElement);
         morphs[2] = dom.createMorphAt(element2, 1, 1);
-        morphs[3] = dom.createMorphAt(dom.childAt(element2, [3, 1]), 1, 1);
-        morphs[4] = dom.createMorphAt(element3, 1, 1);
-        morphs[5] = dom.createElementMorph(element4);
-        morphs[6] = dom.createMorphAt(element4, 1, 1);
-        morphs[7] = dom.createMorphAt(element5, 1, 1);
-        morphs[8] = dom.createMorphAt(element5, 3, 3);
-        morphs[9] = dom.createMorphAt(element6, 1, 1);
-        morphs[10] = dom.createMorphAt(element6, 3, 3);
+        morphs[3] = dom.createMorphAt(element3, 1, 1);
+        morphs[4] = dom.createElementMorph(element4);
+        morphs[5] = dom.createMorphAt(element4, 1, 1);
+        morphs[6] = dom.createMorphAt(element5, 1, 1);
+        morphs[7] = dom.createMorphAt(element5, 3, 3);
+        morphs[8] = dom.createMorphAt(element6, 1, 1);
+        morphs[9] = dom.createMorphAt(element6, 3, 3);
+        morphs[10] = dom.createMorphAt(dom.childAt(element2, [11]), 1, 1);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-diagram-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 64]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [15, 26], [15, 31]]]]], [], []]], ["loc", [null, [15, 2], [15, 33]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [18, 43], [18, 55]]]]], [], []]], ["loc", [null, [18, 6], [18, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [23, 16], [23, 24]]]]], [], 1, null, ["loc", [null, [23, 6], [32, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [33, 59], [33, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [34, 8], [34, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [41, 16], [41, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [42, 13], [42, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [44, 10], [44, 20]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [45, 14], [45, 31]]]], "error", ""], [], ["loc", [null, [45, 10], [45, 43]]]], "label", ["subexpr", "t", ["forms.fd-diagram-edit-form.name-caption"], [], ["loc", [null, [46, 10], [46, 55]]]]], ["loc", [null, [39, 2], [47, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [48, 38], [48, 55]]]]], [], []], "pointing", "pointing"], ["loc", [null, [48, 2], [48, 77]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [54, 16], [54, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [55, 13], [55, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [57, 10], [57, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [58, 14], [58, 38]]]], "error", ""], [], ["loc", [null, [58, 10], [58, 50]]]], "label", ["subexpr", "t", ["forms.fd-diagram-edit-form.description-caption"], [], ["loc", [null, [59, 10], [59, 62]]]]], ["loc", [null, [52, 2], [60, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [61, 38], [61, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [61, 2], [61, 84]]]]],
+      statements: [["inline", "t", ["forms.fd-diagram-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 64]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [15, 26], [15, 31]]]]], [], []]], ["loc", [null, [15, 2], [15, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [23, 16], [23, 24]]]]], [], 1, null, ["loc", [null, [23, 6], [32, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [33, 59], [33, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [34, 8], [34, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [41, 16], [41, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [42, 13], [42, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [44, 10], [44, 20]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [45, 14], [45, 31]]]], "error", ""], [], ["loc", [null, [45, 10], [45, 43]]]], "label", ["subexpr", "t", ["forms.fd-diagram-edit-form.name-caption"], [], ["loc", [null, [46, 10], [46, 55]]]]], ["loc", [null, [39, 2], [47, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [48, 38], [48, 55]]]]], [], []], "pointing", "pointing"], ["loc", [null, [48, 2], [48, 77]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [54, 16], [54, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [55, 13], [55, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [57, 10], [57, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [58, 14], [58, 38]]]], "error", ""], [], ["loc", [null, [58, 10], [58, 50]]]], "label", ["subexpr", "t", ["forms.fd-diagram-edit-form.description-caption"], [], ["loc", [null, [59, 10], [59, 62]]]]], ["loc", [null, [52, 2], [60, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [61, 38], [61, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [61, 2], [61, 84]]]], ["block", "fd-visual-diagram", [], ["primitives", ["subexpr", "@mut", [["get", "model.primitives", ["loc", [null, [65, 34], [65, 50]]]]], [], []]], 2, null, ["loc", [null, [65, 2], [67, 24]]]]],
       locals: [],
-      templates: [child0, child1]
+      templates: [child0, child1, child2]
     };
   })());
 });
@@ -36177,7 +36262,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+d20b3741"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+1fe2866b"});
 }
 
 /* jshint ignore:end */
