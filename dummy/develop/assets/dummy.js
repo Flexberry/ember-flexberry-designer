@@ -13043,150 +13043,6 @@ define("dummy/templates/application", ["exports"], function (exports) {
           templates: []
         };
       })();
-      var child1 = (function () {
-        var child0 = (function () {
-          return {
-            meta: {
-              "fragmentReason": false,
-              "revision": "Ember@2.4.6",
-              "loc": {
-                "source": null,
-                "start": {
-                  "line": 74,
-                  "column": 12
-                },
-                "end": {
-                  "line": 78,
-                  "column": 12
-                }
-              },
-              "moduleName": "dummy/templates/application.hbs"
-            },
-            isEmpty: false,
-            arity: 1,
-            cachedFragment: null,
-            hasRendered: false,
-            buildFragment: function buildFragment(dom) {
-              var el0 = dom.createDocumentFragment();
-              var el1 = dom.createTextNode("              ");
-              dom.appendChild(el0, el1);
-              var el1 = dom.createElement("option");
-              var el2 = dom.createTextNode("\n                ");
-              dom.appendChild(el1, el2);
-              var el2 = dom.createComment("");
-              dom.appendChild(el1, el2);
-              var el2 = dom.createTextNode("\n              ");
-              dom.appendChild(el1, el2);
-              dom.appendChild(el0, el1);
-              var el1 = dom.createTextNode("\n");
-              dom.appendChild(el0, el1);
-              return el0;
-            },
-            buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-              var element0 = dom.childAt(fragment, [1]);
-              var morphs = new Array(3);
-              morphs[0] = dom.createAttrMorph(element0, 'value');
-              morphs[1] = dom.createAttrMorph(element0, 'selected');
-              morphs[2] = dom.createMorphAt(element0, 1, 1);
-              return morphs;
-            },
-            statements: [["attribute", "value", ["get", "locale", ["loc", [null, [75, 30], [75, 36]]]]], ["attribute", "selected", ["subexpr", "eq", [["subexpr", "get", [["get", "i18n", ["loc", [null, [75, 58], [75, 62]]]], "locale"], [], ["loc", [null, [75, 53], [75, 72]]]], ["get", "locale", ["loc", [null, [75, 73], [75, 79]]]]], [], ["loc", [null, [75, 48], [75, 81]]]]], ["content", "locale", ["loc", [null, [76, 16], [76, 26]]]]],
-            locals: ["locale"],
-            templates: []
-          };
-        })();
-        return {
-          meta: {
-            "fragmentReason": false,
-            "revision": "Ember@2.4.6",
-            "loc": {
-              "source": null,
-              "start": {
-                "line": 72,
-                "column": 8
-              },
-              "end": {
-                "line": 80,
-                "column": 8
-              }
-            },
-            "moduleName": "dummy/templates/application.hbs"
-          },
-          isEmpty: false,
-          arity: 0,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode("          ");
-            dom.appendChild(el0, el1);
-            var el1 = dom.createElement("select");
-            dom.setAttribute(el1, "class", "ui dropdown");
-            var el2 = dom.createTextNode("\n");
-            dom.appendChild(el1, el2);
-            var el2 = dom.createComment("");
-            dom.appendChild(el1, el2);
-            var el2 = dom.createTextNode("          ");
-            dom.appendChild(el1, el2);
-            dom.appendChild(el0, el1);
-            var el1 = dom.createTextNode("\n");
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-            var element1 = dom.childAt(fragment, [1]);
-            var morphs = new Array(2);
-            morphs[0] = dom.createAttrMorph(element1, 'onchange');
-            morphs[1] = dom.createMorphAt(element1, 1, 1);
-            return morphs;
-          },
-          statements: [["attribute", "onchange", ["subexpr", "action", [["subexpr", "mut", [["subexpr", "get", [["get", "i18n", ["loc", [null, [73, 66], [73, 70]]]], "locale"], [], ["loc", [null, [73, 61], [73, 80]]]]], [], ["loc", [null, [73, 56], [73, 81]]]]], ["value", "target.value"], ["loc", [null, [73, 47], [73, 104]]]]], ["block", "each", [["get", "locales", ["loc", [null, [74, 20], [74, 27]]]]], [], 0, null, ["loc", [null, [74, 12], [78, 21]]]]],
-          locals: [],
-          templates: [child0]
-        };
-      })();
-      var child2 = (function () {
-        return {
-          meta: {
-            "fragmentReason": false,
-            "revision": "Ember@2.4.6",
-            "loc": {
-              "source": null,
-              "start": {
-                "line": 80,
-                "column": 8
-              },
-              "end": {
-                "line": 88,
-                "column": 8
-              }
-            },
-            "moduleName": "dummy/templates/application.hbs"
-          },
-          isEmpty: false,
-          arity: 0,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode("          ");
-            dom.appendChild(el0, el1);
-            var el1 = dom.createComment("");
-            dom.appendChild(el0, el1);
-            var el1 = dom.createTextNode("\n");
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-            var morphs = new Array(1);
-            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
-            return morphs;
-          },
-          statements: [["inline", "flexberry-dropdown", [], ["class", "compact", "items", ["subexpr", "@mut", [["get", "locales", ["loc", [null, [83, 18], [83, 25]]]]], [], []], "value", ["subexpr", "@mut", [["get", "i18n.locale", ["loc", [null, [84, 18], [84, 29]]]]], [], []], "placeholder", ["subexpr", "t", ["forms.application.header.menu.language-dropdown.placeholder"], [], ["loc", [null, [85, 24], [85, 89]]]], "direction", "upward"], ["loc", [null, [81, 10], [87, 12]]]]],
-          locals: [],
-          templates: []
-        };
-      })();
       return {
         meta: {
           "fragmentReason": false,
@@ -13198,7 +13054,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
               "column": 0
             },
             "end": {
-              "line": 93,
+              "line": 70,
               "column": 0
             }
           },
@@ -13414,45 +13270,12 @@ define("dummy/templates/application", ["exports"], function (exports) {
           var el4 = dom.createTextNode("\n      ");
           dom.appendChild(el3, el4);
           var el4 = dom.createElement("div");
-          dom.setAttribute(el4, "class", "right item");
-          var el5 = dom.createTextNode("\n        ");
-          dom.appendChild(el4, el5);
-          var el5 = dom.createElement("label");
-          dom.setAttribute(el5, "style", "margin-right: 5px;");
-          var el6 = dom.createTextNode("\n          ");
-          dom.appendChild(el5, el6);
-          var el6 = dom.createComment("");
-          dom.appendChild(el5, el6);
-          var el6 = dom.createTextNode("\n        ");
-          dom.appendChild(el5, el6);
-          dom.appendChild(el4, el5);
+          dom.setAttribute(el4, "class", "right menu");
           var el5 = dom.createTextNode("\n        ");
           dom.appendChild(el4, el5);
           var el5 = dom.createComment("");
           dom.appendChild(el4, el5);
           var el5 = dom.createTextNode("\n      ");
-          dom.appendChild(el4, el5);
-          dom.appendChild(el3, el4);
-          var el4 = dom.createTextNode("\n      ");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createElement("div");
-          dom.setAttribute(el4, "class", "item lang");
-          var el5 = dom.createTextNode("\n        ");
-          dom.appendChild(el4, el5);
-          var el5 = dom.createElement("label");
-          dom.setAttribute(el5, "style", "margin-right: 5px;");
-          var el6 = dom.createTextNode("\n          ");
-          dom.appendChild(el5, el6);
-          var el6 = dom.createComment("");
-          dom.appendChild(el5, el6);
-          var el6 = dom.createTextNode("\n        ");
-          dom.appendChild(el5, el6);
-          dom.appendChild(el4, el5);
-          var el5 = dom.createTextNode("\n");
-          dom.appendChild(el4, el5);
-          var el5 = dom.createComment("");
-          dom.appendChild(el4, el5);
-          var el5 = dom.createTextNode("      ");
           dom.appendChild(el4, el5);
           dom.appendChild(el3, el4);
           var el4 = dom.createTextNode("\n    ");
@@ -13469,39 +13292,34 @@ define("dummy/templates/application", ["exports"], function (exports) {
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var element2 = dom.childAt(fragment, [1, 1]);
-          var element3 = dom.childAt(element2, [1, 1, 1, 1]);
-          var element4 = dom.childAt(element3, [3]);
-          var element5 = dom.childAt(element2, [3]);
-          var element6 = dom.childAt(fragment, [3, 1]);
-          var element7 = dom.childAt(fragment, [7, 1, 1]);
-          var element8 = dom.childAt(element7, [3]);
-          var element9 = dom.childAt(element7, [5]);
-          var morphs = new Array(18);
+          var element0 = dom.childAt(fragment, [1, 1]);
+          var element1 = dom.childAt(element0, [1, 1, 1, 1]);
+          var element2 = dom.childAt(element1, [3]);
+          var element3 = dom.childAt(element0, [3]);
+          var element4 = dom.childAt(fragment, [3, 1]);
+          var element5 = dom.childAt(fragment, [7, 1, 1]);
+          var morphs = new Array(15);
           morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-          morphs[1] = dom.createAttrMorph(element3, 'title');
-          morphs[2] = dom.createElementMorph(element3);
-          morphs[3] = dom.createMorphAt(element3, 1, 1);
-          morphs[4] = dom.createMorphAt(dom.childAt(element4, [0]), 0, 0);
-          morphs[5] = dom.createMorphAt(dom.childAt(element4, [1]), 0, 0);
-          morphs[6] = dom.createMorphAt(dom.childAt(element3, [5, 0]), 0, 0);
-          morphs[7] = dom.createAttrMorph(element5, 'title');
-          morphs[8] = dom.createMorphAt(dom.childAt(element2, [5, 0]), 0, 0);
-          morphs[9] = dom.createMorphAt(dom.childAt(element2, [7, 3]), 0, 0);
-          morphs[10] = dom.createAttrMorph(element6, 'class');
-          morphs[11] = dom.createMorphAt(dom.childAt(element6, [1, 1, 1, 1]), 1, 1);
+          morphs[1] = dom.createAttrMorph(element1, 'title');
+          morphs[2] = dom.createElementMorph(element1);
+          morphs[3] = dom.createMorphAt(element1, 1, 1);
+          morphs[4] = dom.createMorphAt(dom.childAt(element2, [0]), 0, 0);
+          morphs[5] = dom.createMorphAt(dom.childAt(element2, [1]), 0, 0);
+          morphs[6] = dom.createMorphAt(dom.childAt(element1, [5, 0]), 0, 0);
+          morphs[7] = dom.createAttrMorph(element3, 'title');
+          morphs[8] = dom.createMorphAt(dom.childAt(element0, [5, 0]), 0, 0);
+          morphs[9] = dom.createMorphAt(dom.childAt(element0, [7, 3]), 0, 0);
+          morphs[10] = dom.createAttrMorph(element4, 'class');
+          morphs[11] = dom.createMorphAt(dom.childAt(element4, [1, 1, 1, 1]), 1, 1);
           morphs[12] = dom.createMorphAt(dom.childAt(fragment, [5]), 1, 1);
-          morphs[13] = dom.createMorphAt(dom.childAt(element7, [1]), 1, 1);
-          morphs[14] = dom.createMorphAt(dom.childAt(element8, [1]), 1, 1);
-          morphs[15] = dom.createMorphAt(element8, 3, 3);
-          morphs[16] = dom.createMorphAt(dom.childAt(element9, [1]), 1, 1);
-          morphs[17] = dom.createMorphAt(element9, 3, 3);
+          morphs[13] = dom.createMorphAt(dom.childAt(element5, [1]), 1, 1);
+          morphs[14] = dom.createMorphAt(dom.childAt(element5, [3]), 1, 1);
           dom.insertBoundary(fragment, 0);
           return morphs;
         },
-        statements: [["block", "ui-sidebar", [], ["class", "inverted vertical main menu"], 0, null, ["loc", [null, [5, 0], [7, 15]]]], ["attribute", "title", ["subexpr", "t", ["forms.application.header.menu.sitemap-button.title"], [], ["loc", [null, [15, 18], [15, 76]]]]], ["element", "action", ["toggleSidebar"], [], ["loc", [null, [13, 13], [13, 39]]]], ["inline", "t", ["forms.application.header.menu.sitemap-button.caption"], [], ["loc", [null, [16, 12], [16, 72]]]], ["inline", "t", ["forms.application.header.menu.show-menu.caption"], [], ["loc", [null, [17, 76], [17, 131]]]], ["inline", "t", ["forms.application.header.menu.hide-menu.caption"], [], ["loc", [null, [17, 184], [17, 239]]]], ["inline", "t", ["forms.application.header.menu.hide-menu.caption"], [], ["loc", [null, [18, 106], [18, 161]]]], ["attribute", "title", ["subexpr", "t", ["forms.application.sitemap.application-name.title"], [], ["loc", [null, [26, 12], [26, 68]]]]], ["inline", "t", ["application-name"], [], ["loc", [null, [29, 76], [29, 100]]]], ["inline", "t", ["forms.application.header.logout.caption"], [], ["loc", [null, [32, 68], [32, 115]]]], ["attribute", "class", ["concat", ["ui form ", ["get", "objectlistviewEventsService.loadingState", ["loc", [null, [37, 24], [37, 64]]]]]]], ["content", "outlet", ["loc", [null, [42, 12], [42, 22]]]], ["inline", "outlet", ["modal"], [], ["loc", [null, [50, 2], [50, 20]]]], ["inline", "t", ["forms.application.footer.application-name"], [], ["loc", [null, [56, 8], [56, 57]]]], ["inline", "t", ["forms.application.header.menu.user-settings-service-checkbox.caption"], [], ["loc", [null, [60, 10], [60, 86]]]], ["inline", "flexberry-checkbox", [], ["class", "toggle", "value", ["subexpr", "@mut", [["get", "userSettingsService.isUserSettingsServiceEnabled", ["loc", [null, [64, 16], [64, 64]]]]], [], []]], ["loc", [null, [62, 8], [65, 10]]]], ["inline", "t", ["forms.application.header.menu.language-dropdown.caption"], [], ["loc", [null, [69, 10], [69, 73]]]], ["block", "if", [["get", "browserIsInternetExplorer", ["loc", [null, [72, 14], [72, 39]]]]], [], 1, 2, ["loc", [null, [72, 8], [88, 15]]]]],
+        statements: [["block", "ui-sidebar", [], ["class", "inverted vertical main menu"], 0, null, ["loc", [null, [5, 0], [7, 15]]]], ["attribute", "title", ["subexpr", "t", ["forms.application.header.menu.sitemap-button.title"], [], ["loc", [null, [15, 18], [15, 76]]]]], ["element", "action", ["toggleSidebar"], [], ["loc", [null, [13, 13], [13, 39]]]], ["inline", "t", ["forms.application.header.menu.sitemap-button.caption"], [], ["loc", [null, [16, 12], [16, 72]]]], ["inline", "t", ["forms.application.header.menu.show-menu.caption"], [], ["loc", [null, [17, 76], [17, 131]]]], ["inline", "t", ["forms.application.header.menu.hide-menu.caption"], [], ["loc", [null, [17, 184], [17, 239]]]], ["inline", "t", ["forms.application.header.menu.hide-menu.caption"], [], ["loc", [null, [18, 106], [18, 161]]]], ["attribute", "title", ["subexpr", "t", ["forms.application.sitemap.application-name.title"], [], ["loc", [null, [26, 12], [26, 68]]]]], ["inline", "t", ["application-name"], [], ["loc", [null, [29, 76], [29, 100]]]], ["inline", "t", ["forms.application.header.logout.caption"], [], ["loc", [null, [32, 68], [32, 115]]]], ["attribute", "class", ["concat", ["ui form ", ["get", "objectlistviewEventsService.loadingState", ["loc", [null, [37, 24], [37, 64]]]]]]], ["content", "outlet", ["loc", [null, [42, 12], [42, 22]]]], ["inline", "outlet", ["modal"], [], ["loc", [null, [50, 2], [50, 20]]]], ["inline", "t", ["forms.application.footer.application-name"], [], ["loc", [null, [56, 8], [56, 57]]]], ["inline", "flexberry-dropdown", [], ["class", "compact", "items", ["subexpr", "@mut", [["get", "locales", ["loc", [null, [61, 16], [61, 23]]]]], [], []], "value", ["subexpr", "@mut", [["get", "i18n.locale", ["loc", [null, [62, 16], [62, 27]]]]], [], []], "placeholder", ["subexpr", "t", ["forms.application.header.menu.language-dropdown.placeholder"], [], ["loc", [null, [63, 22], [63, 87]]]], "direction", "upward"], ["loc", [null, [59, 8], [65, 10]]]]],
         locals: [],
-        templates: [child0, child1, child2]
+        templates: [child0]
       };
     })();
     return {
@@ -13518,7 +13336,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 94,
+            "line": 71,
             "column": 0
           }
         },
@@ -13541,7 +13359,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["block", "if", [["get", "isInAcceptanceTestMode", ["loc", [null, [1, 6], [1, 28]]]]], [], 0, 1, ["loc", [null, [1, 0], [93, 7]]]]],
+      statements: [["block", "if", [["get", "isInAcceptanceTestMode", ["loc", [null, [1, 6], [1, 28]]]]], [], 0, 1, ["loc", [null, [1, 0], [70, 7]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -36262,7 +36080,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+1fe2866b"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+c6c241f7"});
 }
 
 /* jshint ignore:end */
