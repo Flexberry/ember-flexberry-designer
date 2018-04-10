@@ -159,6 +159,10 @@ export default Ember.Controller.extend({
         });
       });
     },
+
+    close() {
+      this.transitionToRoute('fd-appstruct-list-form');
+    },
   },
 
   _translate(propertyName) {
