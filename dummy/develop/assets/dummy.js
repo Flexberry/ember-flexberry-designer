@@ -10762,7 +10762,7 @@ define('dummy/locales/ru/translations', ['exports', 'ember', 'ember-flexberry-de
             title: ''
           },
           'fd-visual-edit-form': {
-            caption: 'Форма визуального редактирования',
+            caption: 'Конструктор формы редактирования',
             title: ''
           },
           root: {
@@ -10776,47 +10776,47 @@ define('dummy/locales/ru/translations', ['exports', 'ember', 'ember-flexberry-de
             },
 
             'fd-visual-listform': {
-              caption: 'Списковая форма визуального редактирования',
+              caption: 'Конструктор списковой формы',
               title: ''
             },
 
             'fd-configuration-list-form': {
-              caption: 'Configurations',
+              caption: 'Организации',
               title: ''
 
             },
             'fd-stage-list-form': {
-              caption: 'Stages',
+              caption: 'Проекты',
               title: ''
 
             },
             'fd-system-list-form': {
-              caption: 'Systems',
+              caption: 'Подсистемы',
               title: ''
 
             },
             'fd-diagram-list-form': {
-              caption: 'Diagrams',
+              caption: 'Диаграммы',
               title: ''
 
             },
             'fd-class-list-form': {
-              caption: 'Classes',
+              caption: 'Классы',
               title: ''
 
             },
             'fd-association-list-form': {
-              caption: 'Associations',
+              caption: 'Ассоциации',
               title: ''
 
             },
             'fd-inheritance-list-form': {
-              caption: 'Inheritance',
+              caption: 'Наследование',
               title: ''
 
             },
             'fd-view-list-form': {
-              caption: 'Views',
+              caption: 'Представления',
               title: ''
 
             },
@@ -36080,7 +36080,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+c6c241f7"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+20699342"});
 }
 
 /* jshint ignore:end */
