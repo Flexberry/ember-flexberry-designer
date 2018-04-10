@@ -19,11 +19,11 @@ export default Ember.Route.extend({
 
     let configurationQuery = new Builder(this.store, 'fd-configuration')
       .selectByProjection('ListFormView')
-      .byId('116b1c01-944d-499e-b772-538ec0c499cf')
+      .byId('694DCACB-4DD7-4F57-9DE8-1EC0E743E3F6')
       .build();
     let stageQuery = new Builder(this.store, 'fd-dev-stage')
       .selectByProjection('ListFormView')
-      .byId('cd8030e4-c0b2-469d-8096-53c42c37576c')
+      .byId('EEC8EDF4-04E6-4BF8-BB83-0372B7A9418E')
       .build();
 
     return this.store.queryRecord('fd-configuration', configurationQuery).then((configuration) => {
@@ -78,6 +78,11 @@ export default Ember.Route.extend({
       .where('stage', 'eq', stage.get('id'))
       .build();
 
+    let inheritancesQuery = builder.from('fd-dev-inheritance')
+      .selectByProjection('InhList')
+      .where('stage', 'eq', stage.get('id'))
+      .build();
+
     let dataObjectsPredicate = new SimplePredicate('stereotype', 'eq', '«implementation»')
       .or(new SimplePredicate('stereotype', 'eq', null))
       .or(new SimplePredicate('stereotype', 'eq', ''))
@@ -92,6 +97,7 @@ export default Ember.Route.extend({
       dataObjects: this.store.query('fd-dev-class', dataObjectsQuery),
       associations: this.store.query('fd-dev-association', associationsQuery),
       aggregations: this.store.query('fd-dev-aggregation', aggregationsQuery),
+      inheritances: this.store.query('fd-dev-inheritance', inheritancesQuery),
     });
   },
 });
