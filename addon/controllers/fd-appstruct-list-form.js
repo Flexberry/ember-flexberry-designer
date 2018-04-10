@@ -392,7 +392,9 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     },
 
     addFolderNode() {
-      /*let toPath = this.lastClicked.right.path ? this.lastClicked.right.path : 'jsonRightTreeNodes.0';*/
+      let toPath = this.lastClicked.right.path ? this.lastClicked.right.path : 'jsonRightTreeNodes.0';
+      let node = this._findNodeByPath(this, toPath);
+      Ember.get(node, 'nodes').pushObject(TreeNodeObject.create({ caption: 'New folder', nodes: Ember.A() }));
     },
 
     upRightNode() {
