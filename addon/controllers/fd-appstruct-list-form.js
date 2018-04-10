@@ -91,7 +91,13 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
         nodes = this._jsTreeToFlexberryTree(node.nodes);
       }
 
-      let treeNode = { id: node.id, stereotype: node.stereotype, caption: node.caption, description: node.description };
+      let treeNode = {
+        id: node.id,
+        caption: node.caption,
+        description: node.description,
+        className: node.className,
+        stereotype: node.stereotype,
+      };
       if (nodes) {
         treeNode.nodes = nodes;
       }
@@ -116,7 +122,13 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
         nodes = this._jsFlexberryTreeToTree(node.nodes);
       }
 
-      let treeNode = { id: node.id, stereotype: node.stereotype, caption: node.caption, description: node.description || '' };
+      let treeNode = {
+        id: node.id,
+        caption: node.caption,
+        description: node.description || '',
+        className: node.className,
+        stereotype: node.stereotype,
+      };
       if (nodes) {
         treeNode.nodes = nodes;
       }
@@ -441,9 +453,9 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
 
       let builder = new Query.Builder(this.store)
       .from('fd-dev-class')
-      .selectByProjection('SearchFormClassView')
+      .select('name,stereotype,containersStr,caption,stage.id')
       .byId(this.model.id);
-      this.store.query('fd-dev-class', builder.build()).
+      this.store.queryRecord('fd-dev-class', builder.build()).
       /*this.get('store').findRecord('fd-dev-class', this.model.id).*/
       then(function(record) {
         /*let stagePk = _this.get('currentProjectContext').getCurrentStagePk();*/
