@@ -29,12 +29,35 @@ export default Ember.Controller.extend({
           let path = definition[i].propertyName.split('.');
           let attributeName = path.pop();
           for (let i = 0; i < path.length; i++) {
-            let relationships = this.get('model.associations').filterBy('endClass.id', propertyOwnerId);
-            let relationship = relationships.findBy('startRole', path[i]) || relationships.findBy('startClass.name', path[i]);
+            let relationName = path[i];
+            let ownAndParentsId = this._getParentsId(propertyOwnerId);
+            ownAndParentsId.push(propertyOwnerId);
+
+            // TODO: Filter by all Ids
+            let relationships;
+            for (let j = 0; j < ownAndParentsId.length; j++) {
+              let rel = this.get('model.associations').filterBy('endClass.id', ownAndParentsId[j]);
+              if (relationships) {
+                relationships.push(rel.toArray());
+              } else {
+                relationships = rel;
+              }
+            }
+
+            let relationship = relationships.findBy('startRole', relationName) || relationships.findBy('startClass.name', relationName);
 
             if (!relationship) {
-              relationships = this.get('model.aggregations').filterBy('endClass.id', propertyOwnerId);
-              relationship = relationships.findBy('startRole', path[i]) || relationships.findBy('startClass.name', path[i]);
+              // TODO: Filter by all Ids
+              for (let j = 0; j < ownAndParentsId.length; j++) {
+                let rel = this.get('model.aggregations').filterBy('endClass.id', ownAndParentsId);
+                if (relationships) {
+                  relationships.push(rel.toArray());
+                } else {
+                  relationships = rel;
+                }
+              }
+
+              relationship = relationships.findBy('startRole', relationName) || relationships.findBy('startClass.name', relationName);
             }
 
             propertyOwnerId = relationship.get('startClass.id');
@@ -45,10 +68,17 @@ export default Ember.Controller.extend({
           }
 
           let classAttribute = propertyOwner.get('attributes').findBy('name', attributeName);
-          attribute.classAttribute = classAttribute;
-          attribute.type = classAttribute.get('type');
-          attribute.notNull = classAttribute.get('notNull');
-          attribute.defaultValue = classAttribute.get('defaultValue');
+
+          if (!classAttribute) {
+            classAttribute = this._getAttributeFromParent(propertyOwnerId, attributeName);
+          }
+
+          if (classAttribute) {
+            attribute.classAttribute = classAttribute;
+            attribute.type = classAttribute.get('type');
+            attribute.notNull = classAttribute.get('notNull');
+            attribute.defaultValue = classAttribute.get('defaultValue');
+          }
         }
       }
     }
@@ -167,5 +197,44 @@ export default Ember.Controller.extend({
 
   _translate(propertyName) {
     return propertyName;
+  },
+
+  _getAttributeFromParent(propertyOwnerId, attributeName) {
+    let inheritance = this.get('model.inheritances').findBy('child.id', propertyOwnerId);
+    if (inheritance) {
+      let parent = this.get('model.dataObjects').findBy('id', inheritance.get('parent.id'));
+      if (!parent) {
+        return null;
+      }
+
+      let classAttribute = parent.get('attributes').findBy('name', attributeName);
+      if (classAttribute) {
+        return classAttribute;
+      } else {
+        return this._getAttributeFromParent(parent.get('id', attributeName));
+      }
+    } else {
+      return null;
+    }
+  },
+
+  _getParentsId(childId, idArray) {
+    if (!idArray) {
+      idArray = Ember.A();
+    }
+
+    let inheritance = this.get('model.inheritances').findBy('child.id', childId);
+    if (inheritance) {
+      let parent = this.get('model.dataObjects').findBy('id', inheritance.get('parent.id'));
+      if (!parent) {
+        return idArray;
+      } else {
+        let parentId = parent.get('id');
+        idArray.push(parentId);
+        return this._getParentsId(parentId, idArray);
+      }
+    } else {
+      return idArray;
+    }
   },
 });
