@@ -364,14 +364,16 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       inputElement.style.display = 'inline-block';
       inputElement.style.position = 'absolute';
       inputElement.style.padding = '6px 0px 0px 2px';
-      inputElement.onblur = function (event) {
-        let inputElement = event.target;
-        let caption = inputElement.value;
-        let textElement = document.createTextNode(caption);
-        inputElement.parentNode.replaceChild(textElement, inputElement);
-        let _this = inputElement._this;
-        let node = _this._findNodeByPath(_this, inputElement.lastClickedPath);
-        Ember.set(node, 'caption', caption);
+      inputElement.onblur = inputElement.onkeypress = function (event) {
+        if (!event.keyCode || event.keyCode === 13) {
+          let inputElement = event.target;
+          let caption = inputElement.value;
+          let textElement = document.createTextNode(caption);
+          inputElement.parentNode.replaceChild(textElement, inputElement);
+          let _this = inputElement._this;
+          let node = _this._findNodeByPath(_this, inputElement.lastClickedPath);
+          Ember.set(node, 'caption', caption);
+        }
       };
 
       textElement.parentNode.replaceChild(inputElement, textElement);
