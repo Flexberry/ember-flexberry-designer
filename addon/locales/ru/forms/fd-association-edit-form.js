@@ -1,5 +1,5 @@
 export default {
-  caption: 'Association',
+  caption: 'Ассоциация',
   'name-caption': 'Name',
   'description-caption': 'Description'
 };

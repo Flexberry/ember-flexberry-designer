@@ -375,9 +375,8 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       }
 
       let { parentNodes, index } = this._findParentNodesByPath(this, lastClickedPath);
-      /*let removedNode = parentNodes[index];
-      parentNodes.removeObject(removedNode);*/
-      Ember.set(parentNodes, index.toString(), undefined);
+      let removedNode = parentNodes[index];
+      parentNodes.removeObject(removedNode);
     },
 
     addFolderNode() {
@@ -394,24 +393,44 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       let prev = index - 1;
       let node = parentNodes[index];
       let prevNode = parentNodes[prev];
+
+      parentNodes.arrayContentWillChange(prev, 0,  null);
+
       Ember.set(parentNodes, prev.toString(), node);
       Ember.set(parentNodes, index.toString(), prevNode);
 
-      /*Ember.set(this, 'jsonRightTreeNodes', this._jsTreeToFlexberryTree(this.model.jsonRightTreeNodes));*/
+      parentNodes.arrayContentDidChange(prev, null, null);
+
+      let arrayClickedPath = lastClickedPath.split('.');
+      arrayClickedPath[arrayClickedPath.length - 1] = prev.toString();
+      let prevPath = arrayClickedPath.join('.');
+      this._setRightIconState(prevPath);
+      this.lastClicked.right.path = prevPath;
     },
 
     downRightNode() {
       let lastClickedPath = this.lastClicked.right.path;
-      let { parentNodes, index } = this._findParentNodesByPath(this.model, lastClickedPath);
+      let { parentNodes, index } = this._findParentNodesByPath(this, lastClickedPath);
       if (index >= parentNodes.length - 1) {
         return false;
       }
 
-      let node = parentNodes[index];
-      let nextNode = parentNodes[index + 1];
-      parentNodes[index + 1] = node;
-      parentNodes[index] = nextNode;
-      Ember.set(this, 'jsonRightTreeNodes', this._jsTreeToFlexberryTree(this.model.jsonRightTreeNodes));
+      let next = index + 1;
+      let node = parentNodes[next];
+      let nextNode = parentNodes[index];
+
+      parentNodes.arrayContentWillChange(index, 0, null);
+
+      Ember.set(parentNodes, index.toString(), node);
+      Ember.set(parentNodes, next.toString(), nextNode);
+
+      parentNodes.arrayContentDidChange(index, null, null);
+
+      let arrayClickedPath = lastClickedPath.split('.');
+      arrayClickedPath[arrayClickedPath.length - 1] = next.toString();
+      let nextPath = arrayClickedPath.join('.');
+      this._setRightIconState(nextPath);
+      this.lastClicked.right.path = nextPath;
     },
 
     saveTree() {

@@ -71,7 +71,7 @@ Ember.$.extend(true, translations, {
           title: ''
         },
         'fd-visual-edit-form': {
-          caption: 'Форма визуального редактирования',
+          caption: 'Конструктор формы редактирования',
           title: ''
         },
         root: {
@@ -85,47 +85,47 @@ Ember.$.extend(true, translations, {
           },
 
           'fd-visual-listform': {
-            caption: 'Списковая форма визуального редактирования',
+            caption: 'Конструктор списковой формы',
             title: '',
           },
 
           'fd-configuration-list-form': {
-            caption: 'Configurations',
+            caption: 'Организации',
             title: '',
 
           },
           'fd-stage-list-form': {
-            caption: 'Stages',
+            caption: 'Проекты',
             title: '',
 
           },
           'fd-system-list-form': {
-            caption: 'Systems',
+            caption: 'Подсистемы',
             title: '',
 
           },
           'fd-diagram-list-form': {
-            caption: 'Diagrams',
+            caption: 'Диаграммы',
             title: '',
 
           },
           'fd-class-list-form': {
-            caption: 'Classes',
+            caption: 'Классы',
             title: '',
 
           },
           'fd-association-list-form': {
-            caption: 'Associations',
+            caption: 'Ассоциации',
             title: '',
 
           },
           'fd-inheritance-list-form': {
-            caption: 'Inheritance',
+            caption: 'Наследование',
             title: '',
 
           },
           'fd-view-list-form': {
-            caption: 'Views',
+            caption: 'Представления',
             title: '',
 
           },

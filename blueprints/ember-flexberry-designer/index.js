@@ -6,6 +6,10 @@ module.exports = {
       packages: [
         { name: 'ember-flexberry', target: '0.9.2-beta.9' }
       ]
+    }).then(function () {
+      return _this.addPackagesToProject([
+      { name: 'npm:jointjs', target: '2.0.1' },
+      ]);
     });
   },
 

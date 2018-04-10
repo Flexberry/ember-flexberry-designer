@@ -192,7 +192,7 @@ export default {
         moduleSettingType: {
           __caption__: 'ModuleSettingTyp',
           name: {
-            __caption__: 'Name ModuleSettingType'
+            __caption__: 'Название ModuleSettingType'
           }
         },
         valueXML: {
@@ -275,7 +275,7 @@ export default {
         moduleSettingType: {
           __caption__: 'ModuleSettingTyp',
           name: {
-            __caption__: 'Name ModuleSettingType'
+            __caption__: 'Название ModuleSettingType'
           }
         },
         valueXML: {
@@ -288,10 +288,10 @@ export default {
     },
     EditFormView: {
       name: {
-        __caption__: 'Name'
+        __caption__: 'Название'
       },
       description: {
-        __caption__: 'Description'
+        __caption__: 'Описание'
       },
       company: {
         __caption__: 'Company'
@@ -348,7 +348,7 @@ export default {
         moduleSettingType: {
           __caption__: 'ModuleSettingTyp',
           name: {
-            __caption__: 'Name ModuleSettingType'
+            __caption__: 'Название ModuleSettingType'
           }
         },
         valueXML: {
@@ -398,7 +398,7 @@ export default {
         moduleSettingType: {
           __caption__: 'ModuleSettingTyp',
           name: {
-            __caption__: 'Name ModuleSettingType'
+            __caption__: 'Название ModuleSettingType'
           }
         },
         valueXML: {
@@ -445,7 +445,7 @@ export default {
         moduleSettingType: {
           __caption__: 'ModuleSettingTyp',
           name: {
-            __caption__: 'Name ModuleSettingType'
+            __caption__: 'Название ModuleSettingType'
           }
         },
         valueXML: {
@@ -503,7 +503,7 @@ export default {
         moduleSettingType: {
           __caption__: 'ModuleSettingTyp',
           name: {
-            __caption__: 'Name ModuleSettingType'
+            __caption__: 'Название ModuleSettingType'
           }
         },
         valueXML: {
@@ -771,7 +771,7 @@ export default {
         moduleSettingType: {
           __caption__: 'ModuleSettingTyp',
           name: {
-            __caption__: 'Name ModuleSettingType'
+            __caption__: 'Название ModuleSettingType'
           }
         },
         valueXML: {
@@ -884,7 +884,7 @@ export default {
         moduleSettingType: {
           __caption__: 'ModuleSettingTyp',
           name: {
-            __caption__: 'Name ModuleSettingType'
+            __caption__: 'Название ModuleSettingType'
           }
         },
         valueXML: {
@@ -900,22 +900,22 @@ export default {
     },
     ListFormView: {
       name: {
-        __caption__: 'Name'
+        __caption__: 'Название'
       },
       description: {
-        __caption__: 'Description'
+        __caption__: 'Описание'
       },
       changeUser: {
-        __caption__: 'Change user'
+        __caption__: 'Редактор'
       },
       changeDate: {
-        __caption__: 'Change date'
+        __caption__: 'Дата изменения'
       },
       createUser: {
-        __caption__: 'Create user'
+        __caption__: 'Создатель'
       },
       createDate: {
-        __caption__: 'Create date'
+        __caption__: 'Дата создания'
       },
       configuration: {
         __caption__: ''

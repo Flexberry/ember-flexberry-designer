@@ -126,7 +126,11 @@ export let defineProjections = function (modelClass) {
     changeUser: Projection.attr('Change user'),
     changeDate: Projection.attr('Change date'),
     createUser: Projection.attr('Create user'),
-    createDate: Projection.attr('Create date')
+    createDate: Projection.attr('Create date'),
+    subsystem: Projection.belongsTo('fd-subsystem', '', {
+      stage: Projection.belongsTo('fd-stage', '', {
+      }, { hidden: true }),
+    }, { hidden: true }),
   });
   modelClass.defineProjection('SearchDiagram', 'fd-dev-uml-cad', {
     name: Projection.attr(''),

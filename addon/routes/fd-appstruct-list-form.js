@@ -9,7 +9,7 @@ export default Ember.Route.extend({
   model: function() {
     let stagePk = this.get('currentProjectContext').getCurrentStage();
     let builder = new  Builder(this.store, 'fd-dev-class').
-    select('id,name,description,stereotype,containersStr,formViews,formViews.view,formViews.view.class,formViews.view.class.id,stage,stage.id').
+    select('id,name,description,stereotype,containersStr,formViews,formViews.view,formViews.view.class.id,stage.id').
     where('stage.id', FilterOperator.Eq, stagePk);
     let promise = this.store.query('fd-dev-class', builder.build());
     return promise;
@@ -29,14 +29,18 @@ export default Ember.Route.extend({
           break;
         case '«listform»':
         case '«editform»':
-          let parentId = record.get('formViews').nextObject(0).get('view.class.id');
-          leftLeaves.push({
-            id: record.get('id'),
-            stereotype: record.get('stereotype'),
-            parentId:parentId,
-            name: record.get('name'),
-            description: record.get('description')
-          });
+          let formView = record.get('formViews').nextObject(0);
+          if (formView) {
+            let parentId = formView.get('view.class.id');
+            leftLeaves.push({
+              id: record.get('id'),
+              stereotype: record.get('stereotype'),
+              parentId:parentId,
+              name: record.get('name'),
+              description: record.get('description')
+            });
+          }
+
           break;
         case '«application»':
           let recordId = record.get('id');

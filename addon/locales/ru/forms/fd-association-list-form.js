@@ -1,3 +1,3 @@
 export default {
-  caption: 'Associations'
+  caption: 'Ассоциации'
 };

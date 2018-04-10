@@ -1,6 +1,6 @@
 export default {
-  caption: 'Configuration',
-  'name-caption': 'Name',
-  'description-caption': 'Description',
+  caption: 'Организация',
+  'name-caption': 'Название',
+  'description-caption': 'Описание',
   'project-caption': ''
 };

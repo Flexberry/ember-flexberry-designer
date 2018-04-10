@@ -15,7 +15,7 @@
   {{flexberry-error error=error}}
   <div class="field">
     <div class="sixteen wide">
-      {{flexberry-validationsummary errors=model.errors}}
+      {{!-- flexberry-validationsummary errors=model.errors--}}
     </div>
   </div>
   <div class="field">
@@ -59,6 +59,12 @@
     label=(t 'forms.fd-diagram-edit-form.description-caption')
   }}
   {{flexberry-validationmessage error=model.errors.description pointing="pointing"}}
+</div>
+
+<div class="sixteen wide">
+  {{#fd-visual-diagram primitives=model.primitives}}
+    <div id='paper'></div>
+  {{/fd-visual-diagram}}
 </div>
 
 </form>
