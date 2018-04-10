@@ -1,3 +1,3 @@
 export default {
-  caption: 'Configurations'
+  caption: 'Организации'
 };

@@ -2,10 +2,10 @@ export default {
   projections: {
     EditFormView: {
       name: {
-        __caption__: 'Name'
+        __caption__: 'Название'
       },
       description: {
-        __caption__: 'Description'
+        __caption__: 'Описание'
       },
       project: {
         __caption__: '',
@@ -16,19 +16,19 @@ export default {
     },
     ListFormView: {
       name: {
-        __caption__: 'Name'
+        __caption__: 'Название'
       },
       changeUser: {
-        __caption__: 'Change user'
+        __caption__: 'Редактор'
       },
       changeDate: {
-        __caption__: 'Change date'
+        __caption__: 'Дата изменения'
       },
       createUser: {
-        __caption__: 'Create user'
+        __caption__: 'Создатель'
       },
       createDate: {
-        __caption__: 'Create date'
+        __caption__: 'Дата создания'
       }
     },
     PathSearchView: {

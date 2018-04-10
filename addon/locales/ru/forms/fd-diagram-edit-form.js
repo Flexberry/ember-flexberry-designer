@@ -1,5 +1,5 @@
 export default {
-  caption: 'Diagram',
-  'name-caption': 'Name',
-  'description-caption': 'Description'
+  caption: 'Диаграмма',
+  'name-caption': 'Название',
+  'description-caption': 'Описание'
 };

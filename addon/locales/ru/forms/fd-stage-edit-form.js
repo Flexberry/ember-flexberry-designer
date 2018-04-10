@@ -5,7 +5,7 @@ export default {
   'company-caption': 'Компания',
   'copyright-caption': 'Copyright',
   'product-caption': 'Продукт',
-  'configuration-caption': 'Configuration',
+  'configuration-caption': 'Организация',
   ember: {
     caption: 'Flexberry Ember',
     frontend: {
