@@ -28,6 +28,7 @@ export default Ember.Controller.extend({
           let propertyOwnerId = propertyOwner.get('id');
           let path = definition[i].propertyName.split('.');
           let attributeName = path.pop();
+          let skipAsExternalClass = false;
           for (let i = 0; i < path.length; i++) {
             let relationName = path[i];
             let ownAndParentsId = this._getParentsId(propertyOwnerId);
@@ -49,7 +50,7 @@ export default Ember.Controller.extend({
             if (!relationship) {
               // TODO: Filter by all Ids
               for (let j = 0; j < ownAndParentsId.length; j++) {
-                let rel = this.get('model.aggregations').filterBy('endClass.id', ownAndParentsId);
+                let rel = this.get('model.aggregations').filterBy('endClass.id', ownAndParentsId[j]);
                 if (relationships) {
                   relationships.push(rel.toArray());
                 } else {
@@ -60,7 +61,19 @@ export default Ember.Controller.extend({
               relationship = relationships.findBy('startRole', relationName) || relationships.findBy('startClass.name', relationName);
             }
 
+            // Ember.assert('Не найдена связь ' + relationName + ' в классе ' + propertyOwner.get('name'), relationship);
+
+            if (!relationship) {
+              skipAsExternalClass = true;
+              break;
+            }
+
             propertyOwnerId = relationship.get('startClass.id');
+          }
+
+          if (skipAsExternalClass) {
+            attributes.popObject();
+            continue;
           }
 
           if (propertyOwner.get('id') !== propertyOwnerId) {
