@@ -6,14 +6,9 @@ import layout from '../templates/components/fd-visual-diagram';
 export default Ember.Component.extend({
   layout,
 
-  primitives: [],
+  primitives: undefined,
 
-  links: {
-    'Association': [],
-    'Composition': [],
-    'Generalization': [],
-    'Implemetnation': []
-  },
+  links: undefined,
 
   _setIncorrectPoint: function(sourcePoint, targetPoint, sourceAttributes) {
     if (sourcePoint.X === targetPoint.X) {
@@ -49,7 +44,15 @@ export default Ember.Component.extend({
 
   init() {
     this.graph = new joint.dia.Graph();
-    return this._super();
+
+    this.set('links', {
+      Association: [],
+      Composition: [],
+      Generalization: [],
+      Implemetnation: [],
+    });
+
+    return this._super(...arguments);
   },
 
   didInsertElement() {
