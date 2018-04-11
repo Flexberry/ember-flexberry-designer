@@ -390,7 +390,6 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     },
 
     removeRightNode() {
-      alert('removeRightNode');
       let lastClickedPath = this.lastClicked.right.path;
       if (lastClickedPath.split('.').length < 3) {
         return false;
