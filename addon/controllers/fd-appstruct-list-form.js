@@ -272,6 +272,10 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
           lastClicked.path = clickedPath;
         }
       }
+
+      if (clickedElement.tagName !== 'I') {
+        args[1].originalEvent.stopPropagation();
+      }
     },
 
     moveRightHighlighted() {
