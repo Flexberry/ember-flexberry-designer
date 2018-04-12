@@ -45,6 +45,10 @@ export default Ember.Component.extend({
   init() {
     this.graph = new joint.dia.Graph();
 
+    if (!this.get('primitives')) {
+      this.set('primitives', []);
+    }
+
     this.set('links', {
       Association: [],
       Composition: [],
