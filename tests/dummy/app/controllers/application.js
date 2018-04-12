@@ -61,14 +61,11 @@ export default Ember.Controller.extend({
         caption: i18n.t('forms.application.sitemap.root.fd-generation-process-form.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-generation-process-form.title'),
       });
-
-      //TODO: Commented temporarily. Uncomment when needed.
-      // sitemap.nodes.push({
-      //   link: 'fd-system-list-form',
-      //   caption: i18n.t('forms.application.sitemap.root.fd-system-list-form.caption'),
-      //   title: i18n.t('forms.application.sitemap.root.fd-system-list-form.title'),
-      // });
-
+      sitemap.nodes.push({
+        link: 'fd-system-list-form',
+        caption: i18n.t('forms.application.sitemap.root.fd-system-list-form.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-system-list-form.title'),
+      });
       sitemap.nodes.push({
         link: 'fd-diagram-list-form',
         caption: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.caption'),
