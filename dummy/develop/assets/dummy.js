@@ -10089,7 +10089,7 @@ define('dummy/initializers/data-adapter', ['exports', 'ember'], function (export
     initialize: function initialize() {}
   };
 });
-define('dummy/initializers/ember-data', ['exports', 'ember-data/setup-container', 'ember-data/index'], function (exports, _emberDataSetupContainer, _emberDataIndex) {
+define('dummy/initializers/ember-data', ['exports', 'ember-data/setup-container', 'ember-data/-private/core'], function (exports, _emberDataSetupContainer, _emberDataPrivateCore) {
 
   /*
   
@@ -14022,8 +14022,8 @@ define("dummy/templates/components/fd-visual-edit-control", ["exports"], functio
             "column": 0
           },
           "end": {
-            "line": 39,
-            "column": 0
+            "line": 36,
+            "column": 6
           }
         },
         "moduleName": "dummy/templates/components/fd-visual-edit-control.hbs"
@@ -14036,13 +14036,13 @@ define("dummy/templates/components/fd-visual-edit-control", ["exports"], functio
         var el0 = dom.createDocumentFragment();
         var el1 = dom.createElement("div");
         dom.setAttribute(el1, "class", "field");
-        var el2 = dom.createTextNode("\n    ");
+        var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("label");
         var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n    ");
+        var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createComment("");
         dom.appendChild(el1, el2);
@@ -14053,13 +14053,13 @@ define("dummy/templates/components/fd-visual-edit-control", ["exports"], functio
         dom.appendChild(el0, el1);
         var el1 = dom.createElement("div");
         dom.setAttribute(el1, "class", "field");
-        var el2 = dom.createTextNode("\n    ");
+        var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("label");
         var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n    ");
+        var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createComment("");
         dom.appendChild(el1, el2);
@@ -14070,13 +14070,13 @@ define("dummy/templates/components/fd-visual-edit-control", ["exports"], functio
         dom.appendChild(el0, el1);
         var el1 = dom.createElement("div");
         dom.setAttribute(el1, "class", "field");
-        var el2 = dom.createTextNode("\n    ");
+        var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("label");
         var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n    ");
+        var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createComment("");
         dom.appendChild(el1, el2);
@@ -14087,13 +14087,13 @@ define("dummy/templates/components/fd-visual-edit-control", ["exports"], functio
         dom.appendChild(el0, el1);
         var el1 = dom.createElement("div");
         dom.setAttribute(el1, "class", "field");
-        var el2 = dom.createTextNode("\n    ");
+        var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("label");
         var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n    ");
+        var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createComment("");
         dom.appendChild(el1, el2);
@@ -14104,20 +14104,18 @@ define("dummy/templates/components/fd-visual-edit-control", ["exports"], functio
         dom.appendChild(el0, el1);
         var el1 = dom.createElement("div");
         dom.setAttribute(el1, "class", "field");
-        var el2 = dom.createTextNode("\n    ");
+        var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("label");
         var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n    ");
+        var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createComment("");
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
         return el0;
       },
@@ -14140,7 +14138,7 @@ define("dummy/templates/components/fd-visual-edit-control", ["exports"], functio
         morphs[9] = dom.createMorphAt(element4, 3, 3);
         return morphs;
       },
-      statements: [["content", "prototypeByDropdownCaption", ["loc", [null, [2, 11], [2, 41]]]], ["inline", "flexberry-dropdown", [], ["items", ["subexpr", "@mut", [["get", "avaliableControls", ["loc", [null, [4, 12], [4, 29]]]]], [], []], "value", ["subexpr", "@mut", [["get", "model.prototypeBy", ["loc", [null, [5, 12], [5, 29]]]]], [], []], "class", null, "onChange", ["subexpr", "action", ["avaliableControlChange"], [], ["loc", [null, [7, 15], [7, 48]]]]], ["loc", [null, [3, 4], [8, 6]]]], ["content", "nameTextboxCaption", ["loc", [null, [11, 11], [11, 33]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [13, 12], [13, 22]]]]], [], []]], ["loc", [null, [12, 4], [14, 6]]]], ["content", "typeDropdownCaption", ["loc", [null, [17, 11], [17, 34]]]], ["inline", "flexberry-dropdown", [], ["items", ["subexpr", "@mut", [["get", "controlTypes", ["loc", [null, [19, 12], [19, 24]]]]], [], []], "value", ["subexpr", "@mut", [["get", "model.typeName", ["loc", [null, [20, 12], [20, 26]]]]], [], []], "class", null, "onChange", ["subexpr", "action", ["controlTypeChange", ["get", "model.typeName", ["loc", [null, [22, 43], [22, 57]]]]], [], ["loc", [null, [22, 15], [22, 58]]]]], ["loc", [null, [18, 4], [23, 6]]]], ["content", "isNullCheckboxCaption", ["loc", [null, [26, 11], [26, 36]]]], ["inline", "flexberry-checkbox", [], ["class", "fluid", "value", ["subexpr", "@mut", [["get", "model.isNull", ["loc", [null, [29, 12], [29, 24]]]]], [], []]], ["loc", [null, [27, 4], [30, 6]]]], ["content", "defaultValueTextboxCaption", ["loc", [null, [33, 11], [33, 41]]]], ["inline", "component", [["get", "model.defaultValueControl", ["loc", [null, [34, 16], [34, 41]]]]], ["value", ["subexpr", "@mut", [["get", "model.defaultValue", ["loc", [null, [35, 12], [35, 30]]]]], [], []], "type", ["subexpr", "@mut", [["get", "model.inputType", ["loc", [null, [36, 11], [36, 26]]]]], [], []]], ["loc", [null, [34, 4], [37, 6]]]]],
+      statements: [["inline", "t", ["components.fd-visual-control.prototypeBy"], [], ["loc", [null, [2, 9], [2, 57]]]], ["inline", "flexberry-dropdown", [], ["readonly", true], ["loc", [null, [3, 2], [5, 4]]]], ["inline", "t", ["components.fd-visual-control.name"], [], ["loc", [null, [8, 9], [8, 50]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "attribute.name", ["loc", [null, [10, 10], [10, 24]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "_readonly", ["loc", [null, [11, 13], [11, 22]]]]], [], []]], ["loc", [null, [9, 2], [12, 4]]]], ["inline", "t", ["components.fd-visual-control.type"], [], ["loc", [null, [15, 9], [15, 50]]]], ["inline", "flexberry-dropdown", [], ["items", ["subexpr", "@mut", [["get", "types", ["loc", [null, [17, 10], [17, 15]]]]], [], []], "value", ["subexpr", "@mut", [["get", "attribute.type", ["loc", [null, [18, 10], [18, 24]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "_readonly", ["loc", [null, [19, 13], [19, 22]]]]], [], []]], ["loc", [null, [16, 2], [20, 4]]]], ["inline", "t", ["components.fd-visual-control.isNull"], [], ["loc", [null, [23, 9], [23, 52]]]], ["inline", "flexberry-checkbox", [], ["class", "fluid", "value", ["subexpr", "@mut", [["get", "allowNull", ["loc", [null, [26, 10], [26, 19]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "_readonly", ["loc", [null, [27, 13], [27, 22]]]]], [], []]], ["loc", [null, [24, 2], [28, 4]]]], ["inline", "t", ["components.fd-visual-control.defaultValue"], [], ["loc", [null, [31, 9], [31, 58]]]], ["inline", "component", [["get", "defaultValueControl", ["loc", [null, [32, 14], [32, 33]]]]], ["value", ["subexpr", "@mut", [["get", "attribute.defaultValue", ["loc", [null, [33, 10], [33, 32]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "_readonly", ["loc", [null, [34, 13], [34, 22]]]]], [], []]], ["loc", [null, [32, 2], [35, 4]]]]],
       locals: [],
       templates: []
     };
@@ -24718,7 +24716,7 @@ define("dummy/templates/fd-appstruct-list-form", ["exports"], function (exports)
         var el4 = dom.createTextNode("\n    ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("td");
-        dom.setAttribute(el4, "valign", "center");
+        dom.setAttribute(el4, "valign", "top");
         dom.setAttribute(el4, "align", "center");
         var el5 = dom.createTextNode("\n      ");
         dom.appendChild(el4, el5);
@@ -25795,7 +25793,7 @@ define("dummy/templates/fd-class-list-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 29,
+            "line": 33,
             "column": 0
           }
         },
@@ -25838,7 +25836,7 @@ define("dummy/templates/fd-class-list-form", ["exports"], function (exports) {
         dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-class-list-form.caption"], [], ["loc", [null, [2, 4], [2, 44]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-class", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [13, 12], [13, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [15, 17], [15, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [16, 23], [16, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [17, 10], [17, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [18, 17], [18, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [19, 18], [19, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [20, 22], [20, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [21, 20], [21, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [22, 16], [22, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [23, 17], [23, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [24, 13], [24, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [25, 13], [25, 32]]]], "componentName", "FdClassListForm"], ["loc", [null, [4, 2], [27, 4]]]]],
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-class-list-form.caption"], [], ["loc", [null, [2, 4], [2, 44]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-class", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [13, 12], [13, 27]]]]], [], []], "enableFilters", true, "orderable", true, "rowClickable", true, "applyFilters", ["subexpr", "action", ["applyFilters"], [], ["loc", [null, [17, 17], [17, 40]]]], "resetFilters", ["subexpr", "action", ["resetFilters"], [], ["loc", [null, [18, 17], [18, 40]]]], "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [19, 17], [19, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [20, 23], [20, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [21, 10], [21, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [22, 17], [22, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [23, 18], [23, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [24, 22], [24, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [25, 20], [25, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [26, 16], [26, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [27, 17], [27, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [28, 13], [28, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [29, 13], [29, 32]]]], "componentName", "FdClassListForm"], ["loc", [null, [4, 2], [31, 4]]]]],
       locals: [],
       templates: []
     };
@@ -30302,7 +30300,7 @@ define("dummy/templates/fd-visual-listform", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 66,
+            "line": 64,
             "column": 0
           }
         },
@@ -30473,7 +30471,7 @@ define("dummy/templates/fd-visual-listform", ["exports"], function (exports) {
         morphs[10] = dom.createMorphAt(dom.childAt(element6, [3, 1]), 1, 1);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-visual-listform.caption"], [], ["loc", [null, [1, 22], [1, 62]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [2, 6], [2, 19]]]]], [], 0, null, ["loc", [null, [2, 0], [12, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [14, 26], [14, 31]]]]], [], []]], ["loc", [null, [14, 2], [14, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [17, 16], [17, 24]]]]], [], 1, null, ["loc", [null, [17, 6], [26, 17]]]], ["inline", "t", ["forms.fd-visual-listform.preview-mobile-variant"], [], ["loc", [null, [28, 8], [28, 63]]]], ["element", "action", ["close"], [], ["loc", [null, [30, 59], [30, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [31, 8], [31, 49]]]], ["inline", "t", ["forms.fd-visual-listform.name"], [], ["loc", [null, [37, 15], [37, 52]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "listformName", ["loc", [null, [39, 16], [39, 28]]]]], [], []]], ["loc", [null, [38, 8], [40, 10]]]], ["inline", "fd-visual-edit-control", [], ["model", ["subexpr", "@mut", [["get", "editControl", ["loc", [null, [48, 16], [48, 27]]]]], [], []], "controlTypes", ["subexpr", "@mut", [["get", "controlTypes", ["loc", [null, [49, 23], [49, 35]]]]], [], []], "prototypeBy", ["subexpr", "@mut", [["get", "prototypeBy", ["loc", [null, [50, 22], [50, 33]]]]], [], []]], ["loc", [null, [47, 10], [51, 10]]]], ["inline", "fd-visual-listform-form", [], ["listformName", ["subexpr", "@mut", [["get", "listformName", ["loc", [null, [58, 23], [58, 35]]]]], [], []], "editControl", ["subexpr", "@mut", [["get", "editControl", ["loc", [null, [59, 22], [59, 33]]]]], [], []], "listAttributes", ["subexpr", "@mut", [["get", "listAttributes", ["loc", [null, [60, 25], [60, 39]]]]], [], []]], ["loc", [null, [57, 8], [61, 10]]]]],
+      statements: [["inline", "t", ["forms.fd-visual-listform.caption"], [], ["loc", [null, [1, 22], [1, 62]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [2, 6], [2, 19]]]]], [], 0, null, ["loc", [null, [2, 0], [12, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [14, 26], [14, 31]]]]], [], []]], ["loc", [null, [14, 2], [14, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [17, 16], [17, 24]]]]], [], 1, null, ["loc", [null, [17, 6], [26, 17]]]], ["inline", "t", ["forms.fd-visual-listform.preview-mobile-variant"], [], ["loc", [null, [28, 8], [28, 63]]]], ["element", "action", ["close"], [], ["loc", [null, [30, 59], [30, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [31, 8], [31, 49]]]], ["inline", "t", ["forms.fd-visual-listform.name"], [], ["loc", [null, [37, 15], [37, 52]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "formClass.name", ["loc", [null, [38, 34], [38, 48]]]]], [], []]], ["loc", [null, [38, 8], [38, 50]]]], ["inline", "fd-visual-edit-control", [], ["attribute", ["subexpr", "@mut", [["get", "selectedAttribute", ["loc", [null, [45, 45], [45, 62]]]]], [], []]], ["loc", [null, [45, 10], [45, 64]]]], ["inline", "fd-visual-listform-form", [], ["formName", ["subexpr", "@mut", [["get", "formClass.name", ["loc", [null, [52, 19], [52, 33]]]]], [], []], "attributes", ["subexpr", "@mut", [["get", "attributes", ["loc", [null, [53, 21], [53, 31]]]]], [], []], "indexSelectedAttribute", ["subexpr", "@mut", [["get", "indexSelectedAttribute", ["loc", [null, [54, 33], [54, 55]]]]], [], []], "addAttributeAction", ["subexpr", "action", ["addAttribute"], [], ["loc", [null, [55, 29], [55, 52]]]], "moveAttributeAction", ["subexpr", "action", ["moveAttribute"], [], ["loc", [null, [56, 30], [56, 54]]]], "removeAttributeAction", ["subexpr", "action", ["removeAttribute"], [], ["loc", [null, [57, 32], [57, 58]]]], "selectAttributeAction", ["subexpr", "action", ["selectAttribute"], [], ["loc", [null, [58, 32], [58, 58]]]]], ["loc", [null, [51, 8], [59, 10]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -36080,7 +36078,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+20699342"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+632ee26d"});
 }
 
 /* jshint ignore:end */

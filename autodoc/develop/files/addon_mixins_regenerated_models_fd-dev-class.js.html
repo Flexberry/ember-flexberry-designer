@@ -1581,6 +1581,46 @@ export let defineProjections = function (modelClass) {
       name: Projection.attr(&#x27;&#x27;)
     })
   });
+
+  modelClass.defineProjection(&#x27;FormConstructor&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    caption: Projection.attr(&#x27;&#x27;),
+    stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {}),
+    formViews: Projection.hasMany(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
+      view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;),
+        definition: Projection.attr(&#x27;&#x27;),
+        class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+          name: Projection.attr(&#x27;&#x27;),
+          caption: Projection.attr(&#x27;&#x27;),
+          stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {}),
+          attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+            name: Projection.attr(&#x27;&#x27;),
+            caption: Projection.attr(&#x27;&#x27;),
+            type: Projection.attr(&#x27;&#x27;),
+            notNull: Projection.attr(&#x27;&#x27;),
+            defaultValue: Projection.attr(&#x27;&#x27;),
+            class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {}),
+          }),
+        })
+      }),
+    }),
+  });
+
+  modelClass.defineProjection(&#x27;DataObjects&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    caption: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {}),
+    attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      caption: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      notNull: Projection.attr(&#x27;&#x27;),
+      defaultValue: Projection.attr(&#x27;&#x27;),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {}),
+    }),
+  });
 };
 
     </pre>
