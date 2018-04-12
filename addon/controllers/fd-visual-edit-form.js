@@ -4,4 +4,10 @@ export default Ember.Controller.extend({
 
   queryParams: ['formId', 'classId'],
 
+  actions: {
+    close() {
+      this.transitionToRoute('fd-appstruct-list-form');
+    }
+  }
+
 });

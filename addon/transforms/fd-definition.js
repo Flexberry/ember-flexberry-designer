@@ -37,6 +37,23 @@ export default DS.Transform.extend({
   },
 
   serialize(deserialized) {
-    return deserialized;
+    if (!deserialized) {
+      return deserialized;
+    }
+
+    let viewPropertiesList = '';
+    for (let i = 0; i < deserialized.length; i++) {
+      let d = deserialized[i];
+      let propertyName = `PropertyName="${d.propertyName}"`;
+      let caption = `Caption="${d.caption}"`;
+      let visible = `Visible="${d.visible === 'True' ? 'True' : 'False'}"`;
+      let isMaster = `IsMaster="${d.isMaster === 'True' ? 'True' : 'False'}"`;
+      let lookupType = `LookupType="${d.lookupType}"`;
+      let masterPropertyName = `MasterPropertyName="${d.masterPropertyName}"`;
+      let masterCustomizationString = `MasterCustomizationString="${d.masterCustomizationString}"`;
+      viewPropertiesList += `<Item ${propertyName} ${caption} ${visible} ${isMaster} ${lookupType} ${masterPropertyName} ${masterCustomizationString} />`;
+    }
+
+    return `<View><ViewPropertiesList>${viewPropertiesList}</ViewPropertiesList><ViewDetailsList /></View>`;
   }
 });

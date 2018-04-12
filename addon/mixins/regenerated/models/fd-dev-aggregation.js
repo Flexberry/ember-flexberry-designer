@@ -185,4 +185,15 @@ export let defineProjections = function (modelClass) {
 
     }, { hidden: true })
   });
+
+  modelClass.defineProjection('FormConstructor', 'fd-dev-association', {
+    startRole: Projection.attr(''),
+    startClass: Projection.belongsTo('fd-class', '', {
+      name: Projection.attr(''),
+    }),
+    endClass: Projection.belongsTo('fd-class', '', {
+      name: Projection.attr(''),
+    }),
+    stage: Projection.belongsTo('fd-stage', '', {}),
+  });
 };

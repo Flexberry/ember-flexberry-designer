@@ -91,7 +91,13 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
         nodes = this._jsTreeToFlexberryTree(node.nodes);
       }
 
-      let treeNode = { id: node.id, stereotype: node.stereotype, caption: node.caption, description: node.description };
+      let treeNode = {
+        id: node.id,
+        caption: node.caption,
+        description: node.description,
+        className: node.className,
+        stereotype: node.stereotype,
+      };
       if (nodes) {
         treeNode.nodes = nodes;
       }
@@ -116,7 +122,13 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
         nodes = this._jsFlexberryTreeToTree(node.nodes);
       }
 
-      let treeNode = { id: node.id, stereotype: node.stereotype, caption: node.caption, description: node.description || '' };
+      let treeNode = {
+        id: node.id,
+        caption: node.caption,
+        description: node.description || '',
+        className: node.className,
+        stereotype: node.stereotype,
+      };
       if (nodes) {
         treeNode.nodes = nodes;
       }
@@ -260,6 +272,10 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
           lastClicked.path = clickedPath;
         }
       }
+
+      if (clickedElement.tagName !== 'I') {
+        args[1].originalEvent.stopPropagation();
+      }
     },
 
     moveRightHighlighted() {
@@ -292,12 +308,16 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     },
 
     addLeftListForm() {
-      let classId = this._getTopId(this.lastClicked.left.path);
+      let pathToObject = this.lastClicked.left.path.split('.', 2).join('.');
+      let classId = this._getTopId(pathToObject);
       if (classId) {
-        let url = '/fd-visual-listform?classId=' + classId;
-        this.transitionToRoute(url);
+        this.transitionToRoute('fd-visual-listform', {
+          queryParams: {
+            form: undefined,
+            class: classId,
+          },
+        });
       }
-
     },
 
     editLeftNode() {
@@ -307,8 +327,12 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       let url;
       switch (node.get('stereotype')) {
         case '«listform»':
-          url = '/fd-visual-listform?formId=' + nodeId;
-          this.transitionToRoute(url);
+          this.transitionToRoute('fd-visual-listform', {
+            queryParams: {
+              form: nodeId,
+              class: undefined,
+            },
+          });
           break;
         case '«editform»':
           url = '/fd-visual-edit-form?formId=' + nodeId;
@@ -344,6 +368,12 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       inputElement.style.display = 'inline-block';
       inputElement.style.position = 'absolute';
       inputElement.style.padding = '6px 0px 0px 2px';
+      inputElement.onkeypress = (event) => {
+        if (event.keyCode === 13) {
+          event.target.blur();
+        }
+      };
+
       inputElement.onblur = function (event) {
         let inputElement = event.target;
         let caption = inputElement.value;
@@ -360,7 +390,6 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     },
 
     removeRightNode() {
-      alert('removeRightNode');
       let lastClickedPath = this.lastClicked.right.path;
       if (lastClickedPath.split('.').length < 3) {
         return false;
@@ -372,7 +401,9 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     },
 
     addFolderNode() {
-      /*let toPath = this.lastClicked.right.path ? this.lastClicked.right.path : 'jsonRightTreeNodes.0';*/
+      let toPath = this.lastClicked.right.path ? this.lastClicked.right.path : 'jsonRightTreeNodes.0';
+      let node = this._findNodeByPath(this, toPath);
+      Ember.get(node, 'nodes').pushObject(TreeNodeObject.create({ caption: 'New folder', nodes: Ember.A() }));
     },
 
     upRightNode() {
@@ -433,9 +464,9 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
 
       let builder = new Query.Builder(this.store)
       .from('fd-dev-class')
-      .selectByProjection('SearchFormClassView')
+      .select('name,stereotype,containersStr,caption,stage.id')
       .byId(this.model.id);
-      this.store.query('fd-dev-class', builder.build()).
+      this.store.queryRecord('fd-dev-class', builder.build()).
       /*this.get('store').findRecord('fd-dev-class', this.model.id).*/
       then(function(record) {
         /*let stagePk = _this.get('currentProjectContext').getCurrentStagePk();*/

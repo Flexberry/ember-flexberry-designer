@@ -49,22 +49,24 @@ export default DS.Transform.extend({
       let currentPath = steps.join('\\');
       if (node.nodes) {
         steps.push(node.caption);
-        let xmlItems = this._getXMLNodes(node.nodes, steps);
-        if (xmlItems.length === 0) {
+        if (this._onlyFolders(node)) {
           let xmlItem = '<Item' +
             ' ClassName="' + this._emptyFolderClassName + '"' +
             ' MenuPath="' + steps.join('\\').replace(/"/g, '\\"') + '"' +
             ' Caption="" Description=""' +
             ' />';
           ret += xmlItem;
-        } else {
+        }
+
+        let xmlItems = this._getXMLNodes(node.nodes, steps);
+        if (xmlItems) {
           ret += xmlItems;
         }
 
         steps.pop();
       } else {
         let classname = node.className;
-        if (classname === 'undefined') {
+        if (!classname) {
           classname = node.caption;
         }
 
@@ -80,6 +82,22 @@ export default DS.Transform.extend({
     }
 
     return ret;
+  },
+
+  _onlyFolders(node) {
+    let result = true;
+    if (node.nodes && node.nodes.length) {
+      for (let i = 0; i < node.nodes.length; i++) {
+        result = !node.nodes[i].className;
+        if (result === false) {
+          break;
+        }
+      }
+    } else {
+      result = !node.className;
+    }
+
+    return result;
   },
 
   _getTree: function(itemList) {

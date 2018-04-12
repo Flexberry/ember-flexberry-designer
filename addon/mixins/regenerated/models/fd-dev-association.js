@@ -175,4 +175,16 @@ export let defineProjections = function (modelClass) {
     endRole: Projection.attr('End role'),
     storage: Projection.attr('Storage')
   });
+
+  modelClass.defineProjection('FormConstructor', 'fd-dev-association', {
+    startRole: Projection.attr(''),
+    assocType: Projection.attr(''),
+    startClass: Projection.belongsTo('fd-class', '', {
+      name: Projection.attr(''),
+    }),
+    endClass: Projection.belongsTo('fd-class', '', {
+      name: Projection.attr(''),
+    }),
+    stage: Projection.belongsTo('fd-stage', '', {}),
+  });
 };

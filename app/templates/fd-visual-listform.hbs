@@ -24,9 +24,10 @@
           </button>
         {{/unless}}
       {{/unless}}
+      {{!-- Commented temporarily.
       <button class="ui button">
         {{t "forms.fd-visual-listform.preview-mobile-variant"}}
-      </button>
+      </button> --}}
       <button type="submit" class="ui button close-button" {{action 'close'}}>
         {{t "forms.edit-form.close-button-text"}}
       </button>
@@ -35,29 +36,27 @@
   <div class="ui grid row">
     <div class="field eight wide column">
         <label>{{t 'forms.fd-visual-listform.name'}}</label>
-        {{flexberry-textbox
-          value=listformName
-        }}
+        {{flexberry-textbox value=formClass.name}}
     </div>
   </div>
   <div class="ui segment grid">
     <div class="row">
       <div class="six wide column">
         <div class="ui segment">
-          {{fd-visual-edit-control
-          model=editControl
-          controlTypes=controlTypes
-          prototypeBy=prototypeBy
-        }}
+          {{fd-visual-edit-control attribute=selectedAttribute}}
         </div>
       </div>
     </div>
     <div class="row">
       <div class="sixteen wide column" style="width: 100%; overflow-x: scroll;">
         {{fd-visual-listform-form
-          listformName=listformName
-          editControl=editControl
-          listAttributes=listAttributes
+          formName=formClass.name
+          attributes=attributes
+          indexSelectedAttribute=indexSelectedAttribute
+          addAttributeAction=(action "addAttribute")
+          moveAttributeAction=(action "moveAttribute")
+          removeAttributeAction=(action "removeAttribute")
+          selectAttributeAction=(action "selectAttribute")
         }}
       </div>
     </div>
