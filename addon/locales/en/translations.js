@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import EmberFlexberryTranslations from 'ember-flexberry/locales/en/translations';
-import FdAppstructListFormForm from './forms/fd-appstruct-list-form';
+import FdAppstructListFormForm from './forms/fd-appstruct-form';
 import FdAssociationListFormForm from './forms/fd-association-list-form';
 import FdClassListFormForm from './forms/fd-class-list-form';
 import FdConfigurationListFormForm from './forms/fd-configuration-list-form';
@@ -165,7 +165,7 @@ Ember.$.extend(true, translations, {
   },
 
   forms: {
-    'fd-appstruct-list-form': FdAppstructListFormForm,
+    'fd-appstruct-form': FdAppstructListFormForm,
     'fd-association-list-form': FdAssociationListFormForm,
     'fd-class-list-form': FdClassListFormForm,
     'fd-configuration-list-form': FdConfigurationListFormForm,

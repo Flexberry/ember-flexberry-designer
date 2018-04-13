@@ -78,7 +78,7 @@ Ember.$.extend(true, translations, {
           caption: 'root',
           title: 'root',
 
-          'fd-appstruct-list-form': {
+          'fd-appstruct-form': {
             caption: 'Application structure',
             title: '',
           },
