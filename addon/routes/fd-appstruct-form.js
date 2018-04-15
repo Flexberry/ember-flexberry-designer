@@ -44,11 +44,11 @@ export default Ember.Route.extend({
       let promiseForms = _this.store.query('fd-dev-class', builderForms.build()).then((result) => {
         modelHash.forms = result;
       });
-      
+
       // «application»
       let applicationStereorypePredicate = new Query.SimplePredicate('stereotype', FilterOperator.Eq, '«application»');
       let applicationPredicate = new Query.ComplexPredicate(Query.Condition.And, stagePkPredicate, applicationStereorypePredicate);
-      
+
       let builderApplication = new  Builder(_this.store, 'fd-dev-class').
       select('id,name,caption,description,stereotype,containersStr,stage.id').
       where(applicationPredicate);
@@ -57,7 +57,7 @@ export default Ember.Route.extend({
         modelHash.applications = result;
       });
 
-      Ember.RSVP.all([ /* promiseImplementation, promiseForms,*/ promiseApplication]).then(() => {
+      Ember.RSVP.all([promiseImplementation, promiseForms, promiseApplication]).then(() => {
         resolve(modelHash);
       });
     });

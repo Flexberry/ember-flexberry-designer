@@ -110,7 +110,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
         }
       }
     }
-    
+
     let applications = this.get('model.applications');
     if (applications) {
       let applicationsCount = applications.get('length');
@@ -120,8 +120,8 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
         applicationRecordId = recordId;
         itemList = record.get('containersStr');
         break; // TODO: Support multiple applications.
-      }   
-    } 
+      }
+    }
 
     let leftTreeNodes = this._getLeftTree(leftParents, leftLeaves);
 
