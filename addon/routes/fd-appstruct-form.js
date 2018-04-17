@@ -15,7 +15,6 @@ export default Ember.Route.extend({
       applications: undefined
     };
 
-    // TODO: сразу вычитывать нужные структуры без необходимости переделки их на клиенте. Пусть будет несколько параллельных запросов на сервер.
     return new Ember.RSVP.Promise(function (resolve) {
       // null or «implementation»
       let stagePkPredicate = new Query.SimplePredicate('stage.id', FilterOperator.Eq, stagePk);
