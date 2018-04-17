@@ -15,7 +15,7 @@ export default Ember.Route.extend({
       applications: undefined
     };
 
-    return new Ember.RSVP.Promise(function (resolve) {
+    return new Ember.RSVP.Promise(function (resolve, reject) {
       // null or «implementation»
       let stagePkPredicate = new Query.SimplePredicate('stage.id', FilterOperator.Eq, stagePk);
       let implementationStereorypePredicate = new Query.SimplePredicate('stereotype', FilterOperator.Eq, '«implementation»');
@@ -29,7 +29,7 @@ export default Ember.Route.extend({
 
       let promiseImplementation = _this.store.query('fd-dev-class', builderImplementation.build()).then((result) => {
         modelHash.implementations = result;
-      });
+      }, reject);
 
       // «listform», «editform»
       let listformStereorypePredicate = new Query.SimplePredicate('stereotype', FilterOperator.Eq, '«listform»');
@@ -42,7 +42,7 @@ export default Ember.Route.extend({
 
       let promiseForms = _this.store.query('fd-dev-class', builderForms.build()).then((result) => {
         modelHash.forms = result;
-      });
+      }, reject);
 
       // «application»
       let applicationStereorypePredicate = new Query.SimplePredicate('stereotype', FilterOperator.Eq, '«application»');
@@ -54,7 +54,7 @@ export default Ember.Route.extend({
 
       let promiseApplication = _this.store.query('fd-dev-class', builderApplication.build()).then((result) => {
         modelHash.applications = result;
-      });
+      }, reject);
 
       Ember.RSVP.all([promiseImplementation, promiseForms, promiseApplication]).then(() => {
         resolve(modelHash);
