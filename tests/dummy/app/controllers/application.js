@@ -47,49 +47,46 @@ export default Ember.Controller.extend({
         title: i18n.t('forms.application.sitemap.root.fd-appstruct-form.title'),
       });
       sitemap.nodes.push({
-        link: 'fd-visual-listform',
-        caption: i18n.t('forms.application.sitemap.root.fd-visual-listform.caption'),
-        title: i18n.t('forms.application.sitemap.root.fd-visual-listform.title'),
-      });
-      sitemap.nodes.push({
-        link: 'fd-visual-edit-form',
-        caption: i18n.t('forms.application.sitemap.fd-visual-edit-form.caption'),
-        title: i18n.t('forms.application.sitemap.fd-visual-edit-form.title'),
-      });
-      sitemap.nodes.push({
-        link: 'fd-generation-list-form',
-        caption: i18n.t('forms.application.sitemap.root.fd-generation-list-form.caption'),
-        title: i18n.t('forms.application.sitemap.root.fd-generation-list-form.title'),
-      });
-      sitemap.nodes.push({
         link: 'fd-generation-process-form.new',
         caption: i18n.t('forms.application.sitemap.root.fd-generation-process-form.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-generation-process-form.title'),
       });
       sitemap.nodes.push({
-        link: 'fd-system-list-form',
-        caption: i18n.t('forms.application.sitemap.root.fd-system-list-form.caption'),
-        title: i18n.t('forms.application.sitemap.root.fd-system-list-form.title'),
-      });
-      sitemap.nodes.push({
-        link: 'fd-diagram-list-form',
-        caption: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.caption'),
-        title: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.title'),
-      });
-      sitemap.nodes.push({
-        link: 'fd-class-list-form',
-        caption: i18n.t('forms.application.sitemap.root.fd-class-list-form.caption'),
-        title: i18n.t('forms.application.sitemap.root.fd-class-list-form.title'),
-      });
-      sitemap.nodes.push({
-        link: 'fd-association-list-form',
-        caption: i18n.t('forms.application.sitemap.root.fd-association-list-form.caption'),
-        title: i18n.t('forms.application.sitemap.root.fd-association-list-form.title'),
-      });
-      sitemap.nodes.push({
-        link: 'fd-inheritance-list-form',
-        caption: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.caption'),
-        title: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.title'),
+        link: null,
+        caption: i18n.t('forms.application.sitemap.root.additional.caption'),
+        title: i18n.t('forms.application.sitemap.root.additional.title'),
+        children: [
+          {
+            link: 'fd-generation-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-generation-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-generation-list-form.title'),
+          },
+          {
+            link: 'fd-system-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-system-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-system-list-form.title'),
+          },
+          {
+            link: 'fd-diagram-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.title'),
+          },
+          {
+            link: 'fd-class-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-class-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-class-list-form.title'),
+          },
+          {
+            link: 'fd-association-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-association-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-association-list-form.title'),
+          },
+          {
+            link: 'fd-inheritance-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.title'),
+          }
+        ]
       });
     }
 
