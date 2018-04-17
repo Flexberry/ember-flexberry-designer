@@ -70,6 +70,114 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     this.rightClickedPath = null;
   },
 
+  _modelObserver: Ember.on('init', Ember.observer('model', function() {
+    if (!this.get('model')) {
+      return;
+    }
+
+    // Fill data from model
+    let applicationRecordId = null;
+    let itemList = [];
+    let leftParents = [];
+    let leftLeaves = [];
+
+    let implementations = this.get('model.implementations');
+    if (implementations) {
+      let implementationsCount = implementations.get('length');
+
+      for (let i = 0; i < implementationsCount; i++) {
+        let record = implementations.nextObject(i);
+        leftParents.push({ id: record.get('id'), name: record.get('name'), description: record.get('description') });
+      }
+    }
+
+    let forms = this.get('model.forms');
+    if (forms) {
+      let formsCount = forms.get('length');
+
+      for (let i = 0; i < formsCount; i++) {
+        let record = forms.nextObject(i);
+        let formView = record.get('formViews').nextObject(0);
+        if (formView) {
+          let parentId = formView.get('view.class.id');
+          leftLeaves.push({
+            id: record.get('id'),
+            stereotype: record.get('stereotype'),
+            parentId:parentId,
+            name: record.get('name'),
+            description: record.get('description')
+          });
+        }
+      }
+    }
+
+    let applications = this.get('model.applications');
+    if (applications) {
+      let applicationsCount = applications.get('length');
+      for (let i = 0; i < applicationsCount; i++) {
+        let record = applications.nextObject(i);
+        let recordId = record.get('id');
+        applicationRecordId = recordId;
+        itemList = record.get('containersStr');
+        break; // TODO: Support multiple applications.
+      }
+    }
+
+    let leftTreeNodes = this._getLeftTree(leftParents, leftLeaves);
+
+    while (itemList && itemList.length === 1 && itemList[0].caption === 'Рабочий стол') {
+      itemList = itemList[0].nodes;
+    }
+
+    let rightTreeNodes = [{
+      caption:'Рабочий стол',
+      nodes: itemList
+    }];
+
+    this.initLeftTree(leftTreeNodes);
+    this.initRightTree(rightTreeNodes);
+  })),
+
+  _getLeftTree: function(leftParents, leftLeaves) {
+    leftParents.sort(
+      function(a, b) {
+        let ret = (a.id > b.id) ? 1 : ((a.id < b.id) ? -1 : 0);
+        return ret;
+      }
+    );
+    leftLeaves.sort(
+      function(a, b) {
+        let ret = (a.parentId > b.parentId) ? 1 : ((a.parentId < b.parentId) ? -1 :
+        ((a.name > b.name) ? 1 : ((a.name < b.name) ? -1 : 0)));
+        return ret;
+      }
+    );
+    let leftNodes = [];
+    let leaveIndex = 0;
+    for (let i = 0; i < leftParents.length; i++) {
+      let leftParent = leftParents[i];
+      let leftNode = {
+        id: leftParent.id,
+        caption: leftParent.name,
+        description: leftParent.description,
+        nodes: []
+      };
+      for (; leaveIndex < leftLeaves.length && leftLeaves[leaveIndex].parentId === leftParent.id; leaveIndex++) {
+        let leafLeaf = leftLeaves[leaveIndex];
+        leftNode.nodes.push({
+          id: leafLeaf.id,
+          stereotype: leafLeaf.stereotype,
+          caption: leafLeaf.name,
+          description: leafLeaf.description
+        });
+      }
+
+      leftNodes.push(leftNode);
+    }
+
+    return leftNodes;
+  },
+
   initLeftTree: function(jsTree) {
     Ember.set(this, 'jsonLeftTreeNodes', this._jsTreeToFlexberryTree(jsTree));
   },

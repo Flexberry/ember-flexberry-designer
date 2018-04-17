@@ -37,9 +37,9 @@ export default Ember.Controller.extend({
 
     if (context.stage) {
       sitemap.nodes.push({
-        link: 'fd-appstruct-list-form',
-        caption: i18n.t('forms.application.sitemap.root.fd-appstruct-list-form.caption'),
-        title: i18n.t('forms.application.sitemap.root.fd-appstruct-list-form.title'),
+        link: 'fd-appstruct-form',
+        caption: i18n.t('forms.application.sitemap.root.fd-appstruct-form.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-appstruct-form.title'),
       });
       sitemap.nodes.push({
         link: 'fd-visual-listform',

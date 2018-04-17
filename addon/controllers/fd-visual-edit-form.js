@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
 
   actions: {
     close() {
-      this.transitionToRoute('fd-appstruct-list-form');
+      this.transitionToRoute('fd-appstruct-form');
     }
   }
 

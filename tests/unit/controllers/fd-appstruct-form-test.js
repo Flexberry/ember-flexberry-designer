@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('controller:fd-appstruct-list-form', 'Unit | Controller | new platform flexberry web designer appstruct list form', {
+moduleFor('controller:fd-appstruct-form', 'Unit | Controller | new platform flexberry web designer appstruct form', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });
