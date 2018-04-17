@@ -1,5 +1,12 @@
 import Ember from 'ember';
 import ModalApplicationRouteMixin from 'ember-flexberry/mixins/modal-application-route';
+import { Query } from 'ember-flexberry-data';
+
+const {
+  Builder,
+  FilterOperator,
+  SimplePredicate,
+} = Query;
 
 export default Ember.Route.extend(ModalApplicationRouteMixin, {
 
@@ -15,7 +22,24 @@ export default Ember.Route.extend(ModalApplicationRouteMixin, {
     let context = this.get('currentProjectContext');
 
     if (context.singleStageMode) {
-      this.transitionTo('fd-appstruct-form');
+      let store = this.get('store');
+      let modelName = 'fd-dev-stage';
+      let projectionName = 'Generator';
+
+      let predicate = new SimplePredicate('id', FilterOperator.Eq, context.context.stage);
+
+      let builder = new Builder(store)
+      .from(modelName)
+      .selectByProjection(projectionName)
+      .where(predicate);
+
+      store.query(modelName, builder.build()).then((result) => {
+        if (result && result.get('length') !== undefined && result.get('length') === 1) {
+          let stage = result.objectAt(0);
+          context.setCurrentStage(stage);
+          this.transitionTo('fd-appstruct-form');
+        }
+      });
     } else {
       this.transitionTo('fd-configuration-list-form');
     }
