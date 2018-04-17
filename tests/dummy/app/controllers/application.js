@@ -11,22 +11,27 @@ export default Ember.Controller.extend({
 
   sitemap: Ember.computed('i18n.locale', 'currentContext.context.configuration', 'currentContext.context.stage', 'currentContext.context.class', function() {
     let i18n = this.get('i18n');
+    let context = this.get('currentContext.context');
+    let singleStageMode = this.get('currentContext.singleStageMode');
+
     let sitemap = {
       nodes: [
-        {
-          link: 'index',
-          caption: i18n.t('forms.application.sitemap.index.caption'),
-          title: i18n.t('forms.application.sitemap.index.title'),
-        },
-        {
-          link: 'fd-configuration-list-form',
-          caption: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.caption'),
-          title: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.title'),
-        },
       ]
     };
 
-    let context = this.get('currentContext.context');
+    if (!singleStageMode) {
+      sitemap.nodes.push({
+        link: 'index',
+        caption: i18n.t('forms.application.sitemap.index.caption'),
+        title: i18n.t('forms.application.sitemap.index.title'),
+      });
+      sitemap.nodes.push({
+        link: 'fd-configuration-list-form',
+        caption: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.title'),
+      });
+    }
+
     if (context.configuration) {
       sitemap.nodes.push({
         link: 'fd-stage-list-form',
