@@ -1126,9 +1126,9 @@ define('dummy/tests/test-helper.jshint', ['exports'], function (exports) {
     assert.ok(true, 'test-helper.js should pass jshint.');
   });
 });
-define('dummy/tests/unit/controllers/fd-appstruct-list-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+define('dummy/tests/unit/controllers/fd-appstruct-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
-  (0, _emberQunit.moduleFor)('controller:fd-appstruct-list-form', 'Unit | Controller | new platform flexberry web designer appstruct list form', {
+  (0, _emberQunit.moduleFor)('controller:fd-appstruct-form', 'Unit | Controller | new platform flexberry web designer appstruct form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
   });
@@ -1139,21 +1139,21 @@ define('dummy/tests/unit/controllers/fd-appstruct-list-form-test', ['exports', '
     assert.ok(controller);
   });
 });
-define('dummy/tests/unit/controllers/fd-appstruct-list-form-test.jscs-test', ['exports'], function (exports) {
+define('dummy/tests/unit/controllers/fd-appstruct-form-test.jscs-test', ['exports'], function (exports) {
   'use strict';
 
   module('JSCS - unit/controllers');
-  test('unit/controllers/fd-appstruct-list-form-test.js should pass jscs', function () {
-    ok(true, 'unit/controllers/fd-appstruct-list-form-test.js should pass jscs.');
+  test('unit/controllers/fd-appstruct-form-test.js should pass jscs', function () {
+    ok(true, 'unit/controllers/fd-appstruct-form-test.js should pass jscs.');
   });
 });
-define('dummy/tests/unit/controllers/fd-appstruct-list-form-test.jshint', ['exports'], function (exports) {
+define('dummy/tests/unit/controllers/fd-appstruct-form-test.jshint', ['exports'], function (exports) {
   'use strict';
 
-  QUnit.module('JSHint - unit/controllers/fd-appstruct-list-form-test.js');
+  QUnit.module('JSHint - unit/controllers/fd-appstruct-form-test.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'unit/controllers/fd-appstruct-list-form-test.js should pass jshint.');
+    assert.ok(true, 'unit/controllers/fd-appstruct-form-test.js should pass jshint.');
   });
 });
 define('dummy/tests/unit/controllers/fd-association-edit-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {

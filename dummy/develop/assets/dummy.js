@@ -428,9 +428,9 @@ define('dummy/controllers/application', ['exports', 'ember'], function (exports,
 
       if (context.stage) {
         sitemap.nodes.push({
-          link: 'fd-appstruct-list-form',
-          caption: i18n.t('forms.application.sitemap.root.fd-appstruct-list-form.caption'),
-          title: i18n.t('forms.application.sitemap.root.fd-appstruct-list-form.title')
+          link: 'fd-appstruct-form',
+          caption: i18n.t('forms.application.sitemap.root.fd-appstruct-form.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-appstruct-form.title')
         });
         sitemap.nodes.push({
           link: 'fd-visual-listform',
@@ -621,11 +621,11 @@ define('dummy/controllers/edit-form', ['exports', 'ember-flexberry/controllers/e
     }
   });
 });
-define('dummy/controllers/fd-appstruct-list-form', ['exports', 'ember-flexberry-designer/controllers/fd-appstruct-list-form'], function (exports, _emberFlexberryDesignerControllersFdAppstructListForm) {
+define('dummy/controllers/fd-appstruct-form', ['exports', 'ember-flexberry-designer/controllers/fd-appstruct-form'], function (exports, _emberFlexberryDesignerControllersFdAppstructForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
-      return _emberFlexberryDesignerControllersFdAppstructListForm['default'];
+      return _emberFlexberryDesignerControllersFdAppstructForm['default'];
     }
   });
 });
@@ -991,17 +991,17 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
     assert.ok(true, 'modules/ember-flexberry-designer/components/fd-visual-listform-form.js should pass jshint.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-appstruct-list-form.jscs-test', ['exports'], function (exports) {
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-appstruct-form.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/controllers');
-  test('modules/ember-flexberry-designer/controllers/fd-appstruct-list-form.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/controllers/fd-appstruct-list-form.js should pass jscs.');
+  test('modules/ember-flexberry-designer/controllers/fd-appstruct-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/fd-appstruct-form.js should pass jscs.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-appstruct-list-form.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/fd-appstruct-list-form.js');
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-appstruct-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/fd-appstruct-form.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-appstruct-list-form.js should pass jshint.');
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-appstruct-form.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-association-edit-form.jscs-test', ['exports'], function (exports) {
@@ -1472,17 +1472,17 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/components/fd-visual-control.js should pass jshint.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-appstruct-list-form.jscs-test', ['exports'], function (exports) {
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-appstruct-form.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/locales/en/forms');
-  test('modules/ember-flexberry-designer/locales/en/forms/fd-appstruct-list-form.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-appstruct-list-form.js should pass jscs.');
+  test('modules/ember-flexberry-designer/locales/en/forms/fd-appstruct-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-appstruct-form.js should pass jscs.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-appstruct-list-form.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/forms/fd-appstruct-list-form.js');
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-appstruct-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/forms/fd-appstruct-form.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-appstruct-list-form.js should pass jshint.');
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-appstruct-form.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-association-edit-form.jscs-test', ['exports'], function (exports) {
@@ -2655,17 +2655,17 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/components/fd-visual-control.js should pass jshint.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-appstruct-list-form.jscs-test', ['exports'], function (exports) {
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-appstruct-form.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/locales/ru/forms');
-  test('modules/ember-flexberry-designer/locales/ru/forms/fd-appstruct-list-form.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-appstruct-list-form.js should pass jscs.');
+  test('modules/ember-flexberry-designer/locales/ru/forms/fd-appstruct-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-appstruct-form.js should pass jscs.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-appstruct-list-form.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/forms/fd-appstruct-list-form.js');
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-appstruct-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/forms/fd-appstruct-form.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-appstruct-list-form.js should pass jshint.');
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-appstruct-form.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-association-edit-form.jscs-test', ['exports'], function (exports) {
@@ -7309,17 +7309,17 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ob
     assert.ok(true, 'modules/ember-flexberry-designer/objects/new-platform-flexberry-web-designer-business-server-class.js should pass jshint.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-appstruct-list-form.jscs-test', ['exports'], function (exports) {
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-appstruct-form.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/routes');
-  test('modules/ember-flexberry-designer/routes/fd-appstruct-list-form.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/routes/fd-appstruct-list-form.js should pass jscs.');
+  test('modules/ember-flexberry-designer/routes/fd-appstruct-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/fd-appstruct-form.js should pass jscs.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-appstruct-list-form.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-appstruct-list-form.js');
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-appstruct-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-appstruct-form.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-appstruct-list-form.js should pass jshint.');
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-appstruct-form.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-association-edit-form.jscs-test', ['exports'], function (exports) {
@@ -10619,7 +10619,7 @@ define('dummy/locales/en/translations', ['exports', 'ember', 'ember-flexberry-de
             caption: 'root',
             title: 'root',
 
-            'fd-appstruct-list-form': {
+            'fd-appstruct-form': {
               caption: 'Application structure',
               title: ''
             },
@@ -10769,7 +10769,7 @@ define('dummy/locales/ru/translations', ['exports', 'ember', 'ember-flexberry-de
             caption: 'Root',
             title: 'Root',
 
-            'fd-appstruct-list-form': {
+            'fd-appstruct-form': {
               caption: 'Структура приложения',
               title: ''
 
@@ -10914,8 +10914,6 @@ define('dummy/models/fd-aggregation', ['exports', 'ember-flexberry-designer/mode
     }
   });
 });
-define("dummy/models/fd-appstruct-list-form", ["exports"], function (exports) {});
-// export { default } from 'ember-flexberry-designer/models/fd-appstruct-list-form';
 define('dummy/models/fd-association', ['exports', 'ember-flexberry-designer/models/fd-association'], function (exports, _emberFlexberryDesignerModelsFdAssociation) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -11553,7 +11551,7 @@ define('dummy/router', ['exports', 'ember', 'dummy/config/environment'], functio
   });
 
   Router.map(function () {
-    this.route('fd-appstruct-list-form');
+    this.route('fd-appstruct-form');
     this.route('fd-association-list-form');
     this.route('fd-association-edit-form', { path: 'fd-association-edit-form/:id' });
     this.route('fd-association-edit-form.new', { path: 'fd-association-edit-form/new' });
@@ -11598,11 +11596,11 @@ define('dummy/routes/edit-form', ['exports', 'ember-flexberry/routes/edit-form']
     }
   });
 });
-define('dummy/routes/fd-appstruct-list-form', ['exports', 'ember-flexberry-designer/routes/fd-appstruct-list-form'], function (exports, _emberFlexberryDesignerRoutesFdAppstructListForm) {
+define('dummy/routes/fd-appstruct-form', ['exports', 'ember-flexberry-designer/routes/fd-appstruct-form'], function (exports, _emberFlexberryDesignerRoutesFdAppstructForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
-      return _emberFlexberryDesignerRoutesFdAppstructListForm['default'];
+      return _emberFlexberryDesignerRoutesFdAppstructForm['default'];
     }
   });
 });
@@ -12572,13 +12570,14 @@ define('dummy/services/dexie', ['exports', 'ember-flexberry-data/services/dexie'
     }
   });
 });
-define('dummy/services/fd-current-project-context', ['exports', 'ember-flexberry-designer/services/fd-current-project-context'], function (exports, _emberFlexberryDesignerServicesFdCurrentProjectContext) {
-  Object.defineProperty(exports, 'default', {
-    enumerable: true,
-    get: function get() {
-      return _emberFlexberryDesignerServicesFdCurrentProjectContext['default'];
-    }
+define('dummy/services/fd-current-project-context', ['exports', 'ember', 'ember-flexberry-designer/services/fd-current-project-context', 'dummy/config/environment'], function (exports, _ember, _emberFlexberryDesignerServicesFdCurrentProjectContext, _dummyConfigEnvironment) {
+
+  var singleModeStageId = _ember['default'].get(_dummyConfigEnvironment['default'], 'APP.fdCurrentProjectContext.singleModeStageId');
+  _emberFlexberryDesignerServicesFdCurrentProjectContext['default'].reopen({
+    singleModeStageId: singleModeStageId
   });
+
+  exports['default'] = _emberFlexberryDesignerServicesFdCurrentProjectContext['default'];
 });
 define('dummy/services/fd-generation', ['exports', 'ember-flexberry-designer/services/fd-generation'], function (exports, _emberFlexberryDesignerServicesFdGeneration) {
   Object.defineProperty(exports, 'default', {
@@ -24440,7 +24439,7 @@ define("dummy/templates/error", ["exports"], function (exports) {
     };
   })());
 });
-define("dummy/templates/fd-appstruct-list-form", ["exports"], function (exports) {
+define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     return {
       meta: {
@@ -24460,7 +24459,7 @@ define("dummy/templates/fd-appstruct-list-form", ["exports"], function (exports)
             "column": 0
           }
         },
-        "moduleName": "dummy/templates/fd-appstruct-list-form.hbs"
+        "moduleName": "dummy/templates/fd-appstruct-form.hbs"
       },
       isEmpty: false,
       arity: 0,
@@ -24826,7 +24825,7 @@ define("dummy/templates/fd-appstruct-list-form", ["exports"], function (exports)
         dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-appstruct-list-form.caption"], [], ["loc", [null, [2, 4], [2, 48]]]], ["attribute", "class", ["concat", ["ui ", ["get", "saveButtonClass", ["loc", [null, [5, 24], [5, 39]]]], " button save-button"]]], ["element", "action", ["saveTree"], [], ["loc", [null, [5, 62], [5, 83]]]], ["inline", "t", ["forms.fd-appstruct-list-form.button-save"], [], ["loc", [null, [5, 84], [5, 132]]]], ["attribute", "class", ["concat", ["ui ", ["get", "processButtonClass", ["loc", [null, [6, 24], [6, 42]]]], " button"]]], ["element", "action", ["openProcessEditorForm"], [], ["loc", [null, [6, 53], [6, 87]]]], ["inline", "t", ["forms.fd-appstruct-list-form.button-precess-editor"], [], ["loc", [null, [6, 116], [6, 174]]]], ["attribute", "class", ["concat", ["ui ", ["get", "generationButtonClass", ["loc", [null, [7, 24], [7, 45]]]], " button"]]], ["element", "action", ["openGenerationForm"], [], ["loc", [null, [7, 56], [7, 87]]]], ["inline", "t", ["forms.fd-appstruct-list-form.button-generation"], [], ["loc", [null, [7, 117], [7, 171]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "removeLeftNodeDisabled", ["loc", [null, [16, 40], [16, 62]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-list-form.remove-text"], [], ["loc", [null, [16, 73], [16, 121]]]]]]], ["element", "action", ["removeLeftNode"], ["on", "click"], ["loc", [null, [16, 123], [16, 162]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-list-form.add-class-text"], [], ["loc", [null, [19, 55], [19, 106]]]]]]], ["element", "action", ["addLeftClass"], [], ["loc", [null, [19, 108], [19, 133]]]], ["attribute", "class", ["concat", ["ui button create-button ", ["get", "addLeftNodeDisabled", ["loc", [null, [22, 49], [22, 68]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-list-form.add-editform-text"], [], ["loc", [null, [22, 79], [22, 133]]]]]]], ["element", "action", ["addLeftEditForm"], [], ["loc", [null, [22, 135], [22, 163]]]], ["attribute", "class", ["concat", ["ui button create-button ", ["get", "addLeftNodeDisabled", ["loc", [null, [25, 49], [25, 68]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-list-form.add-listform-text"], [], ["loc", [null, [25, 79], [25, 133]]]]]]], ["element", "action", ["addLeftListForm"], [], ["loc", [null, [25, 135], [25, 163]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "editLeftNodeDisabled", ["loc", [null, [28, 40], [28, 60]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-list-form.edit-text"], [], ["loc", [null, [28, 71], [28, 117]]]]]]], ["element", "action", ["editLeftNode"], ["on", "click"], ["loc", [null, [28, 119], [28, 156]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "listLeftDisabled", ["loc", [null, [31, 40], [31, 56]]]]]]], ["element", "action", ["listLeft"], ["on", "click"], ["loc", [null, [31, 60], [31, 93]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "addRightNodeDisabled", ["loc", [null, [39, 40], [39, 60]]]]]]], ["element", "action", ["moveRightHighlighted"], ["on", "click"], ["loc", [null, [39, 64], [39, 109]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "editRightNodeDisabled", ["loc", [null, [42, 42], [42, 63]]]]]]], ["element", "action", ["editRightNode"], ["on", "click"], ["loc", [null, [42, 67], [42, 105]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "removeRightNodeDisabled", ["loc", [null, [45, 40], [45, 63]]]]]]], ["element", "action", ["removeRightNode"], ["on", "click"], ["loc", [null, [45, 67], [45, 107]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "addFolderNodeDisabled", ["loc", [null, [48, 40], [48, 61]]]]]]], ["element", "action", ["addFolderNode"], ["on", "click"], ["loc", [null, [48, 65], [48, 103]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "upRightNodeDisabled", ["loc", [null, [51, 40], [51, 59]]]]]]], ["element", "action", ["upRightNode"], ["on", "click"], ["loc", [null, [51, 63], [51, 99]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "downRightNodeDisabled", ["loc", [null, [54, 40], [54, 61]]]]]]], ["element", "action", ["downRightNode"], ["on", "click"], ["loc", [null, [54, 65], [54, 103]]]], ["inline", "flexberry-tree", [], ["class", ["subexpr", "@mut", [["get", "jsonLeftTreeClass", ["loc", [null, [63, 14], [63, 31]]]]], [], []], "exclusive", ["subexpr", "@mut", [["get", "jsonTreeExclusive", ["loc", [null, [64, 18], [64, 35]]]]], [], []], "collapsible", ["subexpr", "@mut", [["get", "jsonLeftTreeCollapsible", ["loc", [null, [65, 20], [65, 43]]]]], [], []], "animateChildren", ["subexpr", "@mut", [["get", "jsonTreeAnimateChildren", ["loc", [null, [66, 24], [66, 47]]]]], [], []], "duration", ["subexpr", "@mut", [["get", "jsonTreeDuration", ["loc", [null, [67, 17], [67, 33]]]]], [], []], "nodes", ["subexpr", "get-with-dynamic-actions", [["get", "this", ["loc", [null, [68, 40], [68, 44]]]], "jsonLeftTreeNodes"], ["hierarchyPropertyName", "nodes", "pathKeyword", "nodePath", "dynamicActions", ["subexpr", "array", [["subexpr", "hash", [], ["on", "headerClick", "actionName", "onTreenodeHeaderClick", "actionArguments", ["subexpr", "array", ["{% nodePath %}"], [], ["loc", [null, [75, 30], [75, 54]]]]], ["loc", [null, [72, 12], [76, 13]]]]], [], ["loc", [null, [71, 25], [77, 11]]]]], ["loc", [null, [68, 14], [78, 9]]]]], ["loc", [null, [62, 8], [79, 8]]]], ["attribute", "class", ["concat", ["ui button icon move ", ["get", "moveRightDisabled", ["loc", [null, [82, 43], [82, 60]]]]]]], ["element", "action", ["moveRightHighlighted"], ["on", "click"], ["loc", [null, [82, 64], [82, 109]]]], ["inline", "flexberry-tree", [], ["class", ["subexpr", "@mut", [["get", "jsonRightTreeClass", ["loc", [null, [88, 14], [88, 32]]]]], [], []], "exclusive", ["subexpr", "@mut", [["get", "jsonTreeExclusive", ["loc", [null, [89, 18], [89, 35]]]]], [], []], "collapsible", ["subexpr", "@mut", [["get", "jsonRightTreeCollapsible", ["loc", [null, [90, 20], [90, 44]]]]], [], []], "animateChildren", ["subexpr", "@mut", [["get", "jsonTreeAnimateChildren", ["loc", [null, [91, 24], [91, 47]]]]], [], []], "duration", ["subexpr", "@mut", [["get", "jsonTreeDuration", ["loc", [null, [92, 17], [92, 33]]]]], [], []], "nodes", ["subexpr", "get-with-dynamic-actions", [["get", "this", ["loc", [null, [93, 40], [93, 44]]]], "jsonRightTreeNodes"], ["hierarchyPropertyName", "nodes", "pathKeyword", "nodePath", "dynamicActions", ["subexpr", "array", [["subexpr", "hash", [], ["on", "headerClick", "actionName", "onTreenodeHeaderClick", "actionArguments", ["subexpr", "array", ["{% nodePath %}"], [], ["loc", [null, [100, 30], [100, 54]]]]], ["loc", [null, [97, 12], [101, 13]]]]], [], ["loc", [null, [96, 25], [102, 11]]]]], ["loc", [null, [93, 14], [103, 9]]]]], ["loc", [null, [87, 8], [104, 8]]]]],
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-appstruct-form.caption"], [], ["loc", [null, [2, 4], [2, 43]]]], ["attribute", "class", ["concat", ["ui ", ["get", "saveButtonClass", ["loc", [null, [5, 24], [5, 39]]]], " button save-button"]]], ["element", "action", ["saveTree"], [], ["loc", [null, [5, 62], [5, 83]]]], ["inline", "t", ["forms.fd-appstruct-form.button-save"], [], ["loc", [null, [5, 84], [5, 127]]]], ["attribute", "class", ["concat", ["ui ", ["get", "processButtonClass", ["loc", [null, [6, 24], [6, 42]]]], " button"]]], ["element", "action", ["openProcessEditorForm"], [], ["loc", [null, [6, 53], [6, 87]]]], ["inline", "t", ["forms.fd-appstruct-form.button-precess-editor"], [], ["loc", [null, [6, 116], [6, 169]]]], ["attribute", "class", ["concat", ["ui ", ["get", "generationButtonClass", ["loc", [null, [7, 24], [7, 45]]]], " button"]]], ["element", "action", ["openGenerationForm"], [], ["loc", [null, [7, 56], [7, 87]]]], ["inline", "t", ["forms.fd-appstruct-form.button-generation"], [], ["loc", [null, [7, 117], [7, 166]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "removeLeftNodeDisabled", ["loc", [null, [16, 40], [16, 62]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.remove-text"], [], ["loc", [null, [16, 73], [16, 116]]]]]]], ["element", "action", ["removeLeftNode"], ["on", "click"], ["loc", [null, [16, 118], [16, 157]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.add-class-text"], [], ["loc", [null, [19, 55], [19, 101]]]]]]], ["element", "action", ["addLeftClass"], [], ["loc", [null, [19, 103], [19, 128]]]], ["attribute", "class", ["concat", ["ui button create-button ", ["get", "addLeftNodeDisabled", ["loc", [null, [22, 49], [22, 68]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.add-editform-text"], [], ["loc", [null, [22, 79], [22, 128]]]]]]], ["element", "action", ["addLeftEditForm"], [], ["loc", [null, [22, 130], [22, 158]]]], ["attribute", "class", ["concat", ["ui button create-button ", ["get", "addLeftNodeDisabled", ["loc", [null, [25, 49], [25, 68]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.add-listform-text"], [], ["loc", [null, [25, 79], [25, 128]]]]]]], ["element", "action", ["addLeftListForm"], [], ["loc", [null, [25, 130], [25, 158]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "editLeftNodeDisabled", ["loc", [null, [28, 40], [28, 60]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.edit-text"], [], ["loc", [null, [28, 71], [28, 112]]]]]]], ["element", "action", ["editLeftNode"], ["on", "click"], ["loc", [null, [28, 114], [28, 151]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "listLeftDisabled", ["loc", [null, [31, 40], [31, 56]]]]]]], ["element", "action", ["listLeft"], ["on", "click"], ["loc", [null, [31, 60], [31, 93]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "addRightNodeDisabled", ["loc", [null, [39, 40], [39, 60]]]]]]], ["element", "action", ["moveRightHighlighted"], ["on", "click"], ["loc", [null, [39, 64], [39, 109]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "editRightNodeDisabled", ["loc", [null, [42, 42], [42, 63]]]]]]], ["element", "action", ["editRightNode"], ["on", "click"], ["loc", [null, [42, 67], [42, 105]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "removeRightNodeDisabled", ["loc", [null, [45, 40], [45, 63]]]]]]], ["element", "action", ["removeRightNode"], ["on", "click"], ["loc", [null, [45, 67], [45, 107]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "addFolderNodeDisabled", ["loc", [null, [48, 40], [48, 61]]]]]]], ["element", "action", ["addFolderNode"], ["on", "click"], ["loc", [null, [48, 65], [48, 103]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "upRightNodeDisabled", ["loc", [null, [51, 40], [51, 59]]]]]]], ["element", "action", ["upRightNode"], ["on", "click"], ["loc", [null, [51, 63], [51, 99]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "downRightNodeDisabled", ["loc", [null, [54, 40], [54, 61]]]]]]], ["element", "action", ["downRightNode"], ["on", "click"], ["loc", [null, [54, 65], [54, 103]]]], ["inline", "flexberry-tree", [], ["class", ["subexpr", "@mut", [["get", "jsonLeftTreeClass", ["loc", [null, [63, 14], [63, 31]]]]], [], []], "exclusive", ["subexpr", "@mut", [["get", "jsonTreeExclusive", ["loc", [null, [64, 18], [64, 35]]]]], [], []], "collapsible", ["subexpr", "@mut", [["get", "jsonLeftTreeCollapsible", ["loc", [null, [65, 20], [65, 43]]]]], [], []], "animateChildren", ["subexpr", "@mut", [["get", "jsonTreeAnimateChildren", ["loc", [null, [66, 24], [66, 47]]]]], [], []], "duration", ["subexpr", "@mut", [["get", "jsonTreeDuration", ["loc", [null, [67, 17], [67, 33]]]]], [], []], "nodes", ["subexpr", "get-with-dynamic-actions", [["get", "this", ["loc", [null, [68, 40], [68, 44]]]], "jsonLeftTreeNodes"], ["hierarchyPropertyName", "nodes", "pathKeyword", "nodePath", "dynamicActions", ["subexpr", "array", [["subexpr", "hash", [], ["on", "headerClick", "actionName", "onTreenodeHeaderClick", "actionArguments", ["subexpr", "array", ["{% nodePath %}"], [], ["loc", [null, [75, 30], [75, 54]]]]], ["loc", [null, [72, 12], [76, 13]]]]], [], ["loc", [null, [71, 25], [77, 11]]]]], ["loc", [null, [68, 14], [78, 9]]]]], ["loc", [null, [62, 8], [79, 8]]]], ["attribute", "class", ["concat", ["ui button icon move ", ["get", "moveRightDisabled", ["loc", [null, [82, 43], [82, 60]]]]]]], ["element", "action", ["moveRightHighlighted"], ["on", "click"], ["loc", [null, [82, 64], [82, 109]]]], ["inline", "flexberry-tree", [], ["class", ["subexpr", "@mut", [["get", "jsonRightTreeClass", ["loc", [null, [88, 14], [88, 32]]]]], [], []], "exclusive", ["subexpr", "@mut", [["get", "jsonTreeExclusive", ["loc", [null, [89, 18], [89, 35]]]]], [], []], "collapsible", ["subexpr", "@mut", [["get", "jsonRightTreeCollapsible", ["loc", [null, [90, 20], [90, 44]]]]], [], []], "animateChildren", ["subexpr", "@mut", [["get", "jsonTreeAnimateChildren", ["loc", [null, [91, 24], [91, 47]]]]], [], []], "duration", ["subexpr", "@mut", [["get", "jsonTreeDuration", ["loc", [null, [92, 17], [92, 33]]]]], [], []], "nodes", ["subexpr", "get-with-dynamic-actions", [["get", "this", ["loc", [null, [93, 40], [93, 44]]]], "jsonRightTreeNodes"], ["hierarchyPropertyName", "nodes", "pathKeyword", "nodePath", "dynamicActions", ["subexpr", "array", [["subexpr", "hash", [], ["on", "headerClick", "actionName", "onTreenodeHeaderClick", "actionArguments", ["subexpr", "array", ["{% nodePath %}"], [], ["loc", [null, [100, 30], [100, 54]]]]], ["loc", [null, [97, 12], [101, 13]]]]], [], ["loc", [null, [96, 25], [102, 11]]]]], ["loc", [null, [93, 14], [103, 9]]]]], ["loc", [null, [87, 8], [104, 8]]]]],
       locals: [],
       templates: []
     };
@@ -36078,7 +36077,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+c564fb2b"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+eeb34d98"});
 }
 
 /* jshint ignore:end */
