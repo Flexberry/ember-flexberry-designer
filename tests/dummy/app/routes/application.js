@@ -24,18 +24,18 @@ export default Ember.Route.extend(ModalApplicationRouteMixin, {
     if (context.singleStageMode) {
       let store = this.get('store');
       let modelName = 'fd-dev-stage';
-      let projectionName = 'Generator';
 
       let predicate = new SimplePredicate('id', FilterOperator.Eq, context.context.stage);
 
       let builder = new Builder(store)
       .from(modelName)
-      .selectByProjection(projectionName)
+      .select('id,name,configuration.id')
       .where(predicate);
 
       store.query(modelName, builder.build()).then((result) => {
         if (result && result.get('length') !== undefined && result.get('length') === 1) {
           let stage = result.objectAt(0);
+          context.setCurrentConfiguration(stage.get('configuration'));
           context.setCurrentStage(stage);
           this.transitionTo('fd-appstruct-form');
         }
