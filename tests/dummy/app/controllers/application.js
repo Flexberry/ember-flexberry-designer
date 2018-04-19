@@ -32,7 +32,7 @@ export default Ember.Controller.extend({
       });
     }
 
-    if (context.configuration) {
+    if (context.configuration && !singleStageMode) {
       sitemap.nodes.push({
         link: 'fd-stage-list-form',
         caption: i18n.t('forms.application.sitemap.root.fd-stage-list-form.caption'),
