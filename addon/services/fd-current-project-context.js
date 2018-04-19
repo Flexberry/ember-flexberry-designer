@@ -21,10 +21,15 @@ const {
   @extends <a href="http://emberjs.com/api/classes/Ember.Service.html">Ember.Service</a>
 */
 export default Ember.Service.extend({
+
   /**
-    Stage Id for single stage designer mode.
-   */
-  singleModeStageId: undefined,
+    Flag indicates single project mode.
+
+    @property singleStageMode
+    @type Boolean
+    @default false
+  */
+  singleStageMode: false,
 
   /**
     Stores current configuration, stage, class.
@@ -49,10 +54,6 @@ export default Ember.Service.extend({
     @param {DS.Model} configuration New current configuration.
   */
   setCurrentConfiguration(configuration) {
-    if (this.get('singleModeStageId')) {
-      Ember.assert('Single project mode enabled: configuration change does not allowed.');
-    }
-
     this.set('context.configuration', configuration.get('id'));
     this.set('context.configurationModel', configuration);
     this.set('context.stage', undefined);
@@ -100,10 +101,6 @@ export default Ember.Service.extend({
     @param {DS.Model} stage New current stage.
   */
   setCurrentStage(stage) {
-    if (this.get('singleModeStageId')) {
-      Ember.assert('Single project mode enabled: configuration change does not allowed.');
-    }
-
     Ember.assert('Stage must belong to the current configuration.', this.get('context.configuration') === stage.get('configuration.id'));
 
     this.set('context.stage', stage.get('id'));
@@ -166,12 +163,6 @@ export default Ember.Service.extend({
     @return {String} Id of current stage.
   */
   getCurrentStage() {
-    let singleModeStageId = this.get('singleModeStageId');
-
-    if (singleModeStageId) {
-      return singleModeStageId;
-    }
-
     let stage = this.get('context.stage');
 
     Ember.assert('Current stage is not set.', stage);

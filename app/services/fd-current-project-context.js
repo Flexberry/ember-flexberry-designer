@@ -4,7 +4,10 @@ import config from '../config/environment';
 
 let singleModeStageId = Ember.get(config, 'APP.fdCurrentProjectContext.singleModeStageId');
 FdCurrentProjectContext.reopen({
-  singleModeStageId: singleModeStageId
+  context: {
+    stage: singleModeStageId
+  },
+  singleStageMode: true
 });
 
 export default FdCurrentProjectContext;

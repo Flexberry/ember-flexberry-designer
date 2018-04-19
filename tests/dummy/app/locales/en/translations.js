@@ -97,6 +97,10 @@ Ember.$.extend(true, translations, {
             caption: 'fd-stage-list-form',
             title: 'fd-stage-list-form',
           },
+          'additional': {
+            caption: 'Additional',
+            title: '',
+          },
           'fd-system-list-form': {
             caption: 'fd-system-list-form',
             title: 'fd-system-list-form',

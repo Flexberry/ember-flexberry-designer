@@ -99,6 +99,10 @@ Ember.$.extend(true, translations, {
             title: '',
 
           },
+          'additional': {
+            caption: 'Дополнительно',
+            title: '',
+          },
           'fd-system-list-form': {
             caption: 'Подсистемы',
             title: '',
