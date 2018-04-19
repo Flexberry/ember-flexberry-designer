@@ -405,19 +405,26 @@ define('dummy/controllers/application', ['exports', 'ember'], function (exports,
 
     sitemap: _ember['default'].computed('i18n.locale', 'currentContext.context.configuration', 'currentContext.context.stage', 'currentContext.context.class', function () {
       var i18n = this.get('i18n');
+      var context = this.get('currentContext.context');
+      var singleStageMode = this.get('currentContext.singleStageMode');
+
       var sitemap = {
-        nodes: [{
+        nodes: []
+      };
+
+      if (!singleStageMode) {
+        sitemap.nodes.push({
           link: 'index',
           caption: i18n.t('forms.application.sitemap.index.caption'),
           title: i18n.t('forms.application.sitemap.index.title')
-        }, {
+        });
+        sitemap.nodes.push({
           link: 'fd-configuration-list-form',
           caption: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.caption'),
           title: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.title')
-        }]
-      };
+        });
+      }
 
-      var context = this.get('currentContext.context');
       if (context.configuration) {
         sitemap.nodes.push({
           link: 'fd-stage-list-form',
@@ -433,49 +440,39 @@ define('dummy/controllers/application', ['exports', 'ember'], function (exports,
           title: i18n.t('forms.application.sitemap.root.fd-appstruct-form.title')
         });
         sitemap.nodes.push({
-          link: 'fd-visual-listform',
-          caption: i18n.t('forms.application.sitemap.root.fd-visual-listform.caption'),
-          title: i18n.t('forms.application.sitemap.root.fd-visual-listform.title')
-        });
-        sitemap.nodes.push({
-          link: 'fd-visual-edit-form',
-          caption: i18n.t('forms.application.sitemap.fd-visual-edit-form.caption'),
-          title: i18n.t('forms.application.sitemap.fd-visual-edit-form.title')
-        });
-        sitemap.nodes.push({
-          link: 'fd-generation-list-form',
-          caption: i18n.t('forms.application.sitemap.root.fd-generation-list-form.caption'),
-          title: i18n.t('forms.application.sitemap.root.fd-generation-list-form.title')
-        });
-        sitemap.nodes.push({
           link: 'fd-generation-process-form.new',
           caption: i18n.t('forms.application.sitemap.root.fd-generation-process-form.caption'),
           title: i18n.t('forms.application.sitemap.root.fd-generation-process-form.title')
         });
         sitemap.nodes.push({
-          link: 'fd-system-list-form',
-          caption: i18n.t('forms.application.sitemap.root.fd-system-list-form.caption'),
-          title: i18n.t('forms.application.sitemap.root.fd-system-list-form.title')
-        });
-        sitemap.nodes.push({
-          link: 'fd-diagram-list-form',
-          caption: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.caption'),
-          title: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.title')
-        });
-        sitemap.nodes.push({
-          link: 'fd-class-list-form',
-          caption: i18n.t('forms.application.sitemap.root.fd-class-list-form.caption'),
-          title: i18n.t('forms.application.sitemap.root.fd-class-list-form.title')
-        });
-        sitemap.nodes.push({
-          link: 'fd-association-list-form',
-          caption: i18n.t('forms.application.sitemap.root.fd-association-list-form.caption'),
-          title: i18n.t('forms.application.sitemap.root.fd-association-list-form.title')
-        });
-        sitemap.nodes.push({
-          link: 'fd-inheritance-list-form',
-          caption: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.caption'),
-          title: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.title')
+          link: null,
+          caption: i18n.t('forms.application.sitemap.root.additional.caption'),
+          title: i18n.t('forms.application.sitemap.root.additional.title'),
+          children: [{
+            link: 'fd-generation-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-generation-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-generation-list-form.title')
+          }, {
+            link: 'fd-system-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-system-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-system-list-form.title')
+          }, {
+            link: 'fd-diagram-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.title')
+          }, {
+            link: 'fd-class-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-class-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-class-list-form.title')
+          }, {
+            link: 'fd-association-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-association-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-association-list-form.title')
+          }, {
+            link: 'fd-inheritance-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.title')
+          }]
         });
       }
 
@@ -10638,6 +10635,10 @@ define('dummy/locales/en/translations', ['exports', 'ember', 'ember-flexberry-de
               caption: 'fd-stage-list-form',
               title: 'fd-stage-list-form'
             },
+            'additional': {
+              caption: 'Additional',
+              title: ''
+            },
             'fd-system-list-form': {
               caption: 'fd-system-list-form',
               title: 'fd-system-list-form'
@@ -10789,6 +10790,10 @@ define('dummy/locales/ru/translations', ['exports', 'ember', 'ember-flexberry-de
               caption: 'Проекты',
               title: ''
 
+            },
+            'additional': {
+              caption: 'Дополнительно',
+              title: ''
             },
             'fd-system-list-form': {
               caption: 'Подсистемы',
@@ -11585,8 +11590,45 @@ define('dummy/router', ['exports', 'ember', 'dummy/config/environment'], functio
 
   exports['default'] = Router;
 });
-define('dummy/routes/application', ['exports', 'ember', 'ember-flexberry/mixins/modal-application-route'], function (exports, _ember, _emberFlexberryMixinsModalApplicationRoute) {
-  exports['default'] = _ember['default'].Route.extend(_emberFlexberryMixinsModalApplicationRoute['default']);
+define('dummy/routes/application', ['exports', 'ember', 'ember-flexberry/mixins/modal-application-route', 'ember-flexberry-data'], function (exports, _ember, _emberFlexberryMixinsModalApplicationRoute, _emberFlexberryData) {
+  var Builder = _emberFlexberryData.Query.Builder;
+  var FilterOperator = _emberFlexberryData.Query.FilterOperator;
+  var SimplePredicate = _emberFlexberryData.Query.SimplePredicate;
+  exports['default'] = _ember['default'].Route.extend(_emberFlexberryMixinsModalApplicationRoute['default'], {
+
+    /**
+      Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
+       @property currentContext
+      @type FdCurrentProjectContextService
+    */
+    currentProjectContext: _ember['default'].inject.service('fd-current-project-context'),
+
+    activate: function activate() {
+      var _this = this;
+
+      var context = this.get('currentProjectContext');
+
+      if (context.singleStageMode) {
+        var store = this.get('store');
+        var modelName = 'fd-dev-stage';
+
+        var predicate = new SimplePredicate('id', FilterOperator.Eq, context.context.stage);
+
+        var builder = new Builder(store).from(modelName).select('id,name,configuration.id').where(predicate);
+
+        store.query(modelName, builder.build()).then(function (result) {
+          if (result && result.get('length') !== undefined && result.get('length') === 1) {
+            var stage = result.objectAt(0);
+            context.setCurrentConfiguration(stage.get('configuration'));
+            context.setCurrentStage(stage);
+            _this.transitionTo('fd-appstruct-form');
+          }
+        });
+      } else {
+        this.transitionTo('fd-configuration-list-form');
+      }
+    }
+  });
 });
 define('dummy/routes/edit-form', ['exports', 'ember-flexberry/routes/edit-form'], function (exports, _emberFlexberryRoutesEditForm) {
   Object.defineProperty(exports, 'default', {
@@ -12574,7 +12616,10 @@ define('dummy/services/fd-current-project-context', ['exports', 'ember', 'ember-
 
   var singleModeStageId = _ember['default'].get(_dummyConfigEnvironment['default'], 'APP.fdCurrentProjectContext.singleModeStageId');
   _emberFlexberryDesignerServicesFdCurrentProjectContext['default'].reopen({
-    singleModeStageId: singleModeStageId
+    context: {
+      stage: singleModeStageId
+    },
+    singleStageMode: true
   });
 
   exports['default'] = _emberFlexberryDesignerServicesFdCurrentProjectContext['default'];
@@ -36077,7 +36122,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+eeb34d98"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+aa7e1714"});
 }
 
 /* jshint ignore:end */
