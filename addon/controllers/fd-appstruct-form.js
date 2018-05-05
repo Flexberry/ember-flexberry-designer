@@ -409,7 +409,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     addLeftEditForm() {
       let classId = this._getTopId(this.lastClicked.left.path);
       if (classId) {
-        let url = '/fd-visual-edit-form?classId=' + classId;
+        let url = '/fd-editform-constructor/new?classId=' + classId;
         this.transitionToRoute(url);
       }
 
@@ -443,7 +443,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
           });
           break;
         case '«editform»':
-          url = '/fd-visual-edit-form?formId=' + nodeId;
+          url = '/fd-editform-constructor/' + nodeId;
           this.transitionToRoute(url);
           break;
         case '«implementation»':
