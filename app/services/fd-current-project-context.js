@@ -7,7 +7,7 @@ FdCurrentProjectContext.reopen({
   context: {
     stage: singleModeStageId
   },
-  singleStageMode: true
+  singleStageMode: singleModeStageId !== undefined
 });
 
 export default FdCurrentProjectContext;
