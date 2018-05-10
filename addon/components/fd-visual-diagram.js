@@ -112,6 +112,7 @@ export default Ember.Component.extend({
       let cadClass = cadClasses[cadId];
       let attributes = cadClass.AttributesTxt.Text.trim().split('\n');
       let methods = cadClass.MethodsTxt.Text.trim().split('\n');
+      let display = cadClass.Folded ? 'none' : undefined;
       let jCadClass = new joint.shapes.uml.Interface({
         position: { x: cadClass.Location.X, y: cadClass.Location.Y },
         size: { width: cadClass.Size.Width, height: cadClass.Size.Height },
@@ -137,16 +138,19 @@ export default Ember.Component.extend({
           '.uml-class-attrs-rect, .uml-class-methods-rect': {
             fill: '#fff',
             stroke: '#000',
+            display: display,
             'stroke-width': 1.0
           },
           '.uml-class-attrs-text': {
             ref: '.uml-class-attrs-rect',
+            display: display,
             'font-size': '8pt',
             'ref-y': 0.5,
             'y-alignment': 'middle'
           },
           '.uml-class-methods-text': {
             ref: '.uml-class-methods-rect',
+            display: display,
             'font-size': '8pt',
             'ref-y': 0.5,
             'y-alignment': 'middle'
