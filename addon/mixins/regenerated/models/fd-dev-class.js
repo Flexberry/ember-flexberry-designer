@@ -132,7 +132,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.containersCompute && typeof this.containersCompute === 'function') ? this.containersCompute() : null;
     this.set('containers', result);
   },
-  containersStr: DS.attr('containers-tree'),
+  containersStr: DS.attr('string'),
   /**
     Non-stored property.
 
@@ -428,8 +428,7 @@ export let Model = Ember.Mixin.create({
       ```
   */
   _storeInstancesInTypeXMLCompute: function() {
-    let result = (this.storeInstancesInTypeXMLCompute && typeof this.storeInstancesInTypeXMLCompute === 'function') ?
-      this.storeInstancesInTypeXMLCompute() : null;
+    let result = (this.storeInstancesInTypeXMLCompute && typeof this.storeInstancesInTypeXMLCompute === 'function') ? this.storeInstancesInTypeXMLCompute() : null;
     this.set('storeInstancesInTypeXML', result);
   },
   trim: DS.attr('boolean'),
@@ -471,12 +470,14 @@ export let Model = Ember.Mixin.create({
   getValidations: function () {
     let parentValidations = this._super();
     let thisValidations = {
+      /* merged manually end */
       caption: {
         presence: {
           // message: this.get('i18n').t('models.fd-dev-class.validations.caption')
           message: 'Caption is rquired'
         }
       }
+      /* merged manually end */
     };
     return Ember.$.extend(true, {}, parentValidations, thisValidations);
   },
@@ -1144,10 +1145,17 @@ export let defineProjections = function (modelClass) {
     })
   });
   modelClass.defineProjection('FdEditClassForm', 'fd-dev-class', {
-    caption: Projection.attr(''),
-    name: Projection.attr(''),
+    caption: Projection.attr('Заголовок'),
+    name: Projection.attr('Имя'),
     publishName: Projection.attr(''),
+    stored: Projection.attr(''),
+    storage: Projection.attr(''),
+    packet: Projection.attr(''),
+    namespacePostfix: Projection.attr(''),
+    /* temporarily disabled */
+    //bSClass: Projection.attr(''),
     attributes: Projection.hasMany('fd-dev-attribute', '', {
+      /* merged manually start */
       name: Projection.attr(''),
       caption: Projection.attr(''),
       type: Projection.attr(''),
@@ -1155,21 +1163,24 @@ export let defineProjections = function (modelClass) {
       class: Projection.belongsTo('fd-dev-class', '', {
 
       }, { hidden: true })
+      /* merged manually end */
     }),
     views: Projection.hasMany('fd-dev-view', '', {
+      /* merged manually start */
       name: Projection.attr(''),
       description: Projection.attr(''),
       class: Projection.belongsTo('fd-dev-class', '', {
 
       }, { hidden: true })
+      /* merged manually end */
     }),
     classStorageTypes: Projection.hasMany('fd-class-storage-type', '', {
-      connectionName: Projection.attr(''),
-      connectionString: Projection.attr(''),
+      connectionName: Projection.attr('Имя соединения'),
+      connectionString: Projection.attr('Строка соединения'),
       class: Projection.belongsTo('fd-dev-class', '', {
 
       }, { hidden: true }),
-      storageType: Projection.belongsTo('fd-storage-type', '', {
+      storageType: Projection.belongsTo('fd-storage-type', 'Тип хранилища', {
 
       }, { displayMemberPath: 'shortName' })
     })
@@ -1342,7 +1353,7 @@ export let defineProjections = function (modelClass) {
       connectionString: Projection.attr(''),
       storageType: Projection.belongsTo('fd-storage-type', '', {
 
-      })
+      }, { displayMemberPath: 'shortName' })
     })
   });
   modelClass.defineProjection('GetClassByGuid', 'fd-dev-class', {
@@ -1483,6 +1494,7 @@ export let defineProjections = function (modelClass) {
     })
   });
 
+  /* merged manually start */
   modelClass.defineProjection('FormConstructor', 'fd-dev-class', {
     name: Projection.attr(''),
     caption: Projection.attr(''),
@@ -1522,4 +1534,5 @@ export let defineProjections = function (modelClass) {
       class: Projection.belongsTo('fd-dev-class', '', {}),
     }),
   });
+/* merged manually end */
 };

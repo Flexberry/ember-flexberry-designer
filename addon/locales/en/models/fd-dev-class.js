@@ -172,8 +172,8 @@ export default {
           __caption__: 'trim'
         }
       },
-      viwes: {
-        __caption__: 'viwes',
+      views: {
+        __caption__: 'views',
         name: {
           __caption__: 'name'
         },
@@ -275,8 +275,8 @@ export default {
       stereotype: {
         __caption__: 'stereotype'
       },
-      viwes: {
-        __caption__: 'viwes',
+      views: {
+        __caption__: 'views',
         name: {
           __caption__: 'name'
         }
@@ -649,8 +649,8 @@ export default {
         }
         }
       },
-      viwes: {
-        __caption__: 'viwes',
+      views: {
+        __caption__: 'views',
         name: {
           __caption__: 'name'
         },
@@ -1339,8 +1339,8 @@ export default {
           }
         }
       },
-      viwes: {
-        __caption__: 'viwes',
+      views: {
+        __caption__: 'views',
         name: {
           __caption__: 'name'
         },
@@ -1643,6 +1643,21 @@ export default {
       publishName: {
         __caption__: 'Alias'
       },
+      stored: {
+        __caption__: 'Stored'
+      },
+      storage: {
+        __caption__: 'Storage'
+      },
+      packet: {
+        __caption__: 'Packet'
+      },
+      namespacePostfix: {
+        __caption__: 'Namespace postfix'
+      },
+      //bSClass: {
+      //  __caption__: 'BS class'
+      //},
       attributes: {
         __caption__: 'Attributes',
         name: {
@@ -2113,8 +2128,8 @@ export default {
           }
         }
       },
-      viwes: {
-        __caption__: 'viwes',
+      views: {
+        __caption__: 'views',
         name: {
           __caption__: 'name'
         },
@@ -2126,6 +2141,18 @@ export default {
         },
         class: {
           __caption__: 'class'
+        }
+      },
+      classStorageTypes: {
+        __caption__: 'Storage types',
+        connectionName: {
+          __caption__: 'Connection name'
+        },
+        connectionString: {
+          __caption__: 'Connection string'
+        },
+        storageType: {
+          __caption__: 'Storage type'
         }
       }
     },
@@ -2242,8 +2269,8 @@ export default {
       nameStr: {
         __caption__: 'nameStr'
       },
-      viwes: {
-        __caption__: 'viwes',
+      views: {
+        __caption__: 'views',
         name: {
           __caption__: 'name'
         },
@@ -2398,8 +2425,8 @@ export default {
       description: {
         __caption__: 'description'
       },
-      viwes: {
-        __caption__: 'viwes',
+      views: {
+        __caption__: 'views',
         name: {
           __caption__: 'name'
         }
