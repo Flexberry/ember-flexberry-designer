@@ -1655,9 +1655,9 @@ export default {
       namespacePostfix: {
         __caption__: 'Постфикс пространства имен'
       },
-      //bSClass: {
-      //  __caption__: 'Класс БС'
-      //},
+      bSClass: {
+        __caption__: 'Класс БС'
+      },
       attributes: {
         __caption__: 'Атрибуты',
         name: {

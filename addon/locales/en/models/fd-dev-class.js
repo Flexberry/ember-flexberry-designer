@@ -1655,9 +1655,9 @@ export default {
       namespacePostfix: {
         __caption__: 'Namespace postfix'
       },
-      //bSClass: {
-      //  __caption__: 'BS class'
-      //},
+      bSClass: {
+        __caption__: 'BS class'
+      },
       attributes: {
         __caption__: 'Attributes',
         name: {

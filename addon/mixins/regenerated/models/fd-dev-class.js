@@ -132,7 +132,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.containersCompute && typeof this.containersCompute === 'function') ? this.containersCompute() : null;
     this.set('containers', result);
   },
-  containersStr: DS.attr('string'),
+  containersStr: DS.attr('containers-tree'),
   /**
     Non-stored property.
 
@@ -428,7 +428,8 @@ export let Model = Ember.Mixin.create({
       ```
   */
   _storeInstancesInTypeXMLCompute: function() {
-    let result = (this.storeInstancesInTypeXMLCompute && typeof this.storeInstancesInTypeXMLCompute === 'function') ? this.storeInstancesInTypeXMLCompute() : null;
+    let result = (this.storeInstancesInTypeXMLCompute && typeof this.storeInstancesInTypeXMLCompute === 'function') ?
+      this.storeInstancesInTypeXMLCompute() : null;
     this.set('storeInstancesInTypeXML', result);
   },
   trim: DS.attr('boolean'),
@@ -1152,8 +1153,9 @@ export let defineProjections = function (modelClass) {
     storage: Projection.attr(''),
     packet: Projection.attr(''),
     namespacePostfix: Projection.attr(''),
-    /* temporarily disabled */
-    //bSClass: Projection.attr(''),
+    /* temporarily disabled
+    bSClass: Projection.attr(''),
+     */
     attributes: Projection.hasMany('fd-dev-attribute', '', {
       /* merged manually start */
       name: Projection.attr(''),
@@ -1534,5 +1536,5 @@ export let defineProjections = function (modelClass) {
       class: Projection.belongsTo('fd-dev-class', '', {}),
     }),
   });
-/* merged manually end */
+  /* merged manually end */
 };
