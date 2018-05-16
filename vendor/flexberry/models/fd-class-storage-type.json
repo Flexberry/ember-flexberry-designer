@@ -1,0 +1,128 @@
+﻿{
+  "name": "FdClassStorageType",
+  "modelName": "fd-class-storage-type",
+  "className": "ClassStorageType",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [
+    {
+      "name": "connectionName",
+      "type": "string",
+      "flexberryType": "StringMax",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "connectionString",
+      "type": "string",
+      "flexberryType": "StringMax",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "storageType",
+      "relatedTo": "fd-storage-type",
+      "inverse": null
+    },
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "class",
+      "relatedTo": "fd-dev-class",
+      "inverse": "classStorageTypes"
+    }
+  ],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "EditView",
+      "modelName": "fd-class-storage-type",
+      "attrs": [
+        {
+          "name": "connectionName",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "connectionString",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": "ShortName",
+          "lookupValueField": "shortName",
+          "relationName": "FdStorageType",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [],
+          "index": 2,
+          "caption": "",
+          "name": "storageType",
+          "relatedTo": "fd-storage-type",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "FdEditClassForm",
+      "modelName": "fd-class-storage-type",
+      "attrs": [
+        {
+          "name": "connectionName",
+          "caption": "Имя соединения",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "connectionString",
+          "caption": "Строка соединения",
+          "hidden": false,
+          "index": 3
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "ClassStorageTypes",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [],
+          "index": 1,
+          "caption": "",
+          "name": "class",
+          "relatedTo": "fd-dev-class",
+          "inverse": null
+        },
+        {
+          "lookupValue": "ShortName",
+          "lookupValueField": "shortName",
+          "relationName": "FdStorageType",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [],
+          "index": 2,
+          "caption": "Тип хранилища",
+          "name": "storageType",
+          "relatedTo": "fd-storage-type",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true,
+  "external": false
+}

@@ -1643,6 +1643,21 @@ export default {
       publishName: {
         __caption__: 'Алиас'
       },
+      stored: {
+        __caption__: 'Хранимый'
+      },
+      storage: {
+        __caption__: 'Хранилище'
+      },
+      packet: {
+        __caption__: 'Пакет'
+      },
+      namespacePostfix: {
+        __caption__: 'Постфикс пространства имен'
+      },
+      bSClass: {
+        __caption__: 'Класс БС'
+      },
       attributes: {
         __caption__: 'Атрибуты',
         name: {
@@ -2126,6 +2141,18 @@ export default {
         },
         class: {
           __caption__: ''
+        }
+      },
+      classStorageTypes: {
+        __caption__: 'Типы хранилищ',
+        connectionName: {
+          __caption__: 'Имя соединения'
+        },
+        connectionString: {
+          __caption__: 'Строка соединения'
+        },
+        storageType: {
+          __caption__: 'Тип хранилища'
         }
       }
     },

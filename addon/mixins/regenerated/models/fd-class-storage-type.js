@@ -25,7 +25,7 @@ export let defineProjections = function (modelClass) {
     connectionString: Projection.attr(''),
     storageType: Projection.belongsTo('fd-storage-type', '', {
 
-    })
+    }, { displayMemberPath: 'shortName' })
   });
   modelClass.defineProjection('FdEditClassForm', 'fd-class-storage-type', {
     connectionName: Projection.attr('Имя соединения'),

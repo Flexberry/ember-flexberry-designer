@@ -37,92 +37,152 @@
   </div>
 
   <div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=readonly
+    required=true
+    value=model.caption
+    class=(if model.errors.caption 'error' '')
+    label=(t 'forms.fd-class-edit-form.caption-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.caption pointing="pointing"}}
+</div>
+
+<div class="field">
+  <label>{{t 'forms.fd-class-edit-form.attributes-caption'}}</label>
+  {{
+    flexberry-groupedit
+    componentName="attributesGroupEdit"
+    mainModelProjection=modelProjection
+    modelProjection=modelProjection.attributes.attributes
+    content=model.attributes
+    readonly=readonly
+    orderable=false
+    class=(if model.errors.attributes 'error' '')
+  }}
+  {{flexberry-validationmessage error=model.errors.attributes pointing="pointing"}}
+</div>
+
+{{#flexberry-toggler
+    caption=(t 'forms.fd-class-edit-form.toggler-caption')
+    expanded=true
+    hasResizableOLV=true
+}}
+  <div class="field">
     {{
       flexberry-field
       placeholder=(t 'components.flexberry-field.placeholder')
       readonly=readonly
       required=true
-      value=model.caption
-      class=(if model.errors.caption 'error' '')
-      label=(t 'forms.fd-class-edit-form.caption-caption')
+      value=model.name
+      class=(if model.errors.name 'error' '')
+      label=(t 'forms.fd-class-edit-form.name-caption')
     }}
-    {{flexberry-validationmessage error=model.errors.caption pointing="pointing"}}
+    {{flexberry-validationmessage error=model.errors.name pointing="pointing"}}
   </div>
 
   <div class="field">
-    <label>{{t 'forms.fd-class-edit-form.attributes-caption'}}</label>
     {{
-      flexberry-groupedit
-      componentName="attributesGroupEdit"
-      mainModelProjection=modelProjection
-      modelProjection=modelProjection.attributes.attributes
-      content=model.attributes
+      flexberry-field
+      placeholder=(t 'components.flexberry-field.placeholder')
       readonly=readonly
-      orderable=false
-      class=(if model.errors.attributes 'error' '')
+      required=true
+      value=model.publishName
+      class=(if model.errors.publishName 'error' '')
+      label=(t 'forms.fd-class-edit-form.publishName-caption')
     }}
-    {{flexberry-validationmessage error=model.errors.attributes pointing="pointing"}}
+    {{flexberry-validationmessage error=model.errors.publishName pointing="pointing"}}
   </div>
 
-  {{#flexberry-toggler
-    caption=(t 'forms.fd-class-edit-form.toggler-caption')
-    expanded=true
-    hasResizableOLV=true
-  }}
-    <div class="field">
-      {{
-        flexberry-field
-        placeholder=(t 'components.flexberry-field.placeholder')
-        readonly=readonly
-        required=true
-        value=model.name
-        class=(if model.errors.name 'error' '')
-        label=(t 'forms.fd-class-edit-form.name-caption')
-      }}
-      {{flexberry-validationmessage error=model.errors.name pointing="pointing"}}
-    </div>
+  <div class="field">
+    <label>{{t 'forms.fd-class-edit-form.stored-caption'}}</label>
+    {{
+      flexberry-checkbox
+      readonly=readonly
+      value=model.stored
+    }}
+    {{flexberry-validationmessage error=model.errors.stored pointing="pointing"}}
+  </div>
 
-    <div class="field">
-      {{
-        flexberry-field
-        placeholder=(t 'components.flexberry-field.placeholder')
-        readonly=readonly
-        required=true
-        value=model.publishName
-        class=(if model.errors.publishName 'error' '')
-        label=(t 'forms.fd-class-edit-form.publishName-caption')
-      }}
-      {{flexberry-validationmessage error=model.errors.publishName pointing="pointing"}}
-    </div>
+  <div class="field">
+   {{
+      flexberry-field
+      placeholder=(t 'components.flexberry-field.placeholder')
+      readonly=readonly
+      required=true
+      value=model.storage
+      class=(if model.errors.storage 'error' '')
+      label=(t 'forms.fd-class-edit-form.storage-caption')
+    }}
+    {{flexberry-validationmessage error=model.errors.storage pointing="pointing"}}
+  </div>
 
-    <div class="field">
-      <label>{{t 'forms.fd-class-edit-form.views-caption'}}</label>
-      {{
-        flexberry-groupedit
-        componentName="viewsGroupEdit"
-        mainModelProjection=modelProjection
-        modelProjection=modelProjection.attributes.views
-        content=model.views
-        readonly=true
-        orderable=false
-        class=(if model.errors.views 'error' '')
-      }}
-      {{flexberry-validationmessage error=model.errors.views pointing="pointing"}}
-    </div>
+  <div class="field">
+    {{
+      flexberry-field
+      placeholder=(t 'components.flexberry-field.placeholder')
+      readonly=readonly
+      required=true
+      value=model.packet
+      class=(if model.errors.packet 'error' '')
+      label=(t 'forms.fd-class-edit-form.packet-caption')
+    }}
+    {{flexberry-validationmessage error=model.errors.packet pointing="pointing"}}
+  </div>
 
-    <div class="field">
-      <label>{{t 'forms.fd-class-edit-form.classStorageTypes-caption'}}</label>
-      {{
-        flexberry-groupedit
-        componentName="classStorageTypesGroupEdit"
-        mainModelProjection=modelProjection
-        modelProjection=modelProjection.attributes.classStorageTypes
-        content=model.classStorageTypes
-        readonly=readonly
-        orderable=false
-        class=(if model.errors.classStorageTypes 'error' '')
-      }}
-      {{flexberry-validationmessage error=model.errors.classStorageTypes pointing="pointing"}}
-    </div>
-  {{/flexberry-toggler}}
+  <div class="field">
+    {{
+      flexberry-field
+      placeholder=(t 'components.flexberry-field.placeholder')
+      readonly=readonly
+      required=true
+      value=model.namespacePostfix
+      class=(if model.errors.namespacePostfix 'error' '')
+      label=(t 'forms.fd-class-edit-form.namespacePostfix-caption')
+    }}
+    {{flexberry-validationmessage error=model.errors.namespacePostfix pointing="pointing"}}
+  </div>
+
+  <div class="field">
+    <label>{{t 'forms.fd-class-edit-form.bSClass-caption'}}</label>
+    {{
+      flexberry-dropdown
+      items=(flexberry-enum 'new-platform-flexberry-web-designer-business-server-class')
+      value=model.bSClass
+      readonly=readonly
+    }}
+    {{flexberry-validationmessage error=model.errors.bSClass pointing="pointing"}}
+  </div>
+
+  <div class="field">
+    <label>{{t 'forms.fd-class-edit-form.views-caption'}}</label>
+    {{
+      flexberry-groupedit
+      componentName="viewsGroupEdit"
+      mainModelProjection=modelProjection
+      modelProjection=modelProjection.attributes.views
+      content=model.views
+      readonly=true
+      orderable=false
+      class=(if model.errors.views 'error' '')
+    }}
+    {{flexberry-validationmessage error=model.errors.views pointing="pointing"}}
+  </div>
+
+  <div class="field">
+    <label>{{t 'forms.fd-class-edit-form.classStorageTypes-caption'}}</label>
+    {{
+      flexberry-groupedit
+      componentName="classStorageTypesGroupEdit"
+      mainModelProjection=modelProjection
+      modelProjection=modelProjection.attributes.classStorageTypes
+      content=model.classStorageTypes
+      readonly=readonly
+      orderable=false
+      class=(if model.errors.classStorageTypes 'error' '')
+    }}
+    {{flexberry-validationmessage error=model.errors.classStorageTypes pointing="pointing"}}
+  </div>
+{{/flexberry-toggler}}
 </form>
