@@ -23,7 +23,7 @@ export default Ember.Route.extend({
         let predicateEditformId = new Query.SimplePredicate('id', FilterOperator.Eq, params.id);
 
         let builderEditform = new  Builder(_this.store, 'fd-dev-class').
-        select('id,name,caption,description,formViews,formViews.view,formViews.view.class,formViews.view.class.id').
+        select('id,name,caption,description,formViews,formViews.view,formViews.view.class,formViews.view.class.id,formViews.view.definition').
         where(predicateEditformId);
 
         _this.store.query('fd-dev-class', builderEditform.build()).then((result) => {
@@ -88,6 +88,97 @@ export default Ember.Route.extend({
       }, reject);
 
       Ember.RSVP.all([loadClassesPromise, loadTypemapPromise, promiseEnumeration, promiseType]).then(() => {
+        // TODO: Приготовим коллекцию controls для того, чтобы отобразить их по выбранному представлению.
+        // Возьмём представление и пробежимся по нему.
+
+        let attributes = Ember.A();
+        let definition = modelHash.editform.get('formViews.firstObject.view.definition');
+        for (let i = 0; i < definition.length; i++) {
+          if (definition[i].visible === 'True') {
+            let attribute = attributes.pushObject({
+              propertyName: definition[i].propertyName,
+              name: definition[i].caption || definition[i].propertyName,
+            });
+
+            if (definition[i].isMaster === 'True') {
+              attribute.type = 'guid';
+              attribute.notNull = null;
+              attribute.defaultValue = null;
+            } else {
+              let propertyOwner = modelHash.dataobject;
+              let propertyOwnerId = propertyOwner.get('id');
+              let path = definition[i].propertyName.split('.');
+              let attributeName = path.pop();
+              let skipAsExternalClass = false;
+              for (let i = 0; i < path.length; i++) {
+                let relationName = path[i];
+                let ownAndParentsId = this._getParentsId(propertyOwnerId); // TODO:
+                ownAndParentsId.push(propertyOwnerId);
+
+                // TODO: Filter by all Ids
+                let relationships;
+                for (let j = 0; j < ownAndParentsId.length; j++) {
+                  let rel = this.get('model.associations').filterBy('endClass.id', ownAndParentsId[j]);
+                  if (relationships) {
+                    relationships.push(rel.toArray());
+                  } else {
+                    relationships = rel;
+                  }
+                }
+
+                let relationship = relationships.findBy('startRole', relationName) || relationships.findBy('startClass.name', relationName);
+
+                if (!relationship) {
+                  // TODO: Filter by all Ids
+                  for (let j = 0; j < ownAndParentsId.length; j++) {
+                    let rel = this.get('model.aggregations').filterBy('endClass.id', ownAndParentsId[j]);
+                    if (relationships) {
+                      relationships.push(rel.toArray());
+                    } else {
+                      relationships = rel;
+                    }
+                  }
+
+                  relationship = relationships.findBy('startRole', relationName) || relationships.findBy('startClass.name', relationName);
+                }
+
+                // Ember.assert('Не найдена связь ' + relationName + ' в классе ' + propertyOwner.get('name'), relationship);
+
+                if (!relationship) {
+                  skipAsExternalClass = true;
+                  break;
+                }
+
+                propertyOwnerId = relationship.get('startClass.id');
+              }
+
+              if (skipAsExternalClass) {
+                attributes.popObject();
+                continue;
+              }
+
+              if (propertyOwner.get('id') !== propertyOwnerId) {
+                propertyOwner = this.get('model.dataObjects').findBy('id', propertyOwnerId);
+              }
+
+              let classAttribute = propertyOwner.get('attributes').findBy('name', attributeName);
+
+              if (!classAttribute) {
+                classAttribute = this._getAttributeFromParent(propertyOwnerId, attributeName);
+              }
+
+              if (classAttribute) {
+                attribute.classAttribute = classAttribute;
+                attribute.type = classAttribute.get('type');
+                attribute.notNull = classAttribute.get('notNull');
+                attribute.defaultValue = classAttribute.get('defaultValue');
+              }
+            }
+          }
+        }
+
+        modelHash.controls = attributes;
+
         resolve(modelHash);
       });
     });
