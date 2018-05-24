@@ -1184,17 +1184,17 @@ export default {
         parameters: {
           __caption__: 'parameters',
           name: {
-          __caption__: 'name'
-        },
+            __caption__: 'name'
+          },
           modifier: {
-          __caption__: 'modifier'
-        },
+            __caption__: 'modifier'
+          },
           type: {
-          __caption__: 'type'
-        },
+            __caption__: 'type'
+          },
           description: {
-          __caption__: 'description'
-        }
+            __caption__: 'description'
+          }
         }
       }
     },
@@ -1655,8 +1655,14 @@ export default {
       namespacePostfix: {
         __caption__: 'Namespace postfix'
       },
-      bSClass: {
-        __caption__: 'BS class'
+      businessServerClass: {
+        __caption__: 'Business server class',
+        name: {
+          __caption__: ''
+        }
+      },
+      businessServerEvents: {
+        __caption__: 'Business server events'
       },
       attributes: {
         __caption__: 'Attributes',

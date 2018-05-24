@@ -81,7 +81,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.bSEventsCompute && typeof this.bSEventsCompute === 'function') ? this.bSEventsCompute() : null;
     this.set('bSEvents', result);
   },
-  businessServerEvents: DS.attr('string'),
+  businessServerEvents: DS.attr('i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events'),
   caption: DS.attr('string'),
   /**
     Non-stored property.
@@ -132,7 +132,9 @@ export let Model = Ember.Mixin.create({
     let result = (this.containersCompute && typeof this.containersCompute === 'function') ? this.containersCompute() : null;
     this.set('containers', result);
   },
+  /* merged manually start */
   containersStr: DS.attr('containers-tree'),
+  /* merged manually end */
   /**
     Non-stored property.
 
@@ -471,11 +473,11 @@ export let Model = Ember.Mixin.create({
   getValidations: function () {
     let parentValidations = this._super();
     let thisValidations = {
-      /* merged manually end */
+      /* merged manually start */
       caption: {
         presence: {
           // message: this.get('i18n').t('models.fd-dev-class.validations.caption')
-          message: 'Caption is rquired'
+          message: 'Caption is required'
         }
       }
       /* merged manually end */
@@ -1122,11 +1124,13 @@ export let defineProjections = function (modelClass) {
       })
     }),
     views: Projection.hasMany('fd-dev-view', '', {
+      /* merged manually start */
       name: Projection.attr(''),
       definition: Projection.attr(''),
       class: Projection.belongsTo('fd-dev-class', '', {
 
       })
+      /* merged manually end */
     })
   });
   modelClass.defineProjection('FdAttributesForForm', 'fd-dev-class', {
@@ -1153,9 +1157,10 @@ export let defineProjections = function (modelClass) {
     storage: Projection.attr(''),
     packet: Projection.attr(''),
     namespacePostfix: Projection.attr(''),
-    /* temporarily disabled
-    bSClass: Projection.attr(''),
-     */
+    businessServerClass: Projection.belongsTo('fd-dev-class', 'Бизнес-сервер', {
+      name: Projection.attr('', { hidden: true }),
+    }, { displayMemberPath: 'name' }),
+    businessServerEvents: Projection.attr('События бизнес-сервера'),
     attributes: Projection.hasMany('fd-dev-attribute', '', {
       /* merged manually start */
       name: Projection.attr(''),

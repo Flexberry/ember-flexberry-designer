@@ -1184,17 +1184,17 @@ export default {
         parameters: {
           __caption__: '',
           name: {
-          __caption__: ''
-        },
+            __caption__: ''
+          },
           modifier: {
-          __caption__: ''
-        },
+            __caption__: ''
+          },
           type: {
-          __caption__: ''
-        },
+            __caption__: ''
+          },
           description: {
-          __caption__: ''
-        }
+            __caption__: ''
+          }
         }
       }
     },
@@ -1655,8 +1655,14 @@ export default {
       namespacePostfix: {
         __caption__: 'Постфикс пространства имен'
       },
-      bSClass: {
-        __caption__: 'Класс БС'
+      businessServerClass: {
+        __caption__: 'Бизнес-сервер',
+        name: {
+          __caption__: ''
+        }
+      },
+      businessServerEvents: {
+        __caption__: 'События бизнес-сервера'
       },
       attributes: {
         __caption__: 'Атрибуты',

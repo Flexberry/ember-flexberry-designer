@@ -4,6 +4,14 @@
       "master": null,
       "displayAttributeName": null,
       "required": false,
+      "relationName": "BusinessServerClass",
+      "projection": "ListFormView",
+      "detailModelName": null
+    },
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
       "relationName": "Attributes.Attributes",
       "projection": "ListFormView",
       "detailModelName": null

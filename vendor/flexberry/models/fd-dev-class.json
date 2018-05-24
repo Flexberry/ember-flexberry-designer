@@ -87,10 +87,10 @@
     },
     {
       "name": "businessServerEvents",
-      "type": "string",
-      "flexberryType": "BusinessServerEvents",
+      "type": "i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events",
+      "flexberryType": "DataServiceObjectEvents",
       "notNull": false,
-      "defaultValue": "",
+      "defaultValue": "OnAllEvents",
       "stored": true
     },
     {
@@ -2321,13 +2321,34 @@
           "index": 6
         },
         {
-          "name": "bSClass",
-          "caption": "",
+          "name": "businessServerEvents",
+          "caption": "События бизнес-сервера",
           "hidden": false,
-          "index": 7
+          "index": 9
         }
       ],
-      "belongsTo": [],
+      "belongsTo": [
+        {
+          "lookupValue": "Name",
+          "lookupValueField": "name",
+          "relationName": "BusinessServerClass",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "",
+              "hidden": true,
+              "index": 8
+            }
+          ],
+          "index": 7,
+          "caption": "Бизнес-сервер",
+          "name": "businessServerClass",
+          "relatedTo": "fd-dev-class",
+          "inverse": null
+        }
+      ],
       "hasMany": [
         {
           "projectionName": "FdClassEditForm",

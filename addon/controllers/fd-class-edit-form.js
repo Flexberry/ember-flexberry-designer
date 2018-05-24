@@ -1,4 +1,9 @@
+import Ember from 'ember';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
+import { Query } from 'ember-flexberry-data';
+import BusinessDataObjectEvents from 'ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events';
+
+const { SimplePredicate } = Query;
 
 export default EditFormController.extend({
   parentRoute: 'fd-class-list-form',
@@ -27,4 +32,41 @@ export default EditFormController.extend({
 
     return cellComponent;
   },
+
+  /**
+    Current predicate to limit accessible values for lookup with '«businessserver»' stereotype.
+    @property lookupStereotypeLimitPredicate
+    @type SimplePredicate
+   */
+  lookupStereotypeLimitPredicate: Ember.computed(function() {
+    return new SimplePredicate('stereotype', 'eq', '«businessserver»');
+  }),
+
+  setBusinessServerEvents() {
+    if (!this.model.get('businessServerClass') &&
+          this.model.get('businessServerEvents') !== BusinessDataObjectEvents.OnAllEvents) {
+      this.model.set('businessServerEvents', BusinessDataObjectEvents.OnAllEvents);
+    }
+  },
+
+  actions: {
+    /**
+      Overridden action for button 'Save'.
+      @method actions.save
+    */
+    save() {
+      this.setBusinessServerEvents();
+      this._super();
+    },
+
+    /**
+      Overridden action for button 'Save and close'.
+      @method actions.saveAndClose
+      @param {Boolean} skipTransition If `true`, then transition during close form process will be skipped after save.
+    */
+    saveAndClose(skipTransition) {
+      this.setBusinessServerEvents();
+      this._super(skipTransition);
+    },
+  }
 });

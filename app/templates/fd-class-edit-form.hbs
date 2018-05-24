@@ -11,6 +11,7 @@
     }}
   {{/each}}
 {{/if}}
+
 <form class="ui form flexberry-vertical-form" role="form">
   {{flexberry-error error=error}}
   <div class="field">
@@ -35,7 +36,6 @@
       </button>
     </div>
   </div>
-
   <div class="field">
   {{
     flexberry-field
@@ -48,7 +48,6 @@
   }}
   {{flexberry-validationmessage error=model.errors.caption pointing="pointing"}}
 </div>
-
 <div class="field">
   <label>{{t 'forms.fd-class-edit-form.attributes-caption'}}</label>
   {{
@@ -106,7 +105,7 @@
   </div>
 
   <div class="field">
-   {{
+    {{
       flexberry-field
       placeholder=(t 'components.flexberry-field.placeholder')
       readonly=readonly
@@ -145,15 +144,35 @@
   </div>
 
   <div class="field">
-    <label>{{t 'forms.fd-class-edit-form.bSClass-caption'}}</label>
+    <label>{{t 'forms.fd-class-edit-form.businessServerClass-caption'}}</label>
+    {{
+      flexberry-lookup
+      choose='showLookupDialog'
+      remove='removeLookupValue'
+      value=model.businessServerClass
+      displayAttributeName='name'
+      relationName='businessServerClass'
+      projection='ListFormView'
+      title=(t 'forms.fd-class-edit-form.businessServerClass-caption')
+      readonly=readonly
+      dropdown=true
+      lookupLimitPredicate=lookupStereotypeLimitPredicate
+    }}
+    {{flexberry-validationmessage error=model.errors.businessServerClass pointing="pointing"}}
+  </div>
+
+  {{#if model.businessServerClass}}
+  <div class="field">
+    <label>{{t 'forms.fd-class-edit-form.businessServerEvents-caption'}}</label>
     {{
       flexberry-dropdown
-      items=(flexberry-enum 'new-platform-flexberry-web-designer-business-server-class')
-      value=model.bSClass
+      items=(flexberry-enum 'i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events')
+      value=model.businessServerEvents
       readonly=readonly
     }}
-    {{flexberry-validationmessage error=model.errors.bSClass pointing="pointing"}}
+    {{flexberry-validationmessage error=model.errors.businessServerEvents pointing="pointing"}}
   </div>
+  {{/if}}
 
   <div class="field">
     <label>{{t 'forms.fd-class-edit-form.views-caption'}}</label>
