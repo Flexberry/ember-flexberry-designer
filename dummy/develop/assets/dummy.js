@@ -722,6 +722,14 @@ define('dummy/controllers/fd-diagram-list-form', ['exports', 'ember-flexberry-de
     }
   });
 });
+define('dummy/controllers/fd-editform-constructor', ['exports', 'ember-flexberry-designer/controllers/fd-editform-constructor'], function (exports, _emberFlexberryDesignerControllersFdEditformConstructor) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdEditformConstructor['default'];
+    }
+  });
+});
 define('dummy/controllers/fd-generation-list-form', ['exports', 'ember-flexberry-designer/controllers/fd-generation-list-form'], function (exports, _emberFlexberryDesignerControllersFdGenerationListForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -1155,6 +1163,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-diagram-list-form.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-editform-constructor.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers');
+  test('modules/ember-flexberry-designer/controllers/fd-editform-constructor.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/fd-editform-constructor.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-editform-constructor.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/fd-editform-constructor.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-editform-constructor.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-editform-constructor/new.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers/fd-editform-constructor');
+  test('modules/ember-flexberry-designer/controllers/fd-editform-constructor/new.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/fd-editform-constructor/new.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-editform-constructor/new.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/fd-editform-constructor/new.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-editform-constructor/new.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-generation-list-form.jscs-test', ['exports'], function (exports) {
@@ -1597,6 +1631,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-diagram-list-form.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-editform-constructor.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/forms');
+  test('modules/ember-flexberry-designer/locales/en/forms/fd-editform-constructor.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-editform-constructor.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-editform-constructor.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/forms/fd-editform-constructor.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-editform-constructor.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-generation-list-form.jscs-test', ['exports'], function (exports) {
@@ -2780,6 +2827,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-diagram-list-form.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-editform-constructor.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/forms');
+  test('modules/ember-flexberry-designer/locales/ru/forms/fd-editform-constructor.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-editform-constructor.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-editform-constructor.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/forms/fd-editform-constructor.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-editform-constructor.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-generation-list-form.jscs-test', ['exports'], function (exports) {
@@ -7488,6 +7548,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ro
     assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-diagram-list-form.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-editform-constructor.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes');
+  test('modules/ember-flexberry-designer/routes/fd-editform-constructor.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/fd-editform-constructor.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-editform-constructor.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-editform-constructor.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-editform-constructor.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-editform-constructor/new.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes/fd-editform-constructor');
+  test('modules/ember-flexberry-designer/routes/fd-editform-constructor/new.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/fd-editform-constructor/new.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-editform-constructor/new.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-editform-constructor/new.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-editform-constructor/new.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-generation-list-form.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/routes');
   test('modules/ember-flexberry-designer/routes/fd-generation-list-form.js should pass jscs', function () {
@@ -11591,6 +11677,7 @@ define('dummy/router', ['exports', 'ember', 'dummy/config/environment'], functio
 
   Router.map(function () {
     this.route('fd-appstruct-form');
+
     this.route('fd-association-list-form');
     this.route('fd-association-edit-form', { path: 'fd-association-edit-form/:id' });
     this.route('fd-association-edit-form.new', { path: 'fd-association-edit-form/new' });
@@ -11615,8 +11702,13 @@ define('dummy/router', ['exports', 'ember', 'dummy/config/environment'], functio
     this.route('fd-view-list-form');
     this.route('fd-view-edit-form', { path: 'fd-view-edit-form/:id' });
     this.route('fd-view-edit-form.new', { path: 'fd-view-edit-form/new' });
+
     this.route('fd-visual-edit-form');
+    this.route('fd-editform-constructor', { path: 'fd-editform-constructor/:id' });
+    this.route('fd-editform-constructor.new', { path: 'fd-editform-constructor/new' });
+
     this.route('fd-visual-listform');
+
     this.route('fd-generation-process-form.new', { path: 'fd-generation-process-form/new' });
     this.route('fd-generation-process-form', { path: 'fd-generation-process-form/:id' });
     this.route('fd-generation-list-form');
@@ -11773,6 +11865,14 @@ define('dummy/routes/fd-diagram-list-form', ['exports', 'ember-flexberry-designe
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerRoutesFdDiagramListForm['default'];
+    }
+  });
+});
+define('dummy/routes/fd-editform-constructor', ['exports', 'ember-flexberry-designer/routes/fd-editform-constructor'], function (exports, _emberFlexberryDesignerRoutesFdEditformConstructor) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdEditformConstructor['default'];
     }
   });
 });
@@ -27132,6 +27232,490 @@ define("dummy/templates/fd-diagram-list-form/loading", ["exports"], function (ex
     };
   })());
 });
+define("dummy/templates/fd-editform-constructor", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    var child0 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 3,
+                "column": 2
+              },
+              "end": {
+                "line": 11,
+                "column": 2
+              }
+            },
+            "moduleName": "dummy/templates/fd-editform-constructor.hbs"
+          },
+          isEmpty: false,
+          arity: 1,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("    ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "ui-message", [], ["type", "error", "closeable", true, "visible", true, "title", "Error occurred", "message", ["subexpr", "@mut", [["get", "currentError", ["loc", [null, [9, 14], [9, 26]]]]], [], []]], ["loc", [null, [4, 4], [10, 6]]]]],
+          locals: ["currentError"],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 2,
+              "column": 0
+            },
+            "end": {
+              "line": 12,
+              "column": 0
+            }
+          },
+          "moduleName": "dummy/templates/fd-editform-constructor.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [["block", "each", [["get", "errorMessages", ["loc", [null, [3, 10], [3, 23]]]]], [], 0, null, ["loc", [null, [3, 2], [11, 11]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child1 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 21,
+                "column": 8
+              },
+              "end": {
+                "line": 25,
+                "column": 8
+              }
+            },
+            "moduleName": "dummy/templates/fd-editform-constructor.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("          ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("button");
+            dom.setAttribute(el1, "type", "submit");
+            dom.setAttribute(el1, "class", "ui button save-close-button");
+            var el2 = dom.createTextNode("\n            ");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n          ");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var element1 = dom.childAt(fragment, [1]);
+            var morphs = new Array(2);
+            morphs[0] = dom.createElementMorph(element1);
+            morphs[1] = dom.createMorphAt(element1, 1, 1);
+            return morphs;
+          },
+          statements: [["element", "action", ["save-close"], [], ["loc", [null, [22, 68], [22, 91]]]], ["inline", "t", ["forms.edit-form.saveAndClose-button-text"], [], ["loc", [null, [23, 12], [23, 60]]]]],
+          locals: [],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 17,
+              "column": 6
+            },
+            "end": {
+              "line": 26,
+              "column": 6
+            }
+          },
+          "moduleName": "dummy/templates/fd-editform-constructor.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("        ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("button");
+          dom.setAttribute(el1, "type", "submit");
+          dom.setAttribute(el1, "class", "ui button save-button");
+          var el2 = dom.createTextNode("\n          ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n        ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element2 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createElementMorph(element2);
+          morphs[1] = dom.createMorphAt(element2, 1, 1);
+          morphs[2] = dom.createMorphAt(fragment, 3, 3, contextualElement);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [["element", "action", ["save"], [], ["loc", [null, [18, 60], [18, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [19, 10], [19, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [21, 18], [21, 29]]]]], [], 0, null, ["loc", [null, [21, 8], [25, 19]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child2 = (function () {
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 62,
+              "column": 8
+            },
+            "end": {
+              "line": 70,
+              "column": 8
+            }
+          },
+          "moduleName": "dummy/templates/fd-editform-constructor.hbs"
+        },
+        isEmpty: false,
+        arity: 1,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("          ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          var el2 = dom.createTextNode("\n            ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("label");
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n            ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n          ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element0 = dom.childAt(fragment, [1]);
+          var morphs = new Array(4);
+          morphs[0] = dom.createAttrMorph(element0, 'class');
+          morphs[1] = dom.createAttrMorph(element0, 'onclick');
+          morphs[2] = dom.createMorphAt(dom.childAt(element0, [1]), 0, 0);
+          morphs[3] = dom.createMorphAt(element0, 3, 3);
+          return morphs;
+        },
+        statements: [["attribute", "class", ["concat", ["field control-field ", ["subexpr", "if", [["get", "control.isSelected", ["loc", [null, [63, 47], [63, 65]]]], "selected-field"], [], ["loc", [null, [63, 42], [63, 84]]]]]]], ["attribute", "onclick", ["subexpr", "action", ["controlClick", ["get", "control", ["loc", [null, [63, 118], [63, 125]]]]], [], ["loc", [null, [63, 94], [63, 128]]]]], ["content", "control.name", ["loc", [null, [64, 19], [64, 35]]]], ["inline", "component", [["get", "control.controlType", ["loc", [null, [65, 24], [65, 43]]]]], ["value", ["subexpr", "@mut", [["get", "control.value", ["loc", [null, [66, 20], [66, 33]]]]], [], []], "readonly", true], ["loc", [null, [65, 12], [68, 14]]]]],
+        locals: ["control"],
+        templates: []
+      };
+    })();
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["multiple-nodes", "wrong-type"]
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 84,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/fd-editform-constructor.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("h3");
+        dom.setAttribute(el1, "class", "ui header");
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("form");
+        dom.setAttribute(el1, "class", "ui form flexberry-vertical-form");
+        dom.setAttribute(el1, "role", "form");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "field");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "flexberry-edit-panel");
+        var el4 = dom.createTextNode("\n");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("button");
+        dom.setAttribute(el4, "class", "ui button fake save-close-button");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("button");
+        dom.setAttribute(el4, "class", "ui button");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("button");
+        dom.setAttribute(el4, "type", "submit");
+        dom.setAttribute(el4, "class", "ui button close-button");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "ui grid row");
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "field eight wide column");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("label");
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n  ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "ui segment grid");
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "row");
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("div");
+        dom.setAttribute(el4, "class", "ten wide column");
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("div");
+        dom.setAttribute(el5, "class", "field");
+        var el6 = dom.createTextNode("\n        ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("button");
+        dom.setAttribute(el6, "class", "ui ui-add button");
+        dom.setAttribute(el6, "title", "Добавить");
+        var el7 = dom.createTextNode("\n            ");
+        dom.appendChild(el6, el7);
+        var el7 = dom.createElement("i");
+        dom.setAttribute(el7, "class", "plus icon");
+        dom.appendChild(el6, el7);
+        var el7 = dom.createTextNode("\n        ");
+        dom.appendChild(el6, el7);
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n        ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("button");
+        dom.setAttribute(el6, "class", "ui ui-delete button");
+        dom.setAttribute(el6, "title", "Удалить");
+        var el7 = dom.createTextNode("\n            ");
+        dom.appendChild(el6, el7);
+        var el7 = dom.createElement("i");
+        dom.setAttribute(el7, "class", "minus icon");
+        dom.appendChild(el6, el7);
+        var el7 = dom.createTextNode("\n        ");
+        dom.appendChild(el6, el7);
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n      ");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("    ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("div");
+        dom.setAttribute(el4, "class", "six wide column");
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("div");
+        dom.setAttribute(el5, "class", "ui segment");
+        var el6 = dom.createTextNode("\n        ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createComment("");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n      ");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n    ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n  ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var element3 = dom.childAt(fragment, [3]);
+        var element4 = dom.childAt(element3, [3, 1]);
+        var element5 = dom.childAt(element4, [7]);
+        var element6 = dom.childAt(element3, [5, 1]);
+        var element7 = dom.childAt(element3, [7, 1]);
+        var element8 = dom.childAt(element7, [1]);
+        var element9 = dom.childAt(element8, [1]);
+        var element10 = dom.childAt(element9, [1]);
+        var element11 = dom.childAt(element9, [3]);
+        var morphs = new Array(14);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
+        morphs[1] = dom.createMorphAt(fragment, 2, 2, contextualElement);
+        morphs[2] = dom.createMorphAt(element3, 1, 1);
+        morphs[3] = dom.createMorphAt(element4, 1, 1);
+        morphs[4] = dom.createMorphAt(dom.childAt(element4, [3]), 1, 1);
+        morphs[5] = dom.createMorphAt(dom.childAt(element4, [5]), 1, 1);
+        morphs[6] = dom.createElementMorph(element5);
+        morphs[7] = dom.createMorphAt(element5, 1, 1);
+        morphs[8] = dom.createMorphAt(dom.childAt(element6, [1]), 0, 0);
+        morphs[9] = dom.createMorphAt(element6, 3, 3);
+        morphs[10] = dom.createElementMorph(element10);
+        morphs[11] = dom.createElementMorph(element11);
+        morphs[12] = dom.createMorphAt(element8, 3, 3);
+        morphs[13] = dom.createMorphAt(dom.childAt(element7, [3, 1]), 1, 1);
+        return morphs;
+      },
+      statements: [["inline", "t", ["forms.fd-editform-constructor.caption"], [], ["loc", [null, [1, 22], [1, 67]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [2, 6], [2, 19]]]]], [], 0, null, ["loc", [null, [2, 0], [12, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [14, 26], [14, 31]]]]], [], []]], ["loc", [null, [14, 2], [14, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [17, 16], [17, 24]]]]], [], 1, null, ["loc", [null, [17, 6], [26, 17]]]], ["inline", "t", ["forms.edit-form.saveAndClose-button-text"], [], ["loc", [null, [28, 8], [28, 56]]]], ["inline", "t", ["forms.fd-visual-edit-form.preview-mobile-variant"], [], ["loc", [null, [31, 8], [31, 64]]]], ["element", "action", ["close"], [], ["loc", [null, [33, 59], [33, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [34, 8], [34, 49]]]], ["inline", "t", ["forms.fd-visual-edit-form.name"], [], ["loc", [null, [41, 13], [41, 51]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "model.editform.caption", ["loc", [null, [43, 14], [43, 36]]]]], [], []]], ["loc", [null, [42, 6], [44, 8]]]], ["element", "action", ["addControl"], [], ["loc", [null, [51, 16], [51, 39]]]], ["element", "action", ["deleteControl"], [], ["loc", [null, [56, 16], [56, 42]]]], ["block", "each", [["get", "model.controls", ["loc", [null, [62, 16], [62, 30]]]]], [], 2, null, ["loc", [null, [62, 8], [70, 17]]]], ["inline", "fd-visual-edit-control", [], ["model", ["subexpr", "@mut", [["get", "selectedControl", ["loc", [null, [76, 16], [76, 31]]]]], [], []], "controls", ["subexpr", "@mut", [["get", "model.controls", ["loc", [null, [77, 19], [77, 33]]]]], [], []]], ["loc", [null, [74, 8], [78, 10]]]]],
+      locals: [],
+      templates: [child0, child1, child2]
+    };
+  })());
+});
 define("dummy/templates/fd-generation-list-form", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     return {
@@ -36337,7 +36921,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+8d1d1587"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+713f39c6"});
 }
 
 /* jshint ignore:end */
