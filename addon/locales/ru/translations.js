@@ -5,6 +5,7 @@ import FdAssociationListFormForm from './forms/fd-association-list-form';
 import FdClassListFormForm from './forms/fd-class-list-form';
 import FdConfigurationListFormForm from './forms/fd-configuration-list-form';
 import FdDiagramListFormForm from './forms/fd-diagram-list-form';
+import FdEditformConstructor from './forms/fd-editform-constructor';
 import FdInheritanceListFormForm from './forms/fd-inheritance-list-form';
 import FdStageListFormForm from './forms/fd-stage-list-form';
 import FdSystemListFormForm from './forms/fd-system-list-form';
@@ -170,6 +171,7 @@ Ember.$.extend(true, translations, {
     'fd-class-list-form': FdClassListFormForm,
     'fd-configuration-list-form': FdConfigurationListFormForm,
     'fd-diagram-list-form': FdDiagramListFormForm,
+    'fd-editform-constructor': FdEditformConstructor,
     'fd-inheritance-list-form': FdInheritanceListFormForm,
     'fd-stage-list-form': FdStageListFormForm,
     'fd-system-list-form': FdSystemListFormForm,
