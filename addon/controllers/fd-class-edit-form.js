@@ -42,20 +42,13 @@ export default EditFormController.extend({
     return new SimplePredicate('stereotype', 'eq', '«businessserver»');
   }),
 
-  setBusinessServerEvents() {
-    if (!this.model.get('businessServerClass') &&
-          this.model.get('businessServerEvents') !== BusinessDataObjectEvents.OnAllEvents) {
-      this.model.set('businessServerEvents', BusinessDataObjectEvents.OnAllEvents);
-    }
-  },
-
   actions: {
     /**
       Overridden action for button 'Save'.
       @method actions.save
     */
     save() {
-      this.setBusinessServerEvents();
+      this._setDefaultBusinessServerEvents();
       this._super();
     },
 
@@ -65,8 +58,19 @@ export default EditFormController.extend({
       @param {Boolean} skipTransition If `true`, then transition during close form process will be skipped after save.
     */
     saveAndClose(skipTransition) {
-      this.setBusinessServerEvents();
+      this._setDefaultBusinessServerEvents();
       this._super(skipTransition);
-    },
+    }
+  },
+
+  /**
+    Sets 'businessServerEvents' model property value to default if business server is not present.
+    @method _setDefaultBusinessServerEvents
+  */
+  _setDefaultBusinessServerEvents() {
+    if (!this.model.get('businessServerClass') &&
+        this.model.get('businessServerEvents') !== BusinessDataObjectEvents.OnAllEvents) {
+      this.model.set('businessServerEvents', BusinessDataObjectEvents.OnAllEvents);
+    }
   }
 });
