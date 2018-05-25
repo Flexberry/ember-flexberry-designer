@@ -7,14 +7,20 @@ moduleForModel('fd-dev-class', 'Unit | Serializer | fd-dev-class', {
     'transform:file',
     'transform:decimal',
 
+    /* merged manually start */
     'transform:containers-tree',
+    /* merged manually end */
+    'transform:fd-generation-state',
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-access-type',
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode',
+    'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events',
     'transform:s-t-o-r-m-c-a-s-e-repository-access-modifier',
     'transform:s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier',
 
     'transform:new-platform-flexberry-web-designer-business-server-class',
+    /* merged manually start */
     'service:i18n',
+    /* merged manually end */
 
     'model:fd-ad',
     'model:fd-aggregation',
@@ -22,6 +28,7 @@ moduleForModel('fd-dev-class', 'Unit | Serializer | fd-dev-class', {
     'model:fd-base-association',
     'model:fd-cad',
     'model:fd-case-property',
+    'model:fd-class-storage-type',
     'model:fd-class',
     'model:fd-cod',
     'model:fd-configuration',
@@ -61,6 +68,8 @@ moduleForModel('fd-dev-class', 'Unit | Serializer | fd-dev-class', {
     'model:fd-filelink',
     'model:fd-form-control',
     'model:fd-form-view',
+    'model:fd-generation-step-log',
+    'model:fd-generation',
     'model:fd-inheritance',
     'model:fd-object-in-system',
     'model:fd-plugin-on-rep-object',
@@ -77,8 +86,7 @@ moduleForModel('fd-dev-class', 'Unit | Serializer | fd-dev-class', {
     'model:fd-std',
     'model:fd-subsystem',
     'model:fd-ucd',
-    'model:fd-view',
-    'model:fd-class-storage-type'
+    'model:fd-view'
   ]
 });
 
