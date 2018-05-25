@@ -18,6 +18,13 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/controllers/fd-class-edit-form.js": {
+            "name": "addon/controllers/fd-class-edit-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/controllers/fd-class-list-form.js": {
             "name": "addon/controllers/fd-class-list-form.js",
             "modules": {},
@@ -1078,6 +1085,46 @@
             "class": "FdLimitByStageMixin"
         },
         {
+            "file": "addon/controllers/fd-class-edit-form.js",
+            "line": 36,
+            "description": "Current predicate to limit accessible values for lookup with '«businessserver»' stereotype.",
+            "itemtype": "property",
+            "name": "lookupStereotypeLimitPredicate",
+            "type": "SimplePredicate",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/controllers/fd-class-edit-form.js",
+            "line": 46,
+            "description": "Overridden action for button 'Save'.",
+            "itemtype": "method",
+            "name": "actions.save",
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/controllers/fd-class-edit-form.js",
+            "line": 55,
+            "description": "Overridden action for button 'Save and close'.",
+            "itemtype": "method",
+            "name": "actions.saveAndClose",
+            "params": [
+                {
+                    "name": "skipTransition",
+                    "description": "If `true`, then transition during close form process will be skipped after save.",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "FdLimitByStageMixin"
+        },
+        {
+            "file": "addon/controllers/fd-class-edit-form.js",
+            "line": 66,
+            "description": "Sets 'businessServerEvents' model property value to default if business server is not present.",
+            "itemtype": "method",
+            "name": "_setDefaultBusinessServerEvents",
+            "class": "FdLimitByStageMixin"
+        },
+        {
             "file": "addon/controllers/fd-class-list-form.js",
             "line": 4,
             "description": "Name of related edit form route.",
@@ -1686,7 +1733,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 136,
+            "line": 138,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "dataObjectTypes",
@@ -1694,7 +1741,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 142,
+            "line": 144,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'dataObjectTypesCompute' method in model class (outside of this mixin) if you want to compute value of 'dataObjectTypes' property.",
             "itemtype": "method",
             "name": "_dataObjectTypesCompute",
@@ -1707,7 +1754,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 164,
+            "line": 166,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "editFormOperations",
@@ -1715,7 +1762,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 170,
+            "line": 172,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'editFormOperationsCompute' method in model class (outside of this mixin) if you want to compute value of 'editFormOperations' property.",
             "itemtype": "method",
             "name": "_editFormOperationsCompute",
@@ -1728,7 +1775,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 199,
+            "line": 201,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "listFormOperations",
@@ -1736,7 +1783,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 205,
+            "line": 207,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'listFormOperationsCompute' method in model class (outside of this mixin) if you want to compute value of 'listFormOperations' property.",
             "itemtype": "method",
             "name": "_listFormOperationsCompute",
@@ -1749,7 +1796,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 225,
+            "line": 227,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "loadingOrderXML",
@@ -1757,7 +1804,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 231,
+            "line": 233,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'loadingOrderXMLCompute' method in model class (outside of this mixin) if you want to compute value of 'loadingOrderXML' property.",
             "itemtype": "method",
             "name": "_loadingOrderXMLCompute",
@@ -1770,7 +1817,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 257,
+            "line": 259,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "propertyLookup",
@@ -1778,7 +1825,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 263,
+            "line": 265,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'propertyLookupCompute' method in model class (outside of this mixin) if you want to compute value of 'propertyLookup' property.",
             "itemtype": "method",
             "name": "_propertyLookupCompute",
@@ -1791,7 +1838,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 283,
+            "line": 285,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realCaption",
@@ -1799,7 +1846,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 289,
+            "line": 291,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'realCaptionCompute' method in model class (outside of this mixin) if you want to compute value of 'realCaption' property.",
             "itemtype": "method",
             "name": "_realCaptionCompute",
@@ -1812,7 +1859,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 307,
+            "line": 309,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realNamespace",
@@ -1820,7 +1867,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 313,
+            "line": 315,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'realNamespaceCompute' method in model class (outside of this mixin) if you want to compute value of 'realNamespace' property.",
             "itemtype": "method",
             "name": "_realNamespaceCompute",
@@ -1833,7 +1880,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 331,
+            "line": 333,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realPacket",
@@ -1841,7 +1888,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 337,
+            "line": 339,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'realPacketCompute' method in model class (outside of this mixin) if you want to compute value of 'realPacket' property.",
             "itemtype": "method",
             "name": "_realPacketCompute",
@@ -1854,7 +1901,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 355,
+            "line": 357,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realPrimaryKeyStorage",
@@ -1862,7 +1909,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 361,
+            "line": 363,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'realPrimaryKeyStorageCompute' method in model class (outside of this mixin) if you want to compute value of 'realPrimaryKeyStorage' property.",
             "itemtype": "method",
             "name": "_realPrimaryKeyStorageCompute",
@@ -1875,7 +1922,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 379,
+            "line": 381,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realStorage",
@@ -1883,7 +1930,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 385,
+            "line": 387,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'realStorageCompute' method in model class (outside of this mixin) if you want to compute value of 'realStorage' property.",
             "itemtype": "method",
             "name": "_realStorageCompute",
@@ -1896,7 +1943,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 410,
+            "line": 412,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "storeInstancesInTypeXML",
@@ -1904,7 +1951,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 416,
+            "line": 418,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'storeInstancesInTypeXMLCompute' method in model class (outside of this mixin) if you want to compute value of 'storeInstancesInTypeXML' property.",
             "itemtype": "method",
             "name": "_storeInstancesInTypeXMLCompute",
@@ -1917,7 +1964,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 438,
+            "line": 440,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "useCache",
@@ -1925,7 +1972,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
-            "line": 444,
+            "line": 446,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'useCacheCompute' method in model class (outside of this mixin) if you want to compute value of 'useCache' property.",
             "itemtype": "method",
             "name": "_useCacheCompute",

@@ -1417,6 +1417,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/en
     assert.ok(true, 'modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/enums');
+  test('modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/s-t-o-r-m-c-a-s-e-repository-access-modifier.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/enums');
   test('modules/ember-flexberry-designer/enums/s-t-o-r-m-c-a-s-e-repository-access-modifier.js should pass jscs', function () {
@@ -9542,6 +9555,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/tr
     assert.ok(true, 'modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/transforms');
+  test('modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-business-server-class.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/transforms');
   test('modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-business-server-class.js should pass jscs', function () {
@@ -9631,6 +9657,14 @@ define('dummy/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mo
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerEnumsICSSoftSTORMNETBusinessAuditObjectsTWriteMode['default'];
+    }
+  });
+});
+define('dummy/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events', ['exports', 'ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events'], function (exports, _emberFlexberryDesignerEnumsICSSoftSTORMNETBusinessDataServiceObjectEvents) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerEnumsICSSoftSTORMNETBusinessDataServiceObjectEvents['default'];
     }
   });
 });
@@ -25436,11 +25470,11 @@ define("dummy/templates/fd-class-edit-form", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 27,
+                "line": 28,
                 "column": 8
               },
               "end": {
-                "line": 31,
+                "line": 32,
                 "column": 8
               }
             },
@@ -25469,13 +25503,13 @@ define("dummy/templates/fd-class-edit-form", ["exports"], function (exports) {
             return el0;
           },
           buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-            var element9 = dom.childAt(fragment, [1]);
+            var element10 = dom.childAt(fragment, [1]);
             var morphs = new Array(2);
-            morphs[0] = dom.createElementMorph(element9);
-            morphs[1] = dom.createMorphAt(element9, 1, 1);
+            morphs[0] = dom.createElementMorph(element10);
+            morphs[1] = dom.createMorphAt(element10, 1, 1);
             return morphs;
           },
-          statements: [["element", "action", ["delete"], [], ["loc", [null, [28, 66], [28, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [29, 12], [29, 54]]]]],
+          statements: [["element", "action", ["delete"], [], ["loc", [null, [29, 66], [29, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [30, 12], [30, 54]]]]],
           locals: [],
           templates: []
         };
@@ -25487,11 +25521,11 @@ define("dummy/templates/fd-class-edit-form", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 23,
+              "line": 24,
               "column": 6
             },
             "end": {
-              "line": 32,
+              "line": 33,
               "column": 6
             }
           },
@@ -25522,20 +25556,82 @@ define("dummy/templates/fd-class-edit-form", ["exports"], function (exports) {
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var element10 = dom.childAt(fragment, [1]);
+          var element11 = dom.childAt(fragment, [1]);
           var morphs = new Array(3);
-          morphs[0] = dom.createElementMorph(element10);
-          morphs[1] = dom.createMorphAt(element10, 1, 1);
+          morphs[0] = dom.createElementMorph(element11);
+          morphs[1] = dom.createMorphAt(element11, 1, 1);
           morphs[2] = dom.createMorphAt(fragment, 3, 3, contextualElement);
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [["element", "action", ["save"], [], ["loc", [null, [24, 60], [24, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [25, 10], [25, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [27, 18], [27, 29]]]]], [], 0, null, ["loc", [null, [27, 8], [31, 19]]]]],
+        statements: [["element", "action", ["save"], [], ["loc", [null, [25, 60], [25, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [26, 10], [26, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [28, 18], [28, 29]]]]], [], 0, null, ["loc", [null, [28, 8], [32, 19]]]]],
         locals: [],
         templates: [child0]
       };
     })();
     var child2 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 164,
+                "column": 2
+              },
+              "end": {
+                "line": 175,
+                "column": 2
+              }
+            },
+            "moduleName": "dummy/templates/fd-class-edit-form.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("  ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("div");
+            dom.setAttribute(el1, "class", "field");
+            var el2 = dom.createTextNode("\n    ");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("label");
+            var el3 = dom.createComment("");
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n    ");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n    ");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n  ");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var element0 = dom.childAt(fragment, [1]);
+            var morphs = new Array(3);
+            morphs[0] = dom.createMorphAt(dom.childAt(element0, [1]), 0, 0);
+            morphs[1] = dom.createMorphAt(element0, 3, 3);
+            morphs[2] = dom.createMorphAt(element0, 5, 5);
+            return morphs;
+          },
+          statements: [["inline", "t", ["forms.fd-class-edit-form.businessServerEvents-caption"], [], ["loc", [null, [166, 11], [166, 72]]]], ["inline", "flexberry-dropdown", [], ["items", ["subexpr", "flexberry-enum", ["i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events"], [], ["loc", [null, [169, 12], [169, 93]]]], "value", ["subexpr", "@mut", [["get", "model.businessServerEvents", ["loc", [null, [170, 12], [170, 38]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [171, 15], [171, 23]]]]], [], []]], ["loc", [null, [167, 4], [172, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.businessServerEvents", ["loc", [null, [173, 40], [173, 73]]]]], [], []], "pointing", "pointing"], ["loc", [null, [173, 4], [173, 95]]]]],
+          locals: [],
+          templates: []
+        };
+      })();
       return {
         meta: {
           "fragmentReason": false,
@@ -25543,11 +25639,11 @@ define("dummy/templates/fd-class-edit-form", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 67,
+              "line": 66,
               "column": 0
             },
             "end": {
-              "line": 187,
+              "line": 206,
               "column": 0
             }
           },
@@ -25614,7 +25710,7 @@ define("dummy/templates/fd-class-edit-form", ["exports"], function (exports) {
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("div");
           dom.setAttribute(el1, "class", "field");
-          var el2 = dom.createTextNode("\n   ");
+          var el2 = dom.createTextNode("\n    ");
           dom.appendChild(el1, el2);
           var el2 = dom.createComment("");
           dom.appendChild(el1, el2);
@@ -25676,7 +25772,11 @@ define("dummy/templates/fd-class-edit-form", ["exports"], function (exports) {
           var el2 = dom.createTextNode("\n  ");
           dom.appendChild(el1, el2);
           dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("\n\n  ");
+          var el1 = dom.createTextNode("\n\n");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n  ");
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("div");
           dom.setAttribute(el1, "class", "field");
@@ -25723,43 +25823,44 @@ define("dummy/templates/fd-class-edit-form", ["exports"], function (exports) {
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var element0 = dom.childAt(fragment, [1]);
-          var element1 = dom.childAt(fragment, [3]);
-          var element2 = dom.childAt(fragment, [5]);
-          var element3 = dom.childAt(fragment, [7]);
-          var element4 = dom.childAt(fragment, [9]);
-          var element5 = dom.childAt(fragment, [11]);
-          var element6 = dom.childAt(fragment, [13]);
-          var element7 = dom.childAt(fragment, [15]);
+          var element1 = dom.childAt(fragment, [1]);
+          var element2 = dom.childAt(fragment, [3]);
+          var element3 = dom.childAt(fragment, [5]);
+          var element4 = dom.childAt(fragment, [7]);
+          var element5 = dom.childAt(fragment, [9]);
+          var element6 = dom.childAt(fragment, [11]);
+          var element7 = dom.childAt(fragment, [13]);
           var element8 = dom.childAt(fragment, [17]);
-          var morphs = new Array(22);
-          morphs[0] = dom.createMorphAt(element0, 1, 1);
-          morphs[1] = dom.createMorphAt(element0, 3, 3);
-          morphs[2] = dom.createMorphAt(element1, 1, 1);
-          morphs[3] = dom.createMorphAt(element1, 3, 3);
-          morphs[4] = dom.createMorphAt(dom.childAt(element2, [1]), 0, 0);
-          morphs[5] = dom.createMorphAt(element2, 3, 3);
-          morphs[6] = dom.createMorphAt(element2, 5, 5);
-          morphs[7] = dom.createMorphAt(element3, 1, 1);
-          morphs[8] = dom.createMorphAt(element3, 3, 3);
-          morphs[9] = dom.createMorphAt(element4, 1, 1);
-          morphs[10] = dom.createMorphAt(element4, 3, 3);
-          morphs[11] = dom.createMorphAt(element5, 1, 1);
-          morphs[12] = dom.createMorphAt(element5, 3, 3);
-          morphs[13] = dom.createMorphAt(dom.childAt(element6, [1]), 0, 0);
-          morphs[14] = dom.createMorphAt(element6, 3, 3);
-          morphs[15] = dom.createMorphAt(element6, 5, 5);
-          morphs[16] = dom.createMorphAt(dom.childAt(element7, [1]), 0, 0);
-          morphs[17] = dom.createMorphAt(element7, 3, 3);
-          morphs[18] = dom.createMorphAt(element7, 5, 5);
-          morphs[19] = dom.createMorphAt(dom.childAt(element8, [1]), 0, 0);
-          morphs[20] = dom.createMorphAt(element8, 3, 3);
-          morphs[21] = dom.createMorphAt(element8, 5, 5);
+          var element9 = dom.childAt(fragment, [19]);
+          var morphs = new Array(23);
+          morphs[0] = dom.createMorphAt(element1, 1, 1);
+          morphs[1] = dom.createMorphAt(element1, 3, 3);
+          morphs[2] = dom.createMorphAt(element2, 1, 1);
+          morphs[3] = dom.createMorphAt(element2, 3, 3);
+          morphs[4] = dom.createMorphAt(dom.childAt(element3, [1]), 0, 0);
+          morphs[5] = dom.createMorphAt(element3, 3, 3);
+          morphs[6] = dom.createMorphAt(element3, 5, 5);
+          morphs[7] = dom.createMorphAt(element4, 1, 1);
+          morphs[8] = dom.createMorphAt(element4, 3, 3);
+          morphs[9] = dom.createMorphAt(element5, 1, 1);
+          morphs[10] = dom.createMorphAt(element5, 3, 3);
+          morphs[11] = dom.createMorphAt(element6, 1, 1);
+          morphs[12] = dom.createMorphAt(element6, 3, 3);
+          morphs[13] = dom.createMorphAt(dom.childAt(element7, [1]), 0, 0);
+          morphs[14] = dom.createMorphAt(element7, 3, 3);
+          morphs[15] = dom.createMorphAt(element7, 5, 5);
+          morphs[16] = dom.createMorphAt(fragment, 15, 15, contextualElement);
+          morphs[17] = dom.createMorphAt(dom.childAt(element8, [1]), 0, 0);
+          morphs[18] = dom.createMorphAt(element8, 3, 3);
+          morphs[19] = dom.createMorphAt(element8, 5, 5);
+          morphs[20] = dom.createMorphAt(dom.childAt(element9, [1]), 0, 0);
+          morphs[21] = dom.createMorphAt(element9, 3, 3);
+          morphs[22] = dom.createMorphAt(element9, 5, 5);
           return morphs;
         },
-        statements: [["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [75, 18], [75, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [76, 15], [76, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [78, 12], [78, 22]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [79, 16], [79, 33]]]], "error", ""], [], ["loc", [null, [79, 12], [79, 45]]]], "label", ["subexpr", "t", ["forms.fd-class-edit-form.name-caption"], [], ["loc", [null, [80, 12], [80, 55]]]]], ["loc", [null, [73, 4], [81, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [82, 40], [82, 57]]]]], [], []], "pointing", "pointing"], ["loc", [null, [82, 4], [82, 79]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [88, 18], [88, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [89, 15], [89, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.publishName", ["loc", [null, [91, 12], [91, 29]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.publishName", ["loc", [null, [92, 16], [92, 40]]]], "error", ""], [], ["loc", [null, [92, 12], [92, 52]]]], "label", ["subexpr", "t", ["forms.fd-class-edit-form.publishName-caption"], [], ["loc", [null, [93, 12], [93, 62]]]]], ["loc", [null, [86, 4], [94, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.publishName", ["loc", [null, [95, 40], [95, 64]]]]], [], []], "pointing", "pointing"], ["loc", [null, [95, 4], [95, 86]]]], ["inline", "t", ["forms.fd-class-edit-form.stored-caption"], [], ["loc", [null, [99, 11], [99, 58]]]], ["inline", "flexberry-checkbox", [], ["readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [102, 15], [102, 23]]]]], [], []], "value", ["subexpr", "@mut", [["get", "model.stored", ["loc", [null, [103, 12], [103, 24]]]]], [], []]], ["loc", [null, [100, 4], [104, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.stored", ["loc", [null, [105, 40], [105, 59]]]]], [], []], "pointing", "pointing"], ["loc", [null, [105, 4], [105, 81]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [111, 18], [111, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [112, 15], [112, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.storage", ["loc", [null, [114, 12], [114, 25]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.storage", ["loc", [null, [115, 16], [115, 36]]]], "error", ""], [], ["loc", [null, [115, 12], [115, 48]]]], "label", ["subexpr", "t", ["forms.fd-class-edit-form.storage-caption"], [], ["loc", [null, [116, 12], [116, 58]]]]], ["loc", [null, [109, 3], [117, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.storage", ["loc", [null, [118, 40], [118, 60]]]]], [], []], "pointing", "pointing"], ["loc", [null, [118, 4], [118, 82]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [124, 18], [124, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [125, 15], [125, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.packet", ["loc", [null, [127, 12], [127, 24]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.packet", ["loc", [null, [128, 16], [128, 35]]]], "error", ""], [], ["loc", [null, [128, 12], [128, 47]]]], "label", ["subexpr", "t", ["forms.fd-class-edit-form.packet-caption"], [], ["loc", [null, [129, 12], [129, 57]]]]], ["loc", [null, [122, 4], [130, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.packet", ["loc", [null, [131, 40], [131, 59]]]]], [], []], "pointing", "pointing"], ["loc", [null, [131, 4], [131, 81]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [137, 18], [137, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [138, 15], [138, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.namespacePostfix", ["loc", [null, [140, 12], [140, 34]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.namespacePostfix", ["loc", [null, [141, 16], [141, 45]]]], "error", ""], [], ["loc", [null, [141, 12], [141, 57]]]], "label", ["subexpr", "t", ["forms.fd-class-edit-form.namespacePostfix-caption"], [], ["loc", [null, [142, 12], [142, 67]]]]], ["loc", [null, [135, 4], [143, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.namespacePostfix", ["loc", [null, [144, 40], [144, 69]]]]], [], []], "pointing", "pointing"], ["loc", [null, [144, 4], [144, 91]]]], ["inline", "t", ["forms.fd-class-edit-form.bSClass-caption"], [], ["loc", [null, [148, 11], [148, 59]]]], ["inline", "flexberry-dropdown", [], ["items", ["subexpr", "flexberry-enum", ["new-platform-flexberry-web-designer-business-server-class"], [], ["loc", [null, [151, 12], [151, 88]]]], "value", ["subexpr", "@mut", [["get", "model.bSClass", ["loc", [null, [152, 12], [152, 25]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [153, 15], [153, 23]]]]], [], []]], ["loc", [null, [149, 4], [154, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.bSClass", ["loc", [null, [155, 40], [155, 60]]]]], [], []], "pointing", "pointing"], ["loc", [null, [155, 4], [155, 82]]]], ["inline", "t", ["forms.fd-class-edit-form.views-caption"], [], ["loc", [null, [159, 11], [159, 57]]]], ["inline", "flexberry-groupedit", [], ["componentName", "viewsGroupEdit", "mainModelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [163, 26], [163, 41]]]]], [], []], "modelProjection", ["subexpr", "@mut", [["get", "modelProjection.attributes.views", ["loc", [null, [164, 22], [164, 54]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model.views", ["loc", [null, [165, 14], [165, 25]]]]], [], []], "readonly", true, "orderable", false, "class", ["subexpr", "if", [["get", "model.errors.views", ["loc", [null, [168, 16], [168, 34]]]], "error", ""], [], ["loc", [null, [168, 12], [168, 46]]]]], ["loc", [null, [160, 4], [169, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.views", ["loc", [null, [170, 40], [170, 58]]]]], [], []], "pointing", "pointing"], ["loc", [null, [170, 4], [170, 80]]]], ["inline", "t", ["forms.fd-class-edit-form.classStorageTypes-caption"], [], ["loc", [null, [174, 11], [174, 69]]]], ["inline", "flexberry-groupedit", [], ["componentName", "classStorageTypesGroupEdit", "mainModelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [178, 26], [178, 41]]]]], [], []], "modelProjection", ["subexpr", "@mut", [["get", "modelProjection.attributes.classStorageTypes", ["loc", [null, [179, 22], [179, 66]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model.classStorageTypes", ["loc", [null, [180, 14], [180, 37]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [181, 15], [181, 23]]]]], [], []], "orderable", false, "class", ["subexpr", "if", [["get", "model.errors.classStorageTypes", ["loc", [null, [183, 16], [183, 46]]]], "error", ""], [], ["loc", [null, [183, 12], [183, 58]]]]], ["loc", [null, [175, 4], [184, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.classStorageTypes", ["loc", [null, [185, 40], [185, 70]]]]], [], []], "pointing", "pointing"], ["loc", [null, [185, 4], [185, 92]]]]],
+        statements: [["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [74, 18], [74, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [75, 15], [75, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [77, 12], [77, 22]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [78, 16], [78, 33]]]], "error", ""], [], ["loc", [null, [78, 12], [78, 45]]]], "label", ["subexpr", "t", ["forms.fd-class-edit-form.name-caption"], [], ["loc", [null, [79, 12], [79, 55]]]]], ["loc", [null, [72, 4], [80, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [81, 40], [81, 57]]]]], [], []], "pointing", "pointing"], ["loc", [null, [81, 4], [81, 79]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [87, 18], [87, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [88, 15], [88, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.publishName", ["loc", [null, [90, 12], [90, 29]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.publishName", ["loc", [null, [91, 16], [91, 40]]]], "error", ""], [], ["loc", [null, [91, 12], [91, 52]]]], "label", ["subexpr", "t", ["forms.fd-class-edit-form.publishName-caption"], [], ["loc", [null, [92, 12], [92, 62]]]]], ["loc", [null, [85, 4], [93, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.publishName", ["loc", [null, [94, 40], [94, 64]]]]], [], []], "pointing", "pointing"], ["loc", [null, [94, 4], [94, 86]]]], ["inline", "t", ["forms.fd-class-edit-form.stored-caption"], [], ["loc", [null, [98, 11], [98, 58]]]], ["inline", "flexberry-checkbox", [], ["readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [101, 15], [101, 23]]]]], [], []], "value", ["subexpr", "@mut", [["get", "model.stored", ["loc", [null, [102, 12], [102, 24]]]]], [], []]], ["loc", [null, [99, 4], [103, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.stored", ["loc", [null, [104, 40], [104, 59]]]]], [], []], "pointing", "pointing"], ["loc", [null, [104, 4], [104, 81]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [110, 18], [110, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [111, 15], [111, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.storage", ["loc", [null, [113, 12], [113, 25]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.storage", ["loc", [null, [114, 16], [114, 36]]]], "error", ""], [], ["loc", [null, [114, 12], [114, 48]]]], "label", ["subexpr", "t", ["forms.fd-class-edit-form.storage-caption"], [], ["loc", [null, [115, 12], [115, 58]]]]], ["loc", [null, [108, 4], [116, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.storage", ["loc", [null, [117, 40], [117, 60]]]]], [], []], "pointing", "pointing"], ["loc", [null, [117, 4], [117, 82]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [123, 18], [123, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [124, 15], [124, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.packet", ["loc", [null, [126, 12], [126, 24]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.packet", ["loc", [null, [127, 16], [127, 35]]]], "error", ""], [], ["loc", [null, [127, 12], [127, 47]]]], "label", ["subexpr", "t", ["forms.fd-class-edit-form.packet-caption"], [], ["loc", [null, [128, 12], [128, 57]]]]], ["loc", [null, [121, 4], [129, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.packet", ["loc", [null, [130, 40], [130, 59]]]]], [], []], "pointing", "pointing"], ["loc", [null, [130, 4], [130, 81]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [136, 18], [136, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [137, 15], [137, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.namespacePostfix", ["loc", [null, [139, 12], [139, 34]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.namespacePostfix", ["loc", [null, [140, 16], [140, 45]]]], "error", ""], [], ["loc", [null, [140, 12], [140, 57]]]], "label", ["subexpr", "t", ["forms.fd-class-edit-form.namespacePostfix-caption"], [], ["loc", [null, [141, 12], [141, 67]]]]], ["loc", [null, [134, 4], [142, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.namespacePostfix", ["loc", [null, [143, 40], [143, 69]]]]], [], []], "pointing", "pointing"], ["loc", [null, [143, 4], [143, 91]]]], ["inline", "t", ["forms.fd-class-edit-form.businessServerClass-caption"], [], ["loc", [null, [147, 11], [147, 71]]]], ["inline", "flexberry-lookup", [], ["choose", "showLookupDialog", "remove", "removeLookupValue", "value", ["subexpr", "@mut", [["get", "model.businessServerClass", ["loc", [null, [152, 12], [152, 37]]]]], [], []], "displayAttributeName", "name", "relationName", "businessServerClass", "projection", "ListFormView", "title", ["subexpr", "t", ["forms.fd-class-edit-form.businessServerClass-caption"], [], ["loc", [null, [156, 12], [156, 70]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [157, 15], [157, 23]]]]], [], []], "dropdown", true, "lookupLimitPredicate", ["subexpr", "@mut", [["get", "lookupStereotypeLimitPredicate", ["loc", [null, [159, 27], [159, 57]]]]], [], []]], ["loc", [null, [148, 4], [160, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.businessServerClass", ["loc", [null, [161, 40], [161, 72]]]]], [], []], "pointing", "pointing"], ["loc", [null, [161, 4], [161, 94]]]], ["block", "if", [["get", "model.businessServerClass", ["loc", [null, [164, 8], [164, 33]]]]], [], 0, null, ["loc", [null, [164, 2], [175, 9]]]], ["inline", "t", ["forms.fd-class-edit-form.views-caption"], [], ["loc", [null, [178, 11], [178, 57]]]], ["inline", "flexberry-groupedit", [], ["componentName", "viewsGroupEdit", "mainModelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [182, 26], [182, 41]]]]], [], []], "modelProjection", ["subexpr", "@mut", [["get", "modelProjection.attributes.views", ["loc", [null, [183, 22], [183, 54]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model.views", ["loc", [null, [184, 14], [184, 25]]]]], [], []], "readonly", true, "orderable", false, "class", ["subexpr", "if", [["get", "model.errors.views", ["loc", [null, [187, 16], [187, 34]]]], "error", ""], [], ["loc", [null, [187, 12], [187, 46]]]]], ["loc", [null, [179, 4], [188, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.views", ["loc", [null, [189, 40], [189, 58]]]]], [], []], "pointing", "pointing"], ["loc", [null, [189, 4], [189, 80]]]], ["inline", "t", ["forms.fd-class-edit-form.classStorageTypes-caption"], [], ["loc", [null, [193, 11], [193, 69]]]], ["inline", "flexberry-groupedit", [], ["componentName", "classStorageTypesGroupEdit", "mainModelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [197, 26], [197, 41]]]]], [], []], "modelProjection", ["subexpr", "@mut", [["get", "modelProjection.attributes.classStorageTypes", ["loc", [null, [198, 22], [198, 66]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model.classStorageTypes", ["loc", [null, [199, 14], [199, 37]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [200, 15], [200, 23]]]]], [], []], "orderable", false, "class", ["subexpr", "if", [["get", "model.errors.classStorageTypes", ["loc", [null, [202, 16], [202, 46]]]], "error", ""], [], ["loc", [null, [202, 12], [202, 58]]]]], ["loc", [null, [194, 4], [203, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.classStorageTypes", ["loc", [null, [204, 40], [204, 70]]]]], [], []], "pointing", "pointing"], ["loc", [null, [204, 4], [204, 92]]]]],
         locals: [],
-        templates: []
+        templates: [child0]
       };
     })();
     return {
@@ -25776,7 +25877,7 @@ define("dummy/templates/fd-class-edit-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 189,
+            "line": 208,
             "column": 0
           }
         },
@@ -25796,6 +25897,8 @@ define("dummy/templates/fd-class-edit-form", ["exports"], function (exports) {
         var el1 = dom.createTextNode("\n\n");
         dom.appendChild(el0, el1);
         var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
         var el1 = dom.createElement("form");
         dom.setAttribute(el1, "class", "ui form flexberry-vertical-form");
@@ -25852,7 +25955,7 @@ define("dummy/templates/fd-class-edit-form", ["exports"], function (exports) {
         var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n  ");
+        var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
         dom.setAttribute(el2, "class", "field");
@@ -25867,7 +25970,7 @@ define("dummy/templates/fd-class-edit-form", ["exports"], function (exports) {
         var el3 = dom.createTextNode("\n");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n");
+        var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
         dom.setAttribute(el2, "class", "field");
@@ -25898,28 +26001,28 @@ define("dummy/templates/fd-class-edit-form", ["exports"], function (exports) {
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var element11 = dom.childAt(fragment, [3]);
-        var element12 = dom.childAt(element11, [5, 1]);
-        var element13 = dom.childAt(element12, [3]);
-        var element14 = dom.childAt(element11, [7]);
-        var element15 = dom.childAt(element11, [9]);
+        var element12 = dom.childAt(fragment, [4]);
+        var element13 = dom.childAt(element12, [5, 1]);
+        var element14 = dom.childAt(element13, [3]);
+        var element15 = dom.childAt(element12, [7]);
+        var element16 = dom.childAt(element12, [9]);
         var morphs = new Array(13);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
         morphs[1] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        morphs[2] = dom.createMorphAt(element11, 1, 1);
-        morphs[3] = dom.createMorphAt(dom.childAt(element11, [3, 1]), 1, 1);
-        morphs[4] = dom.createMorphAt(element12, 1, 1);
-        morphs[5] = dom.createElementMorph(element13);
-        morphs[6] = dom.createMorphAt(element13, 1, 1);
-        morphs[7] = dom.createMorphAt(element14, 1, 1);
-        morphs[8] = dom.createMorphAt(element14, 3, 3);
-        morphs[9] = dom.createMorphAt(dom.childAt(element15, [1]), 0, 0);
-        morphs[10] = dom.createMorphAt(element15, 3, 3);
-        morphs[11] = dom.createMorphAt(element15, 5, 5);
-        morphs[12] = dom.createMorphAt(element11, 11, 11);
+        morphs[2] = dom.createMorphAt(element12, 1, 1);
+        morphs[3] = dom.createMorphAt(dom.childAt(element12, [3, 1]), 1, 1);
+        morphs[4] = dom.createMorphAt(element13, 1, 1);
+        morphs[5] = dom.createElementMorph(element14);
+        morphs[6] = dom.createMorphAt(element14, 1, 1);
+        morphs[7] = dom.createMorphAt(element15, 1, 1);
+        morphs[8] = dom.createMorphAt(element15, 3, 3);
+        morphs[9] = dom.createMorphAt(dom.childAt(element16, [1]), 0, 0);
+        morphs[10] = dom.createMorphAt(element16, 3, 3);
+        morphs[11] = dom.createMorphAt(element16, 5, 5);
+        morphs[12] = dom.createMorphAt(element12, 11, 11);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-class-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 62]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [15, 26], [15, 31]]]]], [], []]], ["loc", [null, [15, 2], [15, 33]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [18, 43], [18, 55]]]]], [], []]], ["loc", [null, [18, 6], [18, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [23, 16], [23, 24]]]]], [], 1, null, ["loc", [null, [23, 6], [32, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [33, 59], [33, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [34, 8], [34, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [42, 16], [42, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [43, 13], [43, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.caption", ["loc", [null, [45, 10], [45, 23]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.caption", ["loc", [null, [46, 14], [46, 34]]]], "error", ""], [], ["loc", [null, [46, 10], [46, 46]]]], "label", ["subexpr", "t", ["forms.fd-class-edit-form.caption-caption"], [], ["loc", [null, [47, 10], [47, 56]]]]], ["loc", [null, [40, 2], [48, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.caption", ["loc", [null, [49, 38], [49, 58]]]]], [], []], "pointing", "pointing"], ["loc", [null, [49, 2], [49, 80]]]], ["inline", "t", ["forms.fd-class-edit-form.attributes-caption"], [], ["loc", [null, [53, 9], [53, 60]]]], ["inline", "flexberry-groupedit", [], ["componentName", "attributesGroupEdit", "mainModelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [57, 24], [57, 39]]]]], [], []], "modelProjection", ["subexpr", "@mut", [["get", "modelProjection.attributes.attributes", ["loc", [null, [58, 20], [58, 57]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model.attributes", ["loc", [null, [59, 12], [59, 28]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [60, 13], [60, 21]]]]], [], []], "orderable", false, "class", ["subexpr", "if", [["get", "model.errors.attributes", ["loc", [null, [62, 14], [62, 37]]]], "error", ""], [], ["loc", [null, [62, 10], [62, 49]]]]], ["loc", [null, [54, 2], [63, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.attributes", ["loc", [null, [64, 38], [64, 61]]]]], [], []], "pointing", "pointing"], ["loc", [null, [64, 2], [64, 83]]]], ["block", "flexberry-toggler", [], ["caption", ["subexpr", "t", ["forms.fd-class-edit-form.toggler-caption"], [], ["loc", [null, [68, 12], [68, 58]]]], "expanded", true, "hasResizableOLV", true], 2, null, ["loc", [null, [67, 0], [187, 22]]]]],
+      statements: [["inline", "t", ["forms.fd-class-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 62]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [16, 26], [16, 31]]]]], [], []]], ["loc", [null, [16, 2], [16, 33]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [19, 43], [19, 55]]]]], [], []]], ["loc", [null, [19, 6], [19, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [24, 16], [24, 24]]]]], [], 1, null, ["loc", [null, [24, 6], [33, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [34, 59], [34, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [35, 8], [35, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [42, 16], [42, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [43, 13], [43, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.caption", ["loc", [null, [45, 10], [45, 23]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.caption", ["loc", [null, [46, 14], [46, 34]]]], "error", ""], [], ["loc", [null, [46, 10], [46, 46]]]], "label", ["subexpr", "t", ["forms.fd-class-edit-form.caption-caption"], [], ["loc", [null, [47, 10], [47, 56]]]]], ["loc", [null, [40, 2], [48, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.caption", ["loc", [null, [49, 38], [49, 58]]]]], [], []], "pointing", "pointing"], ["loc", [null, [49, 2], [49, 80]]]], ["inline", "t", ["forms.fd-class-edit-form.attributes-caption"], [], ["loc", [null, [52, 9], [52, 60]]]], ["inline", "flexberry-groupedit", [], ["componentName", "attributesGroupEdit", "mainModelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [56, 24], [56, 39]]]]], [], []], "modelProjection", ["subexpr", "@mut", [["get", "modelProjection.attributes.attributes", ["loc", [null, [57, 20], [57, 57]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model.attributes", ["loc", [null, [58, 12], [58, 28]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [59, 13], [59, 21]]]]], [], []], "orderable", false, "class", ["subexpr", "if", [["get", "model.errors.attributes", ["loc", [null, [61, 14], [61, 37]]]], "error", ""], [], ["loc", [null, [61, 10], [61, 49]]]]], ["loc", [null, [53, 2], [62, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.attributes", ["loc", [null, [63, 38], [63, 61]]]]], [], []], "pointing", "pointing"], ["loc", [null, [63, 2], [63, 83]]]], ["block", "flexberry-toggler", [], ["caption", ["subexpr", "t", ["forms.fd-class-edit-form.toggler-caption"], [], ["loc", [null, [67, 12], [67, 58]]]], "expanded", true, "hasResizableOLV", true], 2, null, ["loc", [null, [66, 0], [206, 22]]]]],
       locals: [],
       templates: [child0, child1, child2]
     };
@@ -36107,6 +36210,14 @@ define('dummy/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-wri
     }
   });
 });
+define('dummy/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events', ['exports', 'ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events'], function (exports, _emberFlexberryDesignerTransformsICSSoftSTORMNETBusinessDataServiceObjectEvents) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerTransformsICSSoftSTORMNETBusinessDataServiceObjectEvents['default'];
+    }
+  });
+});
 define('dummy/transforms/new-platform-flexberry-web-designer-business-server-class', ['exports', 'ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-business-server-class'], function (exports, _emberFlexberryDesignerTransformsNewPlatformFlexberryWebDesignerBusinessServerClass) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -36226,7 +36337,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+308ab74c"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+8d1d1587"});
 }
 
 /* jshint ignore:end */

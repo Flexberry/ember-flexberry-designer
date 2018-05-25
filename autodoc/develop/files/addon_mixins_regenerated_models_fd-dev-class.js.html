@@ -180,7 +180,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.bSEventsCompute &amp;&amp; typeof this.bSEventsCompute === &#x27;function&#x27;) ? this.bSEventsCompute() : null;
     this.set(&#x27;bSEvents&#x27;, result);
   },
-  businessServerEvents: DS.attr(&#x27;string&#x27;),
+  businessServerEvents: DS.attr(&#x27;i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events&#x27;),
   caption: DS.attr(&#x27;string&#x27;),
   /**
     Non-stored property.
@@ -231,7 +231,9 @@ export let Model = Ember.Mixin.create({
     let result = (this.containersCompute &amp;&amp; typeof this.containersCompute === &#x27;function&#x27;) ? this.containersCompute() : null;
     this.set(&#x27;containers&#x27;, result);
   },
+  /* merged manually start */
   containersStr: DS.attr(&#x27;containers-tree&#x27;),
+  /* merged manually end */
   /**
     Non-stored property.
 
@@ -570,11 +572,11 @@ export let Model = Ember.Mixin.create({
   getValidations: function () {
     let parentValidations = this._super();
     let thisValidations = {
-      /* merged manually end */
+      /* merged manually start */
       caption: {
         presence: {
           // message: this.get(&#x27;i18n&#x27;).t(&#x27;models.fd-dev-class.validations.caption&#x27;)
-          message: &#x27;Caption is rquired&#x27;
+          message: &#x27;Caption is required&#x27;
         }
       }
       /* merged manually end */
@@ -1221,11 +1223,13 @@ export let defineProjections = function (modelClass) {
       })
     }),
     views: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+      /* merged manually start */
       name: Projection.attr(&#x27;&#x27;),
       definition: Projection.attr(&#x27;&#x27;),
       class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
 
       })
+      /* merged manually end */
     })
   });
   modelClass.defineProjection(&#x27;FdAttributesForForm&#x27;, &#x27;fd-dev-class&#x27;, {
@@ -1252,9 +1256,10 @@ export let defineProjections = function (modelClass) {
     storage: Projection.attr(&#x27;&#x27;),
     packet: Projection.attr(&#x27;&#x27;),
     namespacePostfix: Projection.attr(&#x27;&#x27;),
-    /* temporarily disabled
-    bSClass: Projection.attr(&#x27;&#x27;),
-     */
+    businessServerClass: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;Бизнес-сервер&#x27;, {
+      name: Projection.attr(&#x27;&#x27;, { hidden: true }),
+    }, { displayMemberPath: &#x27;name&#x27; }),
+    businessServerEvents: Projection.attr(&#x27;События бизнес-сервера&#x27;),
     attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
       /* merged manually start */
       name: Projection.attr(&#x27;&#x27;),
