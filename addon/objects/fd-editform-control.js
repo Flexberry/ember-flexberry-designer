@@ -12,7 +12,7 @@ import Ember from 'ember';
 */
 export default Ember.Object.extend({
   /**
-    Determines control type, `control`, 'tab', or 'group'.
+    Specifies the type of the control, `textbox`, `datepicker`, `dropdown`, etc.
 
     @property type
     @type String
@@ -28,34 +28,10 @@ export default Ember.Object.extend({
   caption: undefined,
 
   /**
-    A collection of nested controls.
+    Specifies the width of the control, in percent or in pixels.
 
-    @property controls
-    @type FdEditformControl[]
-  */
-  controls: undefined,
-
-  /**
-    The order of the control in the collection of controls.
-
-    @property order
-    @type Number
-  */
-  order: undefined,
-
-  /**
-    Number of the column.
-
-    @property column
-    @type Number
-  */
-  column: undefined,
-
-  /**
-    Determines the width of the column, in percent or in pixels.
-
-    @property columnWidth
+    @property width
     @type String
   */
-  columnWidth: undefined,
+  width: undefined,
 });
