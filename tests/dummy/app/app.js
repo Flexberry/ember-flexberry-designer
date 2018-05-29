@@ -20,7 +20,6 @@ App = Ember.Application.extend({
 
     if (stagePk) {
       let store = this.__container__.lookup('service:store');
-      fdPreloadStageMetadata(store, stagePk);
     }
   }
 });

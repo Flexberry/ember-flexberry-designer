@@ -24,44 +24,32 @@ function getPromise(store, stagePk, modelName, projectionName) {
  */
 export default function fdPreloadStageMetadata(store, stagePk) {
 
-  return new Ember.RSVP.Promise(function (resolve, reject) {
+  return new Ember.RSVP.Promise(function(resolve, reject) {
     let promises = [];
-    let modelName;
 
     const projectionName = 'FdPreloadMetadata';
 
     // stage promise
-    modelName = 'fd-dev-stage';
+    let modelName = 'fd-dev-stage';
     let q = new Builder(store, modelName)
-      /*.selectByProjection(projectionName)*/
-      .selectByProjection('EditFormView')
+      .selectByProjection(projectionName)
       .byId(stagePk)
       .build();
-
     promises.push(store.query(modelName, q));
 
     // classes promise
-    modelName = 'fd-dev-class';
-    /*promises.push(getPromise(store, stagePk, modelName, projectionName));*/
-    promises.push(getPromise(store, stagePk, modelName, 'SearchClassLoadView'));
+    promises.push(getPromise(store, stagePk, 'fd-dev-class', projectionName));
 
-    /*
     // associations promise
-    modelName = 'fd-dev-association';
-    promises.push(getPromise(store, stagePk, modelName, projectionName));
+    promises.push(getPromise(store, stagePk, 'fd-dev-association', projectionName));
 
     // agregations promise
-    modelName = 'fd-dev-agregation';
-    promises.push(getPromise(store, stagePk, modelName, projectionName));
+    promises.push(getPromise(store, stagePk, 'fd-dev-agregation', projectionName));
 
     // inheritances promise
-    modelName = 'fd-dev-inheritance';
-    promises.push(getPromise(store, stagePk, modelName, projectionName));
-    */
+    promises.push(getPromise(store, stagePk, 'fd-dev-inheritance', projectionName));
 
-    // all promises
-    Ember.RSVP.all(promises).then(() => {
-      resolve();
-    });
+    // resolve, reject
+    Ember.RSVP.all(promises).then(resolve, reject);
   });
 }
