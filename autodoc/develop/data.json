@@ -292,6 +292,51 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/objects/fd-editform-control.js": {
+            "name": "addon/objects/fd-editform-control.js",
+            "modules": {},
+            "classes": {
+                "FdEditformControl": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/objects/fd-editform-group.js": {
+            "name": "addon/objects/fd-editform-group.js",
+            "modules": {},
+            "classes": {
+                "FdEditformGroup": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/objects/fd-editform-row.js": {
+            "name": "addon/objects/fd-editform-row.js",
+            "modules": {},
+            "classes": {
+                "FdEditformRow": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/objects/fd-editform-tab.js": {
+            "name": "addon/objects/fd-editform-tab.js",
+            "modules": {},
+            "classes": {
+                "FdEditformTab": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/objects/fd-editform-tabgroup.js": {
+            "name": "addon/objects/fd-editform-tabgroup.js",
+            "modules": {},
+            "classes": {
+                "FdEditformTabgroup": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/routes/fd-class-edit-form/new.js": {
             "name": "addon/routes/fd-class-edit-form/new.js",
             "modules": {},
@@ -871,6 +916,11 @@
                 "FdLimitByStageMixin": 1,
                 "NewPlatformFlexberryFlexberryDesignerVisualEditControl": 1,
                 "NewPlatformFlexberryFlexberryDesignerVisualEditForm": 1,
+                "FdEditformControl": 1,
+                "FdEditformGroup": 1,
+                "FdEditformRow": 1,
+                "FdEditformTab": 1,
+                "FdEditformTabgroup": 1,
                 "FdCurrentProjectContextService": 1
             },
             "fors": {},
@@ -925,6 +975,81 @@
             "line": 4,
             "description": "Model to work with visual edit form.",
             "extends": "Projection.Model"
+        },
+        "FdEditformControl": {
+            "name": "FdEditformControl",
+            "shortname": "FdEditformControl",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "",
+            "file": "addon/objects/fd-editform-control.js",
+            "line": 7,
+            "description": "Describes the control on the edit form.",
+            "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Object.html\">Ember.Object</a>"
+        },
+        "FdEditformGroup": {
+            "name": "FdEditformGroup",
+            "shortname": "FdEditformGroup",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "",
+            "file": "addon/objects/fd-editform-group.js",
+            "line": 7,
+            "description": "Describes a group of controls on the edit form.",
+            "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Object.html\">Ember.Object</a>"
+        },
+        "FdEditformRow": {
+            "name": "FdEditformRow",
+            "shortname": "FdEditformRow",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "",
+            "file": "addon/objects/fd-editform-row.js",
+            "line": 7,
+            "description": "Describes one row with controls on the edit form.",
+            "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Object.html\">Ember.Object</a>"
+        },
+        "FdEditformTab": {
+            "name": "FdEditformTab",
+            "shortname": "FdEditformTab",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "",
+            "file": "addon/objects/fd-editform-tab.js",
+            "line": 7,
+            "description": "Describes one tab in a group.",
+            "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Object.html\">Ember.Object</a>"
+        },
+        "FdEditformTabgroup": {
+            "name": "FdEditformTabgroup",
+            "shortname": "FdEditformTabgroup",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "",
+            "file": "addon/objects/fd-editform-tabgroup.js",
+            "line": 7,
+            "description": "Describes a group of tabs on the edit form.",
+            "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Object.html\">Ember.Object</a>"
         },
         "FdCurrentProjectContextService": {
             "name": "FdCurrentProjectContextService",
@@ -3201,6 +3326,126 @@
                 "type": "Query.SimplePredicate"
             },
             "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-editform-control.js",
+            "line": 14,
+            "description": "Specifies the type of the control, `textbox`, `datepicker`, `dropdown`, etc.",
+            "itemtype": "property",
+            "name": "type",
+            "type": "String",
+            "class": "FdEditformControl",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-editform-control.js",
+            "line": 22,
+            "description": "Caption of the control.",
+            "itemtype": "property",
+            "name": "caption",
+            "type": "String",
+            "class": "FdEditformControl",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-editform-control.js",
+            "line": 30,
+            "description": "Specifies the width of the control, in percent or in pixels.",
+            "itemtype": "property",
+            "name": "width",
+            "type": "String",
+            "class": "FdEditformControl",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-editform-group.js",
+            "line": 14,
+            "description": "Caption of the group.",
+            "itemtype": "property",
+            "name": "caption",
+            "type": "String",
+            "class": "FdEditformGroup",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-editform-group.js",
+            "line": 22,
+            "description": "Specifies the width of the group, in percent or in pixels.",
+            "itemtype": "property",
+            "name": "width",
+            "type": "String",
+            "class": "FdEditformGroup",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-editform-group.js",
+            "line": 30,
+            "description": "A collection of rows with controls on the tab.",
+            "itemtype": "property",
+            "name": "rows",
+            "type": "FdEditformRow[]",
+            "class": "FdEditformGroup",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-editform-row.js",
+            "line": 14,
+            "description": "A collection of controls in row.",
+            "itemtype": "property",
+            "name": "controls",
+            "type": "Any[]",
+            "class": "FdEditformRow",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-editform-row.js",
+            "line": 22,
+            "description": "Columns count in row.",
+            "itemtype": "property",
+            "name": "columnsCount",
+            "type": "Number",
+            "class": "FdEditformRow",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-editform-tab.js",
+            "line": 14,
+            "description": "Caption of the tab.",
+            "itemtype": "property",
+            "name": "caption",
+            "type": "String",
+            "class": "FdEditformTab",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-editform-tab.js",
+            "line": 22,
+            "description": "A collection of rows with controls on the tab.",
+            "itemtype": "property",
+            "name": "rows",
+            "type": "FdEditformRow[]",
+            "class": "FdEditformTab",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-editform-tabgroup.js",
+            "line": 14,
+            "description": "Specifies the width of the tab group, in percent or in pixels.",
+            "itemtype": "property",
+            "name": "width",
+            "type": "String",
+            "class": "FdEditformTabgroup",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-editform-tabgroup.js",
+            "line": 22,
+            "description": "A collection of tabs in group.",
+            "itemtype": "property",
+            "name": "tabs",
+            "type": "FdEditformTab[]",
+            "class": "FdEditformTabgroup",
             "module": "ember-flexberry-designer"
         },
         {
