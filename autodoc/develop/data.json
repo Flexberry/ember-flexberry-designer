@@ -905,6 +905,13 @@
             },
             "fors": {},
             "namespaces": {}
+        },
+        "addon/utils/fd-preload-stage-metadata.js": {
+            "name": "addon/utils/fd-preload-stage-metadata.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
         }
     },
     "modules": {
@@ -4640,6 +4647,29 @@
             },
             "class": "FdCurrentProjectContextService",
             "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/utils/fd-preload-stage-metadata.js",
+            "line": 19,
+            "description": "Returns promise to preload stage metadata specified by stagePk in the context of store.",
+            "params": [
+                {
+                    "name": "store",
+                    "description": "",
+                    "type": "DS.Store"
+                },
+                {
+                    "name": "stagePk",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "promise",
+                "type": "Ember.RSVP.Promise"
+            },
+            "class": "",
+            "module": "ember-flexberry-designer"
         }
     ],
     "warnings": [
@@ -4918,6 +4948,10 @@
         {
             "message": "Missing item type\nField name where object identifier is kept.",
             "line": " addon/serializers/fd-view.js:6"
+        },
+        {
+            "message": "Missing item type\nReturns promise to preload stage metadata specified by stagePk in the context of store.",
+            "line": " addon/utils/fd-preload-stage-metadata.js:19"
         }
     ]
 }
