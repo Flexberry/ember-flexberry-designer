@@ -3,7 +3,7 @@ import EditFormController from 'ember-flexberry/controllers/edit-form';
 import { Query } from 'ember-flexberry-data';
 import BusinessDataObjectEvents from 'ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events';
 
-const { SimplePredicate } = Query;
+const { SimplePredicate, FilterOperator } = Query;
 
 export default EditFormController.extend({
   parentRoute: 'fd-class-list-form',
@@ -39,7 +39,7 @@ export default EditFormController.extend({
     @type SimplePredicate
    */
   lookupStereotypeLimitPredicate: Ember.computed(function() {
-    return new SimplePredicate('stereotype', 'eq', '«businessserver»');
+    return new SimplePredicate('stereotype', FilterOperator.Eq, '«businessserver»');
   }),
 
   actions: {
