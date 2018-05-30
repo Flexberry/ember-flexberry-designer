@@ -14,6 +14,7 @@ export default DS.Transform.extend({
           for (let item of itemList) {
             let propertyName = item.getAttribute('PropertyName');
             let caption = item.getAttribute('Caption');
+            let path = item.getAttribute('Path');
             let visible =  item.getAttribute('Visible');
             let isMaster =  item.getAttribute('IsMaster');
             let lookupType =  item.getAttribute('LookupType');
@@ -22,6 +23,7 @@ export default DS.Transform.extend({
             ret.push({
               propertyName:propertyName,
               caption:caption,
+              path:path,
               visible: visible,
               isMaster: isMaster,
               lookupType: lookupType,
@@ -46,12 +48,13 @@ export default DS.Transform.extend({
       let d = deserialized[i];
       let propertyName = `PropertyName="${d.propertyName}"`;
       let caption = `Caption="${d.caption}"`;
+      let path = `Path="${d.path}"`;
       let visible = `Visible="${d.visible === 'True' ? 'True' : 'False'}"`;
       let isMaster = `IsMaster="${d.isMaster === 'True' ? 'True' : 'False'}"`;
       let lookupType = `LookupType="${d.lookupType}"`;
       let masterPropertyName = `MasterPropertyName="${d.masterPropertyName}"`;
       let masterCustomizationString = `MasterCustomizationString="${d.masterCustomizationString}"`;
-      viewPropertiesList += `<Item ${propertyName} ${caption} ${visible} ${isMaster} ${lookupType} ${masterPropertyName} ${masterCustomizationString} />`;
+      viewPropertiesList += `<Item ${propertyName} ${caption} ${path} ${visible} ${isMaster} ${lookupType} ${masterPropertyName} ${masterCustomizationString} />`;
     }
 
     return `<View><ViewPropertiesList>${viewPropertiesList}</ViewPropertiesList><ViewDetailsList /></View>`;
