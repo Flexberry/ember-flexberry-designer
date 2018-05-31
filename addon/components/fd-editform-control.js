@@ -1,0 +1,99 @@
+/**
+  @module ember-flexberry-designer
+*/
+
+import Ember from 'ember';
+
+import FdEditformControl from '../objects/fd-editform-control';
+import FdEditformGroup from '../objects/fd-editform-group';
+import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
+
+/**
+  This component rendered the control on the edit form.
+
+  @class FdEditformControlComponent
+  @extends <a href="http://emberjs.com/api/classes/Ember.Component.html">Ember.Component</a>
+*/
+export default Ember.Component.extend({
+  /**
+    The passed control is a simple control.
+
+    @private
+    @property _isControl
+    @readOnly
+    @type Boolean
+  */
+  _isControl: Ember.computed('control', function() {
+    return this.get('control') instanceof FdEditformControl;
+  }).readOnly(),
+
+  /**
+    The passed control is a group.
+
+    @private
+    @property _isGroup
+    @readOnly
+    @type Boolean
+  */
+  _isGroup: Ember.computed('control', function() {
+    return this.get('control') instanceof FdEditformGroup;
+  }).readOnly(),
+
+  /**
+    The passed control is tabs.
+
+    @private
+    @property _isTab
+    @readOnly
+    @type Boolean
+  */
+  _isTab: Ember.computed('control', function() {
+    return this.get('control') instanceof FdEditformTabgroup;
+  }).readOnly(),
+
+  /**
+    Type of rendered component.
+
+    @private
+    @property _component
+    @readOnly
+    @type String
+  */
+  _component: Ember.computed('control.type', function() {
+    switch (this.get('control.type')) {
+      case 'date': return 'flexberry-datepicker';
+      case 'bool': return 'flexberry-checkbox';
+      default: return 'flexberry-textbox';
+    }
+  }).readOnly(),
+
+  /**
+    See [EmberJS API](https://emberjs.com/api/).
+
+    @property tagName
+  */
+  tagName: Ember.computed('_isControl', function() {
+    return this.get('_isControl') ? '' : 'div';
+  }),
+
+  /**
+    The control to render.
+
+    @property control
+    @type FdEditformControl|FdEditformGroup|FdEditformTabgroup
+  */
+  control: undefined,
+
+  /**
+    See [EmberJS API](https://emberjs.com/api/).
+
+    @method didInsertElement
+  */
+  didInsertElement() {
+    this._super(...arguments);
+
+    if (this.get('_isTab')) {
+      this.$('.menu .item').tab();
+    }
+  },
+});
