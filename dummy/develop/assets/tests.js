@@ -308,6 +308,190 @@ define('dummy/tests/helpers/validate-properties', ['exports', 'ember', 'ember-qu
     testPropertyValues(propertyName, values, false, context);
   }
 });
+define('dummy/tests/integration/components/fd-editform-control-test', ['exports', 'ember', 'ember-qunit', 'ember-flexberry-designer/objects/fd-editform-row', 'ember-flexberry-designer/objects/fd-editform-control', 'ember-flexberry-designer/objects/fd-editform-group', 'ember-flexberry-designer/objects/fd-editform-tabgroup', 'ember-flexberry-designer/objects/fd-editform-tab'], function (exports, _ember, _emberQunit, _emberFlexberryDesignerObjectsFdEditformRow, _emberFlexberryDesignerObjectsFdEditformControl, _emberFlexberryDesignerObjectsFdEditformGroup, _emberFlexberryDesignerObjectsFdEditformTabgroup, _emberFlexberryDesignerObjectsFdEditformTab) {
+
+  (0, _emberQunit.moduleForComponent)('fd-editform-control', 'Integration | Component | fd-editform-control', {
+    integration: true
+  });
+
+  (0, _emberQunit.test)('it renders and works', function (assert) {
+    this.render(_ember['default'].HTMLBars.template((function () {
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.4.6',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 1,
+              'column': 39
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [['inline', 'fd-editform-control', [], ['control', ['subexpr', '@mut', [['get', 'control', ['loc', [null, [1, 30], [1, 37]]]]], [], []]], ['loc', [null, [1, 0], [1, 39]]]]],
+        locals: [],
+        templates: []
+      };
+    })()));
+
+    this.set('control', _emberFlexberryDesignerObjectsFdEditformControl['default'].create({ type: 'bool', caption: 'Attribute #1' }));
+    assert.ok(/\s*Attribute #1\s*/.test(this.$().text()), 'With simple control.');
+
+    this.set('control', _emberFlexberryDesignerObjectsFdEditformGroup['default'].create({
+      caption: 'Group #1',
+      rows: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+        controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ type: 'bool', caption: 'Attribute #1' })])
+      })])
+    }));
+    assert.ok(/\s*Group #1\s*Attribute #1\s*/.test(this.$().text()), 'With group.');
+
+    this.set('control', _emberFlexberryDesignerObjectsFdEditformTabgroup['default'].create({
+      tabs: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformTab['default'].create({
+        caption: 'Tab #1',
+        rows: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+          controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ type: 'bool', caption: 'Attribute #1' })])
+        })])
+      })])
+    }));
+    assert.ok(/\s*Tab #1\s*Attribute #1\s*/.test(this.$().text()), 'With tabs.');
+  });
+});
+define('dummy/tests/integration/components/fd-editform-control-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - integration/components');
+  test('integration/components/fd-editform-control-test.js should pass jscs', function () {
+    ok(true, 'integration/components/fd-editform-control-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/integration/components/fd-editform-control-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/fd-editform-control-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/fd-editform-control-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/integration/components/fd-editform-row-test', ['exports', 'ember', 'ember-qunit', 'ember-flexberry-designer/objects/fd-editform-row', 'ember-flexberry-designer/objects/fd-editform-control'], function (exports, _ember, _emberQunit, _emberFlexberryDesignerObjectsFdEditformRow, _emberFlexberryDesignerObjectsFdEditformControl) {
+
+  (0, _emberQunit.moduleForComponent)('fd-editform-row', 'Integration | Component | fd-editform-row', {
+    integration: true
+  });
+
+  (0, _emberQunit.test)('it renders and works', function (assert) {
+    this.render(_ember['default'].HTMLBars.template((function () {
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.4.6',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 1,
+              'column': 27
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [['inline', 'fd-editform-row', [], ['row', ['subexpr', '@mut', [['get', 'row', ['loc', [null, [1, 22], [1, 25]]]]], [], []]], ['loc', [null, [1, 0], [1, 27]]]]],
+        locals: [],
+        templates: []
+      };
+    })()));
+
+    this.set('row', _emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+      controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({
+        type: 'bool',
+        caption: 'Attribute #1'
+      })])
+    }));
+    assert.ok(/\s*Attribute #1\s*/.test(this.$().text()), 'With one control.');
+    assert.ok(this.$('.ember-view:first').hasClass('field'));
+    assert.notOk(this.$('.ember-view:first').hasClass('fields'));
+    assert.notOk(this.$('.ember-view:first').hasClass('equal'));
+    assert.notOk(this.$('.ember-view:first').hasClass('width'));
+
+    this.set('row', _emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+      controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({
+        type: 'bool',
+        caption: 'Attribute #1'
+      }), _emberFlexberryDesignerObjectsFdEditformControl['default'].create({
+        type: 'bool',
+        caption: 'Attribute #2'
+      })])
+    }));
+    assert.ok(/\s*Attribute #1\s*Attribute #2\s*/.test(this.$().text()), 'With many controls.');
+    assert.notOk(this.$('.ember-view:first').hasClass('field'));
+    assert.ok(this.$('.ember-view:first').hasClass('fields'));
+    assert.ok(this.$('.ember-view:first').hasClass('equal'));
+    assert.ok(this.$('.ember-view:first').hasClass('width'));
+  });
+});
+define('dummy/tests/integration/components/fd-editform-row-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - integration/components');
+  test('integration/components/fd-editform-row-test.js should pass jscs', function () {
+    ok(true, 'integration/components/fd-editform-row-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/integration/components/fd-editform-row-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/fd-editform-row-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/fd-editform-row-test.js should pass jshint.');
+  });
+});
 define('dummy/tests/integration/components/fd-visual-diagram-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
   (0, _emberQunit.moduleForComponent)('fd-visual-diagram', 'Integration | Component | fd visual diagram', {

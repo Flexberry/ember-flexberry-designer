@@ -88,6 +88,22 @@ define('dummy/components/colsconfig-dialog-content', ['exports', 'ember-flexberr
     }
   });
 });
+define('dummy/components/fd-editform-control', ['exports', 'ember-flexberry-designer/components/fd-editform-control'], function (exports, _emberFlexberryDesignerComponentsFdEditformControl) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdEditformControl['default'];
+    }
+  });
+});
+define('dummy/components/fd-editform-row', ['exports', 'ember-flexberry-designer/components/fd-editform-row'], function (exports, _emberFlexberryDesignerComponentsFdEditformRow) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdEditformRow['default'];
+    }
+  });
+});
 define('dummy/components/fd-visual-diagram', ['exports', 'ember-flexberry-designer/components/fd-visual-diagram'], function (exports, _emberFlexberryDesignerComponentsFdVisualDiagram) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -942,6 +958,32 @@ define('dummy/controllers/sitemap-node', ['exports', 'ember'], function (exports
         }
       }
     }
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editform-control.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components');
+  test('modules/ember-flexberry-designer/components/fd-editform-control.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-editform-control.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editform-control.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-editform-control.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-editform-control.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editform-row.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components');
+  test('modules/ember-flexberry-designer/components/fd-editform-row.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-editform-row.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editform-row.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-editform-row.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-editform-row.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-visual-diagram.jscs-test', ['exports'], function (exports) {
@@ -14262,6 +14304,677 @@ define("dummy/templates/components/colsconfig-dialog-content", ["exports"], func
     };
   })());
 });
+define("dummy/templates/components/fd-editform-control", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    var child0 = (function () {
+      return {
+        meta: {
+          "fragmentReason": {
+            "name": "missing-wrapper",
+            "problems": ["multiple-nodes", "wrong-type"]
+          },
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 4,
+              "column": 0
+            }
+          },
+          "moduleName": "dummy/templates/components/fd-editform-control.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("  ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("label");
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n  ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(2);
+          morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 0, 0);
+          morphs[1] = dom.createMorphAt(fragment, 3, 3, contextualElement);
+          return morphs;
+        },
+        statements: [["content", "control.caption", ["loc", [null, [2, 9], [2, 28]]]], ["inline", "component", [["get", "_component", ["loc", [null, [3, 14], [3, 24]]]]], [], ["loc", [null, [3, 2], [3, 26]]]]],
+        locals: [],
+        templates: []
+      };
+    })();
+    var child1 = (function () {
+      var child0 = (function () {
+        var child0 = (function () {
+          var child0 = (function () {
+            return {
+              meta: {
+                "fragmentReason": false,
+                "revision": "Ember@2.4.6",
+                "loc": {
+                  "source": null,
+                  "start": {
+                    "line": 6,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 8,
+                    "column": 4
+                  }
+                },
+                "moduleName": "dummy/templates/components/fd-editform-control.hbs"
+              },
+              isEmpty: false,
+              arity: 1,
+              cachedFragment: null,
+              hasRendered: false,
+              buildFragment: function buildFragment(dom) {
+                var el0 = dom.createDocumentFragment();
+                var el1 = dom.createTextNode("      ");
+                dom.appendChild(el0, el1);
+                var el1 = dom.createComment("");
+                dom.appendChild(el0, el1);
+                var el1 = dom.createTextNode("\n");
+                dom.appendChild(el0, el1);
+                return el0;
+              },
+              buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+                var morphs = new Array(1);
+                morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+                return morphs;
+              },
+              statements: [["inline", "fd-editform-row", [], ["row", ["subexpr", "@mut", [["get", "row", ["loc", [null, [7, 28], [7, 31]]]]], [], []]], ["loc", [null, [7, 6], [7, 33]]]]],
+              locals: ["row"],
+              templates: []
+            };
+          })();
+          return {
+            meta: {
+              "fragmentReason": false,
+              "revision": "Ember@2.4.6",
+              "loc": {
+                "source": null,
+                "start": {
+                  "line": 5,
+                  "column": 2
+                },
+                "end": {
+                  "line": 9,
+                  "column": 2
+                }
+              },
+              "moduleName": "dummy/templates/components/fd-editform-control.hbs"
+            },
+            isEmpty: false,
+            arity: 0,
+            cachedFragment: null,
+            hasRendered: false,
+            buildFragment: function buildFragment(dom) {
+              var el0 = dom.createDocumentFragment();
+              var el1 = dom.createComment("");
+              dom.appendChild(el0, el1);
+              return el0;
+            },
+            buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+              var morphs = new Array(1);
+              morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+              dom.insertBoundary(fragment, 0);
+              dom.insertBoundary(fragment, null);
+              return morphs;
+            },
+            statements: [["block", "each", [["get", "control.rows", ["loc", [null, [6, 12], [6, 24]]]]], [], 0, null, ["loc", [null, [6, 4], [8, 13]]]]],
+            locals: [],
+            templates: [child0]
+          };
+        })();
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 4,
+                "column": 0
+              },
+              "end": {
+                "line": 10,
+                "column": 0
+              }
+            },
+            "moduleName": "dummy/templates/components/fd-editform-control.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+            dom.insertBoundary(fragment, 0);
+            dom.insertBoundary(fragment, null);
+            return morphs;
+          },
+          statements: [["block", "flexberry-toggler", [], ["caption", ["subexpr", "@mut", [["get", "control.caption", ["loc", [null, [5, 31], [5, 46]]]]], [], []]], 0, null, ["loc", [null, [5, 2], [9, 24]]]]],
+          locals: [],
+          templates: [child0]
+        };
+      })();
+      var child1 = (function () {
+        var child0 = (function () {
+          var child0 = (function () {
+            return {
+              meta: {
+                "fragmentReason": false,
+                "revision": "Ember@2.4.6",
+                "loc": {
+                  "source": null,
+                  "start": {
+                    "line": 12,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 14,
+                    "column": 4
+                  }
+                },
+                "moduleName": "dummy/templates/components/fd-editform-control.hbs"
+              },
+              isEmpty: false,
+              arity: 2,
+              cachedFragment: null,
+              hasRendered: false,
+              buildFragment: function buildFragment(dom) {
+                var el0 = dom.createDocumentFragment();
+                var el1 = dom.createTextNode("      ");
+                dom.appendChild(el0, el1);
+                var el1 = dom.createElement("a");
+                var el2 = dom.createComment("");
+                dom.appendChild(el1, el2);
+                dom.appendChild(el0, el1);
+                var el1 = dom.createTextNode("\n");
+                dom.appendChild(el0, el1);
+                return el0;
+              },
+              buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+                var element1 = dom.childAt(fragment, [1]);
+                var morphs = new Array(3);
+                morphs[0] = dom.createAttrMorph(element1, 'class');
+                morphs[1] = dom.createAttrMorph(element1, 'data-tab');
+                morphs[2] = dom.createMorphAt(element1, 0, 0);
+                return morphs;
+              },
+              statements: [["attribute", "class", ["concat", [["subexpr", "unless", [["get", "index", ["loc", [null, [13, 25], [13, 30]]]], "active"], [], ["loc", [null, [13, 16], [13, 41]]]], " item"]]], ["attribute", "data-tab", ["concat", [["get", "elementId", ["loc", [null, [13, 60], [13, 69]]]], "-tab-", ["get", "index", ["loc", [null, [13, 78], [13, 83]]]]]]], ["content", "tab.caption", ["loc", [null, [13, 87], [13, 102]]]]],
+              locals: ["tab", "index"],
+              templates: []
+            };
+          })();
+          var child1 = (function () {
+            var child0 = (function () {
+              return {
+                meta: {
+                  "fragmentReason": false,
+                  "revision": "Ember@2.4.6",
+                  "loc": {
+                    "source": null,
+                    "start": {
+                      "line": 18,
+                      "column": 6
+                    },
+                    "end": {
+                      "line": 20,
+                      "column": 6
+                    }
+                  },
+                  "moduleName": "dummy/templates/components/fd-editform-control.hbs"
+                },
+                isEmpty: false,
+                arity: 1,
+                cachedFragment: null,
+                hasRendered: false,
+                buildFragment: function buildFragment(dom) {
+                  var el0 = dom.createDocumentFragment();
+                  var el1 = dom.createTextNode("        ");
+                  dom.appendChild(el0, el1);
+                  var el1 = dom.createComment("");
+                  dom.appendChild(el0, el1);
+                  var el1 = dom.createTextNode("\n");
+                  dom.appendChild(el0, el1);
+                  return el0;
+                },
+                buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+                  var morphs = new Array(1);
+                  morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+                  return morphs;
+                },
+                statements: [["inline", "fd-editform-row", [], ["row", ["subexpr", "@mut", [["get", "row", ["loc", [null, [19, 30], [19, 33]]]]], [], []]], ["loc", [null, [19, 8], [19, 35]]]]],
+                locals: ["row"],
+                templates: []
+              };
+            })();
+            return {
+              meta: {
+                "fragmentReason": false,
+                "revision": "Ember@2.4.6",
+                "loc": {
+                  "source": null,
+                  "start": {
+                    "line": 16,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 22,
+                    "column": 2
+                  }
+                },
+                "moduleName": "dummy/templates/components/fd-editform-control.hbs"
+              },
+              isEmpty: false,
+              arity: 2,
+              cachedFragment: null,
+              hasRendered: false,
+              buildFragment: function buildFragment(dom) {
+                var el0 = dom.createDocumentFragment();
+                var el1 = dom.createTextNode("    ");
+                dom.appendChild(el0, el1);
+                var el1 = dom.createElement("div");
+                var el2 = dom.createTextNode("\n");
+                dom.appendChild(el1, el2);
+                var el2 = dom.createComment("");
+                dom.appendChild(el1, el2);
+                var el2 = dom.createTextNode("    ");
+                dom.appendChild(el1, el2);
+                dom.appendChild(el0, el1);
+                var el1 = dom.createTextNode("\n");
+                dom.appendChild(el0, el1);
+                return el0;
+              },
+              buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+                var element0 = dom.childAt(fragment, [1]);
+                var morphs = new Array(3);
+                morphs[0] = dom.createAttrMorph(element0, 'class');
+                morphs[1] = dom.createAttrMorph(element0, 'data-tab');
+                morphs[2] = dom.createMorphAt(element0, 1, 1);
+                return morphs;
+              },
+              statements: [["attribute", "class", ["concat", ["ui bottom attached ", ["subexpr", "unless", [["get", "index", ["loc", [null, [17, 44], [17, 49]]]], "active"], [], ["loc", [null, [17, 35], [17, 60]]]], " tab segment"]]], ["attribute", "data-tab", ["concat", [["get", "elementId", ["loc", [null, [17, 86], [17, 95]]]], "-tab-", ["get", "index", ["loc", [null, [17, 104], [17, 109]]]]]]], ["block", "each", [["get", "tab.rows", ["loc", [null, [18, 14], [18, 22]]]]], [], 0, null, ["loc", [null, [18, 6], [20, 15]]]]],
+              locals: ["tab", "index"],
+              templates: [child0]
+            };
+          })();
+          return {
+            meta: {
+              "fragmentReason": false,
+              "revision": "Ember@2.4.6",
+              "loc": {
+                "source": null,
+                "start": {
+                  "line": 10,
+                  "column": 0
+                },
+                "end": {
+                  "line": 23,
+                  "column": 0
+                }
+              },
+              "moduleName": "dummy/templates/components/fd-editform-control.hbs"
+            },
+            isEmpty: false,
+            arity: 0,
+            cachedFragment: null,
+            hasRendered: false,
+            buildFragment: function buildFragment(dom) {
+              var el0 = dom.createDocumentFragment();
+              var el1 = dom.createTextNode("  ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("div");
+              dom.setAttribute(el1, "class", "ui top attached tabular menu");
+              var el2 = dom.createTextNode("\n");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createComment("");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("  ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createComment("");
+              dom.appendChild(el0, el1);
+              return el0;
+            },
+            buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+              var morphs = new Array(2);
+              morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
+              morphs[1] = dom.createMorphAt(fragment, 3, 3, contextualElement);
+              dom.insertBoundary(fragment, null);
+              return morphs;
+            },
+            statements: [["block", "each", [["get", "control.tabs", ["loc", [null, [12, 12], [12, 24]]]]], [], 0, null, ["loc", [null, [12, 4], [14, 13]]]], ["block", "each", [["get", "control.tabs", ["loc", [null, [16, 10], [16, 22]]]]], [], 1, null, ["loc", [null, [16, 2], [22, 11]]]]],
+            locals: [],
+            templates: [child0, child1]
+          };
+        })();
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 10,
+                "column": 0
+              },
+              "end": {
+                "line": 23,
+                "column": 0
+              }
+            },
+            "moduleName": "dummy/templates/components/fd-editform-control.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+            dom.insertBoundary(fragment, 0);
+            dom.insertBoundary(fragment, null);
+            return morphs;
+          },
+          statements: [["block", "if", [["get", "_isTab", ["loc", [null, [10, 10], [10, 16]]]]], [], 0, null, ["loc", [null, [10, 0], [23, 0]]]]],
+          locals: [],
+          templates: [child0]
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 4,
+              "column": 0
+            },
+            "end": {
+              "line": 23,
+              "column": 0
+            }
+          },
+          "moduleName": "dummy/templates/components/fd-editform-control.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [["block", "if", [["get", "_isGroup", ["loc", [null, [4, 10], [4, 18]]]]], [], 0, 1, ["loc", [null, [4, 0], [23, 0]]]]],
+        locals: [],
+        templates: [child0, child1]
+      };
+    })();
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["wrong-type"]
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 23,
+            "column": 7
+          }
+        },
+        "moduleName": "dummy/templates/components/fd-editform-control.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        dom.insertBoundary(fragment, 0);
+        dom.insertBoundary(fragment, null);
+        return morphs;
+      },
+      statements: [["block", "if", [["get", "_isControl", ["loc", [null, [1, 6], [1, 16]]]]], [], 0, 1, ["loc", [null, [1, 0], [23, 7]]]]],
+      locals: [],
+      templates: [child0, child1]
+    };
+  })());
+});
+define("dummy/templates/components/fd-editform-row", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    var child0 = (function () {
+      return {
+        meta: {
+          "fragmentReason": {
+            "name": "missing-wrapper",
+            "problems": ["wrong-type"]
+          },
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 3,
+              "column": 0
+            }
+          },
+          "moduleName": "dummy/templates/components/fd-editform-row.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("  ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+          return morphs;
+        },
+        statements: [["inline", "fd-editform-control", [], ["control", ["subexpr", "@mut", [["get", "row.controls.firstObject", ["loc", [null, [2, 32], [2, 56]]]]], [], []]], ["loc", [null, [2, 2], [2, 58]]]]],
+        locals: [],
+        templates: []
+      };
+    })();
+    var child1 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 4,
+                "column": 2
+              },
+              "end": {
+                "line": 8,
+                "column": 2
+              }
+            },
+            "moduleName": "dummy/templates/components/fd-editform-row.hbs"
+          },
+          isEmpty: false,
+          arity: 1,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("    ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("div");
+            dom.setAttribute(el1, "class", "field");
+            var el2 = dom.createTextNode("\n      ");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n    ");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
+            return morphs;
+          },
+          statements: [["inline", "fd-editform-control", [], ["control", ["subexpr", "@mut", [["get", "control", ["loc", [null, [6, 36], [6, 43]]]]], [], []]], ["loc", [null, [6, 6], [6, 45]]]]],
+          locals: ["control"],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 3,
+              "column": 0
+            },
+            "end": {
+              "line": 9,
+              "column": 0
+            }
+          },
+          "moduleName": "dummy/templates/components/fd-editform-row.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [["block", "each", [["get", "row.controls", ["loc", [null, [4, 10], [4, 22]]]]], [], 0, null, ["loc", [null, [4, 2], [8, 11]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["wrong-type"]
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 9,
+            "column": 7
+          }
+        },
+        "moduleName": "dummy/templates/components/fd-editform-row.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        dom.insertBoundary(fragment, 0);
+        dom.insertBoundary(fragment, null);
+        return morphs;
+      },
+      statements: [["block", "if", [["get", "_singleColumn", ["loc", [null, [1, 6], [1, 19]]]]], [], 0, 1, ["loc", [null, [1, 0], [9, 7]]]]],
+      locals: [],
+      templates: [child0, child1]
+    };
+  })());
+});
 define("dummy/templates/components/fd-visual-edit-control", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     return {
@@ -27436,10 +28149,10 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
             return el0;
           },
           buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-            var element1 = dom.childAt(fragment, [1]);
+            var element0 = dom.childAt(fragment, [1]);
             var morphs = new Array(2);
-            morphs[0] = dom.createElementMorph(element1);
-            morphs[1] = dom.createMorphAt(element1, 1, 1);
+            morphs[0] = dom.createElementMorph(element0);
+            morphs[1] = dom.createMorphAt(element0, 1, 1);
             return morphs;
           },
           statements: [["element", "action", ["save-close"], [], ["loc", [null, [22, 68], [22, 91]]]], ["inline", "t", ["forms.edit-form.saveAndClose-button-text"], [], ["loc", [null, [23, 12], [23, 60]]]]],
@@ -27489,10 +28202,10 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var element2 = dom.childAt(fragment, [1]);
+          var element1 = dom.childAt(fragment, [1]);
           var morphs = new Array(3);
-          morphs[0] = dom.createElementMorph(element2);
-          morphs[1] = dom.createMorphAt(element2, 1, 1);
+          morphs[0] = dom.createElementMorph(element1);
+          morphs[1] = dom.createMorphAt(element1, 1, 1);
           morphs[2] = dom.createMorphAt(fragment, 3, 3, contextualElement);
           dom.insertBoundary(fragment, null);
           return morphs;
@@ -27510,12 +28223,12 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
           "loc": {
             "source": null,
             "start": {
-              "line": 62,
-              "column": 8
+              "line": 48,
+              "column": 2
             },
             "end": {
-              "line": 70,
-              "column": 8
+              "line": 50,
+              "column": 2
             }
           },
           "moduleName": "dummy/templates/fd-editform-constructor.hbs"
@@ -27526,36 +28239,20 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("          ");
+          var el1 = dom.createTextNode("    ");
           dom.appendChild(el0, el1);
-          var el1 = dom.createElement("div");
-          var el2 = dom.createTextNode("\n            ");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("label");
-          var el3 = dom.createComment("");
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n            ");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createComment("");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n          ");
-          dom.appendChild(el1, el2);
+          var el1 = dom.createComment("");
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n");
           dom.appendChild(el0, el1);
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var element0 = dom.childAt(fragment, [1]);
-          var morphs = new Array(4);
-          morphs[0] = dom.createAttrMorph(element0, 'class');
-          morphs[1] = dom.createAttrMorph(element0, 'onclick');
-          morphs[2] = dom.createMorphAt(dom.childAt(element0, [1]), 0, 0);
-          morphs[3] = dom.createMorphAt(element0, 3, 3);
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           return morphs;
         },
-        statements: [["attribute", "class", ["concat", ["field control-field ", ["subexpr", "if", [["get", "control.isSelected", ["loc", [null, [63, 47], [63, 65]]]], "selected-field"], [], ["loc", [null, [63, 42], [63, 84]]]]]]], ["attribute", "onclick", ["subexpr", "action", ["controlClick", ["get", "control", ["loc", [null, [63, 118], [63, 125]]]]], [], ["loc", [null, [63, 94], [63, 128]]]]], ["content", "control.name", ["loc", [null, [64, 19], [64, 35]]]], ["inline", "component", [["get", "control.controlType", ["loc", [null, [65, 24], [65, 43]]]]], ["value", ["subexpr", "@mut", [["get", "control.value", ["loc", [null, [66, 20], [66, 33]]]]], [], []], "readonly", true], ["loc", [null, [65, 12], [68, 14]]]]],
+        statements: [["inline", "fd-editform-row", [], ["row", ["subexpr", "@mut", [["get", "control", ["loc", [null, [49, 26], [49, 33]]]]], [], []]], ["loc", [null, [49, 4], [49, 35]]]]],
         locals: ["control"],
         templates: []
       };
@@ -27574,8 +28271,8 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
             "column": 0
           },
           "end": {
-            "line": 84,
-            "column": 0
+            "line": 51,
+            "column": 7
           }
         },
         "moduleName": "dummy/templates/fd-editform-constructor.hbs"
@@ -27654,141 +28351,57 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
         var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n");
+        var el2 = dom.createTextNode("\n\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
         dom.setAttribute(el2, "class", "ui grid row");
-        var el3 = dom.createTextNode("\n  ");
+        var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("div");
         dom.setAttribute(el3, "class", "field eight wide column");
-        var el4 = dom.createTextNode("\n      ");
+        var el4 = dom.createTextNode("\n        ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("label");
         var el5 = dom.createComment("");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n      ");
+        var el4 = dom.createTextNode("\n        ");
         dom.appendChild(el3, el4);
         var el4 = dom.createComment("");
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n  ");
+        var el4 = dom.createTextNode("\n    ");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n");
-        dom.appendChild(el2, el3);
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createElement("div");
-        dom.setAttribute(el2, "class", "ui segment grid");
         var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
-        var el3 = dom.createElement("div");
-        dom.setAttribute(el3, "class", "row");
-        var el4 = dom.createTextNode("\n    ");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("div");
-        dom.setAttribute(el4, "class", "ten wide column");
-        var el5 = dom.createTextNode("\n      ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createElement("div");
-        dom.setAttribute(el5, "class", "field");
-        var el6 = dom.createTextNode("\n        ");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createElement("button");
-        dom.setAttribute(el6, "class", "ui ui-add button");
-        dom.setAttribute(el6, "title", "Добавить");
-        var el7 = dom.createTextNode("\n            ");
-        dom.appendChild(el6, el7);
-        var el7 = dom.createElement("i");
-        dom.setAttribute(el7, "class", "plus icon");
-        dom.appendChild(el6, el7);
-        var el7 = dom.createTextNode("\n        ");
-        dom.appendChild(el6, el7);
-        dom.appendChild(el5, el6);
-        var el6 = dom.createTextNode("\n        ");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createElement("button");
-        dom.setAttribute(el6, "class", "ui ui-delete button");
-        dom.setAttribute(el6, "title", "Удалить");
-        var el7 = dom.createTextNode("\n            ");
-        dom.appendChild(el6, el7);
-        var el7 = dom.createElement("i");
-        dom.setAttribute(el7, "class", "minus icon");
-        dom.appendChild(el6, el7);
-        var el7 = dom.createTextNode("\n        ");
-        dom.appendChild(el6, el7);
-        dom.appendChild(el5, el6);
-        var el6 = dom.createTextNode("\n      ");
-        dom.appendChild(el5, el6);
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("    ");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n    ");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("div");
-        dom.setAttribute(el4, "class", "six wide column");
-        var el5 = dom.createTextNode("\n      ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createElement("div");
-        dom.setAttribute(el5, "class", "ui segment");
-        var el6 = dom.createTextNode("\n        ");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createComment("");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createTextNode("\n      ");
-        dom.appendChild(el5, el6);
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n    ");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n  ");
-        dom.appendChild(el3, el4);
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n");
-        dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n");
+        var el2 = dom.createTextNode("\n\n");
         dom.appendChild(el1, el2);
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var element3 = dom.childAt(fragment, [3]);
-        var element4 = dom.childAt(element3, [3, 1]);
-        var element5 = dom.childAt(element4, [7]);
-        var element6 = dom.childAt(element3, [5, 1]);
-        var element7 = dom.childAt(element3, [7, 1]);
-        var element8 = dom.childAt(element7, [1]);
-        var element9 = dom.childAt(element8, [1]);
-        var element10 = dom.childAt(element9, [1]);
-        var element11 = dom.childAt(element9, [3]);
-        var morphs = new Array(14);
+        var element2 = dom.childAt(fragment, [3]);
+        var element3 = dom.childAt(element2, [3, 1]);
+        var element4 = dom.childAt(element3, [7]);
+        var element5 = dom.childAt(element2, [5, 1]);
+        var morphs = new Array(11);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
         morphs[1] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        morphs[2] = dom.createMorphAt(element3, 1, 1);
-        morphs[3] = dom.createMorphAt(element4, 1, 1);
-        morphs[4] = dom.createMorphAt(dom.childAt(element4, [3]), 1, 1);
-        morphs[5] = dom.createMorphAt(dom.childAt(element4, [5]), 1, 1);
-        morphs[6] = dom.createElementMorph(element5);
-        morphs[7] = dom.createMorphAt(element5, 1, 1);
-        morphs[8] = dom.createMorphAt(dom.childAt(element6, [1]), 0, 0);
-        morphs[9] = dom.createMorphAt(element6, 3, 3);
-        morphs[10] = dom.createElementMorph(element10);
-        morphs[11] = dom.createElementMorph(element11);
-        morphs[12] = dom.createMorphAt(element8, 3, 3);
-        morphs[13] = dom.createMorphAt(dom.childAt(element7, [3, 1]), 1, 1);
+        morphs[2] = dom.createMorphAt(element2, 1, 1);
+        morphs[3] = dom.createMorphAt(element3, 1, 1);
+        morphs[4] = dom.createMorphAt(dom.childAt(element3, [3]), 1, 1);
+        morphs[5] = dom.createMorphAt(dom.childAt(element3, [5]), 1, 1);
+        morphs[6] = dom.createElementMorph(element4);
+        morphs[7] = dom.createMorphAt(element4, 1, 1);
+        morphs[8] = dom.createMorphAt(dom.childAt(element5, [1]), 0, 0);
+        morphs[9] = dom.createMorphAt(element5, 3, 3);
+        morphs[10] = dom.createMorphAt(element2, 7, 7);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-editform-constructor.caption"], [], ["loc", [null, [1, 22], [1, 67]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [2, 6], [2, 19]]]]], [], 0, null, ["loc", [null, [2, 0], [12, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [14, 26], [14, 31]]]]], [], []]], ["loc", [null, [14, 2], [14, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [17, 16], [17, 24]]]]], [], 1, null, ["loc", [null, [17, 6], [26, 17]]]], ["inline", "t", ["forms.edit-form.saveAndClose-button-text"], [], ["loc", [null, [28, 8], [28, 56]]]], ["inline", "t", ["forms.fd-visual-edit-form.preview-mobile-variant"], [], ["loc", [null, [31, 8], [31, 64]]]], ["element", "action", ["close"], [], ["loc", [null, [33, 59], [33, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [34, 8], [34, 49]]]], ["inline", "t", ["forms.fd-visual-edit-form.name"], [], ["loc", [null, [41, 13], [41, 51]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "model.editform.caption", ["loc", [null, [43, 14], [43, 36]]]]], [], []]], ["loc", [null, [42, 6], [44, 8]]]], ["element", "action", ["addControl"], [], ["loc", [null, [51, 16], [51, 39]]]], ["element", "action", ["deleteControl"], [], ["loc", [null, [56, 16], [56, 42]]]], ["block", "each", [["get", "model.controls", ["loc", [null, [62, 16], [62, 30]]]]], [], 2, null, ["loc", [null, [62, 8], [70, 17]]]], ["inline", "fd-visual-edit-control", [], ["model", ["subexpr", "@mut", [["get", "selectedControl", ["loc", [null, [76, 16], [76, 31]]]]], [], []], "controls", ["subexpr", "@mut", [["get", "model.controls", ["loc", [null, [77, 19], [77, 33]]]]], [], []]], ["loc", [null, [74, 8], [78, 10]]]]],
+      statements: [["inline", "t", ["forms.fd-editform-constructor.caption"], [], ["loc", [null, [1, 22], [1, 67]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [2, 6], [2, 19]]]]], [], 0, null, ["loc", [null, [2, 0], [12, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [14, 26], [14, 31]]]]], [], []]], ["loc", [null, [14, 2], [14, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [17, 16], [17, 24]]]]], [], 1, null, ["loc", [null, [17, 6], [26, 17]]]], ["inline", "t", ["forms.edit-form.saveAndClose-button-text"], [], ["loc", [null, [28, 8], [28, 56]]]], ["inline", "t", ["forms.fd-visual-edit-form.preview-mobile-variant"], [], ["loc", [null, [31, 8], [31, 64]]]], ["element", "action", ["close"], [], ["loc", [null, [33, 59], [33, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [34, 8], [34, 49]]]], ["inline", "t", ["forms.fd-visual-edit-form.name"], [], ["loc", [null, [41, 15], [41, 53]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "model.editform.caption", ["loc", [null, [43, 16], [43, 38]]]]], [], []]], ["loc", [null, [42, 8], [44, 10]]]], ["block", "each", [["get", "model.controls", ["loc", [null, [48, 10], [48, 24]]]]], [], 2, null, ["loc", [null, [48, 2], [50, 11]]]]],
       locals: [],
       templates: [child0, child1, child2]
     };
@@ -37007,7 +37620,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+5cbe2435"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+a4ac2863"});
 }
 
 /* jshint ignore:end */

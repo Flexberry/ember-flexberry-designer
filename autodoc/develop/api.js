@@ -3,8 +3,10 @@ YUI.add("yuidoc-meta", function(Y) {
     "classes": [
         "FdCurrentProjectContextService",
         "FdEditformControl",
+        "FdEditformControlComponent",
         "FdEditformGroup",
         "FdEditformRow",
+        "FdEditformRowComponent",
         "FdEditformTab",
         "FdEditformTabgroup",
         "FdLimitByStageMixin",

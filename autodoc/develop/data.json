@@ -4,6 +4,26 @@
         "version": "develop"
     },
     "files": {
+        "addon/components/fd-editform-control.js": {
+            "name": "addon/components/fd-editform-control.js",
+            "modules": {
+                "ember-flexberry-designer": 1
+            },
+            "classes": {
+                "FdEditformControlComponent": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/components/fd-editform-row.js": {
+            "name": "addon/components/fd-editform-row.js",
+            "modules": {},
+            "classes": {
+                "FdEditformRowComponent": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/components/fd-visual-edit-form.js": {
             "name": "addon/components/fd-visual-edit-form.js",
             "modules": {},
@@ -265,9 +285,7 @@
         },
         "addon/mixins/fd-limit-by-stage.js": {
             "name": "addon/mixins/fd-limit-by-stage.js",
-            "modules": {
-                "ember-flexberry-designer": 1
-            },
+            "modules": {},
             "classes": {
                 "FdLimitByStageMixin": 1
             },
@@ -920,6 +938,8 @@
             "submodules": {},
             "elements": {},
             "classes": {
+                "FdEditformControlComponent": 1,
+                "FdEditformRowComponent": 1,
                 "FdLimitByStageMixin": 1,
                 "NewPlatformFlexberryFlexberryDesignerVisualEditControl": 1,
                 "NewPlatformFlexberryFlexberryDesignerVisualEditForm": 1,
@@ -938,6 +958,36 @@
         }
     },
     "classes": {
+        "FdEditformControlComponent": {
+            "name": "FdEditformControlComponent",
+            "shortname": "FdEditformControlComponent",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "",
+            "file": "addon/components/fd-editform-control.js",
+            "line": 11,
+            "description": "This component rendered the control on the edit form.",
+            "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Component.html\">Ember.Component</a>"
+        },
+        "FdEditformRowComponent": {
+            "name": "FdEditformRowComponent",
+            "shortname": "FdEditformRowComponent",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "",
+            "file": "addon/components/fd-editform-row.js",
+            "line": 7,
+            "description": "This component rendered one row with controls on the edit form.",
+            "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Component.html\">Ember.Component</a>"
+        },
         "FdLimitByStageMixin": {
             "name": "FdLimitByStageMixin",
             "shortname": "FdLimitByStageMixin",
@@ -1077,12 +1127,124 @@
     "elements": {},
     "classitems": [
         {
+            "file": "addon/components/fd-editform-control.js",
+            "line": 18,
+            "description": "The passed control is a simple control.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_isControl",
+            "readonly": "",
+            "type": "Boolean",
+            "class": "FdEditformControlComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-control.js",
+            "line": 30,
+            "description": "The passed control is a group.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_isGroup",
+            "readonly": "",
+            "type": "Boolean",
+            "class": "FdEditformControlComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-control.js",
+            "line": 42,
+            "description": "The passed control is tabs.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_isTab",
+            "readonly": "",
+            "type": "Boolean",
+            "class": "FdEditformControlComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-control.js",
+            "line": 54,
+            "description": "Type of rendered component.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_component",
+            "readonly": "",
+            "type": "String",
+            "class": "FdEditformControlComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-control.js",
+            "line": 70,
+            "description": "See [EmberJS API](https://emberjs.com/api/).",
+            "itemtype": "property",
+            "name": "tagName",
+            "class": "FdEditformControlComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-control.js",
+            "line": 79,
+            "description": "The control to render.",
+            "itemtype": "property",
+            "name": "control",
+            "type": "FdEditformControl|FdEditformGroup|FdEditformTabgroup",
+            "class": "FdEditformControlComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-control.js",
+            "line": 87,
+            "description": "See [EmberJS API](https://emberjs.com/api/).",
+            "itemtype": "method",
+            "name": "didInsertElement",
+            "class": "FdEditformControlComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-row.js",
+            "line": 14,
+            "description": "The component is rendered as one column.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_singleColumn",
+            "type": "Boolean",
+            "class": "FdEditformRowComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-row.js",
+            "line": 23,
+            "description": "The row to render.",
+            "itemtype": "property",
+            "name": "row",
+            "type": "FdEditformRow",
+            "class": "FdEditformRowComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-row.js",
+            "line": 31,
+            "description": "See [EmberJS API](https://emberjs.com/api/).",
+            "itemtype": "property",
+            "name": "classNameBindings",
+            "class": "FdEditformRowComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
             "file": "addon/components/fd-visual-edit-form.js",
             "line": 5,
             "itemtype": "property",
             "name": "store",
             "type": "Service",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/components/fd-visual-edit-form.js",
@@ -1092,7 +1254,8 @@
             "name": "createNewButton",
             "type": "Boolean",
             "default": "true",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/components/fd-visual-edit-form.js",
@@ -1102,7 +1265,8 @@
             "name": "model",
             "type": "Object",
             "default": "undefined",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/components/fd-visual-edit-form.js",
@@ -1112,7 +1276,8 @@
             "name": "deleteButton",
             "type": "Boolean",
             "default": "true",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/components/fd-visual-edit-form.js",
@@ -1122,7 +1287,8 @@
             "name": "control",
             "type": "Object",
             "default": "undefined",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/components/fd-visual-edit-form.js",
@@ -1132,7 +1298,8 @@
             "name": "selectedControl",
             "type": "Object",
             "default": "undefined",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/components/fd-visual-edit-form.js",
@@ -1142,7 +1309,8 @@
             "name": "selectedControl",
             "type": "Object",
             "default": "null",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/components/fd-visual-edit-form.js",
@@ -1152,7 +1320,8 @@
             "name": "controls",
             "type": "DS.ManyArray",
             "default": "undefined",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/components/fd-visual-edit-form.js",
@@ -1162,7 +1331,8 @@
             "name": "addControl",
             "access": "public",
             "tagname": "",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/components/fd-visual-edit-form.js",
@@ -1172,7 +1342,8 @@
             "name": "deleteControl",
             "access": "public",
             "tagname": "",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/components/fd-visual-edit-form.js",
@@ -1182,7 +1353,8 @@
             "name": "controlClick",
             "access": "public",
             "tagname": "",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/components/fd-visual-edit-form.js",
@@ -1192,19 +1364,22 @@
             "name": "_clearSelection",
             "access": "private",
             "tagname": "",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/components/fd-visual-edit-form.js",
             "line": 145,
             "description": "Initializes component.",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/components/fd-visual-edit-form.js",
             "line": 155,
             "description": "Initializes DOM-related component's properties.",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-association-list-form.js",
@@ -1214,7 +1389,8 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-association-edit-form'",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-class-edit-form.js",
@@ -1223,7 +1399,8 @@
             "itemtype": "property",
             "name": "lookupStereotypeLimitPredicate",
             "type": "SimplePredicate",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-class-edit-form.js",
@@ -1231,7 +1408,8 @@
             "description": "Overridden action for button 'Save'.",
             "itemtype": "method",
             "name": "actions.save",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-class-edit-form.js",
@@ -1246,7 +1424,8 @@
                     "type": "Boolean"
                 }
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-class-edit-form.js",
@@ -1254,7 +1433,8 @@
             "description": "Sets 'businessServerEvents' model property value to default if business server is not present.",
             "itemtype": "method",
             "name": "_setDefaultBusinessServerEvents",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-class-list-form.js",
@@ -1264,7 +1444,8 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-class-edit-form'",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-configuration-list-form.js",
@@ -1274,7 +1455,8 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-configuration-edit-form'",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-diagram-list-form.js",
@@ -1284,7 +1466,8 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-diagram-edit-form'",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-generation-list-form.js",
@@ -1294,7 +1477,8 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-generation-process-form'",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-generation-list-form.js",
@@ -1303,7 +1487,8 @@
             "itemtype": "property",
             "name": "customButtons",
             "type": "Array",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-generation-list-form.js",
@@ -1311,7 +1496,8 @@
             "description": "Handler for click on generate button.",
             "itemtype": "method",
             "name": "actions.generationStartButtonClick",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-generation-list-form.js",
@@ -1340,7 +1526,8 @@
                 "description": "Object containing name & properties of component, which will be used to render current table cell.\n{ componentName: 'my-component',  componentProperties: { ... } }.",
                 "type": "Object"
             },
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-generation-process-form.js",
@@ -1350,7 +1537,8 @@
             "name": "store",
             "type": "DS.Store",
             "readonly": "",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-generation-process-form.js",
@@ -1360,7 +1548,8 @@
             "name": "generationLog",
             "type": "Array",
             "readonly": "",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-generation-process-form.js",
@@ -1369,7 +1558,8 @@
             "itemtype": "property",
             "name": "currentGeneration",
             "type": "Object",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-generation-process-form.js",
@@ -1378,7 +1568,8 @@
             "itemtype": "property",
             "name": "sortedGenerationLog",
             "type": "Array",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-generation-process-form.js",
@@ -1386,7 +1577,8 @@
             "description": "Handler for click on generate button.",
             "itemtype": "method",
             "name": "actions.generate",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-generation-process-form.js",
@@ -1401,7 +1593,8 @@
                     "type": "Integer"
                 }
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-inheritance-list-form.js",
@@ -1411,7 +1604,8 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-inheritance-edit-form'",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-stage-list-form.js",
@@ -1421,7 +1615,8 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-stage-edit-form'",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-system-list-form.js",
@@ -1431,7 +1626,8 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-system-edit-form'",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-view-list-form.js",
@@ -1441,7 +1637,8 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-view-edit-form'",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-base-association.js",
@@ -1449,7 +1646,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "endRoleStr",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-base-association.js",
@@ -1462,7 +1660,8 @@
             "example": [
                 "\n  ```javascript\n  _endRoleStrChanged: Ember.on('init', Ember.observer('endRoleStr', function() {\n    Ember.run.once(this, '_endRoleStrCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-base-association.js",
@@ -1470,7 +1669,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "notNullStart",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-base-association.js",
@@ -1483,7 +1683,8 @@
             "example": [
                 "\n  ```javascript\n  _notNullStartChanged: Ember.on('init', Ember.observer('notNullStart', function() {\n    Ember.run.once(this, '_notNullStartCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-base-association.js",
@@ -1491,7 +1692,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "startRoleStr",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-base-association.js",
@@ -1504,7 +1706,8 @@
             "example": [
                 "\n  ```javascript\n  _startRoleStrChanged: Ember.on('init', Ember.observer('startRoleStr', function() {\n    Ember.run.once(this, '_startRoleStrCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-case-property.js",
@@ -1512,7 +1715,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-case-property.js",
@@ -1525,7 +1729,8 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-class.js",
@@ -1533,7 +1738,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "nameStr",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-class.js",
@@ -1546,7 +1752,8 @@
             "example": [
                 "\n  ```javascript\n  _nameStrChanged: Ember.on('init', Ember.observer('nameStr', function() {\n    Ember.run.once(this, '_nameStrCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-aggregation.js",
@@ -1554,7 +1761,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "assocType",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-aggregation.js",
@@ -1567,7 +1775,8 @@
             "example": [
                 "\n  ```javascript\n  _assocTypeChanged: Ember.on('init', Ember.observer('assocType', function() {\n    Ember.run.once(this, '_assocTypeCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-aggregation.js",
@@ -1575,7 +1784,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realStorage",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-aggregation.js",
@@ -1588,7 +1798,8 @@
             "example": [
                 "\n  ```javascript\n  _realStorageChanged: Ember.on('init', Ember.observer('realStorage', function() {\n    Ember.run.once(this, '_realStorageCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-association.js",
@@ -1596,7 +1807,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "assocType",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-association.js",
@@ -1609,7 +1821,8 @@
             "example": [
                 "\n  ```javascript\n  _assocTypeChanged: Ember.on('init', Ember.observer('assocType', function() {\n    Ember.run.once(this, '_assocTypeCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-association.js",
@@ -1617,7 +1830,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realStorage",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-association.js",
@@ -1630,7 +1844,8 @@
             "example": [
                 "\n  ```javascript\n  _realStorageChanged: Ember.on('init', Ember.observer('realStorage', function() {\n    Ember.run.once(this, '_realStorageCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
@@ -1638,7 +1853,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "dataServiceExpressionXML",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
@@ -1651,7 +1867,8 @@
             "example": [
                 "\n  ```javascript\n  _dataServiceExpressionXMLChanged: Ember.on('init', Ember.observer('dataServiceExpressionXML', function() {\n    Ember.run.once(this, '_dataServiceExpressionXMLCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
@@ -1659,7 +1876,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realCaption",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
@@ -1672,7 +1890,8 @@
             "example": [
                 "\n  ```javascript\n  _realCaptionChanged: Ember.on('init', Ember.observer('realCaption', function() {\n    Ember.run.once(this, '_realCaptionCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
@@ -1680,7 +1899,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realStorage",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
@@ -1693,7 +1913,8 @@
             "example": [
                 "\n  ```javascript\n  _realStorageChanged: Ember.on('init', Ember.observer('realStorage', function() {\n    Ember.run.once(this, '_realStorageCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
@@ -1701,7 +1922,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "assocType",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
@@ -1714,7 +1936,8 @@
             "example": [
                 "\n  ```javascript\n  _assocTypeChanged: Ember.on('init', Ember.observer('assocType', function() {\n    Ember.run.once(this, '_assocTypeCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
@@ -1722,7 +1945,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realEndRole",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
@@ -1735,7 +1959,8 @@
             "example": [
                 "\n  ```javascript\n  _realEndRoleChanged: Ember.on('init', Ember.observer('realEndRole', function() {\n    Ember.run.once(this, '_realEndRoleCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
@@ -1743,7 +1968,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realStartRole",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
@@ -1756,7 +1982,8 @@
             "example": [
                 "\n  ```javascript\n  _realStartRoleChanged: Ember.on('init', Ember.observer('realStartRole', function() {\n    Ember.run.once(this, '_realStartRoleCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1764,7 +1991,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "appConfigFile",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1777,7 +2005,8 @@
             "example": [
                 "\n  ```javascript\n  _appConfigFileChanged: Ember.on('init', Ember.observer('appConfigFile', function() {\n    Ember.run.once(this, '_appConfigFileCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1785,7 +2014,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "bSClass",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1798,7 +2028,8 @@
             "example": [
                 "\n  ```javascript\n  _bSClassChanged: Ember.on('init', Ember.observer('bSClass', function() {\n    Ember.run.once(this, '_bSClassCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1806,7 +2037,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "bSEvents",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1819,7 +2051,8 @@
             "example": [
                 "\n  ```javascript\n  _bSEventsChanged: Ember.on('init', Ember.observer('bSEvents', function() {\n    Ember.run.once(this, '_bSEventsCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1827,7 +2060,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "comPlusServerOptions",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1840,7 +2074,8 @@
             "example": [
                 "\n  ```javascript\n  _comPlusServerOptionsChanged: Ember.on('init', Ember.observer('comPlusServerOptions', function() {\n    Ember.run.once(this, '_comPlusServerOptionsCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1848,7 +2083,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "containers",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1861,7 +2097,8 @@
             "example": [
                 "\n  ```javascript\n  _containersChanged: Ember.on('init', Ember.observer('containers', function() {\n    Ember.run.once(this, '_containersCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1869,7 +2106,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "dataObjectTypes",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1882,7 +2120,8 @@
             "example": [
                 "\n  ```javascript\n  _dataObjectTypesChanged: Ember.on('init', Ember.observer('dataObjectTypes', function() {\n    Ember.run.once(this, '_dataObjectTypesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1890,7 +2129,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "editFormOperations",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1903,7 +2143,8 @@
             "example": [
                 "\n  ```javascript\n  _editFormOperationsChanged: Ember.on('init', Ember.observer('editFormOperations', function() {\n    Ember.run.once(this, '_editFormOperationsCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1911,7 +2152,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "listFormOperations",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1924,7 +2166,8 @@
             "example": [
                 "\n  ```javascript\n  _listFormOperationsChanged: Ember.on('init', Ember.observer('listFormOperations', function() {\n    Ember.run.once(this, '_listFormOperationsCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1932,7 +2175,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "loadingOrderXML",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1945,7 +2189,8 @@
             "example": [
                 "\n  ```javascript\n  _loadingOrderXMLChanged: Ember.on('init', Ember.observer('loadingOrderXML', function() {\n    Ember.run.once(this, '_loadingOrderXMLCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1953,7 +2198,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "propertyLookup",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1966,7 +2212,8 @@
             "example": [
                 "\n  ```javascript\n  _propertyLookupChanged: Ember.on('init', Ember.observer('propertyLookup', function() {\n    Ember.run.once(this, '_propertyLookupCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1974,7 +2221,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realCaption",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1987,7 +2235,8 @@
             "example": [
                 "\n  ```javascript\n  _realCaptionChanged: Ember.on('init', Ember.observer('realCaption', function() {\n    Ember.run.once(this, '_realCaptionCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -1995,7 +2244,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realNamespace",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -2008,7 +2258,8 @@
             "example": [
                 "\n  ```javascript\n  _realNamespaceChanged: Ember.on('init', Ember.observer('realNamespace', function() {\n    Ember.run.once(this, '_realNamespaceCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -2016,7 +2267,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realPacket",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -2029,7 +2281,8 @@
             "example": [
                 "\n  ```javascript\n  _realPacketChanged: Ember.on('init', Ember.observer('realPacket', function() {\n    Ember.run.once(this, '_realPacketCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -2037,7 +2290,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realPrimaryKeyStorage",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -2050,7 +2304,8 @@
             "example": [
                 "\n  ```javascript\n  _realPrimaryKeyStorageChanged: Ember.on('init', Ember.observer('realPrimaryKeyStorage', function() {\n    Ember.run.once(this, '_realPrimaryKeyStorageCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -2058,7 +2313,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realStorage",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -2071,7 +2327,8 @@
             "example": [
                 "\n  ```javascript\n  _realStorageChanged: Ember.on('init', Ember.observer('realStorage', function() {\n    Ember.run.once(this, '_realStorageCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -2079,7 +2336,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "storeInstancesInTypeXML",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -2092,7 +2350,8 @@
             "example": [
                 "\n  ```javascript\n  _storeInstancesInTypeXMLChanged: Ember.on('init', Ember.observer('storeInstancesInTypeXML', function() {\n    Ember.run.once(this, '_storeInstancesInTypeXMLCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -2100,7 +2359,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "useCache",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -2113,7 +2373,8 @@
             "example": [
                 "\n  ```javascript\n  _useCacheChanged: Ember.on('init', Ember.observer('useCache', function() {\n    Ember.run.once(this, '_useCacheCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -2121,7 +2382,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "dataObjectTypes",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -2134,7 +2396,8 @@
             "example": [
                 "\n  ```javascript\n  _dataObjectTypesChanged: Ember.on('init', Ember.observer('dataObjectTypes', function() {\n    Ember.run.once(this, '_dataObjectTypesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -2142,7 +2405,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "listFormOperations",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -2155,7 +2419,8 @@
             "example": [
                 "\n  ```javascript\n  _listFormOperationsChanged: Ember.on('init', Ember.observer('listFormOperations', function() {\n    Ember.run.once(this, '_listFormOperationsCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -2163,7 +2428,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "propertyLookup",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -2176,7 +2442,8 @@
             "example": [
                 "\n  ```javascript\n  _propertyLookupChanged: Ember.on('init', Ember.observer('propertyLookup', function() {\n    Ember.run.once(this, '_propertyLookupCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -2184,7 +2451,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "viewForForm",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -2197,7 +2465,8 @@
             "example": [
                 "\n  ```javascript\n  _viewForFormChanged: Ember.on('init', Ember.observer('viewForForm', function() {\n    Ember.run.once(this, '_viewForFormCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-method.js",
@@ -2205,7 +2474,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "parametersStr",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-method.js",
@@ -2218,7 +2488,8 @@
             "example": [
                 "\n  ```javascript\n  _parametersStrChanged: Ember.on('init', Ember.observer('parametersStr', function() {\n    Ember.run.once(this, '_parametersStrCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-method.js",
@@ -2226,7 +2497,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realCaption",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-method.js",
@@ -2239,7 +2511,8 @@
             "example": [
                 "\n  ```javascript\n  _realCaptionChanged: Ember.on('init', Ember.observer('realCaption', function() {\n    Ember.run.once(this, '_realCaptionCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-method.js",
@@ -2247,7 +2520,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeParametersStr",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-method.js",
@@ -2260,7 +2534,8 @@
             "example": [
                 "\n  ```javascript\n  _typeParametersStrChanged: Ember.on('init', Ember.observer('typeParametersStr', function() {\n    Ember.run.once(this, '_typeParametersStrCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-parameter.js",
@@ -2268,7 +2543,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realCaption",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-parameter.js",
@@ -2281,7 +2557,8 @@
             "example": [
                 "\n  ```javascript\n  _realCaptionChanged: Ember.on('init', Ember.observer('realCaption', function() {\n    Ember.run.once(this, '_realCaptionCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2289,7 +2566,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "additionalPluginsSettings",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2302,7 +2580,8 @@
             "example": [
                 "\n  ```javascript\n  _additionalPluginsSettingsChanged: Ember.on('init', Ember.observer('additionalPluginsSettings', function() {\n    Ember.run.once(this, '_additionalPluginsSettingsCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2310,7 +2589,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "chosenPalette",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2323,7 +2603,8 @@
             "example": [
                 "\n  ```javascript\n  _chosenPaletteChanged: Ember.on('init', Ember.observer('chosenPalette', function() {\n    Ember.run.once(this, '_chosenPaletteCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2331,7 +2612,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "defaultAccessType",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2344,7 +2626,8 @@
             "example": [
                 "\n  ```javascript\n  _defaultAccessTypeChanged: Ember.on('init', Ember.observer('defaultAccessType', function() {\n    Ember.run.once(this, '_defaultAccessTypeCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2352,7 +2635,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "defaultTypeMapTypes",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2365,7 +2649,8 @@
             "example": [
                 "\n  ```javascript\n  _defaultTypeMapTypesChanged: Ember.on('init', Ember.observer('defaultTypeMapTypes', function() {\n    Ember.run.once(this, '_defaultTypeMapTypesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2373,7 +2658,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "doNotDeleteExtraTables",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2386,7 +2672,8 @@
             "example": [
                 "\n  ```javascript\n  _doNotDeleteExtraTablesChanged: Ember.on('init', Ember.observer('doNotDeleteExtraTables', function() {\n    Ember.run.once(this, '_doNotDeleteExtraTablesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2394,7 +2681,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "enableAuElement",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2407,7 +2695,8 @@
             "example": [
                 "\n  ```javascript\n  _enableAuElementChanged: Ember.on('init', Ember.observer('enableAuElement', function() {\n    Ember.run.once(this, '_enableAuElementCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2415,7 +2704,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "lastIndexDate",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2428,7 +2718,8 @@
             "example": [
                 "\n  ```javascript\n  _lastIndexDateChanged: Ember.on('init', Ember.observer('lastIndexDate', function() {\n    Ember.run.once(this, '_lastIndexDateCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2436,7 +2727,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realDataObjectNameSpace",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2449,7 +2741,8 @@
             "example": [
                 "\n  ```javascript\n  _realDataObjectNameSpaceChanged: Ember.on('init', Ember.observer('realDataObjectNameSpace', function() {\n    Ember.run.once(this, '_realDataObjectNameSpaceCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2457,7 +2750,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapAccess",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2470,7 +2764,8 @@
             "example": [
                 "\n  ```javascript\n  _typeMapAccessChanged: Ember.on('init', Ember.observer('typeMapAccess', function() {\n    Ember.run.once(this, '_typeMapAccessCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2478,7 +2773,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapCS",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2491,7 +2787,8 @@
             "example": [
                 "\n  ```javascript\n  _typeMapCSChanged: Ember.on('init', Ember.observer('typeMapCS', function() {\n    Ember.run.once(this, '_typeMapCSCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2499,7 +2796,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapOracle",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2512,7 +2810,8 @@
             "example": [
                 "\n  ```javascript\n  _typeMapOracleChanged: Ember.on('init', Ember.observer('typeMapOracle', function() {\n    Ember.run.once(this, '_typeMapOracleCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2520,7 +2819,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapPostgre",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2533,7 +2833,8 @@
             "example": [
                 "\n  ```javascript\n  _typeMapPostgreChanged: Ember.on('init', Ember.observer('typeMapPostgre', function() {\n    Ember.run.once(this, '_typeMapPostgreCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2541,7 +2842,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapSQL",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2554,7 +2856,8 @@
             "example": [
                 "\n  ```javascript\n  _typeMapSQLChanged: Ember.on('init', Ember.observer('typeMapSQL', function() {\n    Ember.run.once(this, '_typeMapSQLCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2562,7 +2865,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapVB",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -2575,7 +2879,8 @@
             "example": [
                 "\n  ```javascript\n  _typeMapVBChanged: Ember.on('init', Ember.observer('typeMapVB', function() {\n    Ember.run.once(this, '_typeMapVBCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -2583,7 +2888,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -2596,7 +2902,8 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -2604,7 +2911,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitiveTypes",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -2617,7 +2925,8 @@
             "example": [
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -2625,7 +2934,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitives",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -2638,7 +2948,8 @@
             "example": [
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -2646,7 +2957,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "helpKeyword",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -2659,7 +2971,8 @@
             "example": [
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -2667,7 +2980,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -2680,7 +2994,8 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -2688,7 +3003,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitiveTypes",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -2701,7 +3017,8 @@
             "example": [
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -2709,7 +3026,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitives",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -2722,7 +3040,8 @@
             "example": [
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -2730,7 +3049,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "helpKeyword",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -2743,7 +3063,8 @@
             "example": [
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -2751,7 +3072,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -2764,7 +3086,8 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -2772,7 +3095,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitiveTypes",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -2785,7 +3109,8 @@
             "example": [
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -2793,7 +3118,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitives",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -2806,7 +3132,8 @@
             "example": [
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -2814,7 +3141,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "helpKeyword",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -2827,7 +3155,8 @@
             "example": [
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -2835,7 +3164,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -2848,7 +3178,8 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -2856,7 +3187,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitiveTypes",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -2869,7 +3201,8 @@
             "example": [
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -2877,7 +3210,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitives",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -2890,7 +3224,8 @@
             "example": [
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -2898,7 +3233,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "helpKeyword",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -2911,7 +3247,8 @@
             "example": [
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -2919,7 +3256,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -2932,7 +3270,8 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -2940,7 +3279,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitiveTypes",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -2953,7 +3293,8 @@
             "example": [
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -2961,7 +3302,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitives",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -2974,7 +3316,8 @@
             "example": [
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -2982,7 +3325,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "helpKeyword",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -2995,7 +3339,8 @@
             "example": [
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -3003,7 +3348,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -3016,7 +3362,8 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -3024,7 +3371,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitiveTypes",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -3037,7 +3385,8 @@
             "example": [
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -3045,7 +3394,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitives",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -3058,7 +3408,8 @@
             "example": [
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -3066,7 +3417,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "helpKeyword",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -3079,7 +3431,8 @@
             "example": [
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -3087,7 +3440,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -3100,7 +3454,8 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -3108,7 +3463,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitiveTypes",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -3121,7 +3477,8 @@
             "example": [
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -3129,7 +3486,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitives",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -3142,7 +3500,8 @@
             "example": [
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -3150,7 +3509,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "helpKeyword",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -3163,7 +3523,8 @@
             "example": [
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-view.js",
@@ -3171,7 +3532,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "properties",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-view.js",
@@ -3184,7 +3546,8 @@
             "example": [
                 "\n  ```javascript\n  _propertiesChanged: Ember.on('init', Ember.observer('properties', function() {\n    Ember.run.once(this, '_propertiesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-diagram.js",
@@ -3192,7 +3555,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitivesStream",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-diagram.js",
@@ -3205,7 +3569,8 @@
             "example": [
                 "\n  ```javascript\n  _primitivesStreamChanged: Ember.on('init', Ember.observer('primitivesStream', function() {\n    Ember.run.once(this, '_primitivesStreamCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-diagram.js",
@@ -3213,7 +3578,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitivesJsonString",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-diagram.js",
@@ -3226,7 +3592,8 @@
             "example": [
                 "\n  ```javascript\n  _primitivesJsonStringChanged: Ember.on('init', Ember.observer('primitivesJsonString', function() {\n    Ember.run.once(this, '_primitivesJsonStringCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-filelink.js",
@@ -3234,7 +3601,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "fileName",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-filelink.js",
@@ -3247,7 +3615,8 @@
             "example": [
                 "\n  ```javascript\n  _fileNameChanged: Ember.on('init', Ember.observer('fileName', function() {\n    Ember.run.once(this, '_fileNameCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-registered-plug-in.js",
@@ -3255,7 +3624,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "type",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-registered-plug-in.js",
@@ -3268,7 +3638,8 @@
             "example": [
                 "\n  ```javascript\n  _typeChanged: Ember.on('init', Ember.observer('type', function() {\n    Ember.run.once(this, '_typeCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-repository-data-object.js",
@@ -3276,7 +3647,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "nameStr",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-repository-data-object.js",
@@ -3289,7 +3661,8 @@
             "example": [
                 "\n  ```javascript\n  _nameStrChanged: Ember.on('init', Ember.observer('nameStr', function() {\n    Ember.run.once(this, '_nameStrCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-stage.js",
@@ -3297,7 +3670,8 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "chosenPalette",
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-stage.js",
@@ -3310,7 +3684,8 @@
             "example": [
                 "\n  ```javascript\n  _chosenPaletteChanged: Ember.on('init', Ember.observer('chosenPalette', function() {\n    Ember.run.once(this, '_chosenPaletteCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin"
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/mixins/fd-limit-by-stage.js",
