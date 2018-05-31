@@ -1,0 +1,9 @@
+{{#if _singleColumn}}
+  {{fd-editform-control control=row.controls.firstObject}}
+{{else}}
+  {{#each row.controls as |control|}}
+    <div class="field">
+      {{fd-editform-control control=control}}
+    </div>
+  {{/each}}
+{{/if}}

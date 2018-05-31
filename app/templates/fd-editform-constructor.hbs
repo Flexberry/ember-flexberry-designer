@@ -36,48 +36,16 @@
     </div>
   </div>
 
-<div class="ui grid row">
-  <div class="field eight wide column">
-      <label>{{t 'forms.fd-visual-edit-form.name'}}</label>
-      {{flexberry-textbox
-        value=model.editform.caption
-      }}
-  </div>
-</div>
-<div class="ui segment grid">
-  <div class="row">
-    <div class="ten wide column">
-      <div class="field">
-        <button {{action "addControl"}}
-          class="ui ui-add button"
-          title="Добавить">
-            <i class="plus icon"></i>
-        </button>
-        <button {{action "deleteControl"}}
-          class="ui ui-delete button"
-          title="Удалить">
-            <i class="minus icon"></i>
-        </button>
-      </div>
-        {{#each model.controls as |control|}}
-          <div class="field control-field {{if control.isSelected 'selected-field'}}" onclick={{action "controlClick" control }}>
-            <label>{{control.name}}</label>
-            {{component control.controlType
-              value=control.value
-              readonly=true
-            }}
-          </div>
-        {{/each}}
-    </div>
-    <div class="six wide column">
-      <div class="ui segment">
-        {{
-          fd-visual-edit-control
-          model=selectedControl
-          controls=model.controls
+  <div class="ui grid row">
+    <div class="field eight wide column">
+        <label>{{t 'forms.fd-visual-edit-form.name'}}</label>
+        {{flexberry-textbox
+          value=model.editform.caption
         }}
-      </div>
     </div>
   </div>
-</div>
+
+  {{#each model.controls as |control|}}
+    {{fd-editform-row row=control}}
+  {{/each}}
 </form>
