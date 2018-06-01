@@ -20,15 +20,15 @@ export default DS.Transform.extend({
             let propertyName = item.getAttribute('PropertyName');
             let caption = item.getAttribute('Caption');
             let path = item.getAttribute('Path');
-            let visible =  Boolean(item.getAttribute('Visible'));
+            let visible = Boolean(item.getAttribute('Visible'));
             if (Boolean(item.getAttribute('IsMaster'))) {
-              let lookupType =  item.getAttribute('LookupType');
-              let masterPropertyName =  item.getAttribute('MasterPropertyName');
-              let masterCustomizationString =  item.getAttribute('MasterCustomizationString');
+              let lookupType = item.getAttribute('LookupType');
+              let masterPropertyName = item.getAttribute('MasterPropertyName');
+              let masterCustomizationString = item.getAttribute('MasterCustomizationString');
               itemObject = FdViewAttributesMaster.create({
-                name:propertyName,
-                caption:caption,
-                path:path,
+                name: propertyName,
+                caption: caption,
+                path: path,
                 visible: visible,
                 lookupType: lookupType,
                 masterPropertyName: masterPropertyName,
@@ -36,9 +36,9 @@ export default DS.Transform.extend({
               });
             } else {
               itemObject = FdViewAttributesProperty.create({
-                name:propertyName,
-                caption:caption,
-                path:path,
+                name: propertyName,
+                caption: caption,
+                path: path,
                 visible: visible,
               });
             }
@@ -54,13 +54,13 @@ export default DS.Transform.extend({
             let detailName = item.getAttribute('DetailName');
             let detailViewName = item.getAttribute('DetailViewName');
             let loadOnLoadAgregator = Boolean(item.getAttribute('LoadOnLoadAgregator'));
-            let detailPath =  item.getAttribute('DetailPath');
-            let detailCaption =  item.getAttribute('DetailCaption');
-            let detailVisible =  Boolean(item.getAttribute('DetailVisible'));
+            let detailPath = item.getAttribute('DetailPath');
+            let detailCaption = item.getAttribute('DetailCaption');
+            let detailVisible = Boolean(item.getAttribute('DetailVisible'));
             ret.push(FdViewAttributesDatail.create({
-              name:detailName,
-              detailViewName:detailViewName,
-              loadOnLoadAgregator:loadOnLoadAgregator,
+              name: detailName,
+              detailViewName: detailViewName,
+              loadOnLoadAgregator: loadOnLoadAgregator,
               path: detailPath,
               caption: detailCaption,
               visible: detailVisible
@@ -86,8 +86,8 @@ export default DS.Transform.extend({
         let detailName = `DetailName="${d.name}"`;
         let detailViewName = `DetailViewName="${d.detailViewName}"`;
         let loadOnLoadAgregator = `LoadOnLoadAgregator="${d.loadOnLoadAgregator}"`;
-        let detailPath =  `DetailPath="${d.path}"`;
-        let detailCaption =  `DetailCaption="${d.caption}"`;
+        let detailPath = `DetailPath="${d.path}"`;
+        let detailCaption = `DetailCaption="${d.caption}"`;
         let detailVisible = `DetailVisible="${d.visible}"`;
         viewDetailsList += `<Item ${detailName} ${detailViewName} ${loadOnLoadAgregator} ${detailPath} ${detailCaption} ${detailVisible} />`;
       } else {
