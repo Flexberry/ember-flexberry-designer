@@ -31,8 +31,8 @@ export default FdViewAttributesProperty.extend({
   /**
     Item property 'masterCustomixationString'.
 
-    @property masterCustomixationString
+    @property masterCustomizationString
     @type String
   */
-  masterCustomixationString: undefined,
+  masterCustomizationString: undefined,
 });
