@@ -25,6 +25,6 @@
   </div>
 
   {{#each model.controls as |control|}}
-    {{fd-editform-row row=control}}
+    {{fd-editform-row row=control selectAction=(action "selectControl")}}
   {{/each}}
 </form>

@@ -4,5 +4,11 @@ export default {
     'form-properties-header': 'Свойства формы',
     'form-name': 'Название формы',
     'form-description': 'Описание',
+    'control-properties-header': 'Свойства элемента управления',
+    'control-caption': 'Заголовок',
+    'control-type': 'Тип',
+    'group-caption': 'Заголовок группы',
+    'tab-caption': 'Заголовок вкладки',
+    'control-not-selected': 'Элемент управления не выбран',
   },
 };
