@@ -41,7 +41,7 @@ export default DS.Transform.extend({
             });
           }
 
-          ret.push(itemObject);
+          ret.pushObject(itemObject);
         }
       }
 
@@ -55,7 +55,7 @@ export default DS.Transform.extend({
           let detailPath = item.getAttribute('DetailPath');
           let detailCaption = item.getAttribute('DetailCaption');
           let detailVisible = Boolean(item.getAttribute('DetailVisible'));
-          ret.push(FdViewAttributesDatail.create({
+          ret.pushObject(FdViewAttributesDatail.create({
             name: detailName,
             detailViewName: detailViewName,
             loadOnLoadAgregator: loadOnLoadAgregator,
