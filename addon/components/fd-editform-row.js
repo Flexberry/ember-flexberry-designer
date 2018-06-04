@@ -34,4 +34,17 @@ export default Ember.Component.extend({
     @property classNameBindings
   */
   classNameBindings: ['_singleColumn:field:fields', '_singleColumn::equal', '_singleColumn::width'],
+
+  /**
+    Calls `selectAction` action when clicking on component when it is renderd as one column.
+
+    @method click
+    @param {JQuery.Event} event
+  */
+  click(event) {
+    event.stopPropagation();
+    if (this.get('_singleColumn')) {
+      this.get('selectAction')(this.get('row.controls.firstObject'));
+    }
+  },
 });
