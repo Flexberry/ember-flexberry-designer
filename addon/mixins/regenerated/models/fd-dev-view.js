@@ -71,7 +71,8 @@ export let defineProjections = function (modelClass) {
   });
   modelClass.defineProjection('EditFormView', 'fd-dev-view', {
     name: Projection.attr('Name'),
-    description: Projection.attr('Description')
+    description: Projection.attr('Description'),
+    definition: Projection.attr('Definition')
   });
   modelClass.defineProjection('EditPropertyLookups', 'fd-dev-view', {
     name: Projection.attr(''),
