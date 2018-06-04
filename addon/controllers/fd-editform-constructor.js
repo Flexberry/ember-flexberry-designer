@@ -6,6 +6,14 @@ export default Ember.Controller.extend({
   actions: {
     close() {
       this.transitionToRoute('fd-appstruct-form');
-    }
-  }
+    },
+
+    toggleConfigPanel() {
+      if (this.toggleProperty('configPanelState')) {
+        this.transitionToRoute('fd-editform-constructor.form-config-panel');
+      } else {
+        this.transitionToRoute('fd-editform-constructor');
+      }
+    },
+  },
 });
