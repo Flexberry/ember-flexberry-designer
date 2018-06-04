@@ -55,7 +55,7 @@ export default ListFormRoute.extend({
   currentContext: Ember.inject.service('fd-current-project-context'),
 
   objectListViewLimitPredicate() {
-    let clazz = this.get('currentContext').getCurrentClass();
+    let clazz = this.controller.get('clazz');
     return new Query.SimplePredicate('class', '==', clazz);
   },
 });

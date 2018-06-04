@@ -8,5 +8,8 @@ export default ListFormController.extend({
     @type String
     @default 'fd-view-edit-form'
    */
-  editFormRoute: 'fd-view-edit-form'
+  editFormRoute: 'fd-view-edit-form',
+
+  clazz: undefined,
+
 });

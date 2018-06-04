@@ -50,14 +50,14 @@ export default ListFormRoute.extend(FdLimitByStageMixin, {
       if (options.column === null) {
         return this._super(...arguments);
       } else {
-        this.get('currentContext').setCurrentClass(clazz);
+        this.send('setClass', clazz.get('id'));
         return this._super(...arguments);
       }
     },
   },
 
   willDestroy: function() {
-    this.get('currentContext').setCurrentClass(undefined);
+    this.send('setClass', undefined);
     this._super(...arguments);
   }
 });

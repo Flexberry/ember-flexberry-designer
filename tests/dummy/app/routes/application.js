@@ -18,6 +18,16 @@ export default Ember.Route.extend(ModalApplicationRouteMixin, {
   */
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
+  actions: {
+    setClass(clazz){
+      this.controller.set('clazz', clazz);
+    },
+
+    setClassInController(controller, clazz){
+      this.controllerFor(controller).set('clazz',clazz);
+    },
+  },
+
   activate: function() {
     let context = this.get('currentProjectContext');
 
