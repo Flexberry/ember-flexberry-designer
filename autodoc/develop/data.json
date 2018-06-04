@@ -355,6 +355,33 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/objects/fd-view-attributes-datail.js": {
+            "name": "addon/objects/fd-view-attributes-datail.js",
+            "modules": {},
+            "classes": {
+                "FdViewAttributesDatail": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/objects/fd-view-attributes-master.js": {
+            "name": "addon/objects/fd-view-attributes-master.js",
+            "modules": {},
+            "classes": {
+                "FdViewAttributesMaster": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/objects/fd-view-attributes-property.js": {
+            "name": "addon/objects/fd-view-attributes-property.js",
+            "modules": {},
+            "classes": {
+                "FdViewAttributesProperty": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/routes/fd-class-edit-form/new.js": {
             "name": "addon/routes/fd-class-edit-form/new.js",
             "modules": {},
@@ -948,6 +975,9 @@
                 "FdEditformRow": 1,
                 "FdEditformTab": 1,
                 "FdEditformTabgroup": 1,
+                "FdViewAttributesDatail": 1,
+                "FdViewAttributesMaster": 1,
+                "FdViewAttributesProperty": 1,
                 "FdCurrentProjectContextService": 1
             },
             "fors": {},
@@ -1106,6 +1136,51 @@
             "file": "addon/objects/fd-editform-tabgroup.js",
             "line": 7,
             "description": "Describes a group of tabs on the edit form.",
+            "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Object.html\">Ember.Object</a>"
+        },
+        "FdViewAttributesDatail": {
+            "name": "FdViewAttributesDatail",
+            "shortname": "FdViewAttributesDatail",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "",
+            "file": "addon/objects/fd-view-attributes-datail.js",
+            "line": 7,
+            "description": "Describes properties on the datail view.",
+            "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Object.html\">Ember.Object</a>"
+        },
+        "FdViewAttributesMaster": {
+            "name": "FdViewAttributesMaster",
+            "shortname": "FdViewAttributesMaster",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "",
+            "file": "addon/objects/fd-view-attributes-master.js",
+            "line": 7,
+            "description": "Describes properties on the master view.",
+            "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Object.html\">Ember.Object</a>"
+        },
+        "FdViewAttributesProperty": {
+            "name": "FdViewAttributesProperty",
+            "shortname": "FdViewAttributesProperty",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "",
+            "file": "addon/objects/fd-view-attributes-property.js",
+            "line": 7,
+            "description": "Describes common properties on the view.",
             "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Object.html\">Ember.Object</a>"
         },
         "FdCurrentProjectContextService": {
@@ -3828,6 +3903,96 @@
             "name": "tabs",
             "type": "FdEditformTab[]",
             "class": "FdEditformTabgroup",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-view-attributes-datail.js",
+            "line": 15,
+            "description": "Item property 'datailViewName'.",
+            "itemtype": "property",
+            "name": "datailViewName",
+            "type": "String",
+            "class": "FdViewAttributesDatail",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-view-attributes-datail.js",
+            "line": 23,
+            "description": "Item property 'loadOnLoadAgregator'.",
+            "itemtype": "property",
+            "name": "loadOnLoadAgregator",
+            "type": "Boolean",
+            "class": "FdViewAttributesDatail",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-view-attributes-master.js",
+            "line": 15,
+            "description": "Item property 'lookupType'.",
+            "itemtype": "property",
+            "name": "lookupType",
+            "type": "String",
+            "class": "FdViewAttributesMaster",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-view-attributes-master.js",
+            "line": 23,
+            "description": "Item property 'masterPropertyName'.",
+            "itemtype": "property",
+            "name": "masterPropertyName",
+            "type": "String",
+            "class": "FdViewAttributesMaster",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-view-attributes-master.js",
+            "line": 31,
+            "description": "Item property 'masterCustomixationString'.",
+            "itemtype": "property",
+            "name": "masterCustomizationString",
+            "type": "String",
+            "class": "FdViewAttributesMaster",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-view-attributes-property.js",
+            "line": 15,
+            "description": "Item property 'name'.",
+            "itemtype": "property",
+            "name": "name",
+            "type": "String",
+            "class": "FdViewAttributesProperty",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-view-attributes-property.js",
+            "line": 23,
+            "description": "Item property 'caption'.",
+            "itemtype": "property",
+            "name": "caption",
+            "type": "String",
+            "class": "FdViewAttributesProperty",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-view-attributes-property.js",
+            "line": 31,
+            "description": "Path of the item.",
+            "itemtype": "property",
+            "name": "path",
+            "type": "String",
+            "class": "FdViewAttributesProperty",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-view-attributes-property.js",
+            "line": 39,
+            "description": "Flag indicates the visibility of an item.",
+            "itemtype": "property",
+            "name": "visible",
+            "type": "Boolean",
+            "class": "FdViewAttributesProperty",
             "module": "ember-flexberry-designer"
         },
         {

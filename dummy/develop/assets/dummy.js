@@ -7473,6 +7473,45 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ob
     assert.ok(true, 'modules/ember-flexberry-designer/objects/fd-editform-tabgroup.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/fd-view-attributes-datail.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects');
+  test('modules/ember-flexberry-designer/objects/fd-view-attributes-datail.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/fd-view-attributes-datail.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/fd-view-attributes-datail.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/fd-view-attributes-datail.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/fd-view-attributes-datail.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/fd-view-attributes-master.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects');
+  test('modules/ember-flexberry-designer/objects/fd-view-attributes-master.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/fd-view-attributes-master.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/fd-view-attributes-master.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/fd-view-attributes-master.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/fd-view-attributes-master.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/fd-view-attributes-property.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects');
+  test('modules/ember-flexberry-designer/objects/fd-view-attributes-property.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/fd-view-attributes-property.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/fd-view-attributes-property.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/fd-view-attributes-property.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/fd-view-attributes-property.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/new-platform-flexberry-web-designer-business-server-class.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/objects');
   test('modules/ember-flexberry-designer/objects/new-platform-flexberry-web-designer-business-server-class.js should pass jscs', function () {
@@ -37620,7 +37659,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+a4ac2863"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+021c9ac0"});
 }
 
 /* jshint ignore:end */

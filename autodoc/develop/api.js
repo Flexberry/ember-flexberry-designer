@@ -10,6 +10,9 @@ YUI.add("yuidoc-meta", function(Y) {
         "FdEditformTab",
         "FdEditformTabgroup",
         "FdLimitByStageMixin",
+        "FdViewAttributesDatail",
+        "FdViewAttributesMaster",
+        "FdViewAttributesProperty",
         "NewPlatformFlexberryFlexberryDesignerVisualEditControl",
         "NewPlatformFlexberryFlexberryDesignerVisualEditForm"
     ],
