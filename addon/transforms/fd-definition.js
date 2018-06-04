@@ -10,62 +10,59 @@ export default DS.Transform.extend({
     let parser = new DOMParser();
     let xmlDoc = parser.parseFromString(definition, 'text/xml');
     if (xmlDoc) {
-      let view = xmlDoc.getElementsByTagName('View');
-      if (view.length > 0) {
-        let viewPropertiesList = view[0].getElementsByTagName('ViewPropertiesList');
-        if (viewPropertiesList.length > 0) {
-          let itemList = viewPropertiesList[0].getElementsByTagName('Item');
-          for (let item of itemList) {
-            let itemObject;
-            let propertyName = item.getAttribute('PropertyName');
-            let caption = item.getAttribute('Caption');
-            let path = item.getAttribute('Path');
-            let visible = Boolean(item.getAttribute('Visible'));
-            if (Boolean(item.getAttribute('IsMaster'))) {
-              let lookupType = item.getAttribute('LookupType');
-              let masterPropertyName = item.getAttribute('MasterPropertyName');
-              let masterCustomizationString = item.getAttribute('MasterCustomizationString');
-              itemObject = FdViewAttributesMaster.create({
-                name: propertyName,
-                caption: caption,
-                path: path,
-                visible: visible,
-                lookupType: lookupType,
-                masterPropertyName: masterPropertyName,
-                masterCustomizationString: masterCustomizationString
-              });
-            } else {
-              itemObject = FdViewAttributesProperty.create({
-                name: propertyName,
-                caption: caption,
-                path: path,
-                visible: visible,
-              });
-            }
-
-            ret.push(itemObject);
+      let viewPropertiesList = xmlDoc.getElementsByTagName('ViewPropertiesList');
+      if (viewPropertiesList.length > 0) {
+        let itemList = viewPropertiesList[0].getElementsByTagName('Item');
+        for (let item of itemList) {
+          let itemObject;
+          let propertyName = item.getAttribute('PropertyName');
+          let caption = item.getAttribute('Caption');
+          let path = item.getAttribute('Path');
+          let visible = Boolean(item.getAttribute('Visible'));
+          if (Boolean(item.getAttribute('IsMaster'))) {
+            let lookupType = item.getAttribute('LookupType');
+            let masterPropertyName = item.getAttribute('MasterPropertyName');
+            let masterCustomizationString = item.getAttribute('MasterCustomizationString');
+            itemObject = FdViewAttributesMaster.create({
+              name: propertyName,
+              caption: caption,
+              path: path,
+              visible: visible,
+              lookupType: lookupType,
+              masterPropertyName: masterPropertyName,
+              masterCustomizationString: masterCustomizationString
+            });
+          } else {
+            itemObject = FdViewAttributesProperty.create({
+              name: propertyName,
+              caption: caption,
+              path: path,
+              visible: visible,
+            });
           }
+
+          ret.push(itemObject);
         }
+      }
 
-        let viewDetailsList = view[0].getElementsByTagName('ViewDetailsList');
-        if (viewDetailsList.length > 0) {
-          let itemList = viewDetailsList[0].getElementsByTagName('Item');
-          for (let item of itemList) {
-            let detailName = item.getAttribute('DetailName');
-            let detailViewName = item.getAttribute('DetailViewName');
-            let loadOnLoadAgregator = Boolean(item.getAttribute('LoadOnLoadAgregator'));
-            let detailPath = item.getAttribute('DetailPath');
-            let detailCaption = item.getAttribute('DetailCaption');
-            let detailVisible = Boolean(item.getAttribute('DetailVisible'));
-            ret.push(FdViewAttributesDatail.create({
-              name: detailName,
-              detailViewName: detailViewName,
-              loadOnLoadAgregator: loadOnLoadAgregator,
-              path: detailPath,
-              caption: detailCaption,
-              visible: detailVisible
-            }));
-          }
+      let viewDetailsList = xmlDoc.getElementsByTagName('ViewDetailsList');
+      if (viewDetailsList.length > 0) {
+        let itemList = viewDetailsList[0].getElementsByTagName('Item');
+        for (let item of itemList) {
+          let detailName = item.getAttribute('DetailName');
+          let detailViewName = item.getAttribute('DetailViewName');
+          let loadOnLoadAgregator = Boolean(item.getAttribute('LoadOnLoadAgregator'));
+          let detailPath = item.getAttribute('DetailPath');
+          let detailCaption = item.getAttribute('DetailCaption');
+          let detailVisible = Boolean(item.getAttribute('DetailVisible'));
+          ret.push(FdViewAttributesDatail.create({
+            name: detailName,
+            detailViewName: detailViewName,
+            loadOnLoadAgregator: loadOnLoadAgregator,
+            path: detailPath,
+            caption: detailCaption,
+            visible: detailVisible
+          }));
         }
       }
     }
