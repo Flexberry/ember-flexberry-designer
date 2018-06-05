@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>addon/components/fd-editform-row.js - Flexberry Documentation</title>
+    <title>addon/controllers/fd-editform-constructor.js - Flexberry Documentation</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -102,59 +102,80 @@
                 <div id="docs-main">
                     <div class="content">
 <div class="page-header">
-    <h1>addon/components/fd-editform-row.js <small>File</small></h1>
+    <h1>addon/controllers/fd-editform-constructor.js <small>File</small></h1>
 </div>
 
 <div class="file">
     <pre class="prettyprint linenums">
-/**
-  @module ember-flexberry-designer
-*/
-
 import Ember from &#x27;ember&#x27;;
 
-/**
-  This component rendered one row with controls on the edit form.
+import FdEditformControl from &#x27;../objects/fd-editform-control&#x27;;
+import FdEditformGroup from &#x27;../objects/fd-editform-group&#x27;;
+import FdEditformTab from &#x27;../objects/fd-editform-tab&#x27;;
 
-  @class FdEditformRowComponent
-  @extends &lt;a href=&quot;http://emberjs.com/api/classes/Ember.Component.html&quot;&gt;Ember.Component&lt;/a&gt;
-*/
-export default Ember.Component.extend({
+export default Ember.Controller.extend({
+  queryParams: [&#x27;classId&#x27;],
+
   /**
-    The component is rendered as one column.
-
     @private
-    @property _singleColumn
+    @property _selectedIsControl
+    @readOnly
     @type Boolean
   */
-  _singleColumn: Ember.computed.equal(&#x27;row.controls.length&#x27;, 1),
+  _selectedIsControl: Ember.computed(&#x27;selectedControl&#x27;, function() {
+    return this.get(&#x27;selectedControl&#x27;) instanceof FdEditformControl;
+  }).readOnly(),
 
   /**
-    The row to render.
-
-    @property row
-    @type FdEditformRow
+    @private
+    @property _selectedIsGroup
+    @readOnly
+    @type Boolean
   */
-  row: undefined,
+  _selectedIsGroup: Ember.computed(&#x27;selectedControl&#x27;, function() {
+    return this.get(&#x27;selectedControl&#x27;) instanceof FdEditformGroup;
+  }).readOnly(),
 
   /**
-    See [EmberJS API](https://emberjs.com/api/).
-
-    @property classNameBindings
+    @private
+    @property _selectedIsTab
+    @readOnly
+    @type Boolean
   */
-  classNameBindings: [&#x27;_singleColumn:field:fields&#x27;, &#x27;_singleColumn::equal&#x27;, &#x27;_singleColumn::width&#x27;],
+  _selectedIsTab: Ember.computed(&#x27;selectedControl&#x27;, function() {
+    return this.get(&#x27;selectedControl&#x27;) instanceof FdEditformTab;
+  }).readOnly(),
 
   /**
-    Calls &#x60;selectAction&#x60; action when clicking on component when it is renderd as one column.
+    The selected control.
 
-    @method click
-    @param {JQuery.Event} event
+    @property selectedControl
+    @type FdEditformControl|FdEditformGroup|FdEditformTab
   */
-  click(event) {
-    event.stopPropagation();
-    if (this.get(&#x27;_singleColumn&#x27;)) {
-      this.get(&#x27;selectAction&#x27;)(this.get(&#x27;row.controls.firstObject&#x27;));
-    }
+  selectedControl: undefined,
+
+  actions: {
+    close() {
+      this.transitionToRoute(&#x27;fd-appstruct-form&#x27;);
+    },
+
+    toggleConfigPanel() {
+      if (this.toggleProperty(&#x27;configPanelState&#x27;)) {
+        this.transitionToRoute(&#x27;fd-editform-constructor.form-config-panel&#x27;);
+      } else {
+        this.transitionToRoute(&#x27;fd-editform-constructor&#x27;);
+      }
+    },
+
+    /**
+      Set the selected control.
+
+      @method actions.selectControl
+      @param {FdEditformControl|FdEditformGroup|FdEditformTab} control
+    */
+    selectControl(control) {
+      this.set(&#x27;selectedControl&#x27;, control);
+    },
   },
 });
 

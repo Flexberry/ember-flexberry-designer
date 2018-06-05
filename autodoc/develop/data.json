@@ -66,6 +66,13 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/controllers/fd-editform-constructor.js": {
+            "name": "addon/controllers/fd-editform-constructor.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/controllers/fd-generation-list-form.js": {
             "name": "addon/controllers/fd-generation-list-form.js",
             "modules": {},
@@ -1313,6 +1320,22 @@
             "module": "ember-flexberry-designer"
         },
         {
+            "file": "addon/components/fd-editform-row.js",
+            "line": 38,
+            "description": "Calls `selectAction` action when clicking on component when it is renderd as one column.",
+            "itemtype": "method",
+            "name": "click",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "JQuery.Event"
+                }
+            ],
+            "class": "FdEditformRowComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
             "file": "addon/components/fd-visual-edit-form.js",
             "line": 5,
             "itemtype": "property",
@@ -1541,6 +1564,68 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-diagram-edit-form'",
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 10,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_selectedIsControl",
+            "readonly": "",
+            "type": "Boolean",
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 20,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_selectedIsGroup",
+            "readonly": "",
+            "type": "Boolean",
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 30,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_selectedIsTab",
+            "readonly": "",
+            "type": "Boolean",
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 40,
+            "description": "The selected control.",
+            "itemtype": "property",
+            "name": "selectedControl",
+            "type": "FdEditformControl|FdEditformGroup|FdEditformTab",
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 61,
+            "description": "Set the selected control.",
+            "itemtype": "method",
+            "name": "actions.selectControl",
+            "params": [
+                {
+                    "name": "control",
+                    "description": "",
+                    "type": "FdEditformControl|FdEditformGroup|FdEditformTab"
+                }
+            ],
             "class": "FdLimitByStageMixin",
             "module": "ember-flexberry-designer"
         },

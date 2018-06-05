@@ -315,6 +315,11 @@ define('dummy/tests/integration/components/fd-editform-control-test', ['exports'
   });
 
   (0, _emberQunit.test)('it renders and works', function (assert) {
+    var _this = this;
+
+    this.set('selectAction', function (control) {
+      return _this.set('selectedControl', control);
+    });
     this.render(_ember['default'].HTMLBars.template((function () {
       return {
         meta: {
@@ -331,7 +336,7 @@ define('dummy/tests/integration/components/fd-editform-control-test', ['exports'
             },
             'end': {
               'line': 1,
-              'column': 39
+              'column': 65
             }
           }
         },
@@ -352,7 +357,7 @@ define('dummy/tests/integration/components/fd-editform-control-test', ['exports'
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [['inline', 'fd-editform-control', [], ['control', ['subexpr', '@mut', [['get', 'control', ['loc', [null, [1, 30], [1, 37]]]]], [], []]], ['loc', [null, [1, 0], [1, 39]]]]],
+        statements: [['inline', 'fd-editform-control', [], ['control', ['subexpr', '@mut', [['get', 'control', ['loc', [null, [1, 30], [1, 37]]]]], [], []], 'selectAction', ['subexpr', '@mut', [['get', 'selectAction', ['loc', [null, [1, 51], [1, 63]]]]], [], []]], ['loc', [null, [1, 0], [1, 65]]]]],
         locals: [],
         templates: []
       };
@@ -378,6 +383,10 @@ define('dummy/tests/integration/components/fd-editform-control-test', ['exports'
       })])
     }));
     assert.ok(/\s*Tab #1\s*Attribute #1\s*/.test(this.$().text()), 'With tabs.');
+
+    assert.ok(this.get('selectedControl') === undefined, 'No selected control.');
+    this.$('.active.item').click();
+    assert.ok(this.get('selectedControl') === this.get('control.tabs.firstObject'), 'Click by tab.');
   });
 });
 define('dummy/tests/integration/components/fd-editform-control-test.jscs-test', ['exports'], function (exports) {
@@ -404,6 +413,11 @@ define('dummy/tests/integration/components/fd-editform-row-test', ['exports', 'e
   });
 
   (0, _emberQunit.test)('it renders and works', function (assert) {
+    var _this = this;
+
+    this.set('selectAction', function (control) {
+      return _this.set('selectedControl', control);
+    });
     this.render(_ember['default'].HTMLBars.template((function () {
       return {
         meta: {
@@ -420,7 +434,7 @@ define('dummy/tests/integration/components/fd-editform-row-test', ['exports', 'e
             },
             'end': {
               'line': 1,
-              'column': 27
+              'column': 53
             }
           }
         },
@@ -441,7 +455,7 @@ define('dummy/tests/integration/components/fd-editform-row-test', ['exports', 'e
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [['inline', 'fd-editform-row', [], ['row', ['subexpr', '@mut', [['get', 'row', ['loc', [null, [1, 22], [1, 25]]]]], [], []]], ['loc', [null, [1, 0], [1, 27]]]]],
+        statements: [['inline', 'fd-editform-row', [], ['row', ['subexpr', '@mut', [['get', 'row', ['loc', [null, [1, 22], [1, 25]]]]], [], []], 'selectAction', ['subexpr', '@mut', [['get', 'selectAction', ['loc', [null, [1, 39], [1, 51]]]]], [], []]], ['loc', [null, [1, 0], [1, 53]]]]],
         locals: [],
         templates: []
       };
@@ -459,6 +473,10 @@ define('dummy/tests/integration/components/fd-editform-row-test', ['exports', 'e
     assert.notOk(this.$('.ember-view:first').hasClass('equal'));
     assert.notOk(this.$('.ember-view:first').hasClass('width'));
 
+    assert.ok(this.get('selectedControl') === undefined, 'No selected control.');
+    this.$('input').click();
+    assert.ok(this.get('selectedControl') === this.get('row.controls.firstObject'), 'Click with one control.');
+
     this.set('row', _emberFlexberryDesignerObjectsFdEditformRow['default'].create({
       controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({
         type: 'bool',
@@ -473,6 +491,14 @@ define('dummy/tests/integration/components/fd-editform-row-test', ['exports', 'e
     assert.ok(this.$('.ember-view:first').hasClass('fields'));
     assert.ok(this.$('.ember-view:first').hasClass('equal'));
     assert.ok(this.$('.ember-view:first').hasClass('width'));
+
+    this.set('selectedControl', undefined);
+    this.$('.ember-view:first').click();
+    assert.ok(this.get('selectedControl') === undefined, 'No selected control.');
+    this.$('.field:first').click();
+    assert.ok(this.get('selectedControl') === this.get('row.controls.firstObject'), 'Selected first control.');
+    this.$('.field:last').click();
+    assert.ok(this.get('selectedControl') === this.get('row.controls.lastObject'), 'Selected last control.');
   });
 });
 define('dummy/tests/integration/components/fd-editform-row-test.jscs-test', ['exports'], function (exports) {
@@ -4275,6 +4301,35 @@ define('dummy/tests/unit/routes/fd-editform-constructor-test.jshint', ['exports'
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/routes/fd-editform-constructor-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/unit/routes/fd-editform-constructor/form-config-panel-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('route:fd-editform-constructor/form-config-panel', 'Unit | Route | fd-editform-constructor/form-config-panel', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var route = this.subject();
+    assert.ok(route);
+  });
+});
+define('dummy/tests/unit/routes/fd-editform-constructor/form-config-panel-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/routes/fd-editform-constructor');
+  test('unit/routes/fd-editform-constructor/form-config-panel-test.js should pass jscs', function () {
+    ok(true, 'unit/routes/fd-editform-constructor/form-config-panel-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/routes/fd-editform-constructor/form-config-panel-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/routes/fd-editform-constructor/form-config-panel-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/routes/fd-editform-constructor/form-config-panel-test.js should pass jshint.');
   });
 });
 define('dummy/tests/unit/routes/fd-generation-process-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
