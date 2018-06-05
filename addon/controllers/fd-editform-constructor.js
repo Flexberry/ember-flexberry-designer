@@ -9,31 +9,31 @@ export default Ember.Controller.extend({
 
   /**
     @private
-    @property _selecetedIsControl
+    @property _selectedIsControl
     @readOnly
     @type Boolean
   */
-  _selecetedIsControl: Ember.computed('selectedControl', function() {
+  _selectedIsControl: Ember.computed('selectedControl', function() {
     return this.get('selectedControl') instanceof FdEditformControl;
   }).readOnly(),
 
   /**
     @private
-    @property _selecetedIsGroup
+    @property _selectedIsGroup
     @readOnly
     @type Boolean
   */
-  _selecetedIsGroup: Ember.computed('selectedControl', function() {
+  _selectedIsGroup: Ember.computed('selectedControl', function() {
     return this.get('selectedControl') instanceof FdEditformGroup;
   }).readOnly(),
 
   /**
     @private
-    @property _selecetedIsTab
+    @property _selectedIsTab
     @readOnly
     @type Boolean
   */
-  _selecetedIsTab: Ember.computed('selectedControl', function() {
+  _selectedIsTab: Ember.computed('selectedControl', function() {
     return this.get('selectedControl') instanceof FdEditformTab;
   }).readOnly(),
 
