@@ -18,8 +18,8 @@ export default DS.Transform.extend({
           let propertyName = item.getAttribute('PropertyName');
           let caption = item.getAttribute('Caption');
           let path = item.getAttribute('Path');
-          let visible = Boolean(item.getAttribute('Visible'));
-          if (Boolean(item.getAttribute('IsMaster'))) {
+          let visible = item.getAttribute('Visible');
+          if (item.getAttribute('IsMaster') === 'True') {
             let lookupType = item.getAttribute('LookupType');
             let masterPropertyName = item.getAttribute('MasterPropertyName');
             let masterCustomizationString = item.getAttribute('MasterCustomizationString');
@@ -51,10 +51,10 @@ export default DS.Transform.extend({
         for (let item of itemList) {
           let detailName = item.getAttribute('DetailName');
           let detailViewName = item.getAttribute('DetailViewName');
-          let loadOnLoadAgregator = Boolean(item.getAttribute('LoadOnLoadAgregator'));
+          let loadOnLoadAgregator = item.getAttribute('LoadOnLoadAgregator');
           let detailPath = item.getAttribute('DetailPath');
           let detailCaption = item.getAttribute('DetailCaption');
-          let detailVisible = Boolean(item.getAttribute('DetailVisible'));
+          let detailVisible = item.getAttribute('DetailVisible');
           ret.pushObject(FdViewAttributesDatail.create({
             name: detailName,
             detailViewName: detailViewName,
@@ -89,7 +89,7 @@ export default DS.Transform.extend({
         viewDetailsList += `<Item ${detailName} ${detailViewName} ${loadOnLoadAgregator} ${detailPath} ${detailCaption} ${detailVisible} />`;
       } else {
         let isMaster = `IsMaster="False"`;
-        let lookupType = `LookupType=""`;
+        let lookupType = `LookupType="default"`;
         let masterPropertyName = `MasterPropertyName=""`;
         let masterCustomizationString = `MasterCustomizationString=""`;
         if (d instanceof FdViewAttributesMaster) {
@@ -103,8 +103,8 @@ export default DS.Transform.extend({
         let caption = `Caption="${d.caption}"`;
         let path = `Path="${d.path}"`;
         let visible = `Visible="${d.visible === 'True' ? 'True' : 'False'}"`;
-        viewPropertiesList += `<Item ${propertyName} ${caption} ${path} ${visible}
-         ${isMaster} ${lookupType} ${masterPropertyName} ${masterCustomizationString} />`;
+        viewPropertiesList += `<Item ${propertyName} ${caption} ${path} ${visible}` +
+         ` ${isMaster} ${lookupType} ${masterPropertyName} ${masterCustomizationString} />`;
       }
     }
 
