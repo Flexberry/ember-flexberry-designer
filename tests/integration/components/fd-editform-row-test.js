@@ -10,7 +10,8 @@ moduleForComponent('fd-editform-row', 'Integration | Component | fd-editform-row
 });
 
 test('it renders and works', function(assert) {
-  this.render(hbs`{{fd-editform-row row=row}}`);
+  this.set('selectAction', control => this.set('selectedControl', control));
+  this.render(hbs`{{fd-editform-row row=row selectAction=selectAction}}`);
 
   this.set('row', FdEditformRow.create({
     controls: Ember.A([
@@ -25,6 +26,10 @@ test('it renders and works', function(assert) {
   assert.notOk(this.$('.ember-view:first').hasClass('fields'));
   assert.notOk(this.$('.ember-view:first').hasClass('equal'));
   assert.notOk(this.$('.ember-view:first').hasClass('width'));
+
+  assert.ok(this.get('selectedControl') === undefined, 'No selected control.');
+  this.$('input').click();
+  assert.ok(this.get('selectedControl') === this.get('row.controls.firstObject'), 'Click with one control.');
 
   this.set('row', FdEditformRow.create({
     controls: Ember.A([
@@ -43,4 +48,12 @@ test('it renders and works', function(assert) {
   assert.ok(this.$('.ember-view:first').hasClass('fields'));
   assert.ok(this.$('.ember-view:first').hasClass('equal'));
   assert.ok(this.$('.ember-view:first').hasClass('width'));
+
+  this.set('selectedControl', undefined);
+  this.$('.ember-view:first').click();
+  assert.ok(this.get('selectedControl') === undefined, 'No selected control.');
+  this.$('.field:first').click();
+  assert.ok(this.get('selectedControl') === this.get('row.controls.firstObject'), 'Selected first control.');
+  this.$('.field:last').click();
+  assert.ok(this.get('selectedControl') === this.get('row.controls.lastObject'), 'Selected last control.');
 });
