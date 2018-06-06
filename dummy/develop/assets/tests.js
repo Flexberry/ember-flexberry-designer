@@ -6957,17 +6957,44 @@ define('dummy/tests/unit/transforms/containers-tree-test.jshint', ['exports'], f
     assert.ok(true, 'unit/transforms/containers-tree-test.js should pass jshint.');
   });
 });
-define('dummy/tests/unit/transforms/fd-definition-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+define('dummy/tests/unit/transforms/fd-definition-test', ['exports', 'ember', 'ember-qunit', 'ember-flexberry-designer/objects/fd-view-attributes-property', 'ember-flexberry-designer/objects/fd-view-attributes-master', 'ember-flexberry-designer/objects/fd-view-attributes-detail'], function (exports, _ember, _emberQunit, _emberFlexberryDesignerObjectsFdViewAttributesProperty, _emberFlexberryDesignerObjectsFdViewAttributesMaster, _emberFlexberryDesignerObjectsFdViewAttributesDetail) {
 
-  (0, _emberQunit.moduleFor)('transform:fd-definition', 'Unit | Transform | fd definition', {
-    // Specify the other units that are required for this test.
-    // needs: ['serializer:foo']
-  });
+  (0, _emberQunit.moduleFor)('transform:fd-definition', 'Unit | Transform | fd definition');
 
-  // Replace this with your real tests.
   (0, _emberQunit.test)('it exists', function (assert) {
+
+    var objectModel = _ember['default'].A([_emberFlexberryDesignerObjectsFdViewAttributesProperty['default'].create({
+      name: 'TestProperty',
+      caption: 'Test Property',
+      path: 'pathTestProperty',
+      visible: false
+    }), _emberFlexberryDesignerObjectsFdViewAttributesMaster['default'].create({
+      name: 'TestMaster',
+      caption: 'Test Master',
+      path: 'pathTestMaster',
+      visible: true,
+      lookupType: 'standard',
+      masterPropertyName: 'TestMasterName',
+      masterCustomizationString: ''
+    }), _emberFlexberryDesignerObjectsFdViewAttributesDetail['default'].create({
+      name: 'TestDetail',
+      detailViewName: 'TestDetailD',
+      loadOnLoadAgregator: false,
+      path: '',
+      caption: 'Test Detail',
+      visible: true
+    })]);
+
+    var xml = '' + '<View>' + '<ViewPropertiesList>' + '<Item PropertyName="TestProperty" Caption="Test Property" Path="pathTestProperty" Visible="False"' + ' IsMaster="False" LookupType="default" MasterPropertyName="" MasterCustomizationString="" />' + '<Item PropertyName="TestMaster" Caption="Test Master" Path="pathTestMaster" Visible="True"' + ' IsMaster="True" LookupType="standard" MasterPropertyName="TestMasterName" MasterCustomizationString="" />' + '</ViewPropertiesList>' + '<ViewDetailsList>' + '<Item DetailName="TestDetail" DetailViewName="TestDetailD" LoadOnLoadAgregator="False" DetailPath="" DetailCaption="Test Detail" DetailVisible="True" />' + '</ViewDetailsList>' + '</View>';
+
     var transform = this.subject();
     assert.ok(transform);
+
+    var deserializeResult = transform.deserialize(xml);
+    assert.deepEqual(deserializeResult, objectModel, 'Definition deserialize does not work');
+
+    var serializeResult = transform.serialize(deserializeResult);
+    assert.equal(serializeResult, xml, 'Definition serialize does not work');
   });
 });
 define('dummy/tests/unit/transforms/fd-definition-test.jscs-test', ['exports'], function (exports) {
