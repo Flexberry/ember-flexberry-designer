@@ -13,13 +13,13 @@ test('it exists', function(assert) {
       name: 'TestProperty',
       caption: 'Test Property',
       path: 'pathTestProperty',
-      visible: 'False',
+      visible: false,
     }),
     FdViewAttributesMaster.create({
       name: 'TestMaster',
       caption: 'Test Master',
       path: 'pathTestMaster',
-      visible: 'True',
+      visible: true,
       lookupType: 'standard',
       masterPropertyName: 'TestMasterName',
       masterCustomizationString: ''
@@ -27,10 +27,10 @@ test('it exists', function(assert) {
     FdViewAttributesDatail.create({
       name: 'TestDatail',
       detailViewName: 'TestDatailD',
-      loadOnLoadAgregator: 'True',
+      loadOnLoadAgregator: true,
       path: '',
       caption: 'Test Datail',
-      visible: 'True'
+      visible: true
     }),
   ]);
 
