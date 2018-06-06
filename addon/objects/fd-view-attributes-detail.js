@@ -5,20 +5,20 @@
 import FdViewAttributesProperty from './fd-view-attributes-property';
 
 /**
-  Describes properties on the datail view.
+  Describes properties on the detail view.
 
-  @class FdViewAttributesDatail
+  @class FdViewAttributesDetail
   @extends <a href="http://emberjs.com/api/classes/Ember.Object.html">Ember.Object</a>
 */
 export default FdViewAttributesProperty.extend({
 
   /**
-    Item property 'datailViewName'.
+    Item property 'detailViewName'.
 
-    @property datailViewName
+    @property detailViewName
     @type String
   */
-  datailViewName: undefined,
+  detailViewName: undefined,
 
   /**
     Item property 'loadOnLoadAgregator'.

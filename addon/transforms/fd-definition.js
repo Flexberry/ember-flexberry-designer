@@ -2,7 +2,7 @@ import DS from 'ember-data';
 import Ember from 'ember';
 import FdViewAttributesProperty from '../objects/fd-view-attributes-property';
 import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
-import FdViewAttributesDatail from '../objects/fd-view-attributes-datail';
+import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 
 export default DS.Transform.extend({
   deserialize(definition) {
@@ -18,8 +18,8 @@ export default DS.Transform.extend({
           let propertyName = item.getAttribute('PropertyName');
           let caption = item.getAttribute('Caption');
           let path = item.getAttribute('Path');
-          let visible = Boolean(item.getAttribute('Visible'));
-          if (Boolean(item.getAttribute('IsMaster'))) {
+          let visible = item.getAttribute('Visible') === 'True' ? true : false;
+          if (item.getAttribute('IsMaster') === 'True') {
             let lookupType = item.getAttribute('LookupType');
             let masterPropertyName = item.getAttribute('MasterPropertyName');
             let masterCustomizationString = item.getAttribute('MasterCustomizationString');
@@ -51,11 +51,11 @@ export default DS.Transform.extend({
         for (let item of itemList) {
           let detailName = item.getAttribute('DetailName');
           let detailViewName = item.getAttribute('DetailViewName');
-          let loadOnLoadAgregator = Boolean(item.getAttribute('LoadOnLoadAgregator'));
+          let loadOnLoadAgregator = item.getAttribute('LoadOnLoadAgregator') === 'True' ? true : false;
           let detailPath = item.getAttribute('DetailPath');
           let detailCaption = item.getAttribute('DetailCaption');
-          let detailVisible = Boolean(item.getAttribute('DetailVisible'));
-          ret.pushObject(FdViewAttributesDatail.create({
+          let detailVisible = item.getAttribute('DetailVisible') === 'True' ? true : false;
+          ret.pushObject(FdViewAttributesDetail.create({
             name: detailName,
             detailViewName: detailViewName,
             loadOnLoadAgregator: loadOnLoadAgregator,
@@ -79,17 +79,17 @@ export default DS.Transform.extend({
     let viewDetailsList = '';
     for (let i = 0; i < deserialized.length; i++) {
       let d = deserialized[i];
-      if (d instanceof FdViewAttributesDatail) {
+      if (d instanceof FdViewAttributesDetail) {
         let detailName = `DetailName="${d.name}"`;
         let detailViewName = `DetailViewName="${d.detailViewName}"`;
-        let loadOnLoadAgregator = `LoadOnLoadAgregator="${d.loadOnLoadAgregator}"`;
+        let loadOnLoadAgregator = `LoadOnLoadAgregator="${d.loadOnLoadAgregator === true ? 'True' : 'False'}"`;
         let detailPath = `DetailPath="${d.path}"`;
         let detailCaption = `DetailCaption="${d.caption}"`;
-        let detailVisible = `DetailVisible="${d.visible}"`;
+        let detailVisible = `DetailVisible="${d.visible === true ? 'True' : 'False'}"`;
         viewDetailsList += `<Item ${detailName} ${detailViewName} ${loadOnLoadAgregator} ${detailPath} ${detailCaption} ${detailVisible} />`;
       } else {
         let isMaster = `IsMaster="False"`;
-        let lookupType = `LookupType=""`;
+        let lookupType = `LookupType="default"`;
         let masterPropertyName = `MasterPropertyName=""`;
         let masterCustomizationString = `MasterCustomizationString=""`;
         if (d instanceof FdViewAttributesMaster) {
@@ -102,9 +102,9 @@ export default DS.Transform.extend({
         let propertyName = `PropertyName="${d.name}"`;
         let caption = `Caption="${d.caption}"`;
         let path = `Path="${d.path}"`;
-        let visible = `Visible="${d.visible === 'True' ? 'True' : 'False'}"`;
-        viewPropertiesList += `<Item ${propertyName} ${caption} ${path} ${visible}
-         ${isMaster} ${lookupType} ${masterPropertyName} ${masterCustomizationString} />`;
+        let visible = `Visible="${d.visible === true ? 'True' : 'False'}"`;
+        viewPropertiesList += `<Item ${propertyName} ${caption} ${path} ${visible}` +
+         ` ${isMaster} ${lookupType} ${masterPropertyName} ${masterCustomizationString} />`;
       }
     }
 
