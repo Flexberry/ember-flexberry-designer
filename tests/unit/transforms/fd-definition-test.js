@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { moduleFor, test } from 'ember-qunit';
 import FdViewAttributesProperty from 'ember-flexberry-designer/objects/fd-view-attributes-property';
 import FdViewAttributesMaster from 'ember-flexberry-designer/objects/fd-view-attributes-master';
-import FdViewAttributesDatail from 'ember-flexberry-designer/objects/fd-view-attributes-datail';
+import FdViewAttributesDetail from 'ember-flexberry-designer/objects/fd-view-attributes-detail';
 
 moduleFor('transform:fd-definition', 'Unit | Transform | fd definition');
 
@@ -24,12 +24,12 @@ test('it exists', function(assert) {
       masterPropertyName: 'TestMasterName',
       masterCustomizationString: ''
     }),
-    FdViewAttributesDatail.create({
-      name: 'TestDatail',
-      detailViewName: 'TestDatailD',
-      loadOnLoadAgregator: true,
+    FdViewAttributesDetail.create({
+      name: 'TestDetail',
+      detailViewName: 'TestDetailD',
+      loadOnLoadAgregator: false,
       path: '',
-      caption: 'Test Datail',
+      caption: 'Test Detail',
       visible: true
     }),
   ]);
@@ -43,7 +43,7 @@ test('it exists', function(assert) {
   ' IsMaster="True" LookupType="standard" MasterPropertyName="TestMasterName" MasterCustomizationString="" />' +
   '</ViewPropertiesList>' +
   '<ViewDetailsList>' +
-  '<Item DetailName="TestDatail" DetailViewName="TestDatailD" LoadOnLoadAgregator="True" DetailPath="" DetailCaption="Test Datail" DetailVisible="True" />' +
+  '<Item DetailName="TestDetail" DetailViewName="TestDetailD" LoadOnLoadAgregator="False" DetailPath="" DetailCaption="Test Detail" DetailVisible="True" />' +
   '</ViewDetailsList>' +
   '</View>';
 

@@ -2,7 +2,7 @@ import DS from 'ember-data';
 import Ember from 'ember';
 import FdViewAttributesProperty from '../objects/fd-view-attributes-property';
 import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
-import FdViewAttributesDatail from '../objects/fd-view-attributes-datail';
+import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 
 export default DS.Transform.extend({
   deserialize(definition) {
@@ -55,7 +55,7 @@ export default DS.Transform.extend({
           let detailPath = item.getAttribute('DetailPath');
           let detailCaption = item.getAttribute('DetailCaption');
           let detailVisible = item.getAttribute('DetailVisible') === 'True' ? true : false;
-          ret.pushObject(FdViewAttributesDatail.create({
+          ret.pushObject(FdViewAttributesDetail.create({
             name: detailName,
             detailViewName: detailViewName,
             loadOnLoadAgregator: loadOnLoadAgregator,
@@ -79,13 +79,13 @@ export default DS.Transform.extend({
     let viewDetailsList = '';
     for (let i = 0; i < deserialized.length; i++) {
       let d = deserialized[i];
-      if (d instanceof FdViewAttributesDatail) {
+      if (d instanceof FdViewAttributesDetail) {
         let detailName = `DetailName="${d.name}"`;
         let detailViewName = `DetailViewName="${d.detailViewName}"`;
-        let loadOnLoadAgregator = `LoadOnLoadAgregator="${d.loadOnLoadAgregator}"`;
+        let loadOnLoadAgregator = `LoadOnLoadAgregator="${d.loadOnLoadAgregator === true ? 'True' : 'False'}"`;
         let detailPath = `DetailPath="${d.path}"`;
         let detailCaption = `DetailCaption="${d.caption}"`;
-        let detailVisible = `DetailVisible="${d.visible}"`;
+        let detailVisible = `DetailVisible="${d.visible === true ? 'True' : 'False'}"`;
         viewDetailsList += `<Item ${detailName} ${detailViewName} ${loadOnLoadAgregator} ${detailPath} ${detailCaption} ${detailVisible} />`;
       } else {
         let isMaster = `IsMaster="False"`;
@@ -102,7 +102,7 @@ export default DS.Transform.extend({
         let propertyName = `PropertyName="${d.name}"`;
         let caption = `Caption="${d.caption}"`;
         let path = `Path="${d.path}"`;
-        let visible = `Visible="${d.visible === 'True' ? 'True' : 'False'}"`;
+        let visible = `Visible="${d.visible === true ? 'True' : 'False'}"`;
         viewPropertiesList += `<Item ${propertyName} ${caption} ${path} ${visible}` +
          ` ${isMaster} ${lookupType} ${masterPropertyName} ${masterCustomizationString} />`;
       }
