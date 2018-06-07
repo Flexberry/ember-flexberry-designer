@@ -12,6 +12,8 @@ export default ListFormRoute.extend({
   */
   modelProjection: 'ListFormView',
 
+  classID: undefined,
+
   /**
     Name of model to be used as list's records types.
 
@@ -46,6 +48,14 @@ export default ListFormRoute.extend({
   */
   developerUserSettings: { FdViewListForm: {} },
 
+  beforeModel: function(transition){
+    let classID = transition.queryParams.classID;
+    if (!Ember.isNone(classID)) {
+      this.set('classID',classID);
+    }
+
+  },
+
   /**
     Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
 
@@ -55,7 +65,7 @@ export default ListFormRoute.extend({
   currentContext: Ember.inject.service('fd-current-project-context'),
 
   objectListViewLimitPredicate() {
-    let clazz = this.controller.get('clazz');
-    return new Query.SimplePredicate('class', '==', clazz);
+    let classID = this.get('classID');
+    return new Query.SimplePredicate('class', '==', classID);
   },
 });

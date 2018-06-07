@@ -47,17 +47,11 @@ export default ListFormRoute.extend(FdLimitByStageMixin, {
 
   actions: {
     objectListViewRowClick(clazz, options) {
-      if (options.column === null) {
-        return this._super(...arguments);
-      } else {
-        this.send('setClass', clazz.get('id'));
-        return this._super(...arguments);
-      }
-    },
+      return this._super(...arguments);
+    }
   },
 
   willDestroy: function() {
-    this.send('setClass', undefined);
     this._super(...arguments);
   }
 });
