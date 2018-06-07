@@ -32,22 +32,22 @@ export default function fdPreloadStageMetadata(store, stagePk) {
     // stage promise
     let modelName = 'fd-dev-stage';
     let q = new Builder(store, modelName)
-      .selectByProjection(projectionName)
+      .selectByProjection('EditPropertyLookups') // TODO DEV VIEW
       .byId(stagePk)
       .build();
     promises.push(store.query(modelName, q));
 
     // classes promise
-    promises.push(getPromise(store, stagePk, 'fd-dev-class', projectionName));
+    promises.push(getPromise(store, stagePk, 'fd-dev-class', 'FdAttributesChangeView')); // TODO DEV VIEW
 
     // associations promise
-    promises.push(getPromise(store, stagePk, 'fd-dev-association', projectionName));
+    promises.push(getPromise(store, stagePk, 'fd-dev-association', 'FormDesigner')); // TODO DEV VIEW
 
     // agregations promise
-    promises.push(getPromise(store, stagePk, 'fd-dev-agregation', projectionName));
+    promises.push(getPromise(store, stagePk, 'fd-dev-aggregation', 'FormConstructor')); // TODO DEV VIEW
 
     // inheritances promise
-    promises.push(getPromise(store, stagePk, 'fd-dev-inheritance', projectionName));
+    promises.push(getPromise(store, stagePk, 'fd-dev-inheritance', 'EditPropertyLookups')); // TODO DEV VIEW
 
     // resolve, reject
     Ember.RSVP.all(promises).then(resolve, reject);

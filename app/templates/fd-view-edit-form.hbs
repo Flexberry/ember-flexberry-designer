@@ -35,30 +35,215 @@
       </button>
     </div>
   </div>
-  <div class="field">
-  {{
-    flexberry-field
-    placeholder=(t 'components.flexberry-field.placeholder')
-    readonly=readonly
-    required=true
-    value=model.name
-    class=(if model.errors.name 'error' '')
-    label=(t 'forms.fd-view-edit-form.name-caption')
-  }}
-  {{flexberry-validationmessage error=model.errors.name pointing="pointing"}}
-</div>
 
-<div class="field">
-  {{
-    flexberry-field
-    placeholder=(t 'components.flexberry-field.placeholder')
-    readonly=readonly
-    required=true
-    value=model.description
-    class=(if model.errors.description 'error' '')
-    label=(t 'forms.fd-view-edit-form.description-caption')
-  }}
-  {{flexberry-validationmessage error=model.errors.description pointing="pointing"}}
-</div>
+  <div class="ui horizontal segments">
+    <div class="ui segment">
+      <div class="field">
+        {{
+          flexberry-field
+          placeholder=(t 'components.flexberry-field.placeholder')
+          readonly=readonly
+          value=model.name
+          class=(if model.errors.name 'error' '')
+          label=(t 'forms.fd-view-edit-form.name-caption')
+        }}
+        {{flexberry-validationmessage error=model.errors.name pointing="pointing"}}
+      </div>
+    </div>
+    <div class="ui segment">
+      <div class="field">
+        {{
+          flexberry-field
+          placeholder=(t 'components.flexberry-field.placeholder')
+          readonly=readonly
+          value=model.description
+          class=(if model.errors.description 'error' '')
+          label=(t 'forms.fd-view-edit-form.description-caption')
+        }}
+        {{flexberry-validationmessage error=model.errors.description pointing="pointing"}}
+      </div>
+    </div>
+  </div>
 
+
+
+  <div class="ui horizontal segments">
+    <div class="ui segment">
+{{!-- ************************************TREE************************************************************************** --}}
+      <div class="sixteen wide column" style="width: 100%; overflow-x: scroll;">
+      <table >
+        <tr>
+          <td valign='top'>
+            {{flexberry-tree
+              class=jsonLeftTreeClass
+              exclusive=jsonTreeExclusive
+              collapsible=jsonLeftTreeCollapsible
+              animateChildren=jsonTreeAnimateChildren
+              duration=jsonTreeDuration
+              nodes=(get-with-dynamic-actions this "jsonLeftTreeNodes"
+                hierarchyPropertyName="nodes"
+                pathKeyword="nodePath"
+                dynamicActions=(array
+                  (hash
+                    on="headerClick"
+                    actionName="onTreenodeHeaderClick"
+                    actionArguments=(array "{% nodePath %}")
+                  )
+                )
+              )
+            }}
+          </td>
+          <td valign='top' align='center'>
+            <button class='ui button icon move {{moveRightDisabled}}' {{action "moveRightHighlighted" on="click" }}>
+              <i class="chevron right icon"></i>
+            </button>
+          </td>
+        </tr>
+      </table>
+      </div>
+{{!-- ************************************TREE************************************************************************** --}}
+    </div>
+{{!-- ************************************tab************************************************************************** --}}
+    <div class="ui segment">
+      <table class="ui very basic collapsing celled table">
+        <thead>
+          <tr>
+            <th>{{t "forms.fd-view-edit-form.table-column.type"}}</th>
+            <th>{{t "forms.fd-view-edit-form.table-column.view-attributes"}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each model.definition as |property index|}}
+          <tr class={{if (eq selectedRowIndex index) "active" ""}} onclick={{action "onAttributesClick" index}}>
+            <td>
+              {{#if property.detailViewNameItems}}
+                <img src="assets/images/datail.png">
+              {{else}}
+                {{#if property.lookupType}}
+                  <img src="assets/images/master.png">
+                {{else}}
+                  <img src="assets/images/property.png">
+                {{/if}}
+              {{/if}}
+            </td>
+            <td>
+              {{property.name}}
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="ui segments">
+    <div class="ui segment">
+      <div class="ui top attached label">
+        {{t "forms.fd-view-edit-form.settings-view.caption"}}
+      </div>
+    </div>
+    <div class="ui segments">
+      <div class=" ui horizontal segments">
+        <div class="ui segment">
+          <div class="field">
+            {{
+              flexberry-field
+              placeholder=(t 'components.flexberry-field.placeholder')
+              readonly=readonly
+              value=rowModel.caption
+              label=(t 'forms.fd-view-edit-form.settings-view.name-caption')
+            }}
+          </div>
+        </div>
+        <div class="ui segment">
+          <div class="field">
+            {{
+              flexberry-button
+              caption=(t 'forms.fd-view-edit-form.settings-view.create-caption')
+              click=(action "onCreateCaptionClick" rowModel.caption)
+            }}
+          </div>
+        </div>
+        <div class="ui segment">
+          <div class="field">
+            <label>{{t "forms.fd-view-edit-form.settings-view.visibility"}}</label>
+            {{
+              flexberry-checkbox
+              value=rowModel.visible
+              readonly=readonly
+            }}
+          </div>
+        </div>
+      </div>
+      <div class="ui segment">
+        <div class="field">
+          {{
+            flexberry-field
+            placeholder=(t 'components.flexberry-field.placeholder')
+            readonly=readonly
+            value=rowModel.path
+            label=(t 'forms.fd-view-edit-form.settings-view.path')
+          }}
+        </div>
+      </div>
+    </div>
+    <div class="ui segments {{if (eq propertyType 'isMaster') "" " hidden"}}">
+      <div class=" ui horizontal segments">
+        <div class="ui segment">
+          <div class="field">
+            <label>{{t "forms.fd-view-edit-form.settings-master.lookup-type"}}</label>
+            {{
+              flexberry-dropdown
+              items=lookupTypeItems
+              value=rowModel.lookupType
+              readonly=readonly
+            }}
+          </div>
+        </div>
+        <div class="ui segment">
+          {{
+            flexberry-field
+            placeholder=(t 'components.flexberry-field.placeholder')
+            readonly=readonly
+            value=rowModel.masterPropertyName
+            label=(t 'forms.fd-view-edit-form.settings-master.master-property')
+          }}
+        </div>
+        <div class="ui segment">
+          {{
+            flexberry-field
+            placeholder=(t 'components.flexberry-field.placeholder')
+            readonly=readonly
+            value=rowModel.masterCustomizationString
+            label=(t 'forms.fd-view-edit-form.settings-master.sample-setting')
+          }}
+        </div>
+      </div>
+    </div>
+    <div class="ui segments {{if (eq propertyType 'isDetail') "" " hidden"}}">
+      <div class=" ui horizontal segments">
+        <div class="ui segment">
+          <div class="field">
+            <label>{{t "forms.fd-view-edit-form.settings-detail.view"}}</label>
+            {{
+              flexberry-dropdown
+              items=rowModel.detailViewNameItems
+              value=rowModel.detailViewName
+              placeholder=(t 'components.flexberry-field.placeholder')
+              readonly=readonly
+            }}
+          </div>
+        </div>
+        <div class="ui segment">
+          <div class="field">
+            <label>{{t "forms.fd-view-edit-form.settings-detail.load-on-load-agregator"}}</label>
+            {{
+              flexberry-checkbox
+              value=rowModel.loadOnLoadAgregator
+              readonly=readonly
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </form>
