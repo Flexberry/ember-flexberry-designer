@@ -156,6 +156,7 @@ export default Ember.Controller.extend({
   actions: {
     toggleSidebar() {
       let sidebar = Ember.$('.ui.sidebar.main.menu');
+      let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
       let objectlistviewEventsService = this.get('objectlistviewEventsService');
       sidebar.sidebar({
         closable: false,
@@ -180,10 +181,19 @@ export default Ember.Controller.extend({
         Ember.$('.sidebar.icon.text-menu-hide').removeClass('hidden');
       }
 
-      if (Ember.$('.inverted.vertical.main.menu').hasClass('visible')) {
-        Ember.$('.full.height').css({ transition: 'width 0.45s ease-in-out 0s', width: '100%' });
-      } else {
-        Ember.$('.full.height').css({ transition: 'width 0.3s ease-in-out 0s', width: 'calc(100% - ' + sidebar.width() + 'px)' });
+      Ember.$('.inverted.vertical.main.menu').removeClass('overlay');
+      if (Ember.$('.inverted.vertical.main.menu').hasClass('visible') && !configPanelSidebar.hasClass('visible') ) {
+        Ember.$('.pusher').css({ width: '100%', transform: 'translate3d(0, 0, 0)' });
+      }
+      else if (!Ember.$('.inverted.vertical.main.menu').hasClass('visible') && !configPanelSidebar.hasClass('visible')) {
+        Ember.$('.pusher').css({ width: 'calc(100% - ' + sidebar.width() + 'px)', transform: 'translate3d(' + sidebar.width() + 'px, 0, 0)' });
+      } 
+      else if (Ember.$('.inverted.vertical.main.menu').hasClass('visible') && configPanelSidebar.hasClass('visible')){
+        Ember.$('.pusher').css({ width: 'calc(100% - ' + configPanelSidebar.width() + 'px)', transform: 'translate3d(0, 0, 0)' });
+      } 
+      else {
+        let workPanel = sidebar.width() + configPanelSidebar.width();
+        Ember.$('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)', transform: 'translate3d(' + sidebar.width() + 'px, 0, 0)' });
       }
     },
 

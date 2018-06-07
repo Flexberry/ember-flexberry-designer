@@ -56,6 +56,24 @@ export default Ember.Controller.extend({
       } else {
         this.transitionToRoute('fd-editform-constructor');
       }
+      Ember.run.next(function(){
+        let sidebar = Ember.$('.ui.sidebar.main.menu');
+        let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
+        Ember.$('.menu .item', configPanelSidebar).tab();
+        if (!sidebar.hasClass('visible') && !configPanelSidebar.hasClass('visible') ) {
+          Ember.$('.pusher').css({ width: '100%', transform: 'translate3d(0, 0, 0)' });
+        }
+        else if (sidebar.hasClass('visible') && !configPanelSidebar.hasClass('visible')) {
+          Ember.$('.pusher').css({ width: 'calc(100% - ' + sidebar.width() + 'px)', transform: 'translate3d(' + sidebar.width() + 'px, 0, 0)' });
+        } 
+        else if (!sidebar.hasClass('visible') && configPanelSidebar.hasClass('visible')){
+          Ember.$('.pusher').css({ width: 'calc(100% - ' + configPanelSidebar.width() + 'px)', transform: 'translate3d(0, 0, 0)' });
+        } 
+        else {
+          let workPanel = sidebar.width() + configPanelSidebar.width();
+          Ember.$('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)', transform: 'translate3d(' + sidebar.width() + 'px, 0, 0)' });
+        }
+      })
     },
 
     /**
