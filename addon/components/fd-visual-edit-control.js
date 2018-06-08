@@ -1,27 +1,67 @@
 import Ember from 'ember';
 
 import FdDataTypes from '../utils/fd-datatypes';
+import FdEditformControl from '../objects/fd-editform-control';
+import FdEditformGroup from '../objects/fd-editform-group';
+import FdEditformTab from '../objects/fd-editform-tab';
 
 export default Ember.Component.extend({
+  /**
+    @private
+    @property _selectedIsControl
+    @readOnly
+    @type Boolean
+  */
+  _selectedIsControl: Ember.computed('selectedControl', function() {
+    return this.get('selectedControl') instanceof FdEditformControl;
+  }).readOnly(),
+
+  /**
+    @private
+    @property _selectedIsGroup
+    @readOnly
+    @type Boolean
+  */
+  _selectedIsGroup: Ember.computed('selectedControl', function() {
+    return this.get('selectedControl') instanceof FdEditformGroup;
+  }).readOnly(),
+
+  /**
+    @private
+    @property _selectedIsTab
+    @readOnly
+    @type Boolean
+  */
+  _selectedIsTab: Ember.computed('selectedControl', function() {
+    return this.get('selectedControl') instanceof FdEditformTab;
+  }).readOnly(),
+
+  /**
+    The selected control.
+
+    @property selectedControl
+    @type FdEditformControl|FdEditformGroup|FdEditformTab
+  */
+  selectedControl: undefined,
+
   _dataTypes: FdDataTypes.create(),
 
-  _readonly: Ember.computed.empty('attribute'),
+  _readonly: Ember.computed.empty('selectedControl'),
 
-  types: Ember.computed(function() {
-    return this.get('_dataTypes').fDTypes();
-  }),
+  types: ['int', 'bool', 'string', 'date'],
 
-  allowNull: Ember.computed('attribute.notNull', {
+  allowNull: Ember.computed('selectedControl.notNull', {
     get() {
-      return !this.get('attribute.notNull');
+      return !this.get('selectedControl.notNull');
     },
+
     set(key, value) {
-      return this.set('attribute.notNull', !value);
+      return this.set('selectedControl.notNull', !value);
     },
   }),
 
-  defaultValueControl: Ember.computed('attribute.type', function() {
-    switch (this.get('attribute.type')) {
+  defaultValueControl: Ember.computed('selectedControl.type', function() {
+    switch (this.get('selectedControl.type')) {
       default:
         return 'flexberry-textbox';
     }
