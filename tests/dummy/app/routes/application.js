@@ -22,7 +22,8 @@ export default Ember.Route.extend(ModalApplicationRouteMixin, {
   activate: function() {
     let context = this.get('currentProjectContext');
     let store = this.get('store');
-    FdPreloadStageMetadata(store, 'ebb04d04-522f-45f8-bd31-6dc94a60c068');
+
+    FdPreloadStageMetadata.call(this, store, 'ebb04d04-522f-45f8-bd31-6dc94a60c068'); // TODO DEV VIEW
 
     if (context.singleStageMode) {
 

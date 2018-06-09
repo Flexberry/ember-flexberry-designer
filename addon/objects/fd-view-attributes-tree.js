@@ -15,16 +15,56 @@ export default Ember.Object.extend({
   /**
     Item property 'name'.
 
-    @property name
+    @property text
     @type String
   */
-  name: undefined,
+  text: undefined,
 
   /**
     Type property.
 
-    @property caption
+    @property type
     @type String
   */
   type: undefined,
+
+  /**
+    Id property for jsTree.
+
+    @property id
+    @type String
+  */
+  id: undefined,
+
+  /**
+    Id property.
+
+    @property idNode
+    @type String
+  */
+  idNode: undefined,
+
+  /**
+    Children property.
+
+    @property children
+    @type Array
+  */
+  children: [],
+
+  /**
+    Copy children property.
+
+    @property copyChildren
+    @type Array
+  */
+  copyChildren: [],
+
+  /**
+    State property for jsTree.
+
+    @property state
+    @type Object
+  */
+  state: undefined
 });

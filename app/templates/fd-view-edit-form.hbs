@@ -65,45 +65,24 @@
     </div>
   </div>
 
-
-
   <div class="ui horizontal segments">
     <div class="ui segment">
-{{!-- ************************************TREE************************************************************************** --}}
-      <div class="sixteen wide column" style="width: 100%; overflow-x: scroll;">
-      <table >
-        <tr>
-          <td valign='top'>
-            {{flexberry-tree
-              class=jsonLeftTreeClass
-              exclusive=jsonTreeExclusive
-              collapsible=jsonLeftTreeCollapsible
-              animateChildren=jsonTreeAnimateChildren
-              duration=jsonTreeDuration
-              nodes=(get-with-dynamic-actions this "jsonLeftTreeNodes"
-                hierarchyPropertyName="nodes"
-                pathKeyword="nodePath"
-                dynamicActions=(array
-                  (hash
-                    on="headerClick"
-                    actionName="onTreenodeHeaderClick"
-                    actionArguments=(array "{% nodePath %}")
-                  )
-                )
-              )
-            }}
-          </td>
-          <td valign='top' align='center'>
-            <button class='ui button icon move {{moveRightDisabled}}' {{action "moveRightHighlighted" on="click" }}>
-              <i class="chevron right icon"></i>
-            </button>
-          </td>
-        </tr>
-      </table>
+      <div class="sample-tree">
+        {{ember-jstree
+          actionReceiver=jstreeActionReceiver
+          data=model.data.attributesTree
+          plugins=plugins
+          typesOptions=typesOptions
+          eventDidBecomeReady=(action 'handleTreeDidBecomeReady')
+          treeObject=jstreeObject
+        }}
       </div>
-{{!-- ************************************TREE************************************************************************** --}}
     </div>
-{{!-- ************************************tab************************************************************************** --}}
+
+    <button class='ui button icon move {{moveRightDisabled}}' {{action "moveRightHighlighted" on="click" }} style="top: 50%;">
+      <i class="chevron right icon"></i>
+    </button>
+
     <div class="ui segment">
       <table class="ui very basic collapsing celled table">
         <thead>
@@ -120,9 +99,9 @@
                 <img src="assets/images/datail.png">
               {{else}}
                 {{#if property.lookupType}}
-                  <img src="assets/images/master.png">
+                  <img src="assets/images/master.bmp">
                 {{else}}
-                  <img src="assets/images/property.png">
+                  <img src="assets/images/attribute.bmp">
                 {{/if}}
               {{/if}}
             </td>
@@ -135,6 +114,7 @@
       </table>
     </div>
   </div>
+  
   <div class="ui segments">
     <div class="ui segment">
       <div class="ui top attached label">
