@@ -23,7 +23,7 @@ export default EditFormRoute.extend({
     */
     gotoView() {
       let classId = this.controller.model.get('id');
-      this.transitionTo('fd-view-list-form', { queryParams: { classId: classId }});
+      this.transitionTo('fd-view-list-form', { queryParams: { classId: classId } });
     }
   },
 
