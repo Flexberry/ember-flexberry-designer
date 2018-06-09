@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import ModalApplicationRouteMixin from 'ember-flexberry/mixins/modal-application-route';
-import FdPreloadStageMetadata from 'ember-flexberry-designer/utils/fd-preload-stage-metadata';
 import { Query } from 'ember-flexberry-data';
 
 const {
@@ -21,12 +20,9 @@ export default Ember.Route.extend(ModalApplicationRouteMixin, {
 
   activate: function() {
     let context = this.get('currentProjectContext');
-    let store = this.get('store');
-
-    FdPreloadStageMetadata.call(this, store, 'ebb04d04-522f-45f8-bd31-6dc94a60c068'); // TODO DEV VIEW
 
     if (context.singleStageMode) {
-
+      let store = this.get('store');
       let modelName = 'fd-dev-stage';
 
       let predicate = new SimplePredicate('id', FilterOperator.Eq, context.context.stage);
