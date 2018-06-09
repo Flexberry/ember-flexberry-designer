@@ -4,6 +4,16 @@ import ListFormRoute from 'ember-flexberry/routes/list-form';
 
 export default ListFormRoute.extend({
   /**
+    Query simple predicate.
+
+    @property modelProjection
+    @type SimplePredicate
+    @default undefined
+    @private
+  */
+  _queryPredicate: undefined,
+
+  /**
     Name of model projection to be used as record's properties limitation.
 
     @property modelProjection
@@ -11,8 +21,6 @@ export default ListFormRoute.extend({
     @default 'ListFormView'
   */
   modelProjection: 'ListFormView',
-
-  classID: undefined,
 
   /**
     Name of model to be used as list's records types.
@@ -48,24 +56,24 @@ export default ListFormRoute.extend({
   */
   developerUserSettings: { FdViewListForm: {} },
 
-  beforeModel: function(transition){
-    let classID = transition.queryParams.classID;
-    if (!Ember.isNone(classID)) {
-      this.set('classID',classID);
-    }
+  /**
+   This hook is the first of the route entry validation hooks called when an attempt is made to transition into a route or one of its children.
+   [More info](http://emberjs.com/api/classes/Ember.Route.html#method_beforeModel).
 
+   @method beforeModel
+   @param {Transition} transition
+   @return {Promise}
+ */
+  beforeModel: function(transition) {
+    let classId = transition.queryParams.classId;
+    if (!Ember.isNone(classId)) {
+      let queryPredicate = new Query.SimplePredicate('class', '==', classId);
+      this.set('_queryPredicate', queryPredicate);
+    }
   },
 
-  /**
-    Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
-
-    @property currentContext
-    @type FdCurrentProjectContextService
-  */
-  currentContext: Ember.inject.service('fd-current-project-context'),
-
   objectListViewLimitPredicate() {
-    let classID = this.get('classID');
-    return new Query.SimplePredicate('class', '==', classID);
+    let queryPredicate = this.get('_queryPredicate');
+    return queryPredicate;
   },
 });

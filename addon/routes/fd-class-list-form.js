@@ -43,15 +43,5 @@ export default ListFormRoute.extend(FdLimitByStageMixin, {
     @type Object
     @default {}
   */
-  developerUserSettings: { FdClassListForm: {} },
-
-  actions: {
-    objectListViewRowClick(clazz, options) {
-      return this._super(...arguments);
-    }
-  },
-
-  willDestroy: function() {
-    this._super(...arguments);
-  }
+  developerUserSettings: { FdClassListForm: {} }
 });

@@ -9,7 +9,7 @@ export default Ember.Controller.extend({
   */
   currentContext: Ember.inject.service('fd-current-project-context'),
 
-  sitemap: Ember.computed('i18n.locale', 'currentContext.context.configuration', 'currentContext.context.stage', 'currentContext.context.class', function() {
+  sitemap: Ember.computed('i18n.locale', 'currentContext.context.configuration', 'currentContext.context.stage', function() {
     let i18n = this.get('i18n');
     let context = this.get('currentContext.context');
     let singleStageMode = this.get('currentContext.singleStageMode');
@@ -88,12 +88,14 @@ export default Ember.Controller.extend({
           }
         ]
       });
+
       sitemap.nodes.push({
         link: 'fd-view-list-form',
         caption: i18n.t('forms.application.sitemap.root.fd-view-list-form.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-view-list-form.title'),
       });
     }
+
     return sitemap;
   }),
 
