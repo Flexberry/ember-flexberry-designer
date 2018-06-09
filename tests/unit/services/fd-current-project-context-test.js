@@ -31,7 +31,7 @@ moduleFor('service:fd-current-project-context', 'Unit | Service | fd current pro
 
 test('it exists and works', function(assert) {
   let done = assert.async();
-  assert.expect(14);
+  assert.expect(10);
 
   let service = this.subject();
   assert.ok(service);
