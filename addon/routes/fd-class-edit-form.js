@@ -33,10 +33,5 @@ export default EditFormRoute.extend({
     }
 
     this._super(controller, model);
-  },
-
-  willDestroy: function() {
-    this.get('currentContext').setCurrentClass(undefined);
-    this._super(...arguments);
   }
 });
