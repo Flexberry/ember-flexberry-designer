@@ -1,15 +1,5 @@
-<h3 class="ui header">{{t 'forms.fd-editform-constructor.caption'}}</h3>
-{{#if errorMessages}}
-  {{#each errorMessages as |currentError|}}
-    {{ui-message
-      type='error'
-      closeable=true
-      visible=true
-      title='Error occurred'
-      message=currentError
-    }}
-  {{/each}}
-{{/if}}
+<h3 class="ui header">{{model.editform.caption}}</h3>
+
 <form class="ui form flexberry-vertical-form" role="form">
   {{flexberry-error error=error}}
   <div class="field">
@@ -24,28 +14,17 @@
           </button>
         {{/unless}}
       {{/unless}}
-      <button class="ui button fake save-close-button">
-        {{t "forms.edit-form.saveAndClose-button-text"}}
-      </button>
       <button class="ui button">
         {{t "forms.fd-visual-edit-form.preview-mobile-variant"}}
       </button>
+      {{flexberry-button iconClass="settings icon" click=(action "toggleConfigPanel")}}
       <button type="submit" class="ui button close-button" {{action 'close'}}>
         {{t "forms.edit-form.close-button-text"}}
       </button>
     </div>
   </div>
 
-  <div class="ui grid row">
-    <div class="field eight wide column">
-        <label>{{t 'forms.fd-visual-edit-form.name'}}</label>
-        {{flexberry-textbox
-          value=model.editform.caption
-        }}
-    </div>
-  </div>
-
   {{#each model.controls as |control|}}
-    {{fd-editform-row row=control}}
+    {{fd-editform-row row=control selectAction=(action "selectControl")}}
   {{/each}}
 </form>

@@ -13,7 +13,8 @@ moduleForComponent('fd-editform-control', 'Integration | Component | fd-editform
 });
 
 test('it renders and works', function(assert) {
-  this.render(hbs`{{fd-editform-control control=control}}`);
+  this.set('selectAction', control => this.set('selectedControl', control));
+  this.render(hbs`{{fd-editform-control control=control selectAction=selectAction}}`);
 
   this.set('control', FdEditformControl.create({ type: 'bool', caption: 'Attribute #1' }));
   assert.ok(/\s*Attribute #1\s*/.test(this.$().text()), 'With simple control.');
@@ -45,4 +46,8 @@ test('it renders and works', function(assert) {
     ]),
   }));
   assert.ok(/\s*Tab #1\s*Attribute #1\s*/.test(this.$().text()), 'With tabs.');
+
+  assert.ok(this.get('selectedControl') === undefined, 'No selected control.');
+  this.$('.active.item').click();
+  assert.ok(this.get('selectedControl') === this.get('control.tabs.firstObject'), 'Click by tab.');
 });
