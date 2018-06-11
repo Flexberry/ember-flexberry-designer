@@ -6833,14 +6833,13 @@ define('dummy/tests/unit/services/fd-current-project-context-test', ['exports', 
 
   (0, _emberQunit.test)('it exists and works', function (assert) {
     var done = assert.async();
-    assert.expect(14);
+    assert.expect(10);
 
     var service = this.subject();
     assert.ok(service);
 
     var configuration = _ember['default'].Object.create({ id: 'configuration' });
     var stage = _ember['default'].Object.create({ id: 'stage' });
-    var clazz = _ember['default'].Object.create({ id: 'class' });
 
     assert.throws(service.getCurrentConfiguration);
     service.setCurrentConfiguration(configuration);
@@ -6861,18 +6860,6 @@ define('dummy/tests/unit/services/fd-current-project-context-test', ['exports', 
 
       // Remove new model from the store.
       system.rollbackAttributes();
-
-      assert.throws(service.getCurrentClass);
-      assert.throws(function () {
-        service.setCurrentClass(clazz);
-      });
-      clazz.set('stage', stage);
-      service.setCurrentClass(clazz);
-      assert.equal(service.getCurrentClass(), 'class');
-
-      service.setCurrentStage(stage);
-      assert.throws(service.getCurrentClass);
-
       service.setCurrentConfiguration(configuration);
       assert.throws(service.getCurrentStage);
 

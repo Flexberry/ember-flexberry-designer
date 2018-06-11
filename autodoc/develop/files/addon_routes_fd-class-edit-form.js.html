@@ -122,18 +122,26 @@ export default EditFormRoute.extend({
   */
   currentContext: Ember.inject.service(&#x27;fd-current-project-context&#x27;),
 
+  actions: {
+    /**
+      This action is called when check class on class-form.
+      Transition to view-form with classId parameter.
+
+      @method actions.gotoView
+      @public
+    */
+    gotoView() {
+      let classId = this.controller.model.get(&#x27;id&#x27;);
+      this.transitionTo(&#x27;fd-view-list-form&#x27;, { queryParams: { classId: classId } });
+    }
+  },
+
   setupController: function(controller, model) {
     if (!model.get(&#x27;caption&#x27;)) {
       model.set(&#x27;caption&#x27;, model.get(&#x27;name&#x27;));
     }
 
-    this.get(&#x27;currentContext&#x27;).setCurrentClass(model);
     this._super(controller, model);
-  },
-
-  willDestroy: function() {
-    this.get(&#x27;currentContext&#x27;).setCurrentClass(undefined);
-    this._super(...arguments);
   }
 });
 

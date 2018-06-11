@@ -216,8 +216,7 @@ export let defineProjections = function (modelClass) {
     class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
       name: Projection.attr(&#x27;Class&#x27;)
     }, { hidden: true }),
-    name: Projection.attr(&#x27;View name&#x27;),
-    properties: Projection.attr(&#x27;View properties&#x27;)
+    name: Projection.attr(&#x27;View name&#x27;)
   });
   modelClass.defineProjection(&#x27;Prototyping&#x27;, &#x27;fd-dev-view&#x27;, {
     name: Projection.attr(&#x27;&#x27;),
