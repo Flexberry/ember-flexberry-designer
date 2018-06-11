@@ -12,5 +12,6 @@ export default {
   'attributes-caption': 'Attributes',
   'views-caption': 'Views',
   'classStorageTypes-caption': 'Storage types',
-  'toggler-caption': 'Additional properties'
+  'toggler-caption': 'Additional properties',
+  'go-to-view': 'View form'
 };

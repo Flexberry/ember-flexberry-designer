@@ -31,14 +31,13 @@ moduleFor('service:fd-current-project-context', 'Unit | Service | fd current pro
 
 test('it exists and works', function(assert) {
   let done = assert.async();
-  assert.expect(14);
+  assert.expect(10);
 
   let service = this.subject();
   assert.ok(service);
 
   let configuration = Ember.Object.create({ id: 'configuration' });
   let stage = Ember.Object.create({ id: 'stage' });
-  let clazz = Ember.Object.create({ id: 'class' });
 
   assert.throws(service.getCurrentConfiguration);
   service.setCurrentConfiguration(configuration);
@@ -57,16 +56,6 @@ test('it exists and works', function(assert) {
 
     // Remove new model from the store.
     system.rollbackAttributes();
-
-    assert.throws(service.getCurrentClass);
-    assert.throws(() => { service.setCurrentClass(clazz); });
-    clazz.set('stage', stage);
-    service.setCurrentClass(clazz);
-    assert.equal(service.getCurrentClass(), 'class');
-
-    service.setCurrentStage(stage);
-    assert.throws(service.getCurrentClass);
-
     service.setCurrentConfiguration(configuration);
     assert.throws(service.getCurrentStage);
 

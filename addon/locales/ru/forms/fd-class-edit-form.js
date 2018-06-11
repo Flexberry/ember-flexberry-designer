@@ -12,5 +12,6 @@ export default {
   'attributes-caption': 'Атрибуты',
   'views-caption': 'Представления',
   'classStorageTypes-caption': 'Типы хранилищ',
-  'toggler-caption': 'Дополнительные свойства'
+  'toggler-caption': 'Дополнительные свойства',
+  'go-to-view': 'Форма представления'
 };
