@@ -43,21 +43,5 @@ export default ListFormRoute.extend(FdLimitByStageMixin, {
     @type Object
     @default {}
   */
-  developerUserSettings: { FdClassListForm: {} },
-
-  actions: {
-    objectListViewRowClick(clazz, options) {
-      if (options.column === null) {
-        return this._super(...arguments);
-      } else {
-        this.get('currentContext').setCurrentClass(clazz);
-        return this._super(...arguments);
-      }
-    },
-  },
-
-  willDestroy: function() {
-    this.get('currentContext').setCurrentClass(undefined);
-    this._super(...arguments);
-  }
+  developerUserSettings: { FdClassListForm: {} }
 });
