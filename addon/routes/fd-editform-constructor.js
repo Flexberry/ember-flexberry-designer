@@ -1,4 +1,9 @@
 import Ember from 'ember';
+import FdEditformControl from '../objects/fd-editform-control';
+import FdEditformGroup from '../objects/fd-editform-group';
+import FdEditformRow from '../objects/fd-editform-row';
+import FdEditformTab from '../objects/fd-editform-tab';
+import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
 import { Query } from 'ember-flexberry-data';
 const { Builder, FilterOperator } = Query;
 
@@ -88,99 +93,161 @@ export default Ember.Route.extend({
       }, reject);
 
       Ember.RSVP.all([loadClassesPromise, loadTypemapPromise, promiseEnumeration, promiseType]).then(() => {
-        // TODO: Приготовим коллекцию controls для того, чтобы отобразить их по выбранному представлению.
-        // Возьмём представление и пробежимся по нему.
+        let controlTree = Ember.A();
 
-        let attributes = Ember.A();
         let definition = modelHash.editform.get('formViews.firstObject.view.definition');
         for (let i = 0; i < definition.length; i++) {
-          if (definition[i].visible === 'True') {
-            let attribute = attributes.pushObject({
-              propertyName: definition[i].propertyName,
-              name: definition[i].caption || definition[i].propertyName,
-            });
+          let propertyDefinition = definition[i];
+          if (!propertyDefinition.visible) {
+            continue;
+          }
 
-            if (definition[i].isMaster === 'True') {
-              attribute.type = 'guid';
-              attribute.notNull = null;
-              attribute.defaultValue = null;
-            } else {
-              let propertyOwner = modelHash.dataobject;
-              let propertyOwnerId = propertyOwner.get('id');
-              let path = definition[i].propertyName.split('.');
-              let attributeName = path.pop();
-              let skipAsExternalClass = false;
-              for (let i = 0; i < path.length; i++) {
-                let relationName = path[i];
-                let ownAndParentsId = this._getParentsId(propertyOwnerId); // TODO:
-                ownAndParentsId.push(propertyOwnerId);
+          _this._locateControl(controlTree, propertyDefinition, propertyDefinition.path);
+        }
 
-                // TODO: Filter by all Ids
-                let relationships;
-                for (let j = 0; j < ownAndParentsId.length; j++) {
-                  let rel = this.get('model.associations').filterBy('endClass.id', ownAndParentsId[j]);
-                  if (relationships) {
-                    relationships.push(rel.toArray());
-                  } else {
-                    relationships = rel;
-                  }
+        modelHash.controls = controlTree;
+        resolve(modelHash);
+      });
+    });
+  },
+
+  _locateControl: function (controlTree, propertyDefinition, path) {
+    if (!path || path === '') {
+      let row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
+
+      if (controlTree.rows) {
+        controlTree.rows.pushObject(row);
+      } else {
+        controlTree.pushObject(row);
+      }
+
+      // TODO: вычислить type контрола из метаданных атрибута или FormControl и width из path.
+      let control = FdEditformControl.create({ caption: propertyDefinition.name + ' ' + propertyDefinition.path, type: 'string', width: '100*' });
+
+      row.controls.pushObject(control);
+      row.columnsCount++;
+      return controlTree;
+    }
+
+    // tabs, TODO: move to the own function
+    if (path.charAt(0) === '|') {
+      let pathLength = path.length;
+      let splitterIndex = path.indexOf('\\');
+      let tabCaptionEndIndex = splitterIndex > -1 ? splitterIndex : pathLength;
+
+      let tabCaption = path.slice(1, tabCaptionEndIndex);
+
+      let row;
+      let tabGroup;
+      let tab;
+      let rowsCollection;
+
+      if (controlTree.rows) {
+        rowsCollection = controlTree.rows;
+      } else {
+        rowsCollection = controlTree;
+      }
+
+      for (let i = 0; i < rowsCollection.length; i++) {
+        let rowInCollection = rowsCollection[i];
+        if (rowInCollection instanceof FdEditformRow) {
+          for (let j = 0; j < rowInCollection.controls.length; j++) {
+            let controlInRow = rowInCollection.controls[j];
+            if (controlInRow instanceof FdEditformTabgroup) {
+              row = rowInCollection;
+              tabGroup = controlInRow;
+              for (let k = 0; k < controlInRow.tabs.length; k++) {
+                let tabInTabgroup = controlInRow.tabs[k];
+                if (tabInTabgroup.caption === tabCaption) {
+                  tab = tabInTabgroup;
                 }
-
-                let relationship = relationships.findBy('startRole', relationName) || relationships.findBy('startClass.name', relationName);
-
-                if (!relationship) {
-                  // TODO: Filter by all Ids
-                  for (let j = 0; j < ownAndParentsId.length; j++) {
-                    let rel = this.get('model.aggregations').filterBy('endClass.id', ownAndParentsId[j]);
-                    if (relationships) {
-                      relationships.push(rel.toArray());
-                    } else {
-                      relationships = rel;
-                    }
-                  }
-
-                  relationship = relationships.findBy('startRole', relationName) || relationships.findBy('startClass.name', relationName);
-                }
-
-                // Ember.assert('Не найдена связь ' + relationName + ' в классе ' + propertyOwner.get('name'), relationship);
-
-                if (!relationship) {
-                  skipAsExternalClass = true;
-                  break;
-                }
-
-                propertyOwnerId = relationship.get('startClass.id');
-              }
-
-              if (skipAsExternalClass) {
-                attributes.popObject();
-                continue;
-              }
-
-              if (propertyOwner.get('id') !== propertyOwnerId) {
-                propertyOwner = this.get('model.dataObjects').findBy('id', propertyOwnerId);
-              }
-
-              let classAttribute = propertyOwner.get('attributes').findBy('name', attributeName);
-
-              if (!classAttribute) {
-                classAttribute = this._getAttributeFromParent(propertyOwnerId, attributeName);
-              }
-
-              if (classAttribute) {
-                attribute.classAttribute = classAttribute;
-                attribute.type = classAttribute.get('type');
-                attribute.notNull = classAttribute.get('notNull');
-                attribute.defaultValue = classAttribute.get('defaultValue');
               }
             }
           }
         }
+      }
 
-        modelHash.controls = attributes;
+      if (!row) {
+        row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
 
-        resolve(modelHash);
-      });
-    });
+        if (controlTree.rows) {
+          controlTree.rows.pushObject(row);
+        } else {
+          controlTree.pushObject(row);
+        }
+      }
+
+      if (!tabGroup) {
+        tabGroup  = FdEditformTabgroup.create({ tabs: Ember.A(), width: '100*' });
+        row.controls.pushObject(tabGroup);
+      }
+
+      if (!tab) {
+        tab  = FdEditformTab.create({ rows: Ember.A(), caption: tabCaption });
+        tabGroup.tabs.pushObject(tab);
+      }
+
+      let nextPath = path.slice(tabCaptionEndIndex + 1, pathLength);
+
+      return this._locateControl(tab, propertyDefinition, nextPath);
+    }
+
+    // group, TODO: move to the own function
+    if (path.charAt(0) === '-') {
+      let pathLength = path.length;
+      let splitterIndex = path.indexOf('\\');
+      let groupCaptionEndIndex = splitterIndex > -1 ? splitterIndex : pathLength;
+
+      let groupCaption = path.slice(1, groupCaptionEndIndex);
+
+      let row;
+      let group;
+      let rowsCollection;
+
+      if (controlTree.rows) {
+        rowsCollection = controlTree.rows;
+      } else {
+        rowsCollection = controlTree;
+      }
+
+      for (let i = 0; i < rowsCollection.length; i++) {
+        let rowInCollection = rowsCollection[i];
+        if (rowInCollection instanceof FdEditformRow) {
+          for (let j = 0; j < rowInCollection.controls.length; j++) {
+            let controlInRow = rowInCollection.controls[j];
+            if (controlInRow instanceof FdEditformGroup && controlInRow.caption === groupCaption) {
+              row = rowInCollection;
+              group = controlInRow;
+            }
+          }
+        }
+      }
+
+      if (!row) {
+        row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
+
+        if (controlTree.rows) {
+          controlTree.rows.pushObject(row);
+        } else {
+          controlTree.pushObject(row);
+        }
+      }
+
+      if (!group) {
+        group  = FdEditformGroup.create({ rows: Ember.A(), width: '100*', caption: groupCaption });
+        row.controls.pushObject(group);
+      }
+
+      let nextPath = path.slice(groupCaptionEndIndex + 1, pathLength);
+
+      return this._locateControl(group, propertyDefinition, nextPath);
+    }
+
+    // TODO: column
+    if (path.charAt(0) === '#') {
+
+    }
+
+    // TODO: Show error and fix it.
   },
 });
