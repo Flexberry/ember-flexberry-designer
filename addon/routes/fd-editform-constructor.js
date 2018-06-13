@@ -191,13 +191,13 @@ export default Ember.Route.extend({
       Ember.$('.pusher').css({ width: 'calc(100% - ' + configPanrlTabsWidth + 'px)' });
     } else {
       let workPanel = sidebar.width() + configPanrlTabsWidth;
-      Ember.$('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)'});
+      Ember.$('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)' });
     }
 
     Ember.run.schedule('afterRender', function() {
       let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
       Ember.$('.menu .item', configPanelSidebar).tab();
-    })
+    });
 
   },
 
@@ -207,7 +207,7 @@ export default Ember.Route.extend({
     if (!sidebar.hasClass('visible')) {
       Ember.$('.pusher').css({ width: '100%' });
     } else {
-      Ember.$('.pusher').css({ width: 'calc(100% - ' + sidebar.width() + 'px)'});
-    }  
+      Ember.$('.pusher').css({ width: 'calc(100% - ' + sidebar.width() + 'px)' });
+    }
   }
 });
