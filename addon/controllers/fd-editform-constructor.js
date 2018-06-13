@@ -56,7 +56,8 @@ export default Ember.Controller.extend({
     toggleConfigPanel(currentTab) {
       let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
 
-      if (this.prevTab === currentTab || this.prevTab === undefined || !configPanelSidebar.hasClass('visible')) {
+      let togglePanel = this.prevTab === currentTab || this.prevTab === undefined || !configPanelSidebar.hasClass('visible');
+      if (togglePanel) {
         let sidebar = Ember.$('.ui.sidebar.main.menu');
 
         configPanelSidebar.sidebar({
