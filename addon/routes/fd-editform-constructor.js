@@ -23,6 +23,7 @@ export default Ember.Route.extend({
     };
 
     return new Ember.RSVP.Promise(function (resolve, reject) {
+      // TODO: Replace promises to use fd-preload-stage-metadata and store.peekRecord().
       // Load «editform».
       let loadClassesPromise = new Ember.RSVP.Promise(function (resolveLoadClasses, rejectLoadClasses) {
         let predicateEditformId = new Query.SimplePredicate('id', FilterOperator.Eq, params.id);
@@ -111,6 +112,15 @@ export default Ember.Route.extend({
     });
   },
 
+  /**
+      Locate control by path.
+
+      @method _locateControl
+      @param {Object} controlTree Controls tree.
+      @param {FdDefinition} propertyDefinition Property definition from view.
+      @param {String} path Property path from view.
+      @return {Object} Modified controlTree with placed control.
+  */
   _locateControl: function (controlTree, propertyDefinition, path) {
     if (!path || path === '') {
       let row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
@@ -121,133 +131,230 @@ export default Ember.Route.extend({
         controlTree.pushObject(row);
       }
 
-      // TODO: вычислить type контрола из метаданных атрибута или FormControl и width из path.
-      let control = FdEditformControl.create({ caption: propertyDefinition.name + ' ' + propertyDefinition.path, type: 'string', width: '100*' });
+      this._locateControlInRow(row, propertyDefinition);
 
-      row.controls.pushObject(control);
-      row.columnsCount++;
       return controlTree;
     }
 
-    // tabs, TODO: move to the own function
     if (path.charAt(0) === '|') {
-      let pathLength = path.length;
-      let splitterIndex = path.indexOf('\\');
-      let tabCaptionEndIndex = splitterIndex > -1 ? splitterIndex : pathLength;
+      return this._locateTabs(controlTree, propertyDefinition, path);
+    }
 
-      let tabCaption = path.slice(1, tabCaptionEndIndex);
+    if (path.charAt(0) === '-') {
+      return this._locateGroup(controlTree, propertyDefinition, path);
+    }
 
-      let row;
-      let tabGroup;
-      let tab;
-      let rowsCollection;
+    if (path.charAt(0) === '#') {
+      return this._locateColumn(controlTree, propertyDefinition, path);
+    }
 
-      if (controlTree.rows) {
-        rowsCollection = controlTree.rows;
-      } else {
-        rowsCollection = controlTree;
-      }
+    // TODO: Show error and fix it.
+  },
 
-      for (let i = 0; i < rowsCollection.length; i++) {
-        let rowInCollection = rowsCollection[i];
-        if (rowInCollection instanceof FdEditformRow) {
-          for (let j = 0; j < rowInCollection.controls.length; j++) {
-            let controlInRow = rowInCollection.controls[j];
-            if (controlInRow instanceof FdEditformTabgroup) {
-              row = rowInCollection;
-              tabGroup = controlInRow;
-              for (let k = 0; k < controlInRow.tabs.length; k++) {
-                let tabInTabgroup = controlInRow.tabs[k];
-                if (tabInTabgroup.caption === tabCaption) {
-                  tab = tabInTabgroup;
-                }
+  /**
+      Locate control in row by path.
+
+      @method _locateControlInRow
+      @param {FdEditformRow} row Row for control placement.
+      @param {FdDefinition} propertyDefinition Property definition from view.
+      @return {Object} Modified controlTree with placed control.
+  */
+  _locateControlInRow: function (row, propertyDefinition) {
+    // TODO: вычислить type контрола из метаданных атрибута или FormControl и width из path.
+    let control = FdEditformControl.create({ caption: propertyDefinition.name, type: 'string', width: '100*' });
+
+    row.controls.pushObject(control);
+    row.columnsCount++;
+
+    return row;
+  },
+
+  /**
+      Locate tabs for control.
+
+      @method _locateTabs
+      @param {Object} controlTree Controls tree.
+      @param {FdDefinition} propertyDefinition Property definition from view.
+      @param {String} path Property path from view.
+      @return {Object} Modified controlTree with placed tabs.
+  */
+  _locateTabs: function(controlTree, propertyDefinition, path) {
+    let pathLength = path.length;
+    let splitterIndex = path.indexOf('\\');
+    let tabCaptionEndIndex = splitterIndex > -1 ? splitterIndex : pathLength;
+
+    let tabCaption = path.slice(1, tabCaptionEndIndex);
+
+    let row;
+    let tabGroup;
+    let tab;
+    let rowsCollection;
+
+    if (controlTree.rows) {
+      rowsCollection = controlTree.rows;
+    } else {
+      rowsCollection = controlTree;
+    }
+
+    for (let i = 0; i < rowsCollection.length; i++) {
+      let rowInCollection = rowsCollection[i];
+      if (rowInCollection instanceof FdEditformRow) {
+        for (let j = 0; j < rowInCollection.controls.length; j++) {
+          let controlInRow = rowInCollection.controls[j];
+          if (controlInRow instanceof FdEditformTabgroup) {
+            row = rowInCollection;
+            tabGroup = controlInRow;
+            for (let k = 0; k < controlInRow.tabs.length; k++) {
+              let tabInTabgroup = controlInRow.tabs[k];
+              if (tabInTabgroup.caption === tabCaption) {
+                tab = tabInTabgroup;
               }
             }
           }
         }
       }
-
-      if (!row) {
-        row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
-
-        if (controlTree.rows) {
-          controlTree.rows.pushObject(row);
-        } else {
-          controlTree.pushObject(row);
-        }
-      }
-
-      if (!tabGroup) {
-        tabGroup  = FdEditformTabgroup.create({ tabs: Ember.A(), width: '100*' });
-        row.controls.pushObject(tabGroup);
-      }
-
-      if (!tab) {
-        tab  = FdEditformTab.create({ rows: Ember.A(), caption: tabCaption });
-        tabGroup.tabs.pushObject(tab);
-      }
-
-      let nextPath = path.slice(tabCaptionEndIndex + 1, pathLength);
-
-      return this._locateControl(tab, propertyDefinition, nextPath);
     }
 
-    // group, TODO: move to the own function
-    if (path.charAt(0) === '-') {
-      let pathLength = path.length;
-      let splitterIndex = path.indexOf('\\');
-      let groupCaptionEndIndex = splitterIndex > -1 ? splitterIndex : pathLength;
-
-      let groupCaption = path.slice(1, groupCaptionEndIndex);
-
-      let row;
-      let group;
-      let rowsCollection;
+    if (!row) {
+      row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
 
       if (controlTree.rows) {
-        rowsCollection = controlTree.rows;
+        controlTree.rows.pushObject(row);
       } else {
-        rowsCollection = controlTree;
+        controlTree.pushObject(row);
       }
+    }
 
-      for (let i = 0; i < rowsCollection.length; i++) {
-        let rowInCollection = rowsCollection[i];
-        if (rowInCollection instanceof FdEditformRow) {
-          for (let j = 0; j < rowInCollection.controls.length; j++) {
-            let controlInRow = rowInCollection.controls[j];
-            if (controlInRow instanceof FdEditformGroup && controlInRow.caption === groupCaption) {
-              row = rowInCollection;
-              group = controlInRow;
-            }
+    if (!tabGroup) {
+      tabGroup  = FdEditformTabgroup.create({ tabs: Ember.A(), width: '100*' });
+      row.controls.pushObject(tabGroup);
+    }
+
+    if (!tab) {
+      tab  = FdEditformTab.create({ rows: Ember.A(), caption: tabCaption });
+      tabGroup.tabs.pushObject(tab);
+    }
+
+    let nextPath = path.slice(tabCaptionEndIndex + 1, pathLength);
+
+    return this._locateControl(tab, propertyDefinition, nextPath);
+  },
+
+  /**
+      Locate group for control.
+
+      @method _locateGroup
+      @param {Object} controlTree Controls tree.
+      @param {FdDefinition} propertyDefinition Property definition from view.
+      @param {String} path Property path from view.
+      @return {Object} Modified controlTree with placed group.
+  */
+  _locateGroup: function(controlTree, propertyDefinition, path) {
+    let pathLength = path.length;
+    let splitterIndex = path.indexOf('\\');
+    let groupCaptionEndIndex = splitterIndex > -1 ? splitterIndex : pathLength;
+
+    let groupCaption = path.slice(1, groupCaptionEndIndex);
+
+    let row;
+    let group;
+    let rowsCollection;
+
+    if (controlTree.rows) {
+      rowsCollection = controlTree.rows;
+    } else {
+      rowsCollection = controlTree;
+    }
+
+    for (let i = 0; i < rowsCollection.length; i++) {
+      let rowInCollection = rowsCollection[i];
+      if (rowInCollection instanceof FdEditformRow) {
+        for (let j = 0; j < rowInCollection.controls.length; j++) {
+          let controlInRow = rowInCollection.controls[j];
+          if (controlInRow instanceof FdEditformGroup && controlInRow.caption === groupCaption) {
+            row = rowInCollection;
+            group = controlInRow;
           }
         }
       }
-
-      if (!row) {
-        row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
-
-        if (controlTree.rows) {
-          controlTree.rows.pushObject(row);
-        } else {
-          controlTree.pushObject(row);
-        }
-      }
-
-      if (!group) {
-        group  = FdEditformGroup.create({ rows: Ember.A(), width: '100*', caption: groupCaption });
-        row.controls.pushObject(group);
-      }
-
-      let nextPath = path.slice(groupCaptionEndIndex + 1, pathLength);
-
-      return this._locateControl(group, propertyDefinition, nextPath);
     }
 
-    // TODO: column
-    if (path.charAt(0) === '#') {
+    if (!row) {
+      row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
 
+      if (controlTree.rows) {
+        controlTree.rows.pushObject(row);
+      } else {
+        controlTree.pushObject(row);
+      }
     }
 
-    // TODO: Show error and fix it.
+    if (!group) {
+      group  = FdEditformGroup.create({ rows: Ember.A(), width: '100*', caption: groupCaption });
+      row.controls.pushObject(group);
+    }
+
+    let nextPath = path.slice(groupCaptionEndIndex + 1, pathLength);
+
+    return this._locateControl(group, propertyDefinition, nextPath);
   },
+
+  /**
+      Locate column for control.
+
+      @method _locateColumn
+      @param {Object} controlTree Controls tree.
+      @param {FdDefinition} propertyDefinition Property definition from view.
+      @param {String} path Property path from view.
+      @return {Object} Modified controlTree with placed column.
+  */
+  _locateColumn: function(controlTree, propertyDefinition, path) {
+    let pathLength = path.length;
+    let splitterIndex = path.indexOf('\\');
+    let columnDefinitionEndIndex = splitterIndex > -1 ? splitterIndex : pathLength;
+
+    let columnDefinition = path.slice(1, columnDefinitionEndIndex);
+
+    let braceIndex = columnDefinition.indexOf('(');
+
+    if (braceIndex === -1) {
+      braceIndex = columnDefinition.length;
+    }
+
+    let columnIndex = parseInt(columnDefinition.slice(0, braceIndex));
+
+    let rowsCollection;
+
+    if (controlTree.rows) {
+      rowsCollection = controlTree.rows;
+    } else {
+      rowsCollection = controlTree;
+    }
+
+    let row = rowsCollection.get('lastObject');
+
+    // Current columns count in row must be match column index else it will be another row.
+    if (row && row.columnsCount + 1 !== columnIndex) {
+      row = undefined;
+    }
+
+    if (!row) {
+      row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
+
+      if (controlTree.rows) {
+        controlTree.rows.pushObject(row);
+      } else {
+        controlTree.pushObject(row);
+      }
+    }
+
+    let nextPath = path.slice(columnDefinitionEndIndex + 1, pathLength);
+
+    if (nextPath) {
+      // TODO: may be another group or tabs there?
+      return this._locateControl(row, propertyDefinition, nextPath);
+    } else {
+      return this._locateControlInRow(row, propertyDefinition);
+    }
+  }
 });
