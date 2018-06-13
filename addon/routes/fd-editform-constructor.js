@@ -183,4 +183,31 @@ export default Ember.Route.extend({
       });
     });
   },
+
+  activate() {
+    let sidebar = Ember.$('.ui.sidebar.main.menu');
+    let configPanrlTabsWidth = this.controllerFor(this.routeName).get('configPanrlTabsWidth');
+    if (!sidebar.hasClass('visible')) {
+      Ember.$('.pusher').css({ width: 'calc(100% - ' + configPanrlTabsWidth + 'px)' });
+    } else {
+      let workPanel = sidebar.width() + configPanrlTabsWidth;
+      Ember.$('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)'});
+    }
+
+    Ember.run.schedule('afterRender', function() {
+      let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
+      Ember.$('.menu .item', configPanelSidebar).tab();
+    })
+
+  },
+
+  deactivate() {
+    let sidebar = Ember.$('.ui.sidebar.main.menu');
+
+    if (!sidebar.hasClass('visible')) {
+      Ember.$('.pusher').css({ width: '100%' });
+    } else {
+      Ember.$('.pusher').css({ width: 'calc(100% - ' + sidebar.width() + 'px)'});
+    }  
+  }
 });

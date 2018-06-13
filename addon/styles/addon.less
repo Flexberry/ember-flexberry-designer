@@ -6,17 +6,18 @@
 }
 
 // style for edit form config panel
-.config-panel {
-  .ui.form {
-    display: flex;
-  }
+.ui.right.sidebar.config-panel {
+  transform: translate3d(0, 0, 0);
+  z-index: 1;
+  visibility: visible;
 
   .ui.vertical.menu {
-        width: 4rem;
+    width: 4rem;
+    margin-top: 0;
 
     &.tabular .item {
-        -webkit-writing-mode: vertical-rl;
-        writing-mode: tb-rl;
+      -webkit-writing-mode: vertical-rl;
+      writing-mode: tb-rl;
     }
   }
 }
