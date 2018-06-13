@@ -159,6 +159,10 @@ export default Ember.Controller.extend({
     toggleSidebar() {
       let sidebar = Ember.$('.ui.sidebar.main.menu');
       let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
+
+      let configPanelSidebarVisible = configPanelSidebar.hasClass('visible');
+      let sidebarVisible = sidebar.hasClass('visible');
+
       let objectlistviewEventsService = this.get('objectlistviewEventsService');
       sidebar.sidebar({
         closable: false,
@@ -186,13 +190,16 @@ export default Ember.Controller.extend({
       let configPanrlTabsWidth = this.currentRouteName.split('.')[0] === 'fd-editform-constructor' ? this.configPanrlTabsWidth : 0;
 
       Ember.$('.inverted.vertical.main.menu').removeClass('overlay');
-      if (Ember.$('.inverted.vertical.main.menu').hasClass('visible') && !configPanelSidebar.hasClass('visible')) {
-        Ember.$('.pusher').css({ width: 'calc(100% - ' + configPanrlTabsWidth + 'px)', transform: 'translate3d(0, 0, 0)' });
-      } else if (!Ember.$('.inverted.vertical.main.menu').hasClass('visible') && !configPanelSidebar.hasClass('visible')) {
+
+      if (sidebarVisible) {
+        if (!configPanelSidebarVisible) {
+          Ember.$('.pusher').css({ width: 'calc(100% - ' + configPanrlTabsWidth + 'px)', transform: 'translate3d(0, 0, 0)' });
+        } else {
+          Ember.$('.pusher').css({ width: 'calc(100% - ' + configPanelSidebar.width() + 'px)', transform: 'translate3d(0, 0, 0)' });
+        }
+      } else if (!configPanelSidebarVisible) {
         let workPanel = sidebar.width() + configPanrlTabsWidth;
         Ember.$('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)', transform: 'translate3d(' + sidebar.width() + 'px, 0, 0)' });
-      } else if (Ember.$('.inverted.vertical.main.menu').hasClass('visible') && configPanelSidebar.hasClass('visible')) {
-        Ember.$('.pusher').css({ width: 'calc(100% - ' + configPanelSidebar.width() + 'px)', transform: 'translate3d(0, 0, 0)' });
       } else {
         let workPanel = sidebar.width() + configPanelSidebar.width();
         Ember.$('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)', transform: 'translate3d(' + sidebar.width() + 'px, 0, 0)' });
