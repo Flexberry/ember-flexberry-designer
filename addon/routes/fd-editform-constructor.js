@@ -125,8 +125,8 @@ export default Ember.Route.extend({
     if (!path || path === '') {
       let row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
 
-      if (controlTree.rows) {
-        controlTree.rows.pushObject(row);
+      if (controlTree.get('rows')) {
+        controlTree.get('rows').pushObject(row);
       } else {
         controlTree.pushObject(row);
       }
@@ -161,10 +161,10 @@ export default Ember.Route.extend({
   */
   _locateControlInRow: function (row, propertyDefinition) {
     // TODO: вычислить type контрола из метаданных атрибута или FormControl и width из path.
-    let control = FdEditformControl.create({ caption: propertyDefinition.name, type: 'string', width: '100*' });
+    let control = FdEditformControl.create({ caption: propertyDefinition.caption || propertyDefinition.name, type: 'string', width: '100*' });
 
-    row.controls.pushObject(control);
-    row.columnsCount++;
+    row.get('controls').pushObject(control);
+    row.set('columnsCount', row.get('columnsCount') + 1);
 
     return row;
   },
@@ -190,21 +190,21 @@ export default Ember.Route.extend({
     let tab;
     let rowsCollection;
 
-    if (controlTree.rows) {
-      rowsCollection = controlTree.rows;
+    if (controlTree.get('rows')) {
+      rowsCollection = controlTree.get('rows');
     } else {
       rowsCollection = controlTree;
     }
 
-    for (let i = 0; i < rowsCollection.length; i++) {
+    for (let i = 0; i < rowsCollection.get('length'); i++) {
       let rowInCollection = rowsCollection[i];
       if (rowInCollection instanceof FdEditformRow) {
-        for (let j = 0; j < rowInCollection.controls.length; j++) {
+        for (let j = 0; j < rowInCollection.get('controls.length'); j++) {
           let controlInRow = rowInCollection.controls[j];
           if (controlInRow instanceof FdEditformTabgroup) {
             row = rowInCollection;
             tabGroup = controlInRow;
-            for (let k = 0; k < controlInRow.tabs.length; k++) {
+            for (let k = 0; k < controlInRow.get('tabs.length'); k++) {
               let tabInTabgroup = controlInRow.tabs[k];
               if (tabInTabgroup.caption === tabCaption) {
                 tab = tabInTabgroup;
@@ -218,8 +218,8 @@ export default Ember.Route.extend({
     if (!row) {
       row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
 
-      if (controlTree.rows) {
-        controlTree.rows.pushObject(row);
+      if (controlTree.get('rows')) {
+        controlTree.get('rows').pushObject(row);
       } else {
         controlTree.pushObject(row);
       }
@@ -227,12 +227,12 @@ export default Ember.Route.extend({
 
     if (!tabGroup) {
       tabGroup  = FdEditformTabgroup.create({ tabs: Ember.A(), width: '100*' });
-      row.controls.pushObject(tabGroup);
+      row.get('controls').pushObject(tabGroup);
     }
 
     if (!tab) {
       tab  = FdEditformTab.create({ rows: Ember.A(), caption: tabCaption });
-      tabGroup.tabs.pushObject(tab);
+      tabGroup.get('tabs').pushObject(tab);
     }
 
     let nextPath = path.slice(tabCaptionEndIndex + 1, pathLength);
@@ -260,18 +260,18 @@ export default Ember.Route.extend({
     let group;
     let rowsCollection;
 
-    if (controlTree.rows) {
-      rowsCollection = controlTree.rows;
+    if (controlTree.get('rows')) {
+      rowsCollection = controlTree.get('rows');
     } else {
       rowsCollection = controlTree;
     }
 
-    for (let i = 0; i < rowsCollection.length; i++) {
+    for (let i = 0; i < rowsCollection.get('length'); i++) {
       let rowInCollection = rowsCollection[i];
       if (rowInCollection instanceof FdEditformRow) {
-        for (let j = 0; j < rowInCollection.controls.length; j++) {
+        for (let j = 0; j < rowInCollection.get('controls.length'); j++) {
           let controlInRow = rowInCollection.controls[j];
-          if (controlInRow instanceof FdEditformGroup && controlInRow.caption === groupCaption) {
+          if (controlInRow instanceof FdEditformGroup && controlInRow.get('caption') === groupCaption) {
             row = rowInCollection;
             group = controlInRow;
           }
@@ -282,8 +282,8 @@ export default Ember.Route.extend({
     if (!row) {
       row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
 
-      if (controlTree.rows) {
-        controlTree.rows.pushObject(row);
+      if (controlTree.get('rows')) {
+        controlTree.get('rows').pushObject(row);
       } else {
         controlTree.pushObject(row);
       }
@@ -291,7 +291,7 @@ export default Ember.Route.extend({
 
     if (!group) {
       group  = FdEditformGroup.create({ rows: Ember.A(), width: '100*', caption: groupCaption });
-      row.controls.pushObject(group);
+      row.get('controls').pushObject(group);
     }
 
     let nextPath = path.slice(groupCaptionEndIndex + 1, pathLength);
@@ -325,8 +325,8 @@ export default Ember.Route.extend({
 
     let rowsCollection;
 
-    if (controlTree.rows) {
-      rowsCollection = controlTree.rows;
+    if (controlTree.get('rows')) {
+      rowsCollection = controlTree.get('rows');
     } else {
       rowsCollection = controlTree;
     }
@@ -334,15 +334,15 @@ export default Ember.Route.extend({
     let row = rowsCollection.get('lastObject');
 
     // Current columns count in row must be match column index else it will be another row.
-    if (row && row.columnsCount + 1 !== columnIndex) {
+    if (row && row.get('columnsCount') + 1 !== columnIndex) {
       row = undefined;
     }
 
     if (!row) {
       row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
 
-      if (controlTree.rows) {
-        controlTree.rows.pushObject(row);
+      if (controlTree.get('rows')) {
+        controlTree.get('rows').pushObject(row);
       } else {
         controlTree.pushObject(row);
       }
