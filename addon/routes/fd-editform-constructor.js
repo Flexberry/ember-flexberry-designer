@@ -1,28 +1,31 @@
 import Ember from 'ember';
-
-import FdEditformRow from '../objects/fd-editform-row';
 import FdEditformControl from '../objects/fd-editform-control';
 import FdEditformGroup from '../objects/fd-editform-group';
-import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
+import FdEditformRow from '../objects/fd-editform-row';
 import FdEditformTab from '../objects/fd-editform-tab';
+import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
+import { Query } from 'ember-flexberry-data';
+const { Builder, FilterOperator } = Query;
 
 export default Ember.Route.extend({
 
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
-  model: function() {
-    //let stageId = this.get('currentProjectContext').getCurrentStage();
+  model: function(params) {
+    let stageId = this.get('currentProjectContext').getCurrentStage();
+    let _this = this;
     let modelHash = {
-      editform: this.get('store').createRecord('fd-dev-class', { caption: 'New edit form', description: 'Test.' }),
+      editform: undefined,
       dataobject: undefined,
       typemap: undefined,
       enums: undefined,
-      types: this.get('store').peekAll('fd-dev-type-definition')
+      types: undefined
     };
 
-    return new Ember.RSVP.Promise(function (resolve) {
+    return new Ember.RSVP.Promise(function (resolve, reject) {
+      // TODO: Replace promises to use fd-preload-stage-metadata and store.peekRecord().
       // Load «editform».
-      /*let loadClassesPromise = new Ember.RSVP.Promise(function (resolveLoadClasses, rejectLoadClasses) {
+      let loadClassesPromise = new Ember.RSVP.Promise(function (resolveLoadClasses, rejectLoadClasses) {
         let predicateEditformId = new Query.SimplePredicate('id', FilterOperator.Eq, params.id);
 
         let builderEditform = new  Builder(_this.store, 'fd-dev-class').
@@ -88,290 +91,270 @@ export default Ember.Route.extend({
       let promiseType = _this.store.query('fd-dev-class', builderType.build()).then((result) => {
         modelHash.types = result;
         return modelHash;
-      }, reject);*/
+      }, reject);
 
-      Ember.RSVP.all([/*loadClassesPromise, loadTypemapPromise, promiseEnumeration, promiseType*/]).then(() => {
-        // TODO: Приготовим коллекцию controls для того, чтобы отобразить их по выбранному представлению.
-        // Возьмём представление и пробежимся по нему.
+      Ember.RSVP.all([loadClassesPromise, loadTypemapPromise, promiseEnumeration, promiseType]).then(() => {
+        let controlTree = Ember.A();
 
-        modelHash.controls = Ember.A([
-          FdEditformRow.create({
-            controls: Ember.A([
-              FdEditformControl.create({
-                type: 'date',
-                caption: 'Attribute #1',
-              }),
-            ]),
-          }),
-          FdEditformRow.create({
-            controls: Ember.A([
-              FdEditformControl.create({
-                type: '',
-                caption: 'Attribute #2',
-              }),
-              FdEditformControl.create({
-                type: 'bool',
-                caption: 'Attribute #3',
-              }),
-            ]),
-          }),
-          FdEditformRow.create({
-            controls: Ember.A([
-              FdEditformControl.create({
-                type: '',
-                caption: 'Attribute #4',
-              }),
-              FdEditformControl.create({
-                type: '',
-                caption: 'Attribute #5',
-              }),
-              FdEditformControl.create({
-                type: '',
-                caption: 'Attribute #6',
-              }),
-            ]),
-          }),
-          FdEditformRow.create({
-            controls: Ember.A([
-              FdEditformControl.create({
-                type: '',
-                caption: 'Attribute #7',
-              }),
-              FdEditformControl.create({
-                type: '',
-                caption: 'Attribute #8',
-              }),
-              FdEditformControl.create({
-                type: '',
-                caption: 'Attribute #9',
-              }),
-              FdEditformControl.create({
-                type: '',
-                caption: 'Attribute #10',
-              }),
-            ]),
-          }),
-          FdEditformRow.create({
-            controls: Ember.A([
-              FdEditformTabgroup.create({
-                tabs: Ember.A([
-                  FdEditformTab.create({
-                    caption: 'Tab #1',
-                    rows: Ember.A([
-                      FdEditformRow.create({
-                        controls: Ember.A([
-                          FdEditformControl.create({
-                            type: '',
-                            caption: 'Attribute #11',
-                          }),
-                        ]),
-                      }),
-                      FdEditformRow.create({
-                        controls: Ember.A([
-                          FdEditformControl.create({
-                            type: '',
-                            caption: 'Attribute #12',
-                          }),
-                        ]),
-                      }),
-                      FdEditformRow.create({
-                        controls: Ember.A([
-                          FdEditformControl.create({
-                            type: '',
-                            caption: 'Attribute #13',
-                          }),
-                        ]),
-                      }),
-                    ]),
-                  }),
-                  FdEditformTab.create({
-                    caption: 'Tab #2',
-                    rows: Ember.A([
-                      FdEditformRow.create({
-                        controls: Ember.A([
-                          FdEditformControl.create({
-                            type: '',
-                            caption: 'Attribute #14',
-                          }),
-                        ]),
-                      }),
-                      FdEditformRow.create({
-                        controls: Ember.A([
-                          FdEditformControl.create({
-                            type: '',
-                            caption: 'Attribute #15',
-                          }),
-                        ]),
-                      }),
-                      FdEditformRow.create({
-                        controls: Ember.A([
-                          FdEditformControl.create({
-                            type: '',
-                            caption: 'Attribute #16',
-                          }),
-                        ]),
-                      }),
-                    ]),
-                  }),
-                  FdEditformTab.create({
-                    caption: 'Tab #3',
-                    rows: Ember.A([
-                      FdEditformRow.create({
-                        controls: Ember.A([
-                          FdEditformGroup.create({
-                            caption: 'Group #1',
-                            rows: Ember.A([
-                              FdEditformRow.create({
-                                controls: Ember.A([
-                                  FdEditformControl.create({
-                                    type: '',
-                                    caption: 'Attribute #17',
-                                  }),
-                                ]),
-                              })
-                            ]),
-                          }),
-                        ]),
-                      }),
-                      FdEditformRow.create({
-                        controls: Ember.A([
-                          FdEditformGroup.create({
-                            caption: 'Group #2',
-                            rows: Ember.A([
-                              FdEditformRow.create({
-                                controls: Ember.A([
-                                  FdEditformControl.create({
-                                    type: '',
-                                    caption: 'Attribute #18',
-                                  }),
-                                ]),
-                              })
-                            ]),
-                          }),
-                        ]),
-                      }),
-                      FdEditformRow.create({
-                        controls: Ember.A([
-                          FdEditformGroup.create({
-                            caption: 'Group #3',
-                            rows: Ember.A([
-                              FdEditformRow.create({
-                                controls: Ember.A([
-                                  FdEditformControl.create({
-                                    type: '',
-                                    caption: 'Attribute #19',
-                                  }),
-                                ]),
-                              })
-                            ]),
-                          }),
-                        ]),
-                      }),
-                    ]),
-                  }),
-                ]),
-              }),
-            ]),
-          }),
-          FdEditformRow.create({
-            controls: Ember.A([
-              FdEditformGroup.create({
-                caption: 'Group #1',
-                width: undefined,
-                rows: Ember.A([
-                  FdEditformRow.create({
-                    controls: Ember.A([
-                      FdEditformControl.create({
-                        type: '',
-                        caption: 'Attribute #20',
-                      }),
-                      FdEditformControl.create({
-                        type: '',
-                        caption: 'Attribute #21',
-                      }),
-                    ]),
-                  }),
-                  FdEditformRow.create({
-                    controls: Ember.A([
-                      FdEditformControl.create({
-                        type: '',
-                        caption: 'Attribute #22',
-                      }),
-                      FdEditformControl.create({
-                        type: '',
-                        caption: 'Attribute #23',
-                      }),
-                    ]),
-                  }),
-                ]),
-              }),
-              FdEditformGroup.create({
-                caption: 'Group #2',
-                width: undefined,
-                rows: Ember.A([
-                  FdEditformRow.create({
-                    controls: Ember.A([
-                      FdEditformTabgroup.create({
-                        tabs: Ember.A([
-                          FdEditformTab.create({
-                            caption: 'Tab #1',
-                            rows: Ember.A([
-                              FdEditformRow.create({
-                                controls: Ember.A([
-                                  FdEditformControl.create({
-                                    type: '',
-                                    caption: 'Attribute #24',
-                                  }),
-                                  FdEditformControl.create({
-                                    type: '',
-                                    caption: 'Attribute #25',
-                                  }),
-                                ]),
-                              }),
-                            ]),
-                          }),
-                        ]),
-                      }),
-                    ]),
-                  }),
-                ]),
-              }),
-              FdEditformGroup.create({
-                caption: 'Group #3',
-                width: undefined,
-                rows: Ember.A([
-                  FdEditformRow.create({
-                    controls: Ember.A([
-                      FdEditformControl.create({
-                        type: '',
-                        caption: 'Attribute #26',
-                      }),
-                      FdEditformControl.create({
-                        type: '',
-                        caption: 'Attribute #27',
-                      }),
-                    ]),
-                  }),
-                  FdEditformRow.create({
-                    controls: Ember.A([
-                      FdEditformControl.create({
-                        type: '',
-                        caption: 'Attribute #28',
-                      }),
-                      FdEditformControl.create({
-                        type: '',
-                        caption: 'Attribute #29',
-                      }),
-                    ]),
-                  }),
-                ]),
-              }),
-            ]),
-          }),
-        ]);
+        let definition = modelHash.editform.get('formViews.firstObject.view.definition');
+        for (let i = 0; i < definition.length; i++) {
+          let propertyDefinition = definition[i];
+          if (!propertyDefinition.visible) {
+            continue;
+          }
 
+          _this._locateControl(controlTree, propertyDefinition, propertyDefinition.path);
+        }
+
+        modelHash.controls = controlTree;
         resolve(modelHash);
       });
     });
   },
+
+  /**
+      Locate control by path.
+
+      @method _locateControl
+      @param {Object} controlTree Controls tree.
+      @param {FdDefinition} propertyDefinition Property definition from view.
+      @param {String} path Property path from view.
+      @return {Object} Modified controlTree with placed control.
+  */
+  _locateControl: function (controlTree, propertyDefinition, path) {
+    if (!path || path === '') {
+      let row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
+
+      if (controlTree.get('rows')) {
+        controlTree.get('rows').pushObject(row);
+      } else {
+        controlTree.pushObject(row);
+      }
+
+      this._locateControlInRow(row, propertyDefinition);
+
+      return controlTree;
+    }
+
+    if (path.charAt(0) === '|') {
+      return this._locateTabs(controlTree, propertyDefinition, path);
+    }
+
+    if (path.charAt(0) === '-') {
+      return this._locateGroup(controlTree, propertyDefinition, path);
+    }
+
+    if (path.charAt(0) === '#') {
+      return this._locateColumn(controlTree, propertyDefinition, path);
+    }
+
+    // TODO: Show error and fix it.
+  },
+
+  /**
+      Locate control in row by path.
+
+      @method _locateControlInRow
+      @param {FdEditformRow} row Row for control placement.
+      @param {FdDefinition} propertyDefinition Property definition from view.
+      @return {Object} Modified controlTree with placed control.
+  */
+  _locateControlInRow: function (row, propertyDefinition) {
+    // TODO: вычислить type контрола из метаданных атрибута или FormControl и width из path.
+    let control = FdEditformControl.create({ caption: propertyDefinition.caption || propertyDefinition.name, type: 'string', width: '100*' });
+
+    row.get('controls').pushObject(control);
+    row.set('columnsCount', row.get('columnsCount') + 1);
+
+    return row;
+  },
+
+  /**
+      Locate tabs for control.
+
+      @method _locateTabs
+      @param {Object} controlTree Controls tree.
+      @param {FdDefinition} propertyDefinition Property definition from view.
+      @param {String} path Property path from view.
+      @return {Object} Modified controlTree with placed tabs.
+  */
+  _locateTabs: function(controlTree, propertyDefinition, path) {
+    let pathLength = path.length;
+    let splitterIndex = path.indexOf('\\');
+    let tabCaptionEndIndex = splitterIndex > -1 ? splitterIndex : pathLength;
+
+    let tabCaption = path.slice(1, tabCaptionEndIndex);
+
+    let row;
+    let tabGroup;
+    let tab;
+    let rowsCollection;
+
+    if (controlTree.get('rows')) {
+      rowsCollection = controlTree.get('rows');
+    } else {
+      rowsCollection = controlTree;
+    }
+
+    for (let i = 0; i < rowsCollection.get('length'); i++) {
+      let rowInCollection = rowsCollection[i];
+      if (rowInCollection instanceof FdEditformRow) {
+        for (let j = 0; j < rowInCollection.get('controls.length'); j++) {
+          let controlInRow = rowInCollection.controls[j];
+          if (controlInRow instanceof FdEditformTabgroup) {
+            row = rowInCollection;
+            tabGroup = controlInRow;
+            for (let k = 0; k < controlInRow.get('tabs.length'); k++) {
+              let tabInTabgroup = controlInRow.tabs[k];
+              if (tabInTabgroup.caption === tabCaption) {
+                tab = tabInTabgroup;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    if (!row) {
+      row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
+
+      if (controlTree.get('rows')) {
+        controlTree.get('rows').pushObject(row);
+      } else {
+        controlTree.pushObject(row);
+      }
+    }
+
+    if (!tabGroup) {
+      tabGroup  = FdEditformTabgroup.create({ tabs: Ember.A(), width: '100*' });
+      row.get('controls').pushObject(tabGroup);
+    }
+
+    if (!tab) {
+      tab  = FdEditformTab.create({ rows: Ember.A(), caption: tabCaption });
+      tabGroup.get('tabs').pushObject(tab);
+    }
+
+    let nextPath = path.slice(tabCaptionEndIndex + 1, pathLength);
+
+    return this._locateControl(tab, propertyDefinition, nextPath);
+  },
+
+  /**
+      Locate group for control.
+
+      @method _locateGroup
+      @param {Object} controlTree Controls tree.
+      @param {FdDefinition} propertyDefinition Property definition from view.
+      @param {String} path Property path from view.
+      @return {Object} Modified controlTree with placed group.
+  */
+  _locateGroup: function(controlTree, propertyDefinition, path) {
+    let pathLength = path.length;
+    let splitterIndex = path.indexOf('\\');
+    let groupCaptionEndIndex = splitterIndex > -1 ? splitterIndex : pathLength;
+
+    let groupCaption = path.slice(1, groupCaptionEndIndex);
+
+    let row;
+    let group;
+    let rowsCollection;
+
+    if (controlTree.get('rows')) {
+      rowsCollection = controlTree.get('rows');
+    } else {
+      rowsCollection = controlTree;
+    }
+
+    for (let i = 0; i < rowsCollection.get('length'); i++) {
+      let rowInCollection = rowsCollection[i];
+      if (rowInCollection instanceof FdEditformRow) {
+        for (let j = 0; j < rowInCollection.get('controls.length'); j++) {
+          let controlInRow = rowInCollection.controls[j];
+          if (controlInRow instanceof FdEditformGroup && controlInRow.get('caption') === groupCaption) {
+            row = rowInCollection;
+            group = controlInRow;
+          }
+        }
+      }
+    }
+
+    if (!row) {
+      row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
+
+      if (controlTree.get('rows')) {
+        controlTree.get('rows').pushObject(row);
+      } else {
+        controlTree.pushObject(row);
+      }
+    }
+
+    if (!group) {
+      group  = FdEditformGroup.create({ rows: Ember.A(), width: '100*', caption: groupCaption });
+      row.get('controls').pushObject(group);
+    }
+
+    let nextPath = path.slice(groupCaptionEndIndex + 1, pathLength);
+
+    return this._locateControl(group, propertyDefinition, nextPath);
+  },
+
+  /**
+      Locate column for control.
+
+      @method _locateColumn
+      @param {Object} controlTree Controls tree.
+      @param {FdDefinition} propertyDefinition Property definition from view.
+      @param {String} path Property path from view.
+      @return {Object} Modified controlTree with placed column.
+  */
+  _locateColumn: function(controlTree, propertyDefinition, path) {
+    let pathLength = path.length;
+    let splitterIndex = path.indexOf('\\');
+    let columnDefinitionEndIndex = splitterIndex > -1 ? splitterIndex : pathLength;
+
+    let columnDefinition = path.slice(1, columnDefinitionEndIndex);
+
+    let braceIndex = columnDefinition.indexOf('(');
+
+    if (braceIndex === -1) {
+      braceIndex = columnDefinition.length;
+    }
+
+    let columnIndex = parseInt(columnDefinition.slice(0, braceIndex));
+
+    let rowsCollection;
+
+    if (controlTree.get('rows')) {
+      rowsCollection = controlTree.get('rows');
+    } else {
+      rowsCollection = controlTree;
+    }
+
+    let row = rowsCollection.get('lastObject');
+
+    // Current columns count in row must be match column index else it will be another row.
+    if (row && row.get('columnsCount') + 1 !== columnIndex) {
+      row = undefined;
+    }
+
+    if (!row) {
+      row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
+
+      if (controlTree.get('rows')) {
+        controlTree.get('rows').pushObject(row);
+      } else {
+        controlTree.pushObject(row);
+      }
+    }
+
+    let nextPath = path.slice(columnDefinitionEndIndex + 1, pathLength);
+
+    if (nextPath) {
+      // TODO: may be another group or tabs there?
+      return this._locateControl(row, propertyDefinition, nextPath);
+    } else {
+      return this._locateControlInRow(row, propertyDefinition);
+    }
+  }
 });
