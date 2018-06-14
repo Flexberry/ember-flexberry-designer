@@ -69,7 +69,7 @@ export default Ember.Controller.extend({
         let sidebarVisible = sidebar.hasClass('visible');
 
         if (!sidebarVisible) {
-          if (configPanelSidebarVisible){
+          if (configPanelSidebarVisible) {
             Ember.$('.pusher').css({ width: 'calc(100% - ' + this.get('configPanrlTabsWidth') + 'px)', transform: 'translate3d(0, 0, 0)' });
           } else {
             Ember.$('.pusher').css({ width: 'calc(100% - ' + configPanelSidebar.width() + 'px)', transform: 'translate3d(0, 0, 0)' });
