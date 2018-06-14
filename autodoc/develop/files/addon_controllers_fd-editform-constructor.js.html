@@ -112,9 +112,19 @@ import Ember from &#x27;ember&#x27;;
 import FdEditformControl from &#x27;../objects/fd-editform-control&#x27;;
 import FdEditformGroup from &#x27;../objects/fd-editform-group&#x27;;
 import FdEditformTab from &#x27;../objects/fd-editform-tab&#x27;;
+import FdEditformTabgroup from &#x27;../objects/fd-editform-tabgroup&#x27;;
 
 export default Ember.Controller.extend({
   queryParams: [&#x27;classId&#x27;],
+
+  /**
+    The current dragged row.
+
+    @private
+    @property _draggedRow
+    @type FdEditformRow
+  */
+  _draggedRow: undefined,
 
   /**
     @private
@@ -176,6 +186,99 @@ export default Ember.Controller.extend({
     selectControl(control) {
       this.set(&#x27;selectedControl&#x27;, control);
     },
+
+    /**
+      Set the current dragged row.
+
+      @method actions.setDragRow
+      @param {FdEditformRow} row New dragged row.
+    */
+    setDragRow(row) {
+      this.set(&#x27;_draggedRow&#x27;, row);
+    },
+
+    /**
+      Get the current dragged row.
+
+      @method actions.getDragRow
+      @return {FdEditformRow} The current dragged row or &#x60;null&#x60;.
+    */
+    getDragRow() {
+      return this.get(&#x27;_draggedRow&#x27;);
+    },
+
+    /**
+      Move the current dragged row above or below relative to the passed row.
+
+      @param {FdEditformRow} row The row above or below which will be moved the current dragged row.
+      @param {String} direction The direction of the row move, allowed values: &#x27;up&#x27; or &#x27;down&#x27;.
+    */
+    moveRow(row, direction) {
+      let draggedRow = this.get(&#x27;_draggedRow&#x27;);
+      if (this._findRowContainer(row, Ember.A([draggedRow])) === null) {
+        let rows = this.get(&#x27;model.controls&#x27;);
+        let draggedRowContainer = this._findRowContainer(draggedRow, rows);
+        draggedRowContainer.removeObject(draggedRow);
+
+        let rowContainer;
+        let index = draggedRowContainer.indexOf(row);
+        if (index === -1) {
+          rowContainer = this._findRowContainer(row, rows);
+          index = rowContainer.indexOf(row);
+        } else {
+          rowContainer = draggedRowContainer;
+        }
+
+        if (direction === &#x27;down&#x27;) {
+          index = Math.min(rowContainer.get(&#x27;length&#x27;), index + 1);
+        }
+
+        rowContainer.insertAt(index, draggedRow);
+      }
+    },
+  },
+
+  /**
+    Looks for a container that contains the row.
+
+    @method _findRowContainer
+    @param {FdEditformRow} row The sought row.
+    @param {Ember.Array} container The root container.
+    @return {Ember.Array} The container that was found or &#x60;null&#x60;.
+  */
+  _findRowContainer(row, container) {
+    let _container = null;
+    if (container.indexOf(row) === -1) {
+      let length = container.get(&#x27;length&#x27;);
+      for (let i = 0; i &lt; length; i++) {
+        let controls = container.objectAt(i).get(&#x27;controls&#x27;);
+        let length = controls.get(&#x27;length&#x27;);
+        for (let i = 0; i &lt; length; i++) {
+          let control = controls.objectAt(i);
+          if (control instanceof FdEditformGroup) {
+            _container = this._findRowContainer(row, control.get(&#x27;rows&#x27;));
+            if (_container) {
+              return _container;
+            }
+          }
+
+          if (control instanceof FdEditformTabgroup) {
+            let tabs = control.get(&#x27;tabs&#x27;);
+            let length = tabs.get(&#x27;length&#x27;);
+            for (let i = 0; i &lt; length; i++) {
+              _container = this._findRowContainer(row, tabs.objectAt(i).get(&#x27;rows&#x27;));
+              if (_container) {
+                return _container;
+              }
+            }
+          }
+        }
+      }
+    } else {
+      _container = container;
+    }
+
+    return _container;
   },
 });
 

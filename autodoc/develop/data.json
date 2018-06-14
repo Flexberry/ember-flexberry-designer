@@ -1303,6 +1303,70 @@
         {
             "file": "addon/components/fd-editform-row.js",
             "line": 23,
+            "description": "Used in class name bindings to overlap the content of the row.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_dimmed",
+            "type": "Boolean",
+            "default": "false",
+            "class": "FdEditformRowComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-row.js",
+            "line": 33,
+            "description": "The property to bind to `draggable` HTML attribute.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_draggable",
+            "type": "String",
+            "default": "'true'",
+            "class": "FdEditformRowComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-row.js",
+            "line": 43,
+            "description": "Indicates that this row is dragging.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_dragging",
+            "type": "Boolean",
+            "default": "false",
+            "class": "FdEditformRowComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-row.js",
+            "line": 53,
+            "description": "The `Y` coordinate with which the dragging started.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_initialY",
+            "type": "Number",
+            "class": "FdEditformRowComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-row.js",
+            "line": 62,
+            "description": "The 'Y' coordinate of the line through which you need to drag the row to move.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_waterline",
+            "readonly": "",
+            "type": "Number",
+            "class": "FdEditformRowComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-row.js",
+            "line": 76,
             "description": "The row to render.",
             "itemtype": "property",
             "name": "row",
@@ -1312,7 +1376,16 @@
         },
         {
             "file": "addon/components/fd-editform-row.js",
-            "line": 31,
+            "line": 84,
+            "description": "See [EmberJS API](https://emberjs.com/api/).",
+            "itemtype": "property",
+            "name": "attributeBindings",
+            "class": "FdEditformRowComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-row.js",
+            "line": 91,
             "description": "See [EmberJS API](https://emberjs.com/api/).",
             "itemtype": "property",
             "name": "classNameBindings",
@@ -1321,10 +1394,83 @@
         },
         {
             "file": "addon/components/fd-editform-row.js",
-            "line": 38,
+            "line": 98,
+            "description": "See [EmberJS API](https://emberjs.com/api/).",
+            "itemtype": "property",
+            "name": "classNames",
+            "class": "FdEditformRowComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-row.js",
+            "line": 105,
             "description": "Calls `selectAction` action when clicking on component when it is renderd as one column.",
             "itemtype": "method",
             "name": "click",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "JQuery.Event"
+                }
+            ],
+            "class": "FdEditformRowComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-row.js",
+            "line": 118,
+            "description": "The event handler is `dragStart`.",
+            "itemtype": "method",
+            "name": "dragStart",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "JQuery.Event"
+                }
+            ],
+            "class": "FdEditformRowComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-row.js",
+            "line": 131,
+            "description": "The event handler is `dragEnd`.",
+            "itemtype": "method",
+            "name": "dragEnd",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "JQuery.Event"
+                }
+            ],
+            "class": "FdEditformRowComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-row.js",
+            "line": 144,
+            "description": "The event handler is `dragEnter`.",
+            "itemtype": "method",
+            "name": "dragEnter",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "JQuery.Event"
+                }
+            ],
+            "class": "FdEditformRowComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-row.js",
+            "line": 163,
+            "description": "The event handler is `dragOver`.",
+            "itemtype": "method",
+            "name": "dragOver",
             "params": [
                 {
                     "name": "event",
@@ -1569,7 +1715,19 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 10,
+            "line": 11,
+            "description": "The current dragged row.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_draggedRow",
+            "type": "FdEditformRow",
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 20,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -1581,7 +1739,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 20,
+            "line": 30,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -1593,7 +1751,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 30,
+            "line": 40,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -1605,7 +1763,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 40,
+            "line": 50,
             "description": "The selected control.",
             "itemtype": "property",
             "name": "selectedControl",
@@ -1615,7 +1773,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 61,
+            "line": 71,
             "description": "Set the selected control.",
             "itemtype": "method",
             "name": "actions.selectControl",
@@ -1626,6 +1784,79 @@
                     "type": "FdEditformControl|FdEditformGroup|FdEditformTab"
                 }
             ],
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 81,
+            "description": "Set the current dragged row.",
+            "itemtype": "method",
+            "name": "actions.setDragRow",
+            "params": [
+                {
+                    "name": "row",
+                    "description": "New dragged row.",
+                    "type": "FdEditformRow"
+                }
+            ],
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 91,
+            "description": "Get the current dragged row.",
+            "itemtype": "method",
+            "name": "actions.getDragRow",
+            "return": {
+                "description": "The current dragged row or `null`.",
+                "type": "FdEditformRow"
+            },
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 101,
+            "description": "Move the current dragged row above or below relative to the passed row.",
+            "params": [
+                {
+                    "name": "row",
+                    "description": "The row above or below which will be moved the current dragged row.",
+                    "type": "FdEditformRow"
+                },
+                {
+                    "name": "direction",
+                    "description": "The direction of the row move, allowed values: 'up' or 'down'.",
+                    "type": "String"
+                }
+            ],
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 132,
+            "description": "Looks for a container that contains the row.",
+            "itemtype": "method",
+            "name": "_findRowContainer",
+            "params": [
+                {
+                    "name": "row",
+                    "description": "The sought row.",
+                    "type": "FdEditformRow"
+                },
+                {
+                    "name": "container",
+                    "description": "The root container.",
+                    "type": "Ember.Array"
+                }
+            ],
+            "return": {
+                "description": "The container that was found or `null`.",
+                "type": "Ember.Array"
+            },
             "class": "FdLimitByStageMixin",
             "module": "ember-flexberry-designer"
         },
@@ -5297,6 +5528,10 @@
         {
             "message": "Missing item type\nInitializes DOM-related component's properties.",
             "line": " addon/components/fd-visual-edit-form.js:155"
+        },
+        {
+            "message": "Missing item type\nMove the current dragged row above or below relative to the passed row.",
+            "line": " addon/controllers/fd-editform-constructor.js:101"
         },
         {
             "message": "Missing item type\nField name where object identifier is kept.",
