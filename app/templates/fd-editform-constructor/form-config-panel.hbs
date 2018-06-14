@@ -1,0 +1,53 @@
+{{#ui-sidebar
+  class="visible very wide right overlay"
+}}
+  <div class="ui inverted segments">
+    <div class="ui segment">
+      <div class="ui large header">
+        {{t "forms.fd-editform-constructor.caption"}}
+      </div>
+    </div>
+    <div class="ui segment">
+      <form class="ui form">
+        <div class="ui small dividing header">
+          {{t "forms.fd-editform-constructor.form-config-panel.form-properties-header"}}
+        </div>
+        <div class="field">
+          <label>{{t "forms.fd-editform-constructor.form-config-panel.form-name"}}</label>
+          {{flexberry-textbox value=model.editform.caption}}
+        </div>
+        <div class="field">
+          <label>{{t "forms.fd-editform-constructor.form-config-panel.form-description"}}</label>
+          {{flexberry-textarea value=model.editform.description}}
+        </div>
+        <div class="ui small dividing header">
+          {{t "forms.fd-editform-constructor.form-config-panel.control-properties-header"}}
+        </div>
+        {{#if _selectedIsControl}}
+          <div class="field">
+            <label>{{t "forms.fd-editform-constructor.form-config-panel.control-caption"}}</label>
+            {{flexberry-textbox value=selectedControl.caption}}
+          </div>
+          <div class="field">
+            <label>{{t "forms.fd-editform-constructor.form-config-panel.control-type"}}</label>
+            {{flexberry-dropdown items=(array "int" "bool" "string" "date") value=selectedControl.type}}
+          </div>
+        {{else if _selectedIsGroup}}
+          <div class="field">
+            <label>{{t "forms.fd-editform-constructor.form-config-panel.group-caption"}}</label>
+            {{flexberry-textbox value=selectedControl.caption}}
+          </div>
+        {{else if _selectedIsTab}}
+          <div class="field">
+            <label>{{t "forms.fd-editform-constructor.form-config-panel.tab-caption"}}</label>
+            {{flexberry-textbox value=selectedControl.caption}}
+          </div>
+        {{else}}
+          <div class="field">
+            <label>{{t "forms.fd-editform-constructor.form-config-panel.control-not-selected"}}</label>
+          </div>
+        {{/if}}
+      </form>
+    </div>
+  </div>
+{{/ui-sidebar}}

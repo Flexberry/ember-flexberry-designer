@@ -50,8 +50,9 @@ Router.map(function () {
   { path: 'fd-view-edit-form/new' });
 
   this.route('fd-visual-edit-form');
-  this.route('fd-editform-constructor',
-  { path: 'fd-editform-constructor/:id' });
+  this.route('fd-editform-constructor', { path: 'fd-editform-constructor/:id' }, function() {
+    this.route('form-config-panel');
+  });
   this.route('fd-editform-constructor.new',
   { path: 'fd-editform-constructor/new' });
 

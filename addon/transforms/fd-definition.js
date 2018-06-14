@@ -82,14 +82,14 @@ export default DS.Transform.extend({
       if (d instanceof FdViewAttributesDetail) {
         let detailName = `DetailName="${d.name}"`;
         let detailViewName = `DetailViewName="${d.detailViewName}"`;
-        let loadOnLoadAgregator = `LoadOnLoadAgregator="${d.loadOnLoadAgregator}"`;
+        let loadOnLoadAgregator = `LoadOnLoadAgregator="${d.loadOnLoadAgregator === true ? 'True' : 'False'}"`;
         let detailPath = `DetailPath="${d.path}"`;
         let detailCaption = `DetailCaption="${d.caption}"`;
-        let detailVisible = `DetailVisible="${d.visible}"`;
+        let detailVisible = `DetailVisible="${d.visible === true ? 'True' : 'False'}"`;
         viewDetailsList += `<Item ${detailName} ${detailViewName} ${loadOnLoadAgregator} ${detailPath} ${detailCaption} ${detailVisible} />`;
       } else {
         let isMaster = `IsMaster="False"`;
-        let lookupType = `LookupType=""`;
+        let lookupType = `LookupType="default"`;
         let masterPropertyName = `MasterPropertyName=""`;
         let masterCustomizationString = `MasterCustomizationString=""`;
         if (d instanceof FdViewAttributesMaster) {
@@ -102,9 +102,9 @@ export default DS.Transform.extend({
         let propertyName = `PropertyName="${d.name}"`;
         let caption = `Caption="${d.caption}"`;
         let path = `Path="${d.path}"`;
-        let visible = `Visible="${d.visible === 'True' ? 'True' : 'False'}"`;
-        viewPropertiesList += `<Item ${propertyName} ${caption} ${path} ${visible}
-         ${isMaster} ${lookupType} ${masterPropertyName} ${masterCustomizationString} />`;
+        let visible = `Visible="${d.visible === true ? 'True' : 'False'}"`;
+        viewPropertiesList += `<Item ${propertyName} ${caption} ${path} ${visible}` +
+         ` ${isMaster} ${lookupType} ${masterPropertyName} ${masterCustomizationString} />`;
       }
     }
 
