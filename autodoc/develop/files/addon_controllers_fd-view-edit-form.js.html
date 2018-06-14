@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>addon/controllers/fd-view-edit-form.js - Flexberry Documentation</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="Flexberry Documentation" src="../assets/css/logo.png" style="max-height: 65%;" title="Flexberry Documentation">
+            Flexberry Documentation
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>develop</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/FdCurrentProjectContextService", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/ember-flexberry-designer"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <h3>APIs</h3>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Type to filter APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
+	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
+	                            <li><a href="../classes/FdEditformControlComponent.html">FdEditformControlComponent</a></li>
+	                            <li><a href="../classes/FdEditformGroup.html">FdEditformGroup</a></li>
+	                            <li><a href="../classes/FdEditformRow.html">FdEditformRow</a></li>
+	                            <li><a href="../classes/FdEditformRowComponent.html">FdEditformRowComponent</a></li>
+	                            <li><a href="../classes/FdEditformTab.html">FdEditformTab</a></li>
+	                            <li><a href="../classes/FdEditformTabgroup.html">FdEditformTabgroup</a></li>
+	                            <li><a href="../classes/FdLimitByStageMixin.html">FdLimitByStageMixin</a></li>
+	                            <li><a href="../classes/FdViewAttributesDetail.html">FdViewAttributesDetail</a></li>
+	                            <li><a href="../classes/FdViewAttributesMaster.html">FdViewAttributesMaster</a></li>
+	                            <li><a href="../classes/FdViewAttributesProperty.html">FdViewAttributesProperty</a></li>
+	                            <li><a href="../classes/FdViewAttributesTree.html">FdViewAttributesTree</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">NewPlatformFlexberryFlexberryDesignerVisualEditControl</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">NewPlatformFlexberryFlexberryDesignerVisualEditForm</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Show:
+                    <label for="api-show-inherited" class="checkbox">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>addon/controllers/fd-view-edit-form.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+import Ember from &#x27;ember&#x27;;
+import EditFormController from &#x27;ember-flexberry/controllers/edit-form&#x27;;
+import FdViewAttributesProperty from &#x27;../objects/fd-view-attributes-property&#x27;;
+import FdViewAttributesMaster from &#x27;../objects/fd-view-attributes-master&#x27;;
+import FdViewAttributesDetail from &#x27;../objects/fd-view-attributes-detail&#x27;;
+import { getTreeNode } from &#x27;../utils/fd-get-view-tree-node&#x27;;
+
+export default EditFormController.extend({
+  parentRoute: &#x27;fd-view-list-form&#x27;,
+
+  /**
+    Index of the selected attribute for editing.
+
+    @property selectedRowIndex
+    @type Number
+    @default null
+   */
+  selectedRowIndex: null,
+
+  /**
+    Index of the selected attribute for editing.
+
+    @property lookupTypeItems
+    @type Array
+    @default [&#x27;default&#x27;, &#x27;standard&#x27;, &#x27;combo&#x27;, &#x27;custom&#x27;]
+   */
+  lookupTypeItems: [&#x27;default&#x27;, &#x27;standard&#x27;, &#x27;combo&#x27;, &#x27;custom&#x27;],
+
+  /**
+    Included plugins for jsTree.
+
+    @property plugins
+    @type String
+    @default &#x27;wholerow, types&#x27;
+   */
+  plugins: &#x27;wholerow, types&#x27;,
+
+  /**
+    Selected nodes in jsTree.
+
+    @property jstreeSelectedNodes
+    @type Array
+    @default []
+   */
+  jstreeSelectedNodes: Ember.A(),
+
+  /**
+    Type settings for jsTree.
+
+    @property typesOptions
+    @type Object
+  */
+  typesOptions: Ember.computed(() =&gt; ({
+    &#x27;property&#x27;: {
+      icon: &#x27;assets/images/attribute.bmp&#x27;
+    },
+    &#x27;master&#x27;: {
+      icon: &#x27;assets/images/master.bmp&#x27;
+    },
+    &#x27;detail&#x27;: {
+      icon: &#x27;assets/images/datail.png&#x27;
+    },
+    &#x27;class&#x27;: {
+      icon: &#x27;assets/images/class.bmp&#x27;
+    }
+  })),
+
+  /**
+    Type selected attribute for editing.
+
+    @property propertyType
+    @type Object
+  */
+  propertyType: Ember.computed(&#x27;rowModel&#x27;, function() {
+    let rowModel = this.get(&#x27;rowModel&#x27;);
+    if (rowModel instanceof FdViewAttributesDetail) {
+      return &#x27;isDetail&#x27;;
+    } else if (rowModel instanceof FdViewAttributesMaster) {
+      return &#x27;isMaster&#x27;;
+    } else {
+      return null;
+    }
+  }),
+
+  /**
+    Data selected attribute for editing.
+
+    @property rowModel
+    @type Object
+  */
+  rowModel: Ember.computed(&#x27;selectedRowIndex&#x27;, function() {
+    let model = this.get(&#x27;model.view.definition&#x27;);
+    let index = this.get(&#x27;selectedRowIndex&#x27;);
+    if (!Ember.isNone(index)) {
+      let rowModel = model[index];
+      return rowModel;
+    }
+
+    return null;
+  }),
+
+  actions: {
+
+    /**
+      Handles form &#x27;onCreateCaptionClick&#x27; button click.
+
+      @method actions.onCreateCaptionClick
+    */
+    onCreateCaptionClick() {
+      let rowModel = this.get(&#x27;rowModel&#x27;);
+      if (Ember.isNone(rowModel)) {
+        return;
+      }
+
+      let splitName = rowModel.name.split(&#x27;.&#x27;);
+      let caption = &#x27;&#x27;;
+      splitName.forEach((partCaption) =&gt; {
+        caption = partCaption + &#x27; &#x27; + caption;
+      });
+
+      Ember.set(rowModel, &#x27;caption&#x27;, caption.trim());
+    },
+
+    /**
+      Handles form &#x27;onAttributesClick&#x27; table row click.
+
+      @method actions.onAttributesClick
+    */
+    onAttributesClick(index) {
+      this.set(&#x27;selectedRowIndex&#x27;, index);
+    },
+
+    /**
+      Handles creating jsTree.
+
+      @method actions.handleTreeDidBecomeReady
+    */
+    handleTreeDidBecomeReady() {
+      let treeObject = this.get(&#x27;jstreeObject&#x27;);
+      treeObject.on(&#x27;open_node.jstree&#x27;, this._openNodeTree.bind(this));
+      treeObject.on(&#x27;after_close.jstree&#x27;, this._afterCloseNodeTree.bind(this));
+    },
+
+    /**
+      Handles form &#x27;moveRightHighlighted&#x27; button click.
+      Add attribute in definition.
+
+      @method actions.moveRightHighlighted
+    */
+    moveRightHighlighted() {
+      let selectedNodes = this.get(&#x27;jstreeSelectedNodes&#x27;)[0];
+      let treeData = this.get(&#x27;model.tree&#x27;);
+      let model = this.get(&#x27;model.view.definition&#x27;);
+
+      // Create propertyName
+      let parents = selectedNodes.parents;
+      let propertyName = &#x27;&#x27;;
+      if (parents.length &gt; 2) {
+        let indexParentID = parents.length - 3;
+        let parentAttributes = treeData[0].copyChildren;
+        while (indexParentID &gt;= 0) {
+          let parentID = parents[indexParentID];
+          let parent = parentAttributes.findBy(&#x27;id&#x27;, parentID);
+          propertyName = propertyName + &#x27;.&#x27; + parent.text;
+          indexParentID--;
+          parentAttributes = parent.copyChildren;
+        }
+
+        propertyName = propertyName.slice(1) + &#x27;.&#x27; + selectedNodes.text;
+
+      } else {
+        propertyName = selectedNodes.text;
+      }
+
+      if (model.findBy(&#x27;name&#x27;, propertyName)) {
+        return;
+      }
+
+      let newDdfinition;
+      switch (selectedNodes.type) {
+        case &#x27;property&#x27;:
+          newDdfinition = FdViewAttributesProperty.create({
+            name: propertyName
+          });
+          break;
+        case &#x27;master&#x27;:
+          newDdfinition = FdViewAttributesMaster.create({
+            name: propertyName
+          });
+          break;
+        case &#x27;detail&#x27;:
+          newDdfinition = FdViewAttributesDetail.create({
+            name: propertyName,
+            detailViewNameItems: selectedNodes.original.detailViewNameItems
+          });
+          break;
+      }
+
+      if (!Ember.isNone(newDdfinition)) {
+        model.pushObject(newDdfinition);
+      }
+    },
+
+    /**
+      Handles form &#x27;moveLeftHighlighted&#x27; button click.
+      Delete attribute from definition.
+
+      @method actions.moveLeftHighlighted
+    */
+    moveLeftHighlighted() {
+      let rowModel = this.get(&#x27;rowModel&#x27;);
+
+      if (!Ember.isNone(rowModel)) {
+        let model = this.get(&#x27;model.view.definition&#x27;);
+        model.removeObject(rowModel);
+        this.set(&#x27;selectedRowIndex&#x27;, null);
+      }
+    },
+
+    /**
+      Handles form &#x27;moveUpHighlighted&#x27; button click.
+
+      @method actions.moveUpHighlighted
+    */
+    moveUpHighlighted() {
+      let index = this.get(&#x27;selectedRowIndex&#x27;);
+      if (index === 0) {
+        return;
+      }
+
+      let model = this.get(&#x27;model.view.definition&#x27;);
+      let prev = index - 1;
+      let node = model[index];
+      let prevNode = model[prev];
+      model.replace(prev, 1, node);
+      model.replace(index, 1, prevNode);
+      this.set(&#x27;selectedRowIndex&#x27;, prev);
+    },
+
+    /**
+      Handles form &#x27;moveDownHighlighted&#x27; button click.
+
+      @method actions.moveDownHighlighted
+    */
+    moveDownHighlighted() {
+      let index = this.get(&#x27;selectedRowIndex&#x27;);
+      let model = this.get(&#x27;model.view.definition&#x27;);
+      if (index === model.length - 1) {
+        return;
+      }
+
+      let next = index + 1;
+      let node = model[next];
+      let nextNode = model[index];
+      model.replace(index, 1, node);
+      model.replace(next, 1, nextNode);
+      this.set(&#x27;selectedRowIndex&#x27;, next);
+    }
+  },
+
+  /**
+    Overridden action for jsTree &#x27;openNode&#x27;.
+    @method _openNodeTree
+  */
+  _openNodeTree(e, data) {
+    let treeData = this.get(&#x27;model.tree&#x27;);
+    this._restorationNodeTree(treeData, data.node.original);
+
+    this.get(&#x27;jstreeActionReceiver&#x27;).send(&#x27;redraw&#x27;);
+  },
+
+  /**
+    Overridden action for jsTree &#x27;eventDidClose&#x27;.
+    @method _afterCloseNodeTree
+  */
+  _afterCloseNodeTree(e, data) {
+    data.node.original.state.opened = false;
+  },
+
+  /**
+    Method for restoring tree nodes.
+    @method _restorationNodeTree
+  */
+  _restorationNodeTree(nodeArray, wantedNode) {
+    let _this = this;
+    nodeArray.forEach(function(node) {
+      if (node.type === &#x27;master&#x27; || node.type === &#x27;class&#x27;) {
+        node.set(&#x27;children&#x27;, node.get(&#x27;copyChildren&#x27;));
+
+        if (!Ember.isNone(node.state) &amp;&amp; node.state.opened) {
+          _this._restorationNodeTree(node.get(&#x27;children&#x27;), wantedNode);
+        }
+
+        if (node.text === wantedNode.text &amp;&amp; node.idNode === wantedNode.idNode) {
+          node.state = { opened: true };
+          if (node.get(&#x27;children&#x27;).length === 1 &amp;&amp; node.get(&#x27;children&#x27;)[0] === &#x27;#&#x27;) {
+            _this._getChildrenNode(node);
+          } else {
+            _this._restorationNodeTree(node.get(&#x27;children&#x27;), wantedNode);
+          }
+        }
+      }
+    });
+  },
+
+  /**
+    Method for loading tree node data.
+    @method _getChildrenNode
+  */
+  _getChildrenNode(node) {
+    let store = this.get(&#x27;store&#x27;);
+    let idNode = node.get(&#x27;idNode&#x27;);
+    let idTree = node.get(&#x27;id&#x27;);
+    let tree = getTreeNode(store, idNode, idTree);
+    node.set(&#x27;children&#x27;, tree);
+    node.set(&#x27;copyChildren&#x27;, tree);
+  },
+
+  willDestroy() {
+    this._super(...arguments);
+    let treeObject = this.get(&#x27;jstreeObject&#x27;);
+    if (!Ember.isNone(treeObject)) {
+      treeObject.off(&#x27;open_node.jstree&#x27;, this._openNodeTree.bind(this));
+      treeObject.off(&#x27;after_close.jstree&#x27;, this._afterCloseNodeTree.bind(this));
+    }
+  }
+});
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

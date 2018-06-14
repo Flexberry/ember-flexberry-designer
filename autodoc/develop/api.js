@@ -13,6 +13,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "FdViewAttributesDetail",
         "FdViewAttributesMaster",
         "FdViewAttributesProperty",
+        "FdViewAttributesTree",
         "NewPlatformFlexberryFlexberryDesignerVisualEditControl",
         "NewPlatformFlexberryFlexberryDesignerVisualEditForm"
     ],

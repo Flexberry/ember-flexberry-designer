@@ -26,7 +26,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/FdCurrentProjectContextService", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/ember-flexberry-designer"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/FdCurrentProjectContextService", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/ember-flexberry-designer"]'>
         </form>
     </div>
 </div>
@@ -60,6 +60,7 @@
 	                            <li><a href="../classes/FdViewAttributesDetail.html">FdViewAttributesDetail</a></li>
 	                            <li><a href="../classes/FdViewAttributesMaster.html">FdViewAttributesMaster</a></li>
 	                            <li><a href="../classes/FdViewAttributesProperty.html">FdViewAttributesProperty</a></li>
+	                            <li><a href="../classes/FdViewAttributesTree.html">FdViewAttributesTree</a></li>
 	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">NewPlatformFlexberryFlexberryDesignerVisualEditControl</a></li>
 	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">NewPlatformFlexberryFlexberryDesignerVisualEditForm</a></li>
 	                    </ul>
@@ -136,27 +137,27 @@ export default function fdPreloadStageMetadata(store, stagePk) {
   return new Ember.RSVP.Promise(function(resolve, reject) {
     let promises = [];
 
-    const projectionName = &#x27;FdPreloadMetadata&#x27;;
+    //const projectionName = &#x27;FdPreloadMetadata&#x27;; TODO DEV VIEW
 
     // stage promise
     let modelName = &#x27;fd-dev-stage&#x27;;
     let q = new Builder(store, modelName)
-      .selectByProjection(projectionName)
+      .selectByProjection(&#x27;EditPropertyLookups&#x27;) // TODO DEV VIEW
       .byId(stagePk)
       .build();
     promises.push(store.query(modelName, q));
 
     // classes promise
-    promises.push(getPromise(store, stagePk, &#x27;fd-dev-class&#x27;, projectionName));
+    promises.push(getPromise(store, stagePk, &#x27;fd-dev-class&#x27;, &#x27;FdAttributesChangeView&#x27;)); // TODO DEV VIEW
 
     // associations promise
-    promises.push(getPromise(store, stagePk, &#x27;fd-dev-association&#x27;, projectionName));
+    promises.push(getPromise(store, stagePk, &#x27;fd-dev-association&#x27;, &#x27;FormDesigner&#x27;)); // TODO DEV VIEW
 
     // agregations promise
-    promises.push(getPromise(store, stagePk, &#x27;fd-dev-agregation&#x27;, projectionName));
+    promises.push(getPromise(store, stagePk, &#x27;fd-dev-aggregation&#x27;, &#x27;FormConstructor&#x27;)); // TODO DEV VIEW
 
     // inheritances promise
-    promises.push(getPromise(store, stagePk, &#x27;fd-dev-inheritance&#x27;, projectionName));
+    promises.push(getPromise(store, stagePk, &#x27;fd-dev-inheritance&#x27;, &#x27;EditPropertyLookups&#x27;)); // TODO DEV VIEW
 
     // resolve, reject
     Ember.RSVP.all(promises).then(resolve, reject);
