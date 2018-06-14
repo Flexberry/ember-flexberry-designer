@@ -4,7 +4,13 @@
 {{else if _isGroup}}
   {{#flexberry-toggler caption=control.caption}}
     {{#each control.rows as |row|}}
-      {{fd-editform-row row=row selectAction=selectAction}}
+      {{fd-editform-row
+        row=row
+        selectAction=selectAction
+        setDragRowAction=setDragRowAction
+        getDragRowAction=getDragRowAction
+        moveRowAction=moveRowAction
+      }}
     {{/each}}
   {{/flexberry-toggler}}
 {{else if _isTab}}
@@ -16,7 +22,13 @@
   {{#each control.tabs as |tab index|}}
     <div class="ui bottom attached {{unless index "active"}} tab segment" data-tab="{{elementId}}-tab-{{index}}">
       {{#each tab.rows as |row|}}
-        {{fd-editform-row row=row selectAction=selectAction}}
+        {{fd-editform-row
+          row=row
+          selectAction=selectAction
+          setDragRowAction=setDragRowAction
+          getDragRowAction=getDragRowAction
+          moveRowAction=moveRowAction
+        }}
       {{/each}}
     </div>
   {{/each}}
