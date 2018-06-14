@@ -12,6 +12,8 @@ export default Ember.Route.extend({
 
   model: function() {
     var data = this.store.createRecord(this.modelName);
+    data.set('data.definition', Ember.A());
+
     let store = this.get('store');
     let classPk = this.get('currentProjectContext').getCurrentClass();
 
