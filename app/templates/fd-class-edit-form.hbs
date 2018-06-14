@@ -186,8 +186,12 @@
       mainModelProjection=modelProjection
       modelProjection=modelProjection.attributes.views
       content=model.views
-      readonly=true
+      readonly=readonly
       orderable=false
+      rowClickable=true
+      rowClick='rowClick'
+      editOnSeparateRoute=true
+      editFormRoute='fd-view-edit-form'
       class=(if model.errors.views 'error' '')
     }}
     {{flexberry-validationmessage error=model.errors.views pointing="pointing"}}

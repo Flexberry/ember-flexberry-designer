@@ -1,5 +1,29 @@
 export default {
   caption: 'FdViewEditForm',
-  'name-caption': 'name',
-  'description-caption': 'description'
+  'name-caption': 'Name view',
+  'description-caption': 'Description view',
+  'settings-view': {
+    caption: 'Settings view',
+    'name-caption': 'Caption ("~" - empty value)',
+    path: 'Path ("|" tab, "-" group, "\\" separation, eg "|Description\\-Cost")',
+    'create-caption': 'Create',
+    visibility: 'Visibility'
+  },
+  'settings-master': {
+    'lookup-type': 'Lookup type',
+    'master-property': 'Master property name',
+    'sample-setting': 'Master customization string'
+  },
+  'settings-detail': {
+    view: 'View',
+    'load-on-load-agregator': 'Load on load agregator',
+    load: 'Loading'
+  },
+  'table-column': {
+    type: 'Attribute type',
+    'view-attributes': 'View attributes'
+  },
+  'attributes-tree': {
+
+  }
 };
