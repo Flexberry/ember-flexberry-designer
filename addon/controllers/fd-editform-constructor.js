@@ -14,9 +14,8 @@ export default Ember.Controller.extend({
     @private
     @property _draggedRow
     @type FdEditformRow
-    @default null
   */
-  _draggedRow: null,
+  _draggedRow: undefined,
 
   /**
     @private
