@@ -445,6 +445,13 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/routes/fd-editform-constructor.js": {
+            "name": "addon/routes/fd-editform-constructor.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/routes/fd-generation-list-form.js": {
             "name": "addon/routes/fd-generation-list-form.js",
             "modules": {},
@@ -4543,6 +4550,151 @@
             "return": {
                 "description": "",
                 "type": "Query.SimplePredicate"
+            },
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-editform-constructor.js",
+            "line": 115,
+            "description": "Locate control by path.",
+            "itemtype": "method",
+            "name": "_locateControl",
+            "params": [
+                {
+                    "name": "controlTree",
+                    "description": "Controls tree.",
+                    "type": "Object"
+                },
+                {
+                    "name": "propertyDefinition",
+                    "description": "Property definition from view.",
+                    "type": "FdDefinition"
+                },
+                {
+                    "name": "path",
+                    "description": "Property path from view.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Modified controlTree with placed control.",
+                "type": "Object"
+            },
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-editform-constructor.js",
+            "line": 154,
+            "description": "Locate control in row by path.",
+            "itemtype": "method",
+            "name": "_locateControlInRow",
+            "params": [
+                {
+                    "name": "row",
+                    "description": "Row for control placement.",
+                    "type": "FdEditformRow"
+                },
+                {
+                    "name": "propertyDefinition",
+                    "description": "Property definition from view.",
+                    "type": "FdDefinition"
+                }
+            ],
+            "return": {
+                "description": "Modified controlTree with placed control.",
+                "type": "Object"
+            },
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-editform-constructor.js",
+            "line": 172,
+            "description": "Locate tabs for control.",
+            "itemtype": "method",
+            "name": "_locateTabs",
+            "params": [
+                {
+                    "name": "controlTree",
+                    "description": "Controls tree.",
+                    "type": "Object"
+                },
+                {
+                    "name": "propertyDefinition",
+                    "description": "Property definition from view.",
+                    "type": "FdDefinition"
+                },
+                {
+                    "name": "path",
+                    "description": "Property path from view.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Modified controlTree with placed tabs.",
+                "type": "Object"
+            },
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-editform-constructor.js",
+            "line": 243,
+            "description": "Locate group for control.",
+            "itemtype": "method",
+            "name": "_locateGroup",
+            "params": [
+                {
+                    "name": "controlTree",
+                    "description": "Controls tree.",
+                    "type": "Object"
+                },
+                {
+                    "name": "propertyDefinition",
+                    "description": "Property definition from view.",
+                    "type": "FdDefinition"
+                },
+                {
+                    "name": "path",
+                    "description": "Property path from view.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Modified controlTree with placed group.",
+                "type": "Object"
+            },
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-editform-constructor.js",
+            "line": 302,
+            "description": "Locate column for control.",
+            "itemtype": "method",
+            "name": "_locateColumn",
+            "params": [
+                {
+                    "name": "controlTree",
+                    "description": "Controls tree.",
+                    "type": "Object"
+                },
+                {
+                    "name": "propertyDefinition",
+                    "description": "Property definition from view.",
+                    "type": "FdDefinition"
+                },
+                {
+                    "name": "path",
+                    "description": "Property path from view.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Modified controlTree with placed column.",
+                "type": "Object"
             },
             "class": "FdCurrentProjectContextService",
             "module": "ember-flexberry-designer"
