@@ -56,9 +56,8 @@ export default Ember.Component.extend({
     @private
     @property _initialY
     @type Number
-    @default null
   */
-  _initialY: null,
+  _initialY: undefined,
 
   /**
     The 'Y' coordinate of the line through which you need to drag the row to move.
