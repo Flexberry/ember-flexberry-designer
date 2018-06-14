@@ -85,7 +85,7 @@ let getTreeNode = function (store, id, jsTreeId, data) {
       let idDetail = endClass.get('id');
       let detailViews = endClass.get('views');
       let detailViewsItems = detailViews.canonicalState.map((view) => view.getRecord().get('name'));
-      let definition = data.get('data.definition');
+      let definition = data.get('definition');
       definition.forEach((attribute) => {
         if (detailName === attribute.name) {
           // Add aggregation array in model.

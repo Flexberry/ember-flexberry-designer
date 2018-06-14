@@ -26,9 +26,11 @@ export default Ember.Route.extend({
     // Get attributes tree current class.
     let tree = getTreeNode(store, idDevClass, 'node_', data);
 
-    data.set('data.attributesTree', tree);
     this.get('objectlistviewEventsService').setLoadingState('');
 
-    return data;
+    return {
+      view: data,
+      tree: tree
+    };
   }
 });

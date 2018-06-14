@@ -89,7 +89,7 @@ export default EditFormController.extend({
     @type Object
   */
   rowModel: Ember.computed('selectedRowIndex', function() {
-    let model = this.get('model.data.definition');
+    let model = this.get('model.view.definition');
     let index = this.get('selectedRowIndex');
     if (!Ember.isNone(index)) {
       let rowModel = model[index];
@@ -149,8 +149,8 @@ export default EditFormController.extend({
     */
     moveRightHighlighted() {
       let selectedNodes = this.get('jstreeSelectedNodes')[0];
-      let treeData = this.get('model.data.attributesTree');
-      let model = this.get('model.data.definition');
+      let treeData = this.get('model.tree');
+      let model = this.get('model.view.definition');
 
       // Create propertyName
       let parents = selectedNodes.parents;
@@ -211,7 +211,7 @@ export default EditFormController.extend({
       let rowModel = this.get('rowModel');
 
       if (!Ember.isNone(rowModel)) {
-        let model = this.get('model.data.definition');
+        let model = this.get('model.view.definition');
         model.removeObject(rowModel);
         this.set('selectedRowIndex', null);
       }
@@ -228,7 +228,7 @@ export default EditFormController.extend({
         return;
       }
 
-      let model = this.get('model.data.definition');
+      let model = this.get('model.view.definition');
       let prev = index - 1;
       let node = model[index];
       let prevNode = model[prev];
@@ -244,7 +244,7 @@ export default EditFormController.extend({
     */
     moveDownHighlighted() {
       let index = this.get('selectedRowIndex');
-      let model = this.get('model.data.definition');
+      let model = this.get('model.view.definition');
       if (index === model.length - 1) {
         return;
       }
@@ -263,7 +263,7 @@ export default EditFormController.extend({
     @method _openNodeTree
   */
   _openNodeTree(e, data) {
-    let treeData = this.get('model.data.attributesTree');
+    let treeData = this.get('model.tree');
     this._restorationNodeTree(treeData, data.node.original);
 
     this.get('jstreeActionReceiver').send('redraw');

@@ -15,7 +15,7 @@
   {{flexberry-error error=error}}
   <div class="field">
     <div class="sixteen wide">
-      {{flexberry-validationsummary errors=model.errors}}
+      {{flexberry-validationsummary errors=model.view.errors}}
     </div>
   </div>
   <div class="field">
@@ -24,7 +24,7 @@
         <button type="submit" class="ui button save-button" {{action 'save'}}>
           {{t "forms.edit-form.save-button-text"}}
         </button>
-        {{#unless model.isNew}}
+        {{#unless model.view.isNew}}
           <button type="submit" class="ui button save-del-button" {{action 'delete'}}>
             {{t "forms.edit-form.delete-button-text"}}
           </button>
@@ -43,11 +43,11 @@
           flexberry-field
           placeholder=(t 'components.flexberry-field.placeholder')
           readonly=readonly
-          value=model.name
-          class=(if model.errors.name 'error' '')
+          value=model.view.name
+          class=(if model.view.errors.name 'error' '')
           label=(t 'forms.fd-view-edit-form.name-caption')
         }}
-        {{flexberry-validationmessage error=model.errors.name pointing="pointing"}}
+        {{flexberry-validationmessage error=model.view.errors.name pointing="pointing"}}
       </div>
     </div>
     <div class="ui segment">
@@ -56,11 +56,11 @@
           flexberry-field
           placeholder=(t 'components.flexberry-field.placeholder')
           readonly=readonly
-          value=model.description
-          class=(if model.errors.description 'error' '')
+          value=model.view.description
+          class=(if model.view.errors.description 'error' '')
           label=(t 'forms.fd-view-edit-form.description-caption')
         }}
-        {{flexberry-validationmessage error=model.errors.description pointing="pointing"}}
+        {{flexberry-validationmessage error=model.view.errors.description pointing="pointing"}}
       </div>
     </div>
   </div>
@@ -71,7 +71,7 @@
         {{ember-jstree
           actionReceiver=jstreeActionReceiver
           selectedNodes=jstreeSelectedNodes
-          data=model.data.attributesTree
+          data=model.tree
           plugins=plugins
           typesOptions=typesOptions
           eventDidBecomeReady=(action 'handleTreeDidBecomeReady')
@@ -105,7 +105,7 @@
           </tr>
         </thead>
         <tbody>
-          {{#each model.definition as |property index|}}
+          {{#each model.view.definition as |property index|}}
           <tr class={{if (eq selectedRowIndex index) "active" ""}} onclick={{action "onAttributesClick" index}}>
             <td>
               {{#if property.detailViewNameItems}}

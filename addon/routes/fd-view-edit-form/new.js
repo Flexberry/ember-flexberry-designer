@@ -15,14 +15,20 @@ export default Ember.Route.extend({
     data.set('data.definition', Ember.A());
 
     let store = this.get('store');
+    let recordsDevClass = store.peekAll('fd-dev-class');
+
     let classPk = this.get('currentProjectContext').getCurrentClass();
+    let devClass = recordsDevClass.findBy('id', classPk);
+    data.set('class', devClass);
 
     // Get attributes tree current class.
     let tree = getTreeNode(store, classPk, 'node_', data);
 
-    data.set('data.attributesTree', tree);
     this.get('objectlistviewEventsService').setLoadingState('');
 
-    return data;
+    return {
+      view: data,
+      tree: tree
+    };
   }
 });
