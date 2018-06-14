@@ -70,6 +70,7 @@
       <div class="sample-tree">
         {{ember-jstree
           actionReceiver=jstreeActionReceiver
+          selectedNodes=jstreeSelectedNodes
           data=model.data.attributesTree
           plugins=plugins
           typesOptions=typesOptions
@@ -78,11 +79,23 @@
         }}
       </div>
     </div>
-
-    <button class='ui button icon move {{moveRightDisabled}}' {{action "moveRightHighlighted" on="click" }} style="top: 50%;">
+<div class="ui vertical basic buttons">
+    <button class='ui button icon' {{action "moveRightHighlighted" on="click" }} style="top: 50%;">
       <i class="chevron right icon"></i>
     </button>
 
+    <button class='ui button icon' {{action "moveLeftHighlighted" on="click" }} style="top: 50%;">
+      <i class="chevron left icon"></i>
+    </button>
+
+    <button class='ui button icon' {{action "moveUpHighlighted" on="click" }} style="top: 50%;">
+      <i class="chevron up icon"></i>
+    </button>
+
+    <button class='ui button icon' {{action "moveDownHighlighted" on="click" }} style="top: 50%;">
+      <i class="chevron down icon"></i>
+    </button>
+</div>
     <div class="ui segment">
       <table class="ui very basic collapsing celled table">
         <thead>
@@ -114,7 +127,7 @@
       </table>
     </div>
   </div>
-  
+
   <div class="ui segments">
     <div class="ui segment">
       <div class="ui top attached label">

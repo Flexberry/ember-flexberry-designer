@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
+import FdViewAttributesProperty from '../objects/fd-view-attributes-property';
 import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 import { getTreeNode } from '../utils/fd-get-view-tree-node';
@@ -33,6 +34,15 @@ export default EditFormController.extend({
     @default 'wholerow, types'
    */
   plugins: 'wholerow, types',
+
+  /**
+    Selected nodes in jsTree.
+
+    @property jstreeSelectedNodes
+    @type Array
+    @default []
+   */
+  jstreeSelectedNodes: Ember.A(),
 
   /**
     Type settings for jsTree.
@@ -126,9 +136,125 @@ export default EditFormController.extend({
       @method actions.handleTreeDidBecomeReady
     */
     handleTreeDidBecomeReady() {
-      var treeObject = this.get('jstreeObject');
+      let treeObject = this.get('jstreeObject');
       treeObject.on('open_node.jstree', this._openNodeTree.bind(this));
       treeObject.on('after_close.jstree', this._afterCloseNodeTree.bind(this));
+    },
+
+    /**
+      Handles form 'moveRightHighlighted' button click.
+      Add attribute in definition.
+
+      @method actions.moveRightHighlighted
+    */
+    moveRightHighlighted() {
+      let selectedNodes = this.get('jstreeSelectedNodes')[0];
+      let treeData = this.get('model.data.attributesTree');
+      let model = this.get('model.data.definition');
+
+      // Create propertyName
+      let parents = selectedNodes.parents;
+      let propertyName = '';
+      if (parents.length > 2) {
+        let indexParentID = parents.length - 3;
+        let parentAttributes = treeData[0].copyChildren;
+        while (indexParentID >= 0) {
+          let parentID = parents[indexParentID];
+          let parent = parentAttributes.findBy('id', parentID);
+          propertyName = propertyName + '.' + parent.text;
+          indexParentID--;
+          parentAttributes = parent.copyChildren;
+        }
+
+        propertyName = propertyName.slice(1) + '.' + selectedNodes.text;
+
+      } else {
+        propertyName = selectedNodes.text;
+      }
+
+      if (model.findBy('name', propertyName)) {
+        return;
+      }
+
+      let newDdfinition;
+      switch (selectedNodes.type) {
+        case 'property':
+          newDdfinition = FdViewAttributesProperty.create({
+            name: propertyName
+          });
+          break;
+        case 'master':
+          newDdfinition = FdViewAttributesMaster.create({
+            name: propertyName
+          });
+          break;
+        case 'detail':
+          newDdfinition = FdViewAttributesDetail.create({
+            name: propertyName,
+            detailViewNameItems: selectedNodes.original.detailViewNameItems
+          });
+          break;
+      }
+
+      if (!Ember.isNone(newDdfinition)) {
+        model.pushObject(newDdfinition);
+      }
+    },
+
+    /**
+      Handles form 'moveLeftHighlighted' button click.
+      Delete attribute from definition.
+
+      @method actions.moveLeftHighlighted
+    */
+    moveLeftHighlighted() {
+      let rowModel = this.get('rowModel');
+
+      if (!Ember.isNone(rowModel)) {
+        let model = this.get('model.data.definition');
+        model.removeObject(rowModel);
+        this.set('selectedRowIndex', null);
+      }
+    },
+
+    /**
+      Handles form 'moveUpHighlighted' button click.
+
+      @method actions.moveUpHighlighted
+    */
+    moveUpHighlighted() {
+      let index = this.get('selectedRowIndex');
+      if (index === 0) {
+        return;
+      }
+
+      let model = this.get('model.data.definition');
+      let prev = index - 1;
+      let node = model[index];
+      let prevNode = model[prev];
+      model.replace(prev, 1, node);
+      model.replace(index, 1, prevNode);
+      this.set('selectedRowIndex', prev);
+    },
+
+    /**
+      Handles form 'moveDownHighlighted' button click.
+
+      @method actions.moveDownHighlighted
+    */
+    moveDownHighlighted() {
+      let index = this.get('selectedRowIndex');
+      let model = this.get('model.data.definition');
+      if (index === model.length - 1) {
+        return;
+      }
+
+      let next = index + 1;
+      let node = model[next];
+      let nextNode = model[index];
+      model.replace(index, 1, node);
+      model.replace(next, 1, nextNode);
+      this.set('selectedRowIndex', next);
     }
   },
 
@@ -192,8 +318,10 @@ export default EditFormController.extend({
 
   willDestroy() {
     this._super(...arguments);
-    var treeObject = this.get('jstreeObject');
-    treeObject.off('open_node.jstree', this._openNodeTree.bind(this));
-    treeObject.off('after_close.jstree', this._afterCloseNodeTree.bind(this));
+    let treeObject = this.get('jstreeObject');
+    if (!Ember.isNone(treeObject)) {
+      treeObject.off('open_node.jstree', this._openNodeTree.bind(this));
+      treeObject.off('after_close.jstree', this._afterCloseNodeTree.bind(this));
+    }
   }
 });

@@ -27,7 +27,7 @@ export default function fdPreloadStageMetadata(store, stagePk) {
   return new Ember.RSVP.Promise(function(resolve, reject) {
     let promises = [];
 
-    const projectionName = 'FdPreloadMetadata';
+    //const projectionName = 'FdPreloadMetadata';
 
     // stage promise
     let modelName = 'fd-dev-stage';
