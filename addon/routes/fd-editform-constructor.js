@@ -186,11 +186,11 @@ export default Ember.Route.extend({
 
   activate() {
     let sidebar = Ember.$('.ui.sidebar.main.menu');
-    let configPanrlTabsWidth = this.controllerFor(this.routeName).get('configPanrlTabsWidth');
+    let configPanelTabsWidth = this.controllerFor(this.routeName).get('configPanelTabsWidth');
     if (!sidebar.hasClass('visible')) {
-      Ember.$('.pusher').css({ width: 'calc(100% - ' + configPanrlTabsWidth + 'px)' });
+      Ember.$('.pusher').css({ width: 'calc(100% - ' + configPanelTabsWidth + 'px)' });
     } else {
-      let workPanel = sidebar.width() + configPanrlTabsWidth;
+      let workPanel = sidebar.width() + configPanelTabsWidth;
       Ember.$('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)' });
     }
 

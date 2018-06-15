@@ -153,7 +153,7 @@ export default Ember.Controller.extend({
   */
   objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
 
-  configPanrlTabsWidth: 58,
+  configPanelTabsWidth: 58,
 
   actions: {
     toggleSidebar() {
@@ -187,18 +187,18 @@ export default Ember.Controller.extend({
         Ember.$('.sidebar.icon.text-menu-hide').removeClass('hidden');
       }
 
-      let configPanrlTabsWidth = this.currentRouteName.split('.')[0] === 'fd-editform-constructor' ? this.configPanrlTabsWidth : 0;
+      let configPanelTabsWidth = this.currentRouteName.split('.')[0] === 'fd-editform-constructor' ? this.configPanelTabsWidth : 0;
 
       Ember.$('.inverted.vertical.main.menu').removeClass('overlay');
 
       if (sidebarVisible) {
         if (!configPanelSidebarVisible) {
-          Ember.$('.pusher').css({ width: 'calc(100% - ' + configPanrlTabsWidth + 'px)', transform: 'translate3d(0, 0, 0)' });
+          Ember.$('.pusher').css({ width: 'calc(100% - ' + configPanelTabsWidth + 'px)', transform: 'translate3d(0, 0, 0)' });
         } else {
           Ember.$('.pusher').css({ width: 'calc(100% - ' + configPanelSidebar.width() + 'px)', transform: 'translate3d(0, 0, 0)' });
         }
       } else if (!configPanelSidebarVisible) {
-        let workPanel = sidebar.width() + configPanrlTabsWidth;
+        let workPanel = sidebar.width() + configPanelTabsWidth;
         Ember.$('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)', transform: 'translate3d(' + sidebar.width() + 'px, 0, 0)' });
       } else {
         let workPanel = sidebar.width() + configPanelSidebar.width();
