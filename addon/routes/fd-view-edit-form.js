@@ -32,5 +32,11 @@ export default Ember.Route.extend({
       view: data,
       tree: tree
     };
+  },
+
+  setupController(controller) {
+    this._super(...arguments);
+    controller.set('routeName', this.get('routeName'));
+    controller.set('parentRoute', this.get('router.url'));
   }
 });

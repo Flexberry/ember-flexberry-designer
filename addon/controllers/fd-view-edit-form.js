@@ -6,7 +6,15 @@ import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 import { getTreeNode } from '../utils/fd-get-view-tree-node';
 
 export default EditFormController.extend({
-  parentRoute: 'fd-view-list-form',
+
+  /**
+   Service that triggers objectlistview events.
+
+   @property objectlistviewEventsService
+   @type {Class}
+   @default Ember.inject.service()
+   */
+  objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
 
   /**
     Index of the selected attribute for editing.
@@ -255,6 +263,30 @@ export default EditFormController.extend({
       model.replace(index, 1, node);
       model.replace(next, 1, nextNode);
       this.set('selectedRowIndex', next);
+    },
+
+    /**
+      Handles form 'saveView' button click.
+
+      @method actions.saveView
+    */
+    saveView() {
+      let view = this.get('model.view');
+      let definitionCopy = view.get('definition').slice();
+      view.set('definition', Ember.A(view.get('definition').toArray()));
+      let _this = this;
+
+      this.get('objectlistviewEventsService').setLoadingState('loading');
+      view.save().then(() => {
+        view.set('definition', Ember.A(definitionCopy));
+        view.set('hasDirtyAttributes', false);
+        let routeName = _this.get('routeName');
+        if (routeName.indexOf('.new') > 0) {
+          _this.transitionToRoute(routeName.slice(0, -4), view.get('id'));
+        } else {
+          _this.get('objectlistviewEventsService').setLoadingState('');
+        }
+      });
     }
   },
 

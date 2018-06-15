@@ -6,23 +6,20 @@ export default Ember.Route.extend({
   modelName: 'fd-dev-view',
   templateName: 'fd-view-edit-form',
 
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
-
   objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
 
+  detailInteractionService: Ember.inject.service('detail-interaction'),
+
   model: function() {
-    var data = this.store.createRecord(this.modelName);
+    let data = this.get('detailInteractionService').modelSelectedDetail;
     data.set('definition', Ember.A());
 
     let store = this.get('store');
-    let recordsDevClass = store.peekAll('fd-dev-class');
-
-    let classPk = this.get('currentProjectContext').getCurrentClass();
-    let devClass = recordsDevClass.findBy('id', classPk);
+    let devClass = this.get('detailInteractionService').modelCurrentAgregators[0];
     data.set('class', devClass);
 
     // Get attributes tree current class.
-    let tree = getTreeNode(store, classPk, 'node_', data);
+    let tree = getTreeNode(store, devClass.id, 'node_', data);
 
     this.get('objectlistviewEventsService').setLoadingState('');
 
@@ -30,5 +27,11 @@ export default Ember.Route.extend({
       view: data,
       tree: tree
     };
+  },
+
+  setupController(controller) {
+    this._super(...arguments);
+    controller.set('routeName', this.get('routeName'));
+    controller.set('parentRoute', this.get('router.url'));
   }
 });
