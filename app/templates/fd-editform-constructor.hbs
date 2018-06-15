@@ -17,7 +17,6 @@
       <button class="ui button">
         {{t "forms.fd-visual-edit-form.preview-mobile-variant"}}
       </button>
-      {{flexberry-button iconClass="settings icon" click=(action "toggleConfigPanel")}}
       <button type="submit" class="ui button close-button" {{action 'close'}}>
         {{t "forms.edit-form.close-button-text"}}
       </button>
@@ -34,3 +33,51 @@
     }}
   {{/each}}
 </form>
+
+{{#ui-sidebar
+  class="very wide inverted vertical right animating uncover config-panel"
+}}
+  <div class="ui inverted segments">
+    <div class="ui segments horizontal">
+      <form class="ui form segment">
+        <div class="ui segment">
+          <div class="ui large header">
+            {{t "forms.fd-editform-constructor.caption"}}
+          </div>
+        </div>
+        <div class="ui bottom attached tab segment active" data-tab="form-properties">
+          <div class="ui small dividing header">
+            {{t "forms.fd-editform-constructor.form-config-panel.form-properties-header"}}
+          </div>
+          <div class="field">
+            <label>{{t "forms.fd-editform-constructor.form-config-panel.form-name"}}</label>
+            {{flexberry-textbox value=model.editform.caption}}
+          </div>
+          <div class="field">
+            <label>{{t "forms.fd-editform-constructor.form-config-panel.form-description"}}</label>
+            {{flexberry-textarea value=model.editform.description}}
+          </div>
+        </div>
+
+        <div class="ui bottom attached tab segment top" data-tab="control-properties">
+          <div class="ui small dividing header">
+            {{t "forms.fd-editform-constructor.form-config-panel.control-properties-header"}}
+          </div>
+          {{fd-visual-edit-control selectedControl=selectedControl}}
+        </div>
+
+        <div class="ui bottom attached tab segment top" data-tab="all-controls">
+          <div class="ui small dividing header">
+            {{t "forms.fd-editform-constructor.form-config-panel.all-controls-header"}}
+          </div>
+        </div>
+      </form>
+
+      <div class="ui vertical tabular menu">
+        <a class="item active" data-tab="form-properties" {{action "toggleConfigPanel" "form-properties"}}>{{t "forms.fd-editform-constructor.form-config-panel.form-properties-header"}}</a>
+        <a class="item" data-tab="control-properties" {{action "toggleConfigPanel" "control-properties"}}>{{t "forms.fd-editform-constructor.form-config-panel.control-properties-header"}}</a>
+        <a class="item" data-tab="all-controls" {{action "toggleConfigPanel" "all-controls"}}>{{t "forms.fd-editform-constructor.form-config-panel.all-controls-header"}}</a>
+      </div>
+    </div>
+  </div>
+{{/ui-sidebar}}

@@ -18,7 +18,7 @@ export default FdViewAttributesProperty.extend({
     @property lookupType
     @type String
   */
-  lookupType: undefined,
+  lookupType: 'default',
 
   /**
     Item property 'masterPropertyName'.

@@ -42,5 +42,5 @@ export default Ember.Object.extend({
     @property visible
     @type Boolean
   */
-  visible: false,
+  visible: true,
 });
