@@ -222,6 +222,33 @@ export default Ember.Route.extend({
     });
   },
 
+  activate() {
+    let sidebar = Ember.$(&#x27;.ui.sidebar.main.menu&#x27;);
+    let configPanelTabsWidth = this.controllerFor(this.routeName).get(&#x27;configPanelTabsWidth&#x27;);
+    if (!sidebar.hasClass(&#x27;visible&#x27;)) {
+      Ember.$(&#x27;.pusher&#x27;).css({ width: &#x27;calc(100% - &#x27; + configPanelTabsWidth + &#x27;px)&#x27; });
+    } else {
+      let workPanel = sidebar.width() + configPanelTabsWidth;
+      Ember.$(&#x27;.pusher&#x27;).css({ width: &#x27;calc(100% - &#x27; + workPanel + &#x27;px)&#x27; });
+    }
+
+    Ember.run.schedule(&#x27;afterRender&#x27;, function() {
+      let configPanelSidebar = Ember.$(&#x27;.ui.sidebar.config-panel&#x27;);
+      Ember.$(&#x27;.menu .item&#x27;, configPanelSidebar).tab();
+    });
+
+  },
+
+  deactivate() {
+    let sidebar = Ember.$(&#x27;.ui.sidebar.main.menu&#x27;);
+
+    if (!sidebar.hasClass(&#x27;visible&#x27;)) {
+      Ember.$(&#x27;.pusher&#x27;).css({ width: &#x27;100%&#x27; });
+    } else {
+      Ember.$(&#x27;.pusher&#x27;).css({ width: &#x27;calc(100% - &#x27; + sidebar.width() + &#x27;px)&#x27; });
+    }
+  },
+
   /**
       Locate control by path.
 

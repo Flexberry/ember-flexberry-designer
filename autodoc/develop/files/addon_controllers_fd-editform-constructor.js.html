@@ -165,17 +165,42 @@ export default Ember.Controller.extend({
   */
   selectedControl: undefined,
 
-  actions: {
-    close() {
-      this.transitionToRoute(&#x27;fd-appstruct-form&#x27;);
-    },
+  prevTab: undefined,
 
-    toggleConfigPanel() {
-      if (this.toggleProperty(&#x27;configPanelState&#x27;)) {
-        this.transitionToRoute(&#x27;fd-editform-constructor.form-config-panel&#x27;);
-      } else {
-        this.transitionToRoute(&#x27;fd-editform-constructor&#x27;);
+  applicationController: Ember.inject.controller(&#x27;application&#x27;),
+
+  configPanelTabsWidth: Ember.computed.alias(&#x27;applicationController.configPanelTabsWidth&#x27;),
+
+  actions: {
+
+    toggleConfigPanel(currentTab) {
+      let configPanelSidebar = Ember.$(&#x27;.ui.sidebar.config-panel&#x27;);
+      let configPanelSidebarVisible = configPanelSidebar.hasClass(&#x27;visible&#x27;);
+
+      if (this.prevTab === currentTab || this.prevTab === undefined || !configPanelSidebarVisible) {
+        let sidebar = Ember.$(&#x27;.ui.sidebar.main.menu&#x27;);
+
+        configPanelSidebar.sidebar(&#x27;toggle&#x27;);
+
+        configPanelSidebar.removeClass(&#x27;overlay&#x27;);
+        let sidebarVisible = sidebar.hasClass(&#x27;visible&#x27;);
+
+        if (!sidebarVisible) {
+          if (configPanelSidebarVisible) {
+            Ember.$(&#x27;.pusher&#x27;).css({ width: &#x27;calc(100% - &#x27; + this.get(&#x27;configPanelTabsWidth&#x27;) + &#x27;px)&#x27;, transform: &#x27;translate3d(0, 0, 0)&#x27; });
+          } else {
+            Ember.$(&#x27;.pusher&#x27;).css({ width: &#x27;calc(100% - &#x27; + configPanelSidebar.width() + &#x27;px)&#x27;, transform: &#x27;translate3d(0, 0, 0)&#x27; });
+          }
+        } else if (configPanelSidebarVisible) {
+          let workPanel = sidebar.width() + this.get(&#x27;configPanelTabsWidth&#x27;);
+          Ember.$(&#x27;.pusher&#x27;).css({ width: &#x27;calc(100% - &#x27; + workPanel + &#x27;px)&#x27;, transform: &#x27;translate3d(&#x27; + sidebar.width() + &#x27;px, 0, 0)&#x27; });
+        } else {
+          let workPanel = sidebar.width() + configPanelSidebar.width();
+          Ember.$(&#x27;.pusher&#x27;).css({ width: &#x27;calc(100% - &#x27; + workPanel + &#x27;px)&#x27;, transform: &#x27;translate3d(&#x27; + sidebar.width() + &#x27;px, 0, 0)&#x27; });
+        }
       }
+
+      this.prevTab = currentTab;
     },
 
     /**

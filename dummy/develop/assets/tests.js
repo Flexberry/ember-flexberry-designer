@@ -4303,35 +4303,6 @@ define('dummy/tests/unit/routes/fd-editform-constructor-test.jshint', ['exports'
     assert.ok(true, 'unit/routes/fd-editform-constructor-test.js should pass jshint.');
   });
 });
-define('dummy/tests/unit/routes/fd-editform-constructor/form-config-panel-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleFor)('route:fd-editform-constructor/form-config-panel', 'Unit | Route | fd-editform-constructor/form-config-panel', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
-  });
-
-  (0, _emberQunit.test)('it exists', function (assert) {
-    var route = this.subject();
-    assert.ok(route);
-  });
-});
-define('dummy/tests/unit/routes/fd-editform-constructor/form-config-panel-test.jscs-test', ['exports'], function (exports) {
-  'use strict';
-
-  module('JSCS - unit/routes/fd-editform-constructor');
-  test('unit/routes/fd-editform-constructor/form-config-panel-test.js should pass jscs', function () {
-    ok(true, 'unit/routes/fd-editform-constructor/form-config-panel-test.js should pass jscs.');
-  });
-});
-define('dummy/tests/unit/routes/fd-editform-constructor/form-config-panel-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - unit/routes/fd-editform-constructor/form-config-panel-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/routes/fd-editform-constructor/form-config-panel-test.js should pass jshint.');
-  });
-});
 define('dummy/tests/unit/routes/fd-generation-process-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
   (0, _emberQunit.moduleFor)('route:fd-generation-process-form', 'Unit | Route | fd generation process form', {

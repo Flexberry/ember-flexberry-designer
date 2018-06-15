@@ -1826,7 +1826,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 71,
+            "line": 96,
             "description": "Set the selected control.",
             "itemtype": "method",
             "name": "actions.selectControl",
@@ -1842,7 +1842,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 81,
+            "line": 106,
             "description": "Set the current dragged row.",
             "itemtype": "method",
             "name": "actions.setDragRow",
@@ -1858,7 +1858,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 91,
+            "line": 116,
             "description": "Get the current dragged row.",
             "itemtype": "method",
             "name": "actions.getDragRow",
@@ -1871,7 +1871,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 101,
+            "line": 126,
             "description": "Move the current dragged row above or below relative to the passed row.",
             "params": [
                 {
@@ -1890,7 +1890,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 132,
+            "line": 157,
             "description": "Looks for a container that contains the row.",
             "itemtype": "method",
             "name": "_findRowContainer",
@@ -4865,7 +4865,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 115,
+            "line": 142,
             "description": "Locate control by path.",
             "itemtype": "method",
             "name": "_locateControl",
@@ -4895,7 +4895,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 154,
+            "line": 181,
             "description": "Locate control in row by path.",
             "itemtype": "method",
             "name": "_locateControlInRow",
@@ -4920,7 +4920,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 172,
+            "line": 199,
             "description": "Locate tabs for control.",
             "itemtype": "method",
             "name": "_locateTabs",
@@ -4950,7 +4950,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 243,
+            "line": 270,
             "description": "Locate group for control.",
             "itemtype": "method",
             "name": "_locateGroup",
@@ -4980,7 +4980,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 302,
+            "line": 329,
             "description": "Locate column for control.",
             "itemtype": "method",
             "name": "_locateColumn",
@@ -6010,7 +6010,7 @@
         },
         {
             "message": "Missing item type\nMove the current dragged row above or below relative to the passed row.",
-            "line": " addon/controllers/fd-editform-constructor.js:101"
+            "line": " addon/controllers/fd-editform-constructor.js:126"
         },
         {
             "message": "Missing item type\nField name where object identifier is kept.",
