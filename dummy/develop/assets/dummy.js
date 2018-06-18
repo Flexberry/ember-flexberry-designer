@@ -766,6 +766,22 @@ define('dummy/controllers/fd-editform-constructor', ['exports', 'ember-flexberry
     }
   });
 });
+define('dummy/controllers/fd-enum-edit-form', ['exports', 'ember-flexberry-designer/controllers/fd-enum-edit-form'], function (exports, _emberFlexberryDesignerControllersFdEnumEditForm) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdEnumEditForm['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-enum-edit-form/new', ['exports', 'ember-flexberry-designer/controllers/fd-enum-edit-form/new'], function (exports, _emberFlexberryDesignerControllersFdEnumEditFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdEnumEditFormNew['default'];
+    }
+  });
+});
 define('dummy/controllers/fd-generation-list-form', ['exports', 'ember-flexberry-designer/controllers/fd-generation-list-form'], function (exports, _emberFlexberryDesignerControllersFdGenerationListForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -1253,6 +1269,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
     assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-editform-constructor/new.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-enum-edit-form.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers');
+  test('modules/ember-flexberry-designer/controllers/fd-enum-edit-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/fd-enum-edit-form.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-enum-edit-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/fd-enum-edit-form.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-enum-edit-form.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-enum-edit-form/new.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers/fd-enum-edit-form');
+  test('modules/ember-flexberry-designer/controllers/fd-enum-edit-form/new.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/fd-enum-edit-form/new.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-enum-edit-form/new.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/fd-enum-edit-form/new.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-enum-edit-form/new.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-generation-list-form.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/controllers');
   test('modules/ember-flexberry-designer/controllers/fd-generation-list-form.js should pass jscs', function () {
@@ -1706,6 +1748,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-editform-constructor.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-enum-edit-form.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/forms');
+  test('modules/ember-flexberry-designer/locales/en/forms/fd-enum-edit-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-enum-edit-form.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-enum-edit-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/forms/fd-enum-edit-form.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-enum-edit-form.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-generation-list-form.jscs-test', ['exports'], function (exports) {
@@ -2902,6 +2957,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-editform-constructor.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-enum-edit-form.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/forms');
+  test('modules/ember-flexberry-designer/locales/ru/forms/fd-enum-edit-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-enum-edit-form.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-enum-edit-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/forms/fd-enum-edit-form.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-enum-edit-form.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-generation-list-form.jscs-test', ['exports'], function (exports) {
@@ -7727,6 +7795,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ro
     assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-diagram-list-form.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-edit-enum-form/new.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes/fd-edit-enum-form');
+  test('modules/ember-flexberry-designer/routes/fd-edit-enum-form/new.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/fd-edit-enum-form/new.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-edit-enum-form/new.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-edit-enum-form/new.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-edit-enum-form/new.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-editform-constructor.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/routes');
   test('modules/ember-flexberry-designer/routes/fd-editform-constructor.js should pass jscs', function () {
@@ -7751,6 +7832,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ro
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-editform-constructor/new.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-enum-edit-form.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes');
+  test('modules/ember-flexberry-designer/routes/fd-enum-edit-form.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/fd-enum-edit-form.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-enum-edit-form.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-enum-edit-form.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-enum-edit-form.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-generation-list-form.jscs-test', ['exports'], function (exports) {
@@ -11895,6 +11989,8 @@ define('dummy/router', ['exports', 'ember', 'dummy/config/environment'], functio
     this.route('fd-diagram-list-form');
     this.route('fd-diagram-edit-form', { path: 'fd-diagram-edit-form/:id' });
     this.route('fd-diagram-edit-form.new', { path: 'fd-diagram-edit-form/new' });
+    this.route('fd-enum-edit-form', { path: 'fd-enum-edit-form/:id' });
+    this.route('fd-enum-edit-form.new', { path: 'fd-class-edit-form/new' });
     this.route('fd-inheritance-list-form');
     this.route('fd-inheritance-edit-form', { path: 'fd-inheritance-edit-form/:id' });
     this.route('fd-inheritance-edit-form.new', { path: 'fd-inheritance-edit-form/new' });
@@ -12088,6 +12184,22 @@ define('dummy/routes/fd-editform-constructor/form-config-panel', ['exports', 'em
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerRoutesFdEditformConstructorFormConfigPanel['default'];
+    }
+  });
+});
+define('dummy/routes/fd-enum-edit-form', ['exports', 'ember-flexberry-designer/routes/fd-enum-edit-form'], function (exports, _emberFlexberryDesignerRoutesFdEnumEditForm) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdEnumEditForm['default'];
+    }
+  });
+});
+define('dummy/routes/fd-enum-edit-form/new', ['exports', 'ember-flexberry-designer/routes/fd-enum-edit-form/new'], function (exports, _emberFlexberryDesignerRoutesFdEnumEditFormNew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdEnumEditFormNew['default'];
     }
   });
 });
@@ -29003,6 +29115,352 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
     };
   })());
 });
+define("dummy/templates/fd-enum-edit-form", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    var child0 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 16,
+                "column": 8
+              },
+              "end": {
+                "line": 20,
+                "column": 8
+              }
+            },
+            "moduleName": "dummy/templates/fd-enum-edit-form.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("          ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("button");
+            dom.setAttribute(el1, "type", "submit");
+            dom.setAttribute(el1, "class", "ui button save-del-button");
+            var el2 = dom.createTextNode("\n            ");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n          ");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var element0 = dom.childAt(fragment, [1]);
+            var morphs = new Array(2);
+            morphs[0] = dom.createElementMorph(element0);
+            morphs[1] = dom.createMorphAt(element0, 1, 1);
+            return morphs;
+          },
+          statements: [["element", "action", ["delete"], [], ["loc", [null, [17, 66], [17, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [18, 12], [18, 54]]]]],
+          locals: [],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 12,
+              "column": 6
+            },
+            "end": {
+              "line": 21,
+              "column": 6
+            }
+          },
+          "moduleName": "dummy/templates/fd-enum-edit-form.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("        ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("button");
+          dom.setAttribute(el1, "type", "submit");
+          dom.setAttribute(el1, "class", "ui button save-button");
+          var el2 = dom.createTextNode("\n          ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n        ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element1 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createElementMorph(element1);
+          morphs[1] = dom.createMorphAt(element1, 1, 1);
+          morphs[2] = dom.createMorphAt(fragment, 3, 3, contextualElement);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [["element", "action", ["save"], [], ["loc", [null, [13, 60], [13, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [14, 10], [14, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [16, 18], [16, 29]]]]], [], 0, null, ["loc", [null, [16, 8], [20, 19]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["multiple-nodes"]
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 105,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/fd-enum-edit-form.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("h3");
+        dom.setAttribute(el1, "class", "ui header");
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("form");
+        dom.setAttribute(el1, "class", "ui form flexberry-vertical-form");
+        dom.setAttribute(el1, "role", "form");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "field");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "sixteen wide");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "field");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "flexberry-edit-panel");
+        var el4 = dom.createTextNode("\n");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("button");
+        dom.setAttribute(el4, "type", "submit");
+        dom.setAttribute(el4, "class", "ui button close-button");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "field");
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "field");
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "field");
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("label");
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "field");
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "field");
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "field");
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("label");
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var element2 = dom.childAt(fragment, [2]);
+        var element3 = dom.childAt(element2, [5, 1]);
+        var element4 = dom.childAt(element3, [3]);
+        var element5 = dom.childAt(element2, [7]);
+        var element6 = dom.childAt(element2, [9]);
+        var element7 = dom.childAt(element2, [11]);
+        var element8 = dom.childAt(element2, [13]);
+        var element9 = dom.childAt(element2, [15]);
+        var element10 = dom.childAt(element2, [17]);
+        var morphs = new Array(20);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
+        morphs[1] = dom.createMorphAt(element2, 1, 1);
+        morphs[2] = dom.createMorphAt(dom.childAt(element2, [3, 1]), 1, 1);
+        morphs[3] = dom.createMorphAt(element3, 1, 1);
+        morphs[4] = dom.createElementMorph(element4);
+        morphs[5] = dom.createMorphAt(element4, 1, 1);
+        morphs[6] = dom.createMorphAt(element5, 1, 1);
+        morphs[7] = dom.createMorphAt(element5, 3, 3);
+        morphs[8] = dom.createMorphAt(element6, 1, 1);
+        morphs[9] = dom.createMorphAt(element6, 3, 3);
+        morphs[10] = dom.createMorphAt(dom.childAt(element7, [1]), 0, 0);
+        morphs[11] = dom.createMorphAt(element7, 3, 3);
+        morphs[12] = dom.createMorphAt(element7, 5, 5);
+        morphs[13] = dom.createMorphAt(element8, 1, 1);
+        morphs[14] = dom.createMorphAt(element8, 3, 3);
+        morphs[15] = dom.createMorphAt(element9, 1, 1);
+        morphs[16] = dom.createMorphAt(element9, 3, 3);
+        morphs[17] = dom.createMorphAt(dom.childAt(element10, [1]), 0, 0);
+        morphs[18] = dom.createMorphAt(element10, 3, 3);
+        morphs[19] = dom.createMorphAt(element10, 5, 5);
+        return morphs;
+      },
+      statements: [["inline", "t", ["forms.fd-enum-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 61]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [4, 26], [4, 31]]]]], [], []]], ["loc", [null, [4, 2], [4, 33]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [7, 43], [7, 55]]]]], [], []]], ["loc", [null, [7, 6], [7, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [12, 16], [12, 24]]]]], [], 0, null, ["loc", [null, [12, 6], [21, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [22, 59], [22, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [23, 8], [23, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [30, 16], [30, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [31, 13], [31, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [33, 10], [33, 20]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [34, 14], [34, 31]]]], "error", ""], [], ["loc", [null, [34, 10], [34, 43]]]], "label", ["subexpr", "t", ["forms.fd-enum-edit-form.name-caption"], [], ["loc", [null, [35, 10], [35, 52]]]]], ["loc", [null, [28, 2], [36, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [37, 38], [37, 55]]]]], [], []], "pointing", "pointing"], ["loc", [null, [37, 2], [37, 77]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [43, 16], [43, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [44, 13], [44, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [46, 10], [46, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [47, 14], [47, 38]]]], "error", ""], [], ["loc", [null, [47, 10], [47, 50]]]], "label", ["subexpr", "t", ["forms.fd-enum-edit-form.description-caption"], [], ["loc", [null, [48, 10], [48, 59]]]]], ["loc", [null, [41, 2], [49, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [50, 38], [50, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [50, 2], [50, 84]]]], ["inline", "t", ["forms.fd-enum-edit-form.onlyShowSelectedValue-caption"], [], ["loc", [null, [54, 9], [54, 70]]]], ["inline", "flexberry-checkbox", [], ["readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [57, 13], [57, 21]]]]], [], []], "value", ["subexpr", "@mut", [["get", "model.onlyShowSelectedValue", ["loc", [null, [58, 10], [58, 37]]]]], [], []]], ["loc", [null, [55, 2], [59, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.onlyShowSelectedValue", ["loc", [null, [60, 38], [60, 72]]]]], [], []], "pointing", "pointing"], ["loc", [null, [60, 2], [60, 94]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [66, 16], [66, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [67, 13], [67, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.packet", ["loc", [null, [69, 10], [69, 22]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.packet", ["loc", [null, [70, 14], [70, 33]]]], "error", ""], [], ["loc", [null, [70, 10], [70, 45]]]], "label", ["subexpr", "t", ["forms.fd-enum-edit-form.packet-caption"], [], ["loc", [null, [71, 10], [71, 54]]]]], ["loc", [null, [64, 2], [72, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.packet", ["loc", [null, [73, 38], [73, 57]]]]], [], []], "pointing", "pointing"], ["loc", [null, [73, 2], [73, 79]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [79, 16], [79, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [80, 13], [80, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.namespacePostfix", ["loc", [null, [82, 10], [82, 32]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.namespacePostfix", ["loc", [null, [83, 14], [83, 43]]]], "error", ""], [], ["loc", [null, [83, 10], [83, 55]]]], "label", ["subexpr", "t", ["forms.fd-enum-edit-form.namespacePostfix-caption"], [], ["loc", [null, [84, 10], [84, 64]]]]], ["loc", [null, [77, 2], [85, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.namespacePostfix", ["loc", [null, [86, 38], [86, 67]]]]], [], []], "pointing", "pointing"], ["loc", [null, [86, 2], [86, 89]]]], ["inline", "t", ["forms.fd-enum-edit-form.attributes-caption"], [], ["loc", [null, [90, 9], [90, 59]]]], ["inline", "flexberry-groupedit", [], ["componentName", "attributesGroupEdit", "mainModelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [94, 24], [94, 39]]]]], [], []], "modelProjection", ["subexpr", "@mut", [["get", "modelProjection.attributes.attributes", ["loc", [null, [95, 20], [95, 57]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model.attributes", ["loc", [null, [96, 12], [96, 28]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [97, 13], [97, 21]]]]], [], []], "orderable", false, "class", ["subexpr", "if", [["get", "model.errors.attributes", ["loc", [null, [99, 14], [99, 37]]]], "error", ""], [], ["loc", [null, [99, 10], [99, 49]]]]], ["loc", [null, [91, 2], [100, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.attributes", ["loc", [null, [101, 38], [101, 61]]]]], [], []], "pointing", "pointing"], ["loc", [null, [101, 2], [101, 83]]]]],
+      locals: [],
+      templates: [child0]
+    };
+  })());
+});
 define("dummy/templates/fd-generation-list-form", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     return {
@@ -38881,7 +39339,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+3d0d3b36"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+ec7970b0"});
 }
 
 /* jshint ignore:end */
