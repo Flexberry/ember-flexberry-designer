@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 import FdEditformControl from '../objects/fd-editform-control';
+import FdEditformRow from '../objects/fd-editform-row';
 import FdEditformGroup from '../objects/fd-editform-group';
 import FdEditformTab from '../objects/fd-editform-tab';
 import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
@@ -152,6 +153,25 @@ export default Ember.Controller.extend({
         rowContainer.insertAt(index, draggedRow);
       }
     },
+
+    /**
+      Overridden action for button 'Save'.
+      @method actions.save
+    */
+    save() {
+      this._saveMetadata(this.model);
+      this._super();
+    },
+
+    /**
+      Overridden action for button 'Save and close'.
+      @method actions.saveAndClose
+      @param {Boolean} skipTransition If `true`, then transition during close form process will be skipped after save.
+    */
+    saveAndClose(skipTransition) {
+      this._saveMetadata(this.model);
+      this._super(skipTransition);
+    }
   },
 
   /**
@@ -196,4 +216,70 @@ export default Ember.Controller.extend({
 
     return _container;
   },
+
+  /**
+    Save editform metadata: dataobject attributes, view, editform class.
+
+    @method _saveMetadata
+    @param {Object} model Complex model for processing and save.
+  */
+  _saveMetadata(model) {
+    // Сохранить атрибуты в объекте данных (id класса объекта данных)
+    // Сохранить представление (id представления)
+    let controls = model.controls;
+
+    // Обходим дерево и записываем свойства в коллекцию с указанием пути.
+    let viewDefinition = Ember.A();
+
+    for (let i = 0; i < controls.get('length'); i++) {
+      let innerControl = controls.objectAt(i);
+      let path = this._extractPathPart(innerControl, '', viewDefinition);
+
+    }
+
+    // Сохранить класс формы редактирования
+  },
+
+  _extractPathPart: function(control, path, viewDefinition) {
+    if (control instanceof FdEditformControl) {
+      // TODO: Добавить правильное заполнение объекта в предсталение.
+      viewDefinition.pushObject({ path: path, name: control.name });
+      return path;
+    } else if (control instanceof FdEditformRow) {
+      for (let i = 0; i < control.get('controls.length'); i++) {
+        let controlInRow = control.get('controls').objectAt(i);
+        let pathWithColumn = path;
+        if (control.get('controls.length') > 1) {
+          pathWithColumn = path + '\\#' + (i + 1);
+        }
+
+        this._extractPathPart(controlInRow, pathWithColumn, viewDefinition);
+      }
+    } else if (control instanceof FdEditformGroup) {
+      let pathWithGroup = '-' + control.caption;
+      if (path) {
+        pathWithGroup = path + '\\' + pathWithGroup;
+      }
+
+      for (let i = 0; i < control.get('rows.length'); i++) {
+        let rowInGroup = control.get('rows').objectAt(i);
+        this._extractPathPart(rowInGroup, pathWithGroup, viewDefinition);
+      }
+    } else if (control instanceof FdEditformTabgroup) {
+      for (let i = 0; i < control.get('tabs.length'); i++) {
+        let rowInGroup = control.get('tabs').objectAt(i);
+        this._extractPathPart(rowInGroup, path, viewDefinition);
+      }
+    } else if (control instanceof FdEditformTab) {
+      let pathWithTab = '|' + control.caption;
+      if (path) {
+        pathWithTab = path + '\\' + pathWithTab;
+      }
+
+      for (let i = 0; i < control.get('rows.length'); i++) {
+        let rowInGroup = control.get('rows').objectAt(i);
+        this._extractPathPart(rowInGroup, pathWithTab, viewDefinition);
+      }
+    }
+  }
 });
