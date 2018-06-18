@@ -5,7 +5,7 @@ module.exports = function (environment) {
 
   if (environment === 'development-loc') {
     // Use `ember s -e development-loc` command for local backend usage.
-    backendUrl = 'http://localhost:8600';
+    backendUrl = 'http://rtc-web:2018';
   }
 
   var ENV = {

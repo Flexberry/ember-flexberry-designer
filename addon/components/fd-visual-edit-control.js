@@ -10,6 +10,8 @@ export default Ember.Component.extend({
 
   typemap: undefined,
 
+  fbtypes: undefined,
+
   /**
     @private
     @property _selectedIsControl
@@ -57,6 +59,7 @@ export default Ember.Component.extend({
   getAllTypes() {
     let typemap = this.get('typemap');
     let enums = this.get('enums');
+    let fbtypes = this.get('fbtypes');
     let ret = Ember.A();
     for (let type of typemap) {
       ret.push(type.name);
@@ -66,7 +69,16 @@ export default Ember.Component.extend({
       ret.push(sEnum._data.caption);
     }
 
-    this.set('types', ret);
+    for (let type of fbtypes.content) {
+      ret.push(type._data.caption);
+    }
+
+    if (ret.length !== 0) {
+      this.set('types', ret);
+    } else {
+      this.set('types', []);
+    }
+
   },
 
   allowNull: Ember.computed('selectedControl.notNull', {
