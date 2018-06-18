@@ -798,33 +798,33 @@ export default {
     },
     EditEnum: {
       name: {
-        __caption__: ''
+        __caption__: 'Имя'
       },
       description: {
-        __caption__: ''
+        __caption__: 'Описание'
       },
       onlyShowSelectedValue: {
-        __caption__: ''
+        __caption__: 'Просто показывать выбранное значение'
       },
       packet: {
-        __caption__: ''
+        __caption__: 'Пакет'
       },
       namespacePostfix: {
-        __caption__: ''
+        __caption__: 'Постфикс пространства имен'
       },
       attributes: {
-        __caption__: '',
+        __caption__: 'Возможные значения',
         name: {
-          __caption__: ''
+          __caption__: 'Имя'
         },
         description: {
-          __caption__: ''
+          __caption__: 'Описание'
         },
         defaultValue: {
-          __caption__: ''
+          __caption__: 'Значение по умолчанию'
         },
         caption: {
-          __caption__: ''
+          __caption__: 'Заголовок'
         }
       }
     },

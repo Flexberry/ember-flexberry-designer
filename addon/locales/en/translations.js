@@ -14,6 +14,7 @@ import FdAssociationEditFormForm from './forms/fd-association-edit-form';
 import FdClassEditFormForm from './forms/fd-class-edit-form';
 import FdConfigurationEditFormForm from './forms/fd-configuration-edit-form';
 import FdDiagramEditFormForm from './forms/fd-diagram-edit-form';
+import FdEnumEditFormForm from './forms/fd-enum-edit-form';
 import FdInheritanceEditFormForm from './forms/fd-inheritance-edit-form';
 import FdStageEditFormForm from './forms/fd-stage-edit-form';
 import FdSystemEditFormForm from './forms/fd-system-edit-form';
@@ -180,6 +181,7 @@ Ember.$.extend(true, translations, {
     'fd-class-edit-form': FdClassEditFormForm,
     'fd-configuration-edit-form': FdConfigurationEditFormForm,
     'fd-diagram-edit-form': FdDiagramEditFormForm,
+    'fd-enum-edit-form': FdEnumEditFormForm,
     'fd-inheritance-edit-form': FdInheritanceEditFormForm,
     'fd-stage-edit-form': FdStageEditFormForm,
     'fd-system-edit-form': FdSystemEditFormForm,
