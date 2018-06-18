@@ -103,7 +103,7 @@
           {{#each model.view.definition as |property index|}}
           <tr class={{if (eq selectedRowIndex index) "active" ""}} onclick={{action "onAttributesClick" index}}>
             <td>
-              {{#if property.detailViewNameItems}}
+              {{#if (or property.detailViewName (eq property.detailViewName ''))}}
                 <img src="assets/images/datail.png">
               {{else}}
                 {{#if property.lookupType}}
@@ -214,7 +214,7 @@
             <label>{{t "forms.fd-view-edit-form.settings-detail.view"}}</label>
             {{
               flexberry-dropdown
-              items=rowModel.detailViewNameItems
+              items=detailViewNameItems
               value=rowModel.detailViewName
               placeholder=(t 'components.flexberry-field.placeholder')
               readonly=readonly

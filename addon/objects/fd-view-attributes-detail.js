@@ -27,12 +27,4 @@ export default FdViewAttributesProperty.extend({
     @type Boolean
   */
   loadOnLoadAgregator: false,
-
-  /**
-    Array of possible 'detailViewName'.
-
-    @property detailViewNameItems
-    @type Array
-  */
-  detailViewNameItems: undefined,
 });

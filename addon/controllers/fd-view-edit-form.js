@@ -26,7 +26,25 @@ export default EditFormController.extend({
   selectedRowIndex: null,
 
   /**
-    Index of the selected attribute for editing.
+    Array of possible view for all details.
+
+    @property detailsViewArray
+    @type Array
+    @default undefined
+   */
+  detailsViewArray: undefined,
+
+  /**
+    Array of possible view name for selected detail for editing.
+
+    @property detailViewNameItems
+    @type Array
+    @default undefined
+   */
+  detailViewNameItems: undefined,
+
+  /**
+    Type of the selected master for editing.
 
     @property lookupTypeItems
     @type Array
@@ -101,6 +119,12 @@ export default EditFormController.extend({
     let index = this.get('selectedRowIndex');
     if (!Ember.isNone(index)) {
       let rowModel = model[index];
+      let detailsViewArray = this.get('detailsViewArray');
+      let detailView = detailsViewArray.findBy('detailName', rowModel.name);
+      if (detailView) {
+        this.set('detailViewNameItems', detailView.detailViewNameItems);
+      }
+
       return rowModel;
     }
 
@@ -198,8 +222,7 @@ export default EditFormController.extend({
           break;
         case 'detail':
           newDdfinition = FdViewAttributesDetail.create({
-            name: propertyName,
-            detailViewNameItems: selectedNodes.original.detailViewNameItems
+            name: propertyName
           });
           break;
       }
@@ -272,14 +295,11 @@ export default EditFormController.extend({
     */
     saveView() {
       let view = this.get('model.view');
-      let definitionCopy = view.get('definition').slice();
       view.set('definition', Ember.A(view.get('definition').toArray()));
       let _this = this;
 
       this.get('objectlistviewEventsService').setLoadingState('loading');
       view.save().then(() => {
-        view.set('definition', Ember.A(definitionCopy));
-        view.set('hasDirtyAttributes', false);
         let routeName = _this.get('routeName');
         if (routeName.indexOf('.new') > 0) {
           _this.transitionToRoute(routeName.slice(0, -4), view.get('id'));
