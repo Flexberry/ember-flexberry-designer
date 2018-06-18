@@ -1,0 +1,14 @@
+﻿{
+  "propertyLookup": [],
+  "external": false,
+  "caption": "Enum",
+  "name": "FdEnumEditForm",
+  "className": "EnumEditForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-dev-class",
+      "modelProjection": "EditEnum"
+    }
+  ]
+}
