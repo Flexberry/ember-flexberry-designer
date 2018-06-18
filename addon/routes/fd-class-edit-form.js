@@ -27,11 +27,15 @@ export default EditFormRoute.extend({
     }
   },
 
-  setupController: function(controller, model) {
+  afterModel: function(model) {
+    this._super(model);
+
     if (!model.get('caption')) {
       model.set('caption', model.get('name'));
     }
 
-    this._super(controller, model);
-  }
+    if (model.get('stereotype') === '«enumeration»') {
+      this.transitionTo('fd-enum-edit-form', model);
+    }
+  },
 });
