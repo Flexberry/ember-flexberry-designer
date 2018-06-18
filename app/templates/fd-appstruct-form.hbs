@@ -59,24 +59,15 @@
   </tr>
   <tr>
     <td valign='top'>
-        {{flexberry-tree
-        class=jsonLeftTreeClass
-        exclusive=jsonTreeExclusive
-        collapsible=jsonLeftTreeCollapsible
-        animateChildren=jsonTreeAnimateChildren
-        duration=jsonTreeDuration
-        nodes=(get-with-dynamic-actions this "jsonLeftTreeNodes"
-          hierarchyPropertyName="nodes"
-          pathKeyword="nodePath"
-          dynamicActions=(array
-            (hash
-              on="headerClick"
-              actionName="onTreenodeHeaderClick"
-              actionArguments=(array "{% nodePath %}")
-            )
-          )
-        )
-      }}
+        {{ember-jstree
+          actionReceiver=jstreeActionReceiver
+          selectedNodes=jstreeSelectedNodes
+          data=jsonLeftTreeNodes
+          plugins=plugins
+          typesOptions=typesOptions
+          eventDidBecomeReady=(action 'handleTreeDidBecomeReady')
+          treeObject=jstreeObject
+        }}
     </td>
     <td valign='top' align='center'>
       <button class='ui button icon move {{moveRightDisabled}}' {{action "moveRightHighlighted" on="click" }}>

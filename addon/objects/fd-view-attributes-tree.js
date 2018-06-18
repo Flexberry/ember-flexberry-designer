@@ -50,7 +50,7 @@ export default Ember.Object.extend({
     @property children
     @type Array
   */
-  children: [],
+  children: undefined,
 
   /**
     Copy children property.
@@ -58,7 +58,7 @@ export default Ember.Object.extend({
     @property copyChildren
     @type Array
   */
-  copyChildren: [],
+  copyChildren: undefined,
 
   /**
     State property for jsTree.
