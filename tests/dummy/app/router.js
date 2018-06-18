@@ -28,6 +28,10 @@ Router.map(function () {
   { path: 'fd-diagram-edit-form/:id' });
   this.route('fd-diagram-edit-form.new',
   { path: 'fd-diagram-edit-form/new' });
+  this.route('fd-enum-edit-form',
+  { path: 'fd-enum-edit-form/:id' });
+  this.route('fd-enum-edit-form.new',
+  { path: 'fd-class-edit-form/new' });
   this.route('fd-inheritance-list-form');
   this.route('fd-inheritance-edit-form',
   { path: 'fd-inheritance-edit-form/:id' });

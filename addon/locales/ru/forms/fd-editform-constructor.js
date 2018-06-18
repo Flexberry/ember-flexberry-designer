@@ -5,6 +5,7 @@ export default {
     'form-name': 'Название формы',
     'form-description': 'Описание',
     'control-properties-header': 'Свойства элемента управления',
+    'all-controls-header': 'Все элементы управления',
     'control-caption': 'Заголовок',
     'control-type': 'Тип',
     'group-caption': 'Заголовок группы',

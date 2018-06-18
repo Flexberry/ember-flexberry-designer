@@ -1,0 +1,23 @@
+#example.pusher{
+  -webkit-transition: transform 500ms ease, width 500ms ease;
+  -moz-transition: transform 500ms ease, width 500ms ease;
+  -o-transition: transform 500ms ease, width 500ms ease;
+  transition: transform 500ms ease, width 500ms ease;
+}
+
+// style for edit form config panel
+.ui.right.sidebar.config-panel {
+  transform: translate3d(0, 0, 0);
+  z-index: 1;
+  visibility: visible;
+
+  .ui.vertical.menu {
+    width: 4rem;
+    margin-top: 0;
+
+    &.tabular .item {
+      -webkit-writing-mode: vertical-rl;
+      writing-mode: tb-rl;
+    }
+  }
+}

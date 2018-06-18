@@ -150,9 +150,16 @@ export default Ember.Controller.extend({
   */
   objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
 
+  configPanelTabsWidth: 58,
+
   actions: {
     toggleSidebar() {
       let sidebar = Ember.$('.ui.sidebar.main.menu');
+      let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
+
+      let configPanelSidebarVisible = configPanelSidebar.hasClass('visible');
+      let sidebarVisible = sidebar.hasClass('visible');
+
       let objectlistviewEventsService = this.get('objectlistviewEventsService');
       sidebar.sidebar({
         closable: false,
@@ -177,10 +184,22 @@ export default Ember.Controller.extend({
         Ember.$('.sidebar.icon.text-menu-hide').removeClass('hidden');
       }
 
-      if (Ember.$('.inverted.vertical.main.menu').hasClass('visible')) {
-        Ember.$('.full.height').css({ transition: 'width 0.45s ease-in-out 0s', width: '100%' });
+      let configPanelTabsWidth = this.currentRouteName.split('.')[0] === 'fd-editform-constructor' ? this.configPanelTabsWidth : 0;
+
+      Ember.$('.inverted.vertical.main.menu').removeClass('overlay');
+
+      if (sidebarVisible) {
+        if (!configPanelSidebarVisible) {
+          Ember.$('.pusher').css({ width: 'calc(100% - ' + configPanelTabsWidth + 'px)', transform: 'translate3d(0, 0, 0)' });
+        } else {
+          Ember.$('.pusher').css({ width: 'calc(100% - ' + configPanelSidebar.width() + 'px)', transform: 'translate3d(0, 0, 0)' });
+        }
+      } else if (!configPanelSidebarVisible) {
+        let workPanel = sidebar.width() + configPanelTabsWidth;
+        Ember.$('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)', transform: 'translate3d(' + sidebar.width() + 'px, 0, 0)' });
       } else {
-        Ember.$('.full.height').css({ transition: 'width 0.3s ease-in-out 0s', width: 'calc(100% - ' + sidebar.width() + 'px)' });
+        let workPanel = sidebar.width() + configPanelSidebar.width();
+        Ember.$('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)', transform: 'translate3d(' + sidebar.width() + 'px, 0, 0)' });
       }
     },
 

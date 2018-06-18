@@ -5,19 +5,15 @@ export default EditFormRoute.extend({
   modelProjection: 'FdEditClassForm',
   modelName: 'fd-dev-class',
 
-  /**
-    Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
+  afterModel: function(model) {
+    this._super(model);
 
-    @property currentContext
-    @type FdCurrentProjectContextService
-  */
-  currentContext: Ember.inject.service('fd-current-project-context'),
-
-  setupController: function(controller, model) {
     if (!model.get('caption')) {
       model.set('caption', model.get('name'));
     }
 
-    this._super(controller, model);
-  }
+    if (model.get('stereotype') === '«enumeration»') {
+      this.transitionTo('fd-enum-edit-form', model);
+    }
+  },
 });
