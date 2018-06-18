@@ -8,6 +8,8 @@ import FdEditformTab from '../objects/fd-editform-tab';
 export default Ember.Component.extend({
   enums: undefined,
 
+  typemap: undefined,
+
   /**
     @private
     @property _selectedIsControl
@@ -52,6 +54,21 @@ export default Ember.Component.extend({
 
   types: undefined,
 
+  getAllTypes() {
+    let typemap = this.get('typemap');
+    let enums = this.get('enums');
+    let ret = Ember.A();
+    for (let type of typemap) {
+      ret.push(type.name);
+    }
+
+    for (let sEnum of enums.content) {
+      ret.push(sEnum._data.caption);
+    }
+
+    this.set('types', ret);
+  },
+
   allowNull: Ember.computed('selectedControl.notNull', {
     get() {
       return !this.get('selectedControl.notNull');
@@ -67,5 +84,10 @@ export default Ember.Component.extend({
       default:
         return 'flexberry-textbox';
     }
-  })
+  }),
+
+  init() {
+    this._super(...arguments);
+    this.getAllTypes();
+  }
 });

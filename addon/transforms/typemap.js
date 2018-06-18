@@ -11,7 +11,15 @@ export default DS.Transform.extend({
       if (items.length > 0) {
         let arr = items[0].getElementsByTagName('*');
         for (let item of arr) {
-          ret.push(item.tagName);
+          let obj = {
+            name: item.tagName
+          };
+
+          for (let attr of item.attributes) {
+            obj[attr.nodeName] = attr.nodeValue;
+          }
+
+          ret.push(obj);
         }
       }
     }
@@ -19,8 +27,10 @@ export default DS.Transform.extend({
     return ret;
   },
 
-  serialize(deserialized, options) {
-    return Ember.isEmpty(deserialized) ? null : Number(deserialized);
+  serialize(deserialized) {
+    if (!deserialized) {
+      return deserialized;
+    }
   }
 
 });
