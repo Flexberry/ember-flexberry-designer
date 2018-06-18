@@ -63,7 +63,11 @@
           <div class="ui small dividing header">
             {{t "forms.fd-editform-constructor.form-config-panel.control-properties-header"}}
           </div>
-          {{fd-visual-edit-control selectedControl=selectedControl}}
+          {{fd-visual-edit-control
+            selectedControl=selectedControl
+            types=model.typemap
+            enums=model.enums
+          }}
         </div>
 
         <div class="ui bottom attached tab segment top" data-tab="all-controls">

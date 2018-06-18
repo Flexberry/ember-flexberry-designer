@@ -6,6 +6,8 @@ import FdEditformGroup from '../objects/fd-editform-group';
 import FdEditformTab from '../objects/fd-editform-tab';
 
 export default Ember.Component.extend({
+  enums: undefined,
+
   /**
     @private
     @property _selectedIsControl
@@ -48,7 +50,7 @@ export default Ember.Component.extend({
 
   _readonly: Ember.computed.empty('selectedControl'),
 
-  types: ['int', 'bool', 'string', 'date'],
+  types: undefined,
 
   allowNull: Ember.computed('selectedControl.notNull', {
     get() {
@@ -65,5 +67,5 @@ export default Ember.Component.extend({
       default:
         return 'flexberry-textbox';
     }
-  }),
+  })
 });
