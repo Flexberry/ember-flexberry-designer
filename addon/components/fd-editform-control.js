@@ -68,21 +68,19 @@ export default Ember.Component.extend({
   }).readOnly(),
 
   /**
-    See [EmberJS API](https://emberjs.com/api/).
-
-    @property tagName
-  */
-  tagName: Ember.computed('_isControl', function() {
-    return this.get('_isControl') ? '' : 'div';
-  }),
-
-  /**
     The control to render.
 
     @property control
     @type FdEditformControl|FdEditformGroup|FdEditformTabgroup
   */
   control: undefined,
+
+  /**
+    See [EmberJS API](https://emberjs.com/api/).
+
+    @property classNames
+  */
+  classNames: ['field'],
 
   /**
     See [EmberJS API](https://emberjs.com/api/).
