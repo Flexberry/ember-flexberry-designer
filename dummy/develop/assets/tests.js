@@ -6885,17 +6885,78 @@ define('dummy/tests/unit/services/fd-generation-test.jshint', ['exports'], funct
     assert.ok(true, 'unit/services/fd-generation-test.js should pass jshint.');
   });
 });
-define('dummy/tests/unit/transforms/containers-tree-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+define('dummy/tests/unit/transforms/containers-tree-test', ['exports', 'ember', 'ember-qunit', 'ember-flexberry-designer/objects/fd-view-attributes-tree'], function (exports, _ember, _emberQunit, _emberFlexberryDesignerObjectsFdViewAttributesTree) {
 
-  (0, _emberQunit.moduleFor)('transform:containers-tree', 'Unit | Transform | containers tree', {
-    // Specify the other units that are required for this test.
-    // needs: ['serializer:foo']
-  });
+  (0, _emberQunit.moduleFor)('transform:containers-tree', 'Unit | Transform | containers tree');
 
   // Replace this with your real tests.
   (0, _emberQunit.test)('it exists', function (assert) {
+
+    var noteNoteObjectModel1 = _ember['default'].A([_emberFlexberryDesignerObjectsFdViewAttributesTree['default'].create({
+      className: 'ПисьмоWebL',
+      description: null,
+      text: 'Настройка рассылки писем',
+      type: 'property'
+    })]);
+
+    var noteNoteObjectModel2 = _ember['default'].A([_emberFlexberryDesignerObjectsFdViewAttributesTree['default'].create({
+      className: 'ЖурналИмпортаWebL',
+      description: null,
+      text: 'Журнал импорта',
+      type: 'property'
+    })]);
+
+    var noteObjectModel1 = _ember['default'].A([_emberFlexberryDesignerObjectsFdViewAttributesTree['default'].create({
+      text: 'Настройки',
+      type: 'master',
+      children: _ember['default'].A(),
+      copyChildren: _ember['default'].A()
+    }), _emberFlexberryDesignerObjectsFdViewAttributesTree['default'].create({
+      text: 'Рассылка по e-mail',
+      type: 'master',
+      children: noteNoteObjectModel1,
+      copyChildren: noteNoteObjectModel1
+    }), _emberFlexberryDesignerObjectsFdViewAttributesTree['default'].create({
+      text: 'Импорт данных',
+      type: 'master',
+      children: noteNoteObjectModel2,
+      copyChildren: noteNoteObjectModel2
+    })]);
+
+    var noteObjectModel2 = _ember['default'].A([_emberFlexberryDesignerObjectsFdViewAttributesTree['default'].create({
+      className: 'УчетРабочегоВремениWebL',
+      description: 'test',
+      text: 'Учет рабочего времени',
+      type: 'property'
+    }), _emberFlexberryDesignerObjectsFdViewAttributesTree['default'].create({
+      className: 'ПроизводственныйКалендарьWebL',
+      description: null,
+      text: 'Производственный календарь',
+      type: 'property'
+    })]);
+
+    var objectModel = _ember['default'].A([_emberFlexberryDesignerObjectsFdViewAttributesTree['default'].create({
+      text: 'Администрирование',
+      type: 'master',
+      children: noteObjectModel1,
+      copyChildren: noteObjectModel1
+    }), _emberFlexberryDesignerObjectsFdViewAttributesTree['default'].create({
+      text: 'Поручения',
+      type: 'master',
+      children: noteObjectModel2,
+      copyChildren: noteObjectModel2
+    })]);
+
+    var xml = '' + '<Containers>' + '<ContainersList>' + '<Item ClassName="##########" MenuPath="Администрирование" Caption="" Description="" />' + '<Item ClassName="##########" MenuPath="Администрирование\\Настройки" Caption="" Description="" />' + '<Item ClassName="ПисьмоWebL" MenuPath="Администрирование\\Рассылка по e-mail" Caption="Настройка рассылки писем" Description="" />' + '<Item ClassName="ЖурналИмпортаWebL" MenuPath="Администрирование\\Импорт данных" Caption="Журнал импорта" Description="" />' + '<Item ClassName="УчетРабочегоВремениWebL" MenuPath="Поручения" Caption="Учет рабочего времени" Description="test" />' + '<Item ClassName="ПроизводственныйКалендарьWebL" MenuPath="Поручения" Caption="Производственный календарь" Description="" />' + '</ContainersList>' + '</Containers>';
+
     var transform = this.subject();
     assert.ok(transform);
+
+    var deserializeResult = transform.deserialize(xml);
+    assert.deepEqual(deserializeResult, objectModel, 'ConteinersTree deserialize does not work');
+
+    var serializeResult = transform.serialize(deserializeResult);
+    assert.equal(serializeResult, xml, 'ConteinersTree serialize does not work');
   });
 });
 define('dummy/tests/unit/transforms/containers-tree-test.jscs-test', ['exports'], function (exports) {

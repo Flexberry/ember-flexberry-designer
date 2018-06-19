@@ -31,6 +31,13 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/controllers/fd-appstruct-form.js": {
+            "name": "addon/controllers/fd-appstruct-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/controllers/fd-association-list-form.js": {
             "name": "addon/controllers/fd-association-list-form.js",
             "modules": {},
@@ -1668,6 +1675,100 @@
             "file": "addon/components/fd-visual-edit-form.js",
             "line": 155,
             "description": "Initializes DOM-related component's properties.",
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 38,
+            "description": "Data left jsTree.",
+            "itemtype": "property",
+            "name": "jsonLeftTreeNodes",
+            "type": "Array",
+            "default": "null",
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 47,
+            "description": "Data right jsTree.",
+            "itemtype": "property",
+            "name": "jsonRightTreeNodes",
+            "type": "Array",
+            "default": "null",
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 56,
+            "description": "Included plugins for left jsTree.",
+            "itemtype": "property",
+            "name": "pluginsLeft",
+            "type": "String",
+            "default": "'wholerow, types, sort'",
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 65,
+            "description": "Included plugins for right jsTree.",
+            "itemtype": "property",
+            "name": "pluginsRight",
+            "type": "String",
+            "default": "'wholerow, types'",
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 74,
+            "description": "Selected nodes in left jsTree.",
+            "itemtype": "property",
+            "name": "jstreeSelectedNodesLeft",
+            "type": "Array",
+            "default": "[]",
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 83,
+            "description": "Selected nodes in right jsTree.",
+            "itemtype": "property",
+            "name": "jstreeSelectedNodesRight",
+            "type": "Array",
+            "default": "[]",
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 92,
+            "description": "Type settings for jsTree.",
+            "itemtype": "property",
+            "name": "typesOptions",
+            "type": "Object",
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 341,
+            "description": "Handles creating left jsTree.",
+            "itemtype": "method",
+            "name": "actions.handleLeftTreeDidBecomeReady",
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 351,
+            "description": "Handles creating right jsTree.",
+            "itemtype": "method",
+            "name": "actions.handleRightTreeDidBecomeReady",
             "class": "FdLimitByStageMixin",
             "module": "ember-flexberry-designer"
         },
