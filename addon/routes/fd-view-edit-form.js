@@ -32,5 +32,31 @@ export default Ember.Route.extend({
       view: data,
       tree: tree
     };
+  },
+
+  activate() {
+    let sidebar = Ember.$('.ui.sidebar.main.menu');
+    let configPanelTabsWidth = this.controllerFor(this.routeName).get('configPanelTabsWidth');
+    if (!sidebar.hasClass('visible')) {
+      Ember.$('.pusher').css({ width: 'calc(100% - ' + configPanelTabsWidth + 'px)' });
+    } else {
+      let workPanel = sidebar.width() + configPanelTabsWidth;
+      Ember.$('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)' });
+    }
+
+    Ember.run.schedule('afterRender', function() {
+      let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
+      Ember.$('.menu .item', configPanelSidebar).tab();
+    });
+  },
+
+  deactivate() {
+    let sidebar = Ember.$('.ui.sidebar.main.menu');
+
+    if (!sidebar.hasClass('visible')) {
+      Ember.$('.pusher').css({ width: '100%' });
+    } else {
+      Ember.$('.pusher').css({ width: 'calc(100% - ' + sidebar.width() + 'px)' });
+    }
   }
 });
