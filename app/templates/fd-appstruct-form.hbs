@@ -1,10 +1,14 @@
+<form class="ui form flexberry-vertical-form" role="form">
 {{flexberry-error error=error}}
 <h3>{{t 'forms.fd-appstruct-form.caption'}}</h3>
 <div class="field">
   <div class="flexberry-edit-panel">
-    <button class="ui {{saveButtonClass}} button save-button" {{action "saveTree"}}>{{t "forms.fd-appstruct-form.button-save"}}</button>
-    <button class="ui {{processButtonClass}} button" {{action "openProcessEditorForm"}}><i class="sitemap icon"></i>{{t "forms.fd-appstruct-form.button-precess-editor"}}</button>
-    <button class="ui {{generationButtonClass}} button" {{action "openGenerationForm"}}><i class="settings icon"></i>{{t "forms.fd-appstruct-form.button-generation"}}</button>
+    <button class="ui button save-button" {{action "saveTree"}}>{{t "forms.fd-appstruct-form.button-save"}}</button>
+    <button class="ui button" {{action "openProcessEditorForm"}}><i class="sitemap icon"></i>{{t "forms.fd-appstruct-form.button-precess-editor"}}</button>
+    <button class="ui  button" {{action "openGenerationForm"}}><i class="settings icon"></i>{{t "forms.fd-appstruct-form.button-generation"}}</button>
+    <button type="submit" class="ui button close-button" {{action 'close'}}>
+      {{t "forms.edit-form.close-button-text"}}
+    </button>
   </div>
 </div>
 
@@ -16,7 +20,7 @@
         <button class='ui button icon {{removeLeftNodeDisabled}}' title="{{t "forms.fd-appstruct-form.remove-text"}}" {{action "removeLeftNode" on="click" }}>
           <i class="remove icon" ></i>
         </button>
-        <button class="ui button create-button" title="{{t "forms.fd-appstruct-form.add-class-text"}}" {{action 'addLeftClass'}}>
+        <button class="ui button create-button disabled" title="{{t "forms.fd-appstruct-form.add-class-text"}}" {{action 'addLeftClass'}}>
           <i class="add circle icon"></i>
         </button>
         <button class="ui button create-button {{addLeftNodeDisabled}}" title="{{t "forms.fd-appstruct-form.add-editform-text"}}" {{action 'addLeftEditForm'}}>
@@ -28,7 +32,7 @@
         <button class='ui button icon {{editLeftNodeDisabled}}' title="{{t "forms.fd-appstruct-form.edit-text"}}" {{action "editLeftNode" on="click" }}>
           <i class="edit icon"></i>
         </button>
-        <button class='ui button icon {{listLeftDisabled}}' {{action "listLeft" on="click" }}>
+        <button class='ui button icon' {{action "listLeft" on="click" }}>
           <i class="list icon"></i>
         </button>
       </div>
@@ -60,13 +64,13 @@
   <tr>
     <td valign='top'>
         {{ember-jstree
-          actionReceiver=jstreeActionReceiver
-          selectedNodes=jstreeSelectedNodes
+          actionReceiver=jstreeActionReceiverLeft
+          selectedNodes=jstreeSelectedNodesLeft
           data=jsonLeftTreeNodes
-          plugins=plugins
+          plugins=pluginsLeft
           typesOptions=typesOptions
-          eventDidBecomeReady=(action 'handleTreeDidBecomeReady')
-          treeObject=jstreeObject
+          eventDidBecomeReady=(action 'handleLeftTreeDidBecomeReady')
+          treeObject=jstreeObjectLeft
         }}
     </td>
     <td valign='top' align='center'>
@@ -75,25 +79,17 @@
       </button>
     </td>
     <td valign='top'>
-        {{flexberry-tree
-        class=jsonRightTreeClass
-        exclusive=jsonTreeExclusive
-        collapsible=jsonRightTreeCollapsible
-        animateChildren=jsonTreeAnimateChildren
-        duration=jsonTreeDuration
-        nodes=(get-with-dynamic-actions this "jsonRightTreeNodes"
-          hierarchyPropertyName="nodes"
-          pathKeyword="nodePath"
-          dynamicActions=(array
-            (hash
-              on="headerClick"
-              actionName="onTreenodeHeaderClick"
-              actionArguments=(array "{% nodePath %}")
-            )
-          )
-        )
+      {{ember-jstree
+        actionReceiver=jstreeActionReceiverRight
+        selectedNodes=jstreeSelectedNodesRight
+        data=jsonRightTreeNodes
+        plugins=pluginsRight
+        typesOptions=typesOptions
+        eventDidBecomeReady=(action 'handleRightTreeDidBecomeReady')
+        treeObject=jstreeObjectRight
       }}
     </td>
   </tr>
 </table>
 </div>
+</form>

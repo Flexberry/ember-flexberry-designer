@@ -1,24 +1,16 @@
 import Ember from 'ember';
-import FlexberryTreenodeActionsHandlerMixin from 'ember-flexberry/mixins/flexberry-treenode-actions-handler';
 import TreeNodeObject from 'ember-flexberry/objects/tree-node';
 import FdViewAttributesTree from '../objects/fd-view-attributes-tree';
 import { Query } from 'ember-flexberry-data';
-/*const { Builder, FilterOperator } = Query;*/
+import EditFormController from 'ember-flexberry/controllers/edit-form';
 
-export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
+export default EditFormController.extend({
 
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
-
-  approveButtonCaption: 'OK',
-
-  cancelButtonCaption: 'Cancel',
-
-  treeChanged: false,
 
   removeLeftNodeDisabled: 'disabled',
   addLeftNodeDisabled: 'disabled',
   editLeftNodeDisabled: 'disabled',
-  listLeftDisabled: '',
 
   moveRightDisabled: 'disabled',
 
@@ -43,28 +35,59 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     }
   },
 
+  /**
+    Data left jsTree.
+
+    @property jsonLeftTreeNodes
+    @type Array
+    @default null
+   */
   jsonLeftTreeNodes:null,
 
+  /**
+    Data right jsTree.
+
+    @property jsonRightTreeNodes
+    @type Array
+    @default null
+   */
   jsonRightTreeNodes: null,
 
+  /**
+    Included plugins for left jsTree.
+
+    @property pluginsLeft
+    @type String
+    @default 'wholerow, types, sort'
+   */
+  pluginsLeft: 'wholerow, types, sort',
 
   /**
-    Included plugins for jsTree.
+    Included plugins for right jsTree.
 
-    @property plugins
+    @property pluginsRight
     @type String
     @default 'wholerow, types'
    */
-  plugins: 'wholerow, types',
+  pluginsRight: 'wholerow, types',
 
   /**
-    Selected nodes in jsTree.
+    Selected nodes in left jsTree.
 
-    @property jstreeSelectedNodes
+    @property jstreeSelectedNodesLeft
     @type Array
     @default []
    */
-  jstreeSelectedNodes: Ember.A(),
+  jstreeSelectedNodesLeft: Ember.A(),
+
+  /**
+    Selected nodes in right jsTree.
+
+    @property jstreeSelectedNodesRight
+    @type Array
+    @default []
+   */
+  jstreeSelectedNodesRight: Ember.A(),
 
   /**
     Type settings for jsTree.
@@ -73,29 +96,28 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     @type Object
   */
   typesOptions: Ember.computed(() => ({
-    'property': {
-      icon: 'assets/images/attribute.bmp'
+    '«listform»': {
+      icon: 'assets/images/listform.png'
+    },
+    '«editform»': {
+      icon: 'assets/images/editform.png'
+    },
+    'implementations': {
+      icon: 'assets/images/implementations.png'
+    },
+    'desk': {
+      icon: 'assets/images/class.bmp'
+    },
+    'notStored': {
+      icon: 'assets/images/notStored.png'
     },
     'master': {
       icon: 'assets/images/master.bmp'
     },
-    'detail': {
-      icon: 'assets/images/datail.png'
-    },
-    'class': {
-      icon: 'assets/images/class.bmp'
+    'property': {
+      icon: 'assets/images/attribute.bmp'
     }
   })),
-
-  /*
-  jsonLeftTreeNodes: Ember.computed('model.jsonLeftTreeNodes', function() {
-    return this._jsTreeToFlexberryTree(this.model.jsonLeftTreeNodes);
-  }),
-
-  jsonRightTreeNodes: Ember.computed('model.jsonRightTreeNodes', function() {
-    return this._jsTreeToFlexberryTree(this.model.jsonRightTreeNodes);
-  }),
-  */
 
   _modelObserver: Ember.on('init', Ember.observer('model', function() {
     if (!this.get('model')) {
@@ -113,11 +135,15 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       let idParent = form.get('formViews').mapBy('view.class.id');
       treeNodeForms.pushObject(
         FdViewAttributesTree.create({
-          text: form.get('name'), //  form.get('caption') form.get('description')
+          text: form.get('caption') || form.get('name'),
+          name: form.get('name'),
           type: form.get('stereotype'),
           id: 'node_form_' + index,
           idNode: form.get('id'),
-          idParent: idParent[0]
+          idParent: idParent[0],
+          a_attr: {
+            title: form.get('stereotype') + ' ' + form.get('name')
+          }
         }));
     });
 
@@ -126,14 +152,19 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     let implementations = this.get('model.implementations');
     implementations.forEach((implementation, index) => {
       let implementationsChildren = treeNodeForms.filterBy('idParent', implementation.id);
+      let typeImplementation = implementation.get('stored') ? 'implementations' : 'notStored';
       treeLeft.pushObject(
         FdViewAttributesTree.create({
-          text: implementation.get('name'),
-          type: 'master',
+          text: implementation.get('caption') || implementation.get('name'),
+          name: implementation.get('name'),
+          type: typeImplementation,
           id: 'node_impl_' + index,
           idNode: implementation.get('id'),
           children: implementationsChildren,
-          copyChildren: implementationsChildren
+          copyChildren: implementationsChildren,
+          a_attr: {
+            title: implementation.get('name')
+          }
         }));
     });
 
@@ -143,67 +174,48 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
       Create right tree.
     */
 
-    //let treeRight = Ember.A();
+    let rightTreeNodes = Ember.A();
     let applications = this.get('model.applications');
 
+    applications.forEach((application) => {
+      rightTreeNodes.pushObject(application.get('containersStr')[0]);
+    });
 
-    let applicationRecordId = null;
-    let itemList = [];
-
-    if (applications) {
-      let applicationsCount = applications.get('length');
-      for (let i = 0; i < applicationsCount; i++) {
-        let record = applications.nextObject(i);
-        let recordId = record.get('id');
-        applicationRecordId = recordId;
-        itemList = record.get('containersStr');
-        break; // TODO: Support multiple applications.
+    let treeRight = FdViewAttributesTree.create({
+      text: 'Рабочий стол',
+      type: 'desk',
+      id: 'node_app',
+      children: rightTreeNodes,
+      copyChildren: rightTreeNodes,
+      state: {
+        opened: true
       }
-    }
+    });
 
-
-    while (itemList && itemList.length === 1 && itemList[0].caption === 'Рабочий стол') {
-      itemList = itemList[0].nodes;
-    }
-
-    let rightTreeNodes = [{
-      caption:'Рабочий стол',
-      nodes: itemList
-    }];
-
-    Ember.set(this, 'jsonRightTreeNodes', this._jsTreeToFlexberryTree(rightTreeNodes));
+    Ember.set(this, 'jsonRightTreeNodes', treeRight);
   })),
 
-  _jsTreeToFlexberryTree: function(jsTree) {
-    if (!jsTree) {
-      return null;
-    }
-
-    let ret = Ember.A([]);
-    for (let i = 0; i < jsTree.length; i++) {
-      let node = jsTree[i];
-      let nodes = null;
-      if (node.nodes) {
-        nodes = this._jsTreeToFlexberryTree(node.nodes);
+  /*jstreeSelectedNodesLeftObserver: Ember.observer('jstreeSelectedNodesLeft', function() {
+    let jstreeSelectedNodesLeft = this.get('jstreeSelectedNodesLeft');
+    if (jstreeSelectedNodesLeft.length === 0) {
+      this.set('removeLeftNodeDisabled', 'disabled');
+      this.set('addLeftNodeDisabled', 'disabled');
+      this.set('editLeftNodeDisabled', 'disabled');
+      this.set('moveRightDisabled', 'disabled');
+    } else {
+      this.set('removeLeftNodeDisabled', '');
+      this.set('editLeftNodeDisabled', '');
+      let selectedNode = jstreeSelectedNodesLeft[0];
+      let typeNode = selectedNode.original.type;
+      if (typeNode === 'implementations') {
+        this.set('addLeftNodeDisabled', '');
+        this.set('moveRightDisabled', 'disabled');
+      } else {
+        this.set('addLeftNodeDisabled', 'disabled');
+        this.set('moveRightDisabled', '');
       }
-
-      let treeNode = {
-        id: node.id,
-        caption: node.caption,
-        description: node.description,
-        className: node.className,
-        stereotype: node.stereotype,
-      };
-      if (nodes) {
-        treeNode.nodes = nodes;
-      }
-
-      let treeNodeObject = TreeNodeObject.create(treeNode);
-      ret.addObject(treeNodeObject);
     }
-
-    return ret;
-  },
+  }),*/
 
   _jsFlexberryTreeToTree: function (jsFlexberryTree) {
     if (!jsFlexberryTree) {
@@ -304,16 +316,6 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     return false;
   },
 
-  _findRighTreetPathOfNode(node) {
-    let ret = this._findPathOfNode('jsonRightTreeNodes.nodes.0', this.jsonRightTreeNodes[0], node);
-    return ret;
-  },
-
-  _findLeftTreePathOfNode(node) {
-    let ret = this._findPathOfNode('jsonLeftTreeNodes.nodes.0', this.jsonLeftTreeNodes[0], node);
-    return ret;
-  },
-
   _isLeaf: function(element) {
     let ret = element.children.length > 0 && element.children[0].style.visibility === 'hidden';
     return ret;
@@ -337,12 +339,22 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
   actions: {
 
     /**
-      Handles creating jsTree.
+      Handles creating left jsTree.
 
-      @method actions.handleTreeDidBecomeReady
+      @method actions.handleLeftTreeDidBecomeReady
     */
-    handleTreeDidBecomeReady() {
-      let treeObject = this.get('jstreeObject');
+    handleLeftTreeDidBecomeReady() {
+      //let treeObject = this.get('jstreeObjectLeft');
+      //treeObject.on('open_node.jstree', this._openNodeTree.bind(this));
+    },
+
+    /**
+      Handles creating right jsTree.
+
+      @method actions.handleRightTreeDidBecomeReady
+    */
+    handleRightTreeDidBecomeReady() {
+      //let treeObject = this.get('jstreeObjectRight');
       //treeObject.on('open_node.jstree', this._openNodeTree.bind(this));
       //treeObject.on('after_close.jstree', this._afterCloseNodeTree.bind(this));
     },
@@ -454,6 +466,7 @@ export default Ember.Controller.extend(FlexberryTreenodeActionsHandlerMixin, {
     },
 
     listLeft() {
+      this.transitionToRoute('/fd-class-list-form');
     },
 
     editRightNode() {

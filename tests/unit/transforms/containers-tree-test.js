@@ -49,7 +49,7 @@ test('it exists', function(assert) {
   let noteObjectModel2 = Ember.A([
     FdViewAttributesTree.create({
       className: 'УчетРабочегоВремениWebL',
-      description: null,
+      description: 'test',
       text: 'Учет рабочего времени',
       type: 'property'
     }),
@@ -83,7 +83,7 @@ test('it exists', function(assert) {
   '<Item ClassName="##########" MenuPath="Администрирование\\Настройки" Caption="" Description="" />' +
   '<Item ClassName="ПисьмоWebL" MenuPath="Администрирование\\Рассылка по e-mail" Caption="Настройка рассылки писем" Description="" />' +
   '<Item ClassName="ЖурналИмпортаWebL" MenuPath="Администрирование\\Импорт данных" Caption="Журнал импорта" Description="" />' +
-  '<Item ClassName="УчетРабочегоВремениWebL" MenuPath="Поручения" Caption="Учет рабочего времени" Description="" />' +
+  '<Item ClassName="УчетРабочегоВремениWebL" MenuPath="Поручения" Caption="Учет рабочего времени" Description="test" />' +
   '<Item ClassName="ПроизводственныйКалендарьWebL" MenuPath="Поручения" Caption="Производственный календарь" Description="" />' +
   '</ContainersList>' +
   '</Containers>';
