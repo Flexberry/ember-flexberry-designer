@@ -86,14 +86,13 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
             link: 'fd-inheritance-list-form',
             caption: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.caption'),
             title: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.title'),
+          },
+          {
+            link: 'fd-view-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-view-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-view-list-form.title'),
           }
         ]
-      });
-
-      sitemap.nodes.push({
-        link: 'fd-view-list-form',
-        caption: i18n.t('forms.application.sitemap.root.fd-view-list-form.caption'),
-        title: i18n.t('forms.application.sitemap.root.fd-view-list-form.title'),
       });
     }
 

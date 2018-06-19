@@ -10,6 +10,15 @@ import { translationMacro as t } from 'ember-i18n';
 export default EditFormController.extend(FdWorkPanelToggler, {
   parentRoute: 'fd-view-list-form',
 
+  /**
+   Service that triggers objectlistview events.
+
+   @property objectlistviewEventsService
+   @type {Class}
+   @default Ember.inject.service()
+   */
+  objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
+
   allAttrsHidedn: false,
 
   popupMessage: t(`forms.fd-view-edit-form.attributes-panel.close-panel-btn-caption`),
@@ -24,7 +33,16 @@ export default EditFormController.extend(FdWorkPanelToggler, {
   selectedRowIndex: null,
 
   /**
-    Index of the selected attribute for editing.
+    Array of possible view name for selected detail for editing.
+
+    @property detailViewNameItems
+    @type Array
+    @default []
+   */
+  detailViewNameItems: [],
+
+  /**
+    Type of the selected master for editing.
 
     @property lookupTypeItems
     @type Array
@@ -99,6 +117,17 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     let index = this.get('selectedRowIndex');
     if (!Ember.isNone(index)) {
       let rowModel = model[index];
+      let detailsViewArray = this.get('model.detailsView');
+      let detailViewByName = detailsViewArray.findBy('detailName', rowModel.name);
+      let detailViewByRole = detailsViewArray.findBy('detailRole', rowModel.name);
+      if (detailViewByName) {
+        this.set('detailViewNameItems', detailViewByName.detailViewNameItems);
+      } else if (detailViewByRole) {
+        this.set('detailViewNameItems', detailViewByRole.detailViewNameItems);
+      } else {
+        this.set('detailViewNameItems', []);
+      }
+
       return rowModel;
     }
 
@@ -197,8 +226,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
           break;
         case 'detail':
           newDdfinition = FdViewAttributesDetail.create({
-            name: propertyName,
-            detailViewNameItems: selectedNodes.original.detailViewNameItems
+            name: propertyName
           });
           break;
       }
@@ -286,6 +314,27 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       }
 
       this.toggleProperty('allAttrsHidedn');
+    },
+
+    /**
+      Handles form 'saveView' button click.
+
+      @method actions.saveView
+    */
+    saveView() {
+      let view = this.get('model.view');
+      view.set('definition', Ember.A(view.get('definition').toArray()));
+      let _this = this;
+
+      this.get('objectlistviewEventsService').setLoadingState('loading');
+      view.save().then(() => {
+        let routeName = _this.get('routeName');
+        if (routeName.indexOf('.new') > 0) {
+          _this.transitionToRoute(routeName.slice(0, -4), view.get('id'));
+        } else {
+          _this.get('objectlistviewEventsService').setLoadingState('');
+        }
+      });
     }
   },
 
