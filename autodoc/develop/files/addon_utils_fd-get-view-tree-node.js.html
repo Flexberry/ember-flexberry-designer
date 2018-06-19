@@ -127,6 +127,7 @@ let getTreeNode = function (store, id, jsTreeId, data) {
   // Get array aggregation for current class.
   var recordsAggregation = store.peekAll(&#x27;fd-dev-aggregation&#x27;);
   let aggregationData = recordsAggregation.filterBy(&#x27;startClass.id&#x27;, id);
+  associationData.pushObjects(recordsAggregation.filterBy(&#x27;endClass.id&#x27;, id));
 
   // Get aggregation array for parent current class.
   var recordsInheritance = store.peekAll(&#x27;fd-dev-inheritance&#x27;);
@@ -141,6 +142,7 @@ let getTreeNode = function (store, id, jsTreeId, data) {
         parentID = inheritance.get(&#x27;parent.id&#x27;);
         classData.pushObjects(recordsDevClass.filterBy(&#x27;id&#x27;, parentID));
         associationData.pushObjects(recordsAssociation.filterBy(&#x27;endClass.id&#x27;, parentID));
+        associationData.pushObjects(recordsAggregation.filterBy(&#x27;endClass.id&#x27;, parentID));
         aggregationData.pushObjects(recordsAggregation.filterBy(&#x27;startClass.id&#x27;, parentID));
       } //TODO else if (parentStereotype === &#x27;«external»&#x27;) {}
     }
@@ -176,7 +178,7 @@ let getTreeNode = function (store, id, jsTreeId, data) {
 
   associationData.forEach((master, index) =&gt; {
     let startClass = master.get(&#x27;startClass&#x27;);
-    let masterName = startClass.get(&#x27;name&#x27;);
+    let masterName = master.get(&#x27;startRole&#x27;) || startClass.get(&#x27;name&#x27;);
     let idMaster = startClass.get(&#x27;id&#x27;);
     tree.addObject(FdViewAttributesTree.create({
       text: masterName,
@@ -189,41 +191,46 @@ let getTreeNode = function (store, id, jsTreeId, data) {
   });
 
   if (!Ember.isNone(data)) {
+
+    // Array detail view.
+    let detailView = Ember.A();
+
     aggregationData.forEach((detail) =&gt; {
       let endClass = detail.get(&#x27;endClass&#x27;);
-      let detailName = endClass.get(&#x27;name&#x27;);
+      let detailName = detail.get(&#x27;startRole&#x27;) || endClass.get(&#x27;name&#x27;);
       let idDetail = endClass.get(&#x27;id&#x27;);
       let detailViews = endClass.get(&#x27;views&#x27;);
-      let detailViewsItems = detailViews.canonicalState.map((view) =&gt; view.getRecord().get(&#x27;name&#x27;));
-      let definition = data.get(&#x27;definition&#x27;);
-      definition.forEach((attribute) =&gt; {
-        if (detailName === attribute.name) {
-          // Add aggregation array in model.
-          attribute.detailViewNameItems = detailViewsItems;
-        }
+      let detailViewsItems = detailViews.mapBy(&#x27;name&#x27;);
+
+      detailView.pushObject({
+        detailName: endClass.get(&#x27;name&#x27;),
+        detailRole: detail.get(&#x27;startRole&#x27;),
+        detailViewNameItems: detailViewsItems
       });
 
       tree.addObject(FdViewAttributesTree.create({
         text: detailName,
         type: &#x27;detail&#x27;,
         idNode: idDetail,
-        detailViewNameItems: detailViewsItems
       }));
     });
 
-    return Ember.A([
-      FdViewAttributesTree.create({
-        text: classData[0].get(&#x27;name&#x27;),
-        type: &#x27;class&#x27;,
-        id: &#x27;class&#x27;,
-        idNode: id,
-        children: tree,
-        copyChildren: tree,
-        state: {
-          opened: true
-        }
-      })
-    ]);
+    return {
+      tree: Ember.A([
+        FdViewAttributesTree.create({
+          text: classData[0].get(&#x27;name&#x27;),
+          type: &#x27;class&#x27;,
+          id: &#x27;class&#x27;,
+          idNode: id,
+          children: tree,
+          copyChildren: tree,
+          state: {
+            opened: true
+          }
+        })
+      ]),
+      detailView: detailView
+    };
   }
 
   return tree;

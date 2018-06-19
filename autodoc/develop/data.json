@@ -433,13 +433,6 @@
             "fors": {},
             "namespaces": {}
         },
-        "addon/routes/fd-class-edit-form.js": {
-            "name": "addon/routes/fd-class-edit-form.js",
-            "modules": {},
-            "classes": {},
-            "fors": {},
-            "namespaces": {}
-        },
         "addon/routes/fd-class-list-form.js": {
             "name": "addon/routes/fd-class-list-form.js",
             "modules": {},
@@ -2075,7 +2068,18 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 11,
+            "line": 10,
+            "description": "Service that triggers objectlistview events.",
+            "itemtype": "property",
+            "name": "objectlistviewEventsService",
+            "type": "{Class}",
+            "default": "Ember.inject.service()",
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-view-edit-form.js",
+            "line": 19,
             "description": "Index of the selected attribute for editing.",
             "itemtype": "property",
             "name": "selectedRowIndex",
@@ -2086,8 +2090,19 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 20,
-            "description": "Index of the selected attribute for editing.",
+            "line": 28,
+            "description": "Array of possible view name for selected detail for editing.",
+            "itemtype": "property",
+            "name": "detailViewNameItems",
+            "type": "Array",
+            "default": "[]",
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-view-edit-form.js",
+            "line": 37,
+            "description": "Type of the selected master for editing.",
             "itemtype": "property",
             "name": "lookupTypeItems",
             "type": "Array",
@@ -2097,7 +2112,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 29,
+            "line": 46,
             "description": "Included plugins for jsTree.",
             "itemtype": "property",
             "name": "plugins",
@@ -2108,7 +2123,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 38,
+            "line": 55,
             "description": "Selected nodes in jsTree.",
             "itemtype": "property",
             "name": "jstreeSelectedNodes",
@@ -2119,7 +2134,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 47,
+            "line": 64,
             "description": "Type settings for jsTree.",
             "itemtype": "property",
             "name": "typesOptions",
@@ -2129,7 +2144,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 68,
+            "line": 85,
             "description": "Type selected attribute for editing.",
             "itemtype": "property",
             "name": "propertyType",
@@ -2139,7 +2154,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 85,
+            "line": 102,
             "description": "Data selected attribute for editing.",
             "itemtype": "property",
             "name": "rowModel",
@@ -2149,7 +2164,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 104,
+            "line": 132,
             "description": "Handles form 'onCreateCaptionClick' button click.",
             "itemtype": "method",
             "name": "actions.onCreateCaptionClick",
@@ -2158,7 +2173,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 124,
+            "line": 152,
             "description": "Handles form 'onAttributesClick' table row click.",
             "itemtype": "method",
             "name": "actions.onAttributesClick",
@@ -2167,7 +2182,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 133,
+            "line": 161,
             "description": "Handles creating jsTree.",
             "itemtype": "method",
             "name": "actions.handleTreeDidBecomeReady",
@@ -2176,7 +2191,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 144,
+            "line": 172,
             "description": "Handles form 'moveRightHighlighted' button click.\nAdd attribute in definition.",
             "itemtype": "method",
             "name": "actions.moveRightHighlighted",
@@ -2185,7 +2200,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 204,
+            "line": 231,
             "description": "Handles form 'moveLeftHighlighted' button click.\nDelete attribute from definition.",
             "itemtype": "method",
             "name": "actions.moveLeftHighlighted",
@@ -2194,7 +2209,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 220,
+            "line": 247,
             "description": "Handles form 'moveUpHighlighted' button click.",
             "itemtype": "method",
             "name": "actions.moveUpHighlighted",
@@ -2203,7 +2218,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 240,
+            "line": 267,
             "description": "Handles form 'moveDownHighlighted' button click.",
             "itemtype": "method",
             "name": "actions.moveDownHighlighted",
@@ -2212,7 +2227,16 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 261,
+            "line": 287,
+            "description": "Handles form 'saveView' button click.",
+            "itemtype": "method",
+            "name": "actions.saveView",
+            "class": "FdLimitByStageMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-view-edit-form.js",
+            "line": 309,
             "description": "Overridden action for jsTree 'openNode'.",
             "itemtype": "method",
             "name": "_openNodeTree",
@@ -2221,7 +2245,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 272,
+            "line": 320,
             "description": "Overridden action for jsTree 'eventDidClose'.",
             "itemtype": "method",
             "name": "_afterCloseNodeTree",
@@ -2230,7 +2254,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 280,
+            "line": 328,
             "description": "Method for restoring tree nodes.",
             "itemtype": "method",
             "name": "_restorationNodeTree",
@@ -2239,7 +2263,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 306,
+            "line": 354,
             "description": "Method for loading tree node data.",
             "itemtype": "method",
             "name": "_getChildrenNode",
@@ -4468,16 +4492,6 @@
             "module": "ember-flexberry-designer"
         },
         {
-            "file": "addon/objects/fd-view-attributes-detail.js",
-            "line": 31,
-            "description": "Array of possible 'detailViewName'.",
-            "itemtype": "property",
-            "name": "detailViewNameItems",
-            "type": "Array",
-            "class": "FdViewAttributesDetail",
-            "module": "ember-flexberry-designer"
-        },
-        {
             "file": "addon/objects/fd-view-attributes-master.js",
             "line": 15,
             "description": "Item property 'lookupType'.",
@@ -4618,16 +4632,6 @@
             "module": "ember-flexberry-designer"
         },
         {
-            "file": "addon/objects/fd-view-attributes-tree.js",
-            "line": 71,
-            "description": "Array of possible 'detailViewName' for detail.",
-            "itemtype": "property",
-            "name": "detailViewNameItems",
-            "type": "Array",
-            "class": "FdViewAttributesTree",
-            "module": "ember-flexberry-designer"
-        },
-        {
             "file": "addon/routes/fd-class-edit-form/new.js",
             "line": 9,
             "description": "Link to {{#crossLink \"FdCurrentProjectContextService\"}}FdCurrentProjectContextService{{/crossLink}}.",
@@ -4707,27 +4711,6 @@
             "name": "developerUserSettings",
             "type": "Object",
             "default": "{}",
-            "class": "FdCurrentProjectContextService",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/routes/fd-class-edit-form.js",
-            "line": 8,
-            "description": "Link to {{#crossLink \"FdCurrentProjectContextService\"}}FdCurrentProjectContextService{{/crossLink}}.",
-            "itemtype": "property",
-            "name": "currentContext",
-            "type": "FdCurrentProjectContextService",
-            "class": "FdCurrentProjectContextService",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/routes/fd-class-edit-form.js",
-            "line": 17,
-            "description": "This action is called when check class on class-form.\nTransition to view-form with classId parameter.",
-            "itemtype": "method",
-            "name": "actions.gotoView",
-            "access": "public",
-            "tagname": "",
             "class": "FdCurrentProjectContextService",
             "module": "ember-flexberry-designer"
         },
@@ -5204,6 +5187,17 @@
         {
             "file": "addon/routes/fd-stage-list-form.js",
             "line": 25,
+            "description": "Service that triggers objectlistview events.",
+            "itemtype": "property",
+            "name": "objectlistviewEventsService",
+            "type": "{Class}",
+            "default": "Ember.inject.service()",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-stage-list-form.js",
+            "line": 34,
             "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
             "itemtype": "property",
             "name": "developerUserSettings",
@@ -5214,7 +5208,7 @@
         },
         {
             "file": "addon/routes/fd-stage-list-form.js",
-            "line": 50,
+            "line": 59,
             "description": "Link to {{#crossLink \"FdCurrentProjectContextService\"}}FdCurrentProjectContextService{{/crossLink}}.",
             "itemtype": "property",
             "name": "currentContext",

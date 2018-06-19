@@ -163,10 +163,6 @@
                                 <a href="#" data-tabid="#methods" data-anchor="#method__locateTabs" data-tablink="_locateTabs">_locateTabs</a>
 
                             </li>
-                            <li class="index-item method public">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_actions.gotoView" data-tablink="actions.gotoView">actions.gotoView</a>
-
-                            </li>
                             <li class="index-item method">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_beforeModel" data-tablink="beforeModel">beforeModel</a>
 
@@ -211,11 +207,11 @@
                                 <a href="#" data-tabid="#methods" data-anchor="#method_model" data-tablink="model">model</a>
 
                             </li>
-                            <li class="index-item method">
+                            <li class="index-item method public">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_objectListViewLimitPredicate" data-tablink="objectListViewLimitPredicate">objectListViewLimitPredicate</a>
 
                             </li>
-                            <li class="index-item method public">
+                            <li class="index-item method">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_objectListViewLimitPredicate" data-tablink="objectListViewLimitPredicate">objectListViewLimitPredicate</a>
 
                             </li>
@@ -271,10 +267,6 @@
 
                             </li>
                             <li class="index-item property">
-                                <a href="#" data-tabid="#properties" data-anchor="#property_currentContext" data-tablink="currentContext">currentContext</a>
-
-                            </li>
-                            <li class="index-item property">
                                 <a href="#" data-tabid="#properties" data-anchor="#property_developerUserSettings" data-tablink="developerUserSettings">developerUserSettings</a>
 
                             </li>
@@ -344,6 +336,10 @@
                             </li>
                             <li class="index-item property">
                                 <a href="#" data-tabid="#properties" data-anchor="#property_modelName" data-tablink="modelName">modelName</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_modelProjection" data-tablink="modelProjection">modelProjection</a>
 
                             </li>
                             <li class="index-item property">
@@ -383,7 +379,7 @@
 
                             </li>
                             <li class="index-item property">
-                                <a href="#" data-tabid="#properties" data-anchor="#property_modelProjection" data-tablink="modelProjection">modelProjection</a>
+                                <a href="#" data-tabid="#properties" data-anchor="#property_objectlistviewEventsService" data-tablink="objectlistviewEventsService">objectlistviewEventsService</a>
 
                             </li>
                             <li class="index-item property">
@@ -856,38 +852,6 @@
                     
                                 </div>
                             </div>
-                    
-                    </div>
-                    <div id="method_actions.gotoView" class="method item public">
-                        <h3 class="name"><code>actions.gotoView</code></h3>
-                    
-                            <span class="paren">()</span>
-                    
-                    
-                    
-                            <span class="flag public">public</span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_routes_fd-class-edit-form.js.html#l17"><code>addon&#x2F;routes&#x2F;fd-class-edit-form.js:17</code></a>
-                            </p>
-                    
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>This action is called when check class on class-form.
-                    Transition to view-form with classId parameter.</p>
-                    
-                        </div>
-                    
-                    
                     
                     </div>
                     <div id="method_beforeModel" class="method item">
@@ -1373,46 +1337,6 @@
                     
                     
                     </div>
-                    <div id="method_objectListViewLimitPredicate" class="method item">
-                        <h3 class="name"><code>objectListViewLimitPredicate</code></h3>
-                    
-                            <span class="paren">()</span>
-                    
-                            <span class="returns-inline">
-                                <span class="type">Query.SimplePredicate</span>
-                            </span>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_routes_fd-diagram-list-form.js.html#l57"><code>addon&#x2F;routes&#x2F;fd-diagram-list-form.js:57</code></a>
-                            </p>
-                    
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Return <code>SimplePredicate</code> for limit list objects by stage.</p>
-                    
-                        </div>
-                    
-                    
-                            <div class="returns">
-                                <h4>Returns:</h4>
-                    
-                                <div class="returns-description">
-                                            <span class="type">Query.SimplePredicate</span>:
-                                </div>
-                            </div>
-                    
-                    </div>
                     <div id="method_objectListViewLimitPredicate" class="method item public">
                         <h3 class="name"><code>objectListViewLimitPredicate</code></h3>
                     
@@ -1512,6 +1436,46 @@
                                             <span class="type">BasePredicate</span>:
                                         <p>The predicate to limit loaded data.</p>
                     
+                                </div>
+                            </div>
+                    
+                    </div>
+                    <div id="method_objectListViewLimitPredicate" class="method item">
+                        <h3 class="name"><code>objectListViewLimitPredicate</code></h3>
+                    
+                            <span class="paren">()</span>
+                    
+                            <span class="returns-inline">
+                                <span class="type">Query.SimplePredicate</span>
+                            </span>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_routes_fd-diagram-list-form.js.html#l57"><code>addon&#x2F;routes&#x2F;fd-diagram-list-form.js:57</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Return <code>SimplePredicate</code> for limit list objects by stage.</p>
+                    
+                        </div>
+                    
+                    
+                            <div class="returns">
+                                <h4>Returns:</h4>
+                    
+                                <div class="returns-description">
+                                            <span class="type">Query.SimplePredicate</span>:
                                 </div>
                             </div>
                     
@@ -1899,56 +1863,6 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_routes_fd-class-edit-form.js.html#l8"><code>addon&#x2F;routes&#x2F;fd-class-edit-form.js:8</code></a>
-                            </p>
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Link to <a href="../classes/FdCurrentProjectContextService.html" class="crosslink">FdCurrentProjectContextService</a>.</p>
-                    
-                        </div>
-                    
-                    
-                    
-                    </div>
-                    <div id="property_currentContext" class="property item">
-                        <h3 class="name"><code>currentContext</code></h3>
-                        <span class="type"><a href="../classes/FdCurrentProjectContextService.html" class="crosslink">FdCurrentProjectContextService</a></span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_routes_fd-stage-list-form.js.html#l50"><code>addon&#x2F;routes&#x2F;fd-stage-list-form.js:50</code></a>
-                            </p>
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Link to <a href="../classes/FdCurrentProjectContextService.html" class="crosslink">FdCurrentProjectContextService</a>.</p>
-                    
-                        </div>
-                    
-                    
-                    
-                    </div>
-                    <div id="property_currentContext" class="property item">
-                        <h3 class="name"><code>currentContext</code></h3>
-                        <span class="type"><a href="../classes/FdCurrentProjectContextService.html" class="crosslink">FdCurrentProjectContextService</a></span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
                             <a href="../files/addon_routes_fd-configuration-list-form.js.html#l48"><code>addon&#x2F;routes&#x2F;fd-configuration-list-form.js:48</code></a>
                             </p>
                     
@@ -1974,7 +1888,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_routes_fd-stage-edit-form_new.js.html#l10"><code>addon&#x2F;routes&#x2F;fd-stage-edit-form&#x2F;new.js:10</code></a>
+                            <a href="../files/addon_routes_fd-stage-list-form.js.html#l59"><code>addon&#x2F;routes&#x2F;fd-stage-list-form.js:59</code></a>
                             </p>
                     
                     
@@ -2013,9 +1927,9 @@
                     
                     
                     </div>
-                    <div id="property_developerUserSettings" class="property item">
-                        <h3 class="name"><code>developerUserSettings</code></h3>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    <div id="property_currentContext" class="property item">
+                        <h3 class="name"><code>currentContext</code></h3>
+                        <span class="type"><a href="../classes/FdCurrentProjectContextService.html" class="crosslink">FdCurrentProjectContextService</a></span>
                     
                     
                     
@@ -2024,152 +1938,17 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_routes_fd-view-list-form.js.html#l34"><code>addon&#x2F;routes&#x2F;fd-view-list-form.js:34</code></a>
+                            <a href="../files/addon_routes_fd-stage-edit-form_new.js.html#l10"><code>addon&#x2F;routes&#x2F;fd-stage-edit-form&#x2F;new.js:10</code></a>
                             </p>
                     
                     
                         </div>
                     
                         <div class="description">
-                            <p>Defined user settings developer.
-                    For default userSetting use empty name ('').
-                    Property <code>&lt;componentName&gt;</code> may contain any of properties: <code>colsOrder</code>, <code>sorting</code>, <code>colsWidth</code> or being empty.</p>
-                    <pre class="code prettyprint"><code class="language-javascript">{
-                      &lt;componentName&gt;: {
-                        &lt;settingName&gt;: {
-                          colsOrder: [ { propName :&lt;colName&gt;, hide: true|false }, ... ],
-                          sorting: [{ propName: &lt;colName&gt;, direction: "asc"|"desc" }, ... ],
-                          colsWidths: [ &lt;colName&gt;:&lt;colWidth&gt;, ... ],
-                        },
-                        ...
-                      },
-                      ...
-                    }
-                    </code></pre>
+                            <p>Link to <a href="../classes/FdCurrentProjectContextService.html" class="crosslink">FdCurrentProjectContextService</a>.</p>
                     
                         </div>
                     
-                            <p><strong>Default:</strong> {}</p>
-                    
-                    
-                    </div>
-                    <div id="property_developerUserSettings" class="property item">
-                        <h3 class="name"><code>developerUserSettings</code></h3>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_routes_fd-class-list-form.js.html#l23"><code>addon&#x2F;routes&#x2F;fd-class-list-form.js:23</code></a>
-                            </p>
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Defined user settings developer.
-                    For default userSetting use empty name ('').
-                    Property <code>&lt;componentName&gt;</code> may contain any of properties: <code>colsOrder</code>, <code>sorting</code>, <code>colsWidth</code> or being empty.</p>
-                    <pre class="code prettyprint"><code class="language-javascript">{
-                      &lt;componentName&gt;: {
-                        &lt;settingName&gt;: {
-                          colsOrder: [ { propName :&lt;colName&gt;, hide: true|false }, ... ],
-                          sorting: [{ propName: &lt;colName&gt;, direction: "asc"|"desc" }, ... ],
-                          colsWidths: [ &lt;colName&gt;:&lt;colWidth&gt;, ... ],
-                        },
-                        ...
-                      },
-                      ...
-                    }
-                    </code></pre>
-                    
-                        </div>
-                    
-                            <p><strong>Default:</strong> {}</p>
-                    
-                    
-                    </div>
-                    <div id="property_developerUserSettings" class="property item">
-                        <h3 class="name"><code>developerUserSettings</code></h3>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_routes_fd-stage-list-form.js.html#l25"><code>addon&#x2F;routes&#x2F;fd-stage-list-form.js:25</code></a>
-                            </p>
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Defined user settings developer.
-                    For default userSetting use empty name ('').
-                    Property <code>&lt;componentName&gt;</code> may contain any of properties: <code>colsOrder</code>, <code>sorting</code>, <code>colsWidth</code> or being empty.</p>
-                    <pre class="code prettyprint"><code class="language-javascript">{
-                      &lt;componentName&gt;: {
-                        &lt;settingName&gt;: {
-                          colsOrder: [ { propName :&lt;colName&gt;, hide: true|false }, ... ],
-                          sorting: [{ propName: &lt;colName&gt;, direction: "asc"|"desc" }, ... ],
-                          colsWidths: [ &lt;colName&gt;:&lt;colWidth&gt;, ... ],
-                        },
-                        ...
-                      },
-                      ...
-                    }
-                    </code></pre>
-                    
-                        </div>
-                    
-                            <p><strong>Default:</strong> {}</p>
-                    
-                    
-                    </div>
-                    <div id="property_developerUserSettings" class="property item">
-                        <h3 class="name"><code>developerUserSettings</code></h3>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_routes_fd-inheritance-list-form.js.html#l23"><code>addon&#x2F;routes&#x2F;fd-inheritance-list-form.js:23</code></a>
-                            </p>
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Defined user settings developer.
-                    For default userSetting use empty name ('').
-                    Property <code>&lt;componentName&gt;</code> may contain any of properties: <code>colsOrder</code>, <code>sorting</code>, <code>colsWidth</code> or being empty.</p>
-                    <pre class="code prettyprint"><code class="language-javascript">{
-                      &lt;componentName&gt;: {
-                        &lt;settingName&gt;: {
-                          colsOrder: [ { propName :&lt;colName&gt;, hide: true|false }, ... ],
-                          sorting: [{ propName: &lt;colName&gt;, direction: "asc"|"desc" }, ... ],
-                          colsWidths: [ &lt;colName&gt;:&lt;colWidth&gt;, ... ],
-                        },
-                        ...
-                      },
-                      ...
-                    }
-                    </code></pre>
-                    
-                        </div>
-                    
-                            <p><strong>Default:</strong> {}</p>
                     
                     
                     </div>
@@ -2185,46 +1964,6 @@
                                     <p>
                                     Defined in
                             <a href="../files/addon_routes_fd-configuration-list-form.js.html#l23"><code>addon&#x2F;routes&#x2F;fd-configuration-list-form.js:23</code></a>
-                            </p>
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Defined user settings developer.
-                    For default userSetting use empty name ('').
-                    Property <code>&lt;componentName&gt;</code> may contain any of properties: <code>colsOrder</code>, <code>sorting</code>, <code>colsWidth</code> or being empty.</p>
-                    <pre class="code prettyprint"><code class="language-javascript">{
-                      &lt;componentName&gt;: {
-                        &lt;settingName&gt;: {
-                          colsOrder: [ { propName :&lt;colName&gt;, hide: true|false }, ... ],
-                          sorting: [{ propName: &lt;colName&gt;, direction: "asc"|"desc" }, ... ],
-                          colsWidths: [ &lt;colName&gt;:&lt;colWidth&gt;, ... ],
-                        },
-                        ...
-                      },
-                      ...
-                    }
-                    </code></pre>
-                    
-                        </div>
-                    
-                            <p><strong>Default:</strong> {}</p>
-                    
-                    
-                    </div>
-                    <div id="property_developerUserSettings" class="property item">
-                        <h3 class="name"><code>developerUserSettings</code></h3>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_routes_fd-association-list-form.js.html#l23"><code>addon&#x2F;routes&#x2F;fd-association-list-form.js:23</code></a>
                             </p>
                     
                     
@@ -2304,7 +2043,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_routes_fd-system-list-form.js.html#l23"><code>addon&#x2F;routes&#x2F;fd-system-list-form.js:23</code></a>
+                            <a href="../files/addon_routes_fd-association-list-form.js.html#l23"><code>addon&#x2F;routes&#x2F;fd-association-list-form.js:23</code></a>
                             </p>
                     
                     
@@ -2373,9 +2112,9 @@
                     
                     
                     </div>
-                    <div id="property_modelName" class="property item">
-                        <h3 class="name"><code>modelName</code></h3>
-                        <span class="type"><a href="http://emberjs.com/api/classes/String.html" class="crosslink external" target="_blank">String</a></span>
+                    <div id="property_developerUserSettings" class="property item">
+                        <h3 class="name"><code>developerUserSettings</code></h3>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
                     
                     
@@ -2384,24 +2123,38 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_routes_fd-diagram-list-form.js.html#l15"><code>addon&#x2F;routes&#x2F;fd-diagram-list-form.js:15</code></a>
+                            <a href="../files/addon_routes_fd-view-list-form.js.html#l34"><code>addon&#x2F;routes&#x2F;fd-view-list-form.js:34</code></a>
                             </p>
                     
                     
                         </div>
                     
                         <div class="description">
-                            <p>Name of model to be used as list's records types.</p>
+                            <p>Defined user settings developer.
+                    For default userSetting use empty name ('').
+                    Property <code>&lt;componentName&gt;</code> may contain any of properties: <code>colsOrder</code>, <code>sorting</code>, <code>colsWidth</code> or being empty.</p>
+                    <pre class="code prettyprint"><code class="language-javascript">{
+                      &lt;componentName&gt;: {
+                        &lt;settingName&gt;: {
+                          colsOrder: [ { propName :&lt;colName&gt;, hide: true|false }, ... ],
+                          sorting: [{ propName: &lt;colName&gt;, direction: "asc"|"desc" }, ... ],
+                          colsWidths: [ &lt;colName&gt;:&lt;colWidth&gt;, ... ],
+                        },
+                        ...
+                      },
+                      ...
+                    }
+                    </code></pre>
                     
                         </div>
                     
-                            <p><strong>Default:</strong> &#x27;fd-dev-uml-cad&#x27;</p>
+                            <p><strong>Default:</strong> {}</p>
                     
                     
                     </div>
-                    <div id="property_modelName" class="property item">
-                        <h3 class="name"><code>modelName</code></h3>
-                        <span class="type"><a href="http://emberjs.com/api/classes/String.html" class="crosslink external" target="_blank">String</a></span>
+                    <div id="property_developerUserSettings" class="property item">
+                        <h3 class="name"><code>developerUserSettings</code></h3>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
                     
                     
@@ -2410,18 +2163,152 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_routes_fd-generation-list-form.js.html#l17"><code>addon&#x2F;routes&#x2F;fd-generation-list-form.js:17</code></a>
+                            <a href="../files/addon_routes_fd-stage-list-form.js.html#l34"><code>addon&#x2F;routes&#x2F;fd-stage-list-form.js:34</code></a>
                             </p>
                     
                     
                         </div>
                     
                         <div class="description">
-                            <p>Name of model to be used as list's records types.</p>
+                            <p>Defined user settings developer.
+                    For default userSetting use empty name ('').
+                    Property <code>&lt;componentName&gt;</code> may contain any of properties: <code>colsOrder</code>, <code>sorting</code>, <code>colsWidth</code> or being empty.</p>
+                    <pre class="code prettyprint"><code class="language-javascript">{
+                      &lt;componentName&gt;: {
+                        &lt;settingName&gt;: {
+                          colsOrder: [ { propName :&lt;colName&gt;, hide: true|false }, ... ],
+                          sorting: [{ propName: &lt;colName&gt;, direction: "asc"|"desc" }, ... ],
+                          colsWidths: [ &lt;colName&gt;:&lt;colWidth&gt;, ... ],
+                        },
+                        ...
+                      },
+                      ...
+                    }
+                    </code></pre>
                     
                         </div>
                     
-                            <p><strong>Default:</strong> &#x27;fd-generation&#x27;</p>
+                            <p><strong>Default:</strong> {}</p>
+                    
+                    
+                    </div>
+                    <div id="property_developerUserSettings" class="property item">
+                        <h3 class="name"><code>developerUserSettings</code></h3>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_routes_fd-class-list-form.js.html#l23"><code>addon&#x2F;routes&#x2F;fd-class-list-form.js:23</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Defined user settings developer.
+                    For default userSetting use empty name ('').
+                    Property <code>&lt;componentName&gt;</code> may contain any of properties: <code>colsOrder</code>, <code>sorting</code>, <code>colsWidth</code> or being empty.</p>
+                    <pre class="code prettyprint"><code class="language-javascript">{
+                      &lt;componentName&gt;: {
+                        &lt;settingName&gt;: {
+                          colsOrder: [ { propName :&lt;colName&gt;, hide: true|false }, ... ],
+                          sorting: [{ propName: &lt;colName&gt;, direction: "asc"|"desc" }, ... ],
+                          colsWidths: [ &lt;colName&gt;:&lt;colWidth&gt;, ... ],
+                        },
+                        ...
+                      },
+                      ...
+                    }
+                    </code></pre>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> {}</p>
+                    
+                    
+                    </div>
+                    <div id="property_developerUserSettings" class="property item">
+                        <h3 class="name"><code>developerUserSettings</code></h3>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_routes_fd-system-list-form.js.html#l23"><code>addon&#x2F;routes&#x2F;fd-system-list-form.js:23</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Defined user settings developer.
+                    For default userSetting use empty name ('').
+                    Property <code>&lt;componentName&gt;</code> may contain any of properties: <code>colsOrder</code>, <code>sorting</code>, <code>colsWidth</code> or being empty.</p>
+                    <pre class="code prettyprint"><code class="language-javascript">{
+                      &lt;componentName&gt;: {
+                        &lt;settingName&gt;: {
+                          colsOrder: [ { propName :&lt;colName&gt;, hide: true|false }, ... ],
+                          sorting: [{ propName: &lt;colName&gt;, direction: "asc"|"desc" }, ... ],
+                          colsWidths: [ &lt;colName&gt;:&lt;colWidth&gt;, ... ],
+                        },
+                        ...
+                      },
+                      ...
+                    }
+                    </code></pre>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> {}</p>
+                    
+                    
+                    </div>
+                    <div id="property_developerUserSettings" class="property item">
+                        <h3 class="name"><code>developerUserSettings</code></h3>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_routes_fd-inheritance-list-form.js.html#l23"><code>addon&#x2F;routes&#x2F;fd-inheritance-list-form.js:23</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Defined user settings developer.
+                    For default userSetting use empty name ('').
+                    Property <code>&lt;componentName&gt;</code> may contain any of properties: <code>colsOrder</code>, <code>sorting</code>, <code>colsWidth</code> or being empty.</p>
+                    <pre class="code prettyprint"><code class="language-javascript">{
+                      &lt;componentName&gt;: {
+                        &lt;settingName&gt;: {
+                          colsOrder: [ { propName :&lt;colName&gt;, hide: true|false }, ... ],
+                          sorting: [{ propName: &lt;colName&gt;, direction: "asc"|"desc" }, ... ],
+                          colsWidths: [ &lt;colName&gt;:&lt;colWidth&gt;, ... ],
+                        },
+                        ...
+                      },
+                      ...
+                    }
+                    </code></pre>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> {}</p>
                     
                     
                     </div>
@@ -2462,32 +2349,6 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_routes_fd-configuration-list-form.js.html#l14"><code>addon&#x2F;routes&#x2F;fd-configuration-list-form.js:14</code></a>
-                            </p>
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Name of model to be used as list's records types.</p>
-                    
-                        </div>
-                    
-                            <p><strong>Default:</strong> &#x27;fd-configuration&#x27;</p>
-                    
-                    
-                    </div>
-                    <div id="property_modelName" class="property item">
-                        <h3 class="name"><code>modelName</code></h3>
-                        <span class="type"><a href="http://emberjs.com/api/classes/String.html" class="crosslink external" target="_blank">String</a></span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
                             <a href="../files/addon_routes_fd-stage-list-form.js.html#l16"><code>addon&#x2F;routes&#x2F;fd-stage-list-form.js:16</code></a>
                             </p>
                     
@@ -2514,7 +2375,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_routes_fd-class-list-form.js.html#l14"><code>addon&#x2F;routes&#x2F;fd-class-list-form.js:14</code></a>
+                            <a href="../files/addon_routes_fd-association-list-form.js.html#l14"><code>addon&#x2F;routes&#x2F;fd-association-list-form.js:14</code></a>
                             </p>
                     
                     
@@ -2525,7 +2386,59 @@
                     
                         </div>
                     
-                            <p><strong>Default:</strong> &#x27;fd-dev-class&#x27;</p>
+                            <p><strong>Default:</strong> &#x27;fd-dev-association&#x27;</p>
+                    
+                    
+                    </div>
+                    <div id="property_modelName" class="property item">
+                        <h3 class="name"><code>modelName</code></h3>
+                        <span class="type"><a href="http://emberjs.com/api/classes/String.html" class="crosslink external" target="_blank">String</a></span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_routes_fd-generation-list-form.js.html#l17"><code>addon&#x2F;routes&#x2F;fd-generation-list-form.js:17</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Name of model to be used as list's records types.</p>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> &#x27;fd-generation&#x27;</p>
+                    
+                    
+                    </div>
+                    <div id="property_modelName" class="property item">
+                        <h3 class="name"><code>modelName</code></h3>
+                        <span class="type"><a href="http://emberjs.com/api/classes/String.html" class="crosslink external" target="_blank">String</a></span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_routes_fd-diagram-list-form.js.html#l15"><code>addon&#x2F;routes&#x2F;fd-diagram-list-form.js:15</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Name of model to be used as list's records types.</p>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> &#x27;fd-dev-uml-cad&#x27;</p>
                     
                     
                     </div>
@@ -2566,6 +2479,58 @@
                         <div class="meta">
                                     <p>
                                     Defined in
+                            <a href="../files/addon_routes_fd-configuration-list-form.js.html#l14"><code>addon&#x2F;routes&#x2F;fd-configuration-list-form.js:14</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Name of model to be used as list's records types.</p>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> &#x27;fd-configuration&#x27;</p>
+                    
+                    
+                    </div>
+                    <div id="property_modelName" class="property item">
+                        <h3 class="name"><code>modelName</code></h3>
+                        <span class="type"><a href="http://emberjs.com/api/classes/String.html" class="crosslink external" target="_blank">String</a></span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_routes_fd-class-list-form.js.html#l14"><code>addon&#x2F;routes&#x2F;fd-class-list-form.js:14</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Name of model to be used as list's records types.</p>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> &#x27;fd-dev-class&#x27;</p>
+                    
+                    
+                    </div>
+                    <div id="property_modelName" class="property item">
+                        <h3 class="name"><code>modelName</code></h3>
+                        <span class="type"><a href="http://emberjs.com/api/classes/String.html" class="crosslink external" target="_blank">String</a></span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
                             <a href="../files/addon_routes_fd-view-list-form.js.html#l25"><code>addon&#x2F;routes&#x2F;fd-view-list-form.js:25</code></a>
                             </p>
                     
@@ -2581,8 +2546,8 @@
                     
                     
                     </div>
-                    <div id="property_modelName" class="property item">
-                        <h3 class="name"><code>modelName</code></h3>
+                    <div id="property_modelProjection" class="property item">
+                        <h3 class="name"><code>modelProjection</code></h3>
                         <span class="type"><a href="http://emberjs.com/api/classes/String.html" class="crosslink external" target="_blank">String</a></span>
                     
                     
@@ -2592,18 +2557,44 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_routes_fd-association-list-form.js.html#l14"><code>addon&#x2F;routes&#x2F;fd-association-list-form.js:14</code></a>
+                            <a href="../files/addon_routes_fd-association-list-form.js.html#l5"><code>addon&#x2F;routes&#x2F;fd-association-list-form.js:5</code></a>
                             </p>
                     
                     
                         </div>
                     
                         <div class="description">
-                            <p>Name of model to be used as list's records types.</p>
+                            <p>Name of model projection to be used as record's properties limitation.</p>
                     
                         </div>
                     
-                            <p><strong>Default:</strong> &#x27;fd-dev-association&#x27;</p>
+                            <p><strong>Default:</strong> &#x27;ListFormView&#x27;</p>
+                    
+                    
+                    </div>
+                    <div id="property_modelProjection" class="property item">
+                        <h3 class="name"><code>modelProjection</code></h3>
+                        <span class="type"><a href="http://emberjs.com/api/classes/String.html" class="crosslink external" target="_blank">String</a></span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_routes_fd-diagram-list-form.js.html#l6"><code>addon&#x2F;routes&#x2F;fd-diagram-list-form.js:6</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Name of model projection to be used as record's properties limitation.</p>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> &#x27;ListFormView&#x27;</p>
                     
                     
                     </div>
@@ -2670,58 +2661,6 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_routes_fd-generation-list-form.js.html#l8"><code>addon&#x2F;routes&#x2F;fd-generation-list-form.js:8</code></a>
-                            </p>
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Name of model projection to be used as record's properties limitation.</p>
-                    
-                        </div>
-                    
-                            <p><strong>Default:</strong> &#x27;ListFormView&#x27;</p>
-                    
-                    
-                    </div>
-                    <div id="property_modelProjection" class="property item">
-                        <h3 class="name"><code>modelProjection</code></h3>
-                        <span class="type"><a href="http://emberjs.com/api/classes/String.html" class="crosslink external" target="_blank">String</a></span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_routes_fd-diagram-list-form.js.html#l6"><code>addon&#x2F;routes&#x2F;fd-diagram-list-form.js:6</code></a>
-                            </p>
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Name of model projection to be used as record's properties limitation.</p>
-                    
-                        </div>
-                    
-                            <p><strong>Default:</strong> &#x27;ListFormView&#x27;</p>
-                    
-                    
-                    </div>
-                    <div id="property_modelProjection" class="property item">
-                        <h3 class="name"><code>modelProjection</code></h3>
-                        <span class="type"><a href="http://emberjs.com/api/classes/String.html" class="crosslink external" target="_blank">String</a></span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
                             <a href="../files/addon_routes_fd-class-list-form.js.html#l5"><code>addon&#x2F;routes&#x2F;fd-class-list-form.js:5</code></a>
                             </p>
                     
@@ -2748,7 +2687,33 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_routes_fd-association-list-form.js.html#l5"><code>addon&#x2F;routes&#x2F;fd-association-list-form.js:5</code></a>
+                            <a href="../files/addon_routes_fd-inheritance-list-form.js.html#l5"><code>addon&#x2F;routes&#x2F;fd-inheritance-list-form.js:5</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Name of model projection to be used as record's properties limitation.</p>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> &#x27;ListFormView&#x27;</p>
+                    
+                    
+                    </div>
+                    <div id="property_modelProjection" class="property item">
+                        <h3 class="name"><code>modelProjection</code></h3>
+                        <span class="type"><a href="http://emberjs.com/api/classes/String.html" class="crosslink external" target="_blank">String</a></span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_routes_fd-stage-list-form.js.html#l7"><code>addon&#x2F;routes&#x2F;fd-stage-list-form.js:7</code></a>
                             </p>
                     
                     
@@ -2827,33 +2792,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_routes_fd-stage-list-form.js.html#l7"><code>addon&#x2F;routes&#x2F;fd-stage-list-form.js:7</code></a>
-                            </p>
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Name of model projection to be used as record's properties limitation.</p>
-                    
-                        </div>
-                    
-                            <p><strong>Default:</strong> &#x27;ListFormView&#x27;</p>
-                    
-                    
-                    </div>
-                    <div id="property_modelProjection" class="property item">
-                        <h3 class="name"><code>modelProjection</code></h3>
-                        <span class="type"><a href="http://emberjs.com/api/classes/String.html" class="crosslink external" target="_blank">String</a></span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_routes_fd-inheritance-list-form.js.html#l5"><code>addon&#x2F;routes&#x2F;fd-inheritance-list-form.js:5</code></a>
+                            <a href="../files/addon_routes_fd-generation-list-form.js.html#l8"><code>addon&#x2F;routes&#x2F;fd-generation-list-form.js:8</code></a>
                             </p>
                     
                     
@@ -2880,6 +2819,32 @@
                                     <p>
                                     Defined in
                             <a href="../files/addon_routes_fd-view-edit-form.js.html#l6"><code>addon&#x2F;routes&#x2F;fd-view-edit-form.js:6</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Service that triggers objectlistview events.</p>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> Ember.inject.service()</p>
+                    
+                    
+                    </div>
+                    <div id="property_objectlistviewEventsService" class="property item">
+                        <h3 class="name"><code>objectlistviewEventsService</code></h3>
+                        <span class="type">Class</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_routes_fd-stage-list-form.js.html#l25"><code>addon&#x2F;routes&#x2F;fd-stage-list-form.js:25</code></a>
                             </p>
                     
                     

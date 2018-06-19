@@ -116,7 +116,15 @@ import FdViewAttributesDetail from &#x27;../objects/fd-view-attributes-detail&#x
 import { getTreeNode } from &#x27;../utils/fd-get-view-tree-node&#x27;;
 
 export default EditFormController.extend({
-  parentRoute: &#x27;fd-view-list-form&#x27;,
+
+  /**
+   Service that triggers objectlistview events.
+
+   @property objectlistviewEventsService
+   @type {Class}
+   @default Ember.inject.service()
+   */
+  objectlistviewEventsService: Ember.inject.service(&#x27;objectlistview-events&#x27;),
 
   /**
     Index of the selected attribute for editing.
@@ -128,7 +136,16 @@ export default EditFormController.extend({
   selectedRowIndex: null,
 
   /**
-    Index of the selected attribute for editing.
+    Array of possible view name for selected detail for editing.
+
+    @property detailViewNameItems
+    @type Array
+    @default []
+   */
+  detailViewNameItems: [],
+
+  /**
+    Type of the selected master for editing.
 
     @property lookupTypeItems
     @type Array
@@ -203,6 +220,17 @@ export default EditFormController.extend({
     let index = this.get(&#x27;selectedRowIndex&#x27;);
     if (!Ember.isNone(index)) {
       let rowModel = model[index];
+      let detailsViewArray = this.get(&#x27;model.detailsView&#x27;);
+      let detailViewByName = detailsViewArray.findBy(&#x27;detailName&#x27;, rowModel.name);
+      let detailViewByRole = detailsViewArray.findBy(&#x27;detailRole&#x27;, rowModel.name);
+      if (detailViewByName) {
+        this.set(&#x27;detailViewNameItems&#x27;, detailViewByName.detailViewNameItems);
+      } else if (detailViewByRole) {
+        this.set(&#x27;detailViewNameItems&#x27;, detailViewByRole.detailViewNameItems);
+      } else {
+        this.set(&#x27;detailViewNameItems&#x27;, []);
+      }
+
       return rowModel;
     }
 
@@ -300,8 +328,7 @@ export default EditFormController.extend({
           break;
         case &#x27;detail&#x27;:
           newDdfinition = FdViewAttributesDetail.create({
-            name: propertyName,
-            detailViewNameItems: selectedNodes.original.detailViewNameItems
+            name: propertyName
           });
           break;
       }
@@ -365,6 +392,27 @@ export default EditFormController.extend({
       model.replace(index, 1, node);
       model.replace(next, 1, nextNode);
       this.set(&#x27;selectedRowIndex&#x27;, next);
+    },
+
+    /**
+      Handles form &#x27;saveView&#x27; button click.
+
+      @method actions.saveView
+    */
+    saveView() {
+      let view = this.get(&#x27;model.view&#x27;);
+      view.set(&#x27;definition&#x27;, Ember.A(view.get(&#x27;definition&#x27;).toArray()));
+      let _this = this;
+
+      this.get(&#x27;objectlistviewEventsService&#x27;).setLoadingState(&#x27;loading&#x27;);
+      view.save().then(() =&gt; {
+        let routeName = _this.get(&#x27;routeName&#x27;);
+        if (routeName.indexOf(&#x27;.new&#x27;) &gt; 0) {
+          _this.transitionToRoute(routeName.slice(0, -4), view.get(&#x27;id&#x27;));
+        } else {
+          _this.get(&#x27;objectlistviewEventsService&#x27;).setLoadingState(&#x27;&#x27;);
+        }
+      });
     }
   },
 
