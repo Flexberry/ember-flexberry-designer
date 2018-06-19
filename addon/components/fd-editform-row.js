@@ -103,19 +103,6 @@ export default Ember.Component.extend({
   classNames: ['ui', 'dimmable'],
 
   /**
-    Calls `selectControlAction` action when clicking on component when it is renderd as one column.
-
-    @method click
-    @param {JQuery.Event} event
-  */
-  click(event) {
-    event.stopPropagation();
-    if (this.get('_singleColumn')) {
-      this.get('selectControlAction')(this.get('row.controls.firstObject'));
-    }
-  },
-
-  /**
     The event handler is `dragStart`.
 
     @method dragStart

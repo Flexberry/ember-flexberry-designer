@@ -19,6 +19,10 @@ test('it renders and works', function(assert) {
   this.set('control', FdEditformControl.create({ type: 'bool', caption: 'Attribute #1' }));
   assert.ok(/\s*Attribute #1\s*/.test(this.$().text()), 'With simple control.');
 
+  assert.notOk(this.get('selectedControl'), 'No selected control.');
+  this.$('input').click();
+  assert.ok(this.get('selectedControl') === this.get('control'), 'Click on simple control.');
+
   this.set('control', FdEditformGroup.create({
     caption: 'Group #1',
     rows: Ember.A([
@@ -30,6 +34,11 @@ test('it renders and works', function(assert) {
     ]),
   }));
   assert.ok(/\s*Group #1\s*Attribute #1\s*/.test(this.$().text()), 'With group.');
+
+  this.$('input').click();
+  assert.ok(this.get('selectedControl') === this.get('control.rows.firstObject.controls.firstObject'), 'Click on nested control.');
+  this.$('.ember-view.field:first').click();
+  assert.ok(this.get('selectedControl') === this.get('control'), 'Click on group control.');
 
   this.set('control', FdEditformTabgroup.create({
     tabs: Ember.A([
@@ -47,7 +56,8 @@ test('it renders and works', function(assert) {
   }));
   assert.ok(/\s*Tab #1\s*Attribute #1\s*/.test(this.$().text()), 'With tabs.');
 
-  assert.ok(this.get('selectedControl') === undefined, 'No selected control.');
+  this.$('input').click();
+  assert.ok(this.get('selectedControl') === this.get('control.tabs.firstObject.rows.firstObject.controls.firstObject'), 'Click on nested control.');
   this.$('.active.item').click();
-  assert.ok(this.get('selectedControl') === this.get('control.tabs.firstObject'), 'Click by tab.');
+  assert.ok(this.get('selectedControl') === this.get('control.tabs.firstObject'), 'Click on tab control.');
 });

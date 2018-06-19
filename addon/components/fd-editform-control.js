@@ -94,4 +94,17 @@ export default Ember.Component.extend({
       this.$('.menu .item').tab();
     }
   },
+
+  /**
+    The event handler is `click`.
+    Calls the `selectControlAction` action when the component is clicked.
+    The action `selectControlAction` should be passed, for example, from the controller.
+
+    @method click
+    @param {JQuery.Event} event
+  */
+  click(event) {
+    event.stopPropagation();
+    this.get('selectControlAction')(this.get('control'));
+  },
 });

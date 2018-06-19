@@ -10,8 +10,7 @@ moduleForComponent('fd-editform-row', 'Integration | Component | fd-editform-row
 });
 
 test('it renders and works', function(assert) {
-  this.set('selectControlAction', control => this.set('selectedControl', control));
-  this.render(hbs`{{fd-editform-row row=row selectControlAction=selectControlAction}}`);
+  this.render(hbs`{{fd-editform-row row=row}}`);
 
   this.set('row', FdEditformRow.create({
     controls: Ember.A([
@@ -25,10 +24,6 @@ test('it renders and works', function(assert) {
   assert.notOk(this.$('.ember-view:first').hasClass('fields'));
   assert.notOk(this.$('.ember-view:first').hasClass('equal'));
   assert.notOk(this.$('.ember-view:first').hasClass('width'));
-
-  assert.ok(this.get('selectedControl') === undefined, 'No selected control.');
-  this.$('input').click();
-  assert.ok(this.get('selectedControl') === this.get('row.controls.firstObject'), 'Click with one control.');
 
   this.set('row', FdEditformRow.create({
     controls: Ember.A([
