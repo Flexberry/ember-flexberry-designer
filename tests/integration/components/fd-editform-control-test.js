@@ -13,8 +13,8 @@ moduleForComponent('fd-editform-control', 'Integration | Component | fd-editform
 });
 
 test('it renders and works', function(assert) {
-  this.set('selectAction', control => this.set('selectedControl', control));
-  this.render(hbs`{{fd-editform-control control=control selectAction=selectAction}}`);
+  this.set('selectControlAction', control => this.set('selectedControl', control));
+  this.render(hbs`{{fd-editform-control control=control selectControlAction=selectControlAction}}`);
 
   this.set('control', FdEditformControl.create({ type: 'bool', caption: 'Attribute #1' }));
   assert.ok(/\s*Attribute #1\s*/.test(this.$().text()), 'With simple control.');

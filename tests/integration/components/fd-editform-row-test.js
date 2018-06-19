@@ -10,8 +10,8 @@ moduleForComponent('fd-editform-row', 'Integration | Component | fd-editform-row
 });
 
 test('it renders and works', function(assert) {
-  this.set('selectAction', control => this.set('selectedControl', control));
-  this.render(hbs`{{fd-editform-row row=row selectAction=selectAction}}`);
+  this.set('selectControlAction', control => this.set('selectedControl', control));
+  this.render(hbs`{{fd-editform-row row=row selectControlAction=selectControlAction}}`);
 
   this.set('row', FdEditformRow.create({
     controls: Ember.A([
