@@ -24,13 +24,20 @@ export default Ember.Route.extend({
     let idDevClass = devClass.get('id');
 
     // Get attributes tree current class.
-    let tree = getTreeNode(store, idDevClass, 'node_', data);
+    let treeData = getTreeNode(store, idDevClass, 'node_', data);
 
     this.get('objectlistviewEventsService').setLoadingState('');
 
     return {
       view: data,
-      tree: tree
+      tree: treeData.tree,
+      detailsView: treeData.detailView
     };
+  },
+
+  setupController(controller) {
+    this._super(...arguments);
+    controller.set('routeName', this.get('routeName'));
+    controller.set('parentRoute', this.get('router.url'));
   }
 });

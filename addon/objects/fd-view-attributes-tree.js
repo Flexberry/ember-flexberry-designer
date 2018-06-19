@@ -66,13 +66,5 @@ export default Ember.Object.extend({
     @property state
     @type Object
   */
-  state: undefined,
-
-  /**
-    Array of possible 'detailViewName' for detail.
-
-    @property detailViewNameItems
-    @type Array
-  */
-  detailViewNameItems: undefined,
+  state: undefined
 });
