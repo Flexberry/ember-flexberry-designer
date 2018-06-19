@@ -22,7 +22,6 @@ test('it renders and works', function(assert) {
     ]),
   }));
   assert.ok(/\s*Attribute #1\s*/.test(this.$().text()), 'With one control.');
-  assert.ok(this.$('.ember-view:first').hasClass('field'));
   assert.notOk(this.$('.ember-view:first').hasClass('fields'));
   assert.notOk(this.$('.ember-view:first').hasClass('equal'));
   assert.notOk(this.$('.ember-view:first').hasClass('width'));
@@ -44,16 +43,7 @@ test('it renders and works', function(assert) {
     ]),
   }));
   assert.ok(/\s*Attribute #1\s*Attribute #2\s*/.test(this.$().text()), 'With many controls.');
-  assert.notOk(this.$('.ember-view:first').hasClass('field'));
   assert.ok(this.$('.ember-view:first').hasClass('fields'));
   assert.ok(this.$('.ember-view:first').hasClass('equal'));
   assert.ok(this.$('.ember-view:first').hasClass('width'));
-
-  this.set('selectedControl', undefined);
-  this.$('.ember-view:first').click();
-  assert.ok(this.get('selectedControl') === undefined, 'No selected control.');
-  this.$('.field:first').click();
-  assert.ok(this.get('selectedControl') === this.get('row.controls.firstObject'), 'Selected first control.');
-  this.$('.field:last').click();
-  assert.ok(this.get('selectedControl') === this.get('row.controls.lastObject'), 'Selected last control.');
 });

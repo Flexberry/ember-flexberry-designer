@@ -1,22 +1,10 @@
 <div class="ui inverted simple dimmer"></div>
-{{#if _singleColumn}}
+{{#each row.controls as |control|}}
   {{fd-editform-control
-    control=row.controls.firstObject
+    control=control
     selectAction=selectAction
     setDragRowAction=setDragRowAction
     getDragRowAction=getDragRowAction
     moveRowAction=moveRowAction
   }}
-{{else}}
-  {{#each row.controls as |control|}}
-    <div class="field" {{action selectAction control bubbles=false}}>
-      {{fd-editform-control
-        control=control
-        selectAction=selectAction
-        setDragRowAction=setDragRowAction
-        getDragRowAction=getDragRowAction
-        moveRowAction=moveRowAction
-      }}
-    </div>
-  {{/each}}
-{{/if}}
+{{/each}}

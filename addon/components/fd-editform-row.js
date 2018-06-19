@@ -12,7 +12,7 @@ import Ember from 'ember';
 */
 export default Ember.Component.extend({
   /**
-    The component is rendered as one column.
+    Indicates that the row contains only one control.
 
     @private
     @property _singleColumn
@@ -93,7 +93,7 @@ export default Ember.Component.extend({
 
     @property classNameBindings
   */
-  classNameBindings: ['_singleColumn:field:fields', '_singleColumn::equal', '_singleColumn::width', '_dimmed:dimmed'],
+  classNameBindings: ['_singleColumn::fields', '_singleColumn::equal', '_singleColumn::width', '_dimmed:dimmed'],
 
   /**
     See [EmberJS API](https://emberjs.com/api/).
