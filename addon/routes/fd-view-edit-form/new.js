@@ -5,7 +5,6 @@ export default Ember.Route.extend({
   modelProjection: 'EditFormView',
   modelName: 'fd-dev-view',
   templateName: 'fd-view-edit-form',
-  detailsViewArray: undefined,
 
   objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
 
@@ -21,13 +20,13 @@ export default Ember.Route.extend({
 
     // Get attributes tree current class.
     let treeData = getTreeNode(store, devClass.id, 'node_', data);
-    this.set('detailsViewArray', treeData.detailView);
 
     this.get('objectlistviewEventsService').setLoadingState('');
 
     return {
       view: data,
-      tree: treeData.tree
+      tree: treeData.tree,
+      detailsView: treeData.detailView
     };
   },
 
@@ -35,6 +34,5 @@ export default Ember.Route.extend({
     this._super(...arguments);
     controller.set('routeName', this.get('routeName'));
     controller.set('parentRoute', this.get('router.url'));
-    controller.set('detailsViewArray', this.get('detailsViewArray'));
   }
 });

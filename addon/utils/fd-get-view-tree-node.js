@@ -93,7 +93,8 @@ let getTreeNode = function (store, id, jsTreeId, data) {
       let detailViewsItems = detailViews.mapBy('name');
 
       detailView.pushObject({
-        detailName: detailName,
+        detailName: endClass.get('name'),
+        detailRole: detail.get('startRole'),
         detailViewNameItems: detailViewsItems
       });
 

@@ -12,15 +12,6 @@ export default Ember.Route.extend({
    */
   objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
 
-  /**
-    Array of possible details view.
-
-    @property detailsViewArray
-    @type Array
-    @default undefined
-   */
-  detailsViewArray: undefined,
-
   model: function(arg) {
     let store = this.get('store');
 
@@ -34,13 +25,13 @@ export default Ember.Route.extend({
 
     // Get attributes tree current class.
     let treeData = getTreeNode(store, idDevClass, 'node_', data);
-    this.set('detailsViewArray', treeData.detailView);
 
     this.get('objectlistviewEventsService').setLoadingState('');
 
     return {
       view: data,
-      tree: treeData.tree
+      tree: treeData.tree,
+      detailsView: treeData.detailView
     };
   },
 
@@ -48,6 +39,5 @@ export default Ember.Route.extend({
     this._super(...arguments);
     controller.set('routeName', this.get('routeName'));
     controller.set('parentRoute', this.get('router.url'));
-    controller.set('detailsViewArray', this.get('detailsViewArray'));
   }
 });

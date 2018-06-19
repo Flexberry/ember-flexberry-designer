@@ -26,22 +26,13 @@ export default EditFormController.extend({
   selectedRowIndex: null,
 
   /**
-    Array of possible view for all details.
-
-    @property detailsViewArray
-    @type Array
-    @default undefined
-   */
-  detailsViewArray: undefined,
-
-  /**
     Array of possible view name for selected detail for editing.
 
     @property detailViewNameItems
     @type Array
-    @default undefined
+    @default []
    */
-  detailViewNameItems: undefined,
+  detailViewNameItems: [],
 
   /**
     Type of the selected master for editing.
@@ -119,10 +110,15 @@ export default EditFormController.extend({
     let index = this.get('selectedRowIndex');
     if (!Ember.isNone(index)) {
       let rowModel = model[index];
-      let detailsViewArray = this.get('detailsViewArray');
-      let detailView = detailsViewArray.findBy('detailName', rowModel.name);
-      if (detailView) {
-        this.set('detailViewNameItems', detailView.detailViewNameItems);
+      let detailsViewArray = this.get('model.detailsView');
+      let detailViewByName = detailsViewArray.findBy('detailName', rowModel.name);
+      let detailViewByRole = detailsViewArray.findBy('detailRole', rowModel.name);
+      if (detailViewByName) {
+        this.set('detailViewNameItems', detailViewByName.detailViewNameItems);
+      } else if (detailViewByRole) {
+        this.set('detailViewNameItems', detailViewByRole.detailViewNameItems);
+      } else {
+        this.set('detailViewNameItems', []);
       }
 
       return rowModel;
