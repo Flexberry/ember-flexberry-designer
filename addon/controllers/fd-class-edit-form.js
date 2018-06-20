@@ -3,7 +3,7 @@ import EditFormController from 'ember-flexberry/controllers/edit-form';
 import { Query } from 'ember-flexberry-data';
 import BusinessDataObjectEvents from 'ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events';
 
-const { Condition, FilterOperator, ComplexPredicate, SimplePredicate } = Query;
+const { SimplePredicate, FilterOperator, ComplexPredicate, Condition } = Query;
 
 export default EditFormController.extend({
   parentRoute: 'fd-class-list-form',
