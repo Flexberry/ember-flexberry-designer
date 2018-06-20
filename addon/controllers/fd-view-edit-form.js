@@ -4,8 +4,11 @@ import FdViewAttributesProperty from '../objects/fd-view-attributes-property';
 import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 import { getTreeNode } from '../utils/fd-get-view-tree-node';
+import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
+import { translationMacro as t } from 'ember-i18n';
 
-export default EditFormController.extend({
+export default EditFormController.extend(FdWorkPanelToggler, {
+  parentRoute: 'fd-view-list-form',
 
   /**
    Service that triggers objectlistview events.
@@ -15,6 +18,10 @@ export default EditFormController.extend({
    @default Ember.inject.service()
    */
   objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
+
+  allAttrsHidedn: false,
+
+  popupMessage: t(`forms.fd-view-edit-form.attributes-panel.close-panel-btn-caption`),
 
   /**
     Index of the selected attribute for editing.
@@ -156,6 +163,7 @@ export default EditFormController.extend({
     */
     onAttributesClick(index) {
       this.set('selectedRowIndex', index);
+      this.send('toggleConfigPanel', 'control-properties', index);
     },
 
     /**
@@ -255,6 +263,11 @@ export default EditFormController.extend({
         return;
       }
 
+      let prevAttrIndex = this.get('prevAttr');
+      if (index === prevAttrIndex--) {
+        this.set('prevAttr', prevAttrIndex);
+      }
+
       let model = this.get('model.view.definition');
       let prev = index - 1;
       let node = model[index];
@@ -276,12 +289,31 @@ export default EditFormController.extend({
         return;
       }
 
+      let prevAttrIndex = this.get('prevAttr');
+      if (index === prevAttrIndex++) {
+        this.set('prevAttr', prevAttrIndex);
+      }
+
       let next = index + 1;
       let node = model[next];
       let nextNode = model[index];
       model.replace(index, 1, node);
       model.replace(next, 1, nextNode);
       this.set('selectedRowIndex', next);
+    },
+
+    closeRightpanel() {
+      Ember.$('.closable.panel').toggle(500);
+
+      if (this.allAttrsHidedn) {
+        this.set('popupMessage', t('forms.fd-view-edit-form.attributes-panel.close-panel-btn-caption'));
+        Ember.$('.attr-panel .panel.view-attributes').css('width', '50%');
+      } else {
+        this.set('popupMessage', t('forms.fd-view-edit-form.attributes-panel.show-panel-btn-caption'));
+        Ember.$('.attr-panel .panel.view-attributes').css('width', '100%');
+      }
+
+      this.toggleProperty('allAttrsHidedn');
     },
 
     /**

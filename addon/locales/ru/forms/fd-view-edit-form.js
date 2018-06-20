@@ -24,6 +24,19 @@ export default {
     'view-attributes': 'Атрибуты представления'
   },
   'attributes-tree': {
-
+    caption: 'Все атрибуты',
+  },
+  'attributes-panel': {
+    'move-right-btn-title':'Добавить атрибут',
+    'move-left-btn-title':'Удалить атрибут',
+    'move-up-btn-title':'Переместить выше',
+    'move-down-btn-title':'Переместить ниже',
+    'close-panel-btn-caption':'Нажмитье, чтобы скрыть все атрибуты',
+    'show-panel-btn-caption':'Нажмитье, чтобы показать все атрибуты',
+  },
+  'form-config-panel': {
+    caption: 'Редактор представления',
+    'view-properties-header': 'Свойства представления',
+    'attribute-properties-header': 'Свойства атрибута',
   }
 };
