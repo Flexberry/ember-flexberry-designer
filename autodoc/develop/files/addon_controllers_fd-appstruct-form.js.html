@@ -110,41 +110,31 @@
 <div class="file">
     <pre class="prettyprint linenums">
 import Ember from &#x27;ember&#x27;;
-import TreeNodeObject from &#x27;ember-flexberry/objects/tree-node&#x27;;
 import FdViewAttributesTree from &#x27;../objects/fd-view-attributes-tree&#x27;;
-import { Query } from &#x27;ember-flexberry-data&#x27;;
 import EditFormController from &#x27;ember-flexberry/controllers/edit-form&#x27;;
+/*import { Query } from &#x27;ember-flexberry-data&#x27;;*/
 
 export default EditFormController.extend({
 
-  currentProjectContext: Ember.inject.service(&#x27;fd-current-project-context&#x27;),
-
+  /*
+    Setting off for buttons of the left tree.
+  */
   removeLeftNodeDisabled: &#x27;disabled&#x27;,
   addLeftNodeDisabled: &#x27;disabled&#x27;,
   editLeftNodeDisabled: &#x27;disabled&#x27;,
 
+  /*
+    Setting off for &#x27;moveRight&#x27; buttons.
+  */
   moveRightDisabled: &#x27;disabled&#x27;,
 
+  /*
+    Setting off for buttons of the right tree.
+  */
   addRightNodeDisabled: &#x27;disabled&#x27;,
   editRightNodeDisabled: &#x27;disabled&#x27;,
   removeRightNodeDisabled: &#x27;disabled&#x27;,
   addFolderNodeDisabled: &#x27;disabled&#x27;,
-  upRightNodeDisabled: &#x27;disabled&#x27;,
-  downRightNodeDisabled: &#x27;disabled&#x27;,
-
-  jsonLeftTreeClass: &#x27;styled&#x27;,
-  jsonRightTreeClass: &#x27;styled&#x27;,
-
-  lastClicked: {
-    left: {
-      path: null,
-      element: null
-    },
-    right: {
-      path: null,
-      element: null
-    }
-  },
 
   /**
     Data left jsTree.
@@ -208,10 +198,12 @@ export default EditFormController.extend({
   */
   typesOptions: Ember.computed(() =&gt; ({
     &#x27;«listform»&#x27;: {
-      icon: &#x27;assets/images/listform.png&#x27;
+      icon: &#x27;assets/images/listform.png&#x27;,
+      max_children: 0
     },
     &#x27;«editform»&#x27;: {
-      icon: &#x27;assets/images/editform.png&#x27;
+      icon: &#x27;assets/images/editform.png&#x27;,
+      max_children: 0
     },
     &#x27;implementations&#x27;: {
       icon: &#x27;assets/images/implementations.png&#x27;
@@ -225,8 +217,8 @@ export default EditFormController.extend({
     &#x27;master&#x27;: {
       icon: &#x27;assets/images/master.bmp&#x27;
     },
-    &#x27;property&#x27;: {
-      icon: &#x27;assets/images/attribute.bmp&#x27;
+    &#x27;#&#x27;: {
+      max_children: 1
     }
   })),
 
@@ -292,6 +284,10 @@ export default EditFormController.extend({
       rightTreeNodes.pushObjects(application.get(&#x27;containersStr&#x27;));
     });
 
+    // Update stereotype.
+    let recordsDevClass = this.get(&#x27;store&#x27;).peekAll(&#x27;fd-dev-class&#x27;);
+    this._updateTypeRightTree(rightTreeNodes, recordsDevClass);
+
     let treeRight = FdViewAttributesTree.create({
       text: &#x27;Рабочий стол&#x27;,
       type: &#x27;desk&#x27;,
@@ -304,258 +300,269 @@ export default EditFormController.extend({
     });
 
     Ember.set(this, &#x27;jsonRightTreeNodes&#x27;, treeRight);
+
+    // Reset selection.
+    this.set(&#x27;jstreeSelectedNodesLeft&#x27;, Ember.A());
+    this.set(&#x27;jstreeSelectedNodesRight&#x27;, Ember.A());
   })),
 
-  /*jstreeSelectedNodesLeftObserver: Ember.observer(&#x27;jstreeSelectedNodesLeft&#x27;, function() {
+  /**
+    Handles changes in jstreeSelectedNodesLeft.
+
+    @method jstreeSelectedNodesLeftObserver
+  */
+  _jstreeSelectedNodesLeftObserver: Ember.observer(&#x27;jstreeSelectedNodesLeft&#x27;, function() {
     let jstreeSelectedNodesLeft = this.get(&#x27;jstreeSelectedNodesLeft&#x27;);
     if (jstreeSelectedNodesLeft.length === 0) {
       this.set(&#x27;removeLeftNodeDisabled&#x27;, &#x27;disabled&#x27;);
       this.set(&#x27;addLeftNodeDisabled&#x27;, &#x27;disabled&#x27;);
       this.set(&#x27;editLeftNodeDisabled&#x27;, &#x27;disabled&#x27;);
-      this.set(&#x27;moveRightDisabled&#x27;, &#x27;disabled&#x27;);
     } else {
       this.set(&#x27;removeLeftNodeDisabled&#x27;, &#x27;&#x27;);
       this.set(&#x27;editLeftNodeDisabled&#x27;, &#x27;&#x27;);
       let selectedNode = jstreeSelectedNodesLeft[0];
       let typeNode = selectedNode.original.type;
-      if (typeNode === &#x27;implementations&#x27;) {
+      if (typeNode === &#x27;implementations&#x27; || typeNode === &#x27;notStored&#x27;) {
         this.set(&#x27;addLeftNodeDisabled&#x27;, &#x27;&#x27;);
-        this.set(&#x27;moveRightDisabled&#x27;, &#x27;disabled&#x27;);
       } else {
         this.set(&#x27;addLeftNodeDisabled&#x27;, &#x27;disabled&#x27;);
-        this.set(&#x27;moveRightDisabled&#x27;, &#x27;&#x27;);
       }
     }
-  }),*/
+  }),
 
-  _jsFlexberryTreeToTree: function (jsFlexberryTree) {
-    if (!jsFlexberryTree) {
-      return null;
-    }
+  /**
+    Handles changes in jstreeSelectedNodesRight.
 
-    let ret = [];
-    for (let i = 0; i &lt; jsFlexberryTree.length; i++) {
-      let node = jsFlexberryTree[i];
-      let nodes = null;
-      if (node.nodes) {
-        nodes = this._jsFlexberryTreeToTree(node.nodes);
+    @method jstreeSelectedNodesRightObserver
+  */
+  _jstreeSelectedNodesRightObserver: Ember.observer(&#x27;jstreeSelectedNodesRight&#x27;, function() {
+    let jstreeSelectedNodesRight = this.get(&#x27;jstreeSelectedNodesRight&#x27;);
+    if (jstreeSelectedNodesRight.length === 0) {
+      this.set(&#x27;editRightNodeDisabled&#x27;, &#x27;disabled&#x27;);
+      this.set(&#x27;removeRightNodeDisabled&#x27;, &#x27;disabled&#x27;);
+      this.set(&#x27;addFolderNodeDisabled&#x27;, &#x27;disabled&#x27;);
+    } else {
+      let selectedNode = jstreeSelectedNodesRight[0];
+      let typeNode = selectedNode.original.type;
+
+      if (typeNode === &#x27;desk&#x27;) {
+        this.set(&#x27;removeRightNodeDisabled&#x27;, &#x27;disabled&#x27;);
+        this.set(&#x27;editRightNodeDisabled&#x27;, &#x27;disabled&#x27;);
+      } else {
+        this.set(&#x27;removeRightNodeDisabled&#x27;, &#x27;&#x27;);
+        this.set(&#x27;editRightNodeDisabled&#x27;, &#x27;&#x27;);
       }
 
-      let treeNode = {
-        id: node.id,
-        caption: node.caption,
-        description: node.description || &#x27;&#x27;,
-        className: node.className,
-        stereotype: node.stereotype,
+      if (typeNode === &#x27;«listform»&#x27; || typeNode === &#x27;«editform»&#x27;) {
+        this.set(&#x27;addFolderNodeDisabled&#x27;, &#x27;disabled&#x27;);
+      } else {
+        this.set(&#x27;addFolderNodeDisabled&#x27;, &#x27;&#x27;);
+      }
+    }
+  }),
+
+  /**
+    Handles changes in jstreeSelectedNodesRight and jstreeSelectedNodesLeft.
+
+    @method _jstreeSelectedNodesObserver
+  */
+  _jstreeSelectedNodesObserver: Ember.observer(&#x27;jstreeSelectedNodesLeft&#x27;, &#x27;jstreeSelectedNodesRight&#x27;, function() {
+    let jstreeSelectedNodesLeft = this.get(&#x27;jstreeSelectedNodesLeft&#x27;);
+    let jstreeSelectedNodesRight = this.get(&#x27;jstreeSelectedNodesRight&#x27;);
+    if (jstreeSelectedNodesRight.length === 0 || jstreeSelectedNodesLeft.length === 0) {
+      return;
+    }
+
+    let jstreeSelectedNodesRightType = jstreeSelectedNodesRight[0].original.type;
+    let jstreeSelectedNodesLeftType = jstreeSelectedNodesLeft[0].original.type;
+    if ((jstreeSelectedNodesLeftType !== &#x27;«listform»&#x27; &amp;&amp; jstreeSelectedNodesLeftType !== &#x27;«editform»&#x27;) ||
+      jstreeSelectedNodesRightType === &#x27;«listform»&#x27; || jstreeSelectedNodesRightType === &#x27;«editform»&#x27;) {
+      this.set(&#x27;moveRightDisabled&#x27;, &#x27;disabled&#x27;);
+    } else {
+      this.set(&#x27;moveRightDisabled&#x27;, &#x27;&#x27;);
+    }
+  }),
+
+  /**
+    Index selected attribute in right tree.
+
+    @property indexSelectedRight
+    @type Number
+  */
+  indexSelectedRight: Ember.computed(&#x27;jstreeSelectedNodesRight&#x27;, function() {
+    let jstreeSelectedNodesRight = this.get(&#x27;jstreeSelectedNodesRight&#x27;);
+    if (jstreeSelectedNodesRight.length === 0) {
+      return {
+        upRightNodeDisabled: &#x27;disabled&#x27;,
+        downRightNodeDisabled: &#x27;disabled&#x27;
       };
-      if (nodes) {
-        treeNode.nodes = nodes;
+    }
+
+    let parentSelectedNode = this.get(&#x27;jstreeObjectRight&#x27;).jstree(true).get_node(jstreeSelectedNodesRight[0].parent);
+    let arrayChildrensParentSelectedNode = parentSelectedNode.original.get(&#x27;copyChildren&#x27;);
+    let selectedObject = arrayChildrensParentSelectedNode.findBy(&#x27;text&#x27;, jstreeSelectedNodesRight[0].text);
+    let indexSelectedNode = arrayChildrensParentSelectedNode.indexOf(selectedObject);
+
+    let upRightNodeDisabled = &#x27;disabled&#x27;;
+    let downRightNodeDisabled = &#x27;disabled&#x27;;
+
+    if (indexSelectedNode !== 0) {
+      upRightNodeDisabled = &#x27;&#x27;;
+    }
+
+    if (indexSelectedNode !== arrayChildrensParentSelectedNode.length - 1) {
+      downRightNodeDisabled = &#x27;&#x27;;
+    }
+
+    return {
+      index: indexSelectedNode,
+      array: arrayChildrensParentSelectedNode,
+      arrayId: parentSelectedNode.children,
+      upRightNodeDisabled: upRightNodeDisabled,
+      downRightNodeDisabled: downRightNodeDisabled
+    };
+  }),
+
+  /**
+    Method for update type right tree.
+    @method _updateTypeRightTree
+  */
+  _updateTypeRightTree(rightTreeNodes, recordsDevClass) {
+    let _this = this;
+    rightTreeNodes.forEach(function(node) {
+      if (node.type === &#x27;master&#x27;) {
+        _this._updateTypeRightTree(node.get(&#x27;children&#x27;), recordsDevClass);
+        node.set(&#x27;copyChildren&#x27;, node.get(&#x27;children&#x27;));
+      } else {
+        let classData = recordsDevClass.findBy(&#x27;name&#x27;, node.className);
+        node.set(&#x27;type&#x27;, classData.get(&#x27;stereotype&#x27;));
+        node.set(&#x27;a_attr&#x27;, { title: classData.get(&#x27;stereotype&#x27;) + &#x27; &#x27; + classData.get(&#x27;name&#x27;) });
       }
-
-      ret.push(treeNode);
-    }
-
-    return ret;
+    });
   },
 
-  _findNodeByPath: function(jsonTree, path) {
-    let ret = jsonTree;
-    let steps = path ? path.split(&#x27;.&#x27;) : [];
-    for (let i = 0; i &lt; steps.length; i++) {
-      let step = steps[i];
-      ret = ret[step];
-    }
-
-    return ret;
-  },
-
-  _findParentNodeByPath: function(jsonTree, path) {
-    let steps = path.split(&#x27;.&#x27;);
-    steps.pop();
-    steps.pop();
-    let parentPath = steps.join(&#x27;.&#x27;);
-    let ret = this._findNodeByPath(jsonTree, parentPath);
-    return ret;
-  },
-
-  _findParentNodesByPath: function(jsonTree, path) {
-    let ret = jsonTree;
-    let steps = path.split(&#x27;.&#x27;);
-    let index = steps.pop();
-    let nodesPath = steps.join(&#x27;.&#x27;);
-    let parentNodes = this._findNodeByPath(jsonTree, nodesPath);
-    ret = { parentNodes: parentNodes, index: parseInt(index) };
-    return ret;
-  },
-
-  _setRightIconState: function(path) {
-    let node = this._findNodeByPath(this, path);
-    let { parentNodes, index } = this._findParentNodesByPath(this, path);
-    let parentNodeChilds = parentNodes.length;
-    Ember.set(this, &#x27;removeRightNodeDisabled&#x27;, path.split(&#x27;.&#x27;).length &gt; 2 ? &#x27;&#x27; : &#x27;disabled&#x27;);
-    Ember.set(this, &#x27;editRightNodeDisabled&#x27;, &#x27;&#x27;);
-    Ember.set(this, &#x27;addFolderNodeDisabled&#x27;, node.nodes ? &#x27;&#x27; : &#x27;disabled&#x27;);
-    Ember.set(this, &#x27;upRightNodeDisabled&#x27;, index &gt; 0 ? &#x27;&#x27; : &#x27;disabled&#x27;);
-    Ember.set(this, &#x27;downRightNodeDisabled&#x27;, index &lt; parentNodeChilds - 1 ? &#x27;&#x27; : &#x27;disabled&#x27;);
-  },
-
-  _setLeftIconState: function(/*path*/) {
-    Ember.set(this, &#x27;removeLeftNodeDisabled&#x27;, &#x27;&#x27;);
-    Ember.set(this, &#x27;addLeftNodeDisabled&#x27;, &#x27;&#x27;);
-    Ember.set(this, &#x27;editLeftNodeDisabled&#x27;, &#x27;&#x27;);
-    Ember.set(this, &#x27;moveRightDisabled&#x27;, &#x27;&#x27;);
-    Ember.set(this, &#x27;addRightNodeDisabled&#x27;, &#x27;&#x27;);
-  },
-
-  _findPathOfNode(path, root, node) {
-    if (node === root) {
-      return path;
-    }
-
-    if (!root.nodes) {
-      return false;
-    }
-
-    for (let i in root.nodes) {
-      let subNode = root.nodes[i];
-      let subPath = this._findPathOfNode(path + &#x27;.nodes.&#x27; + i.toString(), subNode, node);
-      if (subPath !== false) {
-        return subPath;
+  /**
+    Method for restoring tree nodes.
+    @method _restorationNodeTree
+  */
+  _restorationNodeTree(nodeArray) {
+    let _this = this;
+    nodeArray.forEach(function(node) {
+      if (node.type === &#x27;master&#x27; || node.type === &#x27;desk&#x27;) {
+        node.set(&#x27;children&#x27;, node.get(&#x27;copyChildren&#x27;));
+        _this._restorationNodeTree(node.get(&#x27;children&#x27;));
       }
-    }
-
-    return false;
-  },
-
-  _isLeaf: function(element) {
-    let ret = element.children.length &gt; 0 &amp;&amp; element.children[0].style.visibility === &#x27;hidden&#x27;;
-    return ret;
-  },
-
-  _getTopId: function(path) {
-    if (typeof path !== &#x27;string&#x27;) {
-      return;
-    }
-
-    let steps = path.split(&#x27;.&#x27;);
-    if (steps.length &lt; 2) {
-      return;
-    }
-
-    let node = this._findNodeByPath(this, steps.join(&#x27;.&#x27;));
-    let ret = node.get(&#x27;id&#x27;);
-    return ret;
+    });
   },
 
   actions: {
 
     /**
-      Handles creating left jsTree.
+      Handles move node from left in right jsTree.
 
-      @method actions.handleLeftTreeDidBecomeReady
+      @method actions.removeLeftNode
     */
-    handleLeftTreeDidBecomeReady() {
-      //let treeObject = this.get(&#x27;jstreeObjectLeft&#x27;);
-      //treeObject.on(&#x27;open_node.jstree&#x27;, this._openNodeTree.bind(this));
+    moveRightHighlighted() {
+      let jstreeSelectedNodesLeft = this.get(&#x27;jstreeSelectedNodesLeft&#x27;);
+      let jstreeSelectedNodesRight = this.get(&#x27;jstreeSelectedNodesRight&#x27;);
+      if (jstreeSelectedNodesLeft.length === 0 || jstreeSelectedNodesRight.length === 0) {
+        return;
+      }
+
+      let leftNode = jstreeSelectedNodesLeft[0].original;
+      this.get(&#x27;jstreeActionReceiverRight&#x27;).send(&#x27;createNode&#x27;, jstreeSelectedNodesRight[0], FdViewAttributesTree.create({
+        text: leftNode.get(&#x27;text&#x27;),
+        type: leftNode.get(&#x27;type&#x27;),
+        name: leftNode.get(&#x27;name&#x27;),
+        idNode: leftNode.get(&#x27;idNode&#x27;),
+        a_attr: leftNode.get(&#x27;a_attr&#x27;)
+      }));
     },
 
     /**
-      Handles creating right jsTree.
+      Handles remove node from left jsTree.
 
-      @method actions.handleRightTreeDidBecomeReady
+      @method actions.removeLeftNode
     */
-    handleRightTreeDidBecomeReady() {
-      //let treeObject = this.get(&#x27;jstreeObjectRight&#x27;);
-      //treeObject.on(&#x27;open_node.jstree&#x27;, this._openNodeTree.bind(this));
-      //treeObject.on(&#x27;after_close.jstree&#x27;, this._afterCloseNodeTree.bind(this));
-    },
-
-    onTreenodeHeaderClick(...args) {
-      let actionEventObject = args[args.length - 1];
-      let clickedPath = args[0];
-      /*let clickedNodeSettingsPrefix = Ember.$(actionEventObject.originalEvent.currentTarget)
-        .closest(&#x27;.tab.segment&#x27;)
-        .attr(&#x27;data-tab&#x27;);*/
-
-      let lastClicked = null;
-      let clickedElement = actionEventObject.originalEvent.target;
-      if (clickedElement.tagName === &#x27;DIV&#x27;) {
-        if (clickedPath.substr(0, 8) === &#x27;jsonLeft&#x27;) {
-          if (!this._isLeaf(clickedElement)) {
-            return;
-          }
-
-          lastClicked = this.lastClicked.left;
-          this._setLeftIconState(/*clickedPath*/);
-        } else if (clickedPath.substr(0, 9) === &#x27;jsonRight&#x27;) {
-          lastClicked = this.lastClicked.right;
-          this._setRightIconState(clickedPath);
-        }
-
-        if (lastClicked) {
-          if (lastClicked.element) {
-            lastClicked.element.style.backgroundColor = &#x27;&#x27;;
-          }
-
-          lastClicked.element = clickedElement;
-          lastClicked.element.style.backgroundColor = &#x27;#cccccc&#x27;;
-          lastClicked.path = clickedPath;
-        }
-      }
-
-      if (clickedElement.tagName !== &#x27;I&#x27;) {
-        args[1].originalEvent.stopPropagation();
-      }
-    },
-
-    moveRightHighlighted() {
-      let lastClickedPath = this.lastClicked.left.path;
-      let node = this._findNodeByPath(this, lastClickedPath);
-      let toPath = this.lastClicked.right.path ? this.lastClicked.right.path : &#x27;jsonRightTreeNodes.0&#x27;;
-      let toNode = this._findNodeByPath(this, toPath);
-      if (!toNode.nodes) {
-        toNode = this._findParentNodeByPath(this, toPath);
-      }
-
-      toNode.nodes.pushObject(node);
-    },
-
     removeLeftNode() {
+      let jstreeSelectedNodesLeft = this.get(&#x27;jstreeSelectedNodesLeft&#x27;);
+      if (jstreeSelectedNodesLeft.length === 0) {
+        return;
+      }
+
+      // TODO remove from BD.
+      this.get(&#x27;jstreeActionReceiverLeft&#x27;).send(&#x27;deleteNode&#x27;, jstreeSelectedNodesLeft[0]);
+      this.set(&#x27;jstreeSelectedNodesLeft&#x27;, Ember.A());
     },
 
+    /**
+      Handles create new class left jsTree.
+
+      @method actions.addLeftClass
+    */
     addLeftClass() {
-      let url = &#x27;/fd-class-edit-form/new&#x27;;
-      this.transitionToRoute(url);
+      this.transitionToRoute(&#x27;fd-class-edit-form.new&#x27;);
     },
 
+    /**
+      Handles add edit form for class in left jsTree.
+
+      @method actions.addLeftListForm
+    */
     addLeftEditForm() {
-      let classId = this._getTopId(this.lastClicked.left.path);
-      if (classId) {
-        let url = &#x27;/fd-editform-constructor/new?classId=&#x27; + classId;
-        this.transitionToRoute(url);
+      let jstreeSelectedNodesLeft = this.get(&#x27;jstreeSelectedNodesLeft&#x27;);
+      if (jstreeSelectedNodesLeft.length === 0) {
+        return;
       }
 
+      let selectedNode = jstreeSelectedNodesLeft[0];
+      let classId = selectedNode.original.get(&#x27;idNode&#x27;);
+
+      // TODO fd-editform-constructor don&#x27;t work. Need update queryParams.
+      this.transitionToRoute(&#x27;fd-editform-constructor&#x27;, {
+        queryParams: {
+          classId: classId,
+        }
+      });
     },
 
+    /**
+      Handles add list form for class in left jsTree.
+
+      @method actions.addLeftListForm
+    */
     addLeftListForm() {
-      let pathToObject = this.lastClicked.left.path.split(&#x27;.&#x27;, 2).join(&#x27;.&#x27;);
-      let classId = this._getTopId(pathToObject);
-      if (classId) {
-        this.transitionToRoute(&#x27;fd-visual-listform&#x27;, {
-          queryParams: {
-            form: undefined,
-            class: classId,
-          },
-        });
+      let jstreeSelectedNodesLeft = this.get(&#x27;jstreeSelectedNodesLeft&#x27;);
+      if (jstreeSelectedNodesLeft.length === 0) {
+        return;
       }
+
+      let selectedNode = jstreeSelectedNodesLeft[0];
+      let classId = selectedNode.original.get(&#x27;idNode&#x27;);
+
+      this.transitionToRoute(&#x27;fd-visual-listform&#x27;, {
+        queryParams: {
+          form: undefined,
+          class: classId,
+        }
+      });
     },
 
+    /**
+      Handles edit node left jsTree.
+
+      @method actions.editLeftNode
+    */
     editLeftNode() {
-      let lastClickedPath = this.lastClicked.left.path;
-      let node = this._findNodeByPath(this, lastClickedPath);
-      let nodeId = node.get(&#x27;id&#x27;);
-      let url;
-      switch (node.get(&#x27;stereotype&#x27;)) {
+      let jstreeSelectedNodesLeft = this.get(&#x27;jstreeSelectedNodesLeft&#x27;);
+      if (jstreeSelectedNodesLeft.length === 0) {
+        return;
+      }
+
+      let selectedNode = jstreeSelectedNodesLeft[0];
+      let nodeId = selectedNode.original.get(&#x27;idNode&#x27;);
+
+      switch (selectedNode.original.get(&#x27;type&#x27;)) {
         case &#x27;«listform»&#x27;:
           this.transitionToRoute(&#x27;fd-visual-listform&#x27;, {
             queryParams: {
@@ -565,130 +572,135 @@ export default EditFormController.extend({
           });
           break;
         case &#x27;«editform»&#x27;:
-          url = &#x27;/fd-editform-constructor/&#x27; + nodeId;
-          this.transitionToRoute(url);
+          this.transitionToRoute(&#x27;fd-editform-constructor&#x27;, nodeId);
           break;
-        case &#x27;«implementation»&#x27;:
-        case undefined:
-          url = &#x27;fd-class-edit-form&#x27;;
-          this.transitionToRoute(url, nodeId);
+        case &#x27;implementations&#x27;:
+        case &#x27;notStored&#x27;:
+          this.transitionToRoute(&#x27;fd-class-edit-form&#x27;, nodeId);
           break;
       }
     },
 
+    /**
+      Handles open class list form.
+
+      @method actions.listLeft
+    */
     listLeft() {
-      this.transitionToRoute(&#x27;/fd-class-list-form&#x27;);
+      this.transitionToRoute(&#x27;fd-class-list-form&#x27;);
     },
 
+    /**
+      Handles edit node left jsTree.
+
+      @method actions.editRightNode
+    */
     editRightNode() {
-      let lastClickedPath = this.lastClicked.right.path;
-      let lastClickedElement = this.lastClicked.right.element;
-      let textElement = null;
-      let caption = lastClickedElement.innerText.trim();
-      for (let element = lastClickedElement.firstChild; element; element = element.nextSibling) {
-        if (element.nodeType === 3 &amp;&amp; element.textContent.trim() === caption) {
-          textElement = element;
-          break;
-        }
-      }
-
-      let inputElement = document.createElement(&#x27;input&#x27;);
-      inputElement._this = this;
-      inputElement.lastClickedPath = lastClickedPath;
-      inputElement.setAttribute(&#x27;value&#x27;, caption);
-      inputElement.style.display = &#x27;inline-block&#x27;;
-      inputElement.style.position = &#x27;absolute&#x27;;
-      inputElement.style.padding = &#x27;6px 0px 0px 2px&#x27;;
-      inputElement.onkeypress = (event) =&gt; {
-        if (event.keyCode === 13) {
-          event.target.blur();
-        }
-      };
-
-      inputElement.onblur = function (event) {
-        let inputElement = event.target;
-        let caption = inputElement.value;
-        let textElement = document.createTextNode(caption);
-        inputElement.parentNode.replaceChild(textElement, inputElement);
-        let _this = inputElement._this;
-        let node = _this._findNodeByPath(_this, inputElement.lastClickedPath);
-        Ember.set(node, &#x27;caption&#x27;, caption);
-      };
-
-      textElement.parentNode.replaceChild(inputElement, textElement);
-      inputElement.select();
-      inputElement.focus();
+      //TODO filling out tabs.
     },
 
+    /**
+      Handles remove node from right jsTree.
+
+      @method actions.removeRightNode
+    */
     removeRightNode() {
-      let lastClickedPath = this.lastClicked.right.path;
-      if (lastClickedPath.split(&#x27;.&#x27;).length &lt; 3) {
-        return false;
+      let jstreeSelectedNodesRight = this.get(&#x27;jstreeSelectedNodesRight&#x27;);
+      if (jstreeSelectedNodesRight.length === 0) {
+        return;
       }
 
-      let { parentNodes, index } = this._findParentNodesByPath(this, lastClickedPath);
-      let removedNode = parentNodes[index];
-      parentNodes.removeObject(removedNode);
+      this.get(&#x27;jstreeActionReceiverRight&#x27;).send(&#x27;deleteNode&#x27;, jstreeSelectedNodesRight[0]);
+      this.set(&#x27;jstreeSelectedNodesRight&#x27;, Ember.A());
     },
 
+    /**
+      Handles add node in right jsTree.
+
+      @method actions.removeRightNode
+    */
     addFolderNode() {
-      let toPath = this.lastClicked.right.path ? this.lastClicked.right.path : &#x27;jsonRightTreeNodes.0&#x27;;
-      let node = this._findNodeByPath(this, toPath);
-      Ember.get(node, &#x27;nodes&#x27;).pushObject(TreeNodeObject.create({ caption: &#x27;New folder&#x27;, nodes: Ember.A() }));
+      let jstreeSelectedNodesRight = this.get(&#x27;jstreeSelectedNodesRight&#x27;);
+      if (jstreeSelectedNodesRight.length === 0) {
+        return;
+      }
+
+      let folderName = &#x27;NewFolder&#x27;;
+      let selectedNodes = jstreeSelectedNodesRight[0].original.get(&#x27;copyChildren&#x27;);
+      let foundName = selectedNodes.findBy(&#x27;text&#x27;, folderName);
+      let folderIndex = &#x27;&#x27;;
+      while (!Ember.isNone(foundName)) {
+        folderIndex++;
+        foundName = selectedNodes.findBy(&#x27;text&#x27;, folderName + folderIndex);
+      }
+
+      let folder = FdViewAttributesTree.create({
+        text: folderName + folderIndex,
+        type: &#x27;master&#x27;,
+        children: Ember.A(),
+        copyChildren: Ember.A()
+      });
+
+      selectedNodes.pushObject(folder);
+      this.get(&#x27;jstreeActionReceiverRight&#x27;).send(&#x27;createNode&#x27;, jstreeSelectedNodesRight[0], folder);
     },
 
     upRightNode() {
-      let lastClickedPath = this.lastClicked.right.path;
-      let { parentNodes, index } = this._findParentNodesByPath(this, lastClickedPath);
-      if (index === 0) {
-        return false;
+      let jstreeSelectedNodesRight = this.get(&#x27;jstreeSelectedNodesRight&#x27;);
+      if (jstreeSelectedNodesRight.length === 0) {
+        return;
       }
 
+      let indexSelectedRight = this.get(&#x27;indexSelectedRight&#x27;);
+      let index = indexSelectedRight.index;
+      let array = indexSelectedRight.array;
       let prev = index - 1;
-      let node = parentNodes[index];
-      let prevNode = parentNodes[prev];
+      let node = array[index];
+      let prevNode = array[prev];
 
-      parentNodes.arrayContentWillChange(prev, 0,  null);
+      array.replace(prev, 1, node);
+      array.replace(index, 1, prevNode);
 
-      Ember.set(parentNodes, prev.toString(), node);
-      Ember.set(parentNodes, index.toString(), prevNode);
+      // Restoration tree.
+      let dataTree = this.get(&#x27;jsonRightTreeNodes&#x27;);
+      dataTree.set(&#x27;children&#x27;, dataTree.get(&#x27;copyChildren&#x27;));
+      this._restorationNodeTree(this.get(&#x27;jsonRightTreeNodes.copyChildren&#x27;));
+      Ember.set(this, &#x27;jsonRightTreeNodes&#x27;, dataTree);
 
-      parentNodes.arrayContentDidChange(prev, null, null);
-
-      let arrayClickedPath = lastClickedPath.split(&#x27;.&#x27;);
-      arrayClickedPath[arrayClickedPath.length - 1] = prev.toString();
-      let prevPath = arrayClickedPath.join(&#x27;.&#x27;);
-      this._setRightIconState(prevPath);
-      this.lastClicked.right.path = prevPath;
+      this.get(&#x27;jstreeActionReceiverRight&#x27;).send(&#x27;redraw&#x27;);
+      this.get(&#x27;jstreeActionReceiverRight&#x27;).send(&#x27;deselectNode&#x27;, indexSelectedRight.arrayId[index]);
+      this.get(&#x27;jstreeActionReceiverRight&#x27;).send(&#x27;selectNode&#x27;, indexSelectedRight.arrayId[prev]);
     },
 
     downRightNode() {
-      let lastClickedPath = this.lastClicked.right.path;
-      let { parentNodes, index } = this._findParentNodesByPath(this, lastClickedPath);
-      if (index &gt;= parentNodes.length - 1) {
-        return false;
+      let jstreeSelectedNodesRight = this.get(&#x27;jstreeSelectedNodesRight&#x27;);
+      if (jstreeSelectedNodesRight.length === 0) {
+        return;
       }
 
+      let indexSelectedRight = this.get(&#x27;indexSelectedRight&#x27;);
+      let index = indexSelectedRight.index;
+      let array = indexSelectedRight.array;
       let next = index + 1;
-      let node = parentNodes[next];
-      let nextNode = parentNodes[index];
+      let node = array[next];
+      let nextNode = array[index];
 
-      parentNodes.arrayContentWillChange(index, 0, null);
+      array.replace(index, 1, node);
+      array.replace(next, 1, nextNode);
 
-      Ember.set(parentNodes, index.toString(), node);
-      Ember.set(parentNodes, next.toString(), nextNode);
+      // Restoration tree.
+      let dataTree = this.get(&#x27;jsonRightTreeNodes&#x27;);
+      dataTree.set(&#x27;children&#x27;, dataTree.get(&#x27;copyChildren&#x27;));
+      this._restorationNodeTree(this.get(&#x27;jsonRightTreeNodes.copyChildren&#x27;));
+      Ember.set(this, &#x27;jsonRightTreeNodes&#x27;, dataTree);
 
-      parentNodes.arrayContentDidChange(index, null, null);
-
-      let arrayClickedPath = lastClickedPath.split(&#x27;.&#x27;);
-      arrayClickedPath[arrayClickedPath.length - 1] = next.toString();
-      let nextPath = arrayClickedPath.join(&#x27;.&#x27;);
-      this._setRightIconState(nextPath);
-      this.lastClicked.right.path = nextPath;
+      this.get(&#x27;jstreeActionReceiverRight&#x27;).send(&#x27;redraw&#x27;);
+      this.get(&#x27;jstreeActionReceiverRight&#x27;).send(&#x27;deselectNode&#x27;, indexSelectedRight.arrayId[index]);
+      this.get(&#x27;jstreeActionReceiverRight&#x27;).send(&#x27;selectNode&#x27;, indexSelectedRight.arrayId[next]);
     },
 
     saveTree() {
-      let rightTree = this._jsFlexberryTreeToTree(this.jsonRightTreeNodes[0].nodes);
+      /*let rightTree = this.jsonRightTreeNodes[0].nodes;
       while (rightTree &amp;&amp; rightTree.length === 1 &amp;&amp; rightTree[0].caption === &#x27;Рабочий стол&#x27;) {
         rightTree = rightTree[0].nodes;
       }
@@ -698,11 +710,11 @@ export default EditFormController.extend({
       .select(&#x27;name,stereotype,containersStr,caption,stage.id&#x27;)
       .byId(this.model.id);
       this.store.queryRecord(&#x27;fd-dev-class&#x27;, builder.build()).
-      /*this.get(&#x27;store&#x27;).findRecord(&#x27;fd-dev-class&#x27;, this.model.id).*/
+      //this.get(&#x27;store&#x27;).findRecord(&#x27;fd-dev-class&#x27;, this.model.id).
       then(function(record) {
-        /*let stagePk = _this.get(&#x27;currentProjectContext&#x27;).getCurrentStagePk();*/
+        //let stagePk = _this.get(&#x27;currentProjectContext&#x27;).getCurrentStagePk();
         record.set(&#x27;containersStr&#x27;, rightTree);
-        /*record.set(&#x27;stage&#x27;, stagePk);*/
+        //record.set(&#x27;stage&#x27;, stagePk);
         record.save().then(
           function(data) {
             alert(&#x27;Success&#x27; + data);
@@ -711,7 +723,7 @@ export default EditFormController.extend({
             alert(&#x27;Error&#x27; + data);
           }
         );
-      });
+      });*/
       /*alert(&#x27;Save&#x27;);*/
     },
 

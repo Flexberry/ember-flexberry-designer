@@ -1627,7 +1627,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 38,
+            "line": 28,
             "description": "Data left jsTree.",
             "itemtype": "property",
             "name": "jsonLeftTreeNodes",
@@ -1638,7 +1638,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 47,
+            "line": 37,
             "description": "Data right jsTree.",
             "itemtype": "property",
             "name": "jsonRightTreeNodes",
@@ -1649,7 +1649,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 56,
+            "line": 46,
             "description": "Included plugins for left jsTree.",
             "itemtype": "property",
             "name": "pluginsLeft",
@@ -1660,7 +1660,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 65,
+            "line": 55,
             "description": "Included plugins for right jsTree.",
             "itemtype": "property",
             "name": "pluginsRight",
@@ -1671,7 +1671,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 74,
+            "line": 64,
             "description": "Selected nodes in left jsTree.",
             "itemtype": "property",
             "name": "jstreeSelectedNodesLeft",
@@ -1682,7 +1682,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 83,
+            "line": 73,
             "description": "Selected nodes in right jsTree.",
             "itemtype": "property",
             "name": "jstreeSelectedNodesRight",
@@ -1693,7 +1693,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 92,
+            "line": 82,
             "description": "Type settings for jsTree.",
             "itemtype": "property",
             "name": "typesOptions",
@@ -1703,19 +1703,146 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 341,
-            "description": "Handles creating left jsTree.",
+            "line": 198,
+            "description": "Handles changes in jstreeSelectedNodesLeft.",
             "itemtype": "method",
-            "name": "actions.handleLeftTreeDidBecomeReady",
+            "name": "jstreeSelectedNodesLeftObserver",
             "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 351,
-            "description": "Handles creating right jsTree.",
+            "line": 222,
+            "description": "Handles changes in jstreeSelectedNodesRight.",
             "itemtype": "method",
-            "name": "actions.handleRightTreeDidBecomeReady",
+            "name": "jstreeSelectedNodesRightObserver",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 253,
+            "description": "Handles changes in jstreeSelectedNodesRight and jstreeSelectedNodesLeft.",
+            "itemtype": "method",
+            "name": "_jstreeSelectedNodesObserver",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 275,
+            "description": "Index selected attribute in right tree.",
+            "itemtype": "property",
+            "name": "indexSelectedRight",
+            "type": "Number",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 315,
+            "description": "Method for update type right tree.",
+            "itemtype": "method",
+            "name": "_updateTypeRightTree",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 333,
+            "description": "Method for restoring tree nodes.",
+            "itemtype": "method",
+            "name": "_restorationNodeTree",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 349,
+            "description": "Handles move node from left in right jsTree.",
+            "itemtype": "method",
+            "name": "actions.removeLeftNode",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 371,
+            "description": "Handles remove node from left jsTree.",
+            "itemtype": "method",
+            "name": "actions.removeLeftNode",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 387,
+            "description": "Handles create new class left jsTree.",
+            "itemtype": "method",
+            "name": "actions.addLeftClass",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 396,
+            "description": "Handles add edit form for class in left jsTree.",
+            "itemtype": "method",
+            "name": "actions.addLeftListForm",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 418,
+            "description": "Handles add list form for class in left jsTree.",
+            "itemtype": "method",
+            "name": "actions.addLeftListForm",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 440,
+            "description": "Handles edit node left jsTree.",
+            "itemtype": "method",
+            "name": "actions.editLeftNode",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 473,
+            "description": "Handles open class list form.",
+            "itemtype": "method",
+            "name": "actions.listLeft",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 482,
+            "description": "Handles edit node left jsTree.",
+            "itemtype": "method",
+            "name": "actions.editRightNode",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 491,
+            "description": "Handles remove node from right jsTree.",
+            "itemtype": "method",
+            "name": "actions.removeRightNode",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-appstruct-form.js",
+            "line": 506,
+            "description": "Handles add node in right jsTree.",
+            "itemtype": "method",
+            "name": "actions.removeRightNode",
             "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
