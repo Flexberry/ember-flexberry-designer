@@ -26,10 +26,10 @@
   {{#each model.controls as |control|}}
     {{fd-editform-row
       row=control
-      selectAction=(action "selectControl")
-      setDragRowAction=(action "setDragRow")
-      getDragRowAction=(action "getDragRow")
-      moveRowAction=(action "moveRow")
+      selectControlAction=(action "selectControl")
+      setDragItemAction=(action "setDragItem")
+      getDragItemAction=(action "getDragItem")
+      moveDragItemAction=(action "moveDragItem")
     }}
   {{/each}}
 </form>

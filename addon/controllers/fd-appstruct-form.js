@@ -178,7 +178,7 @@ export default EditFormController.extend({
     let applications = this.get('model.applications');
 
     applications.forEach((application) => {
-      rightTreeNodes.pushObject(application.get('containersStr')[0]);
+      rightTreeNodes.pushObjects(application.get('containersStr'));
     });
 
     let treeRight = FdViewAttributesTree.create({

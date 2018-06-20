@@ -1,22 +1,23 @@
 import Ember from 'ember';
+import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 
-import FdEditformControl from '../objects/fd-editform-control';
 import FdEditformRow from '../objects/fd-editform-row';
+import FdEditformControl from '../objects/fd-editform-control';
 import FdEditformGroup from '../objects/fd-editform-group';
-import FdEditformTab from '../objects/fd-editform-tab';
 import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
+import FdEditformTab from '../objects/fd-editform-tab';
 
-export default Ember.Controller.extend({
+export default Ember.Controller.extend(FdWorkPanelToggler, {
   queryParams: ['classId'],
 
   /**
-    The current dragged row.
+    The current dragged item.
 
     @private
-    @property _draggedRow
-    @type FdEditformRow
+    @property _draggedItem
+    @type FdEditformRow|FdEditformControl
   */
-  _draggedRow: undefined,
+  _draggedItem: undefined,
 
   /**
     @private
@@ -56,43 +57,7 @@ export default Ember.Controller.extend({
   */
   selectedControl: undefined,
 
-  prevTab: undefined,
-
-  applicationController: Ember.inject.controller('application'),
-
-  configPanelTabsWidth: Ember.computed.alias('applicationController.configPanelTabsWidth'),
-
   actions: {
-
-    toggleConfigPanel(currentTab) {
-      let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
-      let configPanelSidebarVisible = configPanelSidebar.hasClass('visible');
-
-      if (this.prevTab === currentTab || this.prevTab === undefined || !configPanelSidebarVisible) {
-        let sidebar = Ember.$('.ui.sidebar.main.menu');
-
-        configPanelSidebar.sidebar('toggle');
-
-        configPanelSidebar.removeClass('overlay');
-        let sidebarVisible = sidebar.hasClass('visible');
-
-        if (!sidebarVisible) {
-          if (configPanelSidebarVisible) {
-            Ember.$('.pusher').css({ width: 'calc(100% - ' + this.get('configPanelTabsWidth') + 'px)', transform: 'translate3d(0, 0, 0)' });
-          } else {
-            Ember.$('.pusher').css({ width: 'calc(100% - ' + configPanelSidebar.width() + 'px)', transform: 'translate3d(0, 0, 0)' });
-          }
-        } else if (configPanelSidebarVisible) {
-          let workPanel = sidebar.width() + this.get('configPanelTabsWidth');
-          Ember.$('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)', transform: 'translate3d(' + sidebar.width() + 'px, 0, 0)' });
-        } else {
-          let workPanel = sidebar.width() + configPanelSidebar.width();
-          Ember.$('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)', transform: 'translate3d(' + sidebar.width() + 'px, 0, 0)' });
-        }
-      }
-
-      this.prevTab = currentTab;
-    },
 
     /**
       Set the selected control.
@@ -105,52 +70,53 @@ export default Ember.Controller.extend({
     },
 
     /**
-      Set the current dragged row.
+      Set the current dragged item.
 
-      @method actions.setDragRow
-      @param {FdEditformRow} row New dragged row.
+      @method actions.setDragItem
+      @param {FdEditformRow|FdEditformControl} item New dragged item.
     */
-    setDragRow(row) {
-      this.set('_draggedRow', row);
+    setDragItem(item) {
+      this.set('_draggedItem', item);
     },
 
     /**
-      Get the current dragged row.
+      Get the current dragged item.
 
-      @method actions.getDragRow
-      @return {FdEditformRow} The current dragged row or `null`.
+      @method actions.getDragItem
+      @return {FdEditformRow|FdEditformControl} The current dragged item or `undefined`.
     */
-    getDragRow() {
-      return this.get('_draggedRow');
+    getDragItem() {
+      return this.get('_draggedItem');
     },
 
     /**
-      Move the current dragged row above or below relative to the passed row.
+      Move the current dragged item above or below relative to the passed item.
 
-      @param {FdEditformRow} row The row above or below which will be moved the current dragged row.
-      @param {String} direction The direction of the row move, allowed values: 'up' or 'down'.
+      @method actions.moveDragItem
+      @param {FdEditformRow|FdEditformControl} item The item above or below which will be moved the current dragged item.
+      @param {String} direction The direction of the item move, allowed values: 'up' or 'down'.
     */
-    moveRow(row, direction) {
-      let draggedRow = this.get('_draggedRow');
-      if (this._findRowContainer(row, Ember.A([draggedRow])) === null) {
+    moveDragItem(item, direction) {
+      let draggedItem = this.get('_draggedItem');
+      if (this._findItemContainer(item, Ember.A([draggedItem])) === null) {
         let rows = this.get('model.controls');
-        let draggedRowContainer = this._findRowContainer(draggedRow, rows);
-        draggedRowContainer.removeObject(draggedRow);
+        let draggedItemContainer = this._findItemContainer(draggedItem, rows);
+        draggedItemContainer.removeObject(draggedItem);
 
-        let rowContainer;
-        let index = draggedRowContainer.indexOf(row);
+        let itemContainer;
+        let index = draggedItemContainer.indexOf(item);
         if (index === -1) {
-          rowContainer = this._findRowContainer(row, rows);
-          index = rowContainer.indexOf(row);
+          itemContainer = this._findItemContainer(item, rows);
+          index = itemContainer.indexOf(item);
         } else {
-          rowContainer = draggedRowContainer;
+          itemContainer = draggedItemContainer;
         }
 
         if (direction === 'down') {
-          index = Math.min(rowContainer.get('length'), index + 1);
+          index = Math.min(itemContainer.get('length'), index + 1);
         }
 
-        rowContainer.insertAt(index, draggedRow);
+        itemContainer.insertAt(index, draggedItem);
       }
     },
 
@@ -175,6 +141,21 @@ export default Ember.Controller.extend({
   },
 
   /**
+    Looks for a container that contains the item.
+
+    @param {FdEditformRow|FdEditformControl} item The sought item.
+    @param {Ember.Array} container The root container.
+    @return {Ember.Array} The container that was found or `null`.
+  */
+  _findItemContainer(item, container) {
+    if (item instanceof FdEditformRow) {
+      return this._findRowContainer(item, container);
+    } else if (item instanceof FdEditformControl) {
+      return this._findControlContainer(item, container);
+    }
+  },
+
+  /**
     Looks for a container that contains the row.
 
     @method _findRowContainer
@@ -193,9 +174,6 @@ export default Ember.Controller.extend({
           let control = controls.objectAt(i);
           if (control instanceof FdEditformGroup) {
             _container = this._findRowContainer(row, control.get('rows'));
-            if (_container) {
-              return _container;
-            }
           }
 
           if (control instanceof FdEditformTabgroup) {
@@ -204,14 +182,68 @@ export default Ember.Controller.extend({
             for (let i = 0; i < length; i++) {
               _container = this._findRowContainer(row, tabs.objectAt(i).get('rows'));
               if (_container) {
-                return _container;
+                break;
               }
             }
           }
+
+          if (_container) {
+            break;
+          }
+        }
+
+        if (_container) {
+          break;
         }
       }
     } else {
       _container = container;
+    }
+
+    return _container;
+  },
+
+  /**
+    Looks for a container that contains the control.
+
+    @method _findControlContainer
+    @param {FdEditformControl} control The sought control.
+    @param {Ember.Array} container The root container.
+    @return {Ember.Array} The container that was found or `null`.
+  */
+  _findControlContainer(control, container) {
+    let _container = null;
+    let length = container.get('length');
+    for (let i = 0; i < length; i++) {
+      let controls = container.objectAt(i).get('controls');
+      if (controls && controls.indexOf(control) === -1) {
+        let length = controls.get('length');
+        for (let i = 0; i < length; i++) {
+          let _control = controls.objectAt(i);
+          if (_control instanceof FdEditformGroup) {
+            _container = this._findControlContainer(control, _control.get('rows'));
+          } else if (_control instanceof FdEditformTabgroup) {
+            let tabs = _control.get('tabs');
+            let length = tabs.get('length');
+            for (let i = 0; i < length; i++) {
+              _container = this._findControlContainer(control, tabs.objectAt(i).get('rows'));
+              if (_container) {
+                break;
+              }
+            }
+          }
+
+          if (_container) {
+            break;
+          }
+        }
+      } else if (controls) {
+        _container = controls;
+      }
+
+      if (_container) {
+        break;
+      }
     }
 
     return _container;
@@ -233,13 +265,21 @@ export default Ember.Controller.extend({
 
     for (let i = 0; i < controls.get('length'); i++) {
       let innerControl = controls.objectAt(i);
-      let path = this._extractPathPart(innerControl, '', viewDefinition);
+      this._extractPathPart(innerControl, '', viewDefinition);
 
     }
 
     // Сохранить класс формы редактирования
   },
 
+  /**
+    Extract path part from object model.
+
+    @method _extractPathPart
+    @param {FdEditformControl|FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab} control Some item in object model.
+    @param {String} path Path for current item.
+    @param {Ember.Array} viewDefinition View definition with result paths for controls.
+  */
   _extractPathPart: function(control, path, viewDefinition) {
     if (control instanceof FdEditformControl) {
       // TODO: Добавить правильное заполнение объекта в предсталение.
