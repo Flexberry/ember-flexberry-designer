@@ -1862,7 +1862,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 11,
+            "line": 12,
             "description": "The current dragged row.",
             "access": "private",
             "tagname": "",
@@ -1874,7 +1874,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 20,
+            "line": 21,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -1886,7 +1886,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 30,
+            "line": 31,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -1898,7 +1898,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 40,
+            "line": 41,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -1910,7 +1910,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 50,
+            "line": 51,
             "description": "The selected control.",
             "itemtype": "property",
             "name": "selectedControl",
@@ -1920,7 +1920,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 96,
+            "line": 61,
             "description": "Set the selected control.",
             "itemtype": "method",
             "name": "actions.selectControl",
@@ -1936,7 +1936,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 106,
+            "line": 71,
             "description": "Set the current dragged row.",
             "itemtype": "method",
             "name": "actions.setDragRow",
@@ -1952,7 +1952,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 116,
+            "line": 81,
             "description": "Get the current dragged row.",
             "itemtype": "method",
             "name": "actions.getDragRow",
@@ -1965,7 +1965,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 126,
+            "line": 91,
             "description": "Move the current dragged row above or below relative to the passed row.",
             "params": [
                 {
@@ -1984,7 +1984,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 157,
+            "line": 122,
             "description": "Looks for a container that contains the row.",
             "itemtype": "method",
             "name": "_findRowContainer",
@@ -2169,7 +2169,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 10,
+            "line": 13,
             "description": "Service that triggers objectlistview events.",
             "itemtype": "property",
             "name": "objectlistviewEventsService",
@@ -2180,7 +2180,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 19,
+            "line": 26,
             "description": "Index of the selected attribute for editing.",
             "itemtype": "property",
             "name": "selectedRowIndex",
@@ -2191,7 +2191,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 28,
+            "line": 35,
             "description": "Array of possible view name for selected detail for editing.",
             "itemtype": "property",
             "name": "detailViewNameItems",
@@ -2202,7 +2202,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 37,
+            "line": 44,
             "description": "Type of the selected master for editing.",
             "itemtype": "property",
             "name": "lookupTypeItems",
@@ -2213,7 +2213,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 46,
+            "line": 53,
             "description": "Included plugins for jsTree.",
             "itemtype": "property",
             "name": "plugins",
@@ -2224,7 +2224,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 55,
+            "line": 62,
             "description": "Selected nodes in jsTree.",
             "itemtype": "property",
             "name": "jstreeSelectedNodes",
@@ -2235,7 +2235,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 64,
+            "line": 71,
             "description": "Type settings for jsTree.",
             "itemtype": "property",
             "name": "typesOptions",
@@ -2245,7 +2245,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 85,
+            "line": 92,
             "description": "Type selected attribute for editing.",
             "itemtype": "property",
             "name": "propertyType",
@@ -2255,7 +2255,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 102,
+            "line": 109,
             "description": "Data selected attribute for editing.",
             "itemtype": "property",
             "name": "rowModel",
@@ -2265,7 +2265,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 132,
+            "line": 139,
             "description": "Handles form 'onCreateCaptionClick' button click.",
             "itemtype": "method",
             "name": "actions.onCreateCaptionClick",
@@ -2274,7 +2274,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 152,
+            "line": 159,
             "description": "Handles form 'onAttributesClick' table row click.",
             "itemtype": "method",
             "name": "actions.onAttributesClick",
@@ -2283,7 +2283,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 161,
+            "line": 169,
             "description": "Handles creating jsTree.",
             "itemtype": "method",
             "name": "actions.handleTreeDidBecomeReady",
@@ -2292,7 +2292,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 172,
+            "line": 180,
             "description": "Handles form 'moveRightHighlighted' button click.\nAdd attribute in definition.",
             "itemtype": "method",
             "name": "actions.moveRightHighlighted",
@@ -2301,7 +2301,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 231,
+            "line": 239,
             "description": "Handles form 'moveLeftHighlighted' button click.\nDelete attribute from definition.",
             "itemtype": "method",
             "name": "actions.moveLeftHighlighted",
@@ -2310,7 +2310,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 247,
+            "line": 255,
             "description": "Handles form 'moveUpHighlighted' button click.",
             "itemtype": "method",
             "name": "actions.moveUpHighlighted",
@@ -2319,7 +2319,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 267,
+            "line": 280,
             "description": "Handles form 'moveDownHighlighted' button click.",
             "itemtype": "method",
             "name": "actions.moveDownHighlighted",
@@ -2328,7 +2328,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 287,
+            "line": 319,
             "description": "Handles form 'saveView' button click.",
             "itemtype": "method",
             "name": "actions.saveView",
@@ -2337,7 +2337,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 309,
+            "line": 341,
             "description": "Overridden action for jsTree 'openNode'.",
             "itemtype": "method",
             "name": "_openNodeTree",
@@ -2346,7 +2346,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 320,
+            "line": 352,
             "description": "Overridden action for jsTree 'eventDidClose'.",
             "itemtype": "method",
             "name": "_afterCloseNodeTree",
@@ -2355,7 +2355,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 328,
+            "line": 360,
             "description": "Method for restoring tree nodes.",
             "itemtype": "method",
             "name": "_restorationNodeTree",
@@ -2364,7 +2364,7 @@
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
-            "line": 354,
+            "line": 386,
             "description": "Method for loading tree node data.",
             "itemtype": "method",
             "name": "_getChildrenNode",
@@ -6105,7 +6105,7 @@
         },
         {
             "message": "Missing item type\nMove the current dragged row above or below relative to the passed row.",
-            "line": " addon/controllers/fd-editform-constructor.js:126"
+            "line": " addon/controllers/fd-editform-constructor.js:91"
         },
         {
             "message": "Missing item type\nField name where object identifier is kept.",

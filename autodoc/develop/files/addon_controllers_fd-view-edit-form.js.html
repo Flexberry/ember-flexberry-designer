@@ -114,8 +114,11 @@ import FdViewAttributesProperty from &#x27;../objects/fd-view-attributes-propert
 import FdViewAttributesMaster from &#x27;../objects/fd-view-attributes-master&#x27;;
 import FdViewAttributesDetail from &#x27;../objects/fd-view-attributes-detail&#x27;;
 import { getTreeNode } from &#x27;../utils/fd-get-view-tree-node&#x27;;
+import FdWorkPanelToggler from &#x27;../mixins/fd-work-panel-toggler&#x27;;
+import { translationMacro as t } from &#x27;ember-i18n&#x27;;
 
-export default EditFormController.extend({
+export default EditFormController.extend(FdWorkPanelToggler, {
+  parentRoute: &#x27;fd-view-list-form&#x27;,
 
   /**
    Service that triggers objectlistview events.
@@ -125,6 +128,10 @@ export default EditFormController.extend({
    @default Ember.inject.service()
    */
   objectlistviewEventsService: Ember.inject.service(&#x27;objectlistview-events&#x27;),
+
+  allAttrsHidedn: false,
+
+  popupMessage: t(&#x60;forms.fd-view-edit-form.attributes-panel.close-panel-btn-caption&#x60;),
 
   /**
     Index of the selected attribute for editing.
@@ -266,6 +273,7 @@ export default EditFormController.extend({
     */
     onAttributesClick(index) {
       this.set(&#x27;selectedRowIndex&#x27;, index);
+      this.send(&#x27;toggleConfigPanel&#x27;, &#x27;control-properties&#x27;, index);
     },
 
     /**
@@ -365,6 +373,11 @@ export default EditFormController.extend({
         return;
       }
 
+      let prevAttrIndex = this.get(&#x27;prevAttr&#x27;);
+      if (index === prevAttrIndex--) {
+        this.set(&#x27;prevAttr&#x27;, prevAttrIndex);
+      }
+
       let model = this.get(&#x27;model.view.definition&#x27;);
       let prev = index - 1;
       let node = model[index];
@@ -386,12 +399,31 @@ export default EditFormController.extend({
         return;
       }
 
+      let prevAttrIndex = this.get(&#x27;prevAttr&#x27;);
+      if (index === prevAttrIndex++) {
+        this.set(&#x27;prevAttr&#x27;, prevAttrIndex);
+      }
+
       let next = index + 1;
       let node = model[next];
       let nextNode = model[index];
       model.replace(index, 1, node);
       model.replace(next, 1, nextNode);
       this.set(&#x27;selectedRowIndex&#x27;, next);
+    },
+
+    closeRightpanel() {
+      Ember.$(&#x27;.closable.panel&#x27;).toggle(500);
+
+      if (this.allAttrsHidedn) {
+        this.set(&#x27;popupMessage&#x27;, t(&#x27;forms.fd-view-edit-form.attributes-panel.close-panel-btn-caption&#x27;));
+        Ember.$(&#x27;.attr-panel .panel.view-attributes&#x27;).css(&#x27;width&#x27;, &#x27;50%&#x27;);
+      } else {
+        this.set(&#x27;popupMessage&#x27;, t(&#x27;forms.fd-view-edit-form.attributes-panel.show-panel-btn-caption&#x27;));
+        Ember.$(&#x27;.attr-panel .panel.view-attributes&#x27;).css(&#x27;width&#x27;, &#x27;100%&#x27;);
+      }
+
+      this.toggleProperty(&#x27;allAttrsHidedn&#x27;);
     },
 
     /**
