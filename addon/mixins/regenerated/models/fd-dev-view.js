@@ -95,6 +95,18 @@ export let defineProjections = function (modelClass) {
 
     }, { hidden: true })
   });
+  modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-view', {
+    definition: Projection.attr(''),
+    /*
+    properties: Projection.attr(''),
+    */
+    name: Projection.attr(''),
+    description: Projection.attr(''),
+    nameStr: Projection.attr(''),
+    class: Projection.belongsTo('fd-dev-class', '', {
+      name: Projection.attr('')
+    })
+  });
   modelClass.defineProjection('Generator', 'fd-dev-view', {
     name: Projection.attr(''),
     description: Projection.attr(''),
@@ -107,7 +119,8 @@ export let defineProjections = function (modelClass) {
     class: Projection.belongsTo('fd-dev-class', '', {
       name: Projection.attr('Class')
     }, { hidden: true }),
-    name: Projection.attr('View name')
+    name: Projection.attr('View name'),
+    properties: Projection.attr('View properties')
   });
   modelClass.defineProjection('Prototyping', 'fd-dev-view', {
     name: Projection.attr(''),

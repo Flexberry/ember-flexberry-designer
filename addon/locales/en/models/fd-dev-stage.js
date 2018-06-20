@@ -101,6 +101,9 @@ export default {
       },
       defaultWriteMode: {
         __caption__: 'defaultWriteMode'
+      },
+      moduleSettings: {
+        __caption__: 'moduleSettings'
       }
     },
     Compiler: {
@@ -457,7 +460,6 @@ export default {
       }
     },
     EditPropertyLookups: {
-
     },
     EditRightManagementGenerator: {
       name: {
@@ -559,6 +561,188 @@ export default {
       },
       signAssemblies: {
         __caption__: 'signAssemblies'
+      }
+    },
+    FdPreloadMetadata: {
+      additionalPluginsSettings: {
+        __caption__: 'additionalPluginsSettings'
+      },
+      additionalPluginsSettingsStr: {
+        __caption__: 'additionalPluginsSettingsStr'
+      },
+      auditEnabled: {
+        __caption__: 'auditEnabled'
+      },
+      chosenPalette: {
+        __caption__: 'chosenPalette'
+      },
+      company: {
+        __caption__: 'company'
+      },
+      connectionString: {
+        __caption__: 'connectionString'
+      },
+      copyright: {
+        __caption__: 'copyright'
+      },
+      dataObjectNameSpace: {
+        __caption__: 'dataObjectNameSpace'
+      },
+      defaultAccessType: {
+        __caption__: 'defaultAccessType'
+      },
+      defaultBaseClass: {
+        __caption__: 'defaultBaseClass'
+      },
+      defaultDetailArrayClass: {
+        __caption__: 'defaultDetailArrayClass'
+      },
+      defaultEditScriptName: {
+        __caption__: 'defaultEditScriptName'
+      },
+      defaultListScriptName: {
+        __caption__: 'defaultListScriptName'
+      },
+      defaultTypeMapTypes: {
+        __caption__: 'defaultTypeMapTypes'
+      },
+      defaultWriteMode: {
+        __caption__: 'defaultWriteMode'
+      },
+      doNotDeleteExtraTables: {
+        __caption__: 'doNotDeleteExtraTables'
+      },
+      enableAuElement: {
+        __caption__: 'enableAuElement'
+      },
+      indexComment: {
+        __caption__: 'indexComment'
+      },
+      isAuditDatabaseLocal: {
+        __caption__: 'isAuditDatabaseLocal'
+      },
+      isReportDatabaseLocal: {
+        __caption__: 'isReportDatabaseLocal'
+      },
+      lastIndexDate: {
+        __caption__: 'lastIndexDate'
+      },
+      operationsEnumNamespace: {
+        __caption__: 'operationsEnumNamespace'
+      },
+      operationsEnumPacket: {
+        __caption__: 'operationsEnumPacket'
+      },
+      oracleConnectionString: {
+        __caption__: 'oracleConnectionString'
+      },
+      postgreConnectionString: {
+        __caption__: 'postgreConnectionString'
+      },
+      product: {
+        __caption__: 'product'
+      },
+      realDataObjectNameSpace: {
+        __caption__: 'realDataObjectNameSpace'
+      },
+      scriptNamespace: {
+        __caption__: 'scriptNamespace'
+      },
+      scriptPacket: {
+        __caption__: 'scriptPacket'
+      },
+      serializedIndex: {
+        __caption__: 'serializedIndex'
+      },
+      signAssemblies: {
+        __caption__: 'signAssemblies'
+      },
+      sourceAzStoragePath: {
+        __caption__: 'sourceAzStoragePath'
+      },
+      sourceCodeCSPath: {
+        __caption__: 'sourceCodeCSPath'
+      },
+      sourceCodeVBPath: {
+        __caption__: 'sourceCodeVBPath'
+      },
+      sourceControlUri: {
+        __caption__: 'sourceControlUri'
+      },
+      sQLPath: {
+        __caption__: 'sQLPath'
+      },
+      typeMapAccess: {
+        __caption__: 'typeMapAccess'
+      },
+      typeMapAccessStr: {
+        __caption__: 'typeMapAccessStr'
+      },
+      typeMapCS: {
+        __caption__: 'typeMapCS'
+      },
+      typeMapCSStr: {
+        __caption__: 'typeMapCSStr'
+      },
+      typeMapOracle: {
+        __caption__: 'typeMapOracle'
+      },
+      typeMapOracleStr: {
+        __caption__: 'typeMapOracleStr'
+      },
+      typeMapPostgre: {
+        __caption__: 'typeMapPostgre'
+      },
+      typeMapPostgreStr: {
+        __caption__: 'typeMapPostgreStr'
+      },
+      typeMapSQL: {
+        __caption__: 'typeMapSQL'
+      },
+      typeMapSQLStr: {
+        __caption__: 'typeMapSQLStr'
+      },
+      typeMapVB: {
+        __caption__: 'typeMapVB'
+      },
+      typeMapVBStr: {
+        __caption__: 'typeMapVBStr'
+      },
+      useSourceControl: {
+        __caption__: 'useSourceControl'
+      },
+      version: {
+        __caption__: 'version'
+      },
+      aCL: {
+        __caption__: 'aCL'
+      },
+      createUser: {
+        __caption__: 'createUser'
+      },
+      createDate: {
+        __caption__: 'createDate'
+      },
+      changeUser: {
+        __caption__: 'changeUser'
+      },
+      changeDate: {
+        __caption__: 'changeDate'
+      },
+      name: {
+        __caption__: 'name'
+      },
+      description: {
+        __caption__: 'description'
+      },
+      nameStr: {
+        __caption__: 'nameStr'
+      },
+      configuration: {
+        __caption__: 'configuration',
+        name: {
+          __caption__: 'name'
+        }
       }
     },
     FormDesigner_ProjectE: {
@@ -896,7 +1080,6 @@ export default {
       }
     },
     ListDataObjectTypes: {
-
     },
     ListFormView: {
       name: {
@@ -922,7 +1105,6 @@ export default {
       }
     },
     Prototyping: {
-
     },
     SearchRepObjView: {
       name: {
@@ -930,7 +1112,6 @@ export default {
       }
     },
     ViewPeeker: {
-
     }
   }
 };

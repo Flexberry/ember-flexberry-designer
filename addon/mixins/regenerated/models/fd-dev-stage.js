@@ -24,7 +24,7 @@ export let Model = Ember.Mixin.create({
   */
   _additionalPluginsSettingsCompute: function() {
     let result = (this.additionalPluginsSettingsCompute && typeof this.additionalPluginsSettingsCompute === 'function') ?
-    this.additionalPluginsSettingsCompute() : null;
+      this.additionalPluginsSettingsCompute() : null;
     this.set('additionalPluginsSettings', result);
   },
   additionalPluginsSettingsStr: DS.attr('string'),
@@ -131,7 +131,8 @@ export let Model = Ember.Mixin.create({
       ```
   */
   _doNotDeleteExtraTablesCompute: function() {
-    let result = (this.doNotDeleteExtraTablesCompute && typeof this.doNotDeleteExtraTablesCompute === 'function') ? this.doNotDeleteExtraTablesCompute() : null;
+    let result = (this.doNotDeleteExtraTablesCompute && typeof this.doNotDeleteExtraTablesCompute === 'function') ?
+      this.doNotDeleteExtraTablesCompute() : null;
     this.set('doNotDeleteExtraTables', result);
   },
   /**
@@ -212,7 +213,7 @@ export let Model = Ember.Mixin.create({
   */
   _realDataObjectNameSpaceCompute: function() {
     let result = (this.realDataObjectNameSpaceCompute && typeof this.realDataObjectNameSpaceCompute === 'function') ?
-    this.realDataObjectNameSpaceCompute() : null;
+      this.realDataObjectNameSpaceCompute() : null;
     this.set('realDataObjectNameSpace', result);
   },
   scriptNamespace: DS.attr('string'),
@@ -378,6 +379,7 @@ export let Model = Ember.Mixin.create({
   version: DS.attr('string'),
   typeDefinitions: DS.hasMany('fd-dev-type-definition', { inverse: 'stage', async: false }),
   controlTypes: DS.hasMany('fd-dev-control-type', { inverse: 'stage', async: false }),
+  users: DS.hasMany('fd-user-in-stage', { inverse: 'stage', async: false }),
   moduleSettings: DS.hasMany('fd-dev-module-setting', { inverse: 'stage', async: false }),
   generations: DS.hasMany('fd-generation', { inverse: 'stage', async: false }),
   getValidations: function () {
@@ -433,7 +435,10 @@ export let defineProjections = function (modelClass) {
     auditEnabled: Projection.attr(''),
     isAuditDatabaseLocal: Projection.attr(''),
     isReportDatabaseLocal: Projection.attr(''),
-    defaultWriteMode: Projection.attr('')
+    defaultWriteMode: Projection.attr(''),
+    moduleSettings: Projection.hasMany('fd-dev-module-setting', '', {
+
+    })
   });
   modelClass.defineProjection('Compiler', 'fd-dev-stage', {
     company: Projection.attr(''),
@@ -631,6 +636,91 @@ export let defineProjections = function (modelClass) {
     defaultListScriptName: Projection.attr(''),
     signAssemblies: Projection.attr('')
   });
+  modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-stage', {
+    /*
+    additionalPluginsSettings: Projection.attr(''),
+    */
+    additionalPluginsSettingsStr: Projection.attr(''),
+    auditEnabled: Projection.attr(''),
+    /*
+    chosenPalette: Projection.attr(''),
+    */
+    company: Projection.attr(''),
+    connectionString: Projection.attr(''),
+    copyright: Projection.attr(''),
+    dataObjectNameSpace: Projection.attr(''),
+    defaultAccessType: Projection.attr(''),
+    defaultBaseClass: Projection.attr(''),
+    defaultDetailArrayClass: Projection.attr(''),
+    defaultEditScriptName: Projection.attr(''),
+    defaultListScriptName: Projection.attr(''),
+    /*
+    defaultTypeMapTypes: Projection.attr(''),
+    */
+    defaultWriteMode: Projection.attr(''),
+    doNotDeleteExtraTables: Projection.attr(''),
+    /*
+    enableAuElement: Projection.attr(''),
+    */
+    indexComment: Projection.attr(''),
+    isAuditDatabaseLocal: Projection.attr(''),
+    isReportDatabaseLocal: Projection.attr(''),
+    lastIndexDate: Projection.attr(''),
+    operationsEnumNamespace: Projection.attr(''),
+    operationsEnumPacket: Projection.attr(''),
+    oracleConnectionString: Projection.attr(''),
+    postgreConnectionString: Projection.attr(''),
+    product: Projection.attr(''),
+    realDataObjectNameSpace: Projection.attr(''),
+    scriptNamespace: Projection.attr(''),
+    scriptPacket: Projection.attr(''),
+    serializedIndex: Projection.attr(''),
+    signAssemblies: Projection.attr(''),
+    sourceAzStoragePath: Projection.attr(''),
+    sourceCodeCSPath: Projection.attr(''),
+    sourceCodeVBPath: Projection.attr(''),
+    sourceControlUri: Projection.attr(''),
+    sQLPath: Projection.attr(''),
+    /*
+    typeMapAccess: Projection.attr(''),
+    */
+    typeMapAccessStr: Projection.attr(''),
+    /*
+    typeMapCS: Projection.attr(''),
+    */
+    typeMapCSStr: Projection.attr(''),
+    /*
+    typeMapOracle: Projection.attr(''),
+    */
+    typeMapOracleStr: Projection.attr(''),
+    /*
+    typeMapPostgre: Projection.attr(''),
+    */
+    typeMapPostgreStr: Projection.attr(''),
+    /*
+    typeMapSQL: Projection.attr(''),
+    */
+    typeMapSQLStr: Projection.attr(''),
+    /*
+    typeMapVB: Projection.attr(''),
+    */
+    typeMapVBStr: Projection.attr(''),
+    useSourceControl: Projection.attr(''),
+    version: Projection.attr(''),
+    /*
+    aCL: Projection.attr(''),
+    */
+    createUser: Projection.attr(''),
+    createDate: Projection.attr(''),
+    changeUser: Projection.attr(''),
+    changeDate: Projection.attr(''),
+    name: Projection.attr(''),
+    description: Projection.attr(''),
+    nameStr: Projection.attr(''),
+    configuration: Projection.belongsTo('fd-configuration', '', {
+      name: Projection.attr('')
+    })
+  });
   modelClass.defineProjection('FormDesigner_ProjectE', 'fd-dev-stage', {
     name: Projection.attr('Название'),
     description: Projection.attr('Описание'),
@@ -665,7 +755,7 @@ export let defineProjections = function (modelClass) {
       endTime: Projection.attr('Время окончания'),
       stage: Projection.belongsTo('fd-dev-stage', 'Имя стадии', {
         name: Projection.attr('Имя стадии')
-      }),
+      }, { hidden: true }),
       generationReason: Projection.attr('Действие')
     })
   });

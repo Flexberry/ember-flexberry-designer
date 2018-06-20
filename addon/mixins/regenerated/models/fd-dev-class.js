@@ -81,7 +81,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.bSEventsCompute && typeof this.bSEventsCompute === 'function') ? this.bSEventsCompute() : null;
     this.set('bSEvents', result);
   },
-  businessServerEvents: DS.attr('i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events'),
+  businessServerEvents: DS.attr('i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events', { defaultValue: 'OnAllEvents' }),
   caption: DS.attr('string'),
   /**
     Non-stored property.
@@ -1124,13 +1124,11 @@ export let defineProjections = function (modelClass) {
       })
     }),
     views: Projection.hasMany('fd-dev-view', '', {
-      /* merged manually start */
       name: Projection.attr(''),
       definition: Projection.attr(''),
       class: Projection.belongsTo('fd-dev-class', '', {
 
       })
-      /* merged manually end */
     })
   });
   modelClass.defineProjection('FdAttributesForForm', 'fd-dev-class', {
@@ -1158,7 +1156,7 @@ export let defineProjections = function (modelClass) {
     packet: Projection.attr(''),
     namespacePostfix: Projection.attr(''),
     businessServerClass: Projection.belongsTo('fd-dev-class', 'Бизнес-сервер', {
-      name: Projection.attr('', { hidden: true }),
+      name: Projection.attr('', { hidden: true })
     }, { displayMemberPath: 'name' }),
     businessServerEvents: Projection.attr('События бизнес-сервера'),
     attributes: Projection.hasMany('fd-dev-attribute', '', {
@@ -1171,15 +1169,14 @@ export let defineProjections = function (modelClass) {
 
       }, { hidden: true })
       /* merged manually end */
+
     }),
     views: Projection.hasMany('fd-dev-view', '', {
-      /* merged manually start */
-      name: Projection.attr(''),
-      description: Projection.attr(''),
+      name: Projection.attr('Имя'),
+      description: Projection.attr('Описание'),
       class: Projection.belongsTo('fd-dev-class', '', {
 
       }, { hidden: true })
-      /* merged manually end */
     }),
     classStorageTypes: Projection.hasMany('fd-class-storage-type', '', {
       connectionName: Projection.attr('Имя соединения'),
@@ -1190,6 +1187,124 @@ export let defineProjections = function (modelClass) {
       storageType: Projection.belongsTo('fd-storage-type', 'Тип хранилища', {
 
       }, { displayMemberPath: 'shortName' })
+    })
+  });
+  modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-class', {
+    accessType: Projection.attr(''),
+    addAuditFields: Projection.attr(''),
+    appConfig: Projection.attr(''),
+    /*
+    appConfigFile: Projection.attr(''),
+    */
+    auditConnectionStringName: Projection.attr(''),
+    auditEnabled: Projection.attr(''),
+    auditWinServiceUrl: Projection.attr(''),
+    autoAltered: Projection.attr(''),
+    /*
+    bSClass: Projection.attr(''),
+    bSEvents: Projection.attr(''),
+    */
+    businessServerEvents: Projection.attr(''),
+    caption: Projection.attr(''),
+    /*
+    comPlusServerOptions: Projection.attr(''),
+    */
+    comPlusServerPropertiesStr: Projection.attr(''),
+    /*
+    containers: Projection.attr(''),
+    */
+    containersStr: Projection.attr(''),
+    /*
+    dataObjectTypes: Projection.attr(''),
+    */
+    dataObjectTypesStr: Projection.attr(''),
+    deleteAudit: Projection.attr(''),
+    deleteAuditViewName: Projection.attr(''),
+    disableAllRightChecks: Projection.attr(''),
+    /*
+    editFormOperations: Projection.attr(''),
+    */
+    editFormOperationsStr: Projection.attr(''),
+    expandOperations: Projection.attr(''),
+    fixDependedForm: Projection.attr(''),
+    formUrl: Projection.attr(''),
+    generateCatcher: Projection.attr(''),
+    generateComPlusServer: Projection.attr(''),
+    generateDependedForm: Projection.attr(''),
+    generateHttpRemoteServer: Projection.attr(''),
+    hierarchicalMaster: Projection.attr(''),
+    insertAudit: Projection.attr(''),
+    insertAuditViewName: Projection.attr(''),
+    /*
+    listFormOperations: Projection.attr(''),
+    */
+    listFormOperationsStr: Projection.attr(''),
+    loadingOrder: Projection.attr(''),
+    /*
+    loadingOrderXML: Projection.attr(''),
+    */
+    namespacePostfix: Projection.attr(''),
+    onlyShowSelectedValue: Projection.attr(''),
+    packet: Projection.attr(''),
+    pBCustomAttributes: Projection.attr(''),
+    pBGetViewsForForm: Projection.attr(''),
+    pBMembers: Projection.attr(''),
+    primaryKeyStorage: Projection.attr(''),
+    printContainer: Projection.attr(''),
+    /*
+    propertyLookup: Projection.attr(''),
+    */
+    propertyLookupStr: Projection.attr(''),
+    publishToEBSD: Projection.attr(''),
+    realCaption: Projection.attr(''),
+    realNamespace: Projection.attr(''),
+    realPacket: Projection.attr(''),
+    realPrimaryKeyStorage: Projection.attr(''),
+    realStorage: Projection.attr(''),
+    scriptName: Projection.attr(''),
+    selectAudit: Projection.attr(''),
+    selectAuditViewName: Projection.attr(''),
+    standartDesktop: Projection.attr(''),
+    storage: Projection.attr(''),
+    publishName: Projection.attr(''),
+    storeInstancesInType: Projection.attr(''),
+    /*
+    storeInstancesInTypeXML: Projection.attr(''),
+    */
+    trim: Projection.attr(''),
+    updateAudit: Projection.attr(''),
+    updateAuditViewName: Projection.attr(''),
+    /*
+    useCache: Projection.attr(''),
+    */
+    useDefaultView: Projection.attr(''),
+    writeMode: Projection.attr(''),
+    writeSessions: Projection.attr(''),
+    nameStr: Projection.attr(''),
+    attributesStr: Projection.attr(''),
+    methodsStr: Projection.attr(''),
+    stored: Projection.attr(''),
+    stereotype: Projection.attr(''),
+    referenceCount: Projection.attr(''),
+    name: Projection.attr(''),
+    description: Projection.attr(''),
+    stage: Projection.belongsTo('fd-stage', '', {
+      name: Projection.attr('')
+    }),
+    businessServerClass: Projection.belongsTo('fd-dev-class', '', {
+      name: Projection.attr('')
+    }),
+    views: Projection.hasMany('fd-dev-view', '', {
+      definition: Projection.attr(''),
+      /*
+      properties: Projection.attr(''),
+      */
+      name: Projection.attr(''),
+      description: Projection.attr(''),
+      nameStr: Projection.attr(''),
+      class: Projection.belongsTo('fd-dev-class', '', {
+        name: Projection.attr('')
+      })
     })
   });
   modelClass.defineProjection('Generator', 'fd-dev-class', {

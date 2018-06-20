@@ -34,6 +34,21 @@ export let defineProjections = function (modelClass) {
       name: Projection.attr('')
     }, { hidden: true })
   });
+  modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-inheritance', {
+    referenceCount: Projection.attr(''),
+    name: Projection.attr(''),
+    description: Projection.attr(''),
+    nameStr: Projection.attr(''),
+    stage: Projection.belongsTo('fd-stage', '', {
+      name: Projection.attr('')
+    }),
+    child: Projection.belongsTo('fd-class', '', {
+      name: Projection.attr('')
+    }),
+    parent: Projection.belongsTo('fd-class', '', {
+      name: Projection.attr('')
+    })
+  });
   modelClass.defineProjection('Generator', 'fd-dev-inheritance', {
     referenceCount: Projection.attr('ReferenceCount', { hidden: true }),
     name: Projection.attr('Name', { hidden: true }),
