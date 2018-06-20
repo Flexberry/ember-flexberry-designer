@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import FdViewAttributesTree from '../objects/fd-view-attributes-tree';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
-import { Query } from 'ember-flexberry-data';
+/*import { Query } from 'ember-flexberry-data';*/
 
 export default EditFormController.extend({
 
