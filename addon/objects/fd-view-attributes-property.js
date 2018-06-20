@@ -26,7 +26,7 @@ export default Ember.Object.extend({
     @property caption
     @type String
   */
-  caption: undefined,
+  caption: '',
 
   /**
     Path of the item.
@@ -34,7 +34,7 @@ export default Ember.Object.extend({
     @property path
     @type String
   */
-  path: undefined,
+  path: '',
 
   /**
     Flag indicates the visibility of an item.
