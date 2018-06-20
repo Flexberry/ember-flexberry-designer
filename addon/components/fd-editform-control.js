@@ -3,6 +3,7 @@
 */
 
 import Ember from 'ember';
+import FdDraggableControlMixin from '../mixins/fd-draggable-control';
 
 import FdEditformControl from '../objects/fd-editform-control';
 import FdEditformGroup from '../objects/fd-editform-group';
@@ -13,8 +14,9 @@ import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
 
   @class FdEditformControlComponent
   @extends <a href="http://emberjs.com/api/classes/Ember.Component.html">Ember.Component</a>
+  @uses FdDraggableControlMixin
 */
-export default Ember.Component.extend({
+export default Ember.Component.extend(FdDraggableControlMixin, {
   /**
     The passed control is a simple control.
 
@@ -74,6 +76,20 @@ export default Ember.Component.extend({
     @type FdEditformControl|FdEditformGroup|FdEditformTabgroup
   */
   control: undefined,
+
+  /**
+    See description {{#crossLink "FdDraggableControlMixin/draggableProperty:property"}}here{{/crossLink}}.
+
+    @property draggableProperty
+  */
+  draggableProperty: 'control',
+
+  /**
+    See description {{#crossLink "FdDraggableControlMixin/dragDirection:property"}}here{{/crossLink}}.
+
+    @property dragDirection
+  */
+  dragDirection: 'X',
 
   /**
     See [EmberJS API](https://emberjs.com/api/).
