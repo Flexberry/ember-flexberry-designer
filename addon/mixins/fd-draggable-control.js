@@ -178,7 +178,7 @@ export default Ember.Mixin.create({
       let clientXY = Ember.get(event.originalEvent, `client${this.get('dragDirection')}`);
       let centerXY = this.get('_centerXY');
       let motion = this.get('_initialXY') - clientXY;
-      
+
       let direction;
       if (motion >= 5 && clientXY < centerXY) {
         direction = 'up';
