@@ -3,10 +3,12 @@ import EditFormController from 'ember-flexberry/controllers/edit-form';
 import { Query } from 'ember-flexberry-data';
 import BusinessDataObjectEvents from 'ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events';
 
-const { SimplePredicate, FilterOperator } = Query;
+const { SimplePredicate, FilterOperator, ComplexPredicate, Condition } = Query;
 
 export default EditFormController.extend({
   parentRoute: 'fd-class-list-form',
+
+  currentContext: Ember.inject.service('fd-current-project-context'),
 
   getCellComponent(attr, bindingPath, model) {
     let cellComponent = this._super(...arguments);
@@ -39,7 +41,10 @@ export default EditFormController.extend({
     @type SimplePredicate
    */
   lookupStereotypeLimitPredicate: Ember.computed(function() {
-    return new SimplePredicate('stereotype', FilterOperator.Eq, '«businessserver»');
+    let stagePk = this.get('currentContext').get('context.stage');
+    let stagePredicate = new SimplePredicate('stage', FilterOperator.Eq, stagePk);
+    let stereotypePredicate = new SimplePredicate('stereotype', FilterOperator.Eq, '«businessserver»');
+    return new ComplexPredicate(Condition.And, stagePredicate, stereotypePredicate);
   }),
 
   actions: {
