@@ -96,7 +96,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
 
     @property classNames
   */
-  classNames: ['field'],
+  classNames: ['fd-editform-control', 'field'],
 
   /**
     See [EmberJS API](https://emberjs.com/api/).

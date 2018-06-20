@@ -65,5 +65,5 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
 
     @property classNames
   */
-  classNames: ['ui', 'dimmable'],
+  classNames: ['fd-editform-row', 'ui', 'dimmable'],
 });
