@@ -304,6 +304,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/mixins/fd-draggable-control.js": {
+            "name": "addon/mixins/fd-draggable-control.js",
+            "modules": {},
+            "classes": {
+                "FdDraggableControlMixin": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/mixins/fd-limit-by-stage.js": {
             "name": "addon/mixins/fd-limit-by-stage.js",
             "modules": {},
@@ -1011,6 +1020,7 @@
             "classes": {
                 "FdEditformControlComponent": 1,
                 "FdEditformRowComponent": 1,
+                "FdDraggableControlMixin": 1,
                 "FdLimitByStageMixin": 1,
                 "NewPlatformFlexberryFlexberryDesignerVisualEditControl": 1,
                 "NewPlatformFlexberryFlexberryDesignerVisualEditForm": 1,
@@ -1044,9 +1054,12 @@
             "module": "ember-flexberry-designer",
             "namespace": "",
             "file": "addon/components/fd-editform-control.js",
-            "line": 11,
+            "line": 12,
             "description": "This component rendered the control on the edit form.",
-            "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Component.html\">Ember.Component</a>"
+            "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Component.html\">Ember.Component</a>",
+            "uses": [
+                "FdDraggableControlMixin"
+            ]
         },
         "FdEditformRowComponent": {
             "name": "FdEditformRowComponent",
@@ -1059,9 +1072,32 @@
             "module": "ember-flexberry-designer",
             "namespace": "",
             "file": "addon/components/fd-editform-row.js",
-            "line": 7,
+            "line": 8,
             "description": "This component rendered one row with controls on the edit form.",
-            "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Component.html\">Ember.Component</a>"
+            "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Component.html\">Ember.Component</a>",
+            "uses": [
+                "FdDraggableControlMixin"
+            ]
+        },
+        "FdDraggableControlMixin": {
+            "name": "FdDraggableControlMixin",
+            "shortname": "FdDraggableControlMixin",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [
+                "FdEditformControlComponent",
+                "FdEditformRowComponent"
+            ],
+            "module": "ember-flexberry-designer",
+            "namespace": "",
+            "file": "addon/mixins/fd-draggable-control.js",
+            "line": 10,
+            "description": "Mixin with the support `drag and drop` for controls in the edit form constructor.",
+            "uses": [
+                "<a href=\"http://emberjs.com/api/classes/Ember.Mixin.html\">Ember.Mixin</a>"
+            ]
         },
         "FdLimitByStageMixin": {
             "name": "FdLimitByStageMixin",
@@ -1263,7 +1299,7 @@
     "classitems": [
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 18,
+            "line": 20,
             "description": "The passed control is a simple control.",
             "access": "private",
             "tagname": "",
@@ -1276,7 +1312,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 30,
+            "line": 32,
             "description": "The passed control is a group.",
             "access": "private",
             "tagname": "",
@@ -1289,7 +1325,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 42,
+            "line": 44,
             "description": "The passed control is tabs.",
             "access": "private",
             "tagname": "",
@@ -1302,7 +1338,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 54,
+            "line": 56,
             "description": "Type of rendered component.",
             "access": "private",
             "tagname": "",
@@ -1315,16 +1351,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 70,
-            "description": "See [EmberJS API](https://emberjs.com/api/).",
-            "itemtype": "property",
-            "name": "tagName",
-            "class": "FdEditformControlComponent",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/components/fd-editform-control.js",
-            "line": 79,
+            "line": 72,
             "description": "The control to render.",
             "itemtype": "property",
             "name": "control",
@@ -1334,7 +1361,34 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
+            "line": 80,
+            "description": "See description {{#crossLink \"FdDraggableControlMixin/draggableProperty:property\"}}here{{/crossLink}}.",
+            "itemtype": "property",
+            "name": "draggableProperty",
+            "class": "FdEditformControlComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-control.js",
             "line": 87,
+            "description": "See description {{#crossLink \"FdDraggableControlMixin/dragDirection:property\"}}here{{/crossLink}}.",
+            "itemtype": "property",
+            "name": "dragDirection",
+            "class": "FdEditformControlComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-control.js",
+            "line": 94,
+            "description": "See [EmberJS API](https://emberjs.com/api/).",
+            "itemtype": "property",
+            "name": "classNames",
+            "class": "FdEditformControlComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-control.js",
+            "line": 101,
             "description": "See [EmberJS API](https://emberjs.com/api/).",
             "itemtype": "method",
             "name": "didInsertElement",
@@ -1342,9 +1396,25 @@
             "module": "ember-flexberry-designer"
         },
         {
+            "file": "addon/components/fd-editform-control.js",
+            "line": 114,
+            "description": "The event handler is `click`.\nCalls the `selectControlAction` action when the component is clicked.\nThe action `selectControlAction` should be passed, for example, from the controller.",
+            "itemtype": "method",
+            "name": "click",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "JQuery.Event"
+                }
+            ],
+            "class": "FdEditformControlComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
             "file": "addon/components/fd-editform-row.js",
-            "line": 14,
-            "description": "The component is rendered as one column.",
+            "line": 16,
+            "description": "Indicates that the row contains only one control.",
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -1355,71 +1425,19 @@
         },
         {
             "file": "addon/components/fd-editform-row.js",
-            "line": 23,
+            "line": 25,
             "description": "Used in class name bindings to overlap the content of the row.",
             "access": "private",
             "tagname": "",
             "itemtype": "property",
             "name": "_dimmed",
             "type": "Boolean",
-            "default": "false",
             "class": "FdEditformRowComponent",
             "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/components/fd-editform-row.js",
-            "line": 33,
-            "description": "The property to bind to `draggable` HTML attribute.",
-            "access": "private",
-            "tagname": "",
-            "itemtype": "property",
-            "name": "_draggable",
-            "type": "String",
-            "default": "'true'",
-            "class": "FdEditformRowComponent",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/components/fd-editform-row.js",
-            "line": 43,
-            "description": "Indicates that this row is dragging.",
-            "access": "private",
-            "tagname": "",
-            "itemtype": "property",
-            "name": "_dragging",
-            "type": "Boolean",
-            "default": "false",
-            "class": "FdEditformRowComponent",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/components/fd-editform-row.js",
-            "line": 53,
-            "description": "The `Y` coordinate with which the dragging started.",
-            "access": "private",
-            "tagname": "",
-            "itemtype": "property",
-            "name": "_initialY",
-            "type": "Number",
-            "class": "FdEditformRowComponent",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/components/fd-editform-row.js",
-            "line": 62,
-            "description": "The 'Y' coordinate of the line through which you need to drag the row to move.",
-            "access": "private",
-            "tagname": "",
-            "itemtype": "property",
-            "name": "_waterline",
-            "readonly": "",
-            "type": "Number",
-            "class": "FdEditformRowComponent",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/components/fd-editform-row.js",
-            "line": 76,
+            "line": 34,
             "description": "The row to render.",
             "itemtype": "property",
             "name": "row",
@@ -1429,16 +1447,25 @@
         },
         {
             "file": "addon/components/fd-editform-row.js",
-            "line": 84,
-            "description": "See [EmberJS API](https://emberjs.com/api/).",
+            "line": 42,
+            "description": "See description {{#crossLink \"FdDraggableControlMixin/draggableProperty:property\"}}here{{/crossLink}}.",
             "itemtype": "property",
-            "name": "attributeBindings",
+            "name": "draggableProperty",
             "class": "FdEditformRowComponent",
             "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/components/fd-editform-row.js",
-            "line": 91,
+            "line": 49,
+            "description": "See description {{#crossLink \"FdDraggableControlMixin/dragDirection:property\"}}here{{/crossLink}}.",
+            "itemtype": "property",
+            "name": "dragDirection",
+            "class": "FdEditformRowComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-row.js",
+            "line": 56,
             "description": "See [EmberJS API](https://emberjs.com/api/).",
             "itemtype": "property",
             "name": "classNameBindings",
@@ -1447,90 +1474,10 @@
         },
         {
             "file": "addon/components/fd-editform-row.js",
-            "line": 98,
+            "line": 63,
             "description": "See [EmberJS API](https://emberjs.com/api/).",
             "itemtype": "property",
             "name": "classNames",
-            "class": "FdEditformRowComponent",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/components/fd-editform-row.js",
-            "line": 105,
-            "description": "Calls `selectAction` action when clicking on component when it is renderd as one column.",
-            "itemtype": "method",
-            "name": "click",
-            "params": [
-                {
-                    "name": "event",
-                    "description": "",
-                    "type": "JQuery.Event"
-                }
-            ],
-            "class": "FdEditformRowComponent",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/components/fd-editform-row.js",
-            "line": 118,
-            "description": "The event handler is `dragStart`.",
-            "itemtype": "method",
-            "name": "dragStart",
-            "params": [
-                {
-                    "name": "event",
-                    "description": "",
-                    "type": "JQuery.Event"
-                }
-            ],
-            "class": "FdEditformRowComponent",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/components/fd-editform-row.js",
-            "line": 131,
-            "description": "The event handler is `dragEnd`.",
-            "itemtype": "method",
-            "name": "dragEnd",
-            "params": [
-                {
-                    "name": "event",
-                    "description": "",
-                    "type": "JQuery.Event"
-                }
-            ],
-            "class": "FdEditformRowComponent",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/components/fd-editform-row.js",
-            "line": 144,
-            "description": "The event handler is `dragEnter`.",
-            "itemtype": "method",
-            "name": "dragEnter",
-            "params": [
-                {
-                    "name": "event",
-                    "description": "",
-                    "type": "JQuery.Event"
-                }
-            ],
-            "class": "FdEditformRowComponent",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/components/fd-editform-row.js",
-            "line": 163,
-            "description": "The event handler is `dragOver`.",
-            "itemtype": "method",
-            "name": "dragOver",
-            "params": [
-                {
-                    "name": "event",
-                    "description": "",
-                    "type": "JQuery.Event"
-                }
-            ],
             "class": "FdEditformRowComponent",
             "module": "ember-flexberry-designer"
         },
@@ -1540,7 +1487,7 @@
             "itemtype": "property",
             "name": "store",
             "type": "Service",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1551,7 +1498,7 @@
             "name": "createNewButton",
             "type": "Boolean",
             "default": "true",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1562,7 +1509,7 @@
             "name": "model",
             "type": "Object",
             "default": "undefined",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1573,7 +1520,7 @@
             "name": "deleteButton",
             "type": "Boolean",
             "default": "true",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1584,7 +1531,7 @@
             "name": "control",
             "type": "Object",
             "default": "undefined",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1595,7 +1542,7 @@
             "name": "selectedControl",
             "type": "Object",
             "default": "undefined",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1606,7 +1553,7 @@
             "name": "selectedControl",
             "type": "Object",
             "default": "null",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1617,7 +1564,7 @@
             "name": "controls",
             "type": "DS.ManyArray",
             "default": "undefined",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1628,7 +1575,7 @@
             "name": "addControl",
             "access": "public",
             "tagname": "",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1639,7 +1586,7 @@
             "name": "deleteControl",
             "access": "public",
             "tagname": "",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1650,7 +1597,7 @@
             "name": "controlClick",
             "access": "public",
             "tagname": "",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1661,21 +1608,21 @@
             "name": "_clearSelection",
             "access": "private",
             "tagname": "",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/components/fd-visual-edit-form.js",
             "line": 145,
             "description": "Initializes component.",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/components/fd-visual-edit-form.js",
             "line": 155,
             "description": "Initializes DOM-related component's properties.",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1686,7 +1633,7 @@
             "name": "jsonLeftTreeNodes",
             "type": "Array",
             "default": "null",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1697,7 +1644,7 @@
             "name": "jsonRightTreeNodes",
             "type": "Array",
             "default": "null",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1708,7 +1655,7 @@
             "name": "pluginsLeft",
             "type": "String",
             "default": "'wholerow, types, sort'",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1719,7 +1666,7 @@
             "name": "pluginsRight",
             "type": "String",
             "default": "'wholerow, types'",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1730,7 +1677,7 @@
             "name": "jstreeSelectedNodesLeft",
             "type": "Array",
             "default": "[]",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1741,7 +1688,7 @@
             "name": "jstreeSelectedNodesRight",
             "type": "Array",
             "default": "[]",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1751,7 +1698,7 @@
             "itemtype": "property",
             "name": "typesOptions",
             "type": "Object",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1760,7 +1707,7 @@
             "description": "Handles creating left jsTree.",
             "itemtype": "method",
             "name": "actions.handleLeftTreeDidBecomeReady",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1769,7 +1716,7 @@
             "description": "Handles creating right jsTree.",
             "itemtype": "method",
             "name": "actions.handleRightTreeDidBecomeReady",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1780,7 +1727,7 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-association-edit-form'",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1790,7 +1737,7 @@
             "itemtype": "property",
             "name": "lookupStereotypeLimitPredicate",
             "type": "SimplePredicate",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1799,7 +1746,7 @@
             "description": "Overridden action for button 'Save'.",
             "itemtype": "method",
             "name": "actions.save",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1815,7 +1762,7 @@
                     "type": "Boolean"
                 }
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1824,7 +1771,7 @@
             "description": "Sets 'businessServerEvents' model property value to default if business server is not present.",
             "itemtype": "method",
             "name": "_setDefaultBusinessServerEvents",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1835,7 +1782,7 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-class-edit-form'",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1846,7 +1793,7 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-configuration-edit-form'",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1857,70 +1804,70 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-diagram-edit-form'",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 12,
-            "description": "The current dragged row.",
+            "line": 13,
+            "description": "The current dragged item.",
             "access": "private",
             "tagname": "",
             "itemtype": "property",
-            "name": "_draggedRow",
-            "type": "FdEditformRow",
-            "class": "FdLimitByStageMixin",
+            "name": "_draggedItem",
+            "type": "FdEditformRow|FdEditformControl",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 21,
+            "line": 22,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
             "name": "_selectedIsControl",
             "readonly": "",
             "type": "Boolean",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 31,
+            "line": 32,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
             "name": "_selectedIsGroup",
             "readonly": "",
             "type": "Boolean",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 41,
+            "line": 42,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
             "name": "_selectedIsTab",
             "readonly": "",
             "type": "Boolean",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 51,
+            "line": 52,
             "description": "The selected control.",
             "itemtype": "property",
             "name": "selectedControl",
             "type": "FdEditformControl|FdEditformGroup|FdEditformTab",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 61,
+            "line": 62,
             "description": "Set the selected control.",
             "itemtype": "method",
             "name": "actions.selectControl",
@@ -1931,60 +1878,85 @@
                     "type": "FdEditformControl|FdEditformGroup|FdEditformTab"
                 }
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 71,
-            "description": "Set the current dragged row.",
+            "line": 72,
+            "description": "Set the current dragged item.",
             "itemtype": "method",
-            "name": "actions.setDragRow",
+            "name": "actions.setDragItem",
             "params": [
                 {
-                    "name": "row",
-                    "description": "New dragged row.",
-                    "type": "FdEditformRow"
+                    "name": "item",
+                    "description": "New dragged item.",
+                    "type": "FdEditformRow|FdEditformControl"
                 }
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 81,
-            "description": "Get the current dragged row.",
+            "line": 82,
+            "description": "Get the current dragged item.",
             "itemtype": "method",
-            "name": "actions.getDragRow",
+            "name": "actions.getDragItem",
             "return": {
-                "description": "The current dragged row or `null`.",
-                "type": "FdEditformRow"
+                "description": "The current dragged item or `undefined`.",
+                "type": "FdEditformRow|FdEditformControl"
             },
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 91,
-            "description": "Move the current dragged row above or below relative to the passed row.",
+            "line": 92,
+            "description": "Move the current dragged item above or below relative to the passed item.",
+            "itemtype": "method",
+            "name": "actions.moveDragItem",
             "params": [
                 {
-                    "name": "row",
-                    "description": "The row above or below which will be moved the current dragged row.",
-                    "type": "FdEditformRow"
+                    "name": "item",
+                    "description": "The item above or below which will be moved the current dragged item.",
+                    "type": "FdEditformRow|FdEditformControl"
                 },
                 {
                     "name": "direction",
-                    "description": "The direction of the row move, allowed values: 'up' or 'down'.",
+                    "description": "The direction of the item move, allowed values: 'up' or 'down'.",
                     "type": "String"
                 }
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 122,
+            "line": 124,
+            "description": "Looks for a container that contains the item.",
+            "params": [
+                {
+                    "name": "item",
+                    "description": "The sought item.",
+                    "type": "FdEditformRow|FdEditformControl"
+                },
+                {
+                    "name": "container",
+                    "description": "The root container.",
+                    "type": "Ember.Array"
+                }
+            ],
+            "return": {
+                "description": "The container that was found or `null`.",
+                "type": "Ember.Array"
+            },
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 139,
             "description": "Looks for a container that contains the row.",
             "itemtype": "method",
             "name": "_findRowContainer",
@@ -2004,7 +1976,32 @@
                 "description": "The container that was found or `null`.",
                 "type": "Ember.Array"
             },
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 187,
+            "description": "Looks for a container that contains the control.",
+            "itemtype": "method",
+            "name": "_findControlContainer",
+            "params": [
+                {
+                    "name": "control",
+                    "description": "The sought control.",
+                    "type": "FdEditformControl"
+                },
+                {
+                    "name": "container",
+                    "description": "The root container.",
+                    "type": "Ember.Array"
+                }
+            ],
+            "return": {
+                "description": "The container that was found or `null`.",
+                "type": "Ember.Array"
+            },
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2015,7 +2012,7 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-generation-process-form'",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2025,7 +2022,7 @@
             "itemtype": "property",
             "name": "customButtons",
             "type": "Array",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2034,7 +2031,7 @@
             "description": "Handler for click on generate button.",
             "itemtype": "method",
             "name": "actions.generationStartButtonClick",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2064,7 +2061,7 @@
                 "description": "Object containing name & properties of component, which will be used to render current table cell.\n{ componentName: 'my-component',  componentProperties: { ... } }.",
                 "type": "Object"
             },
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2075,7 +2072,7 @@
             "name": "store",
             "type": "DS.Store",
             "readonly": "",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2086,7 +2083,7 @@
             "name": "generationLog",
             "type": "Array",
             "readonly": "",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2096,7 +2093,7 @@
             "itemtype": "property",
             "name": "currentGeneration",
             "type": "Object",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2106,7 +2103,7 @@
             "itemtype": "property",
             "name": "sortedGenerationLog",
             "type": "Array",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2115,7 +2112,7 @@
             "description": "Handler for click on generate button.",
             "itemtype": "method",
             "name": "actions.generate",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2131,7 +2128,7 @@
                     "type": "Integer"
                 }
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2142,7 +2139,7 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-inheritance-edit-form'",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2153,7 +2150,7 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-stage-edit-form'",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2164,7 +2161,7 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-system-edit-form'",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2175,7 +2172,7 @@
             "name": "objectlistviewEventsService",
             "type": "{Class}",
             "default": "Ember.inject.service()",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2186,7 +2183,7 @@
             "name": "selectedRowIndex",
             "type": "Number",
             "default": "null",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2197,7 +2194,7 @@
             "name": "detailViewNameItems",
             "type": "Array",
             "default": "[]",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2208,7 +2205,7 @@
             "name": "lookupTypeItems",
             "type": "Array",
             "default": "['default', 'standard', 'combo', 'custom']",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2219,7 +2216,7 @@
             "name": "plugins",
             "type": "String",
             "default": "'wholerow, types'",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2230,7 +2227,7 @@
             "name": "jstreeSelectedNodes",
             "type": "Array",
             "default": "[]",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2240,7 +2237,7 @@
             "itemtype": "property",
             "name": "typesOptions",
             "type": "Object",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2250,7 +2247,7 @@
             "itemtype": "property",
             "name": "propertyType",
             "type": "Object",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2260,7 +2257,7 @@
             "itemtype": "property",
             "name": "rowModel",
             "type": "Object",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2269,7 +2266,7 @@
             "description": "Handles form 'onCreateCaptionClick' button click.",
             "itemtype": "method",
             "name": "actions.onCreateCaptionClick",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2278,7 +2275,7 @@
             "description": "Handles form 'onAttributesClick' table row click.",
             "itemtype": "method",
             "name": "actions.onAttributesClick",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2287,7 +2284,7 @@
             "description": "Handles creating jsTree.",
             "itemtype": "method",
             "name": "actions.handleTreeDidBecomeReady",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2296,7 +2293,7 @@
             "description": "Handles form 'moveRightHighlighted' button click.\nAdd attribute in definition.",
             "itemtype": "method",
             "name": "actions.moveRightHighlighted",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2305,7 +2302,7 @@
             "description": "Handles form 'moveLeftHighlighted' button click.\nDelete attribute from definition.",
             "itemtype": "method",
             "name": "actions.moveLeftHighlighted",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2314,7 +2311,7 @@
             "description": "Handles form 'moveUpHighlighted' button click.",
             "itemtype": "method",
             "name": "actions.moveUpHighlighted",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2323,7 +2320,7 @@
             "description": "Handles form 'moveDownHighlighted' button click.",
             "itemtype": "method",
             "name": "actions.moveDownHighlighted",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2332,7 +2329,7 @@
             "description": "Handles form 'saveView' button click.",
             "itemtype": "method",
             "name": "actions.saveView",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2341,7 +2338,7 @@
             "description": "Overridden action for jsTree 'openNode'.",
             "itemtype": "method",
             "name": "_openNodeTree",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2350,7 +2347,7 @@
             "description": "Overridden action for jsTree 'eventDidClose'.",
             "itemtype": "method",
             "name": "_afterCloseNodeTree",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2359,7 +2356,7 @@
             "description": "Method for restoring tree nodes.",
             "itemtype": "method",
             "name": "_restorationNodeTree",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2368,7 +2365,7 @@
             "description": "Method for loading tree node data.",
             "itemtype": "method",
             "name": "_getChildrenNode",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2379,7 +2376,7 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-view-edit-form'",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2388,7 +2385,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "endRoleStr",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2402,7 +2399,7 @@
             "example": [
                 "\n  ```javascript\n  _endRoleStrChanged: Ember.on('init', Ember.observer('endRoleStr', function() {\n    Ember.run.once(this, '_endRoleStrCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2411,7 +2408,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "notNullStart",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2425,7 +2422,7 @@
             "example": [
                 "\n  ```javascript\n  _notNullStartChanged: Ember.on('init', Ember.observer('notNullStart', function() {\n    Ember.run.once(this, '_notNullStartCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2434,7 +2431,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "startRoleStr",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2448,7 +2445,7 @@
             "example": [
                 "\n  ```javascript\n  _startRoleStrChanged: Ember.on('init', Ember.observer('startRoleStr', function() {\n    Ember.run.once(this, '_startRoleStrCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2457,7 +2454,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2471,7 +2468,7 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2480,7 +2477,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "nameStr",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2494,7 +2491,7 @@
             "example": [
                 "\n  ```javascript\n  _nameStrChanged: Ember.on('init', Ember.observer('nameStr', function() {\n    Ember.run.once(this, '_nameStrCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2503,7 +2500,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "assocType",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2517,7 +2514,7 @@
             "example": [
                 "\n  ```javascript\n  _assocTypeChanged: Ember.on('init', Ember.observer('assocType', function() {\n    Ember.run.once(this, '_assocTypeCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2526,7 +2523,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realStorage",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2540,7 +2537,7 @@
             "example": [
                 "\n  ```javascript\n  _realStorageChanged: Ember.on('init', Ember.observer('realStorage', function() {\n    Ember.run.once(this, '_realStorageCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2549,7 +2546,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "assocType",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2563,7 +2560,7 @@
             "example": [
                 "\n  ```javascript\n  _assocTypeChanged: Ember.on('init', Ember.observer('assocType', function() {\n    Ember.run.once(this, '_assocTypeCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2572,7 +2569,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realStorage",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2586,7 +2583,7 @@
             "example": [
                 "\n  ```javascript\n  _realStorageChanged: Ember.on('init', Ember.observer('realStorage', function() {\n    Ember.run.once(this, '_realStorageCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2595,7 +2592,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "dataServiceExpressionXML",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2609,7 +2606,7 @@
             "example": [
                 "\n  ```javascript\n  _dataServiceExpressionXMLChanged: Ember.on('init', Ember.observer('dataServiceExpressionXML', function() {\n    Ember.run.once(this, '_dataServiceExpressionXMLCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2618,7 +2615,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realCaption",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2632,7 +2629,7 @@
             "example": [
                 "\n  ```javascript\n  _realCaptionChanged: Ember.on('init', Ember.observer('realCaption', function() {\n    Ember.run.once(this, '_realCaptionCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2641,7 +2638,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realStorage",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2655,7 +2652,7 @@
             "example": [
                 "\n  ```javascript\n  _realStorageChanged: Ember.on('init', Ember.observer('realStorage', function() {\n    Ember.run.once(this, '_realStorageCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2664,7 +2661,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "assocType",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2678,7 +2675,7 @@
             "example": [
                 "\n  ```javascript\n  _assocTypeChanged: Ember.on('init', Ember.observer('assocType', function() {\n    Ember.run.once(this, '_assocTypeCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2687,7 +2684,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realEndRole",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2701,7 +2698,7 @@
             "example": [
                 "\n  ```javascript\n  _realEndRoleChanged: Ember.on('init', Ember.observer('realEndRole', function() {\n    Ember.run.once(this, '_realEndRoleCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2710,7 +2707,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realStartRole",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2724,7 +2721,7 @@
             "example": [
                 "\n  ```javascript\n  _realStartRoleChanged: Ember.on('init', Ember.observer('realStartRole', function() {\n    Ember.run.once(this, '_realStartRoleCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2733,7 +2730,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "appConfigFile",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2747,7 +2744,7 @@
             "example": [
                 "\n  ```javascript\n  _appConfigFileChanged: Ember.on('init', Ember.observer('appConfigFile', function() {\n    Ember.run.once(this, '_appConfigFileCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2756,7 +2753,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "bSClass",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2770,7 +2767,7 @@
             "example": [
                 "\n  ```javascript\n  _bSClassChanged: Ember.on('init', Ember.observer('bSClass', function() {\n    Ember.run.once(this, '_bSClassCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2779,7 +2776,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "bSEvents",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2793,7 +2790,7 @@
             "example": [
                 "\n  ```javascript\n  _bSEventsChanged: Ember.on('init', Ember.observer('bSEvents', function() {\n    Ember.run.once(this, '_bSEventsCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2802,7 +2799,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "comPlusServerOptions",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2816,7 +2813,7 @@
             "example": [
                 "\n  ```javascript\n  _comPlusServerOptionsChanged: Ember.on('init', Ember.observer('comPlusServerOptions', function() {\n    Ember.run.once(this, '_comPlusServerOptionsCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2825,7 +2822,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "containers",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2839,7 +2836,7 @@
             "example": [
                 "\n  ```javascript\n  _containersChanged: Ember.on('init', Ember.observer('containers', function() {\n    Ember.run.once(this, '_containersCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2848,7 +2845,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "dataObjectTypes",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2862,7 +2859,7 @@
             "example": [
                 "\n  ```javascript\n  _dataObjectTypesChanged: Ember.on('init', Ember.observer('dataObjectTypes', function() {\n    Ember.run.once(this, '_dataObjectTypesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2871,7 +2868,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "editFormOperations",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2885,7 +2882,7 @@
             "example": [
                 "\n  ```javascript\n  _editFormOperationsChanged: Ember.on('init', Ember.observer('editFormOperations', function() {\n    Ember.run.once(this, '_editFormOperationsCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2894,7 +2891,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "listFormOperations",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2908,7 +2905,7 @@
             "example": [
                 "\n  ```javascript\n  _listFormOperationsChanged: Ember.on('init', Ember.observer('listFormOperations', function() {\n    Ember.run.once(this, '_listFormOperationsCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2917,7 +2914,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "loadingOrderXML",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2931,7 +2928,7 @@
             "example": [
                 "\n  ```javascript\n  _loadingOrderXMLChanged: Ember.on('init', Ember.observer('loadingOrderXML', function() {\n    Ember.run.once(this, '_loadingOrderXMLCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2940,7 +2937,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "propertyLookup",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2954,7 +2951,7 @@
             "example": [
                 "\n  ```javascript\n  _propertyLookupChanged: Ember.on('init', Ember.observer('propertyLookup', function() {\n    Ember.run.once(this, '_propertyLookupCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2963,7 +2960,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realCaption",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2977,7 +2974,7 @@
             "example": [
                 "\n  ```javascript\n  _realCaptionChanged: Ember.on('init', Ember.observer('realCaption', function() {\n    Ember.run.once(this, '_realCaptionCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -2986,7 +2983,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realNamespace",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3000,7 +2997,7 @@
             "example": [
                 "\n  ```javascript\n  _realNamespaceChanged: Ember.on('init', Ember.observer('realNamespace', function() {\n    Ember.run.once(this, '_realNamespaceCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3009,7 +3006,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realPacket",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3023,7 +3020,7 @@
             "example": [
                 "\n  ```javascript\n  _realPacketChanged: Ember.on('init', Ember.observer('realPacket', function() {\n    Ember.run.once(this, '_realPacketCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3032,7 +3029,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realPrimaryKeyStorage",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3046,7 +3043,7 @@
             "example": [
                 "\n  ```javascript\n  _realPrimaryKeyStorageChanged: Ember.on('init', Ember.observer('realPrimaryKeyStorage', function() {\n    Ember.run.once(this, '_realPrimaryKeyStorageCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3055,7 +3052,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realStorage",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3069,7 +3066,7 @@
             "example": [
                 "\n  ```javascript\n  _realStorageChanged: Ember.on('init', Ember.observer('realStorage', function() {\n    Ember.run.once(this, '_realStorageCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3078,7 +3075,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "storeInstancesInTypeXML",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3092,7 +3089,7 @@
             "example": [
                 "\n  ```javascript\n  _storeInstancesInTypeXMLChanged: Ember.on('init', Ember.observer('storeInstancesInTypeXML', function() {\n    Ember.run.once(this, '_storeInstancesInTypeXMLCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3101,7 +3098,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "useCache",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3115,7 +3112,7 @@
             "example": [
                 "\n  ```javascript\n  _useCacheChanged: Ember.on('init', Ember.observer('useCache', function() {\n    Ember.run.once(this, '_useCacheCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3124,7 +3121,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "dataObjectTypes",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3138,7 +3135,7 @@
             "example": [
                 "\n  ```javascript\n  _dataObjectTypesChanged: Ember.on('init', Ember.observer('dataObjectTypes', function() {\n    Ember.run.once(this, '_dataObjectTypesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3147,7 +3144,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "listFormOperations",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3161,7 +3158,7 @@
             "example": [
                 "\n  ```javascript\n  _listFormOperationsChanged: Ember.on('init', Ember.observer('listFormOperations', function() {\n    Ember.run.once(this, '_listFormOperationsCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3170,7 +3167,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "propertyLookup",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3184,7 +3181,7 @@
             "example": [
                 "\n  ```javascript\n  _propertyLookupChanged: Ember.on('init', Ember.observer('propertyLookup', function() {\n    Ember.run.once(this, '_propertyLookupCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3193,7 +3190,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "viewForForm",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3207,7 +3204,7 @@
             "example": [
                 "\n  ```javascript\n  _viewForFormChanged: Ember.on('init', Ember.observer('viewForForm', function() {\n    Ember.run.once(this, '_viewForFormCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3216,7 +3213,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "parametersStr",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3230,7 +3227,7 @@
             "example": [
                 "\n  ```javascript\n  _parametersStrChanged: Ember.on('init', Ember.observer('parametersStr', function() {\n    Ember.run.once(this, '_parametersStrCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3239,7 +3236,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realCaption",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3253,7 +3250,7 @@
             "example": [
                 "\n  ```javascript\n  _realCaptionChanged: Ember.on('init', Ember.observer('realCaption', function() {\n    Ember.run.once(this, '_realCaptionCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3262,7 +3259,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeParametersStr",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3276,7 +3273,7 @@
             "example": [
                 "\n  ```javascript\n  _typeParametersStrChanged: Ember.on('init', Ember.observer('typeParametersStr', function() {\n    Ember.run.once(this, '_typeParametersStrCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3285,7 +3282,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realCaption",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3299,7 +3296,7 @@
             "example": [
                 "\n  ```javascript\n  _realCaptionChanged: Ember.on('init', Ember.observer('realCaption', function() {\n    Ember.run.once(this, '_realCaptionCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3308,7 +3305,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "additionalPluginsSettings",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3322,7 +3319,7 @@
             "example": [
                 "\n  ```javascript\n  _additionalPluginsSettingsChanged: Ember.on('init', Ember.observer('additionalPluginsSettings', function() {\n    Ember.run.once(this, '_additionalPluginsSettingsCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3331,7 +3328,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "chosenPalette",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3345,7 +3342,7 @@
             "example": [
                 "\n  ```javascript\n  _chosenPaletteChanged: Ember.on('init', Ember.observer('chosenPalette', function() {\n    Ember.run.once(this, '_chosenPaletteCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3354,7 +3351,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "defaultAccessType",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3368,7 +3365,7 @@
             "example": [
                 "\n  ```javascript\n  _defaultAccessTypeChanged: Ember.on('init', Ember.observer('defaultAccessType', function() {\n    Ember.run.once(this, '_defaultAccessTypeCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3377,7 +3374,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "defaultTypeMapTypes",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3391,7 +3388,7 @@
             "example": [
                 "\n  ```javascript\n  _defaultTypeMapTypesChanged: Ember.on('init', Ember.observer('defaultTypeMapTypes', function() {\n    Ember.run.once(this, '_defaultTypeMapTypesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3400,7 +3397,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "doNotDeleteExtraTables",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3414,7 +3411,7 @@
             "example": [
                 "\n  ```javascript\n  _doNotDeleteExtraTablesChanged: Ember.on('init', Ember.observer('doNotDeleteExtraTables', function() {\n    Ember.run.once(this, '_doNotDeleteExtraTablesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3423,7 +3420,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "enableAuElement",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3437,7 +3434,7 @@
             "example": [
                 "\n  ```javascript\n  _enableAuElementChanged: Ember.on('init', Ember.observer('enableAuElement', function() {\n    Ember.run.once(this, '_enableAuElementCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3446,7 +3443,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "lastIndexDate",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3460,7 +3457,7 @@
             "example": [
                 "\n  ```javascript\n  _lastIndexDateChanged: Ember.on('init', Ember.observer('lastIndexDate', function() {\n    Ember.run.once(this, '_lastIndexDateCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3469,7 +3466,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "realDataObjectNameSpace",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3483,7 +3480,7 @@
             "example": [
                 "\n  ```javascript\n  _realDataObjectNameSpaceChanged: Ember.on('init', Ember.observer('realDataObjectNameSpace', function() {\n    Ember.run.once(this, '_realDataObjectNameSpaceCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3492,7 +3489,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapAccess",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3506,7 +3503,7 @@
             "example": [
                 "\n  ```javascript\n  _typeMapAccessChanged: Ember.on('init', Ember.observer('typeMapAccess', function() {\n    Ember.run.once(this, '_typeMapAccessCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3515,7 +3512,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapCS",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3529,7 +3526,7 @@
             "example": [
                 "\n  ```javascript\n  _typeMapCSChanged: Ember.on('init', Ember.observer('typeMapCS', function() {\n    Ember.run.once(this, '_typeMapCSCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3538,7 +3535,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapOracle",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3552,7 +3549,7 @@
             "example": [
                 "\n  ```javascript\n  _typeMapOracleChanged: Ember.on('init', Ember.observer('typeMapOracle', function() {\n    Ember.run.once(this, '_typeMapOracleCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3561,7 +3558,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapPostgre",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3575,7 +3572,7 @@
             "example": [
                 "\n  ```javascript\n  _typeMapPostgreChanged: Ember.on('init', Ember.observer('typeMapPostgre', function() {\n    Ember.run.once(this, '_typeMapPostgreCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3584,7 +3581,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapSQL",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3598,7 +3595,7 @@
             "example": [
                 "\n  ```javascript\n  _typeMapSQLChanged: Ember.on('init', Ember.observer('typeMapSQL', function() {\n    Ember.run.once(this, '_typeMapSQLCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3607,7 +3604,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "typeMapVB",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3621,7 +3618,7 @@
             "example": [
                 "\n  ```javascript\n  _typeMapVBChanged: Ember.on('init', Ember.observer('typeMapVB', function() {\n    Ember.run.once(this, '_typeMapVBCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3630,7 +3627,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3644,7 +3641,7 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3653,7 +3650,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitiveTypes",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3667,7 +3664,7 @@
             "example": [
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3676,7 +3673,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitives",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3690,7 +3687,7 @@
             "example": [
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3699,7 +3696,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "helpKeyword",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3713,7 +3710,7 @@
             "example": [
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3722,7 +3719,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3736,7 +3733,7 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3745,7 +3742,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitiveTypes",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3759,7 +3756,7 @@
             "example": [
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3768,7 +3765,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitives",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3782,7 +3779,7 @@
             "example": [
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3791,7 +3788,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "helpKeyword",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3805,7 +3802,7 @@
             "example": [
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3814,7 +3811,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3828,7 +3825,7 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3837,7 +3834,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitiveTypes",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3851,7 +3848,7 @@
             "example": [
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3860,7 +3857,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitives",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3874,7 +3871,7 @@
             "example": [
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3883,7 +3880,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "helpKeyword",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3897,7 +3894,7 @@
             "example": [
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3906,7 +3903,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3920,7 +3917,7 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3929,7 +3926,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitiveTypes",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3943,7 +3940,7 @@
             "example": [
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3952,7 +3949,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitives",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3966,7 +3963,7 @@
             "example": [
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3975,7 +3972,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "helpKeyword",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3989,7 +3986,7 @@
             "example": [
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3998,7 +3995,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4012,7 +4009,7 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4021,7 +4018,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitiveTypes",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4035,7 +4032,7 @@
             "example": [
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4044,7 +4041,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitives",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4058,7 +4055,7 @@
             "example": [
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4067,7 +4064,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "helpKeyword",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4081,7 +4078,7 @@
             "example": [
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4090,7 +4087,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4104,7 +4101,7 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4113,7 +4110,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitiveTypes",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4127,7 +4124,7 @@
             "example": [
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4136,7 +4133,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitives",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4150,7 +4147,7 @@
             "example": [
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4159,7 +4156,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "helpKeyword",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4173,7 +4170,7 @@
             "example": [
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4182,7 +4179,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "name",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4196,7 +4193,7 @@
             "example": [
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4205,7 +4202,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitiveTypes",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4219,7 +4216,7 @@
             "example": [
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4228,7 +4225,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitives",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4242,7 +4239,7 @@
             "example": [
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4251,7 +4248,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "helpKeyword",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4265,7 +4262,7 @@
             "example": [
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4274,7 +4271,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "properties",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4288,7 +4285,7 @@
             "example": [
                 "\n  ```javascript\n  _propertiesChanged: Ember.on('init', Ember.observer('properties', function() {\n    Ember.run.once(this, '_propertiesCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4297,7 +4294,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitivesStream",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4311,7 +4308,7 @@
             "example": [
                 "\n  ```javascript\n  _primitivesStreamChanged: Ember.on('init', Ember.observer('primitivesStream', function() {\n    Ember.run.once(this, '_primitivesStreamCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4320,7 +4317,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "primitivesJsonString",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4334,7 +4331,7 @@
             "example": [
                 "\n  ```javascript\n  _primitivesJsonStringChanged: Ember.on('init', Ember.observer('primitivesJsonString', function() {\n    Ember.run.once(this, '_primitivesJsonStringCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4343,7 +4340,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "fileName",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4357,7 +4354,7 @@
             "example": [
                 "\n  ```javascript\n  _fileNameChanged: Ember.on('init', Ember.observer('fileName', function() {\n    Ember.run.once(this, '_fileNameCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4366,7 +4363,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "type",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4380,7 +4377,7 @@
             "example": [
                 "\n  ```javascript\n  _typeChanged: Ember.on('init', Ember.observer('type', function() {\n    Ember.run.once(this, '_typeCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4389,7 +4386,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "nameStr",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4403,7 +4400,7 @@
             "example": [
                 "\n  ```javascript\n  _nameStrChanged: Ember.on('init', Ember.observer('nameStr', function() {\n    Ember.run.once(this, '_nameStrCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4412,7 +4409,7 @@
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "chosenPalette",
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -4426,7 +4423,200 @@
             "example": [
                 "\n  ```javascript\n  _chosenPaletteChanged: Ember.on('init', Ember.observer('chosenPalette', function() {\n    Ember.run.once(this, '_chosenPaletteCompute');\n  }))\n  ```"
             ],
-            "class": "FdLimitByStageMixin",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/mixins/fd-draggable-control.js",
+            "line": 17,
+            "description": "The `X` coordinate with which the dragging started.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_initialX",
+            "type": "Number",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/mixins/fd-draggable-control.js",
+            "line": 26,
+            "description": "The `Y` coordinate with which the dragging started.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_initialY",
+            "type": "Number",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/mixins/fd-draggable-control.js",
+            "line": 35,
+            "description": "In dependent on `dragDirection` returns `_initialX` or `_initialY`.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_initialXY",
+            "readonly": "",
+            "type": "Number",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/mixins/fd-draggable-control.js",
+            "line": 47,
+            "description": "The 'X' or 'Y' coordinate of the line through which you need to drag the item to move.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_centerXY",
+            "readonly": "",
+            "type": "Number",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/mixins/fd-draggable-control.js",
+            "line": 71,
+            "description": "Returns the item to be dragged.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_draggableProperty",
+            "readonly": "",
+            "type": "FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/mixins/fd-draggable-control.js",
+            "line": 83,
+            "description": "Specifies the property name in the component, in which draggable item is stored.",
+            "itemtype": "property",
+            "name": "draggableProperty",
+            "type": "String",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/mixins/fd-draggable-control.js",
+            "line": 91,
+            "description": "Specifies the direction that will be used to sort the draggable items.\nAvailable values: `X` or `Y`.",
+            "itemtype": "property",
+            "name": "dragDirection",
+            "type": "String",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/mixins/fd-draggable-control.js",
+            "line": 100,
+            "description": "The property to bind to `draggable` HTML attribute.",
+            "itemtype": "property",
+            "name": "draggable",
+            "type": "Boolean",
+            "default": "false",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/mixins/fd-draggable-control.js",
+            "line": 109,
+            "description": "See [EmberJS API](https://emberjs.com/api/).",
+            "itemtype": "property",
+            "name": "attributeBindings",
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/mixins/fd-draggable-control.js",
+            "line": 116,
+            "description": "The event handler is `dragStart`.",
+            "itemtype": "method",
+            "name": "dragStart",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "JQuery.Event"
+                }
+            ],
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/mixins/fd-draggable-control.js",
+            "line": 127,
+            "description": "The event handler is `dragEnd`.",
+            "itemtype": "method",
+            "name": "dragEnd",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "JQuery.Event"
+                }
+            ],
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/mixins/fd-draggable-control.js",
+            "line": 138,
+            "description": "The event handler is `dragEnter`.",
+            "itemtype": "method",
+            "name": "dragEnter",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "JQuery.Event"
+                }
+            ],
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/mixins/fd-draggable-control.js",
+            "line": 158,
+            "description": "The event handler is `dragOver`.",
+            "itemtype": "method",
+            "name": "dragOver",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "JQuery.Event"
+                }
+            ],
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/mixins/fd-draggable-control.js",
+            "line": 200,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_draggingIsSupported",
+            "params": [
+                {
+                    "name": "over",
+                    "description": "Item over which is dragged.",
+                    "type": "FdEditformRow|FdEditformControl"
+                },
+                {
+                    "name": "dragged",
+                    "description": "Dragged item.",
+                    "type": "FdEditformRow|FdEditformControl"
+                }
+            ],
+            "return": {
+                "description": "If dragging makes sense `true`, else `false`.",
+                "type": "Boolean"
+            },
+            "class": "FdDraggableControlMixin",
             "module": "ember-flexberry-designer"
         },
         {
@@ -6104,8 +6294,8 @@
             "line": " addon/components/fd-visual-edit-form.js:155"
         },
         {
-            "message": "Missing item type\nMove the current dragged row above or below relative to the passed row.",
-            "line": " addon/controllers/fd-editform-constructor.js:91"
+            "message": "Missing item type\nLooks for a container that contains the item.",
+            "line": " addon/controllers/fd-editform-constructor.js:124"
         },
         {
             "message": "Missing item type\nField name where object identifier is kept.",

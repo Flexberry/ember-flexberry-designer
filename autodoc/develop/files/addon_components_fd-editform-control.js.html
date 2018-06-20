@@ -26,7 +26,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/FdCurrentProjectContextService", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/ember-flexberry-designer"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/ember-flexberry-designer"]'>
         </form>
     </div>
 </div>
@@ -49,6 +49,7 @@
 	                <div class="tab-pane active" id="classes">
 	                    <ul id="api-classes" class="nav nav-list">
 	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
+	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
 	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
 	                            <li><a href="../classes/FdEditformControlComponent.html">FdEditformControlComponent</a></li>
 	                            <li><a href="../classes/FdEditformGroup.html">FdEditformGroup</a></li>
@@ -113,6 +114,7 @@
 */
 
 import Ember from &#x27;ember&#x27;;
+import FdDraggableControlMixin from &#x27;../mixins/fd-draggable-control&#x27;;
 
 import FdEditformControl from &#x27;../objects/fd-editform-control&#x27;;
 import FdEditformGroup from &#x27;../objects/fd-editform-group&#x27;;
@@ -123,8 +125,9 @@ import FdEditformTabgroup from &#x27;../objects/fd-editform-tabgroup&#x27;;
 
   @class FdEditformControlComponent
   @extends &lt;a href=&quot;http://emberjs.com/api/classes/Ember.Component.html&quot;&gt;Ember.Component&lt;/a&gt;
+  @uses FdDraggableControlMixin
 */
-export default Ember.Component.extend({
+export default Ember.Component.extend(FdDraggableControlMixin, {
   /**
     The passed control is a simple control.
 
@@ -178,21 +181,33 @@ export default Ember.Component.extend({
   }).readOnly(),
 
   /**
-    See [EmberJS API](https://emberjs.com/api/).
-
-    @property tagName
-  */
-  tagName: Ember.computed(&#x27;_isControl&#x27;, function() {
-    return this.get(&#x27;_isControl&#x27;) ? &#x27;&#x27; : &#x27;div&#x27;;
-  }),
-
-  /**
     The control to render.
 
     @property control
     @type FdEditformControl|FdEditformGroup|FdEditformTabgroup
   */
   control: undefined,
+
+  /**
+    See description {{#crossLink &quot;FdDraggableControlMixin/draggableProperty:property&quot;}}here{{/crossLink}}.
+
+    @property draggableProperty
+  */
+  draggableProperty: &#x27;control&#x27;,
+
+  /**
+    See description {{#crossLink &quot;FdDraggableControlMixin/dragDirection:property&quot;}}here{{/crossLink}}.
+
+    @property dragDirection
+  */
+  dragDirection: &#x27;X&#x27;,
+
+  /**
+    See [EmberJS API](https://emberjs.com/api/).
+
+    @property classNames
+  */
+  classNames: [&#x27;fd-editform-control&#x27;, &#x27;field&#x27;],
 
   /**
     See [EmberJS API](https://emberjs.com/api/).
@@ -205,6 +220,19 @@ export default Ember.Component.extend({
     if (this.get(&#x27;_isTab&#x27;)) {
       this.$(&#x27;.menu .item&#x27;).tab();
     }
+  },
+
+  /**
+    The event handler is &#x60;click&#x60;.
+    Calls the &#x60;selectControlAction&#x60; action when the component is clicked.
+    The action &#x60;selectControlAction&#x60; should be passed, for example, from the controller.
+
+    @method click
+    @param {JQuery.Event} event
+  */
+  click(event) {
+    event.stopPropagation();
+    this.get(&#x27;selectControlAction&#x27;)(this.get(&#x27;control&#x27;));
   },
 });
 

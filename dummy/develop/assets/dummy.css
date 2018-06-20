@@ -39055,6 +39055,40 @@ img.item-minus {
 .ui.right.sidebar.config-panel .ui.selection.dropdown {
   min-width: auto;
 }
+.fd-editform-row {
+  position: relative;
+}
+.fd-editform-row > .drag-anchor {
+  position: absolute;
+  display: none;
+  z-index: 1;
+  width: 2em;
+  height: 2em;
+  top: 0.5em;
+  left: 0.5em;
+  background-color: black;
+  cursor: move;
+}
+.fd-editform-row:hover > .drag-anchor {
+  display: block;
+}
+.fd-editform-control {
+  position: relative;
+}
+.fd-editform-control > .drag-anchor {
+  position: absolute;
+  display: none;
+  z-index: 1;
+  width: 2em;
+  height: 2em;
+  top: 0.5em;
+  right: 0.5em;
+  background-color: black;
+  cursor: move;
+}
+.fd-editform-control:hover > .drag-anchor {
+  display: block;
+}
 .attr-panel {
   height: -webkit-fill-available;
   max-height: calc(100vh - 340px);

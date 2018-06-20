@@ -26,7 +26,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/FdCurrentProjectContextService", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/ember-flexberry-designer"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/ember-flexberry-designer"]'>
         </form>
     </div>
 </div>
@@ -49,6 +49,7 @@
 	                <div class="tab-pane active" id="classes">
 	                    <ul id="api-classes" class="nav nav-list">
 	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
+	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
 	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
 	                            <li><a href="../classes/FdEditformControlComponent.html">FdEditformControlComponent</a></li>
 	                            <li><a href="../classes/FdEditformGroup.html">FdEditformGroup</a></li>
@@ -113,16 +114,18 @@
 */
 
 import Ember from &#x27;ember&#x27;;
+import FdDraggableControlMixin from &#x27;../mixins/fd-draggable-control&#x27;;
 
 /**
   This component rendered one row with controls on the edit form.
 
   @class FdEditformRowComponent
   @extends &lt;a href=&quot;http://emberjs.com/api/classes/Ember.Component.html&quot;&gt;Ember.Component&lt;/a&gt;
+  @uses FdDraggableControlMixin
 */
-export default Ember.Component.extend({
+export default Ember.Component.extend(FdDraggableControlMixin, {
   /**
-    The component is rendered as one column.
+    Indicates that the row contains only one control.
 
     @private
     @property _singleColumn
@@ -136,52 +139,8 @@ export default Ember.Component.extend({
     @private
     @property _dimmed
     @type Boolean
-    @default false
   */
-  _dimmed: false,
-
-  /**
-    The property to bind to &#x60;draggable&#x60; HTML attribute.
-
-    @private
-    @property _draggable
-    @type String
-    @default &#x27;true&#x27;
-  */
-  _draggable: &#x27;true&#x27;,
-
-  /**
-    Indicates that this row is dragging.
-
-    @private
-    @property _dragging
-    @type Boolean
-    @default false
-  */
-  _dragging: false,
-
-  /**
-    The &#x60;Y&#x60; coordinate with which the dragging started.
-
-    @private
-    @property _initialY
-    @type Number
-  */
-  _initialY: undefined,
-
-  /**
-    The &#x27;Y&#x27; coordinate of the line through which you need to drag the row to move.
-
-    @private
-    @property _waterline
-    @readOnly
-    @type Number
-  */
-  _waterline: Ember.computed(function() {
-    let clientRect = this.get(&#x27;element&#x27;).getBoundingClientRect();
-    let height = clientRect.bottom - clientRect.top;
-    return clientRect.top + height / 2;
-  }).readOnly(),
+  _dimmed: Ember.computed.reads(&#x27;draggable&#x27;),
 
   /**
     The row to render.
@@ -192,111 +151,32 @@ export default Ember.Component.extend({
   row: undefined,
 
   /**
-    See [EmberJS API](https://emberjs.com/api/).
+    See description {{#crossLink &quot;FdDraggableControlMixin/draggableProperty:property&quot;}}here{{/crossLink}}.
 
-    @property attributeBindings
+    @property draggableProperty
   */
-  attributeBindings: [&#x27;_draggable:draggable&#x27;],
+  draggableProperty: &#x27;row&#x27;,
+
+  /**
+    See description {{#crossLink &quot;FdDraggableControlMixin/dragDirection:property&quot;}}here{{/crossLink}}.
+
+    @property dragDirection
+  */
+  dragDirection: &#x27;Y&#x27;,
 
   /**
     See [EmberJS API](https://emberjs.com/api/).
 
     @property classNameBindings
   */
-  classNameBindings: [&#x27;_singleColumn:field:fields&#x27;, &#x27;_singleColumn::equal&#x27;, &#x27;_singleColumn::width&#x27;, &#x27;_dimmed:dimmed&#x27;],
+  classNameBindings: [&#x27;_singleColumn::fields&#x27;, &#x27;_singleColumn::equal&#x27;, &#x27;_singleColumn::width&#x27;, &#x27;_dimmed:dimmed&#x27;],
 
   /**
     See [EmberJS API](https://emberjs.com/api/).
 
     @property classNames
   */
-  classNames: [&#x27;ui&#x27;, &#x27;dimmable&#x27;],
-
-  /**
-    Calls &#x60;selectAction&#x60; action when clicking on component when it is renderd as one column.
-
-    @method click
-    @param {JQuery.Event} event
-  */
-  click(event) {
-    event.stopPropagation();
-    if (this.get(&#x27;_singleColumn&#x27;)) {
-      this.get(&#x27;selectAction&#x27;)(this.get(&#x27;row.controls.firstObject&#x27;));
-    }
-  },
-
-  /**
-    The event handler is &#x60;dragStart&#x60;.
-
-    @method dragStart
-    @param {JQuery.Event} event
-  */
-  dragStart(event) {
-    event.stopPropagation();
-    this.set(&#x27;_dimmed&#x27;, true);
-    this.set(&#x27;_dragging&#x27;, true);
-    this.get(&#x27;setDragRowAction&#x27;)(this.get(&#x27;row&#x27;));
-  },
-
-  /**
-    The event handler is &#x60;dragEnd&#x60;.
-
-    @method dragEnd
-    @param {JQuery.Event} event
-  */
-  dragEnd(event) {
-    event.stopPropagation();
-    this.set(&#x27;_dimmed&#x27;, false);
-    this.set(&#x27;_dragging&#x27;, false);
-    this.get(&#x27;setDragRowAction&#x27;)(null);
-  },
-
-  /**
-    The event handler is &#x60;dragEnter&#x60;.
-
-    @method dragEnter
-    @param {JQuery.Event} event
-  */
-  dragEnter(event) {
-    event.stopPropagation();
-    let draggedRow = this.get(&#x27;getDragRowAction&#x27;)();
-    if (this.get(&#x27;row&#x27;) === draggedRow) {
-      this.set(&#x27;_dragging&#x27;, true);
-    }
-
-    if (!this.get(&#x27;_dragging&#x27;)) {
-      this.set(&#x27;_initialY&#x27;, event.originalEvent.clientY);
-      return false;
-    }
-  },
-
-  /**
-    The event handler is &#x60;dragOver&#x60;.
-
-    @method dragOver
-    @param {JQuery.Event} event
-  */
-  dragOver(event) {
-    event.stopPropagation();
-    if (!this.get(&#x27;_dragging&#x27;)) {
-      let motion = this.get(&#x27;_initialY&#x27;) - event.originalEvent.clientY;
-      let waterline = this.get(&#x27;_waterline&#x27;);
-
-      let direction;
-      if (motion &gt;= 5 &amp;&amp; event.originalEvent.clientY &lt; waterline) {
-        direction = &#x27;up&#x27;;
-      } else if (motion &lt;= -5 &amp;&amp; event.originalEvent.clientY &gt; waterline) {
-        direction = &#x27;down&#x27;;
-      }
-
-      if (direction) {
-        this.get(&#x27;moveRowAction&#x27;)(this.get(&#x27;row&#x27;), direction);
-        this.notifyPropertyChange(&#x27;_waterline&#x27;);
-      }
-
-      return false;
-    }
-  },
+  classNames: [&#x27;fd-editform-row&#x27;, &#x27;ui&#x27;, &#x27;dimmable&#x27;],
 });
 
     </pre>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>addon/mixins/fd-draggable-control.js - Flexberry Documentation</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="Flexberry Documentation" src="../assets/css/logo.png" style="max-height: 65%;" title="Flexberry Documentation">
+            Flexberry Documentation
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>develop</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/ember-flexberry-designer"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <h3>APIs</h3>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Type to filter APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
+	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
+	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
+	                            <li><a href="../classes/FdEditformControlComponent.html">FdEditformControlComponent</a></li>
+	                            <li><a href="../classes/FdEditformGroup.html">FdEditformGroup</a></li>
+	                            <li><a href="../classes/FdEditformRow.html">FdEditformRow</a></li>
+	                            <li><a href="../classes/FdEditformRowComponent.html">FdEditformRowComponent</a></li>
+	                            <li><a href="../classes/FdEditformTab.html">FdEditformTab</a></li>
+	                            <li><a href="../classes/FdEditformTabgroup.html">FdEditformTabgroup</a></li>
+	                            <li><a href="../classes/FdLimitByStageMixin.html">FdLimitByStageMixin</a></li>
+	                            <li><a href="../classes/FdViewAttributesDetail.html">FdViewAttributesDetail</a></li>
+	                            <li><a href="../classes/FdViewAttributesMaster.html">FdViewAttributesMaster</a></li>
+	                            <li><a href="../classes/FdViewAttributesProperty.html">FdViewAttributesProperty</a></li>
+	                            <li><a href="../classes/FdViewAttributesTree.html">FdViewAttributesTree</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">NewPlatformFlexberryFlexberryDesignerVisualEditControl</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">NewPlatformFlexberryFlexberryDesignerVisualEditForm</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Show:
+                    <label for="api-show-inherited" class="checkbox">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>addon/mixins/fd-draggable-control.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+  @module ember-flexberry-designer
+*/
+
+import Ember from &#x27;ember&#x27;;
+
+import FdEditformRow from &#x27;../objects/fd-editform-row&#x27;;
+import FdEditformControl from &#x27;../objects/fd-editform-control&#x27;;
+
+/**
+  Mixin with the support &#x60;drag and drop&#x60; for controls in the edit form constructor.
+
+  @class FdDraggableControlMixin
+  @uses &lt;a href=&quot;http://emberjs.com/api/classes/Ember.Mixin.html&quot;&gt;Ember.Mixin&lt;/a&gt;
+*/
+export default Ember.Mixin.create({
+  /**
+    The &#x60;X&#x60; coordinate with which the dragging started.
+
+    @private
+    @property _initialX
+    @type Number
+  */
+  _initialX: undefined,
+
+  /**
+    The &#x60;Y&#x60; coordinate with which the dragging started.
+
+    @private
+    @property _initialY
+    @type Number
+  */
+  _initialY: undefined,
+
+  /**
+    In dependent on &#x60;dragDirection&#x60; returns &#x60;_initialX&#x60; or &#x60;_initialY&#x60;.
+
+    @private
+    @property _initialXY
+    @readOnly
+    @type Number
+  */
+  _initialXY: Ember.computed(&#x27;_initialX&#x27;, &#x27;_initialY&#x27;, &#x27;dragDirection&#x27;, function() {
+    return this.get(&#x60;_initial${this.get(&#x27;dragDirection&#x27;)}&#x60;);
+  }).readOnly(),
+
+  /**
+    The &#x27;X&#x27; or &#x27;Y&#x27; coordinate of the line through which you need to drag the item to move.
+
+    @private
+    @property _centerXY
+    @readOnly
+    @type Number
+  */
+  _centerXY: Ember.computed(&#x27;dragDirection&#x27;, function() {
+    let clientRect = this.get(&#x27;element&#x27;).getBoundingClientRect();
+    switch (this.get(&#x27;dragDirection&#x27;)) {
+      case &#x27;X&#x27;:
+        let width = clientRect.right - clientRect.left;
+        return clientRect.left + width / 2;
+
+      case &#x27;Y&#x27;:
+        let height = clientRect.bottom - clientRect.top;
+        return clientRect.top + height / 2;
+
+      default:
+        throw new Error(&#x60;The drag direction must be &#x27;X&#x27; or &#x27;Y&#x27;.&#x60;);
+    }
+  }).readOnly(),
+
+  /**
+    Returns the item to be dragged.
+
+    @private
+    @property _draggableProperty
+    @readOnly
+    @type FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab
+  */
+  _draggableProperty: Ember.computed(&#x27;draggableProperty&#x27;, function() {
+    return this.get(this.get(&#x27;draggableProperty&#x27;));
+  }).readOnly(),
+
+  /**
+    Specifies the property name in the component, in which draggable item is stored.
+
+    @property draggableProperty
+    @type String
+  */
+  draggableProperty: undefined,
+
+  /**
+    Specifies the direction that will be used to sort the draggable items.
+    Available values: &#x60;X&#x60; or &#x60;Y&#x60;.
+
+    @property dragDirection
+    @type String
+  */
+  dragDirection: undefined,
+
+  /**
+    The property to bind to &#x60;draggable&#x60; HTML attribute.
+
+    @property draggable
+    @type Boolean
+    @default false
+  */
+  draggable: false,
+
+  /**
+    See [EmberJS API](https://emberjs.com/api/).
+
+    @property attributeBindings
+  */
+  attributeBindings: [&#x27;draggable&#x27;],
+
+  /**
+    The event handler is &#x60;dragStart&#x60;.
+
+    @method dragStart
+    @param {JQuery.Event} event
+  */
+  dragStart(event) {
+    event.stopPropagation();
+    this.get(&#x27;setDragItemAction&#x27;)(this.get(&#x27;_draggableProperty&#x27;));
+  },
+
+  /**
+    The event handler is &#x60;dragEnd&#x60;.
+
+    @method dragEnd
+    @param {JQuery.Event} event
+  */
+  dragEnd(event) {
+    event.stopPropagation();
+    this.get(&#x27;setDragItemAction&#x27;)(null);
+  },
+
+  /**
+    The event handler is &#x60;dragEnter&#x60;.
+
+    @method dragEnter
+    @param {JQuery.Event} event
+  */
+  dragEnter(event) {
+    let draggedItem = this.get(&#x27;getDragItemAction&#x27;)();
+    let draggableItem = this.get(&#x27;_draggableProperty&#x27;);
+    if (draggedItem === draggableItem) {
+      event.stopPropagation();
+    } else if (this._draggingIsSupported(draggableItem, draggedItem)) {
+      this.set(&#x27;_initialX&#x27;, event.originalEvent.clientX);
+      this.set(&#x27;_initialY&#x27;, event.originalEvent.clientY);
+
+      event.stopPropagation();
+      return false;
+    }
+  },
+
+  /**
+    The event handler is &#x60;dragOver&#x60;.
+
+    @method dragOver
+    @param {JQuery.Event} event
+  */
+  dragOver(event) {
+    if (!this.get(&#x27;_initialXY&#x27;)) {
+      let draggedItem = this.get(&#x27;getDragItemAction&#x27;)();
+      let draggableItem = this.get(&#x27;_draggableProperty&#x27;);
+      if (draggedItem === draggableItem) {
+        event.stopPropagation();
+      } else if (this._draggingIsSupported(draggableItem, draggedItem)) {
+        this.set(&#x27;_initialX&#x27;, event.originalEvent.clientX);
+        this.set(&#x27;_initialY&#x27;, event.originalEvent.clientY);
+
+        event.stopPropagation();
+        return false;
+      }
+    } else {
+      let clientXY = Ember.get(event.originalEvent, &#x60;client${this.get(&#x27;dragDirection&#x27;)}&#x60;);
+      let centerXY = this.get(&#x27;_centerXY&#x27;);
+      let motion = this.get(&#x27;_initialXY&#x27;) - clientXY;
+
+      let direction;
+      if (motion &gt;= 5 &amp;&amp; clientXY &lt; centerXY) {
+        direction = &#x27;up&#x27;;
+      } else if (motion &lt;= -5 &amp;&amp; clientXY &gt; centerXY) {
+        direction = &#x27;down&#x27;;
+      }
+
+      if (direction) {
+        this.get(&#x27;moveDragItemAction&#x27;)(this.get(&#x27;_draggableProperty&#x27;), direction);
+        this.notifyPropertyChange(&#x27;_centerXY&#x27;);
+        this.set(&#x27;_initialX&#x27;, undefined);
+        this.set(&#x27;_initialY&#x27;, undefined);
+      }
+
+      return false;
+    }
+  },
+
+  /**
+    @private
+    @method _draggingIsSupported
+    @param {FdEditformRow|FdEditformControl} over Item over which is dragged.
+    @param {FdEditformRow|FdEditformControl} dragged Dragged item.
+    @return {Boolean} If dragging makes sense &#x60;true&#x60;, else &#x60;false&#x60;.
+  */
+  _draggingIsSupported(over, dragged) {
+    let result = over instanceof FdEditformRow &amp;&amp; dragged instanceof FdEditformRow;
+    result = result || over instanceof FdEditformControl &amp;&amp; dragged instanceof FdEditformControl;
+    return result;
+  },
+});
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>
