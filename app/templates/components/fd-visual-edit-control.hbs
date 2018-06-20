@@ -15,9 +15,10 @@
   <div class="field">
     <label>{{t "components.fd-visual-control.type"}}</label>
     {{flexberry-dropdown
-      items=types
-      value=selectedControl.type
+      items=typesAsStrings
+      value=selectedType
       readonly=_readonly
+      onChange=(action 'onDropDownSelectionChanged')
     }}
   </div>
   <div class="field">

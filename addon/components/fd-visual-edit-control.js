@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+import { translationMacro as t } from 'ember-i18n';
+
 import FdDataTypes from '../utils/fd-datatypes';
 import FdEditformControl from '../objects/fd-editform-control';
 import FdEditformGroup from '../objects/fd-editform-group';
@@ -50,36 +52,128 @@ export default Ember.Component.extend({
   */
   selectedControl: undefined,
 
+  selectedControlChanged: Ember.observer('selectedControl', function() {
+    let selectedControl = this.get('selectedControl');
+    this.set('selectedType', this.getTranslationString(selectedControl.type));
+  }),
+
   _dataTypes: FdDataTypes.create(),
 
   _readonly: Ember.computed.empty('selectedControl'),
 
+  /**
+    All types with properties.
+
+    @property types
+    @type Ember.A()
+  */
   types: undefined,
+
+  typesAsStrings: undefined,
+
+  typeToString: {
+    string: 'components.fd-visual-control.typeName.stringControlType',
+    bool: 'components.fd-visual-control.typeName.boolControlType',
+    char: 'components.fd-visual-control.typeName.charControlType',
+    guid: 'components.fd-visual-control.typeName.guidControlType',
+    decimal: 'components.fd-visual-control.typeName.decimalControlType',
+    double: 'components.fd-visual-control.typeName.doubleControlType',
+    float: 'components.fd-visual-control.typeName.floatControlType',
+    sbyte: 'components.fd-visual-control.typeName.sbyteControlType',
+    short: 'components.fd-visual-control.typeName.shortControlType',
+    byte: 'components.fd-visual-control.typeName.byteControlType',
+    int: 'components.fd-visual-control.typeName.intControlType',
+    long: 'components.fd-visual-control.typeName.longControlType',
+    uint: 'components.fd-visual-control.typeName.uintControlType',
+    ushort: 'components.fd-visual-control.typeName.ushortControlType',
+    ulong: 'components.fd-visual-control.typeName.ulongControlType',
+    date: 'components.fd-visual-control.typeName.dateControlType', //?
+    time: 'components.fd-visual-control.typeName.dateControlType', //?
+    file: 'components.fd-visual-control.typeName.fileControlType',
+    dropdown: 'components.fd-visual-control.typeName.drowdownControlType',
+    lookup: 'components.fd-visual-control.typeName.lookupControlType',
+  },
+  getTranslationString(type) {
+    let userString;
+    let tts = this.get('typeToString');
+    userString = tts[type];
+
+    if (userString === undefined) {
+      for (let ts in tts) {
+        if (type.toLowerCase().indexOf(ts) !== -1) {
+          userString = tts[ts];
+          break;
+        }
+      }
+    }
+
+    if (userString === undefined) {
+      userString = type;
+    }
+
+    return t(userString).toString();
+  },
 
   getAllTypes() {
     let typemap = this.get('typemap');
     let enums = this.get('enums');
     let fbtypes = this.get('fbtypes');
     let ret = Ember.A();
+    let retStrings = Ember.A();
+
     for (let type of typemap) {
-      ret.push(type.name);
+      let obj = {};
+      obj.type = type.name;
+      if (type.name.indexOf('null') !== -1 || type.name.indexOf('Null') !== -1) {
+        obj.nullable = true;
+      } else {
+        obj.nullable = false;
+      }
+
+      obj.userString = this.getTranslationString(obj.type);
+      retStrings.push(obj.userString);
+      ret.push(obj);
     }
 
     for (let sEnum of enums.content) {
-      ret.push(sEnum._data.caption);
+      let obj = {};
+      obj.type = sEnum._data.caption;
+      if (obj.type.indexOf('null') !== -1 || obj.type.indexOf('Null') !== -1) {
+        obj.nullable = true;
+      } else {
+        obj.nullable = false;
+      }
+
+      obj.userString = this.getTranslationString(obj.type);
+      retStrings.push(obj.userString);
+      ret.push(obj);
     }
 
     for (let type of fbtypes.content) {
-      ret.push(type._data.caption);
+      let obj = {};
+      obj.type = type._data.caption;
+      if (obj.type.indexOf('null') !== -1 || obj.type.indexOf('Null') !== -1) {
+        obj.nullable = true;
+      } else {
+        obj.nullable = false;
+      }
+
+      obj.userString = this.getTranslationString(obj.type);
+      retStrings.push(obj.userString);
+      ret.push(obj);
     }
 
     if (ret.length !== 0) {
       this.set('types', ret);
+      this.set('typesAsStrings', retStrings);
     } else {
       this.set('types', []);
+      this.set('typesAsStrings', []);
     }
 
   },
+
+  selectedType: undefined,
 
   allowNull: Ember.computed('selectedControl.notNull', {
     get() {
@@ -101,5 +195,18 @@ export default Ember.Component.extend({
   init() {
     this._super(...arguments);
     this.getAllTypes();
+  },
+
+  actions: {
+    onDropDownSelectionChanged() {
+      let selectedType = this.get('selectedType');
+      let tts = this.get('typeToString');
+      for (let tt in tts) {
+        if (tts[tt] === selectedType) {
+          this.set('selectedControl.type', tt);
+          break;
+        }
+      }
+    },
   }
 });
