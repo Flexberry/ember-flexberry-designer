@@ -15,9 +15,8 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     @private
     @property _draggedItem
     @type FdEditformRow|FdEditformControl
-    @default null
   */
-  _draggedItem: null,
+  _draggedItem: undefined,
 
   /**
     @private
@@ -83,7 +82,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       Get the current dragged item.
 
       @method actions.getDragItem
-      @return {FdEditformRow|FdEditformControl} The current dragged item or `null`.
+      @return {FdEditformRow|FdEditformControl} The current dragged item or `undefined`.
     */
     getDragItem() {
       return this.get('_draggedItem');
