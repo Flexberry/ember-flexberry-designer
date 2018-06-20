@@ -31,7 +31,7 @@ Router.map(function () {
   this.route('fd-enum-edit-form',
   { path: 'fd-enum-edit-form/:id' });
   this.route('fd-enum-edit-form.new',
-  { path: 'fd-class-edit-form/new' });
+  { path: 'fd-enum-edit-form/new' });
   this.route('fd-inheritance-list-form');
   this.route('fd-inheritance-edit-form',
   { path: 'fd-inheritance-edit-form/:id' });

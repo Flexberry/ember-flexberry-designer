@@ -3,7 +3,6 @@
 <h3>{{t 'forms.fd-appstruct-form.caption'}}</h3>
 <div class="field">
   <div class="flexberry-edit-panel">
-    <button class="ui button save-button" {{action "saveTree"}}>{{t "forms.fd-appstruct-form.button-save"}}</button>
     <button class="ui button" {{action "openProcessEditorForm"}}><i class="sitemap icon"></i>{{t "forms.fd-appstruct-form.button-precess-editor"}}</button>
     <button class="ui  button" {{action "openGenerationForm"}}><i class="settings icon"></i>{{t "forms.fd-appstruct-form.button-generation"}}</button>
     <button type="submit" class="ui button close-button" {{action 'close'}}>
@@ -20,7 +19,7 @@
         <button class='ui button icon {{removeLeftNodeDisabled}}' title="{{t "forms.fd-appstruct-form.remove-text"}}" {{action "removeLeftNode" on="click" }}>
           <i class="remove icon" ></i>
         </button>
-        <button class="ui button create-button disabled" title="{{t "forms.fd-appstruct-form.add-class-text"}}" {{action 'addLeftClass'}}>
+        <button class="ui button create-button" title="{{t "forms.fd-appstruct-form.add-class-text"}}" {{action 'addLeftClass'}}>
           <i class="add circle icon"></i>
         </button>
         <button class="ui button create-button {{addLeftNodeDisabled}}" title="{{t "forms.fd-appstruct-form.add-editform-text"}}" {{action 'addLeftEditForm'}}>
@@ -40,9 +39,6 @@
     <td>&nbsp;</td>
     <td>
       <div class="ui buttons">
-        <button class='ui button icon {{addRightNodeDisabled}}' {{action "moveRightHighlighted" on="click" }}>
-          <i class="plus icon"></i>
-        </button>
           <button class='ui button icon {{editRightNodeDisabled}}' {{action "editRightNode" on="click" }}>
           <i class="edit icon"></i>
         </button>
@@ -52,11 +48,14 @@
         <button class='ui button icon {{addFolderNodeDisabled}}' {{action "addFolderNode" on="click" }}>
           <i class="folder icon"></i>
         </button>
-        <button class='ui button icon {{upRightNodeDisabled}}' {{action "upRightNode" on="click" }}>
+        <button class='ui button icon {{indexSelectedRight.upRightNodeDisabled}}' {{action "upRightNode" on="click" }}>
           <i class="arrow up icon"></i>
         </button>
-        <button class='ui button icon {{downRightNodeDisabled}}' {{action "downRightNode" on="click" }}>
+        <button class='ui button icon {{indexSelectedRight.downRightNodeDisabled}}' {{action "downRightNode" on="click" }}>
           <i class="arrow down icon"></i>
+        </button>
+        <button class='ui button icon' {{action "saveTree" on="click" }}>
+          <i class="arrow save icon"></i>
         </button>
       </div>
     </td>
@@ -69,8 +68,6 @@
           data=jsonLeftTreeNodes
           plugins=pluginsLeft
           typesOptions=typesOptions
-          eventDidBecomeReady=(action 'handleLeftTreeDidBecomeReady')
-          treeObject=jstreeObjectLeft
         }}
     </td>
     <td valign='top' align='center'>
@@ -85,7 +82,6 @@
         data=jsonRightTreeNodes
         plugins=pluginsRight
         typesOptions=typesOptions
-        eventDidBecomeReady=(action 'handleRightTreeDidBecomeReady')
         treeObject=jstreeObjectRight
       }}
     </td>
