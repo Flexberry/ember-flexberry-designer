@@ -1785,7 +1785,7 @@
         },
         {
             "file": "addon/controllers/fd-class-edit-form.js",
-            "line": 36,
+            "line": 38,
             "description": "Current predicate to limit accessible values for lookup with '«businessserver»' stereotype.",
             "itemtype": "property",
             "name": "lookupStereotypeLimitPredicate",
@@ -1795,7 +1795,7 @@
         },
         {
             "file": "addon/controllers/fd-class-edit-form.js",
-            "line": 46,
+            "line": 51,
             "description": "Overridden action for button 'Save'.",
             "itemtype": "method",
             "name": "actions.save",
@@ -1804,7 +1804,7 @@
         },
         {
             "file": "addon/controllers/fd-class-edit-form.js",
-            "line": 55,
+            "line": 60,
             "description": "Overridden action for button 'Save and close'.",
             "itemtype": "method",
             "name": "actions.saveAndClose",
@@ -1820,7 +1820,7 @@
         },
         {
             "file": "addon/controllers/fd-class-edit-form.js",
-            "line": 66,
+            "line": 71,
             "description": "Sets 'businessServerEvents' model property value to default if business server is not present.",
             "itemtype": "method",
             "name": "_setDefaultBusinessServerEvents",
