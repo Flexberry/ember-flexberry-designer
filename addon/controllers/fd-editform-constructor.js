@@ -4,8 +4,9 @@ import FdEditformControl from '../objects/fd-editform-control';
 import FdEditformGroup from '../objects/fd-editform-group';
 import FdEditformTab from '../objects/fd-editform-tab';
 import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
+import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 
-export default Ember.Controller.extend({
+export default Ember.Controller.extend(FdWorkPanelToggler, {
   queryParams: ['classId'],
 
   /**
@@ -55,43 +56,7 @@ export default Ember.Controller.extend({
   */
   selectedControl: undefined,
 
-  prevTab: undefined,
-
-  applicationController: Ember.inject.controller('application'),
-
-  configPanelTabsWidth: Ember.computed.alias('applicationController.configPanelTabsWidth'),
-
   actions: {
-
-    toggleConfigPanel(currentTab) {
-      let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
-      let configPanelSidebarVisible = configPanelSidebar.hasClass('visible');
-
-      if (this.prevTab === currentTab || this.prevTab === undefined || !configPanelSidebarVisible) {
-        let sidebar = Ember.$('.ui.sidebar.main.menu');
-
-        configPanelSidebar.sidebar('toggle');
-
-        configPanelSidebar.removeClass('overlay');
-        let sidebarVisible = sidebar.hasClass('visible');
-
-        if (!sidebarVisible) {
-          if (configPanelSidebarVisible) {
-            Ember.$('.pusher').css({ width: 'calc(100% - ' + this.get('configPanelTabsWidth') + 'px)', transform: 'translate3d(0, 0, 0)' });
-          } else {
-            Ember.$('.pusher').css({ width: 'calc(100% - ' + configPanelSidebar.width() + 'px)', transform: 'translate3d(0, 0, 0)' });
-          }
-        } else if (configPanelSidebarVisible) {
-          let workPanel = sidebar.width() + this.get('configPanelTabsWidth');
-          Ember.$('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)', transform: 'translate3d(' + sidebar.width() + 'px, 0, 0)' });
-        } else {
-          let workPanel = sidebar.width() + configPanelSidebar.width();
-          Ember.$('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)', transform: 'translate3d(' + sidebar.width() + 'px, 0, 0)' });
-        }
-      }
-
-      this.prevTab = currentTab;
-    },
 
     /**
       Set the selected control.
