@@ -93,6 +93,23 @@
           <div class="ui small dividing header">
             {{t "forms.fd-editform-constructor.form-config-panel.all-controls-header"}}
           </div>
+          <div class="equal width fields">
+            <div class="field">
+              <button class="ui button" {{action "addControl" "control"}}>
+                {{t "forms.fd-editform-constructor.form-config-panel.add-control"}}
+              </button>
+            </div>
+            <div class="field">
+              <button class="ui button" {{action "addControl" "group"}}>
+                {{t "forms.fd-editform-constructor.form-config-panel.add-group"}}
+              </button>
+            </div>
+            <div class="field">
+              <button class="ui button" {{action "addControl" "tabs"}}>
+                {{t "forms.fd-editform-constructor.form-config-panel.add-tabs"}}
+              </button>
+            </div>
+          </div>
         </div>
       </form>
 

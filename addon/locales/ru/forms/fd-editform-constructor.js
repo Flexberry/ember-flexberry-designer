@@ -11,5 +11,8 @@ export default {
     'group-caption': 'Заголовок группы',
     'tab-caption': 'Заголовок вкладки',
     'control-not-selected': 'Элемент управления не выбран',
+    'add-control': 'Контрол',
+    'add-group': 'Группу',
+    'add-tabs': 'Вкладки',
   },
 };

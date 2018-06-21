@@ -11,5 +11,8 @@ export default {
     'group-caption': 'Group caption',
     'tab-caption': 'Tab caption',
     'control-not-selected': 'Control not selected',
+    'add-control': 'Control',
+    'add-group': 'Group',
+    'add-tabs': 'Tabs',
   },
 };
