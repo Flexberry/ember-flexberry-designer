@@ -1916,7 +1916,25 @@ export default {
         }
       },
       views: {
-        __caption__: ''
+        __caption__: '',
+        definition: {
+          __caption__: ''
+        },
+        name: {
+          __caption__: ''
+        },
+        description: {
+          __caption__: ''
+        },
+        nameStr: {
+          __caption__: ''
+        },
+        class: {
+          __caption__: '',
+          name: {
+            __caption__: ''
+          }
+        }
       }
     },
     Generator: {

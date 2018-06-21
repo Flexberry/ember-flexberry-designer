@@ -1124,14 +1124,11 @@ export let defineProjections = function (modelClass) {
       })
     }),
     views: Projection.hasMany('fd-dev-view', '', {
-      /* merged manually start */
       name: Projection.attr(''),
       definition: Projection.attr(''),
       class: Projection.belongsTo('fd-dev-class', '', {
 
       })
-      /* merged manually end */
-
     })
   });
   modelClass.defineProjection('FdAttributesForForm', 'fd-dev-class', {
@@ -1175,17 +1172,13 @@ export let defineProjections = function (modelClass) {
 
       }, { hidden: true })
       /* merged manually end */
-
     }),
     views: Projection.hasMany('fd-dev-view', '', {
-      /* merged manually start */
-      name: Projection.attr(''),
-      description: Projection.attr(''),
+      name: Projection.attr('Имя'),
+      description: Projection.attr('Описание'),
       class: Projection.belongsTo('fd-dev-class', '', {
 
       }, { hidden: true })
-      /* merged manually end */
-
     }),
     classStorageTypes: Projection.hasMany('fd-class-storage-type', '', {
       connectionName: Projection.attr('Имя соединения'),
@@ -1269,7 +1262,6 @@ export let defineProjections = function (modelClass) {
       name: Projection.attr('')
     }),
     views: Projection.hasMany('fd-dev-view', '', {
-      /* merged manually start */
       definition: Projection.attr(''),
       name: Projection.attr(''),
       description: Projection.attr(''),
@@ -1277,7 +1269,6 @@ export let defineProjections = function (modelClass) {
       class: Projection.belongsTo('fd-dev-class', '', {
         name: Projection.attr('')
       })
-      /* merged manually end */
     })
   });
   modelClass.defineProjection('Generator', 'fd-dev-class', {
