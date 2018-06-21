@@ -217,6 +217,7 @@ export let defineProjections = function (modelClass) {
     storage: Projection.attr('Storage')
   });
 
+  /* merged manually start */
   modelClass.defineProjection('FormConstructor', 'fd-dev-association', {
     startRole: Projection.attr(''),
     assocType: Projection.attr(''),
@@ -228,4 +229,5 @@ export let defineProjections = function (modelClass) {
     }),
     stage: Projection.belongsTo('fd-stage', '', {}),
   });
+  /* merged manually end */
 };

@@ -87,9 +87,6 @@ export default {
       definition: {
         __caption__: ''
       },
-      properties: {
-        __caption__: ''
-      },
       name: {
         __caption__: ''
       },

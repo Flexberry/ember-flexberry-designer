@@ -1159,6 +1159,9 @@ export let defineProjections = function (modelClass) {
       name: Projection.attr('', { hidden: true })
     }, { displayMemberPath: 'name' }),
     businessServerEvents: Projection.attr('События бизнес-сервера'),
+    stage: Projection.belongsTo('fd-stage', '', {
+
+    }, { hidden: true }),
     attributes: Projection.hasMany('fd-dev-attribute', '', {
       /* merged manually start */
       name: Projection.attr(''),
@@ -1193,37 +1196,18 @@ export let defineProjections = function (modelClass) {
     accessType: Projection.attr(''),
     addAuditFields: Projection.attr(''),
     appConfig: Projection.attr(''),
-    /*
-    appConfigFile: Projection.attr(''),
-    */
     auditConnectionStringName: Projection.attr(''),
     auditEnabled: Projection.attr(''),
     auditWinServiceUrl: Projection.attr(''),
     autoAltered: Projection.attr(''),
-    /*
-    bSClass: Projection.attr(''),
-    bSEvents: Projection.attr(''),
-    */
     businessServerEvents: Projection.attr(''),
     caption: Projection.attr(''),
-    /*
-    comPlusServerOptions: Projection.attr(''),
-    */
     comPlusServerPropertiesStr: Projection.attr(''),
-    /*
-    containers: Projection.attr(''),
-    */
     containersStr: Projection.attr(''),
-    /*
-    dataObjectTypes: Projection.attr(''),
-    */
     dataObjectTypesStr: Projection.attr(''),
     deleteAudit: Projection.attr(''),
     deleteAuditViewName: Projection.attr(''),
     disableAllRightChecks: Projection.attr(''),
-    /*
-    editFormOperations: Projection.attr(''),
-    */
     editFormOperationsStr: Projection.attr(''),
     expandOperations: Projection.attr(''),
     fixDependedForm: Projection.attr(''),
@@ -1235,14 +1219,8 @@ export let defineProjections = function (modelClass) {
     hierarchicalMaster: Projection.attr(''),
     insertAudit: Projection.attr(''),
     insertAuditViewName: Projection.attr(''),
-    /*
-    listFormOperations: Projection.attr(''),
-    */
     listFormOperationsStr: Projection.attr(''),
     loadingOrder: Projection.attr(''),
-    /*
-    loadingOrderXML: Projection.attr(''),
-    */
     namespacePostfix: Projection.attr(''),
     onlyShowSelectedValue: Projection.attr(''),
     packet: Projection.attr(''),
@@ -1251,9 +1229,6 @@ export let defineProjections = function (modelClass) {
     pBMembers: Projection.attr(''),
     primaryKeyStorage: Projection.attr(''),
     printContainer: Projection.attr(''),
-    /*
-    propertyLookup: Projection.attr(''),
-    */
     propertyLookupStr: Projection.attr(''),
     publishToEBSD: Projection.attr(''),
     realCaption: Projection.attr(''),
@@ -1268,15 +1243,9 @@ export let defineProjections = function (modelClass) {
     storage: Projection.attr(''),
     publishName: Projection.attr(''),
     storeInstancesInType: Projection.attr(''),
-    /*
-    storeInstancesInTypeXML: Projection.attr(''),
-    */
     trim: Projection.attr(''),
     updateAudit: Projection.attr(''),
     updateAuditViewName: Projection.attr(''),
-    /*
-    useCache: Projection.attr(''),
-    */
     useDefaultView: Projection.attr(''),
     writeMode: Projection.attr(''),
     writeSessions: Projection.attr(''),
@@ -1296,9 +1265,6 @@ export let defineProjections = function (modelClass) {
     }),
     views: Projection.hasMany('fd-dev-view', '', {
       definition: Projection.attr(''),
-      /*
-      properties: Projection.attr(''),
-      */
       name: Projection.attr(''),
       description: Projection.attr(''),
       nameStr: Projection.attr(''),

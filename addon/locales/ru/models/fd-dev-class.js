@@ -1664,6 +1664,9 @@ export default {
       businessServerEvents: {
         __caption__: 'События бизнес-сервера'
       },
+      stage: {
+        __caption__: 'Стадия'
+      },
       attributes: {
         __caption__: 'Атрибуты',
         name: {
@@ -1720,9 +1723,6 @@ export default {
       appConfig: {
         __caption__: ''
       },
-      appConfigFile: {
-        __caption__: ''
-      },
       auditConnectionStringName: {
         __caption__: ''
       },
@@ -1735,31 +1735,16 @@ export default {
       autoAltered: {
         __caption__: ''
       },
-      bSClass: {
-        __caption__: ''
-      },
-      bSEvents: {
-        __caption__: ''
-      },
       businessServerEvents: {
         __caption__: ''
       },
       caption: {
         __caption__: ''
       },
-      comPlusServerOptions: {
-        __caption__: ''
-      },
       comPlusServerPropertiesStr: {
         __caption__: ''
       },
-      containers: {
-        __caption__: ''
-      },
       containersStr: {
-        __caption__: ''
-      },
-      dataObjectTypes: {
         __caption__: ''
       },
       dataObjectTypesStr: {
@@ -1772,9 +1757,6 @@ export default {
         __caption__: ''
       },
       disableAllRightChecks: {
-        __caption__: ''
-      },
-      editFormOperations: {
         __caption__: ''
       },
       editFormOperationsStr: {
@@ -1810,16 +1792,10 @@ export default {
       insertAuditViewName: {
         __caption__: ''
       },
-      listFormOperations: {
-        __caption__: ''
-      },
       listFormOperationsStr: {
         __caption__: ''
       },
       loadingOrder: {
-        __caption__: ''
-      },
-      loadingOrderXML: {
         __caption__: ''
       },
       namespacePostfix: {
@@ -1844,9 +1820,6 @@ export default {
         __caption__: ''
       },
       printContainer: {
-        __caption__: ''
-      },
-      propertyLookup: {
         __caption__: ''
       },
       propertyLookupStr: {
@@ -1891,9 +1864,6 @@ export default {
       storeInstancesInType: {
         __caption__: ''
       },
-      storeInstancesInTypeXML: {
-        __caption__: ''
-      },
       trim: {
         __caption__: ''
       },
@@ -1901,9 +1871,6 @@ export default {
         __caption__: ''
       },
       updateAuditViewName: {
-        __caption__: ''
-      },
-      useCache: {
         __caption__: ''
       },
       useDefaultView: {
@@ -1954,9 +1921,6 @@ export default {
       views: {
         __caption__: '',
         definition: {
-          __caption__: ''
-        },
-        properties: {
           __caption__: ''
         },
         name: {

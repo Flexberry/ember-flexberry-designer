@@ -637,14 +637,8 @@ export let defineProjections = function (modelClass) {
     signAssemblies: Projection.attr('')
   });
   modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-stage', {
-    /*
-    additionalPluginsSettings: Projection.attr(''),
-    */
     additionalPluginsSettingsStr: Projection.attr(''),
     auditEnabled: Projection.attr(''),
-    /*
-    chosenPalette: Projection.attr(''),
-    */
     company: Projection.attr(''),
     connectionString: Projection.attr(''),
     copyright: Projection.attr(''),
@@ -654,14 +648,8 @@ export let defineProjections = function (modelClass) {
     defaultDetailArrayClass: Projection.attr(''),
     defaultEditScriptName: Projection.attr(''),
     defaultListScriptName: Projection.attr(''),
-    /*
-    defaultTypeMapTypes: Projection.attr(''),
-    */
     defaultWriteMode: Projection.attr(''),
     doNotDeleteExtraTables: Projection.attr(''),
-    /*
-    enableAuElement: Projection.attr(''),
-    */
     indexComment: Projection.attr(''),
     isAuditDatabaseLocal: Projection.attr(''),
     isReportDatabaseLocal: Projection.attr(''),
@@ -681,35 +669,14 @@ export let defineProjections = function (modelClass) {
     sourceCodeVBPath: Projection.attr(''),
     sourceControlUri: Projection.attr(''),
     sQLPath: Projection.attr(''),
-    /*
-    typeMapAccess: Projection.attr(''),
-    */
     typeMapAccessStr: Projection.attr(''),
-    /*
-    typeMapCS: Projection.attr(''),
-    */
     typeMapCSStr: Projection.attr(''),
-    /*
-    typeMapOracle: Projection.attr(''),
-    */
     typeMapOracleStr: Projection.attr(''),
-    /*
-    typeMapPostgre: Projection.attr(''),
-    */
     typeMapPostgreStr: Projection.attr(''),
-    /*
-    typeMapSQL: Projection.attr(''),
-    */
     typeMapSQLStr: Projection.attr(''),
-    /*
-    typeMapVB: Projection.attr(''),
-    */
     typeMapVBStr: Projection.attr(''),
     useSourceControl: Projection.attr(''),
     version: Projection.attr(''),
-    /*
-    aCL: Projection.attr(''),
-    */
     createUser: Projection.attr(''),
     createDate: Projection.attr(''),
     changeUser: Projection.attr(''),

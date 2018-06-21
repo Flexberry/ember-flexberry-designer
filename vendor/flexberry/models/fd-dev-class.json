@@ -2347,6 +2347,19 @@
           "name": "businessServerClass",
           "relatedTo": "fd-dev-class",
           "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Classes",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [],
+          "index": 10,
+          "caption": "",
+          "name": "stage",
+          "relatedTo": "fd-stage",
+          "inverse": null
         }
       ],
       "hasMany": [
@@ -2396,442 +2409,370 @@
           "index": 2
         },
         {
-          "name": "appConfigFile",
+          "name": "auditConnectionStringName",
           "caption": "",
           "hidden": false,
           "index": 3
         },
         {
-          "name": "auditConnectionStringName",
+          "name": "auditEnabled",
           "caption": "",
           "hidden": false,
           "index": 4
         },
         {
-          "name": "auditEnabled",
+          "name": "auditWinServiceUrl",
           "caption": "",
           "hidden": false,
           "index": 5
         },
         {
-          "name": "auditWinServiceUrl",
+          "name": "autoAltered",
           "caption": "",
           "hidden": false,
           "index": 6
         },
         {
-          "name": "autoAltered",
+          "name": "businessServerEvents",
           "caption": "",
           "hidden": false,
           "index": 7
         },
         {
-          "name": "bSClass",
+          "name": "caption",
           "caption": "",
           "hidden": false,
           "index": 8
         },
         {
-          "name": "bSEvents",
+          "name": "comPlusServerPropertiesStr",
           "caption": "",
           "hidden": false,
           "index": 9
         },
         {
-          "name": "businessServerEvents",
+          "name": "containersStr",
           "caption": "",
           "hidden": false,
           "index": 10
         },
         {
-          "name": "caption",
+          "name": "dataObjectTypesStr",
           "caption": "",
           "hidden": false,
           "index": 11
         },
         {
-          "name": "comPlusServerOptions",
+          "name": "deleteAudit",
           "caption": "",
           "hidden": false,
           "index": 12
         },
         {
-          "name": "comPlusServerPropertiesStr",
+          "name": "deleteAuditViewName",
           "caption": "",
           "hidden": false,
           "index": 13
         },
         {
-          "name": "containers",
+          "name": "disableAllRightChecks",
           "caption": "",
           "hidden": false,
           "index": 14
         },
         {
-          "name": "containersStr",
+          "name": "editFormOperationsStr",
           "caption": "",
           "hidden": false,
           "index": 15
         },
         {
-          "name": "dataObjectTypes",
+          "name": "expandOperations",
           "caption": "",
           "hidden": false,
           "index": 16
         },
         {
-          "name": "dataObjectTypesStr",
+          "name": "fixDependedForm",
           "caption": "",
           "hidden": false,
           "index": 17
         },
         {
-          "name": "deleteAudit",
+          "name": "formUrl",
           "caption": "",
           "hidden": false,
           "index": 18
         },
         {
-          "name": "deleteAuditViewName",
+          "name": "generateCatcher",
           "caption": "",
           "hidden": false,
           "index": 19
         },
         {
-          "name": "disableAllRightChecks",
+          "name": "generateComPlusServer",
           "caption": "",
           "hidden": false,
           "index": 20
         },
         {
-          "name": "editFormOperations",
+          "name": "generateDependedForm",
           "caption": "",
           "hidden": false,
           "index": 21
         },
         {
-          "name": "editFormOperationsStr",
+          "name": "generateHttpRemoteServer",
           "caption": "",
           "hidden": false,
           "index": 22
         },
         {
-          "name": "expandOperations",
+          "name": "hierarchicalMaster",
           "caption": "",
           "hidden": false,
           "index": 23
         },
         {
-          "name": "fixDependedForm",
+          "name": "insertAudit",
           "caption": "",
           "hidden": false,
           "index": 24
         },
         {
-          "name": "formUrl",
+          "name": "insertAuditViewName",
           "caption": "",
           "hidden": false,
           "index": 25
         },
         {
-          "name": "generateCatcher",
+          "name": "listFormOperationsStr",
           "caption": "",
           "hidden": false,
           "index": 26
         },
         {
-          "name": "generateComPlusServer",
+          "name": "loadingOrder",
           "caption": "",
           "hidden": false,
           "index": 27
         },
         {
-          "name": "generateDependedForm",
+          "name": "namespacePostfix",
           "caption": "",
           "hidden": false,
           "index": 28
         },
         {
-          "name": "generateHttpRemoteServer",
+          "name": "onlyShowSelectedValue",
           "caption": "",
           "hidden": false,
           "index": 29
         },
         {
-          "name": "hierarchicalMaster",
+          "name": "packet",
           "caption": "",
           "hidden": false,
           "index": 30
         },
         {
-          "name": "insertAudit",
+          "name": "pBCustomAttributes",
           "caption": "",
           "hidden": false,
           "index": 31
         },
         {
-          "name": "insertAuditViewName",
+          "name": "pBGetViewsForForm",
           "caption": "",
           "hidden": false,
           "index": 32
         },
         {
-          "name": "listFormOperations",
+          "name": "pBMembers",
           "caption": "",
           "hidden": false,
           "index": 33
         },
         {
-          "name": "listFormOperationsStr",
+          "name": "primaryKeyStorage",
           "caption": "",
           "hidden": false,
           "index": 34
         },
         {
-          "name": "loadingOrder",
+          "name": "printContainer",
           "caption": "",
           "hidden": false,
           "index": 35
         },
         {
-          "name": "loadingOrderXML",
+          "name": "propertyLookupStr",
           "caption": "",
           "hidden": false,
           "index": 36
         },
         {
-          "name": "namespacePostfix",
+          "name": "publishToEBSD",
           "caption": "",
           "hidden": false,
           "index": 37
         },
         {
-          "name": "onlyShowSelectedValue",
+          "name": "realCaption",
           "caption": "",
           "hidden": false,
           "index": 38
         },
         {
-          "name": "packet",
+          "name": "realNamespace",
           "caption": "",
           "hidden": false,
           "index": 39
         },
         {
-          "name": "pBCustomAttributes",
+          "name": "realPacket",
           "caption": "",
           "hidden": false,
           "index": 40
         },
         {
-          "name": "pBGetViewsForForm",
+          "name": "realPrimaryKeyStorage",
           "caption": "",
           "hidden": false,
           "index": 41
         },
         {
-          "name": "pBMembers",
+          "name": "realStorage",
           "caption": "",
           "hidden": false,
           "index": 42
         },
         {
-          "name": "primaryKeyStorage",
+          "name": "scriptName",
           "caption": "",
           "hidden": false,
           "index": 43
         },
         {
-          "name": "printContainer",
+          "name": "selectAudit",
           "caption": "",
           "hidden": false,
           "index": 44
         },
         {
-          "name": "propertyLookup",
+          "name": "selectAuditViewName",
           "caption": "",
           "hidden": false,
           "index": 45
         },
         {
-          "name": "propertyLookupStr",
+          "name": "standartDesktop",
           "caption": "",
           "hidden": false,
           "index": 46
         },
         {
-          "name": "publishToEBSD",
+          "name": "storage",
           "caption": "",
           "hidden": false,
           "index": 47
         },
         {
-          "name": "realCaption",
+          "name": "publishName",
           "caption": "",
           "hidden": false,
           "index": 48
         },
         {
-          "name": "realNamespace",
+          "name": "storeInstancesInType",
           "caption": "",
           "hidden": false,
           "index": 49
         },
         {
-          "name": "realPacket",
+          "name": "trim",
           "caption": "",
           "hidden": false,
           "index": 50
         },
         {
-          "name": "realPrimaryKeyStorage",
+          "name": "updateAudit",
           "caption": "",
           "hidden": false,
           "index": 51
         },
         {
-          "name": "realStorage",
+          "name": "updateAuditViewName",
           "caption": "",
           "hidden": false,
           "index": 52
         },
         {
-          "name": "scriptName",
+          "name": "useDefaultView",
           "caption": "",
           "hidden": false,
           "index": 53
         },
         {
-          "name": "selectAudit",
+          "name": "writeMode",
           "caption": "",
           "hidden": false,
           "index": 54
         },
         {
-          "name": "selectAuditViewName",
+          "name": "writeSessions",
           "caption": "",
           "hidden": false,
           "index": 55
         },
         {
-          "name": "standartDesktop",
+          "name": "nameStr",
           "caption": "",
           "hidden": false,
           "index": 56
         },
         {
-          "name": "storage",
+          "name": "attributesStr",
           "caption": "",
           "hidden": false,
           "index": 57
         },
         {
-          "name": "publishName",
+          "name": "methodsStr",
           "caption": "",
           "hidden": false,
           "index": 58
         },
         {
-          "name": "storeInstancesInType",
+          "name": "stored",
           "caption": "",
           "hidden": false,
           "index": 59
         },
         {
-          "name": "storeInstancesInTypeXML",
+          "name": "stereotype",
           "caption": "",
           "hidden": false,
           "index": 60
         },
         {
-          "name": "trim",
+          "name": "referenceCount",
           "caption": "",
           "hidden": false,
           "index": 61
         },
         {
-          "name": "updateAudit",
+          "name": "name",
           "caption": "",
           "hidden": false,
           "index": 62
         },
         {
-          "name": "updateAuditViewName",
-          "caption": "",
-          "hidden": false,
-          "index": 63
-        },
-        {
-          "name": "useCache",
-          "caption": "",
-          "hidden": false,
-          "index": 64
-        },
-        {
-          "name": "useDefaultView",
-          "caption": "",
-          "hidden": false,
-          "index": 65
-        },
-        {
-          "name": "writeMode",
-          "caption": "",
-          "hidden": false,
-          "index": 66
-        },
-        {
-          "name": "writeSessions",
-          "caption": "",
-          "hidden": false,
-          "index": 67
-        },
-        {
-          "name": "nameStr",
-          "caption": "",
-          "hidden": false,
-          "index": 68
-        },
-        {
-          "name": "attributesStr",
-          "caption": "",
-          "hidden": false,
-          "index": 69
-        },
-        {
-          "name": "methodsStr",
-          "caption": "",
-          "hidden": false,
-          "index": 70
-        },
-        {
-          "name": "stored",
-          "caption": "",
-          "hidden": false,
-          "index": 71
-        },
-        {
-          "name": "stereotype",
-          "caption": "",
-          "hidden": false,
-          "index": 72
-        },
-        {
-          "name": "referenceCount",
-          "caption": "",
-          "hidden": false,
-          "index": 73
-        },
-        {
-          "name": "name",
-          "caption": "",
-          "hidden": false,
-          "index": 74
-        },
-        {
           "name": "description",
           "caption": "",
           "hidden": false,
-          "index": 75
+          "index": 63
         }
       ],
       "belongsTo": [
@@ -2846,10 +2787,10 @@
               "name": "name",
               "caption": "",
               "hidden": false,
-              "index": 77
+              "index": 65
             }
           ],
-          "index": 76,
+          "index": 64,
           "caption": "",
           "name": "stage",
           "relatedTo": "fd-stage",
@@ -2866,10 +2807,10 @@
               "name": "name",
               "caption": "",
               "hidden": false,
-              "index": 79
+              "index": 67
             }
           ],
-          "index": 78,
+          "index": 66,
           "caption": "",
           "name": "businessServerClass",
           "relatedTo": "fd-dev-class",

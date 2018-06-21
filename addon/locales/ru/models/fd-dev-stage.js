@@ -564,16 +564,10 @@ export default {
       }
     },
     FdPreloadMetadata: {
-      additionalPluginsSettings: {
-        __caption__: ''
-      },
       additionalPluginsSettingsStr: {
         __caption__: ''
       },
       auditEnabled: {
-        __caption__: ''
-      },
-      chosenPalette: {
         __caption__: ''
       },
       company: {
@@ -603,16 +597,10 @@ export default {
       defaultListScriptName: {
         __caption__: ''
       },
-      defaultTypeMapTypes: {
-        __caption__: ''
-      },
       defaultWriteMode: {
         __caption__: ''
       },
       doNotDeleteExtraTables: {
-        __caption__: ''
-      },
-      enableAuElement: {
         __caption__: ''
       },
       indexComment: {
@@ -672,37 +660,19 @@ export default {
       sQLPath: {
         __caption__: ''
       },
-      typeMapAccess: {
-        __caption__: ''
-      },
       typeMapAccessStr: {
-        __caption__: ''
-      },
-      typeMapCS: {
         __caption__: ''
       },
       typeMapCSStr: {
         __caption__: ''
       },
-      typeMapOracle: {
-        __caption__: ''
-      },
       typeMapOracleStr: {
-        __caption__: ''
-      },
-      typeMapPostgre: {
         __caption__: ''
       },
       typeMapPostgreStr: {
         __caption__: ''
       },
-      typeMapSQL: {
-        __caption__: ''
-      },
       typeMapSQLStr: {
-        __caption__: ''
-      },
-      typeMapVB: {
         __caption__: ''
       },
       typeMapVBStr: {
@@ -712,9 +682,6 @@ export default {
         __caption__: ''
       },
       version: {
-        __caption__: ''
-      },
-      aCL: {
         __caption__: ''
       },
       createUser: {

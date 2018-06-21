@@ -6,9 +6,11 @@ moduleForModel('fd-dev-view', 'Unit | Serializer | fd-dev-view', {
     'serializer:fd-dev-view',
     'transform:file',
     'transform:decimal',
-
     'transform:guid',
+
+    /* merged manually start */
     'transform:fd-definition',
+    /* merged manually end */
     'transform:fd-generation-state',
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-access-type',
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode',

@@ -564,17 +564,11 @@ export default {
       }
     },
     FdPreloadMetadata: {
-      additionalPluginsSettings: {
-        __caption__: 'additionalPluginsSettings'
-      },
       additionalPluginsSettingsStr: {
         __caption__: 'additionalPluginsSettingsStr'
       },
       auditEnabled: {
         __caption__: 'auditEnabled'
-      },
-      chosenPalette: {
-        __caption__: 'chosenPalette'
       },
       company: {
         __caption__: 'company'
@@ -603,17 +597,11 @@ export default {
       defaultListScriptName: {
         __caption__: 'defaultListScriptName'
       },
-      defaultTypeMapTypes: {
-        __caption__: 'defaultTypeMapTypes'
-      },
       defaultWriteMode: {
         __caption__: 'defaultWriteMode'
       },
       doNotDeleteExtraTables: {
         __caption__: 'doNotDeleteExtraTables'
-      },
-      enableAuElement: {
-        __caption__: 'enableAuElement'
       },
       indexComment: {
         __caption__: 'indexComment'
@@ -672,38 +660,20 @@ export default {
       sQLPath: {
         __caption__: 'sQLPath'
       },
-      typeMapAccess: {
-        __caption__: 'typeMapAccess'
-      },
       typeMapAccessStr: {
         __caption__: 'typeMapAccessStr'
-      },
-      typeMapCS: {
-        __caption__: 'typeMapCS'
       },
       typeMapCSStr: {
         __caption__: 'typeMapCSStr'
       },
-      typeMapOracle: {
-        __caption__: 'typeMapOracle'
-      },
       typeMapOracleStr: {
         __caption__: 'typeMapOracleStr'
-      },
-      typeMapPostgre: {
-        __caption__: 'typeMapPostgre'
       },
       typeMapPostgreStr: {
         __caption__: 'typeMapPostgreStr'
       },
-      typeMapSQL: {
-        __caption__: 'typeMapSQL'
-      },
       typeMapSQLStr: {
         __caption__: 'typeMapSQLStr'
-      },
-      typeMapVB: {
-        __caption__: 'typeMapVB'
       },
       typeMapVBStr: {
         __caption__: 'typeMapVBStr'
@@ -713,9 +683,6 @@ export default {
       },
       version: {
         __caption__: 'version'
-      },
-      aCL: {
-        __caption__: 'aCL'
       },
       createUser: {
         __caption__: 'createUser'

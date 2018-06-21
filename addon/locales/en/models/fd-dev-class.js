@@ -1664,6 +1664,9 @@ export default {
       businessServerEvents: {
         __caption__: 'Business server events'
       },
+      stage: {
+        __caption__: 'Stage'
+      },
       attributes: {
         __caption__: 'Attributes',
         name: {
@@ -1720,9 +1723,6 @@ export default {
       appConfig: {
         __caption__: 'appConfig'
       },
-      appConfigFile: {
-        __caption__: 'appConfigFile'
-      },
       auditConnectionStringName: {
         __caption__: 'auditConnectionStringName'
       },
@@ -1735,32 +1735,17 @@ export default {
       autoAltered: {
         __caption__: 'autoAltered'
       },
-      bSClass: {
-        __caption__: 'bSClass'
-      },
-      bSEvents: {
-        __caption__: 'bSEvents'
-      },
       businessServerEvents: {
         __caption__: 'businessServerEvents'
       },
       caption: {
         __caption__: 'caption'
       },
-      comPlusServerOptions: {
-        __caption__: 'comPlusServerOptions'
-      },
       comPlusServerPropertiesStr: {
         __caption__: 'comPlusServerPropertiesStr'
       },
-      containers: {
-        __caption__: 'containers'
-      },
       containersStr: {
         __caption__: 'containersStr'
-      },
-      dataObjectTypes: {
-        __caption__: 'dataObjectTypes'
       },
       dataObjectTypesStr: {
         __caption__: 'dataObjectTypesStr'
@@ -1773,9 +1758,6 @@ export default {
       },
       disableAllRightChecks: {
         __caption__: 'disableAllRightChecks'
-      },
-      editFormOperations: {
-        __caption__: 'editFormOperations'
       },
       editFormOperationsStr: {
         __caption__: 'editFormOperationsStr'
@@ -1810,17 +1792,11 @@ export default {
       insertAuditViewName: {
         __caption__: 'insertAuditViewName'
       },
-      listFormOperations: {
-        __caption__: 'listFormOperations'
-      },
       listFormOperationsStr: {
         __caption__: 'listFormOperationsStr'
       },
       loadingOrder: {
         __caption__: 'loadingOrder'
-      },
-      loadingOrderXML: {
-        __caption__: 'loadingOrderXML'
       },
       namespacePostfix: {
         __caption__: 'namespacePostfix'
@@ -1845,9 +1821,6 @@ export default {
       },
       printContainer: {
         __caption__: 'printContainer'
-      },
-      propertyLookup: {
-        __caption__: 'propertyLookup'
       },
       propertyLookupStr: {
         __caption__: 'propertyLookupStr'
@@ -1891,9 +1864,6 @@ export default {
       storeInstancesInType: {
         __caption__: 'storeInstancesInType'
       },
-      storeInstancesInTypeXML: {
-        __caption__: 'storeInstancesInTypeXML'
-      },
       trim: {
         __caption__: 'trim'
       },
@@ -1902,9 +1872,6 @@ export default {
       },
       updateAuditViewName: {
         __caption__: 'updateAuditViewName'
-      },
-      useCache: {
-        __caption__: 'useCache'
       },
       useDefaultView: {
         __caption__: 'useDefaultView'
@@ -1955,9 +1922,6 @@ export default {
         __caption__: 'views',
         definition: {
           __caption__: 'definition'
-        },
-        properties: {
-          __caption__: 'properties'
         },
         name: {
           __caption__: 'name'

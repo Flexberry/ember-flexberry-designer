@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import { Projection } from 'ember-flexberry-data';
+
 export let Model = Ember.Mixin.create({
   getValidations: function () {
     let parentValidations = this._super();
