@@ -436,7 +436,7 @@ export let defineProjections = function (modelClass) {
     isReportDatabaseLocal: Projection.attr(''),
     defaultWriteMode: Projection.attr(''),
     moduleSettings: Projection.hasMany('fd-dev-module-setting', '', {
-      
+
     })
   });
   modelClass.defineProjection('Compiler', 'fd-dev-stage', {
@@ -591,7 +591,7 @@ export let defineProjections = function (modelClass) {
     })
   });
   modelClass.defineProjection('EditPropertyLookups', 'fd-dev-stage', {
-    
+
   });
   modelClass.defineProjection('EditRightManagementGenerator', 'fd-dev-stage', {
     name: Projection.attr('Название стадии'),
@@ -834,7 +834,7 @@ export let defineProjections = function (modelClass) {
     })
   });
   modelClass.defineProjection('ListDataObjectTypes', 'fd-dev-stage', {
-    
+
   });
   modelClass.defineProjection('ListFormView', 'fd-dev-stage', {
     name: Projection.attr('Name'),
@@ -848,12 +848,12 @@ export let defineProjections = function (modelClass) {
     }, { hidden: true })
   });
   modelClass.defineProjection('Prototyping', 'fd-dev-stage', {
-    
+
   });
   modelClass.defineProjection('SearchRepObjView', 'fd-dev-stage', {
     name: Projection.attr('')
   });
   modelClass.defineProjection('ViewPeeker', 'fd-dev-stage', {
-    
+
   });
 };

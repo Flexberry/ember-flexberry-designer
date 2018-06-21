@@ -120,8 +120,7 @@ export let defineProjections = function (modelClass) {
     class: Projection.belongsTo('fd-dev-class', '', {
       name: Projection.attr('Class')
     }, { hidden: true }),
-    name: Projection.attr('View name'),
-    properties: Projection.attr('View properties')
+    name: Projection.attr('View name')
   });
   modelClass.defineProjection('Prototyping', 'fd-dev-view', {
     name: Projection.attr(''),

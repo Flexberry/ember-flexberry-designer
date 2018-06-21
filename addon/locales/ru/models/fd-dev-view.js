@@ -126,9 +126,6 @@ export default {
       },
       name: {
         __caption__: 'View name'
-      },
-      properties: {
-        __caption__: 'View properties'
       }
     },
     Prototyping: {

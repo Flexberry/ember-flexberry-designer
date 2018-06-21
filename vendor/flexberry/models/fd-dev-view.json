@@ -378,12 +378,6 @@
           "caption": "View name",
           "hidden": false,
           "index": 2
-        },
-        {
-          "name": "properties",
-          "caption": "View properties",
-          "hidden": false,
-          "index": 3
         }
       ],
       "belongsTo": [
