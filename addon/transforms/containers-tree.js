@@ -1,4 +1,6 @@
+import Ember from 'ember';
 import DS from 'ember-data';
+import FdViewAttributesTree from '../objects/fd-view-attributes-tree';
 
 export default DS.Transform.extend({
 
@@ -31,7 +33,7 @@ export default DS.Transform.extend({
         }
       }
 
-      serialized = itemList ? this._getTree(itemList) : [];
+      serialized = itemList ? this._getTree(itemList) : Ember.A();
     }
 
     return serialized;
@@ -44,41 +46,46 @@ export default DS.Transform.extend({
 
   _getXMLNodes(nodes, steps) {
     let ret = '';
-    for (let i in  nodes) {
-      let node = nodes[i];
-      let currentPath = steps.join('\\');
-      if (node.nodes) {
-        steps.push(node.caption);
-        if (this._onlyFolders(node)) {
+    if (!Ember.isNone(nodes) && nodes.length > 0) {
+      nodes.forEach((node) => {
+        let currentPath = steps.join('\\');
+        if (node.copyChildren) {
+          steps.push(node.text);
+          if (this._onlyFolders(node)) {
+            let xmlItem = '<Item' +
+              ' ClassName="' + this._emptyFolderClassName + '"' +
+              ' MenuPath="' + steps.join('\\').replace(/"/g, '\\"') + '"' +
+              ' Caption="" Description=""' +
+              ' />';
+            ret += xmlItem;
+          }
+
+          let xmlItems = this._getXMLNodes(node.copyChildren, steps);
+          if (xmlItems) {
+            ret += xmlItems;
+          }
+
+          steps.pop();
+        } else {
+          let classname = node.className;
+          if (!classname) {
+            classname = node.text;
+          }
+
+          let description = node.description;
+          if (!description) {
+            description = '';
+          }
+
           let xmlItem = '<Item' +
-            ' ClassName="' + this._emptyFolderClassName + '"' +
-            ' MenuPath="' + steps.join('\\').replace(/"/g, '\\"') + '"' +
-            ' Caption="" Description=""' +
+            ' ClassName="' + classname.replace(/"/g, '\\"') + '"' +
+            ' MenuPath="' + currentPath.replace(/"/g, '\\"') + '"' +
+            ' Caption="' +  node.text.replace(/"/g, '\\"') + '"' +
+            ' Description="' + description + '"' +
             ' />';
           ret += xmlItem;
         }
-
-        let xmlItems = this._getXMLNodes(node.nodes, steps);
-        if (xmlItems) {
-          ret += xmlItems;
-        }
-
-        steps.pop();
-      } else {
-        let classname = node.className;
-        if (!classname) {
-          classname = node.caption;
-        }
-
-        let xmlItem = '<Item' +
-        ' ClassName="' + classname.replace(/"/g, '\\"') + '"' +
-        ' MenuPath="' + currentPath.replace(/"/g, '\\"') + '"' +
-        ' Caption="' +  node.caption.replace(/"/g, '\\"') + '"' +
-        ' Description="' + node.description.replace(/"/g, '\\"') + '"' +
-        ' />';
-        ret += xmlItem;
-      }
-
+      });
     }
 
     return ret;
@@ -86,9 +93,9 @@ export default DS.Transform.extend({
 
   _onlyFolders(node) {
     let result = true;
-    if (node.nodes && node.nodes.length) {
-      for (let i = 0; i < node.nodes.length; i++) {
-        result = !node.nodes[i].className;
+    if (node.copyChildren && node.copyChildren.length) {
+      for (let i = 0; i < node.copyChildren.length; i++) {
+        result = !node.copyChildren[i].className;
         if (result === false) {
           break;
         }
@@ -101,54 +108,64 @@ export default DS.Transform.extend({
   },
 
   _getTree: function(itemList) {
-    let rootTree = [];
-    /*
-    itemList.sort(
-      function(a, b) {
-        let aPath = a.getAttribute('MenuPath');
-        let bPath = b.getAttribute('MenuPath');
-        let ret = (aPath > bPath) ? 1 : ((bPath > aPath) ? -1 : 0);
-        return ret;
-      }
-    );*/
+    let rootTree = Ember.A();
+    let copyRootTree = Ember.A();
+
     let currentPath = '';
     let currentNodes = null;
     for (let i = 0; i < itemList.length; i++) {
       let item = itemList[i];
       let menuPath = item.getAttribute('MenuPath') || item.getAttribute('menupath');
       if (currentPath !== menuPath) {
-        currentNodes = this._findOrCreateCurrentNodes(rootTree, menuPath.split('\\'));
+        currentNodes = this._findOrCreateCurrentNodes(rootTree, copyRootTree, menuPath.split('\\'));
         currentPath = menuPath;
       }
 
       let className =  item.getAttribute('ClassName') || item.getAttribute('classname');
       if (className !== this._emptyFolderClassName) {
-        currentNodes.push({
-          caption: item.getAttribute('Caption') || item.getAttribute('caption'),
+        currentNodes.nodes.pushObject(FdViewAttributesTree.create({
+          text: item.getAttribute('Caption') || item.getAttribute('caption'),
+          type: 'property',
           className: className,
-          description: item.getAttribute('Description') || item.getAttribute('description')
-        });
+          description: item.getAttribute('Description') || item.getAttribute('description'),
+        }));
+        currentNodes.copyNodes.pushObject(FdViewAttributesTree.create({
+          text: item.getAttribute('Caption') || item.getAttribute('caption'),
+          type: 'property',
+          className: className,
+          description: item.getAttribute('Description') || item.getAttribute('description'),
+        }));
       }
     }
 
     return rootTree;
   },
 
-  _findOrCreateCurrentNodes: function (nodes, steps) {
+  _findOrCreateCurrentNodes: function (nodes, copyNodes, steps) {
     if (steps.length === 0) {
-      return nodes;
+      return {
+        nodes: nodes,
+        copyNodes: copyNodes
+      };
     }
 
     let step = steps.shift();
     for (let node of nodes) {
-      if (node.caption === step) {
-        return this._findOrCreateCurrentNodes(node.nodes, steps);
+      if (node.text === step) {
+        return this._findOrCreateCurrentNodes(node.children, node.copyChildren, steps);
       }
     }
 
-    let node = { caption: step, nodes: [] };
-    nodes.push(node);
-    return this._findOrCreateCurrentNodes(node.nodes, steps);
+    let node = FdViewAttributesTree.create({
+      text: step,
+      type: 'master',
+      children: Ember.A(),
+      copyChildren: Ember.A()
+    });
+
+    nodes.pushObject(node);
+    copyNodes.pushObject(node);
+    return this._findOrCreateCurrentNodes(node.children, node.copyChildren, steps);
   }
 
 });

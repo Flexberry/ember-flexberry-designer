@@ -798,33 +798,33 @@ export default {
     },
     EditEnum: {
       name: {
-        __caption__: 'name'
+        __caption__: 'Name'
       },
       description: {
-        __caption__: 'description'
+        __caption__: 'Description'
       },
       onlyShowSelectedValue: {
-        __caption__: 'onlyShowSelectedValue'
+        __caption__: 'Only show selected value'
       },
       packet: {
-        __caption__: 'packet'
+        __caption__: 'Packet'
       },
       namespacePostfix: {
-        __caption__: 'namespacePostfix'
+        __caption__: 'Namespace postfix'
       },
       attributes: {
-        __caption__: 'attributes',
+        __caption__: 'Values',
         name: {
-          __caption__: 'name'
+          __caption__: 'Name'
         },
         description: {
-          __caption__: 'description'
+          __caption__: 'Description'
         },
         defaultValue: {
-          __caption__: 'defaultValue'
+          __caption__: 'Default value'
         },
         caption: {
-          __caption__: 'caption'
+          __caption__: 'Caption'
         }
       }
     },

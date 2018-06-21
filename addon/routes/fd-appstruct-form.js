@@ -24,7 +24,7 @@ export default Ember.Route.extend({
       let implementationPredicate = new Query.ComplexPredicate(Query.Condition.And, stagePkPredicate, stereotypePredicate);
 
       let builderImplementation = new  Builder(_this.store, 'fd-dev-class').
-      select('id,name,caption,description,stereotype,stage.id').
+      select('id,name,caption,description,stereotype,stored,stage.id').
       where(implementationPredicate);
 
       let promiseImplementation = _this.store.query('fd-dev-class', builderImplementation.build()).then((result) => {
@@ -61,4 +61,9 @@ export default Ember.Route.extend({
       });
     });
   },
+
+  setupController(controller) {
+    this._super(...arguments);
+    controller.set('parentRoute', this.get('router.url'));
+  }
 });

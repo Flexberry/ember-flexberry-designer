@@ -3,6 +3,7 @@
 */
 
 import Ember from 'ember';
+import FdDraggableControlMixin from '../mixins/fd-draggable-control';
 
 import FdEditformControl from '../objects/fd-editform-control';
 import FdEditformGroup from '../objects/fd-editform-group';
@@ -13,8 +14,9 @@ import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
 
   @class FdEditformControlComponent
   @extends <a href="http://emberjs.com/api/classes/Ember.Component.html">Ember.Component</a>
+  @uses FdDraggableControlMixin
 */
-export default Ember.Component.extend({
+export default Ember.Component.extend(FdDraggableControlMixin, {
   /**
     The passed control is a simple control.
 
@@ -68,21 +70,33 @@ export default Ember.Component.extend({
   }).readOnly(),
 
   /**
-    See [EmberJS API](https://emberjs.com/api/).
-
-    @property tagName
-  */
-  tagName: Ember.computed('_isControl', function() {
-    return this.get('_isControl') ? '' : 'div';
-  }),
-
-  /**
     The control to render.
 
     @property control
     @type FdEditformControl|FdEditformGroup|FdEditformTabgroup
   */
   control: undefined,
+
+  /**
+    See description {{#crossLink "FdDraggableControlMixin/draggableProperty:property"}}here{{/crossLink}}.
+
+    @property draggableProperty
+  */
+  draggableProperty: 'control',
+
+  /**
+    See description {{#crossLink "FdDraggableControlMixin/dragDirection:property"}}here{{/crossLink}}.
+
+    @property dragDirection
+  */
+  dragDirection: 'X',
+
+  /**
+    See [EmberJS API](https://emberjs.com/api/).
+
+    @property classNames
+  */
+  classNames: ['fd-editform-control', 'field'],
 
   /**
     See [EmberJS API](https://emberjs.com/api/).
@@ -95,5 +109,18 @@ export default Ember.Component.extend({
     if (this.get('_isTab')) {
       this.$('.menu .item').tab();
     }
+  },
+
+  /**
+    The event handler is `click`.
+    Calls the `selectControlAction` action when the component is clicked.
+    The action `selectControlAction` should be passed, for example, from the controller.
+
+    @method click
+    @param {JQuery.Event} event
+  */
+  click(event) {
+    event.stopPropagation();
+    this.get('selectControlAction')(this.get('control'));
   },
 });
