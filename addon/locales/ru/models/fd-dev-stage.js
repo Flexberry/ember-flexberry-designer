@@ -573,9 +573,6 @@ export default {
       company: {
         __caption__: ''
       },
-      connectionString: {
-        __caption__: ''
-      },
       copyright: {
         __caption__: ''
       },
@@ -619,12 +616,6 @@ export default {
         __caption__: ''
       },
       operationsEnumPacket: {
-        __caption__: ''
-      },
-      oracleConnectionString: {
-        __caption__: ''
-      },
-      postgreConnectionString: {
         __caption__: ''
       },
       product: {

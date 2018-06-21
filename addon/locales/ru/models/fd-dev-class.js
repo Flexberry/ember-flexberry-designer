@@ -1720,9 +1720,6 @@ export default {
       addAuditFields: {
         __caption__: ''
       },
-      appConfig: {
-        __caption__: ''
-      },
       auditConnectionStringName: {
         __caption__: ''
       },
@@ -1919,25 +1916,7 @@ export default {
         }
       },
       views: {
-        __caption__: '',
-        definition: {
-          __caption__: ''
-        },
-        name: {
-          __caption__: ''
-        },
-        description: {
-          __caption__: ''
-        },
-        nameStr: {
-          __caption__: ''
-        },
-        class: {
-          __caption__: '',
-          name: {
-            __caption__: ''
-          }
-        }
+        __caption__: ''
       }
     },
     Generator: {

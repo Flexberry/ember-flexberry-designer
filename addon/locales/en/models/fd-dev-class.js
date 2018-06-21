@@ -1720,9 +1720,6 @@ export default {
       addAuditFields: {
         __caption__: 'addAuditFields'
       },
-      appConfig: {
-        __caption__: 'appConfig'
-      },
       auditConnectionStringName: {
         __caption__: 'auditConnectionStringName'
       },
@@ -1919,25 +1916,7 @@ export default {
         }
       },
       views: {
-        __caption__: 'views',
-        definition: {
-          __caption__: 'definition'
-        },
-        name: {
-          __caption__: 'name'
-        },
-        description: {
-          __caption__: 'description'
-        },
-        nameStr: {
-          __caption__: 'nameStr'
-        },
-        class: {
-          __caption__: 'class',
-          name: {
-            __caption__: 'name'
-          }
-        }
+        __caption__: 'views'
       }
     },
     Generator: {

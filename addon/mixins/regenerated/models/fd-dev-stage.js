@@ -379,7 +379,6 @@ export let Model = Ember.Mixin.create({
   version: DS.attr('string'),
   typeDefinitions: DS.hasMany('fd-dev-type-definition', { inverse: 'stage', async: false }),
   controlTypes: DS.hasMany('fd-dev-control-type', { inverse: 'stage', async: false }),
-  users: DS.hasMany('fd-user-in-stage', { inverse: 'stage', async: false }),
   moduleSettings: DS.hasMany('fd-dev-module-setting', { inverse: 'stage', async: false }),
   generations: DS.hasMany('fd-generation', { inverse: 'stage', async: false }),
   getValidations: function () {
@@ -437,7 +436,7 @@ export let defineProjections = function (modelClass) {
     isReportDatabaseLocal: Projection.attr(''),
     defaultWriteMode: Projection.attr(''),
     moduleSettings: Projection.hasMany('fd-dev-module-setting', '', {
-
+      
     })
   });
   modelClass.defineProjection('Compiler', 'fd-dev-stage', {
@@ -592,7 +591,7 @@ export let defineProjections = function (modelClass) {
     })
   });
   modelClass.defineProjection('EditPropertyLookups', 'fd-dev-stage', {
-
+    
   });
   modelClass.defineProjection('EditRightManagementGenerator', 'fd-dev-stage', {
     name: Projection.attr('Название стадии'),
@@ -640,7 +639,6 @@ export let defineProjections = function (modelClass) {
     additionalPluginsSettingsStr: Projection.attr(''),
     auditEnabled: Projection.attr(''),
     company: Projection.attr(''),
-    connectionString: Projection.attr(''),
     copyright: Projection.attr(''),
     dataObjectNameSpace: Projection.attr(''),
     defaultAccessType: Projection.attr(''),
@@ -656,8 +654,6 @@ export let defineProjections = function (modelClass) {
     lastIndexDate: Projection.attr(''),
     operationsEnumNamespace: Projection.attr(''),
     operationsEnumPacket: Projection.attr(''),
-    oracleConnectionString: Projection.attr(''),
-    postgreConnectionString: Projection.attr(''),
     product: Projection.attr(''),
     realDataObjectNameSpace: Projection.attr(''),
     scriptNamespace: Projection.attr(''),
@@ -838,7 +834,7 @@ export let defineProjections = function (modelClass) {
     })
   });
   modelClass.defineProjection('ListDataObjectTypes', 'fd-dev-stage', {
-
+    
   });
   modelClass.defineProjection('ListFormView', 'fd-dev-stage', {
     name: Projection.attr('Name'),
@@ -852,12 +848,12 @@ export let defineProjections = function (modelClass) {
     }, { hidden: true })
   });
   modelClass.defineProjection('Prototyping', 'fd-dev-stage', {
-
+    
   });
   modelClass.defineProjection('SearchRepObjView', 'fd-dev-stage', {
     name: Projection.attr('')
   });
   modelClass.defineProjection('ViewPeeker', 'fd-dev-stage', {
-
+    
   });
 };

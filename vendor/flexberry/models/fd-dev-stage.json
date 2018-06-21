@@ -419,11 +419,6 @@
       "inverse": "stage"
     },
     {
-      "name": "users",
-      "relatedTo": "fd-user-in-stage",
-      "inverse": "stage"
-    },
-    {
       "name": "moduleSettings",
       "relatedTo": "fd-dev-module-setting",
       "inverse": "stage"
@@ -1529,268 +1524,250 @@
           "index": 2
         },
         {
-          "name": "connectionString",
+          "name": "copyright",
           "caption": "",
           "hidden": false,
           "index": 3
         },
         {
-          "name": "copyright",
+          "name": "dataObjectNameSpace",
           "caption": "",
           "hidden": false,
           "index": 4
         },
         {
-          "name": "dataObjectNameSpace",
+          "name": "defaultAccessType",
           "caption": "",
           "hidden": false,
           "index": 5
         },
         {
-          "name": "defaultAccessType",
+          "name": "defaultBaseClass",
           "caption": "",
           "hidden": false,
           "index": 6
         },
         {
-          "name": "defaultBaseClass",
+          "name": "defaultDetailArrayClass",
           "caption": "",
           "hidden": false,
           "index": 7
         },
         {
-          "name": "defaultDetailArrayClass",
+          "name": "defaultEditScriptName",
           "caption": "",
           "hidden": false,
           "index": 8
         },
         {
-          "name": "defaultEditScriptName",
+          "name": "defaultListScriptName",
           "caption": "",
           "hidden": false,
           "index": 9
         },
         {
-          "name": "defaultListScriptName",
+          "name": "defaultWriteMode",
           "caption": "",
           "hidden": false,
           "index": 10
         },
         {
-          "name": "defaultWriteMode",
+          "name": "doNotDeleteExtraTables",
           "caption": "",
           "hidden": false,
           "index": 11
         },
         {
-          "name": "doNotDeleteExtraTables",
+          "name": "indexComment",
           "caption": "",
           "hidden": false,
           "index": 12
         },
         {
-          "name": "indexComment",
+          "name": "isAuditDatabaseLocal",
           "caption": "",
           "hidden": false,
           "index": 13
         },
         {
-          "name": "isAuditDatabaseLocal",
+          "name": "isReportDatabaseLocal",
           "caption": "",
           "hidden": false,
           "index": 14
         },
         {
-          "name": "isReportDatabaseLocal",
+          "name": "lastIndexDate",
           "caption": "",
           "hidden": false,
           "index": 15
         },
         {
-          "name": "lastIndexDate",
+          "name": "operationsEnumNamespace",
           "caption": "",
           "hidden": false,
           "index": 16
         },
         {
-          "name": "operationsEnumNamespace",
+          "name": "operationsEnumPacket",
           "caption": "",
           "hidden": false,
           "index": 17
         },
         {
-          "name": "operationsEnumPacket",
+          "name": "product",
           "caption": "",
           "hidden": false,
           "index": 18
         },
         {
-          "name": "oracleConnectionString",
+          "name": "realDataObjectNameSpace",
           "caption": "",
           "hidden": false,
           "index": 19
         },
         {
-          "name": "postgreConnectionString",
+          "name": "scriptNamespace",
           "caption": "",
           "hidden": false,
           "index": 20
         },
         {
-          "name": "product",
+          "name": "scriptPacket",
           "caption": "",
           "hidden": false,
           "index": 21
         },
         {
-          "name": "realDataObjectNameSpace",
+          "name": "serializedIndex",
           "caption": "",
           "hidden": false,
           "index": 22
         },
         {
-          "name": "scriptNamespace",
+          "name": "signAssemblies",
           "caption": "",
           "hidden": false,
           "index": 23
         },
         {
-          "name": "scriptPacket",
+          "name": "sourceAzStoragePath",
           "caption": "",
           "hidden": false,
           "index": 24
         },
         {
-          "name": "serializedIndex",
+          "name": "sourceCodeCSPath",
           "caption": "",
           "hidden": false,
           "index": 25
         },
         {
-          "name": "signAssemblies",
+          "name": "sourceCodeVBPath",
           "caption": "",
           "hidden": false,
           "index": 26
         },
         {
-          "name": "sourceAzStoragePath",
+          "name": "sourceControlUri",
           "caption": "",
           "hidden": false,
           "index": 27
         },
         {
-          "name": "sourceCodeCSPath",
+          "name": "sQLPath",
           "caption": "",
           "hidden": false,
           "index": 28
         },
         {
-          "name": "sourceCodeVBPath",
+          "name": "typeMapAccessStr",
           "caption": "",
           "hidden": false,
           "index": 29
         },
         {
-          "name": "sourceControlUri",
+          "name": "typeMapCSStr",
           "caption": "",
           "hidden": false,
           "index": 30
         },
         {
-          "name": "sQLPath",
+          "name": "typeMapOracleStr",
           "caption": "",
           "hidden": false,
           "index": 31
         },
         {
-          "name": "typeMapAccessStr",
+          "name": "typeMapPostgreStr",
           "caption": "",
           "hidden": false,
           "index": 32
         },
         {
-          "name": "typeMapCSStr",
+          "name": "typeMapSQLStr",
           "caption": "",
           "hidden": false,
           "index": 33
         },
         {
-          "name": "typeMapOracleStr",
+          "name": "typeMapVBStr",
           "caption": "",
           "hidden": false,
           "index": 34
         },
         {
-          "name": "typeMapPostgreStr",
+          "name": "useSourceControl",
           "caption": "",
           "hidden": false,
           "index": 35
         },
         {
-          "name": "typeMapSQLStr",
+          "name": "version",
           "caption": "",
           "hidden": false,
           "index": 36
         },
         {
-          "name": "typeMapVBStr",
+          "name": "createUser",
           "caption": "",
           "hidden": false,
           "index": 37
         },
         {
-          "name": "useSourceControl",
+          "name": "createDate",
           "caption": "",
           "hidden": false,
           "index": 38
         },
         {
-          "name": "version",
+          "name": "changeUser",
           "caption": "",
           "hidden": false,
           "index": 39
         },
         {
-          "name": "createUser",
+          "name": "changeDate",
           "caption": "",
           "hidden": false,
           "index": 40
         },
         {
-          "name": "createDate",
+          "name": "name",
           "caption": "",
           "hidden": false,
           "index": 41
         },
         {
-          "name": "changeUser",
+          "name": "description",
           "caption": "",
           "hidden": false,
           "index": 42
         },
         {
-          "name": "changeDate",
-          "caption": "",
-          "hidden": false,
-          "index": 43
-        },
-        {
-          "name": "name",
-          "caption": "",
-          "hidden": false,
-          "index": 44
-        },
-        {
-          "name": "description",
-          "caption": "",
-          "hidden": false,
-          "index": 45
-        },
-        {
           "name": "nameStr",
           "caption": "",
           "hidden": false,
-          "index": 46
+          "index": 43
         }
       ],
       "belongsTo": [
@@ -1805,10 +1782,10 @@
               "name": "name",
               "caption": "",
               "hidden": false,
-              "index": 48
+              "index": 45
             }
           ],
-          "index": 47,
+          "index": 44,
           "caption": "",
           "name": "configuration",
           "relatedTo": "fd-configuration",

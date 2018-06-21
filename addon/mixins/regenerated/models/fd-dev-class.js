@@ -1124,11 +1124,14 @@ export let defineProjections = function (modelClass) {
       })
     }),
     views: Projection.hasMany('fd-dev-view', '', {
+      /* merged manually start */
       name: Projection.attr(''),
       definition: Projection.attr(''),
       class: Projection.belongsTo('fd-dev-class', '', {
 
       })
+      /* merged manually end */
+
     })
   });
   modelClass.defineProjection('FdAttributesForForm', 'fd-dev-class', {
@@ -1175,11 +1178,14 @@ export let defineProjections = function (modelClass) {
 
     }),
     views: Projection.hasMany('fd-dev-view', '', {
-      name: Projection.attr('Имя'),
-      description: Projection.attr('Описание'),
+      /* merged manually start */
+      name: Projection.attr(''),
+      description: Projection.attr(''),
       class: Projection.belongsTo('fd-dev-class', '', {
 
       }, { hidden: true })
+      /* merged manually end */
+
     }),
     classStorageTypes: Projection.hasMany('fd-class-storage-type', '', {
       connectionName: Projection.attr('Имя соединения'),
@@ -1195,7 +1201,6 @@ export let defineProjections = function (modelClass) {
   modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-class', {
     accessType: Projection.attr(''),
     addAuditFields: Projection.attr(''),
-    appConfig: Projection.attr(''),
     auditConnectionStringName: Projection.attr(''),
     auditEnabled: Projection.attr(''),
     auditWinServiceUrl: Projection.attr(''),
@@ -1264,6 +1269,7 @@ export let defineProjections = function (modelClass) {
       name: Projection.attr('')
     }),
     views: Projection.hasMany('fd-dev-view', '', {
+      /* merged manually start */
       definition: Projection.attr(''),
       name: Projection.attr(''),
       description: Projection.attr(''),
@@ -1271,6 +1277,7 @@ export let defineProjections = function (modelClass) {
       class: Projection.belongsTo('fd-dev-class', '', {
         name: Projection.attr('')
       })
+      /* merged manually end */
     })
   });
   modelClass.defineProjection('Generator', 'fd-dev-class', {
