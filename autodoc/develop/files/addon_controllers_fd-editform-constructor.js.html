@@ -169,6 +169,52 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
   selectedControl: undefined,
 
   actions: {
+    /**
+      Adds the control to a new row.
+
+      @method actions.addControl
+      @param {String} type Type of control to add.
+    */
+    addControl(type) {
+      let row = FdEditformRow.create({ controls: Ember.A() });
+      let control = FdEditformControl.create({ caption: &#x27;New attribute&#x27; });
+      switch (type) {
+        case &#x27;control&#x27;:
+          row.get(&#x27;controls&#x27;).pushObject(control);
+          break;
+
+        case &#x27;group&#x27;:
+          let group = FdEditformGroup.create({
+            caption: &#x27;New group&#x27;,
+            rows: Ember.A([
+              FdEditformRow.create({ controls: Ember.A([control]) }),
+            ]),
+          });
+
+          row.get(&#x27;controls&#x27;).pushObject(group);
+          break;
+
+        case &#x27;tabs&#x27;:
+          let tabs = FdEditformTabgroup.create({
+            tabs: Ember.A([
+              FdEditformTab.create({
+                caption: &#x27;New tab&#x27;,
+                rows: Ember.A([
+                  FdEditformRow.create({ controls: Ember.A([control]) }),
+                ]),
+              }),
+            ]),
+          });
+
+          row.get(&#x27;controls&#x27;).pushObject(tabs);
+          break;
+
+        default:
+          throw new Error(&#x60;The &#x27;${type}&#x27; type is not supported.&#x60;);
+      }
+
+      this.get(&#x27;model.controls&#x27;).pushObject(row);
+    },
 
     /**
       Set the selected control.

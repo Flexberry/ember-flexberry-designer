@@ -552,6 +552,10 @@
 
                             </li>
                             <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_actions.addControl" data-tablink="actions.addControl">actions.addControl</a>
+
+                            </li>
+                            <li class="index-item method">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_actions.addLeftClass" data-tablink="actions.addLeftClass">actions.addLeftClass</a>
 
                             </li>
@@ -1641,7 +1645,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-dev-stage.js.html#l38"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-stage.js:38</code></a>
+                            <a href="../files/addon_mixins_regenerated_models_fd-stage.js.html#l11"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-stage.js:11</code></a>
                             </p>
                     
                     
@@ -1685,7 +1689,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-stage.js.html#l11"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-stage.js:11</code></a>
+                            <a href="../files/addon_mixins_regenerated_models_fd-dev-stage.js.html#l38"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-stage.js:38</code></a>
                             </p>
                     
                     
@@ -2378,7 +2382,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l187"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:187</code></a>
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l233"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:233</code></a>
                             </p>
                     
                     
@@ -2457,7 +2461,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l139"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:139</code></a>
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l185"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:185</code></a>
                             </p>
                     
                     
@@ -2599,7 +2603,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-std.js.html#l83"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-std.js:83</code></a>
+                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-cad.js.html#l83"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-cad.js:83</code></a>
                             </p>
                     
                     
@@ -2687,7 +2691,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-dpd.js.html#l83"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-dpd.js:83</code></a>
+                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-std.js.html#l83"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-std.js:83</code></a>
                             </p>
                     
                     
@@ -2731,7 +2735,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-cad.js.html#l83"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-cad.js:83</code></a>
+                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-dpd.js.html#l83"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-dpd.js:83</code></a>
                             </p>
                     
                     
@@ -3069,183 +3073,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-cad.js.html#l11"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-cad.js:11</code></a>
-                            </p>
-                    
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Method to set non-stored property.
-                    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
-                    Please, implement 'nameCompute' method in model class (outside of this mixin) if you want to compute value of 'name' property.</p>
-                    
-                        </div>
-                    
-                    
-                    
-                            <div class="example">
-                                <h4>Example:</h4>
-                    
-                                <div class="example-content">
-                                    <pre class="code prettyprint"><code class="language-javascript">_nameChanged: Ember.on('init', Ember.observer('name', function() {
-                      Ember.run.once(this, '_nameCompute');
-                    }))
-                    </code></pre>
-                    
-                                </div>
-                            </div>
-                    </div>
-                    <div id="method__nameCompute" class="method item private">
-                        <h3 class="name"><code>_nameCompute</code></h3>
-                    
-                            <span class="paren">()</span>
-                    
-                    
-                    
-                            <span class="flag private">private</span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-ad.js.html#l11"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-ad.js:11</code></a>
-                            </p>
-                    
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Method to set non-stored property.
-                    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
-                    Please, implement 'nameCompute' method in model class (outside of this mixin) if you want to compute value of 'name' property.</p>
-                    
-                        </div>
-                    
-                    
-                    
-                            <div class="example">
-                                <h4>Example:</h4>
-                    
-                                <div class="example-content">
-                                    <pre class="code prettyprint"><code class="language-javascript">_nameChanged: Ember.on('init', Ember.observer('name', function() {
-                      Ember.run.once(this, '_nameCompute');
-                    }))
-                    </code></pre>
-                    
-                                </div>
-                            </div>
-                    </div>
-                    <div id="method__nameCompute" class="method item private">
-                        <h3 class="name"><code>_nameCompute</code></h3>
-                    
-                            <span class="paren">()</span>
-                    
-                    
-                    
-                            <span class="flag private">private</span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-sd.js.html#l11"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-sd.js:11</code></a>
-                            </p>
-                    
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Method to set non-stored property.
-                    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
-                    Please, implement 'nameCompute' method in model class (outside of this mixin) if you want to compute value of 'name' property.</p>
-                    
-                        </div>
-                    
-                    
-                    
-                            <div class="example">
-                                <h4>Example:</h4>
-                    
-                                <div class="example-content">
-                                    <pre class="code prettyprint"><code class="language-javascript">_nameChanged: Ember.on('init', Ember.observer('name', function() {
-                      Ember.run.once(this, '_nameCompute');
-                    }))
-                    </code></pre>
-                    
-                                </div>
-                            </div>
-                    </div>
-                    <div id="method__nameCompute" class="method item private">
-                        <h3 class="name"><code>_nameCompute</code></h3>
-                    
-                            <span class="paren">()</span>
-                    
-                    
-                    
-                            <span class="flag private">private</span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
                             <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-dpd.js.html#l11"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-dpd.js:11</code></a>
-                            </p>
-                    
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Method to set non-stored property.
-                    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
-                    Please, implement 'nameCompute' method in model class (outside of this mixin) if you want to compute value of 'name' property.</p>
-                    
-                        </div>
-                    
-                    
-                    
-                            <div class="example">
-                                <h4>Example:</h4>
-                    
-                                <div class="example-content">
-                                    <pre class="code prettyprint"><code class="language-javascript">_nameChanged: Ember.on('init', Ember.observer('name', function() {
-                      Ember.run.once(this, '_nameCompute');
-                    }))
-                    </code></pre>
-                    
-                                </div>
-                            </div>
-                    </div>
-                    <div id="method__nameCompute" class="method item private">
-                        <h3 class="name"><code>_nameCompute</code></h3>
-                    
-                            <span class="paren">()</span>
-                    
-                    
-                    
-                            <span class="flag private">private</span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-ucd.js.html#l11"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-ucd.js:11</code></a>
                             </p>
                     
                     
@@ -3333,6 +3161,138 @@
                         <div class="meta">
                                     <p>
                                     Defined in
+                            <a href="../files/addon_mixins_regenerated_models_fd-case-property.js.html#l11"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-case-property.js:11</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Method to set non-stored property.
+                    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+                    Please, implement 'nameCompute' method in model class (outside of this mixin) if you want to compute value of 'name' property.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                            <div class="example">
+                                <h4>Example:</h4>
+                    
+                                <div class="example-content">
+                                    <pre class="code prettyprint"><code class="language-javascript">_nameChanged: Ember.on('init', Ember.observer('name', function() {
+                      Ember.run.once(this, '_nameCompute');
+                    }))
+                    </code></pre>
+                    
+                                </div>
+                            </div>
+                    </div>
+                    <div id="method__nameCompute" class="method item private">
+                        <h3 class="name"><code>_nameCompute</code></h3>
+                    
+                            <span class="paren">()</span>
+                    
+                    
+                    
+                            <span class="flag private">private</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-sd.js.html#l11"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-sd.js:11</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Method to set non-stored property.
+                    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+                    Please, implement 'nameCompute' method in model class (outside of this mixin) if you want to compute value of 'name' property.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                            <div class="example">
+                                <h4>Example:</h4>
+                    
+                                <div class="example-content">
+                                    <pre class="code prettyprint"><code class="language-javascript">_nameChanged: Ember.on('init', Ember.observer('name', function() {
+                      Ember.run.once(this, '_nameCompute');
+                    }))
+                    </code></pre>
+                    
+                                </div>
+                            </div>
+                    </div>
+                    <div id="method__nameCompute" class="method item private">
+                        <h3 class="name"><code>_nameCompute</code></h3>
+                    
+                            <span class="paren">()</span>
+                    
+                    
+                    
+                            <span class="flag private">private</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-ucd.js.html#l11"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-ucd.js:11</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Method to set non-stored property.
+                    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+                    Please, implement 'nameCompute' method in model class (outside of this mixin) if you want to compute value of 'name' property.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                            <div class="example">
+                                <h4>Example:</h4>
+                    
+                                <div class="example-content">
+                                    <pre class="code prettyprint"><code class="language-javascript">_nameChanged: Ember.on('init', Ember.observer('name', function() {
+                      Ember.run.once(this, '_nameCompute');
+                    }))
+                    </code></pre>
+                    
+                                </div>
+                            </div>
+                    </div>
+                    <div id="method__nameCompute" class="method item private">
+                        <h3 class="name"><code>_nameCompute</code></h3>
+                    
+                            <span class="paren">()</span>
+                    
+                    
+                    
+                            <span class="flag private">private</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
                             <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-cod.js.html#l11"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-cod.js:11</code></a>
                             </p>
                     
@@ -3377,7 +3337,51 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-case-property.js.html#l11"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-case-property.js:11</code></a>
+                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-ad.js.html#l11"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-ad.js:11</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Method to set non-stored property.
+                    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+                    Please, implement 'nameCompute' method in model class (outside of this mixin) if you want to compute value of 'name' property.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                            <div class="example">
+                                <h4>Example:</h4>
+                    
+                                <div class="example-content">
+                                    <pre class="code prettyprint"><code class="language-javascript">_nameChanged: Ember.on('init', Ember.observer('name', function() {
+                      Ember.run.once(this, '_nameCompute');
+                    }))
+                    </code></pre>
+                    
+                                </div>
+                            </div>
+                    </div>
+                    <div id="method__nameCompute" class="method item private">
+                        <h3 class="name"><code>_nameCompute</code></h3>
+                    
+                            <span class="paren">()</span>
+                    
+                    
+                    
+                            <span class="flag private">private</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-cad.js.html#l11"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-cad.js:11</code></a>
                             </p>
                     
                     
@@ -3627,51 +3631,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-cod.js.html#l59"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-cod.js:59</code></a>
-                            </p>
-                    
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Method to set non-stored property.
-                    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
-                    Please, implement 'primitivesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitives' property.</p>
-                    
-                        </div>
-                    
-                    
-                    
-                            <div class="example">
-                                <h4>Example:</h4>
-                    
-                                <div class="example-content">
-                                    <pre class="code prettyprint"><code class="language-javascript">_primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {
-                      Ember.run.once(this, '_primitivesCompute');
-                    }))
-                    </code></pre>
-                    
-                                </div>
-                            </div>
-                    </div>
-                    <div id="method__primitivesCompute" class="method item private">
-                        <h3 class="name"><code>_primitivesCompute</code></h3>
-                    
-                            <span class="paren">()</span>
-                    
-                    
-                    
-                            <span class="flag private">private</span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-cad.js.html#l59"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-cad.js:59</code></a>
+                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-dpd.js.html#l59"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-dpd.js:59</code></a>
                             </p>
                     
                     
@@ -3759,6 +3719,50 @@
                         <div class="meta">
                                     <p>
                                     Defined in
+                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-cod.js.html#l59"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-cod.js:59</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Method to set non-stored property.
+                    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+                    Please, implement 'primitivesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitives' property.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                            <div class="example">
+                                <h4>Example:</h4>
+                    
+                                <div class="example-content">
+                                    <pre class="code prettyprint"><code class="language-javascript">_primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {
+                      Ember.run.once(this, '_primitivesCompute');
+                    }))
+                    </code></pre>
+                    
+                                </div>
+                            </div>
+                    </div>
+                    <div id="method__primitivesCompute" class="method item private">
+                        <h3 class="name"><code>_primitivesCompute</code></h3>
+                    
+                            <span class="paren">()</span>
+                    
+                    
+                    
+                            <span class="flag private">private</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
                             <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-ucd.js.html#l59"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-ucd.js:59</code></a>
                             </p>
                     
@@ -3803,7 +3807,51 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-dpd.js.html#l59"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-dpd.js:59</code></a>
+                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-sd.js.html#l59"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-sd.js:59</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Method to set non-stored property.
+                    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+                    Please, implement 'primitivesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitives' property.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                            <div class="example">
+                                <h4>Example:</h4>
+                    
+                                <div class="example-content">
+                                    <pre class="code prettyprint"><code class="language-javascript">_primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {
+                      Ember.run.once(this, '_primitivesCompute');
+                    }))
+                    </code></pre>
+                    
+                                </div>
+                            </div>
+                    </div>
+                    <div id="method__primitivesCompute" class="method item private">
+                        <h3 class="name"><code>_primitivesCompute</code></h3>
+                    
+                            <span class="paren">()</span>
+                    
+                    
+                    
+                            <span class="flag private">private</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-cad.js.html#l59"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-cad.js:59</code></a>
                             </p>
                     
                     
@@ -3848,50 +3896,6 @@
                                     <p>
                                     Defined in
                             <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-std.js.html#l59"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-std.js:59</code></a>
-                            </p>
-                    
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Method to set non-stored property.
-                    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
-                    Please, implement 'primitivesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitives' property.</p>
-                    
-                        </div>
-                    
-                    
-                    
-                            <div class="example">
-                                <h4>Example:</h4>
-                    
-                                <div class="example-content">
-                                    <pre class="code prettyprint"><code class="language-javascript">_primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {
-                      Ember.run.once(this, '_primitivesCompute');
-                    }))
-                    </code></pre>
-                    
-                                </div>
-                            </div>
-                    </div>
-                    <div id="method__primitivesCompute" class="method item private">
-                        <h3 class="name"><code>_primitivesCompute</code></h3>
-                    
-                            <span class="paren">()</span>
-                    
-                    
-                    
-                            <span class="flag private">private</span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-sd.js.html#l59"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-sd.js:59</code></a>
                             </p>
                     
                     
@@ -4023,183 +4027,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-dpd.js.html#l35"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-dpd.js:35</code></a>
-                            </p>
-                    
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Method to set non-stored property.
-                    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
-                    Please, implement 'primitiveTypesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitiveTypes' property.</p>
-                    
-                        </div>
-                    
-                    
-                    
-                            <div class="example">
-                                <h4>Example:</h4>
-                    
-                                <div class="example-content">
-                                    <pre class="code prettyprint"><code class="language-javascript">_primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {
-                      Ember.run.once(this, '_primitiveTypesCompute');
-                    }))
-                    </code></pre>
-                    
-                                </div>
-                            </div>
-                    </div>
-                    <div id="method__primitiveTypesCompute" class="method item private">
-                        <h3 class="name"><code>_primitiveTypesCompute</code></h3>
-                    
-                            <span class="paren">()</span>
-                    
-                    
-                    
-                            <span class="flag private">private</span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-std.js.html#l35"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-std.js:35</code></a>
-                            </p>
-                    
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Method to set non-stored property.
-                    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
-                    Please, implement 'primitiveTypesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitiveTypes' property.</p>
-                    
-                        </div>
-                    
-                    
-                    
-                            <div class="example">
-                                <h4>Example:</h4>
-                    
-                                <div class="example-content">
-                                    <pre class="code prettyprint"><code class="language-javascript">_primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {
-                      Ember.run.once(this, '_primitiveTypesCompute');
-                    }))
-                    </code></pre>
-                    
-                                </div>
-                            </div>
-                    </div>
-                    <div id="method__primitiveTypesCompute" class="method item private">
-                        <h3 class="name"><code>_primitiveTypesCompute</code></h3>
-                    
-                            <span class="paren">()</span>
-                    
-                    
-                    
-                            <span class="flag private">private</span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
                             <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-cad.js.html#l35"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-cad.js:35</code></a>
-                            </p>
-                    
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Method to set non-stored property.
-                    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
-                    Please, implement 'primitiveTypesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitiveTypes' property.</p>
-                    
-                        </div>
-                    
-                    
-                    
-                            <div class="example">
-                                <h4>Example:</h4>
-                    
-                                <div class="example-content">
-                                    <pre class="code prettyprint"><code class="language-javascript">_primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {
-                      Ember.run.once(this, '_primitiveTypesCompute');
-                    }))
-                    </code></pre>
-                    
-                                </div>
-                            </div>
-                    </div>
-                    <div id="method__primitiveTypesCompute" class="method item private">
-                        <h3 class="name"><code>_primitiveTypesCompute</code></h3>
-                    
-                            <span class="paren">()</span>
-                    
-                    
-                    
-                            <span class="flag private">private</span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-ucd.js.html#l35"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-ucd.js:35</code></a>
-                            </p>
-                    
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Method to set non-stored property.
-                    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
-                    Please, implement 'primitiveTypesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitiveTypes' property.</p>
-                    
-                        </div>
-                    
-                    
-                    
-                            <div class="example">
-                                <h4>Example:</h4>
-                    
-                                <div class="example-content">
-                                    <pre class="code prettyprint"><code class="language-javascript">_primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {
-                      Ember.run.once(this, '_primitiveTypesCompute');
-                    }))
-                    </code></pre>
-                    
-                                </div>
-                            </div>
-                    </div>
-                    <div id="method__primitiveTypesCompute" class="method item private">
-                        <h3 class="name"><code>_primitiveTypesCompute</code></h3>
-                    
-                            <span class="paren">()</span>
-                    
-                    
-                    
-                            <span class="flag private">private</span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-cod.js.html#l35"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-cod.js:35</code></a>
                             </p>
                     
                     
@@ -4287,7 +4115,183 @@
                         <div class="meta">
                                     <p>
                                     Defined in
+                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-cod.js.html#l35"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-cod.js:35</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Method to set non-stored property.
+                    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+                    Please, implement 'primitiveTypesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitiveTypes' property.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                            <div class="example">
+                                <h4>Example:</h4>
+                    
+                                <div class="example-content">
+                                    <pre class="code prettyprint"><code class="language-javascript">_primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {
+                      Ember.run.once(this, '_primitiveTypesCompute');
+                    }))
+                    </code></pre>
+                    
+                                </div>
+                            </div>
+                    </div>
+                    <div id="method__primitiveTypesCompute" class="method item private">
+                        <h3 class="name"><code>_primitiveTypesCompute</code></h3>
+                    
+                            <span class="paren">()</span>
+                    
+                    
+                    
+                            <span class="flag private">private</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-ucd.js.html#l35"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-ucd.js:35</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Method to set non-stored property.
+                    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+                    Please, implement 'primitiveTypesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitiveTypes' property.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                            <div class="example">
+                                <h4>Example:</h4>
+                    
+                                <div class="example-content">
+                                    <pre class="code prettyprint"><code class="language-javascript">_primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {
+                      Ember.run.once(this, '_primitiveTypesCompute');
+                    }))
+                    </code></pre>
+                    
+                                </div>
+                            </div>
+                    </div>
+                    <div id="method__primitiveTypesCompute" class="method item private">
+                        <h3 class="name"><code>_primitiveTypesCompute</code></h3>
+                    
+                            <span class="paren">()</span>
+                    
+                    
+                    
+                            <span class="flag private">private</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-dpd.js.html#l35"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-dpd.js:35</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Method to set non-stored property.
+                    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+                    Please, implement 'primitiveTypesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitiveTypes' property.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                            <div class="example">
+                                <h4>Example:</h4>
+                    
+                                <div class="example-content">
+                                    <pre class="code prettyprint"><code class="language-javascript">_primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {
+                      Ember.run.once(this, '_primitiveTypesCompute');
+                    }))
+                    </code></pre>
+                    
+                                </div>
+                            </div>
+                    </div>
+                    <div id="method__primitiveTypesCompute" class="method item private">
+                        <h3 class="name"><code>_primitiveTypesCompute</code></h3>
+                    
+                            <span class="paren">()</span>
+                    
+                    
+                    
+                            <span class="flag private">private</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
                             <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-ad.js.html#l35"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-ad.js:35</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Method to set non-stored property.
+                    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+                    Please, implement 'primitiveTypesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitiveTypes' property.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                            <div class="example">
+                                <h4>Example:</h4>
+                    
+                                <div class="example-content">
+                                    <pre class="code prettyprint"><code class="language-javascript">_primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {
+                      Ember.run.once(this, '_primitiveTypesCompute');
+                    }))
+                    </code></pre>
+                    
+                                </div>
+                            </div>
+                    </div>
+                    <div id="method__primitiveTypesCompute" class="method item private">
+                        <h3 class="name"><code>_primitiveTypesCompute</code></h3>
+                    
+                            <span class="paren">()</span>
+                    
+                    
+                    
+                            <span class="flag private">private</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_mixins_regenerated_models_fd-dev-uml-std.js.html#l35"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-uml-std.js:35</code></a>
                             </p>
                     
                     
@@ -4375,7 +4379,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-dev-class.js.html#l265"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-class.js:265</code></a>
+                            <a href="../files/addon_mixins_regenerated_models_fd-dev-form-view.js.html#l63"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-form-view.js:63</code></a>
                             </p>
                     
                     
@@ -4419,7 +4423,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-dev-form-view.js.html#l63"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-form-view.js:63</code></a>
+                            <a href="../files/addon_mixins_regenerated_models_fd-dev-class.js.html#l265"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-class.js:265</code></a>
                             </p>
                     
                     
@@ -4463,7 +4467,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-dev-class.js.html#l291"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-class.js:291</code></a>
+                            <a href="../files/addon_mixins_regenerated_models_fd-dev-parameter.js.html#l14"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-parameter.js:14</code></a>
                             </p>
                     
                     
@@ -4551,7 +4555,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-dev-parameter.js.html#l14"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-parameter.js:14</code></a>
+                            <a href="../files/addon_mixins_regenerated_models_fd-dev-class.js.html#l291"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-class.js:291</code></a>
                             </p>
                     
                     
@@ -4903,6 +4907,50 @@
                         <div class="meta">
                                     <p>
                                     Defined in
+                            <a href="../files/addon_mixins_regenerated_models_fd-dev-association.js.html#l41"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-association.js:41</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Method to set non-stored property.
+                    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+                    Please, implement 'realStorageCompute' method in model class (outside of this mixin) if you want to compute value of 'realStorage' property.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                            <div class="example">
+                                <h4>Example:</h4>
+                    
+                                <div class="example-content">
+                                    <pre class="code prettyprint"><code class="language-javascript">_realStorageChanged: Ember.on('init', Ember.observer('realStorage', function() {
+                      Ember.run.once(this, '_realStorageCompute');
+                    }))
+                    </code></pre>
+                    
+                                </div>
+                            </div>
+                    </div>
+                    <div id="method__realStorageCompute" class="method item private">
+                        <h3 class="name"><code>_realStorageCompute</code></h3>
+                    
+                            <span class="paren">()</span>
+                    
+                    
+                    
+                            <span class="flag private">private</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
                             <a href="../files/addon_mixins_regenerated_models_fd-dev-class.js.html#l387"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-class.js:387</code></a>
                             </p>
                     
@@ -4948,50 +4996,6 @@
                                     <p>
                                     Defined in
                             <a href="../files/addon_mixins_regenerated_models_fd-dev-attribute.js.html#l74"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-attribute.js:74</code></a>
-                            </p>
-                    
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Method to set non-stored property.
-                    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
-                    Please, implement 'realStorageCompute' method in model class (outside of this mixin) if you want to compute value of 'realStorage' property.</p>
-                    
-                        </div>
-                    
-                    
-                    
-                            <div class="example">
-                                <h4>Example:</h4>
-                    
-                                <div class="example-content">
-                                    <pre class="code prettyprint"><code class="language-javascript">_realStorageChanged: Ember.on('init', Ember.observer('realStorage', function() {
-                      Ember.run.once(this, '_realStorageCompute');
-                    }))
-                    </code></pre>
-                    
-                                </div>
-                            </div>
-                    </div>
-                    <div id="method__realStorageCompute" class="method item private">
-                        <h3 class="name"><code>_realStorageCompute</code></h3>
-                    
-                            <span class="paren">()</span>
-                    
-                    
-                    
-                            <span class="flag private">private</span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_mixins_regenerated_models_fd-dev-association.js.html#l41"><code>addon&#x2F;mixins&#x2F;regenerated&#x2F;models&#x2F;fd-dev-association.js:41</code></a>
                             </p>
                     
                     
@@ -5711,6 +5715,59 @@
                                 </div>
                             </div>
                     </div>
+                    <div id="method_actions.addControl" class="method item">
+                        <h3 class="name"><code>actions.addControl</code></h3>
+                    
+                            <div class="args">
+                                <span class="paren">(</span><ul class="args-list inline commas">
+                                    <li class="arg">
+                                            <code>type</code>
+                                    </li>
+                                </ul><span class="paren">)</span>
+                            </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l61"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:61</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Adds the control to a new row.</p>
+                    
+                        </div>
+                    
+                            <div class="params">
+                                <h4>Parameters:</h4>
+                    
+                                <ul class="params-list">
+                                    <li class="param">
+                                            <code class="param-name">type</code>
+                                            <span class="type"><a href="http://emberjs.com/api/classes/String.html" class="crosslink external" target="_blank">String</a></span>
+                    
+                    
+                                        <div class="param-description">
+                                            <p>Type of control to add.</p>
+                    
+                                        </div>
+                    
+                                    </li>
+                                </ul>
+                            </div>
+                    
+                    
+                    </div>
                     <div id="method_actions.addLeftClass" class="method item">
                         <h3 class="name"><code>actions.addLeftClass</code></h3>
                     
@@ -5756,7 +5813,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_controllers_fd-appstruct-form.js.html#l418"><code>addon&#x2F;controllers&#x2F;fd-appstruct-form.js:418</code></a>
+                            <a href="../files/addon_controllers_fd-appstruct-form.js.html#l396"><code>addon&#x2F;controllers&#x2F;fd-appstruct-form.js:396</code></a>
                             </p>
                     
                     
@@ -5764,7 +5821,7 @@
                         </div>
                     
                         <div class="description">
-                            <p>Handles add list form for class in left jsTree.</p>
+                            <p>Handles add edit form for class in left jsTree.</p>
                     
                         </div>
                     
@@ -5786,7 +5843,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_controllers_fd-appstruct-form.js.html#l396"><code>addon&#x2F;controllers&#x2F;fd-appstruct-form.js:396</code></a>
+                            <a href="../files/addon_controllers_fd-appstruct-form.js.html#l418"><code>addon&#x2F;controllers&#x2F;fd-appstruct-form.js:418</code></a>
                             </p>
                     
                     
@@ -5794,7 +5851,7 @@
                         </div>
                     
                         <div class="description">
-                            <p>Handles add edit form for class in left jsTree.</p>
+                            <p>Handles add list form for class in left jsTree.</p>
                     
                         </div>
                     
@@ -5939,7 +5996,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l82"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:82</code></a>
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l128"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:128</code></a>
                             </p>
                     
                     
@@ -6077,7 +6134,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l92"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:92</code></a>
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l138"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:138</code></a>
                             </p>
                     
                     
@@ -6347,7 +6404,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_controllers_fd-appstruct-form.js.html#l506"><code>addon&#x2F;controllers&#x2F;fd-appstruct-form.js:506</code></a>
+                            <a href="../files/addon_controllers_fd-appstruct-form.js.html#l491"><code>addon&#x2F;controllers&#x2F;fd-appstruct-form.js:491</code></a>
                             </p>
                     
                     
@@ -6355,7 +6412,7 @@
                         </div>
                     
                         <div class="description">
-                            <p>Handles add node in right jsTree.</p>
+                            <p>Handles remove node from right jsTree.</p>
                     
                         </div>
                     
@@ -6377,7 +6434,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_controllers_fd-appstruct-form.js.html#l491"><code>addon&#x2F;controllers&#x2F;fd-appstruct-form.js:491</code></a>
+                            <a href="../files/addon_controllers_fd-appstruct-form.js.html#l506"><code>addon&#x2F;controllers&#x2F;fd-appstruct-form.js:506</code></a>
                             </p>
                     
                     
@@ -6385,7 +6442,7 @@
                         </div>
                     
                         <div class="description">
-                            <p>Handles remove node from right jsTree.</p>
+                            <p>Handles add node in right jsTree.</p>
                     
                         </div>
                     
@@ -6526,7 +6583,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l62"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:62</code></a>
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l108"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:108</code></a>
                             </p>
                     
                     
@@ -6578,7 +6635,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l72"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:72</code></a>
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l118"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:118</code></a>
                             </p>
                     
                     

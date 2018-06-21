@@ -1994,7 +1994,23 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 62,
+            "line": 61,
+            "description": "Adds the control to a new row.",
+            "itemtype": "method",
+            "name": "actions.addControl",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "Type of control to add.",
+                    "type": "String"
+                }
+            ],
+            "class": "FdDraggableControlMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 108,
             "description": "Set the selected control.",
             "itemtype": "method",
             "name": "actions.selectControl",
@@ -2010,7 +2026,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 72,
+            "line": 118,
             "description": "Set the current dragged item.",
             "itemtype": "method",
             "name": "actions.setDragItem",
@@ -2026,7 +2042,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 82,
+            "line": 128,
             "description": "Get the current dragged item.",
             "itemtype": "method",
             "name": "actions.getDragItem",
@@ -2039,7 +2055,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 92,
+            "line": 138,
             "description": "Move the current dragged item above or below relative to the passed item.",
             "itemtype": "method",
             "name": "actions.moveDragItem",
@@ -2060,7 +2076,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 124,
+            "line": 170,
             "description": "Looks for a container that contains the item.",
             "params": [
                 {
@@ -2083,7 +2099,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 139,
+            "line": 185,
             "description": "Looks for a container that contains the row.",
             "itemtype": "method",
             "name": "_findRowContainer",
@@ -2108,7 +2124,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 187,
+            "line": 233,
             "description": "Looks for a container that contains the control.",
             "itemtype": "method",
             "name": "_findControlContainer",
@@ -6422,7 +6438,7 @@
         },
         {
             "message": "Missing item type\nLooks for a container that contains the item.",
-            "line": " addon/controllers/fd-editform-constructor.js:124"
+            "line": " addon/controllers/fd-editform-constructor.js:170"
         },
         {
             "message": "Missing item type\nField name where object identifier is kept.",
