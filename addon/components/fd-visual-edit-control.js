@@ -8,10 +8,31 @@ import FdEditformGroup from '../objects/fd-editform-group';
 import FdEditformTab from '../objects/fd-editform-tab';
 
 export default Ember.Component.extend({
+  /**
+    Contains stage's enums.
+
+    @property enums
+    @type Ember.A()
+    @default undefined
+  */
   enums: undefined,
 
+  /**
+    Contains stage's typemap.
+
+    @property typemap
+    @type Ember.A()
+    @default undefined
+  */
   typemap: undefined,
 
+  /**
+    Contains stage's types.
+
+    @property fbtypes
+    @type Ember.A()
+    @default undefined
+  */
   fbtypes: undefined,
 
   /**
@@ -52,6 +73,11 @@ export default Ember.Component.extend({
   */
   selectedControl: undefined,
 
+  /**
+    Observer, checks if selected control changed and changes selectedType.
+
+    @method selectedControlChanged
+  */
   selectedControlChanged: Ember.observer('selectedControl', function() {
     let selectedControl = this.get('selectedControl');
     this.set('selectedType', this.getTranslationString(selectedControl.type));
@@ -66,11 +92,25 @@ export default Ember.Component.extend({
 
     @property types
     @type Ember.A()
+    @default undefined
   */
   types: undefined,
 
+  /**
+    Strings shown to user.
+
+    @property typesAsStrings
+    @type Ember.A()
+    @default undefined
+  */
   typesAsStrings: undefined,
 
+  /**
+    Dictionary: type to locale key.
+
+    @property typeToString
+    @type Object
+  */
   typeToString: {
     string: 'components.fd-visual-control.typeName.stringControlType',
     bool: 'components.fd-visual-control.typeName.boolControlType',
@@ -93,15 +133,22 @@ export default Ember.Component.extend({
     dropdown: 'components.fd-visual-control.typeName.drowdownControlType',
     lookup: 'components.fd-visual-control.typeName.lookupControlType',
   },
+
+  /**
+    Gets translated string for type.
+
+    @method getTranslationString
+    @return String
+  */
   getTranslationString(type) {
     let userString;
     let tts = this.get('typeToString');
-    userString = tts[type];
+    userString = this.get(tts[type]);
 
     if (userString === undefined) {
       for (let ts in tts) {
         if (type.toLowerCase().indexOf(ts) !== -1) {
-          userString = tts[ts];
+          userString = this.get(tts[ts]);
           break;
         }
       }
@@ -114,6 +161,11 @@ export default Ember.Component.extend({
     return userString;
   },
 
+  /**
+    Gets types array from stage.
+
+    @method getAllTypes
+  */
   getAllTypes() {
     let typemap = this.get('typemap');
     let enums = this.get('enums');
@@ -173,6 +225,12 @@ export default Ember.Component.extend({
 
   },
 
+  /**
+    Contains selected type locale key.
+
+    @property selectedType
+    @type String
+  */
   selectedType: undefined,
 
   allowNull: Ember.computed('selectedControl.notNull', {
@@ -192,12 +250,22 @@ export default Ember.Component.extend({
     }
   }),
 
+  /**
+    Initialization hook.
+
+    @method init
+  */
   init() {
     this._super(...arguments);
     this.getAllTypes();
   },
 
   actions: {
+    /**
+      Action, triggered by dropdown selection changed.
+
+      @method actions.onDropDownSelectionChanged
+    */
     onDropDownSelectionChanged() {
       let selectedType = this.get('selectedType');
       let tts = this.get('typeToString');
