@@ -64,6 +64,116 @@ export default {
         __caption__: 'Description'
       }
     },
+    FdPreloadMetadata: {
+      assocType: {
+        __caption__: ''
+      },
+      autoGenerateTypeUsage: {
+        __caption__: ''
+      },
+      pBMasterCustomAttributes: {
+        __caption__: ''
+      },
+      pBMasterGetEnd: {
+        __caption__: ''
+      },
+      pBMasterSetEnd: {
+        __caption__: ''
+      },
+      pBMasterGetStart: {
+        __caption__: ''
+      },
+      pBMasterSetStart: {
+        __caption__: ''
+      },
+      realStorage: {
+        __caption__: ''
+      },
+      typeUsage: {
+        __caption__: ''
+      },
+      autoStoreMasterDisabled: {
+        __caption__: ''
+      },
+      realEndRole: {
+        __caption__: ''
+      },
+      realStartRole: {
+        __caption__: ''
+      },
+      storage: {
+        __caption__: ''
+      },
+      startRolePublishName: {
+        __caption__: ''
+      },
+      endRolePublishName: {
+        __caption__: ''
+      },
+      endMultiplicity: {
+        __caption__: ''
+      },
+      endRole: {
+        __caption__: ''
+      },
+      endRoleAccessModifier: {
+        __caption__: ''
+      },
+      endRoleStored: {
+        __caption__: ''
+      },
+      endRoleStr: {
+        __caption__: ''
+      },
+      notNullStart: {
+        __caption__: ''
+      },
+      startMultiplicity: {
+        __caption__: ''
+      },
+      startRole: {
+        __caption__: ''
+      },
+      startRoleAccessModifier: {
+        __caption__: ''
+      },
+      startRoleStored: {
+        __caption__: ''
+      },
+      startRoleStr: {
+        __caption__: ''
+      },
+      referenceCount: {
+        __caption__: ''
+      },
+      name: {
+        __caption__: ''
+      },
+      description: {
+        __caption__: ''
+      },
+      nameStr: {
+        __caption__: ''
+      },
+      stage: {
+        __caption__: '',
+        name: {
+          __caption__: ''
+        }
+      },
+      endClass: {
+        __caption__: '',
+        name: {
+          __caption__: ''
+        }
+      },
+      startClass: {
+        __caption__: '',
+        name: {
+          __caption__: ''
+        }
+      }
+    },
     FormDesigner: {
       name: {
         __caption__: ''

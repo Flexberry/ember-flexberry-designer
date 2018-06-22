@@ -6,6 +6,7 @@ export let OfflineSerializer = Ember.Mixin.create({
     let attrs = {
       typeDefinitions: { serialize: 'ids', deserialize: 'records' },
       controlTypes: { serialize: 'ids', deserialize: 'records' },
+      users: { serialize: 'ids', deserialize: 'records' },
       moduleSettings: { serialize: 'ids', deserialize: 'records' },
       generations: { serialize: 'ids', deserialize: 'records' }
     };

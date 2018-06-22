@@ -2,7 +2,9 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import { Projection } from 'ember-flexberry-data';
 export let Model = Ember.Mixin.create({
+  /* merged manually start */
   definition: DS.attr('fd-definition'),
+  /* merged manually end */
   /**
     Non-stored property.
 
@@ -72,7 +74,9 @@ export let defineProjections = function (modelClass) {
   modelClass.defineProjection('EditFormView', 'fd-dev-view', {
     name: Projection.attr('Name'),
     description: Projection.attr('Description'),
+    /* merged manually start */
     definition: Projection.attr('Definition')
+    /* merged manually end */
   });
   modelClass.defineProjection('EditPropertyLookups', 'fd-dev-view', {
     name: Projection.attr(''),
@@ -94,6 +98,15 @@ export let defineProjections = function (modelClass) {
     class: Projection.belongsTo('fd-dev-class', '', {
 
     }, { hidden: true })
+  });
+  modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-view', {
+    definition: Projection.attr(''),
+    name: Projection.attr(''),
+    description: Projection.attr(''),
+    nameStr: Projection.attr(''),
+    class: Projection.belongsTo('fd-dev-class', '', {
+      name: Projection.attr('')
+    })
   });
   modelClass.defineProjection('Generator', 'fd-dev-view', {
     name: Projection.attr(''),
