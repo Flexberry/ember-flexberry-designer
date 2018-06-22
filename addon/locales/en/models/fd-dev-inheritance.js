@@ -27,6 +27,38 @@ export default {
         }
       }
     },
+    FdPreloadMetadata: {
+      referenceCount: {
+        __caption__: 'referenceCount'
+      },
+      name: {
+        __caption__: 'name'
+      },
+      description: {
+        __caption__: 'description'
+      },
+      nameStr: {
+        __caption__: 'nameStr'
+      },
+      stage: {
+        __caption__: 'stage',
+        name: {
+          __caption__: 'name'
+        }
+      },
+      child: {
+        __caption__: 'child',
+        name: {
+          __caption__: 'name'
+        }
+      },
+      parent: {
+        __caption__: 'parent',
+        name: {
+          __caption__: 'name'
+        }
+      }
+    },
     Generator: {
       referenceCount: {
         __caption__: 'referenceCount'

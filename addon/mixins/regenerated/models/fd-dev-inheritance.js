@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import { Projection } from 'ember-flexberry-data';
+
 export let Model = Ember.Mixin.create({
   getValidations: function () {
     let parentValidations = this._super();
@@ -33,6 +34,21 @@ export let defineProjections = function (modelClass) {
     child: Projection.belongsTo('fd-class', '', {
       name: Projection.attr('')
     }, { hidden: true })
+  });
+  modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-inheritance', {
+    referenceCount: Projection.attr(''),
+    name: Projection.attr(''),
+    description: Projection.attr(''),
+    nameStr: Projection.attr(''),
+    stage: Projection.belongsTo('fd-stage', '', {
+      name: Projection.attr('')
+    }),
+    child: Projection.belongsTo('fd-class', '', {
+      name: Projection.attr('')
+    }),
+    parent: Projection.belongsTo('fd-class', '', {
+      name: Projection.attr('')
+    })
   });
   modelClass.defineProjection('Generator', 'fd-dev-inheritance', {
     referenceCount: Projection.attr('ReferenceCount', { hidden: true }),

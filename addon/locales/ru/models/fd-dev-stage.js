@@ -101,6 +101,9 @@ export default {
       },
       defaultWriteMode: {
         __caption__: ''
+      },
+      moduleSettings: {
+        __caption__: ''
       }
     },
     Compiler: {
@@ -457,7 +460,6 @@ export default {
       }
     },
     EditPropertyLookups: {
-
     },
     EditRightManagementGenerator: {
       name: {
@@ -559,6 +561,146 @@ export default {
       },
       signAssemblies: {
         __caption__: ''
+      }
+    },
+    FdPreloadMetadata: {
+      additionalPluginsSettingsStr: {
+        __caption__: ''
+      },
+      auditEnabled: {
+        __caption__: ''
+      },
+      company: {
+        __caption__: ''
+      },
+      copyright: {
+        __caption__: ''
+      },
+      dataObjectNameSpace: {
+        __caption__: ''
+      },
+      defaultAccessType: {
+        __caption__: ''
+      },
+      defaultBaseClass: {
+        __caption__: ''
+      },
+      defaultDetailArrayClass: {
+        __caption__: ''
+      },
+      defaultEditScriptName: {
+        __caption__: ''
+      },
+      defaultListScriptName: {
+        __caption__: ''
+      },
+      defaultWriteMode: {
+        __caption__: ''
+      },
+      doNotDeleteExtraTables: {
+        __caption__: ''
+      },
+      indexComment: {
+        __caption__: ''
+      },
+      isAuditDatabaseLocal: {
+        __caption__: ''
+      },
+      isReportDatabaseLocal: {
+        __caption__: ''
+      },
+      lastIndexDate: {
+        __caption__: ''
+      },
+      operationsEnumNamespace: {
+        __caption__: ''
+      },
+      operationsEnumPacket: {
+        __caption__: ''
+      },
+      product: {
+        __caption__: ''
+      },
+      realDataObjectNameSpace: {
+        __caption__: ''
+      },
+      scriptNamespace: {
+        __caption__: ''
+      },
+      scriptPacket: {
+        __caption__: ''
+      },
+      serializedIndex: {
+        __caption__: ''
+      },
+      signAssemblies: {
+        __caption__: ''
+      },
+      sourceAzStoragePath: {
+        __caption__: ''
+      },
+      sourceCodeCSPath: {
+        __caption__: ''
+      },
+      sourceCodeVBPath: {
+        __caption__: ''
+      },
+      sourceControlUri: {
+        __caption__: ''
+      },
+      sQLPath: {
+        __caption__: ''
+      },
+      typeMapAccessStr: {
+        __caption__: ''
+      },
+      typeMapCSStr: {
+        __caption__: ''
+      },
+      typeMapOracleStr: {
+        __caption__: ''
+      },
+      typeMapPostgreStr: {
+        __caption__: ''
+      },
+      typeMapSQLStr: {
+        __caption__: ''
+      },
+      typeMapVBStr: {
+        __caption__: ''
+      },
+      useSourceControl: {
+        __caption__: ''
+      },
+      version: {
+        __caption__: ''
+      },
+      createUser: {
+        __caption__: ''
+      },
+      createDate: {
+        __caption__: ''
+      },
+      changeUser: {
+        __caption__: ''
+      },
+      changeDate: {
+        __caption__: ''
+      },
+      name: {
+        __caption__: ''
+      },
+      description: {
+        __caption__: ''
+      },
+      nameStr: {
+        __caption__: ''
+      },
+      configuration: {
+        __caption__: '',
+        name: {
+          __caption__: ''
+        }
       }
     },
     FormDesigner_ProjectE: {
@@ -896,7 +1038,6 @@ export default {
       }
     },
     ListDataObjectTypes: {
-
     },
     ListFormView: {
       name: {
@@ -922,7 +1063,6 @@ export default {
       }
     },
     Prototyping: {
-
     },
     SearchRepObjView: {
       name: {
@@ -930,7 +1070,6 @@ export default {
       }
     },
     ViewPeeker: {
-
     }
   }
 };

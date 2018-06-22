@@ -99,6 +99,47 @@ export let defineProjections = function (modelClass) {
     name: Projection.attr('Name'),
     description: Projection.attr('Description')
   });
+  modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-association', {
+    assocType: Projection.attr(''),
+    autoGenerateTypeUsage: Projection.attr(''),
+    pBMasterCustomAttributes: Projection.attr(''),
+    pBMasterGetEnd: Projection.attr(''),
+    pBMasterSetEnd: Projection.attr(''),
+    pBMasterGetStart: Projection.attr(''),
+    pBMasterSetStart: Projection.attr(''),
+    realStorage: Projection.attr(''),
+    typeUsage: Projection.attr(''),
+    autoStoreMasterDisabled: Projection.attr(''),
+    realEndRole: Projection.attr(''),
+    realStartRole: Projection.attr(''),
+    storage: Projection.attr(''),
+    startRolePublishName: Projection.attr(''),
+    endRolePublishName: Projection.attr(''),
+    endMultiplicity: Projection.attr(''),
+    endRole: Projection.attr(''),
+    endRoleAccessModifier: Projection.attr(''),
+    endRoleStored: Projection.attr(''),
+    endRoleStr: Projection.attr(''),
+    notNullStart: Projection.attr(''),
+    startMultiplicity: Projection.attr(''),
+    startRole: Projection.attr(''),
+    startRoleAccessModifier: Projection.attr(''),
+    startRoleStored: Projection.attr(''),
+    startRoleStr: Projection.attr(''),
+    referenceCount: Projection.attr(''),
+    name: Projection.attr(''),
+    description: Projection.attr(''),
+    nameStr: Projection.attr(''),
+    stage: Projection.belongsTo('fd-stage', '', {
+      name: Projection.attr('')
+    }),
+    endClass: Projection.belongsTo('fd-class', '', {
+      name: Projection.attr('')
+    }),
+    startClass: Projection.belongsTo('fd-class', '', {
+      name: Projection.attr('')
+    })
+  });
   modelClass.defineProjection('FormDesigner', 'fd-dev-association', {
     name: Projection.attr(''),
     description: Projection.attr(''),
@@ -176,6 +217,7 @@ export let defineProjections = function (modelClass) {
     storage: Projection.attr('Storage')
   });
 
+  /* merged manually start */
   modelClass.defineProjection('FormConstructor', 'fd-dev-association', {
     startRole: Projection.attr(''),
     assocType: Projection.attr(''),
@@ -187,4 +229,5 @@ export let defineProjections = function (modelClass) {
     }),
     stage: Projection.belongsTo('fd-stage', '', {}),
   });
+  /* merged manually end */
 };
