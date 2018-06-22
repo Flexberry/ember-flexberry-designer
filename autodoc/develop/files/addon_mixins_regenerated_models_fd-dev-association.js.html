@@ -210,6 +210,47 @@ export let defineProjections = function (modelClass) {
     name: Projection.attr(&#x27;Name&#x27;),
     description: Projection.attr(&#x27;Description&#x27;)
   });
+  modelClass.defineProjection(&#x27;FdPreloadMetadata&#x27;, &#x27;fd-dev-association&#x27;, {
+    assocType: Projection.attr(&#x27;&#x27;),
+    autoGenerateTypeUsage: Projection.attr(&#x27;&#x27;),
+    pBMasterCustomAttributes: Projection.attr(&#x27;&#x27;),
+    pBMasterGetEnd: Projection.attr(&#x27;&#x27;),
+    pBMasterSetEnd: Projection.attr(&#x27;&#x27;),
+    pBMasterGetStart: Projection.attr(&#x27;&#x27;),
+    pBMasterSetStart: Projection.attr(&#x27;&#x27;),
+    realStorage: Projection.attr(&#x27;&#x27;),
+    typeUsage: Projection.attr(&#x27;&#x27;),
+    autoStoreMasterDisabled: Projection.attr(&#x27;&#x27;),
+    realEndRole: Projection.attr(&#x27;&#x27;),
+    realStartRole: Projection.attr(&#x27;&#x27;),
+    storage: Projection.attr(&#x27;&#x27;),
+    startRolePublishName: Projection.attr(&#x27;&#x27;),
+    endRolePublishName: Projection.attr(&#x27;&#x27;),
+    endMultiplicity: Projection.attr(&#x27;&#x27;),
+    endRole: Projection.attr(&#x27;&#x27;),
+    endRoleAccessModifier: Projection.attr(&#x27;&#x27;),
+    endRoleStored: Projection.attr(&#x27;&#x27;),
+    endRoleStr: Projection.attr(&#x27;&#x27;),
+    notNullStart: Projection.attr(&#x27;&#x27;),
+    startMultiplicity: Projection.attr(&#x27;&#x27;),
+    startRole: Projection.attr(&#x27;&#x27;),
+    startRoleAccessModifier: Projection.attr(&#x27;&#x27;),
+    startRoleStored: Projection.attr(&#x27;&#x27;),
+    startRoleStr: Projection.attr(&#x27;&#x27;),
+    referenceCount: Projection.attr(&#x27;&#x27;),
+    name: Projection.attr(&#x27;&#x27;),
+    description: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;),
+    stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;)
+    }),
+    endClass: Projection.belongsTo(&#x27;fd-class&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;)
+    }),
+    startClass: Projection.belongsTo(&#x27;fd-class&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;)
+    })
+  });
   modelClass.defineProjection(&#x27;FormDesigner&#x27;, &#x27;fd-dev-association&#x27;, {
     name: Projection.attr(&#x27;&#x27;),
     description: Projection.attr(&#x27;&#x27;),
@@ -287,6 +328,7 @@ export let defineProjections = function (modelClass) {
     storage: Projection.attr(&#x27;Storage&#x27;)
   });
 
+  /* merged manually start */
   modelClass.defineProjection(&#x27;FormConstructor&#x27;, &#x27;fd-dev-association&#x27;, {
     startRole: Projection.attr(&#x27;&#x27;),
     assocType: Projection.attr(&#x27;&#x27;),
@@ -298,6 +340,7 @@ export let defineProjections = function (modelClass) {
     }),
     stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {}),
   });
+  /* merged manually end */
 };
 
     </pre>

@@ -192,7 +192,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.bSEventsCompute &amp;&amp; typeof this.bSEventsCompute === &#x27;function&#x27;) ? this.bSEventsCompute() : null;
     this.set(&#x27;bSEvents&#x27;, result);
   },
-  businessServerEvents: DS.attr(&#x27;i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events&#x27;),
+  businessServerEvents: DS.attr(&#x27;i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events&#x27;, { defaultValue: &#x27;OnAllEvents&#x27; }),
   caption: DS.attr(&#x27;string&#x27;),
   /**
     Non-stored property.
@@ -1235,13 +1235,11 @@ export let defineProjections = function (modelClass) {
       })
     }),
     views: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
-      /* merged manually start */
       name: Projection.attr(&#x27;&#x27;),
       definition: Projection.attr(&#x27;&#x27;),
       class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
 
       })
-      /* merged manually end */
     })
   });
   modelClass.defineProjection(&#x27;FdAttributesForForm&#x27;, &#x27;fd-dev-class&#x27;, {
@@ -1269,9 +1267,12 @@ export let defineProjections = function (modelClass) {
     packet: Projection.attr(&#x27;&#x27;),
     namespacePostfix: Projection.attr(&#x27;&#x27;),
     businessServerClass: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;Бизнес-сервер&#x27;, {
-      name: Projection.attr(&#x27;&#x27;, { hidden: true }),
+      name: Projection.attr(&#x27;&#x27;, { hidden: true })
     }, { displayMemberPath: &#x27;name&#x27; }),
     businessServerEvents: Projection.attr(&#x27;События бизнес-сервера&#x27;),
+    stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {
+
+    }, { hidden: true }),
     attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
       /* merged manually start */
       name: Projection.attr(&#x27;&#x27;),
@@ -1284,13 +1285,11 @@ export let defineProjections = function (modelClass) {
       /* merged manually end */
     }),
     views: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
-      /* merged manually start */
-      name: Projection.attr(&#x27;&#x27;),
-      description: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;Имя&#x27;),
+      description: Projection.attr(&#x27;Описание&#x27;),
       class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
 
       }, { hidden: true })
-      /* merged manually end */
     }),
     classStorageTypes: Projection.hasMany(&#x27;fd-class-storage-type&#x27;, &#x27;&#x27;, {
       connectionName: Projection.attr(&#x27;Имя соединения&#x27;),
@@ -1301,6 +1300,86 @@ export let defineProjections = function (modelClass) {
       storageType: Projection.belongsTo(&#x27;fd-storage-type&#x27;, &#x27;Тип хранилища&#x27;, {
 
       }, { displayMemberPath: &#x27;shortName&#x27; })
+    })
+  });
+  modelClass.defineProjection(&#x27;FdPreloadMetadata&#x27;, &#x27;fd-dev-class&#x27;, {
+    accessType: Projection.attr(&#x27;&#x27;),
+    addAuditFields: Projection.attr(&#x27;&#x27;),
+    auditConnectionStringName: Projection.attr(&#x27;&#x27;),
+    auditEnabled: Projection.attr(&#x27;&#x27;),
+    auditWinServiceUrl: Projection.attr(&#x27;&#x27;),
+    autoAltered: Projection.attr(&#x27;&#x27;),
+    businessServerEvents: Projection.attr(&#x27;&#x27;),
+    caption: Projection.attr(&#x27;&#x27;),
+    comPlusServerPropertiesStr: Projection.attr(&#x27;&#x27;),
+    containersStr: Projection.attr(&#x27;&#x27;),
+    dataObjectTypesStr: Projection.attr(&#x27;&#x27;),
+    deleteAudit: Projection.attr(&#x27;&#x27;),
+    deleteAuditViewName: Projection.attr(&#x27;&#x27;),
+    disableAllRightChecks: Projection.attr(&#x27;&#x27;),
+    editFormOperationsStr: Projection.attr(&#x27;&#x27;),
+    expandOperations: Projection.attr(&#x27;&#x27;),
+    fixDependedForm: Projection.attr(&#x27;&#x27;),
+    formUrl: Projection.attr(&#x27;&#x27;),
+    generateCatcher: Projection.attr(&#x27;&#x27;),
+    generateComPlusServer: Projection.attr(&#x27;&#x27;),
+    generateDependedForm: Projection.attr(&#x27;&#x27;),
+    generateHttpRemoteServer: Projection.attr(&#x27;&#x27;),
+    hierarchicalMaster: Projection.attr(&#x27;&#x27;),
+    insertAudit: Projection.attr(&#x27;&#x27;),
+    insertAuditViewName: Projection.attr(&#x27;&#x27;),
+    listFormOperationsStr: Projection.attr(&#x27;&#x27;),
+    loadingOrder: Projection.attr(&#x27;&#x27;),
+    namespacePostfix: Projection.attr(&#x27;&#x27;),
+    onlyShowSelectedValue: Projection.attr(&#x27;&#x27;),
+    packet: Projection.attr(&#x27;&#x27;),
+    pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+    pBGetViewsForForm: Projection.attr(&#x27;&#x27;),
+    pBMembers: Projection.attr(&#x27;&#x27;),
+    primaryKeyStorage: Projection.attr(&#x27;&#x27;),
+    printContainer: Projection.attr(&#x27;&#x27;),
+    propertyLookupStr: Projection.attr(&#x27;&#x27;),
+    publishToEBSD: Projection.attr(&#x27;&#x27;),
+    realCaption: Projection.attr(&#x27;&#x27;),
+    realNamespace: Projection.attr(&#x27;&#x27;),
+    realPacket: Projection.attr(&#x27;&#x27;),
+    realPrimaryKeyStorage: Projection.attr(&#x27;&#x27;),
+    realStorage: Projection.attr(&#x27;&#x27;),
+    scriptName: Projection.attr(&#x27;&#x27;),
+    selectAudit: Projection.attr(&#x27;&#x27;),
+    selectAuditViewName: Projection.attr(&#x27;&#x27;),
+    standartDesktop: Projection.attr(&#x27;&#x27;),
+    storage: Projection.attr(&#x27;&#x27;),
+    publishName: Projection.attr(&#x27;&#x27;),
+    storeInstancesInType: Projection.attr(&#x27;&#x27;),
+    trim: Projection.attr(&#x27;&#x27;),
+    updateAudit: Projection.attr(&#x27;&#x27;),
+    updateAuditViewName: Projection.attr(&#x27;&#x27;),
+    useDefaultView: Projection.attr(&#x27;&#x27;),
+    writeMode: Projection.attr(&#x27;&#x27;),
+    writeSessions: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;),
+    attributesStr: Projection.attr(&#x27;&#x27;),
+    methodsStr: Projection.attr(&#x27;&#x27;),
+    stored: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    referenceCount: Projection.attr(&#x27;&#x27;),
+    name: Projection.attr(&#x27;&#x27;),
+    description: Projection.attr(&#x27;&#x27;),
+    stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;)
+    }),
+    businessServerClass: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;)
+    }),
+    views: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+      definition: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      nameStr: Projection.attr(&#x27;&#x27;),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;)
+      })
     })
   });
   modelClass.defineProjection(&#x27;Generator&#x27;, &#x27;fd-dev-class&#x27;, {

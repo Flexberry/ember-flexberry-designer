@@ -41,7 +41,7 @@ define('dummy/adapters/offline', ['exports', 'ember-flexberry-data/adapters/offl
     }
   });
 });
-define('dummy/app', ['exports', 'ember', 'dummy/resolver', 'ember-load-initializers', 'dummy/config/environment', 'dummy/models/custom-inflector-rules'], function (exports, _ember, _dummyResolver, _emberLoadInitializers, _dummyConfigEnvironment, _dummyModelsCustomInflectorRules) {
+define('dummy/app', ['exports', 'ember', 'dummy/resolver', 'ember-load-initializers', 'dummy/config/environment', 'dummy/models/custom-inflector-rules', 'dummy/utils/fd-preload-stage-metadata'], function (exports, _ember, _dummyResolver, _emberLoadInitializers, _dummyConfigEnvironment, _dummyModelsCustomInflectorRules, _dummyUtilsFdPreloadStageMetadata) {
 
   var App = undefined;
 
@@ -50,7 +50,17 @@ define('dummy/app', ['exports', 'ember', 'dummy/resolver', 'ember-load-initializ
   App = _ember['default'].Application.extend({
     modulePrefix: _dummyConfigEnvironment['default'].modulePrefix,
     podModulePrefix: _dummyConfigEnvironment['default'].podModulePrefix,
-    Resolver: _dummyResolver['default']
+    Resolver: _dummyResolver['default'],
+
+    ready: function ready() {
+      var currentContext = this.__container__.lookup('service:fd-current-project-context');
+      var stagePk = currentContext.get('singleStageMode') ? currentContext.get('context.stage') : undefined;
+
+      if (stagePk) {
+        var store = this.__container__.lookup('service:store');
+        (0, _dummyUtilsFdPreloadStageMetadata['default'])(store, stagePk);
+      }
+    }
   });
 
   (0, _emberLoadInitializers['default'])(App, _dummyConfigEnvironment['default'].modulePrefix);
@@ -39437,7 +39447,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+e0059ec9"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.0.1-alpha.2+bc66c9cc"});
 }
 
 /* jshint ignore:end */
