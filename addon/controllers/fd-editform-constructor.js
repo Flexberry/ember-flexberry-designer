@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 
 import FdEditformRow from '../objects/fd-editform-row';
 import FdEditformControl from '../objects/fd-editform-control';
@@ -7,7 +6,7 @@ import FdEditformGroup from '../objects/fd-editform-group';
 import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
 import FdEditformTab from '../objects/fd-editform-tab';
 
-export default Ember.Controller.extend(FdWorkPanelToggler, {
+export default Ember.Controller.extend({
   queryParams: ['classId'],
 
   /**
