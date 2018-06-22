@@ -1,7 +1,5 @@
 import Ember from 'ember';
 
-import { translationMacro as t } from 'ember-i18n';
-
 import FdDataTypes from '../utils/fd-datatypes';
 import FdEditformControl from '../objects/fd-editform-control';
 import FdEditformGroup from '../objects/fd-editform-group';
