@@ -9,32 +9,32 @@ ui-tab-menu component
 @constructor
 */
 export default Ember.Component.extend({
-    layout: layout,
+  layout: layout,
 
-    tagName: 'div',
+  tagName: 'div',
 
-    classNameBindings: ['_uiClass', '_theme', '_componentClass'],
+  classNameBindings: ['_uiClass', '_theme', '_componentClass'],
 
-    _uiClass: 'ui',
+  _uiClass: 'ui',
 
-    _componentClass: 'menu',
+  _componentClass: 'menu',
 
-    theme: '',
+  theme: '',
 
-    _theme: Ember.computed('theme', {
-      get() {
-        return this.get('theme') ? this.get('theme') : 'top attached tabular';
-      }
-    }),
-
-    /**
-    the active tab name
-    @property {String} active
-    */
-    active: '',
-
-    didInsertElement() {
-      this.$('.item').tab();
-      this.$('.item[data-tab="'+ this.active +'"]').addClass("active");
+  _theme: Ember.computed('theme', {
+    get() {
+      return this.get('theme') ? this.get('theme') : 'top attached tabular';
     }
+  }),
+
+  /**
+  the active tab name
+  @property {String} active
+  */
+  active: '',
+
+  didInsertElement() {
+    this.$('.item').tab();
+    this.$('.item[data-tab="' + this.active + '"]').addClass('active');
+  }
 });

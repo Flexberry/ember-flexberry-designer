@@ -3,7 +3,7 @@ import layout from '../templates/components/ui-tab-segment';
 import ComponentParent from './fd-tabs';
 
 /**
-ui-tab-segment component 
+ui-tab-segment component
 
 @module components
 @namespace components
@@ -72,8 +72,8 @@ export default Ember.Component.extend({
     this._registerWithParent();
   },
 
-  didInsertElement(){
-    if(this.active) {
+  didInsertElement() {
+    if (this.active) {
       this.$().addClass('active');
     }
   }
