@@ -143,12 +143,12 @@ export default Ember.Component.extend({
   getTranslationString(type) {
     let userString;
     let tts = this.get('typeToString');
-    userString = this.get(tts[type]);
+    userString = tts[type];
 
     if (userString === undefined) {
       for (let ts in tts) {
         if (type.toLowerCase().indexOf(ts) !== -1) {
-          userString = this.get(tts[ts]);
+          userString = tts[ts];
           break;
         }
       }

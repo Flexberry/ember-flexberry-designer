@@ -1,11 +1,5 @@
 {{#if _selectedIsControl}}
   <div class="field">
-    <label>{{t "components.fd-visual-control.prototypeBy"}}</label>
-    {{flexberry-dropdown
-      readonly=true
-    }}
-  </div>
-  <div class="field">
     <label>{{t "components.fd-visual-control.name"}}</label>
     {{flexberry-textbox
       value=selectedControl.caption
@@ -26,13 +20,6 @@
     {{flexberry-checkbox
       class="fluid"
       value=allowNull
-      readonly=_readonly
-    }}
-  </div>
-  <div class="field">
-    <label>{{t "components.fd-visual-control.defaultValue"}}</label>
-    {{component defaultValueControl
-      value=selectedControl.defaultValue
       readonly=_readonly
     }}
   </div>
