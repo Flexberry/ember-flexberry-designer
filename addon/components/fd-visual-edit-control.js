@@ -111,7 +111,7 @@ export default Ember.Component.extend({
       userString = type;
     }
 
-    return t(userString).toString();
+    return userString;
   },
 
   getAllTypes() {
