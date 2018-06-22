@@ -33,8 +33,6 @@ export default Ember.Mixin.create({
         this.send('workPlaceConfig');
       }
 
-      let _this = this;
-
       Ember.run.next(function() {
         if (!configPanelSidebar.hasClass('visible')) {
           Ember.$('.ui.menu', configPanelSidebar).find('.item').removeClass('active');
