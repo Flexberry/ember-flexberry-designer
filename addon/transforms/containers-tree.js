@@ -67,9 +67,9 @@ export default DS.Transform.extend({
 
           steps.pop();
         } else {
-          let classname = node.className;
-          if (!classname) {
-            classname = node.text;
+          let caption = node.caption;
+          if (!caption) {
+            caption = node.className;
           }
 
           let description = node.description;
@@ -78,10 +78,10 @@ export default DS.Transform.extend({
           }
 
           let xmlItem = '<Item' +
-            ' ClassName="' + classname.replace(/"/g, '\\"') + '"' +
+            ' ClassName="' + node.className.replace(/"/g, '\\"') + '"' +
             ' MenuPath="' + currentPath.replace(/"/g, '\\"') + '"' +
-            ' Caption="' +  node.text.replace(/"/g, '\\"') + '"' +
-            ' Description="' + description + '"' +
+            ' Caption="' +  caption.replace(/"/g, '\\"') + '"' +
+            ' Description="' + description.replace(/"/g, '\\"') + '"' +
             ' />';
           ret += xmlItem;
         }
@@ -117,7 +117,7 @@ export default DS.Transform.extend({
       let item = itemList[i];
       let menuPath = item.getAttribute('MenuPath') || item.getAttribute('menupath');
       if (currentPath !== menuPath) {
-        currentNodes = this._findOrCreateCurrentNodes(rootTree, copyRootTree, menuPath.split('\\'));
+        currentNodes = this._findOrCreateCurrentNodes(rootTree, copyRootTree, menuPath.split('\\'), 0, i);
         currentPath = menuPath;
       }
 
@@ -125,15 +125,19 @@ export default DS.Transform.extend({
       if (className !== this._emptyFolderClassName) {
         currentNodes.nodes.pushObject(FdViewAttributesTree.create({
           text: item.getAttribute('Caption') || item.getAttribute('caption'),
+          caption: item.getAttribute('Caption') || item.getAttribute('caption'),
           type: 'property',
           className: className,
           description: item.getAttribute('Description') || item.getAttribute('description'),
+          id: 'p' + menuPath.split('\\').length + 'l' + currentNodes.nodes.length + 'i' + i
         }));
         currentNodes.copyNodes.pushObject(FdViewAttributesTree.create({
           text: item.getAttribute('Caption') || item.getAttribute('caption'),
+          caption: item.getAttribute('Caption') || item.getAttribute('caption'),
           type: 'property',
           className: className,
           description: item.getAttribute('Description') || item.getAttribute('description'),
+          id: 'p' + menuPath.split('\\').length + 'l' + currentNodes.copyNodes.length + 'i' + i
         }));
       }
     }
@@ -141,7 +145,7 @@ export default DS.Transform.extend({
     return rootTree;
   },
 
-  _findOrCreateCurrentNodes: function (nodes, copyNodes, steps) {
+  _findOrCreateCurrentNodes: function (nodes, copyNodes, steps, index, item) {
     if (steps.length === 0) {
       return {
         nodes: nodes,
@@ -152,7 +156,7 @@ export default DS.Transform.extend({
     let step = steps.shift();
     for (let node of nodes) {
       if (node.text === step) {
-        return this._findOrCreateCurrentNodes(node.children, node.copyChildren, steps);
+        return this._findOrCreateCurrentNodes(node.children, node.copyChildren, steps, index + 1, item);
       }
     }
 
@@ -160,12 +164,13 @@ export default DS.Transform.extend({
       text: step,
       type: 'master',
       children: Ember.A(),
-      copyChildren: Ember.A()
+      copyChildren: Ember.A(),
+      id: 'p' + index + 'l' + nodes.length + 'i' + item
     });
 
     nodes.pushObject(node);
     copyNodes.pushObject(node);
-    return this._findOrCreateCurrentNodes(node.children, node.copyChildren, steps);
+    return this._findOrCreateCurrentNodes(node.children, node.copyChildren, steps, index + 1, item);
   }
 
 });

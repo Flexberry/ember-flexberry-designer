@@ -64,6 +64,116 @@ export default {
         __caption__: 'description'
       }
     },
+    FdPreloadMetadata: {
+      assocType: {
+        __caption__: 'assocType'
+      },
+      autoGenerateTypeUsage: {
+        __caption__: 'autoGenerateTypeUsage'
+      },
+      pBMasterCustomAttributes: {
+        __caption__: 'pBMasterCustomAttributes'
+      },
+      pBMasterGetEnd: {
+        __caption__: 'pBMasterGetEnd'
+      },
+      pBMasterSetEnd: {
+        __caption__: 'pBMasterSetEnd'
+      },
+      pBMasterGetStart: {
+        __caption__: 'pBMasterGetStart'
+      },
+      pBMasterSetStart: {
+        __caption__: 'pBMasterSetStart'
+      },
+      realStorage: {
+        __caption__: 'realStorage'
+      },
+      typeUsage: {
+        __caption__: 'typeUsage'
+      },
+      autoStoreMasterDisabled: {
+        __caption__: 'autoStoreMasterDisabled'
+      },
+      realEndRole: {
+        __caption__: 'realEndRole'
+      },
+      realStartRole: {
+        __caption__: 'realStartRole'
+      },
+      storage: {
+        __caption__: 'storage'
+      },
+      startRolePublishName: {
+        __caption__: 'startRolePublishName'
+      },
+      endRolePublishName: {
+        __caption__: 'endRolePublishName'
+      },
+      endMultiplicity: {
+        __caption__: 'endMultiplicity'
+      },
+      endRole: {
+        __caption__: 'endRole'
+      },
+      endRoleAccessModifier: {
+        __caption__: 'endRoleAccessModifier'
+      },
+      endRoleStored: {
+        __caption__: 'endRoleStored'
+      },
+      endRoleStr: {
+        __caption__: 'endRoleStr'
+      },
+      notNullStart: {
+        __caption__: 'notNullStart'
+      },
+      startMultiplicity: {
+        __caption__: 'startMultiplicity'
+      },
+      startRole: {
+        __caption__: 'startRole'
+      },
+      startRoleAccessModifier: {
+        __caption__: 'startRoleAccessModifier'
+      },
+      startRoleStored: {
+        __caption__: 'startRoleStored'
+      },
+      startRoleStr: {
+        __caption__: 'startRoleStr'
+      },
+      referenceCount: {
+        __caption__: 'referenceCount'
+      },
+      name: {
+        __caption__: 'name'
+      },
+      description: {
+        __caption__: 'description'
+      },
+      nameStr: {
+        __caption__: 'nameStr'
+      },
+      stage: {
+        __caption__: 'stage',
+        name: {
+          __caption__: 'name'
+        }
+      },
+      endClass: {
+        __caption__: 'endClass',
+        name: {
+          __caption__: 'name'
+        }
+      },
+      startClass: {
+        __caption__: 'startClass',
+        name: {
+          __caption__: 'name'
+        }
+      }
+    },
     FormDesigner: {
       name: {
         __caption__: 'name'
