@@ -26,7 +26,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/ember-flexberry-designer"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
         </form>
     </div>
 </div>
@@ -48,6 +48,8 @@
 	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
 	                <div class="tab-pane active" id="classes">
 	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/components.UiTabMenu.html">components.UiTabMenu</a></li>
+	                            <li><a href="../classes/components.UiTabSegment.html">components.UiTabSegment</a></li>
 	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
 	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
 	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
@@ -69,6 +71,7 @@
 	    
 	                <div class="tab-pane" id="modules">
 	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/components.html">components</a></li>
 	                            <li><a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a></li>
 	                    </ul>
 	                </div>
@@ -112,6 +115,7 @@
 import Ember from &#x27;ember&#x27;;
 import FdViewAttributesTree from &#x27;../objects/fd-view-attributes-tree&#x27;;
 import EditFormController from &#x27;ember-flexberry/controllers/edit-form&#x27;;
+import { translationMacro as t } from &#x27;ember-i18n&#x27;;
 
 export default EditFormController.extend({
 
@@ -161,6 +165,8 @@ export default EditFormController.extend({
     @default null
    */
   jsonRightTreeNodes: null,
+
+  allAttrsHidedn: false,
 
   /**
     Included plugins for left jsTree.
@@ -795,6 +801,20 @@ export default EditFormController.extend({
     */
     openGenerationForm() {
       this.transitionToRoute(&#x27;fd-generation-process-form.new&#x27;);
+    },
+
+    closeRightpanel() {
+      Ember.$(&#x27;.closable.panel-left&#x27;).toggle(500);
+
+      if (this.allAttrsHidedn) {
+        this.set(&#x27;popupMessage&#x27;, t(&#x27;forms.fd-appstruct-form.close-panel-btn-caption&#x27;));
+        Ember.$(&#x27;.panel-wrapper .panel-right&#x27;).css(&#x27;width&#x27;, &#x27;50%&#x27;);
+      } else {
+        this.set(&#x27;popupMessage&#x27;, t(&#x27;forms.fd-appstruct-form.show-panel-btn-caption&#x27;));
+        Ember.$(&#x27;.panel-wrapper .panel-right&#x27;).css(&#x27;width&#x27;, &#x27;100%&#x27;);
+      }
+
+      this.toggleProperty(&#x27;allAttrsHidedn&#x27;);
     }
   }
 });

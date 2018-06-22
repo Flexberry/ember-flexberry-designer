@@ -26,7 +26,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/ember-flexberry-designer"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
         </form>
     </div>
 </div>
@@ -48,6 +48,8 @@
 	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
 	                <div class="tab-pane active" id="classes">
 	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/components.UiTabMenu.html">components.UiTabMenu</a></li>
+	                            <li><a href="../classes/components.UiTabSegment.html">components.UiTabSegment</a></li>
 	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
 	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
 	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
@@ -69,6 +71,7 @@
 	    
 	                <div class="tab-pane" id="modules">
 	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/components.html">components</a></li>
 	                            <li><a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a></li>
 	                    </ul>
 	                </div>
@@ -221,33 +224,6 @@ export default Ember.Route.extend({
         resolve(modelHash);
       });
     });
-  },
-
-  activate() {
-    let sidebar = Ember.$(&#x27;.ui.sidebar.main.menu&#x27;);
-    let configPanelTabsWidth = this.controllerFor(this.routeName).get(&#x27;configPanelTabsWidth&#x27;);
-    if (!sidebar.hasClass(&#x27;visible&#x27;)) {
-      Ember.$(&#x27;.pusher&#x27;).css({ width: &#x27;calc(100% - &#x27; + configPanelTabsWidth + &#x27;px)&#x27; });
-    } else {
-      let workPanel = sidebar.width() + configPanelTabsWidth;
-      Ember.$(&#x27;.pusher&#x27;).css({ width: &#x27;calc(100% - &#x27; + workPanel + &#x27;px)&#x27; });
-    }
-
-    Ember.run.schedule(&#x27;afterRender&#x27;, function() {
-      let configPanelSidebar = Ember.$(&#x27;.ui.sidebar.config-panel&#x27;);
-      Ember.$(&#x27;.menu .item&#x27;, configPanelSidebar).tab();
-    });
-
-  },
-
-  deactivate() {
-    let sidebar = Ember.$(&#x27;.ui.sidebar.main.menu&#x27;);
-
-    if (!sidebar.hasClass(&#x27;visible&#x27;)) {
-      Ember.$(&#x27;.pusher&#x27;).css({ width: &#x27;100%&#x27; });
-    } else {
-      Ember.$(&#x27;.pusher&#x27;).css({ width: &#x27;calc(100% - &#x27; + sidebar.width() + &#x27;px)&#x27; });
-    }
   },
 
   /**

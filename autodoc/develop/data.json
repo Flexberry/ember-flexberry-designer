@@ -6,9 +6,7 @@
     "files": {
         "addon/components/fd-editform-control.js": {
             "name": "addon/components/fd-editform-control.js",
-            "modules": {
-                "ember-flexberry-designer": 1
-            },
+            "modules": {},
             "classes": {
                 "FdEditformControlComponent": 1
             },
@@ -24,12 +22,43 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/components/fd-tabs.js": {
+            "name": "addon/components/fd-tabs.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/components/fd-visual-edit-form.js": {
             "name": "addon/components/fd-visual-edit-form.js",
             "modules": {},
             "classes": {},
             "fors": {},
             "namespaces": {}
+        },
+        "addon/components/ui-tab-menu.js": {
+            "name": "addon/components/ui-tab-menu.js",
+            "modules": {
+                "components": 1
+            },
+            "classes": {
+                "components.UiTabMenu": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "components": 1
+            }
+        },
+        "addon/components/ui-tab-segment.js": {
+            "name": "addon/components/ui-tab-segment.js",
+            "modules": {},
+            "classes": {
+                "components.UiTabSegment": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "components": 1
+            }
         },
         "addon/controllers/fd-appstruct-form.js": {
             "name": "addon/controllers/fd-appstruct-form.js",
@@ -306,7 +335,9 @@
         },
         "addon/mixins/fd-draggable-control.js": {
             "name": "addon/mixins/fd-draggable-control.js",
-            "modules": {},
+            "modules": {
+                "ember-flexberry-designer": 1
+            },
             "classes": {
                 "FdDraggableControlMixin": 1
             },
@@ -1040,6 +1071,24 @@
             "tag": "module",
             "file": "addon/services/fd-current-project-context.js",
             "line": 17
+        },
+        "components": {
+            "name": "components",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "components.UiTabMenu": 1,
+                "components.UiTabSegment": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "components": 1
+            },
+            "tag": "module",
+            "file": "addon/components/ui-tab-segment.js",
+            "line": 5,
+            "description": "ui-tab-menu component",
+            "is_constructor": 1
         }
     },
     "classes": {
@@ -1078,6 +1127,34 @@
             "uses": [
                 "FdDraggableControlMixin"
             ]
+        },
+        "components.UiTabMenu": {
+            "name": "components.UiTabMenu",
+            "shortname": "components.UiTabMenu",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "components",
+            "namespace": "components",
+            "file": "addon/components/ui-tab-menu.js",
+            "line": 4,
+            "description": "ui-tab-menu component"
+        },
+        "components.UiTabSegment": {
+            "name": "components.UiTabSegment",
+            "shortname": "components.UiTabSegment",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "components",
+            "namespace": "components",
+            "file": "addon/components/ui-tab-segment.js",
+            "line": 5,
+            "description": "ui-tab-segment component"
         },
         "FdDraggableControlMixin": {
             "name": "FdDraggableControlMixin",
@@ -1482,12 +1559,67 @@
             "module": "ember-flexberry-designer"
         },
         {
+            "file": "addon/components/fd-tabs.js",
+            "line": 10,
+            "description": "Array of registered child components",
+            "itemtype": "property",
+            "name": "children",
+            "type": "array",
+            "access": "protected",
+            "tagname": "",
+            "class": "components.UiTabMenu",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-tabs.js",
+            "line": 24,
+            "description": "Register a component as a child of this parent",
+            "itemtype": "method",
+            "name": "registerChild",
+            "params": [
+                {
+                    "name": "child",
+                    "description": ""
+                }
+            ],
+            "access": "public",
+            "tagname": "",
+            "class": "components.UiTabMenu",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-tabs.js",
+            "line": 37,
+            "description": "All child components",
+            "itemtype": "property",
+            "name": "childPanes",
+            "type": "array",
+            "readonly": "",
+            "access": "private",
+            "tagname": "",
+            "class": "components.UiTabMenu",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-tabs.js",
+            "line": 49,
+            "description": "Array of objects that define the tab structure",
+            "itemtype": "property",
+            "name": "tabs",
+            "type": "array",
+            "readonly": "",
+            "access": "private",
+            "tagname": "",
+            "class": "components.UiTabMenu",
+            "module": "ember-flexberry-designer"
+        },
+        {
             "file": "addon/components/fd-visual-edit-form.js",
             "line": 5,
             "itemtype": "property",
             "name": "store",
             "type": "Service",
-            "class": "FdDraggableControlMixin",
+            "class": "components.UiTabMenu",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1498,7 +1630,7 @@
             "name": "createNewButton",
             "type": "Boolean",
             "default": "true",
-            "class": "FdDraggableControlMixin",
+            "class": "components.UiTabMenu",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1509,7 +1641,7 @@
             "name": "model",
             "type": "Object",
             "default": "undefined",
-            "class": "FdDraggableControlMixin",
+            "class": "components.UiTabMenu",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1520,7 +1652,7 @@
             "name": "deleteButton",
             "type": "Boolean",
             "default": "true",
-            "class": "FdDraggableControlMixin",
+            "class": "components.UiTabMenu",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1531,7 +1663,7 @@
             "name": "control",
             "type": "Object",
             "default": "undefined",
-            "class": "FdDraggableControlMixin",
+            "class": "components.UiTabMenu",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1542,7 +1674,7 @@
             "name": "selectedControl",
             "type": "Object",
             "default": "undefined",
-            "class": "FdDraggableControlMixin",
+            "class": "components.UiTabMenu",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1553,7 +1685,7 @@
             "name": "selectedControl",
             "type": "Object",
             "default": "null",
-            "class": "FdDraggableControlMixin",
+            "class": "components.UiTabMenu",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1564,7 +1696,7 @@
             "name": "controls",
             "type": "DS.ManyArray",
             "default": "undefined",
-            "class": "FdDraggableControlMixin",
+            "class": "components.UiTabMenu",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1575,7 +1707,7 @@
             "name": "addControl",
             "access": "public",
             "tagname": "",
-            "class": "FdDraggableControlMixin",
+            "class": "components.UiTabMenu",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1586,7 +1718,7 @@
             "name": "deleteControl",
             "access": "public",
             "tagname": "",
-            "class": "FdDraggableControlMixin",
+            "class": "components.UiTabMenu",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1597,7 +1729,7 @@
             "name": "controlClick",
             "access": "public",
             "tagname": "",
-            "class": "FdDraggableControlMixin",
+            "class": "components.UiTabMenu",
             "module": "ember-flexberry-designer"
         },
         {
@@ -1608,308 +1740,397 @@
             "name": "_clearSelection",
             "access": "private",
             "tagname": "",
-            "class": "FdDraggableControlMixin",
+            "class": "components.UiTabMenu",
             "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/components/fd-visual-edit-form.js",
             "line": 145,
             "description": "Initializes component.",
-            "class": "FdDraggableControlMixin",
+            "class": "components.UiTabMenu",
             "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/components/fd-visual-edit-form.js",
             "line": 155,
             "description": "Initializes DOM-related component's properties.",
-            "class": "FdDraggableControlMixin",
+            "class": "components.UiTabMenu",
             "module": "ember-flexberry-designer"
         },
         {
+            "file": "addon/components/ui-tab-menu.js",
+            "line": 30,
+            "description": "the active tab name",
+            "itemtype": "property",
+            "name": "active",
+            "type": "String",
+            "class": "components.UiTabMenu",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/components/ui-tab-segment.js",
+            "line": 22,
+            "description": "tab name",
+            "itemtype": "property",
+            "name": "tab",
+            "type": "String",
+            "class": "components.UiTabSegment",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/components/ui-tab-segment.js",
+            "line": 30,
+            "description": "The parent component",
+            "itemtype": "property",
+            "name": "_parent",
+            "access": "private",
+            "tagname": "",
+            "class": "components.UiTabSegment",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/components/ui-tab-segment.js",
+            "line": 40,
+            "description": "flag to check if component has already been registered",
+            "itemtype": "property",
+            "name": "_didRegister",
+            "type": "boolean",
+            "access": "private",
+            "tagname": "",
+            "class": "components.UiTabSegment",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/components/ui-tab-segment.js",
+            "line": 48,
+            "description": "Register ourself as a child at the parent component\nWe use the `willRender` event here to also support the fastboot environment, where there is no `didInsertElement`",
+            "itemtype": "method",
+            "name": "_registerWithParent",
+            "access": "private",
+            "tagname": "",
+            "class": "components.UiTabSegment",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 27,
+            "line": 28,
             "description": "Service that triggers objectlistview events.",
             "itemtype": "property",
             "name": "objectlistviewEventsService",
             "type": "{Class}",
             "default": "Ember.inject.service()",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 36,
+            "line": 37,
             "description": "Data left jsTree.",
             "itemtype": "property",
             "name": "jsonLeftTreeNodes",
             "type": "Array",
             "default": "null",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 45,
+            "line": 46,
             "description": "Data right jsTree.",
             "itemtype": "property",
             "name": "jsonRightTreeNodes",
             "type": "Array",
             "default": "null",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 54,
+            "line": 57,
             "description": "Included plugins for left jsTree.",
             "itemtype": "property",
             "name": "pluginsLeft",
             "type": "String",
             "default": "'wholerow, types, sort'",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 63,
+            "line": 66,
             "description": "Included plugins for right jsTree.",
             "itemtype": "property",
             "name": "pluginsRight",
             "type": "String",
             "default": "'wholerow, types'",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 72,
+            "line": 75,
             "description": "Selected nodes in left jsTree.",
             "itemtype": "property",
             "name": "jstreeSelectedNodesLeft",
             "type": "Array",
             "default": "[]",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 81,
+            "line": 84,
             "description": "Selected nodes in right jsTree.",
             "itemtype": "property",
             "name": "jstreeSelectedNodesRight",
             "type": "Array",
             "default": "[]",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 90,
+            "line": 93,
             "description": "Type settings for jsTree.",
             "itemtype": "property",
             "name": "typesOptions",
             "type": "Object",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 210,
+            "line": 213,
             "description": "Handles changes in jstreeSelectedNodesLeft.",
             "itemtype": "method",
             "name": "jstreeSelectedNodesLeftObserver",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 234,
+            "line": 237,
             "description": "Handles changes in jstreeSelectedNodesRight.",
             "itemtype": "method",
             "name": "jstreeSelectedNodesRightObserver",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 265,
+            "line": 268,
             "description": "Handles changes in jstreeSelectedNodesRight and jstreeSelectedNodesLeft.",
             "itemtype": "method",
             "name": "_jstreeSelectedNodesObserver",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 287,
+            "line": 290,
             "description": "Index selected attribute in right tree.",
             "itemtype": "property",
             "name": "indexSelectedRight",
             "type": "Number",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 326,
+            "line": 329,
             "description": "Method for update type right tree.",
             "itemtype": "method",
             "name": "_updateTypeRightTree",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 344,
+            "line": 347,
             "description": "Method for restoring tree nodes.",
             "itemtype": "method",
             "name": "_restorationNodeTree",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 358,
+            "line": 361,
             "description": "Method for update data in tree.",
             "itemtype": "method",
             "name": "_updateTreeData",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 372,
+            "line": 375,
             "description": "Handles move node from left in right jsTree.",
             "itemtype": "method",
             "name": "actions.moveRightHighlighted",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 409,
+            "line": 412,
             "description": "Handles remove node from left jsTree.",
             "itemtype": "method",
             "name": "actions.removeLeftNode",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 425,
+            "line": 428,
             "description": "Handles create new class left jsTree.",
             "itemtype": "method",
             "name": "actions.addLeftClass",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 434,
+            "line": 437,
             "description": "Handles add edit form for class in left jsTree.",
             "itemtype": "method",
             "name": "actions.addLeftListForm",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 456,
+            "line": 459,
             "description": "Handles add list form for class in left jsTree.",
             "itemtype": "method",
             "name": "actions.addLeftListForm",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 478,
+            "line": 481,
             "description": "Handles edit node left jsTree.",
             "itemtype": "method",
             "name": "actions.editLeftNode",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 511,
+            "line": 514,
             "description": "Handles open class list form.",
             "itemtype": "method",
             "name": "actions.listLeft",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 520,
+            "line": 523,
             "description": "Handles edit node left jsTree.",
             "itemtype": "method",
             "name": "actions.editRightNode",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 529,
+            "line": 532,
             "description": "Handles remove node from right jsTree.",
             "itemtype": "method",
             "name": "actions.removeRightNode",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 550,
+            "line": 553,
             "description": "Handles add node in right jsTree.",
             "itemtype": "method",
             "name": "actions.addFolderNode",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 594,
+            "line": 597,
             "description": "Handles up move tree node.",
             "itemtype": "method",
             "name": "actions.upRightNode",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 619,
+            "line": 622,
             "description": "Handles down move tree node.",
             "itemtype": "method",
             "name": "actions.downRightNode",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 644,
+            "line": 647,
             "description": "Handles save in right tree.",
             "itemtype": "method",
             "name": "actions.saveTree",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 671,
+            "line": 674,
             "description": "Handles open process editor form.",
             "itemtype": "method",
             "name": "actions.openProcessEditorForm",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 680,
+            "line": 683,
             "description": "Handles open generation form.",
             "itemtype": "method",
             "name": "actions.openGenerationForm",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-association-list-form.js",
@@ -1920,7 +2141,8 @@
             "type": "String",
             "default": "'fd-association-edit-form'",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-class-edit-form.js",
@@ -1930,7 +2152,8 @@
             "name": "lookupStereotypeLimitPredicate",
             "type": "SimplePredicate",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-class-edit-form.js",
@@ -1939,7 +2162,8 @@
             "itemtype": "method",
             "name": "actions.save",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-class-edit-form.js",
@@ -1955,7 +2179,8 @@
                 }
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-class-edit-form.js",
@@ -1964,7 +2189,8 @@
             "itemtype": "method",
             "name": "_setDefaultBusinessServerEvents",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-class-list-form.js",
@@ -1975,7 +2201,8 @@
             "type": "String",
             "default": "'fd-class-edit-form'",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-configuration-list-form.js",
@@ -1986,7 +2213,8 @@
             "type": "String",
             "default": "'fd-configuration-edit-form'",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-diagram-list-form.js",
@@ -1997,11 +2225,12 @@
             "type": "String",
             "default": "'fd-diagram-edit-form'",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 13,
+            "line": 12,
             "description": "The current dragged item.",
             "access": "private",
             "tagname": "",
@@ -2009,11 +2238,12 @@
             "name": "_draggedItem",
             "type": "FdEditformRow|FdEditformControl",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 22,
+            "line": 21,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -2021,11 +2251,12 @@
             "readonly": "",
             "type": "Boolean",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 32,
+            "line": 31,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -2033,11 +2264,12 @@
             "readonly": "",
             "type": "Boolean",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 42,
+            "line": 41,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -2045,21 +2277,23 @@
             "readonly": "",
             "type": "Boolean",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 52,
+            "line": 51,
             "description": "The selected control.",
             "itemtype": "property",
             "name": "selectedControl",
             "type": "FdEditformControl|FdEditformGroup|FdEditformTab",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 61,
+            "line": 60,
             "description": "Adds the control to a new row.",
             "itemtype": "method",
             "name": "actions.addControl",
@@ -2071,11 +2305,12 @@
                 }
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 108,
+            "line": 107,
             "description": "Set the selected control.",
             "itemtype": "method",
             "name": "actions.selectControl",
@@ -2087,11 +2322,12 @@
                 }
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 118,
+            "line": 117,
             "description": "Set the current dragged item.",
             "itemtype": "method",
             "name": "actions.setDragItem",
@@ -2103,11 +2339,12 @@
                 }
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 128,
+            "line": 127,
             "description": "Get the current dragged item.",
             "itemtype": "method",
             "name": "actions.getDragItem",
@@ -2116,11 +2353,12 @@
                 "type": "FdEditformRow|FdEditformControl"
             },
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 138,
+            "line": 137,
             "description": "Move the current dragged item above or below relative to the passed item.",
             "itemtype": "method",
             "name": "actions.moveDragItem",
@@ -2137,11 +2375,12 @@
                 }
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 170,
+            "line": 169,
             "description": "Looks for a container that contains the item.",
             "params": [
                 {
@@ -2160,11 +2399,12 @@
                 "type": "Ember.Array"
             },
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 185,
+            "line": 184,
             "description": "Looks for a container that contains the row.",
             "itemtype": "method",
             "name": "_findRowContainer",
@@ -2185,11 +2425,12 @@
                 "type": "Ember.Array"
             },
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 233,
+            "line": 232,
             "description": "Looks for a container that contains the control.",
             "itemtype": "method",
             "name": "_findControlContainer",
@@ -2210,7 +2451,8 @@
                 "type": "Ember.Array"
             },
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-generation-list-form.js",
@@ -2221,7 +2463,8 @@
             "type": "String",
             "default": "'fd-generation-process-form'",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-generation-list-form.js",
@@ -2231,7 +2474,8 @@
             "name": "customButtons",
             "type": "Array",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-generation-list-form.js",
@@ -2240,7 +2484,8 @@
             "itemtype": "method",
             "name": "actions.generationStartButtonClick",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-generation-list-form.js",
@@ -2270,7 +2515,8 @@
                 "type": "Object"
             },
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-generation-process-form.js",
@@ -2281,7 +2527,8 @@
             "type": "DS.Store",
             "readonly": "",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-generation-process-form.js",
@@ -2292,7 +2539,8 @@
             "type": "Array",
             "readonly": "",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-generation-process-form.js",
@@ -2302,7 +2550,8 @@
             "name": "currentGeneration",
             "type": "Object",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-generation-process-form.js",
@@ -2312,7 +2561,8 @@
             "name": "sortedGenerationLog",
             "type": "Array",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-generation-process-form.js",
@@ -2321,7 +2571,8 @@
             "itemtype": "method",
             "name": "actions.generate",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-generation-process-form.js",
@@ -2337,7 +2588,8 @@
                 }
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-inheritance-list-form.js",
@@ -2348,7 +2600,8 @@
             "type": "String",
             "default": "'fd-inheritance-edit-form'",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-stage-list-form.js",
@@ -2359,7 +2612,8 @@
             "type": "String",
             "default": "'fd-stage-edit-form'",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-system-list-form.js",
@@ -2370,7 +2624,8 @@
             "type": "String",
             "default": "'fd-system-edit-form'",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
@@ -2381,7 +2636,8 @@
             "type": "{Class}",
             "default": "Ember.inject.service()",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
@@ -2392,7 +2648,8 @@
             "type": "Number",
             "default": "null",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
@@ -2403,7 +2660,8 @@
             "type": "Array",
             "default": "[]",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
@@ -2414,7 +2672,8 @@
             "type": "Array",
             "default": "['default', 'standard', 'combo', 'custom']",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
@@ -2425,7 +2684,8 @@
             "type": "String",
             "default": "'wholerow, types'",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
@@ -2436,7 +2696,8 @@
             "type": "Array",
             "default": "[]",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
@@ -2446,7 +2707,8 @@
             "name": "typesOptions",
             "type": "Object",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
@@ -2456,7 +2718,8 @@
             "name": "propertyType",
             "type": "Object",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
@@ -2466,7 +2729,8 @@
             "name": "rowModel",
             "type": "Object",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
@@ -2475,7 +2739,8 @@
             "itemtype": "method",
             "name": "actions.onCreateCaptionClick",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
@@ -2484,7 +2749,8 @@
             "itemtype": "method",
             "name": "actions.onAttributesClick",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
@@ -2493,7 +2759,8 @@
             "itemtype": "method",
             "name": "actions.handleTreeDidBecomeReady",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
@@ -2502,7 +2769,8 @@
             "itemtype": "method",
             "name": "actions.moveRightHighlighted",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
@@ -2511,7 +2779,8 @@
             "itemtype": "method",
             "name": "actions.moveLeftHighlighted",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
@@ -2520,7 +2789,8 @@
             "itemtype": "method",
             "name": "actions.moveUpHighlighted",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
@@ -2529,7 +2799,8 @@
             "itemtype": "method",
             "name": "actions.moveDownHighlighted",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
@@ -2538,7 +2809,8 @@
             "itemtype": "method",
             "name": "actions.saveView",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
@@ -2547,7 +2819,8 @@
             "itemtype": "method",
             "name": "_openNodeTree",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
@@ -2556,7 +2829,8 @@
             "itemtype": "method",
             "name": "_afterCloseNodeTree",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
@@ -2565,7 +2839,8 @@
             "itemtype": "method",
             "name": "_restorationNodeTree",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-view-edit-form.js",
@@ -2574,7 +2849,8 @@
             "itemtype": "method",
             "name": "_getChildrenNode",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-view-list-form.js",
@@ -2585,7 +2861,8 @@
             "type": "String",
             "default": "'fd-view-edit-form'",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-base-association.js",
@@ -2594,7 +2871,8 @@
             "itemtype": "property",
             "name": "endRoleStr",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-base-association.js",
@@ -2608,7 +2886,8 @@
                 "\n  ```javascript\n  _endRoleStrChanged: Ember.on('init', Ember.observer('endRoleStr', function() {\n    Ember.run.once(this, '_endRoleStrCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-base-association.js",
@@ -2617,7 +2896,8 @@
             "itemtype": "property",
             "name": "notNullStart",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-base-association.js",
@@ -2631,7 +2911,8 @@
                 "\n  ```javascript\n  _notNullStartChanged: Ember.on('init', Ember.observer('notNullStart', function() {\n    Ember.run.once(this, '_notNullStartCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-base-association.js",
@@ -2640,7 +2921,8 @@
             "itemtype": "property",
             "name": "startRoleStr",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-base-association.js",
@@ -2654,7 +2936,8 @@
                 "\n  ```javascript\n  _startRoleStrChanged: Ember.on('init', Ember.observer('startRoleStr', function() {\n    Ember.run.once(this, '_startRoleStrCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-case-property.js",
@@ -2663,7 +2946,8 @@
             "itemtype": "property",
             "name": "name",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-case-property.js",
@@ -2677,7 +2961,8 @@
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-class.js",
@@ -2686,7 +2971,8 @@
             "itemtype": "property",
             "name": "nameStr",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-class.js",
@@ -2700,7 +2986,8 @@
                 "\n  ```javascript\n  _nameStrChanged: Ember.on('init', Ember.observer('nameStr', function() {\n    Ember.run.once(this, '_nameStrCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-aggregation.js",
@@ -2709,7 +2996,8 @@
             "itemtype": "property",
             "name": "assocType",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-aggregation.js",
@@ -2723,7 +3011,8 @@
                 "\n  ```javascript\n  _assocTypeChanged: Ember.on('init', Ember.observer('assocType', function() {\n    Ember.run.once(this, '_assocTypeCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-aggregation.js",
@@ -2732,7 +3021,8 @@
             "itemtype": "property",
             "name": "realStorage",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-aggregation.js",
@@ -2746,7 +3036,8 @@
                 "\n  ```javascript\n  _realStorageChanged: Ember.on('init', Ember.observer('realStorage', function() {\n    Ember.run.once(this, '_realStorageCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-association.js",
@@ -2755,7 +3046,8 @@
             "itemtype": "property",
             "name": "assocType",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-association.js",
@@ -2769,7 +3061,8 @@
                 "\n  ```javascript\n  _assocTypeChanged: Ember.on('init', Ember.observer('assocType', function() {\n    Ember.run.once(this, '_assocTypeCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-association.js",
@@ -2778,7 +3071,8 @@
             "itemtype": "property",
             "name": "realStorage",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-association.js",
@@ -2792,7 +3086,8 @@
                 "\n  ```javascript\n  _realStorageChanged: Ember.on('init', Ember.observer('realStorage', function() {\n    Ember.run.once(this, '_realStorageCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
@@ -2801,7 +3096,8 @@
             "itemtype": "property",
             "name": "dataServiceExpressionXML",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
@@ -2815,7 +3111,8 @@
                 "\n  ```javascript\n  _dataServiceExpressionXMLChanged: Ember.on('init', Ember.observer('dataServiceExpressionXML', function() {\n    Ember.run.once(this, '_dataServiceExpressionXMLCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
@@ -2824,7 +3121,8 @@
             "itemtype": "property",
             "name": "realCaption",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
@@ -2838,7 +3136,8 @@
                 "\n  ```javascript\n  _realCaptionChanged: Ember.on('init', Ember.observer('realCaption', function() {\n    Ember.run.once(this, '_realCaptionCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
@@ -2847,7 +3146,8 @@
             "itemtype": "property",
             "name": "realStorage",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-attribute.js",
@@ -2861,7 +3161,8 @@
                 "\n  ```javascript\n  _realStorageChanged: Ember.on('init', Ember.observer('realStorage', function() {\n    Ember.run.once(this, '_realStorageCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
@@ -2870,7 +3171,8 @@
             "itemtype": "property",
             "name": "assocType",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
@@ -2884,7 +3186,8 @@
                 "\n  ```javascript\n  _assocTypeChanged: Ember.on('init', Ember.observer('assocType', function() {\n    Ember.run.once(this, '_assocTypeCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
@@ -2893,7 +3196,8 @@
             "itemtype": "property",
             "name": "realEndRole",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
@@ -2907,7 +3211,8 @@
                 "\n  ```javascript\n  _realEndRoleChanged: Ember.on('init', Ember.observer('realEndRole', function() {\n    Ember.run.once(this, '_realEndRoleCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
@@ -2916,7 +3221,8 @@
             "itemtype": "property",
             "name": "realStartRole",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-base-association.js",
@@ -2930,7 +3236,8 @@
                 "\n  ```javascript\n  _realStartRoleChanged: Ember.on('init', Ember.observer('realStartRole', function() {\n    Ember.run.once(this, '_realStartRoleCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -2939,7 +3246,8 @@
             "itemtype": "property",
             "name": "appConfigFile",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -2953,7 +3261,8 @@
                 "\n  ```javascript\n  _appConfigFileChanged: Ember.on('init', Ember.observer('appConfigFile', function() {\n    Ember.run.once(this, '_appConfigFileCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -2962,7 +3271,8 @@
             "itemtype": "property",
             "name": "bSClass",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -2976,7 +3286,8 @@
                 "\n  ```javascript\n  _bSClassChanged: Ember.on('init', Ember.observer('bSClass', function() {\n    Ember.run.once(this, '_bSClassCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -2985,7 +3296,8 @@
             "itemtype": "property",
             "name": "bSEvents",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -2999,7 +3311,8 @@
                 "\n  ```javascript\n  _bSEventsChanged: Ember.on('init', Ember.observer('bSEvents', function() {\n    Ember.run.once(this, '_bSEventsCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3008,7 +3321,8 @@
             "itemtype": "property",
             "name": "comPlusServerOptions",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3022,7 +3336,8 @@
                 "\n  ```javascript\n  _comPlusServerOptionsChanged: Ember.on('init', Ember.observer('comPlusServerOptions', function() {\n    Ember.run.once(this, '_comPlusServerOptionsCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3031,7 +3346,8 @@
             "itemtype": "property",
             "name": "containers",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3045,7 +3361,8 @@
                 "\n  ```javascript\n  _containersChanged: Ember.on('init', Ember.observer('containers', function() {\n    Ember.run.once(this, '_containersCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3054,7 +3371,8 @@
             "itemtype": "property",
             "name": "dataObjectTypes",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3068,7 +3386,8 @@
                 "\n  ```javascript\n  _dataObjectTypesChanged: Ember.on('init', Ember.observer('dataObjectTypes', function() {\n    Ember.run.once(this, '_dataObjectTypesCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3077,7 +3396,8 @@
             "itemtype": "property",
             "name": "editFormOperations",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3091,7 +3411,8 @@
                 "\n  ```javascript\n  _editFormOperationsChanged: Ember.on('init', Ember.observer('editFormOperations', function() {\n    Ember.run.once(this, '_editFormOperationsCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3100,7 +3421,8 @@
             "itemtype": "property",
             "name": "listFormOperations",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3114,7 +3436,8 @@
                 "\n  ```javascript\n  _listFormOperationsChanged: Ember.on('init', Ember.observer('listFormOperations', function() {\n    Ember.run.once(this, '_listFormOperationsCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3123,7 +3446,8 @@
             "itemtype": "property",
             "name": "loadingOrderXML",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3137,7 +3461,8 @@
                 "\n  ```javascript\n  _loadingOrderXMLChanged: Ember.on('init', Ember.observer('loadingOrderXML', function() {\n    Ember.run.once(this, '_loadingOrderXMLCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3146,7 +3471,8 @@
             "itemtype": "property",
             "name": "propertyLookup",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3160,7 +3486,8 @@
                 "\n  ```javascript\n  _propertyLookupChanged: Ember.on('init', Ember.observer('propertyLookup', function() {\n    Ember.run.once(this, '_propertyLookupCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3169,7 +3496,8 @@
             "itemtype": "property",
             "name": "realCaption",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3183,7 +3511,8 @@
                 "\n  ```javascript\n  _realCaptionChanged: Ember.on('init', Ember.observer('realCaption', function() {\n    Ember.run.once(this, '_realCaptionCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3192,7 +3521,8 @@
             "itemtype": "property",
             "name": "realNamespace",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3206,7 +3536,8 @@
                 "\n  ```javascript\n  _realNamespaceChanged: Ember.on('init', Ember.observer('realNamespace', function() {\n    Ember.run.once(this, '_realNamespaceCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3215,7 +3546,8 @@
             "itemtype": "property",
             "name": "realPacket",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3229,7 +3561,8 @@
                 "\n  ```javascript\n  _realPacketChanged: Ember.on('init', Ember.observer('realPacket', function() {\n    Ember.run.once(this, '_realPacketCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3238,7 +3571,8 @@
             "itemtype": "property",
             "name": "realPrimaryKeyStorage",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3252,7 +3586,8 @@
                 "\n  ```javascript\n  _realPrimaryKeyStorageChanged: Ember.on('init', Ember.observer('realPrimaryKeyStorage', function() {\n    Ember.run.once(this, '_realPrimaryKeyStorageCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3261,7 +3596,8 @@
             "itemtype": "property",
             "name": "realStorage",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3275,7 +3611,8 @@
                 "\n  ```javascript\n  _realStorageChanged: Ember.on('init', Ember.observer('realStorage', function() {\n    Ember.run.once(this, '_realStorageCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3284,7 +3621,8 @@
             "itemtype": "property",
             "name": "storeInstancesInTypeXML",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3298,7 +3636,8 @@
                 "\n  ```javascript\n  _storeInstancesInTypeXMLChanged: Ember.on('init', Ember.observer('storeInstancesInTypeXML', function() {\n    Ember.run.once(this, '_storeInstancesInTypeXMLCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3307,7 +3646,8 @@
             "itemtype": "property",
             "name": "useCache",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-class.js",
@@ -3321,7 +3661,8 @@
                 "\n  ```javascript\n  _useCacheChanged: Ember.on('init', Ember.observer('useCache', function() {\n    Ember.run.once(this, '_useCacheCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -3330,7 +3671,8 @@
             "itemtype": "property",
             "name": "dataObjectTypes",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -3344,7 +3686,8 @@
                 "\n  ```javascript\n  _dataObjectTypesChanged: Ember.on('init', Ember.observer('dataObjectTypes', function() {\n    Ember.run.once(this, '_dataObjectTypesCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -3353,7 +3696,8 @@
             "itemtype": "property",
             "name": "listFormOperations",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -3367,7 +3711,8 @@
                 "\n  ```javascript\n  _listFormOperationsChanged: Ember.on('init', Ember.observer('listFormOperations', function() {\n    Ember.run.once(this, '_listFormOperationsCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -3376,7 +3721,8 @@
             "itemtype": "property",
             "name": "propertyLookup",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -3390,7 +3736,8 @@
                 "\n  ```javascript\n  _propertyLookupChanged: Ember.on('init', Ember.observer('propertyLookup', function() {\n    Ember.run.once(this, '_propertyLookupCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -3399,7 +3746,8 @@
             "itemtype": "property",
             "name": "viewForForm",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-form-view.js",
@@ -3413,7 +3761,8 @@
                 "\n  ```javascript\n  _viewForFormChanged: Ember.on('init', Ember.observer('viewForForm', function() {\n    Ember.run.once(this, '_viewForFormCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-method.js",
@@ -3422,7 +3771,8 @@
             "itemtype": "property",
             "name": "parametersStr",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-method.js",
@@ -3436,7 +3786,8 @@
                 "\n  ```javascript\n  _parametersStrChanged: Ember.on('init', Ember.observer('parametersStr', function() {\n    Ember.run.once(this, '_parametersStrCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-method.js",
@@ -3445,7 +3796,8 @@
             "itemtype": "property",
             "name": "realCaption",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-method.js",
@@ -3459,7 +3811,8 @@
                 "\n  ```javascript\n  _realCaptionChanged: Ember.on('init', Ember.observer('realCaption', function() {\n    Ember.run.once(this, '_realCaptionCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-method.js",
@@ -3468,7 +3821,8 @@
             "itemtype": "property",
             "name": "typeParametersStr",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-method.js",
@@ -3482,7 +3836,8 @@
                 "\n  ```javascript\n  _typeParametersStrChanged: Ember.on('init', Ember.observer('typeParametersStr', function() {\n    Ember.run.once(this, '_typeParametersStrCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-parameter.js",
@@ -3491,7 +3846,8 @@
             "itemtype": "property",
             "name": "realCaption",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-parameter.js",
@@ -3505,7 +3861,8 @@
                 "\n  ```javascript\n  _realCaptionChanged: Ember.on('init', Ember.observer('realCaption', function() {\n    Ember.run.once(this, '_realCaptionCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3514,7 +3871,8 @@
             "itemtype": "property",
             "name": "additionalPluginsSettings",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3528,7 +3886,8 @@
                 "\n  ```javascript\n  _additionalPluginsSettingsChanged: Ember.on('init', Ember.observer('additionalPluginsSettings', function() {\n    Ember.run.once(this, '_additionalPluginsSettingsCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3537,7 +3896,8 @@
             "itemtype": "property",
             "name": "chosenPalette",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3551,7 +3911,8 @@
                 "\n  ```javascript\n  _chosenPaletteChanged: Ember.on('init', Ember.observer('chosenPalette', function() {\n    Ember.run.once(this, '_chosenPaletteCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3560,7 +3921,8 @@
             "itemtype": "property",
             "name": "defaultAccessType",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3574,7 +3936,8 @@
                 "\n  ```javascript\n  _defaultAccessTypeChanged: Ember.on('init', Ember.observer('defaultAccessType', function() {\n    Ember.run.once(this, '_defaultAccessTypeCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3583,7 +3946,8 @@
             "itemtype": "property",
             "name": "defaultTypeMapTypes",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3597,7 +3961,8 @@
                 "\n  ```javascript\n  _defaultTypeMapTypesChanged: Ember.on('init', Ember.observer('defaultTypeMapTypes', function() {\n    Ember.run.once(this, '_defaultTypeMapTypesCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3606,7 +3971,8 @@
             "itemtype": "property",
             "name": "doNotDeleteExtraTables",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3620,7 +3986,8 @@
                 "\n  ```javascript\n  _doNotDeleteExtraTablesChanged: Ember.on('init', Ember.observer('doNotDeleteExtraTables', function() {\n    Ember.run.once(this, '_doNotDeleteExtraTablesCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3629,7 +3996,8 @@
             "itemtype": "property",
             "name": "enableAuElement",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3643,7 +4011,8 @@
                 "\n  ```javascript\n  _enableAuElementChanged: Ember.on('init', Ember.observer('enableAuElement', function() {\n    Ember.run.once(this, '_enableAuElementCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3652,7 +4021,8 @@
             "itemtype": "property",
             "name": "lastIndexDate",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3666,7 +4036,8 @@
                 "\n  ```javascript\n  _lastIndexDateChanged: Ember.on('init', Ember.observer('lastIndexDate', function() {\n    Ember.run.once(this, '_lastIndexDateCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3675,7 +4046,8 @@
             "itemtype": "property",
             "name": "realDataObjectNameSpace",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3689,7 +4061,8 @@
                 "\n  ```javascript\n  _realDataObjectNameSpaceChanged: Ember.on('init', Ember.observer('realDataObjectNameSpace', function() {\n    Ember.run.once(this, '_realDataObjectNameSpaceCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3698,7 +4071,8 @@
             "itemtype": "property",
             "name": "typeMapAccess",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3712,7 +4086,8 @@
                 "\n  ```javascript\n  _typeMapAccessChanged: Ember.on('init', Ember.observer('typeMapAccess', function() {\n    Ember.run.once(this, '_typeMapAccessCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3721,7 +4096,8 @@
             "itemtype": "property",
             "name": "typeMapCS",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3735,7 +4111,8 @@
                 "\n  ```javascript\n  _typeMapCSChanged: Ember.on('init', Ember.observer('typeMapCS', function() {\n    Ember.run.once(this, '_typeMapCSCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3744,7 +4121,8 @@
             "itemtype": "property",
             "name": "typeMapOracle",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3758,7 +4136,8 @@
                 "\n  ```javascript\n  _typeMapOracleChanged: Ember.on('init', Ember.observer('typeMapOracle', function() {\n    Ember.run.once(this, '_typeMapOracleCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3767,7 +4146,8 @@
             "itemtype": "property",
             "name": "typeMapPostgre",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3781,7 +4161,8 @@
                 "\n  ```javascript\n  _typeMapPostgreChanged: Ember.on('init', Ember.observer('typeMapPostgre', function() {\n    Ember.run.once(this, '_typeMapPostgreCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3790,7 +4171,8 @@
             "itemtype": "property",
             "name": "typeMapSQL",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3804,7 +4186,8 @@
                 "\n  ```javascript\n  _typeMapSQLChanged: Ember.on('init', Ember.observer('typeMapSQL', function() {\n    Ember.run.once(this, '_typeMapSQLCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3813,7 +4196,8 @@
             "itemtype": "property",
             "name": "typeMapVB",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-stage.js",
@@ -3827,7 +4211,8 @@
                 "\n  ```javascript\n  _typeMapVBChanged: Ember.on('init', Ember.observer('typeMapVB', function() {\n    Ember.run.once(this, '_typeMapVBCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -3836,7 +4221,8 @@
             "itemtype": "property",
             "name": "name",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -3850,7 +4236,8 @@
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -3859,7 +4246,8 @@
             "itemtype": "property",
             "name": "primitiveTypes",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -3873,7 +4261,8 @@
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -3882,7 +4271,8 @@
             "itemtype": "property",
             "name": "primitives",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -3896,7 +4286,8 @@
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -3905,7 +4296,8 @@
             "itemtype": "property",
             "name": "helpKeyword",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ad.js",
@@ -3919,7 +4311,8 @@
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -3928,7 +4321,8 @@
             "itemtype": "property",
             "name": "name",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -3942,7 +4336,8 @@
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -3951,7 +4346,8 @@
             "itemtype": "property",
             "name": "primitiveTypes",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -3965,7 +4361,8 @@
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -3974,7 +4371,8 @@
             "itemtype": "property",
             "name": "primitives",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -3988,7 +4386,8 @@
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -3997,7 +4396,8 @@
             "itemtype": "property",
             "name": "helpKeyword",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cad.js",
@@ -4011,7 +4411,8 @@
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -4020,7 +4421,8 @@
             "itemtype": "property",
             "name": "name",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -4034,7 +4436,8 @@
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -4043,7 +4446,8 @@
             "itemtype": "property",
             "name": "primitiveTypes",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -4057,7 +4461,8 @@
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -4066,7 +4471,8 @@
             "itemtype": "property",
             "name": "primitives",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -4080,7 +4486,8 @@
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -4089,7 +4496,8 @@
             "itemtype": "property",
             "name": "helpKeyword",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-cod.js",
@@ -4103,7 +4511,8 @@
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -4112,7 +4521,8 @@
             "itemtype": "property",
             "name": "name",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -4126,7 +4536,8 @@
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -4135,7 +4546,8 @@
             "itemtype": "property",
             "name": "primitiveTypes",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -4149,7 +4561,8 @@
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -4158,7 +4571,8 @@
             "itemtype": "property",
             "name": "primitives",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -4172,7 +4586,8 @@
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -4181,7 +4596,8 @@
             "itemtype": "property",
             "name": "helpKeyword",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-dpd.js",
@@ -4195,7 +4611,8 @@
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -4204,7 +4621,8 @@
             "itemtype": "property",
             "name": "name",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -4218,7 +4636,8 @@
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -4227,7 +4646,8 @@
             "itemtype": "property",
             "name": "primitiveTypes",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -4241,7 +4661,8 @@
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -4250,7 +4671,8 @@
             "itemtype": "property",
             "name": "primitives",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -4264,7 +4686,8 @@
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -4273,7 +4696,8 @@
             "itemtype": "property",
             "name": "helpKeyword",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-sd.js",
@@ -4287,7 +4711,8 @@
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -4296,7 +4721,8 @@
             "itemtype": "property",
             "name": "name",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -4310,7 +4736,8 @@
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -4319,7 +4746,8 @@
             "itemtype": "property",
             "name": "primitiveTypes",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -4333,7 +4761,8 @@
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -4342,7 +4771,8 @@
             "itemtype": "property",
             "name": "primitives",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -4356,7 +4786,8 @@
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -4365,7 +4796,8 @@
             "itemtype": "property",
             "name": "helpKeyword",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-std.js",
@@ -4379,7 +4811,8 @@
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -4388,7 +4821,8 @@
             "itemtype": "property",
             "name": "name",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -4402,7 +4836,8 @@
                 "\n  ```javascript\n  _nameChanged: Ember.on('init', Ember.observer('name', function() {\n    Ember.run.once(this, '_nameCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -4411,7 +4846,8 @@
             "itemtype": "property",
             "name": "primitiveTypes",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -4425,7 +4861,8 @@
                 "\n  ```javascript\n  _primitiveTypesChanged: Ember.on('init', Ember.observer('primitiveTypes', function() {\n    Ember.run.once(this, '_primitiveTypesCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -4434,7 +4871,8 @@
             "itemtype": "property",
             "name": "primitives",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -4448,7 +4886,8 @@
                 "\n  ```javascript\n  _primitivesChanged: Ember.on('init', Ember.observer('primitives', function() {\n    Ember.run.once(this, '_primitivesCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -4457,7 +4896,8 @@
             "itemtype": "property",
             "name": "helpKeyword",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-uml-ucd.js",
@@ -4471,7 +4911,8 @@
                 "\n  ```javascript\n  _helpKeywordChanged: Ember.on('init', Ember.observer('helpKeyword', function() {\n    Ember.run.once(this, '_helpKeywordCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-view.js",
@@ -4480,7 +4921,8 @@
             "itemtype": "property",
             "name": "properties",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-view.js",
@@ -4494,7 +4936,8 @@
                 "\n  ```javascript\n  _propertiesChanged: Ember.on('init', Ember.observer('properties', function() {\n    Ember.run.once(this, '_propertiesCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-diagram.js",
@@ -4503,7 +4946,8 @@
             "itemtype": "property",
             "name": "primitivesStream",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-diagram.js",
@@ -4517,7 +4961,8 @@
                 "\n  ```javascript\n  _primitivesStreamChanged: Ember.on('init', Ember.observer('primitivesStream', function() {\n    Ember.run.once(this, '_primitivesStreamCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-diagram.js",
@@ -4526,7 +4971,8 @@
             "itemtype": "property",
             "name": "primitivesJsonString",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-diagram.js",
@@ -4540,7 +4986,8 @@
                 "\n  ```javascript\n  _primitivesJsonStringChanged: Ember.on('init', Ember.observer('primitivesJsonString', function() {\n    Ember.run.once(this, '_primitivesJsonStringCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-filelink.js",
@@ -4549,7 +4996,8 @@
             "itemtype": "property",
             "name": "fileName",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-filelink.js",
@@ -4563,7 +5011,8 @@
                 "\n  ```javascript\n  _fileNameChanged: Ember.on('init', Ember.observer('fileName', function() {\n    Ember.run.once(this, '_fileNameCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-registered-plug-in.js",
@@ -4572,7 +5021,8 @@
             "itemtype": "property",
             "name": "type",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-registered-plug-in.js",
@@ -4586,7 +5036,8 @@
                 "\n  ```javascript\n  _typeChanged: Ember.on('init', Ember.observer('type', function() {\n    Ember.run.once(this, '_typeCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-repository-data-object.js",
@@ -4595,7 +5046,8 @@
             "itemtype": "property",
             "name": "nameStr",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-repository-data-object.js",
@@ -4609,7 +5061,8 @@
                 "\n  ```javascript\n  _nameStrChanged: Ember.on('init', Ember.observer('nameStr', function() {\n    Ember.run.once(this, '_nameStrCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-stage.js",
@@ -4618,7 +5071,8 @@
             "itemtype": "property",
             "name": "chosenPalette",
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/regenerated/models/fd-stage.js",
@@ -4632,7 +5086,8 @@
                 "\n  ```javascript\n  _chosenPaletteChanged: Ember.on('init', Ember.observer('chosenPalette', function() {\n    Ember.run.once(this, '_chosenPaletteCompute');\n  }))\n  ```"
             ],
             "class": "FdDraggableControlMixin",
-            "module": "ember-flexberry-designer"
+            "module": "components",
+            "namespace": "components"
         },
         {
             "file": "addon/mixins/fd-draggable-control.js",
@@ -5347,7 +5802,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 142,
+            "line": 115,
             "description": "Locate control by path.",
             "itemtype": "method",
             "name": "_locateControl",
@@ -5377,7 +5832,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 181,
+            "line": 154,
             "description": "Locate control in row by path.",
             "itemtype": "method",
             "name": "_locateControlInRow",
@@ -5402,7 +5857,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 199,
+            "line": 172,
             "description": "Locate tabs for control.",
             "itemtype": "method",
             "name": "_locateTabs",
@@ -5432,7 +5887,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 270,
+            "line": 243,
             "description": "Locate group for control.",
             "itemtype": "method",
             "name": "_locateGroup",
@@ -5462,7 +5917,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 329,
+            "line": 302,
             "description": "Locate column for control.",
             "itemtype": "method",
             "name": "_locateColumn",
@@ -6503,7 +6958,7 @@
         },
         {
             "message": "Missing item type\nLooks for a container that contains the item.",
-            "line": " addon/controllers/fd-editform-constructor.js:170"
+            "line": " addon/controllers/fd-editform-constructor.js:169"
         },
         {
             "message": "Missing item type\nField name where object identifier is kept.",

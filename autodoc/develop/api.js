@@ -16,12 +16,20 @@ YUI.add("yuidoc-meta", function(Y) {
         "FdViewAttributesProperty",
         "FdViewAttributesTree",
         "NewPlatformFlexberryFlexberryDesignerVisualEditControl",
-        "NewPlatformFlexberryFlexberryDesignerVisualEditForm"
+        "NewPlatformFlexberryFlexberryDesignerVisualEditForm",
+        "components.UiTabMenu",
+        "components.UiTabSegment"
     ],
     "modules": [
+        "components",
         "ember-flexberry-designer"
     ],
     "allModules": [
+        {
+            "displayName": "components",
+            "name": "components",
+            "description": "ui-tab-menu component"
+        },
         {
             "displayName": "ember-flexberry-designer",
             "name": "ember-flexberry-designer"

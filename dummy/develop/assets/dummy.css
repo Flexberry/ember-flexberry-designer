@@ -39043,6 +39043,10 @@ img.item-minus {
   transform: translate3d(0, 0, 0);
   z-index: 1;
   visibility: visible;
+  top: 80px;
+}
+.ui.right.sidebar.config-panel .right-tabs {
+  flex-direction: row-reverse;
 }
 .ui.right.sidebar.config-panel .ui.vertical.menu {
   width: 4rem;
@@ -39054,6 +39058,9 @@ img.item-minus {
 }
 .ui.right.sidebar.config-panel .ui.selection.dropdown {
   min-width: auto;
+}
+.ui.right.sidebar.config-panel .tab {
+  padding: 1em;
 }
 .fd-editform-row {
   position: relative;
@@ -39089,37 +39096,51 @@ img.item-minus {
 .fd-editform-control:hover > .drag-anchor {
   display: block;
 }
-.attr-panel {
-  height: -webkit-fill-available;
-  max-height: calc(100vh - 340px);
-  display: flex;
-}
-.attr-panel .panel {
+.panel-left,
+.panel-right {
   overflow: hidden;
   background: #FFFFFF;
-  box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);
   margin: 1rem 0em;
-  padding: 1em 0;
-  border-radius: 0.28571429rem;
-  border: 1px solid rgba(34, 36, 38, 0.15);
   width: 50%;
+  display: flex;
+  flex-direction: column;
 }
-.attr-panel .panel.view-attributes {
+.panel-left .ui.buttons,
+.panel-right .ui.buttons {
+  display: block;
+}
+.panel-left .overflow-panel,
+.panel-right .overflow-panel {
+  overflow: auto;
+}
+.panel-left.view-attributes,
+.panel-right.view-attributes {
   transition: width 500ms ease;
 }
-.attr-panel .panel .ui[class*="very basic"].table:not(.sortable):not(.striped) td:last-child {
+.panel-left .ui[class*="very basic"].table:not(.sortable):not(.striped) td:last-child,
+.panel-right .ui[class*="very basic"].table:not(.sortable):not(.striped) td:last-child {
   width: 100%;
 }
-.attr-panel .jstree-default > .jstree-no-dots .jstree-node {
+.panel-wrapper {
+  height: -webkit-fill-available;
+  max-height: calc(100vh - 390px);
+  display: flex;
+}
+.panel-wrapper .ui.segments {
+  margin: 0;
+  display: flex;
+  height: 100%;
+}
+.panel-wrapper .jstree-default > .jstree-no-dots .jstree-node {
   padding: 3px 0;
 }
-.attr-panel .jstree-default .jstree-wholerow {
+.panel-wrapper .jstree-default .jstree-wholerow {
   height: auto;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 3px 0;
   margin: -3px;
 }
-.attr-panel .jstree-default .jstree-wholerow-clicked {
+.panel-wrapper .jstree-default .jstree-wholerow-clicked {
   background: #e7f4f9;
   padding: 3px 0;
   margin-top: -3px;
@@ -39127,84 +39148,67 @@ img.item-minus {
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.87) inset;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
-.attr-panel .jstree-default .jstree-wholerow-hovered:not(.jstree-wholerow-clicked) {
+.panel-wrapper .jstree-default .jstree-wholerow-hovered:not(.jstree-wholerow-clicked) {
   background: #f1f7ff;
   padding: 3px 0;
   margin-top: -3px;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
-.attr-panel .jstree-children > .jstree-node:not(.jstree-last):first-child {
+.panel-wrapper .jstree-children > .jstree-node:not(.jstree-last):first-child {
   margin-top: 3px;
 }
-.attr-panel i.icon.sidebar:before {
+.panel-wrapper i.icon.sidebar:before {
   color: #7ba7d9;
 }
-.attr-panel .close-panel-btn:hover i.icon:before {
+.panel-wrapper .close-panel-btn:hover i.icon:before {
   color: #FFFFFF;
 }
-.attr-panel .close-panel-btn,
-.attr-panel .vertical.buttons {
+.panel-wrapper .close-panel-btn,
+.panel-wrapper .vertical.buttons {
   margin: 1em 5px;
 }
-.attr-panel .ui.table tr.active {
+.panel-wrapper .ui.table tr.active {
   background: #e7f4f9!important;
 }
-.attr-panel .ui.basic.table tbody tr:hover {
+.panel-wrapper .ui.basic.table tbody tr:hover {
   background: #f1f7ff;
 }
-.attr-panel .ui.basic.vertical.buttons .button {
+.panel-wrapper .ui.basic.vertical.buttons .button {
   border: 1px solid #7ba7d9;
 }
-.attr-panel .ui.basic.vertical.buttons .button:first-child {
+.panel-wrapper .ui.basic.vertical.buttons .button:first-child {
   border-top-width: 1px;
 }
-.attr-panel .ui.button:active,
-.attr-panel .ui.button:focus,
-.attr-panel .ui.basic.buttons .button:active,
-.attr-panel .ui.basic.button:active,
-.attr-panel .ui.basic.buttons .button:focus,
-.attr-panel .ui.basic.button:focus {
+.panel-wrapper .ui.button:active,
+.panel-wrapper .ui.button:focus,
+.panel-wrapper .ui.basic.buttons .button:active,
+.panel-wrapper .ui.basic.button:active,
+.panel-wrapper .ui.basic.buttons .button:focus,
+.panel-wrapper .ui.basic.button:focus {
   background: #FFFFFF!important;
 }
-.attr-panel .ui.button:active .ui.icon.button:hover,
-.attr-panel .ui.button:focus .ui.icon.button:hover,
-.attr-panel .ui.basic.buttons .button:active .ui.icon.button:hover,
-.attr-panel .ui.basic.button:active .ui.icon.button:hover,
-.attr-panel .ui.basic.buttons .button:focus .ui.icon.button:hover,
-.attr-panel .ui.basic.button:focus .ui.icon.button:hover {
+.panel-wrapper .ui.button:active .ui.icon.button:hover,
+.panel-wrapper .ui.button:focus .ui.icon.button:hover,
+.panel-wrapper .ui.basic.buttons .button:active .ui.icon.button:hover,
+.panel-wrapper .ui.basic.button:active .ui.icon.button:hover,
+.panel-wrapper .ui.basic.buttons .button:focus .ui.icon.button:hover,
+.panel-wrapper .ui.basic.button:focus .ui.icon.button:hover {
   color: #7ba7d9;
 }
-.attr-panel .ui.button:active:hover,
-.attr-panel .ui.button:focus:hover,
-.attr-panel .ui.basic.buttons .button:active:hover,
-.attr-panel .ui.basic.button:active:hover,
-.attr-panel .ui.basic.buttons .button:focus:hover,
-.attr-panel .ui.basic.button:focus:hover {
+.panel-wrapper .ui.button:active:hover,
+.panel-wrapper .ui.button:focus:hover,
+.panel-wrapper .ui.basic.buttons .button:active:hover,
+.panel-wrapper .ui.basic.button:active:hover,
+.panel-wrapper .ui.basic.buttons .button:focus:hover,
+.panel-wrapper .ui.basic.button:focus:hover {
   background: #7ba7d9!important;
 }
-.ui.collapsing.table.fixed-headers {
-  table-layout: fixed;
-  border-collapse: collapse;
-  width: -webkit-fill-available;
-}
-.ui.collapsing.table.fixed-headers td {
+.panel-wrapper .ui.collapsing.table td {
   padding: 5px;
   text-align: left;
 }
-.ui.collapsing.table.fixed-headers thead th {
-  border-bottom: none;
-}
-.ui.collapsing.table.fixed-headers thead tr {
-  display: block;
-  position: relative;
-  border-bottom: 1px solid rgba(34, 36, 38, 0.1);
-  padding: 0 1em;
-}
-.ui.collapsing.table.fixed-headers tbody {
-  display: block;
-  overflow: scroll;
-  max-height: calc(100vh - 420px);
-  padding-left: 1em;
+.ui.button > .right.icon:not(.button) {
+  margin: 0;
 }
 /* General styles */
 @media only screen and (max-width: 991px) and (min-width: 768px) {
