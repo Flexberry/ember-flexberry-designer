@@ -1,3 +1,5 @@
+@import 'addon/styles/components/fd-editform-row';
+
 @tree-row-padding: 3px;
 
 #example.pusher{
@@ -25,27 +27,6 @@
 
   .ui.selection.dropdown{
     min-width: auto;
-  }
-}
-
-// Styles for `fd-editform-row` component.
-.fd-editform-row {
-  position: relative;
-
-  & > .drag-anchor {
-    position: absolute;
-    display: none;
-    z-index: 1;
-    width: 2em;
-    height: 2em;
-    top: 0.5em;
-    left: 0.5em;
-    background-color: black;
-    cursor: move;
-  }
-
-  &:hover > .drag-anchor {
-    display: block;
   }
 }
 
