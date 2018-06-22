@@ -28,7 +28,7 @@
       "presence": true,
       "name": "class",
       "relatedTo": "fd-dev-class",
-      "inverse": "devViews"
+      "inverse": "views"
     }
   ],
   "hasMany": [],
@@ -209,6 +209,127 @@
       "hasMany": []
     },
     {
+      "name": "FdAttributesView",
+      "modelName": "fd-dev-view",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "definition",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Views",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [],
+          "index": 1,
+          "caption": "",
+          "name": "class",
+          "relatedTo": "fd-dev-class",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "FdEditClassForm",
+      "modelName": "fd-dev-view",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "Имя",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "description",
+          "caption": "Описание",
+          "hidden": false,
+          "index": 1
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Views",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [],
+          "index": 2,
+          "caption": "",
+          "name": "class",
+          "relatedTo": "fd-dev-class",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "FdPreloadMetadata",
+      "modelName": "fd-dev-view",
+      "attrs": [
+        {
+          "name": "definition",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "nameStr",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Views",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "",
+              "hidden": false,
+              "index": 5
+            }
+          ],
+          "index": 4,
+          "caption": "",
+          "name": "class",
+          "relatedTo": "fd-dev-class",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
       "name": "Generator",
       "modelName": "fd-dev-view",
       "attrs": [
@@ -257,12 +378,6 @@
           "caption": "View name",
           "hidden": false,
           "index": 2
-        },
-        {
-          "name": "properties",
-          "caption": "View properties",
-          "hidden": false,
-          "index": 3
         }
       ],
       "belongsTo": [

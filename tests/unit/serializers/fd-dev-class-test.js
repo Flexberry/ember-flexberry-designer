@@ -6,6 +6,7 @@ moduleForModel('fd-dev-class', 'Unit | Serializer | fd-dev-class', {
     'serializer:fd-dev-class',
     'transform:file',
     'transform:decimal',
+    'transform:guid',
 
     /* merged manually start */
     'transform:containers-tree',
