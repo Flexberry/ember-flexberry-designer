@@ -101,7 +101,6 @@ export default Ember.Component.extend({
 
     @property typesAsStrings
     @type Ember.A()
-    @default undefined
   */
   typesAsStrings: undefined,
 
@@ -219,8 +218,29 @@ export default Ember.Component.extend({
       this.set('types', ret);
       this.set('typesAsStrings', retStrings);
     } else {
-      this.set('types', []);
-      this.set('typesAsStrings', []);
+      this.set('types', [
+        {
+          nullable: false,
+          type: 'bool',
+          userString: 'components.fd-visual-control.typeName.boolControlType'
+        },
+        {
+          nullable: false,
+          type: 'int',
+          userString: 'components.fd-visual-control.typeName.boolintControlType'
+        },
+        {
+          nullable: false,
+          type: 'string',
+          userString: 'components.fd-visual-control.typeName.dateControlType'
+        }
+      ]);
+      this.set('typesAsStrings', [
+        'components.fd-visual-control.typeName.stringControlType',
+        'components.fd-visual-control.typeName.boolControlType',
+        'components.fd-visual-control.typeName.intControlType',
+        'components.fd-visual-control.typeName.dateControlType'
+      ]);
     }
 
   },
