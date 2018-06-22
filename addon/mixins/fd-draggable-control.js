@@ -6,6 +6,8 @@ import Ember from 'ember';
 
 import FdEditformRow from '../objects/fd-editform-row';
 import FdEditformControl from '../objects/fd-editform-control';
+import FdEditformGroup from '../objects/fd-editform-group';
+import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
 
 /**
   Mixin with the support `drag and drop` for controls in the edit form constructor.
@@ -206,7 +208,19 @@ export default Ember.Mixin.create({
   */
   _draggingIsSupported(over, dragged) {
     let result = over instanceof FdEditformRow && dragged instanceof FdEditformRow;
+
     result = result || over instanceof FdEditformControl && dragged instanceof FdEditformControl;
+    result = result || over instanceof FdEditformControl && dragged instanceof FdEditformGroup;
+    result = result || over instanceof FdEditformControl && dragged instanceof FdEditformTabgroup;
+
+    result = result || over instanceof FdEditformGroup && dragged instanceof FdEditformGroup;
+    result = result || over instanceof FdEditformGroup && dragged instanceof FdEditformControl;
+    result = result || over instanceof FdEditformGroup && dragged instanceof FdEditformTabgroup;
+
+    result = result || over instanceof FdEditformTabgroup && dragged instanceof FdEditformTabgroup;
+    result = result || over instanceof FdEditformTabgroup && dragged instanceof FdEditformControl;
+    result = result || over instanceof FdEditformTabgroup && dragged instanceof FdEditformGroup;
+
     return result;
   },
 });
