@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import FdViewAttributesTree from '../objects/fd-view-attributes-tree';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
+import { translationMacro as t } from 'ember-i18n';
 
 export default EditFormController.extend({
 
@@ -50,6 +51,8 @@ export default EditFormController.extend({
     @default null
    */
   jsonRightTreeNodes: null,
+
+  allAttrsHidedn: false,
 
   /**
     Included plugins for left jsTree.
@@ -684,6 +687,20 @@ export default EditFormController.extend({
     */
     openGenerationForm() {
       this.transitionToRoute('fd-generation-process-form.new');
+    },
+
+    closeRightpanel() {
+      Ember.$('.closable.panel-left').toggle(500);
+
+      if (this.allAttrsHidedn) {
+        this.set('popupMessage', t('forms.fd-appstruct-form.close-panel-btn-caption'));
+        Ember.$('.panel-wrapper .panel-right').css('width', '50%');
+      } else {
+        this.set('popupMessage', t('forms.fd-appstruct-form.show-panel-btn-caption'));
+        Ember.$('.panel-wrapper .panel-right').css('width', '100%');
+      }
+
+      this.toggleProperty('allAttrsHidedn');
     }
   }
 });
