@@ -11,8 +11,10 @@ test('it exists', function(assert) {
     FdViewAttributesTree.create({
       className: 'ПисьмоWebL',
       description: null,
+      caption: 'Настройка рассылки писем',
       text: 'Настройка рассылки писем',
-      type: 'property'
+      type: 'property',
+      id: 'p2l0i2',
     })
   ]);
 
@@ -20,8 +22,10 @@ test('it exists', function(assert) {
     FdViewAttributesTree.create({
       className: 'ЖурналИмпортаWebL',
       description: null,
+      caption: 'Журнал импорта',
       text: 'Журнал импорта',
-      type: 'property'
+      type: 'property',
+      id: 'p2l0i3',
     })
   ]);
 
@@ -30,19 +34,22 @@ test('it exists', function(assert) {
       text: 'Настройки',
       type: 'master',
       children: Ember.A(),
-      copyChildren: Ember.A()
+      copyChildren: Ember.A(),
+      id: 'p1l0i1',
     }),
     FdViewAttributesTree.create({
       text: 'Рассылка по e-mail',
       type: 'master',
       children: noteNoteObjectModel1,
-      copyChildren: noteNoteObjectModel1
+      copyChildren: noteNoteObjectModel1,
+      id: 'p1l1i2',
     }),
     FdViewAttributesTree.create({
       text: 'Импорт данных',
       type: 'master',
       children: noteNoteObjectModel2,
-      copyChildren: noteNoteObjectModel2
+      copyChildren: noteNoteObjectModel2,
+      id: 'p1l2i3',
     })
   ]);
 
@@ -50,14 +57,18 @@ test('it exists', function(assert) {
     FdViewAttributesTree.create({
       className: 'УчетРабочегоВремениWebL',
       description: 'test',
+      caption: 'Учет рабочего времени',
       text: 'Учет рабочего времени',
-      type: 'property'
+      type: 'property',
+      id: 'p1l0i4',
     }),
     FdViewAttributesTree.create({
       className: 'ПроизводственныйКалендарьWebL',
       description: null,
+      caption: 'Производственный календарь',
       text: 'Производственный календарь',
       type: 'property',
+      id: 'p1l1i5',
     }),
   ]);
 
@@ -66,13 +77,15 @@ test('it exists', function(assert) {
       text: 'Администрирование',
       type: 'master',
       children: noteObjectModel1,
-      copyChildren: noteObjectModel1
+      copyChildren: noteObjectModel1,
+      id: 'p0l0i0',
     }),
     FdViewAttributesTree.create({
       text: 'Поручения',
       type: 'master',
       children: noteObjectModel2,
-      copyChildren: noteObjectModel2
+      copyChildren: noteObjectModel2,
+      id: 'p0l1i4',
     })
   ]);
 
