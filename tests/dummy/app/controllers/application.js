@@ -151,8 +151,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
   */
   objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
 
-  configPanelTabsWidth: 58,
-
   actions: {
     toggleSidebar() {
       let sidebar = Ember.$('.ui.sidebar.main.menu');

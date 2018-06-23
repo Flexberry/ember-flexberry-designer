@@ -4,8 +4,8 @@ import FdViewAttributesProperty from '../objects/fd-view-attributes-property';
 import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 import { getTreeNode } from '../utils/fd-get-view-tree-node';
-import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 import { translationMacro as t } from 'ember-i18n';
+import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 
 export default EditFormController.extend(FdWorkPanelToggler, {
   parentRoute: 'fd-view-list-form',
@@ -163,7 +163,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     */
     onAttributesClick(index) {
       this.set('selectedRowIndex', index);
-      this.send('toggleConfigPanel', 'control-properties', index);
+      this.send('toggleConfigPanel', 'active-tree-tab', index);
     },
 
     /**
@@ -303,14 +303,14 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     },
 
     closeRightpanel() {
-      Ember.$('.closable.panel').toggle(500);
+      Ember.$('.closable.panel-left').toggle(500);
 
       if (this.allAttrsHidedn) {
         this.set('popupMessage', t('forms.fd-view-edit-form.attributes-panel.close-panel-btn-caption'));
-        Ember.$('.attr-panel .panel.view-attributes').css('width', '50%');
+        Ember.$('.panel-wrapper .panel-right.view-attributes').css('width', '50%');
       } else {
         this.set('popupMessage', t('forms.fd-view-edit-form.attributes-panel.show-panel-btn-caption'));
-        Ember.$('.attr-panel .panel.view-attributes').css('width', '100%');
+        Ember.$('.panel-wrapper .panel-right.view-attributes').css('width', '100%');
       }
 
       this.toggleProperty('allAttrsHidedn');
