@@ -388,7 +388,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.typeMapCSCompute &amp;&amp; typeof this.typeMapCSCompute === &#x27;function&#x27;) ? this.typeMapCSCompute() : null;
     this.set(&#x27;typeMapCS&#x27;, result);
   },
-  typeMapCSStr: DS.attr(&#x27;string&#x27;),
+  typeMapCSStr: DS.attr(&#x27;typemap&#x27;),
   /**
     Non-stored property.
 

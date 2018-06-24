@@ -29,6 +29,13 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/components/fd-visual-edit-control.js": {
+            "name": "addon/components/fd-visual-edit-control.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/components/fd-visual-edit-form.js": {
             "name": "addon/components/fd-visual-edit-form.js",
             "modules": {},
@@ -1610,6 +1617,174 @@
             "readonly": "",
             "access": "private",
             "tagname": "",
+            "class": "components.UiTabMenu",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 9,
+            "description": "Contains stage's enums.",
+            "itemtype": "property",
+            "name": "enums",
+            "type": "Ember.A()",
+            "default": "undefined",
+            "class": "components.UiTabMenu",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 18,
+            "description": "Contains stage's typemap.",
+            "itemtype": "property",
+            "name": "typemap",
+            "type": "Ember.A()",
+            "default": "undefined",
+            "class": "components.UiTabMenu",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 27,
+            "description": "Contains stage's types.",
+            "itemtype": "property",
+            "name": "fbtypes",
+            "type": "Ember.A()",
+            "default": "undefined",
+            "class": "components.UiTabMenu",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 36,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_selectedIsControl",
+            "readonly": "",
+            "type": "Boolean",
+            "class": "components.UiTabMenu",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 46,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_selectedIsGroup",
+            "readonly": "",
+            "type": "Boolean",
+            "class": "components.UiTabMenu",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 56,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_selectedIsTab",
+            "readonly": "",
+            "type": "Boolean",
+            "class": "components.UiTabMenu",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 66,
+            "description": "The selected control.",
+            "itemtype": "property",
+            "name": "selectedControl",
+            "type": "FdEditformControl|FdEditformGroup|FdEditformTab",
+            "class": "components.UiTabMenu",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 74,
+            "description": "Observer, checks if selected control changed and changes selectedType.",
+            "itemtype": "method",
+            "name": "selectedControlChanged",
+            "class": "components.UiTabMenu",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 88,
+            "description": "All types with properties.",
+            "itemtype": "property",
+            "name": "types",
+            "type": "Ember.A()",
+            "default": "undefined",
+            "class": "components.UiTabMenu",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 97,
+            "description": "Strings shown to user.",
+            "itemtype": "property",
+            "name": "typesAsStrings",
+            "type": "Ember.A()",
+            "class": "components.UiTabMenu",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 105,
+            "description": "Dictionary: type to locale key.",
+            "itemtype": "property",
+            "name": "typeToString",
+            "type": "Object",
+            "class": "components.UiTabMenu",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 134,
+            "description": "Gets translated string for type.",
+            "itemtype": "method",
+            "name": "getTranslationString",
+            "return": {
+                "description": "String"
+            },
+            "class": "components.UiTabMenu",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 161,
+            "description": "Gets types array from stage.",
+            "itemtype": "method",
+            "name": "getAllTypes",
+            "class": "components.UiTabMenu",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 246,
+            "description": "Contains selected type locale key.",
+            "itemtype": "property",
+            "name": "selectedType",
+            "type": "String",
+            "class": "components.UiTabMenu",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 271,
+            "description": "Initialization hook.",
+            "itemtype": "method",
+            "name": "init",
+            "class": "components.UiTabMenu",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control.js",
+            "line": 282,
+            "description": "Action, triggered by dropdown selection changed.",
+            "itemtype": "method",
+            "name": "actions.onDropDownSelectionChanged",
             "class": "components.UiTabMenu",
             "module": "ember-flexberry-designer"
         },

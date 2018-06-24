@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>addon/components/fd-visual-edit-control.js - Flexberry Documentation</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="Flexberry Documentation" src="../assets/css/logo.png" style="max-height: 65%;" title="Flexberry Documentation">
+            Flexberry Documentation
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>develop</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <h3>APIs</h3>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Type to filter APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/components.UiTabMenu.html">components.UiTabMenu</a></li>
+	                            <li><a href="../classes/components.UiTabSegment.html">components.UiTabSegment</a></li>
+	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
+	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
+	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
+	                            <li><a href="../classes/FdEditformControlComponent.html">FdEditformControlComponent</a></li>
+	                            <li><a href="../classes/FdEditformGroup.html">FdEditformGroup</a></li>
+	                            <li><a href="../classes/FdEditformRow.html">FdEditformRow</a></li>
+	                            <li><a href="../classes/FdEditformRowComponent.html">FdEditformRowComponent</a></li>
+	                            <li><a href="../classes/FdEditformTab.html">FdEditformTab</a></li>
+	                            <li><a href="../classes/FdEditformTabgroup.html">FdEditformTabgroup</a></li>
+	                            <li><a href="../classes/FdLimitByStageMixin.html">FdLimitByStageMixin</a></li>
+	                            <li><a href="../classes/FdViewAttributesDetail.html">FdViewAttributesDetail</a></li>
+	                            <li><a href="../classes/FdViewAttributesMaster.html">FdViewAttributesMaster</a></li>
+	                            <li><a href="../classes/FdViewAttributesProperty.html">FdViewAttributesProperty</a></li>
+	                            <li><a href="../classes/FdViewAttributesTree.html">FdViewAttributesTree</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">NewPlatformFlexberryFlexberryDesignerVisualEditControl</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">NewPlatformFlexberryFlexberryDesignerVisualEditForm</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/components.html">components</a></li>
+	                            <li><a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Show:
+                    <label for="api-show-inherited" class="checkbox">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>addon/components/fd-visual-edit-control.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+import Ember from &#x27;ember&#x27;;
+
+import FdDataTypes from &#x27;../utils/fd-datatypes&#x27;;
+import FdEditformControl from &#x27;../objects/fd-editform-control&#x27;;
+import FdEditformGroup from &#x27;../objects/fd-editform-group&#x27;;
+import FdEditformTab from &#x27;../objects/fd-editform-tab&#x27;;
+
+export default Ember.Component.extend({
+  /**
+    Contains stage&#x27;s enums.
+
+    @property enums
+    @type Ember.A()
+    @default undefined
+  */
+  enums: undefined,
+
+  /**
+    Contains stage&#x27;s typemap.
+
+    @property typemap
+    @type Ember.A()
+    @default undefined
+  */
+  typemap: undefined,
+
+  /**
+    Contains stage&#x27;s types.
+
+    @property fbtypes
+    @type Ember.A()
+    @default undefined
+  */
+  fbtypes: undefined,
+
+  /**
+    @private
+    @property _selectedIsControl
+    @readOnly
+    @type Boolean
+  */
+  _selectedIsControl: Ember.computed(&#x27;selectedControl&#x27;, function() {
+    return this.get(&#x27;selectedControl&#x27;) instanceof FdEditformControl;
+  }).readOnly(),
+
+  /**
+    @private
+    @property _selectedIsGroup
+    @readOnly
+    @type Boolean
+  */
+  _selectedIsGroup: Ember.computed(&#x27;selectedControl&#x27;, function() {
+    return this.get(&#x27;selectedControl&#x27;) instanceof FdEditformGroup;
+  }).readOnly(),
+
+  /**
+    @private
+    @property _selectedIsTab
+    @readOnly
+    @type Boolean
+  */
+  _selectedIsTab: Ember.computed(&#x27;selectedControl&#x27;, function() {
+    return this.get(&#x27;selectedControl&#x27;) instanceof FdEditformTab;
+  }).readOnly(),
+
+  /**
+    The selected control.
+
+    @property selectedControl
+    @type FdEditformControl|FdEditformGroup|FdEditformTab
+  */
+  selectedControl: undefined,
+
+  /**
+    Observer, checks if selected control changed and changes selectedType.
+
+    @method selectedControlChanged
+  */
+  selectedControlChanged: Ember.observer(&#x27;selectedControl&#x27;, function() {
+    let selectedControl = this.get(&#x27;selectedControl&#x27;);
+    this.set(&#x27;selectedType&#x27;, this.getTranslationString(selectedControl.type));
+  }),
+
+  _dataTypes: FdDataTypes.create(),
+
+  _readonly: Ember.computed.empty(&#x27;selectedControl&#x27;),
+
+  /**
+    All types with properties.
+
+    @property types
+    @type Ember.A()
+    @default undefined
+  */
+  types: undefined,
+
+  /**
+    Strings shown to user.
+
+    @property typesAsStrings
+    @type Ember.A()
+  */
+  typesAsStrings: undefined,
+
+  /**
+    Dictionary: type to locale key.
+
+    @property typeToString
+    @type Object
+  */
+  typeToString: {
+    string: &#x27;components.fd-visual-control.typeName.stringControlType&#x27;,
+    bool: &#x27;components.fd-visual-control.typeName.boolControlType&#x27;,
+    char: &#x27;components.fd-visual-control.typeName.charControlType&#x27;,
+    guid: &#x27;components.fd-visual-control.typeName.guidControlType&#x27;,
+    decimal: &#x27;components.fd-visual-control.typeName.decimalControlType&#x27;,
+    double: &#x27;components.fd-visual-control.typeName.doubleControlType&#x27;,
+    float: &#x27;components.fd-visual-control.typeName.floatControlType&#x27;,
+    sbyte: &#x27;components.fd-visual-control.typeName.sbyteControlType&#x27;,
+    short: &#x27;components.fd-visual-control.typeName.shortControlType&#x27;,
+    byte: &#x27;components.fd-visual-control.typeName.byteControlType&#x27;,
+    int: &#x27;components.fd-visual-control.typeName.intControlType&#x27;,
+    long: &#x27;components.fd-visual-control.typeName.longControlType&#x27;,
+    uint: &#x27;components.fd-visual-control.typeName.uintControlType&#x27;,
+    ushort: &#x27;components.fd-visual-control.typeName.ushortControlType&#x27;,
+    ulong: &#x27;components.fd-visual-control.typeName.ulongControlType&#x27;,
+    date: &#x27;components.fd-visual-control.typeName.dateControlType&#x27;, //?
+    time: &#x27;components.fd-visual-control.typeName.dateControlType&#x27;, //?
+    file: &#x27;components.fd-visual-control.typeName.fileControlType&#x27;,
+    dropdown: &#x27;components.fd-visual-control.typeName.drowdownControlType&#x27;,
+    lookup: &#x27;components.fd-visual-control.typeName.lookupControlType&#x27;,
+  },
+
+  /**
+    Gets translated string for type.
+
+    @method getTranslationString
+    @return String
+  */
+  getTranslationString(type) {
+    let userString;
+    let tts = this.get(&#x27;typeToString&#x27;);
+    userString = tts[type];
+
+    if (userString === undefined) {
+      for (let ts in tts) {
+        if (type.toLowerCase().indexOf(ts) !== -1) {
+          userString = tts[ts];
+          break;
+        }
+      }
+    }
+
+    if (userString === undefined) {
+      userString = type;
+    }
+
+    return userString;
+  },
+
+  /**
+    Gets types array from stage.
+
+    @method getAllTypes
+  */
+  getAllTypes() {
+    let typemap = this.get(&#x27;typemap&#x27;);
+    let enums = this.get(&#x27;enums&#x27;);
+    let fbtypes = this.get(&#x27;fbtypes&#x27;);
+    let ret = Ember.A();
+    let retStrings = Ember.A();
+
+    for (let type of typemap) {
+      let obj = {};
+      obj.type = type.name;
+      if (type.name.indexOf(&#x27;null&#x27;) !== -1 || type.name.indexOf(&#x27;Null&#x27;) !== -1) {
+        obj.nullable = true;
+      } else {
+        obj.nullable = false;
+      }
+
+      obj.userString = this.getTranslationString(obj.type);
+      retStrings.push(obj.userString);
+      ret.push(obj);
+    }
+
+    for (let sEnum of enums.content) {
+      let obj = {};
+      obj.type = sEnum._data.caption;
+      if (obj.type.indexOf(&#x27;null&#x27;) !== -1 || obj.type.indexOf(&#x27;Null&#x27;) !== -1) {
+        obj.nullable = true;
+      } else {
+        obj.nullable = false;
+      }
+
+      obj.userString = this.getTranslationString(obj.type);
+      retStrings.push(obj.userString);
+      ret.push(obj);
+    }
+
+    for (let type of fbtypes.content) {
+      let obj = {};
+      obj.type = type._data.caption;
+      if (obj.type.indexOf(&#x27;null&#x27;) !== -1 || obj.type.indexOf(&#x27;Null&#x27;) !== -1) {
+        obj.nullable = true;
+      } else {
+        obj.nullable = false;
+      }
+
+      obj.userString = this.getTranslationString(obj.type);
+      retStrings.push(obj.userString);
+      ret.push(obj);
+    }
+
+    if (ret.length !== 0) {
+      this.set(&#x27;types&#x27;, ret);
+      this.set(&#x27;typesAsStrings&#x27;, retStrings);
+    } else {
+      this.set(&#x27;types&#x27;, [
+        {
+          nullable: false,
+          type: &#x27;bool&#x27;,
+          userString: &#x27;components.fd-visual-control.typeName.boolControlType&#x27;
+        },
+        {
+          nullable: false,
+          type: &#x27;int&#x27;,
+          userString: &#x27;components.fd-visual-control.typeName.boolintControlType&#x27;
+        },
+        {
+          nullable: false,
+          type: &#x27;string&#x27;,
+          userString: &#x27;components.fd-visual-control.typeName.dateControlType&#x27;
+        }
+      ]);
+      this.set(&#x27;typesAsStrings&#x27;, [
+        &#x27;components.fd-visual-control.typeName.stringControlType&#x27;,
+        &#x27;components.fd-visual-control.typeName.boolControlType&#x27;,
+        &#x27;components.fd-visual-control.typeName.intControlType&#x27;,
+        &#x27;components.fd-visual-control.typeName.dateControlType&#x27;
+      ]);
+    }
+
+  },
+
+  /**
+    Contains selected type locale key.
+
+    @property selectedType
+    @type String
+  */
+  selectedType: undefined,
+
+  allowNull: Ember.computed(&#x27;selectedControl.notNull&#x27;, {
+    get() {
+      return !this.get(&#x27;selectedControl.notNull&#x27;);
+    },
+
+    set(key, value) {
+      return this.set(&#x27;selectedControl.notNull&#x27;, !value);
+    },
+  }),
+
+  defaultValueControl: Ember.computed(&#x27;selectedControl.type&#x27;, function() {
+    switch (this.get(&#x27;selectedControl.type&#x27;)) {
+      default:
+        return &#x27;flexberry-textbox&#x27;;
+    }
+  }),
+
+  /**
+    Initialization hook.
+
+    @method init
+  */
+  init() {
+    this._super(...arguments);
+    this.getAllTypes();
+  },
+
+  actions: {
+    /**
+      Action, triggered by dropdown selection changed.
+
+      @method actions.onDropDownSelectionChanged
+    */
+    onDropDownSelectionChanged() {
+      let selectedType = this.get(&#x27;selectedType&#x27;);
+      let tts = this.get(&#x27;typeToString&#x27;);
+      for (let tt in tts) {
+        if (tts[tt] === selectedType) {
+          this.set(&#x27;selectedControl.type&#x27;, tt);
+          break;
+        }
+      }
+    },
+  }
+});
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>
