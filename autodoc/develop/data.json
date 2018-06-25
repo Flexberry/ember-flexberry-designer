@@ -1184,7 +1184,7 @@
             "module": "ember-flexberry-designer",
             "namespace": "",
             "file": "addon/mixins/fd-draggable-control.js",
-            "line": 10,
+            "line": 12,
             "description": "Mixin with the support `drag and drop` for controls in the edit form constructor.",
             "uses": [
                 "<a href=\"http://emberjs.com/api/classes/Ember.Mixin.html\">Ember.Mixin</a>"
@@ -1443,6 +1443,18 @@
         {
             "file": "addon/components/fd-editform-control.js",
             "line": 72,
+            "description": "Used in class name bindings to overlap the content of the control.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_dimmed",
+            "type": "Boolean",
+            "class": "FdEditformControlComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-control.js",
+            "line": 81,
             "description": "The control to render.",
             "itemtype": "property",
             "name": "control",
@@ -1452,7 +1464,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 80,
+            "line": 89,
             "description": "See description {{#crossLink \"FdDraggableControlMixin/draggableProperty:property\"}}here{{/crossLink}}.",
             "itemtype": "property",
             "name": "draggableProperty",
@@ -1461,7 +1473,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 87,
+            "line": 96,
             "description": "See description {{#crossLink \"FdDraggableControlMixin/dragDirection:property\"}}here{{/crossLink}}.",
             "itemtype": "property",
             "name": "dragDirection",
@@ -1470,7 +1482,16 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 94,
+            "line": 103,
+            "description": "See [EmberJS API](https://emberjs.com/api/).",
+            "itemtype": "property",
+            "name": "classNameBindings",
+            "class": "FdEditformControlComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-control.js",
+            "line": 110,
             "description": "See [EmberJS API](https://emberjs.com/api/).",
             "itemtype": "property",
             "name": "classNames",
@@ -1479,7 +1500,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 101,
+            "line": 117,
             "description": "See [EmberJS API](https://emberjs.com/api/).",
             "itemtype": "method",
             "name": "didInsertElement",
@@ -1488,7 +1509,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 114,
+            "line": 130,
             "description": "The event handler is `click`.\nCalls the `selectControlAction` action when the component is clicked.\nThe action `selectControlAction` should be passed, for example, from the controller.",
             "itemtype": "method",
             "name": "click",
@@ -5239,7 +5260,7 @@
         },
         {
             "file": "addon/mixins/fd-draggable-control.js",
-            "line": 17,
+            "line": 19,
             "description": "The `X` coordinate with which the dragging started.",
             "access": "private",
             "tagname": "",
@@ -5251,7 +5272,7 @@
         },
         {
             "file": "addon/mixins/fd-draggable-control.js",
-            "line": 26,
+            "line": 28,
             "description": "The `Y` coordinate with which the dragging started.",
             "access": "private",
             "tagname": "",
@@ -5263,7 +5284,7 @@
         },
         {
             "file": "addon/mixins/fd-draggable-control.js",
-            "line": 35,
+            "line": 37,
             "description": "In dependent on `dragDirection` returns `_initialX` or `_initialY`.",
             "access": "private",
             "tagname": "",
@@ -5276,7 +5297,7 @@
         },
         {
             "file": "addon/mixins/fd-draggable-control.js",
-            "line": 47,
+            "line": 49,
             "description": "The 'X' or 'Y' coordinate of the line through which you need to drag the item to move.",
             "access": "private",
             "tagname": "",
@@ -5289,7 +5310,7 @@
         },
         {
             "file": "addon/mixins/fd-draggable-control.js",
-            "line": 71,
+            "line": 73,
             "description": "Returns the item to be dragged.",
             "access": "private",
             "tagname": "",
@@ -5302,7 +5323,7 @@
         },
         {
             "file": "addon/mixins/fd-draggable-control.js",
-            "line": 83,
+            "line": 85,
             "description": "Specifies the property name in the component, in which draggable item is stored.",
             "itemtype": "property",
             "name": "draggableProperty",
@@ -5312,7 +5333,7 @@
         },
         {
             "file": "addon/mixins/fd-draggable-control.js",
-            "line": 91,
+            "line": 93,
             "description": "Specifies the direction that will be used to sort the draggable items.\nAvailable values: `X` or `Y`.",
             "itemtype": "property",
             "name": "dragDirection",
@@ -5322,7 +5343,7 @@
         },
         {
             "file": "addon/mixins/fd-draggable-control.js",
-            "line": 100,
+            "line": 102,
             "description": "The property to bind to `draggable` HTML attribute.",
             "itemtype": "property",
             "name": "draggable",
@@ -5333,7 +5354,7 @@
         },
         {
             "file": "addon/mixins/fd-draggable-control.js",
-            "line": 109,
+            "line": 111,
             "description": "See [EmberJS API](https://emberjs.com/api/).",
             "itemtype": "property",
             "name": "attributeBindings",
@@ -5342,7 +5363,7 @@
         },
         {
             "file": "addon/mixins/fd-draggable-control.js",
-            "line": 116,
+            "line": 118,
             "description": "The event handler is `dragStart`.",
             "itemtype": "method",
             "name": "dragStart",
@@ -5358,7 +5379,7 @@
         },
         {
             "file": "addon/mixins/fd-draggable-control.js",
-            "line": 127,
+            "line": 129,
             "description": "The event handler is `dragEnd`.",
             "itemtype": "method",
             "name": "dragEnd",
@@ -5374,7 +5395,7 @@
         },
         {
             "file": "addon/mixins/fd-draggable-control.js",
-            "line": 138,
+            "line": 140,
             "description": "The event handler is `dragEnter`.",
             "itemtype": "method",
             "name": "dragEnter",
@@ -5390,7 +5411,7 @@
         },
         {
             "file": "addon/mixins/fd-draggable-control.js",
-            "line": 158,
+            "line": 160,
             "description": "The event handler is `dragOver`.",
             "itemtype": "method",
             "name": "dragOver",
@@ -5406,7 +5427,7 @@
         },
         {
             "file": "addon/mixins/fd-draggable-control.js",
-            "line": 200,
+            "line": 202,
             "access": "private",
             "tagname": "",
             "itemtype": "method",

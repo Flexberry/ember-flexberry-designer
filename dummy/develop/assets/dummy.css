@@ -39033,6 +39033,44 @@ img.item-minus {
     margin-bottom: 3px;
   }
 }
+.fd-editform-row {
+  position: relative;
+  margin-top: 1rem;
+}
+.fd-editform-row > .drag-anchor {
+  position: absolute;
+  display: none;
+  z-index: 1;
+  width: 2em;
+  height: 2em;
+  top: 0.5em;
+  left: 0.5em;
+  background-color: black;
+  cursor: move;
+}
+.fd-editform-row:hover > .drag-anchor {
+  display: block;
+}
+.fd-editform-row .top.attached.tabular.menu {
+  margin-top: 0;
+}
+.fd-editform-control {
+  position: relative;
+}
+.fd-editform-control > .drag-anchor {
+  position: absolute;
+  display: none;
+  z-index: 1;
+  width: 2em;
+  height: 2em;
+  top: 0.5em;
+  right: 0.5em;
+  background-color: black;
+  cursor: move;
+}
+.fd-editform-control:hover > .drag-anchor {
+  display: block;
+}
 #example.pusher {
   -webkit-transition: transform 500ms ease, width 500ms ease;
   -moz-transition: transform 500ms ease, width 500ms ease;
@@ -39061,40 +39099,6 @@ img.item-minus {
 }
 .ui.right.sidebar.config-panel .tab {
   padding: 1em;
-}
-.fd-editform-row {
-  position: relative;
-}
-.fd-editform-row > .drag-anchor {
-  position: absolute;
-  display: none;
-  z-index: 1;
-  width: 2em;
-  height: 2em;
-  top: 0.5em;
-  left: 0.5em;
-  background-color: black;
-  cursor: move;
-}
-.fd-editform-row:hover > .drag-anchor {
-  display: block;
-}
-.fd-editform-control {
-  position: relative;
-}
-.fd-editform-control > .drag-anchor {
-  position: absolute;
-  display: none;
-  z-index: 1;
-  width: 2em;
-  height: 2em;
-  top: 0.5em;
-  right: 0.5em;
-  background-color: black;
-  cursor: move;
-}
-.fd-editform-control:hover > .drag-anchor {
-  display: block;
 }
 .panel-left,
 .panel-right {
