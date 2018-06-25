@@ -148,6 +148,10 @@ export default Ember.Route.extend({
 
         _this.store.query(&#x27;fd-dev-class&#x27;, builderEditform.build()).then((result) =&gt; {
           let editform = result.objectAt(0);
+          if (!editform.get(&#x27;caption&#x27;)) {
+            editform.set(&#x27;caption&#x27;, editform.get(&#x27;name&#x27;));
+          }
+
           modelHash.editform = editform;
           return editform;
         }, rejectLoadClasses).then((editform) =&gt; {
