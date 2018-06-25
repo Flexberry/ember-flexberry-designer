@@ -139,7 +139,13 @@ export default Ember.Component.extend({
   */
   getTranslationString(type) {
     let userString;
-    let typeToString = this.get('typeToString');
+
+    //let typeToString = this.get('typeToString');
+
+    userString = type;
+    return userString;
+
+    /*
     userString = typeToString[type];
 
     if (userString === undefined) {
@@ -156,6 +162,7 @@ export default Ember.Component.extend({
     }
 
     return userString;
+    */
   },
 
   /**
@@ -220,17 +227,23 @@ export default Ember.Component.extend({
         {
           nullable: false,
           type: 'bool',
-          userString: 'components.fd-visual-control.typeName.boolControlType'
+          userString: 'bool'
+
+          //userString: 'components.fd-visual-control.typeName.boolControlType'
         },
         {
           nullable: false,
           type: 'int',
-          userString: 'components.fd-visual-control.typeName.boolintControlType'
+          userString: 'int'
+
+          //userString: 'components.fd-visual-control.typeName.boolintControlType'
         },
         {
           nullable: false,
           type: 'string',
-          userString: 'components.fd-visual-control.typeName.dateControlType'
+          userString: 'string'
+
+          //userString: 'components.fd-visual-control.typeName.dateControlType'
         }
       ]);
       this.set('typesAsStrings', [
