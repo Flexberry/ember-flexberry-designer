@@ -119,8 +119,17 @@ export default EditFormController.extend({
     this.set('selectedElementForEdit', undefined);
   })),
 
+  /**
+    Update text in node.
+
+    @method selectedElementCaptionObserver
+  */
   selectedElementCaptionObserver: Ember.observer('selectedElementForEdit.caption', function() {
     let selectedElement = this.get('selectedElementForEdit');
+    if (Ember.isNone(selectedElement)) {
+      return;
+    }
+
     if (selectedElement.get('type') !== 'master' && selectedElement.get('type') !== 'desk') {
       let caption = selectedElement.get('caption');
       if (!Ember.isNone(caption)) {
@@ -131,8 +140,17 @@ export default EditFormController.extend({
     }
   }),
 
+  /**
+    Redraw text in node.
+
+    @method selectedElementTextObserver
+  */
   selectedElementTextObserver: Ember.observer('selectedElementForEdit.text', function() {
     let selectedElement = this.get('selectedElementForEdit');
+    if (Ember.isNone(selectedElement)) {
+      return;
+    }
+
     this.get('jstreeActionReceiverRight').send('renameNode', selectedElement.get('id'), selectedElement.get('text'));
   }),
 
