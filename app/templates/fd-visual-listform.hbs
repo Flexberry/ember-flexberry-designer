@@ -32,20 +32,7 @@
       </button>
     </div>
   </div>
-  <div class="ui grid row">
-    <div class="field eight wide column">
-        <label>{{t 'forms.fd-visual-listform.name'}}</label>
-        {{flexberry-textbox value=formClass.name}}
-    </div>
-  </div>
   <div class="ui segment grid">
-    <div class="row">
-      <div class="six wide column">
-        <div class="ui segment">
-          {{fd-visual-edit-control attribute=selectedAttribute}}
-        </div>
-      </div>
-    </div>
     <div class="row">
       <div class="sixteen wide column" style="width: 100%; overflow-x: scroll;">
         {{fd-visual-listform-form
@@ -61,3 +48,47 @@
     </div>
   </div>
 </form>
+
+{{#fd-config-panel}}
+  {{#fd-tabs tabsMenuTheme="vertical tabular" class="ui segments horizontal right-tabs"}}
+    <form class="ui form segment">
+      <div class="ui segment">
+        <div class="ui large header">
+          {{t "forms.fd-editform-constructor.caption"}}
+        </div>
+      </div>
+      {{#ui-tab-segment tab='first' title=(t "forms.fd-editform-constructor.form-config-panel.form-properties-header") theme="" active=true}}
+        <div class="ui small dividing header">
+          {{t "forms.fd-editform-constructor.form-config-panel.form-properties-header"}}
+        </div>
+
+        <div class="field">
+          {{
+            flexberry-field
+            placeholder=(t 'forms.fd-visual-listform.name')
+            readonly=readonly
+            required=true
+            value=formClass.name
+            label=(t 'forms.fd-visual-listform.name')
+          }}
+        </div>
+
+      {{/ui-tab-segment}}
+
+      {{#ui-tab-segment tab='control-properties' title=(t "forms.fd-editform-constructor.form-config-panel.control-properties-header") theme=""}}
+        <div class="ui small dividing header">
+          {{t "forms.fd-editform-constructor.form-config-panel.control-properties-header"}}
+        </div>
+        {{fd-visual-edit-control attribute=selectedAttribute}}
+      {{/ui-tab-segment}}
+
+      {{#ui-tab-segment tab='add-controls' title=(t "forms.fd-editform-constructor.form-config-panel.add-controls-header") theme=""}}
+        <div class="ui small dividing header">
+          {{t "forms.fd-editform-constructor.form-config-panel.add-controls-header"}}
+        </div>
+
+      {{/ui-tab-segment}}
+
+    </form>
+  {{/fd-tabs}}
+{{/fd-config-panel}}

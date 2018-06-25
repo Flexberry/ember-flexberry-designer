@@ -129,5 +129,12 @@ export default Ember.Route.extend({
         node.set('a_attr', { title: classData.get('stereotype') + ' ' + classData.get('name') });
       }
     });
+  },
+
+  actions:{
+    didTransition() {
+      Ember.$('#example .flexberry-content').css('padding-bottom', 0);
+      Ember.$('.flexberry-content > .ui.main.container').css('margin-bottom', 0);
+    }
   }
 });

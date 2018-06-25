@@ -1,5 +1,6 @@
 @import 'addon/styles/components/fd-editform-row';
 @import 'addon/styles/components/fd-editform-control';
+@import 'node_modules/ember-flexberry/addon/styles/themes/blue-sky/globals/site.variables';
 
 @tree-row-padding: 3px;
 
@@ -15,10 +16,12 @@
   transform: translate3d(0, 0, 0);
   z-index: 1;
   visibility: visible;
-  top: 80px;
+  top: @headerHeight;
 
   .right-tabs{
     flex-direction: row-reverse;
+    height: auto;
+    min-height: calc(~'100vh - @{headerHeight}');
   }
 
   .ui.vertical.menu {
@@ -65,7 +68,7 @@
 
 .panel-wrapper{
   height: -webkit-fill-available;
-  max-height: calc(~'100vh - 390px');
+  max-height: calc(~'100vh - 250px');
   display: flex;
 
   .ui.segments {
@@ -109,12 +112,9 @@
     color: #7ba7d9;
   }
 
-  .close-panel-btn{
-    &:hover {
-      i.icon:before {
-        color: #FFFFFF;
-      }
-    }
+
+  .close-panel-btn {
+    border: none;
   }
 
   .close-panel-btn, .vertical.buttons{
@@ -137,7 +137,7 @@
       border-top-width: 1px;
   }
 
-  .ui.button:active, .ui.button:focus, .ui.basic.buttons .button:active, .ui.basic.button:active, .ui.basic.buttons .button:focus, .ui.basic.button:focus{
+  .ui.button:not(.close-panel-btn):active, .ui.button:not(.close-panel-btn):focus, .ui.basic.buttons .button:active, .ui.basic.button:active, .ui.basic.buttons .button:focus, .ui.basic.button:focus{
     background: #FFFFFF!important;
 
     .ui.icon.button:hover{
@@ -159,5 +159,5 @@
 }
 
 .ui.button > .right.icon:not(.button) {
-    margin: 0;
+  margin: 0;
 }
