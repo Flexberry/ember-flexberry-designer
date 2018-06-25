@@ -62,9 +62,6 @@
 
     <div class="panel-right">
       <div class="ui buttons">
-        <button class='ui button icon {{addRightNodeDisabled}}' {{action "moveRightHighlighted" on="click" }}>
-          <i class="plus icon"></i>
-        </button>
           <button class='ui button icon {{editRightNodeDisabled}}' {{action "editRightNode" on="click" }}>
           <i class="edit icon"></i>
         </button>
@@ -118,8 +115,58 @@
         </div>
       {{/ui-tab-segment}}
       {{#ui-tab-segment tab='second' title=(t "forms.fd-appstruct-form.form-config-panel.forms-properties-header") theme=""}}
-        <div class="ui small dividing header">
-          {{t "forms.fd-appstruct-form.form-config-panel.forms-properties-header"}}
+        {{#if selectedElementForEdit.type}}
+          <div class="field">
+            <label>{{t "forms.fd-appstruct-form.tab.formName"}}</label>
+            {{
+              flexberry-textbox
+              value=selectedElementForEdit.className
+              readonly=true
+            }}
+          </div>
+          <div class="field">
+            <label>{{t "forms.fd-appstruct-form.tab.formType"}}</label>
+            {{
+              flexberry-textbox
+              value=selectedElementForEdit.type
+              readonly=true
+            }}
+          </div>
+        {{else}}
+          <div class="field">
+            <label>{{t "forms.fd-appstruct-form.tab.url"}}</label>
+            {{
+              flexberry-textbox
+              value=selectedElementForEdit.url
+            }}
+          </div>
+        {{/if}}
+        {{#if (or (eq selectedElementForEdit.type 'master') (eq selectedElementForEdit.type 'desk'))}}
+          <div class="field">
+            <label>{{t "forms.fd-appstruct-form.tab.title"}}</label>
+            {{
+              flexberry-textbox
+              value=selectedElementForEdit.text
+              readonly=(eq selectedElementForEdit.type 'desk')
+            }}
+          </div>
+        {{else}}
+          <div class="field">
+            <label>{{t "forms.fd-appstruct-form.tab.title"}}</label>
+            {{
+              flexberry-textbox
+              value=selectedElementForEdit.caption
+              readonly=(or (eq selectedElementForEdit.type 'master') (eq selectedElementForEdit.type 'desk'))
+            }}
+          </div>
+        {{/if}}
+        <div class="field">
+          <label>{{t "forms.fd-appstruct-form.tab.description"}}</label>
+          {{
+            flexberry-textarea
+            value=selectedElementForEdit.description
+            readonly=(or (eq selectedElementForEdit.type 'master') (eq selectedElementForEdit.type 'desk'))
+          }}
         </div>
       {{/ui-tab-segment}}
     </form>

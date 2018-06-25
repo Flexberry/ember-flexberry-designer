@@ -16,5 +16,12 @@ export default {
     caption: 'Редактор приложения',
     'app-properties-header': 'Свойства класса application и стадии',
     'forms-properties-header': 'Свойства формы',
+  },
+  tab: {
+    formName: 'Название класса формы',
+    formType: 'Тип (стереотип)',
+    title: 'Заголовок элемента навигации',
+    url: 'Ссылка',
+    description: 'Описание'
   }
 };
