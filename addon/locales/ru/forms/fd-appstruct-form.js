@@ -10,8 +10,8 @@ export default {
   'button-generation': 'Генерация',
   'all-forms-panel-caption':'Все формы',
   'app-forms-panel-caption':'Формы приложения',
-  'close-panel-btn-caption':'Нажмитье, чтобы скрыть все формы',
-  'show-panel-btn-caption':'Нажмитье, чтобы показать все формы',
+  'close-panel-btn-caption':'Нажмите, чтобы скрыть все формы',
+  'show-panel-btn-caption':'Нажмите, чтобы показать все формы',
   'form-config-panel': {
     caption: 'Редактор приложения',
     'app-properties-header': 'Свойства класса application и стадии',

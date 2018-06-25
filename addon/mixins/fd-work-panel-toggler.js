@@ -49,7 +49,7 @@ export default Ember.Mixin.create({
       let configPanelTabsWidth = this.configPanelTabsWidth;
 
       if (isMainSidebar) {
-        let routsNameWidthConfigPanel = ['fd-editform-constructor', 'fd-view-edit-form', 'fd-appstruct-form', 'fd-diagram-edit-form'];
+        let routsNameWidthConfigPanel = ['fd-editform-constructor', 'fd-view-edit-form', 'fd-appstruct-form', 'fd-diagram-edit-form', 'fd-visual-listform'];
         let showTabsPanel = routsNameWidthConfigPanel.includes(this.currentRouteName.split('.')[0]);
         configPanelTabsWidth = showTabsPanel ? this.configPanelTabsWidth : 0;
         sidebarVisible = !sidebarVisible;
