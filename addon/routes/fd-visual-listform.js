@@ -92,12 +92,32 @@ export default Ember.Route.extend({
       .where(dataObjectsPredicate)
       .build();
 
+    let stagePredicate = new SimplePredicate('stage.id', 'eq', stage.get('id'));
+
+    let typeQuery = new Builder(this.store, 'fd-dev-class')
+      .select('id,name,caption,description,stereotype,stage.id')
+      .where(new SimplePredicate('stereotype', 'eq', '«type»').and(stagePredicate))
+      .build();
+
+    let enumerationQuery = new Builder(this.store, 'fd-dev-class')
+      .select('id,name,caption,description,stereotype,stage.id')
+      .where(new SimplePredicate('stereotype', 'eq', '«enumeration»').and(stagePredicate))
+      .build();
+
+    let typemapQuery = new Builder(this.store, 'fd-dev-stage')
+      .select('id,typeMapCSStr')
+      .where('id', 'eq', stage.get('id'))
+      .build();
+
     return Ember.RSVP.hash({
       form: formPromise,
       dataObjects: this.store.query('fd-dev-class', dataObjectsQuery),
       associations: this.store.query('fd-dev-association', associationsQuery),
       aggregations: this.store.query('fd-dev-aggregation', aggregationsQuery),
       inheritances: this.store.query('fd-dev-inheritance', inheritancesQuery),
+      enums: this.store.query('fd-dev-class', enumerationQuery),
+      types: this.store.query('fd-dev-class', typeQuery),
+      typemap: this.store.queryRecord('fd-dev-stage', typemapQuery).then(typemap => typemap.get('typeMapCSStr')),
     });
   },
 });

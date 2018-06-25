@@ -120,6 +120,11 @@ export default Ember.Route.extend({
   _updateTypeRightTree(rightTreeNodes, recordsDevClass) {
     let _this = this;
     rightTreeNodes.forEach(function(node) {
+      // TODO: Explore ember-cli-jstree
+      if (!node.get('children') && node.get('copyChildren')) {
+        node.set('children', node.get('copyChildren'));
+      }
+
       if (node.type === 'master') {
         _this._updateTypeRightTree(node.get('children'), recordsDevClass);
         node.set('copyChildren', node.get('children'));
