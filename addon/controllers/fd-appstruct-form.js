@@ -132,10 +132,10 @@ export default EditFormController.extend({
 
     if (selectedElement.get('type') !== 'master' && selectedElement.get('type') !== 'desk') {
       let caption = selectedElement.get('caption');
-      if (!Ember.isNone(caption)) {
+      if (caption !== '') {
         selectedElement.set('text', caption);
       } else {
-        selectedElement.set('text', selectedElement.get('name'));
+        selectedElement.set('text', selectedElement.get('className'));
       }
     }
   }),
