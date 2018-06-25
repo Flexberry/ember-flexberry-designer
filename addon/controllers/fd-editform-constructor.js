@@ -105,6 +105,15 @@ export default Ember.Controller.extend({
     },
 
     /**
+      Close edit form constructor and go to application structure constructor.
+
+      @method actions.close
+    */
+    close() {
+      this.transitionToRoute('fd-appstruct-form');
+    },
+
+    /**
       Set the selected control.
 
       @method actions.selectControl
