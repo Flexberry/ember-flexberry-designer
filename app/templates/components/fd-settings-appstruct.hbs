@@ -1,0 +1,66 @@
+<div class="ui ordered list">
+  {{#if selectedElement.type}}
+  <div class="item">
+    <div>{{t 'components.fd-settings-appstruct.form'}}</div>
+    <div class="list">
+      <div class="item">
+        {{
+          flexberry-field
+          value=selectedElement.className
+          label=(t 'components.fd-settings-appstruct.formName')
+          readonly=true
+          placeholder=(t 'components.flexberry-field.placeholder')
+        }}
+      </div>
+      <div class="item">
+        {{
+          flexberry-field
+          value=selectedElement.type
+          label=(t 'components.fd-settings-appstruct.formType')
+          readonly=true
+          placeholder=(t 'components.flexberry-field.placeholder')
+        }}
+      </div>
+    </div>
+  </div>
+  {{else}}
+    <div class="item">
+      {{
+        flexberry-field
+        value=selectedElement.url
+        label=(t 'components.fd-settings-appstruct.url')
+        placeholder=(t 'components.flexberry-field.placeholder')
+      }}
+    </div>
+  {{/if}}
+
+  {{#if (or (eq selectedElement.type 'master') (eq selectedElement.type 'desk'))}}
+  <div class="item">
+    {{
+      flexberry-field
+      value=selectedElement.text
+      label=(t 'components.fd-settings-appstruct.title')
+      readonly=(eq selectedElement.type 'desk')
+      placeholder=(t 'components.flexberry-field.placeholder')
+    }}
+  </div>
+  {{else}}
+  <div class="item">
+    {{
+      flexberry-field
+      value=selectedElement.caption
+      label=(t 'components.fd-settings-appstruct.title')
+      placeholder=(t 'components.flexberry-field.placeholder')
+    }}
+  </div>
+  {{/if}}
+  <div class="item">
+    {{
+      flexberry-field
+      value=selectedElement.description
+      label=(t 'components.fd-settings-appstruct.description')
+      readonly=(or (eq selectedElement.type 'master') (eq selectedElement.type 'desk'))
+      placeholder=(t 'components.flexberry-field.placeholder')
+    }}
+  </div>
+</div>

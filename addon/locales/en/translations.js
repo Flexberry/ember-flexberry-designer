@@ -91,6 +91,7 @@ import FdUcdModel from './models/fd-ucd';
 import FdViewModel from './models/fd-view';
 import FdVisualControlModel from './models/fd-visual-control';
 import FdVisualControlComponent from './components/fd-visual-control';
+import FdSettingsAppstructComponent from './components/fd-settings-appstruct';
 
 const translations = {};
 Ember.$.extend(true, translations, EmberFlexberryTranslations);
@@ -193,7 +194,8 @@ Ember.$.extend(true, translations, {
   },
 
   components: {
-    'fd-visual-control': FdVisualControlComponent
+    'fd-visual-control': FdVisualControlComponent,
+    'fd-settings-appstruct': FdSettingsAppstructComponent
   }
 
 });

@@ -91,6 +91,14 @@ export default EditFormController.extend({
   jstreeSelectedNodesRight: Ember.A(),
 
   /**
+    Nodes in right jsTree for edit propertys.
+
+    @property selectedElementForEdit
+    @type Object
+   */
+  selectedElementForEdit: undefined,
+
+  /**
     Type settings for jsTree.
 
     @property typesOptions
@@ -115,7 +123,7 @@ export default EditFormController.extend({
       icon: 'assets/images/notStored.png'
     },
     'master': {
-      icon: 'assets/images/master.bmp'
+      icon: 'folder icon'
     },
     '#': {
       max_children: 1
@@ -247,6 +255,7 @@ export default EditFormController.extend({
       this.set('addFolderNodeDisabled', 'disabled');
     } else {
       let selectedNode = jstreeSelectedNodesRight[0];
+      this.set('selectedElementForEdit', selectedNode.original);
       let typeNode = selectedNode.original.type;
 
       if (typeNode === 'desk') {
@@ -295,7 +304,7 @@ export default EditFormController.extend({
   */
   indexSelectedRight: Ember.computed('jstreeSelectedNodesRight', function() {
     let jstreeSelectedNodesRight = this.get('jstreeSelectedNodesRight');
-    if (jstreeSelectedNodesRight.length === 0) {
+    if (jstreeSelectedNodesRight.length === 0 || jstreeSelectedNodesRight[0].type === 'desk') {
       return {
         upRightNodeDisabled: 'disabled',
         downRightNodeDisabled: 'disabled'
