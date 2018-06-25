@@ -139,13 +139,13 @@ export default Ember.Component.extend({
   */
   getTranslationString(type) {
     let userString;
-    let tts = this.get('typeToString');
-    userString = tts[type];
+    let typeToString = this.get('typeToString');
+    userString = typeToString[type];
 
     if (userString === undefined) {
-      for (let ts in tts) {
+      for (let ts in typeToString) {
         if (type.toLowerCase().indexOf(ts) !== -1) {
-          userString = tts[ts];
+          userString = typeToString[ts];
           break;
         }
       }
@@ -286,9 +286,9 @@ export default Ember.Component.extend({
     */
     onDropDownSelectionChanged() {
       let selectedType = this.get('selectedType');
-      let tts = this.get('typeToString');
-      for (let tt in tts) {
-        if (tts[tt] === selectedType) {
+      let typeToString = this.get('typeToString');
+      for (let tt in typeToString) {
+        if (typeToString[tt] === selectedType) {
           this.set('selectedControl.type', tt);
           break;
         }
