@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import FdViewAttributesTree from '../objects/fd-view-attributes-tree';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
+import { translationMacro as t } from 'ember-i18n';
 
 export default EditFormController.extend({
 
@@ -33,23 +34,7 @@ export default EditFormController.extend({
    */
   objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
 
-  /**
-    Data left jsTree.
-
-    @property jsonLeftTreeNodes
-    @type Array
-    @default null
-   */
-  jsonLeftTreeNodes:null,
-
-  /**
-    Data right jsTree.
-
-    @property jsonRightTreeNodes
-    @type Array
-    @default null
-   */
-  jsonRightTreeNodes: null,
+  allAttrsHidedn: false,
 
   /**
     Included plugins for left jsTree.
@@ -120,88 +105,6 @@ export default EditFormController.extend({
   })),
 
   _modelObserver: Ember.on('init', Ember.observer('model', function() {
-    if (!this.get('model')) {
-      return;
-    }
-
-    /*
-      Create left tree.
-    */
-
-    // Model.form in tree data.
-    let treeNodeForms = Ember.A();
-    let forms = this.get('model.forms');
-    forms.forEach((form, index) => {
-      let idParent = form.get('formViews').mapBy('view.class.id');
-      treeNodeForms.pushObject(
-        FdViewAttributesTree.create({
-          text: form.get('caption') || form.get('name'),
-          name: form.get('name'),
-          caption: form.get('caption'),
-          description: form.get('description'),
-          type: form.get('stereotype'),
-          id: 'node_form_' + index,
-          idNode: form.get('id'),
-          idParent: idParent[0],
-          a_attr: {
-            title: form.get('stereotype') + ' ' + form.get('name')
-          }
-        }));
-    });
-
-    // Model.implementations in tree data.
-    let treeLeft = Ember.A();
-    let implementations = this.get('model.implementations');
-    implementations.forEach((implementation, index) => {
-      let implementationsChildren = treeNodeForms.filterBy('idParent', implementation.id);
-      let typeImplementation = implementation.get('stored') ? 'implementations' : 'notStored';
-      treeLeft.pushObject(
-        FdViewAttributesTree.create({
-          text: implementation.get('caption') || implementation.get('name'),
-          name: implementation.get('name'),
-          type: typeImplementation,
-          id: 'node_impl_' + index,
-          idNode: implementation.get('id'),
-          children: implementationsChildren,
-          copyChildren: implementationsChildren,
-          a_attr: {
-            title: implementation.get('name')
-          }
-        }));
-    });
-
-    Ember.set(this, 'jsonLeftTreeNodes', treeLeft);
-
-    /*
-      Create right tree.
-    */
-
-    let rightTreeNodes = Ember.A();
-    let applications = this.get('model.applications');
-
-    applications.forEach((application) => {
-      rightTreeNodes.pushObjects(application.get('containersStr'));
-    });
-
-    // Update stereotype.
-    let recordsDevClass = this.get('store').peekAll('fd-dev-class');
-    this._updateTypeRightTree(rightTreeNodes, recordsDevClass);
-
-    let treeRight = Ember.A([
-      FdViewAttributesTree.create({
-        text: 'Рабочий стол',
-        type: 'desk',
-        id: 'node_app',
-        children: rightTreeNodes,
-        copyChildren: rightTreeNodes,
-        state: {
-          opened: true
-        }
-      })
-    ]);
-
-    Ember.set(this, 'jsonRightTreeNodes', treeRight);
-
     // Reset selection.
     this.set('jstreeSelectedNodesLeft', Ember.A());
     this.set('jstreeSelectedNodesRight', Ember.A());
@@ -324,24 +227,6 @@ export default EditFormController.extend({
   }),
 
   /**
-    Method for update type right tree.
-    @method _updateTypeRightTree
-  */
-  _updateTypeRightTree(rightTreeNodes, recordsDevClass) {
-    let _this = this;
-    rightTreeNodes.forEach(function(node) {
-      if (node.type === 'master') {
-        _this._updateTypeRightTree(node.get('children'), recordsDevClass);
-        node.set('copyChildren', node.get('children'));
-      } else {
-        let classData = recordsDevClass.findBy('name', node.className);
-        node.set('type', classData.get('stereotype'));
-        node.set('a_attr', { title: classData.get('stereotype') + ' ' + classData.get('name') });
-      }
-    });
-  },
-
-  /**
     Method for restoring tree nodes.
     @method _restorationNodeTree
   */
@@ -360,9 +245,8 @@ export default EditFormController.extend({
     @method _updateTreeData
   */
   _updateTreeData() {
-    let dataTree = this.get('jsonRightTreeNodes');
+    let dataTree = this.get('model.rightTreeNodes');
     this._restorationNodeTree(dataTree);
-    Ember.set(this, 'jsonRightTreeNodes', dataTree);
 
     this.get('jstreeActionReceiverRight').send('redraw');
   },
@@ -647,18 +531,14 @@ export default EditFormController.extend({
       @method actions.saveTree
     */
     saveTree() {
-      let dataTree = this.get('jsonRightTreeNodes')[0];
+      let dataTree = this.get('model.rightTreeNodes')[0];
       let dataForSave = dataTree.get('copyChildren');
 
-      let store = this.get('store');
-      let classId = this.get('model.applications.firstObject.id');
-      let recordsClass = store.peekAll('fd-dev-class');
-
-      let record = recordsClass.findBy('id', classId);
+      let record = this.get('model.applications')[0];
       record.set('containersStr', dataForSave);
 
       if (Ember.isNone(record.get('caption'))) {
-        record.set('caption', this.get('model.applications.firstObject.name'));
+        record.set('caption', record.get('name'));
       }
 
       let _this = this;
@@ -684,6 +564,20 @@ export default EditFormController.extend({
     */
     openGenerationForm() {
       this.transitionToRoute('fd-generation-process-form.new');
+    },
+
+    closeRightpanel() {
+      Ember.$('.closable.panel-left').toggle(500);
+
+      if (this.allAttrsHidedn) {
+        this.set('popupMessage', t('forms.fd-appstruct-form.close-panel-btn-caption'));
+        Ember.$('.panel-wrapper .panel-right').css('width', '50%');
+      } else {
+        this.set('popupMessage', t('forms.fd-appstruct-form.show-panel-btn-caption'));
+        Ember.$('.panel-wrapper .panel-right').css('width', '100%');
+      }
+
+      this.toggleProperty('allAttrsHidedn');
     }
   }
 });

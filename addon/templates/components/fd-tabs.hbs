@@ -1,0 +1,11 @@
+{{#ui-tab-menu theme=tabsMenuTheme}}
+	{{#each tabs as |ta|}}
+			<a class="item" {{action 'toggleConfigPanel' ta.tab}} data-tab="{{ta.tab}}" >{{ta.title}}</a>
+	{{/each}}
+{{/ui-tab-menu}}
+
+{{yield
+	(hash
+		pane=(component "ui-tab-segment" parent=this)
+	)
+}}

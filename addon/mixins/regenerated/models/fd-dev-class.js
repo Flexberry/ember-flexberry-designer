@@ -1261,6 +1261,13 @@ export let defineProjections = function (modelClass) {
     businessServerClass: Projection.belongsTo('fd-dev-class', '', {
       name: Projection.attr('')
     }),
+    formViews: Projection.hasMany('fd-dev-form-view', '', {
+      view: Projection.belongsTo('fd-dev-view', '', {
+        class: Projection.belongsTo('fd-dev-class', '', {
+          name: Projection.attr('')
+        })
+      })
+    }),
     views: Projection.hasMany('fd-dev-view', '', {
       definition: Projection.attr(''),
       name: Projection.attr(''),
