@@ -187,6 +187,14 @@ export default EditFormController.extend({
   jstreeSelectedNodesRight: Ember.A(),
 
   /**
+    Nodes in right jsTree for edit propertys.
+
+    @property selectedElementForEdit
+    @type Object
+   */
+  selectedElementForEdit: undefined,
+
+  /**
     Type settings for jsTree.
 
     @property typesOptions
@@ -211,7 +219,7 @@ export default EditFormController.extend({
       icon: &#x27;assets/images/notStored.png&#x27;
     },
     &#x27;master&#x27;: {
-      icon: &#x27;assets/images/master.bmp&#x27;
+      icon: &#x27;folder icon&#x27;
     },
     &#x27;#&#x27;: {
       max_children: 1
@@ -222,7 +230,43 @@ export default EditFormController.extend({
     // Reset selection.
     this.set(&#x27;jstreeSelectedNodesLeft&#x27;, Ember.A());
     this.set(&#x27;jstreeSelectedNodesRight&#x27;, Ember.A());
+    this.set(&#x27;selectedElementForEdit&#x27;, undefined);
   })),
+
+  /**
+    Update text in node.
+
+    @method selectedElementCaptionObserver
+  */
+  selectedElementCaptionObserver: Ember.observer(&#x27;selectedElementForEdit.caption&#x27;, function() {
+    let selectedElement = this.get(&#x27;selectedElementForEdit&#x27;);
+    if (Ember.isNone(selectedElement)) {
+      return;
+    }
+
+    if (selectedElement.get(&#x27;type&#x27;) !== &#x27;master&#x27; &amp;&amp; selectedElement.get(&#x27;type&#x27;) !== &#x27;desk&#x27;) {
+      let caption = selectedElement.get(&#x27;caption&#x27;);
+      if (caption !== &#x27;&#x27;) {
+        selectedElement.set(&#x27;text&#x27;, caption);
+      } else {
+        selectedElement.set(&#x27;text&#x27;, selectedElement.get(&#x27;className&#x27;));
+      }
+    }
+  }),
+
+  /**
+    Redraw text in node.
+
+    @method selectedElementTextObserver
+  */
+  selectedElementTextObserver: Ember.observer(&#x27;selectedElementForEdit.text&#x27;, function() {
+    let selectedElement = this.get(&#x27;selectedElementForEdit&#x27;);
+    if (Ember.isNone(selectedElement)) {
+      return;
+    }
+
+    this.get(&#x27;jstreeActionReceiverRight&#x27;).send(&#x27;renameNode&#x27;, selectedElement.get(&#x27;id&#x27;), selectedElement.get(&#x27;text&#x27;));
+  }),
 
   /**
     Handles changes in jstreeSelectedNodesLeft.
@@ -261,6 +305,7 @@ export default EditFormController.extend({
       this.set(&#x27;addFolderNodeDisabled&#x27;, &#x27;disabled&#x27;);
     } else {
       let selectedNode = jstreeSelectedNodesRight[0];
+      this.set(&#x27;selectedElementForEdit&#x27;, selectedNode.original);
       let typeNode = selectedNode.original.type;
 
       if (typeNode === &#x27;desk&#x27;) {
@@ -309,7 +354,7 @@ export default EditFormController.extend({
   */
   indexSelectedRight: Ember.computed(&#x27;jstreeSelectedNodesRight&#x27;, function() {
     let jstreeSelectedNodesRight = this.get(&#x27;jstreeSelectedNodesRight&#x27;);
-    if (jstreeSelectedNodesRight.length === 0) {
+    if (jstreeSelectedNodesRight.length === 0 || jstreeSelectedNodesRight[0].type === &#x27;desk&#x27;) {
       return {
         upRightNodeDisabled: &#x27;disabled&#x27;,
         downRightNodeDisabled: &#x27;disabled&#x27;
