@@ -16,5 +16,12 @@ export default {
     caption: 'App editor',
     'app-properties-header': 'Application and stage properties',
     'forms-properties-header': 'Form properties',
+  },
+  tab: {
+    formName: 'Form class name',
+    formType: 'Type (stereotype)',
+    title: 'Navigation element title',
+    url: 'Url',
+    description: 'Description'
   }
 };

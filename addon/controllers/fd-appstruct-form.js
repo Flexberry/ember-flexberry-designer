@@ -116,7 +116,25 @@ export default EditFormController.extend({
     // Reset selection.
     this.set('jstreeSelectedNodesLeft', Ember.A());
     this.set('jstreeSelectedNodesRight', Ember.A());
+    this.set('selectedElementForEdit', undefined);
   })),
+
+  selectedElementCaptionObserver: Ember.observer('selectedElementForEdit.caption', function() {
+    let selectedElement = this.get('selectedElementForEdit');
+    if (selectedElement.get('type') !== 'master' && selectedElement.get('type') !== 'desk') {
+      let caption = selectedElement.get('caption');
+      if (!Ember.isNone(caption)) {
+        selectedElement.set('text', caption);
+      } else {
+        selectedElement.set('text', selectedElement.get('name'));
+      }
+    }
+  }),
+
+  selectedElementTextObserver: Ember.observer('selectedElementForEdit.text', function() {
+    let selectedElement = this.get('selectedElementForEdit');
+    this.get('jstreeActionReceiverRight').send('renameNode', selectedElement.get('id'), selectedElement.get('text'));
+  }),
 
   /**
     Handles changes in jstreeSelectedNodesLeft.

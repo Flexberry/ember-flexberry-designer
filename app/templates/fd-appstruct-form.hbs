@@ -115,11 +115,57 @@
         </div>
       {{/ui-tab-segment}}
       {{#ui-tab-segment tab='second' title=(t "forms.fd-appstruct-form.form-config-panel.forms-properties-header") theme=""}}
-        <div class="ui small dividing header">
+        {{#if selectedElementForEdit.type}}
+          <div class="field">
+            <label>{{t "forms.fd-appstruct-form.tab.formName"}}</label>
+            {{
+              flexberry-textbox
+              value=selectedElementForEdit.className
+              readonly=true
+            }}
+          </div>
+          <div class="field">
+            <label>{{t "forms.fd-appstruct-form.tab.formType"}}</label>
+            {{
+              flexberry-textbox
+              value=selectedElementForEdit.type
+              readonly=true
+            }}
+          </div>
+        {{else}}
+          <div class="field">
+            <label>{{t "forms.fd-appstruct-form.tab.url"}}</label>
+            {{
+              flexberry-textbox
+              value=selectedElementForEdit.url
+            }}
+          </div>
+        {{/if}}
+        {{#if (or (eq selectedElementForEdit.type 'master') (eq selectedElementForEdit.type 'desk'))}}
+          <div class="field">
+            <label>{{t "forms.fd-appstruct-form.tab.title"}}</label>
+            {{
+              flexberry-textbox
+              value=selectedElementForEdit.text
+              readonly=(eq selectedElementForEdit.type 'desk')
+            }}
+          </div>
+        {{else}}
+          <div class="field">
+            <label>{{t "forms.fd-appstruct-form.tab.title"}}</label>
+            {{
+              flexberry-textbox
+              value=selectedElementForEdit.caption
+              readonly=(or (eq selectedElementForEdit.type 'master') (eq selectedElementForEdit.type 'desk'))
+            }}
+          </div>
+        {{/if}}
+        <div class="field">
+          <label>{{t "forms.fd-appstruct-form.tab.description"}}</label>
           {{
-            fd-settings-appstruct
-            selectedElement=selectedElementForEdit
-            actionTreeReceiver=jstreeActionReceiverRight
+            flexberry-textarea
+            value=selectedElementForEdit.description
+            readonly=(or (eq selectedElementForEdit.type 'master') (eq selectedElementForEdit.type 'desk'))
           }}
         </div>
       {{/ui-tab-segment}}
