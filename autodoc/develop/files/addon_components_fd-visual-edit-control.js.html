@@ -300,7 +300,7 @@ export default Ember.Component.extend({
 
     for (let sEnum of enums.content) {
       let obj = {};
-      obj.type = sEnum._data.caption;
+      obj.type = sEnum._data.nameStr;
       if (obj.type.indexOf(&#x27;null&#x27;) !== -1 || obj.type.indexOf(&#x27;Null&#x27;) !== -1) {
         obj.nullable = true;
       } else {
