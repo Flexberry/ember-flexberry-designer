@@ -480,6 +480,13 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/routes/fd-appstruct-form.js": {
+            "name": "addon/routes/fd-appstruct-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/routes/fd-association-list-form.js": {
             "name": "addon/routes/fd-association-list-form.js",
             "modules": {},
@@ -2005,31 +2012,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 37,
-            "description": "Data left jsTree.",
-            "itemtype": "property",
-            "name": "jsonLeftTreeNodes",
-            "type": "Array",
-            "default": "null",
-            "class": "FdDraggableControlMixin",
-            "module": "components",
-            "namespace": "components"
-        },
-        {
-            "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 46,
-            "description": "Data right jsTree.",
-            "itemtype": "property",
-            "name": "jsonRightTreeNodes",
-            "type": "Array",
-            "default": "null",
-            "class": "FdDraggableControlMixin",
-            "module": "components",
-            "namespace": "components"
-        },
-        {
-            "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 57,
+            "line": 39,
             "description": "Included plugins for left jsTree.",
             "itemtype": "property",
             "name": "pluginsLeft",
@@ -2041,7 +2024,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 66,
+            "line": 48,
             "description": "Included plugins for right jsTree.",
             "itemtype": "property",
             "name": "pluginsRight",
@@ -2053,7 +2036,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 75,
+            "line": 57,
             "description": "Selected nodes in left jsTree.",
             "itemtype": "property",
             "name": "jstreeSelectedNodesLeft",
@@ -2065,7 +2048,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 84,
+            "line": 66,
             "description": "Selected nodes in right jsTree.",
             "itemtype": "property",
             "name": "jstreeSelectedNodesRight",
@@ -2077,7 +2060,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 93,
+            "line": 75,
             "description": "Type settings for jsTree.",
             "itemtype": "property",
             "name": "typesOptions",
@@ -2088,7 +2071,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 213,
+            "line": 113,
             "description": "Handles changes in jstreeSelectedNodesLeft.",
             "itemtype": "method",
             "name": "jstreeSelectedNodesLeftObserver",
@@ -2098,7 +2081,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 237,
+            "line": 137,
             "description": "Handles changes in jstreeSelectedNodesRight.",
             "itemtype": "method",
             "name": "jstreeSelectedNodesRightObserver",
@@ -2108,7 +2091,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 268,
+            "line": 168,
             "description": "Handles changes in jstreeSelectedNodesRight and jstreeSelectedNodesLeft.",
             "itemtype": "method",
             "name": "_jstreeSelectedNodesObserver",
@@ -2118,7 +2101,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 290,
+            "line": 190,
             "description": "Index selected attribute in right tree.",
             "itemtype": "property",
             "name": "indexSelectedRight",
@@ -2129,17 +2112,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 329,
-            "description": "Method for update type right tree.",
-            "itemtype": "method",
-            "name": "_updateTypeRightTree",
-            "class": "FdDraggableControlMixin",
-            "module": "components",
-            "namespace": "components"
-        },
-        {
-            "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 347,
+            "line": 229,
             "description": "Method for restoring tree nodes.",
             "itemtype": "method",
             "name": "_restorationNodeTree",
@@ -2149,7 +2122,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 361,
+            "line": 243,
             "description": "Method for update data in tree.",
             "itemtype": "method",
             "name": "_updateTreeData",
@@ -2159,7 +2132,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 375,
+            "line": 256,
             "description": "Handles move node from left in right jsTree.",
             "itemtype": "method",
             "name": "actions.moveRightHighlighted",
@@ -2169,7 +2142,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 412,
+            "line": 293,
             "description": "Handles remove node from left jsTree.",
             "itemtype": "method",
             "name": "actions.removeLeftNode",
@@ -2179,7 +2152,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 428,
+            "line": 309,
             "description": "Handles create new class left jsTree.",
             "itemtype": "method",
             "name": "actions.addLeftClass",
@@ -2189,7 +2162,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 437,
+            "line": 318,
             "description": "Handles add edit form for class in left jsTree.",
             "itemtype": "method",
             "name": "actions.addLeftListForm",
@@ -2199,7 +2172,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 459,
+            "line": 340,
             "description": "Handles add list form for class in left jsTree.",
             "itemtype": "method",
             "name": "actions.addLeftListForm",
@@ -2209,7 +2182,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 481,
+            "line": 362,
             "description": "Handles edit node left jsTree.",
             "itemtype": "method",
             "name": "actions.editLeftNode",
@@ -2219,7 +2192,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 514,
+            "line": 395,
             "description": "Handles open class list form.",
             "itemtype": "method",
             "name": "actions.listLeft",
@@ -2229,7 +2202,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 523,
+            "line": 404,
             "description": "Handles edit node left jsTree.",
             "itemtype": "method",
             "name": "actions.editRightNode",
@@ -2239,7 +2212,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 532,
+            "line": 413,
             "description": "Handles remove node from right jsTree.",
             "itemtype": "method",
             "name": "actions.removeRightNode",
@@ -2249,7 +2222,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 553,
+            "line": 434,
             "description": "Handles add node in right jsTree.",
             "itemtype": "method",
             "name": "actions.addFolderNode",
@@ -2259,7 +2232,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 597,
+            "line": 478,
             "description": "Handles up move tree node.",
             "itemtype": "method",
             "name": "actions.upRightNode",
@@ -2269,7 +2242,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 622,
+            "line": 503,
             "description": "Handles down move tree node.",
             "itemtype": "method",
             "name": "actions.downRightNode",
@@ -2279,7 +2252,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 647,
+            "line": 528,
             "description": "Handles save in right tree.",
             "itemtype": "method",
             "name": "actions.saveTree",
@@ -2289,7 +2262,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 674,
+            "line": 551,
             "description": "Handles open process editor form.",
             "itemtype": "method",
             "name": "actions.openProcessEditorForm",
@@ -2299,7 +2272,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 683,
+            "line": 560,
             "description": "Handles open generation form.",
             "itemtype": "method",
             "name": "actions.openGenerationForm",
@@ -5807,6 +5780,26 @@
             "itemtype": "property",
             "name": "currentContext",
             "type": "FdCurrentProjectContextService",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-appstruct-form.js",
+            "line": 5,
+            "description": "Service that get current project contexts.",
+            "itemtype": "property",
+            "name": "currentProjectContext",
+            "type": "{Class}",
+            "default": "Ember.inject.service()",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-appstruct-form.js",
+            "line": 116,
+            "description": "Method for update type right tree.",
+            "itemtype": "method",
+            "name": "_updateTypeRightTree",
             "class": "FdCurrentProjectContextService",
             "module": "ember-flexberry-designer"
         },

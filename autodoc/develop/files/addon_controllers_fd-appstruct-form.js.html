@@ -148,24 +148,6 @@ export default EditFormController.extend({
    */
   objectlistviewEventsService: Ember.inject.service(&#x27;objectlistview-events&#x27;),
 
-  /**
-    Data left jsTree.
-
-    @property jsonLeftTreeNodes
-    @type Array
-    @default null
-   */
-  jsonLeftTreeNodes:null,
-
-  /**
-    Data right jsTree.
-
-    @property jsonRightTreeNodes
-    @type Array
-    @default null
-   */
-  jsonRightTreeNodes: null,
-
   allAttrsHidedn: false,
 
   /**
@@ -237,88 +219,6 @@ export default EditFormController.extend({
   })),
 
   _modelObserver: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;model&#x27;, function() {
-    if (!this.get(&#x27;model&#x27;)) {
-      return;
-    }
-
-    /*
-      Create left tree.
-    */
-
-    // Model.form in tree data.
-    let treeNodeForms = Ember.A();
-    let forms = this.get(&#x27;model.forms&#x27;);
-    forms.forEach((form, index) =&gt; {
-      let idParent = form.get(&#x27;formViews&#x27;).mapBy(&#x27;view.class.id&#x27;);
-      treeNodeForms.pushObject(
-        FdViewAttributesTree.create({
-          text: form.get(&#x27;caption&#x27;) || form.get(&#x27;name&#x27;),
-          name: form.get(&#x27;name&#x27;),
-          caption: form.get(&#x27;caption&#x27;),
-          description: form.get(&#x27;description&#x27;),
-          type: form.get(&#x27;stereotype&#x27;),
-          id: &#x27;node_form_&#x27; + index,
-          idNode: form.get(&#x27;id&#x27;),
-          idParent: idParent[0],
-          a_attr: {
-            title: form.get(&#x27;stereotype&#x27;) + &#x27; &#x27; + form.get(&#x27;name&#x27;)
-          }
-        }));
-    });
-
-    // Model.implementations in tree data.
-    let treeLeft = Ember.A();
-    let implementations = this.get(&#x27;model.implementations&#x27;);
-    implementations.forEach((implementation, index) =&gt; {
-      let implementationsChildren = treeNodeForms.filterBy(&#x27;idParent&#x27;, implementation.id);
-      let typeImplementation = implementation.get(&#x27;stored&#x27;) ? &#x27;implementations&#x27; : &#x27;notStored&#x27;;
-      treeLeft.pushObject(
-        FdViewAttributesTree.create({
-          text: implementation.get(&#x27;caption&#x27;) || implementation.get(&#x27;name&#x27;),
-          name: implementation.get(&#x27;name&#x27;),
-          type: typeImplementation,
-          id: &#x27;node_impl_&#x27; + index,
-          idNode: implementation.get(&#x27;id&#x27;),
-          children: implementationsChildren,
-          copyChildren: implementationsChildren,
-          a_attr: {
-            title: implementation.get(&#x27;name&#x27;)
-          }
-        }));
-    });
-
-    Ember.set(this, &#x27;jsonLeftTreeNodes&#x27;, treeLeft);
-
-    /*
-      Create right tree.
-    */
-
-    let rightTreeNodes = Ember.A();
-    let applications = this.get(&#x27;model.applications&#x27;);
-
-    applications.forEach((application) =&gt; {
-      rightTreeNodes.pushObjects(application.get(&#x27;containersStr&#x27;));
-    });
-
-    // Update stereotype.
-    let recordsDevClass = this.get(&#x27;store&#x27;).peekAll(&#x27;fd-dev-class&#x27;);
-    this._updateTypeRightTree(rightTreeNodes, recordsDevClass);
-
-    let treeRight = Ember.A([
-      FdViewAttributesTree.create({
-        text: &#x27;Рабочий стол&#x27;,
-        type: &#x27;desk&#x27;,
-        id: &#x27;node_app&#x27;,
-        children: rightTreeNodes,
-        copyChildren: rightTreeNodes,
-        state: {
-          opened: true
-        }
-      })
-    ]);
-
-    Ember.set(this, &#x27;jsonRightTreeNodes&#x27;, treeRight);
-
     // Reset selection.
     this.set(&#x27;jstreeSelectedNodesLeft&#x27;, Ember.A());
     this.set(&#x27;jstreeSelectedNodesRight&#x27;, Ember.A());
@@ -441,24 +341,6 @@ export default EditFormController.extend({
   }),
 
   /**
-    Method for update type right tree.
-    @method _updateTypeRightTree
-  */
-  _updateTypeRightTree(rightTreeNodes, recordsDevClass) {
-    let _this = this;
-    rightTreeNodes.forEach(function(node) {
-      if (node.type === &#x27;master&#x27;) {
-        _this._updateTypeRightTree(node.get(&#x27;children&#x27;), recordsDevClass);
-        node.set(&#x27;copyChildren&#x27;, node.get(&#x27;children&#x27;));
-      } else {
-        let classData = recordsDevClass.findBy(&#x27;name&#x27;, node.className);
-        node.set(&#x27;type&#x27;, classData.get(&#x27;stereotype&#x27;));
-        node.set(&#x27;a_attr&#x27;, { title: classData.get(&#x27;stereotype&#x27;) + &#x27; &#x27; + classData.get(&#x27;name&#x27;) });
-      }
-    });
-  },
-
-  /**
     Method for restoring tree nodes.
     @method _restorationNodeTree
   */
@@ -477,9 +359,8 @@ export default EditFormController.extend({
     @method _updateTreeData
   */
   _updateTreeData() {
-    let dataTree = this.get(&#x27;jsonRightTreeNodes&#x27;);
+    let dataTree = this.get(&#x27;model.rightTreeNodes&#x27;);
     this._restorationNodeTree(dataTree);
-    Ember.set(this, &#x27;jsonRightTreeNodes&#x27;, dataTree);
 
     this.get(&#x27;jstreeActionReceiverRight&#x27;).send(&#x27;redraw&#x27;);
   },
@@ -764,18 +645,14 @@ export default EditFormController.extend({
       @method actions.saveTree
     */
     saveTree() {
-      let dataTree = this.get(&#x27;jsonRightTreeNodes&#x27;)[0];
+      let dataTree = this.get(&#x27;model.rightTreeNodes&#x27;)[0];
       let dataForSave = dataTree.get(&#x27;copyChildren&#x27;);
 
-      let store = this.get(&#x27;store&#x27;);
-      let classId = this.get(&#x27;model.applications.firstObject.id&#x27;);
-      let recordsClass = store.peekAll(&#x27;fd-dev-class&#x27;);
-
-      let record = recordsClass.findBy(&#x27;id&#x27;, classId);
+      let record = this.get(&#x27;model.applications&#x27;)[0];
       record.set(&#x27;containersStr&#x27;, dataForSave);
 
       if (Ember.isNone(record.get(&#x27;caption&#x27;))) {
-        record.set(&#x27;caption&#x27;, this.get(&#x27;model.applications.firstObject.name&#x27;));
+        record.set(&#x27;caption&#x27;, record.get(&#x27;name&#x27;));
       }
 
       let _this = this;
