@@ -153,6 +153,13 @@ export default Ember.Route.extend({
     this._super(...arguments);
     controller.set(&#x27;routeName&#x27;, this.get(&#x27;routeName&#x27;));
     controller.set(&#x27;parentRoute&#x27;, this.get(&#x27;router.url&#x27;));
+  },
+
+  actions:{
+    didTransition() {
+      Ember.$(&#x27;#example .flexberry-content&#x27;).css(&#x27;padding-bottom&#x27;, 0);
+      Ember.$(&#x27;.flexberry-content &gt; .ui.main.container&#x27;).css(&#x27;margin-bottom&#x27;, 0);
+    }
   }
 });
 

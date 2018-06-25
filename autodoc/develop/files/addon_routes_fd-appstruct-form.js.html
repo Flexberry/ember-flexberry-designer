@@ -243,6 +243,13 @@ export default Ember.Route.extend({
         node.set(&#x27;a_attr&#x27;, { title: classData.get(&#x27;stereotype&#x27;) + &#x27; &#x27; + classData.get(&#x27;name&#x27;) });
       }
     });
+  },
+
+  actions:{
+    didTransition() {
+      Ember.$(&#x27;#example .flexberry-content&#x27;).css(&#x27;padding-bottom&#x27;, 0);
+      Ember.$(&#x27;.flexberry-content &gt; .ui.main.container&#x27;).css(&#x27;margin-bottom&#x27;, 0);
+    }
   }
 });
 

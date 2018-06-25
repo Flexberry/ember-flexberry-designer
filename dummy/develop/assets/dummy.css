@@ -39071,6 +39071,28 @@ img.item-minus {
 .fd-editform-control:hover > .drag-anchor {
   display: block;
 }
+/*******************************
+         Site Settings
+*******************************/
+/*-------------------
+       Loader
+--------------------*/
+/*-------------------
+      Site Colors
+--------------------*/
+/*---  Colors  ---*/
+/*---  Light Colors  ---*/
+/*-------------------
+        Paths
+--------------------*/
+/* For source only. Modified in gulp for dist */
+/*-------------------
+        Hover
+--------------------*/
+/*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 #example.pusher {
   -webkit-transition: transform 500ms ease, width 500ms ease;
   -moz-transition: transform 500ms ease, width 500ms ease;
@@ -39085,6 +39107,8 @@ img.item-minus {
 }
 .ui.right.sidebar.config-panel .right-tabs {
   flex-direction: row-reverse;
+  height: auto;
+  min-height: calc(100vh - 80px);
 }
 .ui.right.sidebar.config-panel .ui.vertical.menu {
   width: 4rem;
@@ -39127,7 +39151,7 @@ img.item-minus {
 }
 .panel-wrapper {
   height: -webkit-fill-available;
-  max-height: calc(100vh - 390px);
+  max-height: calc(100vh - 250px);
   display: flex;
 }
 .panel-wrapper .ui.segments {
@@ -39164,8 +39188,8 @@ img.item-minus {
 .panel-wrapper i.icon.sidebar:before {
   color: #7ba7d9;
 }
-.panel-wrapper .close-panel-btn:hover i.icon:before {
-  color: #FFFFFF;
+.panel-wrapper .close-panel-btn {
+  border: none;
 }
 .panel-wrapper .close-panel-btn,
 .panel-wrapper .vertical.buttons {
@@ -39183,24 +39207,24 @@ img.item-minus {
 .panel-wrapper .ui.basic.vertical.buttons .button:first-child {
   border-top-width: 1px;
 }
-.panel-wrapper .ui.button:active,
-.panel-wrapper .ui.button:focus,
+.panel-wrapper .ui.button:not(.close-panel-btn):active,
+.panel-wrapper .ui.button:not(.close-panel-btn):focus,
 .panel-wrapper .ui.basic.buttons .button:active,
 .panel-wrapper .ui.basic.button:active,
 .panel-wrapper .ui.basic.buttons .button:focus,
 .panel-wrapper .ui.basic.button:focus {
   background: #FFFFFF!important;
 }
-.panel-wrapper .ui.button:active .ui.icon.button:hover,
-.panel-wrapper .ui.button:focus .ui.icon.button:hover,
+.panel-wrapper .ui.button:not(.close-panel-btn):active .ui.icon.button:hover,
+.panel-wrapper .ui.button:not(.close-panel-btn):focus .ui.icon.button:hover,
 .panel-wrapper .ui.basic.buttons .button:active .ui.icon.button:hover,
 .panel-wrapper .ui.basic.button:active .ui.icon.button:hover,
 .panel-wrapper .ui.basic.buttons .button:focus .ui.icon.button:hover,
 .panel-wrapper .ui.basic.button:focus .ui.icon.button:hover {
   color: #7ba7d9;
 }
-.panel-wrapper .ui.button:active:hover,
-.panel-wrapper .ui.button:focus:hover,
+.panel-wrapper .ui.button:not(.close-panel-btn):active:hover,
+.panel-wrapper .ui.button:not(.close-panel-btn):focus:hover,
 .panel-wrapper .ui.basic.buttons .button:active:hover,
 .panel-wrapper .ui.basic.button:active:hover,
 .panel-wrapper .ui.basic.buttons .button:focus:hover,
@@ -39253,10 +39277,6 @@ img.item-minus {
 }
 .ui.footer .ui.container {
   width: 100% !important;
-}
-/* Component styles */
-.ui.button.move {
-  margin: 0px 20px !important;
 }
 .ui.styled.accordion {
   width: 520px;
