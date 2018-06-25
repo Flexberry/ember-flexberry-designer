@@ -132,7 +132,7 @@ export default Ember.Route.extend({
   },
 
   actions:{
-    didTransition(){
+    didTransition() {
       Ember.$('#example .flexberry-content').css('padding-bottom', 0);
       Ember.$('.flexberry-content > .ui.main.container').css('margin-bottom', 0);
     }
