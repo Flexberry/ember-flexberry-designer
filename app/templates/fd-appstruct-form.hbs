@@ -41,7 +41,7 @@
           {{ember-jstree
             actionReceiver=jstreeActionReceiverLeft
             selectedNodes=jstreeSelectedNodesLeft
-            data=jsonLeftTreeNodes
+            data=model.leftTreeNodes
             plugins=pluginsLeft
             typesOptions=typesOptions
           }}
@@ -89,7 +89,7 @@
           {{ember-jstree
             actionReceiver=jstreeActionReceiverRight
             selectedNodes=jstreeSelectedNodesRight
-            data=jsonRightTreeNodes
+            data=model.rightTreeNodes
             plugins=pluginsRight
             typesOptions=typesOptions
             treeObject=jstreeObjectRight

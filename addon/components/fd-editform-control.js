@@ -70,6 +70,15 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
   }).readOnly(),
 
   /**
+    Used in class name bindings to overlap the content of the control.
+
+    @private
+    @property _dimmed
+    @type Boolean
+  */
+  _dimmed: Ember.computed.reads('draggable'),
+
+  /**
     The control to render.
 
     @property control
@@ -94,9 +103,16 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
   /**
     See [EmberJS API](https://emberjs.com/api/).
 
+    @property classNameBindings
+  */
+  classNameBindings: ['_dimmed:dimmed'],
+
+  /**
+    See [EmberJS API](https://emberjs.com/api/).
+
     @property classNames
   */
-  classNames: ['fd-editform-control', 'field'],
+  classNames: ['fd-editform-control', 'ui', 'dimmable', 'field'],
 
   /**
     See [EmberJS API](https://emberjs.com/api/).

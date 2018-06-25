@@ -1,9 +1,10 @@
+<div class="ui inverted simple dimmer"></div>
 <div class="drag-anchor" {{action set "draggable" true on="mouseEnter"}} {{action set "draggable" false on="mouseLeave"}}></div>
 {{#if _isControl}}
   <label>{{control.caption}}</label>
   {{component _component}}
 {{else if _isGroup}}
-  {{#flexberry-toggler caption=control.caption}}
+  {{#flexberry-toggler caption=control.caption expanded=true}}
     {{#each control.rows as |row|}}
       {{fd-editform-row
         row=row

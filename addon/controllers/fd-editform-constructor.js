@@ -176,7 +176,7 @@ export default Ember.Controller.extend({
   _findItemContainer(item, container) {
     if (item instanceof FdEditformRow) {
       return this._findRowContainer(item, container);
-    } else if (item instanceof FdEditformControl) {
+    } else {
       return this._findControlContainer(item, container);
     }
   },

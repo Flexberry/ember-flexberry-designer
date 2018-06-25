@@ -1,36 +1,40 @@
-<div class="field">
-  <label>{{t "components.fd-visual-control.prototypeBy"}}</label>
-  {{flexberry-dropdown
-    readonly=true
-  }}
-</div>
-<div class="field">
-  <label>{{t "components.fd-visual-control.name"}}</label>
-  {{flexberry-textbox
-    value=attribute.name
-    readonly=_readonly
-  }}
-</div>
-<div class="field">
-  <label>{{t "components.fd-visual-control.type"}}</label>
-  {{flexberry-dropdown
-    items=types
-    value=attribute.type
-    readonly=_readonly
-  }}
-</div>
-<div class="field">
-  <label>{{t "components.fd-visual-control.isNull"}}</label>
-  {{flexberry-checkbox
-    class="fluid"
-    value=allowNull
-    readonly=_readonly
-  }}
-</div>
-<div class="field">
-  <label>{{t "components.fd-visual-control.defaultValue"}}</label>
-  {{component defaultValueControl
-    value=attribute.defaultValue
-    readonly=_readonly
-  }}
-</div>
+{{#if _selectedIsControl}}
+  <div class="field">
+    <label>{{t "components.fd-visual-control.name"}}</label>
+    {{flexberry-textbox
+      value=selectedControl.caption
+      readonly=_readonly
+    }}
+  </div>
+  <div class="field">
+    <label>{{t "components.fd-visual-control.type"}}</label>
+    {{flexberry-dropdown
+      items=typesAsStrings
+      value=selectedType
+      readonly=_readonly
+      onChange=(action 'onDropDownSelectionChanged')
+    }}
+  </div>
+  <div class="field">
+    <label>{{t "components.fd-visual-control.isNull"}}</label>
+    {{flexberry-checkbox
+      class="fluid"
+      value=allowNull
+      readonly=_readonly
+    }}
+  </div>
+{{else if _selectedIsGroup}}
+  <div class="field">
+    <label>{{t "forms.fd-editform-constructor.form-config-panel.group-caption"}}</label>
+    {{flexberry-textbox value=selectedControl.caption}}
+  </div>
+{{else if _selectedIsTab}}
+  <div class="field">
+    <label>{{t "forms.fd-editform-constructor.form-config-panel.tab-caption"}}</label>
+    {{flexberry-textbox value=selectedControl.caption}}
+  </div>
+{{else}}
+  <div class="field">
+    <label>{{t "forms.fd-editform-constructor.form-config-panel.control-not-selected"}}</label>
+  </div>
+{{/if}}

@@ -35,36 +35,65 @@
       </button>
     </div>
   </div>
-  <div class="field">
-  {{
-    flexberry-field
-    placeholder=(t 'components.flexberry-field.placeholder')
-    readonly=readonly
-    required=true
-    value=model.name
-    class=(if model.errors.name 'error' '')
-    label=(t 'forms.fd-diagram-edit-form.name-caption')
-  }}
-  {{flexberry-validationmessage error=model.errors.name pointing="pointing"}}
-</div>
 
-<div class="field">
-  {{
-    flexberry-field
-    placeholder=(t 'components.flexberry-field.placeholder')
-    readonly=readonly
-    required=true
-    value=model.description
-    class=(if model.errors.description 'error' '')
-    label=(t 'forms.fd-diagram-edit-form.description-caption')
-  }}
-  {{flexberry-validationmessage error=model.errors.description pointing="pointing"}}
-</div>
-
-<div class="sixteen wide">
-  {{#fd-visual-diagram primitives=model.primitives}}
-    <div id='paper'></div>
-  {{/fd-visual-diagram}}
-</div>
+  <div class="sixteen wide">
+    {{#fd-visual-diagram primitives=model.primitives}}
+      <div id='paper'></div>
+    {{/fd-visual-diagram}}
+  </div>
 
 </form>
+
+{{#fd-config-panel}}
+
+  {{#fd-tabs tabsMenuTheme="vertical tabular" class="ui segments horizontal right-tabs"}}
+    <form class="ui form segment">
+      <div class="ui segment">
+        <div class="ui large header">
+          {{t "forms.fd-diagram-edit-form.form-config-panel.caption"}}
+        </div>
+      </div>
+      {{#ui-tab-segment tab='first' title=(t "forms.fd-diagram-edit-form.form-config-panel.diagram-properties-header") theme="" active=true}}
+        <div class="ui small dividing header">
+          {{t "forms.fd-diagram-edit-form.form-config-panel.diagram-properties-header"}}
+        </div>
+        <div class="field">
+          {{
+            flexberry-field
+            placeholder=(t 'components.flexberry-field.placeholder')
+            readonly=readonly
+            required=true
+            value=model.name
+            class=(if model.errors.name 'error' '')
+            label=(t 'forms.fd-diagram-edit-form.name-caption')
+          }}
+          {{flexberry-validationmessage error=model.errors.name pointing="pointing"}}
+        </div>
+
+        <label>{{t 'forms.fd-diagram-edit-form.description-caption'}}</label>
+        <div class="field">
+          {{
+            flexberry-textarea
+            placeholder=(t 'components.flexberry-field.placeholder')
+            readonly=readonly
+            required=true
+            value=model.description
+            class=(if model.errors.description 'error' '')
+          }}
+          {{flexberry-validationmessage error=model.errors.description pointing="pointing"}}
+        </div>
+      {{/ui-tab-segment}}
+      {{#ui-tab-segment tab='second' title=(t "forms.fd-diagram-edit-form.form-config-panel.primitive-properties-header") theme=""}}
+        <div class="ui small dividing header">
+          {{t "forms.fd-diagram-edit-form.form-config-panel.primitive-properties-header"}}
+        </div>
+      {{/ui-tab-segment}}
+      {{#ui-tab-segment tab='active-tree-tab' title=(t "forms.fd-diagram-edit-form.form-config-panel.add-primitive-header") theme=""}}
+        <div class="ui small dividing header">
+          {{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive-header"}}
+        </div>
+      {{/ui-tab-segment}}
+    </form>
+  {{/fd-tabs}}
+
+{{/fd-config-panel}}
