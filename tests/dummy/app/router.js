@@ -68,6 +68,7 @@ Router.map(function () {
   { path: 'fd-generation-process-form/:id' });
   this.route('fd-generation-list-form');
   this.route('class-diagram-primitives-demo');
+  this.route('fd-sequence-diagram-primitives-demo');
 });
 
 export default Router;
