@@ -82,11 +82,11 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     Used in class name bindings to add a class when this control is selected.
 
     @private
-    @property _iSelected
+    @property _isSelected
     @readOnly
     @type Boolean
   */
-  _iSelected: Ember.computed('control', 'selectedItem', function() {
+  _isSelected: Ember.computed('control', 'selectedItem', function() {
     return this.get('control') === this.get('selectedItem');
   }).readOnly(),
 
@@ -132,7 +132,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
 
     @property classNameBindings
   */
-  classNameBindings: ['_dimmed:dimmed', '_iSelected:selected'],
+  classNameBindings: ['_dimmed:dimmed', '_isSelected:selected'],
 
   /**
     See [EmberJS API](https://emberjs.com/api/).
