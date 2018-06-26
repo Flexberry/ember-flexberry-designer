@@ -114,7 +114,7 @@
           {{t "forms.fd-appstruct-form.form-config-panel.app-properties-header"}}
         </div>
       {{/ui-tab-segment}}
-      {{#ui-tab-segment tab='second' title=(t "forms.fd-appstruct-form.form-config-panel.forms-properties-header") theme=""}}
+      {{#ui-tab-segment tab='second' title=(t "forms.fd-appstruct-form.form-config-panel.forms-properties-header") theme="" }}
         {{#if selectedElementForEdit.type}}
           <div class="field">
             <label>{{t "forms.fd-appstruct-form.tab.formName"}}</label>
@@ -141,7 +141,7 @@
             }}
           </div>
         {{/if}}
-        {{#if (or (eq selectedElementForEdit.type 'master') (eq selectedElementForEdit.type 'desk'))}}
+        {{#if (or (eq selectedElementForEdit.type 'folder') (eq selectedElementForEdit.type 'desk'))}}
           <div class="field">
             <label>{{t "forms.fd-appstruct-form.tab.title"}}</label>
             {{
@@ -156,7 +156,7 @@
             {{
               flexberry-textbox
               value=selectedElementForEdit.caption
-              readonly=(or (eq selectedElementForEdit.type 'master') (eq selectedElementForEdit.type 'desk'))
+              readonly=(or (eq selectedElementForEdit.type 'folder') (eq selectedElementForEdit.type 'desk'))
             }}
           </div>
         {{/if}}
@@ -165,7 +165,7 @@
           {{
             flexberry-textarea
             value=selectedElementForEdit.description
-            readonly=(or (eq selectedElementForEdit.type 'master') (eq selectedElementForEdit.type 'desk'))
+            readonly=(or (eq selectedElementForEdit.type 'folder') (eq selectedElementForEdit.type 'desk'))
           }}
         </div>
       {{/ui-tab-segment}}

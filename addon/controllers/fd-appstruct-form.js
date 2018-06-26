@@ -2,8 +2,9 @@ import Ember from 'ember';
 import FdViewAttributesTree from '../objects/fd-view-attributes-tree';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
 import { translationMacro as t } from 'ember-i18n';
+import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 
-export default EditFormController.extend({
+export default EditFormController.extend(FdWorkPanelToggler, {
 
   /*
     Setting off for buttons of the left tree.
@@ -104,11 +105,14 @@ export default EditFormController.extend({
     'notStored': {
       icon: 'assets/images/notStored.png'
     },
-    'master': {
+    'folder': {
       icon: 'folder icon'
     },
     '#': {
       max_children: 1
+    },
+    'FreeForm': {
+      /*TODO icon*/
     }
   })),
 
@@ -130,7 +134,7 @@ export default EditFormController.extend({
       return;
     }
 
-    if (selectedElement.get('type') !== 'master' && selectedElement.get('type') !== 'desk') {
+    if (selectedElement.get('type') !== 'folder' && selectedElement.get('type') !== 'desk') {
       let caption = selectedElement.get('caption');
       if (caption !== '') {
         selectedElement.set('text', caption);
@@ -202,7 +206,7 @@ export default EditFormController.extend({
         this.set('editRightNodeDisabled', '');
       }
 
-      if (typeNode === '«listform»' || typeNode === '«editform»') {
+      if (typeNode === '«listform»' || typeNode === '«editform»' || typeNode === 'FreeForm') {
         this.set('addFolderNodeDisabled', 'disabled');
       } else {
         this.set('addFolderNodeDisabled', '');
@@ -225,7 +229,7 @@ export default EditFormController.extend({
     let jstreeSelectedNodesRightType = jstreeSelectedNodesRight[0].original.type;
     let jstreeSelectedNodesLeftType = jstreeSelectedNodesLeft[0].original.type;
     if ((jstreeSelectedNodesLeftType !== '«listform»' && jstreeSelectedNodesLeftType !== '«editform»') ||
-      jstreeSelectedNodesRightType === '«listform»' || jstreeSelectedNodesRightType === '«editform»') {
+      jstreeSelectedNodesRightType === '«listform»' || jstreeSelectedNodesRightType === '«editform»' || jstreeSelectedNodesRightType === 'FreeForm') {
       this.set('moveRightDisabled', 'disabled');
     } else {
       this.set('moveRightDisabled', '');
@@ -278,7 +282,7 @@ export default EditFormController.extend({
   _restorationNodeTree(nodeArray) {
     let _this = this;
     nodeArray.forEach(function(node) {
-      if (node.type === 'master' || node.type === 'desk') {
+      if (node.type === 'folder' || node.type === 'desk') {
         node.set('children', node.get('copyChildren'));
         _this._restorationNodeTree(node.get('children'));
       }
@@ -452,7 +456,7 @@ export default EditFormController.extend({
       @method actions.editRightNode
     */
     editRightNode() {
-      //TODO filling out tabs.
+      this.send('toggleConfigPanel', 'second', 1);
     },
 
     /**
@@ -507,7 +511,7 @@ export default EditFormController.extend({
 
       let folder = FdViewAttributesTree.create({
         text: folderName + folderIndex,
-        type: 'master',
+        type: 'folder',
         children: Ember.A(),
         copyChildren: Ember.A(),
         id: 'NF' + folderId

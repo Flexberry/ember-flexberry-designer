@@ -125,13 +125,18 @@ export default Ember.Route.extend({
         node.set('children', node.get('copyChildren'));
       }
 
-      if (node.type === 'master') {
+      if (node.type === 'folder') {
         _this._updateTypeRightTree(node.get('children'), recordsDevClass);
         node.set('copyChildren', node.get('children'));
       } else {
-        let classData = recordsDevClass.findBy('name', node.className);
-        node.set('type', classData.get('stereotype'));
-        node.set('a_attr', { title: classData.get('stereotype') + ' ' + classData.get('name') });
+        if (node.className !== '') {
+          let classData = recordsDevClass.findBy('name', node.className);
+          node.set('type', classData.get('stereotype'));
+          node.set('a_attr', { title: classData.get('stereotype') + ' ' + classData.get('name') });
+        } else {
+          node.set('type', 'FreeForm');
+          node.set('a_attr', { title: 'FreeForm' });
+        }
       }
     });
   },
