@@ -1,6 +1,13 @@
 .fd-editform-control {
   position: relative;
 
+  &.selected,
+  .tab.selected,
+  .item.selected {
+    outline: 0.25em dashed rgb(79,115,176);
+    background-color: rgba(79,115,176, 0.25);
+  }
+
   & > .drag-anchor {
     position: absolute;
     display: none;

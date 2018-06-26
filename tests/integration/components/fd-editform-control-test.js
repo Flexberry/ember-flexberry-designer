@@ -13,15 +13,18 @@ moduleForComponent('fd-editform-control', 'Integration | Component | fd-editform
 });
 
 test('it renders and works', function(assert) {
-  this.set('selectControlAction', control => this.set('selectedControl', control));
-  this.render(hbs`{{fd-editform-control control=control selectControlAction=selectControlAction}}`);
+  this.set('selectItemAction', control => this.set('selectedControl', control));
+  this.render(hbs`{{fd-editform-control control=control selectedItem=selectedControl selectItemAction=selectItemAction}}`);
 
   this.set('control', FdEditformControl.create({ type: 'bool', caption: 'Attribute #1' }));
   assert.ok(/\s*Attribute #1\s*/.test(this.$().text()), 'With simple control.');
 
   assert.notOk(this.get('selectedControl'), 'No selected control.');
+  assert.notOk(this.$('.fd-editform-control').hasClass('selected'), `No 'selected' CSS-class.`);
+
   this.$('input').click();
   assert.ok(this.get('selectedControl') === this.get('control'), 'Click on simple control.');
+  assert.ok(this.$('.fd-editform-control').hasClass('selected'), 'Simple control highlighted.');
 
   this.set('control', FdEditformGroup.create({
     caption: 'Group #1',
@@ -37,8 +40,11 @@ test('it renders and works', function(assert) {
 
   this.$('input').click();
   assert.ok(this.get('selectedControl') === this.get('control.rows.firstObject.controls.firstObject'), 'Click on nested control.');
-  this.$('.ember-view.field:first').click();
+  assert.ok(this.$('.fd-editform-control .fd-editform-control').hasClass('selected'), 'Nested control highlighted.');
+
+  this.$('.fd-editform-control:first').click();
   assert.ok(this.get('selectedControl') === this.get('control'), 'Click on group control.');
+  assert.ok(this.$('.fd-editform-control').hasClass('selected'), 'Group control highlighted.');
 
   this.set('control', FdEditformTabgroup.create({
     tabs: Ember.A([
@@ -58,6 +64,14 @@ test('it renders and works', function(assert) {
 
   this.$('input').click();
   assert.ok(this.get('selectedControl') === this.get('control.tabs.firstObject.rows.firstObject.controls.firstObject'), 'Click on nested control.');
+  assert.ok(this.$('.fd-editform-control .fd-editform-control').hasClass('selected'), 'Nested control highlighted.');
+
   this.$('.active.item').click();
   assert.ok(this.get('selectedControl') === this.get('control.tabs.firstObject'), 'Click on tab control.');
+  assert.ok(this.$('.fd-editform-control .active.item').hasClass('selected'), 'Tab label highlighted.');
+  assert.ok(this.$('.fd-editform-control .active.tab').hasClass('selected'), 'Tab highlighted.');
+
+  this.$('.fd-editform-control:first').click();
+  assert.ok(this.get('selectedControl') === this.get('control'), 'Click on group tabs control.');
+  assert.ok(this.$('.fd-editform-control:first').hasClass('selected'), 'Group tabs highlighted.');
 });
