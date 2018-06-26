@@ -11,8 +11,21 @@ export default EditFormRoute.extend({
       model.set('caption', model.get('name'));
     }
 
-    if (model.get('stereotype') === '«enumeration»') {
-      this.transitionTo('fd-enum-edit-form', model);
+    let transitionMap = {
+      '«application»': 'fd-application-edit-form',
+      '«businessserver»': 'fd-business-server-edit-form',
+      '«editform»': 'fd-edit-form-edit-form',
+      '«enumeration»': 'fd-enum-edit-form',
+      '«external»': 'fd-external-edit-form',
+      '«interface»': 'fd-interface-edit-form',
+      '«listform»': 'fd-list-form-edit-form',
+      '«type»': 'fd-type-edit-form',
+      '«userform»': 'fd-user-form-edit-form'
+    };
+    let target = transitionMap[model.get('stereotype')];
+
+    if (target) {
+      this.transitionTo(target, model);
     }
   },
 });

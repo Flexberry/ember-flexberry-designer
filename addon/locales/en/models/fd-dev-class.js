@@ -251,17 +251,17 @@ export default {
         parameters: {
           __caption__: 'parameters',
           name: {
-          __caption__: 'name'
-        },
+            __caption__: 'name'
+          },
           modifier: {
-          __caption__: 'modifier'
-        },
+            __caption__: 'modifier'
+          },
           type: {
-          __caption__: 'type'
-        },
+            __caption__: 'type'
+          },
           description: {
-          __caption__: 'description'
-        }
+            __caption__: 'description'
+          }
         }
       }
     },
@@ -330,11 +330,8 @@ export default {
       disableAllRightChecks: {
         __caption__: 'disableAllRightChecks'
       },
-      containers: {
-        __caption__: 'containers'
-      },
-      appConfigFile: {
-        __caption__: 'appConfigFile'
+      containersStr: {
+        __caption__: 'containersStr'
       },
       auditConnectionStringName: {
         __caption__: 'auditConnectionStringName'
@@ -407,18 +404,24 @@ export default {
         parameters: {
           __caption__: 'parameters',
           name: {
-          __caption__: 'name'
-        },
+            __caption__: 'name'
+          },
           modifier: {
-          __caption__: 'modifier'
-        },
+            __caption__: 'modifier'
+          },
           type: {
-          __caption__: 'type'
-        },
+            __caption__: 'type'
+          },
           description: {
-          __caption__: 'description'
+            __caption__: 'description'
+          }
         }
-        }
+      },
+      containers: {
+        __caption__: 'containers'
+      },
+      appConfigFile: {
+        __caption__: 'appConfigFile'
       }
     },
     EditBusinessServer: {
@@ -439,9 +442,6 @@ export default {
       },
       generateComPlusServer: {
         __caption__: 'generateComPlusServer'
-      },
-      comPlusServerOptions: {
-        __caption__: 'comPlusServerOptions'
       },
       generateHttpRemoteServer: {
         __caption__: 'generateHttpRemoteServer'
@@ -636,17 +636,17 @@ export default {
         parameters: {
           __caption__: 'parameters',
           name: {
-          __caption__: 'name'
-        },
+            __caption__: 'name'
+          },
           modifier: {
-          __caption__: 'modifier'
-        },
+            __caption__: 'modifier'
+          },
           type: {
-          __caption__: 'type'
-        },
+            __caption__: 'type'
+          },
           description: {
-          __caption__: 'description'
-        }
+            __caption__: 'description'
+          }
         }
       },
       views: {
@@ -782,17 +782,17 @@ export default {
         parameters: {
           __caption__: 'parameters',
           name: {
-          __caption__: 'name'
-        },
+            __caption__: 'name'
+          },
           modifier: {
-          __caption__: 'modifier'
-        },
+            __caption__: 'modifier'
+          },
           type: {
-          __caption__: 'type'
-        },
+            __caption__: 'type'
+          },
           description: {
-          __caption__: 'description'
-        }
+            __caption__: 'description'
+          }
         }
       }
     },
@@ -906,17 +906,17 @@ export default {
         parameters: {
           __caption__: 'parameters',
           name: {
-          __caption__: 'name'
-        },
+            __caption__: 'name'
+          },
           modifier: {
-          __caption__: 'modifier'
-        },
+            __caption__: 'modifier'
+          },
           type: {
-          __caption__: 'type'
-        },
+            __caption__: 'type'
+          },
           description: {
-          __caption__: 'description'
-        }
+            __caption__: 'description'
+          }
         }
       }
     },
@@ -982,11 +982,8 @@ export default {
       }
     },
     EditInterface: {
-      bSClass: {
-        __caption__: 'bSClass'
-      },
-      bSEvents: {
-        __caption__: 'bSEvents'
+      businessServerEvents: {
+        __caption__: 'businessServerEvents'
       },
       businessServerClass: {
         __caption__: 'businessServerClass',
@@ -1050,17 +1047,17 @@ export default {
         parameters: {
           __caption__: 'parameters',
           name: {
-          __caption__: 'name'
-        },
+            __caption__: 'name'
+          },
           modifier: {
-          __caption__: 'modifier'
-        },
+            __caption__: 'modifier'
+          },
           type: {
-          __caption__: 'type'
-        },
+            __caption__: 'type'
+          },
           description: {
-          __caption__: 'description'
-        }
+            __caption__: 'description'
+          }
         }
       }
     },
@@ -1136,11 +1133,11 @@ export default {
         viewForForm: {
           __caption__: 'viewForForm'
         },
-        dataObjectTypes: {
-          __caption__: 'dataObjectTypes'
+        dataObjectTypesStr: {
+          __caption__: 'dataObjectTypesStr'
         },
-        listFormOperations: {
-          __caption__: 'listFormOperations'
+        listFormOperationsStr: {
+          __caption__: 'listFormOperationsStr'
         },
         hierarchicalMaster: {
           __caption__: 'hierarchicalMaster'
@@ -1300,17 +1297,17 @@ export default {
         parameters: {
           __caption__: 'parameters',
           name: {
-          __caption__: 'name'
-        },
+            __caption__: 'name'
+          },
           modifier: {
-          __caption__: 'modifier'
-        },
+            __caption__: 'modifier'
+          },
           type: {
-          __caption__: 'type'
-        },
+            __caption__: 'type'
+          },
           description: {
-          __caption__: 'description'
-        }
+            __caption__: 'description'
+          }
         }
       }
     },
@@ -1362,8 +1359,8 @@ export default {
       description: {
         __caption__: 'description'
       },
-      storeInstancesInTypeXML: {
-        __caption__: 'storeInstancesInTypeXML'
+      storeInstancesInType: {
+        __caption__: 'storeInstancesInType'
       },
       packet: {
         __caption__: 'packet'
@@ -1439,17 +1436,17 @@ export default {
         parameters: {
           __caption__: 'parameters',
           name: {
-          __caption__: 'name'
-        },
+            __caption__: 'name'
+          },
           modifier: {
-          __caption__: 'modifier'
-        },
+            __caption__: 'modifier'
+          },
           type: {
-          __caption__: 'type'
-        },
+            __caption__: 'type'
+          },
           description: {
-          __caption__: 'description'
-        }
+            __caption__: 'description'
+          }
         }
       }
     },
@@ -1546,17 +1543,17 @@ export default {
         parameters: {
           __caption__: 'parameters',
           name: {
-          __caption__: 'name'
-        },
+            __caption__: 'name'
+          },
           modifier: {
-          __caption__: 'modifier'
-        },
+            __caption__: 'modifier'
+          },
           type: {
-          __caption__: 'type'
-        },
+            __caption__: 'type'
+          },
           description: {
-          __caption__: 'description'
-        }
+            __caption__: 'description'
+          }
         }
       }
     },
@@ -1664,6 +1661,9 @@ export default {
       businessServerEvents: {
         __caption__: 'Business server events'
       },
+      stage: {
+        __caption__: 'stage'
+      },
       attributes: {
         __caption__: 'Attributes',
         name: {
@@ -1707,6 +1707,242 @@ export default {
         },
         storageType: {
           __caption__: 'Storage type'
+        }
+      }
+    },
+    FdPreloadMetadata: {
+      accessType: {
+        __caption__: 'accessType'
+      },
+      addAuditFields: {
+        __caption__: 'addAuditFields'
+      },
+      auditConnectionStringName: {
+        __caption__: 'auditConnectionStringName'
+      },
+      auditEnabled: {
+        __caption__: 'auditEnabled'
+      },
+      auditWinServiceUrl: {
+        __caption__: 'auditWinServiceUrl'
+      },
+      autoAltered: {
+        __caption__: 'autoAltered'
+      },
+      businessServerEvents: {
+        __caption__: 'businessServerEvents'
+      },
+      caption: {
+        __caption__: 'caption'
+      },
+      comPlusServerPropertiesStr: {
+        __caption__: 'comPlusServerPropertiesStr'
+      },
+      containersStr: {
+        __caption__: 'containersStr'
+      },
+      dataObjectTypesStr: {
+        __caption__: 'dataObjectTypesStr'
+      },
+      deleteAudit: {
+        __caption__: 'deleteAudit'
+      },
+      deleteAuditViewName: {
+        __caption__: 'deleteAuditViewName'
+      },
+      disableAllRightChecks: {
+        __caption__: 'disableAllRightChecks'
+      },
+      editFormOperationsStr: {
+        __caption__: 'editFormOperationsStr'
+      },
+      expandOperations: {
+        __caption__: 'expandOperations'
+      },
+      fixDependedForm: {
+        __caption__: 'fixDependedForm'
+      },
+      formUrl: {
+        __caption__: 'formUrl'
+      },
+      generateCatcher: {
+        __caption__: 'generateCatcher'
+      },
+      generateComPlusServer: {
+        __caption__: 'generateComPlusServer'
+      },
+      generateDependedForm: {
+        __caption__: 'generateDependedForm'
+      },
+      generateHttpRemoteServer: {
+        __caption__: 'generateHttpRemoteServer'
+      },
+      hierarchicalMaster: {
+        __caption__: 'hierarchicalMaster'
+      },
+      insertAudit: {
+        __caption__: 'insertAudit'
+      },
+      insertAuditViewName: {
+        __caption__: 'insertAuditViewName'
+      },
+      listFormOperationsStr: {
+        __caption__: 'listFormOperationsStr'
+      },
+      loadingOrder: {
+        __caption__: 'loadingOrder'
+      },
+      namespacePostfix: {
+        __caption__: 'namespacePostfix'
+      },
+      onlyShowSelectedValue: {
+        __caption__: 'onlyShowSelectedValue'
+      },
+      packet: {
+        __caption__: 'packet'
+      },
+      pBCustomAttributes: {
+        __caption__: 'pBCustomAttributes'
+      },
+      pBGetViewsForForm: {
+        __caption__: 'pBGetViewsForForm'
+      },
+      pBMembers: {
+        __caption__: 'pBMembers'
+      },
+      primaryKeyStorage: {
+        __caption__: 'primaryKeyStorage'
+      },
+      printContainer: {
+        __caption__: 'printContainer'
+      },
+      propertyLookupStr: {
+        __caption__: 'propertyLookupStr'
+      },
+      publishToEBSD: {
+        __caption__: 'publishToEBSD'
+      },
+      realCaption: {
+        __caption__: 'realCaption'
+      },
+      realNamespace: {
+        __caption__: 'realNamespace'
+      },
+      realPacket: {
+        __caption__: 'realPacket'
+      },
+      realPrimaryKeyStorage: {
+        __caption__: 'realPrimaryKeyStorage'
+      },
+      realStorage: {
+        __caption__: 'realStorage'
+      },
+      scriptName: {
+        __caption__: 'scriptName'
+      },
+      selectAudit: {
+        __caption__: 'selectAudit'
+      },
+      selectAuditViewName: {
+        __caption__: 'selectAuditViewName'
+      },
+      standartDesktop: {
+        __caption__: 'standartDesktop'
+      },
+      storage: {
+        __caption__: 'storage'
+      },
+      publishName: {
+        __caption__: 'publishName'
+      },
+      storeInstancesInType: {
+        __caption__: 'storeInstancesInType'
+      },
+      trim: {
+        __caption__: 'trim'
+      },
+      updateAudit: {
+        __caption__: 'updateAudit'
+      },
+      updateAuditViewName: {
+        __caption__: 'updateAuditViewName'
+      },
+      useDefaultView: {
+        __caption__: 'useDefaultView'
+      },
+      writeMode: {
+        __caption__: 'writeMode'
+      },
+      writeSessions: {
+        __caption__: 'writeSessions'
+      },
+      nameStr: {
+        __caption__: 'nameStr'
+      },
+      attributesStr: {
+        __caption__: 'attributesStr'
+      },
+      methodsStr: {
+        __caption__: 'methodsStr'
+      },
+      stored: {
+        __caption__: 'stored'
+      },
+      stereotype: {
+        __caption__: 'stereotype'
+      },
+      referenceCount: {
+        __caption__: 'referenceCount'
+      },
+      name: {
+        __caption__: 'name'
+      },
+      description: {
+        __caption__: 'description'
+      },
+      stage: {
+        __caption__: 'stage',
+        name: {
+          __caption__: 'name'
+        }
+      },
+      businessServerClass: {
+        __caption__: 'businessServerClass',
+        name: {
+          __caption__: 'name'
+        }
+      },
+      views: {
+        __caption__: 'views',
+        definition: {
+          __caption__: 'definition'
+        },
+        name: {
+          __caption__: 'name'
+        },
+        description: {
+          __caption__: 'description'
+        },
+        nameStr: {
+          __caption__: 'nameStr'
+        },
+        class: {
+          __caption__: 'class',
+          name: {
+            __caption__: 'name'
+          }
+        }
+      },
+      formViews: {
+        __caption__: 'formViews',
+        view: {
+          __caption__: 'view',
+          class: {
+            __caption__: 'class',
+            name: {
+              __caption__: 'name'
+            }
+          }
         }
       }
     },
@@ -2025,29 +2261,29 @@ export default {
         parameters: {
           __caption__: 'parameters',
           caption: {
-          __caption__: 'caption'
-        },
+            __caption__: 'caption'
+          },
           modifier: {
-          __caption__: 'modifier'
-        },
+            __caption__: 'modifier'
+          },
           orderNum: {
-          __caption__: 'orderNum'
-        },
+            __caption__: 'orderNum'
+          },
           realCaption: {
-          __caption__: 'realCaption'
-        },
+            __caption__: 'realCaption'
+          },
           type: {
-          __caption__: 'type'
-        },
+            __caption__: 'type'
+          },
           name: {
-          __caption__: 'name'
-        },
+            __caption__: 'name'
+          },
           description: {
-          __caption__: 'description'
-        },
+            __caption__: 'description'
+          },
           nameStr: {
-          __caption__: 'nameStr'
-        }
+            __caption__: 'nameStr'
+          }
         }
       },
       formViews: {
@@ -2103,17 +2339,17 @@ export default {
         controls: {
           __caption__: 'controls',
           name: {
-          __caption__: 'name'
-        },
+            __caption__: 'name'
+          },
           propertyPath: {
-          __caption__: 'propertyPath'
-        },
+            __caption__: 'propertyPath'
+          },
           settingsXml: {
-          __caption__: 'settingsXml'
-        },
+            __caption__: 'settingsXml'
+          },
           order: {
-          __caption__: 'order'
-        },
+            __caption__: 'order'
+          },
           controlType: {
             __caption__: 'controlType',
             name: {

@@ -83,6 +83,26 @@ export default {
         __caption__: 'Класс'
       }
     },
+    FdPreloadMetadata: {
+      definition: {
+        __caption__: ''
+      },
+      name: {
+        __caption__: ''
+      },
+      description: {
+        __caption__: ''
+      },
+      nameStr: {
+        __caption__: ''
+      },
+      class: {
+        __caption__: '',
+        name: {
+          __caption__: ''
+        }
+      }
+    },
     Generator: {
       name: {
         __caption__: ''

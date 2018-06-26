@@ -1,0 +1,23 @@
+﻿{
+  "propertyLookup": [
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "BusinessServerClass",
+      "projection": "ListFormView",
+      "detailModelName": null
+    }
+  ],
+  "external": false,
+  "caption": "Interface",
+  "name": "FdInterfaceEditForm",
+  "className": "InterfaceEditForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-dev-class",
+      "modelProjection": "EditInterface"
+    }
+  ]
+}
