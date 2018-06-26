@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>addon/serializers/fd-dev-filelink.js - Flexberry Documentation</title>
+    <title>addon/objects/fd-appstruct-tree.js - Flexberry Documentation</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -108,20 +108,128 @@
                 <div id="docs-main">
                     <div class="content">
 <div class="page-header">
-    <h1>addon/serializers/fd-dev-filelink.js <small>File</small></h1>
+    <h1>addon/objects/fd-appstruct-tree.js <small>File</small></h1>
 </div>
 
 <div class="file">
     <pre class="prettyprint linenums">
-import { Serializer as DevFilelinkSerializer } from
-  &#x27;../mixins/regenerated/serializers/fd-dev-filelink&#x27;;
-import FilelinkSerializer from &#x27;./fd-filelink&#x27;;
+/**
+  @module ember-flexberry-designer
+*/
 
-export default FilelinkSerializer.extend(DevFilelinkSerializer, {
+import Ember from &#x27;ember&#x27;;
+
+/**
+  Describes properties on the tree.
+
+  @class FdAppStructTree
+  @extends &lt;a href=&quot;http://emberjs.com/api/classes/Ember.Object.html&quot;&gt;Ember.Object&lt;/a&gt;
+*/
+export default Ember.Object.extend({
+
   /**
-  * Field name where object identifier is kept.
+    Item property &#x27;name&#x27;.
+
+    @property text
+    @type String
   */
-  primaryKey: &#x27;__PrimaryKey&#x27;
+  text: undefined,
+
+  /**
+    Type property.
+
+    @property type
+    @type String
+  */
+  type: undefined,
+
+  /**
+    Caption property.
+
+    @property type
+    @type String
+  */
+  caption: undefined,
+
+  /**
+    ClassName property.
+
+    @property type
+    @type String
+  */
+  className: undefined,
+
+  /**
+    Description property.
+
+    @property type
+    @type String
+  */
+  description: undefined,
+
+  /**
+    Url property.
+
+    @property type
+    @type String
+  */
+  url: undefined,
+
+  /**
+    Id property for jsTree.
+
+    @property id
+    @type String
+  */
+  id: undefined,
+
+  /**
+    Id property.
+
+    @property idNode
+    @type String
+  */
+  idNode: undefined,
+
+  /**
+    Parent id.
+
+    @property idParent
+    @type String
+  */
+  idParent: undefined,
+
+  /**
+    Children property.
+
+    @property children
+    @type Array
+  */
+  children: undefined,
+
+  /**
+    Copy children property.
+
+    @property copyChildren
+    @type Array
+  */
+  copyChildren: undefined,
+
+  /**
+    State property for jsTree.
+
+    @property state
+    @type Object
+  */
+  state: undefined,
+
+  /**
+    State attribute for jsTree.
+
+    @property a_attr
+    @type Object
+  */
+  a_attr: undefined,
 });
 
     </pre>

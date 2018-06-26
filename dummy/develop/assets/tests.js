@@ -6567,82 +6567,94 @@ define('dummy/tests/unit/services/fd-generation-test.jshint', ['exports'], funct
     assert.ok(true, 'unit/services/fd-generation-test.js should pass jshint.');
   });
 });
-define('dummy/tests/unit/transforms/containers-tree-test', ['exports', 'ember', 'ember-qunit', 'ember-flexberry-designer/objects/fd-view-attributes-tree'], function (exports, _ember, _emberQunit, _emberFlexberryDesignerObjectsFdViewAttributesTree) {
+define('dummy/tests/unit/transforms/containers-tree-test', ['exports', 'ember', 'ember-qunit', 'ember-flexberry-designer/objects/fd-appstruct-tree'], function (exports, _ember, _emberQunit, _emberFlexberryDesignerObjectsFdAppstructTree) {
 
   (0, _emberQunit.moduleFor)('transform:containers-tree', 'Unit | Transform | containers tree');
 
   // Replace this with your real tests.
   (0, _emberQunit.test)('it exists', function (assert) {
 
-    var noteNoteObjectModel1 = _ember['default'].A([_emberFlexberryDesignerObjectsFdViewAttributesTree['default'].create({
+    var noteNoteObjectModel1 = _ember['default'].A([_emberFlexberryDesignerObjectsFdAppstructTree['default'].create({
       className: 'ПисьмоWebL',
       description: null,
       caption: 'Настройка рассылки писем',
       text: 'Настройка рассылки писем',
       type: 'property',
-      id: 'p2l0i2'
+      id: 'p2l0i2',
+      url: ''
     })]);
 
-    var noteNoteObjectModel2 = _ember['default'].A([_emberFlexberryDesignerObjectsFdViewAttributesTree['default'].create({
+    var noteNoteObjectModel2 = _ember['default'].A([_emberFlexberryDesignerObjectsFdAppstructTree['default'].create({
       className: 'ЖурналИмпортаWebL',
       description: null,
       caption: 'Журнал импорта',
       text: 'Журнал импорта',
       type: 'property',
-      id: 'p2l0i3'
+      id: 'p2l0i3',
+      url: ''
     })]);
 
-    var noteObjectModel1 = _ember['default'].A([_emberFlexberryDesignerObjectsFdViewAttributesTree['default'].create({
+    var noteObjectModel1 = _ember['default'].A([_emberFlexberryDesignerObjectsFdAppstructTree['default'].create({
       text: 'Настройки',
-      type: 'master',
+      type: 'folder',
       children: _ember['default'].A(),
       copyChildren: _ember['default'].A(),
       id: 'p1l0i1'
-    }), _emberFlexberryDesignerObjectsFdViewAttributesTree['default'].create({
+    }), _emberFlexberryDesignerObjectsFdAppstructTree['default'].create({
       text: 'Рассылка по e-mail',
-      type: 'master',
+      type: 'folder',
       children: noteNoteObjectModel1,
       copyChildren: noteNoteObjectModel1,
       id: 'p1l1i2'
-    }), _emberFlexberryDesignerObjectsFdViewAttributesTree['default'].create({
+    }), _emberFlexberryDesignerObjectsFdAppstructTree['default'].create({
       text: 'Импорт данных',
-      type: 'master',
+      type: 'folder',
       children: noteNoteObjectModel2,
       copyChildren: noteNoteObjectModel2,
       id: 'p1l2i3'
     })]);
 
-    var noteObjectModel2 = _ember['default'].A([_emberFlexberryDesignerObjectsFdViewAttributesTree['default'].create({
+    var noteObjectModel2 = _ember['default'].A([_emberFlexberryDesignerObjectsFdAppstructTree['default'].create({
       className: 'УчетРабочегоВремениWebL',
       description: 'test',
       caption: 'Учет рабочего времени',
       text: 'Учет рабочего времени',
       type: 'property',
-      id: 'p1l0i4'
-    }), _emberFlexberryDesignerObjectsFdViewAttributesTree['default'].create({
+      id: 'p1l0i4',
+      url: ''
+    }), _emberFlexberryDesignerObjectsFdAppstructTree['default'].create({
       className: 'ПроизводственныйКалендарьWebL',
       description: null,
       caption: 'Производственный календарь',
       text: 'Производственный календарь',
       type: 'property',
-      id: 'p1l1i5'
+      id: 'p1l1i5',
+      url: ''
+    }), _emberFlexberryDesignerObjectsFdAppstructTree['default'].create({
+      className: null,
+      description: null,
+      caption: 'Test',
+      text: 'Test',
+      type: 'property',
+      id: 'p1l2i6',
+      url: 'Test'
     })]);
 
-    var objectModel = _ember['default'].A([_emberFlexberryDesignerObjectsFdViewAttributesTree['default'].create({
+    var objectModel = _ember['default'].A([_emberFlexberryDesignerObjectsFdAppstructTree['default'].create({
       text: 'Администрирование',
-      type: 'master',
+      type: 'folder',
       children: noteObjectModel1,
       copyChildren: noteObjectModel1,
       id: 'p0l0i0'
-    }), _emberFlexberryDesignerObjectsFdViewAttributesTree['default'].create({
+    }), _emberFlexberryDesignerObjectsFdAppstructTree['default'].create({
       text: 'Поручения',
-      type: 'master',
+      type: 'folder',
       children: noteObjectModel2,
       copyChildren: noteObjectModel2,
       id: 'p0l1i4'
     })]);
 
-    var xml = '' + '<Containers>' + '<ContainersList>' + '<Item ClassName="##########" MenuPath="Администрирование" Caption="" Description="" />' + '<Item ClassName="##########" MenuPath="Администрирование\\Настройки" Caption="" Description="" />' + '<Item ClassName="ПисьмоWebL" MenuPath="Администрирование\\Рассылка по e-mail" Caption="Настройка рассылки писем" Description="" />' + '<Item ClassName="ЖурналИмпортаWebL" MenuPath="Администрирование\\Импорт данных" Caption="Журнал импорта" Description="" />' + '<Item ClassName="УчетРабочегоВремениWebL" MenuPath="Поручения" Caption="Учет рабочего времени" Description="test" />' + '<Item ClassName="ПроизводственныйКалендарьWebL" MenuPath="Поручения" Caption="Производственный календарь" Description="" />' + '</ContainersList>' + '</Containers>';
+    var xml = '' + '<Containers>' + '<ContainersList>' + '<Item ClassName="##########" MenuPath="Администрирование" Caption="" Description="" Url="" />' + '<Item ClassName="##########" MenuPath="Администрирование\\Настройки" Caption="" Description="" Url="" />' + '<Item ClassName="ПисьмоWebL" MenuPath="Администрирование\\Рассылка по e-mail" Caption="Настройка рассылки писем" Description="" Url="" />' + '<Item ClassName="ЖурналИмпортаWebL" MenuPath="Администрирование\\Импорт данных" Caption="Журнал импорта" Description="" Url="" />' + '<Item ClassName="УчетРабочегоВремениWebL" MenuPath="Поручения" Caption="Учет рабочего времени" Description="test" Url="" />' + '<Item ClassName="ПроизводственныйКалендарьWebL" MenuPath="Поручения" Caption="Производственный календарь" Description="" Url="" />' + '<Item ClassName="" MenuPath="Поручения" Caption="Test" Description="" Url="Test" />' + '</ContainersList>' + '</Containers>';
 
     var transform = this.subject();
     assert.ok(transform);

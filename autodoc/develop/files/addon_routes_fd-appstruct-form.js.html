@@ -26,7 +26,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdAppStructTree", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
         </form>
     </div>
 </div>
@@ -50,6 +50,7 @@
 	                    <ul id="api-classes" class="nav nav-list">
 	                            <li><a href="../classes/components.UiTabMenu.html">components.UiTabMenu</a></li>
 	                            <li><a href="../classes/components.UiTabSegment.html">components.UiTabSegment</a></li>
+	                            <li><a href="../classes/FdAppStructTree.html">FdAppStructTree</a></li>
 	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
 	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
 	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
@@ -113,7 +114,7 @@
 <div class="file">
     <pre class="prettyprint linenums">
 import Ember from &#x27;ember&#x27;;
-import FdViewAttributesTree from &#x27;../objects/fd-view-attributes-tree&#x27;;
+import FdAppStructTree from &#x27;../objects/fd-appstruct-tree&#x27;;
 export default Ember.Route.extend({
 
   /**
@@ -157,7 +158,7 @@ export default Ember.Route.extend({
     forms.forEach((form, index) =&gt; {
       let idParent = form.get(&#x27;formViews&#x27;).mapBy(&#x27;view.class.id&#x27;);
       treeNodeForms.pushObject(
-        FdViewAttributesTree.create({
+        FdAppStructTree.create({
           text: form.get(&#x27;caption&#x27;) || form.get(&#x27;name&#x27;),
           name: form.get(&#x27;name&#x27;),
           caption: form.get(&#x27;caption&#x27;),
@@ -178,7 +179,7 @@ export default Ember.Route.extend({
       let implementationsChildren = treeNodeForms.filterBy(&#x27;idParent&#x27;, implementation.id);
       let typeImplementation = implementation.get(&#x27;stored&#x27;) ? &#x27;implementations&#x27; : &#x27;notStored&#x27;;
       treeLeft.pushObject(
-        FdViewAttributesTree.create({
+        FdAppStructTree.create({
           text: implementation.get(&#x27;caption&#x27;) || implementation.get(&#x27;name&#x27;),
           name: implementation.get(&#x27;name&#x27;),
           type: typeImplementation,
@@ -203,7 +204,7 @@ export default Ember.Route.extend({
 
     // Add root tree.
     let treeRight = Ember.A([
-      FdViewAttributesTree.create({
+      FdAppStructTree.create({
         text: &#x27;Рабочий стол&#x27;,
         type: &#x27;desk&#x27;,
         id: &#x27;node_app&#x27;,
@@ -239,13 +240,18 @@ export default Ember.Route.extend({
         node.set(&#x27;children&#x27;, node.get(&#x27;copyChildren&#x27;));
       }
 
-      if (node.type === &#x27;master&#x27;) {
+      if (node.type === &#x27;folder&#x27;) {
         _this._updateTypeRightTree(node.get(&#x27;children&#x27;), recordsDevClass);
         node.set(&#x27;copyChildren&#x27;, node.get(&#x27;children&#x27;));
       } else {
-        let classData = recordsDevClass.findBy(&#x27;name&#x27;, node.className);
-        node.set(&#x27;type&#x27;, classData.get(&#x27;stereotype&#x27;));
-        node.set(&#x27;a_attr&#x27;, { title: classData.get(&#x27;stereotype&#x27;) + &#x27; &#x27; + classData.get(&#x27;name&#x27;) });
+        if (node.className !== &#x27;&#x27; &amp;&amp; !Ember.isNone(node.className)) {
+          let classData = recordsDevClass.findBy(&#x27;name&#x27;, node.className);
+          node.set(&#x27;type&#x27;, classData.get(&#x27;stereotype&#x27;));
+          node.set(&#x27;a_attr&#x27;, { title: classData.get(&#x27;stereotype&#x27;) + &#x27; &#x27; + classData.get(&#x27;name&#x27;) });
+        } else {
+          node.set(&#x27;type&#x27;, &#x27;url&#x27;);
+          node.set(&#x27;a_attr&#x27;, { title: &#x27;url&#x27; });
+        }
       }
     });
   },

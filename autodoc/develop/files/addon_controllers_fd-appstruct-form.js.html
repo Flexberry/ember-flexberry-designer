@@ -26,7 +26,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdAppStructTree", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
         </form>
     </div>
 </div>
@@ -50,6 +50,7 @@
 	                    <ul id="api-classes" class="nav nav-list">
 	                            <li><a href="../classes/components.UiTabMenu.html">components.UiTabMenu</a></li>
 	                            <li><a href="../classes/components.UiTabSegment.html">components.UiTabSegment</a></li>
+	                            <li><a href="../classes/FdAppStructTree.html">FdAppStructTree</a></li>
 	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
 	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
 	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
@@ -113,11 +114,12 @@
 <div class="file">
     <pre class="prettyprint linenums">
 import Ember from &#x27;ember&#x27;;
-import FdViewAttributesTree from &#x27;../objects/fd-view-attributes-tree&#x27;;
+import FdAppStructTree from &#x27;../objects/fd-appstruct-tree&#x27;;
 import EditFormController from &#x27;ember-flexberry/controllers/edit-form&#x27;;
 import { translationMacro as t } from &#x27;ember-i18n&#x27;;
+import FdWorkPanelToggler from &#x27;../mixins/fd-work-panel-toggler&#x27;;
 
-export default EditFormController.extend({
+export default EditFormController.extend(FdWorkPanelToggler, {
 
   /*
     Setting off for buttons of the left tree.
@@ -218,11 +220,14 @@ export default EditFormController.extend({
     &#x27;notStored&#x27;: {
       icon: &#x27;assets/images/notStored.png&#x27;
     },
-    &#x27;master&#x27;: {
+    &#x27;folder&#x27;: {
       icon: &#x27;folder icon&#x27;
     },
     &#x27;#&#x27;: {
       max_children: 1
+    },
+    &#x27;url&#x27;: {
+      icon: &#x27;globe icon&#x27;
     }
   })),
 
@@ -244,9 +249,9 @@ export default EditFormController.extend({
       return;
     }
 
-    if (selectedElement.get(&#x27;type&#x27;) !== &#x27;master&#x27; &amp;&amp; selectedElement.get(&#x27;type&#x27;) !== &#x27;desk&#x27;) {
+    if (selectedElement.get(&#x27;type&#x27;) !== &#x27;folder&#x27; &amp;&amp; selectedElement.get(&#x27;type&#x27;) !== &#x27;desk&#x27;) {
       let caption = selectedElement.get(&#x27;caption&#x27;);
-      if (caption !== &#x27;&#x27;) {
+      if (caption !== &#x27;&#x27; &amp;&amp; !Ember.isNone(caption)) {
         selectedElement.set(&#x27;text&#x27;, caption);
       } else {
         selectedElement.set(&#x27;text&#x27;, selectedElement.get(&#x27;className&#x27;));
@@ -300,6 +305,7 @@ export default EditFormController.extend({
   _jstreeSelectedNodesRightObserver: Ember.observer(&#x27;jstreeSelectedNodesRight&#x27;, function() {
     let jstreeSelectedNodesRight = this.get(&#x27;jstreeSelectedNodesRight&#x27;);
     if (jstreeSelectedNodesRight.length === 0) {
+      this.set(&#x27;addRightNodeDisabled&#x27;, &#x27;disabled&#x27;);
       this.set(&#x27;editRightNodeDisabled&#x27;, &#x27;disabled&#x27;);
       this.set(&#x27;removeRightNodeDisabled&#x27;, &#x27;disabled&#x27;);
       this.set(&#x27;addFolderNodeDisabled&#x27;, &#x27;disabled&#x27;);
@@ -316,9 +322,11 @@ export default EditFormController.extend({
         this.set(&#x27;editRightNodeDisabled&#x27;, &#x27;&#x27;);
       }
 
-      if (typeNode === &#x27;«listform»&#x27; || typeNode === &#x27;«editform»&#x27;) {
+      if (typeNode === &#x27;«listform»&#x27; || typeNode === &#x27;«editform»&#x27; || typeNode === &#x27;url&#x27;) {
+        this.set(&#x27;addRightNodeDisabled&#x27;, &#x27;disabled&#x27;);
         this.set(&#x27;addFolderNodeDisabled&#x27;, &#x27;disabled&#x27;);
       } else {
+        this.set(&#x27;addRightNodeDisabled&#x27;, &#x27;&#x27;);
         this.set(&#x27;addFolderNodeDisabled&#x27;, &#x27;&#x27;);
       }
     }
@@ -339,7 +347,7 @@ export default EditFormController.extend({
     let jstreeSelectedNodesRightType = jstreeSelectedNodesRight[0].original.type;
     let jstreeSelectedNodesLeftType = jstreeSelectedNodesLeft[0].original.type;
     if ((jstreeSelectedNodesLeftType !== &#x27;«listform»&#x27; &amp;&amp; jstreeSelectedNodesLeftType !== &#x27;«editform»&#x27;) ||
-      jstreeSelectedNodesRightType === &#x27;«listform»&#x27; || jstreeSelectedNodesRightType === &#x27;«editform»&#x27;) {
+      jstreeSelectedNodesRightType === &#x27;«listform»&#x27; || jstreeSelectedNodesRightType === &#x27;«editform»&#x27; || jstreeSelectedNodesRightType === &#x27;url&#x27;) {
       this.set(&#x27;moveRightDisabled&#x27;, &#x27;disabled&#x27;);
     } else {
       this.set(&#x27;moveRightDisabled&#x27;, &#x27;&#x27;);
@@ -392,7 +400,7 @@ export default EditFormController.extend({
   _restorationNodeTree(nodeArray) {
     let _this = this;
     nodeArray.forEach(function(node) {
-      if (node.type === &#x27;master&#x27; || node.type === &#x27;desk&#x27;) {
+      if (node.type === &#x27;folder&#x27; || node.type === &#x27;desk&#x27;) {
         node.set(&#x27;children&#x27;, node.get(&#x27;copyChildren&#x27;));
         _this._restorationNodeTree(node.get(&#x27;children&#x27;));
       }
@@ -425,23 +433,23 @@ export default EditFormController.extend({
       }
 
       // Find free id.
-      let folderId = 0;
-      let foundId = this.get(&#x27;jstreeObjectRight&#x27;).jstree(true).get_node(&#x27;move&#x27; + folderId);
+      let nodeId = 0;
+      let foundId = this.get(&#x27;jstreeObjectRight&#x27;).jstree(true).get_node(&#x27;move&#x27; + nodeId);
       while (foundId) {
-        folderId++;
-        foundId = this.get(&#x27;jstreeObjectRight&#x27;).jstree(true).get_node(&#x27;move&#x27; + folderId);
+        nodeId++;
+        foundId = this.get(&#x27;jstreeObjectRight&#x27;).jstree(true).get_node(&#x27;move&#x27; + nodeId);
       }
 
       let leftSelectedNodes = jstreeSelectedNodesLeft[0].original;
       let rightSelectedNodes = jstreeSelectedNodesRight[0].original.get(&#x27;copyChildren&#x27;);
-      let newNode = FdViewAttributesTree.create({
+      let newNode = FdAppStructTree.create({
         text: leftSelectedNodes.get(&#x27;text&#x27;),
         type: leftSelectedNodes.get(&#x27;type&#x27;),
         caption: leftSelectedNodes.get(&#x27;caption&#x27;),
         className: leftSelectedNodes.get(&#x27;name&#x27;),
         description: leftSelectedNodes.get(&#x27;description&#x27;),
         a_attr: leftSelectedNodes.get(&#x27;a_attr&#x27;),
-        id: &#x27;move&#x27; + folderId
+        id: &#x27;move&#x27; + nodeId
       });
 
       rightSelectedNodes.pushObject(newNode);
@@ -561,12 +569,58 @@ export default EditFormController.extend({
     },
 
     /**
-      Handles edit node left jsTree.
+      Handles add url node.
+
+      @method actions.addUrlNode
+    */
+    addUrlNode() {
+      let jstreeSelectedNodesRight = this.get(&#x27;jstreeSelectedNodesRight&#x27;);
+      if (jstreeSelectedNodesRight.length === 0) {
+        return;
+      }
+
+      // Find free name.
+      let urlName = &#x27;NewUrl&#x27;;
+      let selectedNodes = jstreeSelectedNodesRight[0].original.get(&#x27;copyChildren&#x27;);
+      let foundName = selectedNodes.findBy(&#x27;text&#x27;, urlName);
+      let urlIndex = &#x27;&#x27;;
+      while (!Ember.isNone(foundName)) {
+        urlIndex++;
+        foundName = selectedNodes.findBy(&#x27;text&#x27;, urlName + urlIndex);
+      }
+
+      // Find free id.
+      let urlId = 0;
+      let foundId = this.get(&#x27;jstreeObjectRight&#x27;).jstree(true).get_node(&#x27;NU&#x27; + urlId);
+      while (foundId) {
+        urlId++;
+        foundId = this.get(&#x27;jstreeObjectRight&#x27;).jstree(true).get_node(&#x27;NU&#x27; + urlId);
+      }
+
+      let folder = FdAppStructTree.create({
+        text: urlName + urlIndex,
+        type: &#x27;url&#x27;,
+        id: &#x27;NU&#x27; + urlId,
+        caption: urlName + urlIndex,
+        description: &#x27;&#x27;,
+        url: &#x27;&#x27;,
+        a_attr: { title: &#x27;url&#x27; }
+      });
+
+      selectedNodes.pushObject(folder);
+
+      // Restoration tree.
+      this._updateTreeData();
+      this.get(&#x27;jstreeActionReceiverRight&#x27;).send(&#x27;openNode&#x27;, jstreeSelectedNodesRight[0]);
+    },
+
+    /**
+      Handles edit node right jsTree.
 
       @method actions.editRightNode
     */
     editRightNode() {
-      //TODO filling out tabs.
+      this.send(&#x27;toggleConfigPanel&#x27;, &#x27;second&#x27;, 1);
     },
 
     /**
@@ -619,9 +673,9 @@ export default EditFormController.extend({
         foundId = this.get(&#x27;jstreeObjectRight&#x27;).jstree(true).get_node(&#x27;NF&#x27; + folderId);
       }
 
-      let folder = FdViewAttributesTree.create({
+      let folder = FdAppStructTree.create({
         text: folderName + folderIndex,
-        type: &#x27;master&#x27;,
+        type: &#x27;folder&#x27;,
         children: Ember.A(),
         copyChildren: Ember.A(),
         id: &#x27;NF&#x27; + folderId
