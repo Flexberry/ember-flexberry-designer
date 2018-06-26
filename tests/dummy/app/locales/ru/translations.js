@@ -70,46 +70,75 @@ Ember.$.extend(true, translations, {
           caption: 'Главная',
           title: ''
         },
+        'fd-visual-edit-form': {
+          caption: 'Конструктор формы редактирования',
+          title: ''
+        },
         root: {
           caption: 'Root',
           title: 'Root',
-          'fd-stage-list-form': {
-            caption: 'Stages',
+
+          'fd-appstruct-form': {
+            caption: 'Структура приложения',
             title: '',
 
           },
+
+          'fd-visual-listform': {
+            caption: 'Конструктор списковой формы',
+            title: '',
+          },
+
+          'fd-configuration-list-form': {
+            caption: 'Организации',
+            title: '',
+
+          },
+          'fd-stage-list-form': {
+            caption: 'Проекты',
+            title: '',
+
+          },
+          'additional': {
+            caption: 'Дополнительно',
+            title: '',
+          },
           'fd-system-list-form': {
-            caption: 'Systems',
+            caption: 'Подсистемы',
             title: '',
 
           },
           'fd-diagram-list-form': {
-            caption: 'Diagrams',
+            caption: 'Диаграммы',
             title: '',
 
           },
           'fd-class-list-form': {
-            caption: 'Classes',
+            caption: 'Классы',
             title: '',
 
           },
           'fd-association-list-form': {
-            caption: 'Associations',
+            caption: 'Ассоциации',
             title: '',
 
           },
           'fd-inheritance-list-form': {
-            caption: 'Inheritance',
+            caption: 'Наследование',
             title: '',
 
           },
           'fd-view-list-form': {
-            caption: 'Views',
+            caption: 'Представления',
             title: '',
 
           },
           'fd-generation-process-form': {
             caption: 'Генерация',
+            title: '',
+          },
+          'fd-generation-list-form': {
+            caption: 'Список генераций',
             title: '',
           }
         },

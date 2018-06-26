@@ -1,0 +1,28 @@
+export default {
+  prototypeBy: 'На основе',
+  name: 'Название',
+  type: 'Тип',
+  isNull: 'Допустимы пустые значения',
+  defaultValue: 'Значение по умолчанию',
+  typeName: {
+    stringControlType: 'string',
+    boolControlType: 'bool',
+    charControlType: 'char',
+    guidControlType: 'guid',
+    decimalControlType: 'decimal',
+    doubleControlType: 'double',
+    floatControlType: 'float',
+    sbyteControlType: 'sbyte',
+    shortControlType: 'short',
+    byteControlType: 'byte',
+    intControlType: 'int',
+    longControlType: 'long',
+    uintControlType: 'uint',
+    ushortControlType: 'ushort',
+    ulongControlType: 'ulong',
+    dateControlType: 'Дата/время',
+    fileControlType: 'Файл',
+    drowdownControlType: 'dropdown',
+    lookupControlType: 'lookup',
+  }
+};

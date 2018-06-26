@@ -1,7 +1,7 @@
 /* jshint node: true */
 
 module.exports = function (environment) {
-  var backendUrl = 'https://flexberry-designer-web.azurewebsites.net';
+  var backendUrl = 'https://ember-flexberry-designer-dummy.azurewebsites.net';
 
   if (environment === 'development-loc') {
     // Use `ember s -e development-loc` command for local backend usage.
@@ -13,7 +13,7 @@ module.exports = function (environment) {
     modulePrefix: 'dummy',
     environment: environment,
     baseURL: '/',
-    locationType: 'auto',
+    locationType: 'hash',
     EmberENV: {
       LOG_STACKTRACE_ON_DEPRECATION: false,
 

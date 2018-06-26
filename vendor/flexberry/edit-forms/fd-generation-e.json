@@ -1,0 +1,22 @@
+﻿{
+  "propertyLookup": [
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "Stage",
+      "projection": "ListFormView",
+      "detailModelName": null
+    }
+  ],
+  "caption": null,
+  "name": "FdGenerationE",
+  "className": "GenerationE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-generation",
+      "modelProjection": "EditFormView"
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 ﻿{
   "newForm": "fd-stage-edit-form",
   "editForm": "fd-stage-edit-form",
+  "external": false,
   "caption": "Stages",
   "name": "FdStageListForm",
   "className": "StageListForm",

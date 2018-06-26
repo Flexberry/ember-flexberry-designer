@@ -7,7 +7,7 @@
   "attrs": [
     {
       "name": "accessType",
-      "type": "new-platform-flexberry-web-designer-access-type",
+      "type": "i-c-s-soft-s-t-o-r-m-n-e-t-access-type",
       "flexberryType": "AccessType",
       "notNull": false,
       "defaultValue": "",
@@ -87,10 +87,10 @@
     },
     {
       "name": "businessServerEvents",
-      "type": "string",
-      "flexberryType": "BusinessServerEvents",
+      "type": "i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events",
+      "flexberryType": "DataServiceObjectEvents",
       "notNull": false,
-      "defaultValue": "",
+      "defaultValue": "OnAllEvents",
       "stored": true
     },
     {
@@ -470,6 +470,14 @@
       "stored": true
     },
     {
+      "name": "publishName",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
       "name": "storeInstancesInType",
       "type": "string",
       "flexberryType": "string",
@@ -527,7 +535,7 @@
     },
     {
       "name": "writeMode",
-      "type": "new-platform-flexberry-web-designer-t-write-mode",
+      "type": "i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode",
       "flexberryType": "tWriteMode",
       "notNull": false,
       "defaultValue": "",
@@ -553,7 +561,12 @@
   ],
   "hasMany": [
     {
-      "name": "devViews",
+      "name": "classStorageTypes",
+      "relatedTo": "fd-class-storage-type",
+      "inverse": "class"
+    },
+    {
+      "name": "views",
       "relatedTo": "fd-dev-view",
       "inverse": "class"
     },
@@ -647,7 +660,7 @@
         {
           "projectionName": "AttributesView",
           "caption": "",
-          "name": "devViews",
+          "name": "views",
           "relatedTo": "fd-dev-view",
           "inverse": null
         }
@@ -806,7 +819,7 @@
         {
           "projectionName": "Prototyping",
           "caption": "",
-          "name": "devViews",
+          "name": "views",
           "relatedTo": "fd-dev-view",
           "inverse": null
         }
@@ -875,7 +888,7 @@
         {
           "projectionName": "ViewPeeker",
           "caption": "",
-          "name": "devViews",
+          "name": "views",
           "relatedTo": "fd-dev-view",
           "inverse": null
         }
@@ -1252,40 +1265,46 @@
           "index": 24
         },
         {
-          "name": "stored",
+          "name": "publishName",
           "caption": "",
           "hidden": false,
           "index": 25
         },
         {
-          "name": "trim",
+          "name": "stored",
           "caption": "",
           "hidden": false,
           "index": 26
         },
         {
-          "name": "updateAudit",
-          "caption": "Вести аудит операции изменения'",
+          "name": "trim",
+          "caption": "",
           "hidden": false,
           "index": 27
+        },
+        {
+          "name": "updateAudit",
+          "caption": "Вести аудит операции изменения",
+          "hidden": false,
+          "index": 28
         },
         {
           "name": "updateAuditViewName",
           "caption": "Имя представления для аудита операции изменения",
           "hidden": false,
-          "index": 28
+          "index": 29
         },
         {
           "name": "useDefaultView",
           "caption": "Использовать представление по умолчанию",
           "hidden": false,
-          "index": 29
+          "index": 30
         },
         {
           "name": "writeMode",
           "caption": "Режим записи аудита",
           "hidden": false,
-          "index": 30
+          "index": 31
         }
       ],
       "belongsTo": [
@@ -1328,7 +1347,7 @@
         {
           "projectionName": "EditDataObjectClass",
           "caption": "",
-          "name": "devViews",
+          "name": "views",
           "relatedTo": "fd-dev-view",
           "inverse": null
         }
@@ -2032,7 +2051,7 @@
         {
           "projectionName": "EditPropertyLookups",
           "caption": "",
-          "name": "devViews",
+          "name": "views",
           "relatedTo": "fd-dev-view",
           "inverse": null
         }
@@ -2181,6 +2200,628 @@
       ]
     },
     {
+      "name": "FdAttributesChangeView",
+      "modelName": "fd-dev-class",
+      "attrs": [
+        {
+          "name": "attributesStr",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "nameStr",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "stereotype",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": [
+        {
+          "projectionName": "FormDesigner",
+          "caption": "",
+          "name": "attributes",
+          "relatedTo": "fd-dev-attribute",
+          "inverse": null
+        },
+        {
+          "projectionName": "FdAttributesView",
+          "caption": "",
+          "name": "views",
+          "relatedTo": "fd-dev-view",
+          "inverse": null
+        }
+      ]
+    },
+    {
+      "name": "FdAttributesForForm",
+      "modelName": "fd-dev-class",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "stereotype",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": [
+        {
+          "projectionName": "GetFormWithView",
+          "caption": "",
+          "name": "formViews",
+          "relatedTo": "fd-dev-form-view",
+          "inverse": null
+        }
+      ]
+    },
+    {
+      "name": "FdEditClassForm",
+      "modelName": "fd-dev-class",
+      "attrs": [
+        {
+          "name": "caption",
+          "caption": "Заголовок",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "Имя",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "publishName",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "stored",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "storage",
+          "caption": "",
+          "hidden": false,
+          "index": 4
+        },
+        {
+          "name": "packet",
+          "caption": "",
+          "hidden": false,
+          "index": 5
+        },
+        {
+          "name": "namespacePostfix",
+          "caption": "",
+          "hidden": false,
+          "index": 6
+        },
+        {
+          "name": "businessServerEvents",
+          "caption": "События бизнес-сервера",
+          "hidden": false,
+          "index": 9
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": "Name",
+          "lookupValueField": "name",
+          "relationName": "BusinessServerClass",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "",
+              "hidden": true,
+              "index": 8
+            }
+          ],
+          "index": 7,
+          "caption": "Бизнес-сервер",
+          "name": "businessServerClass",
+          "relatedTo": "fd-dev-class",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Classes",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [],
+          "index": 10,
+          "caption": "",
+          "name": "stage",
+          "relatedTo": "fd-stage",
+          "inverse": null
+        }
+      ],
+      "hasMany": [
+        {
+          "projectionName": "FdClassEditForm",
+          "caption": "",
+          "name": "attributes",
+          "relatedTo": "fd-dev-attribute",
+          "inverse": null
+        },
+        {
+          "projectionName": "FdEditClassForm",
+          "caption": "",
+          "name": "views",
+          "relatedTo": "fd-dev-view",
+          "inverse": null
+        },
+        {
+          "projectionName": "FdEditClassForm",
+          "caption": "",
+          "name": "classStorageTypes",
+          "relatedTo": "fd-class-storage-type",
+          "inverse": null
+        }
+      ]
+    },
+    {
+      "name": "FdPreloadMetadata",
+      "modelName": "fd-dev-class",
+      "attrs": [
+        {
+          "name": "accessType",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "addAuditFields",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "auditConnectionStringName",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "auditEnabled",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "auditWinServiceUrl",
+          "caption": "",
+          "hidden": false,
+          "index": 4
+        },
+        {
+          "name": "autoAltered",
+          "caption": "",
+          "hidden": false,
+          "index": 5
+        },
+        {
+          "name": "businessServerEvents",
+          "caption": "",
+          "hidden": false,
+          "index": 6
+        },
+        {
+          "name": "caption",
+          "caption": "",
+          "hidden": false,
+          "index": 7
+        },
+        {
+          "name": "comPlusServerPropertiesStr",
+          "caption": "",
+          "hidden": false,
+          "index": 8
+        },
+        {
+          "name": "containersStr",
+          "caption": "",
+          "hidden": false,
+          "index": 9
+        },
+        {
+          "name": "dataObjectTypesStr",
+          "caption": "",
+          "hidden": false,
+          "index": 10
+        },
+        {
+          "name": "deleteAudit",
+          "caption": "",
+          "hidden": false,
+          "index": 11
+        },
+        {
+          "name": "deleteAuditViewName",
+          "caption": "",
+          "hidden": false,
+          "index": 12
+        },
+        {
+          "name": "disableAllRightChecks",
+          "caption": "",
+          "hidden": false,
+          "index": 13
+        },
+        {
+          "name": "editFormOperationsStr",
+          "caption": "",
+          "hidden": false,
+          "index": 14
+        },
+        {
+          "name": "expandOperations",
+          "caption": "",
+          "hidden": false,
+          "index": 15
+        },
+        {
+          "name": "fixDependedForm",
+          "caption": "",
+          "hidden": false,
+          "index": 16
+        },
+        {
+          "name": "formUrl",
+          "caption": "",
+          "hidden": false,
+          "index": 17
+        },
+        {
+          "name": "generateCatcher",
+          "caption": "",
+          "hidden": false,
+          "index": 18
+        },
+        {
+          "name": "generateComPlusServer",
+          "caption": "",
+          "hidden": false,
+          "index": 19
+        },
+        {
+          "name": "generateDependedForm",
+          "caption": "",
+          "hidden": false,
+          "index": 20
+        },
+        {
+          "name": "generateHttpRemoteServer",
+          "caption": "",
+          "hidden": false,
+          "index": 21
+        },
+        {
+          "name": "hierarchicalMaster",
+          "caption": "",
+          "hidden": false,
+          "index": 22
+        },
+        {
+          "name": "insertAudit",
+          "caption": "",
+          "hidden": false,
+          "index": 23
+        },
+        {
+          "name": "insertAuditViewName",
+          "caption": "",
+          "hidden": false,
+          "index": 24
+        },
+        {
+          "name": "listFormOperationsStr",
+          "caption": "",
+          "hidden": false,
+          "index": 25
+        },
+        {
+          "name": "loadingOrder",
+          "caption": "",
+          "hidden": false,
+          "index": 26
+        },
+        {
+          "name": "namespacePostfix",
+          "caption": "",
+          "hidden": false,
+          "index": 27
+        },
+        {
+          "name": "onlyShowSelectedValue",
+          "caption": "",
+          "hidden": false,
+          "index": 28
+        },
+        {
+          "name": "packet",
+          "caption": "",
+          "hidden": false,
+          "index": 29
+        },
+        {
+          "name": "pBCustomAttributes",
+          "caption": "",
+          "hidden": false,
+          "index": 30
+        },
+        {
+          "name": "pBGetViewsForForm",
+          "caption": "",
+          "hidden": false,
+          "index": 31
+        },
+        {
+          "name": "pBMembers",
+          "caption": "",
+          "hidden": false,
+          "index": 32
+        },
+        {
+          "name": "primaryKeyStorage",
+          "caption": "",
+          "hidden": false,
+          "index": 33
+        },
+        {
+          "name": "printContainer",
+          "caption": "",
+          "hidden": false,
+          "index": 34
+        },
+        {
+          "name": "propertyLookupStr",
+          "caption": "",
+          "hidden": false,
+          "index": 35
+        },
+        {
+          "name": "publishToEBSD",
+          "caption": "",
+          "hidden": false,
+          "index": 36
+        },
+        {
+          "name": "realCaption",
+          "caption": "",
+          "hidden": false,
+          "index": 37
+        },
+        {
+          "name": "realNamespace",
+          "caption": "",
+          "hidden": false,
+          "index": 38
+        },
+        {
+          "name": "realPacket",
+          "caption": "",
+          "hidden": false,
+          "index": 39
+        },
+        {
+          "name": "realPrimaryKeyStorage",
+          "caption": "",
+          "hidden": false,
+          "index": 40
+        },
+        {
+          "name": "realStorage",
+          "caption": "",
+          "hidden": false,
+          "index": 41
+        },
+        {
+          "name": "scriptName",
+          "caption": "",
+          "hidden": false,
+          "index": 42
+        },
+        {
+          "name": "selectAudit",
+          "caption": "",
+          "hidden": false,
+          "index": 43
+        },
+        {
+          "name": "selectAuditViewName",
+          "caption": "",
+          "hidden": false,
+          "index": 44
+        },
+        {
+          "name": "standartDesktop",
+          "caption": "",
+          "hidden": false,
+          "index": 45
+        },
+        {
+          "name": "storage",
+          "caption": "",
+          "hidden": false,
+          "index": 46
+        },
+        {
+          "name": "publishName",
+          "caption": "",
+          "hidden": false,
+          "index": 47
+        },
+        {
+          "name": "storeInstancesInType",
+          "caption": "",
+          "hidden": false,
+          "index": 48
+        },
+        {
+          "name": "trim",
+          "caption": "",
+          "hidden": false,
+          "index": 49
+        },
+        {
+          "name": "updateAudit",
+          "caption": "",
+          "hidden": false,
+          "index": 50
+        },
+        {
+          "name": "updateAuditViewName",
+          "caption": "",
+          "hidden": false,
+          "index": 51
+        },
+        {
+          "name": "useDefaultView",
+          "caption": "",
+          "hidden": false,
+          "index": 52
+        },
+        {
+          "name": "writeMode",
+          "caption": "",
+          "hidden": false,
+          "index": 53
+        },
+        {
+          "name": "writeSessions",
+          "caption": "",
+          "hidden": false,
+          "index": 54
+        },
+        {
+          "name": "nameStr",
+          "caption": "",
+          "hidden": false,
+          "index": 55
+        },
+        {
+          "name": "attributesStr",
+          "caption": "",
+          "hidden": false,
+          "index": 56
+        },
+        {
+          "name": "methodsStr",
+          "caption": "",
+          "hidden": false,
+          "index": 57
+        },
+        {
+          "name": "stored",
+          "caption": "",
+          "hidden": false,
+          "index": 58
+        },
+        {
+          "name": "stereotype",
+          "caption": "",
+          "hidden": false,
+          "index": 59
+        },
+        {
+          "name": "referenceCount",
+          "caption": "",
+          "hidden": false,
+          "index": 60
+        },
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 61
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 62
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Classes",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "",
+              "hidden": false,
+              "index": 64
+            }
+          ],
+          "index": 63,
+          "caption": "",
+          "name": "stage",
+          "relatedTo": "fd-stage",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "BusinessServerClass",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "",
+              "hidden": false,
+              "index": 66
+            }
+          ],
+          "index": 65,
+          "caption": "",
+          "name": "businessServerClass",
+          "relatedTo": "fd-dev-class",
+          "inverse": null
+        }
+      ],
+      "hasMany": [
+        {
+          "projectionName": "FdPreloadMetadata",
+          "caption": "",
+          "name": "views",
+          "relatedTo": "fd-dev-view",
+          "inverse": null
+        }
+      ]
+    },
+    {
       "name": "Generator",
       "modelName": "fd-dev-class",
       "attrs": [
@@ -2275,262 +2916,268 @@
           "index": 14
         },
         {
-          "name": "storeInstancesInType",
+          "name": "publishName",
           "caption": "",
           "hidden": false,
           "index": 15
         },
         {
-          "name": "trim",
+          "name": "storeInstancesInType",
           "caption": "",
           "hidden": false,
           "index": 16
         },
         {
-          "name": "description",
+          "name": "trim",
           "caption": "",
           "hidden": false,
           "index": 17
         },
         {
-          "name": "generateDependedForm",
+          "name": "description",
           "caption": "",
           "hidden": false,
           "index": 18
         },
         {
-          "name": "fixDependedForm",
+          "name": "generateDependedForm",
           "caption": "",
           "hidden": false,
           "index": 19
         },
         {
-          "name": "packet",
+          "name": "fixDependedForm",
           "caption": "",
           "hidden": false,
           "index": 20
         },
         {
-          "name": "namespacePostfix",
+          "name": "packet",
           "caption": "",
           "hidden": false,
           "index": 21
         },
         {
-          "name": "pBGetViewsForForm",
+          "name": "namespacePostfix",
           "caption": "",
           "hidden": false,
           "index": 22
         },
         {
-          "name": "businessServerEvents",
+          "name": "pBGetViewsForForm",
           "caption": "",
           "hidden": false,
           "index": 23
         },
         {
+          "name": "businessServerEvents",
+          "caption": "",
+          "hidden": false,
+          "index": 24
+        },
+        {
           "name": "disableAllRightChecks",
           "caption": "",
           "hidden": false,
-          "index": 27
+          "index": 28
         },
         {
           "name": "dataObjectTypesStr",
           "caption": "",
           "hidden": false,
-          "index": 29
+          "index": 30
         },
         {
           "name": "propertyLookupStr",
           "caption": "",
           "hidden": false,
-          "index": 30
+          "index": 31
         },
         {
           "name": "standartDesktop",
           "caption": "",
           "hidden": false,
-          "index": 31
+          "index": 32
         },
         {
           "name": "containersStr",
           "caption": "",
           "hidden": false,
-          "index": 32
+          "index": 33
         },
         {
           "name": "appConfig",
           "caption": "",
           "hidden": false,
-          "index": 33
+          "index": 34
         },
         {
           "name": "hierarchicalMaster",
           "caption": "",
           "hidden": false,
-          "index": 34
+          "index": 35
         },
         {
           "name": "listFormOperationsStr",
           "caption": "",
           "hidden": false,
-          "index": 35
+          "index": 36
         },
         {
           "name": "editFormOperationsStr",
           "caption": "",
           "hidden": false,
-          "index": 36
+          "index": 37
         },
         {
           "name": "printContainer",
           "caption": "",
           "hidden": false,
-          "index": 37
+          "index": 38
         },
         {
           "name": "generateComPlusServer",
           "caption": "",
           "hidden": false,
-          "index": 38
+          "index": 39
         },
         {
           "name": "comPlusServerPropertiesStr",
           "caption": "",
           "hidden": false,
-          "index": 39
+          "index": 40
         },
         {
           "name": "generateHttpRemoteServer",
           "caption": "",
           "hidden": false,
-          "index": 40
+          "index": 41
         },
         {
           "name": "scriptName",
           "caption": "",
           "hidden": false,
-          "index": 41
+          "index": 42
         },
         {
           "name": "publishToEBSD",
           "caption": "",
           "hidden": false,
-          "index": 42
+          "index": 43
         },
         {
           "name": "generateCatcher",
           "caption": "",
           "hidden": false,
-          "index": 43
+          "index": 44
         },
         {
           "name": "expandOperations",
           "caption": "",
           "hidden": false,
-          "index": 44
+          "index": 45
         },
         {
           "name": "accessType",
           "caption": "",
           "hidden": false,
-          "index": 45
+          "index": 46
         },
         {
           "name": "auditEnabled",
           "caption": "",
           "hidden": false,
-          "index": 46
+          "index": 47
         },
         {
           "name": "useDefaultView",
           "caption": "",
           "hidden": false,
-          "index": 47
+          "index": 48
         },
         {
           "name": "insertAudit",
           "caption": "",
           "hidden": false,
-          "index": 48
+          "index": 49
         },
         {
           "name": "insertAuditViewName",
           "caption": "",
           "hidden": false,
-          "index": 49
+          "index": 50
         },
         {
           "name": "deleteAudit",
           "caption": "",
           "hidden": false,
-          "index": 50
+          "index": 51
         },
         {
           "name": "deleteAuditViewName",
           "caption": "",
           "hidden": false,
-          "index": 51
+          "index": 52
         },
         {
           "name": "updateAudit",
           "caption": "",
           "hidden": false,
-          "index": 52
+          "index": 53
         },
         {
           "name": "updateAuditViewName",
           "caption": "",
           "hidden": false,
-          "index": 53
+          "index": 54
         },
         {
           "name": "selectAudit",
           "caption": "",
           "hidden": false,
-          "index": 54
+          "index": 55
         },
         {
           "name": "selectAuditViewName",
           "caption": "",
           "hidden": false,
-          "index": 55
+          "index": 56
         },
         {
           "name": "formUrl",
           "caption": "",
           "hidden": false,
-          "index": 56
+          "index": 57
         },
         {
           "name": "writeMode",
           "caption": "",
           "hidden": false,
-          "index": 57
+          "index": 58
         },
         {
           "name": "auditConnectionStringName",
           "caption": "",
           "hidden": false,
-          "index": 58
+          "index": 59
         },
         {
           "name": "auditWinServiceUrl",
           "caption": "",
           "hidden": false,
-          "index": 59
+          "index": 60
         },
         {
           "name": "addAuditFields",
           "caption": "",
           "hidden": false,
-          "index": 60
+          "index": 61
         },
         {
           "name": "writeSessions",
           "caption": "",
           "hidden": false,
-          "index": 61
+          "index": 62
         }
       ],
       "belongsTo": [
@@ -2545,22 +3192,22 @@
               "name": "nameStr",
               "caption": "",
               "hidden": false,
-              "index": 24
+              "index": 25
             },
             {
               "name": "attributesStr",
               "caption": "",
               "hidden": false,
-              "index": 26
+              "index": 27
             },
             {
               "name": "methodsStr",
               "caption": "",
               "hidden": false,
-              "index": 28
+              "index": 29
             }
           ],
-          "index": 25,
+          "index": 26,
           "caption": "",
           "name": "businessServerClass",
           "relatedTo": "fd-dev-class",
@@ -2592,8 +3239,15 @@
         {
           "projectionName": "Generator",
           "caption": "",
-          "name": "devViews",
+          "name": "views",
           "relatedTo": "fd-dev-view",
+          "inverse": null
+        },
+        {
+          "projectionName": "EditView",
+          "caption": "",
+          "name": "classStorageTypes",
+          "relatedTo": "fd-class-storage-type",
           "inverse": null
         }
       ]
@@ -2769,7 +3423,21 @@
           "index": 5
         }
       ],
-      "belongsTo": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Stage",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [],
+          "index": 6,
+          "caption": "",
+          "name": "stage",
+          "relatedTo": "fd-stage",
+          "inverse": null
+        }
+      ],
       "hasMany": []
     },
     {
@@ -2832,7 +3500,7 @@
         {
           "projectionName": "Prototyping",
           "caption": "",
-          "name": "devViews",
+          "name": "views",
           "relatedTo": "fd-dev-view",
           "inverse": null
         }
@@ -3130,7 +3798,7 @@
         {
           "projectionName": "ViewPeeker",
           "caption": "",
-          "name": "devViews",
+          "name": "views",
           "relatedTo": "fd-dev-view",
           "inverse": null
         }
@@ -3138,5 +3806,6 @@
     }
   ],
   "stored": true,
-  "offline": true
+  "offline": true,
+  "external": false
 }

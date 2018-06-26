@@ -2,84 +2,84 @@ export default {
   projections: {
     Diagram: {
       primitivesStreamString: {
-        caption: 'primitivesStreamString'
+        __caption__: 'primitivesStreamString'
       },
       caseObjectsString: {
-        caption: 'caseObjectsString'
+        __caption__: 'caseObjectsString'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       createDate: {
-        caption: 'createDate'
+        __caption__: 'createDate'
       },
       createUser: {
-        caption: 'createUser'
+        __caption__: 'createUser'
       },
       changeDate: {
-        caption: 'changeDate'
+        __caption__: 'changeDate'
       },
       changeUser: {
-        caption: 'changeUser'
+        __caption__: 'changeUser'
       }
     },
     DiagramWithStage: {
       primitivesStreamString: {
-        caption: 'primitivesStreamString'
+        __caption__: 'primitivesStreamString'
       },
       caseObjectsString: {
-        caption: 'caseObjectsString'
+        __caption__: 'caseObjectsString'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       createDate: {
-        caption: 'createDate'
+        __caption__: 'createDate'
       },
       createUser: {
-        caption: 'createUser'
+        __caption__: 'createUser'
       },
       changeDate: {
-        caption: 'changeDate'
+        __caption__: 'changeDate'
       },
       changeUser: {
-        caption: 'changeUser'
+        __caption__: 'changeUser'
       }
     },
     DiagramWithSystem: {
       primitivesStreamString: {
-        caption: 'primitivesStreamString'
+        __caption__: 'primitivesStreamString'
       },
       caseObjectsString: {
-        caption: 'caseObjectsString'
+        __caption__: 'caseObjectsString'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       createDate: {
-        caption: 'createDate'
+        __caption__: 'createDate'
       },
       createUser: {
-        caption: 'createUser'
+        __caption__: 'createUser'
       },
       changeDate: {
-        caption: 'changeDate'
+        __caption__: 'changeDate'
       },
       changeUser: {
-        caption: 'changeUser'
+        __caption__: 'changeUser'
       }
     },
     ExportToWmf: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       }
     },
     SearchSystem: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       }
     }
   }

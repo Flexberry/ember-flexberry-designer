@@ -78,10 +78,12 @@ export let defineProjections = function (modelClass) {
   modelClass.defineProjection('Edit', 'fd-dev-association', {
     description: Projection.attr(''),
     startRole: Projection.attr(''),
+    startRolePublishName: Projection.attr(''),
     startMultiplicity: Projection.attr(''),
     startRoleAccessModifier: Projection.attr(''),
     startRoleStored: Projection.attr(''),
     endRole: Projection.attr(''),
+    endRolePublishName: Projection.attr(''),
     endMultiplicity: Projection.attr(''),
     autoGenerateTypeUsage: Projection.attr(''),
     typeUsage: Projection.attr(''),
@@ -96,6 +98,47 @@ export let defineProjections = function (modelClass) {
   modelClass.defineProjection('EditFormView', 'fd-dev-association', {
     name: Projection.attr('Name'),
     description: Projection.attr('Description')
+  });
+  modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-association', {
+    assocType: Projection.attr(''),
+    autoGenerateTypeUsage: Projection.attr(''),
+    pBMasterCustomAttributes: Projection.attr(''),
+    pBMasterGetEnd: Projection.attr(''),
+    pBMasterSetEnd: Projection.attr(''),
+    pBMasterGetStart: Projection.attr(''),
+    pBMasterSetStart: Projection.attr(''),
+    realStorage: Projection.attr(''),
+    typeUsage: Projection.attr(''),
+    autoStoreMasterDisabled: Projection.attr(''),
+    realEndRole: Projection.attr(''),
+    realStartRole: Projection.attr(''),
+    storage: Projection.attr(''),
+    startRolePublishName: Projection.attr(''),
+    endRolePublishName: Projection.attr(''),
+    endMultiplicity: Projection.attr(''),
+    endRole: Projection.attr(''),
+    endRoleAccessModifier: Projection.attr(''),
+    endRoleStored: Projection.attr(''),
+    endRoleStr: Projection.attr(''),
+    notNullStart: Projection.attr(''),
+    startMultiplicity: Projection.attr(''),
+    startRole: Projection.attr(''),
+    startRoleAccessModifier: Projection.attr(''),
+    startRoleStored: Projection.attr(''),
+    startRoleStr: Projection.attr(''),
+    referenceCount: Projection.attr(''),
+    name: Projection.attr(''),
+    description: Projection.attr(''),
+    nameStr: Projection.attr(''),
+    stage: Projection.belongsTo('fd-stage', '', {
+      name: Projection.attr('')
+    }),
+    endClass: Projection.belongsTo('fd-class', '', {
+      name: Projection.attr('')
+    }),
+    startClass: Projection.belongsTo('fd-class', '', {
+      name: Projection.attr('')
+    })
   });
   modelClass.defineProjection('FormDesigner', 'fd-dev-association', {
     name: Projection.attr(''),
@@ -136,6 +179,8 @@ export let defineProjections = function (modelClass) {
     realEndRole: Projection.attr('RealEndRole', { hidden: true }),
     realStartRole: Projection.attr('RealStartRole', { hidden: true }),
     storage: Projection.attr('Storage', { hidden: true }),
+    startRolePublishName: Projection.attr('StartRolePublishName', { hidden: true }),
+    endRolePublishName: Projection.attr('EndRolePublishName', { hidden: true }),
     endMultiplicity: Projection.attr('EndMultiplicity', { hidden: true }),
     endRole: Projection.attr('EndRole', { hidden: true }),
     endRoleAccessModifier: Projection.attr('EndRoleAccessModifier', { hidden: true }),
@@ -171,4 +216,18 @@ export let defineProjections = function (modelClass) {
     endRole: Projection.attr('End role'),
     storage: Projection.attr('Storage')
   });
+
+  /* merged manually start */
+  modelClass.defineProjection('FormConstructor', 'fd-dev-association', {
+    startRole: Projection.attr(''),
+    assocType: Projection.attr(''),
+    startClass: Projection.belongsTo('fd-class', '', {
+      name: Projection.attr(''),
+    }),
+    endClass: Projection.belongsTo('fd-class', '', {
+      name: Projection.attr(''),
+    }),
+    stage: Projection.belongsTo('fd-stage', '', {}),
+  });
+  /* merged manually end */
 };

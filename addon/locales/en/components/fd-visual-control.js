@@ -1,0 +1,28 @@
+export default {
+  prototypeBy: 'Prototype by',
+  name: 'Name',
+  type: 'Type',
+  isNull: 'Null values are allowed',
+  defaultValue: 'Default value',
+  typeName: {
+    stringControlType: 'string',
+    boolControlType: 'bool',
+    charControlType: 'char',
+    guidControlType: 'guid',
+    decimalControlType: 'decimal',
+    doubleControlType: 'double',
+    floatControlType: 'float',
+    sbyteControlType: 'sbyte',
+    shortControlType: 'short',
+    byteControlType: 'byte',
+    intControlType: 'int',
+    longControlType: 'long',
+    uintControlType: 'uint',
+    ushortControlType: 'ushort',
+    ulongControlType: 'ulong',
+    dateControlType: 'Date/Time',
+    fileControlType: 'file',
+    drowdownControlType: 'dropdown',
+    lookupControlType: 'lookup',
+  }
+};

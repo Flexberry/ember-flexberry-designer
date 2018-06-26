@@ -2,140 +2,140 @@ export default {
   projections: {
     EditApplication: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       modifier: {
-        caption: 'modifier'
+        __caption__: 'modifier'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       }
     },
     EditDataObjectClass: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       modifier: {
-        caption: 'modifier'
+        __caption__: 'modifier'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       }
     },
     EditEditForm: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       modifier: {
-        caption: 'modifier'
+        __caption__: 'modifier'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       }
     },
     EditInterface: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       modifier: {
-        caption: 'modifier'
+        __caption__: 'modifier'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       }
     },
     EditListForm: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       modifier: {
-        caption: 'modifier'
+        __caption__: 'modifier'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       }
     },
     EditPrintForm: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       modifier: {
-        caption: 'modifier'
+        __caption__: 'modifier'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       }
     },
     EditType: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       modifier: {
-        caption: 'modifier'
+        __caption__: 'modifier'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       }
     },
     EditUserForm: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       modifier: {
-        caption: 'modifier'
+        __caption__: 'modifier'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       }
     },
     Generator: {
       caption: {
-        caption: 'caption'
+        __caption__: 'caption'
       },
       modifier: {
-        caption: 'modifier'
+        __caption__: 'modifier'
       },
       orderNum: {
-        caption: 'orderNum'
+        __caption__: 'orderNum'
       },
       realCaption: {
-        caption: 'realCaption'
+        __caption__: 'realCaption'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       }
     }
   }

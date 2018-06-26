@@ -71,7 +71,7 @@
     },
     {
       "name": "defaultAccessType",
-      "type": "new-platform-flexberry-web-designer-access-type",
+      "type": "i-c-s-soft-s-t-o-r-m-n-e-t-access-type",
       "flexberryType": "AccessType",
       "notNull": false,
       "defaultValue": "",
@@ -119,7 +119,7 @@
     },
     {
       "name": "defaultWriteMode",
-      "type": "new-platform-flexberry-web-designer-t-write-mode",
+      "type": "i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode",
       "flexberryType": "tWriteMode",
       "notNull": false,
       "defaultValue": "",
@@ -422,6 +422,11 @@
       "name": "moduleSettings",
       "relatedTo": "fd-dev-module-setting",
       "inverse": "stage"
+    },
+    {
+      "name": "generations",
+      "relatedTo": "fd-generation",
+      "inverse": "stage"
     }
   ],
   "projections": [
@@ -637,7 +642,15 @@
         }
       ],
       "belongsTo": [],
-      "hasMany": []
+      "hasMany": [
+        {
+          "projectionName": "Backup",
+          "caption": "",
+          "name": "moduleSettings",
+          "relatedTo": "fd-dev-module-setting",
+          "inverse": null
+        }
+      ]
     },
     {
       "name": "Compiler",
@@ -1008,7 +1021,49 @@
           "index": 4
         }
       ],
-      "belongsTo": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Configuration",
+          "belongsTo": [
+            {
+              "lookupValue": null,
+              "lookupValueField": null,
+              "relationName": "Configuration.Project",
+              "belongsTo": [
+                {
+                  "lookupValue": null,
+                  "lookupValueField": null,
+                  "relationName": "Configuration.Project.Repository",
+                  "belongsTo": [],
+                  "hidden": true,
+                  "attrs": [],
+                  "index": 7,
+                  "caption": "",
+                  "name": "repository",
+                  "relatedTo": "fd-repository",
+                  "inverse": null
+                }
+              ],
+              "hidden": true,
+              "attrs": [],
+              "index": 6,
+              "caption": "",
+              "name": "project",
+              "relatedTo": "fd-project",
+              "inverse": null
+            }
+          ],
+          "hidden": true,
+          "attrs": [],
+          "index": 5,
+          "caption": "",
+          "name": "configuration",
+          "relatedTo": "fd-configuration",
+          "inverse": null
+        }
+      ],
       "hasMany": []
     },
     {
@@ -1447,6 +1502,299 @@
       "hasMany": []
     },
     {
+      "name": "FdPreloadMetadata",
+      "modelName": "fd-dev-stage",
+      "attrs": [
+        {
+          "name": "additionalPluginsSettingsStr",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "auditEnabled",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "company",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "copyright",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "dataObjectNameSpace",
+          "caption": "",
+          "hidden": false,
+          "index": 4
+        },
+        {
+          "name": "defaultAccessType",
+          "caption": "",
+          "hidden": false,
+          "index": 5
+        },
+        {
+          "name": "defaultBaseClass",
+          "caption": "",
+          "hidden": false,
+          "index": 6
+        },
+        {
+          "name": "defaultDetailArrayClass",
+          "caption": "",
+          "hidden": false,
+          "index": 7
+        },
+        {
+          "name": "defaultEditScriptName",
+          "caption": "",
+          "hidden": false,
+          "index": 8
+        },
+        {
+          "name": "defaultListScriptName",
+          "caption": "",
+          "hidden": false,
+          "index": 9
+        },
+        {
+          "name": "defaultWriteMode",
+          "caption": "",
+          "hidden": false,
+          "index": 10
+        },
+        {
+          "name": "doNotDeleteExtraTables",
+          "caption": "",
+          "hidden": false,
+          "index": 11
+        },
+        {
+          "name": "indexComment",
+          "caption": "",
+          "hidden": false,
+          "index": 12
+        },
+        {
+          "name": "isAuditDatabaseLocal",
+          "caption": "",
+          "hidden": false,
+          "index": 13
+        },
+        {
+          "name": "isReportDatabaseLocal",
+          "caption": "",
+          "hidden": false,
+          "index": 14
+        },
+        {
+          "name": "lastIndexDate",
+          "caption": "",
+          "hidden": false,
+          "index": 15
+        },
+        {
+          "name": "operationsEnumNamespace",
+          "caption": "",
+          "hidden": false,
+          "index": 16
+        },
+        {
+          "name": "operationsEnumPacket",
+          "caption": "",
+          "hidden": false,
+          "index": 17
+        },
+        {
+          "name": "product",
+          "caption": "",
+          "hidden": false,
+          "index": 18
+        },
+        {
+          "name": "realDataObjectNameSpace",
+          "caption": "",
+          "hidden": false,
+          "index": 19
+        },
+        {
+          "name": "scriptNamespace",
+          "caption": "",
+          "hidden": false,
+          "index": 20
+        },
+        {
+          "name": "scriptPacket",
+          "caption": "",
+          "hidden": false,
+          "index": 21
+        },
+        {
+          "name": "serializedIndex",
+          "caption": "",
+          "hidden": false,
+          "index": 22
+        },
+        {
+          "name": "signAssemblies",
+          "caption": "",
+          "hidden": false,
+          "index": 23
+        },
+        {
+          "name": "sourceAzStoragePath",
+          "caption": "",
+          "hidden": false,
+          "index": 24
+        },
+        {
+          "name": "sourceCodeCSPath",
+          "caption": "",
+          "hidden": false,
+          "index": 25
+        },
+        {
+          "name": "sourceCodeVBPath",
+          "caption": "",
+          "hidden": false,
+          "index": 26
+        },
+        {
+          "name": "sourceControlUri",
+          "caption": "",
+          "hidden": false,
+          "index": 27
+        },
+        {
+          "name": "sQLPath",
+          "caption": "",
+          "hidden": false,
+          "index": 28
+        },
+        {
+          "name": "typeMapAccessStr",
+          "caption": "",
+          "hidden": false,
+          "index": 29
+        },
+        {
+          "name": "typeMapCSStr",
+          "caption": "",
+          "hidden": false,
+          "index": 30
+        },
+        {
+          "name": "typeMapOracleStr",
+          "caption": "",
+          "hidden": false,
+          "index": 31
+        },
+        {
+          "name": "typeMapPostgreStr",
+          "caption": "",
+          "hidden": false,
+          "index": 32
+        },
+        {
+          "name": "typeMapSQLStr",
+          "caption": "",
+          "hidden": false,
+          "index": 33
+        },
+        {
+          "name": "typeMapVBStr",
+          "caption": "",
+          "hidden": false,
+          "index": 34
+        },
+        {
+          "name": "useSourceControl",
+          "caption": "",
+          "hidden": false,
+          "index": 35
+        },
+        {
+          "name": "version",
+          "caption": "",
+          "hidden": false,
+          "index": 36
+        },
+        {
+          "name": "createUser",
+          "caption": "",
+          "hidden": false,
+          "index": 37
+        },
+        {
+          "name": "createDate",
+          "caption": "",
+          "hidden": false,
+          "index": 38
+        },
+        {
+          "name": "changeUser",
+          "caption": "",
+          "hidden": false,
+          "index": 39
+        },
+        {
+          "name": "changeDate",
+          "caption": "",
+          "hidden": false,
+          "index": 40
+        },
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 41
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 42
+        },
+        {
+          "name": "nameStr",
+          "caption": "",
+          "hidden": false,
+          "index": 43
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Stages",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "",
+              "hidden": false,
+              "index": 45
+            }
+          ],
+          "index": 44,
+          "caption": "",
+          "name": "configuration",
+          "relatedTo": "fd-configuration",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
       "name": "FormDesigner_ProjectE",
       "modelName": "fd-dev-stage",
       "attrs": [
@@ -1581,6 +1929,28 @@
         }
       ],
       "hasMany": []
+    },
+    {
+      "name": "Generations",
+      "modelName": "fd-dev-stage",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": [
+        {
+          "projectionName": "ListFormView",
+          "caption": "",
+          "name": "generations",
+          "relatedTo": "fd-generation",
+          "inverse": null
+        }
+      ]
     },
     {
       "name": "Generator",
@@ -2126,7 +2496,21 @@
           "index": 5
         }
       ],
-      "belongsTo": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Configuration",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [],
+          "index": 6,
+          "caption": "",
+          "name": "configuration",
+          "relatedTo": "fd-configuration",
+          "inverse": null
+        }
+      ],
       "hasMany": []
     },
     {
@@ -2159,5 +2543,6 @@
     }
   ],
   "stored": true,
-  "offline": true
+  "offline": true,
+  "external": false
 }

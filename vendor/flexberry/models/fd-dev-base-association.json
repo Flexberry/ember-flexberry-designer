@@ -44,6 +44,22 @@
       "notNull": false,
       "defaultValue": "",
       "stored": true
+    },
+    {
+      "name": "startRolePublishName",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "endRolePublishName",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
     }
   ],
   "belongsTo": [],
@@ -183,94 +199,106 @@
           "index": 4
         },
         {
+          "name": "startRolePublishName",
+          "caption": "StartRolePublishName",
+          "hidden": true,
+          "index": 5
+        },
+        {
+          "name": "endRolePublishName",
+          "caption": "EndRolePublishName",
+          "hidden": true,
+          "index": 6
+        },
+        {
           "name": "endMultiplicity",
           "caption": "EndMultiplicity",
           "hidden": true,
-          "index": 5
+          "index": 7
         },
         {
           "name": "endRole",
           "caption": "EndRole",
           "hidden": true,
-          "index": 6
+          "index": 8
         },
         {
           "name": "endRoleAccessModifier",
           "caption": "EndRoleAccessModifier",
           "hidden": true,
-          "index": 7
+          "index": 9
         },
         {
           "name": "endRoleStored",
           "caption": "EndRoleStored",
           "hidden": true,
-          "index": 8
+          "index": 10
         },
         {
           "name": "endRoleStr",
           "caption": "EndRoleStr",
           "hidden": true,
-          "index": 9
+          "index": 11
         },
         {
           "name": "notNullStart",
           "caption": "NotNullStart",
           "hidden": true,
-          "index": 10
+          "index": 12
         },
         {
           "name": "startMultiplicity",
           "caption": "StartMultiplicity",
           "hidden": true,
-          "index": 11
+          "index": 13
         },
         {
           "name": "startRole",
           "caption": "StartRole",
           "hidden": true,
-          "index": 12
+          "index": 14
         },
         {
           "name": "startRoleAccessModifier",
           "caption": "StartRoleAccessModifier",
           "hidden": true,
-          "index": 13
+          "index": 15
         },
         {
           "name": "startRoleStored",
           "caption": "StartRoleStored",
           "hidden": true,
-          "index": 14
+          "index": 16
         },
         {
           "name": "startRoleStr",
           "caption": "StartRoleStr",
           "hidden": true,
-          "index": 15
+          "index": 17
         },
         {
           "name": "referenceCount",
           "caption": "ReferenceCount",
           "hidden": true,
-          "index": 16
+          "index": 18
         },
         {
           "name": "name",
           "caption": "Name",
           "hidden": true,
-          "index": 17
+          "index": 19
         },
         {
           "name": "description",
           "caption": "Description",
           "hidden": true,
-          "index": 18
+          "index": 20
         },
         {
           "name": "nameStr",
           "caption": "NameStr",
           "hidden": true,
-          "index": 19
+          "index": 21
         }
       ],
       "belongsTo": [
@@ -281,7 +309,7 @@
           "belongsTo": [],
           "hidden": true,
           "attrs": [],
-          "index": 20,
+          "index": 22,
           "caption": "EndClass",
           "name": "endClass",
           "relatedTo": "fd-class",
@@ -294,7 +322,7 @@
           "belongsTo": [],
           "hidden": true,
           "attrs": [],
-          "index": 21,
+          "index": 23,
           "caption": "StartClass",
           "name": "startClass",
           "relatedTo": "fd-class",
@@ -338,94 +366,106 @@
           "index": 4
         },
         {
+          "name": "startRolePublishName",
+          "caption": "StartRolePublishName",
+          "hidden": true,
+          "index": 5
+        },
+        {
+          "name": "endRolePublishName",
+          "caption": "EndRolePublishName",
+          "hidden": true,
+          "index": 6
+        },
+        {
           "name": "endMultiplicity",
           "caption": "EndMultiplicity",
           "hidden": true,
-          "index": 5
+          "index": 7
         },
         {
           "name": "endRole",
           "caption": "EndRole",
           "hidden": true,
-          "index": 6
+          "index": 8
         },
         {
           "name": "endRoleAccessModifier",
           "caption": "EndRoleAccessModifier",
           "hidden": true,
-          "index": 7
+          "index": 9
         },
         {
           "name": "endRoleStored",
           "caption": "EndRoleStored",
           "hidden": true,
-          "index": 8
+          "index": 10
         },
         {
           "name": "endRoleStr",
           "caption": "EndRoleStr",
           "hidden": true,
-          "index": 9
+          "index": 11
         },
         {
           "name": "notNullStart",
           "caption": "NotNullStart",
           "hidden": true,
-          "index": 10
+          "index": 12
         },
         {
           "name": "startMultiplicity",
           "caption": "StartMultiplicity",
           "hidden": true,
-          "index": 11
+          "index": 13
         },
         {
           "name": "startRole",
           "caption": "StartRole",
           "hidden": true,
-          "index": 12
+          "index": 14
         },
         {
           "name": "startRoleAccessModifier",
           "caption": "StartRoleAccessModifier",
           "hidden": true,
-          "index": 13
+          "index": 15
         },
         {
           "name": "startRoleStored",
           "caption": "StartRoleStored",
           "hidden": true,
-          "index": 14
+          "index": 16
         },
         {
           "name": "startRoleStr",
           "caption": "StartRoleStr",
           "hidden": true,
-          "index": 15
+          "index": 17
         },
         {
           "name": "referenceCount",
           "caption": "ReferenceCount",
           "hidden": true,
-          "index": 16
+          "index": 18
         },
         {
           "name": "name",
           "caption": "Name",
           "hidden": true,
-          "index": 17
+          "index": 19
         },
         {
           "name": "description",
           "caption": "Description",
           "hidden": true,
-          "index": 18
+          "index": 20
         },
         {
           "name": "nameStr",
           "caption": "NameStr",
           "hidden": true,
-          "index": 19
+          "index": 21
         }
       ],
       "belongsTo": [
@@ -436,7 +476,7 @@
           "belongsTo": [],
           "hidden": true,
           "attrs": [],
-          "index": 20,
+          "index": 22,
           "caption": "EndClass",
           "name": "endClass",
           "relatedTo": "fd-class",
@@ -449,7 +489,7 @@
           "belongsTo": [],
           "hidden": true,
           "attrs": [],
-          "index": 21,
+          "index": 23,
           "caption": "StartClass",
           "name": "startClass",
           "relatedTo": "fd-class",
@@ -460,5 +500,6 @@
     }
   ],
   "stored": true,
-  "offline": true
+  "offline": true,
+  "external": false
 }

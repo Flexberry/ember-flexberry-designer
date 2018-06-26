@@ -2,18 +2,18 @@ export default {
   projections: {
     Properties: {
       name: {
-        caption: 'Имя'
+        __caption__: 'Имя'
       },
       description: {
-        caption: 'Описание'
+        __caption__: 'Описание'
       }
     },
     UpdateApiView: {
       name: {
-        caption: ''
+        __caption__: ''
       },
       description: {
-        caption: ''
+        __caption__: ''
       }
     }
   }

@@ -1,6 +1,18 @@
+import Ember from 'ember';
+import { Query } from 'ember-flexberry-data';
 import ListFormRoute from 'ember-flexberry/routes/list-form';
 
 export default ListFormRoute.extend({
+  /**
+    Query simple predicate.
+
+    @property modelProjection
+    @type SimplePredicate
+    @default undefined
+    @private
+  */
+  _queryPredicate: undefined,
+
   /**
     Name of model projection to be used as record's properties limitation.
 
@@ -43,4 +55,25 @@ export default ListFormRoute.extend({
     @default {}
   */
   developerUserSettings: { FdViewListForm: {} },
+
+  /**
+   This hook is the first of the route entry validation hooks called when an attempt is made to transition into a route or one of its children.
+   [More info](http://emberjs.com/api/classes/Ember.Route.html#method_beforeModel).
+
+   @method beforeModel
+   @param {Transition} transition
+   @return {Promise}
+ */
+  beforeModel: function(transition) {
+    let classId = transition.queryParams.classId;
+    if (!Ember.isNone(classId)) {
+      let queryPredicate = new Query.SimplePredicate('class', '==', classId);
+      this.set('_queryPredicate', queryPredicate);
+    }
+  },
+
+  objectListViewLimitPredicate() {
+    let queryPredicate = this.get('_queryPredicate');
+    return queryPredicate;
+  },
 });

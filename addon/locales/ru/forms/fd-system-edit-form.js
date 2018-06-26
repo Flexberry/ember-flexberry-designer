@@ -1,5 +1,5 @@
 export default {
-  caption: 'System',
-  'name-caption': 'Name',
-  'description-caption': 'Description'
+  caption: 'Подсистема',
+  'name-caption': 'Название',
+  'description-caption': 'Описание'
 };

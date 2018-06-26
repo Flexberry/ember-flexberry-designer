@@ -1,0 +1,163 @@
+@import 'addon/styles/components/fd-editform-row';
+@import 'addon/styles/components/fd-editform-control';
+@import 'node_modules/ember-flexberry/addon/styles/themes/blue-sky/globals/site.variables';
+
+@tree-row-padding: 3px;
+
+#example.pusher{
+  -webkit-transition: transform 500ms ease, width 500ms ease;
+  -moz-transition: transform 500ms ease, width 500ms ease;
+  -o-transition: transform 500ms ease, width 500ms ease;
+  transition: transform 500ms ease, width 500ms ease;
+}
+
+// style for edit form config panel
+.ui.right.sidebar.config-panel {
+  transform: translate3d(0, 0, 0);
+  z-index: 1;
+  visibility: visible;
+  top: @headerHeight;
+
+  .right-tabs{
+    flex-direction: row-reverse;
+    height: auto;
+    min-height: calc(~'100vh - @{headerHeight}');
+  }
+
+  .ui.vertical.menu {
+    width: 4rem;
+    margin-top: 0;
+
+    &.tabular .item {
+      -webkit-writing-mode: vertical-rl;
+      writing-mode: tb-rl;
+    }
+  }
+
+  .ui.selection.dropdown{
+    min-width: auto;
+  }
+  .tab{
+    padding: 1em;
+  }
+}
+
+.panel-left, .panel-right{
+  overflow: hidden;
+  background: #FFFFFF;
+  margin: 1rem 0em;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+
+  .ui.buttons{
+    display: block;
+  }
+  .overflow-panel{
+    overflow: auto;
+  }
+
+  &.view-attributes{
+    transition: width 500ms ease;
+  }
+
+  .ui[class*="very basic"].table:not(.sortable):not(.striped) td:last-child {
+    width: 100%;
+  }
+}
+
+.panel-wrapper{
+  height: -webkit-fill-available;
+  max-height: calc(~'100vh - 250px');
+  display: flex;
+
+  .ui.segments {
+    margin: 0;
+    display: flex;
+    height: 100%;
+  }
+
+  .jstree-default > .jstree-no-dots .jstree-node {
+      padding: @tree-row-padding 0;
+  }
+
+  .jstree-default .jstree-wholerow {
+      height: auto;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      padding: @tree-row-padding 0;
+      margin: -@tree-row-padding;
+  }
+
+  .jstree-default .jstree-wholerow-clicked {
+      background: #e7f4f9;
+      padding: @tree-row-padding 0;
+      margin-top: -@tree-row-padding;
+      color: rgba(0, 0, 0, 0.87) !important;
+      box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.87) inset;
+      border-top: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .jstree-default .jstree-wholerow-hovered:not(.jstree-wholerow-clicked){
+      background: #f1f7ff;
+      padding: @tree-row-padding 0;
+      margin-top: -@tree-row-padding;
+      border-top: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .jstree-children > .jstree-node:not(.jstree-last):first-child{
+    margin-top: @tree-row-padding;
+  }
+
+  i.icon.sidebar:before{
+    color: #7ba7d9;
+  }
+
+
+  .close-panel-btn {
+    border: none;
+  }
+
+  .close-panel-btn, .vertical.buttons{
+    margin: 1em 5px;
+  }
+
+  .ui.table tr.active{
+    background: #e7f4f9!important;
+  }
+
+  .ui.basic.table tbody tr:hover{
+    background: #f1f7ff;
+  }
+
+  .ui.basic.vertical.buttons .button {
+      border: 1px solid #7ba7d9;
+  }
+
+  .ui.basic.vertical.buttons .button:first-child {
+      border-top-width: 1px;
+  }
+
+  .ui.button:not(.close-panel-btn):active, .ui.button:not(.close-panel-btn):focus, .ui.basic.buttons .button:active, .ui.basic.button:active, .ui.basic.buttons .button:focus, .ui.basic.button:focus{
+    background: #FFFFFF!important;
+
+    .ui.icon.button:hover{
+      color: #7ba7d9;
+    }
+
+    &:hover{
+      background: #7ba7d9!important;
+    }
+  }
+
+  .ui.collapsing.table {
+    td {
+      padding: 5px;
+      text-align: left;
+    }
+  }
+
+}
+
+.ui.button > .right.icon:not(.button) {
+  margin: 0;
+}

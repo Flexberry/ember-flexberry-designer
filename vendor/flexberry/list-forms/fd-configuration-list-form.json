@@ -1,0 +1,15 @@
+﻿{
+  "newForm": "fd-configuration-edit-form",
+  "editForm": "fd-configuration-edit-form",
+  "external": false,
+  "caption": "Configurations",
+  "name": "FdConfigurationListForm",
+  "className": "ConfigurationListForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-configuration",
+      "modelProjection": "ListFormView"
+    }
+  ]
+}

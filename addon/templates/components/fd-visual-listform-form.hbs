@@ -1,0 +1,91 @@
+<div class="ui two column grid">
+  <div class="column"><h3>{{formName}}</h3></div>
+  <div class="column">
+    <div class="ui grid">
+      <div class="white eight wide right aligned column">{{t "forms.fd-visual-listform.edit-form-header"}}</div>
+      <div class="white eight wide column">
+        <select id="selectForm" class="ui compact dropdown selection sort-direction-dropdown" {{action "showForm" n on="change"}}>
+          <option></option>
+          {{#each listforms as |form|}}
+            <option value="{{form.id}}">{{form.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ui segment grid">
+  <div class="row"><img src="assets/images/visualEditListFormTop.png" /></div>
+</div>
+
+<table class="ui celled selectable collapsing table">
+  <tr>
+    <th>&nbsp;</th>
+    {{#each attributes as |attribute index|}}
+      <td align="left">
+        <nobr>
+          <button
+            class="ui button {{if (eq index 0) "disabled"}}"
+            title="{{t "forms.fd-visual-listform.move-left-attr"}}"
+            {{action "moveLeft"  index}}
+          >
+            <i class="long arrow left icon"></i>
+          </button>
+          <button
+            class="ui button {{if (eq index indexLastAttribute) "disabled"}}"
+            title="{{t "forms.fd-visual-listform.move-right-attr"}}"
+            {{action "moveRight"  index}}
+          >
+            <i class="long arrow right icon"></i>
+          </button>
+        </nobr>
+      </td>
+      <td align="right">
+        <button
+          class="ui button"
+          title="{{t "forms.fd-visual-listform.remove-attr"}}"
+          {{action removeAttributeAction index}}
+        >
+          <i class="remove icon"></i>
+        </button>
+      </td>
+    {{/each}}
+    <td rowspan="7" valign="top">
+      <button class="ui button create-button" {{action addAttributeAction}}>
+        <i class="add circle icon"></i>
+        {{t "forms.fd-visual-listform.add-button-text"}}
+      </button>
+    </td>
+  </tr>
+
+  <tr>
+    <td></td>
+    {{#each attributes as |attribute index|}}
+      <td colspan="2" align="left" class="{{if (eq index indexSelectedAttribute) "positive"}}" {{action selectAttributeAction index}}>
+        {{attribute.name}}
+      </td>
+    {{/each}}
+  </tr>
+  <tr title="Значения по умолчанию">
+    <td>{{flexberry-checkbox value=true readonly=true}}</td>
+    {{#each attributes as |attribute index|}}
+      <td colspan="2" align="left" class="{{if (eq index indexSelectedAttribute) "positive"}}" {{action selectAttributeAction index}}>
+        <div class="ui ribbon label">{{attribute.defaultValue}}</div>
+      </td>
+    {{/each}}
+  </tr>
+
+  {{#each fakeData as |data|}}
+    <tr>
+      <td>{{flexberry-checkbox value=false readonly=true}}</td>
+      {{#each data as |value index|}}
+        <td colspan="2" align="left" class="{{if (eq index indexSelectedAttribute) "positive"}}" {{action selectAttributeAction index}}>
+          {{value}}
+        </td>
+      {{/each}}
+    </tr>
+  {{/each}}
+</table>
+
+<img src="assets/images/visualEditListFormBottom.png" />

@@ -2,13 +2,13 @@ export default {
   projections: {
     DetailEditView: {
       plugin: {
-        caption: 'plugin',
+        __caption__: 'plugin',
         storedType: {
-          caption: 'storedType'
+          __caption__: 'storedType'
         }
       },
       settings: {
-        caption: 'settings'
+        __caption__: 'settings'
       }
     }
   }

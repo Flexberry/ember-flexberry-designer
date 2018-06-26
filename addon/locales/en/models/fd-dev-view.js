@@ -2,132 +2,171 @@ export default {
   projections: {
     AttributesView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       properties: {
-        caption: 'properties'
+        __caption__: 'properties'
       },
       definition: {
-        caption: 'definition'
+        __caption__: 'definition'
       },
       class: {
-        caption: 'class'
+        __caption__: 'class'
       }
     },
     BusinessServer: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       class: {
-        caption: 'class',
+        __caption__: 'class',
         stage: {
-          caption: 'stage'
+          __caption__: 'stage'
         }
       }
     },
     EditDataObjectClass: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       properties: {
-        caption: 'properties'
+        __caption__: 'properties'
       }
     },
     EditFormView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       }
     },
     EditPropertyLookups: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       definition: {
-        caption: 'definition'
+        __caption__: 'definition'
       },
       class: {
-        caption: 'class',
+        __caption__: 'class',
         name: {
-          caption: 'name'
+          __caption__: 'name'
+        }
+      }
+    },
+    FdAttributesView: {
+      name: {
+        __caption__: 'name'
+      },
+      definition: {
+        __caption__: 'definition'
+      },
+      class: {
+        __caption__: 'class'
+      }
+    },
+    FdEditClassForm: {
+      name: {
+        __caption__: 'Name'
+      },
+      description: {
+        __caption__: 'Description'
+      },
+      class: {
+        __caption__: 'Class'
+      }
+    },
+    FdPreloadMetadata: {
+      definition: {
+        __caption__: 'definition'
+      },
+      name: {
+        __caption__: 'name'
+      },
+      description: {
+        __caption__: 'description'
+      },
+      nameStr: {
+        __caption__: 'nameStr'
+      },
+      class: {
+        __caption__: 'class',
+        name: {
+          __caption__: 'name'
         }
       }
     },
     Generator: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       definition: {
-        caption: 'definition'
+        __caption__: 'definition'
       },
       class: {
-        caption: 'class'
+        __caption__: 'class'
       }
     },
     ListFormView: {
       class: {
-        caption: 'class',
+        __caption__: 'class',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       },
       name: {
-        caption: 'name'
-      },
-      properties: {
-        caption: 'properties'
+        __caption__: 'name'
       }
     },
     Prototyping: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       definition: {
-        caption: 'definition'
+        __caption__: 'definition'
       }
     },
     SearchView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       class: {
-        caption: 'class'
+        __caption__: 'class'
       }
     },
     ViewManager: {
       class: {
-        caption: 'class',
+        __caption__: 'class',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         stage: {
-          caption: 'stage'
+          __caption__: 'stage'
         }
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       properties: {
-        caption: 'properties'
+        __caption__: 'properties'
       },
       definition: {
-        caption: 'definition'
+        __caption__: 'definition'
       }
     },
     ViewPeeker: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       }
     }
   }

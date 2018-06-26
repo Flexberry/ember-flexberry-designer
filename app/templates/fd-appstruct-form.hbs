@@ -1,0 +1,175 @@
+<form class="ui form flexberry-vertical-form" role="form">
+  {{flexberry-error error=error}}
+  <h3>{{t 'forms.fd-appstruct-form.caption'}}</h3>
+  <div class="field">
+    <div class="flexberry-edit-panel">
+      <button class="ui button" {{action "openProcessEditorForm"}}><i class="sitemap icon"></i>{{t "forms.fd-appstruct-form.button-precess-editor"}}</button>
+      <button class="ui  button" {{action "openGenerationForm"}}><i class="settings icon"></i>{{t "forms.fd-appstruct-form.button-generation"}}</button>
+      <button type="submit" class="ui button close-button" {{action 'close'}}>
+        {{t "forms.edit-form.close-button-text"}}
+      </button>
+    </div>
+  </div>
+
+  <div class="panel-wrapper">
+    <div class="panel-left closable">
+      <div class="ui buttons">
+        <button class='ui button icon {{removeLeftNodeDisabled}}' title="{{t "forms.fd-appstruct-form.remove-text"}}" {{action "removeLeftNode" on="click" }}>
+          <i class="remove icon" ></i>
+        </button>
+        <button class="ui button create-button" title="{{t "forms.fd-appstruct-form.add-class-text"}}" {{action 'addLeftClass'}}>
+          <i class="add circle icon"></i>
+        </button>
+        <button class="ui button create-button {{addLeftNodeDisabled}}" title="{{t "forms.fd-appstruct-form.add-editform-text"}}" {{action 'addLeftEditForm'}}>
+          <i class="add circle icon"></i><i class="pencil icon"></i>
+        </button>
+        <button class="ui button create-button {{addLeftNodeDisabled}}" title="{{t "forms.fd-appstruct-form.add-listform-text"}}" {{action 'addLeftListForm'}}>
+          <i class="add circle icon"></i><i class="list ul icon"></i>
+        </button>
+        <button class='ui button icon {{editLeftNodeDisabled}}' title="{{t "forms.fd-appstruct-form.edit-text"}}" {{action "editLeftNode" on="click" }}>
+          <i class="edit icon"></i>
+        </button>
+        <button class='ui button icon' {{action "listLeft" on="click" }}>
+          <i class="list icon"></i>
+        </button>
+      </div>
+      <div class="ui segments">
+        <div class="ui segment">
+          {{t "forms.fd-appstruct-form.all-forms-panel-caption"}}
+        </div>
+        <div class="ui segment overflow-panel">
+          {{ember-jstree
+            actionReceiver=jstreeActionReceiverLeft
+            selectedNodes=jstreeSelectedNodesLeft
+            data=model.leftTreeNodes
+            plugins=pluginsLeft
+            typesOptions=typesOptions
+          }}
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-toolbar">
+      {{#ui-popup content=popupMessage}}
+        <button class='ui inverted button icon close-panel-btn' {{action "closeRightpanel" on="click" }} >
+          <i class="{{if allAttrsHidedn 'chevron right' 'chevron left'}} icon"></i>
+        </button>
+      {{/ui-popup}}
+      <button class='ui button icon flexberry-button move {{moveRightDisabled}}' {{action "moveRightHighlighted" on="click" }}>
+        <i class="right long arrow icon"></i>
+      </button>
+    </div>
+
+    <div class="panel-right">
+      <div class="ui buttons">
+          <button class='ui button icon {{editRightNodeDisabled}}' {{action "editRightNode" on="click" }}>
+          <i class="edit icon"></i>
+        </button>
+        <button class='ui button icon {{removeRightNodeDisabled}}' {{action "removeRightNode" on="click" }}>
+          <i class="remove icon"></i>
+        </button>
+        <button class='ui button icon {{addFolderNodeDisabled}}' {{action "addFolderNode" on="click" }}>
+          <i class="folder icon"></i>
+        </button>
+        <button class='ui button icon {{indexSelectedRight.upRightNodeDisabled}}' {{action "upRightNode" on="click" }}>
+          <i class="arrow up icon"></i>
+        </button>
+        <button class='ui button icon {{indexSelectedRight.downRightNodeDisabled}}' {{action "downRightNode" on="click" }}>
+          <i class="arrow down icon"></i>
+        </button>
+        <button class='ui button icon' {{action "saveTree" on="click" }}>
+          <i class="arrow save icon"></i>
+        </button>
+      </div>
+      <div class="ui segments">
+        <div class="ui segment">
+          {{t "forms.fd-appstruct-form.app-forms-panel-caption"}}
+        </div>
+        <div class="ui segment overflow-panel">
+          {{ember-jstree
+            actionReceiver=jstreeActionReceiverRight
+            selectedNodes=jstreeSelectedNodesRight
+            data=model.rightTreeNodes
+            plugins=pluginsRight
+            typesOptions=typesOptions
+            treeObject=jstreeObjectRight
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+{{#fd-config-panel}}
+
+  {{#fd-tabs tabsMenuTheme="vertical tabular" class="ui segments horizontal right-tabs"}}
+    <form class="ui form segment">
+      <div class="ui segment">
+        <div class="ui large header">
+          {{t "forms.fd-appstruct-form.form-config-panel.caption"}}
+        </div>
+      </div>
+      {{#ui-tab-segment tab='first' title=(t "forms.fd-appstruct-form.form-config-panel.app-properties-header") theme="" active=true}}
+        <div class="ui small dividing header">
+          {{t "forms.fd-appstruct-form.form-config-panel.app-properties-header"}}
+        </div>
+      {{/ui-tab-segment}}
+      {{#ui-tab-segment tab='second' title=(t "forms.fd-appstruct-form.form-config-panel.forms-properties-header") theme=""}}
+        {{#if selectedElementForEdit.type}}
+          <div class="field">
+            <label>{{t "forms.fd-appstruct-form.tab.formName"}}</label>
+            {{
+              flexberry-textbox
+              value=selectedElementForEdit.className
+              readonly=true
+            }}
+          </div>
+          <div class="field">
+            <label>{{t "forms.fd-appstruct-form.tab.formType"}}</label>
+            {{
+              flexberry-textbox
+              value=selectedElementForEdit.type
+              readonly=true
+            }}
+          </div>
+        {{else}}
+          <div class="field">
+            <label>{{t "forms.fd-appstruct-form.tab.url"}}</label>
+            {{
+              flexberry-textbox
+              value=selectedElementForEdit.url
+            }}
+          </div>
+        {{/if}}
+        {{#if (or (eq selectedElementForEdit.type 'master') (eq selectedElementForEdit.type 'desk'))}}
+          <div class="field">
+            <label>{{t "forms.fd-appstruct-form.tab.title"}}</label>
+            {{
+              flexberry-textbox
+              value=selectedElementForEdit.text
+              readonly=(eq selectedElementForEdit.type 'desk')
+            }}
+          </div>
+        {{else}}
+          <div class="field">
+            <label>{{t "forms.fd-appstruct-form.tab.title"}}</label>
+            {{
+              flexberry-textbox
+              value=selectedElementForEdit.caption
+              readonly=(or (eq selectedElementForEdit.type 'master') (eq selectedElementForEdit.type 'desk'))
+            }}
+          </div>
+        {{/if}}
+        <div class="field">
+          <label>{{t "forms.fd-appstruct-form.tab.description"}}</label>
+          {{
+            flexberry-textarea
+            value=selectedElementForEdit.description
+            readonly=(or (eq selectedElementForEdit.type 'master') (eq selectedElementForEdit.type 'desk'))
+          }}
+        </div>
+      {{/ui-tab-segment}}
+    </form>
+  {{/fd-tabs}}
+
+{{/fd-config-panel}}

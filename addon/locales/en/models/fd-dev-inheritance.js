@@ -2,102 +2,134 @@ export default {
   projections: {
     Edit: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       }
     },
     EditFormView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       }
     },
     EditPropertyLookups: {
       parent: {
-        caption: 'parent',
+        __caption__: 'parent',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       },
       child: {
-        caption: 'child',
+        __caption__: 'child',
         name: {
-          caption: 'name'
+          __caption__: 'name'
+        }
+      }
+    },
+    FdPreloadMetadata: {
+      referenceCount: {
+        __caption__: 'referenceCount'
+      },
+      name: {
+        __caption__: 'name'
+      },
+      description: {
+        __caption__: 'description'
+      },
+      nameStr: {
+        __caption__: 'nameStr'
+      },
+      stage: {
+        __caption__: 'stage',
+        name: {
+          __caption__: 'name'
+        }
+      },
+      child: {
+        __caption__: 'child',
+        name: {
+          __caption__: 'name'
+        }
+      },
+      parent: {
+        __caption__: 'parent',
+        name: {
+          __caption__: 'name'
         }
       }
     },
     Generator: {
       referenceCount: {
-        caption: 'referenceCount'
+        __caption__: 'referenceCount'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       child: {
-        caption: 'child'
+        __caption__: 'child'
       },
       parent: {
-        caption: 'parent'
+        __caption__: 'parent'
       }
     },
     InhList: {
       referenceCount: {
-        caption: 'referenceCount'
+        __caption__: 'referenceCount'
       },
       parent: {
-        caption: 'parent',
+        __caption__: 'parent',
         nameStr: {
-          caption: 'nameStr'
+          __caption__: 'nameStr'
         }
       },
       child: {
-        caption: 'child',
+        __caption__: 'child',
         nameStr: {
-          caption: 'nameStr'
+          __caption__: 'nameStr'
         }
       },
       stage: {
-        caption: 'stage',
+        __caption__: 'stage',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       }
     },
     ListDataObjectTypes: {
       parent: {
-        caption: 'parent',
+        __caption__: 'parent',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       },
       child: {
-        caption: 'child',
+        __caption__: 'child',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       }
     },
     ListFormView: {
       referenceCount: {
-        caption: 'referenceCount'
+        __caption__: 'referenceCount'
       },
       parent: {
-        caption: 'parent',
+        __caption__: 'parent',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       },
       child: {
-        caption: 'child',
+        __caption__: 'child',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       }
     }

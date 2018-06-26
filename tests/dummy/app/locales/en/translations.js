@@ -70,13 +70,36 @@ Ember.$.extend(true, translations, {
           caption: 'Home',
           title: ''
         },
+        'fd-visual-edit-form': {
+          caption: 'Visual edit form',
+          title: ''
+        },
         root: {
           caption: 'root',
           title: 'root',
+
+          'fd-appstruct-form': {
+            caption: 'Application structure',
+            title: '',
+          },
+
+          'fd-visual-listform': {
+            caption: 'Visual edit listform',
+            title: '',
+          },
+
+          'fd-configuration-list-form': {
+            caption: 'fd-configuration-list-form',
+            title: 'fd-configuration-list-form',
+
+          },
           'fd-stage-list-form': {
             caption: 'fd-stage-list-form',
             title: 'fd-stage-list-form',
-
+          },
+          'additional': {
+            caption: 'Additional',
+            title: '',
           },
           'fd-system-list-form': {
             caption: 'fd-system-list-form',
@@ -110,6 +133,10 @@ Ember.$.extend(true, translations, {
           },
           'fd-generation-process-form': {
             caption: 'Generation',
+            title: '',
+          },
+          'fd-generation-list-form': {
+            caption: 'Generations list form',
             title: '',
           }
         },

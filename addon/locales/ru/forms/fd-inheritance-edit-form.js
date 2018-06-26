@@ -1,5 +1,5 @@
 export default {
-  caption: 'Inheritance',
-  'name-caption': 'Name',
-  'description-caption': 'Description'
+  caption: 'Наследование',
+  'name-caption': 'Название',
+  'description-caption': 'Описание'
 };

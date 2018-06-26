@@ -2,170 +2,170 @@ export default {
   projections: {
     Convert: {
       systems: {
-        caption: 'systems',
+        __caption__: 'systems',
         createUser: {
-          caption: 'createUser'
+          __caption__: 'createUser'
         },
         createDate: {
-          caption: 'createDate'
+          __caption__: 'createDate'
         },
         changeUser: {
-          caption: 'changeUser'
+          __caption__: 'changeUser'
         },
         changeDate: {
-          caption: 'changeDate'
+          __caption__: 'changeDate'
         },
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         },
         nameStr: {
-          caption: 'nameStr'
+          __caption__: 'nameStr'
         },
         diagramLinks: {
-          caption: 'diagramLinks',
+          __caption__: 'diagramLinks',
           name: {
-          caption: 'name'
+          __caption__: 'name'
         },
           description: {
-          caption: 'description'
+          __caption__: 'description'
         }
         },
         diagrams: {
-          caption: 'diagrams',
+          __caption__: 'diagrams',
           primitivesStreamString: {
-          caption: 'primitivesStreamString'
+          __caption__: 'primitivesStreamString'
         },
           caseObjectsString: {
-          caption: 'caseObjectsString'
+          __caption__: 'caseObjectsString'
         },
           name: {
-          caption: 'name'
+          __caption__: 'name'
         },
           createDate: {
-          caption: 'createDate'
+          __caption__: 'createDate'
         },
           createUser: {
-          caption: 'createUser'
+          __caption__: 'createUser'
         },
           changeDate: {
-          caption: 'changeDate'
+          __caption__: 'changeDate'
         },
           changeUser: {
-          caption: 'changeUser'
+          __caption__: 'changeUser'
         }
         },
         filelinks: {
-          caption: 'filelinks',
+          __caption__: 'filelinks',
           name: {
-          caption: 'name'
+          __caption__: 'name'
         },
           description: {
-          caption: 'description'
+          __caption__: 'description'
         }
         }
       }
     },
     DependensiesSearchView: {
       classes: {
-        caption: 'classes',
+        __caption__: 'classes',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         stereotype: {
-          caption: 'stereotype'
+          __caption__: 'stereotype'
         },
         nameStr: {
-          caption: 'nameStr'
+          __caption__: 'nameStr'
         }
       }
     },
     Import: {
       associations: {
-        caption: 'associations',
+        __caption__: 'associations',
         startRole: {
-          caption: 'startRole'
+          __caption__: 'startRole'
         },
         endRole: {
-          caption: 'endRole'
+          __caption__: 'endRole'
         },
         referenceCount: {
-          caption: 'referenceCount'
+          __caption__: 'referenceCount'
         },
         startClass: {
-          caption: 'startClass'
+          __caption__: 'startClass'
         },
         endClass: {
-          caption: 'endClass'
+          __caption__: 'endClass'
         }
       },
       classes: {
-        caption: 'classes',
+        __caption__: 'classes',
         referenceCount: {
-          caption: 'referenceCount'
+          __caption__: 'referenceCount'
         },
         nameStr: {
-          caption: 'nameStr'
+          __caption__: 'nameStr'
         }
       },
       inheritances: {
-        caption: 'inheritances',
+        __caption__: 'inheritances',
         referenceCount: {
-          caption: 'referenceCount'
+          __caption__: 'referenceCount'
         },
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         parent: {
-          caption: 'parent'
+          __caption__: 'parent'
         },
         child: {
-          caption: 'child'
+          __caption__: 'child'
         }
       }
     },
     InheritanceCyclesCheckView: {
       inheritances: {
-        caption: 'inheritances',
+        __caption__: 'inheritances',
         referenceCount: {
-          caption: 'referenceCount'
+          __caption__: 'referenceCount'
         },
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         parent: {
-          caption: 'parent'
+          __caption__: 'parent'
         },
         child: {
-          caption: 'child'
+          __caption__: 'child'
         }
       }
     },
     NameOnly: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       }
     },
     PathSearchView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       configuration: {
-        caption: 'configuration',
+        __caption__: 'configuration',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         project: {
-          caption: 'project',
+          __caption__: 'project',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           },
           repository: {
-            caption: 'repository',
+            __caption__: 'repository',
             name: {
-              caption: 'name'
+              __caption__: 'name'
             }
           }
         }
@@ -173,21 +173,21 @@ export default {
     },
     References: {
       associations: {
-        caption: 'associations',
+        __caption__: 'associations',
         referenceCount: {
-          caption: 'referenceCount'
+          __caption__: 'referenceCount'
         }
       },
       classes: {
-        caption: 'classes',
+        __caption__: 'classes',
         referenceCount: {
-          caption: 'referenceCount'
+          __caption__: 'referenceCount'
         }
       },
       inheritances: {
-        caption: 'inheritances',
+        __caption__: 'inheritances',
         referenceCount: {
-          caption: 'referenceCount'
+          __caption__: 'referenceCount'
         }
       }
     }

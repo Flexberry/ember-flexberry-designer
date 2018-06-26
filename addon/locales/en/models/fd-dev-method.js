@@ -2,461 +2,461 @@ export default {
   projections: {
     AddOperations: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       parametersStr: {
-        caption: 'parametersStr'
+        __caption__: 'parametersStr'
       },
       accessType: {
-        caption: 'accessType'
+        __caption__: 'accessType'
       }
     },
     EditApplication: {
       accessModifier: {
-        caption: 'accessModifier'
+        __caption__: 'accessModifier'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       parametersStr: {
-        caption: 'parametersStr'
+        __caption__: 'parametersStr'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       isEvent: {
-        caption: 'isEvent'
+        __caption__: 'isEvent'
       },
       accessType: {
-        caption: 'accessType'
+        __caption__: 'accessType'
       },
       parameters: {
-        caption: 'parameters',
+        __caption__: 'parameters',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         modifier: {
-          caption: 'modifier'
+          __caption__: 'modifier'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         }
       }
     },
     EditBusinessServer: {
       accessModifier: {
-        caption: 'accessModifier'
+        __caption__: 'accessModifier'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       parametersStr: {
-        caption: 'parametersStr'
+        __caption__: 'parametersStr'
       },
       isEvent: {
-        caption: 'isEvent'
+        __caption__: 'isEvent'
       },
       accessType: {
-        caption: 'accessType'
+        __caption__: 'accessType'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       parameters: {
-        caption: 'parameters',
+        __caption__: 'parameters',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         modifier: {
-          caption: 'modifier'
+          __caption__: 'modifier'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         }
       }
     },
     EditDataObjectClass: {
       accessModifier: {
-        caption: 'accessModifier'
+        __caption__: 'accessModifier'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       parametersStr: {
-        caption: 'parametersStr'
+        __caption__: 'parametersStr'
       },
       isEvent: {
-        caption: 'isEvent'
+        __caption__: 'isEvent'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       parameters: {
-        caption: 'parameters',
+        __caption__: 'parameters',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         modifier: {
-          caption: 'modifier'
+          __caption__: 'modifier'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         }
       }
     },
     EditEditForm: {
       accessModifier: {
-        caption: 'accessModifier'
+        __caption__: 'accessModifier'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       caption: {
-        caption: 'caption'
+        __caption__: 'caption'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       parametersStr: {
-        caption: 'parametersStr'
+        __caption__: 'parametersStr'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       publishToUser: {
-        caption: 'publishToUser'
+        __caption__: 'publishToUser'
       },
       isEvent: {
-        caption: 'isEvent'
+        __caption__: 'isEvent'
       },
       accessType: {
-        caption: 'accessType'
+        __caption__: 'accessType'
       },
       parameters: {
-        caption: 'parameters',
+        __caption__: 'parameters',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         modifier: {
-          caption: 'modifier'
+          __caption__: 'modifier'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         }
       }
     },
     EditInterface: {
       accessModifier: {
-        caption: 'accessModifier'
+        __caption__: 'accessModifier'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       parametersStr: {
-        caption: 'parametersStr'
+        __caption__: 'parametersStr'
       },
       isEvent: {
-        caption: 'isEvent'
+        __caption__: 'isEvent'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       parameters: {
-        caption: 'parameters',
+        __caption__: 'parameters',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         modifier: {
-          caption: 'modifier'
+          __caption__: 'modifier'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         }
       }
     },
     EditListForm: {
       accessModifier: {
-        caption: 'accessModifier'
+        __caption__: 'accessModifier'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       caption: {
-        caption: 'caption'
+        __caption__: 'caption'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       parametersStr: {
-        caption: 'parametersStr'
+        __caption__: 'parametersStr'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       publishToUser: {
-        caption: 'publishToUser'
+        __caption__: 'publishToUser'
       },
       isEvent: {
-        caption: 'isEvent'
+        __caption__: 'isEvent'
       },
       accessType: {
-        caption: 'accessType'
+        __caption__: 'accessType'
       },
       parameters: {
-        caption: 'parameters',
+        __caption__: 'parameters',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         modifier: {
-          caption: 'modifier'
+          __caption__: 'modifier'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         }
       }
     },
     EditPrintForm: {
       accessModifier: {
-        caption: 'accessModifier'
+        __caption__: 'accessModifier'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       caption: {
-        caption: 'caption'
+        __caption__: 'caption'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       parametersStr: {
-        caption: 'parametersStr'
+        __caption__: 'parametersStr'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       isEvent: {
-        caption: 'isEvent'
+        __caption__: 'isEvent'
       },
       parameters: {
-        caption: 'parameters',
+        __caption__: 'parameters',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         modifier: {
-          caption: 'modifier'
+          __caption__: 'modifier'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         }
       }
     },
     EditType: {
       accessModifier: {
-        caption: 'accessModifier'
+        __caption__: 'accessModifier'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       parametersStr: {
-        caption: 'parametersStr'
+        __caption__: 'parametersStr'
       },
       isEvent: {
-        caption: 'isEvent'
+        __caption__: 'isEvent'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       parameters: {
-        caption: 'parameters',
+        __caption__: 'parameters',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         modifier: {
-          caption: 'modifier'
+          __caption__: 'modifier'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         }
       }
     },
     EditUserForm: {
       accessModifier: {
-        caption: 'accessModifier'
+        __caption__: 'accessModifier'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       caption: {
-        caption: 'caption'
+        __caption__: 'caption'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       parametersStr: {
-        caption: 'parametersStr'
+        __caption__: 'parametersStr'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       publishToUser: {
-        caption: 'publishToUser'
+        __caption__: 'publishToUser'
       },
       isEvent: {
-        caption: 'isEvent'
+        __caption__: 'isEvent'
       },
       accessType: {
-        caption: 'accessType'
+        __caption__: 'accessType'
       },
       parameters: {
-        caption: 'parameters',
+        __caption__: 'parameters',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         modifier: {
-          caption: 'modifier'
+          __caption__: 'modifier'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         }
       }
     },
     Generator: {
       accessModifier: {
-        caption: 'accessModifier'
+        __caption__: 'accessModifier'
       },
       accessType: {
-        caption: 'accessType'
+        __caption__: 'accessType'
       },
       caption: {
-        caption: 'caption'
+        __caption__: 'caption'
       },
       isEvent: {
-        caption: 'isEvent'
+        __caption__: 'isEvent'
       },
       orderNum: {
-        caption: 'orderNum'
+        __caption__: 'orderNum'
       },
       parametersStr: {
-        caption: 'parametersStr'
+        __caption__: 'parametersStr'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       publishToUser: {
-        caption: 'publishToUser'
+        __caption__: 'publishToUser'
       },
       realCaption: {
-        caption: 'realCaption'
+        __caption__: 'realCaption'
       },
       type: {
-        caption: 'type'
+        __caption__: 'type'
       },
       typeParametersStr: {
-        caption: 'typeParametersStr'
+        __caption__: 'typeParametersStr'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       parameters: {
         __caption__: 'parameters',
         caption: {
-          caption: 'caption'
+          __caption__: 'caption'
         },
         modifier: {
-          caption: 'modifier'
+          __caption__: 'modifier'
         },
         orderNum: {
-          caption: 'orderNum'
+          __caption__: 'orderNum'
         },
         realCaption: {
-          caption: 'realCaption'
+          __caption__: 'realCaption'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         },
         nameStr: {
-          caption: 'nameStr'
+          __caption__: 'nameStr'
         }
       }
     }

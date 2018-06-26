@@ -6,6 +6,8 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function () {
+  this.route('fd-appstruct-form');
+
   this.route('fd-association-list-form');
   this.route('fd-association-edit-form',
   { path: 'fd-association-edit-form/:id' });
@@ -16,11 +18,20 @@ Router.map(function () {
   { path: 'fd-class-edit-form/:id' });
   this.route('fd-class-edit-form.new',
   { path: 'fd-class-edit-form/new' });
+  this.route('fd-configuration-list-form');
+  this.route('fd-configuration-edit-form',
+  { path: 'fd-configuration-edit-form/:id' });
+  this.route('fd-configuration-edit-form.new',
+  { path: 'fd-configuration-edit-form/new' });
   this.route('fd-diagram-list-form');
   this.route('fd-diagram-edit-form',
   { path: 'fd-diagram-edit-form/:id' });
   this.route('fd-diagram-edit-form.new',
   { path: 'fd-diagram-edit-form/new' });
+  this.route('fd-enum-edit-form',
+  { path: 'fd-enum-edit-form/:id' });
+  this.route('fd-enum-edit-form.new',
+  { path: 'fd-enum-edit-form/new' });
   this.route('fd-inheritance-list-form');
   this.route('fd-inheritance-edit-form',
   { path: 'fd-inheritance-edit-form/:id' });
@@ -41,7 +52,21 @@ Router.map(function () {
   { path: 'fd-view-edit-form/:id' });
   this.route('fd-view-edit-form.new',
   { path: 'fd-view-edit-form/new' });
-  this.route('fd-generation-process-form');
+
+  this.route('fd-visual-edit-form');
+  this.route('fd-editform-constructor', { path: 'fd-editform-constructor/:id' }, function() {
+    this.route('form-config-panel');
+  });
+  this.route('fd-editform-constructor.new',
+  { path: 'fd-editform-constructor/new' });
+
+  this.route('fd-visual-listform');
+
+  this.route('fd-generation-process-form.new',
+  { path: 'fd-generation-process-form/new' });
+  this.route('fd-generation-process-form',
+  { path: 'fd-generation-process-form/:id' });
+  this.route('fd-generation-list-form');
 });
 
 export default Router;

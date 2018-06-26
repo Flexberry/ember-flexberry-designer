@@ -1,5 +1,11 @@
 export default {
-  caption: 'Diagram',
-  'name-caption': 'Name',
-  'description-caption': 'Description'
+  caption: 'Диаграмма',
+  'name-caption': 'Название',
+  'description-caption': 'Описание',
+  'form-config-panel': {
+    caption: 'Редактор диаграммы',
+    'diagram-properties-header': 'Свойства диаграммы',
+    'primitive-properties-header': 'Свойства примитива',
+    'add-primitive-header': 'Добавить примитивы'
+  }
 };

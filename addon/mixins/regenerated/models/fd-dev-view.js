@@ -2,7 +2,9 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import { Projection } from 'ember-flexberry-data';
 export let Model = Ember.Mixin.create({
-  definition: DS.attr('string'),
+  /* merged manually start */
+  definition: DS.attr('fd-definition'),
+  /* merged manually end */
   /**
     Non-stored property.
 
@@ -27,7 +29,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.propertiesCompute && typeof this.propertiesCompute === 'function') ? this.propertiesCompute() : null;
     this.set('properties', result);
   },
-  class: DS.belongsTo('fd-dev-class', { inverse: 'devViews', async: false }),
+  class: DS.belongsTo('fd-dev-class', { inverse: 'views', async: false }),
   getValidations: function () {
     let parentValidations = this._super();
     let thisValidations = {
@@ -71,7 +73,10 @@ export let defineProjections = function (modelClass) {
   });
   modelClass.defineProjection('EditFormView', 'fd-dev-view', {
     name: Projection.attr('Name'),
-    description: Projection.attr('Description')
+    description: Projection.attr('Description'),
+    /* merged manually start */
+    definition: Projection.attr('Definition')
+    /* merged manually end */
   });
   modelClass.defineProjection('EditPropertyLookups', 'fd-dev-view', {
     name: Projection.attr(''),
@@ -79,6 +84,29 @@ export let defineProjections = function (modelClass) {
     class: Projection.belongsTo('fd-dev-class', '', {
       name: Projection.attr('')
     }, { hidden: true })
+  });
+  modelClass.defineProjection('FdAttributesView', 'fd-dev-view', {
+    name: Projection.attr(''),
+    definition: Projection.attr(''),
+    class: Projection.belongsTo('fd-dev-class', '', {
+
+    })
+  });
+  modelClass.defineProjection('FdEditClassForm', 'fd-dev-view', {
+    name: Projection.attr('Имя'),
+    description: Projection.attr('Описание'),
+    class: Projection.belongsTo('fd-dev-class', '', {
+
+    }, { hidden: true })
+  });
+  modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-view', {
+    definition: Projection.attr(''),
+    name: Projection.attr(''),
+    description: Projection.attr(''),
+    nameStr: Projection.attr(''),
+    class: Projection.belongsTo('fd-dev-class', '', {
+      name: Projection.attr('')
+    })
   });
   modelClass.defineProjection('Generator', 'fd-dev-view', {
     name: Projection.attr(''),
@@ -92,8 +120,7 @@ export let defineProjections = function (modelClass) {
     class: Projection.belongsTo('fd-dev-class', '', {
       name: Projection.attr('Class')
     }, { hidden: true }),
-    name: Projection.attr('View name'),
-    properties: Projection.attr('View properties')
+    name: Projection.attr('View name')
   });
   modelClass.defineProjection('Prototyping', 'fd-dev-view', {
     name: Projection.attr(''),

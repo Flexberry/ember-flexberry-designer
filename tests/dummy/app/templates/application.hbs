@@ -5,6 +5,7 @@
 {{#ui-sidebar class="inverted vertical main menu"}}
   {{render "sitemap" sitemap}}
 {{/ui-sidebar}}
+{{outlet 'right-sidebar'}}
 <div class="bgw-fix">
   <div class="background-logo">
     <div class="ui top attached">
@@ -35,7 +36,7 @@
 </div>
 <div id="example" class="pusher">
   <div class="ui form {{objectlistviewEventsService.loadingState}}">
-    <div class="full height" style="min-height: 90vh" >
+    <div class="full height">
       <div class="flexberry-content ui attached segment">
         <div class="ui main container">
           <div class="stackable grid container">
@@ -55,37 +56,14 @@
       <a class="brand item" href="#">
         {{t "forms.application.footer.application-name"}}
       </a>
-      <div class="right item">
-        <label style="margin-right: 5px;">
-          {{t "forms.application.header.menu.user-settings-service-checkbox.caption"}}
-        </label>
-        {{flexberry-checkbox
-          class="toggle"
-          value=userSettingsService.isUserSettingsServiceEnabled
+      <div class="right menu">
+        {{flexberry-dropdown
+          class="compact"
+          items=locales
+          value=i18n.locale
+          placeholder=(t "forms.application.header.menu.language-dropdown.placeholder")
+          direction="upward"
         }}
-      </div>
-      <div class="item lang">
-        <label style="margin-right: 5px;">
-          {{t "forms.application.header.menu.language-dropdown.caption"}}
-        </label>
-        {{!-- ui-dropdown component used in flexberry-dropdown has some unfixed problems with IE, so we use <select> instead --}}
-        {{#if browserIsInternetExplorer}}
-          <select class="ui dropdown" onchange={{action (mut (get i18n "locale")) value="target.value"}}>
-            {{#each locales as |locale|}}
-              <option value={{locale}} selected={{eq (get i18n "locale") locale}}>
-                {{locale}}
-              </option>
-            {{/each}}
-          </select>
-        {{else}}
-          {{flexberry-dropdown
-            class="compact"
-            items=locales
-            value=i18n.locale
-            placeholder=(t "forms.application.header.menu.language-dropdown.placeholder")
-            direction="upward"
-          }}
-        {{/if}}
       </div>
     </div>
   </div>

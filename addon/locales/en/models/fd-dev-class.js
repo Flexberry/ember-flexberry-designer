@@ -2,965 +2,971 @@ export default {
   projections: {
     ApplicationClassView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       stereotype: {
-        caption: 'stereotype'
+        __caption__: 'stereotype'
       },
       containersStr: {
-        caption: 'containersStr'
+        __caption__: 'containersStr'
       }
     },
     AttributesChangeView: {
       attributesStr: {
-        caption: 'attributesStr'
+        __caption__: 'attributesStr'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       stereotype: {
-        caption: 'stereotype'
+        __caption__: 'stereotype'
       },
       attributes: {
         __caption__: 'attributes',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         caption: {
-          caption: 'caption'
+          __caption__: 'caption'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         },
         class: {
-          caption: 'class'
+          __caption__: 'class'
         }
       },
-      devViews: {
-        caption: 'devViews',
+      views: {
+        __caption__: 'views',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         properties: {
-          caption: 'properties'
+          __caption__: 'properties'
         },
         definition: {
-          caption: 'definition'
+          __caption__: 'definition'
         },
         class: {
-          caption: 'class'
+          __caption__: 'class'
         }
       }
     },
     AttributesView: {
       attributesStr: {
-        caption: 'attributesStr'
+        __caption__: 'attributesStr'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       stereotype: {
-        caption: 'stereotype'
+        __caption__: 'stereotype'
       },
       attributes: {
-        caption: 'attributes',
+        __caption__: 'attributes',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         class: {
-          caption: 'class'
+          __caption__: 'class'
         }
       }
     },
     AuditPrototyping: {
       stereotype: {
-        caption: 'stereotype'
+        __caption__: 'stereotype'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       auditEnabled: {
-        caption: 'auditEnabled'
+        __caption__: 'auditEnabled'
       },
       addAuditFields: {
-        caption: 'addAuditFields'
+        __caption__: 'addAuditFields'
       },
       useDefaultView: {
-        caption: 'useDefaultView'
+        __caption__: 'useDefaultView'
       },
       insertAudit: {
-        caption: 'insertAudit'
+        __caption__: 'insertAudit'
       },
       insertAuditViewName: {
-        caption: 'insertAuditViewName'
+        __caption__: 'insertAuditViewName'
       },
       deleteAudit: {
-        caption: 'deleteAudit'
+        __caption__: 'deleteAudit'
       },
       deleteAuditViewName: {
-        caption: 'deleteAuditViewName'
+        __caption__: 'deleteAuditViewName'
       },
       updateAudit: {
-        caption: 'updateAudit'
+        __caption__: 'updateAudit'
       },
       updateAuditViewName: {
-        caption: 'updateAuditViewName'
+        __caption__: 'updateAuditViewName'
       },
       selectAudit: {
-        caption: 'selectAudit'
+        __caption__: 'selectAudit'
       },
       selectAuditViewName: {
-        caption: 'selectAuditViewName'
+        __caption__: 'selectAuditViewName'
       },
       attributesStr: {
-        caption: 'attributesStr'
+        __caption__: 'attributesStr'
       },
       stored: {
-        caption: 'stored'
+        __caption__: 'stored'
       },
       attributes: {
-        caption: 'attributes',
+        __caption__: 'attributes',
         accessModifier: {
-          caption: 'accessModifier'
+          __caption__: 'accessModifier'
         },
         stored: {
-          caption: 'stored'
+          __caption__: 'stored'
         },
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         defaultValue: {
-          caption: 'defaultValue'
+          __caption__: 'defaultValue'
         },
         notNull: {
-          caption: 'notNull'
+          __caption__: 'notNull'
         },
         dataServiceExpressionXML: {
-          caption: 'dataServiceExpressionXML'
+          __caption__: 'dataServiceExpressionXML'
         },
         order: {
-          caption: 'order'
+          __caption__: 'order'
         },
         storage: {
-          caption: 'storage'
+          __caption__: 'storage'
         },
         trim: {
-          caption: 'trim'
+          __caption__: 'trim'
         }
       },
-      devViews: {
-        caption: 'devViews',
+      views: {
+        __caption__: 'views',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         definition: {
-          caption: 'definition'
+          __caption__: 'definition'
         }
       }
     },
     BusinessServer: {
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       stereotype: {
-        caption: 'stereotype'
+        __caption__: 'stereotype'
       },
       attributes: {
-        caption: 'attributes',
+        __caption__: 'attributes',
         accessModifier: {
-          caption: 'accessModifier'
+          __caption__: 'accessModifier'
         },
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         defaultValue: {
-          caption: 'defaultValue'
+          __caption__: 'defaultValue'
         },
         pBCustomAttributes: {
-          caption: 'pBCustomAttributes'
+          __caption__: 'pBCustomAttributes'
         },
         pBGetEnd: {
-          caption: 'pBGetEnd'
+          __caption__: 'pBGetEnd'
         },
         pBGetStart: {
-          caption: 'pBGetStart'
+          __caption__: 'pBGetStart'
         },
         pBSetEnd: {
-          caption: 'pBSetEnd'
+          __caption__: 'pBSetEnd'
         },
         pBSetStart: {
-          caption: 'pBSetStart'
-        }
-      },
-      methods: {
-        caption: 'methods',
-        accessModifier: {
-          caption: 'accessModifier'
-        },
-        name: {
-          caption: 'name'
-        },
-        description: {
-          caption: 'description'
-        },
-        type: {
-          caption: 'type'
-        },
-        parametersStr: {
-          caption: 'parametersStr'
-        },
-        isEvent: {
-          caption: 'isEvent'
-        },
-        accessType: {
-          caption: 'accessType'
-        },
-        pBCustomAttributes: {
-          caption: 'pBCustomAttributes'
-        },
-        parameters: {
-          caption: 'parameters',
-          name: {
-          caption: 'name'
-        },
-          modifier: {
-          caption: 'modifier'
-        },
-          type: {
-          caption: 'type'
-        },
-          description: {
-          caption: 'description'
-        }
-        }
-      }
-    },
-    BusinessServerExtra: {
-      nameStr: {
-        caption: 'nameStr'
-      },
-      name: {
-        caption: 'name'
-      },
-      stereotype: {
-        caption: 'stereotype'
-      },
-      devViews: {
-        caption: 'devViews',
-        name: {
-          caption: 'name'
-        }
-      }
-    },
-    ClassV: {
-      referenceCount: {
-        caption: 'referenceCount'
-      },
-      stereotype: {
-        caption: 'stereotype'
-      },
-      nameStr: {
-        caption: 'nameStr'
-      },
-      description: {
-        caption: 'description'
-      },
-      packet: {
-        caption: 'packet'
-      },
-      namespacePostfix: {
-        caption: 'namespacePostfix'
-      },
-      stage: {
-        caption: 'stage',
-        name: {
-          caption: 'name'
-        }
-      }
-    },
-    EditApplication: {
-      name: {
-        caption: 'name'
-      },
-      description: {
-        caption: 'description'
-      },
-      caption: {
-        caption: 'caption'
-      },
-      standartDesktop: {
-        caption: 'standartDesktop'
-      },
-      namespacePostfix: {
-        caption: 'namespacePostfix'
-      },
-      pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
-      },
-      disableAllRightChecks: {
-        caption: 'disableAllRightChecks'
-      },
-      containers: {
-        caption: 'containers'
-      },
-      appConfigFile: {
-        caption: 'appConfigFile'
-      },
-      auditConnectionStringName: {
-        caption: 'auditConnectionStringName'
-      },
-      auditWinServiceUrl: {
-        caption: 'auditWinServiceUrl'
-      },
-      writeSessions: {
-        caption: 'writeSessions'
-      },
-      attributes: {
-        caption: 'attributes',
-        accessModifier: {
-          caption: 'accessModifier'
-        },
-        name: {
-          caption: 'name'
-        },
-        description: {
-          caption: 'description'
-        },
-        type: {
-          caption: 'type'
-        },
-        defaultValue: {
-          caption: 'defaultValue'
-        },
-        pBCustomAttributes: {
-          caption: 'pBCustomAttributes'
-        },
-        pBGetEnd: {
-          caption: 'pBGetEnd'
-        },
-        pBGetStart: {
-          caption: 'pBGetStart'
-        },
-        pBSetEnd: {
-          caption: 'pBSetEnd'
-        },
-        pBSetStart: {
-          caption: 'pBSetStart'
-        }
-      },
-      methods: {
-        caption: 'methods',
-        accessModifier: {
-          caption: 'accessModifier'
-        },
-        name: {
-          caption: 'name'
-        },
-        description: {
-          caption: 'description'
-        },
-        type: {
-          caption: 'type'
-        },
-        parametersStr: {
-          caption: 'parametersStr'
-        },
-        pBCustomAttributes: {
-          caption: 'pBCustomAttributes'
-        },
-        isEvent: {
-          caption: 'isEvent'
-        },
-        accessType: {
-          caption: 'accessType'
-        },
-        parameters: {
-          caption: 'parameters',
-          name: {
-          caption: 'name'
-        },
-          modifier: {
-          caption: 'modifier'
-        },
-          type: {
-          caption: 'type'
-        },
-          description: {
-          caption: 'description'
-        }
-        }
-      }
-    },
-    EditBusinessServer: {
-      name: {
-        caption: 'name'
-      },
-      description: {
-        caption: 'description'
-      },
-      packet: {
-        caption: 'packet'
-      },
-      namespacePostfix: {
-        caption: 'namespacePostfix'
-      },
-      pBMembers: {
-        caption: 'pBMembers'
-      },
-      generateComPlusServer: {
-        caption: 'generateComPlusServer'
-      },
-      comPlusServerOptions: {
-        caption: 'comPlusServerOptions'
-      },
-      generateHttpRemoteServer: {
-        caption: 'generateHttpRemoteServer'
-      },
-      publishToEBSD: {
-        caption: 'publishToEBSD'
-      }
-    },
-    EditDataObjectClass: {
-      accessType: {
-        caption: 'accessType'
-      },
-      addAuditFields: {
-        caption: 'addAuditFields'
-      },
-      auditEnabled: {
-        caption: 'auditEnabled'
-      },
-      autoAltered: {
-        caption: 'autoAltered'
-      },
-      bSClass: {
-        caption: 'bSClass'
-      },
-      bSEvents: {
-        caption: 'bSEvents'
-      },
-      businessServerClass: {
-        caption: 'businessServerClass',
-        stereotype: {
-          caption: 'stereotype'
-        }
-      },
-      caption: {
-        caption: 'caption'
-      },
-      deleteAudit: {
-        caption: 'deleteAudit'
-      },
-      deleteAuditViewName: {
-        caption: 'deleteAuditViewName'
-      },
-      description: {
-        caption: 'description'
-      },
-      formUrl: {
-        caption: 'formUrl'
-      },
-      insertAudit: {
-        caption: 'insertAudit'
-      },
-      insertAuditViewName: {
-        caption: 'insertAuditViewName'
-      },
-      loadingOrderXML: {
-        caption: 'loadingOrderXML'
-      },
-      name: {
-        caption: 'name'
-      },
-      namespacePostfix: {
-        caption: 'namespacePostfix'
-      },
-      packet: {
-        caption: 'packet'
-      },
-      pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
-      },
-      pBMembers: {
-        caption: 'pBMembers'
-      },
-      primaryKeyStorage: {
-        caption: 'primaryKeyStorage'
-      },
-      publishToEBSD: {
-        caption: 'publishToEBSD'
-      },
-      selectAudit: {
-        caption: 'selectAudit'
-      },
-      selectAuditViewName: {
-        caption: 'selectAuditViewName'
-      },
-      storage: {
-        caption: 'storage'
-      },
-      stored: {
-        caption: 'stored'
-      },
-      trim: {
-        caption: 'trim'
-      },
-      updateAudit: {
-        caption: 'updateAudit'
-      },
-      updateAuditViewName: {
-        caption: 'updateAuditViewName'
-      },
-      useDefaultView: {
-        caption: 'useDefaultView'
-      },
-      writeMode: {
-        caption: 'writeMode'
-      },
-      attributes: {
-        caption: 'attributes',
-        accessModifier: {
-          caption: 'accessModifier'
-        },
-        stored: {
-          caption: 'stored'
-        },
-        name: {
-          caption: 'name'
-        },
-        description: {
-          caption: 'description'
-        },
-        type: {
-          caption: 'type'
-        },
-        defaultValue: {
-          caption: 'defaultValue'
-        },
-        notNull: {
-          caption: 'notNull'
-        },
-        dataServiceExpressionXML: {
-          caption: 'dataServiceExpressionXML'
-        },
-        storage: {
-          caption: 'storage'
-        },
-        hint: {
-          caption: 'hint'
-        },
-        order: {
-          caption: 'order'
-        },
-        trim: {
-          caption: 'trim'
-        },
-        pBCustomAttributes: {
-          caption: 'pBCustomAttributes'
-        },
-        pBGetEnd: {
-          caption: 'pBGetEnd'
-        },
-        pBGetStart: {
-          caption: 'pBGetStart'
-        },
-        pBSetEnd: {
-          caption: 'pBSetEnd'
-        },
-        pBSetStart: {
-          caption: 'pBSetStart'
-        },
-        autoincrement: {
-          caption: 'autoincrement'
-        }
-      },
-      methods: {
-        caption: 'methods',
-        accessModifier: {
-          caption: 'accessModifier'
-        },
-        type: {
-          caption: 'type'
-        },
-        parametersStr: {
-          caption: 'parametersStr'
-        },
-        isEvent: {
-          caption: 'isEvent'
-        },
-        pBCustomAttributes: {
-          caption: 'pBCustomAttributes'
-        },
-        name: {
-          caption: 'name'
-        },
-        description: {
-          caption: 'description'
-        },
-        parameters: {
-          caption: 'parameters',
-          name: {
-          caption: 'name'
-        },
-          modifier: {
-          caption: 'modifier'
-        },
-          type: {
-          caption: 'type'
-        },
-          description: {
-          caption: 'description'
-        }
-        }
-      },
-      devViews: {
-        caption: 'devViews',
-        name: {
-          caption: 'name'
-        },
-        description: {
-          caption: 'description'
-        },
-        properties: {
-          caption: 'properties'
-        }
-      }
-    },
-    EditEditForm: {
-      name: {
-        caption: 'name'
-      },
-      description: {
-        caption: 'description'
-      },
-      caption: {
-        caption: 'caption'
-      },
-      generateDependedForm: {
-        caption: 'generateDependedForm'
-      },
-      fixDependedForm: {
-        caption: 'fixDependedForm'
-      },
-      packet: {
-        caption: 'packet'
-      },
-      namespacePostfix: {
-        caption: 'namespacePostfix'
-      },
-      pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
-      },
-      pBMembers: {
-        caption: 'pBMembers'
-      },
-      propertyLookup: {
-        caption: 'propertyLookup'
-      },
-      editFormOperations: {
-        caption: 'editFormOperations'
-      },
-      printContainer: {
-        caption: 'printContainer'
-      },
-      scriptName: {
-        caption: 'scriptName'
-      },
-      publishToEBSD: {
-        caption: 'publishToEBSD'
-      },
-      attributes: {
-        caption: 'attributes',
-        accessModifier: {
-          caption: 'accessModifier'
-        },
-        name: {
-          caption: 'name'
-        },
-        description: {
-          caption: 'description'
-        },
-        type: {
-          caption: 'type'
-        },
-        defaultValue: {
-          caption: 'defaultValue'
-        },
-        pBCustomAttributes: {
-          caption: 'pBCustomAttributes'
-        },
-        pBGetEnd: {
-          caption: 'pBGetEnd'
-        },
-        pBGetStart: {
-          caption: 'pBGetStart'
-        },
-        pBSetEnd: {
-          caption: 'pBSetEnd'
-        },
-        pBSetStart: {
-          caption: 'pBSetStart'
-        }
-      },
-      formViews: {
-        caption: 'formViews',
-        viewForForm: {
-          caption: 'viewForForm'
-        },
-        view: {
-          caption: 'view'
+          __caption__: 'pBSetStart'
         }
       },
       methods: {
         __caption__: 'methods',
         accessModifier: {
-          caption: 'accessModifier'
+          __caption__: 'accessModifier'
         },
         name: {
-          caption: 'name'
-        },
-        caption: {
-          caption: 'caption'
+          __caption__: 'name'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         parametersStr: {
-          caption: 'parametersStr'
-        },
-        pBCustomAttributes: {
-          caption: 'pBCustomAttributes'
-        },
-        publishToUser: {
-          caption: 'publishToUser'
+          __caption__: 'parametersStr'
         },
         isEvent: {
-          caption: 'isEvent'
+          __caption__: 'isEvent'
         },
         accessType: {
-          caption: 'accessType'
+          __caption__: 'accessType'
+        },
+        pBCustomAttributes: {
+          __caption__: 'pBCustomAttributes'
         },
         parameters: {
-          caption: 'parameters',
+          __caption__: 'parameters',
           name: {
-          caption: 'name'
-        },
+            __caption__: 'name'
+          },
           modifier: {
-          caption: 'modifier'
-        },
+            __caption__: 'modifier'
+          },
           type: {
-          caption: 'type'
-        },
+            __caption__: 'type'
+          },
           description: {
-          caption: 'description'
+            __caption__: 'description'
+          }
         }
+      }
+    },
+    BusinessServerExtra: {
+      nameStr: {
+        __caption__: 'nameStr'
+      },
+      name: {
+        __caption__: 'name'
+      },
+      stereotype: {
+        __caption__: 'stereotype'
+      },
+      views: {
+        __caption__: 'views',
+        name: {
+          __caption__: 'name'
+        }
+      }
+    },
+    ClassV: {
+      referenceCount: {
+        __caption__: 'referenceCount'
+      },
+      stereotype: {
+        __caption__: 'stereotype'
+      },
+      nameStr: {
+        __caption__: 'nameStr'
+      },
+      description: {
+        __caption__: 'description'
+      },
+      packet: {
+        __caption__: 'packet'
+      },
+      namespacePostfix: {
+        __caption__: 'namespacePostfix'
+      },
+      stage: {
+        __caption__: 'stage',
+        name: {
+          __caption__: 'name'
+        }
+      }
+    },
+    EditApplication: {
+      name: {
+        __caption__: 'name'
+      },
+      description: {
+        __caption__: 'description'
+      },
+      caption: {
+        __caption__: 'caption'
+      },
+      standartDesktop: {
+        __caption__: 'standartDesktop'
+      },
+      namespacePostfix: {
+        __caption__: 'namespacePostfix'
+      },
+      pBCustomAttributes: {
+        __caption__: 'pBCustomAttributes'
+      },
+      disableAllRightChecks: {
+        __caption__: 'disableAllRightChecks'
+      },
+      containers: {
+        __caption__: 'containers'
+      },
+      appConfigFile: {
+        __caption__: 'appConfigFile'
+      },
+      auditConnectionStringName: {
+        __caption__: 'auditConnectionStringName'
+      },
+      auditWinServiceUrl: {
+        __caption__: 'auditWinServiceUrl'
+      },
+      writeSessions: {
+        __caption__: 'writeSessions'
+      },
+      attributes: {
+        __caption__: 'attributes',
+        accessModifier: {
+          __caption__: 'accessModifier'
+        },
+        name: {
+          __caption__: 'name'
+        },
+        description: {
+          __caption__: 'description'
+        },
+        type: {
+          __caption__: 'type'
+        },
+        defaultValue: {
+          __caption__: 'defaultValue'
+        },
+        pBCustomAttributes: {
+          __caption__: 'pBCustomAttributes'
+        },
+        pBGetEnd: {
+          __caption__: 'pBGetEnd'
+        },
+        pBGetStart: {
+          __caption__: 'pBGetStart'
+        },
+        pBSetEnd: {
+          __caption__: 'pBSetEnd'
+        },
+        pBSetStart: {
+          __caption__: 'pBSetStart'
+        }
+      },
+      methods: {
+        __caption__: 'methods',
+        accessModifier: {
+          __caption__: 'accessModifier'
+        },
+        name: {
+          __caption__: 'name'
+        },
+        description: {
+          __caption__: 'description'
+        },
+        type: {
+          __caption__: 'type'
+        },
+        parametersStr: {
+          __caption__: 'parametersStr'
+        },
+        pBCustomAttributes: {
+          __caption__: 'pBCustomAttributes'
+        },
+        isEvent: {
+          __caption__: 'isEvent'
+        },
+        accessType: {
+          __caption__: 'accessType'
+        },
+        parameters: {
+          __caption__: 'parameters',
+          name: {
+            __caption__: 'name'
+          },
+          modifier: {
+            __caption__: 'modifier'
+          },
+          type: {
+            __caption__: 'type'
+          },
+          description: {
+            __caption__: 'description'
+          }
+        }
+      }
+    },
+    EditBusinessServer: {
+      name: {
+        __caption__: 'name'
+      },
+      description: {
+        __caption__: 'description'
+      },
+      packet: {
+        __caption__: 'packet'
+      },
+      namespacePostfix: {
+        __caption__: 'namespacePostfix'
+      },
+      pBMembers: {
+        __caption__: 'pBMembers'
+      },
+      generateComPlusServer: {
+        __caption__: 'generateComPlusServer'
+      },
+      comPlusServerOptions: {
+        __caption__: 'comPlusServerOptions'
+      },
+      generateHttpRemoteServer: {
+        __caption__: 'generateHttpRemoteServer'
+      },
+      publishToEBSD: {
+        __caption__: 'publishToEBSD'
+      }
+    },
+    EditDataObjectClass: {
+      accessType: {
+        __caption__: 'accessType'
+      },
+      addAuditFields: {
+        __caption__: 'addAuditFields'
+      },
+      auditEnabled: {
+        __caption__: 'auditEnabled'
+      },
+      autoAltered: {
+        __caption__: 'autoAltered'
+      },
+      bSClass: {
+        __caption__: 'bSClass'
+      },
+      bSEvents: {
+        __caption__: 'bSEvents'
+      },
+      businessServerClass: {
+        __caption__: 'businessServerClass',
+        stereotype: {
+          __caption__: 'stereotype'
+        }
+      },
+      caption: {
+        __caption__: 'caption'
+      },
+      deleteAudit: {
+        __caption__: 'deleteAudit'
+      },
+      deleteAuditViewName: {
+        __caption__: 'deleteAuditViewName'
+      },
+      description: {
+        __caption__: 'description'
+      },
+      formUrl: {
+        __caption__: 'formUrl'
+      },
+      insertAudit: {
+        __caption__: 'insertAudit'
+      },
+      insertAuditViewName: {
+        __caption__: 'insertAuditViewName'
+      },
+      loadingOrderXML: {
+        __caption__: 'loadingOrderXML'
+      },
+      name: {
+        __caption__: 'name'
+      },
+      namespacePostfix: {
+        __caption__: 'namespacePostfix'
+      },
+      packet: {
+        __caption__: 'packet'
+      },
+      pBCustomAttributes: {
+        __caption__: 'pBCustomAttributes'
+      },
+      pBMembers: {
+        __caption__: 'pBMembers'
+      },
+      primaryKeyStorage: {
+        __caption__: 'primaryKeyStorage'
+      },
+      publishToEBSD: {
+        __caption__: 'publishToEBSD'
+      },
+      selectAudit: {
+        __caption__: 'selectAudit'
+      },
+      selectAuditViewName: {
+        __caption__: 'selectAuditViewName'
+      },
+      storage: {
+        __caption__: 'storage'
+      },
+      publishName: {
+        __caption__: 'publishName'
+      },
+      stored: {
+        __caption__: 'stored'
+      },
+      trim: {
+        __caption__: 'trim'
+      },
+      updateAudit: {
+        __caption__: 'updateAudit'
+      },
+      updateAuditViewName: {
+        __caption__: 'updateAuditViewName'
+      },
+      useDefaultView: {
+        __caption__: 'useDefaultView'
+      },
+      writeMode: {
+        __caption__: 'writeMode'
+      },
+      attributes: {
+        __caption__: 'attributes',
+        accessModifier: {
+          __caption__: 'accessModifier'
+        },
+        stored: {
+          __caption__: 'stored'
+        },
+        name: {
+          __caption__: 'name'
+        },
+        description: {
+          __caption__: 'description'
+        },
+        type: {
+          __caption__: 'type'
+        },
+        defaultValue: {
+          __caption__: 'defaultValue'
+        },
+        notNull: {
+          __caption__: 'notNull'
+        },
+        dataServiceExpressionXML: {
+          __caption__: 'dataServiceExpressionXML'
+        },
+        storage: {
+          __caption__: 'storage'
+        },
+        publishName: {
+          __caption__: 'publishName'
+        },
+        hint: {
+          __caption__: 'hint'
+        },
+        order: {
+          __caption__: 'order'
+        },
+        trim: {
+          __caption__: 'trim'
+        },
+        pBCustomAttributes: {
+          __caption__: 'pBCustomAttributes'
+        },
+        pBGetEnd: {
+          __caption__: 'pBGetEnd'
+        },
+        pBGetStart: {
+          __caption__: 'pBGetStart'
+        },
+        pBSetEnd: {
+          __caption__: 'pBSetEnd'
+        },
+        pBSetStart: {
+          __caption__: 'pBSetStart'
+        },
+        autoincrement: {
+          __caption__: 'autoincrement'
+        }
+      },
+      methods: {
+        __caption__: 'methods',
+        accessModifier: {
+          __caption__: 'accessModifier'
+        },
+        type: {
+          __caption__: 'type'
+        },
+        parametersStr: {
+          __caption__: 'parametersStr'
+        },
+        isEvent: {
+          __caption__: 'isEvent'
+        },
+        pBCustomAttributes: {
+          __caption__: 'pBCustomAttributes'
+        },
+        name: {
+          __caption__: 'name'
+        },
+        description: {
+          __caption__: 'description'
+        },
+        parameters: {
+          __caption__: 'parameters',
+          name: {
+            __caption__: 'name'
+          },
+          modifier: {
+            __caption__: 'modifier'
+          },
+          type: {
+            __caption__: 'type'
+          },
+          description: {
+            __caption__: 'description'
+          }
+        }
+      },
+      views: {
+        __caption__: 'views',
+        name: {
+          __caption__: 'name'
+        },
+        description: {
+          __caption__: 'description'
+        },
+        properties: {
+          __caption__: 'properties'
+        }
+      }
+    },
+    EditEditForm: {
+      name: {
+        __caption__: 'name'
+      },
+      description: {
+        __caption__: 'description'
+      },
+      caption: {
+        __caption__: 'caption'
+      },
+      generateDependedForm: {
+        __caption__: 'generateDependedForm'
+      },
+      fixDependedForm: {
+        __caption__: 'fixDependedForm'
+      },
+      packet: {
+        __caption__: 'packet'
+      },
+      namespacePostfix: {
+        __caption__: 'namespacePostfix'
+      },
+      pBCustomAttributes: {
+        __caption__: 'pBCustomAttributes'
+      },
+      pBMembers: {
+        __caption__: 'pBMembers'
+      },
+      propertyLookup: {
+        __caption__: 'propertyLookup'
+      },
+      editFormOperations: {
+        __caption__: 'editFormOperations'
+      },
+      printContainer: {
+        __caption__: 'printContainer'
+      },
+      scriptName: {
+        __caption__: 'scriptName'
+      },
+      publishToEBSD: {
+        __caption__: 'publishToEBSD'
+      },
+      attributes: {
+        __caption__: 'attributes',
+        accessModifier: {
+          __caption__: 'accessModifier'
+        },
+        name: {
+          __caption__: 'name'
+        },
+        description: {
+          __caption__: 'description'
+        },
+        type: {
+          __caption__: 'type'
+        },
+        defaultValue: {
+          __caption__: 'defaultValue'
+        },
+        pBCustomAttributes: {
+          __caption__: 'pBCustomAttributes'
+        },
+        pBGetEnd: {
+          __caption__: 'pBGetEnd'
+        },
+        pBGetStart: {
+          __caption__: 'pBGetStart'
+        },
+        pBSetEnd: {
+          __caption__: 'pBSetEnd'
+        },
+        pBSetStart: {
+          __caption__: 'pBSetStart'
+        }
+      },
+      formViews: {
+        __caption__: 'formViews',
+        viewForForm: {
+          __caption__: 'viewForForm'
+        },
+        view: {
+          __caption__: 'view'
+        }
+      },
+      methods: {
+        __caption__: 'methods',
+        accessModifier: {
+          __caption__: 'accessModifier'
+        },
+        name: {
+          __caption__: 'name'
+        },
+        caption: {
+          __caption__: 'caption'
+        },
+        description: {
+          __caption__: 'description'
+        },
+        type: {
+          __caption__: 'type'
+        },
+        parametersStr: {
+          __caption__: 'parametersStr'
+        },
+        pBCustomAttributes: {
+          __caption__: 'pBCustomAttributes'
+        },
+        publishToUser: {
+          __caption__: 'publishToUser'
+        },
+        isEvent: {
+          __caption__: 'isEvent'
+        },
+        accessType: {
+          __caption__: 'accessType'
+        },
+        parameters: {
+          __caption__: 'parameters',
+          name: {
+            __caption__: 'name'
+          },
+          modifier: {
+            __caption__: 'modifier'
+          },
+          type: {
+            __caption__: 'type'
+          },
+          description: {
+            __caption__: 'description'
+          }
         }
       }
     },
     EditEnum: {
       name: {
-        caption: 'name'
+        __caption__: 'Name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'Description'
       },
       onlyShowSelectedValue: {
-        caption: 'onlyShowSelectedValue'
+        __caption__: 'Only show selected value'
       },
       packet: {
-        caption: 'packet'
+        __caption__: 'Packet'
       },
       namespacePostfix: {
-        caption: 'namespacePostfix'
+        __caption__: 'Namespace postfix'
       },
       attributes: {
-        __caption__: 'attributes',
+        __caption__: 'Values',
         name: {
-          caption: 'name'
+          __caption__: 'Name'
         },
         description: {
-          caption: 'description'
+          __caption__: 'Description'
         },
         defaultValue: {
-          caption: 'defaultValue'
+          __caption__: 'Default value'
         },
         caption: {
-          caption: 'caption'
+          __caption__: 'Caption'
         }
       }
     },
     EditEventArg: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       generateCatcher: {
-        caption: 'generateCatcher'
+        __caption__: 'generateCatcher'
       },
       packet: {
-        caption: 'packet'
+        __caption__: 'packet'
       },
       namespacePostfix: {
-        caption: 'namespacePostfix'
+        __caption__: 'namespacePostfix'
       },
       pBMembers: {
-        caption: 'pBMembers'
+        __caption__: 'pBMembers'
       },
       attributes: {
-        caption: 'attributes',
+        __caption__: 'attributes',
         accessModifier: {
-          caption: 'accessModifier'
+          __caption__: 'accessModifier'
         },
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         defaultValue: {
-          caption: 'defaultValue'
+          __caption__: 'defaultValue'
         },
         pBCustomAttributes: {
-          caption: 'pBCustomAttributes'
+          __caption__: 'pBCustomAttributes'
         },
         pBGetEnd: {
-          caption: 'pBGetEnd'
+          __caption__: 'pBGetEnd'
         },
         pBGetStart: {
-          caption: 'pBGetStart'
+          __caption__: 'pBGetStart'
         },
         pBSetEnd: {
-          caption: 'pBSetEnd'
+          __caption__: 'pBSetEnd'
         },
         pBSetStart: {
-          caption: 'pBSetStart'
+          __caption__: 'pBSetStart'
         }
       },
       methods: {
-        caption: 'methods',
+        __caption__: 'methods',
         accessModifier: {
-          caption: 'accessModifier'
+          __caption__: 'accessModifier'
         },
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         parametersStr: {
-          caption: 'parametersStr'
+          __caption__: 'parametersStr'
         },
         isEvent: {
-          caption: 'isEvent'
+          __caption__: 'isEvent'
         },
         pBCustomAttributes: {
-          caption: 'pBCustomAttributes'
+          __caption__: 'pBCustomAttributes'
         },
         parameters: {
-          caption: 'parameters',
+          __caption__: 'parameters',
           name: {
-          caption: 'name'
-        },
+            __caption__: 'name'
+          },
           modifier: {
-          caption: 'modifier'
-        },
+            __caption__: 'modifier'
+          },
           type: {
-          caption: 'type'
-        },
+            __caption__: 'type'
+          },
           description: {
-          caption: 'description'
-        }
+            __caption__: 'description'
+          }
         }
       }
     },
     EditExternal: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       storeInstancesInTypeXML: {
-        caption: 'storeInstancesInTypeXML'
+        __caption__: 'storeInstancesInTypeXML'
       },
       packet: {
-        caption: 'packet'
+        __caption__: 'packet'
       },
       namespacePostfix: {
-        caption: 'namespacePostfix'
+        __caption__: 'namespacePostfix'
       },
       pBMembers: {
-        caption: 'pBMembers'
+        __caption__: 'pBMembers'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       publishToEBSD: {
-        caption: 'publishToEBSD'
+        __caption__: 'publishToEBSD'
       },
       stage: {
-        caption: 'stage',
+        __caption__: 'stage',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         configuration: {
-          caption: 'configuration',
+          __caption__: 'configuration',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           },
           project: {
-            caption: 'project',
+            __caption__: 'project',
             name: {
-              caption: 'name'
+              __caption__: 'name'
             },
             repository: {
-              caption: 'repository',
+              __caption__: 'repository',
               name: {
-                caption: 'name'
+                __caption__: 'name'
               }
             }
           }
@@ -969,1086 +975,1481 @@ export default {
     },
     EditFormView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       }
     },
     EditInterface: {
       bSClass: {
-        caption: 'bSClass'
+        __caption__: 'bSClass'
       },
       bSEvents: {
-        caption: 'bSEvents'
+        __caption__: 'bSEvents'
       },
       businessServerClass: {
-        caption: 'businessServerClass',
+        __caption__: 'businessServerClass',
         stereotype: {
-          caption: 'stereotype'
+          __caption__: 'stereotype'
         }
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       namespacePostfix: {
-        caption: 'namespacePostfix'
+        __caption__: 'namespacePostfix'
       },
       packet: {
-        caption: 'packet'
+        __caption__: 'packet'
       },
       pBMembers: {
-        caption: 'pBMembers'
+        __caption__: 'pBMembers'
       },
       publishToEBSD: {
-        caption: 'publishToEBSD'
+        __caption__: 'publishToEBSD'
       },
       attributes: {
-        caption: 'attributes',
+        __caption__: 'attributes',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         }
       },
       methods: {
-        caption: 'methods',
+        __caption__: 'methods',
         accessModifier: {
-          caption: 'accessModifier'
+          __caption__: 'accessModifier'
         },
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         parametersStr: {
-          caption: 'parametersStr'
+          __caption__: 'parametersStr'
         },
         isEvent: {
-          caption: 'isEvent'
+          __caption__: 'isEvent'
         },
         pBCustomAttributes: {
-          caption: 'pBCustomAttributes'
+          __caption__: 'pBCustomAttributes'
         },
         parameters: {
-          caption: 'parameters',
+          __caption__: 'parameters',
           name: {
-          caption: 'name'
-        },
+            __caption__: 'name'
+          },
           modifier: {
-          caption: 'modifier'
-        },
+            __caption__: 'modifier'
+          },
           type: {
-          caption: 'type'
-        },
+            __caption__: 'type'
+          },
           description: {
-          caption: 'description'
-        }
+            __caption__: 'description'
+          }
         }
       }
     },
     EditListForm: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       caption: {
-        caption: 'caption'
+        __caption__: 'caption'
       },
       generateDependedForm: {
-        caption: 'generateDependedForm'
+        __caption__: 'generateDependedForm'
       },
       fixDependedForm: {
-        caption: 'fixDependedForm'
+        __caption__: 'fixDependedForm'
       },
       packet: {
-        caption: 'packet'
+        __caption__: 'packet'
       },
       namespacePostfix: {
-        caption: 'namespacePostfix'
+        __caption__: 'namespacePostfix'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       pBMembers: {
-        caption: 'pBMembers'
+        __caption__: 'pBMembers'
       },
       scriptName: {
-        caption: 'scriptName'
+        __caption__: 'scriptName'
       },
       publishToEBSD: {
-        caption: 'publishToEBSD'
+        __caption__: 'publishToEBSD'
       },
       attributes: {
-        caption: 'attributes',
+        __caption__: 'attributes',
         accessModifier: {
-          caption: 'accessModifier'
+          __caption__: 'accessModifier'
         },
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         defaultValue: {
-          caption: 'defaultValue'
+          __caption__: 'defaultValue'
         },
         pBCustomAttributes: {
-          caption: 'pBCustomAttributes'
+          __caption__: 'pBCustomAttributes'
         },
         pBGetEnd: {
-          caption: 'pBGetEnd'
+          __caption__: 'pBGetEnd'
         },
         pBGetStart: {
-          caption: 'pBGetStart'
+          __caption__: 'pBGetStart'
         },
         pBSetEnd: {
-          caption: 'pBSetEnd'
+          __caption__: 'pBSetEnd'
         },
         pBSetStart: {
-          caption: 'pBSetStart'
+          __caption__: 'pBSetStart'
         }
       },
       formViews: {
-        caption: 'formViews',
+        __caption__: 'formViews',
         viewForForm: {
-          caption: 'viewForForm'
+          __caption__: 'viewForForm'
         },
         dataObjectTypes: {
-          caption: 'dataObjectTypes'
+          __caption__: 'dataObjectTypes'
         },
         listFormOperations: {
-          caption: 'listFormOperations'
+          __caption__: 'listFormOperations'
         },
         hierarchicalMaster: {
-          caption: 'hierarchicalMaster'
+          __caption__: 'hierarchicalMaster'
         },
         view: {
-          caption: 'view'
+          __caption__: 'view'
         }
       },
       methods: {
         __caption__: 'methods',
         accessModifier: {
-          caption: 'accessModifier'
+          __caption__: 'accessModifier'
         },
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         caption: {
-          caption: 'caption'
+          __caption__: 'caption'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         parametersStr: {
-          caption: 'parametersStr'
+          __caption__: 'parametersStr'
         },
         pBCustomAttributes: {
-          caption: 'pBCustomAttributes'
+          __caption__: 'pBCustomAttributes'
         },
         publishToUser: {
-          caption: 'publishToUser'
+          __caption__: 'publishToUser'
         },
         isEvent: {
-          caption: 'isEvent'
+          __caption__: 'isEvent'
         },
         accessType: {
-          caption: 'accessType'
+          __caption__: 'accessType'
         },
         parameters: {
-          caption: 'parameters',
+          __caption__: 'parameters',
           name: {
-          caption: 'name'
-        },
+            __caption__: 'name'
+          },
           modifier: {
-          caption: 'modifier'
-        },
+            __caption__: 'modifier'
+          },
           type: {
-          caption: 'type'
-        },
+            __caption__: 'type'
+          },
           description: {
-          caption: 'description'
-        }
+            __caption__: 'description'
+          }
         }
       }
     },
     EditPrintForm: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       caption: {
-        caption: 'caption'
+        __caption__: 'caption'
       },
       generateDependedForm: {
-        caption: 'generateDependedForm'
+        __caption__: 'generateDependedForm'
       },
       packet: {
-        caption: 'packet'
+        __caption__: 'packet'
       },
       namespacePostfix: {
-        caption: 'namespacePostfix'
+        __caption__: 'namespacePostfix'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       pBGetViewsForForm: {
-        caption: 'pBGetViewsForForm'
+        __caption__: 'pBGetViewsForForm'
       },
       pBMembers: {
-        caption: 'pBMembers'
+        __caption__: 'pBMembers'
       },
       publishToEBSD: {
-        caption: 'publishToEBSD'
+        __caption__: 'publishToEBSD'
       },
       attributes: {
-        caption: 'attributes',
+        __caption__: 'attributes',
         accessModifier: {
-          caption: 'accessModifier'
+          __caption__: 'accessModifier'
         },
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         defaultValue: {
-          caption: 'defaultValue'
+          __caption__: 'defaultValue'
         },
         pBCustomAttributes: {
-          caption: 'pBCustomAttributes'
+          __caption__: 'pBCustomAttributes'
         },
         pBGetEnd: {
-          caption: 'pBGetEnd'
+          __caption__: 'pBGetEnd'
         },
         pBGetStart: {
-          caption: 'pBGetStart'
+          __caption__: 'pBGetStart'
         },
         pBSetEnd: {
-          caption: 'pBSetEnd'
+          __caption__: 'pBSetEnd'
         },
         pBSetStart: {
-          caption: 'pBSetStart'
+          __caption__: 'pBSetStart'
         }
       },
       formViews: {
-        caption: 'formViews',
+        __caption__: 'formViews',
         viewForForm: {
-          caption: 'viewForForm'
+          __caption__: 'viewForForm'
         },
         view: {
-          caption: 'view'
+          __caption__: 'view'
         }
       },
       methods: {
         __caption__: 'methods',
         accessModifier: {
-          caption: 'accessModifier'
+          __caption__: 'accessModifier'
         },
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         caption: {
-          caption: 'caption'
+          __caption__: 'caption'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         parametersStr: {
-          caption: 'parametersStr'
+          __caption__: 'parametersStr'
         },
         pBCustomAttributes: {
-          caption: 'pBCustomAttributes'
+          __caption__: 'pBCustomAttributes'
         },
         isEvent: {
-          caption: 'isEvent'
+          __caption__: 'isEvent'
         },
         parameters: {
-          caption: 'parameters',
+          __caption__: 'parameters',
           name: {
-          caption: 'name'
-        },
+            __caption__: 'name'
+          },
           modifier: {
-          caption: 'modifier'
-        },
+            __caption__: 'modifier'
+          },
           type: {
-          caption: 'type'
-        },
+            __caption__: 'type'
+          },
           description: {
-          caption: 'description'
-        }
+            __caption__: 'description'
+          }
         }
       }
     },
     EditPropertyLookups: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       stereotype: {
-        caption: 'stereotype'
+        __caption__: 'stereotype'
       },
       formViews: {
-        caption: 'formViews',
+        __caption__: 'formViews',
         view: {
-          caption: 'view',
+          __caption__: 'view',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           },
           class: {
-            caption: 'class',
+            __caption__: 'class',
             name: {
-              caption: 'name'
+              __caption__: 'name'
             }
           }
         }
       },
-      devViews: {
-        caption: 'devViews',
+      views: {
+        __caption__: 'views',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         definition: {
-          caption: 'definition'
+          __caption__: 'definition'
         },
         class: {
-          caption: 'class',
+          __caption__: 'class',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           }
         }
       }
     },
     EditType: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       storeInstancesInTypeXML: {
-        caption: 'storeInstancesInTypeXML'
+        __caption__: 'storeInstancesInTypeXML'
       },
       packet: {
-        caption: 'packet'
+        __caption__: 'packet'
       },
       namespacePostfix: {
-        caption: 'namespacePostfix'
+        __caption__: 'namespacePostfix'
       },
       pBMembers: {
-        caption: 'pBMembers'
+        __caption__: 'pBMembers'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       publishToEBSD: {
-        caption: 'publishToEBSD'
+        __caption__: 'publishToEBSD'
       },
       attributes: {
-        caption: 'attributes',
+        __caption__: 'attributes',
         accessModifier: {
-          caption: 'accessModifier'
+          __caption__: 'accessModifier'
         },
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         defaultValue: {
-          caption: 'defaultValue'
+          __caption__: 'defaultValue'
         },
         pBCustomAttributes: {
-          caption: 'pBCustomAttributes'
+          __caption__: 'pBCustomAttributes'
         },
         pBGetEnd: {
-          caption: 'pBGetEnd'
+          __caption__: 'pBGetEnd'
         },
         pBGetStart: {
-          caption: 'pBGetStart'
+          __caption__: 'pBGetStart'
         },
         pBSetEnd: {
-          caption: 'pBSetEnd'
+          __caption__: 'pBSetEnd'
         },
         pBSetStart: {
-          caption: 'pBSetStart'
+          __caption__: 'pBSetStart'
         }
       },
       methods: {
-        caption: 'methods',
+        __caption__: 'methods',
         accessModifier: {
-          caption: 'accessModifier'
+          __caption__: 'accessModifier'
         },
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         parametersStr: {
-          caption: 'parametersStr'
+          __caption__: 'parametersStr'
         },
         isEvent: {
-          caption: 'isEvent'
+          __caption__: 'isEvent'
         },
         pBCustomAttributes: {
-          caption: 'pBCustomAttributes'
+          __caption__: 'pBCustomAttributes'
         },
         parameters: {
-          caption: 'parameters',
+          __caption__: 'parameters',
           name: {
-          caption: 'name'
-        },
+            __caption__: 'name'
+          },
           modifier: {
-          caption: 'modifier'
-        },
+            __caption__: 'modifier'
+          },
           type: {
-          caption: 'type'
-        },
+            __caption__: 'type'
+          },
           description: {
-          caption: 'description'
-        }
+            __caption__: 'description'
+          }
         }
       }
     },
     EditUserForm: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       pBMembers: {
-        caption: 'pBMembers'
+        __caption__: 'pBMembers'
       },
       packet: {
-        caption: 'packet'
+        __caption__: 'packet'
       },
       namespacePostfix: {
-        caption: 'namespacePostfix'
+        __caption__: 'namespacePostfix'
       },
       scriptName: {
-        caption: 'scriptName'
+        __caption__: 'scriptName'
       },
       publishToEBSD: {
-        caption: 'publishToEBSD'
+        __caption__: 'publishToEBSD'
       },
       attributes: {
-        caption: 'attributes',
+        __caption__: 'attributes',
         accessModifier: {
-          caption: 'accessModifier'
+          __caption__: 'accessModifier'
         },
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         defaultValue: {
-          caption: 'defaultValue'
+          __caption__: 'defaultValue'
         },
         pBCustomAttributes: {
-          caption: 'pBCustomAttributes'
+          __caption__: 'pBCustomAttributes'
         },
         pBGetEnd: {
-          caption: 'pBGetEnd'
+          __caption__: 'pBGetEnd'
         },
         pBGetStart: {
-          caption: 'pBGetStart'
+          __caption__: 'pBGetStart'
         },
         pBSetEnd: {
-          caption: 'pBSetEnd'
+          __caption__: 'pBSetEnd'
         },
         pBSetStart: {
-          caption: 'pBSetStart'
+          __caption__: 'pBSetStart'
         }
       },
       methods: {
         __caption__: 'methods',
         accessModifier: {
-          caption: 'accessModifier'
+          __caption__: 'accessModifier'
         },
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         caption: {
-          caption: 'caption'
+          __caption__: 'caption'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         parametersStr: {
-          caption: 'parametersStr'
+          __caption__: 'parametersStr'
         },
         pBCustomAttributes: {
-          caption: 'pBCustomAttributes'
+          __caption__: 'pBCustomAttributes'
         },
         publishToUser: {
-          caption: 'publishToUser'
+          __caption__: 'publishToUser'
         },
         isEvent: {
-          caption: 'isEvent'
+          __caption__: 'isEvent'
         },
         accessType: {
-          caption: 'accessType'
+          __caption__: 'accessType'
         },
         parameters: {
-          caption: 'parameters',
+          __caption__: 'parameters',
           name: {
-          caption: 'name'
-        },
+            __caption__: 'name'
+          },
           modifier: {
-          caption: 'modifier'
-        },
+            __caption__: 'modifier'
+          },
           type: {
-          caption: 'type'
-        },
+            __caption__: 'type'
+          },
           description: {
-          caption: 'description'
+            __caption__: 'description'
+          }
         }
+      }
+    },
+    FdAttributesChangeView: {
+      attributesStr: {
+        __caption__: 'attributesStr'
+      },
+      name: {
+        __caption__: 'name'
+      },
+      nameStr: {
+        __caption__: 'nameStr'
+      },
+      stereotype: {
+        __caption__: 'stereotype'
+      },
+      attributes: {
+        __caption__: 'attributes',
+        name: {
+          __caption__: 'name'
+        },
+        type: {
+          __caption__: 'type'
+        },
+        caption: {
+          __caption__: 'caption'
+        },
+        description: {
+          __caption__: 'description'
+        },
+        class: {
+          __caption__: 'class'
+        }
+      },
+      views: {
+        __caption__: 'views',
+        name: {
+          __caption__: 'name'
+        },
+        definition: {
+          __caption__: 'definition'
+        },
+        class: {
+          __caption__: 'class'
+        }
+      }
+    },
+    FdAttributesForForm: {
+      name: {
+        __caption__: 'name'
+      },
+      stereotype: {
+        __caption__: 'stereotype'
+      },
+      formViews: {
+        __caption__: 'formViews',
+        dataObjectTypesStr: {
+          __caption__: 'dataObjectTypesStr'
+        },
+        view: {
+          __caption__: 'view',
+          class: {
+            __caption__: 'class',
+            name: {
+              __caption__: 'name'
+            }
+          },
+          definition: {
+            __caption__: 'definition'
+          }
+        },
+        class: {
+          __caption__: 'class'
+        }
+      }
+    },
+    FdEditClassForm: {
+      caption: {
+        __caption__: 'Caption'
+      },
+      name: {
+        __caption__: 'Name'
+      },
+      publishName: {
+        __caption__: 'Alias'
+      },
+      stored: {
+        __caption__: 'Stored'
+      },
+      storage: {
+        __caption__: 'Storage'
+      },
+      packet: {
+        __caption__: 'Packet'
+      },
+      namespacePostfix: {
+        __caption__: 'Namespace postfix'
+      },
+      businessServerClass: {
+        __caption__: 'Business server class',
+        name: {
+          __caption__: ''
+        }
+      },
+      businessServerEvents: {
+        __caption__: 'Business server events'
+      },
+      stage: {
+        __caption__: 'Stage'
+      },
+      attributes: {
+        __caption__: 'Attributes',
+        name: {
+          __caption__: 'Name'
+        },
+        caption: {
+          __caption__: 'Caption'
+        },
+        type: {
+          __caption__: 'Type'
+        },
+        description: {
+          __caption__: 'Description'
+        },
+        class: {
+          __caption__: 'Class'
+        }
+      },
+      views: {
+        __caption__: 'Views',
+        name: {
+          __caption__: 'Name'
+        },
+        description: {
+          __caption__: 'Description'
+        },
+        class: {
+          __caption__: 'Class'
+        }
+      },
+      classStorageTypes: {
+        __caption__: 'Storage types',
+        connectionName: {
+          __caption__: 'Connection name'
+        },
+        connectionString: {
+          __caption__: 'Connection string'
+        },
+        class: {
+          __caption__: 'Class'
+        },
+        storageType: {
+          __caption__: 'Storage type'
+        }
+      }
+    },
+    FdPreloadMetadata: {
+      accessType: {
+        __caption__: 'accessType'
+      },
+      addAuditFields: {
+        __caption__: 'addAuditFields'
+      },
+      auditConnectionStringName: {
+        __caption__: 'auditConnectionStringName'
+      },
+      auditEnabled: {
+        __caption__: 'auditEnabled'
+      },
+      auditWinServiceUrl: {
+        __caption__: 'auditWinServiceUrl'
+      },
+      autoAltered: {
+        __caption__: 'autoAltered'
+      },
+      businessServerEvents: {
+        __caption__: 'businessServerEvents'
+      },
+      caption: {
+        __caption__: 'caption'
+      },
+      comPlusServerPropertiesStr: {
+        __caption__: 'comPlusServerPropertiesStr'
+      },
+      containersStr: {
+        __caption__: 'containersStr'
+      },
+      dataObjectTypesStr: {
+        __caption__: 'dataObjectTypesStr'
+      },
+      deleteAudit: {
+        __caption__: 'deleteAudit'
+      },
+      deleteAuditViewName: {
+        __caption__: 'deleteAuditViewName'
+      },
+      disableAllRightChecks: {
+        __caption__: 'disableAllRightChecks'
+      },
+      editFormOperationsStr: {
+        __caption__: 'editFormOperationsStr'
+      },
+      expandOperations: {
+        __caption__: 'expandOperations'
+      },
+      fixDependedForm: {
+        __caption__: 'fixDependedForm'
+      },
+      formUrl: {
+        __caption__: 'formUrl'
+      },
+      generateCatcher: {
+        __caption__: 'generateCatcher'
+      },
+      generateComPlusServer: {
+        __caption__: 'generateComPlusServer'
+      },
+      generateDependedForm: {
+        __caption__: 'generateDependedForm'
+      },
+      generateHttpRemoteServer: {
+        __caption__: 'generateHttpRemoteServer'
+      },
+      hierarchicalMaster: {
+        __caption__: 'hierarchicalMaster'
+      },
+      insertAudit: {
+        __caption__: 'insertAudit'
+      },
+      insertAuditViewName: {
+        __caption__: 'insertAuditViewName'
+      },
+      listFormOperationsStr: {
+        __caption__: 'listFormOperationsStr'
+      },
+      loadingOrder: {
+        __caption__: 'loadingOrder'
+      },
+      namespacePostfix: {
+        __caption__: 'namespacePostfix'
+      },
+      onlyShowSelectedValue: {
+        __caption__: 'onlyShowSelectedValue'
+      },
+      packet: {
+        __caption__: 'packet'
+      },
+      pBCustomAttributes: {
+        __caption__: 'pBCustomAttributes'
+      },
+      pBGetViewsForForm: {
+        __caption__: 'pBGetViewsForForm'
+      },
+      pBMembers: {
+        __caption__: 'pBMembers'
+      },
+      primaryKeyStorage: {
+        __caption__: 'primaryKeyStorage'
+      },
+      printContainer: {
+        __caption__: 'printContainer'
+      },
+      propertyLookupStr: {
+        __caption__: 'propertyLookupStr'
+      },
+      publishToEBSD: {
+        __caption__: 'publishToEBSD'
+      },
+      realCaption: {
+        __caption__: 'realCaption'
+      },
+      realNamespace: {
+        __caption__: 'realNamespace'
+      },
+      realPacket: {
+        __caption__: 'realPacket'
+      },
+      realPrimaryKeyStorage: {
+        __caption__: 'realPrimaryKeyStorage'
+      },
+      realStorage: {
+        __caption__: 'realStorage'
+      },
+      scriptName: {
+        __caption__: 'scriptName'
+      },
+      selectAudit: {
+        __caption__: 'selectAudit'
+      },
+      selectAuditViewName: {
+        __caption__: 'selectAuditViewName'
+      },
+      standartDesktop: {
+        __caption__: 'standartDesktop'
+      },
+      storage: {
+        __caption__: 'storage'
+      },
+      publishName: {
+        __caption__: 'publishName'
+      },
+      storeInstancesInType: {
+        __caption__: 'storeInstancesInType'
+      },
+      trim: {
+        __caption__: 'trim'
+      },
+      updateAudit: {
+        __caption__: 'updateAudit'
+      },
+      updateAuditViewName: {
+        __caption__: 'updateAuditViewName'
+      },
+      useDefaultView: {
+        __caption__: 'useDefaultView'
+      },
+      writeMode: {
+        __caption__: 'writeMode'
+      },
+      writeSessions: {
+        __caption__: 'writeSessions'
+      },
+      nameStr: {
+        __caption__: 'nameStr'
+      },
+      attributesStr: {
+        __caption__: 'attributesStr'
+      },
+      methodsStr: {
+        __caption__: 'methodsStr'
+      },
+      stored: {
+        __caption__: 'stored'
+      },
+      stereotype: {
+        __caption__: 'stereotype'
+      },
+      referenceCount: {
+        __caption__: 'referenceCount'
+      },
+      name: {
+        __caption__: 'name'
+      },
+      description: {
+        __caption__: 'description'
+      },
+      stage: {
+        __caption__: 'stage',
+        name: {
+          __caption__: 'name'
+        }
+      },
+      businessServerClass: {
+        __caption__: 'businessServerClass',
+        name: {
+          __caption__: 'name'
+        }
+      },
+      views: {
+        __caption__: 'views',
+        definition: {
+          __caption__: 'definition'
+        },
+        name: {
+          __caption__: 'name'
+        },
+        description: {
+          __caption__: 'description'
+        },
+        nameStr: {
+          __caption__: 'nameStr'
+        },
+        class: {
+          __caption__: 'class',
+          name: {
+            __caption__: 'name'
+          }
         }
       }
     },
     Generator: {
       referenceCount: {
-        caption: 'referenceCount'
+        __caption__: 'referenceCount'
       },
       stored: {
-        caption: 'stored'
+        __caption__: 'stored'
       },
       attributesStr: {
-        caption: 'attributesStr'
+        __caption__: 'attributesStr'
       },
       methodsStr: {
-        caption: 'methodsStr'
+        __caption__: 'methodsStr'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       stereotype: {
-        caption: 'stereotype'
+        __caption__: 'stereotype'
       },
       pBMembers: {
-        caption: 'pBMembers'
+        __caption__: 'pBMembers'
       },
       autoAltered: {
-        caption: 'autoAltered'
+        __caption__: 'autoAltered'
       },
       caption: {
-        caption: 'caption'
+        __caption__: 'caption'
       },
       loadingOrder: {
-        caption: 'loadingOrder'
+        __caption__: 'loadingOrder'
       },
       onlyShowSelectedValue: {
-        caption: 'onlyShowSelectedValue'
+        __caption__: 'onlyShowSelectedValue'
       },
       pBCustomAttributes: {
-        caption: 'pBCustomAttributes'
+        __caption__: 'pBCustomAttributes'
       },
       primaryKeyStorage: {
-        caption: 'primaryKeyStorage'
+        __caption__: 'primaryKeyStorage'
       },
       storage: {
-        caption: 'storage'
+        __caption__: 'storage'
+      },
+      publishName: {
+        __caption__: 'publishName'
       },
       storeInstancesInType: {
-        caption: 'storeInstancesInType'
+        __caption__: 'storeInstancesInType'
       },
       trim: {
-        caption: 'trim'
+        __caption__: 'trim'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       generateDependedForm: {
-        caption: 'generateDependedForm'
+        __caption__: 'generateDependedForm'
       },
       fixDependedForm: {
-        caption: 'fixDependedForm'
+        __caption__: 'fixDependedForm'
       },
       packet: {
-        caption: 'packet'
+        __caption__: 'packet'
       },
       namespacePostfix: {
-        caption: 'namespacePostfix'
+        __caption__: 'namespacePostfix'
       },
       pBGetViewsForForm: {
-        caption: 'pBGetViewsForForm'
+        __caption__: 'pBGetViewsForForm'
       },
       businessServerEvents: {
-        caption: 'businessServerEvents'
+        __caption__: 'businessServerEvents'
       },
       businessServerClass: {
-        caption: 'businessServerClass',
+        __caption__: 'businessServerClass',
         nameStr: {
-          caption: 'nameStr'
+          __caption__: 'nameStr'
         },
         attributesStr: {
-          caption: 'attributesStr'
+          __caption__: 'attributesStr'
         },
         methodsStr: {
-          caption: 'methodsStr'
+          __caption__: 'methodsStr'
         }
       },
       disableAllRightChecks: {
-        caption: 'disableAllRightChecks'
+        __caption__: 'disableAllRightChecks'
       },
       dataObjectTypesStr: {
-        caption: 'dataObjectTypesStr'
+        __caption__: 'dataObjectTypesStr'
       },
       propertyLookupStr: {
-        caption: 'propertyLookupStr'
+        __caption__: 'propertyLookupStr'
       },
       standartDesktop: {
-        caption: 'standartDesktop'
+        __caption__: 'standartDesktop'
       },
       containersStr: {
-        caption: 'containersStr'
+        __caption__: 'containersStr'
       },
       appConfig: {
-        caption: 'appConfig'
+        __caption__: 'appConfig'
       },
       hierarchicalMaster: {
-        caption: 'hierarchicalMaster'
+        __caption__: 'hierarchicalMaster'
       },
       listFormOperationsStr: {
-        caption: 'listFormOperationsStr'
+        __caption__: 'listFormOperationsStr'
       },
       editFormOperationsStr: {
-        caption: 'editFormOperationsStr'
+        __caption__: 'editFormOperationsStr'
       },
       printContainer: {
-        caption: 'printContainer'
+        __caption__: 'printContainer'
       },
       generateComPlusServer: {
-        caption: 'generateComPlusServer'
+        __caption__: 'generateComPlusServer'
       },
       comPlusServerPropertiesStr: {
-        caption: 'comPlusServerPropertiesStr'
+        __caption__: 'comPlusServerPropertiesStr'
       },
       generateHttpRemoteServer: {
-        caption: 'generateHttpRemoteServer'
+        __caption__: 'generateHttpRemoteServer'
       },
       scriptName: {
-        caption: 'scriptName'
+        __caption__: 'scriptName'
       },
       publishToEBSD: {
-        caption: 'publishToEBSD'
+        __caption__: 'publishToEBSD'
       },
       generateCatcher: {
-        caption: 'generateCatcher'
+        __caption__: 'generateCatcher'
       },
       expandOperations: {
-        caption: 'expandOperations'
+        __caption__: 'expandOperations'
       },
       accessType: {
-        caption: 'accessType'
+        __caption__: 'accessType'
       },
       auditEnabled: {
-        caption: 'auditEnabled'
+        __caption__: 'auditEnabled'
       },
       useDefaultView: {
-        caption: 'useDefaultView'
+        __caption__: 'useDefaultView'
       },
       insertAudit: {
-        caption: 'insertAudit'
+        __caption__: 'insertAudit'
       },
       insertAuditViewName: {
-        caption: 'insertAuditViewName'
+        __caption__: 'insertAuditViewName'
       },
       deleteAudit: {
-        caption: 'deleteAudit'
+        __caption__: 'deleteAudit'
       },
       deleteAuditViewName: {
-        caption: 'deleteAuditViewName'
+        __caption__: 'deleteAuditViewName'
       },
       updateAudit: {
-        caption: 'updateAudit'
+        __caption__: 'updateAudit'
       },
       updateAuditViewName: {
-        caption: 'updateAuditViewName'
+        __caption__: 'updateAuditViewName'
       },
       selectAudit: {
-        caption: 'selectAudit'
+        __caption__: 'selectAudit'
       },
       selectAuditViewName: {
-        caption: 'selectAuditViewName'
+        __caption__: 'selectAuditViewName'
       },
       formUrl: {
-        caption: 'formUrl'
+        __caption__: 'formUrl'
       },
       writeMode: {
-        caption: 'writeMode'
+        __caption__: 'writeMode'
       },
       auditConnectionStringName: {
-        caption: 'auditConnectionStringName'
+        __caption__: 'auditConnectionStringName'
       },
       auditWinServiceUrl: {
-        caption: 'auditWinServiceUrl'
+        __caption__: 'auditWinServiceUrl'
       },
       addAuditFields: {
-        caption: 'addAuditFields'
+        __caption__: 'addAuditFields'
       },
       writeSessions: {
-        caption: 'writeSessions'
+        __caption__: 'writeSessions'
       },
       attributes: {
         __caption__: 'attributes',
         accessModifier: {
-          caption: 'accessModifier'
+          __caption__: 'accessModifier'
         },
         autoincrement: {
-          caption: 'autoincrement'
+          __caption__: 'autoincrement'
         },
         caption: {
-          caption: 'caption'
+          __caption__: 'caption'
         },
         dataServiceExpression: {
-          caption: 'dataServiceExpression'
+          __caption__: 'dataServiceExpression'
         },
         dataServiceExpressionXML: {
-          caption: 'dataServiceExpressionXML'
+          __caption__: 'dataServiceExpressionXML'
         },
         defaultValue: {
-          caption: 'defaultValue'
+          __caption__: 'defaultValue'
         },
         hint: {
-          caption: 'hint'
+          __caption__: 'hint'
         },
         notNull: {
-          caption: 'notNull'
+          __caption__: 'notNull'
         },
         order: {
-          caption: 'order'
+          __caption__: 'order'
         },
         orderNum: {
-          caption: 'orderNum'
+          __caption__: 'orderNum'
         },
         pBCustomAttributes: {
-          caption: 'pBCustomAttributes'
+          __caption__: 'pBCustomAttributes'
         },
         pBGetEnd: {
-          caption: 'pBGetEnd'
+          __caption__: 'pBGetEnd'
         },
         pBSetEnd: {
-          caption: 'pBSetEnd'
+          __caption__: 'pBSetEnd'
         },
         pBGetStart: {
-          caption: 'pBGetStart'
+          __caption__: 'pBGetStart'
         },
         pBSetStart: {
-          caption: 'pBSetStart'
+          __caption__: 'pBSetStart'
         },
         realCaption: {
-          caption: 'realCaption'
+          __caption__: 'realCaption'
         },
         realStorage: {
-          caption: 'realStorage'
+          __caption__: 'realStorage'
         },
         storage: {
-          caption: 'storage'
+          __caption__: 'storage'
+        },
+        publishName: {
+          __caption__: 'publishName'
         },
         stored: {
-          caption: 'stored'
+          __caption__: 'stored'
         },
         trim: {
-          caption: 'trim'
+          __caption__: 'trim'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         },
         nameStr: {
-          caption: 'nameStr'
+          __caption__: 'nameStr'
         }
       },
       methods: {
         __caption__: 'methods',
         accessModifier: {
-          caption: 'accessModifier'
+          __caption__: 'accessModifier'
         },
         accessType: {
-          caption: 'accessType'
+          __caption__: 'accessType'
         },
         caption: {
-          caption: 'caption'
+          __caption__: 'caption'
         },
         isEvent: {
-          caption: 'isEvent'
+          __caption__: 'isEvent'
         },
         orderNum: {
-          caption: 'orderNum'
+          __caption__: 'orderNum'
         },
         parametersStr: {
-          caption: 'parametersStr'
+          __caption__: 'parametersStr'
         },
         pBCustomAttributes: {
-          caption: 'pBCustomAttributes'
+          __caption__: 'pBCustomAttributes'
         },
         publishToUser: {
-          caption: 'publishToUser'
+          __caption__: 'publishToUser'
         },
         realCaption: {
-          caption: 'realCaption'
+          __caption__: 'realCaption'
         },
         type: {
-          caption: 'type'
+          __caption__: 'type'
         },
         typeParametersStr: {
-          caption: 'typeParametersStr'
+          __caption__: 'typeParametersStr'
         },
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         },
         nameStr: {
-          caption: 'nameStr'
+          __caption__: 'nameStr'
         },
         parameters: {
           __caption__: 'parameters',
           caption: {
-          caption: 'caption'
-        },
+            __caption__: 'caption'
+          },
           modifier: {
-          caption: 'modifier'
-        },
+            __caption__: 'modifier'
+          },
           orderNum: {
-          caption: 'orderNum'
-        },
+            __caption__: 'orderNum'
+          },
           realCaption: {
-          caption: 'realCaption'
-        },
+            __caption__: 'realCaption'
+          },
           type: {
-          caption: 'type'
-        },
+            __caption__: 'type'
+          },
           name: {
-          caption: 'name'
-        },
+            __caption__: 'name'
+          },
           description: {
-          caption: 'description'
-        },
+            __caption__: 'description'
+          },
           nameStr: {
-          caption: 'nameStr'
-        }
+            __caption__: 'nameStr'
+          }
         }
       },
       formViews: {
-        caption: 'formViews',
+        __caption__: 'formViews',
         view: {
-          caption: 'view',
+          __caption__: 'view',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           },
           class: {
-            caption: 'class',
+            __caption__: 'class',
             name: {
-              caption: 'name'
+              __caption__: 'name'
             }
           }
         },
         dataObjectTypes: {
-          caption: 'dataObjectTypes'
+          __caption__: 'dataObjectTypes'
         },
         dataObjectTypesStr: {
-          caption: 'dataObjectTypesStr'
+          __caption__: 'dataObjectTypesStr'
         },
         hierarchicalMaster: {
-          caption: 'hierarchicalMaster'
+          __caption__: 'hierarchicalMaster'
         },
         listFormOperations: {
-          caption: 'listFormOperations'
+          __caption__: 'listFormOperations'
         },
         listFormOperationsStr: {
-          caption: 'listFormOperationsStr'
+          __caption__: 'listFormOperationsStr'
         },
         orderNum: {
-          caption: 'orderNum'
+          __caption__: 'orderNum'
         },
         propertyLookup: {
-          caption: 'propertyLookup'
+          __caption__: 'propertyLookup'
         },
         propertyLookupStr: {
-          caption: 'propertyLookupStr'
+          __caption__: 'propertyLookupStr'
         },
         viewForForm: {
-          caption: 'viewForForm'
+          __caption__: 'viewForForm'
         },
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         },
         nameStr: {
-          caption: 'nameStr'
+          __caption__: 'nameStr'
         },
         controls: {
-          caption: 'controls',
+          __caption__: 'controls',
           name: {
-          caption: 'name'
-        },
+            __caption__: 'name'
+          },
           propertyPath: {
-          caption: 'propertyPath'
-        },
+            __caption__: 'propertyPath'
+          },
           settingsXml: {
-          caption: 'settingsXml'
-        },
+            __caption__: 'settingsXml'
+          },
           order: {
-          caption: 'order'
-        },
+            __caption__: 'order'
+          },
           controlType: {
-            caption: 'controlType',
+            __caption__: 'controlType',
             name: {
-              caption: 'name'
+              __caption__: 'name'
             }
           },
           propertyType: {
-            caption: 'propertyType',
+            __caption__: 'propertyType',
             name: {
-              caption: 'name'
+              __caption__: 'name'
             }
           },
           formView: {
-            caption: 'formView',
+            __caption__: 'formView',
             view: {
-              caption: 'view'
+              __caption__: 'view'
             }
           }
         }
       },
-      devViews: {
-        caption: 'devViews',
+      views: {
+        __caption__: 'views',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         description: {
-          caption: 'description'
+          __caption__: 'description'
         },
         definition: {
-          caption: 'definition'
+          __caption__: 'definition'
         },
         class: {
-          caption: 'class'
+          __caption__: 'class'
+        }
+      },
+      classStorageTypes: {
+        __caption__: 'Storage types',
+        connectionName: {
+          __caption__: 'Connection name'
+        },
+        connectionString: {
+          __caption__: 'Connection string'
+        },
+        storageType: {
+          __caption__: 'Storage type'
         }
       }
     },
     GetClassByGuid: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       stereotype: {
-        caption: 'stereotype'
+        __caption__: 'stereotype'
       },
       caption: {
-        caption: 'caption'
+        __caption__: 'caption'
       },
       attributesStr: {
-        caption: 'attributesStr'
+        __caption__: 'attributesStr'
       },
       stage: {
-        caption: 'stage'
+        __caption__: 'stage'
       }
     },
     LightStage: {
       generateCatcher: {
-        caption: 'generateCatcher'
+        __caption__: 'generateCatcher'
       },
       generateComPlusServer: {
-        caption: 'generateComPlusServer'
+        __caption__: 'generateComPlusServer'
       },
       generateHttpRemoteServer: {
-        caption: 'generateHttpRemoteServer'
+        __caption__: 'generateHttpRemoteServer'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       packet: {
-        caption: 'packet'
+        __caption__: 'packet'
       },
       stereotype: {
-        caption: 'stereotype'
+        __caption__: 'stereotype'
       }
     },
     ListDataObjectTypes: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       stereotype: {
-        caption: 'stereotype'
+        __caption__: 'stereotype'
       },
       formViews: {
-        caption: 'formViews',
+        __caption__: 'formViews',
         view: {
-          caption: 'view',
+          __caption__: 'view',
           name: {
-            caption: 'name'
+            __caption__: 'name'
           },
           class: {
-            caption: 'class',
+            __caption__: 'class',
             name: {
-              caption: 'name'
+              __caption__: 'name'
             }
           }
         }
@@ -2056,210 +2457,216 @@ export default {
     },
     ListFormView: {
       referenceCount: {
-        caption: 'referenceCount'
+        __caption__: 'referenceCount'
       },
       stereotype: {
-        caption: 'stereotype'
+        __caption__: 'stereotype'
       },
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       packet: {
-        caption: 'packet'
+        __caption__: 'packet'
       },
       namespacePostfix: {
-        caption: 'namespacePostfix'
+        __caption__: 'namespacePostfix'
+      },
+      stage: {
+        __caption__: 'stage'
       }
     },
     LoadNameView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       stereotype: {
-        caption: 'stereotype'
+        __caption__: 'stereotype'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
       caption: {
-        caption: 'caption'
+        __caption__: 'caption'
       }
     },
     Prototyping: {
       stereotype: {
-        caption: 'stereotype'
+        __caption__: 'stereotype'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
-      devViews: {
-        caption: 'devViews',
+      views: {
+        __caption__: 'views',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         },
         definition: {
-          caption: 'definition'
+          __caption__: 'definition'
         }
       }
     },
     SearchAppClassAndEditContainers: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       stereotype: {
-        caption: 'stereotype'
+        __caption__: 'stereotype'
       },
       caption: {
-        caption: 'caption'
+        __caption__: 'caption'
       },
       containersStr: {
-        caption: 'containersStr'
+        __caption__: 'containersStr'
       },
       stage: {
-        caption: 'stage'
+        __caption__: 'stage'
       }
     },
     SearchClass: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       stereotype: {
-        caption: 'stereotype'
+        __caption__: 'stereotype'
       },
       caption: {
-        caption: 'caption'
+        __caption__: 'caption'
       },
       stage: {
-        caption: 'stage'
+        __caption__: 'stage'
       }
     },
     SearchClassLoadView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       stereotype: {
-        caption: 'stereotype'
+        __caption__: 'stereotype'
       },
       caption: {
-        caption: 'caption'
+        __caption__: 'caption'
       },
       stage: {
-        caption: 'stage'
+        __caption__: 'stage'
       },
       formViews: {
-        caption: 'formViews',
+        __caption__: 'formViews',
         dataObjectTypesStr: {
-          caption: 'dataObjectTypesStr'
+          __caption__: 'dataObjectTypesStr'
         },
         view: {
-          caption: 'view',
+          __caption__: 'view',
           class: {
-            caption: 'class',
+            __caption__: 'class',
             name: {
-              caption: 'name'
+              __caption__: 'name'
             }
           },
           definition: {
-            caption: 'definition'
+            __caption__: 'definition'
           }
         },
         class: {
-          caption: 'class'
+          __caption__: 'class'
         }
       }
     },
     SearchFormClassView: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       stereotype: {
-        caption: 'stereotype'
+        __caption__: 'stereotype'
       },
       containersStr: {
-        caption: 'containersStr'
+        __caption__: 'containersStr'
       },
       stage: {
-        caption: 'stage'
+        __caption__: 'stage'
       }
     },
     SearchListFormAndEditLink: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       stereotype: {
-        caption: 'stereotype'
+        __caption__: 'stereotype'
       },
       caption: {
-        caption: 'caption'
+        __caption__: 'caption'
       },
       dataObjectTypesStr: {
-        caption: 'dataObjectTypesStr'
+        __caption__: 'dataObjectTypesStr'
       },
       stage: {
-        caption: 'stage'
+        __caption__: 'stage'
       },
       formViews: {
-        caption: 'formViews',
+        __caption__: 'formViews',
         dataObjectTypesStr: {
-          caption: 'dataObjectTypesStr'
+          __caption__: 'dataObjectTypesStr'
         },
         view: {
-          caption: 'view',
+          __caption__: 'view',
           class: {
-            caption: 'class',
+            __caption__: 'class',
             name: {
-              caption: 'name'
+              __caption__: 'name'
             }
           },
           definition: {
-            caption: 'definition'
+            __caption__: 'definition'
           }
         },
         class: {
-          caption: 'class'
+          __caption__: 'class'
         }
       }
     },
     ViewPeeker: {
       name: {
-        caption: 'name'
+        __caption__: 'name'
       },
       nameStr: {
-        caption: 'nameStr'
+        __caption__: 'nameStr'
       },
       stereotype: {
-        caption: 'stereotype'
+        __caption__: 'stereotype'
       },
       description: {
-        caption: 'description'
+        __caption__: 'description'
       },
-      devViews: {
-        caption: 'devViews',
+      views: {
+        __caption__: 'views',
         name: {
-          caption: 'name'
+          __caption__: 'name'
         }
       }
     }
+  },
+  validations: {
+    caption: 'Caption is required'
   }
 };

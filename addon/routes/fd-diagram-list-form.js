@@ -1,3 +1,5 @@
+import Ember from 'ember';
+import { Query } from 'ember-flexberry-data';
 import ListFormRoute from 'ember-flexberry/routes/list-form';
 
 export default ListFormRoute.extend({
@@ -43,4 +45,23 @@ export default ListFormRoute.extend({
     @default {}
   */
   developerUserSettings: { FdDiagramListForm: {} },
+
+  /**
+    Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
+
+    @property currentContext
+    @type FdCurrentProjectContextService
+  */
+  currentContext: Ember.inject.service('fd-current-project-context'),
+
+  /**
+    Return `SimplePredicate` for limit list objects by stage.
+
+    @method objectListViewLimitPredicate
+    @return {Query.SimplePredicate}
+  */
+  objectListViewLimitPredicate() {
+    let stage = this.get('currentContext').getCurrentStage();
+    return new Query.SimplePredicate('subsystem.stage', 'eq', stage);
+  },
 });

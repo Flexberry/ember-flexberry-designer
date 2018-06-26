@@ -1,6 +1,7 @@
 ﻿{
   "newForm": "fd-association-edit-form",
   "editForm": "fd-association-edit-form",
+  "external": false,
   "caption": "Associations",
   "name": "FdAssociationListForm",
   "className": "AssociationListForm",

@@ -91,6 +91,99 @@
       "hasMany": []
     },
     {
+      "name": "FdPreloadMetadata",
+      "modelName": "fd-dev-inheritance",
+      "attrs": [
+        {
+          "name": "referenceCount",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "description",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "nameStr",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Inheritances",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "",
+              "hidden": false,
+              "index": 5
+            }
+          ],
+          "index": 4,
+          "caption": "",
+          "name": "stage",
+          "relatedTo": "fd-stage",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Child",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "",
+              "hidden": false,
+              "index": 7
+            }
+          ],
+          "index": 6,
+          "caption": "",
+          "name": "child",
+          "relatedTo": "fd-class",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Parent",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "",
+              "hidden": false,
+              "index": 9
+            }
+          ],
+          "index": 8,
+          "caption": "",
+          "name": "parent",
+          "relatedTo": "fd-class",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
       "name": "Generator",
       "modelName": "fd-dev-inheritance",
       "attrs": [
@@ -329,5 +422,6 @@
     }
   ],
   "stored": true,
-  "offline": true
+  "offline": true,
+  "external": false
 }

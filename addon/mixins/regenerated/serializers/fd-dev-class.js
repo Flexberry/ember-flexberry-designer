@@ -5,7 +5,8 @@ export let Serializer = Ember.Mixin.create({
     let parentAttrs = this._super();
     let attrs = {
       businessServerClass: { serialize: 'odata-id', deserialize: 'records' },
-      devViews: { serialize: false, deserialize: 'records' },
+      classStorageTypes: { serialize: false, deserialize: 'records' },
+      views: { serialize: false, deserialize: 'records' },
       methods: { serialize: false, deserialize: 'records' },
       formViews: { serialize: false, deserialize: 'records' },
       attributes: { serialize: false, deserialize: 'records' }

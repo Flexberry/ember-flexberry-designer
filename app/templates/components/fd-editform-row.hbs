@@ -1,0 +1,11 @@
+<div class="ui inverted simple dimmer"></div>
+<div class="drag-anchor" {{action set "draggable" true on="mouseEnter"}} {{action set "draggable" false on="mouseLeave"}}></div>
+{{#each row.controls as |control|}}
+  {{fd-editform-control
+    control=control
+    selectControlAction=selectControlAction
+    setDragItemAction=setDragItemAction
+    getDragItemAction=getDragItemAction
+    moveDragItemAction=moveDragItemAction
+  }}
+{{/each}}

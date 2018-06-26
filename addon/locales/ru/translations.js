@@ -1,27 +1,35 @@
 import Ember from 'ember';
 import EmberFlexberryTranslations from 'ember-flexberry/locales/ru/translations';
-
+import FdAppstructListFormForm from './forms/fd-appstruct-form';
 import FdAssociationListFormForm from './forms/fd-association-list-form';
 import FdClassListFormForm from './forms/fd-class-list-form';
+import FdConfigurationListFormForm from './forms/fd-configuration-list-form';
 import FdDiagramListFormForm from './forms/fd-diagram-list-form';
+import FdEditformConstructor from './forms/fd-editform-constructor';
 import FdInheritanceListFormForm from './forms/fd-inheritance-list-form';
 import FdStageListFormForm from './forms/fd-stage-list-form';
 import FdSystemListFormForm from './forms/fd-system-list-form';
 import FdViewListFormForm from './forms/fd-view-list-form';
 import FdAssociationEditFormForm from './forms/fd-association-edit-form';
 import FdClassEditFormForm from './forms/fd-class-edit-form';
+import FdConfigurationEditFormForm from './forms/fd-configuration-edit-form';
 import FdDiagramEditFormForm from './forms/fd-diagram-edit-form';
+import FdEnumEditFormForm from './forms/fd-enum-edit-form';
 import FdInheritanceEditFormForm from './forms/fd-inheritance-edit-form';
 import FdStageEditFormForm from './forms/fd-stage-edit-form';
 import FdSystemEditFormForm from './forms/fd-system-edit-form';
 import FdViewEditFormForm from './forms/fd-view-edit-form';
+import FdVisualEditFormForm from './forms/fd-visual-edit-form';
+import FdVisualListform from './forms/fd-visual-listform';
 import FdGenerationProcessForm from './forms/fd-generation-process-form';
+import FdGenerationListForm from './forms/fd-generation-list-form';
 import FdAdModel from './models/fd-ad';
 import FdAggregationModel from './models/fd-aggregation';
 import FdAssociationModel from './models/fd-association';
 import FdBaseAssociationModel from './models/fd-base-association';
 import FdCadModel from './models/fd-cad';
 import FdCasePropertyModel from './models/fd-case-property';
+import FdClassStorageTypeModel from './models/fd-class-storage-type';
 import FdClassModel from './models/fd-class';
 import FdCodModel from './models/fd-cod';
 import FdConfigurationModel from './models/fd-configuration';
@@ -61,6 +69,8 @@ import FdDpdModel from './models/fd-dpd';
 import FdFilelinkModel from './models/fd-filelink';
 import FdFormControlModel from './models/fd-form-control';
 import FdFormViewModel from './models/fd-form-view';
+import FdGenerationModel from './models/fd-generation';
+import FdGenerationStepLogModel from './models/fd-generation-step-log';
 import FdInheritanceModel from './models/fd-inheritance';
 import FdObjectInSystemModel from './models/fd-object-in-system';
 import FdPluginOnRepObjectModel from './models/fd-plugin-on-rep-object';
@@ -75,9 +85,12 @@ import FdRepositoryModel from './models/fd-repository';
 import FdSdModel from './models/fd-sd';
 import FdStageModel from './models/fd-stage';
 import FdStdModel from './models/fd-std';
+import FdStorageTypeModel from './models/fd-storage-type';
 import FdSubsystemModel from './models/fd-subsystem';
 import FdUcdModel from './models/fd-ucd';
 import FdViewModel from './models/fd-view';
+import FdVisualControlModel from './models/fd-visual-control';
+import FdVisualControlComponent from './components/fd-visual-control';
 
 const translations = {};
 Ember.$.extend(true, translations, EmberFlexberryTranslations);
@@ -90,6 +103,7 @@ Ember.$.extend(true, translations, {
     'fd-base-association': FdBaseAssociationModel,
     'fd-cad': FdCadModel,
     'fd-case-property': FdCasePropertyModel,
+    'fd-class-storage-type': FdClassStorageTypeModel,
     'fd-class': FdClassModel,
     'fd-cod': FdCodModel,
     'fd-configuration': FdConfigurationModel,
@@ -129,6 +143,8 @@ Ember.$.extend(true, translations, {
     'fd-filelink': FdFilelinkModel,
     'fd-form-control': FdFormControlModel,
     'fd-form-view': FdFormViewModel,
+    'fd-generation': FdGenerationModel,
+    'fd-generation-step-log': FdGenerationStepLogModel,
     'fd-inheritance': FdInheritanceModel,
     'fd-object-in-system': FdObjectInSystemModel,
     'fd-plugin-on-rep-object': FdPluginOnRepObjectModel,
@@ -143,28 +159,43 @@ Ember.$.extend(true, translations, {
     'fd-sd': FdSdModel,
     'fd-stage': FdStageModel,
     'fd-std': FdStdModel,
+    'fd-storage-type': FdStorageTypeModel,
     'fd-subsystem': FdSubsystemModel,
     'fd-ucd': FdUcdModel,
     'fd-view': FdViewModel,
+    'fd-visual-control': FdVisualControlModel,
   },
 
   forms: {
+    'fd-appstruct-form': FdAppstructListFormForm,
     'fd-association-list-form': FdAssociationListFormForm,
     'fd-class-list-form': FdClassListFormForm,
+    'fd-configuration-list-form': FdConfigurationListFormForm,
     'fd-diagram-list-form': FdDiagramListFormForm,
+    'fd-editform-constructor': FdEditformConstructor,
     'fd-inheritance-list-form': FdInheritanceListFormForm,
     'fd-stage-list-form': FdStageListFormForm,
     'fd-system-list-form': FdSystemListFormForm,
     'fd-view-list-form': FdViewListFormForm,
     'fd-association-edit-form': FdAssociationEditFormForm,
     'fd-class-edit-form': FdClassEditFormForm,
+    'fd-configuration-edit-form': FdConfigurationEditFormForm,
     'fd-diagram-edit-form': FdDiagramEditFormForm,
+    'fd-enum-edit-form': FdEnumEditFormForm,
     'fd-inheritance-edit-form': FdInheritanceEditFormForm,
     'fd-stage-edit-form': FdStageEditFormForm,
     'fd-system-edit-form': FdSystemEditFormForm,
     'fd-view-edit-form': FdViewEditFormForm,
-    'fd-generation-process-form': FdGenerationProcessForm
+    'fd-visual-edit-form': FdVisualEditFormForm,
+    'fd-visual-listform': FdVisualListform,
+    'fd-generation-process-form': FdGenerationProcessForm,
+    'fd-generation-list-form': FdGenerationListForm
   },
+
+  components: {
+    'fd-visual-control': FdVisualControlComponent
+  }
+
 });
 
 export default translations;
