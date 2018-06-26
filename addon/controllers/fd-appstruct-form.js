@@ -451,7 +451,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     },
 
     /**
-      Handles edit node left jsTree.
+      Handles edit node right jsTree.
 
       @method actions.editRightNode
     */
