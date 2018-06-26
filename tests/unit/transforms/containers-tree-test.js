@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import { moduleFor, test } from 'ember-qunit';
-import FdViewAttributesTree from 'ember-flexberry-designer/objects/fd-view-attributes-tree';
+import FdAppStructTree from 'ember-flexberry-designer/objects/fd-appstruct-tree';
 
 moduleFor('transform:containers-tree', 'Unit | Transform | containers tree');
 
@@ -8,7 +8,7 @@ moduleFor('transform:containers-tree', 'Unit | Transform | containers tree');
 test('it exists', function(assert) {
 
   let noteNoteObjectModel1 = Ember.A([
-    FdViewAttributesTree.create({
+    FdAppStructTree.create({
       className: 'ПисьмоWebL',
       description: null,
       caption: 'Настройка рассылки писем',
@@ -20,7 +20,7 @@ test('it exists', function(assert) {
   ]);
 
   let noteNoteObjectModel2 = Ember.A([
-    FdViewAttributesTree.create({
+    FdAppStructTree.create({
       className: 'ЖурналИмпортаWebL',
       description: null,
       caption: 'Журнал импорта',
@@ -32,21 +32,21 @@ test('it exists', function(assert) {
   ]);
 
   let noteObjectModel1 = Ember.A([
-    FdViewAttributesTree.create({
+    FdAppStructTree.create({
       text: 'Настройки',
       type: 'folder',
       children: Ember.A(),
       copyChildren: Ember.A(),
       id: 'p1l0i1',
     }),
-    FdViewAttributesTree.create({
+    FdAppStructTree.create({
       text: 'Рассылка по e-mail',
       type: 'folder',
       children: noteNoteObjectModel1,
       copyChildren: noteNoteObjectModel1,
       id: 'p1l1i2',
     }),
-    FdViewAttributesTree.create({
+    FdAppStructTree.create({
       text: 'Импорт данных',
       type: 'folder',
       children: noteNoteObjectModel2,
@@ -56,7 +56,7 @@ test('it exists', function(assert) {
   ]);
 
   let noteObjectModel2 = Ember.A([
-    FdViewAttributesTree.create({
+    FdAppStructTree.create({
       className: 'УчетРабочегоВремениWebL',
       description: 'test',
       caption: 'Учет рабочего времени',
@@ -65,7 +65,7 @@ test('it exists', function(assert) {
       id: 'p1l0i4',
       url: ''
     }),
-    FdViewAttributesTree.create({
+    FdAppStructTree.create({
       className: 'ПроизводственныйКалендарьWebL',
       description: null,
       caption: 'Производственный календарь',
@@ -74,7 +74,7 @@ test('it exists', function(assert) {
       id: 'p1l1i5',
       url: ''
     }),
-    FdViewAttributesTree.create({
+    FdAppStructTree.create({
       className: null,
       description: null,
       caption: 'Test',
@@ -86,14 +86,14 @@ test('it exists', function(assert) {
   ]);
 
   let objectModel = Ember.A([
-    FdViewAttributesTree.create({
+    FdAppStructTree.create({
       text: 'Администрирование',
       type: 'folder',
       children: noteObjectModel1,
       copyChildren: noteObjectModel1,
       id: 'p0l0i0',
     }),
-    FdViewAttributesTree.create({
+    FdAppStructTree.create({
       text: 'Поручения',
       type: 'folder',
       children: noteObjectModel2,
