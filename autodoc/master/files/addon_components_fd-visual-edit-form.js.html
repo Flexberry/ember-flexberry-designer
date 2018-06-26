@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>addon/components/fd-visual-edit-form.js - Flexberry Documentation</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="Flexberry Documentation" src="../assets/css/logo.png" style="max-height: 65%;" title="Flexberry Documentation">
+            Flexberry Documentation
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>master</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <h3>APIs</h3>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Type to filter APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/components.UiTabMenu.html">components.UiTabMenu</a></li>
+	                            <li><a href="../classes/components.UiTabSegment.html">components.UiTabSegment</a></li>
+	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
+	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
+	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
+	                            <li><a href="../classes/FdEditformControlComponent.html">FdEditformControlComponent</a></li>
+	                            <li><a href="../classes/FdEditformGroup.html">FdEditformGroup</a></li>
+	                            <li><a href="../classes/FdEditformRow.html">FdEditformRow</a></li>
+	                            <li><a href="../classes/FdEditformRowComponent.html">FdEditformRowComponent</a></li>
+	                            <li><a href="../classes/FdEditformTab.html">FdEditformTab</a></li>
+	                            <li><a href="../classes/FdEditformTabgroup.html">FdEditformTabgroup</a></li>
+	                            <li><a href="../classes/FdLimitByStageMixin.html">FdLimitByStageMixin</a></li>
+	                            <li><a href="../classes/FdViewAttributesDetail.html">FdViewAttributesDetail</a></li>
+	                            <li><a href="../classes/FdViewAttributesMaster.html">FdViewAttributesMaster</a></li>
+	                            <li><a href="../classes/FdViewAttributesProperty.html">FdViewAttributesProperty</a></li>
+	                            <li><a href="../classes/FdViewAttributesTree.html">FdViewAttributesTree</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">NewPlatformFlexberryFlexberryDesignerVisualEditControl</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">NewPlatformFlexberryFlexberryDesignerVisualEditForm</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/components.html">components</a></li>
+	                            <li><a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Show:
+                    <label for="api-show-inherited" class="checkbox">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>addon/components/fd-visual-edit-form.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+import Ember from &#x27;ember&#x27;;
+
+export default Ember.Component.extend({
+
+  /**
+    @property store
+    @type Service
+  */
+  store: Ember.inject.service(),
+
+  /**
+  Flag: indicates whether to show creation button at toolbar.
+
+  @property createNewButton
+  @type Boolean
+  @default true
+  */
+  createNewButton: true,
+
+  /**
+    Model view.
+
+    @property model
+    @type Object
+    @default undefined
+  */
+  model: undefined,
+
+  /**
+    Flag: indicates whether to show delete button at toolbar.
+
+    @property deleteButton
+    @type Boolean
+    @default true
+  */
+  deleteButton: true,
+
+  /**
+    Control view.
+
+    @property control
+    @type Object
+    @default undefined
+  */
+  control: undefined,
+
+  /**
+    Current selected control.
+
+    @property selectedControl
+    @type Object
+    @default undefined
+  */
+
+  selectedControl: undefined,
+
+  /**
+    Current selected control.
+
+    @property selectedControl
+    @type Object
+    @default null
+  */
+
+  selectedField: undefined,
+
+  /**
+    Controls array from model.
+
+    @property controls
+    @type DS.ManyArray
+    @default undefined
+  */
+  controls: undefined,
+
+  actions: {
+
+    /**
+      Handles form &#x27;addControl&#x27; button click.
+
+      @method addControl
+      @public
+    */
+    addControl() {
+      let store = this.get(&#x27;store&#x27;);
+      let fdControlModel = store.createRecord(&#x27;fd-visual-edit-control&#x27;,
+      {
+        isSelected: true,
+        name: &#x27;New control&#x27;,
+        notNullable: true,
+      });
+
+      this._clearSelection();
+      this.get(&#x27;model.controls&#x27;).pushObject(fdControlModel);
+      this.set(&#x27;selectedControl&#x27;, fdControlModel);
+    },
+
+    /**
+      Handles form &#x27;deleteControl&#x27; button click.
+
+      @method deleteControl
+      @public
+    */
+    deleteControl() {
+      let controls = this.get(&#x27;controls&#x27;);
+      let selectedControl = this.get(&#x27;selectedControl&#x27;);
+      if (selectedControl &amp;&amp; selectedControl !== controls.get(&#x27;firstObject&#x27;) &amp;&amp; controls.toArray().length !== 1) {
+        selectedControl.destroyRecord().then(() =&gt; {
+          selectedControl.unloadRecord();
+        });
+        this._clearSelection();
+        let lastControl = controls.get(&#x27;firstObject&#x27;);
+        lastControl.set(&#x27;isSelected&#x27;, true);
+        this.set(&#x27;selectedControl&#x27;, lastControl);
+      }
+    },
+
+    /**
+      Handles control-field &#x27;controlClick&#x27; action.
+
+      @method controlClick
+      @public
+    */
+    controlClick(control) {
+      this.set(&#x27;selectedControl&#x27;, control);
+      this._clearSelection();
+      control.set(&#x27;isSelected&#x27;, true);
+    },
+
+  },
+
+  /**
+    Reset selection of controls in model.
+
+    @method _clearSelection
+    @private
+  */
+  _clearSelection() {
+    let controls = this.get(&#x27;model.controls&#x27;);
+    controls.forEach(function(item) {
+      item.set(&#x27;isSelected&#x27;, false);
+    });
+  },
+
+  /**
+      Initializes component.
+  */
+  init() {
+    this._super(...arguments);
+
+    let controls = this.get(&#x27;controls&#x27;);
+    this.set(&#x27;selectedControl&#x27;, controls ? controls.get(&#x27;firstObject&#x27;) : undefined);
+  },
+
+  /**
+    Initializes DOM-related component&#x27;s properties.
+  */
+  didInsertElement() {
+    this._super(...arguments);
+  },
+});
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

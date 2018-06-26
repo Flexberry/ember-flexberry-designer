@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>addon/routes/fd-editform-constructor.js - Flexberry Documentation</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="Flexberry Documentation" src="../assets/css/logo.png" style="max-height: 65%;" title="Flexberry Documentation">
+            Flexberry Documentation
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>master</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <h3>APIs</h3>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Type to filter APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/components.UiTabMenu.html">components.UiTabMenu</a></li>
+	                            <li><a href="../classes/components.UiTabSegment.html">components.UiTabSegment</a></li>
+	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
+	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
+	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
+	                            <li><a href="../classes/FdEditformControlComponent.html">FdEditformControlComponent</a></li>
+	                            <li><a href="../classes/FdEditformGroup.html">FdEditformGroup</a></li>
+	                            <li><a href="../classes/FdEditformRow.html">FdEditformRow</a></li>
+	                            <li><a href="../classes/FdEditformRowComponent.html">FdEditformRowComponent</a></li>
+	                            <li><a href="../classes/FdEditformTab.html">FdEditformTab</a></li>
+	                            <li><a href="../classes/FdEditformTabgroup.html">FdEditformTabgroup</a></li>
+	                            <li><a href="../classes/FdLimitByStageMixin.html">FdLimitByStageMixin</a></li>
+	                            <li><a href="../classes/FdViewAttributesDetail.html">FdViewAttributesDetail</a></li>
+	                            <li><a href="../classes/FdViewAttributesMaster.html">FdViewAttributesMaster</a></li>
+	                            <li><a href="../classes/FdViewAttributesProperty.html">FdViewAttributesProperty</a></li>
+	                            <li><a href="../classes/FdViewAttributesTree.html">FdViewAttributesTree</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">NewPlatformFlexberryFlexberryDesignerVisualEditControl</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">NewPlatformFlexberryFlexberryDesignerVisualEditForm</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/components.html">components</a></li>
+	                            <li><a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Show:
+                    <label for="api-show-inherited" class="checkbox">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>addon/routes/fd-editform-constructor.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+import Ember from &#x27;ember&#x27;;
+import FdEditformControl from &#x27;../objects/fd-editform-control&#x27;;
+import FdEditformGroup from &#x27;../objects/fd-editform-group&#x27;;
+import FdEditformRow from &#x27;../objects/fd-editform-row&#x27;;
+import FdEditformTab from &#x27;../objects/fd-editform-tab&#x27;;
+import FdEditformTabgroup from &#x27;../objects/fd-editform-tabgroup&#x27;;
+import { Query } from &#x27;ember-flexberry-data&#x27;;
+const { Builder, FilterOperator } = Query;
+
+export default Ember.Route.extend({
+
+  currentProjectContext: Ember.inject.service(&#x27;fd-current-project-context&#x27;),
+
+  model: function(params) {
+    let stageId = this.get(&#x27;currentProjectContext&#x27;).getCurrentStage();
+    let _this = this;
+    let modelHash = {
+      editform: undefined,
+      dataobject: undefined,
+      typemap: undefined,
+      enums: undefined,
+      types: undefined
+    };
+
+    return new Ember.RSVP.Promise(function (resolve, reject) {
+      // TODO: Replace promises to use fd-preload-stage-metadata and store.peekRecord().
+      // Load «editform».
+      let loadClassesPromise = new Ember.RSVP.Promise(function (resolveLoadClasses, rejectLoadClasses) {
+        let predicateEditformId = new Query.SimplePredicate(&#x27;id&#x27;, FilterOperator.Eq, params.id);
+
+        let builderEditform = new  Builder(_this.store, &#x27;fd-dev-class&#x27;).
+        select(&#x27;id,name,caption,description,formViews,formViews.view,formViews.view.class,formViews.view.class.id,formViews.view.definition&#x27;).
+        where(predicateEditformId);
+
+        _this.store.query(&#x27;fd-dev-class&#x27;, builderEditform.build()).then((result) =&gt; {
+          let editform = result.objectAt(0);
+          if (!editform.get(&#x27;caption&#x27;)) {
+            editform.set(&#x27;caption&#x27;, editform.get(&#x27;name&#x27;));
+          }
+
+          modelHash.editform = editform;
+          return editform;
+        }, rejectLoadClasses).then((editform) =&gt; {
+          // Load dataobject «implementation».
+          let dataobjectId = editform.get(&#x27;formViews&#x27;).objectAt(0).get(&#x27;view.class.id&#x27;); // TODO: Check array.
+          let predicateDataobjectId = new Query.SimplePredicate(&#x27;id&#x27;, FilterOperator.Eq, dataobjectId);
+
+          let builderDataobject = new  Builder(_this.store, &#x27;fd-dev-class&#x27;).
+          select(&#x27;id,name,caption,description&#x27;).
+          where(predicateDataobjectId);
+
+          _this.store.query(&#x27;fd-dev-class&#x27;, builderDataobject.build()).then((resultDataobject) =&gt; {
+            modelHash.dataobject = resultDataobject.objectAt(0);
+            resolveLoadClasses(modelHash);
+          }, rejectLoadClasses);
+        }, reject);
+      });
+
+      // Stage with type map.
+      let predicateId = new Query.SimplePredicate(&#x27;id&#x27;, FilterOperator.Eq, stageId);
+
+      let builderStage = new  Builder(_this.store, &#x27;fd-dev-stage&#x27;).
+      select(&#x27;id,typeMapCSStr&#x27;).
+      where(predicateId);
+
+      let loadTypemapPromise = _this.store.query(&#x27;fd-dev-stage&#x27;, builderStage.build()).then((result) =&gt; {
+        let stage = result.objectAt(0);
+        modelHash.typemap = stage.get(&#x27;typeMapCSStr&#x27;);
+        return modelHash;
+      }, reject);
+
+      let predicateStageId = new Query.SimplePredicate(&#x27;stage.id&#x27;, FilterOperator.Eq, stageId);
+
+      // Enums
+      let predicateEnumerationStereorype = new Query.SimplePredicate(&#x27;stereotype&#x27;, FilterOperator.Eq, &#x27;«enumeration»&#x27;);
+      let predicateEnumeration = new Query.ComplexPredicate(Query.Condition.And, predicateStageId, predicateEnumerationStereorype);
+
+      let builderEnumeration = new  Builder(_this.store, &#x27;fd-dev-class&#x27;).
+      select(&#x27;id,name,caption,description,stereotype,stage.id&#x27;).
+      where(predicateEnumeration);
+
+      let promiseEnumeration = _this.store.query(&#x27;fd-dev-class&#x27;, builderEnumeration.build()).then((result) =&gt; {
+        modelHash.enums = result;
+        return modelHash;
+      }, reject);
+
+      // Type
+      let predicateTypeStereorype = new Query.SimplePredicate(&#x27;stereotype&#x27;, FilterOperator.Eq, &#x27;«type»&#x27;);
+      let predicateType = new Query.ComplexPredicate(Query.Condition.And, predicateStageId, predicateTypeStereorype);
+
+      let builderType = new  Builder(_this.store, &#x27;fd-dev-class&#x27;).
+      select(&#x27;id,name,caption,description,stereotype,stage.id&#x27;).
+      where(predicateType);
+
+      let promiseType = _this.store.query(&#x27;fd-dev-class&#x27;, builderType.build()).then((result) =&gt; {
+        modelHash.types = result;
+        return modelHash;
+      }, reject);
+
+      Ember.RSVP.all([loadClassesPromise, loadTypemapPromise, promiseEnumeration, promiseType]).then(() =&gt; {
+        let controlTree = Ember.A();
+
+        let definition = modelHash.editform.get(&#x27;formViews.firstObject.view.definition&#x27;);
+        for (let i = 0; i &lt; definition.length; i++) {
+          let propertyDefinition = definition[i];
+          if (!propertyDefinition.visible) {
+            continue;
+          }
+
+          _this._locateControl(controlTree, propertyDefinition, propertyDefinition.path);
+        }
+
+        modelHash.controls = controlTree;
+        resolve(modelHash);
+      });
+    });
+  },
+
+  /**
+      Locate control by path.
+
+      @method _locateControl
+      @param {Object} controlTree Controls tree.
+      @param {FdDefinition} propertyDefinition Property definition from view.
+      @param {String} path Property path from view.
+      @return {Object} Modified controlTree with placed control.
+  */
+  _locateControl: function (controlTree, propertyDefinition, path) {
+    if (!path || path === &#x27;&#x27;) {
+      let row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
+
+      if (controlTree.get(&#x27;rows&#x27;)) {
+        controlTree.get(&#x27;rows&#x27;).pushObject(row);
+      } else {
+        controlTree.pushObject(row);
+      }
+
+      this._locateControlInRow(row, propertyDefinition);
+
+      return controlTree;
+    }
+
+    if (path.charAt(0) === &#x27;|&#x27;) {
+      return this._locateTabs(controlTree, propertyDefinition, path);
+    }
+
+    if (path.charAt(0) === &#x27;-&#x27;) {
+      return this._locateGroup(controlTree, propertyDefinition, path);
+    }
+
+    if (path.charAt(0) === &#x27;#&#x27;) {
+      return this._locateColumn(controlTree, propertyDefinition, path);
+    }
+
+    // TODO: Show error and fix it.
+  },
+
+  /**
+      Locate control in row by path.
+
+      @method _locateControlInRow
+      @param {FdEditformRow} row Row for control placement.
+      @param {FdDefinition} propertyDefinition Property definition from view.
+      @return {Object} Modified controlTree with placed control.
+  */
+  _locateControlInRow: function (row, propertyDefinition) {
+    // TODO: вычислить type контрола из метаданных атрибута или FormControl и width из path.
+    let control = FdEditformControl.create({ caption: propertyDefinition.caption || propertyDefinition.name, type: &#x27;string&#x27;, width: &#x27;100*&#x27; });
+
+    row.get(&#x27;controls&#x27;).pushObject(control);
+    row.set(&#x27;columnsCount&#x27;, row.get(&#x27;columnsCount&#x27;) + 1);
+
+    return row;
+  },
+
+  /**
+      Locate tabs for control.
+
+      @method _locateTabs
+      @param {Object} controlTree Controls tree.
+      @param {FdDefinition} propertyDefinition Property definition from view.
+      @param {String} path Property path from view.
+      @return {Object} Modified controlTree with placed tabs.
+  */
+  _locateTabs: function(controlTree, propertyDefinition, path) {
+    let pathLength = path.length;
+    let splitterIndex = path.indexOf(&#x27;\\&#x27;);
+    let tabCaptionEndIndex = splitterIndex &gt; -1 ? splitterIndex : pathLength;
+
+    let tabCaption = path.slice(1, tabCaptionEndIndex);
+
+    let row;
+    let tabGroup;
+    let tab;
+    let rowsCollection;
+
+    if (controlTree.get(&#x27;rows&#x27;)) {
+      rowsCollection = controlTree.get(&#x27;rows&#x27;);
+    } else {
+      rowsCollection = controlTree;
+    }
+
+    for (let i = 0; i &lt; rowsCollection.get(&#x27;length&#x27;); i++) {
+      let rowInCollection = rowsCollection[i];
+      if (rowInCollection instanceof FdEditformRow) {
+        for (let j = 0; j &lt; rowInCollection.get(&#x27;controls.length&#x27;); j++) {
+          let controlInRow = rowInCollection.controls[j];
+          if (controlInRow instanceof FdEditformTabgroup) {
+            row = rowInCollection;
+            tabGroup = controlInRow;
+            for (let k = 0; k &lt; controlInRow.get(&#x27;tabs.length&#x27;); k++) {
+              let tabInTabgroup = controlInRow.tabs[k];
+              if (tabInTabgroup.caption === tabCaption) {
+                tab = tabInTabgroup;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    if (!row) {
+      row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
+
+      if (controlTree.get(&#x27;rows&#x27;)) {
+        controlTree.get(&#x27;rows&#x27;).pushObject(row);
+      } else {
+        controlTree.pushObject(row);
+      }
+    }
+
+    if (!tabGroup) {
+      tabGroup  = FdEditformTabgroup.create({ tabs: Ember.A(), width: &#x27;100*&#x27; });
+      row.get(&#x27;controls&#x27;).pushObject(tabGroup);
+    }
+
+    if (!tab) {
+      tab  = FdEditformTab.create({ rows: Ember.A(), caption: tabCaption });
+      tabGroup.get(&#x27;tabs&#x27;).pushObject(tab);
+    }
+
+    let nextPath = path.slice(tabCaptionEndIndex + 1, pathLength);
+
+    return this._locateControl(tab, propertyDefinition, nextPath);
+  },
+
+  /**
+      Locate group for control.
+
+      @method _locateGroup
+      @param {Object} controlTree Controls tree.
+      @param {FdDefinition} propertyDefinition Property definition from view.
+      @param {String} path Property path from view.
+      @return {Object} Modified controlTree with placed group.
+  */
+  _locateGroup: function(controlTree, propertyDefinition, path) {
+    let pathLength = path.length;
+    let splitterIndex = path.indexOf(&#x27;\\&#x27;);
+    let groupCaptionEndIndex = splitterIndex &gt; -1 ? splitterIndex : pathLength;
+
+    let groupCaption = path.slice(1, groupCaptionEndIndex);
+
+    let row;
+    let group;
+    let rowsCollection;
+
+    if (controlTree.get(&#x27;rows&#x27;)) {
+      rowsCollection = controlTree.get(&#x27;rows&#x27;);
+    } else {
+      rowsCollection = controlTree;
+    }
+
+    for (let i = 0; i &lt; rowsCollection.get(&#x27;length&#x27;); i++) {
+      let rowInCollection = rowsCollection[i];
+      if (rowInCollection instanceof FdEditformRow) {
+        for (let j = 0; j &lt; rowInCollection.get(&#x27;controls.length&#x27;); j++) {
+          let controlInRow = rowInCollection.controls[j];
+          if (controlInRow instanceof FdEditformGroup &amp;&amp; controlInRow.get(&#x27;caption&#x27;) === groupCaption) {
+            row = rowInCollection;
+            group = controlInRow;
+          }
+        }
+      }
+    }
+
+    if (!row) {
+      row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
+
+      if (controlTree.get(&#x27;rows&#x27;)) {
+        controlTree.get(&#x27;rows&#x27;).pushObject(row);
+      } else {
+        controlTree.pushObject(row);
+      }
+    }
+
+    if (!group) {
+      group  = FdEditformGroup.create({ rows: Ember.A(), width: &#x27;100*&#x27;, caption: groupCaption });
+      row.get(&#x27;controls&#x27;).pushObject(group);
+    }
+
+    let nextPath = path.slice(groupCaptionEndIndex + 1, pathLength);
+
+    return this._locateControl(group, propertyDefinition, nextPath);
+  },
+
+  /**
+      Locate column for control.
+
+      @method _locateColumn
+      @param {Object} controlTree Controls tree.
+      @param {FdDefinition} propertyDefinition Property definition from view.
+      @param {String} path Property path from view.
+      @return {Object} Modified controlTree with placed column.
+  */
+  _locateColumn: function(controlTree, propertyDefinition, path) {
+    let pathLength = path.length;
+    let splitterIndex = path.indexOf(&#x27;\\&#x27;);
+    let columnDefinitionEndIndex = splitterIndex &gt; -1 ? splitterIndex : pathLength;
+
+    let columnDefinition = path.slice(1, columnDefinitionEndIndex);
+
+    let braceIndex = columnDefinition.indexOf(&#x27;(&#x27;);
+
+    if (braceIndex === -1) {
+      braceIndex = columnDefinition.length;
+    }
+
+    let columnIndex = parseInt(columnDefinition.slice(0, braceIndex));
+
+    let rowsCollection;
+
+    if (controlTree.get(&#x27;rows&#x27;)) {
+      rowsCollection = controlTree.get(&#x27;rows&#x27;);
+    } else {
+      rowsCollection = controlTree;
+    }
+
+    let row = rowsCollection.get(&#x27;lastObject&#x27;);
+
+    // Current columns count in row must be match column index else it will be another row.
+    if (row &amp;&amp; row.get(&#x27;columnsCount&#x27;) + 1 !== columnIndex) {
+      row = undefined;
+    }
+
+    if (!row) {
+      row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
+
+      if (controlTree.get(&#x27;rows&#x27;)) {
+        controlTree.get(&#x27;rows&#x27;).pushObject(row);
+      } else {
+        controlTree.pushObject(row);
+      }
+    }
+
+    let nextPath = path.slice(columnDefinitionEndIndex + 1, pathLength);
+
+    if (nextPath) {
+      // TODO: may be another group or tabs there?
+      return this._locateControl(row, propertyDefinition, nextPath);
+    } else {
+      return this._locateControlInRow(row, propertyDefinition);
+    }
+  }
+});
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

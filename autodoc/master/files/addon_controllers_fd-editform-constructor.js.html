@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>addon/controllers/fd-editform-constructor.js - Flexberry Documentation</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="Flexberry Documentation" src="../assets/css/logo.png" style="max-height: 65%;" title="Flexberry Documentation">
+            Flexberry Documentation
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>master</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <h3>APIs</h3>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Type to filter APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/components.UiTabMenu.html">components.UiTabMenu</a></li>
+	                            <li><a href="../classes/components.UiTabSegment.html">components.UiTabSegment</a></li>
+	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
+	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
+	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
+	                            <li><a href="../classes/FdEditformControlComponent.html">FdEditformControlComponent</a></li>
+	                            <li><a href="../classes/FdEditformGroup.html">FdEditformGroup</a></li>
+	                            <li><a href="../classes/FdEditformRow.html">FdEditformRow</a></li>
+	                            <li><a href="../classes/FdEditformRowComponent.html">FdEditformRowComponent</a></li>
+	                            <li><a href="../classes/FdEditformTab.html">FdEditformTab</a></li>
+	                            <li><a href="../classes/FdEditformTabgroup.html">FdEditformTabgroup</a></li>
+	                            <li><a href="../classes/FdLimitByStageMixin.html">FdLimitByStageMixin</a></li>
+	                            <li><a href="../classes/FdViewAttributesDetail.html">FdViewAttributesDetail</a></li>
+	                            <li><a href="../classes/FdViewAttributesMaster.html">FdViewAttributesMaster</a></li>
+	                            <li><a href="../classes/FdViewAttributesProperty.html">FdViewAttributesProperty</a></li>
+	                            <li><a href="../classes/FdViewAttributesTree.html">FdViewAttributesTree</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">NewPlatformFlexberryFlexberryDesignerVisualEditControl</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">NewPlatformFlexberryFlexberryDesignerVisualEditForm</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/components.html">components</a></li>
+	                            <li><a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Show:
+                    <label for="api-show-inherited" class="checkbox">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>addon/controllers/fd-editform-constructor.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+import Ember from &#x27;ember&#x27;;
+
+import FdEditformRow from &#x27;../objects/fd-editform-row&#x27;;
+import FdEditformControl from &#x27;../objects/fd-editform-control&#x27;;
+import FdEditformGroup from &#x27;../objects/fd-editform-group&#x27;;
+import FdEditformTabgroup from &#x27;../objects/fd-editform-tabgroup&#x27;;
+import FdEditformTab from &#x27;../objects/fd-editform-tab&#x27;;
+
+export default Ember.Controller.extend({
+  queryParams: [&#x27;classId&#x27;],
+
+  /**
+    The current dragged item.
+
+    @private
+    @property _draggedItem
+    @type FdEditformRow|FdEditformControl
+  */
+  _draggedItem: undefined,
+
+  /**
+    @private
+    @property _selectedIsControl
+    @readOnly
+    @type Boolean
+  */
+  _selectedIsControl: Ember.computed(&#x27;selectedControl&#x27;, function() {
+    return this.get(&#x27;selectedControl&#x27;) instanceof FdEditformControl;
+  }).readOnly(),
+
+  /**
+    @private
+    @property _selectedIsGroup
+    @readOnly
+    @type Boolean
+  */
+  _selectedIsGroup: Ember.computed(&#x27;selectedControl&#x27;, function() {
+    return this.get(&#x27;selectedControl&#x27;) instanceof FdEditformGroup;
+  }).readOnly(),
+
+  /**
+    @private
+    @property _selectedIsTab
+    @readOnly
+    @type Boolean
+  */
+  _selectedIsTab: Ember.computed(&#x27;selectedControl&#x27;, function() {
+    return this.get(&#x27;selectedControl&#x27;) instanceof FdEditformTab;
+  }).readOnly(),
+
+  /**
+    The selected control.
+
+    @property selectedControl
+    @type FdEditformControl|FdEditformGroup|FdEditformTab
+  */
+  selectedControl: undefined,
+
+  actions: {
+    /**
+      Adds the control to a new row.
+
+      @method actions.addControl
+      @param {String} type Type of control to add.
+    */
+    addControl(type) {
+      let row = FdEditformRow.create({ controls: Ember.A() });
+      let control = FdEditformControl.create({ caption: &#x27;New attribute&#x27; });
+      switch (type) {
+        case &#x27;control&#x27;:
+          row.get(&#x27;controls&#x27;).pushObject(control);
+          break;
+
+        case &#x27;group&#x27;:
+          let group = FdEditformGroup.create({
+            caption: &#x27;New group&#x27;,
+            rows: Ember.A([
+              FdEditformRow.create({ controls: Ember.A([control]) }),
+            ]),
+          });
+
+          row.get(&#x27;controls&#x27;).pushObject(group);
+          break;
+
+        case &#x27;tabs&#x27;:
+          let tabs = FdEditformTabgroup.create({
+            tabs: Ember.A([
+              FdEditformTab.create({
+                caption: &#x27;New tab&#x27;,
+                rows: Ember.A([
+                  FdEditformRow.create({ controls: Ember.A([control]) }),
+                ]),
+              }),
+            ]),
+          });
+
+          row.get(&#x27;controls&#x27;).pushObject(tabs);
+          break;
+
+        default:
+          throw new Error(&#x60;The &#x27;${type}&#x27; type is not supported.&#x60;);
+      }
+
+      this.get(&#x27;model.controls&#x27;).pushObject(row);
+    },
+
+    /**
+      Close edit form constructor and go to application structure constructor.
+
+      @method actions.close
+    */
+    close() {
+      this.transitionToRoute(&#x27;fd-appstruct-form&#x27;);
+    },
+
+    /**
+      Set the selected control.
+
+      @method actions.selectControl
+      @param {FdEditformControl|FdEditformGroup|FdEditformTab} control
+    */
+    selectControl(control) {
+      this.set(&#x27;selectedControl&#x27;, control);
+    },
+
+    /**
+      Set the current dragged item.
+
+      @method actions.setDragItem
+      @param {FdEditformRow|FdEditformControl} item New dragged item.
+    */
+    setDragItem(item) {
+      this.set(&#x27;_draggedItem&#x27;, item);
+    },
+
+    /**
+      Get the current dragged item.
+
+      @method actions.getDragItem
+      @return {FdEditformRow|FdEditformControl} The current dragged item or &#x60;undefined&#x60;.
+    */
+    getDragItem() {
+      return this.get(&#x27;_draggedItem&#x27;);
+    },
+
+    /**
+      Move the current dragged item above or below relative to the passed item.
+
+      @method actions.moveDragItem
+      @param {FdEditformRow|FdEditformControl} item The item above or below which will be moved the current dragged item.
+      @param {String} direction The direction of the item move, allowed values: &#x27;up&#x27; or &#x27;down&#x27;.
+    */
+    moveDragItem(item, direction) {
+      let draggedItem = this.get(&#x27;_draggedItem&#x27;);
+      if (this._findItemContainer(item, Ember.A([draggedItem])) === null) {
+        let rows = this.get(&#x27;model.controls&#x27;);
+        let draggedItemContainer = this._findItemContainer(draggedItem, rows);
+        draggedItemContainer.removeObject(draggedItem);
+
+        let itemContainer;
+        let index = draggedItemContainer.indexOf(item);
+        if (index === -1) {
+          itemContainer = this._findItemContainer(item, rows);
+          index = itemContainer.indexOf(item);
+        } else {
+          itemContainer = draggedItemContainer;
+        }
+
+        if (direction === &#x27;down&#x27;) {
+          index = Math.min(itemContainer.get(&#x27;length&#x27;), index + 1);
+        }
+
+        itemContainer.insertAt(index, draggedItem);
+      }
+    },
+  },
+
+  /**
+    Looks for a container that contains the item.
+
+    @param {FdEditformRow|FdEditformControl} item The sought item.
+    @param {Ember.Array} container The root container.
+    @return {Ember.Array} The container that was found or &#x60;null&#x60;.
+  */
+  _findItemContainer(item, container) {
+    if (item instanceof FdEditformRow) {
+      return this._findRowContainer(item, container);
+    } else {
+      return this._findControlContainer(item, container);
+    }
+  },
+
+  /**
+    Looks for a container that contains the row.
+
+    @method _findRowContainer
+    @param {FdEditformRow} row The sought row.
+    @param {Ember.Array} container The root container.
+    @return {Ember.Array} The container that was found or &#x60;null&#x60;.
+  */
+  _findRowContainer(row, container) {
+    let _container = null;
+    if (container.indexOf(row) === -1) {
+      let length = container.get(&#x27;length&#x27;);
+      for (let i = 0; i &lt; length; i++) {
+        let controls = container.objectAt(i).get(&#x27;controls&#x27;);
+        let length = controls.get(&#x27;length&#x27;);
+        for (let i = 0; i &lt; length; i++) {
+          let control = controls.objectAt(i);
+          if (control instanceof FdEditformGroup) {
+            _container = this._findRowContainer(row, control.get(&#x27;rows&#x27;));
+          }
+
+          if (control instanceof FdEditformTabgroup) {
+            let tabs = control.get(&#x27;tabs&#x27;);
+            let length = tabs.get(&#x27;length&#x27;);
+            for (let i = 0; i &lt; length; i++) {
+              _container = this._findRowContainer(row, tabs.objectAt(i).get(&#x27;rows&#x27;));
+              if (_container) {
+                break;
+              }
+            }
+          }
+
+          if (_container) {
+            break;
+          }
+        }
+
+        if (_container) {
+          break;
+        }
+      }
+    } else {
+      _container = container;
+    }
+
+    return _container;
+  },
+
+  /**
+    Looks for a container that contains the control.
+
+    @method _findControlContainer
+    @param {FdEditformControl} control The sought control.
+    @param {Ember.Array} container The root container.
+    @return {Ember.Array} The container that was found or &#x60;null&#x60;.
+  */
+  _findControlContainer(control, container) {
+    let _container = null;
+    let length = container.get(&#x27;length&#x27;);
+    for (let i = 0; i &lt; length; i++) {
+      let controls = container.objectAt(i).get(&#x27;controls&#x27;);
+      if (controls &amp;&amp; controls.indexOf(control) === -1) {
+        let length = controls.get(&#x27;length&#x27;);
+        for (let i = 0; i &lt; length; i++) {
+          let _control = controls.objectAt(i);
+          if (_control instanceof FdEditformGroup) {
+            _container = this._findControlContainer(control, _control.get(&#x27;rows&#x27;));
+          } else if (_control instanceof FdEditformTabgroup) {
+            let tabs = _control.get(&#x27;tabs&#x27;);
+            let length = tabs.get(&#x27;length&#x27;);
+            for (let i = 0; i &lt; length; i++) {
+              _container = this._findControlContainer(control, tabs.objectAt(i).get(&#x27;rows&#x27;));
+              if (_container) {
+                break;
+              }
+            }
+          }
+
+          if (_container) {
+            break;
+          }
+        }
+      } else if (controls) {
+        _container = controls;
+      }
+
+      if (_container) {
+        break;
+      }
+    }
+
+    return _container;
+  },
+});
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

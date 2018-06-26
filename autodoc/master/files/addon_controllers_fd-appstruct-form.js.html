@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>addon/controllers/fd-appstruct-form.js - Flexberry Documentation</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="Flexberry Documentation" src="../assets/css/logo.png" style="max-height: 65%;" title="Flexberry Documentation">
+            Flexberry Documentation
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>master</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <h3>APIs</h3>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Type to filter APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/components.UiTabMenu.html">components.UiTabMenu</a></li>
+	                            <li><a href="../classes/components.UiTabSegment.html">components.UiTabSegment</a></li>
+	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
+	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
+	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
+	                            <li><a href="../classes/FdEditformControlComponent.html">FdEditformControlComponent</a></li>
+	                            <li><a href="../classes/FdEditformGroup.html">FdEditformGroup</a></li>
+	                            <li><a href="../classes/FdEditformRow.html">FdEditformRow</a></li>
+	                            <li><a href="../classes/FdEditformRowComponent.html">FdEditformRowComponent</a></li>
+	                            <li><a href="../classes/FdEditformTab.html">FdEditformTab</a></li>
+	                            <li><a href="../classes/FdEditformTabgroup.html">FdEditformTabgroup</a></li>
+	                            <li><a href="../classes/FdLimitByStageMixin.html">FdLimitByStageMixin</a></li>
+	                            <li><a href="../classes/FdViewAttributesDetail.html">FdViewAttributesDetail</a></li>
+	                            <li><a href="../classes/FdViewAttributesMaster.html">FdViewAttributesMaster</a></li>
+	                            <li><a href="../classes/FdViewAttributesProperty.html">FdViewAttributesProperty</a></li>
+	                            <li><a href="../classes/FdViewAttributesTree.html">FdViewAttributesTree</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">NewPlatformFlexberryFlexberryDesignerVisualEditControl</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">NewPlatformFlexberryFlexberryDesignerVisualEditForm</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/components.html">components</a></li>
+	                            <li><a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Show:
+                    <label for="api-show-inherited" class="checkbox">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>addon/controllers/fd-appstruct-form.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+import Ember from &#x27;ember&#x27;;
+import FdViewAttributesTree from &#x27;../objects/fd-view-attributes-tree&#x27;;
+import EditFormController from &#x27;ember-flexberry/controllers/edit-form&#x27;;
+import { translationMacro as t } from &#x27;ember-i18n&#x27;;
+
+export default EditFormController.extend({
+
+  /*
+    Setting off for buttons of the left tree.
+  */
+  removeLeftNodeDisabled: &#x27;disabled&#x27;,
+  addLeftNodeDisabled: &#x27;disabled&#x27;,
+  editLeftNodeDisabled: &#x27;disabled&#x27;,
+
+  /*
+    Setting off for &#x27;moveRight&#x27; buttons.
+  */
+  moveRightDisabled: &#x27;disabled&#x27;,
+
+  /*
+    Setting off for buttons of the right tree.
+  */
+  addRightNodeDisabled: &#x27;disabled&#x27;,
+  editRightNodeDisabled: &#x27;disabled&#x27;,
+  removeRightNodeDisabled: &#x27;disabled&#x27;,
+  addFolderNodeDisabled: &#x27;disabled&#x27;,
+
+  /**
+   Service that triggers objectlistview events.
+
+   @property objectlistviewEventsService
+   @type {Class}
+   @default Ember.inject.service()
+   */
+  objectlistviewEventsService: Ember.inject.service(&#x27;objectlistview-events&#x27;),
+
+  allAttrsHidedn: false,
+
+  /**
+    Included plugins for left jsTree.
+
+    @property pluginsLeft
+    @type String
+    @default &#x27;wholerow, types, sort&#x27;
+   */
+  pluginsLeft: &#x27;wholerow, types, sort&#x27;,
+
+  /**
+    Included plugins for right jsTree.
+
+    @property pluginsRight
+    @type String
+    @default &#x27;wholerow, types&#x27;
+   */
+  pluginsRight: &#x27;wholerow, types&#x27;,
+
+  /**
+    Selected nodes in left jsTree.
+
+    @property jstreeSelectedNodesLeft
+    @type Array
+    @default []
+   */
+  jstreeSelectedNodesLeft: Ember.A(),
+
+  /**
+    Selected nodes in right jsTree.
+
+    @property jstreeSelectedNodesRight
+    @type Array
+    @default []
+   */
+  jstreeSelectedNodesRight: Ember.A(),
+
+  /**
+    Nodes in right jsTree for edit propertys.
+
+    @property selectedElementForEdit
+    @type Object
+   */
+  selectedElementForEdit: undefined,
+
+  /**
+    Type settings for jsTree.
+
+    @property typesOptions
+    @type Object
+  */
+  typesOptions: Ember.computed(() =&gt; ({
+    &#x27;«listform»&#x27;: {
+      icon: &#x27;assets/images/listform.png&#x27;,
+      max_children: 0
+    },
+    &#x27;«editform»&#x27;: {
+      icon: &#x27;assets/images/editform.png&#x27;,
+      max_children: 0
+    },
+    &#x27;implementations&#x27;: {
+      icon: &#x27;assets/images/implementations.png&#x27;
+    },
+    &#x27;desk&#x27;: {
+      icon: &#x27;assets/images/class.bmp&#x27;
+    },
+    &#x27;notStored&#x27;: {
+      icon: &#x27;assets/images/notStored.png&#x27;
+    },
+    &#x27;master&#x27;: {
+      icon: &#x27;folder icon&#x27;
+    },
+    &#x27;#&#x27;: {
+      max_children: 1
+    }
+  })),
+
+  _modelObserver: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;model&#x27;, function() {
+    // Reset selection.
+    this.set(&#x27;jstreeSelectedNodesLeft&#x27;, Ember.A());
+    this.set(&#x27;jstreeSelectedNodesRight&#x27;, Ember.A());
+    this.set(&#x27;selectedElementForEdit&#x27;, undefined);
+  })),
+
+  /**
+    Update text in node.
+
+    @method selectedElementCaptionObserver
+  */
+  selectedElementCaptionObserver: Ember.observer(&#x27;selectedElementForEdit.caption&#x27;, function() {
+    let selectedElement = this.get(&#x27;selectedElementForEdit&#x27;);
+    if (Ember.isNone(selectedElement)) {
+      return;
+    }
+
+    if (selectedElement.get(&#x27;type&#x27;) !== &#x27;master&#x27; &amp;&amp; selectedElement.get(&#x27;type&#x27;) !== &#x27;desk&#x27;) {
+      let caption = selectedElement.get(&#x27;caption&#x27;);
+      if (caption !== &#x27;&#x27;) {
+        selectedElement.set(&#x27;text&#x27;, caption);
+      } else {
+        selectedElement.set(&#x27;text&#x27;, selectedElement.get(&#x27;className&#x27;));
+      }
+    }
+  }),
+
+  /**
+    Redraw text in node.
+
+    @method selectedElementTextObserver
+  */
+  selectedElementTextObserver: Ember.observer(&#x27;selectedElementForEdit.text&#x27;, function() {
+    let selectedElement = this.get(&#x27;selectedElementForEdit&#x27;);
+    if (Ember.isNone(selectedElement)) {
+      return;
+    }
+
+    this.get(&#x27;jstreeActionReceiverRight&#x27;).send(&#x27;renameNode&#x27;, selectedElement.get(&#x27;id&#x27;), selectedElement.get(&#x27;text&#x27;));
+  }),
+
+  /**
+    Handles changes in jstreeSelectedNodesLeft.
+
+    @method jstreeSelectedNodesLeftObserver
+  */
+  _jstreeSelectedNodesLeftObserver: Ember.observer(&#x27;jstreeSelectedNodesLeft&#x27;, function() {
+    let jstreeSelectedNodesLeft = this.get(&#x27;jstreeSelectedNodesLeft&#x27;);
+    if (jstreeSelectedNodesLeft.length === 0) {
+      this.set(&#x27;removeLeftNodeDisabled&#x27;, &#x27;disabled&#x27;);
+      this.set(&#x27;addLeftNodeDisabled&#x27;, &#x27;disabled&#x27;);
+      this.set(&#x27;editLeftNodeDisabled&#x27;, &#x27;disabled&#x27;);
+    } else {
+      this.set(&#x27;removeLeftNodeDisabled&#x27;, &#x27;&#x27;);
+      this.set(&#x27;editLeftNodeDisabled&#x27;, &#x27;&#x27;);
+      let selectedNode = jstreeSelectedNodesLeft[0];
+      let typeNode = selectedNode.original.type;
+      if (typeNode === &#x27;implementations&#x27; || typeNode === &#x27;notStored&#x27;) {
+        this.set(&#x27;addLeftNodeDisabled&#x27;, &#x27;&#x27;);
+      } else {
+        this.set(&#x27;addLeftNodeDisabled&#x27;, &#x27;disabled&#x27;);
+      }
+    }
+  }),
+
+  /**
+    Handles changes in jstreeSelectedNodesRight.
+
+    @method jstreeSelectedNodesRightObserver
+  */
+  _jstreeSelectedNodesRightObserver: Ember.observer(&#x27;jstreeSelectedNodesRight&#x27;, function() {
+    let jstreeSelectedNodesRight = this.get(&#x27;jstreeSelectedNodesRight&#x27;);
+    if (jstreeSelectedNodesRight.length === 0) {
+      this.set(&#x27;editRightNodeDisabled&#x27;, &#x27;disabled&#x27;);
+      this.set(&#x27;removeRightNodeDisabled&#x27;, &#x27;disabled&#x27;);
+      this.set(&#x27;addFolderNodeDisabled&#x27;, &#x27;disabled&#x27;);
+    } else {
+      let selectedNode = jstreeSelectedNodesRight[0];
+      this.set(&#x27;selectedElementForEdit&#x27;, selectedNode.original);
+      let typeNode = selectedNode.original.type;
+
+      if (typeNode === &#x27;desk&#x27;) {
+        this.set(&#x27;removeRightNodeDisabled&#x27;, &#x27;disabled&#x27;);
+        this.set(&#x27;editRightNodeDisabled&#x27;, &#x27;disabled&#x27;);
+      } else {
+        this.set(&#x27;removeRightNodeDisabled&#x27;, &#x27;&#x27;);
+        this.set(&#x27;editRightNodeDisabled&#x27;, &#x27;&#x27;);
+      }
+
+      if (typeNode === &#x27;«listform»&#x27; || typeNode === &#x27;«editform»&#x27;) {
+        this.set(&#x27;addFolderNodeDisabled&#x27;, &#x27;disabled&#x27;);
+      } else {
+        this.set(&#x27;addFolderNodeDisabled&#x27;, &#x27;&#x27;);
+      }
+    }
+  }),
+
+  /**
+    Handles changes in jstreeSelectedNodesRight and jstreeSelectedNodesLeft.
+
+    @method _jstreeSelectedNodesObserver
+  */
+  _jstreeSelectedNodesObserver: Ember.observer(&#x27;jstreeSelectedNodesLeft&#x27;, &#x27;jstreeSelectedNodesRight&#x27;, function() {
+    let jstreeSelectedNodesLeft = this.get(&#x27;jstreeSelectedNodesLeft&#x27;);
+    let jstreeSelectedNodesRight = this.get(&#x27;jstreeSelectedNodesRight&#x27;);
+    if (jstreeSelectedNodesRight.length === 0 || jstreeSelectedNodesLeft.length === 0) {
+      return;
+    }
+
+    let jstreeSelectedNodesRightType = jstreeSelectedNodesRight[0].original.type;
+    let jstreeSelectedNodesLeftType = jstreeSelectedNodesLeft[0].original.type;
+    if ((jstreeSelectedNodesLeftType !== &#x27;«listform»&#x27; &amp;&amp; jstreeSelectedNodesLeftType !== &#x27;«editform»&#x27;) ||
+      jstreeSelectedNodesRightType === &#x27;«listform»&#x27; || jstreeSelectedNodesRightType === &#x27;«editform»&#x27;) {
+      this.set(&#x27;moveRightDisabled&#x27;, &#x27;disabled&#x27;);
+    } else {
+      this.set(&#x27;moveRightDisabled&#x27;, &#x27;&#x27;);
+    }
+  }),
+
+  /**
+    Index selected attribute in right tree.
+
+    @property indexSelectedRight
+    @type Number
+  */
+  indexSelectedRight: Ember.computed(&#x27;jstreeSelectedNodesRight&#x27;, function() {
+    let jstreeSelectedNodesRight = this.get(&#x27;jstreeSelectedNodesRight&#x27;);
+    if (jstreeSelectedNodesRight.length === 0 || jstreeSelectedNodesRight[0].type === &#x27;desk&#x27;) {
+      return {
+        upRightNodeDisabled: &#x27;disabled&#x27;,
+        downRightNodeDisabled: &#x27;disabled&#x27;
+      };
+    }
+
+    let parentSelectedNode = this.get(&#x27;jstreeObjectRight&#x27;).jstree(true).get_node(jstreeSelectedNodesRight[0].parent);
+    let arrayChildrensParentSelectedNode = parentSelectedNode.original.get(&#x27;copyChildren&#x27;);
+    let selectedObject = arrayChildrensParentSelectedNode.findBy(&#x27;text&#x27;, jstreeSelectedNodesRight[0].text);
+    let indexSelectedNode = arrayChildrensParentSelectedNode.indexOf(selectedObject);
+
+    let upRightNodeDisabled = &#x27;disabled&#x27;;
+    let downRightNodeDisabled = &#x27;disabled&#x27;;
+
+    if (indexSelectedNode !== 0) {
+      upRightNodeDisabled = &#x27;&#x27;;
+    }
+
+    if (indexSelectedNode !== arrayChildrensParentSelectedNode.length - 1) {
+      downRightNodeDisabled = &#x27;&#x27;;
+    }
+
+    return {
+      index: indexSelectedNode,
+      array: arrayChildrensParentSelectedNode,
+      upRightNodeDisabled: upRightNodeDisabled,
+      downRightNodeDisabled: downRightNodeDisabled
+    };
+  }),
+
+  /**
+    Method for restoring tree nodes.
+    @method _restorationNodeTree
+  */
+  _restorationNodeTree(nodeArray) {
+    let _this = this;
+    nodeArray.forEach(function(node) {
+      if (node.type === &#x27;master&#x27; || node.type === &#x27;desk&#x27;) {
+        node.set(&#x27;children&#x27;, node.get(&#x27;copyChildren&#x27;));
+        _this._restorationNodeTree(node.get(&#x27;children&#x27;));
+      }
+    });
+  },
+
+  /**
+    Method for update data in tree.
+    @method _updateTreeData
+  */
+  _updateTreeData() {
+    let dataTree = this.get(&#x27;model.rightTreeNodes&#x27;);
+    this._restorationNodeTree(dataTree);
+
+    this.get(&#x27;jstreeActionReceiverRight&#x27;).send(&#x27;redraw&#x27;);
+  },
+
+  actions: {
+
+    /**
+      Handles move node from left in right jsTree.
+
+      @method actions.moveRightHighlighted
+    */
+    moveRightHighlighted() {
+      let jstreeSelectedNodesLeft = this.get(&#x27;jstreeSelectedNodesLeft&#x27;);
+      let jstreeSelectedNodesRight = this.get(&#x27;jstreeSelectedNodesRight&#x27;);
+      if (jstreeSelectedNodesLeft.length === 0 || jstreeSelectedNodesRight.length === 0) {
+        return;
+      }
+
+      // Find free id.
+      let folderId = 0;
+      let foundId = this.get(&#x27;jstreeObjectRight&#x27;).jstree(true).get_node(&#x27;move&#x27; + folderId);
+      while (foundId) {
+        folderId++;
+        foundId = this.get(&#x27;jstreeObjectRight&#x27;).jstree(true).get_node(&#x27;move&#x27; + folderId);
+      }
+
+      let leftSelectedNodes = jstreeSelectedNodesLeft[0].original;
+      let rightSelectedNodes = jstreeSelectedNodesRight[0].original.get(&#x27;copyChildren&#x27;);
+      let newNode = FdViewAttributesTree.create({
+        text: leftSelectedNodes.get(&#x27;text&#x27;),
+        type: leftSelectedNodes.get(&#x27;type&#x27;),
+        caption: leftSelectedNodes.get(&#x27;caption&#x27;),
+        className: leftSelectedNodes.get(&#x27;name&#x27;),
+        description: leftSelectedNodes.get(&#x27;description&#x27;),
+        a_attr: leftSelectedNodes.get(&#x27;a_attr&#x27;),
+        id: &#x27;move&#x27; + folderId
+      });
+
+      rightSelectedNodes.pushObject(newNode);
+      this.get(&#x27;jstreeActionReceiverRight&#x27;).send(&#x27;createNode&#x27;, jstreeSelectedNodesRight[0], newNode);
+      this.get(&#x27;jstreeActionReceiverRight&#x27;).send(&#x27;openNode&#x27;, jstreeSelectedNodesRight[0]);
+    },
+
+    /**
+      Handles remove node from left jsTree.
+
+      @method actions.removeLeftNode
+    */
+    removeLeftNode() {
+      let jstreeSelectedNodesLeft = this.get(&#x27;jstreeSelectedNodesLeft&#x27;);
+      if (jstreeSelectedNodesLeft.length === 0) {
+        return;
+      }
+
+      // TODO remove from BD.
+      this.get(&#x27;jstreeActionReceiverLeft&#x27;).send(&#x27;deleteNode&#x27;, jstreeSelectedNodesLeft[0]);
+      this.set(&#x27;jstreeSelectedNodesLeft&#x27;, Ember.A());
+    },
+
+    /**
+      Handles create new class left jsTree.
+
+      @method actions.addLeftClass
+    */
+    addLeftClass() {
+      this.transitionToRoute(&#x27;fd-class-edit-form.new&#x27;);
+    },
+
+    /**
+      Handles add edit form for class in left jsTree.
+
+      @method actions.addLeftListForm
+    */
+    addLeftEditForm() {
+      let jstreeSelectedNodesLeft = this.get(&#x27;jstreeSelectedNodesLeft&#x27;);
+      if (jstreeSelectedNodesLeft.length === 0) {
+        return;
+      }
+
+      let selectedNode = jstreeSelectedNodesLeft[0];
+      let classId = selectedNode.original.get(&#x27;idNode&#x27;);
+
+      // TODO fd-editform-constructor don&#x27;t work. Need update queryParams.
+      this.transitionToRoute(&#x27;fd-editform-constructor&#x27;, {
+        queryParams: {
+          classId: classId,
+        }
+      });
+    },
+
+    /**
+      Handles add list form for class in left jsTree.
+
+      @method actions.addLeftListForm
+    */
+    addLeftListForm() {
+      let jstreeSelectedNodesLeft = this.get(&#x27;jstreeSelectedNodesLeft&#x27;);
+      if (jstreeSelectedNodesLeft.length === 0) {
+        return;
+      }
+
+      let selectedNode = jstreeSelectedNodesLeft[0];
+      let classId = selectedNode.original.get(&#x27;idNode&#x27;);
+
+      this.transitionToRoute(&#x27;fd-visual-listform&#x27;, {
+        queryParams: {
+          form: undefined,
+          class: classId,
+        }
+      });
+    },
+
+    /**
+      Handles edit node left jsTree.
+
+      @method actions.editLeftNode
+    */
+    editLeftNode() {
+      let jstreeSelectedNodesLeft = this.get(&#x27;jstreeSelectedNodesLeft&#x27;);
+      if (jstreeSelectedNodesLeft.length === 0) {
+        return;
+      }
+
+      let selectedNode = jstreeSelectedNodesLeft[0];
+      let nodeId = selectedNode.original.get(&#x27;idNode&#x27;);
+
+      switch (selectedNode.original.get(&#x27;type&#x27;)) {
+        case &#x27;«listform»&#x27;:
+          this.transitionToRoute(&#x27;fd-visual-listform&#x27;, {
+            queryParams: {
+              form: nodeId,
+              class: undefined,
+            },
+          });
+          break;
+        case &#x27;«editform»&#x27;:
+          this.transitionToRoute(&#x27;fd-editform-constructor&#x27;, nodeId);
+          break;
+        case &#x27;implementations&#x27;:
+        case &#x27;notStored&#x27;:
+          this.transitionToRoute(&#x27;fd-class-edit-form&#x27;, nodeId);
+          break;
+      }
+    },
+
+    /**
+      Handles open class list form.
+
+      @method actions.listLeft
+    */
+    listLeft() {
+      this.transitionToRoute(&#x27;fd-class-list-form&#x27;);
+    },
+
+    /**
+      Handles edit node left jsTree.
+
+      @method actions.editRightNode
+    */
+    editRightNode() {
+      //TODO filling out tabs.
+    },
+
+    /**
+      Handles remove node from right jsTree.
+
+      @method actions.removeRightNode
+    */
+    removeRightNode() {
+      let jstreeSelectedNodesRight = this.get(&#x27;jstreeSelectedNodesRight&#x27;);
+      if (jstreeSelectedNodesRight.length === 0) {
+        return;
+      }
+
+      // Delete node from parent copyChildren.
+      let parentSelectedNode = this.get(&#x27;jstreeObjectRight&#x27;).jstree(true).get_node(jstreeSelectedNodesRight[0].parent);
+      let arrayChildrensParentSelectedNode = parentSelectedNode.original.get(&#x27;copyChildren&#x27;);
+      let selectedObject = arrayChildrensParentSelectedNode.findBy(&#x27;text&#x27;, jstreeSelectedNodesRight[0].text);
+      arrayChildrensParentSelectedNode.removeObject(selectedObject);
+
+      this.get(&#x27;jstreeActionReceiverRight&#x27;).send(&#x27;deleteNode&#x27;, jstreeSelectedNodesRight[0]);
+      this.set(&#x27;jstreeSelectedNodesRight&#x27;, Ember.A());
+    },
+
+    /**
+      Handles add node in right jsTree.
+
+      @method actions.addFolderNode
+    */
+    addFolderNode() {
+      let jstreeSelectedNodesRight = this.get(&#x27;jstreeSelectedNodesRight&#x27;);
+      if (jstreeSelectedNodesRight.length === 0) {
+        return;
+      }
+
+      // Find free name.
+      let folderName = &#x27;NewFolder&#x27;;
+      let selectedNodes = jstreeSelectedNodesRight[0].original.get(&#x27;copyChildren&#x27;);
+      let foundName = selectedNodes.findBy(&#x27;text&#x27;, folderName);
+      let folderIndex = &#x27;&#x27;;
+      while (!Ember.isNone(foundName)) {
+        folderIndex++;
+        foundName = selectedNodes.findBy(&#x27;text&#x27;, folderName + folderIndex);
+      }
+
+      // Find free id.
+      let folderId = 0;
+      let foundId = this.get(&#x27;jstreeObjectRight&#x27;).jstree(true).get_node(&#x27;NF&#x27; + folderId);
+      while (foundId) {
+        folderId++;
+        foundId = this.get(&#x27;jstreeObjectRight&#x27;).jstree(true).get_node(&#x27;NF&#x27; + folderId);
+      }
+
+      let folder = FdViewAttributesTree.create({
+        text: folderName + folderIndex,
+        type: &#x27;master&#x27;,
+        children: Ember.A(),
+        copyChildren: Ember.A(),
+        id: &#x27;NF&#x27; + folderId
+      });
+
+      selectedNodes.pushObject(folder);
+
+      // Restoration tree.
+      this._updateTreeData();
+      this.get(&#x27;jstreeActionReceiverRight&#x27;).send(&#x27;openNode&#x27;, jstreeSelectedNodesRight[0]);
+    },
+
+    /**
+      Handles up move tree node.
+
+      @method actions.upRightNode
+    */
+    upRightNode() {
+      let jstreeSelectedNodesRight = this.get(&#x27;jstreeSelectedNodesRight&#x27;);
+      if (jstreeSelectedNodesRight.length === 0) {
+        return;
+      }
+
+      let indexSelectedRight = this.get(&#x27;indexSelectedRight&#x27;);
+      let index = indexSelectedRight.index;
+      let array = indexSelectedRight.array;
+      let prev = index - 1;
+      let node = array[index];
+      let prevNode = array[prev];
+
+      array.replace(prev, 1, node);
+      array.replace(index, 1, prevNode);
+
+      // Restoration tree.
+      this._updateTreeData();
+    },
+
+    /**
+      Handles down move tree node.
+
+      @method actions.downRightNode
+    */
+    downRightNode() {
+      let jstreeSelectedNodesRight = this.get(&#x27;jstreeSelectedNodesRight&#x27;);
+      if (jstreeSelectedNodesRight.length === 0) {
+        return;
+      }
+
+      let indexSelectedRight = this.get(&#x27;indexSelectedRight&#x27;);
+      let index = indexSelectedRight.index;
+      let array = indexSelectedRight.array;
+      let next = index + 1;
+      let node = array[next];
+      let nextNode = array[index];
+
+      array.replace(index, 1, node);
+      array.replace(next, 1, nextNode);
+
+      // Restoration tree.
+      this._updateTreeData();
+    },
+
+    /**
+      Handles save in right tree.
+
+      @method actions.saveTree
+    */
+    saveTree() {
+      let dataTree = this.get(&#x27;model.rightTreeNodes&#x27;)[0];
+      let dataForSave = dataTree.get(&#x27;copyChildren&#x27;);
+
+      let record = this.get(&#x27;model.applications&#x27;)[0];
+      record.set(&#x27;containersStr&#x27;, dataForSave);
+
+      if (Ember.isNone(record.get(&#x27;caption&#x27;))) {
+        record.set(&#x27;caption&#x27;, record.get(&#x27;name&#x27;));
+      }
+
+      let _this = this;
+      this.get(&#x27;objectlistviewEventsService&#x27;).setLoadingState(&#x27;loading&#x27;);
+      record.save().then(() =&gt; {
+        _this.get(&#x27;objectlistviewEventsService&#x27;).setLoadingState(&#x27;&#x27;);
+      });
+    },
+
+    /**
+      Handles open process editor form.
+
+      @method actions.openProcessEditorForm
+    */
+    openProcessEditorForm() {
+      // TODO ProcessEditorForm don&#x27;t work.
+    },
+
+    /**
+      Handles open generation form.
+
+      @method actions.openGenerationForm
+    */
+    openGenerationForm() {
+      this.transitionToRoute(&#x27;fd-generation-process-form.new&#x27;);
+    },
+
+    closeRightpanel() {
+      Ember.$(&#x27;.closable.panel-left&#x27;).toggle(500);
+
+      if (this.allAttrsHidedn) {
+        this.set(&#x27;popupMessage&#x27;, t(&#x27;forms.fd-appstruct-form.close-panel-btn-caption&#x27;));
+        Ember.$(&#x27;.panel-wrapper .panel-right&#x27;).css(&#x27;width&#x27;, &#x27;50%&#x27;);
+      } else {
+        this.set(&#x27;popupMessage&#x27;, t(&#x27;forms.fd-appstruct-form.show-panel-btn-caption&#x27;));
+        Ember.$(&#x27;.panel-wrapper .panel-right&#x27;).css(&#x27;width&#x27;, &#x27;100%&#x27;);
+      }
+
+      this.toggleProperty(&#x27;allAttrsHidedn&#x27;);
+    }
+  }
+});
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

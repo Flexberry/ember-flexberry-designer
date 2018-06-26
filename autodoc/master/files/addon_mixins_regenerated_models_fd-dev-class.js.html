@@ -26,7 +26,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='[]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
         </form>
     </div>
 </div>
@@ -48,11 +48,31 @@
 	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
 	                <div class="tab-pane active" id="classes">
 	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/components.UiTabMenu.html">components.UiTabMenu</a></li>
+	                            <li><a href="../classes/components.UiTabSegment.html">components.UiTabSegment</a></li>
+	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
+	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
+	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
+	                            <li><a href="../classes/FdEditformControlComponent.html">FdEditformControlComponent</a></li>
+	                            <li><a href="../classes/FdEditformGroup.html">FdEditformGroup</a></li>
+	                            <li><a href="../classes/FdEditformRow.html">FdEditformRow</a></li>
+	                            <li><a href="../classes/FdEditformRowComponent.html">FdEditformRowComponent</a></li>
+	                            <li><a href="../classes/FdEditformTab.html">FdEditformTab</a></li>
+	                            <li><a href="../classes/FdEditformTabgroup.html">FdEditformTabgroup</a></li>
+	                            <li><a href="../classes/FdLimitByStageMixin.html">FdLimitByStageMixin</a></li>
+	                            <li><a href="../classes/FdViewAttributesDetail.html">FdViewAttributesDetail</a></li>
+	                            <li><a href="../classes/FdViewAttributesMaster.html">FdViewAttributesMaster</a></li>
+	                            <li><a href="../classes/FdViewAttributesProperty.html">FdViewAttributesProperty</a></li>
+	                            <li><a href="../classes/FdViewAttributesTree.html">FdViewAttributesTree</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">NewPlatformFlexberryFlexberryDesignerVisualEditControl</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">NewPlatformFlexberryFlexberryDesignerVisualEditForm</a></li>
 	                    </ul>
 	                </div>
 	    
 	                <div class="tab-pane" id="modules">
 	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/components.html">components</a></li>
+	                            <li><a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a></li>
 	                    </ul>
 	                </div>
 	            </div>
@@ -96,7 +116,7 @@ import Ember from &#x27;ember&#x27;;
 import DS from &#x27;ember-data&#x27;;
 import { Projection } from &#x27;ember-flexberry-data&#x27;;
 export let Model = Ember.Mixin.create({
-  accessType: DS.attr(&#x27;new-platform-flexberry-web-designer-access-type&#x27;),
+  accessType: DS.attr(&#x27;i-c-s-soft-s-t-o-r-m-n-e-t-access-type&#x27;),
   addAuditFields: DS.attr(&#x27;boolean&#x27;),
   appConfig: DS.attr(&#x27;string&#x27;),
   /**
@@ -175,7 +195,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.bSEventsCompute &amp;&amp; typeof this.bSEventsCompute === &#x27;function&#x27;) ? this.bSEventsCompute() : null;
     this.set(&#x27;bSEvents&#x27;, result);
   },
-  businessServerEvents: DS.attr(&#x27;string&#x27;),
+  businessServerEvents: DS.attr(&#x27;i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events&#x27;, { defaultValue: &#x27;OnAllEvents&#x27; }),
   caption: DS.attr(&#x27;string&#x27;),
   /**
     Non-stored property.
@@ -226,7 +246,9 @@ export let Model = Ember.Mixin.create({
     let result = (this.containersCompute &amp;&amp; typeof this.containersCompute === &#x27;function&#x27;) ? this.containersCompute() : null;
     this.set(&#x27;containers&#x27;, result);
   },
-  containersStr: DS.attr(&#x27;string&#x27;),
+  /* merged manually start */
+  containersStr: DS.attr(&#x27;containers-tree&#x27;),
+  /* merged manually end */
   /**
     Non-stored property.
 
@@ -499,6 +521,7 @@ export let Model = Ember.Mixin.create({
   selectAuditViewName: DS.attr(&#x27;string&#x27;),
   standartDesktop: DS.attr(&#x27;boolean&#x27;),
   storage: DS.attr(&#x27;string&#x27;),
+  publishName: DS.attr(&#x27;string&#x27;),
   storeInstancesInType: DS.attr(&#x27;string&#x27;),
   /**
     Non-stored property.
@@ -553,16 +576,25 @@ export let Model = Ember.Mixin.create({
     this.set(&#x27;useCache&#x27;, result);
   },
   useDefaultView: DS.attr(&#x27;boolean&#x27;),
-  writeMode: DS.attr(&#x27;new-platform-flexberry-web-designer-t-write-mode&#x27;),
+  writeMode: DS.attr(&#x27;i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode&#x27;),
   writeSessions: DS.attr(&#x27;boolean&#x27;),
   businessServerClass: DS.belongsTo(&#x27;fd-dev-class&#x27;, { inverse: null, async: false }),
-  devViews: DS.hasMany(&#x27;fd-dev-view&#x27;, { inverse: &#x27;class&#x27;, async: false }),
+  classStorageTypes: DS.hasMany(&#x27;fd-class-storage-type&#x27;, { inverse: &#x27;class&#x27;, async: false }),
+  views: DS.hasMany(&#x27;fd-dev-view&#x27;, { inverse: &#x27;class&#x27;, async: false }),
   methods: DS.hasMany(&#x27;fd-dev-method&#x27;, { inverse: &#x27;class&#x27;, async: false }),
   formViews: DS.hasMany(&#x27;fd-dev-form-view&#x27;, { inverse: &#x27;class&#x27;, async: false }),
   attributes: DS.hasMany(&#x27;fd-dev-attribute&#x27;, { inverse: &#x27;class&#x27;, async: false }),
   getValidations: function () {
     let parentValidations = this._super();
     let thisValidations = {
+      /* merged manually start */
+      caption: {
+        presence: {
+          // message: this.get(&#x27;i18n&#x27;).t(&#x27;models.fd-dev-class.validations.caption&#x27;)
+          message: &#x27;Caption is required&#x27;
+        }
+      }
+      /* merged manually end */
     };
     return Ember.$.extend(true, {}, parentValidations, thisValidations);
   },
@@ -598,7 +630,7 @@ export let defineProjections = function (modelClass) {
 
       })
     }),
-    devViews: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+    views: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
       name: Projection.attr(&#x27;&#x27;),
       properties: Projection.attr(&#x27;&#x27;),
       definition: Projection.attr(&#x27;&#x27;),
@@ -650,7 +682,7 @@ export let defineProjections = function (modelClass) {
       storage: Projection.attr(&#x27;&#x27;),
       trim: Projection.attr(&#x27;&#x27;)
     }),
-    devViews: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+    views: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
       name: Projection.attr(&#x27;&#x27;),
       definition: Projection.attr(&#x27;&#x27;)
     })
@@ -691,7 +723,7 @@ export let defineProjections = function (modelClass) {
     nameStr: Projection.attr(&#x27;&#x27;),
     name: Projection.attr(&#x27;&#x27;),
     stereotype: Projection.attr(&#x27;&#x27;),
-    devViews: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+    views: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
       name: Projection.attr(&#x27;&#x27;)
     })
   });
@@ -787,6 +819,7 @@ export let defineProjections = function (modelClass) {
     selectAudit: Projection.attr(&#x27;Вести аудит операции чтения&#x27;),
     selectAuditViewName: Projection.attr(&#x27;Имя представления для аудита операции чтения&#x27;),
     storage: Projection.attr(&#x27;&#x27;),
+    publishName: Projection.attr(&#x27;&#x27;),
     stored: Projection.attr(&#x27;&#x27;),
     trim: Projection.attr(&#x27;&#x27;),
     updateAudit: Projection.attr(&#x27;Вести аудит операции изменения&#x27;),
@@ -803,6 +836,7 @@ export let defineProjections = function (modelClass) {
       notNull: Projection.attr(&#x27;&#x27;),
       dataServiceExpressionXML: Projection.attr(&#x27;DataService Expression&#x27;),
       storage: Projection.attr(&#x27;&#x27;),
+      publishName: Projection.attr(&#x27;&#x27;),
       hint: Projection.attr(&#x27;&#x27;),
       order: Projection.attr(&#x27;&#x27;),
       trim: Projection.attr(&#x27;&#x27;),
@@ -828,7 +862,7 @@ export let defineProjections = function (modelClass) {
         description: Projection.attr(&#x27;&#x27;)
       })
     }),
-    devViews: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+    views: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
       name: Projection.attr(&#x27;&#x27;),
       description: Projection.attr(&#x27;&#x27;),
       properties: Projection.attr(&#x27;&#x27;)
@@ -1104,7 +1138,7 @@ export let defineProjections = function (modelClass) {
         }, { hidden: true })
       }, { hidden: true })
     }),
-    devViews: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+    views: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
       name: Projection.attr(&#x27;&#x27;),
       definition: Projection.attr(&#x27;&#x27;),
       class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
@@ -1189,6 +1223,175 @@ export let defineProjections = function (modelClass) {
       })
     })
   });
+  modelClass.defineProjection(&#x27;FdAttributesChangeView&#x27;, &#x27;fd-dev-class&#x27;, {
+    attributesStr: Projection.attr(&#x27;&#x27;),
+    name: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      caption: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+      })
+    }),
+    views: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      definition: Projection.attr(&#x27;&#x27;),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+      })
+    })
+  });
+  modelClass.defineProjection(&#x27;FdAttributesForForm&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    formViews: Projection.hasMany(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
+      dataObjectTypesStr: Projection.attr(&#x27;&#x27;),
+      view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+        class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+          name: Projection.attr(&#x27;&#x27;)
+        }),
+        definition: Projection.attr(&#x27;&#x27;)
+      }),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+      })
+    })
+  });
+  modelClass.defineProjection(&#x27;FdEditClassForm&#x27;, &#x27;fd-dev-class&#x27;, {
+    caption: Projection.attr(&#x27;Заголовок&#x27;),
+    name: Projection.attr(&#x27;Имя&#x27;),
+    publishName: Projection.attr(&#x27;&#x27;),
+    stored: Projection.attr(&#x27;&#x27;),
+    storage: Projection.attr(&#x27;&#x27;),
+    packet: Projection.attr(&#x27;&#x27;),
+    namespacePostfix: Projection.attr(&#x27;&#x27;),
+    businessServerClass: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;Бизнес-сервер&#x27;, {
+      name: Projection.attr(&#x27;&#x27;, { hidden: true })
+    }, { displayMemberPath: &#x27;name&#x27; }),
+    businessServerEvents: Projection.attr(&#x27;События бизнес-сервера&#x27;),
+    stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {
+
+    }, { hidden: true }),
+    attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+      /* merged manually start */
+      name: Projection.attr(&#x27;&#x27;),
+      caption: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+      }, { hidden: true })
+      /* merged manually end */
+    }),
+    views: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;Имя&#x27;),
+      description: Projection.attr(&#x27;Описание&#x27;),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+      }, { hidden: true })
+    }),
+    classStorageTypes: Projection.hasMany(&#x27;fd-class-storage-type&#x27;, &#x27;&#x27;, {
+      connectionName: Projection.attr(&#x27;Имя соединения&#x27;),
+      connectionString: Projection.attr(&#x27;Строка соединения&#x27;),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+
+      }, { hidden: true }),
+      storageType: Projection.belongsTo(&#x27;fd-storage-type&#x27;, &#x27;Тип хранилища&#x27;, {
+
+      }, { displayMemberPath: &#x27;shortName&#x27; })
+    })
+  });
+  modelClass.defineProjection(&#x27;FdPreloadMetadata&#x27;, &#x27;fd-dev-class&#x27;, {
+    accessType: Projection.attr(&#x27;&#x27;),
+    addAuditFields: Projection.attr(&#x27;&#x27;),
+    auditConnectionStringName: Projection.attr(&#x27;&#x27;),
+    auditEnabled: Projection.attr(&#x27;&#x27;),
+    auditWinServiceUrl: Projection.attr(&#x27;&#x27;),
+    autoAltered: Projection.attr(&#x27;&#x27;),
+    businessServerEvents: Projection.attr(&#x27;&#x27;),
+    caption: Projection.attr(&#x27;&#x27;),
+    comPlusServerPropertiesStr: Projection.attr(&#x27;&#x27;),
+    containersStr: Projection.attr(&#x27;&#x27;),
+    dataObjectTypesStr: Projection.attr(&#x27;&#x27;),
+    deleteAudit: Projection.attr(&#x27;&#x27;),
+    deleteAuditViewName: Projection.attr(&#x27;&#x27;),
+    disableAllRightChecks: Projection.attr(&#x27;&#x27;),
+    editFormOperationsStr: Projection.attr(&#x27;&#x27;),
+    expandOperations: Projection.attr(&#x27;&#x27;),
+    fixDependedForm: Projection.attr(&#x27;&#x27;),
+    formUrl: Projection.attr(&#x27;&#x27;),
+    generateCatcher: Projection.attr(&#x27;&#x27;),
+    generateComPlusServer: Projection.attr(&#x27;&#x27;),
+    generateDependedForm: Projection.attr(&#x27;&#x27;),
+    generateHttpRemoteServer: Projection.attr(&#x27;&#x27;),
+    hierarchicalMaster: Projection.attr(&#x27;&#x27;),
+    insertAudit: Projection.attr(&#x27;&#x27;),
+    insertAuditViewName: Projection.attr(&#x27;&#x27;),
+    listFormOperationsStr: Projection.attr(&#x27;&#x27;),
+    loadingOrder: Projection.attr(&#x27;&#x27;),
+    namespacePostfix: Projection.attr(&#x27;&#x27;),
+    onlyShowSelectedValue: Projection.attr(&#x27;&#x27;),
+    packet: Projection.attr(&#x27;&#x27;),
+    pBCustomAttributes: Projection.attr(&#x27;&#x27;),
+    pBGetViewsForForm: Projection.attr(&#x27;&#x27;),
+    pBMembers: Projection.attr(&#x27;&#x27;),
+    primaryKeyStorage: Projection.attr(&#x27;&#x27;),
+    printContainer: Projection.attr(&#x27;&#x27;),
+    propertyLookupStr: Projection.attr(&#x27;&#x27;),
+    publishToEBSD: Projection.attr(&#x27;&#x27;),
+    realCaption: Projection.attr(&#x27;&#x27;),
+    realNamespace: Projection.attr(&#x27;&#x27;),
+    realPacket: Projection.attr(&#x27;&#x27;),
+    realPrimaryKeyStorage: Projection.attr(&#x27;&#x27;),
+    realStorage: Projection.attr(&#x27;&#x27;),
+    scriptName: Projection.attr(&#x27;&#x27;),
+    selectAudit: Projection.attr(&#x27;&#x27;),
+    selectAuditViewName: Projection.attr(&#x27;&#x27;),
+    standartDesktop: Projection.attr(&#x27;&#x27;),
+    storage: Projection.attr(&#x27;&#x27;),
+    publishName: Projection.attr(&#x27;&#x27;),
+    storeInstancesInType: Projection.attr(&#x27;&#x27;),
+    trim: Projection.attr(&#x27;&#x27;),
+    updateAudit: Projection.attr(&#x27;&#x27;),
+    updateAuditViewName: Projection.attr(&#x27;&#x27;),
+    useDefaultView: Projection.attr(&#x27;&#x27;),
+    writeMode: Projection.attr(&#x27;&#x27;),
+    writeSessions: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;),
+    attributesStr: Projection.attr(&#x27;&#x27;),
+    methodsStr: Projection.attr(&#x27;&#x27;),
+    stored: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    referenceCount: Projection.attr(&#x27;&#x27;),
+    name: Projection.attr(&#x27;&#x27;),
+    description: Projection.attr(&#x27;&#x27;),
+    stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;)
+    }),
+    businessServerClass: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;)
+    }),
+    formViews: Projection.hasMany(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
+      view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+        class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+          name: Projection.attr(&#x27;&#x27;)
+        })
+      })
+    }),
+    views: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+      definition: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;&#x27;),
+      description: Projection.attr(&#x27;&#x27;),
+      nameStr: Projection.attr(&#x27;&#x27;),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;)
+      })
+    })
+  });
   modelClass.defineProjection(&#x27;Generator&#x27;, &#x27;fd-dev-class&#x27;, {
     referenceCount: Projection.attr(&#x27;&#x27;),
     stored: Projection.attr(&#x27;&#x27;),
@@ -1205,6 +1408,7 @@ export let defineProjections = function (modelClass) {
     pBCustomAttributes: Projection.attr(&#x27;&#x27;),
     primaryKeyStorage: Projection.attr(&#x27;&#x27;),
     storage: Projection.attr(&#x27;&#x27;),
+    publishName: Projection.attr(&#x27;&#x27;),
     storeInstancesInType: Projection.attr(&#x27;&#x27;),
     trim: Projection.attr(&#x27;&#x27;),
     description: Projection.attr(&#x27;&#x27;),
@@ -1272,6 +1476,7 @@ export let defineProjections = function (modelClass) {
       realCaption: Projection.attr(&#x27;RealCaption&#x27;, { hidden: true }),
       realStorage: Projection.attr(&#x27;RealStorage&#x27;, { hidden: true }),
       storage: Projection.attr(&#x27;Storage&#x27;, { hidden: true }),
+      publishName: Projection.attr(&#x27;PublishName&#x27;, { hidden: true }),
       stored: Projection.attr(&#x27;Stored&#x27;, { hidden: true }),
       trim: Projection.attr(&#x27;Trim&#x27;, { hidden: true }),
       type: Projection.attr(&#x27;Type&#x27;, { hidden: true }),
@@ -1342,13 +1547,20 @@ export let defineProjections = function (modelClass) {
         })
       })
     }),
-    devViews: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+    views: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
       name: Projection.attr(&#x27;&#x27;),
       description: Projection.attr(&#x27;&#x27;),
       definition: Projection.attr(&#x27;&#x27;),
       class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
 
       })
+    }),
+    classStorageTypes: Projection.hasMany(&#x27;fd-class-storage-type&#x27;, &#x27;&#x27;, {
+      connectionName: Projection.attr(&#x27;&#x27;),
+      connectionString: Projection.attr(&#x27;&#x27;),
+      storageType: Projection.belongsTo(&#x27;fd-storage-type&#x27;, &#x27;&#x27;, {
+
+      }, { displayMemberPath: &#x27;shortName&#x27; })
     })
   });
   modelClass.defineProjection(&#x27;GetClassByGuid&#x27;, &#x27;fd-dev-class&#x27;, {
@@ -1388,7 +1600,10 @@ export let defineProjections = function (modelClass) {
     name: Projection.attr(&#x27;Name&#x27;),
     description: Projection.attr(&#x27;Description&#x27;),
     packet: Projection.attr(&#x27;Packet&#x27;),
-    namespacePostfix: Projection.attr(&#x27;Namespace postfix&#x27;)
+    namespacePostfix: Projection.attr(&#x27;Namespace postfix&#x27;),
+    stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {
+
+    }, { hidden: true })
   });
   modelClass.defineProjection(&#x27;LoadNameView&#x27;, &#x27;fd-dev-class&#x27;, {
     name: Projection.attr(&#x27;&#x27;),
@@ -1400,7 +1615,7 @@ export let defineProjections = function (modelClass) {
   modelClass.defineProjection(&#x27;Prototyping&#x27;, &#x27;fd-dev-class&#x27;, {
     stereotype: Projection.attr(&#x27;&#x27;),
     nameStr: Projection.attr(&#x27;&#x27;),
-    devViews: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+    views: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
       name: Projection.attr(&#x27;&#x27;),
       definition: Projection.attr(&#x27;&#x27;)
     })
@@ -1481,10 +1696,52 @@ export let defineProjections = function (modelClass) {
     nameStr: Projection.attr(&#x27;&#x27;),
     stereotype: Projection.attr(&#x27;&#x27;),
     description: Projection.attr(&#x27;&#x27;),
-    devViews: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+    views: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
       name: Projection.attr(&#x27;&#x27;)
     })
   });
+
+  /* merged manually start */
+  modelClass.defineProjection(&#x27;FormConstructor&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    caption: Projection.attr(&#x27;&#x27;),
+    stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {}),
+    formViews: Projection.hasMany(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
+      view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;),
+        definition: Projection.attr(&#x27;&#x27;),
+        class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+          name: Projection.attr(&#x27;&#x27;),
+          caption: Projection.attr(&#x27;&#x27;),
+          stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {}),
+          attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+            name: Projection.attr(&#x27;&#x27;),
+            caption: Projection.attr(&#x27;&#x27;),
+            type: Projection.attr(&#x27;&#x27;),
+            notNull: Projection.attr(&#x27;&#x27;),
+            defaultValue: Projection.attr(&#x27;&#x27;),
+            class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {}),
+          }),
+        })
+      }),
+    }),
+  });
+
+  modelClass.defineProjection(&#x27;DataObjects&#x27;, &#x27;fd-dev-class&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    caption: Projection.attr(&#x27;&#x27;),
+    stereotype: Projection.attr(&#x27;&#x27;),
+    stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {}),
+    attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;),
+      caption: Projection.attr(&#x27;&#x27;),
+      type: Projection.attr(&#x27;&#x27;),
+      notNull: Projection.attr(&#x27;&#x27;),
+      defaultValue: Projection.attr(&#x27;&#x27;),
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {}),
+    }),
+  });
+  /* merged manually end */
 };
 
     </pre>

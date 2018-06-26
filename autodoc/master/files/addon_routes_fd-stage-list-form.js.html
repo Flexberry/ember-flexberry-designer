@@ -26,7 +26,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='[]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
         </form>
     </div>
 </div>
@@ -48,11 +48,31 @@
 	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
 	                <div class="tab-pane active" id="classes">
 	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/components.UiTabMenu.html">components.UiTabMenu</a></li>
+	                            <li><a href="../classes/components.UiTabSegment.html">components.UiTabSegment</a></li>
+	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
+	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
+	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
+	                            <li><a href="../classes/FdEditformControlComponent.html">FdEditformControlComponent</a></li>
+	                            <li><a href="../classes/FdEditformGroup.html">FdEditformGroup</a></li>
+	                            <li><a href="../classes/FdEditformRow.html">FdEditformRow</a></li>
+	                            <li><a href="../classes/FdEditformRowComponent.html">FdEditformRowComponent</a></li>
+	                            <li><a href="../classes/FdEditformTab.html">FdEditformTab</a></li>
+	                            <li><a href="../classes/FdEditformTabgroup.html">FdEditformTabgroup</a></li>
+	                            <li><a href="../classes/FdLimitByStageMixin.html">FdLimitByStageMixin</a></li>
+	                            <li><a href="../classes/FdViewAttributesDetail.html">FdViewAttributesDetail</a></li>
+	                            <li><a href="../classes/FdViewAttributesMaster.html">FdViewAttributesMaster</a></li>
+	                            <li><a href="../classes/FdViewAttributesProperty.html">FdViewAttributesProperty</a></li>
+	                            <li><a href="../classes/FdViewAttributesTree.html">FdViewAttributesTree</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">NewPlatformFlexberryFlexberryDesignerVisualEditControl</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">NewPlatformFlexberryFlexberryDesignerVisualEditForm</a></li>
 	                    </ul>
 	                </div>
 	    
 	                <div class="tab-pane" id="modules">
 	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/components.html">components</a></li>
+	                            <li><a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a></li>
 	                    </ul>
 	                </div>
 	            </div>
@@ -92,6 +112,9 @@
 
 <div class="file">
     <pre class="prettyprint linenums">
+import Ember from &#x27;ember&#x27;;
+import { Query } from &#x27;ember-flexberry-data&#x27;;
+import FdPreloadStageMetadata from &#x27;ember-flexberry-designer/utils/fd-preload-stage-metadata&#x27;;
 import ListFormRoute from &#x27;ember-flexberry/routes/list-form&#x27;;
 
 export default ListFormRoute.extend({
@@ -112,6 +135,15 @@ export default ListFormRoute.extend({
     @default &#x27;fd-dev-stage&#x27;
   */
   modelName: &#x27;fd-dev-stage&#x27;,
+
+  /**
+   Service that triggers objectlistview events.
+
+   @property objectlistviewEventsService
+   @type {Class}
+   @default Ember.inject.service()
+   */
+  objectlistviewEventsService: Ember.inject.service(&#x27;objectlistview-events&#x27;),
 
   /**
     Defined user settings developer.
@@ -137,6 +169,35 @@ export default ListFormRoute.extend({
     @default {}
   */
   developerUserSettings: { FdStageListForm: {} },
+
+  /**
+    Link to {{#crossLink &quot;FdCurrentProjectContextService&quot;}}FdCurrentProjectContextService{{/crossLink}}.
+
+    @property currentContext
+    @type FdCurrentProjectContextService
+  */
+  currentContext: Ember.inject.service(&#x27;fd-current-project-context&#x27;),
+
+  actions: {
+    objectListViewRowClick(stage, options) {
+      if (options.column === null) {
+        return this._super(...arguments);
+      } else {
+        this.get(&#x27;currentContext&#x27;).setCurrentStage(stage);
+        this.get(&#x27;objectlistviewEventsService&#x27;).setLoadingState(&#x27;loading&#x27;);
+        FdPreloadStageMetadata.call(this, this.get(&#x27;store&#x27;), this.get(&#x27;currentContext&#x27;).getCurrentStage()).then(() =&gt;
+          this.get(&#x27;currentContext&#x27;).getAutogeneratedSystemPromise()).then(() =&gt; {
+            this.get(&#x27;objectlistviewEventsService&#x27;).setLoadingState(&#x27;&#x27;);
+            this.transitionTo(&#x27;fd-appstruct-form&#x27;);
+          });
+      }
+    },
+  },
+
+  objectListViewLimitPredicate() {
+    let configuration = this.get(&#x27;currentContext&#x27;).getCurrentConfiguration();
+    return new Query.SimplePredicate(&#x27;configuration&#x27;, &#x27;==&#x27;, configuration);
+  },
 });
 
     </pre>

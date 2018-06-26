@@ -26,7 +26,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='[]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
         </form>
     </div>
 </div>
@@ -48,11 +48,31 @@
 	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
 	                <div class="tab-pane active" id="classes">
 	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/components.UiTabMenu.html">components.UiTabMenu</a></li>
+	                            <li><a href="../classes/components.UiTabSegment.html">components.UiTabSegment</a></li>
+	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
+	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
+	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
+	                            <li><a href="../classes/FdEditformControlComponent.html">FdEditformControlComponent</a></li>
+	                            <li><a href="../classes/FdEditformGroup.html">FdEditformGroup</a></li>
+	                            <li><a href="../classes/FdEditformRow.html">FdEditformRow</a></li>
+	                            <li><a href="../classes/FdEditformRowComponent.html">FdEditformRowComponent</a></li>
+	                            <li><a href="../classes/FdEditformTab.html">FdEditformTab</a></li>
+	                            <li><a href="../classes/FdEditformTabgroup.html">FdEditformTabgroup</a></li>
+	                            <li><a href="../classes/FdLimitByStageMixin.html">FdLimitByStageMixin</a></li>
+	                            <li><a href="../classes/FdViewAttributesDetail.html">FdViewAttributesDetail</a></li>
+	                            <li><a href="../classes/FdViewAttributesMaster.html">FdViewAttributesMaster</a></li>
+	                            <li><a href="../classes/FdViewAttributesProperty.html">FdViewAttributesProperty</a></li>
+	                            <li><a href="../classes/FdViewAttributesTree.html">FdViewAttributesTree</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">NewPlatformFlexberryFlexberryDesignerVisualEditControl</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">NewPlatformFlexberryFlexberryDesignerVisualEditForm</a></li>
 	                    </ul>
 	                </div>
 	    
 	                <div class="tab-pane" id="modules">
 	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/components.html">components</a></li>
+	                            <li><a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a></li>
 	                    </ul>
 	                </div>
 	            </div>
@@ -156,7 +176,7 @@ export let Model = Ember.Mixin.create({
 
     @property defaultAccessType
   */
-  defaultAccessType: DS.attr(&#x27;new-platform-flexberry-web-designer-access-type&#x27;),
+  defaultAccessType: DS.attr(&#x27;i-c-s-soft-s-t-o-r-m-n-e-t-access-type&#x27;),
   /**
     Method to set non-stored property.
     Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
@@ -203,7 +223,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.defaultTypeMapTypesCompute &amp;&amp; typeof this.defaultTypeMapTypesCompute === &#x27;function&#x27;) ? this.defaultTypeMapTypesCompute() : null;
     this.set(&#x27;defaultTypeMapTypes&#x27;, result);
   },
-  defaultWriteMode: DS.attr(&#x27;new-platform-flexberry-web-designer-t-write-mode&#x27;),
+  defaultWriteMode: DS.attr(&#x27;i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode&#x27;),
   /**
     Non-stored property.
 
@@ -225,7 +245,8 @@ export let Model = Ember.Mixin.create({
       &#x60;&#x60;&#x60;
   */
   _doNotDeleteExtraTablesCompute: function() {
-    let result = (this.doNotDeleteExtraTablesCompute &amp;&amp; typeof this.doNotDeleteExtraTablesCompute === &#x27;function&#x27;) ? this.doNotDeleteExtraTablesCompute() : null;
+    let result = (this.doNotDeleteExtraTablesCompute &amp;&amp; typeof this.doNotDeleteExtraTablesCompute === &#x27;function&#x27;) ?
+      this.doNotDeleteExtraTablesCompute() : null;
     this.set(&#x27;doNotDeleteExtraTables&#x27;, result);
   },
   /**
@@ -306,7 +327,7 @@ export let Model = Ember.Mixin.create({
   */
   _realDataObjectNameSpaceCompute: function() {
     let result = (this.realDataObjectNameSpaceCompute &amp;&amp; typeof this.realDataObjectNameSpaceCompute === &#x27;function&#x27;) ?
-    this.realDataObjectNameSpaceCompute() : null;
+      this.realDataObjectNameSpaceCompute() : null;
     this.set(&#x27;realDataObjectNameSpace&#x27;, result);
   },
   scriptNamespace: DS.attr(&#x27;string&#x27;),
@@ -367,7 +388,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.typeMapCSCompute &amp;&amp; typeof this.typeMapCSCompute === &#x27;function&#x27;) ? this.typeMapCSCompute() : null;
     this.set(&#x27;typeMapCS&#x27;, result);
   },
-  typeMapCSStr: DS.attr(&#x27;string&#x27;),
+  typeMapCSStr: DS.attr(&#x27;typemap&#x27;),
   /**
     Non-stored property.
 
@@ -473,6 +494,7 @@ export let Model = Ember.Mixin.create({
   typeDefinitions: DS.hasMany(&#x27;fd-dev-type-definition&#x27;, { inverse: &#x27;stage&#x27;, async: false }),
   controlTypes: DS.hasMany(&#x27;fd-dev-control-type&#x27;, { inverse: &#x27;stage&#x27;, async: false }),
   moduleSettings: DS.hasMany(&#x27;fd-dev-module-setting&#x27;, { inverse: &#x27;stage&#x27;, async: false }),
+  generations: DS.hasMany(&#x27;fd-generation&#x27;, { inverse: &#x27;stage&#x27;, async: false }),
   getValidations: function () {
     let parentValidations = this._super();
     let thisValidations = {
@@ -526,7 +548,10 @@ export let defineProjections = function (modelClass) {
     auditEnabled: Projection.attr(&#x27;&#x27;),
     isAuditDatabaseLocal: Projection.attr(&#x27;&#x27;),
     isReportDatabaseLocal: Projection.attr(&#x27;&#x27;),
-    defaultWriteMode: Projection.attr(&#x27;&#x27;)
+    defaultWriteMode: Projection.attr(&#x27;&#x27;),
+    moduleSettings: Projection.hasMany(&#x27;fd-dev-module-setting&#x27;, &#x27;&#x27;, {
+
+    })
   });
   modelClass.defineProjection(&#x27;Compiler&#x27;, &#x27;fd-dev-stage&#x27;, {
     company: Projection.attr(&#x27;&#x27;),
@@ -606,7 +631,14 @@ export let defineProjections = function (modelClass) {
     description: Projection.attr(&#x27;Description&#x27;),
     company: Projection.attr(&#x27;Company&#x27;),
     copyright: Projection.attr(&#x27;Copyright&#x27;),
-    product: Projection.attr(&#x27;Product&#x27;)
+    product: Projection.attr(&#x27;Product&#x27;),
+    configuration: Projection.belongsTo(&#x27;fd-configuration&#x27;, &#x27;&#x27;, {
+      project: Projection.belongsTo(&#x27;fd-project&#x27;, &#x27;&#x27;, {
+        repository: Projection.belongsTo(&#x27;fd-repository&#x27;, &#x27;&#x27;, {
+
+        }, { hidden: true })
+      }, { hidden: true })
+    }, { hidden: true })
   });
   modelClass.defineProjection(&#x27;EditMSSQLDirectGenerator&#x27;, &#x27;fd-dev-stage&#x27;, {
     name: Projection.attr(&#x27;Название стадии&#x27;),
@@ -717,6 +749,55 @@ export let defineProjections = function (modelClass) {
     defaultListScriptName: Projection.attr(&#x27;&#x27;),
     signAssemblies: Projection.attr(&#x27;&#x27;)
   });
+  modelClass.defineProjection(&#x27;FdPreloadMetadata&#x27;, &#x27;fd-dev-stage&#x27;, {
+    additionalPluginsSettingsStr: Projection.attr(&#x27;&#x27;),
+    auditEnabled: Projection.attr(&#x27;&#x27;),
+    company: Projection.attr(&#x27;&#x27;),
+    copyright: Projection.attr(&#x27;&#x27;),
+    dataObjectNameSpace: Projection.attr(&#x27;&#x27;),
+    defaultAccessType: Projection.attr(&#x27;&#x27;),
+    defaultBaseClass: Projection.attr(&#x27;&#x27;),
+    defaultDetailArrayClass: Projection.attr(&#x27;&#x27;),
+    defaultEditScriptName: Projection.attr(&#x27;&#x27;),
+    defaultListScriptName: Projection.attr(&#x27;&#x27;),
+    defaultWriteMode: Projection.attr(&#x27;&#x27;),
+    doNotDeleteExtraTables: Projection.attr(&#x27;&#x27;),
+    indexComment: Projection.attr(&#x27;&#x27;),
+    isAuditDatabaseLocal: Projection.attr(&#x27;&#x27;),
+    isReportDatabaseLocal: Projection.attr(&#x27;&#x27;),
+    lastIndexDate: Projection.attr(&#x27;&#x27;),
+    operationsEnumNamespace: Projection.attr(&#x27;&#x27;),
+    operationsEnumPacket: Projection.attr(&#x27;&#x27;),
+    product: Projection.attr(&#x27;&#x27;),
+    realDataObjectNameSpace: Projection.attr(&#x27;&#x27;),
+    scriptNamespace: Projection.attr(&#x27;&#x27;),
+    scriptPacket: Projection.attr(&#x27;&#x27;),
+    serializedIndex: Projection.attr(&#x27;&#x27;),
+    signAssemblies: Projection.attr(&#x27;&#x27;),
+    sourceAzStoragePath: Projection.attr(&#x27;&#x27;),
+    sourceCodeCSPath: Projection.attr(&#x27;&#x27;),
+    sourceCodeVBPath: Projection.attr(&#x27;&#x27;),
+    sourceControlUri: Projection.attr(&#x27;&#x27;),
+    sQLPath: Projection.attr(&#x27;&#x27;),
+    typeMapAccessStr: Projection.attr(&#x27;&#x27;),
+    typeMapCSStr: Projection.attr(&#x27;&#x27;),
+    typeMapOracleStr: Projection.attr(&#x27;&#x27;),
+    typeMapPostgreStr: Projection.attr(&#x27;&#x27;),
+    typeMapSQLStr: Projection.attr(&#x27;&#x27;),
+    typeMapVBStr: Projection.attr(&#x27;&#x27;),
+    useSourceControl: Projection.attr(&#x27;&#x27;),
+    version: Projection.attr(&#x27;&#x27;),
+    createUser: Projection.attr(&#x27;&#x27;),
+    createDate: Projection.attr(&#x27;&#x27;),
+    changeUser: Projection.attr(&#x27;&#x27;),
+    changeDate: Projection.attr(&#x27;&#x27;),
+    name: Projection.attr(&#x27;&#x27;),
+    description: Projection.attr(&#x27;&#x27;),
+    nameStr: Projection.attr(&#x27;&#x27;),
+    configuration: Projection.belongsTo(&#x27;fd-configuration&#x27;, &#x27;&#x27;, {
+      name: Projection.attr(&#x27;&#x27;)
+    })
+  });
   modelClass.defineProjection(&#x27;FormDesigner_ProjectE&#x27;, &#x27;fd-dev-stage&#x27;, {
     name: Projection.attr(&#x27;Название&#x27;),
     description: Projection.attr(&#x27;Описание&#x27;),
@@ -740,6 +821,20 @@ export let defineProjections = function (modelClass) {
         }, { hidden: true })
       }, { hidden: true })
     }, { hidden: true })
+  });
+  modelClass.defineProjection(&#x27;Generations&#x27;, &#x27;fd-dev-stage&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    generations: Projection.hasMany(&#x27;fd-generation&#x27;, &#x27;&#x27;, {
+      userName: Projection.attr(&#x27;Пользователь&#x27;),
+      state: Projection.attr(&#x27;Состояние&#x27;),
+      startTime: Projection.attr(&#x27;Время старта&#x27;),
+      percentComplete: Projection.attr(&#x27;% выполнения&#x27;),
+      endTime: Projection.attr(&#x27;Время окончания&#x27;),
+      stage: Projection.belongsTo(&#x27;fd-dev-stage&#x27;, &#x27;Имя стадии&#x27;, {
+        name: Projection.attr(&#x27;Имя стадии&#x27;)
+      }, { hidden: true }),
+      generationReason: Projection.attr(&#x27;Действие&#x27;)
+    })
   });
   modelClass.defineProjection(&#x27;Generator&#x27;, &#x27;fd-dev-stage&#x27;, {
     name: Projection.attr(&#x27;&#x27;),
@@ -861,7 +956,10 @@ export let defineProjections = function (modelClass) {
     changeUser: Projection.attr(&#x27;Change user&#x27;),
     changeDate: Projection.attr(&#x27;Change date&#x27;),
     createUser: Projection.attr(&#x27;Create user&#x27;),
-    createDate: Projection.attr(&#x27;Create date&#x27;)
+    createDate: Projection.attr(&#x27;Create date&#x27;),
+    configuration: Projection.belongsTo(&#x27;fd-configuration&#x27;, &#x27;&#x27;, {
+
+    }, { hidden: true })
   });
   modelClass.defineProjection(&#x27;Prototyping&#x27;, &#x27;fd-dev-stage&#x27;, {
 

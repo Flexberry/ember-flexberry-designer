@@ -258,6 +258,9 @@
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -914,6 +917,9 @@ th {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -1118,6 +1124,9 @@ th {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*******************************
              Mix-ins
@@ -1270,6 +1279,9 @@ input::selection {
   background: #4f73b0;
   z-index: 999;
   width: 100%;
+}
+.background-logo.mobile {
+  height: 50px;
 }
 .background-logo a {
   background: #fff;
@@ -1595,6 +1607,9 @@ lang {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -4800,13 +4815,14 @@ lang {
 div.ui.secondary.menu.no-margin {
   display: flex;
   align-items: center;
+  min-height: 0em;
 }
 .ui.button.refresh-button {
   border: none;
   font-size: 0px;
   width: 25px;
-  padding: 0px 20px 0px 0px;
-  height: 0px;
+  padding: 10px 20px 0px 0px;
+  height: 25px;
 }
 .ui.button.refresh-button:hover {
   border: none;
@@ -4820,14 +4836,13 @@ div.ui.secondary.menu.no-margin {
 .ui.button.delete-button {
   border: none;
   font-size: 0px;
+  padding-top: 10px;
   padding-left: 10px;
-  height: 0px;
+  height: 25px;
 }
 .ui.button.delete-button:hover {
   background: none;
   border: none;
-  color: #FFFFFF;
-  background-color: #DB2828;
 }
 .ui.button.icon.hierarchical-button {
   border: 0px;
@@ -4964,24 +4979,15 @@ div.ui.secondary.menu.no-margin {
       Components buttons section
 *******************************************/
 /* Lookup select button */
-.ui.button.ui-change {
-  font-size: 0px;
-  width: 35px;
-  border: none;
-}
-.ui.button.ui-change:before {
-  content: "";
-  font-family: 'Crimean';
-  visibility: visible;
-  color: #7ba7d9;
-  font-size: 13px;
-}
-.ui.button.ui-change:hover:before {
-  color: #3c87dc;
-  opacity: 1;
-}
-.ui.loading.button.ui-change:before {
+.ui.loading.button.ui-change:before,
+.ui.loading.button.ui-change i.icon.change,
+.ui.loading.button.ui-change i.icon.change:before {
   content: '';
+}
+.ui.button.ui-change i.icon,
+.ui.button.ui-clear i.icon {
+  margin: 0em 0.5em 0em 0.5em;
+  font-size: 1em;
 }
 ui.button.ui-clear:hover {
   color: #FF7500;
@@ -5000,7 +5006,7 @@ ui.button.ui-clear:hover {
 }
 .ui.fluid.action.input .ui.button.ui-change {
   position: absolute;
-  right: 20px;
+  right: 30px;
 }
 .ui.fluid.action.input .ui.button.ui-clear {
   position: absolute;
@@ -5008,7 +5014,7 @@ ui.button.ui-clear:hover {
 }
 .ui.fluid.action.input .ui.loading.button.ui-change {
   position: absolute;
-  right: 27px;
+  right: 30px;
 }
 /* Table cell buttons */
 .cell .button:hover {
@@ -5167,9 +5173,6 @@ ui.button.ui-clear:hover {
 }
 .ui.right.floated.tiny.primary.compact.button:hover {
   border: 1px solid #7ba7d9;
-}
-.showing-entries {
-  color: #777;
 }
 /*!
  * # Semantic UI - Container
@@ -5419,6 +5422,9 @@ ui.button.ui-clear:hover {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -5582,7 +5588,7 @@ ui.button.ui-clear:hover {
   padding-top: 80px;
 }
 .full.height {
-  height: 87.2vh!important;
+  height: calc(100vh - 80px - 40px) !important;
   overflow: auto;
 }
 .ui.attached.segment {
@@ -5843,6 +5849,9 @@ ui.button.ui-clear:hover {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -6352,6 +6361,9 @@ ui.button.ui-clear:hover {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -7636,6 +7648,9 @@ i.flag.zimbabwe:before {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -8559,6 +8574,9 @@ a.ui.inverted.grey.header:hover {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -9162,6 +9180,18 @@ i.icon.remove:before {
 i.icon.remove:before:hover {
   color: #FF7500;
 }
+i.icon.change:before {
+  font-family: 'Crimean';
+  content: "";
+  font-size: 17px;
+  position: relative;
+  top: -1px;
+  opacity: 1;
+}
+i.icon.change:before:hover {
+  color: #3c87dc;
+  opacity: 1;
+}
 /**************************************
       Edit panel buttons section
 ***************************************/
@@ -9251,22 +9281,22 @@ i.icon.download:before {
 /******************************************
       Page navigation buttons section
 *******************************************/
-i.icon.prev-page:before {
+.prev-page-button:before {
   content: "\e81a";
   font-family: 'Crimean';
   font-size: 14px;
   opacity: 1;
 }
-i.icon.prev-page:hover:before {
+.prev-page-button:hover:before {
   color: #FF7500;
 }
-i.icon.next-page:before {
+.next-page-button:before {
   content: "\e81b";
   font-family: 'Crimean';
   font-size: 14px;
   opacity: 1;
 }
-i.icon.next-page:hover:before {
+.next-page-button:hover:before {
   color: #FF7500;
 }
 /******************************************
@@ -9331,6 +9361,11 @@ i.icon.text-menu-hide:before {
 }
 .flexberry-lookup > .ui.fluid > button > i.icon.remove:before {
   content: "\e806";
+  font-family: 'Crimean';
+  font-size: 13px;
+}
+.flexberry-lookup > .ui.fluid > button > i.icon.change:before {
+  content: "";
   font-family: 'Crimean';
   font-size: 13px;
 }
@@ -9593,6 +9628,9 @@ i.minus.icon {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -10156,6 +10194,9 @@ div.item-minus {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -10644,11 +10685,13 @@ input {
   height: 35px;
   min-width: 220px;
 }
-.flatpickr.flatpickr-input {
-  letter-spacing: 3px;
-}
 .ui.secondary.menu > .ui.action.input {
   margin: 0 10px;
+}
+::-ms-clear,
+::-ms-reveal {
+  width: 0;
+  height: 0;
 }
 /*!
  * # Semantic UI - Label
@@ -10898,6 +10941,9 @@ input {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -12318,6 +12364,9 @@ a.ui.basic.label:hover {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -13500,6 +13549,9 @@ ol.ui.horizontal.list li:before,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -14023,6 +14075,9 @@ ol.ui.horizontal.list li:before,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -14407,6 +14462,9 @@ ol.ui.horizontal.list li:before,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -14887,6 +14945,9 @@ ol.ui.horizontal.list li:before,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -15567,6 +15628,7 @@ ol.ui.horizontal.list li:before,
   position: fixed;
   bottom: 0px;
   z-index: 99;
+  height: 40px;
 }
 .daterangepicker .calendar td {
   color: #7ba7d9;
@@ -15850,6 +15912,9 @@ ol.ui.horizontal.list li:before,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -16637,6 +16702,9 @@ ol.ui.horizontal.list li:before,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -17011,6 +17079,9 @@ ol.ui.horizontal.list li:before,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -18292,6 +18363,9 @@ option {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -20396,6 +20470,9 @@ option {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -22203,6 +22280,17 @@ i.icon.hand.paper:before {
   background: none;
   margin-bottom: 0;
 }
+.showing-entries {
+  color: #777;
+  margin: 0.65em;
+}
+div.ui.secondary.menu.no-margin.nav-bar .ui.basic.buttons {
+  align-self: flex-start;
+}
+div.ui.secondary.menu.no-margin.nav-bar .right.menu {
+  flex-wrap: wrap-reverse;
+  justify-content: flex-end;
+}
 /*!
  * # Semantic UI - Message
  * http://github.com/semantic-org/semantic-ui/
@@ -22451,6 +22539,9 @@ i.icon.hand.paper:before {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -23133,6 +23224,9 @@ i.icon.hand.paper:before {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -24168,7 +24262,12 @@ tr {
   overflow: hidden;
 }
 .ui.table.object-list-view tr td {
-  overflow: inherit;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+.ui.table.object-list-view tr td.overflowed-cell,
+.ui.table.object-list-view tr td.object-list-view-menu {
+  overflow: visible;
 }
 .object-list-view-container {
   margin: 1em 0;
@@ -24180,12 +24279,12 @@ tr {
 .object-list-view-container .object-list-view {
   margin: 0;
 }
+.object-list-view-container.groupedit-container {
+  overflow: visible;
+}
 table.object-list-view.selectable tbody,
 table.object-list-view.selectable thead {
   cursor: pointer;
-}
-.object-list-view-menu {
-  overflow: initial!important;
 }
 .object-list-view-helper-column-cell div.cell {
   float: left;
@@ -24442,6 +24541,9 @@ table.object-list-view.selectable thead {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -24918,6 +25020,9 @@ table.object-list-view.selectable thead {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -26072,6 +26177,9 @@ a.ui.card:hover,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -26587,6 +26695,9 @@ a.ui.card:hover,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -27140,6 +27251,9 @@ a.ui.card:hover,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -27839,6 +27953,9 @@ a.ui.card:hover,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -28626,6 +28743,9 @@ a.ui.card:hover,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -29158,6 +29278,9 @@ a.ui.card:hover,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -29977,6 +30100,9 @@ a.ui.card:hover,
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -30414,6 +30540,9 @@ body.dimmable > .dimmer {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -31693,6 +31822,11 @@ select.ui.dropdown {
 .ui.upward.pointing.dropdown > .menu:after {
   background: #dcebfc;
 }
+.ui.buttons.cols-config > .ui.dropdown:last-child .menu,
+.ui.buttons.export-config > .ui.dropdown:last-child .menu {
+  left: auto;
+  right: -5em;
+}
 /*!
  * # Semantic UI - Video
  * http://github.com/semantic-org/semantic-ui/
@@ -31941,6 +32075,9 @@ select.ui.dropdown {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -32364,6 +32501,9 @@ select.ui.dropdown {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -32825,13 +32965,10 @@ select.ui.dropdown {
   max-height: 618px;
 }
 .ui.modal .content .object-list-view-container {
-  height: 300px;
-}
-.ui.modal .content .ui.secondary.menu.no-margin.ember-view {
-  display: none;
+  max-height: 300px;
 }
 .ui.modal .content .flexberry-colsconfig.content {
-  height: 585px;
+  max-height: 585px;
   overflow: auto;
 }
 .ui.modal > ui.table {
@@ -33085,6 +33222,9 @@ select.ui.dropdown {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -33500,6 +33640,9 @@ a.ui.nag {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -34118,6 +34261,9 @@ a.ui.nag {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -34852,6 +34998,9 @@ a.ui.nag {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -35343,6 +35492,9 @@ a.ui.nag {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -35992,6 +36144,9 @@ a.ui.nag {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -36380,6 +36535,9 @@ a.ui.nag {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -36883,9 +37041,10 @@ body.pushable {
   margin: 20px 5px;
   width: 250px;
 }
-.inverted.vertical.menu.sidebar {
-  height: 85.3vh !important;
+.inverted.vertical.main.menu.sidebar {
+  height: calc(100vh - 80px - 40px) !important;
   background: #f1f7ff;
+  top: 80px;
 }
 .mobile.inverted.vertical.menu.sidebar {
   height: 87.6vh !important;
@@ -37194,6 +37353,9 @@ img.item-minus {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -37512,6 +37674,9 @@ img.item-minus {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -37854,6 +38019,9 @@ img.item-minus {
         Hover
 --------------------*/
 /*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
 /* Site Theme */
 /*-------------------
  Component Variables
@@ -38865,8 +39033,232 @@ img.item-minus {
     margin-bottom: 3px;
   }
 }
+.fd-editform-row {
+  position: relative;
+  margin-top: 1rem;
+}
+.fd-editform-row > .drag-anchor {
+  position: absolute;
+  display: none;
+  z-index: 1;
+  width: 2em;
+  height: 2em;
+  top: 0.5em;
+  left: 0.5em;
+  background-color: black;
+  cursor: move;
+}
+.fd-editform-row:hover > .drag-anchor {
+  display: block;
+}
+.fd-editform-row .top.attached.tabular.menu {
+  margin-top: 0;
+}
+.fd-editform-control {
+  position: relative;
+}
+.fd-editform-control > .drag-anchor {
+  position: absolute;
+  display: none;
+  z-index: 1;
+  width: 2em;
+  height: 2em;
+  top: 0.5em;
+  right: 0.5em;
+  background-color: black;
+  cursor: move;
+}
+.fd-editform-control:hover > .drag-anchor {
+  display: block;
+}
+/*******************************
+         Site Settings
+*******************************/
+/*-------------------
+       Loader
+--------------------*/
+/*-------------------
+      Site Colors
+--------------------*/
+/*---  Colors  ---*/
+/*---  Light Colors  ---*/
+/*-------------------
+        Paths
+--------------------*/
+/* For source only. Modified in gulp for dist */
+/*-------------------
+        Hover
+--------------------*/
+/*---  Colors  ---*/
+/*-------------------
+        Heights
+--------------------*/
+#example.pusher {
+  -webkit-transition: transform 500ms ease, width 500ms ease;
+  -moz-transition: transform 500ms ease, width 500ms ease;
+  -o-transition: transform 500ms ease, width 500ms ease;
+  transition: transform 500ms ease, width 500ms ease;
+}
+.ui.right.sidebar.config-panel {
+  transform: translate3d(0, 0, 0);
+  z-index: 1;
+  visibility: visible;
+  top: 80px;
+}
+.ui.right.sidebar.config-panel .right-tabs {
+  flex-direction: row-reverse;
+  height: auto;
+  min-height: calc(100vh - 80px);
+}
+.ui.right.sidebar.config-panel .ui.vertical.menu {
+  width: 4rem;
+  margin-top: 0;
+}
+.ui.right.sidebar.config-panel .ui.vertical.menu.tabular .item {
+  -webkit-writing-mode: vertical-rl;
+  writing-mode: tb-rl;
+}
+.ui.right.sidebar.config-panel .ui.selection.dropdown {
+  min-width: auto;
+}
+.ui.right.sidebar.config-panel .tab {
+  padding: 1em;
+}
+.panel-left,
+.panel-right {
+  overflow: hidden;
+  background: #FFFFFF;
+  margin: 1rem 0em;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.panel-left .ui.buttons,
+.panel-right .ui.buttons {
+  display: block;
+}
+.panel-left .overflow-panel,
+.panel-right .overflow-panel {
+  overflow: auto;
+}
+.panel-left.view-attributes,
+.panel-right.view-attributes {
+  transition: width 500ms ease;
+}
+.panel-left .ui[class*="very basic"].table:not(.sortable):not(.striped) td:last-child,
+.panel-right .ui[class*="very basic"].table:not(.sortable):not(.striped) td:last-child {
+  width: 100%;
+}
+.panel-wrapper {
+  height: -webkit-fill-available;
+  max-height: calc(100vh - 250px);
+  display: flex;
+}
+.panel-wrapper .ui.segments {
+  margin: 0;
+  display: flex;
+  height: 100%;
+}
+.panel-wrapper .jstree-default > .jstree-no-dots .jstree-node {
+  padding: 3px 0;
+}
+.panel-wrapper .jstree-default .jstree-wholerow {
+  height: auto;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 3px 0;
+  margin: -3px;
+}
+.panel-wrapper .jstree-default .jstree-wholerow-clicked {
+  background: #e7f4f9;
+  padding: 3px 0;
+  margin-top: -3px;
+  color: rgba(0, 0, 0, 0.87) !important;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.87) inset;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.panel-wrapper .jstree-default .jstree-wholerow-hovered:not(.jstree-wholerow-clicked) {
+  background: #f1f7ff;
+  padding: 3px 0;
+  margin-top: -3px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.panel-wrapper .jstree-children > .jstree-node:not(.jstree-last):first-child {
+  margin-top: 3px;
+}
+.panel-wrapper i.icon.sidebar:before {
+  color: #7ba7d9;
+}
+.panel-wrapper .close-panel-btn {
+  border: none;
+}
+.panel-wrapper .close-panel-btn,
+.panel-wrapper .vertical.buttons {
+  margin: 1em 5px;
+}
+.panel-wrapper .ui.table tr.active {
+  background: #e7f4f9!important;
+}
+.panel-wrapper .ui.basic.table tbody tr:hover {
+  background: #f1f7ff;
+}
+.panel-wrapper .ui.basic.vertical.buttons .button {
+  border: 1px solid #7ba7d9;
+}
+.panel-wrapper .ui.basic.vertical.buttons .button:first-child {
+  border-top-width: 1px;
+}
+.panel-wrapper .ui.button:not(.close-panel-btn):active,
+.panel-wrapper .ui.button:not(.close-panel-btn):focus,
+.panel-wrapper .ui.basic.buttons .button:active,
+.panel-wrapper .ui.basic.button:active,
+.panel-wrapper .ui.basic.buttons .button:focus,
+.panel-wrapper .ui.basic.button:focus {
+  background: #FFFFFF!important;
+}
+.panel-wrapper .ui.button:not(.close-panel-btn):active .ui.icon.button:hover,
+.panel-wrapper .ui.button:not(.close-panel-btn):focus .ui.icon.button:hover,
+.panel-wrapper .ui.basic.buttons .button:active .ui.icon.button:hover,
+.panel-wrapper .ui.basic.button:active .ui.icon.button:hover,
+.panel-wrapper .ui.basic.buttons .button:focus .ui.icon.button:hover,
+.panel-wrapper .ui.basic.button:focus .ui.icon.button:hover {
+  color: #7ba7d9;
+}
+.panel-wrapper .ui.button:not(.close-panel-btn):active:hover,
+.panel-wrapper .ui.button:not(.close-panel-btn):focus:hover,
+.panel-wrapper .ui.basic.buttons .button:active:hover,
+.panel-wrapper .ui.basic.button:active:hover,
+.panel-wrapper .ui.basic.buttons .button:focus:hover,
+.panel-wrapper .ui.basic.button:focus:hover {
+  background: #7ba7d9!important;
+}
+.panel-wrapper .ui.collapsing.table td {
+  padding: 5px;
+  text-align: left;
+}
+.ui.button > .right.icon:not(.button) {
+  margin: 0;
+}
+/* General styles */
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .ui.container {
+    width: 95% !important;
+  }
+}
+@media only screen and (max-width: 1199px) and (min-width: 992px) {
+  .ui.container {
+    width: 95% !important;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .ui.container {
+    width: 95% !important;
+  }
+}
+.ui.attached.menu {
+  background: #4f73b0 !important;
+}
 .spinner {
-  background: url('/assets/images/nyan.gif') no-repeat;
+  background: url('images/nyan.gif') no-repeat;
   background-size: contain;
   height: 100px;
   width: 100px;
@@ -38882,5 +39274,28 @@ img.item-minus {
 #example-mobile .flexberry-content {
   padding: 6em 10px 2em;
   border-bottom: none;
+}
+.ui.footer .ui.container {
+  width: 100% !important;
+}
+.ui.styled.accordion {
+  width: 520px;
+  margin: 1px;
+}
+/* Edit control form styles */
+.control-field {
+  padding: 5px;
+  border: 1px solid transparent;
+}
+.selected-field {
+  background-color: #fafafa;
+  border: 1px solid #e4e4e4;
+  border-radius: 5px;
+}
+.error-log-record {
+  color: red;
+}
+.warning-log-record {
+  color: #c1c140;
 }
 /*# sourceMappingURL=/assets/dummy.css.map */

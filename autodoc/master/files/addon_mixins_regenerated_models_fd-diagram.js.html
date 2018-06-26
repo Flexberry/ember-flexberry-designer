@@ -26,7 +26,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='[]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
         </form>
     </div>
 </div>
@@ -48,11 +48,31 @@
 	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
 	                <div class="tab-pane active" id="classes">
 	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/components.UiTabMenu.html">components.UiTabMenu</a></li>
+	                            <li><a href="../classes/components.UiTabSegment.html">components.UiTabSegment</a></li>
+	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
+	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
+	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
+	                            <li><a href="../classes/FdEditformControlComponent.html">FdEditformControlComponent</a></li>
+	                            <li><a href="../classes/FdEditformGroup.html">FdEditformGroup</a></li>
+	                            <li><a href="../classes/FdEditformRow.html">FdEditformRow</a></li>
+	                            <li><a href="../classes/FdEditformRowComponent.html">FdEditformRowComponent</a></li>
+	                            <li><a href="../classes/FdEditformTab.html">FdEditformTab</a></li>
+	                            <li><a href="../classes/FdEditformTabgroup.html">FdEditformTabgroup</a></li>
+	                            <li><a href="../classes/FdLimitByStageMixin.html">FdLimitByStageMixin</a></li>
+	                            <li><a href="../classes/FdViewAttributesDetail.html">FdViewAttributesDetail</a></li>
+	                            <li><a href="../classes/FdViewAttributesMaster.html">FdViewAttributesMaster</a></li>
+	                            <li><a href="../classes/FdViewAttributesProperty.html">FdViewAttributesProperty</a></li>
+	                            <li><a href="../classes/FdViewAttributesTree.html">FdViewAttributesTree</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">NewPlatformFlexberryFlexberryDesignerVisualEditControl</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">NewPlatformFlexberryFlexberryDesignerVisualEditForm</a></li>
 	                    </ul>
 	                </div>
 	    
 	                <div class="tab-pane" id="modules">
 	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/components.html">components</a></li>
+	                            <li><a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a></li>
 	                    </ul>
 	                </div>
 	            </div>
@@ -121,6 +141,30 @@ export let Model = Ember.Mixin.create({
     let result = (this.primitivesStreamCompute &amp;&amp; typeof this.primitivesStreamCompute === &#x27;function&#x27;) ? this.primitivesStreamCompute() : null;
     this.set(&#x27;primitivesStream&#x27;, result);
   },
+  /**
+    Non-stored property.
+
+    @property primitivesJsonString
+  */
+  primitivesJsonString: DS.attr(&#x27;string&#x27;),
+  /**
+    Method to set non-stored property.
+    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
+    Please, implement &#x27;primitivesStreamCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;primitivesStream&#x27; property.
+
+    @method _primitivesJsonStringCompute
+    @private
+    @example
+      &#x60;&#x60;&#x60;javascript
+      _primitivesJsonStringChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;primitivesJsonString&#x27;, function() {
+        Ember.run.once(this, &#x27;_primitivesJsonStringCompute&#x27;);
+      }))
+      &#x60;&#x60;&#x60;
+  */
+  _primitivesJsonStringCompute: function() {
+    let result = (this.primitivesJsonStringCompute &amp;&amp; typeof this.primitivesJsonStringCompute === &#x27;function&#x27;) ? this.primitivesJsonStringCompute() : null;
+    this.set(&#x27;primitivesJsonString&#x27;, result);
+  },
   primitivesStreamString: DS.attr(&#x27;string&#x27;),
   elements: DS.attr(&#x27;string&#x27;),
   subsystem: DS.belongsTo(&#x27;fd-subsystem&#x27;, { inverse: &#x27;diagrams&#x27;, async: false, polymorphic: true }),
@@ -152,6 +196,12 @@ export let defineProjections = function (modelClass) {
     changeDate: Projection.attr(&#x27;&#x27;),
     changeUser: Projection.attr(&#x27;&#x27;)
   });
+  modelClass.defineProjection(&#x27;FdDiagram&#x27;, &#x27;fd-diagram&#x27;, {
+    primitivesJsonString: Projection.attr(&#x27;&#x27;),
+    primitivesStreamString: Projection.attr(&#x27;&#x27;),
+    caseObjectsString: Projection.attr(&#x27;&#x27;),
+    name: Projection.attr(&#x27;&#x27;)
+  });
   modelClass.defineProjection(&#x27;DiagramWithStage&#x27;, &#x27;fd-diagram&#x27;, {
     primitivesStreamString: Projection.attr(&#x27;&#x27;),
     caseObjectsString: Projection.attr(&#x27;&#x27;),
@@ -159,7 +209,12 @@ export let defineProjections = function (modelClass) {
     createDate: Projection.attr(&#x27;&#x27;),
     createUser: Projection.attr(&#x27;&#x27;),
     changeDate: Projection.attr(&#x27;&#x27;),
-    changeUser: Projection.attr(&#x27;&#x27;)
+    changeUser: Projection.attr(&#x27;&#x27;),
+    subsystem: Projection.belongsTo(&#x27;fd-subsystem&#x27;, &#x27;&#x27;, {
+      stage: Projection.belongsTo(&#x27;fd-stage&#x27;, &#x27;&#x27;, {
+
+      }),
+    }),
   });
   modelClass.defineProjection(&#x27;DiagramWithSystem&#x27;, &#x27;fd-diagram&#x27;, {
     primitivesStreamString: Projection.attr(&#x27;&#x27;),
@@ -168,7 +223,10 @@ export let defineProjections = function (modelClass) {
     createDate: Projection.attr(&#x27;&#x27;),
     createUser: Projection.attr(&#x27;&#x27;),
     changeDate: Projection.attr(&#x27;&#x27;),
-    changeUser: Projection.attr(&#x27;&#x27;)
+    changeUser: Projection.attr(&#x27;&#x27;),
+    subsystem: Projection.belongsTo(&#x27;fd-subsystem&#x27;, &#x27;&#x27;, {
+
+    })
   });
   modelClass.defineProjection(&#x27;ExportToWmf&#x27;, &#x27;fd-diagram&#x27;, {
     name: Projection.attr(&#x27;&#x27;),

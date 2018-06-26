@@ -26,7 +26,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='[]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
         </form>
     </div>
 </div>
@@ -48,11 +48,31 @@
 	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
 	                <div class="tab-pane active" id="classes">
 	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/components.UiTabMenu.html">components.UiTabMenu</a></li>
+	                            <li><a href="../classes/components.UiTabSegment.html">components.UiTabSegment</a></li>
+	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
+	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
+	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
+	                            <li><a href="../classes/FdEditformControlComponent.html">FdEditformControlComponent</a></li>
+	                            <li><a href="../classes/FdEditformGroup.html">FdEditformGroup</a></li>
+	                            <li><a href="../classes/FdEditformRow.html">FdEditformRow</a></li>
+	                            <li><a href="../classes/FdEditformRowComponent.html">FdEditformRowComponent</a></li>
+	                            <li><a href="../classes/FdEditformTab.html">FdEditformTab</a></li>
+	                            <li><a href="../classes/FdEditformTabgroup.html">FdEditformTabgroup</a></li>
+	                            <li><a href="../classes/FdLimitByStageMixin.html">FdLimitByStageMixin</a></li>
+	                            <li><a href="../classes/FdViewAttributesDetail.html">FdViewAttributesDetail</a></li>
+	                            <li><a href="../classes/FdViewAttributesMaster.html">FdViewAttributesMaster</a></li>
+	                            <li><a href="../classes/FdViewAttributesProperty.html">FdViewAttributesProperty</a></li>
+	                            <li><a href="../classes/FdViewAttributesTree.html">FdViewAttributesTree</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">NewPlatformFlexberryFlexberryDesignerVisualEditControl</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">NewPlatformFlexberryFlexberryDesignerVisualEditForm</a></li>
 	                    </ul>
 	                </div>
 	    
 	                <div class="tab-pane" id="modules">
 	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/components.html">components</a></li>
+	                            <li><a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a></li>
 	                    </ul>
 	                </div>
 	            </div>
@@ -103,13 +123,48 @@ export default Ember.Controller.extend({
     @readOnly
   */
   store: Ember.inject.service(&#x27;store&#x27;),
-  generationLog: &#x27;&#x27;,
+
+  /**
+    Generation log records array.
+
+    @property generationLog
+    @type Array
+    @readOnly
+  */
+  generationLog: Ember.A(),
+
+  /**
+    Current generation object.
+
+    @property currentGeneration
+    @type Object
+  */
+  currentGeneration: null,
+
+  /**
+    Sorted generation log records array.
+
+    @property sortedGenerationLog
+    @type Array
+  */
+  sortedGenerationLog: Ember.computed(&#x27;currentGeneration.stepLogs.[]&#x27;, function() {
+    let stepLogs = this.get(&#x27;currentGeneration.stepLogs&#x27;) || Ember.A();
+    return stepLogs.sortBy(&#x27;time&#x27;);
+  }),
+
   currentProjectContext: Ember.inject.service(&#x27;fd-current-project-context&#x27;),
+
   generationService: Ember.inject.service(&#x27;fd-generation&#x27;),
+
   actions: {
+    /**
+      Handler for click on generate button.
+
+      @method actions.generate
+     */
     generate() {
       let _this = this;
-      let stagePk = _this.get(&#x27;currentProjectContext&#x27;).getCurrentStagePk();
+      let stagePk = _this.get(&#x27;currentProjectContext&#x27;).getCurrentStage();
       let host = _this.get(&#x27;store&#x27;).adapterFor(&#x27;application&#x27;).host;
       Ember.$.ajax({
         type: &#x27;GET&#x27;,
@@ -117,13 +172,47 @@ export default Ember.Controller.extend({
         url: &#x60;${host}/Generate(project=${stagePk})&#x60;,
         success(result) {
           _this.set(&#x27;generationService.lastGenerationToken&#x27;, result);
+          _this.transitionToRoute(&#x27;fd-generation-process-form&#x27;, Ember.get(result, &#x27;value&#x27;));
         },
         error() {
-          // TODO: обработать ситуацию, когда произошла ошибка.
-          let i18n = _this.get(&#x27;i18n&#x27;);
-          let errorCaption = i18n.t(&#x27;forms.fd-generation-process-form.generation-start-error-caption&#x27;);
-          _this.set(&#x27;generationLog&#x27;, errorCaption);
+
         },
+      });
+    }
+  },
+
+  /**
+    Update generation log records array.
+
+    @method generationLogUpdate
+    @param {Integer} interval Interval for sending OData requests
+   */
+  generationLogUpdate(interval) {
+    let modelName = this.get(&#x27;modelName&#x27;);
+    let modelProjection = this.get(&#x27;modelProjection&#x27;);
+    let modelId = this.get(&#x27;generationId&#x27;);
+    let _this = this;
+    if (modelName &amp;&amp; modelProjection &amp;&amp; modelId) {
+      this.store.findRecord(modelName, modelId, { projection: modelProjection }).then(record =&gt; {
+        if (!Ember.isNone(record)) {
+          _this.set(&#x27;currentGeneration&#x27;, record);
+          Ember.$(&#x27;.generation-progress-bar&#x27;).progress({
+            text: {
+              active: &#x27;{percent}%&#x27;,
+              success: &#x27;{percent}%&#x27;
+            }
+          }).progress(&#x27;set percent&#x27;, record.get(&#x27;percentComplete&#x27;));
+          if (!record.get(&#x27;isRunning&#x27;)) {
+            return;
+          }
+        }
+
+        Ember.run.later(_this, function() {
+          let currentModelId = _this.get(&#x27;generationId&#x27;);
+          if (modelId === currentModelId) {
+            _this.generationLogUpdate(interval);
+          }
+        }, interval);
       });
     }
   }
