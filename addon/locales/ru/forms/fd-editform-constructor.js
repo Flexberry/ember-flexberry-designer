@@ -15,7 +15,7 @@ export default {
     'control-not-selected': 'Элемент управления не выбран',
     'add-controls-header': 'Добавить элементы управления',
     'add-control': 'Контрол',
-    'add-group': 'Группу',
-    'add-tab': 'Вкладку',
+    'add-group': 'Группа',
+    'add-tab': 'Вкладка',
   },
 };
