@@ -70,71 +70,38 @@ export default Ember.Controller.extend({
 
   actions: {
     /**
-      Depending on the selected item, adds a new control to the form.
+      Adds a new control to the form.
 
       @method actions.addControl
-      @param {String} type Type of control to add.
     */
-    addControl(type) {
-      let newItem;
-      switch (type) {
-        case 'control':
-          newItem = FdEditformControl.create({
-            caption: `${this.get('i18n').t('forms.fd-editform-constructor.new-control-caption').toString()} #${this.incrementProperty('_newControlIndex')}`,
-          });
-          break;
+    addControl() {
+      this._addControl(FdEditformControl.create({
+        caption: `${this.get('i18n').t('forms.fd-editform-constructor.new-control-caption').toString()} #${this.incrementProperty('_newControlIndex')}`,
+      }));
+    },
 
-        case 'group':
-          newItem = FdEditformGroup.create({
-            caption: `${this.get('i18n').t('forms.fd-editform-constructor.new-group-caption').toString()} #${this.incrementProperty('_newGroupIndex')}`,
-            rows: Ember.A(),
-          });
-          break;
+    /**
+      Adds a new group to the form.
 
-        case 'tab':
-          newItem = FdEditformTabgroup.create({
-            tabs: Ember.A([
-              FdEditformTab.create({
-                caption: `${this.get('i18n').t('forms.fd-editform-constructor.new-tab-caption').toString()} #${this.incrementProperty('_newTabIndex')}`,
-                rows: Ember.A(),
-              }),
-            ]),
-          });
-          break;
+      @method actions.addGroup
+    */
+    addGroup() {
+      this._addControl(FdEditformGroup.create({
+        caption: `${this.get('i18n').t('forms.fd-editform-constructor.new-group-caption').toString()} #${this.incrementProperty('_newGroupIndex')}`,
+        rows: Ember.A(),
+      }));
+    },
 
-        default:
-          throw new Error(`The '${type}' type is not supported.`);
-      }
+    /**
+      Adds a new tab to the form.
 
-      let index;
-      let target;
-      let selectedItem = this.get('selectedItem');
-      if (selectedItem instanceof FdEditformRow) {
-        target = selectedItem.get('controls');
-      } else if (selectedItem instanceof FdEditformControl) {
-        target = this.get('_selectedItemContainer');
-        index = target.indexOf(selectedItem) + 1;
-      } else if (selectedItem instanceof FdEditformGroup || selectedItem instanceof FdEditformTab) {
-        target = selectedItem.get('rows');
-        newItem = FdEditformRow.create({ controls: Ember.A([newItem]) });
-      } else if (selectedItem instanceof FdEditformTabgroup) {
-        if (type === 'tab') {
-          target = selectedItem.get('tabs');
-          newItem = newItem.get('tabs.firstObject');
-        } else {
-          target = selectedItem.get('activeTab.rows');
-          newItem = FdEditformRow.create({ controls: Ember.A([newItem]) });
-        }
-      } else {
-        target = this.get('model.controls');
-        newItem = FdEditformRow.create({ controls: Ember.A([newItem]) });
-      }
-
-      if (typeof index !== 'number') {
-        index = target.get('length');
-      }
-
-      target.insertAt(index, newItem);
+      @method actions.addTab
+    */
+    addTab() {
+      this._addControl(FdEditformTab.create({
+        caption: `${this.get('i18n').t('forms.fd-editform-constructor.new-tab-caption').toString()} #${this.incrementProperty('_newTabIndex')}`,
+        rows: Ember.A(),
+      }));
     },
 
     /**
@@ -206,6 +173,49 @@ export default Ember.Controller.extend({
         itemContainer.insertAt(index, draggedItem);
       }
     },
+  },
+
+  /**
+    Depending on the selected item, adds a new control to the form.
+
+    @method _addControl
+    @param {FdEditformControl|FdEditformGroup|FdEditformTab} control The control to add.
+  */
+  _addControl(control) {
+    let index;
+    let target;
+
+    if (control instanceof FdEditformTab) {
+      control = FdEditformTabgroup.create({ tabs: Ember.A([control]) });
+    }
+
+    let selectedItem = this.get('selectedItem');
+    if (selectedItem instanceof FdEditformRow) {
+      target = selectedItem.get('controls');
+    } else if (selectedItem instanceof FdEditformControl) {
+      target = this.get('_selectedItemContainer');
+      index = target.indexOf(selectedItem) + 1;
+    } else if (selectedItem instanceof FdEditformGroup || selectedItem instanceof FdEditformTab) {
+      target = selectedItem.get('rows');
+      control = FdEditformRow.create({ controls: Ember.A([control]) });
+    } else if (selectedItem instanceof FdEditformTabgroup) {
+      if (control instanceof FdEditformTabgroup) {
+        target = selectedItem.get('tabs');
+        control = control.get('tabs.firstObject');
+      } else {
+        target = selectedItem.get('activeTab.rows');
+        control = FdEditformRow.create({ controls: Ember.A([control]) });
+      }
+    } else {
+      target = this.get('model.controls');
+      control = FdEditformRow.create({ controls: Ember.A([control]) });
+    }
+
+    if (typeof index !== 'number') {
+      index = target.get('length');
+    }
+
+    target.insertAt(index, control);
   },
 
   /**
