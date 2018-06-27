@@ -1,5 +1,8 @@
 export default {
   caption: 'Edit form constructor',
+  'new-control-caption': 'New attribute',
+  'new-group-caption': 'New group',
+  'new-tab-caption': 'New tab',
   'form-config-panel': {
     'form-properties-header': 'Form properties',
     'form-name': 'Form name',
@@ -13,6 +16,6 @@ export default {
     'add-controls-header': 'Add controls',
     'add-control': 'Control',
     'add-group': 'Group',
-    'add-tabs': 'Tabs',
+    'add-tab': 'Tab',
   },
 };

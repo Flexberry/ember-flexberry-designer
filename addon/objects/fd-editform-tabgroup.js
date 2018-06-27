@@ -26,4 +26,12 @@ export default Ember.Object.extend({
     @type FdEditformTab[]
   */
   tabs: undefined,
+
+  /**
+    One of the tabs, which is now considered active.
+
+    @property activeTab
+    @type FdEditformTab
+  */
+  activeTab: Ember.computed.oneWay('tabs.firstObject'),
 });
