@@ -226,7 +226,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     @property activeTab
     @type FdEditformTab
   */
-  activeTab: Ember.computed.oneWay(&#x27;control.tabs.firstObject&#x27;),
+  activeTab: Ember.computed.alias(&#x27;control.activeTab&#x27;),
 
   /**
     See description {{#crossLink &quot;FdDraggableControlMixin/draggableProperty:property&quot;}}here{{/crossLink}}.

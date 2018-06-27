@@ -2595,6 +2595,20 @@
         {
             "file": "addon/controllers/fd-editform-constructor.js",
             "line": 51,
+            "description": "Container of the selected item.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_selectedItemContainer",
+            "readonly": "",
+            "type": "Ember.NativeArray",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 63,
             "description": "The selected item.",
             "itemtype": "property",
             "name": "selectedItem",
@@ -2605,17 +2619,30 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 60,
-            "description": "Adds the control to a new row.",
+            "line": 72,
+            "description": "Adds a new control to the form.",
             "itemtype": "method",
             "name": "actions.addControl",
-            "params": [
-                {
-                    "name": "type",
-                    "description": "Type of control to add.",
-                    "type": "String"
-                }
-            ],
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 83,
+            "description": "Adds a new group to the form.",
+            "itemtype": "method",
+            "name": "actions.addGroup",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 95,
+            "description": "Adds a new tab to the form.",
+            "itemtype": "method",
+            "name": "actions.addTab",
             "class": "FdDraggableControlMixin",
             "module": "components",
             "namespace": "components"
@@ -2703,6 +2730,23 @@
         {
             "file": "addon/controllers/fd-editform-constructor.js",
             "line": 178,
+            "description": "Depending on the selected item, adds a new control to the form.",
+            "itemtype": "method",
+            "name": "_addControl",
+            "params": [
+                {
+                    "name": "control",
+                    "description": "The control to add.",
+                    "type": "FdEditformControl|FdEditformGroup|FdEditformTab"
+                }
+            ],
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 221,
             "description": "Looks for a container that contains the item.",
             "params": [
                 {
@@ -2726,7 +2770,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 193,
+            "line": 236,
             "description": "Looks for a container that contains the row.",
             "itemtype": "method",
             "name": "_findRowContainer",
@@ -2752,7 +2796,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 241,
+            "line": 284,
             "description": "Looks for a container that contains the control.",
             "itemtype": "method",
             "name": "_findControlContainer",
@@ -5878,6 +5922,16 @@
             "module": "ember-flexberry-designer"
         },
         {
+            "file": "addon/objects/fd-editform-tabgroup.js",
+            "line": 30,
+            "description": "One of the tabs, which is now considered active.",
+            "itemtype": "property",
+            "name": "activeTab",
+            "type": "FdEditformTab",
+            "class": "FdEditformTabgroup",
+            "module": "ember-flexberry-designer"
+        },
+        {
             "file": "addon/objects/fd-view-attributes-detail.js",
             "line": 15,
             "description": "Item property 'detailViewName'.",
@@ -7430,7 +7484,7 @@
         },
         {
             "message": "Missing item type\nLooks for a container that contains the item.",
-            "line": " addon/controllers/fd-editform-constructor.js:178"
+            "line": " addon/controllers/fd-editform-constructor.js:221"
         },
         {
             "message": "Missing item type\nField name where object identifier is kept.",
