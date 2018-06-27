@@ -1,5 +1,8 @@
 export default {
   caption: 'Конструктор формы редактирования',
+  'new-control-caption': 'Новый аттрибут',
+  'new-group-caption': 'Новая группа',
+  'new-tab-caption': 'Новая вкладка',
   'form-config-panel': {
     'form-properties-header': 'Свойства формы',
     'form-name': 'Название формы',
