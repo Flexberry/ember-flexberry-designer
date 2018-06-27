@@ -1,0 +1,37 @@
+.fd-editform-row {
+  position: relative;
+  margin-top: 1rem;
+
+  &.selected {
+    outline: 0.25em dashed rgb(79,115,176);
+    background-color: rgba(79,115,176, 0.25);
+  }
+
+  &.dimmed.dimmable {
+    overflow: visible;
+  }
+
+  & > .drag-anchor {
+    position: absolute;
+    display: none;
+    z-index: 1;
+    width: 2em;
+    height: 100%;
+    right: 100%;
+    border: 0 solid white;
+    border-width: .15em 0 .15em .15em;
+    border-top-left-radius: .5em;
+    border-bottom-left-radius: .5em;
+    background: linear-gradient(90deg, #4F73B0 .5em, transparent 1%) center, linear-gradient(#4F73B0 .5em, transparent 1%) center, white;
+    background-size: .75em .75em;
+    cursor: move;
+  }
+
+  &:hover > .drag-anchor {
+    display: block;
+  }
+
+  .top.attached.tabular.menu {
+    margin-top: 0;
+  }
+}

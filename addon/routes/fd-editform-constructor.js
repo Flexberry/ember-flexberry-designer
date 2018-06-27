@@ -34,6 +34,10 @@ export default Ember.Route.extend({
 
         _this.store.query('fd-dev-class', builderEditform.build()).then((result) => {
           let editform = result.objectAt(0);
+          if (!editform.get('caption')) {
+            editform.set('caption', editform.get('name'));
+          }
+
           modelHash.editform = editform;
           return editform;
         }, rejectLoadClasses).then((editform) => {
@@ -110,33 +114,6 @@ export default Ember.Route.extend({
         resolve(modelHash);
       });
     });
-  },
-
-  activate() {
-    let sidebar = Ember.$('.ui.sidebar.main.menu');
-    let configPanelTabsWidth = this.controllerFor(this.routeName).get('configPanelTabsWidth');
-    if (!sidebar.hasClass('visible')) {
-      Ember.$('.pusher').css({ width: 'calc(100% - ' + configPanelTabsWidth + 'px)' });
-    } else {
-      let workPanel = sidebar.width() + configPanelTabsWidth;
-      Ember.$('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)' });
-    }
-
-    Ember.run.schedule('afterRender', function() {
-      let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
-      Ember.$('.menu .item', configPanelSidebar).tab();
-    });
-
-  },
-
-  deactivate() {
-    let sidebar = Ember.$('.ui.sidebar.main.menu');
-
-    if (!sidebar.hasClass('visible')) {
-      Ember.$('.pusher').css({ width: '100%' });
-    } else {
-      Ember.$('.pusher').css({ width: 'calc(100% - ' + sidebar.width() + 'px)' });
-    }
   },
 
   /**

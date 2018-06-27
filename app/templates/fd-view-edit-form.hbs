@@ -31,44 +31,40 @@
     </div>
   </div>
 
-  <div class="ui attr-panel">
-    <div class="closable panel">
-      <div class="sample-tree">
-        <table class="ui very basic collapsing celled table fixed-headers">
-          <thead>
-            <tr>
-              <th>{{t "forms.fd-view-edit-form.attributes-tree.caption"}}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{ember-jstree
-              actionReceiver=jstreeActionReceiver
-              selectedNodes=jstreeSelectedNodes
-              data=model.tree
-              plugins=plugins
-              typesOptions=typesOptions
-              eventDidBecomeReady=(action 'handleTreeDidBecomeReady')
-              treeObject=jstreeObject
-            }}
-          </tbody>
-        </table>
+  <div class="panel-wrapper">
+    <div class="closable panel-left">
+      <div class="ui segments">
+        <div class="ui segment">
+          {{t "forms.fd-view-edit-form.attributes-tree.caption"}}
+        </div>
+        <div class="ui segment overflow-panel">
+          {{ember-jstree
+            actionReceiver=jstreeActionReceiver
+            selectedNodes=jstreeSelectedNodes
+            data=model.tree
+            plugins=plugins
+            typesOptions=typesOptions
+            eventDidBecomeReady=(action 'handleTreeDidBecomeReady')
+            treeObject=jstreeObject
+          }}
+        </div>
       </div>
     </div>
 
     <div class="text-center">
       {{#ui-popup content=popupMessage}}
-        <button class='ui button icon close-panel-btn' {{action "closeRightpanel" on="click" }} >
-          <i class="{{if allAttrsHidedn 'sidebar' 'close'}} icon"></i>
+        <button class='ui inverted button icon close-panel-btn' {{action "closeRightpanel" on="click" }} >
+          <i class="{{if allAttrsHidedn 'chevron right' 'chevron left'}} icon"></i>
         </button>
       {{/ui-popup}}
 
       <div class="ui vertical basic buttons">
         <button class='ui flexberry-button basic button icon' {{action "moveRightHighlighted" on="click" }} title="{{t "forms.fd-view-edit-form.attributes-panel.move-right-btn-title"}}">
-          <i class="chevron right icon"></i>
+          <i class="right long arrow icon"></i>
         </button>
 
         <button class='ui flexberry-button basic button icon' {{action "moveLeftHighlighted" on="click" }} title="{{t "forms.fd-view-edit-form.attributes-panel.move-left-btn-title"}}">
-          <i class="chevron left icon"></i>
+          <i class="left long arrow icon"></i>
         </button>
 
         <button class='ui flexberry-button basic button icon' {{action "moveUpHighlighted" on="click" }} title="{{t "forms.fd-view-edit-form.attributes-panel.move-up-btn-title"}}">
@@ -81,186 +77,157 @@
         
       </div>
     </div>
-    <div class="panel view-attributes">
-      <table class="ui very basic collapsing celled table fixed-headers">
-        <thead>
-          <tr>
-            <th>{{t "forms.fd-view-edit-form.table-column.view-attributes"}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each model.view.definition as |property index|}}
-          <tr class={{if (eq selectedRowIndex index) "active" ""}} onclick={{action "onAttributesClick" index}}>
-            <td>
-              {{#if (or property.detailViewName (eq property.detailViewName ''))}}
-                <img src="assets/images/datail.png">
-              {{else}}
-                {{#if property.lookupType}}
-                  <img src="assets/images/master.bmp">
-                {{else}}
-                  <img src="assets/images/attribute.bmp">
-                {{/if}}
-              {{/if}}
-            </td>
-            <td>
-              {{property.name}}
-            </td>
-          </tr>
-          {{/each}}
-        </tbody>
-      </table>
+    <div class="panel-right view-attributes">
+      <div class="ui segments">
+        <div class="ui segment">
+          {{t "forms.fd-view-edit-form.table-column.view-attributes"}}
+        </div>
+        <div class="ui segment overflow-panel">
+          <table class="ui very basic collapsing celled table">
+            <tbody>
+              {{#each model.view.definition as |property index|}}
+              <tr class={{if (eq selectedRowIndex index) "active" ""}} onclick={{action "onAttributesClick" index}}>
+                <td>
+                  {{#if (or property.detailViewName (eq property.detailViewName ''))}}
+                    <img src="assets/images/datail.png">
+                  {{else}}
+                    {{#if property.lookupType}}
+                      <img src="assets/images/master.bmp">
+                    {{else}}
+                      <img src="assets/images/attribute.bmp">
+                    {{/if}}
+                  {{/if}}
+                </td>
+                <td>
+                  {{property.name}}
+                </td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </form>
 
-{{#ui-sidebar
-  class="very wide inverted vertical right animating uncover config-panel"
-}}
-  <div class="ui inverted segments">
-    <div class="ui segments horizontal">
+{{#fd-config-panel}}
 
-      <form class="ui form segment">
-        <div class="ui segment">
-          <div class="ui large header">
-            {{t "forms.fd-view-edit-form.form-config-panel.caption"}}
-          </div>
+  {{#fd-tabs tabsMenuTheme="vertical tabular" class="ui segments horizontal right-tabs"}}
+    <form class="ui form segment">
+      <div class="ui segment">
+        <div class="ui large header">
+          {{t "forms.fd-view-edit-form.form-config-panel.caption"}}
         </div>
-        <div class="ui bottom attached tab segment active" data-tab="form-properties">
-          <div class="ui small dividing header">
-            {{t "forms.fd-view-edit-form.form-config-panel.view-properties-header"}}
-          </div>
-
-          <div class="field">
-            {{
-              flexberry-field
-              placeholder=(t 'components.flexberry-field.placeholder')
-              readonly=readonly
-              value=model.name
-              class=(if model.errors.name 'error' '')
-              label=(t 'forms.fd-view-edit-form.name-caption')
-            }}
-            {{flexberry-validationmessage error=model.errors.name pointing="pointing"}}
-          </div>
-          <label>{{t 'forms.fd-view-edit-form.description-caption'}}</label>
-          <div class="field">
-            {{
-              flexberry-textarea
-              placeholder=(t 'components.flexberry-field.placeholder')
-              readonly=readonly
-              value=model.description
-              class=(if model.errors.description 'error' '')
-            }}
-            {{flexberry-validationmessage error=model.errors.description pointing="pointing"}}
-          </div>
-
-        </div>
-
-        <div class="ui bottom attached tab segment top" data-tab="control-properties">
-          <div class="ui small dividing header">
-            {{t "forms.fd-view-edit-form.form-config-panel.attribute-properties-header"}}
-          </div>
-
-            <div class="field">
-              {{
-                flexberry-field
-                placeholder=(t 'components.flexberry-field.placeholder')
-                readonly=readonly
-                value=rowModel.caption
-                label=(t 'forms.fd-view-edit-form.settings-view.name-caption')
-              }}
-            </div>
-            <div class="field">
-              {{
-                flexberry-button
-                caption=(t 'forms.fd-view-edit-form.settings-view.create-caption')
-                click=(action "onCreateCaptionClick" rowModel.caption)
-              }}
-            </div>
-            <div class="field">
-              <label>{{t "forms.fd-view-edit-form.settings-view.visibility"}}</label>
-              {{
-                flexberry-checkbox
-                value=rowModel.visible
-                readonly=readonly
-              }}
-            </div>
-
-            <div class="field">
-              {{
-                flexberry-field
-                placeholder=(t 'components.flexberry-field.placeholder')
-                readonly=readonly
-                value=rowModel.path
-                label=(t 'forms.fd-view-edit-form.settings-view.path')
-              }}
-            </div>
-
-            <div class="ui segments {{if (eq propertyType 'isMaster') "" " hidden"}}">
-              <div class=" ui horizontal segments">
-                <div class="ui segment">
-                  <div class="field">
-                    <label>{{t "forms.fd-view-edit-form.settings-master.lookup-type"}}</label>
-                    {{
-                      flexberry-dropdown
-                      items=lookupTypeItems
-                      value=rowModel.lookupType
-                      readonly=readonly
-                    }}
-                  </div>
-                </div>
-                <div class="ui segment">
-                  {{
-                    flexberry-field
-                    placeholder=(t 'components.flexberry-field.placeholder')
-                    readonly=readonly
-                    value=rowModel.masterPropertyName
-                    label=(t 'forms.fd-view-edit-form.settings-master.master-property')
-                  }}
-                </div>
-              </div>
-              <div class="ui segment">
-                {{
-                  flexberry-field
-                  placeholder=(t 'components.flexberry-field.placeholder')
-                  readonly=readonly
-                  value=rowModel.masterCustomizationString
-                  label=(t 'forms.fd-view-edit-form.settings-master.sample-setting')
-                }}
-              </div>
-            </div>
-            <div class="ui segments {{if (eq propertyType 'isDetail') "" " hidden"}}">
-              <div class=" ui horizontal segments">
-                <div class="ui segment">
-                  <div class="field">
-                    <label>{{t "forms.fd-view-edit-form.settings-detail.view"}}</label>
-                    {{
-                      flexberry-dropdown
-                      items=detailViewNameItems
-                      value=rowModel.detailViewName
-                      placeholder=(t 'components.flexberry-field.placeholder')
-                      readonly=readonly
-                    }}
-                  </div>
-                </div>
-                <div class="ui segment">
-                  <div class="field">
-                    <label>{{t "forms.fd-view-edit-form.settings-detail.load-on-load-agregator"}}</label>
-                    {{
-                      flexberry-checkbox
-                      value=rowModel.loadOnLoadAgregator
-                      readonly=readonly
-                    }}
-                  </div>
-                </div>
-              </div>
-            </div>
-        </div>
-      </form>
-
-      <div class="ui vertical tabular menu">
-        <a class="item active" data-tab="form-properties" {{action "toggleConfigPanel" "form-properties"}}>{{t "forms.fd-view-edit-form.form-config-panel.view-properties-header"}}</a>
-        <a class="item" data-tab="control-properties" {{action "toggleConfigPanel" "control-properties"}}>{{t "forms.fd-view-edit-form.form-config-panel.attribute-properties-header"}}</a>
       </div>
-    </div>
-  </div>
-{{/ui-sidebar}}
+      {{#ui-tab-segment tab='first' title=(t "forms.fd-view-edit-form.form-config-panel.view-properties-header") theme="" active=true}}
+        <div class="field">
+          {{
+            flexberry-field
+            placeholder=(t 'components.flexberry-field.placeholder')
+            readonly=readonly
+            value=model.name
+            class=(if model.errors.name 'error' '')
+            label=(t 'forms.fd-view-edit-form.name-caption')
+          }}
+          {{flexberry-validationmessage error=model.errors.name pointing="pointing"}}
+        </div>
+        <label>{{t 'forms.fd-view-edit-form.description-caption'}}</label>
+        <div class="field">
+          {{
+            flexberry-textarea
+            placeholder=(t 'components.flexberry-field.placeholder')
+            readonly=readonly
+            value=model.description
+            class=(if model.errors.description 'error' '')
+          }}
+          {{flexberry-validationmessage error=model.errors.description pointing="pointing"}}
+        </div>
+      {{/ui-tab-segment}}
+      {{#ui-tab-segment tab='active-tree-tab' title=(t "forms.fd-view-edit-form.form-config-panel.attribute-properties-header") theme=""}}
+        <div class="field">
+          {{
+            flexberry-field
+            placeholder=(t 'components.flexberry-field.placeholder')
+            readonly=readonly
+            value=rowModel.caption
+            label=(t 'forms.fd-view-edit-form.settings-view.name-caption')
+          }}
+        </div>
+        <div class="field">
+          {{
+            flexberry-button
+            caption=(t 'forms.fd-view-edit-form.settings-view.create-caption')
+            click=(action "onCreateCaptionClick" rowModel.caption)
+          }}
+        </div>
+        <div class="field">
+          <label>{{t "forms.fd-view-edit-form.settings-view.visibility"}}</label>
+          {{
+            flexberry-checkbox
+            value=rowModel.visible
+            readonly=readonly
+          }}
+        </div>
+
+        <div class="field">
+          {{
+            flexberry-field
+            placeholder=(t 'components.flexberry-field.placeholder')
+            readonly=readonly
+            value=rowModel.path
+            label=(t 'forms.fd-view-edit-form.settings-view.path')
+          }}
+        </div>
+
+        <div class="{{if (eq propertyType 'isMaster') "" " hidden"}}">
+          <div class="field">
+            <label>{{t "forms.fd-view-edit-form.settings-master.lookup-type"}}</label>
+            {{
+              flexberry-dropdown
+              items=lookupTypeItems
+              value=rowModel.lookupType
+              readonly=readonly
+            }}
+          </div>
+          {{
+            flexberry-field
+            placeholder=(t 'components.flexberry-field.placeholder')
+            readonly=readonly
+            value=rowModel.masterPropertyName
+            label=(t 'forms.fd-view-edit-form.settings-master.master-property')
+          }}
+
+          {{
+            flexberry-field
+            placeholder=(t 'components.flexberry-field.placeholder')
+            readonly=readonly
+            value=rowModel.masterCustomizationString
+            label=(t 'forms.fd-view-edit-form.settings-master.sample-setting')
+          }}
+        </div>
+        <div class="{{if (eq propertyType 'isDetail') "" " hidden"}}">
+          <div class="field">
+            <label>{{t "forms.fd-view-edit-form.settings-detail.view"}}</label>
+            {{
+              flexberry-dropdown
+              items=detailViewNameItems
+              value=rowModel.detailViewName
+              placeholder=(t 'components.flexberry-field.placeholder')
+              readonly=readonly
+            }}
+          </div>
+          <div class="field">
+            <label>{{t "forms.fd-view-edit-form.settings-detail.load-on-load-agregator"}}</label>
+            {{
+              flexberry-checkbox
+              value=rowModel.loadOnLoadAgregator
+              readonly=readonly
+            }}
+          </div>
+        </div>
+      {{/ui-tab-segment}}
+    </form>
+  {{/fd-tabs}}
+
+{{/fd-config-panel}}

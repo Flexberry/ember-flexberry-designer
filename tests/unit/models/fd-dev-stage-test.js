@@ -9,6 +9,7 @@ moduleForModel('fd-dev-stage', 'Unit | Model | fd-dev-stage', {
     'model:fd-base-association',
     'model:fd-cad',
     'model:fd-case-property',
+    'model:fd-class-storage-type',
     'model:fd-class',
     'model:fd-cod',
     'model:fd-configuration',

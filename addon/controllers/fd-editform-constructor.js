@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 
 import FdEditformRow from '../objects/fd-editform-row';
 import FdEditformControl from '../objects/fd-editform-control';
@@ -7,7 +6,7 @@ import FdEditformGroup from '../objects/fd-editform-group';
 import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
 import FdEditformTab from '../objects/fd-editform-tab';
 
-export default Ember.Controller.extend(FdWorkPanelToggler, {
+export default Ember.Controller.extend({
   queryParams: ['classId'],
 
   /**
@@ -25,8 +24,8 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     @readOnly
     @type Boolean
   */
-  _selectedIsControl: Ember.computed('selectedControl', function() {
-    return this.get('selectedControl') instanceof FdEditformControl;
+  _selectedIsControl: Ember.computed('selectedItem', function() {
+    return this.get('selectedItem') instanceof FdEditformControl;
   }).readOnly(),
 
   /**
@@ -35,8 +34,8 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     @readOnly
     @type Boolean
   */
-  _selectedIsGroup: Ember.computed('selectedControl', function() {
-    return this.get('selectedControl') instanceof FdEditformGroup;
+  _selectedIsGroup: Ember.computed('selectedItem', function() {
+    return this.get('selectedItem') instanceof FdEditformGroup;
   }).readOnly(),
 
   /**
@@ -45,17 +44,17 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     @readOnly
     @type Boolean
   */
-  _selectedIsTab: Ember.computed('selectedControl', function() {
-    return this.get('selectedControl') instanceof FdEditformTab;
+  _selectedIsTab: Ember.computed('selectedItem', function() {
+    return this.get('selectedItem') instanceof FdEditformTab;
   }).readOnly(),
 
   /**
-    The selected control.
+    The selected item.
 
-    @property selectedControl
-    @type FdEditformControl|FdEditformGroup|FdEditformTab
+    @property selectedItem
+    @type {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab}
   */
-  selectedControl: undefined,
+  selectedItem: undefined,
 
   actions: {
     /**
@@ -106,13 +105,22 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     },
 
     /**
-      Set the selected control.
+      Close edit form constructor and go to application structure constructor.
 
-      @method actions.selectControl
-      @param {FdEditformControl|FdEditformGroup|FdEditformTab} control
+      @method actions.close
     */
-    selectControl(control) {
-      this.set('selectedControl', control);
+    close() {
+      this.transitionToRoute('fd-appstruct-form');
+    },
+
+    /**
+      Set the selected item.
+
+      @method actions.selectItem
+      @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item
+    */
+    selectItem(item) {
+      this.set('selectedItem', this.get('selectedItem') === item ? undefined : item);
     },
 
     /**
@@ -177,7 +185,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
   _findItemContainer(item, container) {
     if (item instanceof FdEditformRow) {
       return this._findRowContainer(item, container);
-    } else if (item instanceof FdEditformControl) {
+    } else {
       return this._findControlContainer(item, container);
     }
   },

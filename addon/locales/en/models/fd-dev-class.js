@@ -1662,7 +1662,7 @@ export default {
         __caption__: 'Business server events'
       },
       stage: {
-        __caption__: 'stage'
+        __caption__: 'Stage'
       },
       attributes: {
         __caption__: 'Attributes',

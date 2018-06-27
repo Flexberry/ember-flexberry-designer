@@ -6,12 +6,15 @@ moduleForModel('fd-dev-stage', 'Unit | Serializer | fd-dev-stage', {
     'serializer:fd-dev-stage',
     'transform:file',
     'transform:decimal',
+    'transform:guid',
 
     'transform:fd-generation-state',
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-access-type',
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode',
+    'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events',
     'transform:s-t-o-r-m-c-a-s-e-repository-access-modifier',
     'transform:s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier',
+    'transform:typemap',
 
     'transform:new-platform-flexberry-web-designer-business-server-class',
 
@@ -21,6 +24,7 @@ moduleForModel('fd-dev-stage', 'Unit | Serializer | fd-dev-stage', {
     'model:fd-base-association',
     'model:fd-cad',
     'model:fd-case-property',
+    'model:fd-class-storage-type',
     'model:fd-class',
     'model:fd-cod',
     'model:fd-configuration',

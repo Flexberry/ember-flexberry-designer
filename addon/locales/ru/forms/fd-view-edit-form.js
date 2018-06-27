@@ -31,8 +31,8 @@ export default {
     'move-left-btn-title':'Удалить атрибут',
     'move-up-btn-title':'Переместить выше',
     'move-down-btn-title':'Переместить ниже',
-    'close-panel-btn-caption':'Нажмитье, чтобы скрыть все атрибуты',
-    'show-panel-btn-caption':'Нажмитье, чтобы показать все атрибуты',
+    'close-panel-btn-caption':'Нажмите, чтобы скрыть все атрибуты',
+    'show-panel-btn-caption':'Нажмите, чтобы показать все атрибуты',
   },
   'form-config-panel': {
     caption: 'Редактор представления',

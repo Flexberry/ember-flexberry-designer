@@ -24,7 +24,7 @@ export let Model = Ember.Mixin.create({
   */
   _additionalPluginsSettingsCompute: function() {
     let result = (this.additionalPluginsSettingsCompute && typeof this.additionalPluginsSettingsCompute === 'function') ?
-    this.additionalPluginsSettingsCompute() : null;
+      this.additionalPluginsSettingsCompute() : null;
     this.set('additionalPluginsSettings', result);
   },
   additionalPluginsSettingsStr: DS.attr('string'),
@@ -131,7 +131,8 @@ export let Model = Ember.Mixin.create({
       ```
   */
   _doNotDeleteExtraTablesCompute: function() {
-    let result = (this.doNotDeleteExtraTablesCompute && typeof this.doNotDeleteExtraTablesCompute === 'function') ? this.doNotDeleteExtraTablesCompute() : null;
+    let result = (this.doNotDeleteExtraTablesCompute && typeof this.doNotDeleteExtraTablesCompute === 'function') ?
+      this.doNotDeleteExtraTablesCompute() : null;
     this.set('doNotDeleteExtraTables', result);
   },
   /**
@@ -212,7 +213,7 @@ export let Model = Ember.Mixin.create({
   */
   _realDataObjectNameSpaceCompute: function() {
     let result = (this.realDataObjectNameSpaceCompute && typeof this.realDataObjectNameSpaceCompute === 'function') ?
-    this.realDataObjectNameSpaceCompute() : null;
+      this.realDataObjectNameSpaceCompute() : null;
     this.set('realDataObjectNameSpace', result);
   },
   scriptNamespace: DS.attr('string'),
@@ -273,7 +274,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.typeMapCSCompute && typeof this.typeMapCSCompute === 'function') ? this.typeMapCSCompute() : null;
     this.set('typeMapCS', result);
   },
-  typeMapCSStr: DS.attr('string'),
+  typeMapCSStr: DS.attr('typemap'),
   /**
     Non-stored property.
 
@@ -433,7 +434,10 @@ export let defineProjections = function (modelClass) {
     auditEnabled: Projection.attr(''),
     isAuditDatabaseLocal: Projection.attr(''),
     isReportDatabaseLocal: Projection.attr(''),
-    defaultWriteMode: Projection.attr('')
+    defaultWriteMode: Projection.attr(''),
+    moduleSettings: Projection.hasMany('fd-dev-module-setting', '', {
+
+    })
   });
   modelClass.defineProjection('Compiler', 'fd-dev-stage', {
     company: Projection.attr(''),
@@ -631,6 +635,55 @@ export let defineProjections = function (modelClass) {
     defaultListScriptName: Projection.attr(''),
     signAssemblies: Projection.attr('')
   });
+  modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-stage', {
+    additionalPluginsSettingsStr: Projection.attr(''),
+    auditEnabled: Projection.attr(''),
+    company: Projection.attr(''),
+    copyright: Projection.attr(''),
+    dataObjectNameSpace: Projection.attr(''),
+    defaultAccessType: Projection.attr(''),
+    defaultBaseClass: Projection.attr(''),
+    defaultDetailArrayClass: Projection.attr(''),
+    defaultEditScriptName: Projection.attr(''),
+    defaultListScriptName: Projection.attr(''),
+    defaultWriteMode: Projection.attr(''),
+    doNotDeleteExtraTables: Projection.attr(''),
+    indexComment: Projection.attr(''),
+    isAuditDatabaseLocal: Projection.attr(''),
+    isReportDatabaseLocal: Projection.attr(''),
+    lastIndexDate: Projection.attr(''),
+    operationsEnumNamespace: Projection.attr(''),
+    operationsEnumPacket: Projection.attr(''),
+    product: Projection.attr(''),
+    realDataObjectNameSpace: Projection.attr(''),
+    scriptNamespace: Projection.attr(''),
+    scriptPacket: Projection.attr(''),
+    serializedIndex: Projection.attr(''),
+    signAssemblies: Projection.attr(''),
+    sourceAzStoragePath: Projection.attr(''),
+    sourceCodeCSPath: Projection.attr(''),
+    sourceCodeVBPath: Projection.attr(''),
+    sourceControlUri: Projection.attr(''),
+    sQLPath: Projection.attr(''),
+    typeMapAccessStr: Projection.attr(''),
+    typeMapCSStr: Projection.attr(''),
+    typeMapOracleStr: Projection.attr(''),
+    typeMapPostgreStr: Projection.attr(''),
+    typeMapSQLStr: Projection.attr(''),
+    typeMapVBStr: Projection.attr(''),
+    useSourceControl: Projection.attr(''),
+    version: Projection.attr(''),
+    createUser: Projection.attr(''),
+    createDate: Projection.attr(''),
+    changeUser: Projection.attr(''),
+    changeDate: Projection.attr(''),
+    name: Projection.attr(''),
+    description: Projection.attr(''),
+    nameStr: Projection.attr(''),
+    configuration: Projection.belongsTo('fd-configuration', '', {
+      name: Projection.attr('')
+    })
+  });
   modelClass.defineProjection('FormDesigner_ProjectE', 'fd-dev-stage', {
     name: Projection.attr('Название'),
     description: Projection.attr('Описание'),
@@ -665,7 +718,7 @@ export let defineProjections = function (modelClass) {
       endTime: Projection.attr('Время окончания'),
       stage: Projection.belongsTo('fd-dev-stage', 'Имя стадии', {
         name: Projection.attr('Имя стадии')
-      }),
+      }, { hidden: true }),
       generationReason: Projection.attr('Действие')
     })
   });

@@ -1,3 +1,7 @@
+@import 'addon/styles/components/fd-editform-row';
+@import 'addon/styles/components/fd-editform-control';
+@import 'node_modules/ember-flexberry/addon/styles/themes/blue-sky/globals/site.variables';
+
 @tree-row-padding: 3px;
 
 #example.pusher{
@@ -12,6 +16,13 @@
   transform: translate3d(0, 0, 0);
   z-index: 1;
   visibility: visible;
+  top: @headerHeight;
+
+  .right-tabs{
+    flex-direction: row-reverse;
+    height: auto;
+    min-height: calc(~'100vh - @{headerHeight}');
+  }
 
   .ui.vertical.menu {
     width: 4rem;
@@ -26,72 +37,44 @@
   .ui.selection.dropdown{
     min-width: auto;
   }
+  .tab{
+    padding: 1em;
+  }
 }
 
-// Styles for `fd-editform-row` component.
-.fd-editform-row {
-  position: relative;
+.panel-left, .panel-right{
+  overflow: hidden;
+  background: #FFFFFF;
+  margin: 1rem 0em;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
 
-  & > .drag-anchor {
-    position: absolute;
-    display: none;
-    z-index: 1;
-    width: 2em;
-    height: 2em;
-    top: 0.5em;
-    left: 0.5em;
-    background-color: black;
-    cursor: move;
-  }
-
-  &:hover > .drag-anchor {
+  .ui.buttons{
     display: block;
   }
-}
-
-// Styles for `fd-editform-control` component.
-.fd-editform-control {
-  position: relative;
-
-  & > .drag-anchor {
-    position: absolute;
-    display: none;
-    z-index: 1;
-    width: 2em;
-    height: 2em;
-    top: 0.5em;
-    right: 0.5em;
-    background-color: black;
-    cursor: move;
+  .overflow-panel{
+    overflow: auto;
   }
 
-  &:hover > .drag-anchor {
-    display: block;
+  &.view-attributes{
+    transition: width 500ms ease;
+  }
+
+  .ui[class*="very basic"].table:not(.sortable):not(.striped) td:last-child {
+    width: 100%;
   }
 }
 
-.attr-panel{
+.panel-wrapper{
   height: -webkit-fill-available;
-  max-height: calc(~'100vh - 340px');
+  max-height: calc(~'100vh - 250px');
   display: flex;
 
-  .panel{
-    overflow: hidden;
-    background: #FFFFFF;
-    box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);
-    margin: 1rem 0em;
-    padding: 1em 0;
-    border-radius: 0.28571429rem;
-    border: 1px solid rgba(34, 36, 38, 0.15);
-    width: 50%;
-
-    &.view-attributes{
-      transition: width 500ms ease;
-    }
-
-    .ui[class*="very basic"].table:not(.sortable):not(.striped) td:last-child {
-      width: 100%;
-    }
+  .ui.segments {
+    margin: 0;
+    display: flex;
+    height: 100%;
   }
 
   .jstree-default > .jstree-no-dots .jstree-node {
@@ -129,12 +112,9 @@
     color: #7ba7d9;
   }
 
-  .close-panel-btn{
-    &:hover {
-      i.icon:before {
-        color: #FFFFFF;
-      }
-    }
+
+  .close-panel-btn {
+    border: none;
   }
 
   .close-panel-btn, .vertical.buttons{
@@ -157,7 +137,7 @@
       border-top-width: 1px;
   }
 
-  .ui.button:active, .ui.button:focus, .ui.basic.buttons .button:active, .ui.basic.button:active, .ui.basic.buttons .button:focus, .ui.basic.button:focus{
+  .ui.button:not(.close-panel-btn):active, .ui.button:not(.close-panel-btn):focus, .ui.basic.buttons .button:active, .ui.basic.button:active, .ui.basic.buttons .button:focus, .ui.basic.button:focus{
     background: #FFFFFF!important;
 
     .ui.icon.button:hover{
@@ -169,34 +149,15 @@
     }
   }
 
+  .ui.collapsing.table {
+    td {
+      padding: 5px;
+      text-align: left;
+    }
+  }
+
 }
 
-.ui.collapsing.table.fixed-headers {
-  table-layout: fixed;
-  border-collapse: collapse;
-  width: -webkit-fill-available;
-  
-  td {
-    padding: 5px;
-    text-align: left;
-  }
-
-  thead {
-    th {
-      border-bottom: none;
-    }
-    tr {
-      display: block;
-      position: relative;
-      border-bottom: 1px solid rgba(34, 36, 38, 0.1);
-      padding: 0 1em;
-    }
-  }
-
-  tbody {
-    display: block;
-    overflow: scroll;
-    max-height: calc(~'100vh - 420px');
-    padding-left: 1em;
-  }
+.ui.button > .right.icon:not(.button) {
+  margin: 0;
 }

@@ -1656,7 +1656,7 @@ export default {
         __caption__: 'События бизнес-сервера'
       },
       stage: {
-        __caption__: ''
+        __caption__: 'Стадия'
       },
       attributes: {
         __caption__: 'Атрибуты',

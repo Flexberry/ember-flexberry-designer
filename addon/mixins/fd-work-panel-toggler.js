@@ -2,30 +2,26 @@ import Ember from 'ember';
 
 export default Ember.Mixin.create({
 
-  prevTab: undefined,
+  prevTab: Ember.A(),
 
   prevAttr: -1,
 
-  applicationController: Ember.inject.controller('application'),
-
-  configPanelTabsWidth: Ember.computed.alias('applicationController.configPanelTabsWidth'),
+  configPanelTabsWidth: 58,
 
   actions: {
 
     toggleConfigPanel(currentTab, currentAttr = -1) {
       let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
-      let toggleconfigPanel;
+      let toggleconfigPanel = this.prevTab[0] === currentTab;
       if (currentAttr !== -1) {
-        toggleconfigPanel = this.prevAttr === currentAttr;
+        toggleconfigPanel = this.prevAttr === currentAttr && toggleconfigPanel;
         this.prevAttr = currentAttr;
 
         // Open the properties of the attribute in the edit panel.
-        Ember.$('.ui.menu', configPanelSidebar).find('.item').tab('change tab', 'control-properties');
-      } else {
-        toggleconfigPanel = this.prevTab === currentTab;
+        Ember.$('.ui.menu', configPanelSidebar).find('.item').tab('change tab', currentTab);
       }
 
-      this.prevTab = currentTab;
+      this.prevTab.setObjects([currentTab]);
       toggleconfigPanel = toggleconfigPanel || !configPanelSidebar.hasClass('visible');
 
       if (toggleconfigPanel) {
@@ -36,6 +32,13 @@ export default Ember.Mixin.create({
         configPanelSidebar.removeClass('overlay');
         this.send('workPlaceConfig');
       }
+
+      Ember.run.next(function() {
+        if (!configPanelSidebar.hasClass('visible')) {
+          Ember.$('.ui.menu', configPanelSidebar).find('.item').removeClass('active');
+        }
+      });
+
     },
 
     workPlaceConfig(isMainSidebar = false) {
@@ -43,11 +46,12 @@ export default Ember.Mixin.create({
       let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
       let sidebarVisible = sidebar.hasClass('visible');
       let configPanelSidebarVisible = configPanelSidebar.hasClass('visible');
-      let configPanelTabsWidth = this.get('configPanelTabsWidth');
+      let configPanelTabsWidth = this.configPanelTabsWidth;
 
       if (isMainSidebar) {
-        let showTabsPanel = this.currentRouteName.split('.')[0] === 'fd-editform-constructor' || this.currentRouteName.split('.')[0] === 'fd-view-edit-form';
-        configPanelTabsWidth = showTabsPanel ? this.get('configPanelTabsWidth') : 0;
+        let routsNameWidthConfigPanel = ['fd-editform-constructor', 'fd-view-edit-form', 'fd-appstruct-form', 'fd-diagram-edit-form', 'fd-visual-listform'];
+        let showTabsPanel = routsNameWidthConfigPanel.includes(this.currentRouteName.split('.')[0]);
+        configPanelTabsWidth = showTabsPanel ? this.configPanelTabsWidth : 0;
         sidebarVisible = !sidebarVisible;
         configPanelSidebarVisible = !configPanelSidebarVisible;
       }
