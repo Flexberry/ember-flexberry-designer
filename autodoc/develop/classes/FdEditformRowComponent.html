@@ -515,7 +515,7 @@
 
                             </li>
                             <li class="index-item method inherited">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_actions.selectControl" data-tablink="actions.selectControl">actions.selectControl</a>
+                                <a href="#" data-tabid="#methods" data-anchor="#method_actions.selectItem" data-tablink="actions.selectItem">actions.selectItem</a>
 
                             </li>
                             <li class="index-item method inherited">
@@ -524,6 +524,10 @@
                             </li>
                             <li class="index-item method inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_actions.upRightNode" data-tablink="actions.upRightNode">actions.upRightNode</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_click" data-tablink="click">click</a>
 
                             </li>
                             <li class="index-item method inherited">
@@ -599,6 +603,10 @@
                             </li>
                             <li class="index-item property private inherited">
                                 <a href="#" data-tabid="#properties" data-anchor="#property__initialY" data-tablink="_initialY">_initialY</a>
+
+                            </li>
+                            <li class="index-item property private">
+                                <a href="#" data-tabid="#properties" data-anchor="#property__isSelected" data-tablink="_isSelected">_isSelected</a>
 
                             </li>
                             <li class="index-item property private inherited">
@@ -870,11 +878,11 @@
 
                             </li>
                             <li class="index-item property inherited">
-                                <a href="#" data-tabid="#properties" data-anchor="#property_selectedControl" data-tablink="selectedControl">selectedControl</a>
+                                <a href="#" data-tabid="#properties" data-anchor="#property_selectedElementForEdit" data-tablink="selectedElementForEdit">selectedElementForEdit</a>
 
                             </li>
                             <li class="index-item property inherited">
-                                <a href="#" data-tabid="#properties" data-anchor="#property_selectedElementForEdit" data-tablink="selectedElementForEdit">selectedElementForEdit</a>
+                                <a href="#" data-tabid="#properties" data-anchor="#property_selectedItem" data-tablink="selectedItem">selectedItem</a>
 
                             </li>
                             <li class="index-item property inherited">
@@ -4549,13 +4557,13 @@
                     
                     
                     </div>
-                    <div id="method_actions.selectControl" class="method item inherited">
-                        <h3 class="name"><code>actions.selectControl</code></h3>
+                    <div id="method_actions.selectItem" class="method item inherited">
+                        <h3 class="name"><code>actions.selectItem</code></h3>
                     
                             <div class="args">
                                 <span class="paren">(</span><ul class="args-list inline commas">
                                     <li class="arg">
-                                            <code>control</code>
+                                            <code>item</code>
                                     </li>
                                 </ul><span class="paren">)</span>
                             </div>
@@ -4569,7 +4577,7 @@
                     
                         <div class="meta">
                                     <p>Inherited from
-                                    <a href="../classes/FdDraggableControlMixin.html#method_actions.selectControl">FdDraggableControlMixin</a>:
+                                    <a href="../classes/FdDraggableControlMixin.html#method_actions.selectItem">FdDraggableControlMixin</a>:
                             <a href="../files/addon_controllers_fd-editform-constructor.js.html#l116"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:116</code></a>
                             </p>
                     
@@ -4578,7 +4586,7 @@
                         </div>
                     
                         <div class="description">
-                            Set the selected control.
+                            Set the selected item.
                         </div>
                     
                             <div class="params">
@@ -4586,8 +4594,8 @@
                     
                                 <ul class="params-list">
                                     <li class="param">
-                                            <code class="param-name">control</code>
-                                            <span class="type"><a href="../classes/FdEditformControl.html" class="crosslink">FdEditformControl</a> | <a href="../classes/FdEditformGroup.html" class="crosslink">FdEditformGroup</a> | <a href="../classes/FdEditformTab.html" class="crosslink">FdEditformTab</a></span>
+                                            <code class="param-name">item</code>
+                                            <span class="type"><a href="../classes/FdEditformRow.html" class="crosslink">FdEditformRow</a> | <a href="../classes/FdEditformControl.html" class="crosslink">FdEditformControl</a> | <a href="../classes/FdEditformGroup.html" class="crosslink">FdEditformGroup</a> | <a href="../classes/FdEditformTabgroup.html" class="crosslink">FdEditformTabgroup</a> | <a href="../classes/FdEditformTab.html" class="crosslink">FdEditformTab</a></span>
                     
                     
                                         <div class="param-description">
@@ -4677,6 +4685,60 @@
                             Handles up move tree node.
                         </div>
                     
+                    
+                    
+                    </div>
+                    <div id="method_click" class="method item">
+                        <h3 class="name"><code>click</code></h3>
+                    
+                            <div class="args">
+                                <span class="paren">(</span><ul class="args-list inline commas">
+                                    <li class="arg">
+                                            <code>event</code>
+                                    </li>
+                                </ul><span class="paren">)</span>
+                            </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_components_fd-editform-row.js.html#l89"><code>addon&#x2F;components&#x2F;fd-editform-row.js:89</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>The event handler is <code>click</code>.
+                    Calls the <code>selectItemAction</code> action when the component is clicked.
+                    The action <code>selectItemAction</code> should be passed, for example, from the controller.</p>
+                    
+                        </div>
+                    
+                            <div class="params">
+                                <h4>Parameters:</h4>
+                    
+                                <ul class="params-list">
+                                    <li class="param">
+                                            <code class="param-name">event</code>
+                                            <span class="type">JQuery.Event</span>
+                    
+                    
+                                        <div class="param-description">
+                                             
+                                        </div>
+                    
+                                    </li>
+                                </ul>
+                            </div>
                     
                     
                     </div>
@@ -5322,6 +5384,32 @@
                     
                     
                     </div>
+                    <div id="property__isSelected" class="property item private">
+                        <h3 class="name"><code>_isSelected</code></h3>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+                    
+                            <span class="flag private">private</span>
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_components_fd-editform-row.js.html#l34"><code>addon&#x2F;components&#x2F;fd-editform-row.js:34</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Used in class name bindings to add a class when this row is selected.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                    </div>
                     <div id="property__selectedIsControl" class="property item private inherited">
                         <h3 class="name"><code>_selectedIsControl</code></h3>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
@@ -5608,7 +5696,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_components_fd-editform-row.js.html#l56"><code>addon&#x2F;components&#x2F;fd-editform-row.js:56</code></a>
+                            <a href="../files/addon_components_fd-editform-row.js.html#l75"><code>addon&#x2F;components&#x2F;fd-editform-row.js:75</code></a>
                             </p>
                     
                     
@@ -5633,7 +5721,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_components_fd-editform-row.js.html#l63"><code>addon&#x2F;components&#x2F;fd-editform-row.js:63</code></a>
+                            <a href="../files/addon_components_fd-editform-row.js.html#l82"><code>addon&#x2F;components&#x2F;fd-editform-row.js:82</code></a>
                             </p>
                     
                     
@@ -5905,7 +5993,7 @@
                                     FdDraggableControlMixin
                                 </a>
                                 but overwritten in
-                            <a href="../files/addon_components_fd-editform-row.js.html#l49"><code>addon&#x2F;components&#x2F;fd-editform-row.js:49</code></a>
+                            <a href="../files/addon_components_fd-editform-row.js.html#l68"><code>addon&#x2F;components&#x2F;fd-editform-row.js:68</code></a>
                             </p>
                     
                     
@@ -5958,7 +6046,7 @@
                                     FdDraggableControlMixin
                                 </a>
                                 but overwritten in
-                            <a href="../files/addon_components_fd-editform-row.js.html#l42"><code>addon&#x2F;components&#x2F;fd-editform-row.js:42</code></a>
+                            <a href="../files/addon_components_fd-editform-row.js.html#l61"><code>addon&#x2F;components&#x2F;fd-editform-row.js:61</code></a>
                             </p>
                     
                     
@@ -6961,7 +7049,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/addon_components_fd-editform-row.js.html#l34"><code>addon&#x2F;components&#x2F;fd-editform-row.js:34</code></a>
+                            <a href="../files/addon_components_fd-editform-row.js.html#l53"><code>addon&#x2F;components&#x2F;fd-editform-row.js:53</code></a>
                             </p>
                     
                     
@@ -6999,30 +7087,6 @@
                     
                     
                     </div>
-                    <div id="property_selectedControl" class="property item inherited">
-                        <h3 class="name"><code>selectedControl</code></h3>
-                        <span class="type"><a href="../classes/FdEditformControl.html" class="crosslink">FdEditformControl</a> | <a href="../classes/FdEditformGroup.html" class="crosslink">FdEditformGroup</a> | <a href="../classes/FdEditformTab.html" class="crosslink">FdEditformTab</a></span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>Inherited from
-                                    <a href="../classes/FdDraggableControlMixin.html#property_selectedControl">FdDraggableControlMixin</a>:
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l51"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:51</code></a>
-                            </p>
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            The selected control.
-                        </div>
-                    
-                    
-                    
-                    </div>
                     <div id="property_selectedElementForEdit" class="property item inherited">
                         <h3 class="name"><code>selectedElementForEdit</code></h3>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
@@ -7042,6 +7106,34 @@
                     
                         <div class="description">
                             Nodes in right jsTree for edit propertys.
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <div id="property_selectedItem" class="property item">
+                        <h3 class="name"><code>selectedItem</code></h3>
+                        <span class="type">Unknown</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                <p>Inherited from
+                                <a href="../classes/FdDraggableControlMixin.html#property_selectedItem">
+                                    FdDraggableControlMixin
+                                </a>
+                                but overwritten in
+                            <a href="../files/addon_components_fd-editform-row.js.html#l46"><code>addon&#x2F;components&#x2F;fd-editform-row.js:46</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>FdEditformConstructorController/selectedItem:property, the selected item.</p>
+                    
                         </div>
                     
                     

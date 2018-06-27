@@ -39037,15 +39037,26 @@ img.item-minus {
   position: relative;
   margin-top: 1rem;
 }
+.fd-editform-row.selected {
+  outline: 0.25em dashed #4f73b0;
+  background-color: rgba(79, 115, 176, 0.25);
+}
+.fd-editform-row.dimmed.dimmable {
+  overflow: visible;
+}
 .fd-editform-row > .drag-anchor {
   position: absolute;
   display: none;
   z-index: 1;
   width: 2em;
-  height: 2em;
-  top: 0.5em;
-  left: 0.5em;
-  background-color: black;
+  height: 100%;
+  right: 100%;
+  border: 0 solid white;
+  border-width: .15em 0 .15em .15em;
+  border-top-left-radius: .5em;
+  border-bottom-left-radius: .5em;
+  background: linear-gradient(90deg, #4F73B0 0.5em, transparent 1%) center, linear-gradient(#4F73B0 0.5em, transparent 1%) center, white;
+  background-size: .75em .75em;
   cursor: move;
 }
 .fd-editform-row:hover > .drag-anchor {
@@ -39057,15 +39068,28 @@ img.item-minus {
 .fd-editform-control {
   position: relative;
 }
+.fd-editform-control.selected,
+.fd-editform-control .tab.selected,
+.fd-editform-control .item.selected {
+  outline: 0.25em dashed #4f73b0;
+  background-color: rgba(79, 115, 176, 0.25);
+}
+.fd-editform-control.dimmed.dimmable {
+  overflow: visible;
+}
 .fd-editform-control > .drag-anchor {
   position: absolute;
   display: none;
   z-index: 1;
   width: 2em;
-  height: 2em;
-  top: 0.5em;
-  right: 0.5em;
-  background-color: black;
+  height: 100%;
+  left: 100%;
+  border: 0 solid white;
+  border-width: .15em .15em .15em 0;
+  border-top-right-radius: .5em;
+  border-bottom-right-radius: .5em;
+  background: linear-gradient(90deg, #4F73B0 0.5em, transparent 1%) center, linear-gradient(#4F73B0 0.5em, transparent 1%) center, white;
+  background-size: .75em .75em;
   cursor: move;
 }
 .fd-editform-control:hover > .drag-anchor {

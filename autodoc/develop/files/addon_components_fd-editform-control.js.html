@@ -194,12 +194,39 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
   _dimmed: Ember.computed.reads(&#x27;draggable&#x27;),
 
   /**
+    Used in class name bindings to add a class when this control is selected.
+
+    @private
+    @property _isSelected
+    @readOnly
+    @type Boolean
+  */
+  _isSelected: Ember.computed(&#x27;control&#x27;, &#x27;selectedItem&#x27;, function() {
+    return this.get(&#x27;control&#x27;) === this.get(&#x27;selectedItem&#x27;);
+  }).readOnly(),
+
+  /**
+    {{#crossLink &quot;FdEditformConstructorController/selectedItem:property&quot;}}Passed from above{{/crossLink}}, the selected item.
+
+    @property selectedItem
+  */
+  selectedItem: undefined,
+
+  /**
     The control to render.
 
     @property control
     @type FdEditformControl|FdEditformGroup|FdEditformTabgroup
   */
   control: undefined,
+
+  /**
+    If the passed control is tabs, contains active tab.
+
+    @property activeTab
+    @type FdEditformTab
+  */
+  activeTab: Ember.computed.oneWay(&#x27;control.tabs.firstObject&#x27;),
 
   /**
     See description {{#crossLink &quot;FdDraggableControlMixin/draggableProperty:property&quot;}}here{{/crossLink}}.
@@ -220,7 +247,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
 
     @property classNameBindings
   */
-  classNameBindings: [&#x27;_dimmed:dimmed&#x27;],
+  classNameBindings: [&#x27;_dimmed:dimmed&#x27;, &#x27;_isSelected:selected&#x27;],
 
   /**
     See [EmberJS API](https://emberjs.com/api/).
@@ -229,30 +256,30 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
   */
   classNames: [&#x27;fd-editform-control&#x27;, &#x27;ui&#x27;, &#x27;dimmable&#x27;, &#x27;field&#x27;],
 
-  /**
-    See [EmberJS API](https://emberjs.com/api/).
+  actions: {
+    /**
+      Change active tab.
 
-    @method didInsertElement
-  */
-  didInsertElement() {
-    this._super(...arguments);
-
-    if (this.get(&#x27;_isTab&#x27;)) {
-      this.$(&#x27;.menu .item&#x27;).tab();
-    }
+      @method actions.changeTab
+      @param {FdEditformTab} tab New tab.
+    */
+    changeTab(tab) {
+      this.set(&#x27;activeTab&#x27;, tab);
+      this.get(&#x27;selectItemAction&#x27;)(tab);
+    },
   },
 
   /**
     The event handler is &#x60;click&#x60;.
-    Calls the &#x60;selectControlAction&#x60; action when the component is clicked.
-    The action &#x60;selectControlAction&#x60; should be passed, for example, from the controller.
+    Calls the &#x60;selectItemAction&#x60; action when the component is clicked.
+    The action &#x60;selectItemAction&#x60; should be passed, for example, from the controller.
 
     @method click
     @param {JQuery.Event} event
   */
   click(event) {
     event.stopPropagation();
-    this.get(&#x27;selectControlAction&#x27;)(this.get(&#x27;control&#x27;));
+    this.get(&#x27;selectItemAction&#x27;)(this.get(&#x27;control&#x27;));
   },
 });
 

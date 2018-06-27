@@ -1480,6 +1480,28 @@
         {
             "file": "addon/components/fd-editform-control.js",
             "line": 81,
+            "description": "Used in class name bindings to add a class when this control is selected.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_isSelected",
+            "readonly": "",
+            "type": "Boolean",
+            "class": "FdEditformControlComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-control.js",
+            "line": 93,
+            "description": "{{#crossLink \"FdEditformConstructorController/selectedItem:property\"}}Passed from above{{/crossLink}}, the selected item.",
+            "itemtype": "property",
+            "name": "selectedItem",
+            "class": "FdEditformControlComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-control.js",
+            "line": 100,
             "description": "The control to render.",
             "itemtype": "property",
             "name": "control",
@@ -1489,7 +1511,17 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 89,
+            "line": 108,
+            "description": "If the passed control is tabs, contains active tab.",
+            "itemtype": "property",
+            "name": "activeTab",
+            "type": "FdEditformTab",
+            "class": "FdEditformControlComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-control.js",
+            "line": 116,
             "description": "See description {{#crossLink \"FdDraggableControlMixin/draggableProperty:property\"}}here{{/crossLink}}.",
             "itemtype": "property",
             "name": "draggableProperty",
@@ -1498,7 +1530,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 96,
+            "line": 123,
             "description": "See description {{#crossLink \"FdDraggableControlMixin/dragDirection:property\"}}here{{/crossLink}}.",
             "itemtype": "property",
             "name": "dragDirection",
@@ -1507,7 +1539,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 103,
+            "line": 130,
             "description": "See [EmberJS API](https://emberjs.com/api/).",
             "itemtype": "property",
             "name": "classNameBindings",
@@ -1516,7 +1548,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 110,
+            "line": 137,
             "description": "See [EmberJS API](https://emberjs.com/api/).",
             "itemtype": "property",
             "name": "classNames",
@@ -1525,17 +1557,24 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 117,
-            "description": "See [EmberJS API](https://emberjs.com/api/).",
+            "line": 145,
+            "description": "Change active tab.",
             "itemtype": "method",
-            "name": "didInsertElement",
+            "name": "actions.changeTab",
+            "params": [
+                {
+                    "name": "tab",
+                    "description": "New tab.",
+                    "type": "FdEditformTab"
+                }
+            ],
             "class": "FdEditformControlComponent",
             "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 130,
-            "description": "The event handler is `click`.\nCalls the `selectControlAction` action when the component is clicked.\nThe action `selectControlAction` should be passed, for example, from the controller.",
+            "line": 157,
+            "description": "The event handler is `click`.\nCalls the `selectItemAction` action when the component is clicked.\nThe action `selectItemAction` should be passed, for example, from the controller.",
             "itemtype": "method",
             "name": "click",
             "params": [
@@ -1575,6 +1614,28 @@
         {
             "file": "addon/components/fd-editform-row.js",
             "line": 34,
+            "description": "Used in class name bindings to add a class when this row is selected.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_isSelected",
+            "readonly": "",
+            "type": "Boolean",
+            "class": "FdEditformRowComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-row.js",
+            "line": 46,
+            "description": "{{#crossLink \"FdEditformConstructorController/selectedItem:property\"}}Passed from above{{/crossLink}}, the selected item.",
+            "itemtype": "property",
+            "name": "selectedItem",
+            "class": "FdEditformRowComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-row.js",
+            "line": 53,
             "description": "The row to render.",
             "itemtype": "property",
             "name": "row",
@@ -1584,7 +1645,7 @@
         },
         {
             "file": "addon/components/fd-editform-row.js",
-            "line": 42,
+            "line": 61,
             "description": "See description {{#crossLink \"FdDraggableControlMixin/draggableProperty:property\"}}here{{/crossLink}}.",
             "itemtype": "property",
             "name": "draggableProperty",
@@ -1593,7 +1654,7 @@
         },
         {
             "file": "addon/components/fd-editform-row.js",
-            "line": 49,
+            "line": 68,
             "description": "See description {{#crossLink \"FdDraggableControlMixin/dragDirection:property\"}}here{{/crossLink}}.",
             "itemtype": "property",
             "name": "dragDirection",
@@ -1602,7 +1663,7 @@
         },
         {
             "file": "addon/components/fd-editform-row.js",
-            "line": 56,
+            "line": 75,
             "description": "See [EmberJS API](https://emberjs.com/api/).",
             "itemtype": "property",
             "name": "classNameBindings",
@@ -1611,10 +1672,26 @@
         },
         {
             "file": "addon/components/fd-editform-row.js",
-            "line": 63,
+            "line": 82,
             "description": "See [EmberJS API](https://emberjs.com/api/).",
             "itemtype": "property",
             "name": "classNames",
+            "class": "FdEditformRowComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-row.js",
+            "line": 89,
+            "description": "The event handler is `click`.\nCalls the `selectItemAction` action when the component is clicked.\nThe action `selectItemAction` should be passed, for example, from the controller.",
+            "itemtype": "method",
+            "name": "click",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "JQuery.Event"
+                }
+            ],
             "class": "FdEditformRowComponent",
             "module": "ember-flexberry-designer"
         },
@@ -2518,10 +2595,10 @@
         {
             "file": "addon/controllers/fd-editform-constructor.js",
             "line": 51,
-            "description": "The selected control.",
+            "description": "The selected item.",
             "itemtype": "property",
-            "name": "selectedControl",
-            "type": "FdEditformControl|FdEditformGroup|FdEditformTab",
+            "name": "selectedItem",
+            "type": "{FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab}",
             "class": "FdDraggableControlMixin",
             "module": "components",
             "namespace": "components"
@@ -2556,14 +2633,14 @@
         {
             "file": "addon/controllers/fd-editform-constructor.js",
             "line": 116,
-            "description": "Set the selected control.",
+            "description": "Set the selected item.",
             "itemtype": "method",
-            "name": "actions.selectControl",
+            "name": "actions.selectItem",
             "params": [
                 {
-                    "name": "control",
+                    "name": "item",
                     "description": "",
-                    "type": "FdEditformControl|FdEditformGroup|FdEditformTab"
+                    "type": "FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab"
                 }
             ],
             "class": "FdDraggableControlMixin",

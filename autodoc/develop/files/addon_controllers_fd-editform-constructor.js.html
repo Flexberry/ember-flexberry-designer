@@ -139,8 +139,8 @@ export default Ember.Controller.extend({
     @readOnly
     @type Boolean
   */
-  _selectedIsControl: Ember.computed(&#x27;selectedControl&#x27;, function() {
-    return this.get(&#x27;selectedControl&#x27;) instanceof FdEditformControl;
+  _selectedIsControl: Ember.computed(&#x27;selectedItem&#x27;, function() {
+    return this.get(&#x27;selectedItem&#x27;) instanceof FdEditformControl;
   }).readOnly(),
 
   /**
@@ -149,8 +149,8 @@ export default Ember.Controller.extend({
     @readOnly
     @type Boolean
   */
-  _selectedIsGroup: Ember.computed(&#x27;selectedControl&#x27;, function() {
-    return this.get(&#x27;selectedControl&#x27;) instanceof FdEditformGroup;
+  _selectedIsGroup: Ember.computed(&#x27;selectedItem&#x27;, function() {
+    return this.get(&#x27;selectedItem&#x27;) instanceof FdEditformGroup;
   }).readOnly(),
 
   /**
@@ -159,17 +159,17 @@ export default Ember.Controller.extend({
     @readOnly
     @type Boolean
   */
-  _selectedIsTab: Ember.computed(&#x27;selectedControl&#x27;, function() {
-    return this.get(&#x27;selectedControl&#x27;) instanceof FdEditformTab;
+  _selectedIsTab: Ember.computed(&#x27;selectedItem&#x27;, function() {
+    return this.get(&#x27;selectedItem&#x27;) instanceof FdEditformTab;
   }).readOnly(),
 
   /**
-    The selected control.
+    The selected item.
 
-    @property selectedControl
-    @type FdEditformControl|FdEditformGroup|FdEditformTab
+    @property selectedItem
+    @type {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab}
   */
-  selectedControl: undefined,
+  selectedItem: undefined,
 
   actions: {
     /**
@@ -229,13 +229,13 @@ export default Ember.Controller.extend({
     },
 
     /**
-      Set the selected control.
+      Set the selected item.
 
-      @method actions.selectControl
-      @param {FdEditformControl|FdEditformGroup|FdEditformTab} control
+      @method actions.selectItem
+      @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item
     */
-    selectControl(control) {
-      this.set(&#x27;selectedControl&#x27;, control);
+    selectItem(item) {
+      this.set(&#x27;selectedItem&#x27;, this.get(&#x27;selectedItem&#x27;) === item ? undefined : item);
     },
 
     /**

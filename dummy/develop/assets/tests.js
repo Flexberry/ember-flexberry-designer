@@ -317,7 +317,7 @@ define('dummy/tests/integration/components/fd-editform-control-test', ['exports'
   (0, _emberQunit.test)('it renders and works', function (assert) {
     var _this = this;
 
-    this.set('selectControlAction', function (control) {
+    this.set('selectItemAction', function (control) {
       return _this.set('selectedControl', control);
     });
     this.render(_ember['default'].HTMLBars.template((function () {
@@ -336,7 +336,7 @@ define('dummy/tests/integration/components/fd-editform-control-test', ['exports'
             },
             'end': {
               'line': 1,
-              'column': 79
+              'column': 102
             }
           }
         },
@@ -357,7 +357,7 @@ define('dummy/tests/integration/components/fd-editform-control-test', ['exports'
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [['inline', 'fd-editform-control', [], ['control', ['subexpr', '@mut', [['get', 'control', ['loc', [null, [1, 30], [1, 37]]]]], [], []], 'selectControlAction', ['subexpr', '@mut', [['get', 'selectControlAction', ['loc', [null, [1, 58], [1, 77]]]]], [], []]], ['loc', [null, [1, 0], [1, 79]]]]],
+        statements: [['inline', 'fd-editform-control', [], ['control', ['subexpr', '@mut', [['get', 'control', ['loc', [null, [1, 30], [1, 37]]]]], [], []], 'selectedItem', ['subexpr', '@mut', [['get', 'selectedControl', ['loc', [null, [1, 51], [1, 66]]]]], [], []], 'selectItemAction', ['subexpr', '@mut', [['get', 'selectItemAction', ['loc', [null, [1, 84], [1, 100]]]]], [], []]], ['loc', [null, [1, 0], [1, 102]]]]],
         locals: [],
         templates: []
       };
@@ -367,8 +367,11 @@ define('dummy/tests/integration/components/fd-editform-control-test', ['exports'
     assert.ok(/\s*Attribute #1\s*/.test(this.$().text()), 'With simple control.');
 
     assert.notOk(this.get('selectedControl'), 'No selected control.');
+    assert.notOk(this.$('.fd-editform-control').hasClass('selected'), 'No \'selected\' CSS-class.');
+
     this.$('input').click();
     assert.ok(this.get('selectedControl') === this.get('control'), 'Click on simple control.');
+    assert.ok(this.$('.fd-editform-control').hasClass('selected'), 'Simple control highlighted.');
 
     this.set('control', _emberFlexberryDesignerObjectsFdEditformGroup['default'].create({
       caption: 'Group #1',
@@ -380,8 +383,11 @@ define('dummy/tests/integration/components/fd-editform-control-test', ['exports'
 
     this.$('input').click();
     assert.ok(this.get('selectedControl') === this.get('control.rows.firstObject.controls.firstObject'), 'Click on nested control.');
-    this.$('.ember-view.field:first').click();
+    assert.ok(this.$('.fd-editform-control .fd-editform-control').hasClass('selected'), 'Nested control highlighted.');
+
+    this.$('.fd-editform-control:first').click();
     assert.ok(this.get('selectedControl') === this.get('control'), 'Click on group control.');
+    assert.ok(this.$('.fd-editform-control').hasClass('selected'), 'Group control highlighted.');
 
     this.set('control', _emberFlexberryDesignerObjectsFdEditformTabgroup['default'].create({
       tabs: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformTab['default'].create({
@@ -395,8 +401,16 @@ define('dummy/tests/integration/components/fd-editform-control-test', ['exports'
 
     this.$('input').click();
     assert.ok(this.get('selectedControl') === this.get('control.tabs.firstObject.rows.firstObject.controls.firstObject'), 'Click on nested control.');
+    assert.ok(this.$('.fd-editform-control .fd-editform-control').hasClass('selected'), 'Nested control highlighted.');
+
     this.$('.active.item').click();
     assert.ok(this.get('selectedControl') === this.get('control.tabs.firstObject'), 'Click on tab control.');
+    assert.ok(this.$('.fd-editform-control .active.item').hasClass('selected'), 'Tab label highlighted.');
+    assert.ok(this.$('.fd-editform-control .active.tab').hasClass('selected'), 'Tab highlighted.');
+
+    this.$('.fd-editform-control:first').click();
+    assert.ok(this.get('selectedControl') === this.get('control'), 'Click on group tabs control.');
+    assert.ok(this.$('.fd-editform-control:first').hasClass('selected'), 'Group tabs highlighted.');
   });
 });
 define('dummy/tests/integration/components/fd-editform-control-test.jscs-test', ['exports'], function (exports) {
@@ -423,6 +437,11 @@ define('dummy/tests/integration/components/fd-editform-row-test', ['exports', 'e
   });
 
   (0, _emberQunit.test)('it renders and works', function (assert) {
+    var _this = this;
+
+    this.set('selectItemAction', function (row) {
+      return _this.set('selectedRow', row);
+    });
     this.render(_ember['default'].HTMLBars.template((function () {
       return {
         meta: {
@@ -439,7 +458,7 @@ define('dummy/tests/integration/components/fd-editform-row-test', ['exports', 'e
             },
             'end': {
               'line': 1,
-              'column': 27
+              'column': 86
             }
           }
         },
@@ -460,7 +479,7 @@ define('dummy/tests/integration/components/fd-editform-row-test', ['exports', 'e
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [['inline', 'fd-editform-row', [], ['row', ['subexpr', '@mut', [['get', 'row', ['loc', [null, [1, 22], [1, 25]]]]], [], []]], ['loc', [null, [1, 0], [1, 27]]]]],
+        statements: [['inline', 'fd-editform-row', [], ['row', ['subexpr', '@mut', [['get', 'row', ['loc', [null, [1, 22], [1, 25]]]]], [], []], 'selectedItem', ['subexpr', '@mut', [['get', 'selectedRow', ['loc', [null, [1, 39], [1, 50]]]]], [], []], 'selectItemAction', ['subexpr', '@mut', [['get', 'selectItemAction', ['loc', [null, [1, 68], [1, 84]]]]], [], []]], ['loc', [null, [1, 0], [1, 86]]]]],
         locals: [],
         templates: []
       };
@@ -473,9 +492,9 @@ define('dummy/tests/integration/components/fd-editform-row-test', ['exports', 'e
       })])
     }));
     assert.ok(/\s*Attribute #1\s*/.test(this.$().text()), 'With one control.');
-    assert.notOk(this.$('.ember-view:first').hasClass('fields'));
-    assert.notOk(this.$('.ember-view:first').hasClass('equal'));
-    assert.notOk(this.$('.ember-view:first').hasClass('width'));
+    assert.notOk(this.$('.fd-editform-row').hasClass('fields'));
+    assert.notOk(this.$('.fd-editform-row').hasClass('equal'));
+    assert.notOk(this.$('.fd-editform-row').hasClass('width'));
 
     this.set('row', _emberFlexberryDesignerObjectsFdEditformRow['default'].create({
       controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({
@@ -487,9 +506,20 @@ define('dummy/tests/integration/components/fd-editform-row-test', ['exports', 'e
       })])
     }));
     assert.ok(/\s*Attribute #1\s*Attribute #2\s*/.test(this.$().text()), 'With many controls.');
-    assert.ok(this.$('.ember-view:first').hasClass('fields'));
-    assert.ok(this.$('.ember-view:first').hasClass('equal'));
-    assert.ok(this.$('.ember-view:first').hasClass('width'));
+    assert.ok(this.$('.fd-editform-row').hasClass('fields'));
+    assert.ok(this.$('.fd-editform-row').hasClass('equal'));
+    assert.ok(this.$('.fd-editform-row').hasClass('width'));
+
+    assert.notOk(this.get('selectedRow'), 'No selected row.');
+    assert.notOk(this.$('.fd-editform-row').hasClass('selected'), 'No \'selected\' CSS-class.');
+
+    this.$('input:first').click();
+    assert.ok(this.get('selectedRow') === this.get('row.controls.firstObject'), 'Click on control in row.');
+    assert.ok(this.$('.fd-editform-row .fd-editform-control').hasClass('selected'), 'Control highlighted.');
+
+    this.$('.fd-editform-row').click();
+    assert.ok(this.get('selectedRow') === this.get('row'), 'Click on row.');
+    assert.ok(this.$('.fd-editform-row').hasClass('selected'), 'Row highlighted.');
   });
 });
 define('dummy/tests/integration/components/fd-editform-row-test.jscs-test', ['exports'], function (exports) {

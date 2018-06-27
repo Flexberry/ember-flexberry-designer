@@ -147,6 +147,25 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
   _dimmed: Ember.computed.reads(&#x27;draggable&#x27;),
 
   /**
+    Used in class name bindings to add a class when this row is selected.
+
+    @private
+    @property _isSelected
+    @readOnly
+    @type Boolean
+  */
+  _isSelected: Ember.computed(&#x27;row&#x27;, &#x27;selectedItem&#x27;, function() {
+    return this.get(&#x27;row&#x27;) === this.get(&#x27;selectedItem&#x27;);
+  }).readOnly(),
+
+  /**
+    {{#crossLink &quot;FdEditformConstructorController/selectedItem:property&quot;}}Passed from above{{/crossLink}}, the selected item.
+
+    @property selectedItem
+  */
+  selectedItem: undefined,
+
+  /**
     The row to render.
 
     @property row
@@ -173,7 +192,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
 
     @property classNameBindings
   */
-  classNameBindings: [&#x27;_singleColumn::fields&#x27;, &#x27;_singleColumn::equal&#x27;, &#x27;_singleColumn::width&#x27;, &#x27;_dimmed:dimmed&#x27;],
+  classNameBindings: [&#x27;_singleColumn::fields&#x27;, &#x27;_singleColumn::equal&#x27;, &#x27;_singleColumn::width&#x27;, &#x27;_dimmed:dimmed&#x27;, &#x27;_isSelected:selected&#x27;],
 
   /**
     See [EmberJS API](https://emberjs.com/api/).
@@ -181,6 +200,19 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     @property classNames
   */
   classNames: [&#x27;fd-editform-row&#x27;, &#x27;ui&#x27;, &#x27;dimmable&#x27;],
+
+  /**
+    The event handler is &#x60;click&#x60;.
+    Calls the &#x60;selectItemAction&#x60; action when the component is clicked.
+    The action &#x60;selectItemAction&#x60; should be passed, for example, from the controller.
+
+    @method click
+    @param {JQuery.Event} event
+  */
+  click(event) {
+    event.stopPropagation();
+    this.get(&#x27;selectItemAction&#x27;)(this.get(&#x27;row&#x27;));
+  },
 });
 
     </pre>
