@@ -5238,7 +5238,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-view.js",
-            "line": 8,
+            "line": 6,
             "description": "Non-stored property.",
             "itemtype": "property",
             "name": "properties",
@@ -5248,7 +5248,7 @@
         },
         {
             "file": "addon/mixins/regenerated/models/fd-dev-view.js",
-            "line": 14,
+            "line": 12,
             "description": "Method to set non-stored property.\nPlease, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.\nPlease, implement 'propertiesCompute' method in model class (outside of this mixin) if you want to compute value of 'properties' property.",
             "itemtype": "method",
             "name": "_propertiesCompute",

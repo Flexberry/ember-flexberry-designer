@@ -117,9 +117,7 @@ import Ember from &#x27;ember&#x27;;
 import DS from &#x27;ember-data&#x27;;
 import { Projection } from &#x27;ember-flexberry-data&#x27;;
 export let Model = Ember.Mixin.create({
-  /* merged manually start */
-  definition: DS.attr(&#x27;fd-definition&#x27;),
-  /* merged manually end */
+  definition: DS.attr(&#x27;string&#x27;),
   /**
     Non-stored property.
 
@@ -188,10 +186,7 @@ export let defineProjections = function (modelClass) {
   });
   modelClass.defineProjection(&#x27;EditFormView&#x27;, &#x27;fd-dev-view&#x27;, {
     name: Projection.attr(&#x27;Name&#x27;),
-    description: Projection.attr(&#x27;Description&#x27;),
-    /* merged manually start */
-    definition: Projection.attr(&#x27;Definition&#x27;)
-    /* merged manually end */
+    description: Projection.attr(&#x27;Description&#x27;)
   });
   modelClass.defineProjection(&#x27;EditPropertyLookups&#x27;, &#x27;fd-dev-view&#x27;, {
     name: Projection.attr(&#x27;&#x27;),

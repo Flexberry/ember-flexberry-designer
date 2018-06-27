@@ -747,8 +747,7 @@ export let defineProjections = function (modelClass) {
     namespacePostfix: Projection.attr(&#x27;&#x27;),
     pBCustomAttributes: Projection.attr(&#x27;&#x27;),
     disableAllRightChecks: Projection.attr(&#x27;&#x27;),
-    containers: Projection.attr(&#x27;&#x27;),
-    appConfigFile: Projection.attr(&#x27;&#x27;),
+    containersStr: Projection.attr(&#x27;&#x27;),
     auditConnectionStringName: Projection.attr(&#x27;Имя строки соединения с БД аудита&#x27;),
     auditWinServiceUrl: Projection.attr(&#x27;Адрес сервиса аудита&#x27;),
     writeSessions: Projection.attr(&#x27;Вести аудит сессий пользователей&#x27;),
@@ -788,7 +787,6 @@ export let defineProjections = function (modelClass) {
     namespacePostfix: Projection.attr(&#x27;&#x27;),
     pBMembers: Projection.attr(&#x27;&#x27;),
     generateComPlusServer: Projection.attr(&#x27;&#x27;),
-    comPlusServerOptions: Projection.attr(&#x27;&#x27;),
     generateHttpRemoteServer: Projection.attr(&#x27;&#x27;),
     publishToEBSD: Projection.attr(&#x27;&#x27;)
   });
@@ -997,11 +995,10 @@ export let defineProjections = function (modelClass) {
     description: Projection.attr(&#x27;Description&#x27;)
   });
   modelClass.defineProjection(&#x27;EditInterface&#x27;, &#x27;fd-dev-class&#x27;, {
-    bSClass: Projection.attr(&#x27;Business Server&#x27;),
-    bSEvents: Projection.attr(&#x27;BS Events&#x27;),
+    businessServerEvents: Projection.attr(&#x27;&#x27;),
     businessServerClass: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
       stereotype: Projection.attr(&#x27;&#x27;, { hidden: true })
-    }, { hidden: true }),
+    }),
     description: Projection.attr(&#x27;&#x27;),
     name: Projection.attr(&#x27;&#x27;),
     namespacePostfix: Projection.attr(&#x27;&#x27;),
@@ -1055,8 +1052,8 @@ export let defineProjections = function (modelClass) {
     }),
     formViews: Projection.hasMany(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
       viewForForm: Projection.attr(&#x27;&#x27;),
-      dataObjectTypes: Projection.attr(&#x27;&#x27;),
-      listFormOperations: Projection.attr(&#x27;&#x27;),
+      dataObjectTypesStr: Projection.attr(&#x27;&#x27;),
+      listFormOperationsStr: Projection.attr(&#x27;&#x27;),
       hierarchicalMaster: Projection.attr(&#x27;&#x27;),
       view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
 
@@ -1150,7 +1147,7 @@ export let defineProjections = function (modelClass) {
   modelClass.defineProjection(&#x27;EditType&#x27;, &#x27;fd-dev-class&#x27;, {
     name: Projection.attr(&#x27;&#x27;),
     description: Projection.attr(&#x27;&#x27;),
-    storeInstancesInTypeXML: Projection.attr(&#x27;StoreInstancesInType&#x27;),
+    storeInstancesInType: Projection.attr(&#x27;StoreInstancesInType&#x27;),
     packet: Projection.attr(&#x27;&#x27;),
     namespacePostfix: Projection.attr(&#x27;&#x27;),
     pBMembers: Projection.attr(&#x27;&#x27;),
@@ -1278,15 +1275,13 @@ export let defineProjections = function (modelClass) {
 
     }, { hidden: true }),
     attributes: Projection.hasMany(&#x27;fd-dev-attribute&#x27;, &#x27;&#x27;, {
-      /* merged manually start */
-      name: Projection.attr(&#x27;&#x27;),
-      caption: Projection.attr(&#x27;&#x27;),
-      type: Projection.attr(&#x27;&#x27;),
-      description: Projection.attr(&#x27;&#x27;),
+      name: Projection.attr(&#x27;Имя&#x27;),
+      caption: Projection.attr(&#x27;Заголовок&#x27;),
+      type: Projection.attr(&#x27;Тип&#x27;),
+      description: Projection.attr(&#x27;Описание&#x27;),
       class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
 
       }, { hidden: true })
-      /* merged manually end */
     }),
     views: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
       name: Projection.attr(&#x27;Имя&#x27;),
@@ -1376,13 +1371,6 @@ export let defineProjections = function (modelClass) {
     businessServerClass: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
       name: Projection.attr(&#x27;&#x27;)
     }),
-    formViews: Projection.hasMany(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
-      view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
-        class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
-          name: Projection.attr(&#x27;&#x27;)
-        })
-      })
-    }),
     views: Projection.hasMany(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
       definition: Projection.attr(&#x27;&#x27;),
       name: Projection.attr(&#x27;&#x27;),
@@ -1390,6 +1378,13 @@ export let defineProjections = function (modelClass) {
       nameStr: Projection.attr(&#x27;&#x27;),
       class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
         name: Projection.attr(&#x27;&#x27;)
+      })
+    }),
+    formViews: Projection.hasMany(&#x27;fd-dev-form-view&#x27;, &#x27;&#x27;, {
+      view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+        class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+          name: Projection.attr(&#x27;&#x27;)
+        })
       })
     })
   });

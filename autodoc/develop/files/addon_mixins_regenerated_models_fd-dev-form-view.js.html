@@ -249,8 +249,8 @@ export let defineProjections = function (modelClass) {
   });
   modelClass.defineProjection(&#x27;EditListForm&#x27;, &#x27;fd-dev-form-view&#x27;, {
     viewForForm: Projection.attr(&#x27;&#x27;),
-    dataObjectTypes: Projection.attr(&#x27;&#x27;),
-    listFormOperations: Projection.attr(&#x27;&#x27;),
+    dataObjectTypesStr: Projection.attr(&#x27;&#x27;),
+    listFormOperationsStr: Projection.attr(&#x27;&#x27;),
     hierarchicalMaster: Projection.attr(&#x27;&#x27;),
     view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
 
@@ -269,6 +269,13 @@ export let defineProjections = function (modelClass) {
         name: Projection.attr(&#x27;&#x27;)
       }, { hidden: true })
     }, { hidden: true })
+  });
+  modelClass.defineProjection(&#x27;FdPreloadMetadata&#x27;, &#x27;fd-dev-form-view&#x27;, {
+    view: Projection.belongsTo(&#x27;fd-dev-view&#x27;, &#x27;&#x27;, {
+      class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
+        name: Projection.attr(&#x27;&#x27;)
+      })
+    })
   });
   modelClass.defineProjection(&#x27;ForFormControls&#x27;, &#x27;fd-dev-form-view&#x27;, {
     controls: Projection.hasMany(&#x27;fd-dev-form-control&#x27;, &#x27;&#x27;, {
