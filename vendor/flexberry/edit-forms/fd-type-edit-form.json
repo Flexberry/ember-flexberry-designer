@@ -1,0 +1,14 @@
+﻿{
+  "propertyLookup": [],
+  "external": false,
+  "caption": "Type",
+  "name": "FdTypeEditForm",
+  "className": "TypeEditForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-dev-class",
+      "modelProjection": "EditType"
+    }
+  ]
+}

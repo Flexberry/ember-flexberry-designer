@@ -632,8 +632,7 @@ export let defineProjections = function (modelClass) {
     namespacePostfix: Projection.attr(''),
     pBCustomAttributes: Projection.attr(''),
     disableAllRightChecks: Projection.attr(''),
-    containers: Projection.attr(''),
-    appConfigFile: Projection.attr(''),
+    containersStr: Projection.attr(''),
     auditConnectionStringName: Projection.attr('Имя строки соединения с БД аудита'),
     auditWinServiceUrl: Projection.attr('Адрес сервиса аудита'),
     writeSessions: Projection.attr('Вести аудит сессий пользователей'),
@@ -673,7 +672,6 @@ export let defineProjections = function (modelClass) {
     namespacePostfix: Projection.attr(''),
     pBMembers: Projection.attr(''),
     generateComPlusServer: Projection.attr(''),
-    comPlusServerOptions: Projection.attr(''),
     generateHttpRemoteServer: Projection.attr(''),
     publishToEBSD: Projection.attr('')
   });
@@ -882,11 +880,10 @@ export let defineProjections = function (modelClass) {
     description: Projection.attr('Description')
   });
   modelClass.defineProjection('EditInterface', 'fd-dev-class', {
-    bSClass: Projection.attr('Business Server'),
-    bSEvents: Projection.attr('BS Events'),
+    businessServerEvents: Projection.attr(''),
     businessServerClass: Projection.belongsTo('fd-dev-class', '', {
       stereotype: Projection.attr('', { hidden: true })
-    }, { hidden: true }),
+    }),
     description: Projection.attr(''),
     name: Projection.attr(''),
     namespacePostfix: Projection.attr(''),
@@ -940,8 +937,8 @@ export let defineProjections = function (modelClass) {
     }),
     formViews: Projection.hasMany('fd-dev-form-view', '', {
       viewForForm: Projection.attr(''),
-      dataObjectTypes: Projection.attr(''),
-      listFormOperations: Projection.attr(''),
+      dataObjectTypesStr: Projection.attr(''),
+      listFormOperationsStr: Projection.attr(''),
       hierarchicalMaster: Projection.attr(''),
       view: Projection.belongsTo('fd-dev-view', '', {
 
@@ -1035,7 +1032,7 @@ export let defineProjections = function (modelClass) {
   modelClass.defineProjection('EditType', 'fd-dev-class', {
     name: Projection.attr(''),
     description: Projection.attr(''),
-    storeInstancesInTypeXML: Projection.attr('StoreInstancesInType'),
+    storeInstancesInType: Projection.attr('StoreInstancesInType'),
     packet: Projection.attr(''),
     namespacePostfix: Projection.attr(''),
     pBMembers: Projection.attr(''),
@@ -1163,15 +1160,13 @@ export let defineProjections = function (modelClass) {
 
     }, { hidden: true }),
     attributes: Projection.hasMany('fd-dev-attribute', '', {
-      /* merged manually start */
-      name: Projection.attr(''),
-      caption: Projection.attr(''),
-      type: Projection.attr(''),
-      description: Projection.attr(''),
+      name: Projection.attr('Имя'),
+      caption: Projection.attr('Заголовок'),
+      type: Projection.attr('Тип'),
+      description: Projection.attr('Описание'),
       class: Projection.belongsTo('fd-dev-class', '', {
 
       }, { hidden: true })
-      /* merged manually end */
     }),
     views: Projection.hasMany('fd-dev-view', '', {
       name: Projection.attr('Имя'),
@@ -1261,13 +1256,6 @@ export let defineProjections = function (modelClass) {
     businessServerClass: Projection.belongsTo('fd-dev-class', '', {
       name: Projection.attr('')
     }),
-    formViews: Projection.hasMany('fd-dev-form-view', '', {
-      view: Projection.belongsTo('fd-dev-view', '', {
-        class: Projection.belongsTo('fd-dev-class', '', {
-          name: Projection.attr('')
-        })
-      })
-    }),
     views: Projection.hasMany('fd-dev-view', '', {
       definition: Projection.attr(''),
       name: Projection.attr(''),
@@ -1275,6 +1263,13 @@ export let defineProjections = function (modelClass) {
       nameStr: Projection.attr(''),
       class: Projection.belongsTo('fd-dev-class', '', {
         name: Projection.attr('')
+      })
+    }),
+    formViews: Projection.hasMany('fd-dev-form-view', '', {
+      view: Projection.belongsTo('fd-dev-view', '', {
+        class: Projection.belongsTo('fd-dev-class', '', {
+          name: Projection.attr('')
+        })
       })
     })
   });

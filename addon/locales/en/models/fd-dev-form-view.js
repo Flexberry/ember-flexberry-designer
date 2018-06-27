@@ -12,11 +12,11 @@ export default {
       viewForForm: {
         __caption__: 'viewForForm'
       },
-      dataObjectTypes: {
-        __caption__: 'dataObjectTypes'
+      dataObjectTypesStr: {
+        __caption__: 'dataObjectTypesStr'
       },
-      listFormOperations: {
-        __caption__: 'listFormOperations'
+      listFormOperationsStr: {
+        __caption__: 'listFormOperationsStr'
       },
       hierarchicalMaster: {
         __caption__: 'hierarchicalMaster'
@@ -39,6 +39,17 @@ export default {
         name: {
           __caption__: 'name'
         },
+        class: {
+          __caption__: 'class',
+          name: {
+            __caption__: 'name'
+          }
+        }
+      }
+    },
+    FdPreloadMetadata: {
+      view: {
+        __caption__: 'view',
         class: {
           __caption__: 'class',
           name: {

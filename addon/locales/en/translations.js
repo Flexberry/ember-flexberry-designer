@@ -13,11 +13,19 @@ import FdViewListFormForm from './forms/fd-view-list-form';
 import FdAssociationEditFormForm from './forms/fd-association-edit-form';
 import FdClassEditFormForm from './forms/fd-class-edit-form';
 import FdConfigurationEditFormForm from './forms/fd-configuration-edit-form';
+import FdApplicationEditFormForm from './forms/fd-application-edit-form';
+import FdBusinessServerEditFormForm from './forms/fd-business-server-edit-form';
 import FdDiagramEditFormForm from './forms/fd-diagram-edit-form';
+import FdEditFormEditFormForm from './forms/fd-edit-form-edit-form';
 import FdEnumEditFormForm from './forms/fd-enum-edit-form';
+import FdExternalEditFormForm from './forms/fd-external-edit-form';
 import FdInheritanceEditFormForm from './forms/fd-inheritance-edit-form';
+import FdInterfaceEditFormForm from './forms/fd-interface-edit-form';
+import FdListFormEditFormForm from './forms/fd-list-form-edit-form';
 import FdStageEditFormForm from './forms/fd-stage-edit-form';
 import FdSystemEditFormForm from './forms/fd-system-edit-form';
+import FdTypeEditFormForm from './forms/fd-type-edit-form';
+import FdUserFormEditFormForm from './forms/fd-user-form-edit-form';
 import FdViewEditFormForm from './forms/fd-view-edit-form';
 import FdVisualEditFormForm from './forms/fd-visual-edit-form-form';
 import FdVisualListform from './forms/fd-visual-listform';
@@ -177,14 +185,22 @@ Ember.$.extend(true, translations, {
     'fd-stage-list-form': FdStageListFormForm,
     'fd-system-list-form': FdSystemListFormForm,
     'fd-view-list-form': FdViewListFormForm,
+    'fd-application-edit-form': FdApplicationEditFormForm,
     'fd-association-edit-form': FdAssociationEditFormForm,
+    'fd-business-server-edit-form': FdBusinessServerEditFormForm,
     'fd-class-edit-form': FdClassEditFormForm,
     'fd-configuration-edit-form': FdConfigurationEditFormForm,
     'fd-diagram-edit-form': FdDiagramEditFormForm,
+    'fd-edit-form-edit-form': FdEditFormEditFormForm,
     'fd-enum-edit-form': FdEnumEditFormForm,
+    'fd-external-edit-form': FdExternalEditFormForm,
     'fd-inheritance-edit-form': FdInheritanceEditFormForm,
+    'fd-interface-edit-form': FdInterfaceEditFormForm,
+    'fd-list-form-edit-form': FdListFormEditFormForm,
     'fd-stage-edit-form': FdStageEditFormForm,
     'fd-system-edit-form': FdSystemEditFormForm,
+    'fd-type-edit-form': FdTypeEditFormForm,
+    'fd-user-form-edit-form': FdUserFormEditFormForm,
     'fd-view-edit-form': FdViewEditFormForm,
     'fd-visual-edit-form': FdVisualEditFormForm,
     'fd-visual-listform': FdVisualListform,
