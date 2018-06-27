@@ -13,6 +13,6 @@ export default {
     'add-controls-header': 'Добавить элементы управления',
     'add-control': 'Контрол',
     'add-group': 'Группу',
-    'add-tabs': 'Вкладки',
+    'add-tab': 'Вкладку',
   },
 };

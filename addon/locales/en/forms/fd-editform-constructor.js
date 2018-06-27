@@ -13,6 +13,6 @@ export default {
     'add-controls-header': 'Add controls',
     'add-control': 'Control',
     'add-group': 'Group',
-    'add-tabs': 'Tabs',
+    'add-tab': 'Tab',
   },
 };

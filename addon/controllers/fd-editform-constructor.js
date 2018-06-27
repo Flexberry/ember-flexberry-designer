@@ -82,7 +82,7 @@ export default Ember.Controller.extend({
           row.get('controls').pushObject(group);
           break;
 
-        case 'tabs':
+        case 'tab':
           let tabs = FdEditformTabgroup.create({
             tabs: Ember.A([
               FdEditformTab.create({
