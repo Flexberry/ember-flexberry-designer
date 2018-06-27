@@ -24,8 +24,8 @@ export default Ember.Controller.extend({
     @readOnly
     @type Boolean
   */
-  _selectedIsControl: Ember.computed('selectedControl', function() {
-    return this.get('selectedControl') instanceof FdEditformControl;
+  _selectedIsControl: Ember.computed('selectedItem', function() {
+    return this.get('selectedItem') instanceof FdEditformControl;
   }).readOnly(),
 
   /**
@@ -34,8 +34,8 @@ export default Ember.Controller.extend({
     @readOnly
     @type Boolean
   */
-  _selectedIsGroup: Ember.computed('selectedControl', function() {
-    return this.get('selectedControl') instanceof FdEditformGroup;
+  _selectedIsGroup: Ember.computed('selectedItem', function() {
+    return this.get('selectedItem') instanceof FdEditformGroup;
   }).readOnly(),
 
   /**
@@ -44,17 +44,17 @@ export default Ember.Controller.extend({
     @readOnly
     @type Boolean
   */
-  _selectedIsTab: Ember.computed('selectedControl', function() {
-    return this.get('selectedControl') instanceof FdEditformTab;
+  _selectedIsTab: Ember.computed('selectedItem', function() {
+    return this.get('selectedItem') instanceof FdEditformTab;
   }).readOnly(),
 
   /**
-    The selected control.
+    The selected item.
 
-    @property selectedControl
-    @type FdEditformControl|FdEditformGroup|FdEditformTab
+    @property selectedItem
+    @type {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab}
   */
-  selectedControl: undefined,
+  selectedItem: undefined,
 
   actions: {
     /**
@@ -114,13 +114,13 @@ export default Ember.Controller.extend({
     },
 
     /**
-      Set the selected control.
+      Set the selected item.
 
-      @method actions.selectControl
-      @param {FdEditformControl|FdEditformGroup|FdEditformTab} control
+      @method actions.selectItem
+      @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item
     */
-    selectControl(control) {
-      this.set('selectedControl', control);
+    selectItem(item) {
+      this.set('selectedItem', this.get('selectedItem') === item ? undefined : item);
     },
 
     /**

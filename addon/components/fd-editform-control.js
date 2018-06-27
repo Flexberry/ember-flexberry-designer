@@ -79,12 +79,39 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
   _dimmed: Ember.computed.reads('draggable'),
 
   /**
+    Used in class name bindings to add a class when this control is selected.
+
+    @private
+    @property _isSelected
+    @readOnly
+    @type Boolean
+  */
+  _isSelected: Ember.computed('control', 'selectedItem', function() {
+    return this.get('control') === this.get('selectedItem');
+  }).readOnly(),
+
+  /**
+    {{#crossLink "FdEditformConstructorController/selectedItem:property"}}Passed from above{{/crossLink}}, the selected item.
+
+    @property selectedItem
+  */
+  selectedItem: undefined,
+
+  /**
     The control to render.
 
     @property control
     @type FdEditformControl|FdEditformGroup|FdEditformTabgroup
   */
   control: undefined,
+
+  /**
+    If the passed control is tabs, contains active tab.
+
+    @property activeTab
+    @type FdEditformTab
+  */
+  activeTab: Ember.computed.oneWay('control.tabs.firstObject'),
 
   /**
     See description {{#crossLink "FdDraggableControlMixin/draggableProperty:property"}}here{{/crossLink}}.
@@ -105,7 +132,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
 
     @property classNameBindings
   */
-  classNameBindings: ['_dimmed:dimmed'],
+  classNameBindings: ['_dimmed:dimmed', '_isSelected:selected'],
 
   /**
     See [EmberJS API](https://emberjs.com/api/).
@@ -114,29 +141,29 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
   */
   classNames: ['fd-editform-control', 'ui', 'dimmable', 'field'],
 
-  /**
-    See [EmberJS API](https://emberjs.com/api/).
+  actions: {
+    /**
+      Change active tab.
 
-    @method didInsertElement
-  */
-  didInsertElement() {
-    this._super(...arguments);
-
-    if (this.get('_isTab')) {
-      this.$('.menu .item').tab();
-    }
+      @method actions.changeTab
+      @param {FdEditformTab} tab New tab.
+    */
+    changeTab(tab) {
+      this.set('activeTab', tab);
+      this.get('selectItemAction')(tab);
+    },
   },
 
   /**
     The event handler is `click`.
-    Calls the `selectControlAction` action when the component is clicked.
-    The action `selectControlAction` should be passed, for example, from the controller.
+    Calls the `selectItemAction` action when the component is clicked.
+    The action `selectItemAction` should be passed, for example, from the controller.
 
     @method click
     @param {JQuery.Event} event
   */
   click(event) {
     event.stopPropagation();
-    this.get('selectControlAction')(this.get('control'));
+    this.get('selectItemAction')(this.get('control'));
   },
 });

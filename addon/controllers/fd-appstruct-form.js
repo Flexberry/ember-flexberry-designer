@@ -1,9 +1,10 @@
 import Ember from 'ember';
-import FdViewAttributesTree from '../objects/fd-view-attributes-tree';
+import FdAppStructTree from '../objects/fd-appstruct-tree';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
 import { translationMacro as t } from 'ember-i18n';
+import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 
-export default EditFormController.extend({
+export default EditFormController.extend(FdWorkPanelToggler, {
 
   /*
     Setting off for buttons of the left tree.
@@ -104,11 +105,14 @@ export default EditFormController.extend({
     'notStored': {
       icon: 'assets/images/notStored.png'
     },
-    'master': {
+    'folder': {
       icon: 'folder icon'
     },
     '#': {
       max_children: 1
+    },
+    'url': {
+      icon: 'globe icon'
     }
   })),
 
@@ -130,9 +134,9 @@ export default EditFormController.extend({
       return;
     }
 
-    if (selectedElement.get('type') !== 'master' && selectedElement.get('type') !== 'desk') {
+    if (selectedElement.get('type') !== 'folder' && selectedElement.get('type') !== 'desk') {
       let caption = selectedElement.get('caption');
-      if (caption !== '') {
+      if (caption !== '' && !Ember.isNone(caption)) {
         selectedElement.set('text', caption);
       } else {
         selectedElement.set('text', selectedElement.get('className'));
@@ -186,6 +190,7 @@ export default EditFormController.extend({
   _jstreeSelectedNodesRightObserver: Ember.observer('jstreeSelectedNodesRight', function() {
     let jstreeSelectedNodesRight = this.get('jstreeSelectedNodesRight');
     if (jstreeSelectedNodesRight.length === 0) {
+      this.set('addRightNodeDisabled', 'disabled');
       this.set('editRightNodeDisabled', 'disabled');
       this.set('removeRightNodeDisabled', 'disabled');
       this.set('addFolderNodeDisabled', 'disabled');
@@ -202,9 +207,11 @@ export default EditFormController.extend({
         this.set('editRightNodeDisabled', '');
       }
 
-      if (typeNode === '«listform»' || typeNode === '«editform»') {
+      if (typeNode === '«listform»' || typeNode === '«editform»' || typeNode === 'url') {
+        this.set('addRightNodeDisabled', 'disabled');
         this.set('addFolderNodeDisabled', 'disabled');
       } else {
+        this.set('addRightNodeDisabled', '');
         this.set('addFolderNodeDisabled', '');
       }
     }
@@ -225,7 +232,7 @@ export default EditFormController.extend({
     let jstreeSelectedNodesRightType = jstreeSelectedNodesRight[0].original.type;
     let jstreeSelectedNodesLeftType = jstreeSelectedNodesLeft[0].original.type;
     if ((jstreeSelectedNodesLeftType !== '«listform»' && jstreeSelectedNodesLeftType !== '«editform»') ||
-      jstreeSelectedNodesRightType === '«listform»' || jstreeSelectedNodesRightType === '«editform»') {
+      jstreeSelectedNodesRightType === '«listform»' || jstreeSelectedNodesRightType === '«editform»' || jstreeSelectedNodesRightType === 'url') {
       this.set('moveRightDisabled', 'disabled');
     } else {
       this.set('moveRightDisabled', '');
@@ -278,7 +285,7 @@ export default EditFormController.extend({
   _restorationNodeTree(nodeArray) {
     let _this = this;
     nodeArray.forEach(function(node) {
-      if (node.type === 'master' || node.type === 'desk') {
+      if (node.type === 'folder' || node.type === 'desk') {
         node.set('children', node.get('copyChildren'));
         _this._restorationNodeTree(node.get('children'));
       }
@@ -311,23 +318,23 @@ export default EditFormController.extend({
       }
 
       // Find free id.
-      let folderId = 0;
-      let foundId = this.get('jstreeObjectRight').jstree(true).get_node('move' + folderId);
+      let nodeId = 0;
+      let foundId = this.get('jstreeObjectRight').jstree(true).get_node('move' + nodeId);
       while (foundId) {
-        folderId++;
-        foundId = this.get('jstreeObjectRight').jstree(true).get_node('move' + folderId);
+        nodeId++;
+        foundId = this.get('jstreeObjectRight').jstree(true).get_node('move' + nodeId);
       }
 
       let leftSelectedNodes = jstreeSelectedNodesLeft[0].original;
       let rightSelectedNodes = jstreeSelectedNodesRight[0].original.get('copyChildren');
-      let newNode = FdViewAttributesTree.create({
+      let newNode = FdAppStructTree.create({
         text: leftSelectedNodes.get('text'),
         type: leftSelectedNodes.get('type'),
         caption: leftSelectedNodes.get('caption'),
         className: leftSelectedNodes.get('name'),
         description: leftSelectedNodes.get('description'),
         a_attr: leftSelectedNodes.get('a_attr'),
-        id: 'move' + folderId
+        id: 'move' + nodeId
       });
 
       rightSelectedNodes.pushObject(newNode);
@@ -447,12 +454,58 @@ export default EditFormController.extend({
     },
 
     /**
-      Handles edit node left jsTree.
+      Handles add url node.
+
+      @method actions.addUrlNode
+    */
+    addUrlNode() {
+      let jstreeSelectedNodesRight = this.get('jstreeSelectedNodesRight');
+      if (jstreeSelectedNodesRight.length === 0) {
+        return;
+      }
+
+      // Find free name.
+      let urlName = 'NewUrl';
+      let selectedNodes = jstreeSelectedNodesRight[0].original.get('copyChildren');
+      let foundName = selectedNodes.findBy('text', urlName);
+      let urlIndex = '';
+      while (!Ember.isNone(foundName)) {
+        urlIndex++;
+        foundName = selectedNodes.findBy('text', urlName + urlIndex);
+      }
+
+      // Find free id.
+      let urlId = 0;
+      let foundId = this.get('jstreeObjectRight').jstree(true).get_node('NU' + urlId);
+      while (foundId) {
+        urlId++;
+        foundId = this.get('jstreeObjectRight').jstree(true).get_node('NU' + urlId);
+      }
+
+      let folder = FdAppStructTree.create({
+        text: urlName + urlIndex,
+        type: 'url',
+        id: 'NU' + urlId,
+        caption: urlName + urlIndex,
+        description: '',
+        url: '',
+        a_attr: { title: 'url' }
+      });
+
+      selectedNodes.pushObject(folder);
+
+      // Restoration tree.
+      this._updateTreeData();
+      this.get('jstreeActionReceiverRight').send('openNode', jstreeSelectedNodesRight[0]);
+    },
+
+    /**
+      Handles edit node right jsTree.
 
       @method actions.editRightNode
     */
     editRightNode() {
-      //TODO filling out tabs.
+      this.send('toggleConfigPanel', 'second', 1);
     },
 
     /**
@@ -505,9 +558,9 @@ export default EditFormController.extend({
         foundId = this.get('jstreeObjectRight').jstree(true).get_node('NF' + folderId);
       }
 
-      let folder = FdViewAttributesTree.create({
+      let folder = FdAppStructTree.create({
         text: folderName + folderIndex,
-        type: 'master',
+        type: 'folder',
         children: Ember.A(),
         copyChildren: Ember.A(),
         id: 'NF' + folderId

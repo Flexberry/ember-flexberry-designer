@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import FdViewAttributesTree from '../objects/fd-view-attributes-tree';
+import FdAppStructTree from '../objects/fd-appstruct-tree';
 export default Ember.Route.extend({
 
   /**
@@ -43,7 +43,7 @@ export default Ember.Route.extend({
     forms.forEach((form, index) => {
       let idParent = form.get('formViews').mapBy('view.class.id');
       treeNodeForms.pushObject(
-        FdViewAttributesTree.create({
+        FdAppStructTree.create({
           text: form.get('caption') || form.get('name'),
           name: form.get('name'),
           caption: form.get('caption'),
@@ -64,7 +64,7 @@ export default Ember.Route.extend({
       let implementationsChildren = treeNodeForms.filterBy('idParent', implementation.id);
       let typeImplementation = implementation.get('stored') ? 'implementations' : 'notStored';
       treeLeft.pushObject(
-        FdViewAttributesTree.create({
+        FdAppStructTree.create({
           text: implementation.get('caption') || implementation.get('name'),
           name: implementation.get('name'),
           type: typeImplementation,
@@ -89,7 +89,7 @@ export default Ember.Route.extend({
 
     // Add root tree.
     let treeRight = Ember.A([
-      FdViewAttributesTree.create({
+      FdAppStructTree.create({
         text: 'Рабочий стол',
         type: 'desk',
         id: 'node_app',
@@ -125,13 +125,18 @@ export default Ember.Route.extend({
         node.set('children', node.get('copyChildren'));
       }
 
-      if (node.type === 'master') {
+      if (node.type === 'folder') {
         _this._updateTypeRightTree(node.get('children'), recordsDevClass);
         node.set('copyChildren', node.get('children'));
       } else {
-        let classData = recordsDevClass.findBy('name', node.className);
-        node.set('type', classData.get('stereotype'));
-        node.set('a_attr', { title: classData.get('stereotype') + ' ' + classData.get('name') });
+        if (node.className !== '' && !Ember.isNone(node.className)) {
+          let classData = recordsDevClass.findBy('name', node.className);
+          node.set('type', classData.get('stereotype'));
+          node.set('a_attr', { title: classData.get('stereotype') + ' ' + classData.get('name') });
+        } else {
+          node.set('type', 'url');
+          node.set('a_attr', { title: 'url' });
+        }
       }
     });
   },

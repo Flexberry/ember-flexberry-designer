@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import FdViewAttributesTree from '../objects/fd-view-attributes-tree';
+import FdAppStructTree from '../objects/fd-appstruct-tree';
 
 export default DS.Transform.extend({
 
@@ -55,7 +55,7 @@ export default DS.Transform.extend({
             let xmlItem = '<Item' +
               ' ClassName="' + this._emptyFolderClassName + '"' +
               ' MenuPath="' + steps.join('\\').replace(/"/g, '\\"') + '"' +
-              ' Caption="" Description=""' +
+              ' Caption="" Description="" Url=""' +
               ' />';
             ret += xmlItem;
           }
@@ -67,6 +67,11 @@ export default DS.Transform.extend({
 
           steps.pop();
         } else {
+          let className = node.className;
+          if (!className) {
+            className = '';
+          }
+
           let caption = node.caption;
           if (!caption) {
             caption = node.className;
@@ -77,11 +82,17 @@ export default DS.Transform.extend({
             description = '';
           }
 
+          let url = node.url;
+          if (!url) {
+            url = '';
+          }
+
           let xmlItem = '<Item' +
-            ' ClassName="' + node.className.replace(/"/g, '\\"') + '"' +
+            ' ClassName="' + className.replace(/"/g, '\\"') + '"' +
             ' MenuPath="' + currentPath.replace(/"/g, '\\"') + '"' +
             ' Caption="' +  caption.replace(/"/g, '\\"') + '"' +
             ' Description="' + description.replace(/"/g, '\\"') + '"' +
+            ' Url="' + url.replace(/"/g, '\\"') + '"' +
             ' />';
           ret += xmlItem;
         }
@@ -123,21 +134,23 @@ export default DS.Transform.extend({
 
       let className =  item.getAttribute('ClassName') || item.getAttribute('classname');
       if (className !== this._emptyFolderClassName) {
-        currentNodes.nodes.pushObject(FdViewAttributesTree.create({
+        currentNodes.nodes.pushObject(FdAppStructTree.create({
           text: item.getAttribute('Caption') || item.getAttribute('caption'),
           caption: item.getAttribute('Caption') || item.getAttribute('caption'),
           type: 'property',
           className: className,
           description: item.getAttribute('Description') || item.getAttribute('description'),
-          id: 'p' + menuPath.split('\\').length + 'l' + currentNodes.nodes.length + 'i' + i
+          id: 'p' + menuPath.split('\\').length + 'l' + currentNodes.nodes.length + 'i' + i,
+          url: item.getAttribute('Url')
         }));
-        currentNodes.copyNodes.pushObject(FdViewAttributesTree.create({
+        currentNodes.copyNodes.pushObject(FdAppStructTree.create({
           text: item.getAttribute('Caption') || item.getAttribute('caption'),
           caption: item.getAttribute('Caption') || item.getAttribute('caption'),
           type: 'property',
           className: className,
           description: item.getAttribute('Description') || item.getAttribute('description'),
-          id: 'p' + menuPath.split('\\').length + 'l' + currentNodes.copyNodes.length + 'i' + i
+          id: 'p' + menuPath.split('\\').length + 'l' + currentNodes.copyNodes.length + 'i' + i,
+          url: item.getAttribute('Url')
         }));
       }
     }
@@ -160,9 +173,9 @@ export default DS.Transform.extend({
       }
     }
 
-    let node = FdViewAttributesTree.create({
+    let node = FdAppStructTree.create({
       text: step,
-      type: 'master',
+      type: 'folder',
       children: Ember.A(),
       copyChildren: Ember.A(),
       id: 'p' + index + 'l' + nodes.length + 'i' + item
