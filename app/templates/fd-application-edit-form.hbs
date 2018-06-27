@@ -1,0 +1,184 @@
+<h3 class="ui header">{{t 'forms.fd-application-edit-form.caption'}}</h3>
+
+<form class="ui form flexberry-vertical-form" role="form">
+  {{flexberry-error error=error}}
+  <div class="field">
+    <div class="sixteen wide">
+      {{flexberry-validationsummary errors=model.errors}}
+    </div>
+  </div>
+  <div class="field">
+    <div class="flexberry-edit-panel">
+      {{#unless readonly}}
+        <button type="submit" class="ui button save-button" {{action 'save'}}>
+          {{t "forms.edit-form.save-button-text"}}
+        </button>
+        {{#unless model.isNew}}
+          <button type="submit" class="ui button save-del-button" {{action 'delete'}}>
+            {{t "forms.edit-form.delete-button-text"}}
+          </button>
+        {{/unless}}
+      {{/unless}}
+      <button type="submit" class="ui button close-button" {{action 'close'}}>
+        {{t "forms.edit-form.close-button-text"}}
+      </button>
+    </div>
+  </div>
+  <div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=readonly
+    required=true
+    value=model.name
+    class=(if model.errors.name 'error' '')
+    label=(t 'forms.fd-application-edit-form.name-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.name pointing="pointing"}}
+</div>
+
+<div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=readonly
+    required=true
+    value=model.description
+    class=(if model.errors.description 'error' '')
+    label=(t 'forms.fd-application-edit-form.description-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.description pointing="pointing"}}
+</div>
+
+<div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=readonly
+    required=true
+    value=model.caption
+    class=(if model.errors.caption 'error' '')
+    label=(t 'forms.fd-application-edit-form.caption-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.caption pointing="pointing"}}
+</div>
+
+<div class="field">
+  <label>{{t 'forms.fd-application-edit-form.standartDesktop-caption'}}</label>
+  {{
+    flexberry-checkbox
+    readonly=readonly
+    value=model.standartDesktop
+  }}
+</div>
+
+<div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=readonly
+    required=true
+    value=model.namespacePostfix
+    class=(if model.errors.namespacePostfix 'error' '')
+    label=(t 'forms.fd-application-edit-form.namespacePostfix-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.namespacePostfix pointing="pointing"}}
+</div>
+
+<div class="field">
+  <label>{{t 'forms.fd-application-edit-form.pBCustomAttributes-caption'}}</label>
+  {{
+    flexberry-checkbox
+    readonly=readonly
+    value=model.pBCustomAttributes
+  }}
+</div>
+
+<div class="field">
+  <label>{{t 'forms.fd-application-edit-form.disableAllRightChecks-caption'}}</label>
+  {{
+    flexberry-checkbox
+    readonly=readonly
+    value=model.disableAllRightChecks
+  }}
+</div>
+
+<div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=readonly
+    required=true
+    value=model.containersStr
+    class=(if model.errors.containersStr 'error' '')
+    label=(t 'forms.fd-application-edit-form.containersStr-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.containersStr pointing="pointing"}}
+</div>
+
+<div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=readonly
+    required=true
+    value=model.auditConnectionStringName
+    class=(if model.errors.auditConnectionStringName 'error' '')
+    label=(t 'forms.fd-application-edit-form.auditConnectionStringName-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.auditConnectionStringName pointing="pointing"}}
+</div>
+
+<div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=readonly
+    required=true
+    value=model.auditWinServiceUrl
+    class=(if model.errors.auditWinServiceUrl 'error' '')
+    label=(t 'forms.fd-application-edit-form.auditWinServiceUrl-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.auditWinServiceUrl pointing="pointing"}}
+</div>
+
+<div class="field">
+  <label>{{t 'forms.fd-application-edit-form.writeSessions-caption'}}</label>
+  {{
+    flexberry-checkbox
+    readonly=readonly
+    value=model.writeSessions
+  }}
+</div>
+
+<div class="field">
+  <label>{{t 'forms.fd-application-edit-form.attributes-caption'}}</label>
+  {{
+    flexberry-groupedit
+    componentName="attributesGroupEdit"
+    mainModelProjection=modelProjection
+    modelProjection=modelProjection.attributes.attributes
+    content=model.attributes
+    readonly=readonly
+    orderable=false
+    class=(if model.errors.attributes 'error' '')
+  }}
+  {{flexberry-validationmessage error=model.errors.attributes pointing="pointing"}}
+</div>
+
+<div class="field">
+  <label>{{t 'forms.fd-application-edit-form.methods-caption'}}</label>
+  {{
+    flexberry-groupedit
+    componentName="methodsGroupEdit"
+    mainModelProjection=modelProjection
+    modelProjection=modelProjection.attributes.methods
+    content=model.methods
+    readonly=readonly
+    orderable=false
+    class=(if model.errors.methods 'error' '')
+  }}
+  {{flexberry-validationmessage error=model.errors.methods pointing="pointing"}}
+</div>
+
+</form>

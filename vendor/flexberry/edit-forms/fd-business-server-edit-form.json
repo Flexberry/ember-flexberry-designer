@@ -1,0 +1,14 @@
+﻿{
+  "propertyLookup": [],
+  "external": false,
+  "caption": "Business server",
+  "name": "FdBusinessServerEditForm",
+  "className": "BusinessServerEditForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-dev-class",
+      "modelProjection": "EditBusinessServer"
+    }
+  ]
+}

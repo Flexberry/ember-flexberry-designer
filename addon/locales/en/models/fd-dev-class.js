@@ -330,11 +330,8 @@ export default {
       disableAllRightChecks: {
         __caption__: 'disableAllRightChecks'
       },
-      containers: {
-        __caption__: 'containers'
-      },
-      appConfigFile: {
-        __caption__: 'appConfigFile'
+      containersStr: {
+        __caption__: 'containersStr'
       },
       auditConnectionStringName: {
         __caption__: 'auditConnectionStringName'
@@ -419,6 +416,12 @@ export default {
             __caption__: 'description'
           }
         }
+      },
+      containers: {
+        __caption__: 'containers'
+      },
+      appConfigFile: {
+        __caption__: 'appConfigFile'
       }
     },
     EditBusinessServer: {
@@ -439,9 +442,6 @@ export default {
       },
       generateComPlusServer: {
         __caption__: 'generateComPlusServer'
-      },
-      comPlusServerOptions: {
-        __caption__: 'comPlusServerOptions'
       },
       generateHttpRemoteServer: {
         __caption__: 'generateHttpRemoteServer'
@@ -982,11 +982,8 @@ export default {
       }
     },
     EditInterface: {
-      bSClass: {
-        __caption__: 'bSClass'
-      },
-      bSEvents: {
-        __caption__: 'bSEvents'
+      businessServerEvents: {
+        __caption__: 'businessServerEvents'
       },
       businessServerClass: {
         __caption__: 'businessServerClass',
@@ -1136,11 +1133,11 @@ export default {
         viewForForm: {
           __caption__: 'viewForForm'
         },
-        dataObjectTypes: {
-          __caption__: 'dataObjectTypes'
+        dataObjectTypesStr: {
+          __caption__: 'dataObjectTypesStr'
         },
-        listFormOperations: {
-          __caption__: 'listFormOperations'
+        listFormOperationsStr: {
+          __caption__: 'listFormOperationsStr'
         },
         hierarchicalMaster: {
           __caption__: 'hierarchicalMaster'
@@ -1362,8 +1359,8 @@ export default {
       description: {
         __caption__: 'description'
       },
-      storeInstancesInTypeXML: {
-        __caption__: 'storeInstancesInTypeXML'
+      storeInstancesInType: {
+        __caption__: 'storeInstancesInType'
       },
       packet: {
         __caption__: 'packet'
@@ -1933,6 +1930,18 @@ export default {
           __caption__: 'class',
           name: {
             __caption__: 'name'
+          }
+        }
+      },
+      formViews: {
+        __caption__: 'formViews',
+        view: {
+          __caption__: 'view',
+          class: {
+            __caption__: 'class',
+            name: {
+              __caption__: 'name'
+            }
           }
         }
       }

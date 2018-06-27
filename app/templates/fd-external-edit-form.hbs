@@ -1,0 +1,132 @@
+<h3 class="ui header">{{t 'forms.fd-external-edit-form.caption'}}</h3>
+
+<form class="ui form flexberry-vertical-form" role="form">
+  {{flexberry-error error=error}}
+  <div class="field">
+    <div class="sixteen wide">
+      {{flexberry-validationsummary errors=model.errors}}
+    </div>
+  </div>
+  <div class="field">
+    <div class="flexberry-edit-panel">
+      {{#unless readonly}}
+        <button type="submit" class="ui button save-button" {{action 'save'}}>
+          {{t "forms.edit-form.save-button-text"}}
+        </button>
+        {{#unless model.isNew}}
+          <button type="submit" class="ui button save-del-button" {{action 'delete'}}>
+            {{t "forms.edit-form.delete-button-text"}}
+          </button>
+        {{/unless}}
+      {{/unless}}
+      <button type="submit" class="ui button close-button" {{action 'close'}}>
+        {{t "forms.edit-form.close-button-text"}}
+      </button>
+    </div>
+  </div>
+  <div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=readonly
+    required=true
+    value=model.name
+    class=(if model.errors.name 'error' '')
+    label=(t 'forms.fd-external-edit-form.name-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.name pointing="pointing"}}
+</div>
+
+<div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=readonly
+    required=true
+    value=model.description
+    class=(if model.errors.description 'error' '')
+    label=(t 'forms.fd-external-edit-form.description-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.description pointing="pointing"}}
+</div>
+
+<div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=readonly
+    required=true
+    value=model.storeInstancesInTypeXML
+    class=(if model.errors.storeInstancesInTypeXML 'error' '')
+    label=(t 'forms.fd-external-edit-form.storeInstancesInTypeXML-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.storeInstancesInTypeXML pointing="pointing"}}
+</div>
+
+<div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=readonly
+    required=true
+    value=model.packet
+    class=(if model.errors.packet 'error' '')
+    label=(t 'forms.fd-external-edit-form.packet-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.packet pointing="pointing"}}
+</div>
+
+<div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=readonly
+    required=true
+    value=model.namespacePostfix
+    class=(if model.errors.namespacePostfix 'error' '')
+    label=(t 'forms.fd-external-edit-form.namespacePostfix-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.namespacePostfix pointing="pointing"}}
+</div>
+
+<div class="field">
+  <label>{{t 'forms.fd-external-edit-form.pBMembers-caption'}}</label>
+  {{
+    flexberry-checkbox
+    readonly=readonly
+    value=model.pBMembers
+  }}
+</div>
+
+<div class="field">
+  <label>{{t 'forms.fd-external-edit-form.pBCustomAttributes-caption'}}</label>
+  {{
+    flexberry-checkbox
+    readonly=readonly
+    value=model.pBCustomAttributes
+  }}
+</div>
+
+<div class="field">
+  <label>{{t 'forms.fd-external-edit-form.publishToEBSD-caption'}}</label>
+  {{
+    flexberry-checkbox
+    readonly=readonly
+    value=model.publishToEBSD
+  }}
+</div>
+
+<div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=true
+    required=true
+    value=model.stage.name
+    class=(if model.errors.stage.name 'error' '')
+    label=(t 'forms.fd-external-edit-form.stage.name-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.stage.name pointing="pointing"}}
+</div>
+
+</form>

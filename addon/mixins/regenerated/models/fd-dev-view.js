@@ -2,9 +2,7 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import { Projection } from 'ember-flexberry-data';
 export let Model = Ember.Mixin.create({
-  /* merged manually start */
-  definition: DS.attr('fd-definition'),
-  /* merged manually end */
+  definition: DS.attr('string'),
   /**
     Non-stored property.
 
@@ -73,10 +71,7 @@ export let defineProjections = function (modelClass) {
   });
   modelClass.defineProjection('EditFormView', 'fd-dev-view', {
     name: Projection.attr('Name'),
-    description: Projection.attr('Description'),
-    /* merged manually start */
-    definition: Projection.attr('Definition')
-    /* merged manually end */
+    description: Projection.attr('Description')
   });
   modelClass.defineProjection('EditPropertyLookups', 'fd-dev-view', {
     name: Projection.attr(''),

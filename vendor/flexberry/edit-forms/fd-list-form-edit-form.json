@@ -1,0 +1,23 @@
+﻿{
+  "propertyLookup": [
+    {
+      "master": "view",
+      "displayAttributeName": null,
+      "required": true,
+      "relationName": "FormViews.View",
+      "projection": "ListFormView",
+      "detailModelName": "fd-dev-form-view"
+    }
+  ],
+  "external": false,
+  "caption": "List form",
+  "name": "FdListFormEditForm",
+  "className": "ListFormEditForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-dev-class",
+      "modelProjection": "EditListForm"
+    }
+  ]
+}

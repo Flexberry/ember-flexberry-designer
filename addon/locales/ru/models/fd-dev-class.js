@@ -330,10 +330,7 @@ export default {
       disableAllRightChecks: {
         __caption__: ''
       },
-      containers: {
-        __caption__: ''
-      },
-      appConfigFile: {
+      containersStr: {
         __caption__: ''
       },
       auditConnectionStringName: {
@@ -438,9 +435,6 @@ export default {
         __caption__: ''
       },
       generateComPlusServer: {
-        __caption__: ''
-      },
-      comPlusServerOptions: {
         __caption__: ''
       },
       generateHttpRemoteServer: {
@@ -982,11 +976,8 @@ export default {
       }
     },
     EditInterface: {
-      bSClass: {
-        __caption__: 'Business Server'
-      },
-      bSEvents: {
-        __caption__: 'BS Events'
+      businessServerEvents: {
+        __caption__: ''
       },
       businessServerClass: {
         __caption__: '',
@@ -1136,10 +1127,10 @@ export default {
         viewForForm: {
           __caption__: ''
         },
-        dataObjectTypes: {
+        dataObjectTypesStr: {
           __caption__: ''
         },
-        listFormOperations: {
+        listFormOperationsStr: {
           __caption__: ''
         },
         hierarchicalMaster: {
@@ -1362,7 +1353,7 @@ export default {
       description: {
         __caption__: ''
       },
-      storeInstancesInTypeXML: {
+      storeInstancesInType: {
         __caption__: 'StoreInstancesInType'
       },
       packet: {
@@ -1933,6 +1924,18 @@ export default {
           __caption__: '',
           name: {
             __caption__: ''
+          }
+        }
+      },
+      formViews: {
+        __caption__: '',
+        view: {
+          __caption__: '',
+          class: {
+            __caption__: '',
+            name: {
+              __caption__: ''
+            }
           }
         }
       }
