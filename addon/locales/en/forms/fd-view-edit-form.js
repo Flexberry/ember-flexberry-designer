@@ -20,8 +20,9 @@ export default {
     load: 'Loading'
   },
   'table-column': {
-    type: 'Attribute type',
-    'view-attributes': 'View attributes'
+    type: 'type',
+    'view-attributes': 'property',
+    visibility: 'visibility'
   },
   'attributes-tree': {
     caption: 'All attributes',
@@ -38,5 +39,7 @@ export default {
     caption: 'View editor',
     'view-properties-header': 'View properties',
     'attribute-properties-header': 'Attribute properties',
+    'attribute-properties-null': 'View attribute is not selected',
+    'attribute-properties-change': 'Click on the right table item to select the view attribute',
   }
 };

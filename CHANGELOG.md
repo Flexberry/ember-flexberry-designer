@@ -7,10 +7,19 @@ All notable changes to this project will be documented in this file.
   * Deselect.
   * The row select.
   * Highlighting the selected items.
+* The view edit form:
+  * Add the "Visibility" checkbox to the table.
+  * Retracting controls if nothing is selected.
 
 ### Changed
 * The edit form constructor:
   * The addition of controls takes place depending on the selected item.
+
+### Fixed
+* The view edit form:
+  * Loading recursion in the tree.
+  * Duplicating Aggregators.
+  * Editing the title and description of view in the panel.
 
 ## [0.2.0] - 2018-06-26
 ### Added
