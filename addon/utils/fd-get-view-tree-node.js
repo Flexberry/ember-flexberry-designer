@@ -87,7 +87,7 @@ let getTreeNode = function (store, id, jsTreeId, data) {
 
     aggregationData.forEach((detail) => {
       let endClass = detail.get('endClass');
-      let detailName = detail.get('startRole') || endClass.get('name');
+      let detailName = detail.get('endRole') || endClass.get('name');
       let idDetail = endClass.get('id');
       let detailViews = endClass.get('views');
       let detailViewsItems = detailViews.mapBy('name');

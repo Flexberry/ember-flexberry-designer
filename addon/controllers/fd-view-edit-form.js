@@ -371,7 +371,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
           _this._restorationNodeTree(node.get('children'), wantedNode);
         }
 
-        if (node.text === wantedNode.text && node.idNode === wantedNode.idNode) {
+        if (node.text === wantedNode.text && node.idNode === wantedNode.idNode && node.id === wantedNode.id) {
           node.state = { opened: true };
           if (node.get('children').length === 1 && node.get('children')[0] === '#') {
             _this._getChildrenNode(node);
