@@ -2,7 +2,6 @@ import Ember from 'ember';
 import joint from 'npm:jointjs';
 
 export default Ember.Controller.extend({
-
   init() {
     let _this = this;
     Ember.run.schedule('afterRender',	function() {
@@ -30,27 +29,10 @@ export default Ember.Controller.extend({
         model: _this.graph,
       });
 
-      let attributes = ['attr1','attr2'];
-      let methods = ['method1'];
-      let jCadClass = new joint.shapes.flexberryUml.Class({
-        position: { x: 100, y: 100 },
-        size: { width: 100, height: 100 },
-        name: 'CaseName',
-        attributes: attributes,
-        methods: methods,
-        ports: {
-          groups: {
-            'in': {
-              position: 'absolute'
-            },
-            'out': {
-              position: 'absolute'
-            },
-          }
-      	},
+      let actor = new joint.shapes.flexberryUml.Actor({
+        position: { x: 100, y: 10 }
       });
-
-      _this.graph.addCell(jCadClass);
+      _this.graph.addCell([actor]);
     });
-  },
+  }
 });
