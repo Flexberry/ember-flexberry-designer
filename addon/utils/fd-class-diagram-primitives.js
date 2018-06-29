@@ -279,30 +279,49 @@ joint.shapes.basic.Generic.define('flexberryUml.MoreClasses', {
 
 joint.shapes.basic.Generic.define('flexberryUml.Note', {
   attrs: {
-    path: {
+    rect: {
       'stroke': 'black',
       'stroke-width':'1',
       'fill':'#fff',
-      'd':'M190,0 L0,0 L0,50 L200,50 L200,5 L190,0 L190,5 L200,5'
     },
     text: {
-      'ref': 'path',
+      'ref': '.parent-rect',
       'font-weight': 'bold',
       'fill': 'black',
       'font-size': 12,
       'font-family': 'Arial'
-    }
+    },
+    '.corner-rect':{
+      'ref':'.parent-rect',
+      'ref-y': 0.1,
+      'ref-x': 0.9,
+      'text-anchor': 'middle',
+      'y-alignment': 'middle',
+      'stroke': 'white',
+      'stroke-width':'2'
+    },
+    '.corner':{
+      'ref':'.parent-rect',
+      'ref-y': 0.1,
+      'ref-x': 0.9,
+      'text-anchor': 'middle',
+      'y-alignment': 'middle',
+      'stroke': 'black',
+      'stroke-width':'1',
+      'd':'M0,0 L0,10 L10,10 L0,0'
+    },
   },
 }, {
   markup: [
-      '<g class="rotatable">',
-      '<g class="scalable">',
-      '<path/>',
-      '</g>',
-      '<text/>',
-      '</g>'
+    '<g class="rotatable">',
+    '<g class="scalable">',
+    '<rect class="parent-rect" width="10" height="10"/>',
+    '</g>',
+    '<text/>',
+    '<rect class="corner-rect" width="10" height="10"/>',
+    '<path class="corner"/>',
+    '</g>'
   ].join(''),
-
 });
 
 joint.shapes.flexberryUml.Class.define('flexberryUml.Package', {
