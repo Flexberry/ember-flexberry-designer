@@ -78,14 +78,20 @@ export default Ember.Controller.extend({
         source: { x:100, y:420 },
         target: { x:300, y:420 },
       });
+
       var linkNestedClassAssociation = new joint.shapes.flexberryUml.NestedClassAssociation({
         source: { x:100, y:470 },
         target: { x:300, y:470 },
       });
 
+      var linkNoteConnector = new joint.shapes.flexberryUml.NoteConnector({
+        source: { x:100, y:520 },
+        target: { x:300, y:520 },
+      });
+
       _this.graph.addCell([linkAggregation, linkAssociation, linkComposition, linkDependency,
         linkRealization, linkGeneralization, linkQualified, linkQualifiedAggregation,
-        linkQualifiedComposition, linkNestedClassAssociation]);
+        linkQualifiedComposition, linkNestedClassAssociation, linkNoteConnector]);
 
       let attributes = ['attr1', 'attr2'];
       let methods = ['method1'];
@@ -147,7 +153,37 @@ export default Ember.Controller.extend({
         }
       });
 
-      _this.graph.addCell([classWithoutStp, classWithStp, nAryAssociation, obj, instance, multiObject, activeObj]);
+      let templateClass = new joint.shapes.flexberryUml.TemplateClass({
+        position: { x: 550, y: 150 },
+        size: { width: 150, height: 100 },
+        name: 'Class2',
+        stereotype: 'enumeration',
+        attributes: attributes,
+        methods: methods,
+        params: 'params'
+      });
+
+      let note = new joint.shapes.flexberryUml.Note({
+        position: { x: 550, y: 300 },
+        size: { width: 100, height: 50 },
+        name: 'Class2',
+        attrs: {
+          text: { text: 'Note' }
+        }
+      });
+
+      let moreClasses = new joint.shapes.flexberryUml.MoreClasses({
+        position: { x: 550, y: 400 },
+      });
+
+      let packagePr = new joint.shapes.flexberryUml.Package({
+        position: { x: 550, y: 500 },
+        size: { width: 100, height: 50 },
+        name: 'Class2',
+        attributes: attributes,
+      });
+
+      _this.graph.addCell([classWithoutStp, classWithStp, nAryAssociation, obj, instance, multiObject, activeObj, templateClass, note, moreClasses, packagePr]);
     });
   },
 });

@@ -1,91 +1,27 @@
 import joint from 'npm:jointjs';
 
-joint.shapes.basic.Generic.define('flexberryUml.Class', {
+joint.shapes.uml.Class.define('flexberryUml.Class', {
   attrs: {
-    rect: { 'width': 200 },
-
     '.uml-class-name-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff' },
     '.uml-class-attrs-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff' },
     '.uml-class-methods-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff' },
 
     '.uml-class-name-text': {
-      'ref': '.uml-class-name-rect',
-      'ref-y': 0.5,
-      'ref-x': 0.5,
-      'text-anchor': 'middle',
-      'y-alignment': 'middle',
       'font-weight': 'bold',
-      'fill': 'black',
       'font-size': 12,
       'font-family': 'Arial',
     },
 
     '.uml-class-name-text tspan[x]': { 'font-weight': 'normal' },
-    '.uml-class-attrs-text': {
-
-      'ref': '.uml-class-attrs-rect', 'ref-y': 5, 'ref-x': 5,
-      'fill': 'black', 'font-size': 12, 'font-family': 'Arial'
-    },
-    '.uml-class-methods-text': {
-      'ref': '.uml-class-methods-rect', 'ref-y': 5, 'ref-x': 5,
-      'fill': 'black', 'font-size': 12, 'font-family': 'Arial'
-    }
+    '.uml-class-attrs-text': { 'fill': 'black', 'font-size': 12, 'font-family': 'Arial' },
+    '.uml-class-methods-text': { 'fill': 'black', 'font-size': 12, 'font-family': 'Arial' }
   },
-
-  name: [],
   stereotype:[],
-  attributes: [],
-  methods: []
+
 }, {
-  markup: [
-    '<g class="rotatable">',
-    '<g class="scalable">',
-    '<rect class="uml-class-name-rect"/><rect class="uml-class-attrs-rect"/><rect class="uml-class-methods-rect"/>',
-    '</g>',
-    '<text class="uml-class-name-text"/><text class="uml-class-attrs-text"/><text class="uml-class-methods-text"/>',
-    '</g>'
-  ].join(''),
-
-  initialize: function() {
-
-    this.on('change:name change:attributes change:methods', function() {
-      this.updateRectangles();
-      this.trigger('uml-update');
-    }, this);
-
-    this.updateRectangles();
-
-    joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
-  },
-
   getClassName: function() {
-    let stereotype = this.get('stereotype').length > 0 ? '<<' + this.get('stereotype') + '>>' : '';
+    let stereotype = this.get('stereotype').length > 0 ? '«' + this.get('stereotype') + '»' : '';
     return [this.get('name'), stereotype];
-  },
-
-  updateRectangles: function() {
-
-    var attrs = this.get('attrs');
-
-    var rects = [
-      { type: 'name', text: this.getClassName() },
-      { type: 'attrs', text: this.get('attributes') },
-      { type: 'methods', text: this.get('methods') }
-    ];
-
-    var offsetY = 0;
-
-    rects.forEach(function(rect) {
-
-      var lines = Array.isArray(rect.text) ? rect.text : [rect.text];
-      var rectHeight = lines.length * 20 + 20;
-
-      attrs['.uml-class-' + rect.type + '-text'].text = lines.join('\n');
-      attrs['.uml-class-' + rect.type + '-rect'].height = rectHeight;
-      attrs['.uml-class-' + rect.type + '-rect'].transform = 'translate(0,' + offsetY + ')';
-
-      offsetY += rectHeight;
-    });
   }
 });
 
@@ -104,6 +40,88 @@ joint.shapes.flexberryUml.Class.define('flexberryUml.Object', {
     '<text class="uml-class-name-text"/><text class="uml-class-attrs-text"/>',
     '</g>'
   ].join(''),
+
+  getClassName: function() {
+    return [this.get('name')];
+  },
+});
+
+joint.shapes.flexberryUml.Class.define('flexberryUml.TemplateClass', {
+  attrs: {
+    '.uml-class-params-rect': {
+      'stroke': 'black', 'stroke-width': 1,
+      'stroke-dasharray': '7 2',
+      'fill': 'white',
+    },
+
+    '.uml-class-params-text': {
+      'ref': '.uml-class-params-rect',
+      'ref-y': 0.5,
+      'ref-x': 0.5,
+      'text-anchor': 'middle',
+      'y-alignment': 'middle',
+      'font-weight': 'bold',
+      'fill': 'black',
+      'font-size': 12,
+      'font-family': 'Arial'
+    },
+  },
+
+  params:[],
+}, {
+  markup: [
+    '<g class="rotatable">',
+    '<g class="scalable">',
+    '<rect class="uml-class-name-rect"/><rect class="uml-class-params-rect"/><rect class="uml-class-attrs-rect"/><rect class="uml-class-methods-rect"/>',
+    '</g>',
+    '<text class="uml-class-name-text"/><text class="uml-class-params-text"/><text class="uml-class-attrs-text"/><text class="uml-class-methods-text"/>',
+    '</g>'
+  ].join(''),
+
+  initialize: function() {
+
+    this.on({
+        'change:params': this.updateParams
+    }, this);
+
+    this.updateParams();
+
+    joint.shapes.flexberryUml.Class.prototype.initialize.apply(this, arguments);
+  },
+
+  updateParams: function() {
+    let params = this.get('params');
+    params = Array.isArray(params) ? params : [params];
+    this.attr('.uml-class-params-text/text', params.join('\n'));
+  },
+
+  updateRectangles: function() {
+
+      var attrs = this.get('attrs');
+
+      var rects = [
+        { type: 'name', text: this.getClassName() },
+        { type: 'attrs', text: this.get('attributes') },
+        { type: 'methods', text: this.get('methods') },
+        { type: 'params', text: this.get('params') }
+      ];
+
+      var offsetY = 0;
+
+      rects.forEach(function(rect) {
+
+          var lines = Array.isArray(rect.text) ? rect.text : [rect.text];
+          var rectHeight = lines.length * 20 + 20;
+
+          attrs['.uml-class-' + rect.type + '-text'].text = lines.join('\n');
+          attrs['.uml-class-' + rect.type + '-rect'].height = rectHeight;
+          attrs['.uml-class-' + rect.type + '-rect'].transform = 'translate(0,' + offsetY + ')';
+
+          offsetY += rectHeight;
+      });
+
+      attrs['.uml-class-params-rect'].transform = 'translate(160, -20)';
+  },
 
   getClassName: function() {
     return [this.get('name')];
@@ -219,6 +237,13 @@ joint.dia.Link.define('flexberryUml.Realization', {
   },
 });
 
+joint.dia.Link.define('flexberryUml.NoteConnector', {
+  attrs: {
+    '.marker-target': { d: 'M 0 0 z' },
+    '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '3 2' },
+  },
+});
+
 joint.dia.Link.define('flexberryUml.Association', {
   labels: [{
     position: { distance: 10, offset: -15 }, attrs: { text: { text:  '*' } } }, {
@@ -235,4 +260,74 @@ joint.dia.Link.define('flexberryUml.NestedClassAssociation', {
                 'm -8, 0 ' +
                 'a 8,8 0 1,0 16,0 ' +
                 'a 8,8 0 1,0 -16,0 M 10 2 L 10 2 L 10 18', fill: 'transparent' } }
+});
+
+joint.shapes.basic.Generic.define('flexberryUml.MoreClasses', {
+    size: { width: 50, height: 10 },
+    attrs: {
+        circle: { fill: 'black', r:'10'},
+    },
+}, {
+    markup: [
+        '<g class="rotatable">',
+        '<g class="scalable">',
+        '<circle/><circle transform="translate(40,0)"/><circle transform="translate(80,0)"/>',
+        '</g>',
+        '</g>'
+    ].join(''),
+
+});
+
+joint.shapes.basic.Generic.define('flexberryUml.Note', {
+  attrs: {
+    path: {
+      'stroke': 'black',
+      'stroke-width':'1',
+      'fill':'#fff',
+      'd':'M190,0 L0,0 L0,50 L200,50 L200,5 L190,0 L190,5 L200,5'},
+    text: {
+    'ref': 'path',
+    'font-weight': 'bold',
+    'fill': 'black',
+    'font-size': 12,
+    'font-family': 'Arial'}
+  },
+}, {
+  markup: [
+      '<g class="rotatable">',
+      '<g class="scalable">',
+      '<path/>',
+      '</g>',
+      '<text/>',
+      '</g>'
+  ].join(''),
+
+});
+
+joint.shapes.flexberryUml.Class.define('flexberryUml.Package', {
+  attrs: {
+    '.uml-class-name-text': {
+      'text-decoration': 'underline',
+      'font-weight': 'normal'
+    },
+    '.uml-class-attrs-text': {
+      'ref-y': 0.5,
+      'ref-x': 0.5,
+      'text-anchor': 'middle',
+      'y-alignment': 'middle'
+    },
+  },
+}, {
+  markup: [
+    '<g class="rotatable">',
+    '<g class="scalable">',
+    '<g transform="scale(0.8,1)"><rect class="uml-class-name-rect" /></g><rect class="uml-class-attrs-rect"/>',
+    '</g>',
+    '<text class="uml-class-name-text"/><text class="uml-class-attrs-text"/>',
+    '</g>'
+  ].join(''),
+
+  getClassName: function() {
+    return [this.get('name')];
+  }
 });
