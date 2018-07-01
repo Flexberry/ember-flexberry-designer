@@ -17,5 +17,8 @@ export default {
     'add-control': 'Control',
     'add-group': 'Group',
     'add-tab': 'Tab',
+    'move-controls-header': 'Move controls',
+    'remove-control': 'Remove',
+    'remove-approve': 'Are you sure?',
   },
 };

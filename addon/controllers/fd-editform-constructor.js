@@ -10,6 +10,14 @@ export default Ember.Controller.extend({
   queryParams: ['classId'],
 
   /**
+    @private
+    @property _showModalDialog
+    @type Boolean
+    @default false
+  */
+  _showModalDialog: false,
+
+  /**
     The current dragged item.
 
     @private
@@ -102,6 +110,21 @@ export default Ember.Controller.extend({
         caption: `${this.get('i18n').t('forms.fd-editform-constructor.new-tab-caption').toString()} #${this.incrementProperty('_newTabIndex')}`,
         rows: Ember.A(),
       }));
+    },
+
+    /**
+      Removes the selected item.
+
+      @method actions.removeSelectedItem
+      @param {Boolean} approve The user is sure.
+    */
+    removeSelectedItem(approve) {
+      if (approve) {
+        this._removeItem(this.get('selectedItem'));
+        this.set('selectedItem', undefined);
+      } else {
+        this.set('_showModalDialog', true);
+      }
     },
 
     /**
@@ -216,6 +239,34 @@ export default Ember.Controller.extend({
     }
 
     target.insertAt(index, control);
+  },
+
+  /**
+    Removes the specified item from the form.
+
+    @method _removeItem
+    @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item The item that need to remove.
+  */
+  _removeItem(item) {
+    let container = this._findItemContainer(item);
+    if (container instanceof FdEditformRow) {
+      if (container.get('controls.length') === 1) {
+        this._removeItem(container);
+      } else {
+        container.get('controls').removeObject(item);
+      }
+    } else if (container instanceof FdEditformTabgroup) {
+      if (container.get('tabs.length') === 1) {
+        this._removeItem(container);
+      } else {
+        container.get('tabs').removeObject(item);
+        container.set('activeTab', container.get('tabs.firstObject'));
+      }
+    } else if (container instanceof FdEditformGroup || container instanceof FdEditformTab) {
+      container.get('rows').removeObject(item);
+    } else {
+      container.removeObject(item);
+    }
   },
 
   /**

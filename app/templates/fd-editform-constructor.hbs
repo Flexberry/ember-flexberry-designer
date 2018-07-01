@@ -35,6 +35,19 @@
   {{/each}}
 </form>
 
+{{#if _showModalDialog}}
+  {{#modal-dialog
+    title=(t "forms.fd-editform-constructor.form-config-panel.remove-control")
+    ok=(action "removeSelectedItem" true)
+    settings=(hash
+      onHidden=(action set "_showModalDialog" false)
+      context=".pusher:first"
+    )
+  }}
+    {{t "forms.fd-editform-constructor.form-config-panel.remove-approve"}}
+  {{/modal-dialog}}
+{{/if}}
+
 {{#fd-config-panel}}
   {{#fd-tabs tabsMenuTheme="vertical tabular" class="ui segments horizontal right-tabs"}}
     <form class="ui form segment">
@@ -87,6 +100,16 @@
           <div class="field">
             <button class="ui button" {{action "addTab"}}>
               {{t "forms.fd-editform-constructor.form-config-panel.add-tab"}}
+            </button>
+          </div>
+        </div>
+        <div class="ui small dividing header">
+          {{t "forms.fd-editform-constructor.form-config-panel.move-controls-header"}}
+        </div>
+        <div class="equal width fields">
+          <div class="field">
+            <button class="ui button" disabled={{not selectedItem}} {{action "removeSelectedItem" false}}>
+              {{t "forms.fd-editform-constructor.form-config-panel.remove-control"}}
             </button>
           </div>
         </div>

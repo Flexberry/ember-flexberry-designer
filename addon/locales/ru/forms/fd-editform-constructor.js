@@ -17,5 +17,8 @@ export default {
     'add-control': 'Контрол',
     'add-group': 'Группа',
     'add-tab': 'Вкладка',
+    'move-controls-header': 'Переместить элементы управления',
+    'remove-control': 'Удалить',
+    'remove-approve': 'Вы уверены?',
   },
 };
