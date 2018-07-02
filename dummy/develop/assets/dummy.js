@@ -484,6 +484,16 @@ define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-de
           caption: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.caption'),
           title: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.title')
         });
+        sitemap.nodes.push({
+          link: null,
+          caption: i18n.t('forms.application.sitemap.root.fd-uml-primitives.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-uml-primitives.title'),
+          children: [{
+            link: 'class-diagram-primitives-demo',
+            caption: i18n.t('forms.application.sitemap.root.class-diagram-primitives-demo.caption'),
+            title: i18n.t('forms.application.sitemap.root.class-diagram-primitives-demo.title')
+          }]
+        });
       }
 
       if (context.configuration && !singleStageMode) {
@@ -652,6 +662,192 @@ define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-de
           _ember['default'].$('.bgw-opacity').removeClass('hidden');
         }
       }
+    }
+  });
+});
+define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', 'npm:jointjs'], function (exports, _ember, _npmJointjs) {
+  exports['default'] = _ember['default'].Controller.extend({
+
+    init: function init() {
+      var _this = this;
+      _ember['default'].run.schedule('afterRender', function () {
+        _this.graph = new _npmJointjs['default'].dia.Graph();
+
+        var paper = document.getElementById('paper');
+        var minX = 16384;
+        var minY = 16384;
+        var maxX = 0;
+        var maxY = 0;
+
+        if (minX > maxX) {
+          maxX = paper && 'offsetWidth' in paper ? paper.offsetWidth : 1024;
+          maxY = 840;
+        } else {
+          maxX = minX + maxX;
+          maxY = minY + maxY;
+        }
+
+        _this.paper = new _npmJointjs['default'].dia.Paper({
+          el: paper,
+          width: maxX,
+          height: maxY,
+          gridSize: 1,
+          model: _this.graph
+        });
+
+        var linkAggregation = new _npmJointjs['default'].shapes.flexberryUml.Aggregation({
+          source: { x: 100, y: 30 },
+          target: { x: 300, y: 30 }
+        });
+
+        var linkAssociation = new _npmJointjs['default'].shapes.flexberryUml.Association({
+          source: { x: 100, y: 80 },
+          target: { x: 300, y: 80 },
+          labels: [{
+            attrs: { text: { text: '*' } } }, {
+            attrs: { text: { text: '0..1' } }
+          }]
+        });
+
+        var linkComposition = new _npmJointjs['default'].shapes.flexberryUml.Composition({
+          source: { x: 100, y: 120 },
+          target: { x: 300, y: 120 }
+        });
+
+        var linkDependency = new _npmJointjs['default'].shapes.flexberryUml.Dependency({
+          source: { x: 100, y: 170 },
+          target: { x: 300, y: 170 }
+        });
+
+        var linkRealization = new _npmJointjs['default'].shapes.flexberryUml.Realization({
+          source: { x: 100, y: 220 },
+          target: { x: 300, y: 220 }
+        });
+
+        var linkGeneralization = new _npmJointjs['default'].shapes.flexberryUml.Generalization({
+          source: { x: 100, y: 270 },
+          target: { x: 300, y: 270 }
+        });
+
+        var linkQualified = new _npmJointjs['default'].shapes.flexberryUml.Qualified({
+          source: { x: 100, y: 320 },
+          target: { x: 300, y: 320 }
+        });
+
+        var linkQualifiedAggregation = new _npmJointjs['default'].shapes.flexberryUml.QualifiedAggregation({
+          source: { x: 100, y: 370 },
+          target: { x: 300, y: 370 }
+        });
+
+        var linkQualifiedComposition = new _npmJointjs['default'].shapes.flexberryUml.QualifiedComposition({
+          source: { x: 100, y: 420 },
+          target: { x: 300, y: 420 }
+        });
+
+        var linkNestedClassAssociation = new _npmJointjs['default'].shapes.flexberryUml.NestedClassAssociation({
+          source: { x: 100, y: 470 },
+          target: { x: 300, y: 470 }
+        });
+
+        var linkNoteConnector = new _npmJointjs['default'].shapes.flexberryUml.NoteConnector({
+          source: { x: 100, y: 520 },
+          target: { x: 300, y: 520 }
+        });
+
+        _this.graph.addCell([linkAggregation, linkAssociation, linkComposition, linkDependency, linkRealization, linkGeneralization, linkQualified, linkQualifiedAggregation, linkQualifiedComposition, linkNestedClassAssociation, linkNoteConnector]);
+
+        var attributes = ['attr1', 'attr2'];
+        var methods = ['method1'];
+
+        var classWithoutStp = new _npmJointjs['default'].shapes.flexberryUml.Class({
+          position: { x: 350, y: 30 },
+          size: { width: 100, height: 100 },
+          name: 'Class1',
+          attributes: attributes,
+          methods: methods
+        });
+
+        var classWithStp = new _npmJointjs['default'].shapes.flexberryUml.Class({
+          position: { x: 350, y: 150 },
+          size: { width: 100, height: 100 },
+          name: 'Class2',
+          stereotype: 'enumeration',
+          attributes: attributes,
+          methods: methods
+        });
+
+        var nAryAssociation = new _npmJointjs['default'].shapes.flexberryUml.NAryAssociation({
+          position: { x: 550, y: 30 },
+          size: { width: 150, height: 75 },
+          attrs: {
+            text: { text: 'n-ary Association' }
+          }
+        });
+
+        var obj = new _npmJointjs['default'].shapes.flexberryUml.Object({
+          position: { x: 350, y: 300 },
+          size: { width: 100, height: 70 },
+          name: 'Object',
+          attributes: attributes,
+          methods: methods
+        });
+
+        var instance = new _npmJointjs['default'].shapes.flexberryUml.Instance({
+          position: { x: 350, y: 400 },
+          size: { width: 150, height: 40 },
+          attrs: {
+            text: { text: 'Instance' }
+          }
+        });
+
+        var multiObject = new _npmJointjs['default'].shapes.flexberryUml.MultiObject({
+          position: { x: 350, y: 500 },
+          size: { width: 150, height: 40 },
+          attrs: {
+            text: { text: 'multiObject' }
+          }
+        });
+
+        var activeObj = new _npmJointjs['default'].shapes.flexberryUml.ActiveObject({
+          position: { x: 350, y: 600 },
+          size: { width: 150, height: 40 },
+          attrs: {
+            text: { text: 'Active object' }
+          }
+        });
+
+        var templateClass = new _npmJointjs['default'].shapes.flexberryUml.TemplateClass({
+          position: { x: 550, y: 150 },
+          size: { width: 150, height: 100 },
+          name: 'Class2',
+          stereotype: 'enumeration',
+          attributes: attributes,
+          methods: methods,
+          params: 'params'
+        });
+
+        var note = new _npmJointjs['default'].shapes.flexberryUml.Note({
+          position: { x: 550, y: 300 },
+          size: { width: 100, height: 50 },
+          name: 'Class2',
+          attrs: {
+            text: { text: 'Note' }
+          }
+        });
+
+        var moreClasses = new _npmJointjs['default'].shapes.flexberryUml.MoreClasses({
+          position: { x: 550, y: 400 }
+        });
+
+        var packagePr = new _npmJointjs['default'].shapes.flexberryUml.Package({
+          position: { x: 550, y: 500 },
+          size: { width: 100, height: 50 },
+          name: 'Class2',
+          attributes: attributes
+        });
+
+        _this.graph.addCell([classWithoutStp, classWithStp, nAryAssociation, obj, instance, multiObject, activeObj, templateClass, note, moreClasses, packagePr]);
+      });
     }
   });
 });
@@ -10842,6 +11038,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/tr
     assert.ok(true, 'modules/ember-flexberry-designer/transforms/typemap.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-class-diagram-primitives.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/utils');
+  test('modules/ember-flexberry-designer/utils/fd-class-diagram-primitives.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/utils/fd-class-diagram-primitives.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-class-diagram-primitives.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/utils/fd-class-diagram-primitives.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/utils/fd-class-diagram-primitives.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-datatypes.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/utils');
   test('modules/ember-flexberry-designer/utils/fd-datatypes.js should pass jscs', function () {
@@ -11971,6 +12180,14 @@ define('dummy/locales/en/translations', ['exports', 'ember', 'ember-flexberry-de
             'fd-generation-list-form': {
               caption: 'Generations list form',
               title: ''
+            },
+            'fd-uml-primitives': {
+              caption: 'UML',
+              title: ''
+            },
+            'class-diagram-primitives-demo': {
+              caption: 'Class Diagram',
+              title: ''
             }
           }
         }
@@ -12126,6 +12343,14 @@ define('dummy/locales/ru/translations', ['exports', 'ember', 'ember-flexberry-de
             },
             'fd-generation-list-form': {
               caption: 'Список генераций',
+              title: ''
+            },
+            'fd-uml-primitives': {
+              caption: 'UML',
+              title: ''
+            },
+            'class-diagram-primitives-demo': {
+              caption: 'Диаграмма классов',
               title: ''
             }
           }
@@ -12907,6 +13132,7 @@ define('dummy/router', ['exports', 'ember', 'dummy/config/environment'], functio
     this.route('fd-generation-process-form.new', { path: 'fd-generation-process-form/new' });
     this.route('fd-generation-process-form', { path: 'fd-generation-process-form/:id' });
     this.route('fd-generation-list-form');
+    this.route('class-diagram-primitives-demo');
   });
 
   exports['default'] = Router;
@@ -12950,6 +13176,9 @@ define('dummy/routes/application', ['exports', 'ember', 'ember-flexberry/mixins/
       }
     }
   });
+});
+define('dummy/routes/class-diagram-primitives-demo', ['exports', 'ember', 'ember-flexberry-designer/utils/fd-class-diagram-primitives'], function (exports, _ember, _emberFlexberryDesignerUtilsFdClassDiagramPrimitives) {
+  exports['default'] = _ember['default'].Route.extend({});
 });
 define('dummy/routes/edit-form', ['exports', 'ember-flexberry/routes/edit-form'], function (exports, _emberFlexberryRoutesEditForm) {
   Object.defineProperty(exports, 'default', {
@@ -14892,6 +15121,47 @@ define("dummy/templates/application", ["exports"], function (exports) {
       statements: [["block", "if", [["get", "isInAcceptanceTestMode", ["loc", [null, [1, 6], [1, 28]]]]], [], 0, 1, ["loc", [null, [1, 0], [71, 7]]]]],
       locals: [],
       templates: [child0, child1]
+    };
+  })());
+});
+define("dummy/templates/class-diagram-primitives-demo", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "triple-curlies"
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 22
+          }
+        },
+        "moduleName": "dummy/templates/class-diagram-primitives-demo.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "id", "paper");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes() {
+        return [];
+      },
+      statements: [],
+      locals: [],
+      templates: []
     };
   })());
 });
@@ -45454,6 +45724,14 @@ define('dummy/utils/deserialize-sorting-param', ['exports', 'ember-flexberry/uti
     }
   });
 });
+define('dummy/utils/fd-class-diagram-primitives', ['exports', 'ember-flexberry-designer/utils/fd-class-diagram-primitives'], function (exports, _emberFlexberryDesignerUtilsFdClassDiagramPrimitives) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerUtilsFdClassDiagramPrimitives['default'];
+    }
+  });
+});
 define('dummy/utils/fd-preload-stage-metadata', ['exports', 'ember-flexberry-designer/utils/fd-preload-stage-metadata'], function (exports, _emberFlexberryDesignerUtilsFdPreloadStageMetadata) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -45549,7 +45827,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+fe1a075b"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+c0a3c64c"});
 }
 
 /* jshint ignore:end */
