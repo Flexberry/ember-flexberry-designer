@@ -31842,10 +31842,10 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
             return el0;
           },
           buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-            var element7 = dom.childAt(fragment, [1]);
+            var element17 = dom.childAt(fragment, [1]);
             var morphs = new Array(2);
-            morphs[0] = dom.createElementMorph(element7);
-            morphs[1] = dom.createMorphAt(element7, 1, 1);
+            morphs[0] = dom.createElementMorph(element17);
+            morphs[1] = dom.createMorphAt(element17, 1, 1);
             return morphs;
           },
           statements: [["element", "action", ["save-close"], [], ["loc", [null, [12, 68], [12, 91]]]], ["inline", "t", ["forms.edit-form.saveAndClose-button-text"], [], ["loc", [null, [13, 12], [13, 60]]]]],
@@ -31895,10 +31895,10 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var element8 = dom.childAt(fragment, [1]);
+          var element18 = dom.childAt(fragment, [1]);
           var morphs = new Array(3);
-          morphs[0] = dom.createElementMorph(element8);
-          morphs[1] = dom.createMorphAt(element8, 1, 1);
+          morphs[0] = dom.createElementMorph(element18);
+          morphs[1] = dom.createMorphAt(element18, 1, 1);
           morphs[2] = dom.createMorphAt(fragment, 3, 3, contextualElement);
           dom.insertBoundary(fragment, null);
           return morphs;
@@ -31952,6 +31952,88 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
     })();
     var child2 = (function () {
       var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 39,
+                "column": 2
+              },
+              "end": {
+                "line": 48,
+                "column": 2
+              }
+            },
+            "moduleName": "dummy/templates/fd-editform-constructor.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("    ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "t", ["forms.fd-editform-constructor.form-config-panel.remove-approve"], [], ["loc", [null, [47, 4], [47, 74]]]]],
+          locals: [],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 38,
+              "column": 0
+            },
+            "end": {
+              "line": 49,
+              "column": 0
+            }
+          },
+          "moduleName": "dummy/templates/fd-editform-constructor.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [["block", "modal-dialog", [], ["title", ["subexpr", "t", ["forms.fd-editform-constructor.form-config-panel.remove-control"], [], ["loc", [null, [40, 10], [40, 78]]]], "ok", ["subexpr", "action", ["removeSelectedItem", true], [], ["loc", [null, [41, 7], [41, 41]]]], "settings", ["subexpr", "hash", [], ["onHidden", ["subexpr", "action", [["get", "set", ["loc", [null, [43, 23], [43, 26]]]], "_showModalDialog", false], [], ["loc", [null, [43, 15], [43, 52]]]], "context", ".pusher:first"], ["loc", [null, [42, 13], [45, 5]]]]], 0, null, ["loc", [null, [39, 2], [48, 19]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child3 = (function () {
+      var child0 = (function () {
         var child0 = (function () {
           return {
             meta: {
@@ -31960,11 +32042,11 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 46,
+                  "line": 59,
                   "column": 6
                 },
                 "end": {
-                  "line": 58,
+                  "line": 71,
                   "column": 6
                 }
               },
@@ -32026,17 +32108,17 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
               return el0;
             },
             buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-              var element4 = dom.childAt(fragment, [3]);
-              var element5 = dom.childAt(fragment, [5]);
+              var element14 = dom.childAt(fragment, [3]);
+              var element15 = dom.childAt(fragment, [5]);
               var morphs = new Array(5);
               morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
-              morphs[1] = dom.createMorphAt(dom.childAt(element4, [1]), 0, 0);
-              morphs[2] = dom.createMorphAt(element4, 3, 3);
-              morphs[3] = dom.createMorphAt(dom.childAt(element5, [1]), 0, 0);
-              morphs[4] = dom.createMorphAt(element5, 3, 3);
+              morphs[1] = dom.createMorphAt(dom.childAt(element14, [1]), 0, 0);
+              morphs[2] = dom.createMorphAt(element14, 3, 3);
+              morphs[3] = dom.createMorphAt(dom.childAt(element15, [1]), 0, 0);
+              morphs[4] = dom.createMorphAt(element15, 3, 3);
               return morphs;
             },
-            statements: [["inline", "t", ["forms.fd-editform-constructor.form-config-panel.form-properties-header"], [], ["loc", [null, [48, 10], [48, 88]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.form-name"], [], ["loc", [null, [51, 17], [51, 82]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "model.editform.caption", ["loc", [null, [52, 36], [52, 58]]]]], [], []]], ["loc", [null, [52, 10], [52, 60]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.form-description"], [], ["loc", [null, [55, 17], [55, 89]]]], ["inline", "flexberry-textarea", [], ["value", ["subexpr", "@mut", [["get", "model.editform.description", ["loc", [null, [56, 37], [56, 63]]]]], [], []]], ["loc", [null, [56, 10], [56, 65]]]]],
+            statements: [["inline", "t", ["forms.fd-editform-constructor.form-config-panel.form-properties-header"], [], ["loc", [null, [61, 10], [61, 88]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.form-name"], [], ["loc", [null, [64, 17], [64, 82]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "model.editform.caption", ["loc", [null, [65, 36], [65, 58]]]]], [], []]], ["loc", [null, [65, 10], [65, 60]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.form-description"], [], ["loc", [null, [68, 17], [68, 89]]]], ["inline", "flexberry-textarea", [], ["value", ["subexpr", "@mut", [["get", "model.editform.description", ["loc", [null, [69, 37], [69, 63]]]]], [], []]], ["loc", [null, [69, 10], [69, 65]]]]],
             locals: [],
             templates: []
           };
@@ -32049,11 +32131,11 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 60,
+                  "line": 73,
                   "column": 6
                 },
                 "end": {
-                  "line": 70,
+                  "line": 83,
                   "column": 6
                 }
               },
@@ -32090,7 +32172,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
               morphs[1] = dom.createMorphAt(fragment, 3, 3, contextualElement);
               return morphs;
             },
-            statements: [["inline", "t", ["forms.fd-editform-constructor.form-config-panel.control-properties-header"], [], ["loc", [null, [62, 10], [62, 91]]]], ["inline", "fd-visual-edit-control", [], ["selectedControl", ["subexpr", "@mut", [["get", "selectedItem", ["loc", [null, [65, 26], [65, 38]]]]], [], []], "typemap", ["subexpr", "@mut", [["get", "model.typemap", ["loc", [null, [66, 18], [66, 31]]]]], [], []], "enums", ["subexpr", "@mut", [["get", "model.enums", ["loc", [null, [67, 16], [67, 27]]]]], [], []], "fbtypes", ["subexpr", "@mut", [["get", "model.types", ["loc", [null, [68, 18], [68, 29]]]]], [], []]], ["loc", [null, [64, 8], [69, 10]]]]],
+            statements: [["inline", "t", ["forms.fd-editform-constructor.form-config-panel.control-properties-header"], [], ["loc", [null, [75, 10], [75, 91]]]], ["inline", "fd-visual-edit-control", [], ["selectedControl", ["subexpr", "@mut", [["get", "selectedItem", ["loc", [null, [78, 26], [78, 38]]]]], [], []], "typemap", ["subexpr", "@mut", [["get", "model.typemap", ["loc", [null, [79, 18], [79, 31]]]]], [], []], "enums", ["subexpr", "@mut", [["get", "model.enums", ["loc", [null, [80, 16], [80, 27]]]]], [], []], "fbtypes", ["subexpr", "@mut", [["get", "model.types", ["loc", [null, [81, 18], [81, 29]]]]], [], []]], ["loc", [null, [77, 8], [82, 10]]]]],
             locals: [],
             templates: []
           };
@@ -32103,11 +32185,11 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 72,
+                  "line": 85,
                   "column": 6
                 },
                 "end": {
-                  "line": 93,
+                  "line": 139,
                   "column": 6
                 }
               },
@@ -32191,6 +32273,128 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
               var el2 = dom.createTextNode("\n        ");
               dom.appendChild(el1, el2);
               dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("div");
+              dom.setAttribute(el1, "class", "ui small dividing header");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createComment("");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("div");
+              dom.setAttribute(el1, "class", "equal width fields");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("div");
+              dom.setAttribute(el2, "class", "field");
+              var el3 = dom.createTextNode("\n            ");
+              dom.appendChild(el2, el3);
+              var el3 = dom.createElement("button");
+              var el4 = dom.createTextNode("\n              ");
+              dom.appendChild(el3, el4);
+              var el4 = dom.createComment("");
+              dom.appendChild(el3, el4);
+              var el4 = dom.createTextNode("\n            ");
+              dom.appendChild(el3, el4);
+              dom.appendChild(el2, el3);
+              var el3 = dom.createTextNode("\n          ");
+              dom.appendChild(el2, el3);
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("div");
+              dom.setAttribute(el2, "class", "field");
+              var el3 = dom.createTextNode("\n            ");
+              dom.appendChild(el2, el3);
+              var el3 = dom.createElement("button");
+              dom.setAttribute(el3, "class", "ui button");
+              var el4 = dom.createTextNode("\n              ");
+              dom.appendChild(el3, el4);
+              var el4 = dom.createComment("");
+              dom.appendChild(el3, el4);
+              var el4 = dom.createTextNode("\n            ");
+              dom.appendChild(el3, el4);
+              dom.appendChild(el2, el3);
+              var el3 = dom.createTextNode("\n          ");
+              dom.appendChild(el2, el3);
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("div");
+              dom.setAttribute(el1, "class", "equal width fields");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("div");
+              dom.setAttribute(el2, "class", "field");
+              var el3 = dom.createTextNode("\n            ");
+              dom.appendChild(el2, el3);
+              var el3 = dom.createElement("button");
+              dom.setAttribute(el3, "class", "ui icon button");
+              var el4 = dom.createTextNode("\n              ");
+              dom.appendChild(el3, el4);
+              var el4 = dom.createElement("i");
+              dom.setAttribute(el4, "class", "up arrow icon");
+              dom.appendChild(el3, el4);
+              var el4 = dom.createTextNode("\n            ");
+              dom.appendChild(el3, el4);
+              dom.appendChild(el2, el3);
+              var el3 = dom.createTextNode("\n            ");
+              dom.appendChild(el2, el3);
+              var el3 = dom.createElement("button");
+              dom.setAttribute(el3, "class", "ui icon button");
+              var el4 = dom.createTextNode("\n              ");
+              dom.appendChild(el3, el4);
+              var el4 = dom.createElement("i");
+              dom.setAttribute(el4, "class", "down arrow icon");
+              dom.appendChild(el3, el4);
+              var el4 = dom.createTextNode("\n            ");
+              dom.appendChild(el3, el4);
+              dom.appendChild(el2, el3);
+              var el3 = dom.createTextNode("\n          ");
+              dom.appendChild(el2, el3);
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("div");
+              dom.setAttribute(el2, "class", "field");
+              var el3 = dom.createTextNode("\n            ");
+              dom.appendChild(el2, el3);
+              var el3 = dom.createElement("button");
+              dom.setAttribute(el3, "class", "ui icon button");
+              var el4 = dom.createTextNode("\n              ");
+              dom.appendChild(el3, el4);
+              var el4 = dom.createElement("i");
+              dom.setAttribute(el4, "class", "left arrow icon");
+              dom.appendChild(el3, el4);
+              var el4 = dom.createTextNode("\n            ");
+              dom.appendChild(el3, el4);
+              dom.appendChild(el2, el3);
+              var el3 = dom.createTextNode("\n            ");
+              dom.appendChild(el2, el3);
+              var el3 = dom.createElement("button");
+              dom.setAttribute(el3, "class", "ui icon button");
+              var el4 = dom.createTextNode("\n              ");
+              dom.appendChild(el3, el4);
+              var el4 = dom.createElement("i");
+              dom.setAttribute(el4, "class", "right arrow icon");
+              dom.appendChild(el3, el4);
+              var el4 = dom.createTextNode("\n            ");
+              dom.appendChild(el3, el4);
+              dom.appendChild(el2, el3);
+              var el3 = dom.createTextNode("\n          ");
+              dom.appendChild(el2, el3);
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
               var el1 = dom.createTextNode("\n");
               dom.appendChild(el0, el1);
               return el0;
@@ -32200,7 +32404,17 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
               var element1 = dom.childAt(element0, [1, 1]);
               var element2 = dom.childAt(element0, [3, 1]);
               var element3 = dom.childAt(element0, [5, 1]);
-              var morphs = new Array(7);
+              var element4 = dom.childAt(fragment, [7]);
+              var element5 = dom.childAt(element4, [1, 1]);
+              var element6 = dom.childAt(element4, [3, 1]);
+              var element7 = dom.childAt(fragment, [9]);
+              var element8 = dom.childAt(element7, [1]);
+              var element9 = dom.childAt(element8, [1]);
+              var element10 = dom.childAt(element8, [3]);
+              var element11 = dom.childAt(element7, [3]);
+              var element12 = dom.childAt(element11, [1]);
+              var element13 = dom.childAt(element11, [3]);
+              var morphs = new Array(23);
               morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
               morphs[1] = dom.createElementMorph(element1);
               morphs[2] = dom.createMorphAt(element1, 1, 1);
@@ -32208,9 +32422,25 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
               morphs[4] = dom.createMorphAt(element2, 1, 1);
               morphs[5] = dom.createElementMorph(element3);
               morphs[6] = dom.createMorphAt(element3, 1, 1);
+              morphs[7] = dom.createMorphAt(dom.childAt(fragment, [5]), 1, 1);
+              morphs[8] = dom.createAttrMorph(element5, 'class');
+              morphs[9] = dom.createAttrMorph(element5, 'disabled');
+              morphs[10] = dom.createElementMorph(element5);
+              morphs[11] = dom.createMorphAt(element5, 1, 1);
+              morphs[12] = dom.createAttrMorph(element6, 'disabled');
+              morphs[13] = dom.createElementMorph(element6);
+              morphs[14] = dom.createMorphAt(element6, 1, 1);
+              morphs[15] = dom.createAttrMorph(element9, 'disabled');
+              morphs[16] = dom.createElementMorph(element9);
+              morphs[17] = dom.createAttrMorph(element10, 'disabled');
+              morphs[18] = dom.createElementMorph(element10);
+              morphs[19] = dom.createAttrMorph(element12, 'disabled');
+              morphs[20] = dom.createElementMorph(element12);
+              morphs[21] = dom.createAttrMorph(element13, 'disabled');
+              morphs[22] = dom.createElementMorph(element13);
               return morphs;
             },
-            statements: [["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-controls-header"], [], ["loc", [null, [74, 10], [74, 85]]]], ["element", "action", ["addControl"], [], ["loc", [null, [78, 38], [78, 61]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-control"], [], ["loc", [null, [79, 14], [79, 81]]]], ["element", "action", ["addGroup"], [], ["loc", [null, [83, 38], [83, 59]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-group"], [], ["loc", [null, [84, 14], [84, 79]]]], ["element", "action", ["addTab"], [], ["loc", [null, [88, 38], [88, 57]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-tab"], [], ["loc", [null, [89, 14], [89, 77]]]]],
+            statements: [["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-controls-header"], [], ["loc", [null, [87, 10], [87, 85]]]], ["element", "action", ["addControl"], [], ["loc", [null, [91, 38], [91, 61]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-control"], [], ["loc", [null, [92, 14], [92, 81]]]], ["element", "action", ["addGroup"], [], ["loc", [null, [96, 38], [96, 59]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-group"], [], ["loc", [null, [97, 14], [97, 79]]]], ["element", "action", ["addTab"], [], ["loc", [null, [101, 38], [101, 57]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-tab"], [], ["loc", [null, [102, 14], [102, 77]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.move-controls-header"], [], ["loc", [null, [107, 10], [107, 86]]]], ["attribute", "class", ["concat", ["ui ", ["subexpr", "if", [["get", "_moveItem", ["loc", [null, [111, 35], [111, 44]]]], "active"], [], ["loc", [null, [111, 30], [111, 55]]]], " button"]]], ["attribute", "disabled", ["subexpr", "not", [["get", "selectedItem", ["loc", [null, [111, 79], [111, 91]]]]], [], ["loc", [null, [111, 73], [111, 93]]]]], ["element", "action", [["get", "toggleProperty", ["loc", [null, [111, 103], [111, 117]]]], "_moveItem"], [], ["loc", [null, [111, 94], [111, 131]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.move-control"], [], ["loc", [null, [112, 14], [112, 82]]]], ["attribute", "disabled", ["subexpr", "not", [["get", "selectedItem", ["loc", [null, [116, 53], [116, 65]]]]], [], ["loc", [null, [116, 47], [116, 67]]]]], ["element", "action", ["removeSelectedItem", false], [], ["loc", [null, [116, 68], [116, 105]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.remove-control"], [], ["loc", [null, [117, 14], [117, 84]]]], ["attribute", "disabled", ["subexpr", "or", [["subexpr", "not", [["get", "selectedItem", ["loc", [null, [123, 62], [123, 74]]]]], [], ["loc", [null, [123, 57], [123, 75]]]], ["subexpr", "not", [["get", "_selectedIsRow", ["loc", [null, [123, 81], [123, 95]]]]], [], ["loc", [null, [123, 76], [123, 96]]]], ["get", "_selectedIsFirst", ["loc", [null, [123, 97], [123, 113]]]]], [], ["loc", [null, [123, 52], [123, 115]]]]], ["element", "action", ["sortSelectedItem", -1], [], ["loc", [null, [123, 116], [123, 148]]]], ["attribute", "disabled", ["subexpr", "or", [["subexpr", "not", [["get", "selectedItem", ["loc", [null, [126, 62], [126, 74]]]]], [], ["loc", [null, [126, 57], [126, 75]]]], ["subexpr", "not", [["get", "_selectedIsRow", ["loc", [null, [126, 81], [126, 95]]]]], [], ["loc", [null, [126, 76], [126, 96]]]]], [], ["loc", [null, [126, 52], [126, 98]]]]], ["element", "action", ["sortSelectedItem", 1], [], ["loc", [null, [126, 99], [126, 130]]]], ["attribute", "disabled", ["subexpr", "or", [["subexpr", "not", [["get", "selectedItem", ["loc", [null, [131, 62], [131, 74]]]]], [], ["loc", [null, [131, 57], [131, 75]]]], ["get", "_selectedIsRow", ["loc", [null, [131, 76], [131, 90]]]], ["get", "_selectedIsFirst", ["loc", [null, [131, 91], [131, 107]]]]], [], ["loc", [null, [131, 52], [131, 109]]]]], ["element", "action", ["sortSelectedItem", -1], [], ["loc", [null, [131, 110], [131, 142]]]], ["attribute", "disabled", ["subexpr", "or", [["subexpr", "not", [["get", "selectedItem", ["loc", [null, [134, 62], [134, 74]]]]], [], ["loc", [null, [134, 57], [134, 75]]]], ["get", "_selectedIsRow", ["loc", [null, [134, 76], [134, 90]]]], ["get", "_selectedIsLast", ["loc", [null, [134, 91], [134, 106]]]]], [], ["loc", [null, [134, 52], [134, 108]]]]], ["element", "action", ["sortSelectedItem", 1], [], ["loc", [null, [134, 109], [134, 140]]]]],
             locals: [],
             templates: []
           };
@@ -32222,11 +32452,11 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
             "loc": {
               "source": null,
               "start": {
-                "line": 39,
+                "line": 52,
                 "column": 2
               },
               "end": {
-                "line": 96,
+                "line": 142,
                 "column": 2
               }
             },
@@ -32280,15 +32510,15 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
             return el0;
           },
           buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-            var element6 = dom.childAt(fragment, [1]);
+            var element16 = dom.childAt(fragment, [1]);
             var morphs = new Array(4);
-            morphs[0] = dom.createMorphAt(dom.childAt(element6, [1, 1]), 1, 1);
-            morphs[1] = dom.createMorphAt(element6, 3, 3);
-            morphs[2] = dom.createMorphAt(element6, 5, 5);
-            morphs[3] = dom.createMorphAt(element6, 7, 7);
+            morphs[0] = dom.createMorphAt(dom.childAt(element16, [1, 1]), 1, 1);
+            morphs[1] = dom.createMorphAt(element16, 3, 3);
+            morphs[2] = dom.createMorphAt(element16, 5, 5);
+            morphs[3] = dom.createMorphAt(element16, 7, 7);
             return morphs;
           },
-          statements: [["inline", "t", ["forms.fd-editform-constructor.caption"], [], ["loc", [null, [43, 10], [43, 55]]]], ["block", "ui-tab-segment", [], ["tab", "first", "title", ["subexpr", "t", ["forms.fd-editform-constructor.form-config-panel.form-properties-header"], [], ["loc", [null, [46, 42], [46, 118]]]], "theme", "", "active", true], 0, null, ["loc", [null, [46, 6], [58, 25]]]], ["block", "ui-tab-segment", [], ["tab", "control-properties", "title", ["subexpr", "t", ["forms.fd-editform-constructor.form-config-panel.control-properties-header"], [], ["loc", [null, [60, 55], [60, 134]]]], "theme", ""], 1, null, ["loc", [null, [60, 6], [70, 25]]]], ["block", "ui-tab-segment", [], ["tab", "add-controls", "title", ["subexpr", "t", ["forms.fd-editform-constructor.form-config-panel.add-controls-header"], [], ["loc", [null, [72, 49], [72, 122]]]], "theme", ""], 2, null, ["loc", [null, [72, 6], [93, 25]]]]],
+          statements: [["inline", "t", ["forms.fd-editform-constructor.caption"], [], ["loc", [null, [56, 10], [56, 55]]]], ["block", "ui-tab-segment", [], ["tab", "first", "title", ["subexpr", "t", ["forms.fd-editform-constructor.form-config-panel.form-properties-header"], [], ["loc", [null, [59, 42], [59, 118]]]], "theme", "", "active", true], 0, null, ["loc", [null, [59, 6], [71, 25]]]], ["block", "ui-tab-segment", [], ["tab", "control-properties", "title", ["subexpr", "t", ["forms.fd-editform-constructor.form-config-panel.control-properties-header"], [], ["loc", [null, [73, 55], [73, 134]]]], "theme", ""], 1, null, ["loc", [null, [73, 6], [83, 25]]]], ["block", "ui-tab-segment", [], ["tab", "add-controls", "title", ["subexpr", "t", ["forms.fd-editform-constructor.form-config-panel.add-controls-header"], [], ["loc", [null, [85, 49], [85, 122]]]], "theme", ""], 2, null, ["loc", [null, [85, 6], [139, 25]]]]],
           locals: [],
           templates: [child0, child1, child2]
         };
@@ -32300,11 +32530,11 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
           "loc": {
             "source": null,
             "start": {
-              "line": 38,
+              "line": 51,
               "column": 0
             },
             "end": {
-              "line": 97,
+              "line": 143,
               "column": 0
             }
           },
@@ -32327,7 +32557,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [["block", "fd-tabs", [], ["tabsMenuTheme", "vertical tabular", "class", "ui segments horizontal right-tabs"], 0, null, ["loc", [null, [39, 2], [96, 14]]]]],
+        statements: [["block", "fd-tabs", [], ["tabsMenuTheme", "vertical tabular", "class", "ui segments horizontal right-tabs"], 0, null, ["loc", [null, [52, 2], [142, 14]]]]],
         locals: [],
         templates: [child0]
       };
@@ -32346,7 +32576,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
             "column": 0
           },
           "end": {
-            "line": 97,
+            "line": 143,
             "column": 20
           }
         },
@@ -32422,27 +32652,32 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
         dom.appendChild(el0, el1);
         var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var element9 = dom.childAt(fragment, [2]);
-        var element10 = dom.childAt(element9, [3, 1]);
-        var element11 = dom.childAt(element10, [5]);
-        var morphs = new Array(8);
+        var element19 = dom.childAt(fragment, [2]);
+        var element20 = dom.childAt(element19, [3, 1]);
+        var element21 = dom.childAt(element20, [5]);
+        var morphs = new Array(9);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
-        morphs[1] = dom.createMorphAt(element9, 1, 1);
-        morphs[2] = dom.createMorphAt(element10, 1, 1);
-        morphs[3] = dom.createMorphAt(dom.childAt(element10, [3]), 1, 1);
-        morphs[4] = dom.createElementMorph(element11);
-        morphs[5] = dom.createMorphAt(element11, 1, 1);
-        morphs[6] = dom.createMorphAt(element9, 5, 5);
+        morphs[1] = dom.createMorphAt(element19, 1, 1);
+        morphs[2] = dom.createMorphAt(element20, 1, 1);
+        morphs[3] = dom.createMorphAt(dom.childAt(element20, [3]), 1, 1);
+        morphs[4] = dom.createElementMorph(element21);
+        morphs[5] = dom.createMorphAt(element21, 1, 1);
+        morphs[6] = dom.createMorphAt(element19, 5, 5);
         morphs[7] = dom.createMorphAt(fragment, 4, 4, contextualElement);
+        morphs[8] = dom.createMorphAt(fragment, 6, 6, contextualElement);
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["content", "model.editform.caption", ["loc", [null, [1, 22], [1, 48]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [4, 26], [4, 31]]]]], [], []]], ["loc", [null, [4, 2], [4, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [7, 16], [7, 24]]]]], [], 0, null, ["loc", [null, [7, 6], [16, 17]]]], ["inline", "t", ["forms.fd-visual-edit-form.preview-mobile-variant"], [], ["loc", [null, [18, 8], [18, 64]]]], ["element", "action", ["close"], [], ["loc", [null, [20, 59], [20, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [21, 8], [21, 49]]]], ["block", "each", [["get", "model.controls", ["loc", [null, [26, 10], [26, 24]]]]], [], 1, null, ["loc", [null, [26, 2], [35, 11]]]], ["block", "fd-config-panel", [], [], 2, null, ["loc", [null, [38, 0], [97, 20]]]]],
+      statements: [["content", "model.editform.caption", ["loc", [null, [1, 22], [1, 48]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [4, 26], [4, 31]]]]], [], []]], ["loc", [null, [4, 2], [4, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [7, 16], [7, 24]]]]], [], 0, null, ["loc", [null, [7, 6], [16, 17]]]], ["inline", "t", ["forms.fd-visual-edit-form.preview-mobile-variant"], [], ["loc", [null, [18, 8], [18, 64]]]], ["element", "action", ["close"], [], ["loc", [null, [20, 59], [20, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [21, 8], [21, 49]]]], ["block", "each", [["get", "model.controls", ["loc", [null, [26, 10], [26, 24]]]]], [], 1, null, ["loc", [null, [26, 2], [35, 11]]]], ["block", "if", [["get", "_showModalDialog", ["loc", [null, [38, 6], [38, 22]]]]], [], 2, null, ["loc", [null, [38, 0], [49, 7]]]], ["block", "fd-config-panel", [], [], 3, null, ["loc", [null, [51, 0], [143, 20]]]]],
       locals: [],
-      templates: [child0, child1, child2]
+      templates: [child0, child1, child2, child3]
     };
   })());
 });
@@ -45314,7 +45549,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+19ca68e1"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+fe1a075b"});
 }
 
 /* jshint ignore:end */

@@ -154,10 +154,6 @@
                     <h3>Methods</h3>
 
                     <ul class="index-list methods extends">
-                            <li class="index-item method inherited">
-                                <a href="#" data-tabid="#methods" data-anchor="#method__addControl" data-tablink="_addControl">_addControl</a>
-
-                            </li>
                             <li class="index-item method private inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method__additionalPluginsSettingsCompute" data-tablink="_additionalPluginsSettingsCompute">_additionalPluginsSettingsCompute</a>
 
@@ -235,19 +231,31 @@
 
                             </li>
                             <li class="index-item method inherited">
-                                <a href="#" data-tabid="#methods" data-anchor="#method__findControlContainer" data-tablink="_findControlContainer">_findControlContainer</a>
-
-                            </li>
-                            <li class="index-item method inherited">
-                                <a href="#" data-tabid="#methods" data-anchor="#method__findRowContainer" data-tablink="_findRowContainer">_findRowContainer</a>
+                                <a href="#" data-tabid="#methods" data-anchor="#method__findItemContainer" data-tablink="_findItemContainer">_findItemContainer</a>
 
                             </li>
                             <li class="index-item method inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method__getChildrenNode" data-tablink="_getChildrenNode">_getChildrenNode</a>
 
                             </li>
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method__getControl" data-tablink="_getControl">_getControl</a>
+
+                            </li>
+                            <li class="index-item method private inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method__getRow" data-tablink="_getRow">_getRow</a>
+
+                            </li>
                             <li class="index-item method private inherited inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method__helpKeywordCompute" data-tablink="_helpKeywordCompute">_helpKeywordCompute</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method__insertItem" data-tablink="_insertItem">_insertItem</a>
+
+                            </li>
+                            <li class="index-item method private inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method__isControl" data-tablink="_isControl">_isControl</a>
 
                             </li>
                             <li class="index-item method inherited">
@@ -340,6 +348,10 @@
                             </li>
                             <li class="index-item method private inherited inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method__realStorageCompute" data-tablink="_realStorageCompute">_realStorageCompute</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method__removeItem" data-tablink="_removeItem">_removeItem</a>
 
                             </li>
                             <li class="index-item method inherited inherited">
@@ -515,6 +527,10 @@
 
                             </li>
                             <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_actions.removeSelectedItem" data-tablink="actions.removeSelectedItem">actions.removeSelectedItem</a>
+
+                            </li>
+                            <li class="index-item method inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_actions.save" data-tablink="actions.save">actions.save</a>
 
                             </li>
@@ -536,6 +552,10 @@
                             </li>
                             <li class="index-item method inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_actions.setDragItem" data-tablink="actions.setDragItem">actions.setDragItem</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_actions.sortSelectedItem" data-tablink="actions.sortSelectedItem">actions.sortSelectedItem</a>
 
                             </li>
                             <li class="index-item method inherited">
@@ -642,7 +662,15 @@
 
                             </li>
                             <li class="index-item property private inherited">
+                                <a href="#" data-tabid="#properties" data-anchor="#property__moveItem" data-tablink="_moveItem">_moveItem</a>
+
+                            </li>
+                            <li class="index-item property private inherited">
                                 <a href="#" data-tabid="#properties" data-anchor="#property__selectedIsControl" data-tablink="_selectedIsControl">_selectedIsControl</a>
+
+                            </li>
+                            <li class="index-item property private inherited">
+                                <a href="#" data-tabid="#properties" data-anchor="#property__selectedIsFirst" data-tablink="_selectedIsFirst">_selectedIsFirst</a>
 
                             </li>
                             <li class="index-item property private inherited">
@@ -650,11 +678,23 @@
 
                             </li>
                             <li class="index-item property private inherited">
+                                <a href="#" data-tabid="#properties" data-anchor="#property__selectedIsLast" data-tablink="_selectedIsLast">_selectedIsLast</a>
+
+                            </li>
+                            <li class="index-item property private inherited">
+                                <a href="#" data-tabid="#properties" data-anchor="#property__selectedIsRow" data-tablink="_selectedIsRow">_selectedIsRow</a>
+
+                            </li>
+                            <li class="index-item property private inherited">
                                 <a href="#" data-tabid="#properties" data-anchor="#property__selectedIsTab" data-tablink="_selectedIsTab">_selectedIsTab</a>
 
                             </li>
                             <li class="index-item property private inherited">
-                                <a href="#" data-tabid="#properties" data-anchor="#property__selectedItemContainer" data-tablink="_selectedItemContainer">_selectedItemContainer</a>
+                                <a href="#" data-tabid="#properties" data-anchor="#property__selectedItemStorage" data-tablink="_selectedItemStorage">_selectedItemStorage</a>
+
+                            </li>
+                            <li class="index-item property private inherited">
+                                <a href="#" data-tabid="#properties" data-anchor="#property__showModalDialog" data-tablink="_showModalDialog">_showModalDialog</a>
 
                             </li>
                             <li class="index-item property">
@@ -994,57 +1034,6 @@
             <div id="methods" class="tab-pane">
                 <h2 class="off-left">Methods</h2>
 
-                    <div id="method__addControl" class="method item inherited">
-                        <h3 class="name"><code>_addControl</code></h3>
-                    
-                            <div class="args">
-                                <span class="paren">(</span><ul class="args-list inline commas">
-                                    <li class="arg">
-                                            <code>control</code>
-                                    </li>
-                                </ul><span class="paren">)</span>
-                            </div>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>Inherited from
-                                    <a href="../classes/FdDraggableControlMixin.html#method__addControl">FdDraggableControlMixin</a>:
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l178"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:178</code></a>
-                            </p>
-                    
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            Depending on the selected item, adds a new control to the form.
-                        </div>
-                    
-                            <div class="params">
-                                <h4>Parameters:</h4>
-                    
-                                <ul class="params-list">
-                                    <li class="param">
-                                            <code class="param-name">control</code>
-                                            <span class="type"><a href="../classes/FdEditformControl.html" class="crosslink">FdEditformControl</a> | <a href="../classes/FdEditformGroup.html" class="crosslink">FdEditformGroup</a> | <a href="../classes/FdEditformTab.html" class="crosslink">FdEditformTab</a></span>
-                    
-                    
-                                        <div class="param-description">
-                                            The control to add.
-                                        </div>
-                    
-                                    </li>
-                                </ul>
-                            </div>
-                    
-                    
-                    </div>
                     <div id="method__additionalPluginsSettingsCompute" class="method item private inherited">
                         <h3 class="name"><code>_additionalPluginsSettingsCompute</code></h3>
                     
@@ -1890,22 +1879,22 @@
                                 </div>
                             </div>
                     </div>
-                    <div id="method__findControlContainer" class="method item inherited">
-                        <h3 class="name"><code>_findControlContainer</code></h3>
+                    <div id="method__findItemContainer" class="method item inherited">
+                        <h3 class="name"><code>_findItemContainer</code></h3>
                     
                             <div class="args">
                                 <span class="paren">(</span><ul class="args-list inline commas">
                                     <li class="arg">
-                                            <code>control</code>
+                                            <code>item</code>
                                     </li>
                                     <li class="arg">
-                                            <code>container</code>
+                                            <code class="optional">[container]</code>
                                     </li>
                                 </ul><span class="paren">)</span>
                             </div>
                     
                             <span class="returns-inline">
-                                <span class="type"><a href="http://emberjs.com/api/classes/Ember.Array.html" class="crosslink external" target="_blank">Ember.Array</a></span>
+                                <span class="type"><a href="http://emberjs.com/api/classes/Ember.NativeArray.html" class="crosslink external" target="_blank">Ember.NativeArray</a> | <a href="../classes/FdEditformRow.html" class="crosslink">FdEditformRow</a> | <a href="../classes/FdEditformGroup.html" class="crosslink">FdEditformGroup</a> | <a href="../classes/FdEditformTabgroup.html" class="crosslink">FdEditformTabgroup</a> | <a href="../classes/FdEditformTab.html" class="crosslink">FdEditformTab</a></span>
                             </span>
                     
                     
@@ -1916,8 +1905,8 @@
                     
                         <div class="meta">
                                     <p>Inherited from
-                                    <a href="../classes/FdDraggableControlMixin.html#method__findControlContainer">FdDraggableControlMixin</a>:
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l284"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:284</code></a>
+                                    <a href="../classes/FdDraggableControlMixin.html#method__findItemContainer">FdDraggableControlMixin</a>:
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l366"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:366</code></a>
                             </p>
                     
                     
@@ -1925,7 +1914,7 @@
                         </div>
                     
                         <div class="description">
-                            Looks for a container that contains the control.
+                            Looks for a container that contains the item.
                         </div>
                     
                             <div class="params">
@@ -1933,22 +1922,24 @@
                     
                                 <ul class="params-list">
                                     <li class="param">
-                                            <code class="param-name">control</code>
-                                            <span class="type"><a href="../classes/FdEditformControl.html" class="crosslink">FdEditformControl</a></span>
+                                            <code class="param-name">item</code>
+                                            <span class="type"><a href="../classes/FdEditformRow.html" class="crosslink">FdEditformRow</a> | <a href="../classes/FdEditformControl.html" class="crosslink">FdEditformControl</a> | <a href="../classes/FdEditformGroup.html" class="crosslink">FdEditformGroup</a> | <a href="../classes/FdEditformTabgroup.html" class="crosslink">FdEditformTabgroup</a> | <a href="../classes/FdEditformTab.html" class="crosslink">FdEditformTab</a></span>
                     
                     
                                         <div class="param-description">
-                                            The sought control.
+                                            The sought item.
                                         </div>
                     
                                     </li>
                                     <li class="param">
-                                            <code class="param-name">container</code>
-                                            <span class="type"><a href="http://emberjs.com/api/classes/Ember.Array.html" class="crosslink external" target="_blank">Ember.Array</a></span>
+                                            <code class="param-name optional">[container]</code>
+                                            <span class="type"><a href="http://emberjs.com/api/classes/Ember.NativeArray.html" class="crosslink external" target="_blank">Ember.NativeArray</a> | <a href="../classes/FdEditformRow.html" class="crosslink">FdEditformRow</a> | <a href="../classes/FdEditformGroup.html" class="crosslink">FdEditformGroup</a> | <a href="../classes/FdEditformTabgroup.html" class="crosslink">FdEditformTabgroup</a> | <a href="../classes/FdEditformTab.html" class="crosslink">FdEditformTab</a></span>
+                                            <span class="flag optional" title="This parameter is optional.">optional</span>
                     
                     
                                         <div class="param-description">
-                                            The root container.
+                                            
+                      The container from which to start the search, if not specified, uses <code>model.controls</code>.
                                         </div>
                     
                                     </li>
@@ -1959,82 +1950,7 @@
                                 <h4>Returns:</h4>
                     
                                 <div class="returns-description">
-                                            <span class="type"><a href="http://emberjs.com/api/classes/Ember.Array.html" class="crosslink external" target="_blank">Ember.Array</a></span>:
-                                        The container that was found or <code>null</code>.
-                                </div>
-                            </div>
-                    
-                    </div>
-                    <div id="method__findRowContainer" class="method item inherited">
-                        <h3 class="name"><code>_findRowContainer</code></h3>
-                    
-                            <div class="args">
-                                <span class="paren">(</span><ul class="args-list inline commas">
-                                    <li class="arg">
-                                            <code>row</code>
-                                    </li>
-                                    <li class="arg">
-                                            <code>container</code>
-                                    </li>
-                                </ul><span class="paren">)</span>
-                            </div>
-                    
-                            <span class="returns-inline">
-                                <span class="type"><a href="http://emberjs.com/api/classes/Ember.Array.html" class="crosslink external" target="_blank">Ember.Array</a></span>
-                            </span>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>Inherited from
-                                    <a href="../classes/FdDraggableControlMixin.html#method__findRowContainer">FdDraggableControlMixin</a>:
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l236"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:236</code></a>
-                            </p>
-                    
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            Looks for a container that contains the row.
-                        </div>
-                    
-                            <div class="params">
-                                <h4>Parameters:</h4>
-                    
-                                <ul class="params-list">
-                                    <li class="param">
-                                            <code class="param-name">row</code>
-                                            <span class="type"><a href="../classes/FdEditformRow.html" class="crosslink">FdEditformRow</a></span>
-                    
-                    
-                                        <div class="param-description">
-                                            The sought row.
-                                        </div>
-                    
-                                    </li>
-                                    <li class="param">
-                                            <code class="param-name">container</code>
-                                            <span class="type"><a href="http://emberjs.com/api/classes/Ember.Array.html" class="crosslink external" target="_blank">Ember.Array</a></span>
-                    
-                    
-                                        <div class="param-description">
-                                            The root container.
-                                        </div>
-                    
-                                    </li>
-                                </ul>
-                            </div>
-                    
-                            <div class="returns">
-                                <h4>Returns:</h4>
-                    
-                                <div class="returns-description">
-                                            <span class="type"><a href="http://emberjs.com/api/classes/Ember.Array.html" class="crosslink external" target="_blank">Ember.Array</a></span>:
+                                            <span class="type"><a href="http://emberjs.com/api/classes/Ember.NativeArray.html" class="crosslink external" target="_blank">Ember.NativeArray</a> | <a href="../classes/FdEditformRow.html" class="crosslink">FdEditformRow</a> | <a href="../classes/FdEditformGroup.html" class="crosslink">FdEditformGroup</a> | <a href="../classes/FdEditformTabgroup.html" class="crosslink">FdEditformTabgroup</a> | <a href="../classes/FdEditformTab.html" class="crosslink">FdEditformTab</a></span>:
                                         The container that was found or <code>null</code>.
                                 </div>
                             </div>
@@ -2067,6 +1983,131 @@
                         </div>
                     
                     
+                    
+                    </div>
+                    <div id="method__getControl" class="method item inherited">
+                        <h3 class="name"><code>_getControl</code></h3>
+                    
+                            <div class="args">
+                                <span class="paren">(</span><ul class="args-list inline commas">
+                                    <li class="arg">
+                                            <code>item</code>
+                                    </li>
+                                </ul><span class="paren">)</span>
+                            </div>
+                    
+                            <span class="returns-inline">
+                                <span class="type"><a href="../classes/FdEditformControl.html" class="crosslink">FdEditformControl</a> | <a href="../classes/FdEditformGroup.html" class="crosslink">FdEditformGroup</a> | <a href="../classes/FdEditformTabgroup.html" class="crosslink">FdEditformTabgroup</a></span>
+                            </span>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>Inherited from
+                                    <a href="../classes/FdDraggableControlMixin.html#method__getControl">FdDraggableControlMixin</a>:
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l425"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:425</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            Returns the control that can be added to a row.
+                        </div>
+                    
+                            <div class="params">
+                                <h4>Parameters:</h4>
+                    
+                                <ul class="params-list">
+                                    <li class="param">
+                                            <code class="param-name">item</code>
+                                            <span class="type"><a href="../classes/FdEditformRow.html" class="crosslink">FdEditformRow</a> | <a href="../classes/FdEditformControl.html" class="crosslink">FdEditformControl</a> | <a href="../classes/FdEditformGroup.html" class="crosslink">FdEditformGroup</a> | <a href="../classes/FdEditformTabgroup.html" class="crosslink">FdEditformTabgroup</a> | <a href="../classes/FdEditformTab.html" class="crosslink">FdEditformTab</a></span>
+                    
+                    
+                                        <div class="param-description">
+                                            The item to be converted.
+                                        </div>
+                    
+                                    </li>
+                                </ul>
+                            </div>
+                    
+                            <div class="returns">
+                                <h4>Returns:</h4>
+                    
+                                <div class="returns-description">
+                                            <span class="type"><a href="../classes/FdEditformControl.html" class="crosslink">FdEditformControl</a> | <a href="../classes/FdEditformGroup.html" class="crosslink">FdEditformGroup</a> | <a href="../classes/FdEditformTabgroup.html" class="crosslink">FdEditformTabgroup</a></span>:
+                                        The control that can be added to a row.
+                                </div>
+                            </div>
+                    
+                    </div>
+                    <div id="method__getRow" class="method item private inherited">
+                        <h3 class="name"><code>_getRow</code></h3>
+                    
+                            <div class="args">
+                                <span class="paren">(</span><ul class="args-list inline commas">
+                                    <li class="arg">
+                                            <code>item</code>
+                                    </li>
+                                </ul><span class="paren">)</span>
+                            </div>
+                    
+                            <span class="returns-inline">
+                                <span class="type"><a href="../classes/FdEditformRow.html" class="crosslink">FdEditformRow</a></span>
+                            </span>
+                    
+                    
+                            <span class="flag private">private</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>Inherited from
+                                    <a href="../classes/FdDraggableControlMixin.html#method__getRow">FdDraggableControlMixin</a>:
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l400"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:400</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            Returns a row that can be added to the form.
+                        </div>
+                    
+                            <div class="params">
+                                <h4>Parameters:</h4>
+                    
+                                <ul class="params-list">
+                                    <li class="param">
+                                            <code class="param-name">item</code>
+                                            <span class="type"><a href="../classes/FdEditformRow.html" class="crosslink">FdEditformRow</a> | <a href="../classes/FdEditformControl.html" class="crosslink">FdEditformControl</a> | <a href="../classes/FdEditformGroup.html" class="crosslink">FdEditformGroup</a> | <a href="../classes/FdEditformTabgroup.html" class="crosslink">FdEditformTabgroup</a> | <a href="../classes/FdEditformTab.html" class="crosslink">FdEditformTab</a></span>
+                    
+                    
+                                        <div class="param-description">
+                                            The item to be converted.
+                                        </div>
+                    
+                                    </li>
+                                </ul>
+                            </div>
+                    
+                            <div class="returns">
+                                <h4>Returns:</h4>
+                    
+                                <div class="returns-description">
+                                            <span class="type"><a href="../classes/FdEditformRow.html" class="crosslink">FdEditformRow</a></span>:
+                                        A row that can be added to the form.
+                                </div>
+                            </div>
                     
                     </div>
                     <div id="method__helpKeywordCompute" class="method item private inherited">
@@ -2114,6 +2155,133 @@
                     
                                 </div>
                             </div>
+                    </div>
+                    <div id="method__insertItem" class="method item inherited">
+                        <h3 class="name"><code>_insertItem</code></h3>
+                    
+                            <div class="args">
+                                <span class="paren">(</span><ul class="args-list inline commas">
+                                    <li class="arg">
+                                            <code>item</code>
+                                    </li>
+                                    <li class="arg">
+                                            <code>container</code>
+                                    </li>
+                                </ul><span class="paren">)</span>
+                            </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>Inherited from
+                                    <a href="../classes/FdDraggableControlMixin.html#method__insertItem">FdDraggableControlMixin</a>:
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l295"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:295</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            Inserts an <code>item</code> into <code>container</code>, if <code>container</code> is <code>FdEditformControl</code>, <code>item</code> is inserted into the parent row after <code>container</code>.
+                        </div>
+                    
+                            <div class="params">
+                                <h4>Parameters:</h4>
+                    
+                                <ul class="params-list">
+                                    <li class="param">
+                                            <code class="param-name">item</code>
+                                            <span class="type"><a href="../classes/FdEditformRow.html" class="crosslink">FdEditformRow</a> | <a href="../classes/FdEditformControl.html" class="crosslink">FdEditformControl</a> | <a href="../classes/FdEditformGroup.html" class="crosslink">FdEditformGroup</a> | <a href="../classes/FdEditformTabgroup.html" class="crosslink">FdEditformTabgroup</a> | <a href="../classes/FdEditformTab.html" class="crosslink">FdEditformTab</a></span>
+                    
+                    
+                                        <div class="param-description">
+                                            The item that need to insert.
+                                        </div>
+                    
+                                    </li>
+                                    <li class="param">
+                                            <code class="param-name">container</code>
+                                            <span class="type"><a href="http://emberjs.com/api/classes/Ember.NativeArray.html" class="crosslink external" target="_blank">Ember.NativeArray</a> | <a href="../classes/FdEditformRow.html" class="crosslink">FdEditformRow</a> | <a href="../classes/FdEditformControl.html" class="crosslink">FdEditformControl</a> | <a href="../classes/FdEditformGroup.html" class="crosslink">FdEditformGroup</a> | <a href="../classes/FdEditformTabgroup.html" class="crosslink">FdEditformTabgroup</a> | <a href="../classes/FdEditformTab.html" class="crosslink">FdEditformTab</a></span>
+                    
+                    
+                                        <div class="param-description">
+                                            The container in that need to insert the item.
+                                        </div>
+                    
+                                    </li>
+                                </ul>
+                            </div>
+                    
+                    
+                    </div>
+                    <div id="method__isControl" class="method item private inherited">
+                        <h3 class="name"><code>_isControl</code></h3>
+                    
+                            <div class="args">
+                                <span class="paren">(</span><ul class="args-list inline commas">
+                                    <li class="arg">
+                                            <code>control</code>
+                                    </li>
+                                </ul><span class="paren">)</span>
+                            </div>
+                    
+                            <span class="returns-inline">
+                                <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                            </span>
+                    
+                    
+                            <span class="flag private">private</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>Inherited from
+                                    <a href="../classes/FdDraggableControlMixin.html#method__isControl">FdDraggableControlMixin</a>:
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l447"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:447</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            Checks whether the control is suitable for placement in a row.
+                        </div>
+                    
+                            <div class="params">
+                                <h4>Parameters:</h4>
+                    
+                                <ul class="params-list">
+                                    <li class="param">
+                                            <code class="param-name">control</code>
+                                            <span class="type">Any</span>
+                    
+                    
+                                        <div class="param-description">
+                                            The control to check.
+                                        </div>
+                    
+                                    </li>
+                                </ul>
+                            </div>
+                    
+                            <div class="returns">
+                                <h4>Returns:</h4>
+                    
+                                <div class="returns-description">
+                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                                        If the control can be placed in a row then <code>true</code>, else <code>false</code>.
+                                </div>
+                            </div>
+                    
                     </div>
                     <div id="method__jstreeSelectedNodesObserver" class="method item inherited">
                         <h3 class="name"><code>_jstreeSelectedNodesObserver</code></h3>
@@ -3100,6 +3268,57 @@
                                 </div>
                             </div>
                     </div>
+                    <div id="method__removeItem" class="method item inherited">
+                        <h3 class="name"><code>_removeItem</code></h3>
+                    
+                            <div class="args">
+                                <span class="paren">(</span><ul class="args-list inline commas">
+                                    <li class="arg">
+                                            <code>item</code>
+                                    </li>
+                                </ul><span class="paren">)</span>
+                            </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>Inherited from
+                                    <a href="../classes/FdDraggableControlMixin.html#method__removeItem">FdDraggableControlMixin</a>:
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l338"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:338</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            Removes the specified item from the form.
+                        </div>
+                    
+                            <div class="params">
+                                <h4>Parameters:</h4>
+                    
+                                <ul class="params-list">
+                                    <li class="param">
+                                            <code class="param-name">item</code>
+                                            <span class="type"><a href="../classes/FdEditformRow.html" class="crosslink">FdEditformRow</a> | <a href="../classes/FdEditformControl.html" class="crosslink">FdEditformControl</a> | <a href="../classes/FdEditformGroup.html" class="crosslink">FdEditformGroup</a> | <a href="../classes/FdEditformTabgroup.html" class="crosslink">FdEditformTabgroup</a> | <a href="../classes/FdEditformTab.html" class="crosslink">FdEditformTab</a></span>
+                    
+                    
+                                        <div class="param-description">
+                                            The item that need to remove.
+                                        </div>
+                    
+                                    </li>
+                                </ul>
+                            </div>
+                    
+                    
+                    </div>
                     <div id="method__restorationNodeTree" class="method item inherited">
                         <h3 class="name"><code>_restorationNodeTree</code></h3>
                     
@@ -3721,7 +3940,7 @@
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/FdDraggableControlMixin.html#method_actions.addControl">FdDraggableControlMixin</a>:
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l72"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:72</code></a>
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l143"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:143</code></a>
                             </p>
                     
                     
@@ -3729,7 +3948,7 @@
                         </div>
                     
                         <div class="description">
-                            Adds a new control to the form.
+                            Adds a new control to the form, if there is a selected item, the control will be added to it.
                         </div>
                     
                     
@@ -3779,7 +3998,7 @@
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/FdDraggableControlMixin.html#method_actions.addGroup">FdDraggableControlMixin</a>:
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l83"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:83</code></a>
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l154"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:154</code></a>
                             </p>
                     
                     
@@ -3787,7 +4006,7 @@
                         </div>
                     
                         <div class="description">
-                            Adds a new group to the form.
+                            Adds a new group to the form, if there is a selected item, the group will be added to it.
                         </div>
                     
                     
@@ -3869,7 +4088,7 @@
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/FdDraggableControlMixin.html#method_actions.addTab">FdDraggableControlMixin</a>:
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l95"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:95</code></a>
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l166"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:166</code></a>
                             </p>
                     
                     
@@ -3877,7 +4096,7 @@
                         </div>
                     
                         <div class="description">
-                            Adds a new tab to the form.
+                            Adds a new tab to the form, if there is a selected item, the tab will be added to it.
                         </div>
                     
                     
@@ -3980,7 +4199,7 @@
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/FdDraggableControlMixin.html#method_actions.close">FdDraggableControlMixin</a>:
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l107"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:107</code></a>
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l208"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:208</code></a>
                             </p>
                     
                     
@@ -4157,7 +4376,7 @@
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/FdDraggableControlMixin.html#method_actions.getDragItem">FdDraggableControlMixin</a>:
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l136"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:136</code></a>
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l253"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:253</code></a>
                             </p>
                     
                     
@@ -4290,7 +4509,7 @@
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/FdDraggableControlMixin.html#method_actions.moveDragItem">FdDraggableControlMixin</a>:
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l146"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:146</code></a>
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l263"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:263</code></a>
                             </p>
                     
                     
@@ -4595,6 +4814,57 @@
                     
                     
                     </div>
+                    <div id="method_actions.removeSelectedItem" class="method item inherited">
+                        <h3 class="name"><code>actions.removeSelectedItem</code></h3>
+                    
+                            <div class="args">
+                                <span class="paren">(</span><ul class="args-list inline commas">
+                                    <li class="arg">
+                                            <code>approve</code>
+                                    </li>
+                                </ul><span class="paren">)</span>
+                            </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>Inherited from
+                                    <a href="../classes/FdDraggableControlMixin.html#method_actions.removeSelectedItem">FdDraggableControlMixin</a>:
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l178"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:178</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            Removes the selected item.
+                        </div>
+                    
+                            <div class="params">
+                                <h4>Parameters:</h4>
+                    
+                                <ul class="params-list">
+                                    <li class="param">
+                                            <code class="param-name">approve</code>
+                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+                    
+                                        <div class="param-description">
+                                            The user is sure.
+                                        </div>
+                    
+                                    </li>
+                                </ul>
+                            </div>
+                    
+                    
+                    </div>
                     <div id="method_actions.save" class="method item inherited">
                         <h3 class="name"><code>actions.save</code></h3>
                     
@@ -4754,7 +5024,7 @@
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/FdDraggableControlMixin.html#method_actions.selectItem">FdDraggableControlMixin</a>:
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l116"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:116</code></a>
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l217"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:217</code></a>
                             </p>
                     
                     
@@ -4805,7 +5075,7 @@
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/FdDraggableControlMixin.html#method_actions.setDragItem">FdDraggableControlMixin</a>:
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l126"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:126</code></a>
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l243"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:243</code></a>
                             </p>
                     
                     
@@ -4827,6 +5097,57 @@
                     
                                         <div class="param-description">
                                             New dragged item.
+                                        </div>
+                    
+                                    </li>
+                                </ul>
+                            </div>
+                    
+                    
+                    </div>
+                    <div id="method_actions.sortSelectedItem" class="method item inherited">
+                        <h3 class="name"><code>actions.sortSelectedItem</code></h3>
+                    
+                            <div class="args">
+                                <span class="paren">(</span><ul class="args-list inline commas">
+                                    <li class="arg">
+                                            <code>step</code>
+                                    </li>
+                                </ul><span class="paren">)</span>
+                            </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>Inherited from
+                                    <a href="../classes/FdDraggableControlMixin.html#method_actions.sortSelectedItem">FdDraggableControlMixin</a>:
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l193"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:193</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            Sorts the selected item in its container.
+                        </div>
+                    
+                            <div class="params">
+                                <h4>Parameters:</h4>
+                    
+                                <ul class="params-list">
+                                    <li class="param">
+                                            <code class="param-name">step</code>
+                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+                    
+                                        <div class="param-description">
+                                            Step of moving the item.
                                         </div>
                     
                                     </li>
@@ -5498,7 +5819,7 @@
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/FdDraggableControlMixin.html#property__draggedItem">FdDraggableControlMixin</a>:
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l12"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:12</code></a>
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l30"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:30</code></a>
                             </p>
                     
                     
@@ -5690,6 +6011,32 @@
                     
                     
                     </div>
+                    <div id="property__moveItem" class="property item private inherited">
+                        <h3 class="name"><code>_moveItem</code></h3>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+                    
+                            <span class="flag private">private</span>
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>Inherited from
+                                    <a href="../classes/FdDraggableControlMixin.html#property__moveItem">FdDraggableControlMixin</a>:
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l20"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:20</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            Indicates that the user has started moving control, and the next selected control will be the target of the move.
+                        </div>
+                    
+                            <p><strong>Default:</strong> false</p>
+                    
+                    
+                    </div>
                     <div id="property__selectedIsControl" class="property item private inherited">
                         <h3 class="name"><code>_selectedIsControl</code></h3>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
@@ -5702,7 +6049,32 @@
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/FdDraggableControlMixin.html#property__selectedIsControl">FdDraggableControlMixin</a>:
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l21"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:21</code></a>
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l49"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:49</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <div id="property__selectedIsFirst" class="property item private inherited">
+                        <h3 class="name"><code>_selectedIsFirst</code></h3>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+                    
+                            <span class="flag private">private</span>
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>Inherited from
+                                    <a href="../classes/FdDraggableControlMixin.html#property__selectedIsFirst">FdDraggableControlMixin</a>:
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l100"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:100</code></a>
                             </p>
                     
                     
@@ -5727,7 +6099,57 @@
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/FdDraggableControlMixin.html#property__selectedIsGroup">FdDraggableControlMixin</a>:
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l31"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:31</code></a>
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l59"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:59</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <div id="property__selectedIsLast" class="property item private inherited">
+                        <h3 class="name"><code>_selectedIsLast</code></h3>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+                    
+                            <span class="flag private">private</span>
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>Inherited from
+                                    <a href="../classes/FdDraggableControlMixin.html#property__selectedIsLast">FdDraggableControlMixin</a>:
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l117"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:117</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <div id="property__selectedIsRow" class="property item private inherited">
+                        <h3 class="name"><code>_selectedIsRow</code></h3>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+                    
+                            <span class="flag private">private</span>
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>Inherited from
+                                    <a href="../classes/FdDraggableControlMixin.html#property__selectedIsRow">FdDraggableControlMixin</a>:
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l39"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:39</code></a>
                             </p>
                     
                     
@@ -5752,7 +6174,7 @@
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/FdDraggableControlMixin.html#property__selectedIsTab">FdDraggableControlMixin</a>:
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l41"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:41</code></a>
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l69"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:69</code></a>
                             </p>
                     
                     
@@ -5765,8 +6187,8 @@
                     
                     
                     </div>
-                    <div id="property__selectedItemContainer" class="property item private inherited">
-                        <h3 class="name"><code>_selectedItemContainer</code></h3>
+                    <div id="property__selectedItemStorage" class="property item private inherited">
+                        <h3 class="name"><code>_selectedItemStorage</code></h3>
                         <span class="type"><a href="http://emberjs.com/api/classes/Ember.NativeArray.html" class="crosslink external" target="_blank">Ember.NativeArray</a></span>
                     
                     
@@ -5776,17 +6198,43 @@
                     
                         <div class="meta">
                                     <p>Inherited from
-                                    <a href="../classes/FdDraggableControlMixin.html#property__selectedItemContainer">FdDraggableControlMixin</a>:
-                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l51"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:51</code></a>
+                                    <a href="../classes/FdDraggableControlMixin.html#property__selectedItemStorage">FdDraggableControlMixin</a>:
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l79"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:79</code></a>
                             </p>
                     
                     
                         </div>
                     
                         <div class="description">
-                            Container of the selected item.
+                            An array in the container of the selected item.
                         </div>
                     
+                    
+                    
+                    </div>
+                    <div id="property__showModalDialog" class="property item private inherited">
+                        <h3 class="name"><code>_showModalDialog</code></h3>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+                    
+                            <span class="flag private">private</span>
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>Inherited from
+                                    <a href="../classes/FdDraggableControlMixin.html#property__showModalDialog">FdDraggableControlMixin</a>:
+                            <a href="../files/addon_controllers_fd-editform-constructor.js.html#l12"><code>addon&#x2F;controllers&#x2F;fd-editform-constructor.js:12</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            
+                        </div>
+                    
+                            <p><strong>Default:</strong> false</p>
                     
                     
                     </div>

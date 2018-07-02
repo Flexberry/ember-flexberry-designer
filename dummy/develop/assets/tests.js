@@ -1285,7 +1285,7 @@ define('dummy/tests/unit/controllers/fd-diagram-list-form-test.jshint', ['export
     assert.ok(true, 'unit/controllers/fd-diagram-list-form-test.js should pass jshint.');
   });
 });
-define('dummy/tests/unit/controllers/fd-editform-constructor-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+define('dummy/tests/unit/controllers/fd-editform-constructor-test', ['exports', 'ember', 'ember-qunit', 'ember-flexberry-designer/objects/fd-editform-row', 'ember-flexberry-designer/objects/fd-editform-control', 'ember-flexberry-designer/objects/fd-editform-group', 'ember-flexberry-designer/objects/fd-editform-tabgroup', 'ember-flexberry-designer/objects/fd-editform-tab'], function (exports, _ember, _emberQunit, _emberFlexberryDesignerObjectsFdEditformRow, _emberFlexberryDesignerObjectsFdEditformControl, _emberFlexberryDesignerObjectsFdEditformGroup, _emberFlexberryDesignerObjectsFdEditformTabgroup, _emberFlexberryDesignerObjectsFdEditformTab) {
 
   (0, _emberQunit.moduleFor)('controller:fd-editform-constructor', 'Unit | Controller | fd editform constructor', {
     // Specify the other units that are required for this test.
@@ -1296,6 +1296,109 @@ define('dummy/tests/unit/controllers/fd-editform-constructor-test', ['exports', 
   (0, _emberQunit.test)('it exists', function (assert) {
     var controller = this.subject();
     assert.ok(controller);
+  });
+
+  (0, _emberQunit.test)('\'_findItemContainer\' function', function (assert) {
+    var controller = this.subject();
+    controller.set('model', {
+      controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+        controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control' })])
+      }), _emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+        controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control #1' }), _emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control #2' })])
+      }), _emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+        controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformGroup['default'].create({
+          caption: 'Group',
+          rows: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+            controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control' })])
+          })])
+        })])
+      }), _emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+        controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformTabgroup['default'].create({
+          tabs: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformTab['default'].create({
+            caption: 'Tab #1',
+            rows: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+              controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control' })])
+            })])
+          }), _emberFlexberryDesignerObjectsFdEditformTab['default'].create({
+            caption: 'Tab #2',
+            rows: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+              controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control' })])
+            }), _emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+              controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformGroup['default'].create({
+                caption: 'Group',
+                rows: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+                  controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control' })])
+                })])
+              })])
+            })])
+          })])
+        })])
+      })])
+    });
+
+    [{
+      message: 'First control.',
+      item: controller.get('model.controls.firstObject.controls.firstObject'),
+      container: controller.get('model.controls.firstObject'),
+      startContainer: undefined
+    }, {
+      message: 'One of controls from row.',
+      item: controller.get('model.controls').objectAt(1).get('controls.lastObject'),
+      container: controller.get('model.controls').objectAt(1),
+      startContainer: undefined
+    }, {
+      message: 'First group.',
+      item: controller.get('model.controls').objectAt(2).get('controls.firstObject'),
+      container: controller.get('model.controls').objectAt(2),
+      startContainer: undefined
+    }, {
+      message: 'Row in group.',
+      item: controller.get('model.controls').objectAt(2).get('controls.firstObject.rows.firstObject'),
+      container: controller.get('model.controls').objectAt(2).get('controls.firstObject'),
+      startContainer: undefined
+    }, {
+      message: 'Row in group with start container.',
+      item: controller.get('model.controls').objectAt(2).get('controls.firstObject.rows.firstObject'),
+      container: controller.get('model.controls').objectAt(2).get('controls.firstObject'),
+      startContainer: controller.get('model.controls').objectAt(2)
+    }, {
+      message: 'Control in group.',
+      item: controller.get('model.controls').objectAt(2).get('controls.firstObject.rows.firstObject.controls.firstObject'),
+      container: controller.get('model.controls').objectAt(2).get('controls.firstObject.rows.firstObject'),
+      startContainer: undefined
+    }, {
+      message: 'First tabs group.',
+      item: controller.get('model.controls.lastObject.controls.firstObject'),
+      container: controller.get('model.controls.lastObject'),
+      startContainer: undefined
+    }, {
+      message: 'Tab in tabs group.',
+      item: controller.get('model.controls.lastObject.controls.firstObject.tabs.firstObject'),
+      container: controller.get('model.controls.lastObject.controls.firstObject'),
+      startContainer: undefined
+    }, {
+      message: 'Row in tab.',
+      item: controller.get('model.controls.lastObject.controls.firstObject.tabs.firstObject.rows.firstObject'),
+      container: controller.get('model.controls.lastObject.controls.firstObject.tabs.firstObject'),
+      startContainer: undefined
+    }, {
+      message: 'Control in tab.',
+      item: controller.get('model.controls.lastObject.controls.firstObject.tabs.firstObject.rows.firstObject.controls.firstObject'),
+      container: controller.get('model.controls.lastObject.controls.firstObject.tabs.firstObject.rows.firstObject'),
+      startContainer: undefined
+    }, {
+      message: 'Control in other tab.',
+      item: controller.get('model.controls.lastObject.controls.firstObject.tabs.firstObject.rows.firstObject.controls.firstObject'),
+      container: null,
+      startContainer: controller.get('model.controls.lastObject.controls.firstObject.tabs.lastObject')
+    }, {
+      message: 'Group in tab.',
+      item: controller.get('model.controls.lastObject.controls.firstObject.tabs.lastObject.rows.lastObject.controls.firstObject.rows.firstObject'),
+      container: controller.get('model.controls.lastObject.controls.firstObject.tabs.lastObject.rows.lastObject.controls.firstObject'),
+      startContainer: undefined
+    }].forEach(function (set) {
+      assert.ok(controller._findItemContainer(set.item, set.startContainer) === set.container, set.message);
+    });
   });
 });
 define('dummy/tests/unit/controllers/fd-editform-constructor-test.jscs-test', ['exports'], function (exports) {

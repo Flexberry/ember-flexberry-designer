@@ -2543,6 +2543,33 @@
         {
             "file": "addon/controllers/fd-editform-constructor.js",
             "line": 12,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_showModalDialog",
+            "type": "Boolean",
+            "default": "false",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 20,
+            "description": "Indicates that the user has started moving control, and the next selected control will be the target of the move.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_moveItem",
+            "type": "Boolean",
+            "default": "false",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 30,
             "description": "The current dragged item.",
             "access": "private",
             "tagname": "",
@@ -2555,7 +2582,20 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 21,
+            "line": 39,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_selectedIsRow",
+            "readonly": "",
+            "type": "Boolean",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 49,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -2568,7 +2608,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 31,
+            "line": 59,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -2581,7 +2621,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 41,
+            "line": 69,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -2594,12 +2634,12 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 51,
-            "description": "Container of the selected item.",
+            "line": 79,
+            "description": "An array in the container of the selected item.",
             "access": "private",
             "tagname": "",
             "itemtype": "property",
-            "name": "_selectedItemContainer",
+            "name": "_selectedItemStorage",
             "readonly": "",
             "type": "Ember.NativeArray",
             "class": "FdDraggableControlMixin",
@@ -2608,7 +2648,33 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 63,
+            "line": 100,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_selectedIsFirst",
+            "readonly": "",
+            "type": "Boolean",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 117,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_selectedIsLast",
+            "readonly": "",
+            "type": "Boolean",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 134,
             "description": "The selected item.",
             "itemtype": "property",
             "name": "selectedItem",
@@ -2619,8 +2685,8 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 72,
-            "description": "Adds a new control to the form.",
+            "line": 143,
+            "description": "Adds a new control to the form, if there is a selected item, the control will be added to it.",
             "itemtype": "method",
             "name": "actions.addControl",
             "class": "FdDraggableControlMixin",
@@ -2629,8 +2695,8 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 83,
-            "description": "Adds a new group to the form.",
+            "line": 154,
+            "description": "Adds a new group to the form, if there is a selected item, the group will be added to it.",
             "itemtype": "method",
             "name": "actions.addGroup",
             "class": "FdDraggableControlMixin",
@@ -2639,8 +2705,8 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 95,
-            "description": "Adds a new tab to the form.",
+            "line": 166,
+            "description": "Adds a new tab to the form, if there is a selected item, the tab will be added to it.",
             "itemtype": "method",
             "name": "actions.addTab",
             "class": "FdDraggableControlMixin",
@@ -2649,7 +2715,41 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 107,
+            "line": 178,
+            "description": "Removes the selected item.",
+            "itemtype": "method",
+            "name": "actions.removeSelectedItem",
+            "params": [
+                {
+                    "name": "approve",
+                    "description": "The user is sure.",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 193,
+            "description": "Sorts the selected item in its container.",
+            "itemtype": "method",
+            "name": "actions.sortSelectedItem",
+            "params": [
+                {
+                    "name": "step",
+                    "description": "Step of moving the item.",
+                    "type": "Number"
+                }
+            ],
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 208,
             "description": "Close edit form constructor and go to application structure constructor.",
             "itemtype": "method",
             "name": "actions.close",
@@ -2659,7 +2759,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 116,
+            "line": 217,
             "description": "Set the selected item.",
             "itemtype": "method",
             "name": "actions.selectItem",
@@ -2676,7 +2776,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 126,
+            "line": 243,
             "description": "Set the current dragged item.",
             "itemtype": "method",
             "name": "actions.setDragItem",
@@ -2693,7 +2793,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 136,
+            "line": 253,
             "description": "Get the current dragged item.",
             "itemtype": "method",
             "name": "actions.getDragItem",
@@ -2707,7 +2807,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 146,
+            "line": 263,
             "description": "Move the current dragged item above or below relative to the passed item.",
             "itemtype": "method",
             "name": "actions.moveDragItem",
@@ -2729,15 +2829,20 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 178,
-            "description": "Depending on the selected item, adds a new control to the form.",
+            "line": 295,
+            "description": "Inserts an `item` into `container`, if `container` is `FdEditformControl`, `item` is inserted into the parent row after `container`.",
             "itemtype": "method",
-            "name": "_addControl",
+            "name": "_insertItem",
             "params": [
                 {
-                    "name": "control",
-                    "description": "The control to add.",
-                    "type": "FdEditformControl|FdEditformGroup|FdEditformTab"
+                    "name": "item",
+                    "description": "The item that need to insert.",
+                    "type": "FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab"
+                },
+                {
+                    "name": "container",
+                    "description": "The container in that need to insert the item.",
+                    "type": "Ember.NativeArray|FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab"
                 }
             ],
             "class": "FdDraggableControlMixin",
@@ -2746,23 +2851,43 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 221,
+            "line": 338,
+            "description": "Removes the specified item from the form.",
+            "itemtype": "method",
+            "name": "_removeItem",
+            "params": [
+                {
+                    "name": "item",
+                    "description": "The item that need to remove.",
+                    "type": "FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab"
+                }
+            ],
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 366,
             "description": "Looks for a container that contains the item.",
+            "itemtype": "method",
+            "name": "_findItemContainer",
             "params": [
                 {
                     "name": "item",
                     "description": "The sought item.",
-                    "type": "FdEditformRow|FdEditformControl"
+                    "type": "FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab"
                 },
                 {
                     "name": "container",
-                    "description": "The root container.",
-                    "type": "Ember.Array"
+                    "description": "\n  The container from which to start the search, if not specified, uses `model.controls`.",
+                    "type": "Ember.NativeArray|FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab",
+                    "optional": true
                 }
             ],
             "return": {
                 "description": "The container that was found or `null`.",
-                "type": "Ember.Array"
+                "type": "Ember.NativeArray|FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab"
             },
             "class": "FdDraggableControlMixin",
             "module": "components",
@@ -2770,25 +2895,22 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 236,
-            "description": "Looks for a container that contains the row.",
+            "line": 400,
+            "description": "Returns a row that can be added to the form.",
+            "access": "private",
+            "tagname": "",
             "itemtype": "method",
-            "name": "_findRowContainer",
+            "name": "_getRow",
             "params": [
                 {
-                    "name": "row",
-                    "description": "The sought row.",
-                    "type": "FdEditformRow"
-                },
-                {
-                    "name": "container",
-                    "description": "The root container.",
-                    "type": "Ember.Array"
+                    "name": "item",
+                    "description": "The item to be converted.",
+                    "type": "FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab"
                 }
             ],
             "return": {
-                "description": "The container that was found or `null`.",
-                "type": "Ember.Array"
+                "description": "A row that can be added to the form.",
+                "type": "FdEditformRow"
             },
             "class": "FdDraggableControlMixin",
             "module": "components",
@@ -2796,25 +2918,43 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 284,
-            "description": "Looks for a container that contains the control.",
+            "line": 425,
+            "description": "Returns the control that can be added to a row.",
             "itemtype": "method",
-            "name": "_findControlContainer",
+            "name": "_getControl",
+            "params": [
+                {
+                    "name": "item",
+                    "description": "The item to be converted.",
+                    "type": "FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab"
+                }
+            ],
+            "return": {
+                "description": "The control that can be added to a row.",
+                "type": "FdEditformControl|FdEditformGroup|FdEditformTabgroup"
+            },
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 447,
+            "description": "Checks whether the control is suitable for placement in a row.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_isControl",
             "params": [
                 {
                     "name": "control",
-                    "description": "The sought control.",
-                    "type": "FdEditformControl"
-                },
-                {
-                    "name": "container",
-                    "description": "The root container.",
-                    "type": "Ember.Array"
+                    "description": "The control to check.",
+                    "type": "Any"
                 }
             ],
             "return": {
-                "description": "The container that was found or `null`.",
-                "type": "Ember.Array"
+                "description": "If the control can be placed in a row then `true`, else `false`.",
+                "type": "Boolean"
             },
             "class": "FdDraggableControlMixin",
             "module": "components",
@@ -7481,10 +7621,6 @@
         {
             "message": "Missing item type\nInitializes DOM-related component's properties.",
             "line": " addon/components/fd-visual-edit-form.js:155"
-        },
-        {
-            "message": "Missing item type\nLooks for a container that contains the item.",
-            "line": " addon/controllers/fd-editform-constructor.js:221"
         },
         {
             "message": "Missing item type\nField name where object identifier is kept.",
