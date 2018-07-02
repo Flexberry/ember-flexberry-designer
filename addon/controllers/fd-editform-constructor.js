@@ -18,6 +18,16 @@ export default Ember.Controller.extend({
   _showModalDialog: false,
 
   /**
+    Indicates that the user has started moving control, and the next selected control will be the target of the move.
+
+    @private
+    @property _moveItem
+    @type Boolean
+    @default false
+  */
+  _moveItem: false,
+
+  /**
     The current dragged item.
 
     @private
@@ -57,18 +67,6 @@ export default Ember.Controller.extend({
   }).readOnly(),
 
   /**
-    Container of the selected item.
-
-    @private
-    @property _selectedItemContainer
-    @readOnly
-    @type Ember.NativeArray|FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab
-  */
-  _selectedItemContainer: Ember.computed('selectedItem', function() {
-    return this._findItemContainer(this.get('selectedItem'));
-  }).readOnly(),
-
-  /**
     The selected item.
 
     @property selectedItem
@@ -78,38 +76,38 @@ export default Ember.Controller.extend({
 
   actions: {
     /**
-      Adds a new control to the form.
+      Adds a new control to the form, if there is a selected item, the control will be added to it.
 
       @method actions.addControl
     */
     addControl() {
-      this._addControl(FdEditformControl.create({
+      this._insertItem(FdEditformControl.create({
         caption: `${this.get('i18n').t('forms.fd-editform-constructor.new-control-caption').toString()} #${this.incrementProperty('_newControlIndex')}`,
-      }));
+      }), this.get('selectedItem') || this.get('model.controls'));
     },
 
     /**
-      Adds a new group to the form.
+      Adds a new group to the form, if there is a selected item, the group will be added to it.
 
       @method actions.addGroup
     */
     addGroup() {
-      this._addControl(FdEditformGroup.create({
+      this._insertItem(FdEditformGroup.create({
         caption: `${this.get('i18n').t('forms.fd-editform-constructor.new-group-caption').toString()} #${this.incrementProperty('_newGroupIndex')}`,
         rows: Ember.A(),
-      }));
+      }), this.get('selectedItem') || this.get('model.controls'));
     },
 
     /**
-      Adds a new tab to the form.
+      Adds a new tab to the form, if there is a selected item, the tab will be added to it.
 
       @method actions.addTab
     */
     addTab() {
-      this._addControl(FdEditformTab.create({
+      this._insertItem(FdEditformTab.create({
         caption: `${this.get('i18n').t('forms.fd-editform-constructor.new-tab-caption').toString()} #${this.incrementProperty('_newTabIndex')}`,
         rows: Ember.A(),
-      }));
+      }), this.get('selectedItem') || this.get('model.controls'));
     },
 
     /**
@@ -143,7 +141,20 @@ export default Ember.Controller.extend({
       @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item
     */
     selectItem(item) {
-      this.set('selectedItem', this.get('selectedItem') === item ? undefined : item);
+      if (this.get('_moveItem')) {
+        let selectedItem = this.get('selectedItem');
+        let selectedItemContainer = this._findItemContainer(selectedItem);
+        try {
+          this._removeItem(selectedItem);
+          this._insertItem(selectedItem, item);
+          this.set('_moveItem', false);
+        } catch (error) {
+          this._insertItem(selectedItem, selectedItemContainer);
+          this.set('error', error);
+        }
+      } else {
+        this.set('selectedItem', this.get('selectedItem') === item ? undefined : item);
+      }
     },
 
     /**
@@ -199,46 +210,46 @@ export default Ember.Controller.extend({
   },
 
   /**
-    Depending on the selected item, adds a new control to the form.
+    Inserts an `item` into `container`, if `container` is `FdEditformControl`, `item` is inserted into the parent row after `container`.
 
-    @method _addControl
-    @param {FdEditformControl|FdEditformGroup|FdEditformTab} control The control to add.
+    @method _insertItem
+    @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item
+      The item that need to insert.
+    @param {Ember.NativeArray|FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} container
+      The container in that need to insert the item.
   */
-  _addControl(control) {
+  _insertItem(item, container) {
+    let _item;
     let index;
     let target;
-
-    if (control instanceof FdEditformTab) {
-      control = FdEditformTabgroup.create({ tabs: Ember.A([control]) });
-    }
-
-    let selectedItem = this.get('selectedItem');
-    if (selectedItem instanceof FdEditformRow) {
-      target = selectedItem.get('controls');
-    } else if (selectedItem instanceof FdEditformControl) {
-      target = this.get('_selectedItemContainer.controls');
-      index = target.indexOf(selectedItem) + 1;
-    } else if (selectedItem instanceof FdEditformGroup || selectedItem instanceof FdEditformTab) {
-      target = selectedItem.get('rows');
-      control = FdEditformRow.create({ controls: Ember.A([control]) });
-    } else if (selectedItem instanceof FdEditformTabgroup) {
-      if (control instanceof FdEditformTabgroup) {
-        target = selectedItem.get('tabs');
-        control = control.get('tabs.firstObject');
+    if (container instanceof FdEditformRow) {
+      target = container.get('controls');
+      _item = this._getControl(item);
+    } else if (container instanceof FdEditformGroup || container instanceof FdEditformTab) {
+      target = container.get('rows');
+      _item = this._getRow(item);
+    } else if (container instanceof FdEditformTabgroup) {
+      if (item instanceof FdEditformTab) {
+        target = container.get('tabs');
+        _item = item;
       } else {
-        target = selectedItem.get('activeTab.rows');
-        control = FdEditformRow.create({ controls: Ember.A([control]) });
+        target = container.get('activeTab.rows');
+        _item = this._getRow(item);
       }
+    } else if (container instanceof FdEditformControl) {
+      target = this._findItemContainer(container).get('controls');
+      index = target.indexOf(container) + 1;
+      _item = this._getControl(item);
     } else {
-      target = this.get('model.controls');
-      control = FdEditformRow.create({ controls: Ember.A([control]) });
+      target = container;
+      _item = this._getRow(item);
     }
 
     if (typeof index !== 'number') {
       index = target.get('length');
     }
 
-    target.insertAt(index, control);
+    target.insertAt(index, _item);
   },
 
   /**
@@ -301,5 +312,64 @@ export default Ember.Controller.extend({
     }
 
     return foundContainer;
+  },
+
+  /**
+    Returns a row that can be added to the form.
+
+    @private
+    @method _getRow
+    @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item The item to be converted.
+    @return {FdEditformRow} A row that can be added to the form.
+  */
+  _getRow(item) {
+    let row;
+    if (item instanceof FdEditformRow) {
+      row = item;
+    } else if (item instanceof FdEditformTab) {
+      row = FdEditformRow.create({ controls: Ember.A([
+        FdEditformTabgroup.create({ tabs: Ember.A([item]) }),
+      ]) });
+    } else if (this._isControl(item)) {
+      row = FdEditformRow.create({ controls: Ember.A([item]) });
+    } else {
+      throw new Error('The passed item can not be cast to a row.');
+    }
+
+    return row;
+  },
+
+  /**
+    Returns the control that can be added to a row.
+
+    @method _getControl
+    @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item The item to be converted.
+    @return {FdEditformControl|FdEditformGroup|FdEditformTabgroup} The control that can be added to a row.
+  */
+  _getControl(item) {
+    let control;
+    if (this._isControl(item)) {
+      control = item;
+    } else if (item instanceof FdEditformTab) {
+      control = FdEditformTabgroup.create({ tabs: Ember.A([item]) });
+    } else if (item instanceof FdEditformRow && item.get('controls.length') === 1) {
+      control = item.get('controls.firstObject');
+    } else {
+      throw new Error('The passed item can not be cast to a control.');
+    }
+
+    return control;
+  },
+
+  /**
+    Checks whether the control is suitable for placement in a row.
+
+    @private
+    @method _isControl
+    @param {Any} control The control to check.
+    @return {Boolean} If the control can be placed in a row then `true`, else `false`.
+  */
+  _isControl(control) {
+    return control instanceof FdEditformControl || control instanceof FdEditformGroup || control instanceof FdEditformTabgroup;
   },
 });

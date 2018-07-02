@@ -108,6 +108,11 @@
         </div>
         <div class="equal width fields">
           <div class="field">
+            <button class="ui {{if _moveItem "active"}} button" disabled={{not selectedItem}} {{action toggleProperty "_moveItem"}}>
+              {{t "forms.fd-editform-constructor.form-config-panel.move-control"}}
+            </button>
+          </div>
+          <div class="field">
             <button class="ui button" disabled={{not selectedItem}} {{action "removeSelectedItem" false}}>
               {{t "forms.fd-editform-constructor.form-config-panel.remove-control"}}
             </button>
