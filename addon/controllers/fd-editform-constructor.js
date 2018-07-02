@@ -141,19 +141,21 @@ export default Ember.Controller.extend({
       @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item
     */
     selectItem(item) {
+      let selectedItem = this.get('selectedItem');
       if (this.get('_moveItem')) {
-        let selectedItem = this.get('selectedItem');
-        let selectedItemContainer = this._findItemContainer(selectedItem);
-        try {
-          this._removeItem(selectedItem);
-          this._insertItem(selectedItem, item);
-          this.set('_moveItem', false);
-        } catch (error) {
-          this._insertItem(selectedItem, selectedItemContainer);
-          this.set('error', error);
+        if (this._findItemContainer(item, selectedItem) === null) {
+          let selectedItemContainer = this._findItemContainer(selectedItem);
+          try {
+            this._removeItem(selectedItem);
+            this._insertItem(selectedItem, item);
+            this.set('_moveItem', false);
+          } catch (error) {
+            this._insertItem(selectedItem, selectedItemContainer);
+            this.set('error', error);
+          }
         }
       } else {
-        this.set('selectedItem', this.get('selectedItem') === item ? undefined : item);
+        this.set('selectedItem', selectedItem === item ? undefined : item);
       }
     },
 
