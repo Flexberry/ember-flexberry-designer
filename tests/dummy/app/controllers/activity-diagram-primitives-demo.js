@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import joint from 'npm:jointjs';
 
 export default Ember.Controller.extend({

@@ -70,7 +70,7 @@ joint.shapes.uml.StartState.define('flexberryUml.StartState', {
 joint.shapes.uml.EndState.define('flexberryUml.EndState', {
   attrs: {
     'circle.inner': {
-        fill: 'black'
+      fill: 'black'
     }
   }
 });
