@@ -140,7 +140,15 @@ Ember.$.extend(true, translations, {
           'fd-generation-list-form': {
             caption: 'Список генераций',
             title: '',
-          }
+          },
+          'fd-uml-primitives': {
+            caption: 'UML',
+            title: '',
+          },
+          'class-diagram-primitives-demo': {
+            caption: 'Диаграмма классов',
+            title: '',
+          },
         },
       }
     },
