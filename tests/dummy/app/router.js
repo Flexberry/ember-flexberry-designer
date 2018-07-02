@@ -100,6 +100,7 @@ Router.map(function () {
   { path: 'fd-generation-process-form/:id' });
   this.route('fd-generation-list-form');
   this.route('activity-diagram-primitives-demo');
+  this.route('class-diagram-primitives-demo');
 });
 
 export default Router;
