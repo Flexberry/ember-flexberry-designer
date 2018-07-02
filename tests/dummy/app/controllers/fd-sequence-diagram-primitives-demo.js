@@ -30,9 +30,12 @@ export default Ember.Controller.extend({
       });
 
       let actor = new joint.shapes.flexberryUml.Actor({
-        position: { x: 100, y: 10 }
+        position: { x: 100, y: 100 },
+        graph: _this.graph
       });
-      _this.graph.addCell([actor]);
+      actor.addTo(_this.graph);
+      //_this.graph.addCell([actor, actor.attributes.link, actor.attributes.endLine]);
+
     });
   }
 });
