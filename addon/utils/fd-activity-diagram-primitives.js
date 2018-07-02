@@ -1,5 +1,5 @@
 import joint from 'npm:jointjs';
-import 'ember-flexberry-designer/utils/fd-common-primitives';
+import './fd-common-primitives';
 
 joint.shapes.basic.Generic.define('flexberryUml.SignalReceiptRight', {
   attrs: {

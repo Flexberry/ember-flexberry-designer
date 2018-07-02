@@ -149,6 +149,10 @@ Ember.$.extend(true, translations, {
             caption: 'Диаграмма классов',
             title: '',
           },
+          'activity-diagram-primitives-demo': {
+            caption: 'Диаграмма активностей',
+            title: '',
+          },
         },
       }
     },
