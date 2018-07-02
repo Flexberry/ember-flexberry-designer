@@ -7,6 +7,8 @@ All notable changes to this project will be documented in this file.
   * Deselect.
   * The row select.
   * Highlighting the selected items.
+  * Button for removing items.
+  * Button for moving items.
 * The view edit form:
   * Add the "Visibility" checkbox to the table.
   * Retracting controls if nothing is selected.
