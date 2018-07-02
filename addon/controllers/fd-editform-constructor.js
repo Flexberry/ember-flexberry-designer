@@ -288,7 +288,7 @@ export default Ember.Controller.extend({
       foundContainer = this._findItemContainer(item, container.get('controls'));
     } else if (container instanceof FdEditformTabgroup && container.get('tabs').indexOf(item) === -1) {
       foundContainer = this._findItemContainer(item, container.get('tabs'));
-    } else if (container instanceof FdEditformGroup || container instanceof FdEditformTab && container.get('rows').indexOf(item) === -1) {
+    } else if ((container instanceof FdEditformGroup || container instanceof FdEditformTab) && container.get('rows').indexOf(item) === -1) {
       foundContainer = this._findItemContainer(item, container.get('rows'));
     } else if (Ember.isArray(container) && container.indexOf(item) === -1) {
       let index = 0;
