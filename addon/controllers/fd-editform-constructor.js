@@ -38,6 +38,16 @@ export default Ember.Controller.extend({
 
   /**
     @private
+    @property _selectedIsRow
+    @readOnly
+    @type Boolean
+  */
+  _selectedIsRow: Ember.computed('selectedItem', function() {
+    return this.get('selectedItem') instanceof FdEditformRow;
+  }).readOnly(),
+
+  /**
+    @private
     @property _selectedIsControl
     @readOnly
     @type Boolean
@@ -64,6 +74,61 @@ export default Ember.Controller.extend({
   */
   _selectedIsTab: Ember.computed('selectedItem', function() {
     return this.get('selectedItem') instanceof FdEditformTab;
+  }).readOnly(),
+
+  /**
+    An array in the container of the selected item.
+
+    @private
+    @property _selectedItemStorage
+    @readOnly
+    @type Ember.NativeArray
+  */
+  _selectedItemStorage: Ember.computed('selectedItem', function() {
+    let container = this._findItemContainer(this.get('selectedItem'));
+    if (container instanceof FdEditformRow) {
+      return container.get('controls');
+    } else if (container instanceof FdEditformTabgroup) {
+      return container.get('tabs');
+    } else if (container instanceof FdEditformGroup || container instanceof FdEditformTab) {
+      return container.get('rows');
+    } else if (Ember.isArray(container)) {
+      return container;
+    }
+  }).readOnly(),
+
+  /**
+    @private
+    @property _selectedIsFirst
+    @readOnly
+    @type Boolean
+  */
+  _selectedIsFirst: Ember.computed('_selectedItemStorage.[]', function() {
+    let result = false;
+    let selectedItem = this.get('selectedItem');
+    let selectedItemStorage = this.get('_selectedItemStorage');
+    if (selectedItem && selectedItemStorage) {
+      result = selectedItemStorage.get('firstObject') === selectedItem;
+    }
+
+    return result;
+  }).readOnly(),
+
+  /**
+    @private
+    @property _selectedIsLast
+    @readOnly
+    @type Boolean
+  */
+  _selectedIsLast: Ember.computed('_selectedItemStorage.[]', function() {
+    let result = false;
+    let selectedItem = this.get('selectedItem');
+    let selectedItemStorage = this.get('_selectedItemStorage');
+    if (selectedItem && selectedItemStorage) {
+      result = selectedItemStorage.get('lastObject') === selectedItem;
+    }
+
+    return result;
   }).readOnly(),
 
   /**
@@ -126,6 +191,21 @@ export default Ember.Controller.extend({
     },
 
     /**
+      Sorts the selected item in its container.
+
+      @method actions.sortSelectedItem
+      @param {Number} step Step of moving the item.
+    */
+    sortSelectedItem(step) {
+      let selectedItem = this.get('selectedItem');
+      let selectedItemStorage = this.get('_selectedItemStorage');
+      let index = selectedItemStorage.indexOf(selectedItem) + step;
+
+      selectedItemStorage.removeObject(selectedItem);
+      selectedItemStorage.insertAt(index, selectedItem);
+    },
+
+    /**
       Close edit form constructor and go to application structure constructor.
 
       @method actions.close
@@ -148,6 +228,7 @@ export default Ember.Controller.extend({
           try {
             this._removeItem(selectedItem);
             this._insertItem(selectedItem, item);
+            this.notifyPropertyChange('_selectedItemStorage');
             this.set('_moveItem', false);
           } catch (error) {
             this._insertItem(selectedItem, selectedItemContainer);

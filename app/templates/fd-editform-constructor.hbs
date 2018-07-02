@@ -118,6 +118,24 @@
             </button>
           </div>
         </div>
+        <div class="equal width fields">
+          <div class="field">
+            <button class="ui icon button" disabled={{or (not selectedItem) (not _selectedIsRow) _selectedIsFirst}} {{action "sortSelectedItem" -1}}>
+              <i class="up arrow icon"></i>
+            </button>
+            <button class="ui icon button" disabled={{or (not selectedItem) (not _selectedIsRow)}} {{action "sortSelectedItem" 1}}>
+              <i class="down arrow icon"></i>
+            </button>
+          </div>
+          <div class="field">
+            <button class="ui icon button" disabled={{or (not selectedItem) _selectedIsRow _selectedIsFirst}} {{action "sortSelectedItem" -1}}>
+              <i class="left arrow icon"></i>
+            </button>
+            <button class="ui icon button" disabled={{or (not selectedItem) _selectedIsRow _selectedIsLast}} {{action "sortSelectedItem" 1}}>
+              <i class="right arrow icon"></i>
+            </button>
+          </div>
+        </div>
       {{/ui-tab-segment}}
 
     </form>
