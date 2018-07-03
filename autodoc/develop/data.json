@@ -2829,7 +2829,24 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 295,
+            "line": 294,
+            "description": "Saves the form's metadata.",
+            "itemtype": "method",
+            "name": "actions.save",
+            "params": [
+                {
+                    "name": "close",
+                    "description": "If `true`, the `close` action will be run.",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 311,
             "description": "Inserts an `item` into `container`, if `container` is `FdEditformControl`, `item` is inserted into the parent row after `container`.",
             "itemtype": "method",
             "name": "_insertItem",
@@ -2851,7 +2868,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 338,
+            "line": 354,
             "description": "Removes the specified item from the form.",
             "itemtype": "method",
             "name": "_removeItem",
@@ -2868,7 +2885,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 366,
+            "line": 382,
             "description": "Looks for a container that contains the item.",
             "itemtype": "method",
             "name": "_findItemContainer",
@@ -2895,7 +2912,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 400,
+            "line": 416,
             "description": "Returns a row that can be added to the form.",
             "access": "private",
             "tagname": "",
@@ -2918,7 +2935,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 425,
+            "line": 441,
             "description": "Returns the control that can be added to a row.",
             "itemtype": "method",
             "name": "_getControl",
@@ -2939,7 +2956,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 447,
+            "line": 463,
             "description": "Checks whether the control is suitable for placement in a row.",
             "access": "private",
             "tagname": "",
@@ -2956,6 +2973,50 @@
                 "description": "If the control can be placed in a row then `true`, else `false`.",
                 "type": "Boolean"
             },
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 475,
+            "description": "Save editform metadata: dataobject attributes, view, editform class.",
+            "itemtype": "method",
+            "name": "_saveMetadata",
+            "params": [
+                {
+                    "name": "model",
+                    "description": "Complex model for processing and save.",
+                    "type": "Object"
+                }
+            ],
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 501,
+            "description": "Extract path part from object model.",
+            "itemtype": "method",
+            "name": "_extractPathPart",
+            "params": [
+                {
+                    "name": "control",
+                    "description": "Some item in object model.",
+                    "type": "FdEditformControl|FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab"
+                },
+                {
+                    "name": "path",
+                    "description": "Path for current item.",
+                    "type": "String"
+                },
+                {
+                    "name": "viewDefinition",
+                    "description": "View definition with result paths for controls.",
+                    "type": "Ember.Array"
+                }
+            ],
             "class": "FdDraggableControlMixin",
             "module": "components",
             "namespace": "components"
@@ -5972,6 +6033,16 @@
             "module": "ember-flexberry-designer"
         },
         {
+            "file": "addon/objects/fd-editform-control.js",
+            "line": 38,
+            "description": "The property definition from view that coresponds to this control.",
+            "itemtype": "property",
+            "name": "propertyDefinition",
+            "type": "FdViewAttributesProperty|FdViewAttributesMaster|FdViewAttributesDetail",
+            "class": "FdEditformControl",
+            "module": "ember-flexberry-designer"
+        },
+        {
             "file": "addon/objects/fd-editform-group.js",
             "line": 14,
             "description": "Caption of the group.",
@@ -6523,7 +6594,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 176,
+            "line": 181,
             "description": "Locate tabs for control.",
             "itemtype": "method",
             "name": "_locateTabs",
@@ -6553,7 +6624,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 247,
+            "line": 252,
             "description": "Locate group for control.",
             "itemtype": "method",
             "name": "_locateGroup",
@@ -6583,7 +6654,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 306,
+            "line": 311,
             "description": "Locate column for control.",
             "itemtype": "method",
             "name": "_locateColumn",

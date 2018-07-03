@@ -405,6 +405,22 @@ export default Ember.Controller.extend({
         itemContainer.insertAt(index, draggedItem);
       }
     },
+
+    /**
+      Saves the form&#x27;s metadata.
+
+      @method actions.save
+      @param {Boolean} close If &#x60;true&#x60;, the &#x60;close&#x60; action will be run.
+    */
+    save(close) {
+      this.set(&#x27;state&#x27;, &#x27;loading&#x27;);
+      this._saveMetadata(this.get(&#x27;model&#x27;)).then(() =&gt; {
+        this.set(&#x27;state&#x27;, &#x27;&#x27;);
+        if (close) {
+          this.send(&#x27;close&#x27;);
+        }
+      });
+    },
   },
 
   /**
@@ -570,6 +586,84 @@ export default Ember.Controller.extend({
   _isControl(control) {
     return control instanceof FdEditformControl || control instanceof FdEditformGroup || control instanceof FdEditformTabgroup;
   },
+
+  /**
+    Save editform metadata: dataobject attributes, view, editform class.
+
+    @method _saveMetadata
+    @param {Object} model Complex model for processing and save.
+  */
+  _saveMetadata(model) {
+    // Сохранить атрибуты в объекте данных (id класса объекта данных)
+
+    let view = model.editform.get(&#x27;formViews.firstObject.view&#x27;);
+    let viewDefinition = Ember.A(view.get(&#x27;definition&#x27;).filterBy(&#x27;visible&#x27;, false));
+    let controls = model.controls;
+    let length = controls.get(&#x27;length&#x27;);
+    for (let i = 0; i &lt; length; i++) {
+      this._extractPathPart(controls.objectAt(i), &#x27;&#x27;, viewDefinition);
+    }
+
+    view.set(&#x27;definition&#x27;, viewDefinition);
+
+    // Сохранить класс формы редактирования
+
+    return Ember.RSVP.all([
+      view.save(),
+    ]);
+  },
+
+  /**
+    Extract path part from object model.
+
+    @method _extractPathPart
+    @param {FdEditformControl|FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab} control Some item in object model.
+    @param {String} path Path for current item.
+    @param {Ember.Array} viewDefinition View definition with result paths for controls.
+  */
+  _extractPathPart: function(control, path, viewDefinition) {
+    if (control instanceof FdEditformControl) {
+      control.set(&#x27;propertyDefinition.path&#x27;, path);
+      control.set(&#x27;propertyDefinition.caption&#x27;, control.get(&#x27;caption&#x27;));
+      viewDefinition.pushObject(control.get(&#x27;propertyDefinition&#x27;));
+      return path;
+    } else if (control instanceof FdEditformRow) {
+      for (let i = 0; i &lt; control.get(&#x27;controls.length&#x27;); i++) {
+        let controlInRow = control.get(&#x27;controls&#x27;).objectAt(i);
+        let pathWithColumn = path;
+        if (control.get(&#x27;controls.length&#x27;) &gt; 1) {
+          pathWithColumn = path + &#x27;\\#&#x27; + (i + 1);
+        }
+
+        this._extractPathPart(controlInRow, pathWithColumn, viewDefinition);
+      }
+    } else if (control instanceof FdEditformGroup) {
+      let pathWithGroup = &#x27;-&#x27; + control.caption;
+      if (path) {
+        pathWithGroup = path + &#x27;\\&#x27; + pathWithGroup;
+      }
+
+      for (let i = 0; i &lt; control.get(&#x27;rows.length&#x27;); i++) {
+        let rowInGroup = control.get(&#x27;rows&#x27;).objectAt(i);
+        this._extractPathPart(rowInGroup, pathWithGroup, viewDefinition);
+      }
+    } else if (control instanceof FdEditformTabgroup) {
+      for (let i = 0; i &lt; control.get(&#x27;tabs.length&#x27;); i++) {
+        let rowInGroup = control.get(&#x27;tabs&#x27;).objectAt(i);
+        this._extractPathPart(rowInGroup, path, viewDefinition);
+      }
+    } else if (control instanceof FdEditformTab) {
+      let pathWithTab = &#x27;|&#x27; + control.caption;
+      if (path) {
+        pathWithTab = path + &#x27;\\&#x27; + pathWithTab;
+      }
+
+      for (let i = 0; i &lt; control.get(&#x27;rows.length&#x27;); i++) {
+        let rowInGroup = control.get(&#x27;rows&#x27;).objectAt(i);
+        this._extractPathPart(rowInGroup, pathWithTab, viewDefinition);
+      }
+    }
+  }
 });
 
     </pre>

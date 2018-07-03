@@ -280,7 +280,12 @@ export default Ember.Route.extend({
   */
   _locateControlInRow: function (row, propertyDefinition) {
     // TODO: вычислить type контрола из метаданных атрибута или FormControl и width из path.
-    let control = FdEditformControl.create({ caption: propertyDefinition.caption || propertyDefinition.name, type: &#x27;string&#x27;, width: &#x27;100*&#x27; });
+    let control = FdEditformControl.create({
+      caption: propertyDefinition.caption || propertyDefinition.name,
+      type: &#x27;string&#x27;,
+      width: &#x27;100*&#x27;,
+      propertyDefinition: propertyDefinition,
+    });
 
     row.get(&#x27;controls&#x27;).pushObject(control);
     row.set(&#x27;columnsCount&#x27;, row.get(&#x27;columnsCount&#x27;) + 1);
