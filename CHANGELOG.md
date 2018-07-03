@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Added
 * The edit form constructor:
+  * Save the definition of the view.
   * Deselect.
   * The row select.
   * Highlighting the selected items.

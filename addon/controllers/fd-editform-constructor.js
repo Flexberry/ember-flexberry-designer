@@ -175,23 +175,20 @@ export default Ember.Controller.extend({
     },
 
     /**
-      Overridden action for button 'Save'.
-      @method actions.save
-    */
-    save() {
-      this._saveMetadata(this.model);
-      this._super();
-    },
+      Saves the form's metadata.
 
-    /**
-      Overridden action for button 'Save and close'.
-      @method actions.saveAndClose
-      @param {Boolean} skipTransition If `true`, then transition during close form process will be skipped after save.
+      @method actions.save
+      @param {Boolean} close If `true`, the `close` action will be run.
     */
-    saveAndClose(skipTransition) {
-      this._saveMetadata(this.model);
-      this._super(skipTransition);
-    }
+    save(close) {
+      this.set('state', 'loading');
+      this._saveMetadata(this.get('model')).then(() => {
+        this.set('state', '');
+        if (close) {
+          this.send('close');
+        }
+      });
+    },
   },
 
   /**
@@ -311,19 +308,22 @@ export default Ember.Controller.extend({
   */
   _saveMetadata(model) {
     // Сохранить атрибуты в объекте данных (id класса объекта данных)
-    // Сохранить представление (id представления)
+
+    let view = model.editform.get('formViews.firstObject.view');
+    let viewDefinition = Ember.A(view.get('definition').filterBy('visible', false));
     let controls = model.controls;
-
-    // Обходим дерево и записываем свойства в коллекцию с указанием пути.
-    let viewDefinition = Ember.A();
-
-    for (let i = 0; i < controls.get('length'); i++) {
-      let innerControl = controls.objectAt(i);
-      this._extractPathPart(innerControl, '', viewDefinition);
-
+    let length = controls.get('length');
+    for (let i = 0; i < length; i++) {
+      this._extractPathPart(controls.objectAt(i), '', viewDefinition);
     }
 
+    view.set('definition', viewDefinition);
+
     // Сохранить класс формы редактирования
+
+    return Ember.RSVP.all([
+      view.save(),
+    ]);
   },
 
   /**
@@ -336,8 +336,9 @@ export default Ember.Controller.extend({
   */
   _extractPathPart: function(control, path, viewDefinition) {
     if (control instanceof FdEditformControl) {
-      // TODO: Добавить правильное заполнение объекта в предсталение.
-      viewDefinition.pushObject({ path: path, name: control.name });
+      control.set('propertyDefinition.path', path);
+      control.set('propertyDefinition.caption', control.get('caption'));
+      viewDefinition.pushObject(control.get('propertyDefinition'));
       return path;
     } else if (control instanceof FdEditformRow) {
       for (let i = 0; i < control.get('controls.length'); i++) {
