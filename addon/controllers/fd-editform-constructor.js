@@ -290,6 +290,22 @@ export default Ember.Controller.extend({
         itemContainer.insertAt(index, draggedItem);
       }
     },
+
+    /**
+      Saves the form's metadata.
+
+      @method actions.save
+      @param {Boolean} close If `true`, the `close` action will be run.
+    */
+    save(close) {
+      this.set('state', 'loading');
+      this._saveMetadata(this.get('model')).then(() => {
+        this.set('state', '');
+        if (close) {
+          this.send('close');
+        }
+      });
+    },
   },
 
   /**
@@ -455,4 +471,82 @@ export default Ember.Controller.extend({
   _isControl(control) {
     return control instanceof FdEditformControl || control instanceof FdEditformGroup || control instanceof FdEditformTabgroup;
   },
+
+  /**
+    Save editform metadata: dataobject attributes, view, editform class.
+
+    @method _saveMetadata
+    @param {Object} model Complex model for processing and save.
+  */
+  _saveMetadata(model) {
+    // Сохранить атрибуты в объекте данных (id класса объекта данных)
+
+    let view = model.editform.get('formViews.firstObject.view');
+    let viewDefinition = Ember.A(view.get('definition').filterBy('visible', false));
+    let controls = model.controls;
+    let length = controls.get('length');
+    for (let i = 0; i < length; i++) {
+      this._extractPathPart(controls.objectAt(i), '', viewDefinition);
+    }
+
+    view.set('definition', viewDefinition);
+
+    // Сохранить класс формы редактирования
+
+    return Ember.RSVP.all([
+      view.save(),
+    ]);
+  },
+
+  /**
+    Extract path part from object model.
+
+    @method _extractPathPart
+    @param {FdEditformControl|FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab} control Some item in object model.
+    @param {String} path Path for current item.
+    @param {Ember.Array} viewDefinition View definition with result paths for controls.
+  */
+  _extractPathPart: function(control, path, viewDefinition) {
+    if (control instanceof FdEditformControl) {
+      control.set('propertyDefinition.path', path);
+      control.set('propertyDefinition.caption', control.get('caption'));
+      viewDefinition.pushObject(control.get('propertyDefinition'));
+      return path;
+    } else if (control instanceof FdEditformRow) {
+      for (let i = 0; i < control.get('controls.length'); i++) {
+        let controlInRow = control.get('controls').objectAt(i);
+        let pathWithColumn = path;
+        if (control.get('controls.length') > 1) {
+          pathWithColumn = path + '\\#' + (i + 1);
+        }
+
+        this._extractPathPart(controlInRow, pathWithColumn, viewDefinition);
+      }
+    } else if (control instanceof FdEditformGroup) {
+      let pathWithGroup = '-' + control.caption;
+      if (path) {
+        pathWithGroup = path + '\\' + pathWithGroup;
+      }
+
+      for (let i = 0; i < control.get('rows.length'); i++) {
+        let rowInGroup = control.get('rows').objectAt(i);
+        this._extractPathPart(rowInGroup, pathWithGroup, viewDefinition);
+      }
+    } else if (control instanceof FdEditformTabgroup) {
+      for (let i = 0; i < control.get('tabs.length'); i++) {
+        let rowInGroup = control.get('tabs').objectAt(i);
+        this._extractPathPart(rowInGroup, path, viewDefinition);
+      }
+    } else if (control instanceof FdEditformTab) {
+      let pathWithTab = '|' + control.caption;
+      if (path) {
+        pathWithTab = path + '\\' + pathWithTab;
+      }
+
+      for (let i = 0; i < control.get('rows.length'); i++) {
+        let rowInGroup = control.get('rows').objectAt(i);
+        this._extractPathPart(rowInGroup, pathWithTab, viewDefinition);
+      }
+    }
+  }
 });
