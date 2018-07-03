@@ -82,9 +82,9 @@ joint.shapes.basic.Rhombus.define('flexberryUml.Decision', {
 });
 
 joint.dia.Element.define('flexberryUml.ComplexTransitionHorizon', {
-  attrs:{   
+  attrs: {
     polyline: { refPoints: '0,0 10,0', stroke: 'black', 'stroke-width': 2 },
-    text: { 
+    text: {
       'ref': 'polyline',
       'ref-y': 0,
       'ref-x': 100,
@@ -105,9 +105,9 @@ joint.dia.Element.define('flexberryUml.ComplexTransitionHorizon', {
 });
 
 joint.shapes.flexberryUml.ComplexTransitionHorizon.define('flexberryUml.ComplexTransitionVertical', {
-  attrs:{ 
+  attrs: {
     polyline: { refPoints: '0,0 0,10' },
-    text: { 
+    text: {
       'ref-y': 100,
       'ref-x': 0,
       'text-anchor': 'middle',
@@ -158,22 +158,22 @@ joint.shapes.basic.Generic.define('flexberryUml.ObjectInState', {
   setText: function() {
     let state = this.get('state').length > 0 ? '[' + this.get('state') + ']' : '';
     var lines = [this.get('name'), state];
-    this.get('attrs')['text'].text = lines.join('\n');
+    this.get('attrs').text.text = lines.join('\n');
     return 0;
   }
 });
 
 joint.shapes.flexberryUml.ObjectInState.define('flexberryUml.ActiveState', {
-  attrs: { 
+  attrs: {
     'rect': { rx:1, ry:1 },
-    'text tspan': { 'text-decoration': 'none' }, 
-    'text': { 'font-weight': 'bold'}
+    'text tspan': { 'text-decoration': 'none' },
+    'text': { 'font-weight': 'bold' }
   }
-},{
+}, {
   setText: function() {
     let state = this.get('state').length > 0 ? '«' + this.get('state') + '»' : '';
     var lines = [this.get('name'), state];
-    this.get('attrs')['text'].text = lines.join('\n');
+    this.get('attrs').text.text = lines.join('\n');
     return 0;
   }
-})
+});

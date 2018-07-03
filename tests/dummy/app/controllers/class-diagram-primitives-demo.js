@@ -183,7 +183,8 @@ export default Ember.Controller.extend({
           attributes: attributes,
         });
 
-        _this.graph.addCell([classWithoutStp, classWithStp, nAryAssociation, obj, instance, multiObject, activeObj, templateClass, note, moreClasses, packagePr]);
+        _this.graph.addCell([classWithoutStp, classWithStp, nAryAssociation, obj, instance, multiObject, activeObj,
+          templateClass, note, moreClasses, packagePr]);
       });
     }
   }
