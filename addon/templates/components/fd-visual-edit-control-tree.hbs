@@ -11,7 +11,7 @@
     <label>{{t "components.fd-visual-edit-control-tree.header"}}</label>
     {{
       flexberry-textbox
-      value=selectedItem.caption
+      value=selectedItem.propertyDefinition.caption
     }}
   </div>
 
@@ -19,7 +19,7 @@
     <label>{{t "components.fd-visual-edit-control-tree.property-name"}}</label>
     {{
       flexberry-textbox
-      value=selectedItem.name
+      value=selectedItem.propertyDefinition.name
       readonly=true
     }}
   </div>
@@ -89,7 +89,7 @@
       {{
         flexberry-dropdown
         items=dropdownItems
-        value=selectedItem.view
+        value=selectedItem.propertyDefinition.detailViewName
       }}
     </div>
   {{/if}}
@@ -106,7 +106,7 @@
       <label>{{t "components.fd-visual-edit-control-tree.master-property"}}</label>
       {{
         flexberry-textbox
-        value=selectedItem.propertyNameInMaster
+        value=selectedItem.propertyDefinition.masterPropertyName
       }}
     </div>
   {{/if}}

@@ -73,6 +73,7 @@ let getClassTreeNode = function (tree, classData, rootId, addInText) {
         text: text,
         name: attribute.get('name'),
         type: 'property',
+        typeNode: attribute.get('type'),
         idNode: idClass,
         own: own,
       }));
@@ -104,6 +105,7 @@ let getAssociationTreeNode = function (tree, associationData, jsTreeId, rootId, 
       text: text,
       name: masterName,
       type: 'master',
+      typeNode: 'master',
       id: jsTreeId + index,
       idNode: idMaster,
       children: ['#'],
@@ -137,6 +139,7 @@ let getAggregationTreeNode = function (tree, aggregationData, rootId, addInText)
       text: text,
       name: detailName,
       type: 'detail',
+      typeNode: 'detail',
       idNode: idDetail,
       own: own,
     }));

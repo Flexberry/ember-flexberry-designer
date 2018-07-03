@@ -29,12 +29,20 @@ export default Ember.Object.extend({
   name: undefined,
 
   /**
-    Type property.
+    Type property for jsTree.
 
     @property type
     @type String
   */
   type: undefined,
+
+  /**
+    Type property.
+
+    @property typeNode
+    @type String
+  */
+  typeNode: undefined,
 
   /**
     Id property for jsTree.

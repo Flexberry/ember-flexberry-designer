@@ -1,4 +1,3 @@
-
 import Ember from 'ember';
 import layout from '../templates/components/fd-visual-edit-control-tree';
 import FdAttributesTree from '../objects/fd-attributes-tree';
@@ -169,7 +168,7 @@ export default Ember.Component.extend({
         let allClasses = this.get('store').peekAll('fd-dev-class');
         let stagePk = this.get('currentProjectContext').getCurrentStage();
         let classesCurrentStage = allClasses.filterBy('stage.id', stagePk);
-        let selectedItemClass = classesCurrentStage.findBy('name', selectedItem.name);
+        let selectedItemClass = classesCurrentStage.findBy('name', selectedItem.propertyDefinition.name);
         let listForms = classesCurrentStage.filter(function(item) {
           return item.get('formViews.firstObject.view.class.id') === selectedItemClass.id &&
            item.get('stereotype') === '«listform»';
@@ -180,7 +179,7 @@ export default Ember.Component.extend({
         let allClasses = this.get('store').peekAll('fd-dev-class');
         let stagePk = this.get('currentProjectContext').getCurrentStage();
         let classesCurrentStage = allClasses.filterBy('stage.id', stagePk);
-        let classData = classesCurrentStage.findBy('name', selectedItem.name);
+        let classData = classesCurrentStage.findBy('name', selectedItem.propertyDefinition.name);
         let detailViews = classData.get('views');
         let detailViewsItems = detailViews.mapBy('name');
         this.set('dropdownItems', detailViewsItems);
@@ -326,12 +325,15 @@ export default Ember.Component.extend({
         propertyName = selectedNodes[0].original.name;
       }
 
-      this.set('selectedItem.name', propertyName);
-      this.set('selectedItem.type', selectedNodes[0].type);
+      this.set('selectedItem.propertyDefinition.name', propertyName);
+      this.set('selectedItem.type', selectedNodes[0].original.typeNode);
+
       this.set('selectedItem.view', '');
-      this.set('selectedItem.propertyNameInMaster', '');
+      this.set('selectedItem.propertyDefinition.detailViewName', '');
+      this.set('selectedItem.propertyDefinition.masterPropertyName', '');
 
       if (selectedNodes[0].type === 'master') {
+        this.set('selectedItem.propertyDefinition.detailViewName', undefined);
         let recordsDevClass = this.get('store').peekAll('fd-dev-class');
         let listForms = recordsDevClass.filter(function(item) {
           return item.get('formViews.firstObject.view.class.id') === selectedNodes[0].original.idNode &&
@@ -340,11 +342,17 @@ export default Ember.Component.extend({
         let listFormsName = listForms.mapBy('name');
         this.set('dropdownItems', listFormsName);
       } else if (selectedNodes[0].type === 'detail') {
+        this.set('selectedItem.view', undefined);
+        this.set('selectedItem.propertyDefinition.masterPropertyName', undefined);
         let recordsDevClass = this.get('store').peekAll('fd-dev-class');
         let classData = recordsDevClass.findBy('id', selectedNodes[0].original.idNode);
         let detailViews = classData.get('views');
         let detailViewsItems = detailViews.mapBy('name');
         this.set('dropdownItems', detailViewsItems);
+      } else {
+        this.set('selectedItem.view', undefined);
+        this.set('selectedItem.propertyDefinition.detailViewName', undefined);
+        this.set('selectedItem.propertyDefinition.masterPropertyName', undefined);
       }
     },
 
@@ -380,6 +388,7 @@ export default Ember.Component.extend({
       let newNode = FdAttributesTree.create({
         text: this.get('propertyName') + ' (' + selectedNode.text + ')',
         type: selectedNode.type,
+        typeNode: selectedNode.text,
         name: this.get('propertyName'),
         id: 'np' + nodeId,
         idNode: selectedNode.original.idNode
@@ -389,9 +398,11 @@ export default Ember.Component.extend({
         case 'master':
           newNode.set('children', ['#']);
           newNode.set('copyChildren', ['#']);
+          newNode.set('typeNode', 'master');
           attributesTree[1].copyChildren.pushObject(newNode);
           break;
         case 'detail':
+          newNode.set('typeNode', 'detail');
           attributesTree[2].copyChildren.pushObject(newNode);
           let dataTypeTree = this.get('dataTypeTree');
           let arrayChildrens = dataTypeTree[5].get('copyChildren');

@@ -36,28 +36,12 @@ export default Ember.Object.extend({
   width: undefined,
 
   /**
-    Name of the control.
-
-    @property name
-    @type String
-  */
-  name: '',
-
-  /**
     View of the control.
 
     @property view
     @type String
   */
   view: '',
-
-  /**
-    PropertyNameInMaster of the control.
-
-    @property propertyNameInMaster
-    @type String
-  */
-  propertyNameInMaster: '',
 
   /**
     Not null of the control.
