@@ -7,18 +7,26 @@ import Ember from 'ember';
 /**
   Describes properties on the tree view.
 
-  @class FdViewAttributesTree
+  @class FdAttributesTree
   @extends <a href="http://emberjs.com/api/classes/Ember.Object.html">Ember.Object</a>
 */
 export default Ember.Object.extend({
 
   /**
-    Item property 'name'.
+    Text property for jsTree.
 
     @property text
     @type String
   */
   text: undefined,
+
+  /**
+    Item property 'name'.
+
+    @property name
+    @type String
+  */
+  name: undefined,
 
   /**
     Type property.
@@ -59,6 +67,14 @@ export default Ember.Object.extend({
     @type Array
   */
   copyChildren: undefined,
+
+  /**
+    Own property.
+
+    @property own
+    @type Boolean
+  */
+  own: true,
 
   /**
     State property for jsTree.

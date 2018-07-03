@@ -1,5 +1,6 @@
 import Ember from 'ember';
-import { getTreeNode } from '../utils/fd-get-view-tree-node';
+import FdAttributesTree from '../objects/fd-attributes-tree';
+import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode, getDetailView } from '../utils/fd-attributes-for-tree';
 
 export default Ember.Route.extend({
 
@@ -24,14 +25,42 @@ export default Ember.Route.extend({
     let idDevClass = devClass.get('id');
 
     // Get attributes tree current class.
-    let treeData = getTreeNode(store, idDevClass, 'node_', data);
+    let dataForBuildTree = getDataForBuildTree(store, idDevClass);
+
+    // Set attributes tree.
+    let treeEmpty = Ember.A([
+
+      // Attribute - choose all.
+      FdAttributesTree.create({
+        text: '*',
+        type: 'property',
+      })
+    ]);
+
+    let treeAttributes = getClassTreeNode(treeEmpty, dataForBuildTree.classes);
+    let treeMasters = getAssociationTreeNode(treeAttributes, dataForBuildTree.associations, 'node_');
+    let treeDetails = getAggregationTreeNode(treeMasters, dataForBuildTree.aggregations);
+    let detailView = getDetailView(dataForBuildTree.aggregations);
+    let tree = Ember.A([
+      FdAttributesTree.create({
+        text: devClass.get('name'),
+        type: 'class',
+        id: 'class',
+        idNode: idDevClass,
+        children: treeDetails,
+        copyChildren: treeDetails,
+        state: {
+          opened: true
+        }
+      })
+    ]);
 
     this.get('objectlistviewEventsService').setLoadingState('');
 
     return {
       view: data,
-      tree: treeData.tree,
-      detailsView: treeData.detailView
+      tree: tree,
+      detailsView: detailView
     };
   },
 

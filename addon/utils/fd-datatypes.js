@@ -225,7 +225,7 @@ export default Ember.Object.extend({
   },
 
   _flexberryTypeToFD: {
-    boolean: 'bool',
+    bool: 'bool',
     WebFile: 'tFile',
     char: 'string',
     string: 'string',

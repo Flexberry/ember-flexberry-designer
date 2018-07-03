@@ -4,116 +4,108 @@ import FdEditformGroup from '../objects/fd-editform-group';
 import FdEditformRow from '../objects/fd-editform-row';
 import FdEditformTab from '../objects/fd-editform-tab';
 import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
-import { Query } from 'ember-flexberry-data';
-const { Builder, FilterOperator } = Query;
+import FdAttributesTree from '../objects/fd-attributes-tree';
+import FdDataTypes from '../utils/fd-datatypes';
+import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode } from '../utils/fd-attributes-for-tree';
 
 export default Ember.Route.extend({
 
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
   model: function(params) {
-    let stageId = this.get('currentProjectContext').getCurrentStage();
-    let _this = this;
     let modelHash = {
       editform: undefined,
       dataobject: undefined,
+      attributes: undefined,
       typemap: undefined,
       enums: undefined,
-      types: undefined
+      simpleTypes: undefined,
+      types: undefined,
+      masters: undefined,
+      mastersType: undefined,
+      details: undefined,
+      detailsType: undefined,
+      controls: undefined
     };
 
-    return new Ember.RSVP.Promise(function (resolve, reject) {
-      // TODO: Replace promises to use fd-preload-stage-metadata and store.peekRecord().
-      // Load «editform».
-      let loadClassesPromise = new Ember.RSVP.Promise(function (resolveLoadClasses, rejectLoadClasses) {
-        let predicateEditformId = new Query.SimplePredicate('id', FilterOperator.Eq, params.id);
+    let store = this.get('store');
+    let stageId = this.get('currentProjectContext').getCurrentStage();
 
-        let builderEditform = new  Builder(_this.store, 'fd-dev-class').
-        select('id,name,caption,description,formViews,formViews.view,formViews.view.class,formViews.view.class.id,formViews.view.definition').
-        where(predicateEditformId);
+    let allClasses = store.peekAll('fd-dev-class');
+    let allStages = store.peekAll('fd-dev-stage');
 
-        _this.store.query('fd-dev-class', builderEditform.build()).then((result) => {
-          let editform = result.objectAt(0);
-          if (!editform.get('caption')) {
-            editform.set('caption', editform.get('name'));
-          }
+    // Editform.
+    let editform = allClasses.findBy('id', params.id);
+    if (!editform.get('caption')) {
+      editform.set('caption', editform.get('name'));
+    }
 
-          modelHash.editform = editform;
-          return editform;
-        }, rejectLoadClasses).then((editform) => {
-          // Load dataobject «implementation».
-          let dataobjectId = editform.get('formViews').objectAt(0).get('view.class.id'); // TODO: Check array.
-          let predicateDataobjectId = new Query.SimplePredicate('id', FilterOperator.Eq, dataobjectId);
+    modelHash.editform = editform;
 
-          let builderDataobject = new  Builder(_this.store, 'fd-dev-class').
-          select('id,name,caption,description').
-          where(predicateDataobjectId);
+    // Dataobject.
+    let dataobjectId = editform.get('formViews').objectAt(0).get('view.class.id');
+    modelHash.dataobject = allClasses.findBy('id', dataobjectId);
 
-          _this.store.query('fd-dev-class', builderDataobject.build()).then((resultDataobject) => {
-            modelHash.dataobject = resultDataobject.objectAt(0);
-            resolveLoadClasses(modelHash);
-          }, rejectLoadClasses);
-        }, reject);
-      });
+    // Attributes.
+    let classId = editform.get('formViews.firstObject.view.class.id');
 
-      // Stage with type map.
-      let predicateId = new Query.SimplePredicate('id', FilterOperator.Eq, stageId);
+    let dataForBuildTree = getDataForBuildTree(store, classId);
+    modelHash.attributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes, classId, 'type');
+    modelHash.masters = getAssociationTreeNode(Ember.A(), dataForBuildTree.associations, 'node_', classId, 'name');
+    modelHash.details = getAggregationTreeNode(Ember.A(), dataForBuildTree.aggregations, classId, 'name');
 
-      let builderStage = new  Builder(_this.store, 'fd-dev-stage').
-      select('id,typeMapCSStr').
-      where(predicateId);
+    // simpleTypes.
+    let fdDataTypes = FdDataTypes.create();
+    modelHash.simpleTypes = this._buildTree(fdDataTypes.flexberryTypes(), 'property');
 
-      let loadTypemapPromise = _this.store.query('fd-dev-stage', builderStage.build()).then((result) => {
-        let stage = result.objectAt(0);
-        modelHash.typemap = stage.get('typeMapCSStr');
-        return modelHash;
-      }, reject);
-
-      let predicateStageId = new Query.SimplePredicate('stage.id', FilterOperator.Eq, stageId);
-
-      // Enums
-      let predicateEnumerationStereorype = new Query.SimplePredicate('stereotype', FilterOperator.Eq, '«enumeration»');
-      let predicateEnumeration = new Query.ComplexPredicate(Query.Condition.And, predicateStageId, predicateEnumerationStereorype);
-
-      let builderEnumeration = new  Builder(_this.store, 'fd-dev-class').
-      select('id,name,caption,description,stereotype,stage.id').
-      where(predicateEnumeration);
-
-      let promiseEnumeration = _this.store.query('fd-dev-class', builderEnumeration.build()).then((result) => {
-        modelHash.enums = result;
-        return modelHash;
-      }, reject);
-
-      // Type
-      let predicateTypeStereorype = new Query.SimplePredicate('stereotype', FilterOperator.Eq, '«type»');
-      let predicateType = new Query.ComplexPredicate(Query.Condition.And, predicateStageId, predicateTypeStereorype);
-
-      let builderType = new  Builder(_this.store, 'fd-dev-class').
-      select('id,name,caption,description,stereotype,stage.id').
-      where(predicateType);
-
-      let promiseType = _this.store.query('fd-dev-class', builderType.build()).then((result) => {
-        modelHash.types = result;
-        return modelHash;
-      }, reject);
-
-      Ember.RSVP.all([loadClassesPromise, loadTypemapPromise, promiseEnumeration, promiseType]).then(() => {
-        let controlTree = Ember.A();
-
-        let definition = modelHash.editform.get('formViews.firstObject.view.definition');
-        for (let i = 0; i < definition.length; i++) {
-          let propertyDefinition = definition[i];
-          if (!propertyDefinition.visible) {
-            continue;
-          }
-
-          _this._locateControl(controlTree, propertyDefinition, propertyDefinition.path);
-        }
-
-        modelHash.controls = controlTree;
-        resolve(modelHash);
-      });
+    // Implementation.
+    let implementation = allClasses.filter(function(item) {
+      return (item.get('stereotype') === '«implementation»' || item.get('stereotype') === null) && item.get('stage.id') === stageId;
     });
+    modelHash.mastersType = this._buildTree(implementation, 'master', true);
+
+    // Implementation not details.
+    let recordsAggregation = store.peekAll('fd-dev-aggregation');
+    let details = implementation.filter(function(item) {
+      return recordsAggregation.findBy('endClass.id', item.id) === undefined && item.id !== classId;
+    });
+    modelHash.detailsType = this._buildTree(details, 'detail', true);
+
+    // Typemap.
+    let currentStage = allStages.findBy('id', stageId);
+    let typeMapCSStr = currentStage.get('typeMapCSStr');
+    let typemap = typeMapCSStr.filter(function(item) {
+      return fdDataTypes.fDTypeToFlexberry(item.name) === null;
+    });
+    modelHash.typemap = this._buildTree(typemap, '«typemap»');
+
+    // Enums.
+    let enums = allClasses.filter(function(item) {
+      return item.get('stereotype') === '«enumeration»' && item.get('stage.id') === stageId;
+    });
+    modelHash.enums = this._buildTree(enums, '«enumeration»');
+
+    // Types.
+    let types = allClasses.filter(function(item) {
+      return item.get('stereotype') === '«type»' && item.get('stage.id') === stageId;
+    });
+    modelHash.types = this._buildTree(types, '«type»');
+
+    // Controls.
+    let controlTree = Ember.A();
+    let definition = modelHash.editform.get('formViews.firstObject.view.definition');
+    for (let i = 0; i < definition.length; i++) {
+      let propertyDefinition = definition[i];
+      if (!propertyDefinition.visible) {
+        continue;
+      }
+
+      this._locateControl(controlTree, propertyDefinition, propertyDefinition.path);
+    }
+
+    modelHash.controls = controlTree;
+
+    return modelHash;
   },
 
   /**
@@ -165,7 +157,12 @@ export default Ember.Route.extend({
   */
   _locateControlInRow: function (row, propertyDefinition) {
     // TODO: вычислить type контрола из метаданных атрибута или FormControl и width из path.
-    let control = FdEditformControl.create({ caption: propertyDefinition.caption || propertyDefinition.name, type: 'string', width: '100*' });
+    let control = FdEditformControl.create({
+      caption: propertyDefinition.caption || propertyDefinition.name,
+      name: propertyDefinition.name,
+      type: 'string',
+      width: '100*'
+    });
 
     row.get('controls').pushObject(control);
     row.set('columnsCount', row.get('columnsCount') + 1);
@@ -360,5 +357,63 @@ export default Ember.Route.extend({
     } else {
       return this._locateControlInRow(row, propertyDefinition);
     }
+  },
+
+  /**
+      Create tree.
+
+      @method _buildTree
+      @param {Array} data Data for tree.
+      @param {String} type Type for tree.
+      @param {Boolean} nodeId Flag need add in object node id.
+      @return {Object} Object data for tree.
+  */
+  _buildTree: function(data, type, nodeId) {
+    let treeData = Ember.A();
+    data.forEach((item, index)=> {
+      let text;
+      if (type === '«typemap»') {
+        text = item.name;
+      } else if (type === 'property') {
+        text = item;
+      } else {
+        text = item.get('name');
+      }
+
+      let newNode = FdAttributesTree.create({
+        text: text,
+        type: type,
+        id: type + index
+      });
+
+      if (!Ember.isNone(nodeId)) {
+        newNode.set('idNode', item.get('id'));
+      }
+
+      treeData.pushObject(newNode);
+    });
+
+    return treeData;
+  },
+
+  /**
+      Create type tree.
+
+      @method _createTypeTree
+      @param {Array} data Data for type tree.
+      @return {Object} Object data for type tree.
+  */
+  _createTypeTree(nodes) {
+    let typeTree = Ember.A();
+    nodes.forEach((node) => {
+      typeTree.pushObject(
+        FdAttributesTree.create({
+          text: node.get('name'),
+          type: node.get('type'),
+          id: node.get('id')
+        }));
+    });
+
+    return typeTree;
   }
 });

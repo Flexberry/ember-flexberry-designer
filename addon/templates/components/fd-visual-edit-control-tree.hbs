@@ -1,0 +1,143 @@
+{{#if (not selectedItem)}}
+  <div class="ui info message">
+    <div class="header">
+      {{t 'components.fd-visual-edit-control-tree.selected-element-null'}}
+    </div>
+    <p>{{t 'components.fd-visual-edit-control-tree.selected-element-change'}}</p>
+  </div>
+{{else}}
+
+  <div class="field">
+    <label>{{t "components.fd-visual-edit-control-tree.header"}}</label>
+    {{
+      flexberry-textbox
+      value=selectedItem.caption
+    }}
+  </div>
+
+  <div class="field">
+    <label>{{t "components.fd-visual-edit-control-tree.property-name"}}</label>
+    {{
+      flexberry-textbox
+      value=selectedItem.name
+      readonly=true
+    }}
+  </div>
+
+  {{#flexberry-toggler caption=(t 'components.fd-visual-edit-control-tree.edit-property')}}
+    {{#if treeViewMode}}
+      <div>
+        <div class="ui buttons">
+          <button class='ui button icon' {{action "addAttribute" on="click" }}>
+            <i class="plus icon"></i>
+          </button>
+          <button class='ui button icon {{editAttributeDisabled}}' {{action "editAttribute" on="click" }}>
+            <i class="edit icon"></i>
+          </button>
+          <button class='ui button icon {{removeAttributeDisabled}}' {{action "removeAttribute" on="click" }}>
+            <i class="remove icon"></i>
+          </button>
+          <button class='ui button icon {{applyAttributeDisabled}}' {{action "applyAttribute" on="click" }}>
+            <i class="check icon"></i>
+          </button>
+        </div>
+        <div class="ui segments">
+          <div class="ui segment overflow-panel">
+            {{
+              ember-jstree
+              actionReceiver=actionReceiverAttributesTree
+              selectedNodes=selectedNodesAttributesTree
+              data=dataAttributesTree
+              plugins=plugins
+              typesOptions=typesOptions
+              treeObject=treeObjectAttributesTree
+              eventDidBecomeReady=(action 'handleTreeDidBecomeReady')
+            }}
+          </div>
+        </div>
+      </div>
+    {{else}}
+    <div class="field">
+      <label>{{t "components.fd-visual-edit-control-tree.property-name"}}</label>
+      {{
+        flexberry-textbox
+        value=propertyName
+      }}
+    </div>
+    <div class="field">
+      <label>{{t "components.fd-visual-edit-control-tree.type"}}</label>
+      {{
+        ember-jstree
+        selectedNodes=selectedNodesTypeTree
+        data=dataTypeTree
+        plugins=plugins
+        typesOptions=typesOptions
+      }}
+    </div>
+    <button class='ui button {{applyTypeDisabled}}' {{action "applyСlick" on="click" }}>
+      {{t "components.fd-visual-edit-control-tree.apply"}}
+    </button>
+    <button class='ui button' {{action "cancelСlick" on="click" }}>
+      {{t "components.fd-visual-edit-control-tree.cancel"}}
+    </button>
+    {{/if}}
+  {{/flexberry-toggler}}
+
+  {{#if (eq selectedItem.type 'detail')}}
+    <div class="field">
+      <label>{{t "components.fd-visual-edit-control-tree.detail-view"}}</label>
+      {{
+        flexberry-dropdown
+        items=dropdownItems
+        value=selectedItem.view
+      }}
+    </div>
+  {{/if}}
+  {{#if (eq selectedItem.type 'master')}}
+    <div class="field">
+      <label>{{t "components.fd-visual-edit-control-tree.master-list-form"}}</label>
+      {{
+        flexberry-dropdown
+        items=dropdownItems
+        value=selectedItem.view
+      }}
+    </div>
+    <div class="field">
+      <label>{{t "components.fd-visual-edit-control-tree.master-property"}}</label>
+      {{
+        flexberry-textbox
+        value=selectedItem.propertyNameInMaster
+      }}
+    </div>
+  {{/if}}
+
+  <div class="field">
+    <label>{{t "components.fd-visual-edit-control-tree.not-null"}}</label>
+    {{
+      flexberry-checkbox
+      value=selectedItem.notNull
+    }}
+  </div>
+  <div class="field">
+    <label>{{t "components.fd-visual-edit-control-tree.default-value"}}</label>
+    {{
+      flexberry-textbox
+      value=selectedItem.defaultValue
+    }}
+  </div>
+  <div class="field">
+    <label>{{t "components.fd-visual-edit-control-tree.readonly"}}</label>
+    {{
+      flexberry-checkbox
+      value=selectedItem.readonly
+    }}
+  </div>
+  <div class="field">
+    <label>{{t "components.fd-visual-edit-control-tree.description"}}</label>
+    {{
+      flexberry-textarea
+      value=selectedItem.description
+    }}
+  </div>
+
+{{/if}}

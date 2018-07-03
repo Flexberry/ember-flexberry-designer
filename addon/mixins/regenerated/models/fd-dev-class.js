@@ -1271,7 +1271,11 @@ export let defineProjections = function (modelClass) {
           name: Projection.attr('')
         })
       })
-    })
+    }),
+    attributes: Projection.hasMany('fd-dev-attribute', '', {
+      type: Projection.attr(''),
+      name: Projection.attr('')
+    }),
   });
   modelClass.defineProjection('Generator', 'fd-dev-class', {
     referenceCount: Projection.attr(''),
