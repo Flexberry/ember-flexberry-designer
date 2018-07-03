@@ -4,9 +4,13 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Added
 * The edit form constructor:
+  * Save the definition of the view.
   * Deselect.
   * The row select.
   * Highlighting the selected items.
+  * Button for removing items.
+  * Button for moving items.
+  * Buttons for sorting items.
 * The view edit form:
   * Add the "Visibility" checkbox to the table.
   * Retracting controls if nothing is selected.

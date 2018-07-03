@@ -161,7 +161,8 @@ export default Ember.Route.extend({
       caption: propertyDefinition.caption || propertyDefinition.name,
       name: propertyDefinition.name,
       type: 'string',
-      width: '100*'
+      width: '100*',
+      propertyDefinition: propertyDefinition,
     });
 
     row.get('controls').pushObject(control);
