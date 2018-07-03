@@ -11,16 +11,16 @@ let getDataForBuildTree = function(store, id) {
   let classData = recordsDevClass.filterBy('id', id);
 
   // Get array association for current class.
-  var recordsAssociation = store.peekAll('fd-dev-association');
+  let recordsAssociation = store.peekAll('fd-dev-association');
   let associationData = recordsAssociation.filterBy('endClass.id', id);
 
   // Get array aggregation for current class.
-  var recordsAggregation = store.peekAll('fd-dev-aggregation');
+  let recordsAggregation = store.peekAll('fd-dev-aggregation');
   let aggregationData = recordsAggregation.filterBy('startClass.id', id);
   associationData.pushObjects(recordsAggregation.filterBy('endClass.id', id));
 
   // Get aggregation array for parent current class.
-  var recordsInheritance = store.peekAll('fd-dev-inheritance');
+  let recordsInheritance = store.peekAll('fd-dev-inheritance');
   let inheritanceData = recordsInheritance.filterBy('child.id', id);
 
   while (inheritanceData.length > 0) {

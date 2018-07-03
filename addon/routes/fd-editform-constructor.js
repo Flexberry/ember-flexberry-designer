@@ -16,6 +16,8 @@ export default Ember.Route.extend({
     let modelHash = {
       editform: undefined,
       dataobject: undefined,
+      association: undefined,
+      aggregation: undefined,
       attributes: undefined,
       typemap: undefined,
       enums: undefined,
@@ -33,6 +35,8 @@ export default Ember.Route.extend({
 
     let allClasses = store.peekAll('fd-dev-class');
     let allStages = store.peekAll('fd-dev-stage');
+    let allAssociation = store.peekAll('fd-dev-association');
+    let allAggregation = store.peekAll('fd-dev-aggregation');
 
     // Editform.
     let editform = allClasses.findBy('id', params.id);
@@ -46,13 +50,18 @@ export default Ember.Route.extend({
     let dataobjectId = editform.get('formViews').objectAt(0).get('view.class.id');
     modelHash.dataobject = allClasses.findBy('id', dataobjectId);
 
-    // Attributes.
-    let classId = editform.get('formViews.firstObject.view.class.id');
+    // Association for current class.
+    modelHash.association = allAssociation.filterBy('endClass.id', dataobjectId);
+    modelHash.association.pushObjects(allAggregation.filterBy('endClass.id', dataobjectId));
 
-    let dataForBuildTree = getDataForBuildTree(store, classId);
-    modelHash.attributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes, classId, 'type');
-    modelHash.masters = getAssociationTreeNode(Ember.A(), dataForBuildTree.associations, 'node_', classId, 'name');
-    modelHash.details = getAggregationTreeNode(Ember.A(), dataForBuildTree.aggregations, classId, 'name');
+    // Aggregation for current class.
+    modelHash.aggregation = allAggregation.filterBy('startClass.id', dataobjectId);
+
+    // Attributes.
+    let dataForBuildTree = getDataForBuildTree(store, dataobjectId);
+    modelHash.attributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes, dataobjectId, 'type');
+    modelHash.masters = getAssociationTreeNode(Ember.A(), dataForBuildTree.associations, 'node_', dataobjectId, 'name');
+    modelHash.details = getAggregationTreeNode(Ember.A(), dataForBuildTree.aggregations, dataobjectId, 'name');
 
     // simpleTypes.
     let fdDataTypes = FdDataTypes.create();
@@ -67,7 +76,7 @@ export default Ember.Route.extend({
     // Implementation not details.
     let recordsAggregation = store.peekAll('fd-dev-aggregation');
     let details = implementation.filter(function(item) {
-      return recordsAggregation.findBy('endClass.id', item.id) === undefined && item.id !== classId;
+      return recordsAggregation.findBy('endClass.id', item.id) === undefined && item.id !== dataobjectId;
     });
     modelHash.detailsType = this._buildTree(details, 'detail', true);
 
