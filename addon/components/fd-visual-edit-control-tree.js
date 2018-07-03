@@ -194,11 +194,12 @@ export default Ember.Component.extend({
       this.set('removeAttributeDisabled', 'disabled');
       this.set('applyAttributeDisabled', 'disabled');
     } else {
-      this.set('editAttributeDisabled', '');
       this.set('applyAttributeDisabled', '');
       if (selectedNodes[0].original.own) {
+        this.set('editAttributeDisabled', '');
         this.set('removeAttributeDisabled', '');
       } else {
+        this.set('editAttributeDisabled', 'disabled');
         this.set('removeAttributeDisabled', 'disabled');
       }
     }
@@ -491,8 +492,8 @@ export default Ember.Component.extend({
     let idTree = node.get('id');
 
     let dataForBuildTree = getDataForBuildTree(store, idNode);
-    let childrenAttributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes, idNode, 'type');
-    let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, idTree, idNode, 'name');
+    let childrenAttributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes, null, 'type');
+    let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, idTree, null, 'name');
 
     node.set('children', childrenNode);
     node.set('copyChildren', childrenNode);
