@@ -41,9 +41,9 @@ export default Ember.Controller.extend({
             },
             'out': {
               position: 'absolute'
-            },
+            }
           }
-      	}
+        }
       });
       _this.graph.addCell(jUseCase);
 
@@ -57,9 +57,9 @@ export default Ember.Controller.extend({
             },
             'out': {
               position: 'absolute'
-            },
+            }
           }
-      	}
+        }
       });
       _this.graph.addCell(jUseCaseActor);
 
@@ -74,9 +74,9 @@ export default Ember.Controller.extend({
             },
             'out': {
               position: 'absolute'
-            },
+            }
           }
-      	}
+        }
       });
       _this.graph.addCell(jUseCaseBoundary);
 
