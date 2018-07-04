@@ -115,6 +115,8 @@
     <pre class="prettyprint linenums">
 import Ember from &#x27;ember&#x27;;
 import layout from &#x27;../templates/components/fd-visual-edit-control-tree&#x27;;
+import FdViewAttributesMaster from &#x27;../objects/fd-view-attributes-master&#x27;;
+import FdViewAttributesDetail from &#x27;../objects/fd-view-attributes-detail&#x27;;
 import FdAttributesTree from &#x27;../objects/fd-attributes-tree&#x27;;
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode } from &#x27;../utils/fd-attributes-for-tree&#x27;;
 
@@ -157,6 +159,18 @@ export default Ember.Component.extend({
     @property oldPropertyName
   */
   oldPropertyName: undefined,
+
+  /**
+    Flag: indicates whether selectet property is readonly.
+
+    @property readonly
+    @type Boolean
+    @default false
+   */
+  readonly: false,
+
+  // TODO Delete this property when will make &#x27;propertyLookupStr&#x27;.
+  view: &#x27;&#x27;,
 
   /*
     Setting off for buttons of the tree.
@@ -255,6 +269,50 @@ export default Ember.Component.extend({
     }
   })),
 
+  /**
+    Data selected attribute for editing.
+
+    @property selectedAttribute
+    @type Object
+  */
+  selectedAttribute: Ember.computed(&#x27;selectedItem.propertyDefinition.name&#x27;, function() {
+    let propertyDefinition = this.get(&#x27;selectedItem.propertyDefinition&#x27;);
+    if (Ember.isNone(propertyDefinition)) {
+      return;
+    }
+
+    let attribute;
+    let namesPropertyDefinition = propertyDefinition.name.split(&#x27;.&#x27;);
+    if (namesPropertyDefinition.length &gt; 1) {
+      this.set(&#x27;readonly&#x27;, true);
+    } else {
+      this.set(&#x27;readonly&#x27;, false);
+    }
+
+    if (propertyDefinition instanceof FdViewAttributesDetail) {
+      this.set(&#x27;selectedItem.type&#x27;, &#x27;detail&#x27;);
+      let aggregation = this.get(&#x27;model.aggregation&#x27;);
+      attribute = aggregation.findBy(&#x27;endRole&#x27;, namesPropertyDefinition[0]);
+    } else if (propertyDefinition instanceof FdViewAttributesMaster) {
+      this.set(&#x27;selectedItem.type&#x27;, &#x27;master&#x27;);
+      let parsingResult = this._parsingPropertyName(namesPropertyDefinition);
+      attribute = parsingResult.associations[0];
+    } else {
+      let parsingResult = this._parsingPropertyName(namesPropertyDefinition);
+      let selectedClass = this.get(&#x27;store&#x27;).peekAll(&#x27;fd-dev-class&#x27;).findBy(&#x27;id&#x27;, parsingResult.classId);
+      let attributes = selectedClass.get(&#x27;attributes&#x27;);
+      let index = namesPropertyDefinition.length - 1;
+      attribute = attributes.findBy(&#x27;name&#x27;, namesPropertyDefinition[index]);
+    }
+
+    return attribute;
+  }),
+
+  /**
+    Handles changes in propertyName.
+
+    @method _propertyNameObserver
+  */
   _propertyNameObserver: Ember.observer(&#x27;propertyName&#x27;, function() {
     let propertyName = this.get(&#x27;propertyName&#x27;);
     let oldPropertyName = this.get(&#x27;oldPropertyName&#x27;);
@@ -274,6 +332,11 @@ export default Ember.Component.extend({
     }
   }),
 
+  /**
+    Handles changes in selectedItem.
+
+    @method _selectedItemObserver
+  */
   _selectedItemObserver: Ember.observer(&#x27;selectedItem&#x27;, function() {
     let selectedItem = this.get(&#x27;selectedItem&#x27;);
     if (!Ember.isNone(selectedItem)) {
@@ -288,7 +351,7 @@ export default Ember.Component.extend({
           return item.get(&#x27;formViews.firstObject.view.class.id&#x27;) === selectedItemClass.id &amp;&amp;
            item.get(&#x27;stereotype&#x27;) === &#x27;«listform»&#x27;;
         });
-        let listFormsName = listForms.mapBy(&#x27;name&#x27;);
+        let listFormsName = Ember.A(listForms).mapBy(&#x27;name&#x27;);
         this.set(&#x27;dropdownItems&#x27;, listFormsName);
       } else if (selectedItem.type === &#x27;detail&#x27;) {
         let allClasses = this.get(&#x27;store&#x27;).peekAll(&#x27;fd-dev-class&#x27;);
@@ -302,6 +365,11 @@ export default Ember.Component.extend({
     }
   }),
 
+  /**
+    Handles changes in selectedNodesAttributesTree.
+
+    @method _selectedNodesAttributesTreeObserver
+  */
   _selectedNodesAttributesTreeObserver: Ember.observer(&#x27;selectedNodesAttributesTree&#x27;, function() {
     let selectedNodes = this.get(&#x27;selectedNodesAttributesTree&#x27;);
     if (selectedNodes.length === 0 || selectedNodes[0].type === &#x27;class&#x27;) {
@@ -320,6 +388,11 @@ export default Ember.Component.extend({
     }
   }),
 
+  /**
+    Handles changes in selectedNodesTypeTree.
+
+    @method _selectedNodesTypeTreeObserver
+  */
   _selectedNodesTypeTreeObserver: Ember.observer(&#x27;selectedNodesTypeTree&#x27;, function() {
     let selectedNodes = this.get(&#x27;selectedNodesTypeTree&#x27;);
     if (selectedNodes.length === 0 || selectedNodes[0].type === &#x27;class&#x27;) {
@@ -344,7 +417,7 @@ export default Ember.Component.extend({
     /**
       Add new attribute.
 
-      @method actions.applyСlick
+      @method actions.addAttribute
     */
     addAttribute() {
       this.set(&#x27;treeViewMode&#x27;, false);
@@ -357,7 +430,7 @@ export default Ember.Component.extend({
     /**
       Edit select attribute.
 
-      @method actions.applyСlick
+      @method actions.editAttribute
     */
     editAttribute() {
       this.set(&#x27;treeViewMode&#x27;, false);
@@ -417,6 +490,11 @@ export default Ember.Component.extend({
       this.set(&#x27;selectedNodesAttributesTree&#x27;, Ember.A());
     },
 
+    /**
+      Handles select node from attribute jsTree.
+
+      @method actions.applyAttribute
+    */
     applyAttribute() {
       let selectedNodes = this.get(&#x27;selectedNodesAttributesTree&#x27;);
 
@@ -455,7 +533,7 @@ export default Ember.Component.extend({
           return item.get(&#x27;formViews.firstObject.view.class.id&#x27;) === selectedNodes[0].original.idNode &amp;&amp;
            item.get(&#x27;stereotype&#x27;) === &#x27;«listform»&#x27;;
         });
-        let listFormsName = listForms.mapBy(&#x27;name&#x27;);
+        let listFormsName = Ember.A(listForms).mapBy(&#x27;name&#x27;);
         this.set(&#x27;dropdownItems&#x27;, listFormsName);
       } else if (selectedNodes[0].type === &#x27;detail&#x27;) {
         this.set(&#x27;selectedItem.view&#x27;, undefined);
@@ -543,7 +621,7 @@ export default Ember.Component.extend({
     /**
       Open attributes tree.
 
-      @method actions.applyСlick
+      @method actions.cancelСlick
     */
     cancelСlick() {
       let attributesTree = this.get(&#x27;dataAttributesTree&#x27;);
@@ -554,6 +632,7 @@ export default Ember.Component.extend({
 
   /**
     Overridden action for jsTree &#x27;openNode&#x27;.
+
     @method _openNodeTree
   */
   _openNodeTree(e, data) {
@@ -565,6 +644,7 @@ export default Ember.Component.extend({
 
   /**
     Overridden action for jsTree &#x27;eventDidClose&#x27;.
+
     @method _afterCloseNodeTree
   */
   _afterCloseNodeTree(e, data) {
@@ -573,6 +653,7 @@ export default Ember.Component.extend({
 
   /**
     Method for restoring tree nodes.
+
     @method _restorationNodeTree
   */
   _restorationNodeTree(nodeArray, wantedNode) {
@@ -599,6 +680,7 @@ export default Ember.Component.extend({
 
   /**
     Method for loading tree node data.
+
     @method _getChildrenNode
   */
   _getChildrenNode(node) {
@@ -612,6 +694,36 @@ export default Ember.Component.extend({
 
     node.set(&#x27;children&#x27;, childrenNode);
     node.set(&#x27;copyChildren&#x27;, childrenNode);
+  },
+
+  /**
+    Method for find association and class by propertyName.
+
+    @method _parsingPropertyName
+  */
+  _parsingPropertyName(propertyName) {
+    let store = this.get(&#x27;store&#x27;);
+    let stageId = this.get(&#x27;currentProjectContext&#x27;).getCurrentStage();
+    let allAssociation = store.peekAll(&#x27;fd-dev-association&#x27;).filterBy(&#x27;stage.id&#x27;, stageId);
+
+    let startRole = propertyName[0];
+    let endRoleID = this.get(&#x27;model.dataobject.id&#x27;);
+    let associationSelectedClass = allAssociation.filter(function(item) {
+      return item.get(&#x27;endClass.id&#x27;) === endRoleID &amp;&amp; item.get(&#x27;realStartRole&#x27;) === startRole;
+    });
+
+    for (let i = 1; i &lt; propertyName.length; i++) {
+      startRole = propertyName[i];
+      endRoleID = associationSelectedClass[0].get(&#x27;startClass.id&#x27;);
+      let associationFilteBuId = allAssociation.filterBy(&#x27;endClass.id&#x27;, endRoleID);
+      let associationFilteBRole = Ember.A(associationFilteBuId).filterBy(&#x27;realStartRole&#x27;, startRole);
+      associationSelectedClass = associationFilteBRole;
+    }
+
+    return {
+      classId: endRoleID,
+      associations: associationSelectedClass
+    };
   },
 
   /**
