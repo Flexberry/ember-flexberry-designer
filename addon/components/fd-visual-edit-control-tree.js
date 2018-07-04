@@ -154,7 +154,7 @@ export default Ember.Component.extend({
 
     let attribute;
     let namesPropertyDefinition = propertyDefinition.name.split('.');
-    if (namesPropertyDefinition.length > 1 ) {
+    if (namesPropertyDefinition.length > 1) {
       this.set('readonly', true);
     } else {
       this.set('readonly', false);
