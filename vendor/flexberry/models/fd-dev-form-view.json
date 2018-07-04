@@ -141,13 +141,13 @@
           "index": 0
         },
         {
-          "name": "dataObjectTypes",
+          "name": "dataObjectTypesStr",
           "caption": "",
           "hidden": false,
           "index": 2
         },
         {
-          "name": "listFormOperations",
+          "name": "listFormOperationsStr",
           "caption": "",
           "hidden": false,
           "index": 3
@@ -245,6 +245,48 @@
             }
           ],
           "index": -1,
+          "caption": "",
+          "name": "view",
+          "relatedTo": "fd-dev-view",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "FdPreloadMetadata",
+      "modelName": "fd-dev-form-view",
+      "attrs": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "View",
+          "belongsTo": [
+            {
+              "lookupValue": null,
+              "lookupValueField": null,
+              "relationName": "View.Views",
+              "belongsTo": [],
+              "hidden": false,
+              "attrs": [
+                {
+                  "name": "name",
+                  "caption": "",
+                  "hidden": false,
+                  "index": 2
+                }
+              ],
+              "index": 1,
+              "caption": "",
+              "name": "class",
+              "relatedTo": "fd-dev-class",
+              "inverse": null
+            }
+          ],
+          "hidden": false,
+          "attrs": [],
+          "index": 0,
           "caption": "",
           "name": "view",
           "relatedTo": "fd-dev-view",

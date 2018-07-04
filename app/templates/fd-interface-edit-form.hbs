@@ -1,0 +1,154 @@
+<h3 class="ui header">{{t 'forms.fd-interface-edit-form.caption'}}</h3>
+
+<form class="ui form flexberry-vertical-form" role="form">
+  {{flexberry-error error=error}}
+  <div class="field">
+    <div class="sixteen wide">
+      {{flexberry-validationsummary errors=model.errors}}
+    </div>
+  </div>
+  <div class="field">
+    <div class="flexberry-edit-panel">
+      {{#unless readonly}}
+        <button type="submit" class="ui button save-button" {{action 'save'}}>
+          {{t "forms.edit-form.save-button-text"}}
+        </button>
+        {{#unless model.isNew}}
+          <button type="submit" class="ui button save-del-button" {{action 'delete'}}>
+            {{t "forms.edit-form.delete-button-text"}}
+          </button>
+        {{/unless}}
+      {{/unless}}
+      <button type="submit" class="ui button close-button" {{action 'close'}}>
+        {{t "forms.edit-form.close-button-text"}}
+      </button>
+    </div>
+  </div>
+  <div class="field">
+  <label>{{t 'forms.fd-interface-edit-form.businessServerClass-caption'}}</label>
+  {{
+    flexberry-lookup
+    choose='showLookupDialog'
+    remove='removeLookupValue'
+    value=model.businessServerClass
+    
+    relationName='businessServerClass'
+    projection='ListFormView'
+    title=(t 'forms.fd-interface-edit-form.businessServerClass-caption')
+    readonly=readonly
+  }}
+  {{flexberry-validationmessage error=model.errors.businessServerClass pointing="pointing"}}
+</div>
+
+<div class="field">
+  <label>{{t 'forms.fd-interface-edit-form.businessServerEvents-caption'}}</label>
+  {{
+    flexberry-dropdown
+    items=(flexberry-enum 'i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events')
+    value=model.businessServerEvents
+    readonly=readonly
+  }}
+  {{flexberry-validationmessage error=model.errors.businessServerEvents pointing="pointing"}}
+</div>
+
+<div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=readonly
+    required=true
+    value=model.description
+    class=(if model.errors.description 'error' '')
+    label=(t 'forms.fd-interface-edit-form.description-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.description pointing="pointing"}}
+</div>
+
+<div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=readonly
+    required=true
+    value=model.name
+    class=(if model.errors.name 'error' '')
+    label=(t 'forms.fd-interface-edit-form.name-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.name pointing="pointing"}}
+</div>
+
+<div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=readonly
+    required=true
+    value=model.namespacePostfix
+    class=(if model.errors.namespacePostfix 'error' '')
+    label=(t 'forms.fd-interface-edit-form.namespacePostfix-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.namespacePostfix pointing="pointing"}}
+</div>
+
+<div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=readonly
+    required=true
+    value=model.packet
+    class=(if model.errors.packet 'error' '')
+    label=(t 'forms.fd-interface-edit-form.packet-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.packet pointing="pointing"}}
+</div>
+
+<div class="field">
+  <label>{{t 'forms.fd-interface-edit-form.pBMembers-caption'}}</label>
+  {{
+    flexberry-checkbox
+    readonly=readonly
+    value=model.pBMembers
+  }}
+</div>
+
+<div class="field">
+  <label>{{t 'forms.fd-interface-edit-form.publishToEBSD-caption'}}</label>
+  {{
+    flexberry-checkbox
+    readonly=readonly
+    value=model.publishToEBSD
+  }}
+</div>
+
+<div class="field">
+  <label>{{t 'forms.fd-interface-edit-form.attributes-caption'}}</label>
+  {{
+    flexberry-groupedit
+    componentName="attributesGroupEdit"
+    mainModelProjection=modelProjection
+    modelProjection=modelProjection.attributes.attributes
+    content=model.attributes
+    readonly=readonly
+    orderable=false
+    class=(if model.errors.attributes 'error' '')
+  }}
+  {{flexberry-validationmessage error=model.errors.attributes pointing="pointing"}}
+</div>
+
+<div class="field">
+  <label>{{t 'forms.fd-interface-edit-form.methods-caption'}}</label>
+  {{
+    flexberry-groupedit
+    componentName="methodsGroupEdit"
+    mainModelProjection=modelProjection
+    modelProjection=modelProjection.attributes.methods
+    content=model.methods
+    readonly=readonly
+    orderable=false
+    class=(if model.errors.methods 'error' '')
+  }}
+  {{flexberry-validationmessage error=model.errors.methods pointing="pointing"}}
+</div>
+
+</form>

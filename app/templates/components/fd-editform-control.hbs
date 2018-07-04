@@ -8,7 +8,8 @@
     {{#each control.rows as |row|}}
       {{fd-editform-row
         row=row
-        selectControlAction=selectControlAction
+        selectedItem=selectedItem
+        selectItemAction=selectItemAction
         setDragItemAction=setDragItemAction
         getDragItemAction=getDragItemAction
         moveDragItemAction=moveDragItemAction
@@ -18,15 +19,16 @@
 {{else if _isTab}}
   <div class="ui top attached tabular menu">
     {{#each control.tabs as |tab index|}}
-      <a class="{{unless index "active"}} item" {{action selectControlAction tab bubbles=false}} data-tab="{{elementId}}-tab-{{index}}">{{tab.caption}}</a>
+      <a class="item {{if (eq tab selectedItem) "selected"}} {{if (eq tab activeTab) "active"}}" {{action "changeTab" tab bubbles=false}}>{{tab.caption}}</a>
     {{/each}}
   </div>
   {{#each control.tabs as |tab index|}}
-    <div class="ui bottom attached {{unless index "active"}} tab segment" data-tab="{{elementId}}-tab-{{index}}">
+    <div class="ui bottom attached tab segment {{if (eq tab selectedItem) "selected"}} {{if (eq tab activeTab) "active"}}">
       {{#each tab.rows as |row|}}
         {{fd-editform-row
           row=row
-          selectControlAction=selectControlAction
+          selectedItem=selectedItem
+          selectItemAction=selectItemAction
           setDragItemAction=setDragItemAction
           getDragItemAction=getDragItemAction
           moveDragItemAction=moveDragItemAction

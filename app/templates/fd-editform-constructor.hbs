@@ -26,7 +26,8 @@
   {{#each model.controls as |control|}}
     {{fd-editform-row
       row=control
-      selectControlAction=(action "selectControl")
+      selectedItem=(readonly selectedItem)
+      selectItemAction=(action "selectItem")
       setDragItemAction=(action "setDragItem")
       getDragItemAction=(action "getDragItem")
       moveDragItemAction=(action "moveDragItem")
@@ -61,7 +62,7 @@
           {{t "forms.fd-editform-constructor.form-config-panel.control-properties-header"}}
         </div>
         {{fd-visual-edit-control
-          selectedControl=selectedControl
+          selectedControl=selectedItem
           typemap=model.typemap
           enums=model.enums
           fbtypes=model.types
@@ -74,18 +75,18 @@
         </div>
         <div class="equal width fields">
           <div class="field">
-            <button class="ui button" {{action "addControl" "control"}}>
+            <button class="ui button" {{action "addControl"}}>
               {{t "forms.fd-editform-constructor.form-config-panel.add-control"}}
             </button>
           </div>
           <div class="field">
-            <button class="ui button" {{action "addControl" "group"}}>
+            <button class="ui button" {{action "addGroup"}}>
               {{t "forms.fd-editform-constructor.form-config-panel.add-group"}}
             </button>
           </div>
           <div class="field">
-            <button class="ui button" {{action "addControl" "tabs"}}>
-              {{t "forms.fd-editform-constructor.form-config-panel.add-tabs"}}
+            <button class="ui button" {{action "addTab"}}>
+              {{t "forms.fd-editform-constructor.form-config-panel.add-tab"}}
             </button>
           </div>
         </div>

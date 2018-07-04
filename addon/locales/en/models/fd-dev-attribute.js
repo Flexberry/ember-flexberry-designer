@@ -311,6 +311,23 @@ export default {
         __caption__: 'pBSetStart'
       }
     },
+    FdClassEditForm: {
+      name: {
+        __caption__: 'name'
+      },
+      caption: {
+        __caption__: 'caption'
+      },
+      type: {
+        __caption__: 'type'
+      },
+      description: {
+        __caption__: 'description'
+      },
+      class: {
+        __caption__: 'class'
+      }
+    },
     FormDesigner: {
       name: {
         __caption__: 'name'

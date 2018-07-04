@@ -10,7 +10,8 @@ moduleForComponent('fd-editform-row', 'Integration | Component | fd-editform-row
 });
 
 test('it renders and works', function(assert) {
-  this.render(hbs`{{fd-editform-row row=row}}`);
+  this.set('selectItemAction', row => this.set('selectedRow', row));
+  this.render(hbs`{{fd-editform-row row=row selectedItem=selectedRow selectItemAction=selectItemAction}}`);
 
   this.set('row', FdEditformRow.create({
     controls: Ember.A([
@@ -21,9 +22,9 @@ test('it renders and works', function(assert) {
     ]),
   }));
   assert.ok(/\s*Attribute #1\s*/.test(this.$().text()), 'With one control.');
-  assert.notOk(this.$('.ember-view:first').hasClass('fields'));
-  assert.notOk(this.$('.ember-view:first').hasClass('equal'));
-  assert.notOk(this.$('.ember-view:first').hasClass('width'));
+  assert.notOk(this.$('.fd-editform-row').hasClass('fields'));
+  assert.notOk(this.$('.fd-editform-row').hasClass('equal'));
+  assert.notOk(this.$('.fd-editform-row').hasClass('width'));
 
   this.set('row', FdEditformRow.create({
     controls: Ember.A([
@@ -38,7 +39,18 @@ test('it renders and works', function(assert) {
     ]),
   }));
   assert.ok(/\s*Attribute #1\s*Attribute #2\s*/.test(this.$().text()), 'With many controls.');
-  assert.ok(this.$('.ember-view:first').hasClass('fields'));
-  assert.ok(this.$('.ember-view:first').hasClass('equal'));
-  assert.ok(this.$('.ember-view:first').hasClass('width'));
+  assert.ok(this.$('.fd-editform-row').hasClass('fields'));
+  assert.ok(this.$('.fd-editform-row').hasClass('equal'));
+  assert.ok(this.$('.fd-editform-row').hasClass('width'));
+
+  assert.notOk(this.get('selectedRow'), 'No selected row.');
+  assert.notOk(this.$('.fd-editform-row').hasClass('selected'), `No 'selected' CSS-class.`);
+
+  this.$('input:first').click();
+  assert.ok(this.get('selectedRow') === this.get('row.controls.firstObject'), 'Click on control in row.');
+  assert.ok(this.$('.fd-editform-row .fd-editform-control').hasClass('selected'), 'Control highlighted.');
+
+  this.$('.fd-editform-row').click();
+  assert.ok(this.get('selectedRow') === this.get('row'), 'Click on row.');
+  assert.ok(this.$('.fd-editform-row').hasClass('selected'), 'Row highlighted.');
 });

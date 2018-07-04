@@ -311,6 +311,23 @@ export default {
         __caption__: ''
       }
     },
+    FdClassEditForm: {
+      name: {
+        __caption__: 'Имя'
+      },
+      caption: {
+        __caption__: 'Заголовок'
+      },
+      type: {
+        __caption__: 'Тип'
+      },
+      description: {
+        __caption__: 'Описание'
+      },
+      class: {
+        __caption__: ''
+      }
+    },
     FormDesigner: {
       name: {
         __caption__: ''

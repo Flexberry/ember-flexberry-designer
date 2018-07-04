@@ -62,7 +62,10 @@
 
     <div class="panel-right">
       <div class="ui buttons">
-          <button class='ui button icon {{editRightNodeDisabled}}' {{action "editRightNode" on="click" }}>
+        <button class='ui button icon {{addRightNodeDisabled}}' {{action "addUrlNode" on="click" }}>
+          <i class="plus icon"></i>
+        </button>
+        <button class='ui button icon {{editRightNodeDisabled}}' {{action "editRightNode" on="click" }}>
           <i class="edit icon"></i>
         </button>
         <button class='ui button icon {{removeRightNodeDisabled}}' {{action "removeRightNode" on="click" }}>
@@ -114,8 +117,8 @@
           {{t "forms.fd-appstruct-form.form-config-panel.app-properties-header"}}
         </div>
       {{/ui-tab-segment}}
-      {{#ui-tab-segment tab='second' title=(t "forms.fd-appstruct-form.form-config-panel.forms-properties-header") theme=""}}
-        {{#if selectedElementForEdit.type}}
+      {{#ui-tab-segment tab='second' title=(t "forms.fd-appstruct-form.form-config-panel.forms-properties-header") theme="" }}
+        {{#if (and (not-eq selectedElementForEdit.type 'url') (not-eq selectedElementForEdit.type 'folder') (not-eq selectedElementForEdit.type 'desk'))}}
           <div class="field">
             <label>{{t "forms.fd-appstruct-form.tab.formName"}}</label>
             {{
@@ -124,24 +127,16 @@
               readonly=true
             }}
           </div>
-          <div class="field">
-            <label>{{t "forms.fd-appstruct-form.tab.formType"}}</label>
-            {{
-              flexberry-textbox
-              value=selectedElementForEdit.type
-              readonly=true
-            }}
-          </div>
-        {{else}}
-          <div class="field">
-            <label>{{t "forms.fd-appstruct-form.tab.url"}}</label>
-            {{
-              flexberry-textbox
-              value=selectedElementForEdit.url
-            }}
-          </div>
         {{/if}}
-        {{#if (or (eq selectedElementForEdit.type 'master') (eq selectedElementForEdit.type 'desk'))}}
+        <div class="field">
+          <label>{{t "forms.fd-appstruct-form.tab.formType"}}</label>
+          {{
+            flexberry-textbox
+            value=selectedElementForEdit.type
+            readonly=true
+          }}
+        </div>
+        {{#if (or (eq selectedElementForEdit.type 'folder') (eq selectedElementForEdit.type 'desk'))}}
           <div class="field">
             <label>{{t "forms.fd-appstruct-form.tab.title"}}</label>
             {{
@@ -156,18 +151,29 @@
             {{
               flexberry-textbox
               value=selectedElementForEdit.caption
-              readonly=(or (eq selectedElementForEdit.type 'master') (eq selectedElementForEdit.type 'desk'))
+              readonly=(or (eq selectedElementForEdit.type 'folder') (eq selectedElementForEdit.type 'desk'))
             }}
           </div>
         {{/if}}
-        <div class="field">
-          <label>{{t "forms.fd-appstruct-form.tab.description"}}</label>
-          {{
-            flexberry-textarea
-            value=selectedElementForEdit.description
-            readonly=(or (eq selectedElementForEdit.type 'master') (eq selectedElementForEdit.type 'desk'))
-          }}
-        </div>
+        {{#if (eq selectedElementForEdit.type 'url')}}
+          <div class="field">
+            <label>{{t "forms.fd-appstruct-form.tab.url"}}</label>
+            {{
+              flexberry-textbox
+              value=selectedElementForEdit.url
+            }}
+          </div>
+        {{/if}}
+        {{#if (and (not-eq selectedElementForEdit.type 'folder') (not-eq selectedElementForEdit.type 'desk'))}}
+          <div class="field">
+            <label>{{t "forms.fd-appstruct-form.tab.description"}}</label>
+            {{
+              flexberry-textarea
+              value=selectedElementForEdit.description
+              readonly=(or (eq selectedElementForEdit.type 'folder') (eq selectedElementForEdit.type 'desk'))
+            }}
+          </div>
+        {{/if}}
       {{/ui-tab-segment}}
     </form>
   {{/fd-tabs}}

@@ -1,0 +1,14 @@
+﻿{
+  "propertyLookup": [],
+  "external": false,
+  "caption": "User form",
+  "name": "FdUserFormEditForm",
+  "className": "UserFormEditForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-dev-class",
+      "modelProjection": "EditUserForm"
+    }
+  ]
+}
