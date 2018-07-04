@@ -3,7 +3,7 @@ import EditFormController from 'ember-flexberry/controllers/edit-form';
 import FdViewAttributesProperty from '../objects/fd-view-attributes-property';
 import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
-import { getTreeNode } from '../utils/fd-get-view-tree-node';
+import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode } from '../utils/fd-attributes-for-tree';
 import { translationMacro as t } from 'ember-i18n';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 
@@ -391,9 +391,13 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     let store = this.get('store');
     let idNode = node.get('idNode');
     let idTree = node.get('id');
-    let tree = getTreeNode(store, idNode, idTree);
-    node.set('children', tree);
-    node.set('copyChildren', tree);
+
+    let dataForBuildTree = getDataForBuildTree(store, idNode);
+    let childrenAttributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes);
+    let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, idTree);
+
+    node.set('children', childrenNode);
+    node.set('copyChildren', childrenNode);
   },
 
   willDestroy() {

@@ -1,0 +1,17 @@
+export default {
+  'selected-element-null': 'Element is not selected',
+  'selected-element-change': 'Click on controls to select Element',
+  header: 'Header',
+  'property-name': 'Property name',
+  'edit-property': 'Edit property',
+  apply: 'Apply',
+  cancel: 'Cancel',
+  type: 'Type',
+  'not-null': 'NotNull',
+  'default-value': 'Default value',
+  readonly: 'Readonly',
+  description: 'Description',
+  'detail-view': 'View detail',
+  'master-list-form': 'List form for Look-Up',
+  'master-property': 'Property in master',
+};
