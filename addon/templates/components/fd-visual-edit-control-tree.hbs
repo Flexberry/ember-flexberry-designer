@@ -11,7 +11,7 @@
     <label>{{t "components.fd-visual-edit-control-tree.header"}}</label>
     {{
       flexberry-textbox
-      value=selectedItem.propertyDefinition.caption
+      value=selectedItem.caption
     }}
   </div>
 
@@ -99,7 +99,7 @@
       {{
         flexberry-dropdown
         items=dropdownItems
-        value=selectedItem.view
+        value=value
       }}
     </div>
     <div class="field">
@@ -111,32 +111,39 @@
     </div>
   {{/if}}
 
+  {{#if (or (eq selectedItem.type 'master') (eq selectedItem.type 'detail'))}}
   <div class="field">
     <label>{{t "components.fd-visual-edit-control-tree.not-null"}}</label>
     {{
       flexberry-checkbox
-      value=selectedItem.notNull
+      value=(eq selectedAttribute.startMultiplicity '1')
+      readonly=readonly
+    }}
+  </div>
+  {{else}}
+  <div class="field">
+    <label>{{t "components.fd-visual-edit-control-tree.not-null"}}</label>
+    {{
+      flexberry-checkbox
+      value=selectedAttribute.notNull
+      readonly=readonly
     }}
   </div>
   <div class="field">
     <label>{{t "components.fd-visual-edit-control-tree.default-value"}}</label>
     {{
       flexberry-textbox
-      value=selectedItem.defaultValue
+      value=selectedAttribute.defaultValue
+      readonly=readonly
     }}
   </div>
-  <div class="field">
-    <label>{{t "components.fd-visual-edit-control-tree.readonly"}}</label>
-    {{
-      flexberry-checkbox
-      value=selectedItem.readonly
-    }}
-  </div>
+  {{/if}}
   <div class="field">
     <label>{{t "components.fd-visual-edit-control-tree.description"}}</label>
     {{
       flexberry-textarea
-      value=selectedItem.description
+      value=selectedAttribute.description
+      readonly=readonly
     }}
   </div>
 

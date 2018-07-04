@@ -1,5 +1,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/fd-visual-edit-control-tree';
+import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
+import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 import FdAttributesTree from '../objects/fd-attributes-tree';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode } from '../utils/fd-attributes-for-tree';
 
@@ -42,6 +44,18 @@ export default Ember.Component.extend({
     @property oldPropertyName
   */
   oldPropertyName: undefined,
+
+  /**
+    Flag: indicates whether selectet property is readonly.
+
+    @property readonly
+    @type Boolean
+    @default false
+   */
+  readonly: false,
+
+  // TODO Delete this property when will make 'propertyLookupStr'.
+  view: '',
 
   /*
     Setting off for buttons of the tree.
@@ -140,6 +154,50 @@ export default Ember.Component.extend({
     }
   })),
 
+  /**
+    Data selected attribute for editing.
+
+    @property selectedAttribute
+    @type Object
+  */
+  selectedAttribute: Ember.computed('selectedItem.propertyDefinition.name', function() {
+    let propertyDefinition = this.get('selectedItem.propertyDefinition');
+    if (Ember.isNone(propertyDefinition)) {
+      return;
+    }
+
+    let attribute;
+    let namesPropertyDefinition = propertyDefinition.name.split('.');
+    if (namesPropertyDefinition.length > 1) {
+      this.set('readonly', true);
+    } else {
+      this.set('readonly', false);
+    }
+
+    if (propertyDefinition instanceof FdViewAttributesDetail) {
+      this.set('selectedItem.type', 'detail');
+      let aggregation = this.get('model.aggregation');
+      attribute = aggregation.findBy('endRole', namesPropertyDefinition[0]);
+    } else if (propertyDefinition instanceof FdViewAttributesMaster) {
+      this.set('selectedItem.type', 'master');
+      let parsingResult = this._parsingPropertyName(namesPropertyDefinition);
+      attribute = parsingResult.associations[0];
+    } else {
+      let parsingResult = this._parsingPropertyName(namesPropertyDefinition);
+      let selectedClass = this.get('store').peekAll('fd-dev-class').findBy('id', parsingResult.classId);
+      let attributes = selectedClass.get('attributes');
+      let index = namesPropertyDefinition.length - 1;
+      attribute = attributes.findBy('name', namesPropertyDefinition[index]);
+    }
+
+    return attribute;
+  }),
+
+  /**
+    Handles changes in propertyName.
+
+    @method _propertyNameObserver
+  */
   _propertyNameObserver: Ember.observer('propertyName', function() {
     let propertyName = this.get('propertyName');
     let oldPropertyName = this.get('oldPropertyName');
@@ -159,6 +217,11 @@ export default Ember.Component.extend({
     }
   }),
 
+  /**
+    Handles changes in selectedItem.
+
+    @method _selectedItemObserver
+  */
   _selectedItemObserver: Ember.observer('selectedItem', function() {
     let selectedItem = this.get('selectedItem');
     if (!Ember.isNone(selectedItem)) {
@@ -173,7 +236,7 @@ export default Ember.Component.extend({
           return item.get('formViews.firstObject.view.class.id') === selectedItemClass.id &&
            item.get('stereotype') === '«listform»';
         });
-        let listFormsName = listForms.mapBy('name');
+        let listFormsName = Ember.A(listForms).mapBy('name');
         this.set('dropdownItems', listFormsName);
       } else if (selectedItem.type === 'detail') {
         let allClasses = this.get('store').peekAll('fd-dev-class');
@@ -187,6 +250,11 @@ export default Ember.Component.extend({
     }
   }),
 
+  /**
+    Handles changes in selectedNodesAttributesTree.
+
+    @method _selectedNodesAttributesTreeObserver
+  */
   _selectedNodesAttributesTreeObserver: Ember.observer('selectedNodesAttributesTree', function() {
     let selectedNodes = this.get('selectedNodesAttributesTree');
     if (selectedNodes.length === 0 || selectedNodes[0].type === 'class') {
@@ -205,6 +273,11 @@ export default Ember.Component.extend({
     }
   }),
 
+  /**
+    Handles changes in selectedNodesTypeTree.
+
+    @method _selectedNodesTypeTreeObserver
+  */
   _selectedNodesTypeTreeObserver: Ember.observer('selectedNodesTypeTree', function() {
     let selectedNodes = this.get('selectedNodesTypeTree');
     if (selectedNodes.length === 0 || selectedNodes[0].type === 'class') {
@@ -229,7 +302,7 @@ export default Ember.Component.extend({
     /**
       Add new attribute.
 
-      @method actions.applyСlick
+      @method actions.addAttribute
     */
     addAttribute() {
       this.set('treeViewMode', false);
@@ -242,7 +315,7 @@ export default Ember.Component.extend({
     /**
       Edit select attribute.
 
-      @method actions.applyСlick
+      @method actions.editAttribute
     */
     editAttribute() {
       this.set('treeViewMode', false);
@@ -302,6 +375,11 @@ export default Ember.Component.extend({
       this.set('selectedNodesAttributesTree', Ember.A());
     },
 
+    /**
+      Handles select node from attribute jsTree.
+
+      @method actions.applyAttribute
+    */
     applyAttribute() {
       let selectedNodes = this.get('selectedNodesAttributesTree');
 
@@ -340,7 +418,7 @@ export default Ember.Component.extend({
           return item.get('formViews.firstObject.view.class.id') === selectedNodes[0].original.idNode &&
            item.get('stereotype') === '«listform»';
         });
-        let listFormsName = listForms.mapBy('name');
+        let listFormsName = Ember.A(listForms).mapBy('name');
         this.set('dropdownItems', listFormsName);
       } else if (selectedNodes[0].type === 'detail') {
         this.set('selectedItem.view', undefined);
@@ -428,7 +506,7 @@ export default Ember.Component.extend({
     /**
       Open attributes tree.
 
-      @method actions.applyСlick
+      @method actions.cancelСlick
     */
     cancelСlick() {
       let attributesTree = this.get('dataAttributesTree');
@@ -439,6 +517,7 @@ export default Ember.Component.extend({
 
   /**
     Overridden action for jsTree 'openNode'.
+
     @method _openNodeTree
   */
   _openNodeTree(e, data) {
@@ -450,6 +529,7 @@ export default Ember.Component.extend({
 
   /**
     Overridden action for jsTree 'eventDidClose'.
+
     @method _afterCloseNodeTree
   */
   _afterCloseNodeTree(e, data) {
@@ -458,6 +538,7 @@ export default Ember.Component.extend({
 
   /**
     Method for restoring tree nodes.
+
     @method _restorationNodeTree
   */
   _restorationNodeTree(nodeArray, wantedNode) {
@@ -484,6 +565,7 @@ export default Ember.Component.extend({
 
   /**
     Method for loading tree node data.
+
     @method _getChildrenNode
   */
   _getChildrenNode(node) {
@@ -497,6 +579,36 @@ export default Ember.Component.extend({
 
     node.set('children', childrenNode);
     node.set('copyChildren', childrenNode);
+  },
+
+  /**
+    Method for find association and class by propertyName.
+
+    @method _parsingPropertyName
+  */
+  _parsingPropertyName(propertyName) {
+    let store = this.get('store');
+    let stageId = this.get('currentProjectContext').getCurrentStage();
+    let allAssociation = store.peekAll('fd-dev-association').filterBy('stage.id', stageId);
+
+    let startRole = propertyName[0];
+    let endRoleID = this.get('model.dataobject.id');
+    let associationSelectedClass = allAssociation.filter(function(item) {
+      return item.get('endClass.id') === endRoleID && item.get('realStartRole') === startRole;
+    });
+
+    for (let i = 1; i < propertyName.length; i++) {
+      startRole = propertyName[i];
+      endRoleID = associationSelectedClass[0].get('startClass.id');
+      let associationFilteBuId = allAssociation.filterBy('endClass.id', endRoleID);
+      let associationFilteBRole = Ember.A(associationFilteBuId).filterBy('realStartRole', startRole);
+      associationSelectedClass = associationFilteBRole;
+    }
+
+    return {
+      classId: endRoleID,
+      associations: associationSelectedClass
+    };
   },
 
   /**
