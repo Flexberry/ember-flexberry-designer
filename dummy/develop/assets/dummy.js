@@ -463,6 +463,146 @@ define('dummy/components/yield-slot', ['exports', 'ember-block-slots/components/
     }
   });
 });
+define('dummy/controllers/activity-diagram-primitives-demo', ['exports', 'ember', 'npm:jointjs'], function (exports, _ember, _npmJointjs) {
+  exports['default'] = _ember['default'].Controller.extend({
+    actions: {
+      printDiagram: function printDiagram() {
+        var _this = this;
+        _this.graph = new _npmJointjs['default'].dia.Graph();
+
+        var paper = document.getElementById('paper');
+        var minX = 16384;
+        var minY = 16384;
+        var maxX = 0;
+        var maxY = 0;
+
+        if (minX > maxX) {
+          maxX = paper && 'offsetWidth' in paper ? paper.offsetWidth : 1024;
+          maxY = 840;
+        } else {
+          maxX = minX + maxX;
+          maxY = minY + maxY;
+        }
+
+        _this.paper = new _npmJointjs['default'].dia.Paper({
+          el: paper,
+          width: maxX,
+          height: maxY,
+          gridSize: 1,
+          model: _this.graph
+        });
+
+        var linkNoteConnector = new _npmJointjs['default'].shapes.flexberryUml.NoteConnector({
+          source: { x: 100, y: 100 },
+          target: { x: 300, y: 100 },
+          attrs: { path: { title: 'Коннектор комментария (Note Connector)' } }
+        });
+
+        var linkObjectFlow = new _npmJointjs['default'].shapes.flexberryUml.ObjectFlow({
+          source: { x: 100, y: 150 },
+          target: { x: 300, y: 150 },
+          attrs: { path: { title: 'Изменение объекта (Object Flow)' } }
+        });
+
+        var linkTransition = new _npmJointjs['default'].shapes.flexberryUml.Transition({
+          source: { x: 100, y: 250 },
+          target: { x: 300, y: 250 },
+          attrs: { path: { title: 'Переход (Transition)' } }
+        });
+
+        var сomplexTransitionHorizon = new _npmJointjs['default'].shapes.flexberryUml.ComplexTransitionHorizon({
+          size: { width: 100 },
+          position: { x: 100, y: 300 },
+          attrs: {
+            text: { text: 'Some text' },
+            '.rotatable': { title: 'Синхронизатор/разветвитель (Complex Transition)' } }
+        });
+
+        var сomplexTransitionVertical = new _npmJointjs['default'].shapes.flexberryUml.ComplexTransitionVertical({
+          size: { height: 100 },
+          position: { x: 100, y: 350 },
+          attrs: {
+            text: { text: 'Some text' },
+            '.rotatable': { title: 'Синхронизатор/разветвитель (Complex Transition)' } }
+        });
+
+        _this.graph.addCell([linkNoteConnector, linkObjectFlow, linkTransition, сomplexTransitionHorizon, сomplexTransitionVertical]);
+
+        var note = new _npmJointjs['default'].shapes.flexberryUml.Note({
+          position: { x: 450, y: 100 },
+          size: { width: 100, height: 50 },
+          attrs: { text: { text: 'Note' }, '.rotatable': { title: 'Комментарий (Note)' } }
+        });
+
+        var SignalReceiptRight = new _npmJointjs['default'].shapes.flexberryUml.SignalReceiptRight({
+          position: { x: 450, y: 200 },
+          size: { width: 100, height: 50 },
+          attrs: {
+            text: { text: 'Receipt1' },
+            '.rotatable': { title: 'Получение сигнала (Signal Receipt)' }
+          }
+        });
+
+        var SignalReceiptLeft = new _npmJointjs['default'].shapes.flexberryUml.SignalReceiptLeft({
+          position: { x: 450, y: 300 },
+          size: { width: 100, height: 50 },
+          attrs: {
+            text: { text: 'Receipt2' },
+            '.rotatable': { title: 'Получение сигнала (Signal Receipt)' }
+          }
+        });
+
+        var SignalSendingRight = new _npmJointjs['default'].shapes.flexberryUml.SignalSendingRight({
+          position: { x: 450, y: 400 },
+          size: { width: 100, height: 50 },
+          attrs: {
+            text: { text: 'Receipt2' }
+          }
+        });
+
+        var SignalSendingLeft = new _npmJointjs['default'].shapes.flexberryUml.SignalSendingLeft({
+          position: { x: 450, y: 500 },
+          size: { width: 100, height: 50 },
+          attrs: {
+            text: { text: 'Receipt2' }
+          }
+        });
+
+        var startState = new _npmJointjs['default'].shapes.flexberryUml.StartState({
+          position: { x: 100, y: 204 }
+        });
+
+        var endState = new _npmJointjs['default'].shapes.flexberryUml.EndState({
+          position: { x: 150, y: 200 }
+        });
+
+        var decision = new _npmJointjs['default'].shapes.flexberryUml.Decision({
+          position: { x: 600, y: 100 },
+          size: { width: 100, height: 50 },
+          attrs: {
+            text: { text: 'no display text' }
+          }
+        });
+
+        var objectInState = new _npmJointjs['default'].shapes.flexberryUml.ObjectInState({
+          position: { x: 600, y: 200 },
+          size: { width: 100, height: 50 },
+          name: 'name',
+          state: 'state'
+        });
+
+        var activeState = new _npmJointjs['default'].shapes.flexberryUml.ActiveState({
+          position: { x: 600, y: 300 },
+          size: { width: 100, height: 50 },
+          name: 'name',
+          state: 'state'
+        });
+
+        _this.graph.addCell([note, SignalReceiptRight, SignalReceiptLeft, SignalSendingRight, SignalSendingLeft, startState, endState, decision, objectInState, activeState]);
+      }
+    }
+  });
+});
 define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-designer/mixins/fd-work-panel-toggler'], function (exports, _ember, _emberFlexberryDesignerMixinsFdWorkPanelToggler) {
   exports['default'] = _ember['default'].Controller.extend(_emberFlexberryDesignerMixinsFdWorkPanelToggler['default'], {
     /**
@@ -500,6 +640,10 @@ define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-de
             link: 'class-diagram-primitives-demo',
             caption: i18n.t('forms.application.sitemap.root.class-diagram-primitives-demo.caption'),
             title: i18n.t('forms.application.sitemap.root.class-diagram-primitives-demo.title')
+          }, {
+            link: 'activity-diagram-primitives-demo',
+            caption: i18n.t('forms.application.sitemap.root.activity-diagram-primitives-demo.caption'),
+            title: i18n.t('forms.application.sitemap.root.activity-diagram-primitives-demo.title')
           }]
         });
       }
@@ -675,187 +819,188 @@ define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-de
 });
 define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', 'npm:jointjs'], function (exports, _ember, _npmJointjs) {
   exports['default'] = _ember['default'].Controller.extend({
+    actions: {
+      printDiagram: function printDiagram() {
+        var _this = this;
+        _ember['default'].run.schedule('afterRender', function () {
+          _this.graph = new _npmJointjs['default'].dia.Graph();
 
-    init: function init() {
-      var _this = this;
-      _ember['default'].run.schedule('afterRender', function () {
-        _this.graph = new _npmJointjs['default'].dia.Graph();
+          var paper = document.getElementById('paper');
+          var minX = 16384;
+          var minY = 16384;
+          var maxX = 0;
+          var maxY = 0;
 
-        var paper = document.getElementById('paper');
-        var minX = 16384;
-        var minY = 16384;
-        var maxX = 0;
-        var maxY = 0;
-
-        if (minX > maxX) {
-          maxX = paper && 'offsetWidth' in paper ? paper.offsetWidth : 1024;
-          maxY = 840;
-        } else {
-          maxX = minX + maxX;
-          maxY = minY + maxY;
-        }
-
-        _this.paper = new _npmJointjs['default'].dia.Paper({
-          el: paper,
-          width: maxX,
-          height: maxY,
-          gridSize: 1,
-          model: _this.graph
-        });
-
-        var linkAggregation = new _npmJointjs['default'].shapes.flexberryUml.Aggregation({
-          source: { x: 100, y: 30 },
-          target: { x: 300, y: 30 }
-        });
-
-        var linkAssociation = new _npmJointjs['default'].shapes.flexberryUml.Association({
-          source: { x: 100, y: 80 },
-          target: { x: 300, y: 80 },
-          labels: [{
-            attrs: { text: { text: '*' } } }, {
-            attrs: { text: { text: '0..1' } }
-          }]
-        });
-
-        var linkComposition = new _npmJointjs['default'].shapes.flexberryUml.Composition({
-          source: { x: 100, y: 120 },
-          target: { x: 300, y: 120 }
-        });
-
-        var linkDependency = new _npmJointjs['default'].shapes.flexberryUml.Dependency({
-          source: { x: 100, y: 170 },
-          target: { x: 300, y: 170 }
-        });
-
-        var linkRealization = new _npmJointjs['default'].shapes.flexberryUml.Realization({
-          source: { x: 100, y: 220 },
-          target: { x: 300, y: 220 }
-        });
-
-        var linkGeneralization = new _npmJointjs['default'].shapes.flexberryUml.Generalization({
-          source: { x: 100, y: 270 },
-          target: { x: 300, y: 270 }
-        });
-
-        var linkQualified = new _npmJointjs['default'].shapes.flexberryUml.Qualified({
-          source: { x: 100, y: 320 },
-          target: { x: 300, y: 320 }
-        });
-
-        var linkQualifiedAggregation = new _npmJointjs['default'].shapes.flexberryUml.QualifiedAggregation({
-          source: { x: 100, y: 370 },
-          target: { x: 300, y: 370 }
-        });
-
-        var linkQualifiedComposition = new _npmJointjs['default'].shapes.flexberryUml.QualifiedComposition({
-          source: { x: 100, y: 420 },
-          target: { x: 300, y: 420 }
-        });
-
-        var linkNestedClassAssociation = new _npmJointjs['default'].shapes.flexberryUml.NestedClassAssociation({
-          source: { x: 100, y: 470 },
-          target: { x: 300, y: 470 }
-        });
-
-        var linkNoteConnector = new _npmJointjs['default'].shapes.flexberryUml.NoteConnector({
-          source: { x: 100, y: 520 },
-          target: { x: 300, y: 520 }
-        });
-
-        _this.graph.addCell([linkAggregation, linkAssociation, linkComposition, linkDependency, linkRealization, linkGeneralization, linkQualified, linkQualifiedAggregation, linkQualifiedComposition, linkNestedClassAssociation, linkNoteConnector]);
-
-        var attributes = ['attr1', 'attr2'];
-        var methods = ['method1'];
-
-        var classWithoutStp = new _npmJointjs['default'].shapes.flexberryUml.Class({
-          position: { x: 350, y: 30 },
-          size: { width: 100, height: 100 },
-          name: 'Class1',
-          attributes: attributes,
-          methods: methods
-        });
-
-        var classWithStp = new _npmJointjs['default'].shapes.flexberryUml.Class({
-          position: { x: 350, y: 150 },
-          size: { width: 100, height: 100 },
-          name: 'Class2',
-          stereotype: 'enumeration',
-          attributes: attributes,
-          methods: methods
-        });
-
-        var nAryAssociation = new _npmJointjs['default'].shapes.flexberryUml.NAryAssociation({
-          position: { x: 550, y: 30 },
-          size: { width: 150, height: 75 },
-          attrs: {
-            text: { text: 'n-ary Association' }
+          if (minX > maxX) {
+            maxX = paper && 'offsetWidth' in paper ? paper.offsetWidth : 1024;
+            maxY = 840;
+          } else {
+            maxX = minX + maxX;
+            maxY = minY + maxY;
           }
-        });
 
-        var obj = new _npmJointjs['default'].shapes.flexberryUml.Object({
-          position: { x: 350, y: 300 },
-          size: { width: 100, height: 70 },
-          name: 'Object',
-          attributes: attributes,
-          methods: methods
-        });
+          _this.paper = new _npmJointjs['default'].dia.Paper({
+            el: paper,
+            width: maxX,
+            height: maxY,
+            gridSize: 1,
+            model: _this.graph
+          });
 
-        var instance = new _npmJointjs['default'].shapes.flexberryUml.Instance({
-          position: { x: 350, y: 400 },
-          size: { width: 150, height: 40 },
-          attrs: {
-            text: { text: 'Instance' }
-          }
-        });
+          var linkAggregation = new _npmJointjs['default'].shapes.flexberryUml.Aggregation({
+            source: { x: 100, y: 30 },
+            target: { x: 300, y: 30 }
+          });
 
-        var multiObject = new _npmJointjs['default'].shapes.flexberryUml.MultiObject({
-          position: { x: 350, y: 500 },
-          size: { width: 150, height: 40 },
-          attrs: {
-            text: { text: 'multiObject' }
-          }
-        });
+          var linkAssociation = new _npmJointjs['default'].shapes.flexberryUml.Association({
+            source: { x: 100, y: 80 },
+            target: { x: 300, y: 80 },
+            labels: [{
+              attrs: { text: { text: '*' } } }, {
+              attrs: { text: { text: '0..1' } }
+            }]
+          });
 
-        var activeObj = new _npmJointjs['default'].shapes.flexberryUml.ActiveObject({
-          position: { x: 350, y: 600 },
-          size: { width: 150, height: 40 },
-          attrs: {
-            text: { text: 'Active object' }
-          }
-        });
+          var linkComposition = new _npmJointjs['default'].shapes.flexberryUml.Composition({
+            source: { x: 100, y: 120 },
+            target: { x: 300, y: 120 }
+          });
 
-        var templateClass = new _npmJointjs['default'].shapes.flexberryUml.TemplateClass({
-          position: { x: 550, y: 150 },
-          size: { width: 150, height: 100 },
-          name: 'Class2',
-          stereotype: 'enumeration',
-          attributes: attributes,
-          methods: methods,
-          params: 'params'
-        });
+          var linkDependency = new _npmJointjs['default'].shapes.flexberryUml.Dependency({
+            source: { x: 100, y: 170 },
+            target: { x: 300, y: 170 }
+          });
 
-        var note = new _npmJointjs['default'].shapes.flexberryUml.Note({
-          position: { x: 550, y: 300 },
-          size: { width: 100, height: 50 },
-          name: 'Class2',
-          attrs: {
-            text: { text: 'Note' }
-          }
-        });
+          var linkRealization = new _npmJointjs['default'].shapes.flexberryUml.Realization({
+            source: { x: 100, y: 220 },
+            target: { x: 300, y: 220 }
+          });
 
-        var moreClasses = new _npmJointjs['default'].shapes.flexberryUml.MoreClasses({
-          position: { x: 550, y: 400 }
-        });
+          var linkGeneralization = new _npmJointjs['default'].shapes.flexberryUml.Generalization({
+            source: { x: 100, y: 270 },
+            target: { x: 300, y: 270 }
+          });
 
-        var packagePr = new _npmJointjs['default'].shapes.flexberryUml.Package({
-          position: { x: 550, y: 500 },
-          size: { width: 100, height: 50 },
-          name: 'Class2',
-          attributes: attributes
-        });
+          var linkQualified = new _npmJointjs['default'].shapes.flexberryUml.Qualified({
+            source: { x: 100, y: 320 },
+            target: { x: 300, y: 320 }
+          });
 
-        _this.graph.addCell([classWithoutStp, classWithStp, nAryAssociation, obj, instance, multiObject, activeObj, templateClass, note, moreClasses, packagePr]);
-      });
+          var linkQualifiedAggregation = new _npmJointjs['default'].shapes.flexberryUml.QualifiedAggregation({
+            source: { x: 100, y: 370 },
+            target: { x: 300, y: 370 }
+          });
+
+          var linkQualifiedComposition = new _npmJointjs['default'].shapes.flexberryUml.QualifiedComposition({
+            source: { x: 100, y: 420 },
+            target: { x: 300, y: 420 }
+          });
+
+          var linkNestedClassAssociation = new _npmJointjs['default'].shapes.flexberryUml.NestedClassAssociation({
+            source: { x: 100, y: 470 },
+            target: { x: 300, y: 470 }
+          });
+
+          var linkNoteConnector = new _npmJointjs['default'].shapes.flexberryUml.NoteConnector({
+            source: { x: 100, y: 520 },
+            target: { x: 300, y: 520 }
+          });
+
+          _this.graph.addCell([linkAggregation, linkAssociation, linkComposition, linkDependency, linkRealization, linkGeneralization, linkQualified, linkQualifiedAggregation, linkQualifiedComposition, linkNestedClassAssociation, linkNoteConnector]);
+
+          var attributes = ['attr1', 'attr2'];
+          var methods = ['method1'];
+
+          var classWithoutStp = new _npmJointjs['default'].shapes.flexberryUml.Class({
+            position: { x: 350, y: 30 },
+            size: { width: 100, height: 100 },
+            name: 'Class1',
+            attributes: attributes,
+            methods: methods
+          });
+
+          var classWithStp = new _npmJointjs['default'].shapes.flexberryUml.Class({
+            position: { x: 350, y: 150 },
+            size: { width: 100, height: 100 },
+            name: 'Class2',
+            stereotype: 'enumeration',
+            attributes: attributes,
+            methods: methods
+          });
+
+          var nAryAssociation = new _npmJointjs['default'].shapes.flexberryUml.NAryAssociation({
+            position: { x: 550, y: 30 },
+            size: { width: 150, height: 75 },
+            attrs: {
+              text: { text: 'n-ary Association' }
+            }
+          });
+
+          var obj = new _npmJointjs['default'].shapes.flexberryUml.Object({
+            position: { x: 350, y: 300 },
+            size: { width: 100, height: 70 },
+            name: 'Object',
+            attributes: attributes,
+            methods: methods
+          });
+
+          var instance = new _npmJointjs['default'].shapes.flexberryUml.Instance({
+            position: { x: 350, y: 400 },
+            size: { width: 150, height: 40 },
+            attrs: {
+              text: { text: 'Instance' }
+            }
+          });
+
+          var multiObject = new _npmJointjs['default'].shapes.flexberryUml.MultiObject({
+            position: { x: 350, y: 500 },
+            size: { width: 150, height: 40 },
+            attrs: {
+              text: { text: 'multiObject' }
+            }
+          });
+
+          var activeObj = new _npmJointjs['default'].shapes.flexberryUml.ActiveObject({
+            position: { x: 350, y: 600 },
+            size: { width: 150, height: 40 },
+            attrs: {
+              text: { text: 'Active object' }
+            }
+          });
+
+          var templateClass = new _npmJointjs['default'].shapes.flexberryUml.TemplateClass({
+            position: { x: 550, y: 150 },
+            size: { width: 150, height: 100 },
+            name: 'Class2',
+            stereotype: 'enumeration',
+            attributes: attributes,
+            methods: methods,
+            params: 'params'
+          });
+
+          var note = new _npmJointjs['default'].shapes.flexberryUml.Note({
+            position: { x: 550, y: 300 },
+            size: { width: 100, height: 50 },
+            name: 'Class2',
+            attrs: {
+              text: { text: 'Note' }
+            }
+          });
+
+          var moreClasses = new _npmJointjs['default'].shapes.flexberryUml.MoreClasses({
+            position: { x: 550, y: 400 }
+          });
+
+          var packagePr = new _npmJointjs['default'].shapes.flexberryUml.Package({
+            position: { x: 550, y: 500 },
+            size: { width: 100, height: 50 },
+            name: 'Class2',
+            attributes: attributes
+          });
+
+          _this.graph.addCell([classWithoutStp, classWithStp, nAryAssociation, obj, instance, multiObject, activeObj, templateClass, note, moreClasses, packagePr]);
+        });
+      }
     }
   });
 });
@@ -11085,6 +11230,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/tr
     assert.ok(true, 'modules/ember-flexberry-designer/transforms/typemap.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-activity-diagram-primitives.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/utils');
+  test('modules/ember-flexberry-designer/utils/fd-activity-diagram-primitives.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/utils/fd-activity-diagram-primitives.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-activity-diagram-primitives.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/utils/fd-activity-diagram-primitives.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/utils/fd-activity-diagram-primitives.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-attributes-for-tree.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/utils');
   test('modules/ember-flexberry-designer/utils/fd-attributes-for-tree.js should pass jscs', function () {
@@ -11109,6 +11267,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ut
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/utils/fd-class-diagram-primitives.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-common-primitives.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/utils');
+  test('modules/ember-flexberry-designer/utils/fd-common-primitives.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/utils/fd-common-primitives.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-common-primitives.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/utils/fd-common-primitives.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/utils/fd-common-primitives.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-datatypes.jscs-test', ['exports'], function (exports) {
@@ -12235,6 +12406,10 @@ define('dummy/locales/en/translations', ['exports', 'ember', 'ember-flexberry-de
             'class-diagram-primitives-demo': {
               caption: 'Class Diagram',
               title: ''
+            },
+            'activity-diagram-primitives-demo': {
+              caption: 'Activity Diagram',
+              title: ''
             }
           }
         }
@@ -12398,6 +12573,10 @@ define('dummy/locales/ru/translations', ['exports', 'ember', 'ember-flexberry-de
             },
             'class-diagram-primitives-demo': {
               caption: 'Диаграмма классов',
+              title: ''
+            },
+            'activity-diagram-primitives-demo': {
+              caption: 'Диаграмма активностей',
               title: ''
             }
           }
@@ -13179,10 +13358,21 @@ define('dummy/router', ['exports', 'ember', 'dummy/config/environment'], functio
     this.route('fd-generation-process-form.new', { path: 'fd-generation-process-form/new' });
     this.route('fd-generation-process-form', { path: 'fd-generation-process-form/:id' });
     this.route('fd-generation-list-form');
+    this.route('activity-diagram-primitives-demo');
     this.route('class-diagram-primitives-demo');
   });
 
   exports['default'] = Router;
+});
+define('dummy/routes/activity-diagram-primitives-demo', ['exports', 'ember', 'ember-flexberry-designer/utils/fd-activity-diagram-primitives'], function (exports, _ember, _emberFlexberryDesignerUtilsFdActivityDiagramPrimitives) {
+  exports['default'] = _ember['default'].Route.extend({
+    activate: function activate() {
+      var _this = this;
+      _ember['default'].run.schedule('afterRender', this, function () {
+        _this.controller.send('printDiagram');
+      });
+    }
+  });
 });
 define('dummy/routes/application', ['exports', 'ember', 'ember-flexberry/mixins/modal-application-route', 'ember-flexberry-data'], function (exports, _ember, _emberFlexberryMixinsModalApplicationRoute, _emberFlexberryData) {
   var Builder = _emberFlexberryData.Query.Builder;
@@ -13225,7 +13415,14 @@ define('dummy/routes/application', ['exports', 'ember', 'ember-flexberry/mixins/
   });
 });
 define('dummy/routes/class-diagram-primitives-demo', ['exports', 'ember', 'ember-flexberry-designer/utils/fd-class-diagram-primitives'], function (exports, _ember, _emberFlexberryDesignerUtilsFdClassDiagramPrimitives) {
-  exports['default'] = _ember['default'].Route.extend({});
+  exports['default'] = _ember['default'].Route.extend({
+    activate: function activate() {
+      var _this = this;
+      _ember['default'].run.schedule('afterRender', this, function () {
+        _this.controller.send('printDiagram');
+      });
+    }
+  });
 });
 define('dummy/routes/edit-form', ['exports', 'ember-flexberry/routes/edit-form'], function (exports, _emberFlexberryRoutesEditForm) {
   Object.defineProperty(exports, 'default', {
@@ -14546,6 +14743,47 @@ define('dummy/services/validations', ['exports', 'ember'], function (exports, _e
       set(this, 'cache', {});
     }
   });
+});
+define("dummy/templates/activity-diagram-primitives-demo", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "triple-curlies"
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 22
+          }
+        },
+        "moduleName": "dummy/templates/activity-diagram-primitives-demo.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "id", "paper");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes() {
+        return [];
+      },
+      statements: [],
+      locals: [],
+      templates: []
+    };
+  })());
 });
 define("dummy/templates/application-with-submenu", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
@@ -45771,11 +46009,27 @@ define('dummy/utils/deserialize-sorting-param', ['exports', 'ember-flexberry/uti
     }
   });
 });
+define('dummy/utils/fd-activity-diagram-primitives', ['exports', 'ember-flexberry-designer/utils/fd-activity-diagram-primitives'], function (exports, _emberFlexberryDesignerUtilsFdActivityDiagramPrimitives) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerUtilsFdActivityDiagramPrimitives['default'];
+    }
+  });
+});
 define('dummy/utils/fd-class-diagram-primitives', ['exports', 'ember-flexberry-designer/utils/fd-class-diagram-primitives'], function (exports, _emberFlexberryDesignerUtilsFdClassDiagramPrimitives) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerUtilsFdClassDiagramPrimitives['default'];
+    }
+  });
+});
+define('dummy/utils/fd-common-primitives', ['exports', 'ember-flexberry-designer/utils/fd-common-primitives'], function (exports, _emberFlexberryDesignerUtilsFdCommonPrimitives) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerUtilsFdCommonPrimitives['default'];
     }
   });
 });
@@ -45874,7 +46128,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+961a3413"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+3986c76d"});
 }
 
 /* jshint ignore:end */

@@ -49,6 +49,23 @@ define('dummy/tests/app.jshint', ['exports'], function (exports) {
     assert.ok(true, 'app.js should pass jshint.');
   });
 });
+define('dummy/tests/controllers/activity-diagram-primitives-demo.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - controllers');
+  test('controllers/activity-diagram-primitives-demo.js should pass jscs', function () {
+    ok(true, 'controllers/activity-diagram-primitives-demo.js should pass jscs.');
+  });
+});
+define('dummy/tests/controllers/activity-diagram-primitives-demo.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - controllers/activity-diagram-primitives-demo.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'controllers/activity-diagram-primitives-demo.js should pass jshint.');
+  });
+});
 define('dummy/tests/controllers/application.jscs-test', ['exports'], function (exports) {
   'use strict';
 
@@ -958,6 +975,23 @@ define('dummy/tests/router.jshint', ['exports'], function (exports) {
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'router.js should pass jshint.');
+  });
+});
+define('dummy/tests/routes/activity-diagram-primitives-demo.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - routes');
+  test('routes/activity-diagram-primitives-demo.js should pass jscs', function () {
+    ok(true, 'routes/activity-diagram-primitives-demo.js should pass jscs.');
+  });
+});
+define('dummy/tests/routes/activity-diagram-primitives-demo.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - routes/activity-diagram-primitives-demo.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'routes/activity-diagram-primitives-demo.js should pass jshint.');
   });
 });
 define('dummy/tests/routes/application.jscs-test', ['exports'], function (exports) {
@@ -6937,6 +6971,32 @@ define('dummy/tests/unit/transforms/new-platform-flexberry-web-designer-business
     assert.ok(true, 'unit/transforms/new-platform-flexberry-web-designer-business-server-class-test.js should pass jshint.');
   });
 });
+define('dummy/tests/unit/utils/fd-activity-diagram-primitives-test', ['exports', 'qunit'], function (exports, _qunit) {
+
+  (0, _qunit.module)('Unit | Utility | fd activity diagram primitives');
+
+  // Replace this with your real tests.
+  (0, _qunit.test)('it works', function (assert) {
+    assert.ok(true);
+  });
+});
+define('dummy/tests/unit/utils/fd-activity-diagram-primitives-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/utils');
+  test('unit/utils/fd-activity-diagram-primitives-test.js should pass jscs', function () {
+    ok(true, 'unit/utils/fd-activity-diagram-primitives-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/utils/fd-activity-diagram-primitives-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/utils/fd-activity-diagram-primitives-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/utils/fd-activity-diagram-primitives-test.js should pass jshint.');
+  });
+});
 define('dummy/tests/unit/utils/fd-class-diagram-primitives-test', ['exports', 'qunit'], function (exports, _qunit) {
 
   (0, _qunit.module)('Unit | Utility | fd class diagram primitives');
@@ -6961,6 +7021,32 @@ define('dummy/tests/unit/utils/fd-class-diagram-primitives-test.jshint', ['expor
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/utils/fd-class-diagram-primitives-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/unit/utils/fd-common-primitives-test', ['exports', 'qunit'], function (exports, _qunit) {
+
+  (0, _qunit.module)('Unit | Utility | fd common primitives');
+
+  // Replace this with your real tests.
+  (0, _qunit.test)('it works', function (assert) {
+    assert.ok(true);
+  });
+});
+define('dummy/tests/unit/utils/fd-common-primitives-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/utils');
+  test('unit/utils/fd-common-primitives-test.js should pass jscs', function () {
+    ok(true, 'unit/utils/fd-common-primitives-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/utils/fd-common-primitives-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/utils/fd-common-primitives-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/utils/fd-common-primitives-test.js should pass jshint.');
   });
 });
 define('dummy/tests/unit/utils/fd-preload-stage-metadata-test', ['exports', 'dummy/utils/fd-preload-stage-metadata', 'qunit'], function (exports, _dummyUtilsFdPreloadStageMetadata, _qunit) {
