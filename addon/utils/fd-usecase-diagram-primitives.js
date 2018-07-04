@@ -32,7 +32,6 @@ joint.shapes.basic.Generic.define('flexberryUml.Usecase', {
   initialize: function () {
     this.on('change:name', function() {
       this.updateRectangles();
-      this.trigger('uml-update');
     }, this);
 
     this.updateRectangles();
@@ -45,23 +44,28 @@ joint.shapes.basic.Generic.define('flexberryUml.Usecase', {
   },
 
   updateRectangles: function() {
-    var attrs = this.get('attrs');
-    var rect =  { type: 'name', text: this.getUsecaseName() };
-    var offsetY = 0;
-    var lines = Array.isArray(rect.text) ? rect.text : [rect.text];
+    let attrs = this.get('attrs');
+    let rect =  { type: 'name', text: this.getUsecaseName() };
+    let lines = rect.text.split('\n');
 
-    var rectHeight = lines.length * 20 + 20;
+    let maxStringChars = lines[0].length;
+    for (let stringIndex = 0; stringIndex < lines.lengts; stringIndex++) {
+      if(lines[stringIndex].length >= maxStringChars) {
+        maxStringChars = lines[stringIndex].length;
+      }
+    }
 
-    attrs['.uml-usecase-text'].text = lines.join('\n');
+    let rectHeight = lines.length * 20 + 20;
+    let rectWidth = maxStringChars* 20 + 20;
+
+    attrs['.uml-usecase-text'].text = rect.text;
     attrs['.uml-usecase-rect'].height = rectHeight;
-    attrs['.uml-usecase-rect'].transform = 'translate(0,' + offsetY + ')';
-
-    offsetY += rectHeight;
+    attrs['.uml-usecase-rect'].width = rectWidth;
   }
 });
 
 joint.shapes.flexberryUml.Usecase.define('flexberryUml.UsecaseActor', {
- 
+
   attrs: {
     image: {
       'xlink:href': 'assets/images/actor.svg',
@@ -84,38 +88,11 @@ joint.shapes.flexberryUml.Usecase.define('flexberryUml.UsecaseActor', {
   ].join('')
 });
 
-joint.shapes.flexberryUml.Usecase.define('flexberryUml.UsecaseNote', {
- 
-  attrs: {
-    '.uml-usecase-rect': { 'rx': '0', 'ry': '0', 'stroke': '', 'strokeWidth': '', 'fill': '' },
-    image: {
-      'xlink:href': 'assets/images/note.svg',
-      'ref-x': .5,
-      'ref-y': .5,
-      'y-alignment': 'middle',
-      'x-alignment': 'middle',
-      ref: '.uml-usecase-rect',
-      width: 80,
-      height: 50
-    }
-  }
-}, {
-  markup: [
-    '<g class="rotatable">',
-    '<g class="scalable">',
-    '<rect class="uml-usecase-rect"/>',
-    '</g>',
-    '<image/>',
-    '<text class="uml-usecase-text"/>',
-    '</g>'
-  ].join('')
-});
-
 joint.shapes.flexberryUml.Usecase.define('flexberryUml.UsecaseBoundary', {
- 
+
   attrs: {
     '.uml-usecase-rect': { 'rx': '0', 'ry': '0', 'stroke': 'black', 'strokeWidth': '1', 'fill': '#ffffff' },
-    
+
     '.uml-usecase-text': {
       'ref': '.uml-usecase-rect',
       'text-anchor': 'middle',
@@ -128,7 +105,7 @@ joint.shapes.flexberryUml.Usecase.define('flexberryUml.UsecaseBoundary', {
       'font-family': 'Arial'
     }
   }
-  
+
 }, {
   markup: [
     '<g class="rotatable">',
@@ -140,30 +117,22 @@ joint.shapes.flexberryUml.Usecase.define('flexberryUml.UsecaseBoundary', {
   ].join('')
 });
 
-joint.dia.Link.define('flexberryUml.UsecaseNoteConnector', {
-  attrs: {
-    '.connection': { 'stroke-dasharray': '3,3' }
-  },
-  labels: [{textAnchor: 'middle', attrs: { text: { text:  '' } } }]
-});
-
 joint.dia.Link.define('flexberryUml.UseCaseUndirAssociation', {
   labels: [{textAnchor: 'middle', attrs: { text: { text:  '' } } }]
 });
 
 joint.dia.Link.define('flexberryUml.UseCaseDirAssociation', {
-  attrs: { 
-    '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'black' } 
+  attrs: {
+    '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'black' }
   },
 
   labels: [{textAnchor: 'middle', attrs: { text: { text:  '' } } }]
 });
 
 joint.dia.Link.define('flexberryUml.UseCaseGeneralization', {
-  attrs: { 
-    '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'white' } 
+  attrs: {
+    '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'white' }
   },
-  
+
   labels: [{textAnchor: 'middle', attrs: { text: { text:  '' } } }]
 });
-
