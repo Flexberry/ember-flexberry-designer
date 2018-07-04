@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import joint from 'npm:jointjs'
+import joint from 'npm:jointjs';
 
 export default Ember.Controller.extend({
 
@@ -43,7 +43,7 @@ export default Ember.Controller.extend({
               position: 'absolute'
             },
           }
-      	},
+      	}
       });
       _this.graph.addCell(jUseCase);
 
@@ -59,7 +59,7 @@ export default Ember.Controller.extend({
               position: 'absolute'
             },
           }
-      	},
+      	}
       });
       _this.graph.addCell(jUseCaseActor);
 
@@ -76,7 +76,7 @@ export default Ember.Controller.extend({
               position: 'absolute'
             },
           }
-      	},
+      	}
       });
       _this.graph.addCell(jUseCaseBoundary);
 

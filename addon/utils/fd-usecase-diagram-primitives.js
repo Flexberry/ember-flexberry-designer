@@ -10,8 +10,8 @@ joint.shapes.basic.Generic.define('flexberryUml.Usecase', {
       'text-anchor': 'middle',
       'y-alignment': 'middle',
       'font-weight': 'bold',
-      'ref-y': .5,
-      'ref-x': .5,
+      'ref-y': 0.5,
+      'ref-x': 0.5,
       'fill': 'black',
       'font-size': 12,
       'font-family': 'Arial'
@@ -50,13 +50,13 @@ joint.shapes.basic.Generic.define('flexberryUml.Usecase', {
 
     let maxStringChars = lines[0].length;
     for (let stringIndex = 0; stringIndex < lines.lengts; stringIndex++) {
-      if(lines[stringIndex].length >= maxStringChars) {
+      if (lines[stringIndex].length >= maxStringChars) {
         maxStringChars = lines[stringIndex].length;
       }
     }
 
     let rectHeight = lines.length * 20 + 20;
-    let rectWidth = maxStringChars* 20 + 20;
+    let rectWidth = maxStringChars * 20 + 20;
 
     attrs['.uml-usecase-text'].text = rect.text;
     attrs['.uml-usecase-rect'].height = rectHeight;
@@ -98,8 +98,8 @@ joint.shapes.flexberryUml.Usecase.define('flexberryUml.UsecaseBoundary', {
       'text-anchor': 'middle',
       'y-alignment': 'middle',
       'font-weight': 'bold',
-      'ref-y': .1,
-      'ref-x': .5,
+      'ref-y': 0.1,
+      'ref-x': 0.5,
       'fill': 'black',
       'font-size': 12,
       'font-family': 'Arial'
@@ -118,7 +118,7 @@ joint.shapes.flexberryUml.Usecase.define('flexberryUml.UsecaseBoundary', {
 });
 
 joint.dia.Link.define('flexberryUml.UseCaseUndirAssociation', {
-  labels: [{textAnchor: 'middle', attrs: { text: { text:  '' } } }]
+  labels: [{ textAnchor: 'middle', attrs: { text: { text:  '' } } }]
 });
 
 joint.dia.Link.define('flexberryUml.UseCaseDirAssociation', {
@@ -126,7 +126,7 @@ joint.dia.Link.define('flexberryUml.UseCaseDirAssociation', {
     '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'black' }
   },
 
-  labels: [{textAnchor: 'middle', attrs: { text: { text:  '' } } }]
+  labels: [{ textAnchor: 'middle', attrs: { text: { text:  '' } } }]
 });
 
 joint.dia.Link.define('flexberryUml.UseCaseGeneralization', {
@@ -134,5 +134,5 @@ joint.dia.Link.define('flexberryUml.UseCaseGeneralization', {
     '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'white' }
   },
 
-  labels: [{textAnchor: 'middle', attrs: { text: { text:  '' } } }]
+  labels: [{ textAnchor: 'middle', attrs: { text: { text:  '' } } }]
 });
