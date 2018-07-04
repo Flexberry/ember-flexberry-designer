@@ -1,5 +1,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/fd-visual-edit-control-tree';
+import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
+import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 import FdAttributesTree from '../objects/fd-attributes-tree';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode } from '../utils/fd-attributes-for-tree';
 
@@ -42,6 +44,10 @@ export default Ember.Component.extend({
     @property oldPropertyName
   */
   oldPropertyName: undefined,
+
+  readonly: false,
+
+  view: '',
 
   /*
     Setting off for buttons of the tree.
@@ -140,6 +146,37 @@ export default Ember.Component.extend({
     }
   })),
 
+  selectedAttribute: Ember.computed('selectedItem.propertyDefinition.name', function() {
+    let propertyDefinition = this.get('selectedItem.propertyDefinition');
+    if (Ember.isNone(propertyDefinition)) {
+      return;
+    }
+
+    let attribute;
+    let namesPropertyDefinition = propertyDefinition.name.split('.');
+    if (namesPropertyDefinition.length > 1 ) {
+      this.set('readonly', true);
+    } else {
+      this.set('readonly', false);
+    }
+
+    if (propertyDefinition instanceof FdViewAttributesDetail) {
+      this.set('selectedItem.type', 'detail');
+      let aggregation = this.get('model.aggregation');
+      attribute = aggregation.findBy('endRole', namesPropertyDefinition[0]);
+    } else if (propertyDefinition instanceof FdViewAttributesMaster) {
+      this.set('selectedItem.type', 'master');
+      let parsingResult = this._parsingPropertyName(namesPropertyDefinition);
+      attribute = parsingResult.associations[0];
+    } else {
+      let parsingResult = this._parsingPropertyName(namesPropertyDefinition);
+      let selectedClass = this.get('store').peekAll('fd-dev-class').findBy('id', parsingResult.classId);
+      attribute = selectedClass.get('attributes').findBy('name', namesPropertyDefinition[namesPropertyDefinition.length - 1]);
+    }
+
+    return attribute;
+  }),
+
   _propertyNameObserver: Ember.observer('propertyName', function() {
     let propertyName = this.get('propertyName');
     let oldPropertyName = this.get('oldPropertyName');
@@ -173,7 +210,7 @@ export default Ember.Component.extend({
           return item.get('formViews.firstObject.view.class.id') === selectedItemClass.id &&
            item.get('stereotype') === '«listform»';
         });
-        let listFormsName = listForms.mapBy('name');
+        let listFormsName = Ember.A(listForms).mapBy('name');
         this.set('dropdownItems', listFormsName);
       } else if (selectedItem.type === 'detail') {
         let allClasses = this.get('store').peekAll('fd-dev-class');
@@ -340,7 +377,7 @@ export default Ember.Component.extend({
           return item.get('formViews.firstObject.view.class.id') === selectedNodes[0].original.idNode &&
            item.get('stereotype') === '«listform»';
         });
-        let listFormsName = listForms.mapBy('name');
+        let listFormsName = Ember.A(listForms).mapBy('name');
         this.set('dropdownItems', listFormsName);
       } else if (selectedNodes[0].type === 'detail') {
         this.set('selectedItem.view', undefined);
@@ -497,6 +534,31 @@ export default Ember.Component.extend({
 
     node.set('children', childrenNode);
     node.set('copyChildren', childrenNode);
+  },
+
+  _parsingPropertyName(nameSplitPoint) {
+    let store = this.get('store');
+    let stageId = this.get('currentProjectContext').getCurrentStage();
+    let allAssociation = store.peekAll('fd-dev-association').filterBy('stage.id', stageId);
+
+    let startRole = nameSplitPoint[0];
+    let endRoleID = this.get('model.dataobject.id');
+    let associationSelectedClass = allAssociation.filter(function(item) {
+      return item.get('endClass.id') === endRoleID && item.get('realStartRole') === startRole;
+    });
+
+    for (let i = 1; i < nameSplitPoint.length; i++) {
+      startRole = nameSplitPoint[i];
+      endRoleID = associationSelectedClass[0].get('startClass.id');
+      let associationFilteBuId = allAssociation.filterBy('endClass.id', endRoleID);
+      let associationFilteBRole = Ember.A(associationFilteBuId).filterBy('realStartRole', startRole);
+      associationSelectedClass = associationFilteBRole;
+    }
+
+    return {
+      classId: endRoleID,
+      associations: associationSelectedClass
+    };
   },
 
   /**

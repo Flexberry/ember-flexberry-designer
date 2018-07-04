@@ -9,7 +9,6 @@ export default {
   type: 'Тип',
   'not-null': 'NotNull',
   'default-value': 'Значение по умолчанию',
-  readonly: 'Только для чтения',
   description: 'Описание',
   'detail-view': 'Представление детейла',
   'master-list-form': 'Списковая форма для лукапа',

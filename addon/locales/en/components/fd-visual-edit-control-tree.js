@@ -9,7 +9,6 @@ export default {
   type: 'Type',
   'not-null': 'NotNull',
   'default-value': 'Default value',
-  readonly: 'Readonly',
   description: 'Description',
   'detail-view': 'View detail',
   'master-list-form': 'List form for Look-Up',
