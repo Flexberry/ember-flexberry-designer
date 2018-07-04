@@ -141,6 +141,14 @@ define('dummy/components/fd-visual-diagram', ['exports', 'ember-flexberry-design
     }
   });
 });
+define('dummy/components/fd-visual-edit-control-tree', ['exports', 'ember-flexberry-designer/components/fd-visual-edit-control-tree'], function (exports, _emberFlexberryDesignerComponentsFdVisualEditControlTree) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdVisualEditControlTree['default'];
+    }
+  });
+});
 define('dummy/components/fd-visual-edit-control', ['exports', 'ember-flexberry-designer/components/fd-visual-edit-control'], function (exports, _emberFlexberryDesignerComponentsFdVisualEditControl) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -1405,6 +1413,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
     assert.ok(true, 'modules/ember-flexberry-designer/components/fd-visual-diagram.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-visual-edit-control-tree.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components');
+  test('modules/ember-flexberry-designer/components/fd-visual-edit-control-tree.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-visual-edit-control-tree.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-visual-edit-control-tree.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-visual-edit-control-tree.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-visual-edit-control-tree.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-visual-edit-control.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/components');
   test('modules/ember-flexberry-designer/components/fd-visual-edit-control.js should pass jscs', function () {
@@ -2222,6 +2243,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/components/fd-visual-control.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-visual-edit-control-tree.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/components');
+  test('modules/ember-flexberry-designer/locales/en/components/fd-visual-edit-control-tree.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/components/fd-visual-edit-control-tree.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-visual-edit-control-tree.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/components/fd-visual-edit-control-tree.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/components/fd-visual-edit-control-tree.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-application-edit-form.jscs-test', ['exports'], function (exports) {
@@ -3535,6 +3569,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/components/fd-visual-control.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/components/fd-visual-edit-control-tree.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/components');
+  test('modules/ember-flexberry-designer/locales/ru/components/fd-visual-edit-control-tree.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/components/fd-visual-edit-control-tree.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/components/fd-visual-edit-control-tree.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/components/fd-visual-edit-control-tree.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/components/fd-visual-edit-control-tree.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-application-edit-form.jscs-test', ['exports'], function (exports) {
@@ -8347,6 +8394,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ob
     assert.ok(true, 'modules/ember-flexberry-designer/objects/fd-appstruct-tree.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/fd-attributes-tree.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects');
+  test('modules/ember-flexberry-designer/objects/fd-attributes-tree.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/fd-attributes-tree.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/fd-attributes-tree.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/fd-attributes-tree.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/fd-attributes-tree.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/fd-editform-control.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/objects');
   test('modules/ember-flexberry-designer/objects/fd-editform-control.js should pass jscs', function () {
@@ -8449,19 +8509,6 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ob
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/objects/fd-view-attributes-property.js should pass jshint.');
-  });
-});
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/fd-view-attributes-tree.jscs-test', ['exports'], function (exports) {
-  module('JSCS - modules/ember-flexberry-designer/objects');
-  test('modules/ember-flexberry-designer/objects/fd-view-attributes-tree.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/objects/fd-view-attributes-tree.js should pass jscs.');
-  });
-});
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/fd-view-attributes-tree.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/fd-view-attributes-tree.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/objects/fd-view-attributes-tree.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/new-platform-flexberry-web-designer-business-server-class.jscs-test', ['exports'], function (exports) {
@@ -11038,6 +11085,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/tr
     assert.ok(true, 'modules/ember-flexberry-designer/transforms/typemap.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-attributes-for-tree.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/utils');
+  test('modules/ember-flexberry-designer/utils/fd-attributes-for-tree.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/utils/fd-attributes-for-tree.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-attributes-for-tree.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/utils/fd-attributes-for-tree.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/utils/fd-attributes-for-tree.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-class-diagram-primitives.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/utils');
   test('modules/ember-flexberry-designer/utils/fd-class-diagram-primitives.js should pass jscs', function () {
@@ -11062,19 +11122,6 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ut
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/utils/fd-datatypes.js should pass jshint.');
-  });
-});
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-get-view-tree-node.jscs-test', ['exports'], function (exports) {
-  module('JSCS - modules/ember-flexberry-designer/utils');
-  test('modules/ember-flexberry-designer/utils/fd-get-view-tree-node.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/utils/fd-get-view-tree-node.js should pass jscs.');
-  });
-});
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-get-view-tree-node.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/utils/fd-get-view-tree-node.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/utils/fd-get-view-tree-node.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-preload-stage-metadata.jscs-test', ['exports'], function (exports) {
@@ -32405,7 +32452,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
                   "column": 6
                 },
                 "end": {
-                  "line": 83,
+                  "line": 81,
                   "column": 6
                 }
               },
@@ -32442,7 +32489,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
               morphs[1] = dom.createMorphAt(fragment, 3, 3, contextualElement);
               return morphs;
             },
-            statements: [["inline", "t", ["forms.fd-editform-constructor.form-config-panel.control-properties-header"], [], ["loc", [null, [75, 10], [75, 91]]]], ["inline", "fd-visual-edit-control", [], ["selectedControl", ["subexpr", "@mut", [["get", "selectedItem", ["loc", [null, [78, 26], [78, 38]]]]], [], []], "typemap", ["subexpr", "@mut", [["get", "model.typemap", ["loc", [null, [79, 18], [79, 31]]]]], [], []], "enums", ["subexpr", "@mut", [["get", "model.enums", ["loc", [null, [80, 16], [80, 27]]]]], [], []], "fbtypes", ["subexpr", "@mut", [["get", "model.types", ["loc", [null, [81, 18], [81, 29]]]]], [], []]], ["loc", [null, [77, 8], [82, 10]]]]],
+            statements: [["inline", "t", ["forms.fd-editform-constructor.form-config-panel.control-properties-header"], [], ["loc", [null, [75, 10], [75, 91]]]], ["inline", "fd-visual-edit-control-tree", [], ["selectedItem", ["subexpr", "@mut", [["get", "selectedItem", ["loc", [null, [78, 23], [78, 35]]]]], [], []], "model", ["subexpr", "@mut", [["get", "model", ["loc", [null, [79, 16], [79, 21]]]]], [], []]], ["loc", [null, [77, 8], [80, 10]]]]],
             locals: [],
             templates: []
           };
@@ -32455,11 +32502,11 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 85,
+                  "line": 83,
                   "column": 6
                 },
                 "end": {
-                  "line": 139,
+                  "line": 137,
                   "column": 6
                 }
               },
@@ -32710,7 +32757,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
               morphs[22] = dom.createElementMorph(element13);
               return morphs;
             },
-            statements: [["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-controls-header"], [], ["loc", [null, [87, 10], [87, 85]]]], ["element", "action", ["addControl"], [], ["loc", [null, [91, 38], [91, 61]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-control"], [], ["loc", [null, [92, 14], [92, 81]]]], ["element", "action", ["addGroup"], [], ["loc", [null, [96, 38], [96, 59]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-group"], [], ["loc", [null, [97, 14], [97, 79]]]], ["element", "action", ["addTab"], [], ["loc", [null, [101, 38], [101, 57]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-tab"], [], ["loc", [null, [102, 14], [102, 77]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.move-controls-header"], [], ["loc", [null, [107, 10], [107, 86]]]], ["attribute", "class", ["concat", ["ui ", ["subexpr", "if", [["get", "_moveItem", ["loc", [null, [111, 35], [111, 44]]]], "active"], [], ["loc", [null, [111, 30], [111, 55]]]], " button"]]], ["attribute", "disabled", ["subexpr", "not", [["get", "selectedItem", ["loc", [null, [111, 79], [111, 91]]]]], [], ["loc", [null, [111, 73], [111, 93]]]]], ["element", "action", [["get", "toggleProperty", ["loc", [null, [111, 103], [111, 117]]]], "_moveItem"], [], ["loc", [null, [111, 94], [111, 131]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.move-control"], [], ["loc", [null, [112, 14], [112, 82]]]], ["attribute", "disabled", ["subexpr", "not", [["get", "selectedItem", ["loc", [null, [116, 53], [116, 65]]]]], [], ["loc", [null, [116, 47], [116, 67]]]]], ["element", "action", ["removeSelectedItem", false], [], ["loc", [null, [116, 68], [116, 105]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.remove-control"], [], ["loc", [null, [117, 14], [117, 84]]]], ["attribute", "disabled", ["subexpr", "or", [["subexpr", "not", [["get", "selectedItem", ["loc", [null, [123, 62], [123, 74]]]]], [], ["loc", [null, [123, 57], [123, 75]]]], ["subexpr", "not", [["get", "_selectedIsRow", ["loc", [null, [123, 81], [123, 95]]]]], [], ["loc", [null, [123, 76], [123, 96]]]], ["get", "_selectedIsFirst", ["loc", [null, [123, 97], [123, 113]]]]], [], ["loc", [null, [123, 52], [123, 115]]]]], ["element", "action", ["sortSelectedItem", -1], [], ["loc", [null, [123, 116], [123, 148]]]], ["attribute", "disabled", ["subexpr", "or", [["subexpr", "not", [["get", "selectedItem", ["loc", [null, [126, 62], [126, 74]]]]], [], ["loc", [null, [126, 57], [126, 75]]]], ["subexpr", "not", [["get", "_selectedIsRow", ["loc", [null, [126, 81], [126, 95]]]]], [], ["loc", [null, [126, 76], [126, 96]]]]], [], ["loc", [null, [126, 52], [126, 98]]]]], ["element", "action", ["sortSelectedItem", 1], [], ["loc", [null, [126, 99], [126, 130]]]], ["attribute", "disabled", ["subexpr", "or", [["subexpr", "not", [["get", "selectedItem", ["loc", [null, [131, 62], [131, 74]]]]], [], ["loc", [null, [131, 57], [131, 75]]]], ["get", "_selectedIsRow", ["loc", [null, [131, 76], [131, 90]]]], ["get", "_selectedIsFirst", ["loc", [null, [131, 91], [131, 107]]]]], [], ["loc", [null, [131, 52], [131, 109]]]]], ["element", "action", ["sortSelectedItem", -1], [], ["loc", [null, [131, 110], [131, 142]]]], ["attribute", "disabled", ["subexpr", "or", [["subexpr", "not", [["get", "selectedItem", ["loc", [null, [134, 62], [134, 74]]]]], [], ["loc", [null, [134, 57], [134, 75]]]], ["get", "_selectedIsRow", ["loc", [null, [134, 76], [134, 90]]]], ["get", "_selectedIsLast", ["loc", [null, [134, 91], [134, 106]]]]], [], ["loc", [null, [134, 52], [134, 108]]]]], ["element", "action", ["sortSelectedItem", 1], [], ["loc", [null, [134, 109], [134, 140]]]]],
+            statements: [["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-controls-header"], [], ["loc", [null, [85, 10], [85, 85]]]], ["element", "action", ["addControl"], [], ["loc", [null, [89, 38], [89, 61]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-control"], [], ["loc", [null, [90, 14], [90, 81]]]], ["element", "action", ["addGroup"], [], ["loc", [null, [94, 38], [94, 59]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-group"], [], ["loc", [null, [95, 14], [95, 79]]]], ["element", "action", ["addTab"], [], ["loc", [null, [99, 38], [99, 57]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-tab"], [], ["loc", [null, [100, 14], [100, 77]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.move-controls-header"], [], ["loc", [null, [105, 10], [105, 86]]]], ["attribute", "class", ["concat", ["ui ", ["subexpr", "if", [["get", "_moveItem", ["loc", [null, [109, 35], [109, 44]]]], "active"], [], ["loc", [null, [109, 30], [109, 55]]]], " button"]]], ["attribute", "disabled", ["subexpr", "not", [["get", "selectedItem", ["loc", [null, [109, 79], [109, 91]]]]], [], ["loc", [null, [109, 73], [109, 93]]]]], ["element", "action", [["get", "toggleProperty", ["loc", [null, [109, 103], [109, 117]]]], "_moveItem"], [], ["loc", [null, [109, 94], [109, 131]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.move-control"], [], ["loc", [null, [110, 14], [110, 82]]]], ["attribute", "disabled", ["subexpr", "not", [["get", "selectedItem", ["loc", [null, [114, 53], [114, 65]]]]], [], ["loc", [null, [114, 47], [114, 67]]]]], ["element", "action", ["removeSelectedItem", false], [], ["loc", [null, [114, 68], [114, 105]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.remove-control"], [], ["loc", [null, [115, 14], [115, 84]]]], ["attribute", "disabled", ["subexpr", "or", [["subexpr", "not", [["get", "selectedItem", ["loc", [null, [121, 62], [121, 74]]]]], [], ["loc", [null, [121, 57], [121, 75]]]], ["subexpr", "not", [["get", "_selectedIsRow", ["loc", [null, [121, 81], [121, 95]]]]], [], ["loc", [null, [121, 76], [121, 96]]]], ["get", "_selectedIsFirst", ["loc", [null, [121, 97], [121, 113]]]]], [], ["loc", [null, [121, 52], [121, 115]]]]], ["element", "action", ["sortSelectedItem", -1], [], ["loc", [null, [121, 116], [121, 148]]]], ["attribute", "disabled", ["subexpr", "or", [["subexpr", "not", [["get", "selectedItem", ["loc", [null, [124, 62], [124, 74]]]]], [], ["loc", [null, [124, 57], [124, 75]]]], ["subexpr", "not", [["get", "_selectedIsRow", ["loc", [null, [124, 81], [124, 95]]]]], [], ["loc", [null, [124, 76], [124, 96]]]]], [], ["loc", [null, [124, 52], [124, 98]]]]], ["element", "action", ["sortSelectedItem", 1], [], ["loc", [null, [124, 99], [124, 130]]]], ["attribute", "disabled", ["subexpr", "or", [["subexpr", "not", [["get", "selectedItem", ["loc", [null, [129, 62], [129, 74]]]]], [], ["loc", [null, [129, 57], [129, 75]]]], ["get", "_selectedIsRow", ["loc", [null, [129, 76], [129, 90]]]], ["get", "_selectedIsFirst", ["loc", [null, [129, 91], [129, 107]]]]], [], ["loc", [null, [129, 52], [129, 109]]]]], ["element", "action", ["sortSelectedItem", -1], [], ["loc", [null, [129, 110], [129, 142]]]], ["attribute", "disabled", ["subexpr", "or", [["subexpr", "not", [["get", "selectedItem", ["loc", [null, [132, 62], [132, 74]]]]], [], ["loc", [null, [132, 57], [132, 75]]]], ["get", "_selectedIsRow", ["loc", [null, [132, 76], [132, 90]]]], ["get", "_selectedIsLast", ["loc", [null, [132, 91], [132, 106]]]]], [], ["loc", [null, [132, 52], [132, 108]]]]], ["element", "action", ["sortSelectedItem", 1], [], ["loc", [null, [132, 109], [132, 140]]]]],
             locals: [],
             templates: []
           };
@@ -32726,7 +32773,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
                 "column": 2
               },
               "end": {
-                "line": 142,
+                "line": 140,
                 "column": 2
               }
             },
@@ -32788,7 +32835,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
             morphs[3] = dom.createMorphAt(element16, 7, 7);
             return morphs;
           },
-          statements: [["inline", "t", ["forms.fd-editform-constructor.caption"], [], ["loc", [null, [56, 10], [56, 55]]]], ["block", "ui-tab-segment", [], ["tab", "first", "title", ["subexpr", "t", ["forms.fd-editform-constructor.form-config-panel.form-properties-header"], [], ["loc", [null, [59, 42], [59, 118]]]], "theme", "", "active", true], 0, null, ["loc", [null, [59, 6], [71, 25]]]], ["block", "ui-tab-segment", [], ["tab", "control-properties", "title", ["subexpr", "t", ["forms.fd-editform-constructor.form-config-panel.control-properties-header"], [], ["loc", [null, [73, 55], [73, 134]]]], "theme", ""], 1, null, ["loc", [null, [73, 6], [83, 25]]]], ["block", "ui-tab-segment", [], ["tab", "add-controls", "title", ["subexpr", "t", ["forms.fd-editform-constructor.form-config-panel.add-controls-header"], [], ["loc", [null, [85, 49], [85, 122]]]], "theme", ""], 2, null, ["loc", [null, [85, 6], [139, 25]]]]],
+          statements: [["inline", "t", ["forms.fd-editform-constructor.caption"], [], ["loc", [null, [56, 10], [56, 55]]]], ["block", "ui-tab-segment", [], ["tab", "first", "title", ["subexpr", "t", ["forms.fd-editform-constructor.form-config-panel.form-properties-header"], [], ["loc", [null, [59, 42], [59, 118]]]], "theme", "", "active", true], 0, null, ["loc", [null, [59, 6], [71, 25]]]], ["block", "ui-tab-segment", [], ["tab", "control-properties", "title", ["subexpr", "t", ["forms.fd-editform-constructor.form-config-panel.control-properties-header"], [], ["loc", [null, [73, 55], [73, 134]]]], "theme", ""], 1, null, ["loc", [null, [73, 6], [81, 25]]]], ["block", "ui-tab-segment", [], ["tab", "add-controls", "title", ["subexpr", "t", ["forms.fd-editform-constructor.form-config-panel.add-controls-header"], [], ["loc", [null, [83, 49], [83, 122]]]], "theme", ""], 2, null, ["loc", [null, [83, 6], [137, 25]]]]],
           locals: [],
           templates: [child0, child1, child2]
         };
@@ -32804,7 +32851,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
               "column": 0
             },
             "end": {
-              "line": 143,
+              "line": 141,
               "column": 0
             }
           },
@@ -32827,7 +32874,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [["block", "fd-tabs", [], ["tabsMenuTheme", "vertical tabular", "class", "ui segments horizontal right-tabs"], 0, null, ["loc", [null, [52, 2], [142, 14]]]]],
+        statements: [["block", "fd-tabs", [], ["tabsMenuTheme", "vertical tabular", "class", "ui segments horizontal right-tabs"], 0, null, ["loc", [null, [52, 2], [140, 14]]]]],
         locals: [],
         templates: [child0]
       };
@@ -32846,8 +32893,8 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
             "column": 0
           },
           "end": {
-            "line": 143,
-            "column": 20
+            "line": 142,
+            "column": 0
           }
         },
         "moduleName": "dummy/templates/fd-editform-constructor.hbs"
@@ -32945,7 +32992,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["content", "model.editform.caption", ["loc", [null, [1, 22], [1, 48]]]], ["attribute", "class", ["concat", ["ui form flexberry-vertical-form ", ["get", "state", ["loc", [null, [3, 47], [3, 52]]]]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [4, 26], [4, 31]]]]], [], []]], ["loc", [null, [4, 2], [4, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [7, 16], [7, 24]]]]], [], 0, null, ["loc", [null, [7, 6], [16, 17]]]], ["inline", "t", ["forms.fd-visual-edit-form.preview-mobile-variant"], [], ["loc", [null, [18, 8], [18, 64]]]], ["element", "action", ["close"], [], ["loc", [null, [20, 59], [20, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [21, 8], [21, 49]]]], ["block", "each", [["get", "model.controls", ["loc", [null, [26, 10], [26, 24]]]]], [], 1, null, ["loc", [null, [26, 2], [35, 11]]]], ["block", "if", [["get", "_showModalDialog", ["loc", [null, [38, 6], [38, 22]]]]], [], 2, null, ["loc", [null, [38, 0], [49, 7]]]], ["block", "fd-config-panel", [], [], 3, null, ["loc", [null, [51, 0], [143, 20]]]]],
+      statements: [["content", "model.editform.caption", ["loc", [null, [1, 22], [1, 48]]]], ["attribute", "class", ["concat", ["ui form flexberry-vertical-form ", ["get", "state", ["loc", [null, [3, 47], [3, 52]]]]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [4, 26], [4, 31]]]]], [], []]], ["loc", [null, [4, 2], [4, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [7, 16], [7, 24]]]]], [], 0, null, ["loc", [null, [7, 6], [16, 17]]]], ["inline", "t", ["forms.fd-visual-edit-form.preview-mobile-variant"], [], ["loc", [null, [18, 8], [18, 64]]]], ["element", "action", ["close"], [], ["loc", [null, [20, 59], [20, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [21, 8], [21, 49]]]], ["block", "each", [["get", "model.controls", ["loc", [null, [26, 10], [26, 24]]]]], [], 1, null, ["loc", [null, [26, 2], [35, 11]]]], ["block", "if", [["get", "_showModalDialog", ["loc", [null, [38, 6], [38, 22]]]]], [], 2, null, ["loc", [null, [38, 0], [49, 7]]]], ["block", "fd-config-panel", [], [], 3, null, ["loc", [null, [51, 0], [141, 20]]]]],
       locals: [],
       templates: [child0, child1, child2, child3]
     };
@@ -45827,7 +45874,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+d852aefa"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+961a3413"});
 }
 
 /* jshint ignore:end */

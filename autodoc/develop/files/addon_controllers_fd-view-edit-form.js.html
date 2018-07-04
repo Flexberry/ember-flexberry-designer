@@ -26,7 +26,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdAppStructTree", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdAppStructTree", "classes/FdAttributesTree", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
         </form>
     </div>
 </div>
@@ -51,6 +51,7 @@
 	                            <li><a href="../classes/components.UiTabMenu.html">components.UiTabMenu</a></li>
 	                            <li><a href="../classes/components.UiTabSegment.html">components.UiTabSegment</a></li>
 	                            <li><a href="../classes/FdAppStructTree.html">FdAppStructTree</a></li>
+	                            <li><a href="../classes/FdAttributesTree.html">FdAttributesTree</a></li>
 	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
 	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
 	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
@@ -64,7 +65,6 @@
 	                            <li><a href="../classes/FdViewAttributesDetail.html">FdViewAttributesDetail</a></li>
 	                            <li><a href="../classes/FdViewAttributesMaster.html">FdViewAttributesMaster</a></li>
 	                            <li><a href="../classes/FdViewAttributesProperty.html">FdViewAttributesProperty</a></li>
-	                            <li><a href="../classes/FdViewAttributesTree.html">FdViewAttributesTree</a></li>
 	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">NewPlatformFlexberryFlexberryDesignerVisualEditControl</a></li>
 	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">NewPlatformFlexberryFlexberryDesignerVisualEditForm</a></li>
 	                    </ul>
@@ -118,7 +118,7 @@ import EditFormController from &#x27;ember-flexberry/controllers/edit-form&#x27;
 import FdViewAttributesProperty from &#x27;../objects/fd-view-attributes-property&#x27;;
 import FdViewAttributesMaster from &#x27;../objects/fd-view-attributes-master&#x27;;
 import FdViewAttributesDetail from &#x27;../objects/fd-view-attributes-detail&#x27;;
-import { getTreeNode } from &#x27;../utils/fd-get-view-tree-node&#x27;;
+import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode } from &#x27;../utils/fd-attributes-for-tree&#x27;;
 import { translationMacro as t } from &#x27;ember-i18n&#x27;;
 import FdWorkPanelToggler from &#x27;../mixins/fd-work-panel-toggler&#x27;;
 
@@ -506,9 +506,13 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     let store = this.get(&#x27;store&#x27;);
     let idNode = node.get(&#x27;idNode&#x27;);
     let idTree = node.get(&#x27;id&#x27;);
-    let tree = getTreeNode(store, idNode, idTree);
-    node.set(&#x27;children&#x27;, tree);
-    node.set(&#x27;copyChildren&#x27;, tree);
+
+    let dataForBuildTree = getDataForBuildTree(store, idNode);
+    let childrenAttributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes);
+    let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, idTree);
+
+    node.set(&#x27;children&#x27;, childrenNode);
+    node.set(&#x27;copyChildren&#x27;, childrenNode);
   },
 
   willDestroy() {

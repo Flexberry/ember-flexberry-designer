@@ -26,7 +26,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdAppStructTree", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/FdViewAttributesTree", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdAppStructTree", "classes/FdAttributesTree", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
         </form>
     </div>
 </div>
@@ -51,6 +51,7 @@
 	                            <li><a href="../classes/components.UiTabMenu.html">components.UiTabMenu</a></li>
 	                            <li><a href="../classes/components.UiTabSegment.html">components.UiTabSegment</a></li>
 	                            <li><a href="../classes/FdAppStructTree.html">FdAppStructTree</a></li>
+	                            <li><a href="../classes/FdAttributesTree.html">FdAttributesTree</a></li>
 	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
 	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
 	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
@@ -64,7 +65,6 @@
 	                            <li><a href="../classes/FdViewAttributesDetail.html">FdViewAttributesDetail</a></li>
 	                            <li><a href="../classes/FdViewAttributesMaster.html">FdViewAttributesMaster</a></li>
 	                            <li><a href="../classes/FdViewAttributesProperty.html">FdViewAttributesProperty</a></li>
-	                            <li><a href="../classes/FdViewAttributesTree.html">FdViewAttributesTree</a></li>
 	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">NewPlatformFlexberryFlexberryDesignerVisualEditControl</a></li>
 	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">NewPlatformFlexberryFlexberryDesignerVisualEditForm</a></li>
 	                    </ul>
@@ -397,6 +397,13 @@ export let defineProjections = function (modelClass) {
     class: Projection.belongsTo(&#x27;fd-dev-class&#x27;, &#x27;&#x27;, {
 
     })
+  });
+  modelClass.defineProjection(&#x27;FdPreloadMetadata&#x27;, &#x27;fd-dev-attribute&#x27;, {
+    name: Projection.attr(&#x27;&#x27;),
+    type: Projection.attr(&#x27;&#x27;),
+    notNull: Projection.attr(&#x27;&#x27;),
+    defaultValue: Projection.attr(&#x27;&#x27;),
+    description: Projection.attr(&#x27;&#x27;)
   });
 };
 
