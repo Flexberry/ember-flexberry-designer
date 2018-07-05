@@ -7,14 +7,14 @@ joint.shapes.basic.Generic.define('flexberryUml.Usecase', {
 
     '.uml-usecase-text': {
       'ref': '.uml-usecase-rect',
-      'text-anchor': 'middle',
-      'y-alignment': 'middle',
-      'font-weight': 'bold',
-      'ref-y': 0.5,
-      'ref-x': 0.5,
+      'textAnchor': 'middle',
+      'yAlignment': 'middle',
+      'fontWeight': 'bold',
+      'refY': 0.5,
+      'refX': 0.5,
       'fill': 'black',
-      'font-size': 12,
-      'font-family': 'Arial'
+      'fontSize': 12,
+      'fontFamily': 'Arial'
     }
   },
   name: ''
@@ -49,43 +49,23 @@ joint.shapes.basic.Generic.define('flexberryUml.Usecase', {
     let lines = rect.text.split('\n');
 
     let maxStringChars = lines[0].length;
-    for (let stringIndex = 0; stringIndex < lines.lengts; stringIndex++) {
+    for (let stringIndex = 0; stringIndex < lines.length; stringIndex++) {
       if (lines[stringIndex].length >= maxStringChars) {
         maxStringChars = lines[stringIndex].length;
       }
     }
+    let hightStep = attrs['.uml-usecase-text'].fontSize;
+    let rectHeight = lines.length * hightStep + 20;
 
-    let rectHeight = lines.length * 20 + 20;
-    let rectWidth = maxStringChars * 20 + 20;
+    let widthStep = attrs['.uml-usecase-text'].fontSize / 1.5;
+    let rectWidth = maxStringChars * widthStep  + 20;
 
     attrs['.uml-usecase-text'].text = rect.text;
     attrs['.uml-usecase-rect'].height = rectHeight;
     attrs['.uml-usecase-rect'].width = rectWidth;
-  }
-});
 
-joint.shapes.flexberryUml.Usecase.define('flexberryUml.UsecaseActor', {
-
-  attrs: {
-    image: {
-      'xlink:href': 'assets/images/actor.svg',
-      'ref-x': -15,
-      'ref-y': -60,
-      ref: '.uml-usecase-rect',
-      width: 30,
-      height: 50
-    }
+    this.resize(rectWidth, rectHeight);
   }
-}, {
-  markup: [
-    '<g class="rotatable">',
-    '<g class="scalable">',
-    '<rect class="uml-usecase-rect"/>',
-    '</g>',
-    '<image/>',
-    '<text class="uml-usecase-text"/>',
-    '</g>'
-  ].join('')
 });
 
 joint.shapes.flexberryUml.Usecase.define('flexberryUml.UsecaseBoundary', {
@@ -95,14 +75,14 @@ joint.shapes.flexberryUml.Usecase.define('flexberryUml.UsecaseBoundary', {
 
     '.uml-usecase-text': {
       'ref': '.uml-usecase-rect',
-      'text-anchor': 'middle',
-      'y-alignment': 'middle',
-      'font-weight': 'bold',
-      'ref-y': 0.1,
-      'ref-x': 0.5,
+      'textAnchor': 'middle',
+      'yAlignment': 'middle',
+      'fontWeight': 'bold',
+      'refY': 0.25,
+      'refX': 0.5,
       'fill': 'black',
-      'font-size': 12,
-      'font-family': 'Arial'
+      'fontSize': 12,
+      'fontFamily': 'Arial'
     }
   }
 
@@ -114,7 +94,31 @@ joint.shapes.flexberryUml.Usecase.define('flexberryUml.UsecaseBoundary', {
     '</g>',
     '<text class="uml-usecase-text"/>',
     '</g>'
-  ].join('')
+  ].join(''),
+
+  updateRectangles: function() {
+    let attrs = this.get('attrs');
+    let rect =  { type: 'name', text: this.getUsecaseName() };
+    let lines = rect.text.split('\n');
+
+    let maxStringChars = lines[0].length;
+    for (let stringIndex = 0; stringIndex < lines.length; stringIndex++) {
+      if (lines[stringIndex].length >= maxStringChars) {
+        maxStringChars = lines[stringIndex].length;
+      }
+    }
+    let hightStep = attrs['.uml-usecase-text'].fontSize;
+    let rectHeight = lines.length * hightStep + 40;
+
+    let widthStep = attrs['.uml-usecase-text'].fontSize / 1.5;
+    let rectWidth = maxStringChars * widthStep  + 20;
+
+    attrs['.uml-usecase-text'].text = rect.text;
+    attrs['.uml-usecase-rect'].height = rectHeight;
+    attrs['.uml-usecase-rect'].width = rectWidth;
+
+    this.resize(rectWidth, rectHeight);
+  }
 });
 
 joint.dia.Link.define('flexberryUml.UseCaseUndirAssociation', {
