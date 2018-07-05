@@ -38,12 +38,20 @@ export default Ember.Controller.extend({
       var linkObjectFlow = new joint.shapes.flexberryUml.ObjectFlow({
         source: { x:100, y:150 },
         target: { x:300, y:150 },
-        attrs: { path: { title:'Изменение объекта (Object Flow)' } }
+        labels:[{
+          attrs: { text: { text: 'Label' } }
+        }],
+        attrs: { 
+          path: { title:'Изменение объекта (Object Flow)' },
+        }
       });
 
       var linkTransition = new joint.shapes.flexberryUml.Transition({
         source: { x:100, y:250 },
         target: { x:300, y:250 },
+        labels:[{
+          attrs: { text: { text: 'Label' } }
+        }],
         attrs: { path: { title:'Переход (Transition)' } }
       });
 
@@ -107,10 +115,16 @@ export default Ember.Controller.extend({
 
       let startState = new joint.shapes.flexberryUml.StartState({
         position: { x: 100, y: 204 },
+        attrs: {
+          text: { text: 'Start State' }
+        }
       });
 
       let endState = new joint.shapes.flexberryUml.EndState({
         position: { x: 150, y: 200 },
+        attrs: {
+          text: { text: 'End State' }
+        }
       });
 
       let decision = new joint.shapes.flexberryUml.Decision({

@@ -1,47 +1,32 @@
 import joint from 'npm:jointjs';
 import './fd-common-primitives';
 
-joint.shapes.basic.Generic.define('flexberryUml.SignalReceiptRight', {
+joint.shapes.basic.Path.define('flexberryUml.SignalReceiptRight', {
   attrs: {
     text: {
       'ref': 'path',
       'font-weight': 'bold',
       'font-size':'12',
       'fill': 'black',
-      'font-family': 'Arial',
+      'font-family': 'Arial, helvetica, sans-serif',
       'ref-y': 0.5,
-      'ref-x': 0.5,
-      'text-anchor': 'middle',
-      'y-alignment': 'middle',
+      'ref-x': 0.5, 
+      'y-alignment': 'middle', 
+      'text-anchor':"middle",
+      'ref-dy': null
     },
     path: {
-      'd': 'M200,0 L0,0 L0,50 L200,50 L150,25 L200,0',
+      'd': 'M 0 0 L 100 0 80 20 100 40 0 40 Z',
       'stroke': 'black',
       'stroke-width': '1',
-    },
-    rect: {
-      'stroke': 'black',
-      'stroke-width':'1',
-      'fill':'#fff',
-
-    },
+    }
   }
-}, {
-  markup: [
-    '<g class="rotatable">',
-    '<g class="scalable">',
-    '<rect/>',
-    '<path/>',
-    '</g>',
-    '<text/>',
-    '</g>'
-  ].join('')
 });
 
 joint.shapes.flexberryUml.SignalReceiptRight.define('flexberryUml.SignalReceiptLeft', {
   attrs: {
     path: {
-      'd': 'M200,0 L0,0 L50,25 L0,50 L200,50 L200,0'
+      'd': 'M 0 0 L 100 0 100 40 0 40 20 20 Z'
     }
   }
 });
@@ -49,7 +34,7 @@ joint.shapes.flexberryUml.SignalReceiptRight.define('flexberryUml.SignalReceiptL
 joint.shapes.flexberryUml.SignalReceiptRight.define('flexberryUml.SignalSendingRight', {
   attrs: {
     path: {
-      'd': 'M150,0 L0,0 L0,50 L150,50 L200,25 L150,0'
+      'd': 'M 0 0 L 80 0 100 20 80 40 0 40 Z'
     }
   }
 });
@@ -57,23 +42,63 @@ joint.shapes.flexberryUml.SignalReceiptRight.define('flexberryUml.SignalSendingR
 joint.shapes.flexberryUml.SignalReceiptRight.define('flexberryUml.SignalSendingLeft', {
   attrs: {
     path: {
-      'd': 'M200,0 L50,0 L0,25 L50,50 L200,50 L200,0'
+      'd': 'M 20 0 L 100 0 100 40 20 40 0 20 Z'
     }
   }
 });
 
 joint.shapes.uml.StartState.define('flexberryUml.StartState', {
   size: { width: 12, height: 12 },
-  attrs: { circle: { 'fill': 'black', 'stroke': 'black', 'stroke-width': 2, 'rx': 1 } }
+  attrs: {
+    circle: { 'fill': 'black', 'stroke': 'black', 'stroke-width': 2, 'rx': 1 }, 
+    text: {
+      'ref-x': -5,
+      'text-anchor': 'end',
+      'y-alignment': 'middle',
+      'font-weight':'bold',
+      'font-size':'12'
+    } 
+  }
 });
 
 joint.shapes.uml.EndState.define('flexberryUml.EndState', {
-  attrs: { 'circle.inner': { fill: 'black' } }
+  attrs: { 
+    'circle.inner': { fill: 'black' }, 
+    text: { 
+      'ref':'circle.inner',
+      'ref-x': 20,
+      'ref-y': 0.5,
+      'text-anchor': 'strat',
+      'y-alignment': 'middle',
+      'fill': 'black',
+      'font-weight':'bold',
+      'font-size':'12',
+      'font-family':'Arial, helvetica, sans-serif'
+    }
+  }
+}, {
+  markup: '<g class="rotatable"><g class="scalable"><circle class="outer"/><circle class="inner"/></g><text/></g>'
 });
 
-joint.shapes.flexberryUml.ObjectFlow = joint.shapes.flexberryUml.Dependency;
+joint.shapes.flexberryUml.Dependency.define('flexberryUml.ObjectFlow', {
+  attrs:{ text: { 'font-size':'12', 'font-family':'Arial, helvetica, sans-serif' } }
+},{
+  initialize: function() {
+    this.updateLabel();
+    joint.shapes.flexberryUml.Dependency.prototype.initialize.apply(this, arguments);
+  },
 
-joint.shapes.flexberryUml.Dependency.define('flexberryUml.Transition', {
+  updateLabel: function() {
+    let labelsLen = this.attributes.labels.length;
+    if (labelsLen > 0) {
+      this.attributes.labels[0].attrs.text.text = '[' + this.attributes.labels[0].attrs.text.text;
+      this.attributes.labels[--labelsLen].attrs.text.text = this.attributes.labels[labelsLen].attrs.text.text + ']';
+    }
+  },
+});
+
+
+joint.shapes.flexberryUml.ObjectFlow.define('flexberryUml.Transition', {
   attrs: { '.connection': { 'stroke-dasharray': 0 } }
 });
 
@@ -88,7 +113,7 @@ joint.dia.Element.define('flexberryUml.ComplexTransitionHorizon', {
       'ref': 'polyline',
       'ref-y': 0,
       'ref-x': 100,
-      'text-anchor': 'right',
+      'text-anchor': 'start',
       'y-alignment': 'middle',
       'font-weight': 'bold'
     }
@@ -111,7 +136,7 @@ joint.shapes.flexberryUml.ComplexTransitionHorizon.define('flexberryUml.ComplexT
       'ref-y': 100,
       'ref-x': 0,
       'text-anchor': 'middle',
-      'y-alignment': 'right'
+      'y-alignment': 'start'
     }
   }
 });
