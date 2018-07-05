@@ -29,12 +29,20 @@ export default Ember.Controller.extend({
         model: _this.graph,
       });
 
-      let actor = new joint.shapes.flexberryUml.Actor({
-        position: { x: 100, y: 100 },
+      /*let actor = */new joint.shapes.flexberryUml.sequencediagramActor({
+        position: { x: 0, y: 0 },
         graph: _this.graph
       });
-      actor.addTo(_this.graph);
-      //_this.graph.addCell([actor, actor.attributes.link, actor.attributes.endLine]);
+
+      /*let object = */new joint.shapes.flexberryUml.sequencediagramObject({
+        position: { x: 100, y: 0 },
+        graph: _this.graph
+      });
+
+      /*let activeObject = */new joint.shapes.flexberryUml.sequencediagramActiveObject({
+        position: { x: 200, y: 0 },
+        graph: _this.graph
+      });
 
     });
   }
