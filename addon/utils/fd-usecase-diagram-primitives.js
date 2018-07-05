@@ -54,6 +54,7 @@ joint.shapes.basic.Generic.define('flexberryUml.Usecase', {
         maxStringChars = lines[stringIndex].length;
       }
     }
+
     let hightStep = attrs['.uml-usecase-text'].fontSize;
     let rectHeight = lines.length * hightStep + 20;
 
@@ -107,6 +108,7 @@ joint.shapes.flexberryUml.Usecase.define('flexberryUml.UsecaseBoundary', {
         maxStringChars = lines[stringIndex].length;
       }
     }
+
     let hightStep = attrs['.uml-usecase-text'].fontSize;
     let rectHeight = lines.length * hightStep + 40;
 
