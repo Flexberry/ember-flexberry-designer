@@ -20,8 +20,9 @@ export default {
     load: 'Загрузка'
   },
   'table-column': {
-    type: 'Тип атрибута',
-    'view-attributes': 'Атрибуты представления'
+    type: 'тип',
+    'view-attributes': 'свойство',
+    visibility: 'видимость'
   },
   'attributes-tree': {
     caption: 'Все атрибуты',
@@ -38,5 +39,7 @@ export default {
     caption: 'Редактор представления',
     'view-properties-header': 'Свойства представления',
     'attribute-properties-header': 'Свойства атрибута',
+    'attribute-properties-null': 'Атрибут представления не выбран',
+    'attribute-properties-change': 'Нажмите на элемент правой таблицы чтобы выбрать атрибут представления',
   }
 };

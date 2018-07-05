@@ -856,6 +856,52 @@
       "hasMany": []
     },
     {
+      "name": "FdClassEditForm",
+      "modelName": "fd-dev-attribute",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "Имя",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "caption",
+          "caption": "Заголовок",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "type",
+          "caption": "Тип",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "description",
+          "caption": "Описание",
+          "hidden": false,
+          "index": 3
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Attributes",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [],
+          "index": 4,
+          "caption": "",
+          "name": "class",
+          "relatedTo": "fd-dev-class",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
       "name": "FormDesigner",
       "modelName": "fd-dev-attribute",
       "attrs": [
@@ -1080,7 +1126,7 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Class",
+          "relationName": "Attributes",
           "belongsTo": [],
           "hidden": false,
           "attrs": [],

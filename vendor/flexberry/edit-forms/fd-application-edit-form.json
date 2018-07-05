@@ -1,0 +1,14 @@
+﻿{
+  "propertyLookup": [],
+  "external": false,
+  "caption": "Application",
+  "name": "FdApplicationEditForm",
+  "className": "ApplicationEditForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-dev-class",
+      "modelProjection": "EditApplication"
+    }
+  ]
+}

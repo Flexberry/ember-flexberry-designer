@@ -5,9 +5,9 @@
 import Ember from 'ember';
 
 /**
-  Describes properties on the tree view.
+  Describes properties on the tree.
 
-  @class FdViewAttributesTree
+  @class FdAppStructTree
   @extends <a href="http://emberjs.com/api/classes/Ember.Object.html">Ember.Object</a>
 */
 export default Ember.Object.extend({
@@ -29,6 +29,38 @@ export default Ember.Object.extend({
   type: undefined,
 
   /**
+    Caption property.
+
+    @property type
+    @type String
+  */
+  caption: undefined,
+
+  /**
+    ClassName property.
+
+    @property type
+    @type String
+  */
+  className: undefined,
+
+  /**
+    Description property.
+
+    @property type
+    @type String
+  */
+  description: undefined,
+
+  /**
+    Url property.
+
+    @property type
+    @type String
+  */
+  url: undefined,
+
+  /**
     Id property for jsTree.
 
     @property id
@@ -43,6 +75,14 @@ export default Ember.Object.extend({
     @type String
   */
   idNode: undefined,
+
+  /**
+    Parent id.
+
+    @property idParent
+    @type String
+  */
+  idParent: undefined,
 
   /**
     Children property.
@@ -66,5 +106,13 @@ export default Ember.Object.extend({
     @property state
     @type Object
   */
-  state: undefined
+  state: undefined,
+
+  /**
+    State attribute for jsTree.
+
+    @property a_attr
+    @type Object
+  */
+  a_attr: undefined,
 });

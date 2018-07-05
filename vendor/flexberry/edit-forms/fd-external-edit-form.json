@@ -1,0 +1,14 @@
+﻿{
+  "propertyLookup": [],
+  "external": false,
+  "caption": "External",
+  "name": "FdExternalEditForm",
+  "className": "ExternalEditForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-dev-class",
+      "modelProjection": "EditExternal"
+    }
+  ]
+}

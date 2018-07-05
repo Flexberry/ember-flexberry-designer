@@ -283,4 +283,11 @@ export let defineProjections = function (modelClass) {
 
     })
   });
+  modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-attribute', {
+    name: Projection.attr(''),
+    type: Projection.attr(''),
+    notNull: Projection.attr(''),
+    defaultValue: Projection.attr(''),
+    description: Projection.attr('')
+  });
 };

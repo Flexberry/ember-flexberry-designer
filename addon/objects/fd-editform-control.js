@@ -34,4 +34,12 @@ export default Ember.Object.extend({
     @type String
   */
   width: undefined,
+
+  /**
+    The property definition from view that coresponds to this control.
+
+    @property propertyDefinition
+    @type FdViewAttributesProperty|FdViewAttributesMaster|FdViewAttributesDetail
+  */
+  propertyDefinition: undefined,
 });

@@ -32,6 +32,25 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
   _dimmed: Ember.computed.reads('draggable'),
 
   /**
+    Used in class name bindings to add a class when this row is selected.
+
+    @private
+    @property _isSelected
+    @readOnly
+    @type Boolean
+  */
+  _isSelected: Ember.computed('row', 'selectedItem', function() {
+    return this.get('row') === this.get('selectedItem');
+  }).readOnly(),
+
+  /**
+    {{#crossLink "FdEditformConstructorController/selectedItem:property"}}Passed from above{{/crossLink}}, the selected item.
+
+    @property selectedItem
+  */
+  selectedItem: undefined,
+
+  /**
     The row to render.
 
     @property row
@@ -58,7 +77,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
 
     @property classNameBindings
   */
-  classNameBindings: ['_singleColumn::fields', '_singleColumn::equal', '_singleColumn::width', '_dimmed:dimmed'],
+  classNameBindings: ['_singleColumn::fields', '_singleColumn::equal', '_singleColumn::width', '_dimmed:dimmed', '_isSelected:selected'],
 
   /**
     See [EmberJS API](https://emberjs.com/api/).
@@ -66,4 +85,17 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     @property classNames
   */
   classNames: ['fd-editform-row', 'ui', 'dimmable'],
+
+  /**
+    The event handler is `click`.
+    Calls the `selectItemAction` action when the component is clicked.
+    The action `selectItemAction` should be passed, for example, from the controller.
+
+    @method click
+    @param {JQuery.Event} event
+  */
+  click(event) {
+    event.stopPropagation();
+    this.get('selectItemAction')(this.get('row'));
+  },
 });

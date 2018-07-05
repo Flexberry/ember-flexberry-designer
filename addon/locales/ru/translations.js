@@ -13,11 +13,19 @@ import FdViewListFormForm from './forms/fd-view-list-form';
 import FdAssociationEditFormForm from './forms/fd-association-edit-form';
 import FdClassEditFormForm from './forms/fd-class-edit-form';
 import FdConfigurationEditFormForm from './forms/fd-configuration-edit-form';
+import FdApplicationEditFormForm from './forms/fd-application-edit-form';
+import FdBusinessServerEditFormForm from './forms/fd-business-server-edit-form';
 import FdDiagramEditFormForm from './forms/fd-diagram-edit-form';
+import FdEditFormEditFormForm from './forms/fd-edit-form-edit-form';
 import FdEnumEditFormForm from './forms/fd-enum-edit-form';
+import FdExternalEditFormForm from './forms/fd-external-edit-form';
 import FdInheritanceEditFormForm from './forms/fd-inheritance-edit-form';
+import FdInterfaceEditFormForm from './forms/fd-interface-edit-form';
+import FdListFormEditFormForm from './forms/fd-list-form-edit-form';
 import FdStageEditFormForm from './forms/fd-stage-edit-form';
 import FdSystemEditFormForm from './forms/fd-system-edit-form';
+import FdTypeEditFormForm from './forms/fd-type-edit-form';
+import FdUserFormEditFormForm from './forms/fd-user-form-edit-form';
 import FdViewEditFormForm from './forms/fd-view-edit-form';
 import FdVisualEditFormForm from './forms/fd-visual-edit-form';
 import FdVisualListform from './forms/fd-visual-listform';
@@ -91,6 +99,7 @@ import FdUcdModel from './models/fd-ucd';
 import FdViewModel from './models/fd-view';
 import FdVisualControlModel from './models/fd-visual-control';
 import FdVisualControlComponent from './components/fd-visual-control';
+import FdVisualEditControlTreeComponent from './components/fd-visual-edit-control-tree';
 
 const translations = {};
 Ember.$.extend(true, translations, EmberFlexberryTranslations);
@@ -168,7 +177,9 @@ Ember.$.extend(true, translations, {
 
   forms: {
     'fd-appstruct-form': FdAppstructListFormForm,
+    'fd-application-edit-form': FdApplicationEditFormForm,
     'fd-association-list-form': FdAssociationListFormForm,
+    'fd-business-server-edit-form': FdBusinessServerEditFormForm,
     'fd-class-list-form': FdClassListFormForm,
     'fd-configuration-list-form': FdConfigurationListFormForm,
     'fd-diagram-list-form': FdDiagramListFormForm,
@@ -181,10 +192,16 @@ Ember.$.extend(true, translations, {
     'fd-class-edit-form': FdClassEditFormForm,
     'fd-configuration-edit-form': FdConfigurationEditFormForm,
     'fd-diagram-edit-form': FdDiagramEditFormForm,
+    'fd-edit-form-edit-form': FdEditFormEditFormForm,
     'fd-enum-edit-form': FdEnumEditFormForm,
+    'fd-external-edit-form': FdExternalEditFormForm,
     'fd-inheritance-edit-form': FdInheritanceEditFormForm,
+    'fd-interface-edit-form': FdInterfaceEditFormForm,
+    'fd-list-form-edit-form': FdListFormEditFormForm,
     'fd-stage-edit-form': FdStageEditFormForm,
     'fd-system-edit-form': FdSystemEditFormForm,
+    'fd-type-edit-form': FdTypeEditFormForm,
+    'fd-user-form-edit-form': FdUserFormEditFormForm,
     'fd-view-edit-form': FdViewEditFormForm,
     'fd-visual-edit-form': FdVisualEditFormForm,
     'fd-visual-listform': FdVisualListform,
@@ -193,7 +210,8 @@ Ember.$.extend(true, translations, {
   },
 
   components: {
-    'fd-visual-control': FdVisualControlComponent
+    'fd-visual-control': FdVisualControlComponent,
+    'fd-visual-edit-control-tree': FdVisualEditControlTreeComponent
   }
 
 });
