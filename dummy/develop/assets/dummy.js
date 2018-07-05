@@ -1493,6 +1493,110 @@ define('dummy/controllers/sitemap-node', ['exports', 'ember'], function (exports
     }
   });
 });
+define('dummy/controllers/usecase-diagram-primitives-demo', ['exports', 'ember', 'npm:jointjs'], function (exports, _ember, _npmJointjs) {
+  exports['default'] = _ember['default'].Controller.extend({
+
+    init: function init() {
+      var _this = this;
+      _ember['default'].run.schedule('afterRender', function () {
+        _this.graph = new _npmJointjs['default'].dia.Graph();
+
+        var paper = document.getElementById('paper');
+        var minX = 16384;
+        var minY = 16384;
+        var maxX = 0;
+        var maxY = 0;
+
+        if (minX > maxX) {
+          maxX = paper && 'offsetWidth' in paper ? paper.offsetWidth : 1024;
+          maxY = 840;
+        } else {
+          maxX = minX + maxX;
+          maxY = minY + maxY;
+        }
+
+        _this.paper = new _npmJointjs['default'].dia.Paper({
+          el: paper,
+          width: maxX,
+          height: maxY,
+          gridSize: 1,
+          model: _this.graph
+        });
+
+        var jUseCase = new _npmJointjs['default'].shapes.flexberryUml.Usecase({
+          position: { x: 50, y: 10 },
+          size: { width: 100, height: 40 },
+          name: 'UseCase',
+          ports: {
+            groups: {
+              'in': {
+                position: 'absolute'
+              },
+              'out': {
+                position: 'absolute'
+              }
+            }
+          }
+        });
+        _this.graph.addCell(jUseCase);
+
+        var jUseCaseActor = new _npmJointjs['default'].shapes.flexberryUml.UsecaseActor({
+          position: { x: 50, y: 150 },
+          name: 'Actor',
+          ports: {
+            groups: {
+              'in': {
+                position: 'absolute'
+              },
+              'out': {
+                position: 'absolute'
+              }
+            }
+          }
+        });
+        _this.graph.addCell(jUseCaseActor);
+
+        var jUseCaseBoundary = new _npmJointjs['default'].shapes.flexberryUml.UsecaseBoundary({
+          position: { x: 50, y: 200 },
+          size: { width: 70, height: 50 },
+          name: 'Boundary',
+          ports: {
+            groups: {
+              'in': {
+                position: 'absolute'
+              },
+              'out': {
+                position: 'absolute'
+              }
+            }
+          }
+        });
+        _this.graph.addCell(jUseCaseBoundary);
+
+        var jUseCaseUndirAssociation = new _npmJointjs['default'].shapes.flexberryUml.UseCaseUndirAssociation({
+          source: { x: 300, y: 80 },
+          target: { x: 600, y: 80 },
+          labels: [{ attrs: { text: { text: 'Undir association' } } }]
+        });
+        _this.graph.addCell(jUseCaseUndirAssociation);
+
+        var jUseCaseDirAssociation = new _npmJointjs['default'].shapes.flexberryUml.UseCaseDirAssociation({
+          source: { x: 300, y: 150 },
+          target: { x: 600, y: 150 },
+          labels: [{ attrs: { text: { text: 'Directed association' } } }]
+        });
+        _this.graph.addCell(jUseCaseDirAssociation);
+
+        var jUseCaseGeneralization = new _npmJointjs['default'].shapes.flexberryUml.UseCaseGeneralization({
+          source: { x: 300, y: 200 },
+          target: { x: 600, y: 200 },
+          labels: [{ attrs: { text: { text: 'Generalization' } } }]
+        });
+        _this.graph.addCell(jUseCaseGeneralization);
+      });
+    }
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-config-panel.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/components');
   test('modules/ember-flexberry-designer/components/fd-config-panel.js should pass jscs', function () {
@@ -11308,6 +11412,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ut
     assert.ok(true, 'modules/ember-flexberry-designer/utils/fd-preload-stage-metadata.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-usecase-diagram-primitives.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/utils');
+  test('modules/ember-flexberry-designer/utils/fd-usecase-diagram-primitives.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/utils/fd-usecase-diagram-primitives.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-usecase-diagram-primitives.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/utils/fd-usecase-diagram-primitives.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/utils/fd-usecase-diagram-primitives.js should pass jshint.');
+  });
+});
 define('dummy/enums/fd-generation-state', ['exports', 'ember-flexberry-designer/enums/fd-generation-state'], function (exports, _emberFlexberryDesignerEnumsFdGenerationState) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -13358,8 +13475,9 @@ define('dummy/router', ['exports', 'ember', 'dummy/config/environment'], functio
     this.route('fd-generation-process-form.new', { path: 'fd-generation-process-form/new' });
     this.route('fd-generation-process-form', { path: 'fd-generation-process-form/:id' });
     this.route('fd-generation-list-form');
-    this.route('activity-diagram-primitives-demo');
     this.route('class-diagram-primitives-demo');
+    this.route('activity-diagram-primitives-demo');
+    this.route('usecase-diagram-primitives-demo');
   });
 
   exports['default'] = Router;
@@ -13871,6 +13989,9 @@ define('dummy/routes/new-platform-flexberry-services-lock-list', ['exports', 'em
       return _emberFlexberryRoutesNewPlatformFlexberryServicesLockList['default'];
     }
   });
+});
+define('dummy/routes/usecase-diagram-primitives-demo', ['exports', 'ember', 'ember-flexberry-designer/utils/fd-usecase-diagram-primitives'], function (exports, _ember, _emberFlexberryDesignerUtilsFdUsecaseDiagramPrimitives) {
+  exports['default'] = _ember['default'].Route.extend({});
 });
 define('dummy/serializers/base', ['exports', 'ember-flexberry-data/serializers/base'], function (exports, _emberFlexberryDataSerializersBase) {
   Object.defineProperty(exports, 'default', {
@@ -45878,6 +45999,47 @@ define("dummy/templates/sitemap", ["exports"], function (exports) {
     };
   })());
 });
+define("dummy/templates/usecase-diagram-primitives-demo", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "triple-curlies"
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 22
+          }
+        },
+        "moduleName": "dummy/templates/usecase-diagram-primitives-demo.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "id", "paper");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes() {
+        return [];
+      },
+      statements: [],
+      locals: [],
+      templates: []
+    };
+  })());
+});
 define('dummy/transforms/containers-tree', ['exports', 'ember-flexberry-designer/transforms/containers-tree'], function (exports, _emberFlexberryDesignerTransformsContainersTree) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -46041,6 +46203,14 @@ define('dummy/utils/fd-preload-stage-metadata', ['exports', 'ember-flexberry-des
     }
   });
 });
+define('dummy/utils/fd-usecase-diagram-primitives', ['exports', 'ember-flexberry-designer/utils/fd-usecase-diagram-primitives'], function (exports, _emberFlexberryDesignerUtilsFdUsecaseDiagramPrimitives) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerUtilsFdUsecaseDiagramPrimitives['default'];
+    }
+  });
+});
 define('dummy/utils/get-current-agregator', ['exports', 'ember-flexberry/utils/get-current-agregator'], function (exports, _emberFlexberryUtilsGetCurrentAgregator) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -46128,7 +46298,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+4cc76405"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+01ee9c37"});
 }
 
 /* jshint ignore:end */

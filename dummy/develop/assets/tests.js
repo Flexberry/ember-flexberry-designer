@@ -117,6 +117,23 @@ define('dummy/tests/controllers/sitemap-node.jshint', ['exports'], function (exp
     assert.ok(true, 'controllers/sitemap-node.js should pass jshint.');
   });
 });
+define('dummy/tests/controllers/usecase-diagram-primitives-demo.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - controllers');
+  test('controllers/usecase-diagram-primitives-demo.js should pass jscs', function () {
+    ok(true, 'controllers/usecase-diagram-primitives-demo.js should pass jscs.');
+  });
+});
+define('dummy/tests/controllers/usecase-diagram-primitives-demo.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - controllers/usecase-diagram-primitives-demo.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'controllers/usecase-diagram-primitives-demo.js should pass jshint.');
+  });
+});
 define('dummy/tests/helpers/destroy-app', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = destroyApp;
 
@@ -1026,6 +1043,23 @@ define('dummy/tests/routes/class-diagram-primitives-demo.jshint', ['exports'], f
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'routes/class-diagram-primitives-demo.js should pass jshint.');
+  });
+});
+define('dummy/tests/routes/usecase-diagram-primitives-demo.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - routes');
+  test('routes/usecase-diagram-primitives-demo.js should pass jscs', function () {
+    ok(true, 'routes/usecase-diagram-primitives-demo.js should pass jscs.');
+  });
+});
+define('dummy/tests/routes/usecase-diagram-primitives-demo.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - routes/usecase-diagram-primitives-demo.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'routes/usecase-diagram-primitives-demo.js should pass jshint.');
   });
 });
 define('dummy/tests/services/store.jscs-test', ['exports'], function (exports) {
@@ -7074,6 +7108,32 @@ define('dummy/tests/unit/utils/fd-preload-stage-metadata-test.jshint', ['exports
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/utils/fd-preload-stage-metadata-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/unit/utils/fd-usecase-diagram-primitives-test', ['exports', 'qunit'], function (exports, _qunit) {
+
+  (0, _qunit.module)('Unit | Utility | fd usecase diagram primitives');
+
+  // Replace this with your real tests.
+  (0, _qunit.test)('it works', function (assert) {
+    assert.ok(true);
+  });
+});
+define('dummy/tests/unit/utils/fd-usecase-diagram-primitives-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/utils');
+  test('unit/utils/fd-usecase-diagram-primitives-test.js should pass jscs', function () {
+    ok(true, 'unit/utils/fd-usecase-diagram-primitives-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/utils/fd-usecase-diagram-primitives-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/utils/fd-usecase-diagram-primitives-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/utils/fd-usecase-diagram-primitives-test.js should pass jshint.');
   });
 });
 define('dummy/tests/views/application.jscs-test', ['exports'], function (exports) {
