@@ -60,7 +60,6 @@ joint.shapes.flexberryUml.sequenceActors.define('flexberryUml.sequencediagramAct
     size: { 'width': 24, 'height': 47 },
     image: {'xlink:href': '/assets/images/actor.svg'}
     }
-}, {
 });
 
 joint.shapes.flexberryUml.sequenceActors.define('flexberryUml.sequencediagramObject', {
@@ -68,13 +67,10 @@ joint.shapes.flexberryUml.sequenceActors.define('flexberryUml.sequencediagramObj
     size: { 'width': 40, 'height': 40 },
     rect: { width: 40, height: 40 ,fill: '#FFFFFF', stroke: 'black',},
     }
-}, {
 });
 
 
 joint.shapes.flexberryUml.sequencediagramObject.define('flexberryUml.sequencediagramActiveObject', {
   attrs: {
     rect: {'stroke-width' : 2},  }
-}, {
-
 });
