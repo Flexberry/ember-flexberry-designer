@@ -6,6 +6,12 @@ import FdEditformGroup from '../objects/fd-editform-group';
 import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
 import FdEditformTab from '../objects/fd-editform-tab';
 
+import FdViewAttributesProperty from '../objects/fd-view-attributes-property';
+import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
+import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
+import FdAttributesTree from '../objects/fd-attributes-tree';
+import { getDataForBuildTree, getTreeNodeByNotUsedAttributes, getAssociationTreeNode, getTreeNodeByNotUsedAggregation } from '../utils/fd-attributes-for-tree';
+
 export default Ember.Controller.extend({
   queryParams: ['classId'],
 
@@ -35,6 +41,121 @@ export default Ember.Controller.extend({
     @type FdEditformRow|FdEditformControl
   */
   _draggedItem: undefined,
+
+  /**
+    Flag: indicates whether show tree.
+
+    @private
+    @property _showNotUsedAttributesTree
+    @type Boolean
+    @default false
+  */
+  _showNotUsedAttributesTree: false,
+
+  /**
+    Selected nodes in jsTree.
+
+    @property selectedNodesNotUsedAttributesTree
+    @type Array
+    @default []
+   */
+  selectedNodesNotUsedAttributesTree: Ember.A(),
+
+  /**
+    Included plugins for jsTree.
+
+    @property pluginsTree
+    @type String
+    @default 'wholerow, types'
+   */
+  pluginsTree: 'wholerow, types',
+
+  /**
+    Type settings for jsTree.
+
+    @property typesOptionsTree
+    @type Object
+  */
+  typesOptionsTree: Ember.computed(() => ({
+    'property': {
+      icon: 'assets/images/attribute.bmp'
+    },
+    'master': {
+      icon: 'assets/images/master.bmp'
+    },
+    'detail': {
+      icon: 'assets/images/datail.png'
+    },
+    'class': {
+      icon: 'assets/images/class.bmp'
+    }
+  })),
+
+  /**
+    Data for jsTree.
+
+    @property dataNotUsedAttributesTree
+    @type Array
+  */
+  dataNotUsedAttributesTree: Ember.A(),
+
+  /**
+    Update data in tree.
+
+    @method dataNotUsedAttributesTreeObserver
+  */
+  dataNotUsedAttributesTreeObserver: Ember.observer('_showNotUsedAttributesTree', function() {
+    if (!this.get('_showNotUsedAttributesTree')) {
+      return;
+    }
+
+    let dataobjectId = this.get('model.dataobject.id');
+    let view = this.get('model.editform.formViews.firstObject.view');
+
+    let dataForBuildTree = getDataForBuildTree(this.get('store'), dataobjectId);
+    let attributesForTree = getTreeNodeByNotUsedAttributes(this.get('store'), dataForBuildTree.classes, view, 'type');
+    let associationForTree = getAssociationTreeNode(Ember.A(), dataForBuildTree.associations, 'node_', dataobjectId, 'name');
+    let aggregationForTree = getTreeNodeByNotUsedAggregation(dataForBuildTree.aggregations, view, 'name');
+
+    let attributesTree = Ember.A();
+    attributesTree.pushObjects([
+      FdAttributesTree.create({
+        text: this.get('i18n').t('forms.fd-editform-constructor.form-config-panel.tree.not-used-attributes.property'),
+        type: 'class',
+        id: 'attributes',
+        children: attributesForTree,
+        copyChildren: attributesForTree,
+        state: { opened: true }
+      }),
+      FdAttributesTree.create({
+        text: this.get('i18n').t('forms.fd-editform-constructor.form-config-panel.tree.not-used-attributes.master'),
+        type: 'class',
+        id: 'masters',
+        children: associationForTree,
+        copyChildren: associationForTree,
+        state: { opened: true }
+      }),
+      FdAttributesTree.create({
+        text: this.get('i18n').t('forms.fd-editform-constructor.form-config-panel.tree.not-used-attributes.detail'),
+        type: 'class',
+        id: 'details',
+        children: aggregationForTree,
+        copyChildren: aggregationForTree,
+        state: { opened: true }
+      })
+    ]);
+
+    this.set('dataNotUsedAttributesTree', attributesTree);
+  }),
+
+  _applyDisabled: Ember.computed('selectedNodesNotUsedAttributesTree', function() {
+    let selectedNodes = this.get('selectedNodesNotUsedAttributesTree');
+    if (selectedNodes.length === 0 || selectedNodes[0].type === 'class') {
+      return 'disabled';
+    } else {
+      return '';
+    }
+  }),
 
   /**
     @private
@@ -146,8 +267,52 @@ export default Ember.Controller.extend({
       @method actions.addControl
     */
     addControl() {
+      let dataobject = this.get('model.dataobject');
+      let attributes = dataobject.get('attributes');
+
+      // Find free index.
+      let atrIndex = 1;
+      while (!Ember.isNone(attributes.findBy('name', 'newAttribute' + atrIndex))) {
+        atrIndex++;
+      }
+
+      let newAttribute = this.get('store').createRecord('fd-dev-attribute', {
+        class: dataobject,
+        name: 'newAttribute' + atrIndex,
+        type: 'string',
+        notNull: false,
+        defaultValue: ''
+      });
+      attributes.pushObject(newAttribute);
+
+      let view = this.get('model.editform.formViews.firstObject.view');
+      let viewDefinition = view.get('definition');
+      let propertyDefinition = FdViewAttributesProperty.create({
+        name: 'newAttribute' + atrIndex,
+        visible: true,
+      });
+      viewDefinition.pushObject(propertyDefinition);
+
       this._insertItem(FdEditformControl.create({
         caption: `${this.get('i18n').t('forms.fd-editform-constructor.new-control-caption').toString()} #${this.incrementProperty('_newControlIndex')}`,
+        type: 'string',
+        propertyDefinition: propertyDefinition,
+      }), this.get('selectedItem') || this.get('model.controls'));
+    },
+
+    /**
+      Adds a new empty control to the form, if there is a selected item, the empty control will be added to it.
+
+      @method actions.addEmptyControl
+    */
+    addEmptyControl() {
+      this._insertItem(FdEditformControl.create({
+        caption: `${this.get('i18n').t('forms.fd-editform-constructor.new-control-caption').toString()} #${this.incrementProperty('_newControlIndex')}`,
+        type: 'string',
+        propertyDefinition: FdViewAttributesProperty.create({
+          name: '',
+          visible: false,
+        }),
       }), this.get('selectedItem') || this.get('model.controls'));
     },
 
@@ -184,6 +349,9 @@ export default Ember.Controller.extend({
     removeSelectedItem(approve) {
       if (approve) {
         this._removeItem(this.get('selectedItem'));
+        let view = this.get('model.editform.formViews.firstObject.view');
+        let viewDefinition = view.get('definition');
+        viewDefinition.pushObject(this.get('selectedItem'));
         this.set('selectedItem', undefined);
       } else {
         this.set('_showModalDialog', true);
@@ -236,7 +404,14 @@ export default Ember.Controller.extend({
           }
         }
       } else {
-        this.set('selectedItem', selectedItem === item ? undefined : item);
+        let newSelectedItem = selectedItem === item ? undefined : item;
+        this.set('selectedItem', newSelectedItem);
+
+        if (!Ember.isNone(newSelectedItem) && newSelectedItem.get('propertyDefinition.name') === '') {
+          this.set('_showNotUsedAttributesTree', true);
+        } else {
+          this.set('_showNotUsedAttributesTree', false);
+        }
       }
     },
 
@@ -306,6 +481,153 @@ export default Ember.Controller.extend({
         }
       });
     },
+
+    /**
+      Set attribute in control.
+
+      @method actions.applyСlick
+    */
+    setAttributeInControl() {
+      let selectedNodes = this.get('selectedNodesNotUsedAttributesTree')[0];
+      let selectedItem = this.get('selectedItem');
+      let treeData = this.get('dataNotUsedAttributesTree');
+
+      // Create propertyName
+      let parents = selectedNodes.parents;
+      let propertyName = '';
+      if (parents.length > 2) {
+        let indexParentID = parents.length - 3;
+        let parentAttributes = treeData[1].copyChildren;
+        while (indexParentID >= 0) {
+          let parentID = parents[indexParentID];
+          let parent = parentAttributes.findBy('id', parentID);
+          propertyName = propertyName + '.' + parent.name;
+          indexParentID--;
+          parentAttributes = parent.copyChildren;
+        }
+
+        propertyName = propertyName.slice(1) + '.' + selectedNodes.original.name;
+
+      } else {
+        propertyName = selectedNodes.original.name;
+      }
+
+      selectedItem.set('type', selectedNodes.original.typeNode);
+      let propertyDefinition;
+      if (selectedNodes.type === 'detail') {
+        propertyDefinition = FdViewAttributesDetail.create({
+          name: propertyName,
+          visible: true
+        });
+
+        selectedItem.set('propertyDefinition', propertyDefinition);
+      } else if (selectedNodes.type === 'master') {
+        propertyDefinition = FdViewAttributesMaster.create({
+          name: propertyName,
+          visible: true
+        });
+
+        selectedItem.set('propertyDefinition', propertyDefinition);
+      } else {
+        selectedItem.set('propertyDefinition.name', propertyName);
+        selectedItem.set('propertyDefinition.visible', true);
+        propertyDefinition = selectedItem.get('propertyDefinition');
+      }
+
+      let view = this.get('model.editform.formViews.firstObject.view');
+      let viewDefinition = view.get('definition');
+      viewDefinition.pushObject(propertyDefinition);
+
+      this.set('_showNotUsedAttributesTree', false);
+    },
+
+    /**
+      Don't set attribute in control.
+
+      @method actions.deleteEmptyControl
+    */
+    deleteEmptyControl() {
+      this._removeItem(this.get('selectedItem'));
+      this.set('selectedItem', undefined);
+      this.set('_showNotUsedAttributesTree', false);
+    },
+
+    /**
+      Handles creating jsTree.
+
+      @method actions.handleTreeDidBecomeReady
+    */
+    handleTreeDidBecomeReady() {
+      let treeObject = this.get('treeObjectNotUsedAttributesTree');
+      treeObject.on('open_node.jstree', this._openNodeTree.bind(this));
+      treeObject.on('after_close.jstree', this._afterCloseNodeTree.bind(this));
+    },
+  },
+
+  /**
+    Overridden action for jsTree 'openNode'.
+
+    @method _openNodeTree
+  */
+  _openNodeTree(e, data) {
+    let treeData = this.get('dataNotUsedAttributesTree');
+    this._restorationNodeTree(treeData, data.node.original);
+    this.get('actionReceiverNotUsedAttributesTree').send('redraw');
+  },
+
+  /**
+    Overridden action for jsTree 'eventDidClose'.
+
+    @method _afterCloseNodeTree
+  */
+  _afterCloseNodeTree(e, data) {
+    data.node.original.state.opened = false;
+  },
+
+  /**
+    Method for restoring tree nodes.
+
+    @method _restorationNodeTree
+  */
+  _restorationNodeTree(nodeArray, wantedNode) {
+    let _this = this;
+    nodeArray.forEach(function(node) {
+      if (node.type === 'master' || node.type === 'class') {
+        node.set('children', node.get('copyChildren'));
+
+        if (!Ember.isNone(node.state) && node.state.opened) {
+          _this._restorationNodeTree(node.get('children'), wantedNode);
+        }
+
+        if (node.text === wantedNode.text && node.idNode === wantedNode.idNode && node.id === wantedNode.id) {
+          node.state = { opened: true };
+          if (node.get('children').length === 1 && node.get('children')[0] === '#') {
+            _this._getChildrenNode(node);
+          } else {
+            _this._restorationNodeTree(node.get('children'), wantedNode);
+          }
+        }
+      }
+    });
+  },
+
+  /**
+    Method for loading tree node data.
+
+    @method _getChildrenNode
+  */
+  _getChildrenNode(node) {
+    let store = this.get('store');
+    let idNode = node.get('idNode');
+    let idTree = node.get('id');
+    let view = this.get('model.editform.formViews.firstObject.view');
+
+    let dataForBuildTree = getDataForBuildTree(store, idNode);
+    let childrenAttributes = getTreeNodeByNotUsedAttributes(this.get('store'), dataForBuildTree.classes, view, 'type');
+    let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, idTree, null, 'name');
+
+    node.set('children', childrenNode);
+    node.set('copyChildren', childrenNode);
   },
 
   /**
@@ -479,8 +801,6 @@ export default Ember.Controller.extend({
     @param {Object} model Complex model for processing and save.
   */
   _saveMetadata(model) {
-    // Сохранить атрибуты в объекте данных (id класса объекта данных)
-
     let view = model.editform.get('formViews.firstObject.view');
     let viewDefinition = Ember.A(view.get('definition').filterBy('visible', false));
     let controls = model.controls;
@@ -491,10 +811,19 @@ export default Ember.Controller.extend({
 
     view.set('definition', viewDefinition);
 
+    // Save attributes.
+    let dataobject = this.get('model.dataobject');
+    let attributes = dataobject.get('attributes');
+    if (Ember.isNone(dataobject.get('caption'))) {
+      dataobject.set('caption', dataobject.get('name'));
+    }
+
     // Сохранить класс формы редактирования
 
     return Ember.RSVP.all([
       view.save(),
+      attributes.save(),
+      dataobject.save(),
     ]);
   },
 
@@ -547,6 +876,18 @@ export default Ember.Controller.extend({
         let rowInGroup = control.get('rows').objectAt(i);
         this._extractPathPart(rowInGroup, pathWithTab, viewDefinition);
       }
+    }
+  },
+
+  /**
+    Destroys helper.
+  */
+  willDestroy() {
+    this._super(...arguments);
+    let treeObject = this.get('treeObjectNotUsedAttributesTree');
+    if (!Ember.isNone(treeObject)) {
+      treeObject.off('open_node.jstree', this._openNodeTree.bind(this));
+      treeObject.off('after_close.jstree', this._afterCloseNodeTree.bind(this));
     }
   }
 });

@@ -89,6 +89,9 @@
             <button class="ui button" {{action "addControl"}}>
               {{t "forms.fd-editform-constructor.form-config-panel.add-control"}}
             </button>
+            <button class="ui button" {{action "addEmptyControl"}}>
+              {{t "forms.fd-editform-constructor.form-config-panel.empty-control"}}
+            </button>
           </div>
           <div class="field">
             <button class="ui button" {{action "addGroup"}}>
@@ -134,6 +137,31 @@
             </button>
           </div>
         </div>
+        {{#if _showNotUsedAttributesTree}}
+          <div class="ui small dividing header">
+            {{t "forms.fd-editform-constructor.form-config-panel.attributes-control"}}
+          </div>
+          <div class="ui segments">
+            <div class="ui segment overflow-panel">
+              {{
+                ember-jstree
+                actionReceiver=actionReceiverNotUsedAttributesTree
+                selectedNodes=selectedNodesNotUsedAttributesTree
+                data=dataNotUsedAttributesTree
+                plugins=pluginsTree
+                typesOptions=typesOptionsTree
+                treeObject=treeObjectNotUsedAttributesTree
+                eventDidBecomeReady=(action 'handleTreeDidBecomeReady')
+              }}
+            </div>
+          </div>
+          <button class='ui button {{_applyDisabled}}' {{action "setAttributeInControl" on="click" }}>
+            {{t "forms.fd-editform-constructor.form-config-panel.apply"}}
+          </button>
+          <button class='ui button' {{action "deleteEmptyControl" on="click" }}>
+            {{t "forms.fd-editform-constructor.form-config-panel.cancel"}}
+          </button>
+        {{/if}}
       {{/ui-tab-segment}}
 
     </form>
