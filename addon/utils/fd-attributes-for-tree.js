@@ -315,7 +315,7 @@ let getTreeNodeByNotUsedAggregation = function (aggregationData, view, addInText
 /**
   Method for find association and class by propertyName.
 */
- let parsingPropertyName = function (store, dataObject, propertyName) {
+let parsingPropertyName = function (store, dataObject, propertyName) {
   let stageId = dataObject.get('stage.id');
   let allAssociation = store.peekAll('fd-dev-association').filterBy('stage.id', stageId);
 

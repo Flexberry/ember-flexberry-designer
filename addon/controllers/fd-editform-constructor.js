@@ -91,8 +91,19 @@ export default Ember.Controller.extend({
     }
   })),
 
+  /**
+    Data for jsTree.
+
+    @property dataTree
+    @type Array
+  */
   dataTree: Ember.A(),
 
+  /**
+    Update data in tree.
+
+    @method dataTreeObserver
+  */
   dataTreeObserver: Ember.observer('_showTree', function() {
     if (!this.get('_showTree')) {
       return;
