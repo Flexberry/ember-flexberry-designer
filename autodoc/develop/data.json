@@ -1930,7 +1930,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 253,
+            "line": 254,
             "description": "Handles changes in selectedNodesAttributesTree.",
             "itemtype": "method",
             "name": "_selectedNodesAttributesTreeObserver",
@@ -1939,7 +1939,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 276,
+            "line": 277,
             "description": "Handles changes in selectedNodesTypeTree.",
             "itemtype": "method",
             "name": "_selectedNodesTypeTreeObserver",
@@ -1948,7 +1948,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 302,
+            "line": 303,
             "description": "Add new attribute.",
             "itemtype": "method",
             "name": "actions.addAttribute",
@@ -1957,7 +1957,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 315,
+            "line": 316,
             "description": "Edit select attribute.",
             "itemtype": "method",
             "name": "actions.editAttribute",
@@ -1966,7 +1966,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 331,
+            "line": 332,
             "description": "Handles remove node from attribute jsTree.",
             "itemtype": "method",
             "name": "actions.removeAttribute",
@@ -1975,7 +1975,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 378,
+            "line": 379,
             "description": "Handles select node from attribute jsTree.",
             "itemtype": "method",
             "name": "actions.applyAttribute",
@@ -1984,7 +1984,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 438,
+            "line": 439,
             "description": "Handles creating jsTree.",
             "itemtype": "method",
             "name": "actions.handleTreeDidBecomeReady",
@@ -1993,7 +1993,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 449,
+            "line": 450,
             "description": "Add new node in attributes tree.",
             "itemtype": "method",
             "name": "actions.applyСlick",
@@ -2002,7 +2002,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 506,
+            "line": 507,
             "description": "Open attributes tree.",
             "itemtype": "method",
             "name": "actions.cancelСlick",
@@ -2011,7 +2011,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 518,
+            "line": 519,
             "description": "Overridden action for jsTree 'openNode'.",
             "itemtype": "method",
             "name": "_openNodeTree",
@@ -2020,7 +2020,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 530,
+            "line": 531,
             "description": "Overridden action for jsTree 'eventDidClose'.",
             "itemtype": "method",
             "name": "_afterCloseNodeTree",
@@ -2029,7 +2029,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 539,
+            "line": 540,
             "description": "Method for restoring tree nodes.",
             "itemtype": "method",
             "name": "_restorationNodeTree",
@@ -2038,7 +2038,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 566,
+            "line": 567,
             "description": "Method for loading tree node data.",
             "itemtype": "method",
             "name": "_getChildrenNode",
@@ -2047,16 +2047,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 584,
-            "description": "Method for find association and class by propertyName.",
-            "itemtype": "method",
-            "name": "_parsingPropertyName",
-            "class": "components.UiTabMenu",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 614,
+            "line": 585,
             "description": "Method for create attributes tree.",
             "itemtype": "method",
             "name": "_createAttributesTree",
@@ -2065,7 +2056,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 651,
+            "line": 622,
             "description": "Method for create type tree.",
             "itemtype": "method",
             "name": "_createTypeTree",
@@ -2864,7 +2855,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 12,
+            "line": 18,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -2877,7 +2868,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 20,
+            "line": 26,
             "description": "Indicates that the user has started moving control, and the next selected control will be the target of the move.",
             "access": "private",
             "tagname": "",
@@ -2891,7 +2882,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 30,
+            "line": 36,
             "description": "The current dragged item.",
             "access": "private",
             "tagname": "",
@@ -2904,7 +2895,77 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 39,
+            "line": 45,
+            "description": "Flag: indicates whether show tree.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_showNotUsedAttributesTree",
+            "type": "Boolean",
+            "default": "false",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 55,
+            "description": "Selected nodes in jsTree.",
+            "itemtype": "property",
+            "name": "selectedNodesNotUsedAttributesTree",
+            "type": "Array",
+            "default": "[]",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 64,
+            "description": "Included plugins for jsTree.",
+            "itemtype": "property",
+            "name": "pluginsTree",
+            "type": "String",
+            "default": "'wholerow, types'",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 73,
+            "description": "Type settings for jsTree.",
+            "itemtype": "property",
+            "name": "typesOptionsTree",
+            "type": "Object",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 94,
+            "description": "Data for jsTree.",
+            "itemtype": "property",
+            "name": "dataNotUsedAttributesTree",
+            "type": "Array",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 102,
+            "description": "Update data in tree.",
+            "itemtype": "method",
+            "name": "dataNotUsedAttributesTreeObserver",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 160,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -2917,7 +2978,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 49,
+            "line": 170,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -2930,7 +2991,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 59,
+            "line": 180,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -2943,7 +3004,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 69,
+            "line": 190,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -2956,7 +3017,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 79,
+            "line": 200,
             "description": "An array in the container of the selected item.",
             "access": "private",
             "tagname": "",
@@ -2970,7 +3031,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 100,
+            "line": 221,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -2983,7 +3044,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 117,
+            "line": 238,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -2996,7 +3057,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 134,
+            "line": 255,
             "description": "The selected item.",
             "itemtype": "property",
             "name": "selectedItem",
@@ -3007,7 +3068,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 143,
+            "line": 264,
             "description": "Adds a new control to the form, if there is a selected item, the control will be added to it.",
             "itemtype": "method",
             "name": "actions.addControl",
@@ -3017,7 +3078,17 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 154,
+            "line": 303,
+            "description": "Adds a new empty control to the form, if there is a selected item, the empty control will be added to it.",
+            "itemtype": "method",
+            "name": "actions.addEmptyControl",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 319,
             "description": "Adds a new group to the form, if there is a selected item, the group will be added to it.",
             "itemtype": "method",
             "name": "actions.addGroup",
@@ -3027,7 +3098,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 166,
+            "line": 331,
             "description": "Adds a new tab to the form, if there is a selected item, the tab will be added to it.",
             "itemtype": "method",
             "name": "actions.addTab",
@@ -3037,7 +3108,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 178,
+            "line": 343,
             "description": "Removes the selected item.",
             "itemtype": "method",
             "name": "actions.removeSelectedItem",
@@ -3054,7 +3125,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 193,
+            "line": 361,
             "description": "Sorts the selected item in its container.",
             "itemtype": "method",
             "name": "actions.sortSelectedItem",
@@ -3071,7 +3142,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 208,
+            "line": 376,
             "description": "Close edit form constructor and go to application structure constructor.",
             "itemtype": "method",
             "name": "actions.close",
@@ -3081,7 +3152,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 217,
+            "line": 385,
             "description": "Set the selected item.",
             "itemtype": "method",
             "name": "actions.selectItem",
@@ -3098,7 +3169,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 243,
+            "line": 418,
             "description": "Set the current dragged item.",
             "itemtype": "method",
             "name": "actions.setDragItem",
@@ -3115,7 +3186,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 253,
+            "line": 428,
             "description": "Get the current dragged item.",
             "itemtype": "method",
             "name": "actions.getDragItem",
@@ -3129,7 +3200,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 263,
+            "line": 438,
             "description": "Move the current dragged item above or below relative to the passed item.",
             "itemtype": "method",
             "name": "actions.moveDragItem",
@@ -3151,7 +3222,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 294,
+            "line": 469,
             "description": "Saves the form's metadata.",
             "itemtype": "method",
             "name": "actions.save",
@@ -3168,7 +3239,77 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 311,
+            "line": 485,
+            "description": "Set attribute in control.",
+            "itemtype": "method",
+            "name": "actions.applyСlick",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 544,
+            "description": "Don't set attribute in control.",
+            "itemtype": "method",
+            "name": "actions.deleteEmptyControl",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 555,
+            "description": "Handles creating jsTree.",
+            "itemtype": "method",
+            "name": "actions.handleTreeDidBecomeReady",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 567,
+            "description": "Overridden action for jsTree 'openNode'.",
+            "itemtype": "method",
+            "name": "_openNodeTree",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 578,
+            "description": "Overridden action for jsTree 'eventDidClose'.",
+            "itemtype": "method",
+            "name": "_afterCloseNodeTree",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 587,
+            "description": "Method for restoring tree nodes.",
+            "itemtype": "method",
+            "name": "_restorationNodeTree",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 614,
+            "description": "Method for loading tree node data.",
+            "itemtype": "method",
+            "name": "_getChildrenNode",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 633,
             "description": "Inserts an `item` into `container`, if `container` is `FdEditformControl`, `item` is inserted into the parent row after `container`.",
             "itemtype": "method",
             "name": "_insertItem",
@@ -3190,7 +3331,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 354,
+            "line": 676,
             "description": "Removes the specified item from the form.",
             "itemtype": "method",
             "name": "_removeItem",
@@ -3207,7 +3348,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 382,
+            "line": 704,
             "description": "Looks for a container that contains the item.",
             "itemtype": "method",
             "name": "_findItemContainer",
@@ -3234,7 +3375,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 416,
+            "line": 738,
             "description": "Returns a row that can be added to the form.",
             "access": "private",
             "tagname": "",
@@ -3257,7 +3398,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 441,
+            "line": 763,
             "description": "Returns the control that can be added to a row.",
             "itemtype": "method",
             "name": "_getControl",
@@ -3278,7 +3419,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 463,
+            "line": 785,
             "description": "Checks whether the control is suitable for placement in a row.",
             "access": "private",
             "tagname": "",
@@ -3301,7 +3442,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 475,
+            "line": 797,
             "description": "Save editform metadata: dataobject attributes, view, editform class.",
             "itemtype": "method",
             "name": "_saveMetadata",
@@ -3318,7 +3459,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 501,
+            "line": 830,
             "description": "Extract path part from object model.",
             "itemtype": "method",
             "name": "_extractPathPart",
@@ -3339,6 +3480,14 @@
                     "type": "Ember.Array"
                 }
             ],
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 882,
+            "description": "Destroys helper.",
             "class": "FdDraggableControlMixin",
             "module": "components",
             "namespace": "components"
@@ -6892,6 +7041,27 @@
         {
             "file": "addon/routes/fd-editform-constructor.js",
             "line": 120,
+            "description": "A hook you can use to setup the controller for the current route.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).",
+            "itemtype": "method",
+            "name": "setupController",
+            "params": [
+                {
+                    "name": "controller",
+                    "description": "",
+                    "type": "Ember.Controller"
+                },
+                {
+                    "name": "model",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-editform-constructor.js",
+            "line": 134,
             "description": "Locate control by path.",
             "itemtype": "method",
             "name": "_locateControl",
@@ -6921,7 +7091,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 159,
+            "line": 173,
             "description": "Locate control in row by path.",
             "itemtype": "method",
             "name": "_locateControlInRow",
@@ -6946,7 +7116,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 183,
+            "line": 197,
             "description": "Locate tabs for control.",
             "itemtype": "method",
             "name": "_locateTabs",
@@ -6976,7 +7146,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 254,
+            "line": 268,
             "description": "Locate group for control.",
             "itemtype": "method",
             "name": "_locateGroup",
@@ -7006,7 +7176,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 313,
+            "line": 327,
             "description": "Locate column for control.",
             "itemtype": "method",
             "name": "_locateColumn",
@@ -7036,7 +7206,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 372,
+            "line": 386,
             "description": "Create tree.",
             "itemtype": "method",
             "name": "_buildTree",
@@ -7066,7 +7236,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 409,
+            "line": 423,
             "description": "Create type tree.",
             "itemtype": "method",
             "name": "_createTypeTree",
@@ -8057,36 +8227,64 @@
         },
         {
             "file": "addon/utils/fd-attributes-for-tree.js",
-            "line": 4,
+            "line": 6,
             "description": "Get attributes tree.",
             "class": "",
             "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/utils/fd-attributes-for-tree.js",
-            "line": 54,
+            "line": 56,
             "description": "Create tree node by class.",
             "class": "",
             "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/utils/fd-attributes-for-tree.js",
-            "line": 86,
+            "line": 88,
             "description": "Create tree node by association.",
             "class": "",
             "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/utils/fd-attributes-for-tree.js",
-            "line": 120,
+            "line": 122,
             "description": "Create tree node by aggregation.",
             "class": "",
             "module": "ember-flexberry-designer"
         },
         {
             "file": "addon/utils/fd-attributes-for-tree.js",
-            "line": 151,
+            "line": 153,
             "description": "Get detail view.",
+            "class": "",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/utils/fd-attributes-for-tree.js",
+            "line": 175,
+            "description": "Create tree node by not used attributes.",
+            "class": "",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/utils/fd-attributes-for-tree.js",
+            "line": 224,
+            "description": "Create tree node by not used association.",
+            "class": "",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/utils/fd-attributes-for-tree.js",
+            "line": 276,
+            "description": "Create tree node by not used aggregation.",
+            "class": "",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/utils/fd-attributes-for-tree.js",
+            "line": 315,
+            "description": "Method for find association and class by propertyName.",
             "class": "",
             "module": "ember-flexberry-designer"
         },
@@ -8122,6 +8320,10 @@
         {
             "message": "Missing item type\nInitializes DOM-related component's properties.",
             "line": " addon/components/fd-visual-edit-form.js:155"
+        },
+        {
+            "message": "Missing item type\nDestroys helper.",
+            "line": " addon/controllers/fd-editform-constructor.js:882"
         },
         {
             "message": "Missing item type\nField name where object identifier is kept.",
@@ -8393,23 +8595,39 @@
         },
         {
             "message": "Missing item type\nGet attributes tree.",
-            "line": " addon/utils/fd-attributes-for-tree.js:4"
+            "line": " addon/utils/fd-attributes-for-tree.js:6"
         },
         {
             "message": "Missing item type\nCreate tree node by class.",
-            "line": " addon/utils/fd-attributes-for-tree.js:54"
+            "line": " addon/utils/fd-attributes-for-tree.js:56"
         },
         {
             "message": "Missing item type\nCreate tree node by association.",
-            "line": " addon/utils/fd-attributes-for-tree.js:86"
+            "line": " addon/utils/fd-attributes-for-tree.js:88"
         },
         {
             "message": "Missing item type\nCreate tree node by aggregation.",
-            "line": " addon/utils/fd-attributes-for-tree.js:120"
+            "line": " addon/utils/fd-attributes-for-tree.js:122"
         },
         {
             "message": "Missing item type\nGet detail view.",
-            "line": " addon/utils/fd-attributes-for-tree.js:151"
+            "line": " addon/utils/fd-attributes-for-tree.js:153"
+        },
+        {
+            "message": "Missing item type\nCreate tree node by not used attributes.",
+            "line": " addon/utils/fd-attributes-for-tree.js:175"
+        },
+        {
+            "message": "Missing item type\nCreate tree node by not used association.",
+            "line": " addon/utils/fd-attributes-for-tree.js:224"
+        },
+        {
+            "message": "Missing item type\nCreate tree node by not used aggregation.",
+            "line": " addon/utils/fd-attributes-for-tree.js:276"
+        },
+        {
+            "message": "Missing item type\nMethod for find association and class by propertyName.",
+            "line": " addon/utils/fd-attributes-for-tree.js:315"
         },
         {
             "message": "Missing item type\nReturns promise to preload stage metadata specified by stagePk in the context of store.",

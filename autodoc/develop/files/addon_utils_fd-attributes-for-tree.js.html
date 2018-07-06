@@ -115,6 +115,8 @@
     <pre class="prettyprint linenums">
 import Ember from &#x27;ember&#x27;;
 import FdAttributesTree from &#x27;../objects/fd-attributes-tree&#x27;;
+import FdViewAttributesMaster from &#x27;../objects/fd-view-attributes-master&#x27;;
+import FdViewAttributesDetail from &#x27;../objects/fd-view-attributes-detail&#x27;;
 
 /**
   Get attributes tree.
@@ -285,12 +287,183 @@ let getDetailView = function (aggregationData) {
   return detailView;
 };
 
+/**
+  Create tree node by not used attributes.
+*/
+let getTreeNodeByNotUsedAttributes = function (store, classData, view, addInText) {
+  let definition = view.get(&#x27;definition&#x27;);
+  let dataObject = view.get(&#x27;class&#x27;);
+  let tree = Ember.A();
+  classData.forEach((dClass) =&gt; {
+    let attributes = dClass.get(&#x27;attributes&#x27;);
+    let idClass = dClass.get(&#x27;id&#x27;);
+
+    let filterDefinition = definition.filter(function(item) {
+      let itemSplit = item.get(&#x27;name&#x27;).split(&#x27;.&#x27;);
+      let idClassPropertyName = parsingPropertyName(store, dataObject, itemSplit).classId;
+      return !(item instanceof FdViewAttributesMaster) &amp;&amp;
+        !(item instanceof FdViewAttributesDetail) &amp;&amp;
+        (idClass === idClassPropertyName);
+    });
+
+    let namesPropertyDefinition = Ember.A(filterDefinition).map(function(item) {
+      let itemName = item.get(&#x27;name&#x27;);
+      let itemPath = itemName.split(&#x27;.&#x27;);
+      let indexPropertyName = itemPath.length - 1;
+      return itemPath[indexPropertyName];
+    });
+
+    let notUsedAttributes = attributes.filter(function(item) {
+      return Ember.A(namesPropertyDefinition).indexOf(item.get(&#x27;name&#x27;)) === -1;
+    });
+
+    notUsedAttributes.forEach((attribute) =&gt; {
+      let text = attribute.get(&#x27;name&#x27;);
+      if (!Ember.isNone(addInText)) {
+        text += &#x27; (&#x27; + attribute.get(&#x60;${addInText}&#x60;) + &#x27;)&#x27;;
+      }
+
+      tree.addObject(FdAttributesTree.create({
+        text: text,
+        name: attribute.get(&#x27;name&#x27;),
+        type: &#x27;property&#x27;,
+        typeNode: attribute.get(&#x27;type&#x27;),
+        idNode: idClass,
+      }));
+    });
+  });
+
+  return tree;
+};
+
+/**
+  Create tree node by not used association.
+*/
+let getTreeNodeByNotUsedAssociation = function (store, associationData, jsTreeId, view, addInText) {
+  let definition = view.get(&#x27;definition&#x27;);
+  let dataObject = view.get(&#x27;class&#x27;);
+  let currentClassId = associationData.length &gt; 0 ? associationData.get(&#x27;firstObject.endClass.id&#x27;) : null;
+  let tree = Ember.A();
+
+  let filterDefinition = definition.filter(function(item) {
+    let itemSplit = item.get(&#x27;name&#x27;).split(&#x27;.&#x27;);
+    let idClassPropertyName = parsingPropertyName(store, dataObject, itemSplit).classId;
+    return (item instanceof FdViewAttributesMaster) &amp;&amp; (currentClassId === idClassPropertyName);
+  });
+
+  let namesPropertyDefinition = Ember.A(filterDefinition).map(function(item) {
+    let itemName = item.get(&#x27;name&#x27;);
+    let itemPath = itemName.split(&#x27;.&#x27;);
+    let indexPropertyName = itemPath.length - 1;
+    return itemPath[indexPropertyName];
+  });
+
+  let notUsedAssociation = associationData.filter(function(item) {
+    let endClass = item.get(&#x27;startClass&#x27;);
+    return Ember.A(namesPropertyDefinition).indexOf(endClass.get(&#x27;name&#x27;)) === -1;
+  });
+
+  notUsedAssociation.forEach((master, index) =&gt; {
+    let startClass = master.get(&#x27;startClass&#x27;);
+    let masterName = master.get(&#x27;startRole&#x27;) || startClass.get(&#x27;name&#x27;);
+    let idMaster = startClass.get(&#x27;id&#x27;);
+
+    let text = masterName;
+    if (!Ember.isNone(addInText)) {
+      text += &#x27; (&#x27; + startClass.get(&#x60;${addInText}&#x60;) + &#x27;)&#x27;;
+    }
+
+    tree.addObject(FdAttributesTree.create({
+      text: text,
+      name: masterName,
+      type: &#x27;master&#x27;,
+      typeNode: &#x27;master&#x27;,
+      id: jsTreeId + index,
+      idNode: idMaster,
+      children: [&#x27;#&#x27;],
+      copyChildren: [&#x27;#&#x27;],
+    }));
+  });
+
+  return tree;
+};
+
+/**
+  Create tree node by not used aggregation.
+*/
+let getTreeNodeByNotUsedAggregation = function (aggregationData, view, addInText) {
+  let definition = view.get(&#x27;definition&#x27;);
+  let tree = Ember.A();
+
+  let filterDefinition = definition.filter(function(item) {
+    return (item instanceof FdViewAttributesDetail);
+  });
+
+  let notUsedAggregation = aggregationData.filter(function(item) {
+    let filterDefinitionArray = Ember.A(filterDefinition);
+    let endClass = item.get(&#x27;endClass&#x27;);
+    return Ember.isNone(filterDefinitionArray.findBy(&#x27;name&#x27;, endClass.get(&#x27;name&#x27;)));
+  });
+
+  notUsedAggregation.forEach((detail) =&gt; {
+    let endClass = detail.get(&#x27;endClass&#x27;);
+    let detailName = detail.get(&#x27;endRole&#x27;) || endClass.get(&#x27;name&#x27;);
+    let idDetail = endClass.get(&#x27;id&#x27;);
+
+    let text = detailName;
+    if (!Ember.isNone(addInText)) {
+      text += &#x27; (&#x27; + endClass.get(&#x60;${addInText}&#x60;) + &#x27;)&#x27;;
+    }
+
+    tree.addObject(FdAttributesTree.create({
+      text: text,
+      name: detailName,
+      type: &#x27;detail&#x27;,
+      typeNode: &#x27;detail&#x27;,
+      idNode: idDetail,
+    }));
+  });
+
+  return tree;
+};
+
+/**
+  Method for find association and class by propertyName.
+*/
+let parsingPropertyName = function (store, dataObject, propertyName) {
+  let stageId = dataObject.get(&#x27;stage.id&#x27;);
+  let allAssociation = store.peekAll(&#x27;fd-dev-association&#x27;).filterBy(&#x27;stage.id&#x27;, stageId);
+
+  let startRole = propertyName[0];
+  let endRoleID = dataObject.get(&#x27;id&#x27;);
+  let associationSelectedClass = allAssociation.filter(function(item) {
+    return item.get(&#x27;endClass.id&#x27;) === endRoleID &amp;&amp; item.get(&#x27;realStartRole&#x27;) === startRole;
+  });
+
+  for (let i = 1; i &lt; propertyName.length; i++) {
+    startRole = propertyName[i];
+    endRoleID = associationSelectedClass[0].get(&#x27;startClass.id&#x27;);
+    let associationFilteBuId = allAssociation.filterBy(&#x27;endClass.id&#x27;, endRoleID);
+    let associationFilteBRole = Ember.A(associationFilteBuId).filterBy(&#x27;realStartRole&#x27;, startRole);
+    associationSelectedClass = associationFilteBRole;
+  }
+
+  return {
+    classId: endRoleID,
+    associations: associationSelectedClass
+  };
+};
+
 export {
   getDataForBuildTree,
   getClassTreeNode,
   getAssociationTreeNode,
   getAggregationTreeNode,
-  getDetailView
+  getDetailView,
+  getTreeNodeByNotUsedAttributes,
+  getTreeNodeByNotUsedAssociation,
+  getTreeNodeByNotUsedAggregation,
+  parsingPropertyName
 };
 
     </pre>
