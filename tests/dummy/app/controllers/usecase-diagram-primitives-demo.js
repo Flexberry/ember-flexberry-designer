@@ -64,6 +64,22 @@ export default Ember.Controller.extend({
       });
       _this.graph.addCell(jUseCaseBoundary);
 
+      let jUseCaseActor = new joint.shapes.flexberryUml.UsecaseActor({
+        position: { x: 250, y: 50 },
+        name: 'Actor',
+        ports: {
+          groups: {
+            'in': {
+              position: 'absolute'
+            },
+            'out': {
+              position: 'absolute'
+            }
+          }
+        }
+      });
+      _this.graph.addCell(jUseCaseActor);
+
       let jUseCaseUndirAssociation = new joint.shapes.flexberryUml.UseCaseUndirAssociation({
         source: { x:500, y:80 },
         target: { x:700, y:80 },

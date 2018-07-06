@@ -123,6 +123,38 @@ joint.shapes.flexberryUml.Usecase.define('flexberryUml.UsecaseBoundary', {
   }
 });
 
+joint.shapes.flexberryUml.Usecase.define('flexberryUml.UsecaseActor', {
+  attrs: {
+    image: {
+      'xlink:href': 'assets/images/actor.svg',
+      width: 30,
+      'ref': '.uml-usecase-text',
+      'refY': -55,
+      'refX': 3,
+      height: 50
+    },
+
+    '.uml-usecase-text': {
+      'ref': '',
+      'textAnchor': 'middle',
+      'yAlignment': 'middle',
+      'fontWeight': 'bold',
+      'fill': 'black',
+      'fontSize': 12,
+      'fontFamily': 'Arial'
+    }
+  }
+}, {
+  markup: [
+    '<g class="rotatable">',
+    '<g class="scalable">',
+    '</g>',
+    '<image/>',
+    '<text class="uml-usecase-text"/>',
+    '</g>'
+  ].join('')
+});
+
 joint.dia.Link.define('flexberryUml.UseCaseUndirAssociation', {
   labels: [{ textAnchor: 'middle', attrs: { text: { text:  '' } } }]
 });
