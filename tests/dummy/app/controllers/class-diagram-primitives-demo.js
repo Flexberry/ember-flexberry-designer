@@ -98,7 +98,6 @@ export default Ember.Controller.extend({
 
         let classWithoutStp = new joint.shapes.flexberryUml.Class({
           position: { x: 350, y: 30 },
-          size: { width: 100, height: 100 },
           name: 'Class1',
           attributes: attributes,
           methods: methods,
@@ -106,8 +105,7 @@ export default Ember.Controller.extend({
 
         let classWithStp = new joint.shapes.flexberryUml.Class({
           position: { x: 350, y: 150 },
-          size: { width: 100, height: 100 },
-          name: 'Class2',
+          name: 'Class2textextext',
           stereotype: 'enumeration',
           attributes: attributes,
           methods: methods,
@@ -123,7 +121,6 @@ export default Ember.Controller.extend({
 
         let obj = new joint.shapes.flexberryUml.Object({
           position: { x: 350, y: 300 },
-          size: { width: 100, height: 70 },
           name: 'Object',
           attributes: attributes,
           methods: methods,
@@ -131,10 +128,7 @@ export default Ember.Controller.extend({
 
         var instance = new joint.shapes.flexberryUml.Instance({
           position: { x: 350, y: 400 },
-          size: { width: 150, height: 40 },
-          attrs: {
-            text: { text: 'Instance' }
-          }
+          name: 'Instance'
         });
 
         var multiObject = new joint.shapes.flexberryUml.MultiObject({
@@ -147,17 +141,12 @@ export default Ember.Controller.extend({
 
         var activeObj = new joint.shapes.flexberryUml.ActiveObject({
           position: { x: 350, y: 600 },
-          size: { width: 150, height: 40 },
-          attrs: {
-            text: { text: 'Active object' }
-          }
+          name: 'Active object'
         });
 
         let templateClass = new joint.shapes.flexberryUml.TemplateClass({
           position: { x: 550, y: 150 },
-          size: { width: 150, height: 100 },
-          name: 'Class2',
-          stereotype: 'enumeration',
+          name: 'Class2textextext',
           attributes: attributes,
           methods: methods,
           params: 'params'
@@ -178,7 +167,6 @@ export default Ember.Controller.extend({
 
         let packagePr = new joint.shapes.flexberryUml.Package({
           position: { x: 550, y: 500 },
-          size: { width: 100, height: 50 },
           name: 'Class2',
           attributes: attributes,
         });
