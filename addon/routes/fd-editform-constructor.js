@@ -117,6 +117,12 @@ export default Ember.Route.extend({
     return modelHash;
   },
 
+  setupController(controller) {
+    this._super(...arguments);
+    controller.set('selectedItem', undefined);
+    controller.set('_showTree', false);
+  },
+
   /**
       Locate control by path.
 

@@ -1,5 +1,7 @@
 import Ember from 'ember';
 import FdAttributesTree from '../objects/fd-attributes-tree';
+import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
+import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 
 /**
   Get attributes tree.
@@ -170,10 +172,181 @@ let getDetailView = function (aggregationData) {
   return detailView;
 };
 
+/**
+  Create tree node by not used attributes.
+*/
+let getTreeNodeByNotUsedAttributes = function (store, classData, view, addInText) {
+  let definition = view.get('definition');
+  let dataObject = view.get('class');
+  let tree = Ember.A();
+  classData.forEach((dClass) => {
+    let attributes = dClass.get('attributes');
+    let idClass = dClass.get('id');
+
+    let filterDefinition = definition.filter(function(item) {
+      let itemSplit = item.get('name').split('.');
+      let idClassPropertyName = parsingPropertyName(store, dataObject, itemSplit).classId;
+      return !(item instanceof FdViewAttributesMaster) &&
+        !(item instanceof FdViewAttributesDetail) &&
+        (idClass === idClassPropertyName);
+    });
+
+    let namesPropertyDefinition = Ember.A(filterDefinition).map(function(item) {
+      let itemName = item.get('name');
+      let itemPath = itemName.split('.');
+      let indexPropertyName = itemPath.length - 1;
+      return itemPath[indexPropertyName];
+    });
+
+    let notUsedAttributes = attributes.filter(function(item) {
+      return Ember.A(namesPropertyDefinition).indexOf(item.get('name')) === -1;
+    });
+
+    notUsedAttributes.forEach((attribute) => {
+      let text = attribute.get('name');
+      if (!Ember.isNone(addInText)) {
+        text += ' (' + attribute.get(`${addInText}`) + ')';
+      }
+
+      tree.addObject(FdAttributesTree.create({
+        text: text,
+        name: attribute.get('name'),
+        type: 'property',
+        typeNode: attribute.get('type'),
+        idNode: idClass,
+      }));
+    });
+  });
+
+  return tree;
+};
+
+/**
+  Create tree node by not used association.
+*/
+let getTreeNodeByNotUsedAssociation = function (store, associationData, jsTreeId, view, addInText) {
+  let definition = view.get('definition');
+  let dataObject = view.get('class');
+  let currentClassId = associationData.length > 0 ? associationData.get('firstObject.endClass.id') : null;
+  let tree = Ember.A();
+
+  let filterDefinition = definition.filter(function(item) {
+    let itemSplit = item.get('name').split('.');
+    let idClassPropertyName = parsingPropertyName(store, dataObject, itemSplit).classId;
+    return (item instanceof FdViewAttributesMaster) && (currentClassId === idClassPropertyName);
+  });
+
+  let namesPropertyDefinition = Ember.A(filterDefinition).map(function(item) {
+    let itemName = item.get('name');
+    let itemPath = itemName.split('.');
+    let indexPropertyName = itemPath.length - 1;
+    return itemPath[indexPropertyName];
+  });
+
+  let notUsedAssociation = associationData.filter(function(item) {
+    let endClass = item.get('startClass');
+    return Ember.A(namesPropertyDefinition).indexOf(endClass.get('name')) === -1;
+  });
+
+  notUsedAssociation.forEach((master, index) => {
+    let startClass = master.get('startClass');
+    let masterName = master.get('startRole') || startClass.get('name');
+    let idMaster = startClass.get('id');
+
+    let text = masterName;
+    if (!Ember.isNone(addInText)) {
+      text += ' (' + startClass.get(`${addInText}`) + ')';
+    }
+
+    tree.addObject(FdAttributesTree.create({
+      text: text,
+      name: masterName,
+      type: 'master',
+      typeNode: 'master',
+      id: jsTreeId + index,
+      idNode: idMaster,
+      children: ['#'],
+      copyChildren: ['#'],
+    }));
+  });
+
+  return tree;
+};
+
+/**
+  Create tree node by not used aggregation.
+*/
+let getTreeNodeByNotUsedAggregation = function (aggregationData, view, addInText) {
+  let definition = view.get('definition');
+  let tree = Ember.A();
+
+  let filterDefinition = definition.filter(function(item) {
+    return (item instanceof FdViewAttributesDetail);
+  });
+
+  let notUsedAggregation = aggregationData.filter(function(item) {
+    let filterDefinitionArray = Ember.A(filterDefinition);
+    let endClass = item.get('endClass');
+    return Ember.isNone(filterDefinitionArray.findBy('name', endClass.get('name')));
+  });
+
+  notUsedAggregation.forEach((detail) => {
+    let endClass = detail.get('endClass');
+    let detailName = detail.get('endRole') || endClass.get('name');
+    let idDetail = endClass.get('id');
+
+    let text = detailName;
+    if (!Ember.isNone(addInText)) {
+      text += ' (' + endClass.get(`${addInText}`) + ')';
+    }
+
+    tree.addObject(FdAttributesTree.create({
+      text: text,
+      name: detailName,
+      type: 'detail',
+      typeNode: 'detail',
+      idNode: idDetail,
+    }));
+  });
+
+  return tree;
+};
+
+/**
+  Method for find association and class by propertyName.
+*/
+ let parsingPropertyName = function (store, dataObject, propertyName) {
+  let stageId = dataObject.get('stage.id');
+  let allAssociation = store.peekAll('fd-dev-association').filterBy('stage.id', stageId);
+
+  let startRole = propertyName[0];
+  let endRoleID = dataObject.get('id');
+  let associationSelectedClass = allAssociation.filter(function(item) {
+    return item.get('endClass.id') === endRoleID && item.get('realStartRole') === startRole;
+  });
+
+  for (let i = 1; i < propertyName.length; i++) {
+    startRole = propertyName[i];
+    endRoleID = associationSelectedClass[0].get('startClass.id');
+    let associationFilteBuId = allAssociation.filterBy('endClass.id', endRoleID);
+    let associationFilteBRole = Ember.A(associationFilteBuId).filterBy('realStartRole', startRole);
+    associationSelectedClass = associationFilteBRole;
+  }
+
+  return {
+    classId: endRoleID,
+    associations: associationSelectedClass
+  };
+};
+
 export {
   getDataForBuildTree,
   getClassTreeNode,
   getAssociationTreeNode,
   getAggregationTreeNode,
-  getDetailView
+  getDetailView,
+  getTreeNodeByNotUsedAttributes,
+  getTreeNodeByNotUsedAssociation,
+  getTreeNodeByNotUsedAggregation,
+  parsingPropertyName
 };
