@@ -25,5 +25,12 @@ export default {
     'remove-approve': 'Are you sure?',
     apply: 'Apply',
     cancel: 'Cancel',
+    tree: {
+      'not-used-attributes': {
+        'property': 'Own properties',
+        'master': 'Masters',
+        'detail': 'Details',
+      }
+    }
   },
 };

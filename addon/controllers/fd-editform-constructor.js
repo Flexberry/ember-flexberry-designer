@@ -64,19 +64,19 @@ export default Ember.Controller.extend({
   /**
     Included plugins for jsTree.
 
-    @property plugins
+    @property pluginsTree
     @type String
     @default 'wholerow, types'
    */
-  plugins: 'wholerow, types',
+  pluginsTree: 'wholerow, types',
 
   /**
     Type settings for jsTree.
 
-    @property typesOptions
+    @property typesOptionsTree
     @type Object
   */
-  typesOptions: Ember.computed(() => ({
+  typesOptionsTree: Ember.computed(() => ({
     'property': {
       icon: 'assets/images/attribute.bmp'
     },
@@ -94,17 +94,17 @@ export default Ember.Controller.extend({
   /**
     Data for jsTree.
 
-    @property dataTree
+    @property dataNotUsedAttributesTree
     @type Array
   */
-  dataTree: Ember.A(),
+  dataNotUsedAttributesTree: Ember.A(),
 
   /**
     Update data in tree.
 
-    @method dataTreeObserver
+    @method dataNotUsedAttributesTreeObserver
   */
-  dataTreeObserver: Ember.observer('_showNotUsedAttributesTree', function() {
+  dataNotUsedAttributesTreeObserver: Ember.observer('_showNotUsedAttributesTree', function() {
     if (!this.get('_showNotUsedAttributesTree')) {
       return;
     }
@@ -120,7 +120,7 @@ export default Ember.Controller.extend({
     let attributesTree = Ember.A();
     attributesTree.pushObjects([
       FdAttributesTree.create({
-        text: 'Собственные свойства',
+        text: this.get('i18n').t('forms.fd-editform-constructor.form-config-panel.tree.not-used-attributes.property'),
         type: 'class',
         id: 'attributes',
         children: attributesForTree,
@@ -128,7 +128,7 @@ export default Ember.Controller.extend({
         state: { opened: true }
       }),
       FdAttributesTree.create({
-        text: 'Мастера',
+        text: this.get('i18n').t('forms.fd-editform-constructor.form-config-panel.tree.not-used-attributes.master'),
         type: 'class',
         id: 'masters',
         children: associationForTree,
@@ -136,7 +136,7 @@ export default Ember.Controller.extend({
         state: { opened: true }
       }),
       FdAttributesTree.create({
-        text: 'Детейлы',
+        text: this.get('i18n').t('forms.fd-editform-constructor.form-config-panel.tree.not-used-attributes.detail'),
         type: 'class',
         id: 'details',
         children: aggregationForTree,
@@ -145,7 +145,7 @@ export default Ember.Controller.extend({
       })
     ]);
 
-    this.set('dataTree', attributesTree);
+    this.set('dataNotUsedAttributesTree', attributesTree);
   }),
 
   _applyDisabled: Ember.computed('selectedNodesNotUsedAttributesTree', function() {
@@ -487,10 +487,10 @@ export default Ember.Controller.extend({
 
       @method actions.applyСlick
     */
-    applyСlick() {
+    setAttributeInControl() {
       let selectedNodes = this.get('selectedNodesNotUsedAttributesTree')[0];
       let selectedItem = this.get('selectedItem');
-      let treeData = this.get('dataTree');
+      let treeData = this.get('dataNotUsedAttributesTree');
 
       // Create propertyName
       let parents = selectedNodes.parents;
@@ -544,9 +544,9 @@ export default Ember.Controller.extend({
     /**
       Don't set attribute in control.
 
-      @method actions.cancelСlick
+      @method actions.deleteEmptyControl
     */
-    cancelСlick() {
+    deleteEmptyControl() {
       this._removeItem(this.get('selectedItem'));
       this.set('selectedItem', undefined);
       this.set('_showNotUsedAttributesTree', false);
@@ -558,7 +558,7 @@ export default Ember.Controller.extend({
       @method actions.handleTreeDidBecomeReady
     */
     handleTreeDidBecomeReady() {
-      let treeObject = this.get('treeObject');
+      let treeObject = this.get('treeObjectNotUsedAttributesTree');
       treeObject.on('open_node.jstree', this._openNodeTree.bind(this));
       treeObject.on('after_close.jstree', this._afterCloseNodeTree.bind(this));
     },
@@ -570,9 +570,9 @@ export default Ember.Controller.extend({
     @method _openNodeTree
   */
   _openNodeTree(e, data) {
-    let treeData = this.get('dataTree');
+    let treeData = this.get('dataNotUsedAttributesTree');
     this._restorationNodeTree(treeData, data.node.original);
-    this.get('actionReceiver').send('redraw');
+    this.get('actionReceiverNotUsedAttributesTree').send('redraw');
   },
 
   /**
@@ -879,9 +879,12 @@ export default Ember.Controller.extend({
     }
   },
 
+  /**
+    Destroys helper.
+  */
   willDestroy() {
     this._super(...arguments);
-    let treeObject = this.get('treeObject');
+    let treeObject = this.get('treeObjectNotUsedAttributesTree');
     if (!Ember.isNone(treeObject)) {
       treeObject.off('open_node.jstree', this._openNodeTree.bind(this));
       treeObject.off('after_close.jstree', this._afterCloseNodeTree.bind(this));

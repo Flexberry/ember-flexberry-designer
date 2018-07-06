@@ -145,20 +145,20 @@
             <div class="ui segment overflow-panel">
               {{
                 ember-jstree
-                actionReceiver=actionReceiver
+                actionReceiver=actionReceiverNotUsedAttributesTree
                 selectedNodes=selectedNodesNotUsedAttributesTree
-                data=dataTree
-                plugins=plugins
-                typesOptions=typesOptions
-                treeObject=treeObject
+                data=dataNotUsedAttributesTree
+                plugins=pluginsTree
+                typesOptions=typesOptionsTree
+                treeObject=treeObjectNotUsedAttributesTree
                 eventDidBecomeReady=(action 'handleTreeDidBecomeReady')
               }}
             </div>
           </div>
-          <button class='ui button {{_applyDisabled}}' {{action "applyСlick" on="click" }}>
+          <button class='ui button {{_applyDisabled}}' {{action "setAttributeInControl" on="click" }}>
             {{t "forms.fd-editform-constructor.form-config-panel.apply"}}
           </button>
-          <button class='ui button' {{action "cancelСlick" on="click" }}>
+          <button class='ui button' {{action "deleteEmptyControl" on="click" }}>
             {{t "forms.fd-editform-constructor.form-config-panel.cancel"}}
           </button>
         {{/if}}

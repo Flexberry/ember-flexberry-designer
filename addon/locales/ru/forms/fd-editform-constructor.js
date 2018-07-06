@@ -25,5 +25,12 @@ export default {
     'remove-approve': 'Вы уверены?',
     apply: 'Применить',
     cancel: 'Отмена',
+    tree: {
+      'not-used-attributes': {
+        'property': 'Собственные свойства',
+        'master': 'Мастера',
+        'detail': 'Детейлы',
+      }
+    }
   },
 };
