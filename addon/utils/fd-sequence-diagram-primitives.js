@@ -37,40 +37,63 @@ joint.shapes.basic.Generic.define('flexberryUml.sequenceActors', {
       'stroke-width="' +
       this.attributes.attrs.rect['stroke-width'] +
       '" d="M 0 0 0 0"/>';
-      let shift = this.attributes.attrs.rect.width / 2 - 4;
-      joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
-      this.addTo(this.attributes.graph);
-      this.attributes.endLine.addTo(this.attributes.graph);
-      this.embed(this.attributes.endLine);
-      this.attributes.endLine.position(shift, 100, { parentRelative: true });
-      this.embed(this.attributes.endLine);
-      this.attributes.endLine.on('change:position', function(element, position) {
-        let actor = element.getParentCell();
-        let actorPosition = actor.position();
-        element.position(actorPosition.x + shift, position.y);
-        //alert('element1 moved to ' + position.x + ',' + position.y);
-      });
-      this.attributes.link.addTo(this.attributes.graph);
-      this.embed(this.attributes.link);
-    }
+    let shift = this.attributes.attrs.rect.width / 2 - 4;
+    joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
+    this.addTo(this.attributes.graph);
+    this.attributes.endLine.addTo(this.attributes.graph);
+    this.embed(this.attributes.endLine);
+    this.attributes.endLine.position(shift, 100, { parentRelative: true });
+    this.embed(this.attributes.endLine);
+    this.attributes.endLine.on('change:position', function(element, position) {
+      let actor = element.getParentCell();
+      let actorPosition = actor.position();
+      element.position(actorPosition.x + shift, position.y);
+    });
+    this.attributes.link.addTo(this.attributes.graph);
+    this.embed(this.attributes.link);
+  }
 });
 
 joint.shapes.flexberryUml.sequenceActors.define('flexberryUml.sequencediagramActor', {
   attrs: {
     size: { 'width': 24, 'height': 47 },
-    image: {'xlink:href': '/assets/images/actor.svg'}
-    }
+    image: { 'xlink:href': '/assets/images/actor.svg' }
+  }
 });
 
 joint.shapes.flexberryUml.sequenceActors.define('flexberryUml.sequencediagramObject', {
   attrs: {
     size: { 'width': 40, 'height': 40 },
-    rect: { width: 40, height: 40 ,fill: '#FFFFFF', stroke: 'black',},
-    }
+    rect: { width: 40, height: 40, fill: '#FFFFFF', stroke: 'black' },
+  }
 });
-
 
 joint.shapes.flexberryUml.sequencediagramObject.define('flexberryUml.sequencediagramActiveObject', {
   attrs: {
-    rect: {'stroke-width' : 2},  }
+    rect: { 'stroke-width':2 } }
 });
+
+joint.shapes.basic.Path.define('flexberryUml.sequencediagramTerminator', {
+  attrs: {
+    size: { 'width': 40, 'height': 40 },
+    path: { 'stroke-width':2, d: 'M0,0 40,40 M0,40 40,0z' }
+  }
+}, {
+  initialize: function () {
+    joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
+    this.addTo(this.attributes.graph);
+  }
+});
+
+joint.dia.Link.define('flexberryUml.sequencediagramProcedureCall', {
+  attrs: {
+    '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'black' }
+  },
+  labels: [{ textAnchor: 'middle', attrs: { text: { text:  '' } } }]
+}, {
+  initialize: function () {
+    this.addTo(this.attributes.graph);
+  }
+
+});
+

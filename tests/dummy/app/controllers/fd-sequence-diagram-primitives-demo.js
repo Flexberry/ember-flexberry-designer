@@ -44,6 +44,18 @@ export default Ember.Controller.extend({
         graph: _this.graph
       });
 
+      /*let terminator = */new joint.shapes.flexberryUml.sequencediagramTerminator({
+        position: { x: 300, y: 0 },
+        graph: _this.graph
+      });
+
+      /*let sequencediagramProcedureCall = */new joint.shapes.flexberryUml.sequencediagramProcedureCall({
+        source: { x: 0, y: 200 },
+        target: { x: 300, y: 200 },
+        labels: [{ attrs: { text: { text:  'Procedure Call' } } }],
+        graph: _this.graph
+      });
+
     });
   }
 });
