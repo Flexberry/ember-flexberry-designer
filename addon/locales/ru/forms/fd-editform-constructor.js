@@ -7,7 +7,7 @@ export default {
     'form-properties-header': 'Свойства формы',
     'form-name': 'Название формы',
     'form-description': 'Описание',
-    'control-properties-header': 'Свойства элемента управления',
+    'control-properties-header': 'Элемент управления',
     'control-caption': 'Заголовок',
     'control-type': 'Тип',
     'group-caption': 'Заголовок группы',
@@ -17,5 +17,9 @@ export default {
     'add-control': 'Контрол',
     'add-group': 'Группа',
     'add-tab': 'Вкладка',
+    'move-controls-header': 'Переместить элементы управления',
+    'move-control': 'Переместить',
+    'remove-control': 'Удалить',
+    'remove-approve': 'Вы уверены?',
   },
 };

@@ -23,7 +23,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
     });
   },
 
-  didDestroyElement() {
+  willDestroyElement() {
     let sidebar = Ember.$('.ui.sidebar.main.menu');
 
     if (!sidebar.hasClass('visible')) {

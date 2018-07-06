@@ -31,6 +31,23 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
         caption: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.title'),
       });
+      sitemap.nodes.push({
+        link: null,
+        caption: i18n.t('forms.application.sitemap.root.fd-uml-primitives.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-uml-primitives.title'),
+        children: [
+          {
+            link: 'class-diagram-primitives-demo',
+            caption: i18n.t('forms.application.sitemap.root.class-diagram-primitives-demo.caption'),
+            title: i18n.t('forms.application.sitemap.root.class-diagram-primitives-demo.title'),
+          },
+          {
+            link: 'activity-diagram-primitives-demo',
+            caption: i18n.t('forms.application.sitemap.root.activity-diagram-primitives-demo.caption'),
+            title: i18n.t('forms.application.sitemap.root.activity-diagram-primitives-demo.title'),
+          }
+        ]
+      });
     }
 
     if (context.configuration && !singleStageMode) {
