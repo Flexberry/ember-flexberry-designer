@@ -49,19 +49,19 @@ export default Ember.Controller.extend({
         graph: _this.graph
       });
 
-      let sequencediagramProcedureCall = new joint.shapes.flexberryUml.sequencediagramProcedureCall({
+      /*let sequencediagramProcedureCall = new joint.shapes.flexberryUml.sequencediagramProcedureCall({
         source: { x: 0, y: 200 },
         target: { x: 300, y: 200 },
         labels: [{ attrs: { text: { text:  'Procedure Call' } } }],
         graph: _this.graph
-      });
+      });*/
 
-      let sequencediagramFlatMessage = new joint.shapes.flexberryUml.sequencediagramFlatMessage({
+      /*let sequencediagramFlatMessage = new joint.shapes.flexberryUml.sequencediagramFlatMessage({
         source: { x: 0, y: 250 },
         target: { x: 300, y: 250 },
         labels: [{ attrs: { text: { text:  'Flat Message' } } }],
         graph: _this.graph
-      });
+      });*/
 
     });
   }
