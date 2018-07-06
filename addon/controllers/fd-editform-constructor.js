@@ -46,20 +46,20 @@ export default Ember.Controller.extend({
     Flag: indicates whether show tree.
 
     @private
-    @property _showTree
+    @property _showNotUsedAttributesTree
     @type Boolean
     @default false
   */
-  _showTree: false,
+  _showNotUsedAttributesTree: false,
 
   /**
     Selected nodes in jsTree.
 
-    @property selectedNodes
+    @property selectedNodesNotUsedAttributesTree
     @type Array
     @default []
    */
-  selectedNodes: Ember.A(),
+  selectedNodesNotUsedAttributesTree: Ember.A(),
 
   /**
     Included plugins for jsTree.
@@ -104,8 +104,8 @@ export default Ember.Controller.extend({
 
     @method dataTreeObserver
   */
-  dataTreeObserver: Ember.observer('_showTree', function() {
-    if (!this.get('_showTree')) {
+  dataTreeObserver: Ember.observer('_showNotUsedAttributesTree', function() {
+    if (!this.get('_showNotUsedAttributesTree')) {
       return;
     }
 
@@ -148,8 +148,8 @@ export default Ember.Controller.extend({
     this.set('dataTree', attributesTree);
   }),
 
-  _applyDisabled: Ember.computed('selectedNodes', function() {
-    let selectedNodes = this.get('selectedNodes');
+  _applyDisabled: Ember.computed('selectedNodesNotUsedAttributesTree', function() {
+    let selectedNodes = this.get('selectedNodesNotUsedAttributesTree');
     if (selectedNodes.length === 0 || selectedNodes[0].type === 'class') {
       return 'disabled';
     } else {
@@ -408,9 +408,9 @@ export default Ember.Controller.extend({
         this.set('selectedItem', newSelectedItem);
 
         if (!Ember.isNone(newSelectedItem) && newSelectedItem.get('propertyDefinition.name') === '') {
-          this.set('_showTree', true);
+          this.set('_showNotUsedAttributesTree', true);
         } else {
-          this.set('_showTree', false);
+          this.set('_showNotUsedAttributesTree', false);
         }
       }
     },
@@ -488,7 +488,7 @@ export default Ember.Controller.extend({
       @method actions.applyСlick
     */
     applyСlick() {
-      let selectedNodes = this.get('selectedNodes')[0];
+      let selectedNodes = this.get('selectedNodesNotUsedAttributesTree')[0];
       let selectedItem = this.get('selectedItem');
       let treeData = this.get('dataTree');
 
@@ -538,7 +538,7 @@ export default Ember.Controller.extend({
       let viewDefinition = view.get('definition');
       viewDefinition.pushObject(propertyDefinition);
 
-      this.set('_showTree', false);
+      this.set('_showNotUsedAttributesTree', false);
     },
 
     /**
@@ -549,7 +549,7 @@ export default Ember.Controller.extend({
     cancelСlick() {
       this._removeItem(this.get('selectedItem'));
       this.set('selectedItem', undefined);
-      this.set('_showTree', false);
+      this.set('_showNotUsedAttributesTree', false);
     },
 
     /**

@@ -120,7 +120,7 @@ export default Ember.Route.extend({
   setupController(controller) {
     this._super(...arguments);
     controller.set('selectedItem', undefined);
-    controller.set('_showTree', false);
+    controller.set('_showNotUsedAttributesTree', false);
   },
 
   /**

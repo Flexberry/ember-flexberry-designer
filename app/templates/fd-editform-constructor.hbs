@@ -137,7 +137,7 @@
             </button>
           </div>
         </div>
-        {{#if _showTree}}
+        {{#if _showNotUsedAttributesTree}}
           <div class="ui small dividing header">
             {{t "forms.fd-editform-constructor.form-config-panel.attributes-control"}}
           </div>
@@ -146,7 +146,7 @@
               {{
                 ember-jstree
                 actionReceiver=actionReceiver
-                selectedNodes=selectedNodes
+                selectedNodes=selectedNodesNotUsedAttributesTree
                 data=dataTree
                 plugins=plugins
                 typesOptions=typesOptions
