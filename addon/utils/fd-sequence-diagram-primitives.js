@@ -89,11 +89,21 @@ joint.dia.Link.define('flexberryUml.sequencediagramProcedureCall', {
   attrs: {
     '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'black' }
   },
-  labels: [{ textAnchor: 'middle', attrs: { text: { text:  '' } } }]
+  /*labels: [{ textAnchor: 'middle', attrs: { text: { text:  '' } } }]*/
 }, {
   initialize: function () {
     this.addTo(this.attributes.graph);
   }
+});
 
+joint.dia.Link.define('flexberryUml.sequencediagramFlatMessage', {
+  attrs: {
+    '.marker-target': { d: 'M 0 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' },
+    '.connection': { stroke: 'black', 'stroke-width': 1 }
+  },
+}, {
+  initialize: function () {
+    this.addTo(this.attributes.graph);
+  }
 });
 
