@@ -40,8 +40,8 @@ export default Ember.Route.extend(ModalApplicationRouteMixin, {
           this.transitionTo('fd-appstruct-form');
         }
       });
-    } /*else {
+    } else {
       this.transitionTo('fd-configuration-list-form');
-  }*/
+    }
   }
 });
