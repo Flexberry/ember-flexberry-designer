@@ -14,12 +14,23 @@ export default {
     'tab-caption': 'Заголовок вкладки',
     'control-not-selected': 'Элемент управления не выбран',
     'add-controls-header': 'Добавить элементы управления',
-    'add-control': 'Контрол',
+    'add-control': 'Добавить новое поле',
+    'empty-control': 'Выбрать из существующих свойств',
+    'attributes-control': 'Установите атрибут для контрола',
     'add-group': 'Группа',
     'add-tab': 'Вкладка',
     'move-controls-header': 'Переместить элементы управления',
     'move-control': 'Переместить',
     'remove-control': 'Удалить',
     'remove-approve': 'Вы уверены?',
+    apply: 'Применить',
+    cancel: 'Отмена',
+    tree: {
+      'not-used-attributes': {
+        'property': 'Собственные свойства',
+        'master': 'Мастера',
+        'detail': 'Детейлы',
+      }
+    }
   },
 };

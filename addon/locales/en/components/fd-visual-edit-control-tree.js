@@ -13,4 +13,5 @@ export default {
   'detail-view': 'View detail',
   'master-list-form': 'List form for Look-Up',
   'master-property': 'Property in master',
+  visibility: 'Visibility',
 };

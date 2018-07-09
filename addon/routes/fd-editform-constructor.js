@@ -105,16 +105,26 @@ export default Ember.Route.extend({
     let definition = modelHash.editform.get('formViews.firstObject.view.definition');
     for (let i = 0; i < definition.length; i++) {
       let propertyDefinition = definition[i];
-      if (!propertyDefinition.visible) {
-        continue;
-      }
-
       this._locateControl(controlTree, propertyDefinition, propertyDefinition.path);
     }
 
     modelHash.controls = controlTree;
 
     return modelHash;
+  },
+
+  /**
+    A hook you can use to setup the controller for the current route.
+    [More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).
+
+    @method setupController
+    @param {Ember.Controller} controller
+    @param {Object} model
+   */
+  setupController(controller) {
+    this._super(...arguments);
+    controller.set('selectedItem', undefined);
+    controller.set('_showNotUsedAttributesTree', false);
   },
 
   /**

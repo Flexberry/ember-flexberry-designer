@@ -3,7 +3,7 @@ import layout from '../templates/components/fd-visual-edit-control-tree';
 import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 import FdAttributesTree from '../objects/fd-attributes-tree';
-import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode } from '../utils/fd-attributes-for-tree';
+import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, parsingPropertyName } from '../utils/fd-attributes-for-tree';
 
 export default Ember.Component.extend({
   layout,
@@ -180,10 +180,10 @@ export default Ember.Component.extend({
       attribute = aggregation.findBy('endRole', namesPropertyDefinition[0]);
     } else if (propertyDefinition instanceof FdViewAttributesMaster) {
       this.set('selectedItem.type', 'master');
-      let parsingResult = this._parsingPropertyName(namesPropertyDefinition);
+      let parsingResult = parsingPropertyName(this.get('store'), this.get('model.dataobject'), namesPropertyDefinition);
       attribute = parsingResult.associations[0];
     } else {
-      let parsingResult = this._parsingPropertyName(namesPropertyDefinition);
+      let parsingResult = parsingPropertyName(this.get('store'), this.get('model.dataobject'), namesPropertyDefinition);
       let selectedClass = this.get('store').peekAll('fd-dev-class').findBy('id', parsingResult.classId);
       let attributes = selectedClass.get('attributes');
       let index = namesPropertyDefinition.length - 1;
@@ -231,9 +231,10 @@ export default Ember.Component.extend({
         let allClasses = this.get('store').peekAll('fd-dev-class');
         let stagePk = this.get('currentProjectContext').getCurrentStage();
         let classesCurrentStage = allClasses.filterBy('stage.id', stagePk);
-        let selectedItemClass = classesCurrentStage.findBy('name', selectedItem.propertyDefinition.name);
+        let namesPropertyDefinition = selectedItem.propertyDefinition.name.split('.');
+        let selectedItemClass = parsingPropertyName(this.get('store'), this.get('model.dataobject'), namesPropertyDefinition);
         let listForms = classesCurrentStage.filter(function(item) {
-          return item.get('formViews.firstObject.view.class.id') === selectedItemClass.id &&
+          return item.get('formViews.firstObject.view.class.id') === selectedItemClass.classId &&
            item.get('stereotype') === '«listform»';
         });
         let listFormsName = Ember.A(listForms).mapBy('name');
@@ -579,36 +580,6 @@ export default Ember.Component.extend({
 
     node.set('children', childrenNode);
     node.set('copyChildren', childrenNode);
-  },
-
-  /**
-    Method for find association and class by propertyName.
-
-    @method _parsingPropertyName
-  */
-  _parsingPropertyName(propertyName) {
-    let store = this.get('store');
-    let stageId = this.get('currentProjectContext').getCurrentStage();
-    let allAssociation = store.peekAll('fd-dev-association').filterBy('stage.id', stageId);
-
-    let startRole = propertyName[0];
-    let endRoleID = this.get('model.dataobject.id');
-    let associationSelectedClass = allAssociation.filter(function(item) {
-      return item.get('endClass.id') === endRoleID && item.get('realStartRole') === startRole;
-    });
-
-    for (let i = 1; i < propertyName.length; i++) {
-      startRole = propertyName[i];
-      endRoleID = associationSelectedClass[0].get('startClass.id');
-      let associationFilteBuId = allAssociation.filterBy('endClass.id', endRoleID);
-      let associationFilteBRole = Ember.A(associationFilteBuId).filterBy('realStartRole', startRole);
-      associationSelectedClass = associationFilteBRole;
-    }
-
-    return {
-      classId: endRoleID,
-      associations: associationSelectedClass
-    };
   },
 
   /**
