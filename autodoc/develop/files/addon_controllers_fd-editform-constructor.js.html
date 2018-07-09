@@ -426,7 +426,7 @@ export default Ember.Controller.extend({
         type: &#x27;string&#x27;,
         propertyDefinition: FdViewAttributesProperty.create({
           name: &#x27;&#x27;,
-          visible: false,
+          visible: true,
         }),
       }), this.get(&#x27;selectedItem&#x27;) || this.get(&#x27;model.controls&#x27;));
     },
@@ -464,9 +464,16 @@ export default Ember.Controller.extend({
     removeSelectedItem(approve) {
       if (approve) {
         this._removeItem(this.get(&#x27;selectedItem&#x27;));
+
+        // Refresh definition for filter not used attributes in &#x27;dataNotUsedAttributesTreeObserver&#x27;.
         let view = this.get(&#x27;model.editform.formViews.firstObject.view&#x27;);
-        let viewDefinition = view.get(&#x27;definition&#x27;);
-        viewDefinition.pushObject(this.get(&#x27;selectedItem&#x27;));
+        let controls = this.get(&#x27;model.controls&#x27;);
+        let viewDefinition = Ember.A();
+        for (let i = 0; i &lt; controls.length; i++) {
+          this._extractPathPart(controls.objectAt(i), &#x27;&#x27;, viewDefinition);
+        }
+
+        view.set(&#x27;definition&#x27;, viewDefinition);
         this.set(&#x27;selectedItem&#x27;, undefined);
       } else {
         this.set(&#x27;_showModalDialog&#x27;, true);
@@ -645,7 +652,6 @@ export default Ember.Controller.extend({
         selectedItem.set(&#x27;propertyDefinition&#x27;, propertyDefinition);
       } else {
         selectedItem.set(&#x27;propertyDefinition.name&#x27;, propertyName);
-        selectedItem.set(&#x27;propertyDefinition.visible&#x27;, true);
         propertyDefinition = selectedItem.get(&#x27;propertyDefinition&#x27;);
       }
 
@@ -917,7 +923,7 @@ export default Ember.Controller.extend({
   */
   _saveMetadata(model) {
     let view = model.editform.get(&#x27;formViews.firstObject.view&#x27;);
-    let viewDefinition = Ember.A(view.get(&#x27;definition&#x27;).filterBy(&#x27;visible&#x27;, false));
+    let viewDefinition = Ember.A();
     let controls = model.controls;
     let length = controls.get(&#x27;length&#x27;);
     for (let i = 0; i &lt; length; i++) {

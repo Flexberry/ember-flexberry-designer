@@ -220,10 +220,6 @@ export default Ember.Route.extend({
     let definition = modelHash.editform.get(&#x27;formViews.firstObject.view.definition&#x27;);
     for (let i = 0; i &lt; definition.length; i++) {
       let propertyDefinition = definition[i];
-      if (!propertyDefinition.visible) {
-        continue;
-      }
-
       this._locateControl(controlTree, propertyDefinition, propertyDefinition.path);
     }
 

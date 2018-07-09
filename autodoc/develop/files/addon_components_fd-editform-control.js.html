@@ -206,6 +206,23 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
   }).readOnly(),
 
   /**
+    Used in class name bindings visibility.
+
+    @private
+    @property _isNotVisible
+    @readOnly
+    @type Boolean
+  */
+  _isNotVisible: Ember.computed(&#x27;control&#x27;, &#x27;selectedItem.propertyDefinition.visible&#x27;, function() {
+    let control = this.get(&#x27;control&#x27;);
+    if (control instanceof FdEditformControl) {
+      return !this.get(&#x27;control.propertyDefinition.visible&#x27;);
+    }
+
+    return false;
+  }).readOnly(),
+
+  /**
     {{#crossLink &quot;FdEditformConstructorController/selectedItem:property&quot;}}Passed from above{{/crossLink}}, the selected item.
 
     @property selectedItem
@@ -247,7 +264,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
 
     @property classNameBindings
   */
-  classNameBindings: [&#x27;_dimmed:dimmed&#x27;, &#x27;_isSelected:selected&#x27;],
+  classNameBindings: [&#x27;_dimmed:dimmed&#x27;, &#x27;_isSelected:selected&#x27;, &#x27;_isNotVisible:blackout&#x27;],
 
   /**
     See [EmberJS API](https://emberjs.com/api/).
