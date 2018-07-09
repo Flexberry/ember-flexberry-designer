@@ -16,7 +16,7 @@ joint.shapes.basic.Generic.define('flexberryUml.BaseClass', {
       'text-anchor': 'middle',
       'y-alignment': 'middle',
       'fill': 'black',
-      'font-size': 12,
+      'fontSize': 12,
       'font-family': 'Arial'
     },
     '.flexberry-uml-body-text': {
@@ -84,8 +84,11 @@ joint.shapes.basic.Generic.define('flexberryUml.BaseClass', {
           }
         });
 
-        let rectHeight = lines.length * 12 + 10;
-        let rectWidth = maxStringChars * 8 + 10;
+        let hightStep = attrs['.flexberry-uml-header-text'].fontSize;
+        let rectHeight = lines.length * hightStep + 10;
+
+        let widthStep = attrs['.flexberry-uml-header-text'].fontSize / 1.5;
+        let rectWidth = maxStringChars * widthStep  + 10;
 
         newHeight += rectHeight;
         newWidth = newWidth > rectWidth ? newWidth : rectWidth;
@@ -198,13 +201,26 @@ joint.shapes.flexberryUml.Class.define('flexberryUml.TemplateClass', {
   }
 });
 
-joint.shapes.basic.Rhombus.define('flexberryUml.NAryAssociation', {
+joint.shapes.flexberryUml.BaseObject.define('flexberryUml.NAryAssociation', {
   attrs: {
     text: {
       'text-decoration': 'underline',
       'font-size':'12'
+    },
+    path: {
+      'd': 'M 0 20 L 50 0 100 20 50 40 Z',
     }
-  }
+  },
+  heightPadding: 40,
+}, {
+  markup: [
+    '<g class="rotatable">',
+    '<g class="scalable">',
+    '<path class="flexberry-uml-header-rect"/>',
+    '</g>',
+    '<text class="flexberry-uml-header-text"/>',
+    '</g>'
+  ].join(''),
 });
 
 joint.shapes.flexberryUml.BaseObject.define('flexberryUml.Instance', {

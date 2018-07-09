@@ -18,6 +18,7 @@ joint.shapes.basic.Generic.define('flexberryUml.BaseObject', {
     }
   },
   name: [],
+  heightPadding: 10,
 }, {
   markup: [
     '<g class="rotatable">',
@@ -57,7 +58,7 @@ joint.shapes.basic.Generic.define('flexberryUml.BaseObject', {
     });
 
     let hightStep = attrs['.flexberry-uml-header-text'].fontSize;
-    let rectHeight = lines.length * hightStep + 10;
+    let rectHeight = lines.length * hightStep + this.get('heightPadding');
 
     let widthStep = attrs['.flexberry-uml-header-text'].fontSize / 1.5;
     let rectWidth = maxStringChars * widthStep  + 10;

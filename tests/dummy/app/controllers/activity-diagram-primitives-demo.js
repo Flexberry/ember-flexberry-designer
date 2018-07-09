@@ -82,7 +82,7 @@ export default Ember.Controller.extend({
 
       let SignalReceiptRight = new joint.shapes.flexberryUml.SignalReceiptRight({
         position: { x: 450, y: 200 },
-        name: 'Receipt1',
+        name: ['Receipt1', 'text'],
         attrs: {
           '.rotatable': { title:'Получение сигнала (Signal Receipt)' }
         }
@@ -98,7 +98,7 @@ export default Ember.Controller.extend({
 
       let SignalSendingRight = new joint.shapes.flexberryUml.SignalSendingRight({
         position: { x: 450, y: 400 },
-        name: 'Sending1',
+        name: ['Sending1', 'text', 'moreText'],
         attrs: {
           '.rotatable': { title:'Отправка сигнала (Signal Sending)' }
         }

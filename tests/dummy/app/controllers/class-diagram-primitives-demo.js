@@ -114,9 +114,7 @@ export default Ember.Controller.extend({
         let nAryAssociation = new joint.shapes.flexberryUml.NAryAssociation({
           position: { x: 550, y: 30 },
           size: { width: 150, height: 75 },
-          attrs: {
-            text: { text: 'n-ary Association' }
-          }
+          name: 'n-ary Association'
         });
 
         let obj = new joint.shapes.flexberryUml.Object({
