@@ -311,7 +311,7 @@ export default Ember.Controller.extend({
         type: 'string',
         propertyDefinition: FdViewAttributesProperty.create({
           name: '',
-          visible: false,
+          visible: true,
         }),
       }), this.get('selectedItem') || this.get('model.controls'));
     },
@@ -349,9 +349,16 @@ export default Ember.Controller.extend({
     removeSelectedItem(approve) {
       if (approve) {
         this._removeItem(this.get('selectedItem'));
+
+        // Refresh definition for filter not used attributes in 'dataNotUsedAttributesTreeObserver'.
         let view = this.get('model.editform.formViews.firstObject.view');
-        let viewDefinition = view.get('definition');
-        viewDefinition.pushObject(this.get('selectedItem'));
+        let controls = this.get('model.controls');
+        let viewDefinition = Ember.A();
+        for (let i = 0; i < controls.length; i++) {
+          this._extractPathPart(controls.objectAt(i), '', viewDefinition);
+        }
+
+        view.set('definition', viewDefinition);
         this.set('selectedItem', undefined);
       } else {
         this.set('_showModalDialog', true);
@@ -530,7 +537,6 @@ export default Ember.Controller.extend({
         selectedItem.set('propertyDefinition', propertyDefinition);
       } else {
         selectedItem.set('propertyDefinition.name', propertyName);
-        selectedItem.set('propertyDefinition.visible', true);
         propertyDefinition = selectedItem.get('propertyDefinition');
       }
 
@@ -802,7 +808,7 @@ export default Ember.Controller.extend({
   */
   _saveMetadata(model) {
     let view = model.editform.get('formViews.firstObject.view');
-    let viewDefinition = Ember.A(view.get('definition').filterBy('visible', false));
+    let viewDefinition = Ember.A();
     let controls = model.controls;
     let length = controls.get('length');
     for (let i = 0; i < length; i++) {

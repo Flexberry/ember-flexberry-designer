@@ -13,4 +13,5 @@ export default {
   'detail-view': 'Представление детейла',
   'master-list-form': 'Списковая форма для лукапа',
   'master-property': 'Свойство в мастере',
+  visibility: 'Видимость',
 };
