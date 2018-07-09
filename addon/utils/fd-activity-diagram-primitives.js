@@ -1,26 +1,25 @@
 import joint from 'npm:jointjs';
 import './fd-common-primitives';
 
-joint.shapes.basic.Path.define('flexberryUml.SignalReceiptRight', {
+joint.shapes.flexberryUml.BaseObject.define('flexberryUml.SignalReceiptRight', {
   attrs: {
     text: {
       'ref': 'path',
-      'font-weight': 'bold',
-      'font-size':'12',
-      'fill': 'black',
-      'font-family': 'Arial, helvetica, sans-serif',
-      'ref-y': 0.5,
-      'ref-x': 0.5, 
-      'y-alignment': 'middle', 
-      'text-anchor':"middle",
-      'ref-dy': null
+      'font-weight': 'bold'
     },
     path: {
       'd': 'M 0 0 L 100 0 80 20 100 40 0 40 Z',
-      'stroke': 'black',
-      'stroke-width': '1',
     }
   }
+}, {
+  markup: [
+    '<g class="rotatable">',
+    '<g class="scalable">',
+    '<path class="flexberry-uml-header-rect"/>',
+    '</g>',
+    '<text class="flexberry-uml-header-text"/>',
+    '</g>'
+  ].join('')
 });
 
 joint.shapes.flexberryUml.SignalReceiptRight.define('flexberryUml.SignalReceiptLeft', {
@@ -50,21 +49,21 @@ joint.shapes.flexberryUml.SignalReceiptRight.define('flexberryUml.SignalSendingL
 joint.shapes.uml.StartState.define('flexberryUml.StartState', {
   size: { width: 12, height: 12 },
   attrs: {
-    circle: { 'fill': 'black', 'stroke': 'black', 'stroke-width': 2, 'rx': 1 }, 
+    circle: { 'fill': 'black', 'stroke': 'black', 'stroke-width': 2, 'rx': 1 },
     text: {
       'ref-x': -5,
       'text-anchor': 'end',
       'y-alignment': 'middle',
       'font-weight':'bold',
       'font-size':'12'
-    } 
+    }
   }
 });
 
 joint.shapes.uml.EndState.define('flexberryUml.EndState', {
-  attrs: { 
-    'circle.inner': { fill: 'black' }, 
-    text: { 
+  attrs: {
+    'circle.inner': { fill: 'black' },
+    text: {
       'ref':'circle.inner',
       'ref-x': 20,
       'ref-y': 0.5,
@@ -82,7 +81,7 @@ joint.shapes.uml.EndState.define('flexberryUml.EndState', {
 
 joint.shapes.flexberryUml.Dependency.define('flexberryUml.ObjectFlow', {
   attrs:{ text: { 'font-size':'12', 'font-family':'Arial, helvetica, sans-serif' } }
-},{
+}, {
   initialize: function() {
     this.updateLabel();
     joint.shapes.flexberryUml.Dependency.prototype.initialize.apply(this, arguments);
@@ -96,7 +95,6 @@ joint.shapes.flexberryUml.Dependency.define('flexberryUml.ObjectFlow', {
     }
   },
 });
-
 
 joint.shapes.flexberryUml.ObjectFlow.define('flexberryUml.Transition', {
   attrs: { '.connection': { 'stroke-dasharray': 0 } }
@@ -141,64 +139,28 @@ joint.shapes.flexberryUml.ComplexTransitionHorizon.define('flexberryUml.ComplexT
   }
 });
 
-joint.shapes.basic.Generic.define('flexberryUml.ObjectInState', {
+joint.shapes.flexberryUml.BaseObject.define('flexberryUml.ObjectInState', {
   attrs: {
-    rect: {
-      'stroke': 'black',
-      'stroke-width':'1',
-      'fill':'#fff',
-    },
-
-    text: {
-      'ref': 'rect',
-      'fill': 'black',
-      'font-size': 12,
-      'font-family': 'Arial',
-      'ref-y': 0.5,
-      'ref-x': 0.5,
-      'text-anchor': 'middle',
-      'y-alignment': 'middle'
-    },
-
     'text tspan': { 'text-decoration': 'underline' },
     'text tspan[x]': { 'font-weight': 'bold', 'text-decoration': 'none' },
   },
   state:[],
 
 }, {
-  markup: [
-    '<g class="rotatable">',
-    '<g class="scalable">',
-    '<rect width="10" height="10"/>',
-    '</g>',
-    '<text/>',
-    '</g>'
-  ].join(''),
-
-  initialize: function() {
-    this.setText();
-    joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
-  },
-
-  setText: function() {
+  getObjName: function() {
     let state = this.get('state').length > 0 ? '[' + this.get('state') + ']' : '';
-    var lines = [this.get('name'), state];
-    this.get('attrs').text.text = lines.join('\n');
-    return 0;
+    return [this.get('name'), state];
   }
 });
 
-joint.shapes.flexberryUml.ObjectInState.define('flexberryUml.ActiveState', {
+joint.shapes.flexberryUml.BaseObject.define('flexberryUml.ActiveState', {
   attrs: {
-    'rect': { rx:1, ry:1 },
-    'text tspan': { 'text-decoration': 'none' },
+    '.flexberry-uml-header-rect': { rx:10, ry:10 },
     'text': { 'font-weight': 'bold' }
   }
 }, {
-  setText: function() {
+  getObjName: function() {
     let state = this.get('state').length > 0 ? '«' + this.get('state') + '»' : '';
-    var lines = [this.get('name'), state];
-    this.get('attrs').text.text = lines.join('\n');
-    return 0;
+    return [this.get('name'), state];
   }
 });

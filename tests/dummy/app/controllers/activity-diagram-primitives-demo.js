@@ -41,7 +41,7 @@ export default Ember.Controller.extend({
         labels:[{
           attrs: { text: { text: 'Label' } }
         }],
-        attrs: { 
+        attrs: {
           path: { title:'Изменение объекта (Object Flow)' },
         }
       });
@@ -76,40 +76,39 @@ export default Ember.Controller.extend({
       let note = new joint.shapes.flexberryUml.Note({
         position: { x: 450, y: 100 },
         size: { width: 100, height: 50 },
-        attrs: { text: { text: 'Note' }, '.rotatable': { title:'Комментарий (Note)' } }
+        name: 'note',
+        attrs: { '.rotatable': { title:'Комментарий (Note)' } }
       });
 
       let SignalReceiptRight = new joint.shapes.flexberryUml.SignalReceiptRight({
         position: { x: 450, y: 200 },
-        size: { width: 100, height: 50 },
+        name: 'Receipt1',
         attrs: {
-          text: { text: 'Receipt1' },
           '.rotatable': { title:'Получение сигнала (Signal Receipt)' }
         }
       });
 
       let SignalReceiptLeft = new joint.shapes.flexberryUml.SignalReceiptLeft({
         position: { x: 450, y: 300 },
-        size: { width: 100, height: 50 },
+        name: 'Receipt2',
         attrs: {
-          text: { text: 'Receipt2' },
           '.rotatable': { title:'Получение сигнала (Signal Receipt)' }
         }
       });
 
       let SignalSendingRight = new joint.shapes.flexberryUml.SignalSendingRight({
         position: { x: 450, y: 400 },
-        size: { width: 100, height: 50 },
+        name: 'Sending1',
         attrs: {
-          text: { text: 'Receipt2' }
+          '.rotatable': { title:'Отправка сигнала (Signal Sending)' }
         }
       });
 
       let SignalSendingLeft = new joint.shapes.flexberryUml.SignalSendingLeft({
         position: { x: 450, y: 500 },
-        size: { width: 100, height: 50 },
+        name: 'Sending2',
         attrs: {
-          text: { text: 'Receipt2' }
+          '.rotatable': { title:'Отправка сигнала (Signal Sending)' }
         }
       });
 

@@ -134,9 +134,7 @@ export default Ember.Controller.extend({
         var multiObject = new joint.shapes.flexberryUml.MultiObject({
           position: { x: 350, y: 500 },
           size: { width: 150, height: 40 },
-          attrs: {
-            text: { text: 'multiObject' }
-          }
+          name: 'multiObject'
         });
 
         var activeObj = new joint.shapes.flexberryUml.ActiveObject({
@@ -154,11 +152,7 @@ export default Ember.Controller.extend({
 
         let note = new joint.shapes.flexberryUml.Note({
           position: { x: 550, y: 300 },
-          size: { width: 100, height: 50 },
-          name: 'Class2',
-          attrs: {
-            text: { text: 'Note' }
-          }
+          name: 'Comment'
         });
 
         let moreClasses = new joint.shapes.flexberryUml.MoreClasses({

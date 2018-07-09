@@ -1,7 +1,7 @@
 import joint from 'npm:jointjs';
 import './fd-common-primitives';
 
-joint.shapes.basic.Generic.define('flexberryUml.BaseObject', {
+joint.shapes.basic.Generic.define('flexberryUml.BaseClass', {
   attrs: {
     rect: { 'width': 200 },
 
@@ -101,7 +101,7 @@ joint.shapes.basic.Generic.define('flexberryUml.BaseObject', {
   }
 });
 
-joint.shapes.flexberryUml.BaseObject.define('flexberryUml.Class', {
+joint.shapes.flexberryUml.BaseClass.define('flexberryUml.Class', {
   attrs: {
     '.flexberry-uml-header-text': { 'font-weight': 'bold' },
     '.flexberry-uml-header-text tspan[x]': { 'font-weight': 'normal' },
@@ -115,7 +115,7 @@ joint.shapes.flexberryUml.BaseObject.define('flexberryUml.Class', {
   }
 });
 
-joint.shapes.flexberryUml.BaseObject.define('flexberryUml.Object', {
+joint.shapes.flexberryUml.BaseClass.define('flexberryUml.Object', {
   attrs: {
     '.flexberry-uml-header-text': {
       'text-decoration': 'underline'
@@ -211,18 +211,8 @@ joint.shapes.flexberryUml.BaseObject.define('flexberryUml.Instance', {
   attrs: {
     text: {
       'text-decoration': 'underline',
-      'font-size':'12'
     }
   }
-}, {
-  markup: [
-    '<g class="rotatable">',
-    '<g class="scalable">',
-    '<rect class="flexberry-uml-header-rect" />',
-    '</g>',
-    '<text class="flexberry-uml-header-text"/>',
-    '</g>'
-  ].join('')
 });
 
 joint.shapes.flexberryUml.Instance.define('flexberryUml.ActiveObject', {
@@ -233,22 +223,37 @@ joint.shapes.flexberryUml.Instance.define('flexberryUml.ActiveObject', {
   }
 });
 
-joint.shapes.basic.Rect.define('flexberryUml.MultiObject', {
+joint.shapes.flexberryUml.BaseObject.define('flexberryUml.MultiObject', {
   attrs: {
     text: {
       'text-decoration': 'underline',
       'font-size':'12'
-    }
+    },
+    '.back-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff' }
   }
 }, {
+
+  updateRectangles: function() {
+    joint.shapes.flexberryUml.BaseObject.prototype.updateRectangles.apply(this, arguments);
+
+    let attrs = this.get('attrs');
+    let backRectTransY = 6;
+    attrs['.back-rect'].transform = 'translate(3, ' + backRectTransY + ')';
+    attrs['.back-rect'].height = this.size().height;
+    attrs['.back-rect'].width = this.size().width;
+
+    this.resize().height += backRectTransY;
+  },
+
   markup: [
     '<g class="rotatable">',
     '<g class="scalable">',
-    '<rect transform="translate(3, 10)"/><rect/>',
+    '<rect class="back-rect"/><rect class="flexberry-uml-header-rect"/>',
     '</g>',
-    '<text/>',
+    '<text class="flexberry-uml-header-text"/>',
     '</g>'
-  ].join('')
+  ].join(''),
+
 });
 
 joint.dia.Link.define('flexberryUml.Aggregation', {
@@ -342,7 +347,7 @@ joint.shapes.basic.Generic.define('flexberryUml.MoreClasses', {
   ].join(''),
 });
 
-joint.shapes.flexberryUml.BaseObject.define('flexberryUml.Package', {
+joint.shapes.flexberryUml.BaseClass.define('flexberryUml.Package', {
   attrs: {
     '.flexberry-uml-header-text': {
       'text-decoration': 'underline',
