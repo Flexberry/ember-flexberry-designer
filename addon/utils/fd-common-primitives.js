@@ -70,7 +70,6 @@ joint.shapes.basic.Generic.define('flexberryUml.BaseObject', {
   }
 });
 
-
 joint.shapes.flexberryUml.BaseObject.define('flexberryUml.Note', {
   attrs: {
     '.flexberry-uml-header-text': {
