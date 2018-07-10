@@ -110,6 +110,19 @@
 
       {{#ui-tab-segment tab="actions-with-columns" title=(t "forms.fd-listform-constructor.form-config-panel.actions-with-columns-header") theme=""}}
         <div class="ui small dividing header">
+          {{t "forms.fd-listform-constructor.form-config-panel.add-columns-header"}}
+        </div>
+        <div class="field">
+          <button class="ui button" {{action "addColumn"}}>
+            {{t "forms.fd-listform-constructor.form-config-panel.add-column"}}
+          </button>
+        </div>
+        <div class="field">
+          <button class="ui button" {{action "addColumn"}}>
+            {{t "forms.fd-listform-constructor.form-config-panel.select-column"}}
+          </button>
+        </div>
+        <div class="ui small dividing header">
           {{t "forms.fd-listform-constructor.form-config-panel.re-move-columns-header"}}
         </div>
         <div class="equal width fields">

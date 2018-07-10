@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 import FdListformColumn from '../objects/fd-listform-column';
+import FdViewAttributesProperty from '../objects/fd-view-attributes-property';
 
 export default Ember.Controller.extend({
   /**
@@ -79,6 +80,19 @@ export default Ember.Controller.extend({
     },
 
     /**
+      Adds a new column.
+
+      @method actions.addColumn
+    */
+    addColumn() {
+      this.get('columns').pushObject(FdListformColumn.create({
+        propertyDefinition: FdViewAttributesProperty.create({
+          caption: `${this.get('i18n').t('forms.fd-listform-constructor.new-column-caption').toString()} #${this.incrementProperty('_newColumnIndex')}`,
+        }),
+      }));
+    },
+
+    /**
       Removes the selected column.
 
       @method actions.removeSelectedColumn
@@ -109,10 +123,6 @@ export default Ember.Controller.extend({
 
       columns.removeObject(selectedColumn);
       columns.insertAt(index, selectedColumn);
-    },
-
-    addAttribute() {
-      this.get('attributes').pushObject({ name: 'Property name' });
     },
 
     save() {
