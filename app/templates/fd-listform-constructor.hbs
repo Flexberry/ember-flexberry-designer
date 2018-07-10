@@ -57,6 +57,19 @@
   </div>
 </form>
 
+{{#if _showModalDialog}}
+  {{#modal-dialog
+    title=(t "forms.fd-listform-constructor.form-config-panel.remove-column")
+    ok=(action "removeSelectedColumn" true)
+    settings=(hash
+      onHidden=(action set "_showModalDialog" false)
+      context=".pusher:first"
+    )
+  }}
+    {{t "forms.fd-listform-constructor.form-config-panel.remove-approve"}}
+  {{/modal-dialog}}
+{{/if}}
+
 {{#fd-config-panel}}
   {{#fd-tabs tabsMenuTheme="vertical tabular" class="ui segments horizontal right-tabs"}}
     <form class="ui form segment">
@@ -95,11 +108,25 @@
         }}
       {{/ui-tab-segment}}
 
-      {{#ui-tab-segment tab='add-controls' title=(t "forms.fd-editform-constructor.form-config-panel.add-controls-header") theme=""}}
+      {{#ui-tab-segment tab="actions-with-columns" title=(t "forms.fd-listform-constructor.form-config-panel.actions-with-columns-header") theme=""}}
         <div class="ui small dividing header">
-          {{t "forms.fd-editform-constructor.form-config-panel.add-controls-header"}}
+          {{t "forms.fd-listform-constructor.form-config-panel.re-move-columns-header"}}
         </div>
-
+        <div class="equal width fields">
+          <div class="field">
+            <button class="ui icon button" disabled={{or (not selectedColumn) _selectedIsFirst}} {{action "sortSelectedColumn" -1}}>
+              <i class="left arrow icon"></i>
+            </button>
+            <button class="ui icon button" disabled={{or (not selectedColumn) _selectedIsLast}} {{action "sortSelectedColumn" 1}}>
+              <i class="right arrow icon"></i>
+            </button>
+          </div>
+          <div class="field">
+            <button class="ui button" disabled={{not selectedColumn}} {{action "removeSelectedColumn" false}}>
+              {{t "forms.fd-listform-constructor.form-config-panel.remove-column"}}
+            </button>
+          </div>
+        </div>
       {{/ui-tab-segment}}
 
     </form>

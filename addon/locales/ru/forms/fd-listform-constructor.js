@@ -11,7 +11,10 @@ export default {
   'listform-forward': 'Вперед',
   'listform-back': 'Назад',
 
-  'move-left-attr': 'Переместить влево',
-  'move-right-attr': 'Переместить вправо',
-  'remove-attr': 'Удалить атрибут',
+  'form-config-panel': {
+    'actions-with-columns-header': 'Действия со столбцами',
+    're-move-columns-header': 'Переместить и удалить столбцы',
+    'remove-column': 'Удалить',
+    'remove-approve': 'Вы уверены?',
+  },
 };

@@ -11,7 +11,10 @@ export default {
   'listform-forward': 'Next',
   'listform-back': 'Back',
 
-  'move-left-attr': 'Move left',
-  'move-right-attr': 'Move right',
-  'remove-attr': 'Remove attribute',
+  'form-config-panel': {
+    'actions-with-columns-header': 'Actions with columns',
+    're-move-columns-header': 'Move and remove columns',
+    'remove-column': 'Remove',
+    'remove-approve': 'Are you sure?',
+  },
 };

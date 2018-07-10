@@ -3,6 +3,34 @@ import Ember from 'ember';
 import FdListformColumn from '../objects/fd-listform-column';
 
 export default Ember.Controller.extend({
+  /**
+    @private
+    @property _showModalDialog
+    @type Boolean
+    @default false
+  */
+  _showModalDialog: false,
+
+  /**
+    @private
+    @property _selectedIsFirst
+    @readOnly
+    @type Boolean
+  */
+  _selectedIsFirst: Ember.computed('selectedColumn', 'columns.[]', function() {
+    return this.get('selectedColumn') === this.get('columns.firstObject');
+  }).readOnly(),
+
+  /**
+    @private
+    @property _selectedIsLast
+    @readOnly
+    @type Boolean
+  */
+  _selectedIsLast: Ember.computed('selectedColumn', 'columns.[]', function() {
+    return this.get('selectedColumn') === this.get('columns.lastObject');
+  }).readOnly(),
+
   queryParams: ['form', 'class'],
 
   formClass: Ember.computed.alias('model.form'),
@@ -50,32 +78,41 @@ export default Ember.Controller.extend({
       this.set('selectedColumn', this.get('selectedColumn') === column ? undefined : column);
     },
 
+    /**
+      Removes the selected column.
+
+      @method actions.removeSelectedColumn
+      @param {Boolean} approve The user is sure.
+    */
+    removeSelectedColumn(approve) {
+      if (approve) {
+        let columns = this.get('columns');
+        let selectedColumn = this.get('selectedColumn');
+
+        columns.removeObject(selectedColumn);
+        this.set('selectedColumn', undefined);
+      } else {
+        this.set('_showModalDialog', true);
+      }
+    },
+
+    /**
+      Sorts the selected column.
+
+      @method actions.sortSelectedColumn
+      @param {Number} step Step of moving the column.
+    */
+    sortSelectedColumn(step) {
+      let columns = this.get('columns');
+      let selectedColumn = this.get('selectedColumn');
+      let index = columns.indexOf(selectedColumn) + step;
+
+      columns.removeObject(selectedColumn);
+      columns.insertAt(index, selectedColumn);
+    },
+
     addAttribute() {
       this.get('attributes').pushObject({ name: 'Property name' });
-    },
-
-    moveAttribute(from, to) {
-      let attributes = this.get('attributes');
-      let attribute = attributes.objectAt(from);
-
-      attributes.removeAt(from);
-      attributes.insertAt(to, attribute);
-
-      if (this.get('indexSelectedAttribute') === from) {
-        this.set('indexSelectedAttribute', to);
-      } else if (this.get('indexSelectedAttribute') === to) {
-        this.set('indexSelectedAttribute', from);
-      }
-    },
-
-    removeAttribute(index) {
-      if (this.get('indexSelectedAttribute') === index) {
-        this.set('indexSelectedAttribute', undefined);
-      } else if (index < this.get('indexSelectedAttribute')) {
-        this.decrementProperty('indexSelectedAttribute');
-      }
-
-      this.get('attributes').removeAt(index);
     },
 
     save() {
