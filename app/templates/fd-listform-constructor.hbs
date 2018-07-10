@@ -32,20 +32,28 @@
       </button>
     </div>
   </div>
-  <div class="ui segment grid">
-    <div class="row">
-      <div class="sixteen wide column" style="width: 100%; overflow-x: scroll;">
-        {{fd-visual-listform-form
-          formName=formClass.name
-          attributes=attributes
-          indexSelectedAttribute=indexSelectedAttribute
-          addAttributeAction=(action "addAttribute")
-          moveAttributeAction=(action "moveAttribute")
-          removeAttributeAction=(action "removeAttribute")
-          selectAttributeAction=(action "selectAttribute")
-        }}
-      </div>
-    </div>
+  <div class="ui segment">
+    <h3 class="ui header">{{formClass.name}}</h3>
+    <img src="assets/images/visualEditListFormTop.png" />
+    <table class="ui celled selectable collapsing table">
+      <thead>
+        <tr>
+          {{#each columns as |column|}}
+            <th {{action "selectColumn" column}}>{{column.caption}}</th>
+          {{/each}}
+        </tr>
+      </thead>
+      <tbody>
+        {{#each columns as |column|}}
+          <tr>
+            {{#each columns as |column|}}
+              <td class={{if (eq selectedColumn column) "positive"}} {{action "selectColumn" column}}>&nbsp;</td>
+            {{/each}}
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    <img src="assets/images/visualEditListFormBottom.png" />
   </div>
 </form>
 

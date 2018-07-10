@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+import FdListformColumn from '../objects/fd-listform-column';
+
 export default Ember.Controller.extend({
   queryParams: ['form', 'class'],
 
@@ -9,107 +11,45 @@ export default Ember.Controller.extend({
 
   dataObject: Ember.computed.alias('model.form.formViews.firstObject.view.class'),
 
-  attributes: Ember.computed('view.definition', function() {
-    let attributes = Ember.A();
+  /**
+    The selected column.
+
+    @property selectedColumn
+    @type FdListformColumn
+  */
+  selectedColumn: undefined,
+
+  /**
+    Columns of the table in the list form.
+
+    @property columns
+    @type FdListformColumn[]
+    @readOnly
+  */
+  columns: Ember.computed('view.definition', function() {
+    let columns = Ember.A();
     let definition = this.get('view.definition');
-    for (let i = 0; i < definition.length; i++) {
-      if (definition[i].visible === 'True') {
-        let attribute = attributes.pushObject({
-          propertyName: definition[i].propertyName,
-          name: definition[i].caption || definition[i].propertyName,
-        });
-
-        if (definition[i].isMaster === 'True') {
-          attribute.type = 'guid';
-          attribute.notNull = null;
-          attribute.defaultValue = null;
-        } else {
-          let propertyOwner = this.get('dataObject');
-          let propertyOwnerId = propertyOwner.get('id');
-          let path = definition[i].propertyName.split('.');
-          let attributeName = path.pop();
-          let skipAsExternalClass = false;
-          for (let i = 0; i < path.length; i++) {
-            let relationName = path[i];
-            let ownAndParentsId = this._getParentsId(propertyOwnerId);
-            ownAndParentsId.push(propertyOwnerId);
-
-            // TODO: Filter by all Ids
-            let relationships;
-            for (let j = 0; j < ownAndParentsId.length; j++) {
-              let rel = this.get('model.associations').filterBy('endClass.id', ownAndParentsId[j]);
-              if (relationships) {
-                relationships.push(rel.toArray());
-              } else {
-                relationships = rel;
-              }
-            }
-
-            let relationship = relationships.findBy('startRole', relationName) || relationships.findBy('startClass.name', relationName);
-
-            if (!relationship) {
-              // TODO: Filter by all Ids
-              for (let j = 0; j < ownAndParentsId.length; j++) {
-                let rel = this.get('model.aggregations').filterBy('endClass.id', ownAndParentsId[j]);
-                if (relationships) {
-                  relationships.push(rel.toArray());
-                } else {
-                  relationships = rel;
-                }
-              }
-
-              relationship = relationships.findBy('startRole', relationName) || relationships.findBy('startClass.name', relationName);
-            }
-
-            // Ember.assert('Не найдена связь ' + relationName + ' в классе ' + propertyOwner.get('name'), relationship);
-
-            if (!relationship) {
-              skipAsExternalClass = true;
-              break;
-            }
-
-            propertyOwnerId = relationship.get('startClass.id');
-          }
-
-          if (skipAsExternalClass) {
-            attributes.popObject();
-            continue;
-          }
-
-          if (propertyOwner.get('id') !== propertyOwnerId) {
-            propertyOwner = this.get('model.dataObjects').findBy('id', propertyOwnerId);
-          }
-
-          let classAttribute = propertyOwner.get('attributes').findBy('name', attributeName);
-
-          if (!classAttribute) {
-            classAttribute = this._getAttributeFromParent(propertyOwnerId, attributeName);
-          }
-
-          if (classAttribute) {
-            attribute.classAttribute = classAttribute;
-            attribute.type = classAttribute.get('type');
-            attribute.notNull = classAttribute.get('notNull');
-            attribute.defaultValue = classAttribute.get('defaultValue');
-          }
-        }
-      }
+    let length = definition.get('length');
+    for (let i = 0; i < length; i++) {
+      columns.pushObject(FdListformColumn.create({
+        propertyDefinition: definition.objectAt(i),
+      }));
     }
 
-    return attributes;
-  }),
-
-  selectedAttribute: Ember.computed('attributes', 'indexSelectedAttribute', function() {
-    let attribute;
-    let index = this.get('indexSelectedAttribute');
-    if (typeof index === 'number') {
-      attribute = this.get('attributes').objectAt(index);
-    }
-
-    return attribute;
-  }),
+    return columns;
+  }).readOnly(),
 
   actions: {
+    /**
+      Set the selected column.
+
+      @method actions.selectColumn
+      @param {FdListformColumn} column
+    */
+    selectColumn(column) {
+      this.set('selectedColumn', this.get('selectedColumn') === column ? undefined : column);
+    },
+
     addAttribute() {
       this.get('attributes').pushObject({ name: 'Property name' });
     },
@@ -136,10 +76,6 @@ export default Ember.Controller.extend({
       }
 
       this.get('attributes').removeAt(index);
-    },
-
-    selectAttribute(index) {
-      this.set('indexSelectedAttribute', index);
     },
 
     save() {
@@ -210,44 +146,5 @@ export default Ember.Controller.extend({
 
   _translate(propertyName) {
     return propertyName;
-  },
-
-  _getAttributeFromParent(propertyOwnerId, attributeName) {
-    let inheritance = this.get('model.inheritances').findBy('child.id', propertyOwnerId);
-    if (inheritance) {
-      let parent = this.get('model.dataObjects').findBy('id', inheritance.get('parent.id'));
-      if (!parent) {
-        return null;
-      }
-
-      let classAttribute = parent.get('attributes').findBy('name', attributeName);
-      if (classAttribute) {
-        return classAttribute;
-      } else {
-        return this._getAttributeFromParent(parent.get('id', attributeName));
-      }
-    } else {
-      return null;
-    }
-  },
-
-  _getParentsId(childId, idArray) {
-    if (!idArray) {
-      idArray = Ember.A();
-    }
-
-    let inheritance = this.get('model.inheritances').findBy('child.id', childId);
-    if (inheritance) {
-      let parent = this.get('model.dataObjects').findBy('id', inheritance.get('parent.id'));
-      if (!parent) {
-        return idArray;
-      } else {
-        let parentId = parent.get('id');
-        idArray.push(parentId);
-        return this._getParentsId(parentId, idArray);
-      }
-    } else {
-      return idArray;
-    }
   },
 });
