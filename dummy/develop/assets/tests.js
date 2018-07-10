@@ -1610,6 +1610,36 @@ define('dummy/tests/unit/controllers/fd-inheritance-list-form-test.jshint', ['ex
     assert.ok(true, 'unit/controllers/fd-inheritance-list-form-test.js should pass jshint.');
   });
 });
+define('dummy/tests/unit/controllers/fd-listform-constructor', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('controller:fd-listform-constructor', 'Unit | Controller | fd-listform-constructor', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  // Replace this with your real tests.
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var controller = this.subject();
+    assert.ok(controller);
+  });
+});
+define('dummy/tests/unit/controllers/fd-listform-constructor.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/controllers');
+  test('unit/controllers/fd-listform-constructor.js should pass jscs', function () {
+    ok(true, 'unit/controllers/fd-listform-constructor.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/controllers/fd-listform-constructor.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/controllers/fd-listform-constructor.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/controllers/fd-listform-constructor.js should pass jshint.');
+  });
+});
 define('dummy/tests/unit/controllers/fd-stage-edit-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
   (0, _emberQunit.moduleFor)('controller:fd-stage-edit-form', 'Unit | Controller | fd stage edit form', {
@@ -1818,36 +1848,6 @@ define('dummy/tests/unit/controllers/fd-visual-edit-form-test.jshint', ['exports
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/controllers/fd-visual-edit-form-test.js should pass jshint.');
-  });
-});
-define('dummy/tests/unit/controllers/fd-visual-listform', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleFor)('controller:fd-visual-listform', 'Unit | Controller | fd visual edit list form', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
-  });
-
-  // Replace this with your real tests.
-  (0, _emberQunit.test)('it exists', function (assert) {
-    var controller = this.subject();
-    assert.ok(controller);
-  });
-});
-define('dummy/tests/unit/controllers/fd-visual-listform.jscs-test', ['exports'], function (exports) {
-  'use strict';
-
-  module('JSCS - unit/controllers');
-  test('unit/controllers/fd-visual-listform.js should pass jscs', function () {
-    ok(true, 'unit/controllers/fd-visual-listform.js should pass jscs.');
-  });
-});
-define('dummy/tests/unit/controllers/fd-visual-listform.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - unit/controllers/fd-visual-listform.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/controllers/fd-visual-listform.js should pass jshint.');
   });
 });
 define('dummy/tests/unit/mixins/fd-draggable-control-test', ['exports', 'ember', 'ember-flexberry-designer/mixins/fd-draggable-control', 'qunit'], function (exports, _ember, _emberFlexberryDesignerMixinsFdDraggableControl, _qunit) {
@@ -4302,6 +4302,35 @@ define('dummy/tests/unit/routes/fd-inheritance-list-form-test.jshint', ['exports
     assert.ok(true, 'unit/routes/fd-inheritance-list-form-test.js should pass jshint.');
   });
 });
+define('dummy/tests/unit/routes/fd-listform-constructor', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('route:fd-listform-constructor', 'Unit | Route | fd-listform-constructor', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var route = this.subject();
+    assert.ok(route);
+  });
+});
+define('dummy/tests/unit/routes/fd-listform-constructor.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/routes');
+  test('unit/routes/fd-listform-constructor.js should pass jscs', function () {
+    ok(true, 'unit/routes/fd-listform-constructor.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/routes/fd-listform-constructor.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/routes/fd-listform-constructor.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/routes/fd-listform-constructor.js should pass jshint.');
+  });
+});
 define('dummy/tests/unit/routes/fd-stage-edit-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
   (0, _emberQunit.moduleFor)('route:fd-stage-edit-form', 'Unit | Route | fd stage edit form', {
@@ -4532,35 +4561,6 @@ define('dummy/tests/unit/routes/fd-visual-edit-form-test.jshint', ['exports'], f
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/routes/fd-visual-edit-form-test.js should pass jshint.');
-  });
-});
-define('dummy/tests/unit/routes/fd-visual-listform', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleFor)('route:fd-visual-listform', 'Unit | Route | fd visual edit list form', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
-  });
-
-  (0, _emberQunit.test)('it exists', function (assert) {
-    var route = this.subject();
-    assert.ok(route);
-  });
-});
-define('dummy/tests/unit/routes/fd-visual-listform.jscs-test', ['exports'], function (exports) {
-  'use strict';
-
-  module('JSCS - unit/routes');
-  test('unit/routes/fd-visual-listform.js should pass jscs', function () {
-    ok(true, 'unit/routes/fd-visual-listform.js should pass jscs.');
-  });
-});
-define('dummy/tests/unit/routes/fd-visual-listform.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - unit/routes/fd-visual-listform.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/routes/fd-visual-listform.js should pass jshint.');
   });
 });
 define('dummy/tests/unit/serializers/fd-ad-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {

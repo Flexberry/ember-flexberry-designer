@@ -13,6 +13,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "FdEditformTab",
         "FdEditformTabgroup",
         "FdLimitByStageMixin",
+        "FdListformColumn",
         "FdViewAttributesDetail",
         "FdViewAttributesMaster",
         "FdViewAttributesProperty",

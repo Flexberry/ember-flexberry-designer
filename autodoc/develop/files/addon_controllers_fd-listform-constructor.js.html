@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>addon/mixins/regenerated/models/fd-dev-parameter.js - Flexberry Documentation</title>
+    <title>addon/controllers/fd-listform-constructor.js - Flexberry Documentation</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -109,122 +109,208 @@
                 <div id="docs-main">
                     <div class="content">
 <div class="page-header">
-    <h1>addon/mixins/regenerated/models/fd-dev-parameter.js <small>File</small></h1>
+    <h1>addon/controllers/fd-listform-constructor.js <small>File</small></h1>
 </div>
 
 <div class="file">
     <pre class="prettyprint linenums">
 import Ember from &#x27;ember&#x27;;
-import DS from &#x27;ember-data&#x27;;
-import { Projection } from &#x27;ember-flexberry-data&#x27;;
-export let Model = Ember.Mixin.create({
-  caption: DS.attr(&#x27;string&#x27;),
-  modifier: DS.attr(&#x27;s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier&#x27;),
-  orderNum: DS.attr(&#x27;number&#x27;),
-  /**
-    Non-stored property.
 
-    @property realCaption
-  */
-  realCaption: DS.attr(&#x27;string&#x27;),
-  /**
-    Method to set non-stored property.
-    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
-    Please, implement &#x27;realCaptionCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;realCaption&#x27; property.
+import FdListformColumn from &#x27;../objects/fd-listform-column&#x27;;
+import FdViewAttributesProperty from &#x27;../objects/fd-view-attributes-property&#x27;;
 
-    @method _realCaptionCompute
+export default Ember.Controller.extend({
+  /**
     @private
-    @example
-      &#x60;&#x60;&#x60;javascript
-      _realCaptionChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;realCaption&#x27;, function() {
-        Ember.run.once(this, &#x27;_realCaptionCompute&#x27;);
-      }))
-      &#x60;&#x60;&#x60;
+    @property _showModalDialog
+    @type Boolean
+    @default false
   */
-  _realCaptionCompute: function() {
-    let result = (this.realCaptionCompute &amp;&amp; typeof this.realCaptionCompute === &#x27;function&#x27;) ? this.realCaptionCompute() : null;
-    this.set(&#x27;realCaption&#x27;, result);
-  },
-  type: DS.attr(&#x27;string&#x27;),
-  method: DS.belongsTo(&#x27;fd-dev-method&#x27;, { inverse: &#x27;parameters&#x27;, async: false }),
-  getValidations: function () {
-    let parentValidations = this._super();
-    let thisValidations = {
-      method: { presence: true }
-    };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
-  },
-  init: function () {
-    this.set(&#x27;validations&#x27;, this.getValidations());
-    this._super.apply(this, arguments);
-  }
-});
-export let defineBaseModel = function (modelClass) {
-  modelClass.reopenClass({
-    _parentModelName: &#x27;fd-repository-data-object&#x27;
-  });
-};
+  _showModalDialog: false,
 
-export let defineProjections = function (modelClass) {
-  modelClass.defineProjection(&#x27;EditApplication&#x27;, &#x27;fd-dev-parameter&#x27;, {
-    name: Projection.attr(&#x27;&#x27;),
-    modifier: Projection.attr(&#x27;&#x27;),
-    type: Projection.attr(&#x27;&#x27;),
-    description: Projection.attr(&#x27;&#x27;)
-  });
-  modelClass.defineProjection(&#x27;EditDataObjectClass&#x27;, &#x27;fd-dev-parameter&#x27;, {
-    name: Projection.attr(&#x27;&#x27;),
-    modifier: Projection.attr(&#x27;&#x27;),
-    type: Projection.attr(&#x27;&#x27;),
-    description: Projection.attr(&#x27;&#x27;)
-  });
-  modelClass.defineProjection(&#x27;EditEditForm&#x27;, &#x27;fd-dev-parameter&#x27;, {
-    name: Projection.attr(&#x27;&#x27;),
-    modifier: Projection.attr(&#x27;&#x27;),
-    type: Projection.attr(&#x27;&#x27;),
-    description: Projection.attr(&#x27;&#x27;)
-  });
-  modelClass.defineProjection(&#x27;EditInterface&#x27;, &#x27;fd-dev-parameter&#x27;, {
-    name: Projection.attr(&#x27;&#x27;),
-    modifier: Projection.attr(&#x27;&#x27;),
-    type: Projection.attr(&#x27;&#x27;),
-    description: Projection.attr(&#x27;&#x27;)
-  });
-  modelClass.defineProjection(&#x27;EditListForm&#x27;, &#x27;fd-dev-parameter&#x27;, {
-    name: Projection.attr(&#x27;&#x27;),
-    modifier: Projection.attr(&#x27;&#x27;),
-    type: Projection.attr(&#x27;&#x27;),
-    description: Projection.attr(&#x27;&#x27;)
-  });
-  modelClass.defineProjection(&#x27;EditPrintForm&#x27;, &#x27;fd-dev-parameter&#x27;, {
-    name: Projection.attr(&#x27;&#x27;),
-    modifier: Projection.attr(&#x27;&#x27;),
-    type: Projection.attr(&#x27;&#x27;),
-    description: Projection.attr(&#x27;&#x27;)
-  });
-  modelClass.defineProjection(&#x27;EditType&#x27;, &#x27;fd-dev-parameter&#x27;, {
-    name: Projection.attr(&#x27;&#x27;),
-    modifier: Projection.attr(&#x27;&#x27;),
-    type: Projection.attr(&#x27;&#x27;),
-    description: Projection.attr(&#x27;&#x27;)
-  });
-  modelClass.defineProjection(&#x27;EditUserForm&#x27;, &#x27;fd-dev-parameter&#x27;, {
-    name: Projection.attr(&#x27;&#x27;),
-    modifier: Projection.attr(&#x27;&#x27;),
-    type: Projection.attr(&#x27;&#x27;),
-    description: Projection.attr(&#x27;&#x27;)
-  });
-  modelClass.defineProjection(&#x27;Generator&#x27;, &#x27;fd-dev-parameter&#x27;, {
-    caption: Projection.attr(&#x27;Caption&#x27;, { hidden: true }),
-    modifier: Projection.attr(&#x27;Modifier&#x27;, { hidden: true }),
-    orderNum: Projection.attr(&#x27;OrderNum&#x27;, { hidden: true }),
-    realCaption: Projection.attr(&#x27;RealCaption&#x27;, { hidden: true }),
-    type: Projection.attr(&#x27;Type&#x27;, { hidden: true }),
-    name: Projection.attr(&#x27;Name&#x27;, { hidden: true }),
-    description: Projection.attr(&#x27;Description&#x27;, { hidden: true }),
-    nameStr: Projection.attr(&#x27;NameStr&#x27;, { hidden: true })
-  });
-};
+  /**
+    @private
+    @property _selectedIsFirst
+    @readOnly
+    @type Boolean
+  */
+  _selectedIsFirst: Ember.computed(&#x27;selectedColumn&#x27;, &#x27;columns.[]&#x27;, function() {
+    return this.get(&#x27;selectedColumn&#x27;) === this.get(&#x27;columns.firstObject&#x27;);
+  }).readOnly(),
+
+  /**
+    @private
+    @property _selectedIsLast
+    @readOnly
+    @type Boolean
+  */
+  _selectedIsLast: Ember.computed(&#x27;selectedColumn&#x27;, &#x27;columns.[]&#x27;, function() {
+    return this.get(&#x27;selectedColumn&#x27;) === this.get(&#x27;columns.lastObject&#x27;);
+  }).readOnly(),
+
+  queryParams: [&#x27;form&#x27;, &#x27;class&#x27;],
+
+  formClass: Ember.computed.alias(&#x27;model.form&#x27;),
+
+  view: Ember.computed.alias(&#x27;model.form.formViews.firstObject.view&#x27;),
+
+  dataObject: Ember.computed.alias(&#x27;model.form.formViews.firstObject.view.class&#x27;),
+
+  /**
+    The selected column.
+
+    @property selectedColumn
+    @type FdListformColumn
+  */
+  selectedColumn: undefined,
+
+  /**
+    Columns of the table in the list form.
+
+    @property columns
+    @type FdListformColumn[]
+    @readOnly
+  */
+  columns: Ember.computed(&#x27;view.definition&#x27;, function() {
+    let columns = Ember.A();
+    let definition = this.get(&#x27;view.definition&#x27;);
+    let length = definition.get(&#x27;length&#x27;);
+    for (let i = 0; i &lt; length; i++) {
+      columns.pushObject(FdListformColumn.create({
+        propertyDefinition: definition.objectAt(i),
+      }));
+    }
+
+    return columns;
+  }).readOnly(),
+
+  actions: {
+    /**
+      Set the selected column.
+
+      @method actions.selectColumn
+      @param {FdListformColumn} column
+    */
+    selectColumn(column) {
+      this.set(&#x27;selectedColumn&#x27;, this.get(&#x27;selectedColumn&#x27;) === column ? undefined : column);
+    },
+
+    /**
+      Adds a new column.
+
+      @method actions.addColumn
+    */
+    addColumn() {
+      this.get(&#x27;columns&#x27;).pushObject(FdListformColumn.create({
+        propertyDefinition: FdViewAttributesProperty.create({
+          caption: &#x60;${this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-listform-constructor.new-column-caption&#x27;).toString()} #${this.incrementProperty(&#x27;_newColumnIndex&#x27;)}&#x60;,
+        }),
+      }));
+    },
+
+    /**
+      Removes the selected column.
+
+      @method actions.removeSelectedColumn
+      @param {Boolean} approve The user is sure.
+    */
+    removeSelectedColumn(approve) {
+      if (approve) {
+        let columns = this.get(&#x27;columns&#x27;);
+        let selectedColumn = this.get(&#x27;selectedColumn&#x27;);
+
+        columns.removeObject(selectedColumn);
+        this.set(&#x27;selectedColumn&#x27;, undefined);
+      } else {
+        this.set(&#x27;_showModalDialog&#x27;, true);
+      }
+    },
+
+    /**
+      Sorts the selected column.
+
+      @method actions.sortSelectedColumn
+      @param {Number} step Step of moving the column.
+    */
+    sortSelectedColumn(step) {
+      let columns = this.get(&#x27;columns&#x27;);
+      let selectedColumn = this.get(&#x27;selectedColumn&#x27;);
+      let index = columns.indexOf(selectedColumn) + step;
+
+      columns.removeObject(selectedColumn);
+      columns.insertAt(index, selectedColumn);
+    },
+
+    save() {
+      let attributes = [];
+      let definition = Ember.A(this.get(&#x27;view.definition&#x27;));
+      this.get(&#x27;attributes&#x27;).forEach((attribute) =&gt; {
+        let property = definition.findBy(&#x27;propertyName&#x27;, attribute.propertyName);
+        if (property) {
+          property.caption = attribute.name;
+        } else {
+          let attributeName = this._translate(attribute.name);
+          let classAttribute = this.get(&#x27;dataObject.attributes&#x27;).findBy(&#x27;name&#x27;, attributeName);
+          if (!classAttribute) {
+            classAttribute = this.get(&#x27;dataObject.attributes&#x27;).createRecord({ name: attributeName });
+          }
+
+          attribute.classAttribute = classAttribute;
+          property = { caption: attribute.name };
+          property.propertyName = attributeName;
+          property.visible = &#x27;True&#x27;;
+          property.isMaster = &#x27;False&#x27;;
+          property.lookupType = &#x27;&#x27;;
+          property.masterPropertyName = &#x27;&#x27;;
+          property.masterCustomizationString = &#x27;&#x27;;
+        }
+
+        attribute.classAttribute.set(&#x27;type&#x27;, attribute.type);
+        attribute.classAttribute.set(&#x27;notNull&#x27;, attribute.notNull);
+        attribute.classAttribute.set(&#x27;defaultValue&#x27;, attribute.defaultValue);
+        attributes.push(property);
+      });
+
+      definition.filterBy(&#x27;visible&#x27;, &#x27;False&#x27;).forEach(attributes.push);
+      this.set(&#x27;view.definition&#x27;, attributes);
+
+      let formName = this.get(&#x27;formClass.name&#x27;);
+      if (this.get(&#x27;formClass.isNew&#x27;)) {
+        this.set(&#x27;formClass.caption&#x27;, formName);
+        this.set(&#x27;formClass.stereotype&#x27;, &#x27;«listform»&#x27;);
+        this.set(&#x27;view.name&#x27;, &#x60;${formName}ViewL&#x60;);
+        this.set(&#x27;formClass.formViews.firstObject.name&#x27;, &#x27;listview&#x27;);
+      }
+
+      if (this.get(&#x27;dataObject.isNew&#x27;)) {
+        this.set(&#x27;dataObject.name&#x27;, &#x60;${formName}Object&#x60;);
+        this.set(&#x27;dataObject.caption&#x27;, &#x60;${formName}Object&#x60;);
+      }
+
+      this.get(&#x27;dataObject&#x27;).save().then(() =&gt; {
+        let promises = this.get(&#x27;attributes&#x27;).map(a =&gt; a.classAttribute.save());
+        Ember.RSVP.all(promises).then(() =&gt; {
+          this.get(&#x27;view&#x27;).save().then(() =&gt; {
+            this.get(&#x27;formClass&#x27;).save().then(() =&gt; {
+              this.get(&#x27;formClass.formViews.firstObject&#x27;).save().then(() =&gt; {
+                this.set(&#x27;class&#x27;, undefined);
+                this.set(&#x27;form&#x27;, this.get(&#x27;formClass.id&#x27;));
+              });
+            });
+          });
+        });
+      });
+    },
+
+    close() {
+      this.transitionToRoute(&#x27;fd-appstruct-form&#x27;);
+    },
+  },
+
+  _translate(propertyName) {
+    return propertyName;
+  },
+});
 
     </pre>
 </div>

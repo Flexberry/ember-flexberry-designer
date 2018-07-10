@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>addon/mixins/regenerated/models/fd-dev-parameter.js - Flexberry Documentation</title>
+    <title>FdListformColumn - Flexberry Documentation</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -109,124 +109,118 @@
                 <div id="docs-main">
                     <div class="content">
 <div class="page-header">
-    <h1>addon/mixins/regenerated/models/fd-dev-parameter.js <small>File</small></h1>
+    <h1>FdListformColumn <small>Class</small></h1>
 </div>
 
-<div class="file">
-    <pre class="prettyprint linenums">
-import Ember from &#x27;ember&#x27;;
-import DS from &#x27;ember-data&#x27;;
-import { Projection } from &#x27;ember-flexberry-data&#x27;;
-export let Model = Ember.Mixin.create({
-  caption: DS.attr(&#x27;string&#x27;),
-  modifier: DS.attr(&#x27;s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier&#x27;),
-  orderNum: DS.attr(&#x27;number&#x27;),
-  /**
-    Non-stored property.
+<div class="well well-small">
 
-    @property realCaption
-  */
-  realCaption: DS.attr(&#x27;string&#x27;),
-  /**
-    Method to set non-stored property.
-    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
-    Please, implement &#x27;realCaptionCompute&#x27; method in model class (outside of this mixin) if you want to compute value of &#x27;realCaption&#x27; property.
+        <div class="extends">
+            Extends <a href="http://emberjs.com/api/classes/Ember.Object.html">Ember.Object</a>
+        </div>
 
-    @method _realCaptionCompute
-    @private
-    @example
-      &#x60;&#x60;&#x60;javascript
-      _realCaptionChanged: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;realCaption&#x27;, function() {
-        Ember.run.once(this, &#x27;_realCaptionCompute&#x27;);
-      }))
-      &#x60;&#x60;&#x60;
-  */
-  _realCaptionCompute: function() {
-    let result = (this.realCaptionCompute &amp;&amp; typeof this.realCaptionCompute === &#x27;function&#x27;) ? this.realCaptionCompute() : null;
-    this.set(&#x27;realCaption&#x27;, result);
-  },
-  type: DS.attr(&#x27;string&#x27;),
-  method: DS.belongsTo(&#x27;fd-dev-method&#x27;, { inverse: &#x27;parameters&#x27;, async: false }),
-  getValidations: function () {
-    let parentValidations = this._super();
-    let thisValidations = {
-      method: { presence: true }
-    };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
-  },
-  init: function () {
-    this.set(&#x27;validations&#x27;, this.getValidations());
-    this._super.apply(this, arguments);
-  }
-});
-export let defineBaseModel = function (modelClass) {
-  modelClass.reopenClass({
-    _parentModelName: &#x27;fd-repository-data-object&#x27;
-  });
-};
+        <div class="foundat">
+            Defined in: <a href="../files/addon_objects_fd-listform-column.js.html#l7"><code>addon&#x2F;objects&#x2F;fd-listform-column.js:7</code></a>
+        </div>
 
-export let defineProjections = function (modelClass) {
-  modelClass.defineProjection(&#x27;EditApplication&#x27;, &#x27;fd-dev-parameter&#x27;, {
-    name: Projection.attr(&#x27;&#x27;),
-    modifier: Projection.attr(&#x27;&#x27;),
-    type: Projection.attr(&#x27;&#x27;),
-    description: Projection.attr(&#x27;&#x27;)
-  });
-  modelClass.defineProjection(&#x27;EditDataObjectClass&#x27;, &#x27;fd-dev-parameter&#x27;, {
-    name: Projection.attr(&#x27;&#x27;),
-    modifier: Projection.attr(&#x27;&#x27;),
-    type: Projection.attr(&#x27;&#x27;),
-    description: Projection.attr(&#x27;&#x27;)
-  });
-  modelClass.defineProjection(&#x27;EditEditForm&#x27;, &#x27;fd-dev-parameter&#x27;, {
-    name: Projection.attr(&#x27;&#x27;),
-    modifier: Projection.attr(&#x27;&#x27;),
-    type: Projection.attr(&#x27;&#x27;),
-    description: Projection.attr(&#x27;&#x27;)
-  });
-  modelClass.defineProjection(&#x27;EditInterface&#x27;, &#x27;fd-dev-parameter&#x27;, {
-    name: Projection.attr(&#x27;&#x27;),
-    modifier: Projection.attr(&#x27;&#x27;),
-    type: Projection.attr(&#x27;&#x27;),
-    description: Projection.attr(&#x27;&#x27;)
-  });
-  modelClass.defineProjection(&#x27;EditListForm&#x27;, &#x27;fd-dev-parameter&#x27;, {
-    name: Projection.attr(&#x27;&#x27;),
-    modifier: Projection.attr(&#x27;&#x27;),
-    type: Projection.attr(&#x27;&#x27;),
-    description: Projection.attr(&#x27;&#x27;)
-  });
-  modelClass.defineProjection(&#x27;EditPrintForm&#x27;, &#x27;fd-dev-parameter&#x27;, {
-    name: Projection.attr(&#x27;&#x27;),
-    modifier: Projection.attr(&#x27;&#x27;),
-    type: Projection.attr(&#x27;&#x27;),
-    description: Projection.attr(&#x27;&#x27;)
-  });
-  modelClass.defineProjection(&#x27;EditType&#x27;, &#x27;fd-dev-parameter&#x27;, {
-    name: Projection.attr(&#x27;&#x27;),
-    modifier: Projection.attr(&#x27;&#x27;),
-    type: Projection.attr(&#x27;&#x27;),
-    description: Projection.attr(&#x27;&#x27;)
-  });
-  modelClass.defineProjection(&#x27;EditUserForm&#x27;, &#x27;fd-dev-parameter&#x27;, {
-    name: Projection.attr(&#x27;&#x27;),
-    modifier: Projection.attr(&#x27;&#x27;),
-    type: Projection.attr(&#x27;&#x27;),
-    description: Projection.attr(&#x27;&#x27;)
-  });
-  modelClass.defineProjection(&#x27;Generator&#x27;, &#x27;fd-dev-parameter&#x27;, {
-    caption: Projection.attr(&#x27;Caption&#x27;, { hidden: true }),
-    modifier: Projection.attr(&#x27;Modifier&#x27;, { hidden: true }),
-    orderNum: Projection.attr(&#x27;OrderNum&#x27;, { hidden: true }),
-    realCaption: Projection.attr(&#x27;RealCaption&#x27;, { hidden: true }),
-    type: Projection.attr(&#x27;Type&#x27;, { hidden: true }),
-    name: Projection.attr(&#x27;Name&#x27;, { hidden: true }),
-    description: Projection.attr(&#x27;Description&#x27;, { hidden: true }),
-    nameStr: Projection.attr(&#x27;NameStr&#x27;, { hidden: true })
-  });
-};
+            Module: <a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a>
 
-    </pre>
+</div>
+
+
+<div class="well well-small">
+    <p>Describes one column on the list form.</p>
+
+</div>
+
+
+<div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#index">Index</a></li>
+
+            <li><a data-toggle="tab" href="#properties">Properties</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="index" class="tab-pane active">
+            <h2 class="off-left">Item Index</h2>
+
+
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties extends">
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_caption" data-tablink="caption">caption</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_propertyDefinition" data-tablink="propertyDefinition">propertyDefinition</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+
+        </div>
+
+
+            <div id="properties" class="tab-pane">
+                <h2 class="off-left">Properties</h2>
+
+                    <div id="property_caption" class="property item">
+                        <h3 class="name"><code>caption</code></h3>
+                        <span class="type"><a href="http://emberjs.com/api/classes/String.html" class="crosslink external" target="_blank">String</a></span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_objects_fd-listform-column.js.html#l14"><code>addon&#x2F;objects&#x2F;fd-listform-column.js:14</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Caption of the column.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <div id="property_propertyDefinition" class="property item">
+                        <h3 class="name"><code>propertyDefinition</code></h3>
+                        <span class="type"><a href="../classes/FdViewAttributesProperty.html" class="crosslink">FdViewAttributesProperty</a> | <a href="../classes/FdViewAttributesMaster.html" class="crosslink">FdViewAttributesMaster</a> | <a href="../classes/FdViewAttributesDetail.html" class="crosslink">FdViewAttributesDetail</a></span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_objects_fd-listform-column.js.html#l22"><code>addon&#x2F;objects&#x2F;fd-listform-column.js:22</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>The property definition from view that corresponds to this column.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                    </div>
+            </div>
+
+
+    </div>
 </div>
                     </div>
                 </div>

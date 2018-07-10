@@ -144,6 +144,13 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/controllers/fd-listform-constructor.js": {
+            "name": "addon/controllers/fd-listform-constructor.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/controllers/fd-stage-list-form.js": {
             "name": "addon/controllers/fd-stage-list-form.js",
             "modules": {},
@@ -444,6 +451,15 @@
             "modules": {},
             "classes": {
                 "FdEditformTabgroup": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/objects/fd-listform-column.js": {
+            "name": "addon/objects/fd-listform-column.js",
+            "modules": {},
+            "classes": {
+                "FdListformColumn": 1
             },
             "fors": {},
             "namespaces": {}
@@ -1092,6 +1108,7 @@
                 "FdEditformRow": 1,
                 "FdEditformTab": 1,
                 "FdEditformTabgroup": 1,
+                "FdListformColumn": 1,
                 "FdViewAttributesDetail": 1,
                 "FdViewAttributesMaster": 1,
                 "FdViewAttributesProperty": 1,
@@ -1355,6 +1372,21 @@
             "file": "addon/objects/fd-editform-tabgroup.js",
             "line": 7,
             "description": "Describes a group of tabs on the edit form.",
+            "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Object.html\">Ember.Object</a>"
+        },
+        "FdListformColumn": {
+            "name": "FdListformColumn",
+            "shortname": "FdListformColumn",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "",
+            "file": "addon/objects/fd-listform-column.js",
+            "line": 7,
+            "description": "Describes one column on the list form.",
             "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Object.html\">Ember.Object</a>"
         },
         "FdViewAttributesDetail": {
@@ -3650,6 +3682,129 @@
             "name": "editFormRoute",
             "type": "String",
             "default": "'fd-inheritance-edit-form'",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-listform-constructor.js",
+            "line": 7,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_showModalDialog",
+            "type": "Boolean",
+            "default": "false",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-listform-constructor.js",
+            "line": 15,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_selectedIsFirst",
+            "readonly": "",
+            "type": "Boolean",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-listform-constructor.js",
+            "line": 25,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_selectedIsLast",
+            "readonly": "",
+            "type": "Boolean",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-listform-constructor.js",
+            "line": 43,
+            "description": "The selected column.",
+            "itemtype": "property",
+            "name": "selectedColumn",
+            "type": "FdListformColumn",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-listform-constructor.js",
+            "line": 51,
+            "description": "Columns of the table in the list form.",
+            "itemtype": "property",
+            "name": "columns",
+            "type": "FdListformColumn[]",
+            "readonly": "",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-listform-constructor.js",
+            "line": 72,
+            "description": "Set the selected column.",
+            "itemtype": "method",
+            "name": "actions.selectColumn",
+            "params": [
+                {
+                    "name": "column",
+                    "description": "",
+                    "type": "FdListformColumn"
+                }
+            ],
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-listform-constructor.js",
+            "line": 82,
+            "description": "Adds a new column.",
+            "itemtype": "method",
+            "name": "actions.addColumn",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-listform-constructor.js",
+            "line": 95,
+            "description": "Removes the selected column.",
+            "itemtype": "method",
+            "name": "actions.removeSelectedColumn",
+            "params": [
+                {
+                    "name": "approve",
+                    "description": "The user is sure.",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-listform-constructor.js",
+            "line": 113,
+            "description": "Sorts the selected column.",
+            "itemtype": "method",
+            "name": "actions.sortSelectedColumn",
+            "params": [
+                {
+                    "name": "step",
+                    "description": "Step of moving the column.",
+                    "type": "Number"
+                }
+            ],
             "class": "FdDraggableControlMixin",
             "module": "components",
             "namespace": "components"
@@ -6724,6 +6879,26 @@
             "name": "activeTab",
             "type": "FdEditformTab",
             "class": "FdEditformTabgroup",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-listform-column.js",
+            "line": 14,
+            "description": "Caption of the column.",
+            "itemtype": "property",
+            "name": "caption",
+            "type": "String",
+            "class": "FdListformColumn",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/fd-listform-column.js",
+            "line": 22,
+            "description": "The property definition from view that corresponds to this column.",
+            "itemtype": "property",
+            "name": "propertyDefinition",
+            "type": "FdViewAttributesProperty|FdViewAttributesMaster|FdViewAttributesDetail",
+            "class": "FdListformColumn",
             "module": "ember-flexberry-designer"
         },
         {
