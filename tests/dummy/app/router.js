@@ -92,7 +92,7 @@ Router.map(function () {
   this.route('fd-editform-constructor.new',
   { path: 'fd-editform-constructor/new' });
 
-  this.route('fd-visual-listform');
+  this.route('fd-listform-constructor');
 
   this.route('fd-generation-process-form.new',
   { path: 'fd-generation-process-form/new' });

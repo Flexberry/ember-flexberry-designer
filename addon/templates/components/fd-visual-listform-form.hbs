@@ -2,7 +2,7 @@
   <div class="column"><h3>{{formName}}</h3></div>
   <div class="column">
     <div class="ui grid">
-      <div class="white eight wide right aligned column">{{t "forms.fd-visual-listform.edit-form-header"}}</div>
+      <div class="white eight wide right aligned column">{{t "forms.fd-listform-constructor.edit-form-header"}}</div>
       <div class="white eight wide column">
         <select id="selectForm" class="ui compact dropdown selection sort-direction-dropdown" {{action "showForm" n on="change"}}>
           <option></option>
@@ -27,14 +27,14 @@
         <nobr>
           <button
             class="ui button {{if (eq index 0) "disabled"}}"
-            title="{{t "forms.fd-visual-listform.move-left-attr"}}"
+            title="{{t "forms.fd-listform-constructor.move-left-attr"}}"
             {{action "moveLeft"  index}}
           >
             <i class="long arrow left icon"></i>
           </button>
           <button
             class="ui button {{if (eq index indexLastAttribute) "disabled"}}"
-            title="{{t "forms.fd-visual-listform.move-right-attr"}}"
+            title="{{t "forms.fd-listform-constructor.move-right-attr"}}"
             {{action "moveRight"  index}}
           >
             <i class="long arrow right icon"></i>
@@ -44,7 +44,7 @@
       <td align="right">
         <button
           class="ui button"
-          title="{{t "forms.fd-visual-listform.remove-attr"}}"
+          title="{{t "forms.fd-listform-constructor.remove-attr"}}"
           {{action removeAttributeAction index}}
         >
           <i class="remove icon"></i>
@@ -54,7 +54,7 @@
     <td rowspan="7" valign="top">
       <button class="ui button create-button" {{action addAttributeAction}}>
         <i class="add circle icon"></i>
-        {{t "forms.fd-visual-listform.add-button-text"}}
+        {{t "forms.fd-listform-constructor.add-button-text"}}
       </button>
     </td>
   </tr>

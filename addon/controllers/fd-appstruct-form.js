@@ -403,7 +403,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       let selectedNode = jstreeSelectedNodesLeft[0];
       let classId = selectedNode.original.get('idNode');
 
-      this.transitionToRoute('fd-visual-listform', {
+      this.transitionToRoute('fd-listform-constructor', {
         queryParams: {
           form: undefined,
           class: classId,
@@ -427,7 +427,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
 
       switch (selectedNode.original.get('type')) {
         case '«listform»':
-          this.transitionToRoute('fd-visual-listform', {
+          this.transitionToRoute('fd-listform-constructor', {
             queryParams: {
               form: nodeId,
               class: undefined,
