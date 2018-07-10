@@ -967,7 +967,7 @@ export default Ember.Controller.extend({
         let controlInRow = control.get(&#x27;controls&#x27;).objectAt(i);
         let pathWithColumn = path;
         if (control.get(&#x27;controls.length&#x27;) &gt; 1) {
-          pathWithColumn = path + &#x27;\\#&#x27; + (i + 1);
+          pathWithColumn = &#x60;${path ? path + &#x27;\\&#x27; : &#x27;&#x27;}#${i + 1}&#x60;;
         }
 
         this._extractPathPart(controlInRow, pathWithColumn, viewDefinition);
