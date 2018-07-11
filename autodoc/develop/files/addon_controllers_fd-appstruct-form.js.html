@@ -119,6 +119,7 @@ import FdAppStructTree from &#x27;../objects/fd-appstruct-tree&#x27;;
 import EditFormController from &#x27;ember-flexberry/controllers/edit-form&#x27;;
 import { translationMacro as t } from &#x27;ember-i18n&#x27;;
 import FdWorkPanelToggler from &#x27;../mixins/fd-work-panel-toggler&#x27;;
+import { restorationNodeTree, findFreeNodeTreeID, findFreeNodeTreeNameIndex } from &#x27;../utils/fd-metods-for-tree&#x27;;
 
 export default EditFormController.extend(FdWorkPanelToggler, {
 
@@ -395,27 +396,12 @@ export default EditFormController.extend(FdWorkPanelToggler, {
   }),
 
   /**
-    Method for restoring tree nodes.
-    @method _restorationNodeTree
-  */
-  _restorationNodeTree(nodeArray) {
-    let _this = this;
-    nodeArray.forEach(function(node) {
-      if (node.type === &#x27;folder&#x27; || node.type === &#x27;desk&#x27;) {
-        node.set(&#x27;children&#x27;, node.get(&#x27;copyChildren&#x27;));
-        _this._restorationNodeTree(node.get(&#x27;children&#x27;));
-      }
-    });
-  },
-
-  /**
     Method for update data in tree.
     @method _updateTreeData
   */
   _updateTreeData() {
     let dataTree = this.get(&#x27;model.rightTreeNodes&#x27;);
-    this._restorationNodeTree(dataTree);
-
+    restorationNodeTree(dataTree, {}, Ember.A([&#x27;folder&#x27;, &#x27;desk&#x27;]), true);
     this.get(&#x27;jstreeActionReceiverRight&#x27;).send(&#x27;redraw&#x27;);
   },
 
@@ -433,14 +419,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
         return;
       }
 
-      // Find free id.
-      let nodeId = 0;
-      let foundId = this.get(&#x27;jstreeObjectRight&#x27;).jstree(true).get_node(&#x27;move&#x27; + nodeId);
-      while (foundId) {
-        nodeId++;
-        foundId = this.get(&#x27;jstreeObjectRight&#x27;).jstree(true).get_node(&#x27;move&#x27; + nodeId);
-      }
-
+      let nodeId = findFreeNodeTreeID(&#x27;move&#x27;, 0, this.get(&#x27;jstreeObjectRight&#x27;));
       let leftSelectedNodes = jstreeSelectedNodesLeft[0].original;
       let rightSelectedNodes = jstreeSelectedNodesRight[0].original.get(&#x27;copyChildren&#x27;);
       let newNode = FdAppStructTree.create({
@@ -580,35 +559,21 @@ export default EditFormController.extend(FdWorkPanelToggler, {
         return;
       }
 
-      // Find free name.
-      let urlName = &#x27;NewUrl&#x27;;
       let selectedNodes = jstreeSelectedNodesRight[0].original.get(&#x27;copyChildren&#x27;);
-      let foundName = selectedNodes.findBy(&#x27;text&#x27;, urlName);
-      let urlIndex = &#x27;&#x27;;
-      while (!Ember.isNone(foundName)) {
-        urlIndex++;
-        foundName = selectedNodes.findBy(&#x27;text&#x27;, urlName + urlIndex);
-      }
+      let urlIndex = findFreeNodeTreeNameIndex(&#x27;NewUrl&#x27;, &#x27;&#x27;, selectedNodes, &#x27;text&#x27;);
+      let urlId = findFreeNodeTreeID(&#x27;NU&#x27;, 0, this.get(&#x27;jstreeObjectRight&#x27;));
 
-      // Find free id.
-      let urlId = 0;
-      let foundId = this.get(&#x27;jstreeObjectRight&#x27;).jstree(true).get_node(&#x27;NU&#x27; + urlId);
-      while (foundId) {
-        urlId++;
-        foundId = this.get(&#x27;jstreeObjectRight&#x27;).jstree(true).get_node(&#x27;NU&#x27; + urlId);
-      }
-
-      let folder = FdAppStructTree.create({
-        text: urlName + urlIndex,
+      let urlValue = FdAppStructTree.create({
+        text: &#x27;NewUrl&#x27; + urlIndex,
         type: &#x27;url&#x27;,
         id: &#x27;NU&#x27; + urlId,
-        caption: urlName + urlIndex,
+        caption: &#x27;NewUrl&#x27; + urlIndex,
         description: &#x27;&#x27;,
         url: &#x27;&#x27;,
         a_attr: { title: &#x27;url&#x27; }
       });
 
-      selectedNodes.pushObject(folder);
+      selectedNodes.pushObject(urlValue);
 
       // Restoration tree.
       this._updateTreeData();
@@ -656,26 +621,12 @@ export default EditFormController.extend(FdWorkPanelToggler, {
         return;
       }
 
-      // Find free name.
-      let folderName = &#x27;NewFolder&#x27;;
       let selectedNodes = jstreeSelectedNodesRight[0].original.get(&#x27;copyChildren&#x27;);
-      let foundName = selectedNodes.findBy(&#x27;text&#x27;, folderName);
-      let folderIndex = &#x27;&#x27;;
-      while (!Ember.isNone(foundName)) {
-        folderIndex++;
-        foundName = selectedNodes.findBy(&#x27;text&#x27;, folderName + folderIndex);
-      }
-
-      // Find free id.
-      let folderId = 0;
-      let foundId = this.get(&#x27;jstreeObjectRight&#x27;).jstree(true).get_node(&#x27;NF&#x27; + folderId);
-      while (foundId) {
-        folderId++;
-        foundId = this.get(&#x27;jstreeObjectRight&#x27;).jstree(true).get_node(&#x27;NF&#x27; + folderId);
-      }
+      let folderIndex = findFreeNodeTreeNameIndex(&#x27;NewFolder&#x27;, &#x27;&#x27;, selectedNodes, &#x27;text&#x27;);
+      let folderId = findFreeNodeTreeID(&#x27;NF&#x27;, 0, this.get(&#x27;jstreeObjectRight&#x27;));
 
       let folder = FdAppStructTree.create({
-        text: folderName + folderIndex,
+        text: &#x27;NewFolder&#x27; + folderIndex,
         type: &#x27;folder&#x27;,
         children: Ember.A(),
         copyChildren: Ember.A(),
