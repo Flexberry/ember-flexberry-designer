@@ -189,6 +189,9 @@ export default Ember.Component.extend({
       let attributes = selectedClass.get('attributes');
       let index = namesPropertyDefinition.length - 1;
       attribute = attributes.findBy('name', namesPropertyDefinition[index]);
+      if (!attribute) {
+        this.set('readonly', true);
+      }
     }
 
     return attribute;
@@ -526,8 +529,8 @@ export default Ember.Component.extend({
         text: 'Собственные свойства',
         type: 'class',
         id: 'attributes',
-        children: this.get('model.attributes'),
-        copyChildren: this.get('model.attributes'),
+        children: Ember.A(this.get('model.attributes').filterBy('own', true)),
+        copyChildren: Ember.A(this.get('model.attributes').filterBy('own', true)),
         state: { opened: true }
       }),
       FdAttributesTree.create({
