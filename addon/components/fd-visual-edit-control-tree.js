@@ -300,6 +300,15 @@ export default Ember.Component.extend({
   },
 
   actions: {
+    /**
+      Changes the start multiplicity of the association.
+
+      @method actions.changeMasterNotNull
+      @param {Object} value An object with a new value in the `checked` property.
+    */
+    changeMasterNotNull(value) {
+      this.set('selectedAttribute.startMultiplicity', value.checked ? '1' : '0..1');
+    },
 
     /**
       Add new attribute.
