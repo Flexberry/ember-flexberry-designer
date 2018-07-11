@@ -4,6 +4,7 @@ import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 import FdAttributesTree from '../objects/fd-attributes-tree';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, parsingPropertyName } from '../utils/fd-attributes-for-tree';
+import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNodeTreeID, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
 
 export default Ember.Component.extend({
   layout,
@@ -226,7 +227,7 @@ export default Ember.Component.extend({
     let selectedItem = this.get('selectedItem');
     if (!Ember.isNone(selectedItem)) {
       let attributesTree = this.get('dataAttributesTree');
-      this._restorationNodeTree(attributesTree, {});
+      restorationNodeTree(attributesTree, {}, Ember.A(['master', 'class']), false);
       if (selectedItem.type === 'master') {
         let allClasses = this.get('store').peekAll('fd-dev-class');
         let stagePk = this.get('currentProjectContext').getCurrentStage();
@@ -310,7 +311,7 @@ export default Ember.Component.extend({
       this.set('propertyName', '');
 
       let typeTree = this.get('dataTypeTree');
-      this._restorationNodeTree(typeTree, {});
+      restorationNodeTree(typeTree, {}, Ember.A(['master', 'class']), false);
     },
 
     /**
@@ -326,7 +327,7 @@ export default Ember.Component.extend({
       this.set('propertyName', selectedNodes[0].original.name);
 
       let typeTree = this.get('dataTypeTree');
-      this._restorationNodeTree(typeTree, {});
+      restorationNodeTree(typeTree, {}, Ember.A(['master', 'class']), false);
     },
 
     /**
@@ -352,14 +353,8 @@ export default Ember.Component.extend({
       arrayChildrensParentSelectedNode.removeObject(selectedObject);
 
       if (selectedObject.type === 'detail') {
-        // Find free id.
         let typeTree = this.get('dataTypeTree')[5];
-        let nodeId = 0;
-        let foundId = typeTree.copyChildren.findBy('id', 'detail' + nodeId);
-        while (foundId) {
-          nodeId++;
-          foundId = typeTree.copyChildren.findBy('id', 'detail' + nodeId);
-        }
+        let nodeId = findFreeNodeTreeNameIndex('detail', 0, typeTree.copyChildren, 'id');
 
         let recordsDevClass = this.get('store').peekAll('fd-dev-class');
         let classData = recordsDevClass.findBy('id', selectedObject.idNode);
@@ -383,27 +378,10 @@ export default Ember.Component.extend({
     */
     applyAttribute() {
       let selectedNodes = this.get('selectedNodesAttributesTree');
+      let treeData = this.get('dataAttributesTree');
 
       // Create propertyName
-      let treeData = this.get('dataAttributesTree');
-      let parents = selectedNodes[0].parents;
-      let propertyName = '';
-      if (parents.length > 2) {
-        let indexParentID = parents.length - 3;
-        let parentAttributes = treeData[1].copyChildren;
-        while (indexParentID >= 0) {
-          let parentID = parents[indexParentID];
-          let parent = parentAttributes.findBy('id', parentID);
-          propertyName = propertyName + '.' + parent.name;
-          indexParentID--;
-          parentAttributes = parent.copyChildren;
-        }
-
-        propertyName = propertyName.slice(1) + '.' + selectedNodes[0].original.name;
-
-      } else {
-        propertyName = selectedNodes[0].original.name;
-      }
+      let propertyName = createPropertyName(selectedNodes, treeData[1]);
 
       this.set('selectedItem.propertyDefinition.name', propertyName);
       this.set('selectedItem.type', selectedNodes[0].original.typeNode);
@@ -444,7 +422,7 @@ export default Ember.Component.extend({
     handleTreeDidBecomeReady() {
       let treeObject = this.get('treeObjectAttributesTree');
       treeObject.on('open_node.jstree', this._openNodeTree.bind(this));
-      treeObject.on('after_close.jstree', this._afterCloseNodeTree.bind(this));
+      treeObject.on('after_close.jstree', afterCloseNodeTree.bind(this));
     },
 
     /**
@@ -456,14 +434,7 @@ export default Ember.Component.extend({
       let selectedNodes = this.get('selectedNodesTypeTree');
       let selectedNode = selectedNodes[0];
       let attributesTree = this.get('dataAttributesTree');
-
-      // Find free id.
-      let nodeId = 0;
-      let foundId = this.get('treeObjectAttributesTree').jstree(true).get_node('np' + nodeId);
-      while (foundId) {
-        nodeId++;
-        foundId = this.get('treeObjectAttributesTree').jstree(true).get_node('np' + nodeId);
-      }
+      let nodeId = findFreeNodeTreeID('np', 0, this.get('treeObjectAttributesTree'));
 
       let newNode = FdAttributesTree.create({
         text: this.get('propertyName') + ' (' + selectedNode.text + ')',
@@ -499,7 +470,7 @@ export default Ember.Component.extend({
         parentSelectedNodes.original.copyChildren.removeObject(selectedNodesAttributesTree[0].original);
       }
 
-      this._restorationNodeTree(attributesTree, {});
+      restorationNodeTree(attributesTree, {}, Ember.A(['master', 'class']), false);
       this.set('oldPropertyName', undefined);
       this.set('treeViewMode', true);
     },
@@ -511,7 +482,7 @@ export default Ember.Component.extend({
     */
     cancelСlick() {
       let attributesTree = this.get('dataAttributesTree');
-      this._restorationNodeTree(attributesTree, {});
+      restorationNodeTree(attributesTree, {}, Ember.A(['master', 'class']), false);
       this.set('treeViewMode', true);
     }
   },
@@ -523,63 +494,15 @@ export default Ember.Component.extend({
   */
   _openNodeTree(e, data) {
     let treeData = this.get('dataAttributesTree');
-    this._restorationNodeTree(treeData, data.node.original);
+    restorationNodeTree(treeData, data.node.original, Ember.A(['master', 'class']), false, (function(node) {
+      let dataForBuildTree = getDataForBuildTree(this.get('store'), node.get('idNode'));
+      let childrenAttributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes, null, 'type');
+      let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, node.get('id'), null, 'name');
+
+      return childrenNode;
+    }).bind(this));
 
     this.get('actionReceiverAttributesTree').send('redraw');
-  },
-
-  /**
-    Overridden action for jsTree 'eventDidClose'.
-
-    @method _afterCloseNodeTree
-  */
-  _afterCloseNodeTree(e, data) {
-    data.node.original.state.opened = false;
-  },
-
-  /**
-    Method for restoring tree nodes.
-
-    @method _restorationNodeTree
-  */
-  _restorationNodeTree(nodeArray, wantedNode) {
-    let _this = this;
-    nodeArray.forEach(function(node) {
-      if (node.type === 'master' || node.type === 'class') {
-        node.set('children', node.get('copyChildren'));
-
-        if (!Ember.isNone(node.state) && node.state.opened) {
-          _this._restorationNodeTree(node.get('children'), wantedNode);
-        }
-
-        if (node.text === wantedNode.text && node.idNode === wantedNode.idNode && node.id === wantedNode.id) {
-          node.state = { opened: true };
-          if (node.get('children').length === 1 && node.get('children')[0] === '#') {
-            _this._getChildrenNode(node);
-          } else {
-            _this._restorationNodeTree(node.get('children'), wantedNode);
-          }
-        }
-      }
-    });
-  },
-
-  /**
-    Method for loading tree node data.
-
-    @method _getChildrenNode
-  */
-  _getChildrenNode(node) {
-    let store = this.get('store');
-    let idNode = node.get('idNode');
-    let idTree = node.get('id');
-
-    let dataForBuildTree = getDataForBuildTree(store, idNode);
-    let childrenAttributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes, null, 'type');
-    let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, idTree, null, 'name');
-
-    node.set('children', childrenNode);
-    node.set('copyChildren', childrenNode);
   },
 
   /**
@@ -686,7 +609,7 @@ export default Ember.Component.extend({
     let treeObject = this.get('treeObjectAttributesTree');
     if (!Ember.isNone(treeObject)) {
       treeObject.off('open_node.jstree', this._openNodeTree.bind(this));
-      treeObject.off('after_close.jstree', this._afterCloseNodeTree.bind(this));
+      treeObject.off('after_close.jstree', afterCloseNodeTree.bind(this));
     }
   }
 

@@ -11,6 +11,7 @@ import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 import FdAttributesTree from '../objects/fd-attributes-tree';
 import { getDataForBuildTree, getTreeNodeByNotUsedAttributes, getAssociationTreeNode, getTreeNodeByNotUsedAggregation } from '../utils/fd-attributes-for-tree';
+import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
 
 export default Ember.Controller.extend({
   queryParams: ['classId'],
@@ -269,12 +270,7 @@ export default Ember.Controller.extend({
     addControl() {
       let dataobject = this.get('model.dataobject');
       let attributes = dataobject.get('attributes');
-
-      // Find free index.
-      let atrIndex = 1;
-      while (!Ember.isNone(attributes.findBy('name', 'newAttribute' + atrIndex))) {
-        atrIndex++;
-      }
+      let atrIndex = findFreeNodeTreeNameIndex('newAttribute', 1, attributes, 'name');
 
       let newAttribute = this.get('store').createRecord('fd-dev-attribute', {
         class: dataobject,
@@ -500,24 +496,7 @@ export default Ember.Controller.extend({
       let treeData = this.get('dataNotUsedAttributesTree');
 
       // Create propertyName
-      let parents = selectedNodes.parents;
-      let propertyName = '';
-      if (parents.length > 2) {
-        let indexParentID = parents.length - 3;
-        let parentAttributes = treeData[1].copyChildren;
-        while (indexParentID >= 0) {
-          let parentID = parents[indexParentID];
-          let parent = parentAttributes.findBy('id', parentID);
-          propertyName = propertyName + '.' + parent.name;
-          indexParentID--;
-          parentAttributes = parent.copyChildren;
-        }
-
-        propertyName = propertyName.slice(1) + '.' + selectedNodes.original.name;
-
-      } else {
-        propertyName = selectedNodes.original.name;
-      }
+      let propertyName = createPropertyName(selectedNodes, treeData[1]);
 
       selectedItem.set('type', selectedNodes.original.typeNode);
       let propertyDefinition;
@@ -566,7 +545,7 @@ export default Ember.Controller.extend({
     handleTreeDidBecomeReady() {
       let treeObject = this.get('treeObjectNotUsedAttributesTree');
       treeObject.on('open_node.jstree', this._openNodeTree.bind(this));
-      treeObject.on('after_close.jstree', this._afterCloseNodeTree.bind(this));
+      treeObject.on('after_close.jstree', afterCloseNodeTree.bind(this));
     },
   },
 
@@ -577,63 +556,16 @@ export default Ember.Controller.extend({
   */
   _openNodeTree(e, data) {
     let treeData = this.get('dataNotUsedAttributesTree');
-    this._restorationNodeTree(treeData, data.node.original);
+    restorationNodeTree(treeData, data.node.original, Ember.A(['master', 'class']), false, (function(node) {
+      let view = this.get('model.editform.formViews.firstObject.view');
+      let dataForBuildTree = getDataForBuildTree(this.get('store'), node.get('idNode'));
+      let childrenAttributes = getTreeNodeByNotUsedAttributes(this.get('store'), dataForBuildTree.classes, view, 'type');
+      let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, node.get('id'), null, 'name');
+
+      return childrenNode;
+    }).bind(this));
+
     this.get('actionReceiverNotUsedAttributesTree').send('redraw');
-  },
-
-  /**
-    Overridden action for jsTree 'eventDidClose'.
-
-    @method _afterCloseNodeTree
-  */
-  _afterCloseNodeTree(e, data) {
-    data.node.original.state.opened = false;
-  },
-
-  /**
-    Method for restoring tree nodes.
-
-    @method _restorationNodeTree
-  */
-  _restorationNodeTree(nodeArray, wantedNode) {
-    let _this = this;
-    nodeArray.forEach(function(node) {
-      if (node.type === 'master' || node.type === 'class') {
-        node.set('children', node.get('copyChildren'));
-
-        if (!Ember.isNone(node.state) && node.state.opened) {
-          _this._restorationNodeTree(node.get('children'), wantedNode);
-        }
-
-        if (node.text === wantedNode.text && node.idNode === wantedNode.idNode && node.id === wantedNode.id) {
-          node.state = { opened: true };
-          if (node.get('children').length === 1 && node.get('children')[0] === '#') {
-            _this._getChildrenNode(node);
-          } else {
-            _this._restorationNodeTree(node.get('children'), wantedNode);
-          }
-        }
-      }
-    });
-  },
-
-  /**
-    Method for loading tree node data.
-
-    @method _getChildrenNode
-  */
-  _getChildrenNode(node) {
-    let store = this.get('store');
-    let idNode = node.get('idNode');
-    let idTree = node.get('id');
-    let view = this.get('model.editform.formViews.firstObject.view');
-
-    let dataForBuildTree = getDataForBuildTree(store, idNode);
-    let childrenAttributes = getTreeNodeByNotUsedAttributes(this.get('store'), dataForBuildTree.classes, view, 'type');
-    let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, idTree, null, 'name');
-
-    node.set('children', childrenNode);
-    node.set('copyChildren', childrenNode);
   },
 
   /**
@@ -893,7 +825,7 @@ export default Ember.Controller.extend({
     let treeObject = this.get('treeObjectNotUsedAttributesTree');
     if (!Ember.isNone(treeObject)) {
       treeObject.off('open_node.jstree', this._openNodeTree.bind(this));
-      treeObject.off('after_close.jstree', this._afterCloseNodeTree.bind(this));
+      treeObject.off('after_close.jstree', afterCloseNodeTree.bind(this));
     }
   }
 });
