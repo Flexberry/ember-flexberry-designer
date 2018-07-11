@@ -28,7 +28,7 @@ import FdTypeEditFormForm from './forms/fd-type-edit-form';
 import FdUserFormEditFormForm from './forms/fd-user-form-edit-form';
 import FdViewEditFormForm from './forms/fd-view-edit-form';
 import FdVisualEditFormForm from './forms/fd-visual-edit-form-form';
-import FdVisualListform from './forms/fd-visual-listform';
+import FdListformConstructor from './forms/fd-listform-constructor';
 import FdGenerationProcessForm from './forms/fd-generation-process-form';
 import FdGenerationListForm from './forms/fd-generation-list-form';
 import FdAdModel from './models/fd-ad';
@@ -204,7 +204,7 @@ Ember.$.extend(true, translations, {
     'fd-user-form-edit-form': FdUserFormEditFormForm,
     'fd-view-edit-form': FdViewEditFormForm,
     'fd-visual-edit-form': FdVisualEditFormForm,
-    'fd-visual-listform': FdVisualListform,
+    'fd-listform-constructor': FdListformConstructor,
     'fd-generation-process-form': FdGenerationProcessForm,
     'fd-generation-list-form': FdGenerationListForm
   },

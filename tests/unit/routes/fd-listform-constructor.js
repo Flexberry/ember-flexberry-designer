@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:fd-visual-listform', 'Unit | Route | fd visual edit list form', {
+moduleFor('route:fd-listform-constructor', 'Unit | Route | fd-listform-constructor', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });

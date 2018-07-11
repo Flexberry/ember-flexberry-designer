@@ -83,8 +83,8 @@ Ember.$.extend(true, translations, {
             title: '',
           },
 
-          'fd-visual-listform': {
-            caption: 'Visual edit listform',
+          'fd-listform-constructor': {
+            caption: 'List form constructor',
             title: '',
           },
 
