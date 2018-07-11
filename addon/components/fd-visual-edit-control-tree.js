@@ -529,8 +529,8 @@ export default Ember.Component.extend({
         text: 'Собственные свойства',
         type: 'class',
         id: 'attributes',
-        children: Ember.A(this.get('model.attributes').filterBy('own', true)),
-        copyChildren: Ember.A(this.get('model.attributes').filterBy('own', true)),
+        children: this.get('model.attributes'),
+        copyChildren: this.get('model.attributes'),
         state: { opened: true }
       }),
       FdAttributesTree.create({
