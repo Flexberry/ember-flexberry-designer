@@ -207,15 +207,9 @@ export default Ember.Controller.extend({
     @type Ember.NativeArray
   */
   _selectedItemStorage: Ember.computed('selectedItem', function() {
-    let container = this._findItemContainer(this.get('selectedItem'));
-    if (container instanceof FdEditformRow) {
-      return container.get('controls');
-    } else if (container instanceof FdEditformTabgroup) {
-      return container.get('tabs');
-    } else if (container instanceof FdEditformGroup || container instanceof FdEditformTab) {
-      return container.get('rows');
-    } else if (Ember.isArray(container)) {
-      return container;
+    let selectedItem = this.get('selectedItem');
+    if (selectedItem) {
+      return this._getItemStorage(this._findItemContainer(selectedItem));
     }
   }).readOnly(),
 
@@ -447,25 +441,24 @@ export default Ember.Controller.extend({
     */
     moveDragItem(item, direction) {
       let draggedItem = this.get('_draggedItem');
-      if (this._findItemContainer(item, Ember.A([draggedItem])) === null) {
-        let rows = this.get('model.controls');
-        let draggedItemContainer = this._findItemContainer(draggedItem, rows);
-        draggedItemContainer.removeObject(draggedItem);
+      if (this._findItemContainer(item, draggedItem) === null) {
+        let draggedItemStorage = this._getItemStorage(this._findItemContainer(draggedItem));
+        draggedItemStorage.removeObject(draggedItem);
 
-        let itemContainer;
-        let index = draggedItemContainer.indexOf(item);
+        let itemStorage;
+        let index = draggedItemStorage.indexOf(item);
         if (index === -1) {
-          itemContainer = this._findItemContainer(item, rows);
-          index = itemContainer.indexOf(item);
+          itemStorage = this._getItemStorage(this._findItemContainer(item));
+          index = itemStorage.indexOf(item);
         } else {
-          itemContainer = draggedItemContainer;
+          itemStorage = draggedItemStorage;
         }
 
         if (direction === 'down') {
-          index = Math.min(itemContainer.get('length'), index + 1);
+          index = Math.min(itemStorage.get('length'), index + 1);
         }
 
-        itemContainer.insertAt(index, draggedItem);
+        itemStorage.insertAt(index, draggedItem);
       }
     },
 
@@ -671,6 +664,28 @@ export default Ember.Controller.extend({
     }
 
     return foundContainer;
+  },
+
+  /**
+    Returns the item storage in the container.
+
+    @private
+    @method _getItemStorage
+    @param {FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab} container Item container.
+    @return {Ember.NativeArray} Item storage.
+  */
+  _getItemStorage(container) {
+    if (container instanceof FdEditformRow) {
+      return container.get('controls');
+    } else if (container instanceof FdEditformTabgroup) {
+      return container.get('tabs');
+    } else if (container instanceof FdEditformGroup || container instanceof FdEditformTab) {
+      return container.get('rows');
+    } else if (Ember.isArray(container)) {
+      return container;
+    } else {
+      throw new Error('Unsupported container.');
+    }
   },
 
   /**
