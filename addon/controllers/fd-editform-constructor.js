@@ -771,12 +771,15 @@ export default Ember.Controller.extend({
       dataobject.set('caption', dataobject.get('name'));
     }
 
+    let changedAssociations = model.association.filterBy('hasDirtyAttributes');
+
     // Сохранить класс формы редактирования
 
     return Ember.RSVP.all([
       view.save(),
       attributes.save(),
       dataobject.save(),
+      Ember.RSVP.all(changedAssociations.map(a => a.save())),
     ]);
   },
 
