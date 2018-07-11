@@ -305,6 +305,9 @@ export default Ember.Component.extend({
       let attributes = selectedClass.get(&#x27;attributes&#x27;);
       let index = namesPropertyDefinition.length - 1;
       attribute = attributes.findBy(&#x27;name&#x27;, namesPropertyDefinition[index]);
+      if (!attribute) {
+        this.set(&#x27;readonly&#x27;, true);
+      }
     }
 
     return attribute;
@@ -416,6 +419,15 @@ export default Ember.Component.extend({
   },
 
   actions: {
+    /**
+      Changes the start multiplicity of the association.
+
+      @method actions.changeMasterNotNull
+      @param {Object} value An object with a new value in the &#x60;checked&#x60; property.
+    */
+    changeMasterNotNull(value) {
+      this.set(&#x27;selectedAttribute.startMultiplicity&#x27;, value.checked ? &#x27;1&#x27; : &#x27;0..1&#x27;);
+    },
 
     /**
       Add new attribute.
