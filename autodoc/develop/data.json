@@ -3046,7 +3046,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 222,
+            "line": 216,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -3059,7 +3059,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 239,
+            "line": 233,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -3072,7 +3072,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 256,
+            "line": 250,
             "description": "The selected item.",
             "itemtype": "property",
             "name": "selectedItem",
@@ -3083,7 +3083,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 265,
+            "line": 259,
             "description": "Adds a new control to the form, if there is a selected item, the control will be added to it.",
             "itemtype": "method",
             "name": "actions.addControl",
@@ -3093,7 +3093,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 299,
+            "line": 293,
             "description": "Adds a new empty control to the form, if there is a selected item, the empty control will be added to it.",
             "itemtype": "method",
             "name": "actions.addEmptyControl",
@@ -3103,7 +3103,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 315,
+            "line": 309,
             "description": "Adds a new group to the form, if there is a selected item, the group will be added to it.",
             "itemtype": "method",
             "name": "actions.addGroup",
@@ -3113,7 +3113,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 327,
+            "line": 321,
             "description": "Adds a new tab to the form, if there is a selected item, the tab will be added to it.",
             "itemtype": "method",
             "name": "actions.addTab",
@@ -3123,7 +3123,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 339,
+            "line": 333,
             "description": "Removes the selected item.",
             "itemtype": "method",
             "name": "actions.removeSelectedItem",
@@ -3140,7 +3140,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 364,
+            "line": 358,
             "description": "Sorts the selected item in its container.",
             "itemtype": "method",
             "name": "actions.sortSelectedItem",
@@ -3157,7 +3157,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 379,
+            "line": 373,
             "description": "Close edit form constructor and go to application structure constructor.",
             "itemtype": "method",
             "name": "actions.close",
@@ -3167,7 +3167,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 388,
+            "line": 382,
             "description": "Set the selected item.",
             "itemtype": "method",
             "name": "actions.selectItem",
@@ -3184,7 +3184,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 421,
+            "line": 415,
             "description": "Set the current dragged item.",
             "itemtype": "method",
             "name": "actions.setDragItem",
@@ -3201,7 +3201,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 431,
+            "line": 425,
             "description": "Get the current dragged item.",
             "itemtype": "method",
             "name": "actions.getDragItem",
@@ -3215,7 +3215,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 441,
+            "line": 435,
             "description": "Move the current dragged item above or below relative to the passed item.",
             "itemtype": "method",
             "name": "actions.moveDragItem",
@@ -3237,7 +3237,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 472,
+            "line": 465,
             "description": "Saves the form's metadata.",
             "itemtype": "method",
             "name": "actions.save",
@@ -3254,7 +3254,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 488,
+            "line": 481,
             "description": "Set attribute in control.",
             "itemtype": "method",
             "name": "actions.applyСlick",
@@ -3264,7 +3264,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 529,
+            "line": 522,
             "description": "Don't set attribute in control.",
             "itemtype": "method",
             "name": "actions.deleteEmptyControl",
@@ -3274,7 +3274,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 540,
+            "line": 533,
             "description": "Handles creating jsTree.",
             "itemtype": "method",
             "name": "actions.handleTreeDidBecomeReady",
@@ -3284,7 +3284,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 552,
+            "line": 545,
             "description": "Overridden action for jsTree 'openNode'.",
             "itemtype": "method",
             "name": "_openNodeTree",
@@ -3294,7 +3294,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 571,
+            "line": 564,
             "description": "Inserts an `item` into `container`, if `container` is `FdEditformControl`, `item` is inserted into the parent row after `container`.",
             "itemtype": "method",
             "name": "_insertItem",
@@ -3316,7 +3316,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 614,
+            "line": 607,
             "description": "Removes the specified item from the form.",
             "itemtype": "method",
             "name": "_removeItem",
@@ -3333,7 +3333,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 642,
+            "line": 635,
             "description": "Looks for a container that contains the item.",
             "itemtype": "method",
             "name": "_findItemContainer",
@@ -3360,7 +3360,30 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 676,
+            "line": 669,
+            "description": "Returns the item storage in the container.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_getItemStorage",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "Item container.",
+                    "type": "FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab"
+                }
+            ],
+            "return": {
+                "description": "Item storage.",
+                "type": "Ember.NativeArray"
+            },
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 691,
             "description": "Returns a row that can be added to the form.",
             "access": "private",
             "tagname": "",
@@ -3383,7 +3406,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 701,
+            "line": 716,
             "description": "Returns the control that can be added to a row.",
             "itemtype": "method",
             "name": "_getControl",
@@ -3404,7 +3427,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 723,
+            "line": 738,
             "description": "Checks whether the control is suitable for placement in a row.",
             "access": "private",
             "tagname": "",
@@ -3427,7 +3450,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 735,
+            "line": 750,
             "description": "Save editform metadata: dataobject attributes, view, editform class.",
             "itemtype": "method",
             "name": "_saveMetadata",
@@ -3444,7 +3467,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 768,
+            "line": 783,
             "description": "Extract path part from object model.",
             "itemtype": "method",
             "name": "_extractPathPart",
@@ -3471,7 +3494,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 820,
+            "line": 835,
             "description": "Destroys helper.",
             "class": "FdDraggableControlMixin",
             "module": "components",
@@ -6684,7 +6707,7 @@
         {
             "file": "addon/objects/fd-editform-control.js",
             "line": 38,
-            "description": "The property definition from view that coresponds to this control.",
+            "description": "The property definition from view that corresponds to this control.",
             "itemtype": "property",
             "name": "propertyDefinition",
             "type": "FdViewAttributesProperty|FdViewAttributesMaster|FdViewAttributesDetail",
@@ -8456,7 +8479,7 @@
         },
         {
             "message": "Missing item type\nDestroys helper.",
-            "line": " addon/controllers/fd-editform-constructor.js:820"
+            "line": " addon/controllers/fd-editform-constructor.js:835"
         },
         {
             "message": "Missing item type\nField name where object identifier is kept.",
