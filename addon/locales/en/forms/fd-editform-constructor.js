@@ -3,6 +3,10 @@ export default {
   'new-control-caption': 'New attribute',
   'new-group-caption': 'New group',
   'new-tab-caption': 'New tab',
+  'duplicate-value-error': 'Duplicate values',
+  'unknown-detail-view-error': 'Unknown view of detail',
+  'unsupported-container-error': 'Unsupported container',
+  'item-cast-error': 'The passed item can not be cast to a row',
   'form-config-panel': {
     'form-properties-header': 'Form properties',
     'form-name': 'Form name',

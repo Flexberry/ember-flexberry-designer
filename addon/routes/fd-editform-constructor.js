@@ -27,7 +27,8 @@ export default Ember.Route.extend({
       mastersType: undefined,
       details: undefined,
       detailsType: undefined,
-      controls: undefined
+      controls: undefined,
+      arrayChengeClassElements: Ember.A()
     };
 
     let store = this.get('store');
