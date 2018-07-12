@@ -797,6 +797,7 @@ export default Ember.Controller.extend({
     }
 
     let arrayChengeClassElements = this.get('model.arrayChengeClassElements');
+    let changedAssociations = model.association.filterBy('hasDirtyAttributes');
 
     // Сохранить класс формы редактирования
 
@@ -804,7 +805,8 @@ export default Ember.Controller.extend({
       view.save(),
       attributes.save(),
       dataobject.save(),
-      arrayChengeClassElements.map((element) => element.save()),
+      Ember.RSVP.all(arrayChengeClassElements.map(a => a.save())),
+      Ember.RSVP.all(changedAssociations.map(a => a.save())),
     ]);
   },
 
