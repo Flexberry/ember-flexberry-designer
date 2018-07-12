@@ -478,8 +478,8 @@ export default Ember.Controller.extend({
           }
         });
       } catch (error) {
-        this.set('error', error);
         this.set('state', '');
+        this.set('error', error);
       }
     },
 
@@ -689,7 +689,7 @@ export default Ember.Controller.extend({
     } else if (Ember.isArray(container)) {
       return container;
     } else {
-      throw new Error('Unsupported container.');
+      throw new Error(this.get('i18n').t('forms.fd-editform-constructor.unsupported-container-error'));
     }
   },
 
@@ -712,7 +712,7 @@ export default Ember.Controller.extend({
     } else if (this._isControl(item)) {
       row = FdEditformRow.create({ controls: Ember.A([item]) });
     } else {
-      throw new Error('The passed item can not be cast to a row.');
+      throw new Error(this.get('i18n').t('forms.fd-editform-constructor.item-cast-error'));
     }
 
     return row;
@@ -734,7 +734,7 @@ export default Ember.Controller.extend({
     } else if (item instanceof FdEditformRow && item.get('controls.length') === 1) {
       control = item.get('controls.firstObject');
     } else {
-      throw new Error('The passed item can not be cast to a control.');
+      throw new Error(this.get('i18n').t('forms.fd-editform-constructor.item-cast-error'));
     }
 
     return control;
@@ -782,8 +782,10 @@ export default Ember.Controller.extend({
     });
 
     if (duplicateValues.length !== 0 || detailViewNull.length !== 0) {
-      let duplicateError = duplicateValues.length > 0 ? 'Duplicate values: ' + duplicateValues.uniq() + '. ' : '';
-      let detailViewError = detailViewNull.length > 0 ? 'Unknown view of detail: ' + detailViewNull.uniq() + '. ' : '';
+      let dublicateValuesText = this.get('i18n').t('forms.fd-editform-constructor.duplicate-value-error');
+      let unknownDetailViewText = this.get('i18n').t('forms.fd-editform-constructor.unknown-detail-view-error');
+      let duplicateError = duplicateValues.length > 0 ? `${dublicateValuesText}: ` + duplicateValues.uniq() + '. ' : '';
+      let detailViewError = detailViewNull.length > 0 ? `${unknownDetailViewText}: ` + detailViewNull.uniq() + '. ' : '';
       throw new Error(duplicateError + detailViewError);
     }
 
