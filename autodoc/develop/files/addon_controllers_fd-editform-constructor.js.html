@@ -586,12 +586,17 @@ export default Ember.Controller.extend({
     */
     save(close) {
       this.set(&#x27;state&#x27;, &#x27;loading&#x27;);
-      this._saveMetadata(this.get(&#x27;model&#x27;)).then(() =&gt; {
+      try {
+        this._saveMetadata(this.get(&#x27;model&#x27;)).then(() =&gt; {
+          this.set(&#x27;state&#x27;, &#x27;&#x27;);
+          if (close) {
+            this.send(&#x27;close&#x27;);
+          }
+        });
+      } catch (error) {
         this.set(&#x27;state&#x27;, &#x27;&#x27;);
-        if (close) {
-          this.send(&#x27;close&#x27;);
-        }
-      });
+        this.set(&#x27;error&#x27;, error);
+      }
     },
 
     /**
@@ -605,7 +610,7 @@ export default Ember.Controller.extend({
       let treeData = this.get(&#x27;dataNotUsedAttributesTree&#x27;);
 
       // Create propertyName
-      let propertyName = createPropertyName(selectedNodes, treeData[1]);
+      let propertyName = createPropertyName(selectedNodes, treeData[1], false);
 
       selectedItem.set(&#x27;type&#x27;, selectedNodes.original.typeNode);
       let propertyDefinition;
@@ -800,7 +805,7 @@ export default Ember.Controller.extend({
     } else if (Ember.isArray(container)) {
       return container;
     } else {
-      throw new Error(&#x27;Unsupported container.&#x27;);
+      throw new Error(this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-editform-constructor.unsupported-container-error&#x27;));
     }
   },
 
@@ -823,7 +828,7 @@ export default Ember.Controller.extend({
     } else if (this._isControl(item)) {
       row = FdEditformRow.create({ controls: Ember.A([item]) });
     } else {
-      throw new Error(&#x27;The passed item can not be cast to a row.&#x27;);
+      throw new Error(this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-editform-constructor.item-cast-error&#x27;));
     }
 
     return row;
@@ -845,7 +850,7 @@ export default Ember.Controller.extend({
     } else if (item instanceof FdEditformRow &amp;&amp; item.get(&#x27;controls.length&#x27;) === 1) {
       control = item.get(&#x27;controls.firstObject&#x27;);
     } else {
-      throw new Error(&#x27;The passed item can not be cast to a control.&#x27;);
+      throw new Error(this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-editform-constructor.item-cast-error&#x27;));
     }
 
     return control;
@@ -878,6 +883,28 @@ export default Ember.Controller.extend({
       this._extractPathPart(controls.objectAt(i), &#x27;&#x27;, viewDefinition);
     }
 
+    // Check viewDefinition on errors.
+    let duplicateValues = Ember.A();
+    let detailViewNull = Ember.A();
+    viewDefinition.forEach((atr) =&gt; {
+      let countDefinition = viewDefinition.filterBy(&#x27;name&#x27;, atr.name);
+      if (countDefinition.length !== 1) {
+        duplicateValues.addObject(atr.name);
+      }
+
+      if (atr instanceof FdViewAttributesDetail &amp;&amp; atr.detailViewName === &#x27;&#x27;) {
+        detailViewNull.addObject(atr.name);
+      }
+    });
+
+    if (duplicateValues.length !== 0 || detailViewNull.length !== 0) {
+      let dublicateValuesText = this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-editform-constructor.duplicate-value-error&#x27;);
+      let unknownDetailViewText = this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-editform-constructor.unknown-detail-view-error&#x27;);
+      let duplicateError = duplicateValues.length &gt; 0 ? &#x60;${dublicateValuesText}: &#x60; + duplicateValues.uniq() + &#x27;. &#x27; : &#x27;&#x27;;
+      let detailViewError = detailViewNull.length &gt; 0 ? &#x60;${unknownDetailViewText}: &#x60; + detailViewNull.uniq() + &#x27;. &#x27; : &#x27;&#x27;;
+      throw new Error(duplicateError + detailViewError);
+    }
+
     view.set(&#x27;definition&#x27;, viewDefinition);
 
     // Save attributes.
@@ -887,6 +914,7 @@ export default Ember.Controller.extend({
       dataobject.set(&#x27;caption&#x27;, dataobject.get(&#x27;name&#x27;));
     }
 
+    let arrayChengeClassElements = this.get(&#x27;model.arrayChengeClassElements&#x27;);
     let changedAssociations = model.association.filterBy(&#x27;hasDirtyAttributes&#x27;);
 
     // Сохранить класс формы редактирования
@@ -895,6 +923,7 @@ export default Ember.Controller.extend({
       view.save(),
       attributes.save(),
       dataobject.save(),
+      Ember.RSVP.all(arrayChengeClassElements.map(a =&gt; a.save())),
       Ember.RSVP.all(changedAssociations.map(a =&gt; a.save())),
     ]);
   },

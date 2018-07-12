@@ -119,7 +119,7 @@ import Ember from &#x27;ember&#x27;;
 /**
   Create propertyName.
 */
-let createPropertyName = function(selectedNode, treeData) {
+let createPropertyName = function(selectedNode, treeData, readText) {
   let parents = selectedNode.parents;
   let propertyName = &#x27;&#x27;;
   if (parents.length &gt; 2) {
@@ -128,15 +128,17 @@ let createPropertyName = function(selectedNode, treeData) {
     while (indexParentID &gt;= 0) {
       let parentID = parents[indexParentID];
       let parent = parentAttributes.findBy(&#x27;id&#x27;, parentID);
-      propertyName = propertyName + &#x27;.&#x27; + parent.text;
+      let partPropertyName = readText ? parent.text : parent.name;
+      propertyName = propertyName + &#x27;.&#x27; + partPropertyName;
       indexParentID--;
       parentAttributes = parent.copyChildren;
     }
 
-    propertyName = propertyName.slice(1) + &#x27;.&#x27; + selectedNode.text;
+    let lastPart = readText ? selectedNode.text : selectedNode.original.name;
+    propertyName = propertyName.slice(1) + &#x27;.&#x27; + lastPart;
 
   } else {
-    propertyName = selectedNode.text;
+    propertyName = readText ? selectedNode.text : selectedNode.original.name;
   }
 
   return propertyName;

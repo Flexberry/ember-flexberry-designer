@@ -306,7 +306,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       let model = this.get(&#x27;model.view.definition&#x27;);
 
       // Create propertyName
-      let propertyName = createPropertyName(selectedNodes, treeData[0]);
+      let propertyName = createPropertyName(selectedNodes, treeData[0], true);
 
       if (model.findBy(&#x27;name&#x27;, propertyName)) {
         return;
