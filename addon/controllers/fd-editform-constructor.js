@@ -470,12 +470,17 @@ export default Ember.Controller.extend({
     */
     save(close) {
       this.set('state', 'loading');
-      this._saveMetadata(this.get('model')).then(() => {
+      try {
+        this._saveMetadata(this.get('model')).then(() => {
+          this.set('state', '');
+          if (close) {
+            this.send('close');
+          }
+        });
+      } catch (error) {
+        this.set('error', error);
         this.set('state', '');
-        if (close) {
-          this.send('close');
-        }
-      });
+      }
     },
 
     /**
@@ -489,7 +494,7 @@ export default Ember.Controller.extend({
       let treeData = this.get('dataNotUsedAttributesTree');
 
       // Create propertyName
-      let propertyName = createPropertyName(selectedNodes, treeData[1]);
+      let propertyName = createPropertyName(selectedNodes, treeData[1], false);
 
       selectedItem.set('type', selectedNodes.original.typeNode);
       let propertyDefinition;
@@ -762,6 +767,26 @@ export default Ember.Controller.extend({
       this._extractPathPart(controls.objectAt(i), '', viewDefinition);
     }
 
+    // Check viewDefinition on errors.
+    let duplicateValues = Ember.A();
+    let detailViewNull = Ember.A();
+    viewDefinition.forEach((atr) => {
+      let countDefinition = viewDefinition.filterBy('name', atr.name);
+      if (countDefinition.length !== 1) {
+        duplicateValues.addObject(atr.name);
+      }
+
+      if (atr instanceof FdViewAttributesDetail && atr.detailViewName === '') {
+        detailViewNull.addObject(atr.name);
+      }
+    });
+
+    if (duplicateValues.length !== 0 || detailViewNull.length !== 0) {
+      let duplicateError = duplicateValues.length > 0 ? 'Duplicate values: ' + duplicateValues.uniq() + '. ' : '';
+      let detailViewError = detailViewNull.length > 0 ? 'Unknown view of detail: ' + detailViewNull.uniq() + '. ' : '';
+      throw new Error(duplicateError + detailViewError);
+    }
+
     view.set('definition', viewDefinition);
 
     // Save attributes.
@@ -771,12 +796,15 @@ export default Ember.Controller.extend({
       dataobject.set('caption', dataobject.get('name'));
     }
 
+    let arrayChengeClassElements = this.get('model.arrayChengeClassElements');
+
     // Сохранить класс формы редактирования
 
     return Ember.RSVP.all([
       view.save(),
       attributes.save(),
       dataobject.save(),
+      arrayChengeClassElements.map((element) => element.save()),
     ]);
   },
 
