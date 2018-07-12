@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/fd-visual-edit-control-tree';
+import FdViewAttributesProperty from '../objects/fd-view-attributes-property';
 import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 import FdAttributesTree from '../objects/fd-attributes-tree';
@@ -189,6 +190,9 @@ export default Ember.Component.extend({
       let attributes = selectedClass.get('attributes');
       let index = namesPropertyDefinition.length - 1;
       attribute = attributes.findBy('name', namesPropertyDefinition[index]);
+      if (!attribute) {
+        this.set('readonly', true);
+      }
     }
 
     return attribute;
@@ -300,6 +304,15 @@ export default Ember.Component.extend({
   },
 
   actions: {
+    /**
+      Changes the start multiplicity of the association.
+
+      @method actions.changeMasterNotNull
+      @param {Object} value An object with a new value in the `checked` property.
+    */
+    changeMasterNotNull(value) {
+      this.set('selectedAttribute.startMultiplicity', value.checked ? '1' : '0..1');
+    },
 
     /**
       Add new attribute.
@@ -336,38 +349,51 @@ export default Ember.Component.extend({
       @method actions.removeAttribute
     */
     removeAttribute() {
-      let selectedNodes = this.get('selectedNodesAttributesTree');
-      if (selectedNodes.length === 0) {
-        return;
-      }
-
+      let selectedNode = this.get('selectedNodesAttributesTree')[0];
       let dataobject = this.get('model.dataobject');
-      let attributes = dataobject.get('attributes');
-      let deleteAttribute = attributes.findBy('name', selectedNodes[0].original.name);
-      attributes.removeObject(deleteAttribute);
+      let arrayChengeClassElements = this.get('model.arrayChengeClassElements');
 
       // Delete node from parent copyChildren.
-      let parentSelectedNode = this.get('treeObjectAttributesTree').jstree(true).get_node(selectedNodes[0].parent);
+      let parentSelectedNode = this.get('treeObjectAttributesTree').jstree(true).get_node(selectedNode.parent);
       let arrayChildrensParentSelectedNode = parentSelectedNode.original.get('copyChildren');
-      let selectedObject = arrayChildrensParentSelectedNode.findBy('text', selectedNodes[0].text);
+      let selectedObject = arrayChildrensParentSelectedNode.findBy('text', selectedNode.text);
       arrayChildrensParentSelectedNode.removeObject(selectedObject);
 
-      if (selectedObject.type === 'detail') {
-        let typeTree = this.get('dataTypeTree')[5];
-        let nodeId = findFreeNodeTreeNameIndex('detail', 0, typeTree.copyChildren, 'id');
-
-        let recordsDevClass = this.get('store').peekAll('fd-dev-class');
-        let classData = recordsDevClass.findBy('id', selectedObject.idNode);
-        typeTree.copyChildren.pushObject(
-          FdAttributesTree.create({
-            text: classData.get('name'),
-            type: selectedObject.type,
-            id: 'detail' + nodeId,
-            idNode: selectedObject.idNode
-          }));
+      switch (selectedNode.type) {
+        case 'property':
+          let attributes = dataobject.get('attributes');
+          let deleteAttribute = attributes.findBy('name', selectedNode.original.name);
+          deleteAttribute.deleteRecord();
+          arrayChengeClassElements.pushObject(deleteAttribute);
+          break;
+        case 'master':
+          let association = this.get('model.association');
+          let associationCurrentClass = association.filterBy('endClass.id', dataobject.id);
+          let deleteAssociation = Ember.A(associationCurrentClass).filterBy('startClass.name', selectedNode.original.name);
+          deleteAssociation.deleteRecord();
+          arrayChengeClassElements.pushObject(deleteAssociation);
+          break;
+        case 'detail':
+          let aggregation = this.get('model.aggregation');
+          let aggregationCurrentClass = aggregation.filterBy('startClass.id', dataobject.id);
+          let deleteAggregation = Ember.A(aggregationCurrentClass).filterBy('endClass.name', selectedNode.original.name);
+          deleteAggregation.deleteRecord();
+          arrayChengeClassElements.pushObject(deleteAggregation);
+          let typeTree = this.get('dataTypeTree')[5];
+          let nodeId = findFreeNodeTreeNameIndex('detail', 0, typeTree.copyChildren, 'id');
+          let recordsDevClass = this.get('store').peekAll('fd-dev-class');
+          let classData = recordsDevClass.findBy('id', selectedObject.idNode);
+          typeTree.copyChildren.pushObject(
+            FdAttributesTree.create({
+              text: classData.get('name'),
+              type: selectedObject.type,
+              id: 'detail' + nodeId,
+              idNode: selectedObject.idNode
+            }));
+          break;
       }
 
-      this.get('actionReceiverAttributesTree').send('deleteNode', selectedNodes[0]);
+      this.get('actionReceiverAttributesTree').send('deleteNode', selectedNode);
       this.set('selectedNodesAttributesTree', Ember.A());
     },
 
@@ -377,41 +403,42 @@ export default Ember.Component.extend({
       @method actions.applyAttribute
     */
     applyAttribute() {
-      let selectedNodes = this.get('selectedNodesAttributesTree');
+      let selectedNode = this.get('selectedNodesAttributesTree')[0];
       let treeData = this.get('dataAttributesTree');
 
       // Create propertyName
-      let propertyName = createPropertyName(selectedNodes, treeData[1]);
+      let propertyName = createPropertyName(selectedNode, treeData[1], false);
+      let recordsDevClass = this.get('store').peekAll('fd-dev-class');
 
-      this.set('selectedItem.propertyDefinition.name', propertyName);
-      this.set('selectedItem.type', selectedNodes[0].original.typeNode);
-
-      this.set('selectedItem.view', '');
-      this.set('selectedItem.propertyDefinition.detailViewName', '');
-      this.set('selectedItem.propertyDefinition.masterPropertyName', '');
-
-      if (selectedNodes[0].type === 'master') {
-        this.set('selectedItem.propertyDefinition.detailViewName', undefined);
-        let recordsDevClass = this.get('store').peekAll('fd-dev-class');
-        let listForms = recordsDevClass.filter(function(item) {
-          return item.get('formViews.firstObject.view.class.id') === selectedNodes[0].original.idNode &&
-           item.get('stereotype') === '«listform»';
-        });
-        let listFormsName = Ember.A(listForms).mapBy('name');
-        this.set('dropdownItems', listFormsName);
-      } else if (selectedNodes[0].type === 'detail') {
-        this.set('selectedItem.view', undefined);
-        this.set('selectedItem.propertyDefinition.masterPropertyName', undefined);
-        let recordsDevClass = this.get('store').peekAll('fd-dev-class');
-        let classData = recordsDevClass.findBy('id', selectedNodes[0].original.idNode);
-        let detailViews = classData.get('views');
-        let detailViewsItems = detailViews.mapBy('name');
-        this.set('dropdownItems', detailViewsItems);
-      } else {
-        this.set('selectedItem.view', undefined);
-        this.set('selectedItem.propertyDefinition.detailViewName', undefined);
-        this.set('selectedItem.propertyDefinition.masterPropertyName', undefined);
+      let propertyDefinition;
+      switch (selectedNode.type) {
+        case 'property':
+          propertyDefinition = FdViewAttributesProperty.create({
+            name: propertyName,
+          });
+          break;
+        case 'master':
+          let listForms = recordsDevClass.filter(function(item) {
+            return item.get('formViews.firstObject.view.class.id') === selectedNode.original.idNode &&
+            item.get('stereotype') === '«listform»';
+          });
+          this.set('dropdownItems', Ember.A(listForms).mapBy('name'));
+          propertyDefinition = FdViewAttributesMaster.create({
+            name: propertyName,
+          });
+          break;
+        case 'detail':
+          let classData = recordsDevClass.findBy('id', selectedNode.original.idNode);
+          let detailViews = classData.get('views');
+          this.set('dropdownItems', detailViews.mapBy('name'));
+          propertyDefinition = FdViewAttributesDetail.create({
+            name: propertyName,
+          });
+          break;
       }
+
+      this.set('selectedItem.propertyDefinition', propertyDefinition);
+      this.set('selectedItem.type', selectedNode.original.typeNode);
     },
 
     /**
@@ -431,8 +458,7 @@ export default Ember.Component.extend({
       @method actions.applyСlick
     */
     applyСlick() {
-      let selectedNodes = this.get('selectedNodesTypeTree');
-      let selectedNode = selectedNodes[0];
+      let selectedNode = this.get('selectedNodesTypeTree')[0];
       let attributesTree = this.get('dataAttributesTree');
       let nodeId = findFreeNodeTreeID('np', 0, this.get('treeObjectAttributesTree'));
 
@@ -612,5 +638,4 @@ export default Ember.Component.extend({
       treeObject.off('after_close.jstree', afterCloseNodeTree.bind(this));
     }
   }
-
 });

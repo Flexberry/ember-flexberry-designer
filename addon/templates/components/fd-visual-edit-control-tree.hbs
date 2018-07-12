@@ -116,7 +116,8 @@
     <label>{{t "components.fd-visual-edit-control-tree.not-null"}}</label>
     {{
       flexberry-checkbox
-      value=(eq selectedAttribute.startMultiplicity '1')
+      onChange=(action "changeMasterNotNull")
+      value=(eq selectedAttribute.startMultiplicity "1")
       readonly=readonly
     }}
   </div>

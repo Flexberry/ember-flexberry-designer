@@ -67,7 +67,18 @@ export default DS.Transform.extend({
       }
     }
 
-    return ret;
+    // TODO in version Ember 2.12+ replace on 'uniqBy'.
+    let uniqRet = Ember.A();
+    let seen = Object.create(null);
+    ret.forEach((item) => {
+      let guid = Ember.guidFor(Ember.get(item, 'name'));
+      if (!(guid in seen)) {
+        seen[guid] = true;
+        uniqRet.push(item);
+      }
+    });
+
+    return uniqRet;
   },
 
   serialize(deserialized) {

@@ -3,6 +3,10 @@ export default {
   'new-control-caption': 'Новый атрибут',
   'new-group-caption': 'Новая группа',
   'new-tab-caption': 'Новая вкладка',
+  'duplicate-value-error': 'Дублирующееся значение',
+  'unknown-detail-view-error': 'Неизвестное представление у детейла',
+  'unsupported-container-error': 'Неподдерживаемый тип контейнера',
+  'item-cast-error': 'Переданный элемент не может быть преобразован в строку',
   'form-config-panel': {
     'form-properties-header': 'Свойства формы',
     'form-name': 'Название формы',

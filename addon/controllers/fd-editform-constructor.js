@@ -470,12 +470,17 @@ export default Ember.Controller.extend({
     */
     save(close) {
       this.set('state', 'loading');
-      this._saveMetadata(this.get('model')).then(() => {
+      try {
+        this._saveMetadata(this.get('model')).then(() => {
+          this.set('state', '');
+          if (close) {
+            this.send('close');
+          }
+        });
+      } catch (error) {
         this.set('state', '');
-        if (close) {
-          this.send('close');
-        }
-      });
+        this.set('error', error);
+      }
     },
 
     /**
@@ -489,7 +494,7 @@ export default Ember.Controller.extend({
       let treeData = this.get('dataNotUsedAttributesTree');
 
       // Create propertyName
-      let propertyName = createPropertyName(selectedNodes, treeData[1]);
+      let propertyName = createPropertyName(selectedNodes, treeData[1], false);
 
       selectedItem.set('type', selectedNodes.original.typeNode);
       let propertyDefinition;
@@ -684,7 +689,7 @@ export default Ember.Controller.extend({
     } else if (Ember.isArray(container)) {
       return container;
     } else {
-      throw new Error('Unsupported container.');
+      throw new Error(this.get('i18n').t('forms.fd-editform-constructor.unsupported-container-error'));
     }
   },
 
@@ -707,7 +712,7 @@ export default Ember.Controller.extend({
     } else if (this._isControl(item)) {
       row = FdEditformRow.create({ controls: Ember.A([item]) });
     } else {
-      throw new Error('The passed item can not be cast to a row.');
+      throw new Error(this.get('i18n').t('forms.fd-editform-constructor.item-cast-error'));
     }
 
     return row;
@@ -729,7 +734,7 @@ export default Ember.Controller.extend({
     } else if (item instanceof FdEditformRow && item.get('controls.length') === 1) {
       control = item.get('controls.firstObject');
     } else {
-      throw new Error('The passed item can not be cast to a control.');
+      throw new Error(this.get('i18n').t('forms.fd-editform-constructor.item-cast-error'));
     }
 
     return control;
@@ -762,6 +767,28 @@ export default Ember.Controller.extend({
       this._extractPathPart(controls.objectAt(i), '', viewDefinition);
     }
 
+    // Check viewDefinition on errors.
+    let duplicateValues = Ember.A();
+    let detailViewNull = Ember.A();
+    viewDefinition.forEach((atr) => {
+      let countDefinition = viewDefinition.filterBy('name', atr.name);
+      if (countDefinition.length !== 1) {
+        duplicateValues.addObject(atr.name);
+      }
+
+      if (atr instanceof FdViewAttributesDetail && atr.detailViewName === '') {
+        detailViewNull.addObject(atr.name);
+      }
+    });
+
+    if (duplicateValues.length !== 0 || detailViewNull.length !== 0) {
+      let dublicateValuesText = this.get('i18n').t('forms.fd-editform-constructor.duplicate-value-error');
+      let unknownDetailViewText = this.get('i18n').t('forms.fd-editform-constructor.unknown-detail-view-error');
+      let duplicateError = duplicateValues.length > 0 ? `${dublicateValuesText}: ` + duplicateValues.uniq() + '. ' : '';
+      let detailViewError = detailViewNull.length > 0 ? `${unknownDetailViewText}: ` + detailViewNull.uniq() + '. ' : '';
+      throw new Error(duplicateError + detailViewError);
+    }
+
     view.set('definition', viewDefinition);
 
     // Save attributes.
@@ -771,12 +798,17 @@ export default Ember.Controller.extend({
       dataobject.set('caption', dataobject.get('name'));
     }
 
+    let arrayChengeClassElements = this.get('model.arrayChengeClassElements');
+    let changedAssociations = model.association.filterBy('hasDirtyAttributes');
+
     // Сохранить класс формы редактирования
 
     return Ember.RSVP.all([
       view.save(),
       attributes.save(),
       dataobject.save(),
+      Ember.RSVP.all(arrayChengeClassElements.map(a => a.save())),
+      Ember.RSVP.all(changedAssociations.map(a => a.save())),
     ]);
   },
 
