@@ -1,4 +1,4 @@
-<form class="ui form flexberry-vertical-form" role="form">
+<form class="ui form flexberry-vertical-form {{state}}" role="form">
   {{flexberry-error error=error}}
   <h3>{{t 'forms.fd-appstruct-form.caption'}}</h3>
   <div class="field">
@@ -29,7 +29,7 @@
         <button class='ui button icon {{editLeftNodeDisabled}}' title="{{t "forms.fd-appstruct-form.edit-text"}}" {{action "editLeftNode" on="click" }}>
           <i class="edit icon"></i>
         </button>
-        <button class='ui button icon' {{action "listLeft" on="click" }}>
+        <button class='ui button icon' title="{{t "forms.fd-appstruct-form.list-classes-text"}}" {{action "listLeft" on="click" }}>
           <i class="list icon"></i>
         </button>
       </div>

@@ -12,6 +12,10 @@ export default Ember.Route.extend({
 
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
+  queryParams: {
+    classId: { refreshModel: true },
+  },
+
   model: function(params) {
     let modelHash = {
       editform: undefined,

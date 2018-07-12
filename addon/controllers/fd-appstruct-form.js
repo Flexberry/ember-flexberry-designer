@@ -7,6 +7,18 @@ import { restorationNodeTree, findFreeNodeTreeID, findFreeNodeTreeNameIndex } fr
 
 export default EditFormController.extend(FdWorkPanelToggler, {
 
+  /**
+    @property store
+    @type Service
+  */
+  store: Ember.inject.service(),
+
+  /**
+    @property currentProjectContext
+    @type Service
+  */
+  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+
   /*
     Setting off for buttons of the left tree.
   */
@@ -279,16 +291,6 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     };
   }),
 
-  /**
-    Method for update data in tree.
-    @method _updateTreeData
-  */
-  _updateTreeData() {
-    let dataTree = this.get('model.rightTreeNodes');
-    restorationNodeTree(dataTree, {}, Ember.A(['folder', 'desk']), true);
-    this.get('jstreeActionReceiverRight').send('redraw');
-  },
-
   actions: {
 
     /**
@@ -357,14 +359,49 @@ export default EditFormController.extend(FdWorkPanelToggler, {
         return;
       }
 
+      this.set('state', 'loading');
       let selectedNode = jstreeSelectedNodesLeft[0];
       let classId = selectedNode.original.get('idNode');
 
-      // TODO fd-editform-constructor don't work. Need update queryParams.
-      this.transitionToRoute('fd-editform-constructor', {
-        queryParams: {
-          classId: classId,
-        }
+      let store = this.get('store');
+      let currentStage = this.get('currentProjectContext').getCurrentStageModel();
+
+      let devClass = store.peekRecord('fd-dev-class', classId);
+      let baseCaption = devClass.get('name') || devClass.get('nameStr');
+      let newCaption = this._getNewEditFormCaption(baseCaption);
+      let newDescription = this._getNewEditFormDescription(newCaption);
+
+      store.createRecord('fd-dev-class', {
+        stage: currentStage,
+        caption: newCaption,
+        description: newDescription,
+        name: newCaption,
+        nameStr: newCaption,
+        stereotype: '«editform»'
+      }).save().then(savedDevClass => {
+        store.createRecord('fd-dev-view', {
+          class: devClass,
+          name: newCaption,
+          definition: '<View><ViewPropertiesList /><ViewDetailsList /></View>'
+        }).save().then(savedDevView => {
+          store.createRecord('fd-dev-form-view', {
+            class: savedDevClass,
+            view: savedDevView,
+            orderNum: 1
+          }).save().then(() => {
+            this.set('state', '');
+            this.transitionToRoute('fd-editform-constructor', savedDevClass.get('id'));
+          }, (error) => {
+            this.set('state', '');
+            this.set('error', error);
+          });
+        }, (error) => {
+          this.set('state', '');
+          this.set('error', error);
+        });
+      }, (error) => {
+        this.set('state', '');
+        this.set('error', error);
       });
     },
 
@@ -628,5 +665,94 @@ export default EditFormController.extend(FdWorkPanelToggler, {
 
       this.toggleProperty('allAttrsHidedn');
     }
-  }
+  },
+
+  /**
+    Method for restoring tree nodes.
+    @method _restorationNodeTree
+    @private
+  */
+  _restorationNodeTree(nodeArray) {
+    let _this = this;
+    nodeArray.forEach(function(node) {
+      if (node.type === 'folder' || node.type === 'desk') {
+        node.set('children', node.get('copyChildren'));
+        _this._restorationNodeTree(node.get('children'));
+      }
+    });
+  },
+
+  /**
+    Method for update data in tree.
+    @method _updateTreeData
+    @private
+  */
+  _updateTreeData() {
+    let dataTree = this.get('model.rightTreeNodes');
+    restorationNodeTree(dataTree, {}, Ember.A(['folder', 'desk']), true);
+
+    this.get('jstreeActionReceiverRight').send('redraw');
+  },
+
+  /**
+    Get unique caption for new edit form.
+    @method _getNewEditFormCaption
+    @private
+  */
+  _getNewEditFormCaption(baseCaption) {
+    let found = true;
+    let allClasses = this.get('store').peekAll('fd-dev-class');
+    let allViews = this.get('store').peekAll('fd-dev-view');
+    let captionToReturn = '';
+    let captionToFound = '';
+    let i = 0;
+    let iterateClasses = item => item.get('caption') === captionToFound || item.get('name') === captionToFound || item.get('nameStr') === captionToFound;
+    let iterateViews = item => item.get('name') === captionToFound;
+    while (found) {
+      captionToFound = i === 0 ? `${baseCaption}E` : `${baseCaption}${i}E`;
+      let foundClass = allClasses.find(iterateClasses);
+      let foundView = allViews.find(iterateViews);
+
+      // If class or view with specified name was found then we should try to generate another name (new edit form and new view should have same name).
+      found = foundClass !== undefined || foundView !== undefined;
+      if (!found) {
+        captionToReturn = captionToFound;
+      }
+
+      i++;
+    }
+
+    return captionToReturn;
+  },
+
+  /**
+    Get description for new edit form.
+    @method _getNewEditFormDescription
+    @private
+  */
+  _getNewEditFormDescription(caption) {
+    var temp = '';
+    var tempArray = [];
+
+    for (let i = 0; i < caption.length; i++)
+    {
+      //If found capital letter...
+      if (((caption.charCodeAt(i) >= 65 && caption.charCodeAt(i) <= 90) || (caption.charCodeAt(i) >= 1040 && caption.charCodeAt(i) <= 1071)) && temp !== '')
+      {
+        tempArray.push(temp);
+        temp = caption.charAt(i);
+      } else {
+        temp += caption.charAt(i);
+      }
+    }
+
+    tempArray.push(temp);
+    for (let i = 0; i < tempArray.length; i++) {
+      if (i > 0 && i < tempArray.length - 1) {
+        tempArray[i] = tempArray[i].toLowerCase();
+      }
+    }
+
+    return tempArray.join(' ');
+  },
 });
