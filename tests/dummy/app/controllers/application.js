@@ -47,6 +47,11 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
             title: i18n.t('forms.application.sitemap.root.activity-diagram-primitives-demo.title'),
           },
           {
+            link: 'statechart-diagram-primitives-demo',
+            caption: i18n.t('forms.application.sitemap.root.statechart-diagram-primitives-demo.caption'),
+            title: i18n.t('forms.application.sitemap.root.statechart-diagram-primitives-demo.title'),
+          },
+          {
             link: 'usecase-diagram-primitives-demo',
             caption: i18n.t('forms.application.sitemap.root.usecase-diagram-primitives-demo.caption'),
             title: i18n.t('forms.application.sitemap.root.usecase-diagram-primitives-demo.title'),
