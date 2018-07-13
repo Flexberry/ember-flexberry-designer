@@ -589,6 +589,7 @@ export default Ember.Controller.extend({
       try {
         this._saveMetadata(this.get(&#x27;model&#x27;)).then(() =&gt; {
           this.set(&#x27;state&#x27;, &#x27;&#x27;);
+          this.set(&#x27;model.arrayChengeClassElements&#x27;, Ember.A());
           if (close) {
             this.send(&#x27;close&#x27;);
           }
