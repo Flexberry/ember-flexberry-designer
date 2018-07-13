@@ -155,6 +155,10 @@ Ember.$.extend(true, translations, {
             caption: 'Usecase Diagram',
             title: '',
           },
+          'sequence-diagram-primitives-demo': {
+            caption: 'Sequence Diagram',
+            title: '',
+          },
         },
       }
     },
