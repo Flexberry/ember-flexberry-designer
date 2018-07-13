@@ -161,6 +161,10 @@ Ember.$.extend(true, translations, {
             caption: 'Диаграмма вариантов использования',
             title: '',
           },
+          'sequence-diagram-primitives-demo': {
+            caption: 'Диаграмма последовательности',
+            title: '',
+          },
         },
       }
     },
