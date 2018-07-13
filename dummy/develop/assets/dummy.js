@@ -665,6 +665,10 @@ define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-de
             link: 'usecase-diagram-primitives-demo',
             caption: i18n.t('forms.application.sitemap.root.usecase-diagram-primitives-demo.caption'),
             title: i18n.t('forms.application.sitemap.root.usecase-diagram-primitives-demo.title')
+          }, {
+            link: 'fd-sequence-diagram-primitives-demo',
+            caption: i18n.t('forms.application.sitemap.root.sequence-diagram-primitives-demo.caption'),
+            title: i18n.t('forms.application.sitemap.root.sequence-diagram-primitives-demo.title')
           }]
         });
       }
@@ -1301,6 +1305,74 @@ define('dummy/controllers/fd-listform-constructor', ['exports', 'ember-flexberry
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerControllersFdListformConstructor['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-sequence-diagram-primitives-demo', ['exports', 'ember', 'npm:jointjs'], function (exports, _ember, _npmJointjs) {
+  exports['default'] = _ember['default'].Controller.extend({
+    actions: {
+      printDiagram: function printDiagram() {
+        var _this = this;
+        _ember['default'].run.schedule('afterRender', function () {
+          _this.graph = new _npmJointjs['default'].dia.Graph();
+
+          var paper = document.getElementById('paper');
+          var minX = 16384;
+          var minY = 16384;
+          var maxX = 0;
+          var maxY = 0;
+
+          if (minX > maxX) {
+            maxX = paper && 'offsetWidth' in paper ? paper.offsetWidth : 1024;
+            maxY = 840;
+          } else {
+            maxX = minX + maxX;
+            maxY = minY + maxY;
+          }
+
+          _this.paper = new _npmJointjs['default'].dia.Paper({
+            el: paper,
+            width: maxX,
+            height: maxY,
+            gridSize: 1,
+            model: _this.graph
+          });
+
+          /*let actor = */new _npmJointjs['default'].shapes.flexberryUml.sequencediagramActor({
+            position: { x: 0, y: 0 },
+            graph: _this.graph
+          });
+
+          /*let object = */new _npmJointjs['default'].shapes.flexberryUml.sequencediagramObject({
+            position: { x: 100, y: 0 },
+            graph: _this.graph
+          });
+
+          /*let activeObject = */new _npmJointjs['default'].shapes.flexberryUml.sequencediagramActiveObject({
+            position: { x: 200, y: 0 },
+            graph: _this.graph
+          });
+
+          /*let terminator = */new _npmJointjs['default'].shapes.flexberryUml.sequencediagramTerminator({
+            position: { x: 300, y: 0 },
+            graph: _this.graph
+          });
+
+          /*let sequencediagramProcedureCall = new joint.shapes.flexberryUml.sequencediagramProcedureCall({
+            source: { x: 0, y: 200 },
+            target: { x: 300, y: 200 },
+            labels: [{ attrs: { text: { text:  'Procedure Call' } } }],
+            graph: _this.graph
+          });*/
+
+          /*let sequencediagramFlatMessage = new joint.shapes.flexberryUml.sequencediagramFlatMessage({
+            source: { x: 0, y: 250 },
+            target: { x: 300, y: 250 },
+            labels: [{ attrs: { text: { text:  'Flat Message' } } }],
+            graph: _this.graph
+          });*/
+        });
+      }
     }
   });
 });
@@ -11570,6 +11642,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ut
     assert.ok(true, 'modules/ember-flexberry-designer/utils/fd-preload-stage-metadata.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-sequence-diagram-primitives.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/utils');
+  test('modules/ember-flexberry-designer/utils/fd-sequence-diagram-primitives.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/utils/fd-sequence-diagram-primitives.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-sequence-diagram-primitives.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/utils/fd-sequence-diagram-primitives.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/utils/fd-sequence-diagram-primitives.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-statechart-diagram-primitives.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/utils');
   test('modules/ember-flexberry-designer/utils/fd-statechart-diagram-primitives.js should pass jscs', function () {
@@ -12706,6 +12791,10 @@ define('dummy/locales/en/translations', ['exports', 'ember', 'ember-flexberry-de
             'usecase-diagram-primitives-demo': {
               caption: 'Usecase Diagram',
               title: ''
+            },
+            'sequence-diagram-primitives-demo': {
+              caption: 'Sequence Diagram',
+              title: ''
             }
           }
         }
@@ -12881,6 +12970,10 @@ define('dummy/locales/ru/translations', ['exports', 'ember', 'ember-flexberry-de
             },
             'usecase-diagram-primitives-demo': {
               caption: 'Диаграмма вариантов использования',
+              title: ''
+            },
+            'sequence-diagram-primitives-demo': {
+              caption: 'Диаграмма последовательности',
               title: ''
             }
           }
@@ -13599,7 +13692,7 @@ define('dummy/objects/new-platform-flexberry-web-designer-business-server-class'
 define('dummy/resolver', ['exports', 'ember-flexberry/resolver'], function (exports, _emberFlexberryResolver) {
   exports['default'] = _emberFlexberryResolver['default'];
 });
-define('dummy/router', ['exports', 'ember', 'dummy/config/environment'], function (exports, _ember, _dummyConfigEnvironment) {
+define('dummy/router', ['exports', 'ember', 'ember-flexberry-designer/utils/fd-sequence-diagram-primitives', 'dummy/config/environment'], function (exports, _ember, _emberFlexberryDesignerUtilsFdSequenceDiagramPrimitives, _dummyConfigEnvironment) {
 
   var Router = _ember['default'].Router.extend({
     location: _dummyConfigEnvironment['default'].locationType
@@ -13662,6 +13755,7 @@ define('dummy/router', ['exports', 'ember', 'dummy/config/environment'], functio
     this.route('fd-generation-process-form.new', { path: 'fd-generation-process-form/new' });
     this.route('fd-generation-process-form', { path: 'fd-generation-process-form/:id' });
     this.route('fd-generation-list-form');
+    this.route('fd-sequence-diagram-primitives-demo');
     this.route('class-diagram-primitives-demo');
     this.route('activity-diagram-primitives-demo');
     this.route('usecase-diagram-primitives-demo');
@@ -14040,6 +14134,16 @@ define('dummy/routes/fd-listform-constructor', ['exports', 'ember-flexberry-desi
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerRoutesFdListformConstructor['default'];
+    }
+  });
+});
+define('dummy/routes/fd-sequence-diagram-primitives-demo', ['exports', 'ember'], function (exports, _ember) {
+  exports['default'] = _ember['default'].Route.extend({
+    activate: function activate() {
+      var _this = this;
+      _ember['default'].run.schedule('afterRender', this, function () {
+        _this.controller.send('printDiagram');
+      });
     }
   });
 });
@@ -37389,6 +37493,51 @@ define("dummy/templates/fd-listform-constructor", ["exports"], function (exports
     };
   })());
 });
+define("dummy/templates/fd-sequence-diagram-primitives-demo", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "triple-curlies"
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 5,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/fd-sequence-diagram-primitives-demo.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "id", "paper");
+        var el2 = dom.createTextNode("Paper");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n\n\n\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes() {
+        return [];
+      },
+      statements: [],
+      locals: [],
+      templates: []
+    };
+  })());
+});
 define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     var child0 = (function () {
@@ -47053,6 +47202,14 @@ define('dummy/utils/fd-preload-stage-metadata', ['exports', 'ember-flexberry-des
     }
   });
 });
+define('dummy/utils/fd-sequence-diagram-primitives', ['exports', 'ember-flexberry-designer/utils/fd-sequence-diagram-primitives'], function (exports, _emberFlexberryDesignerUtilsFdSequenceDiagramPrimitives) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerUtilsFdSequenceDiagramPrimitives['default'];
+    }
+  });
+});
 define('dummy/utils/fd-statechart-diagram-primitives', ['exports', 'ember-flexberry-designer/utils/fd-statechart-diagram-primitives'], function (exports, _emberFlexberryDesignerUtilsFdStatechartDiagramPrimitives) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -47156,7 +47313,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+b5a68927"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+164d82df"});
 }
 
 /* jshint ignore:end */

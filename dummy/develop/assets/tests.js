@@ -100,6 +100,23 @@ define('dummy/tests/controllers/class-diagram-primitives-demo.jshint', ['exports
     assert.ok(true, 'controllers/class-diagram-primitives-demo.js should pass jshint.');
   });
 });
+define('dummy/tests/controllers/fd-sequence-diagram-primitives-demo.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - controllers');
+  test('controllers/fd-sequence-diagram-primitives-demo.js should pass jscs', function () {
+    ok(true, 'controllers/fd-sequence-diagram-primitives-demo.js should pass jscs.');
+  });
+});
+define('dummy/tests/controllers/fd-sequence-diagram-primitives-demo.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - controllers/fd-sequence-diagram-primitives-demo.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'controllers/fd-sequence-diagram-primitives-demo.js should pass jshint.');
+  });
+});
 define('dummy/tests/controllers/sitemap-node.jscs-test', ['exports'], function (exports) {
   'use strict';
 
@@ -1060,6 +1077,23 @@ define('dummy/tests/routes/class-diagram-primitives-demo.jshint', ['exports'], f
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'routes/class-diagram-primitives-demo.js should pass jshint.');
+  });
+});
+define('dummy/tests/routes/fd-sequence-diagram-primitives-demo.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - routes');
+  test('routes/fd-sequence-diagram-primitives-demo.js should pass jscs', function () {
+    ok(true, 'routes/fd-sequence-diagram-primitives-demo.js should pass jscs.');
+  });
+});
+define('dummy/tests/routes/fd-sequence-diagram-primitives-demo.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - routes/fd-sequence-diagram-primitives-demo.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'routes/fd-sequence-diagram-primitives-demo.js should pass jshint.');
   });
 });
 define('dummy/tests/routes/statechart-diagram-primitives-demo.jscs-test', ['exports'], function (exports) {
@@ -7142,6 +7176,35 @@ define('dummy/tests/unit/utils/fd-preload-stage-metadata-test.jshint', ['exports
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/utils/fd-preload-stage-metadata-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/unit/utils/fd-sequence-diagram-primitives-test', ['exports', 'qunit'], function (exports, _qunit) {
+
+  (0, _qunit.module)('Unit | Utility | fd sequence diagram primitives');
+
+  // Replace this with your real tests.
+  (0, _qunit.test)('it works', function (assert) {
+    /*let result = fdSequenceDiagramPrimitives();*/
+    var result = true;
+    assert.ok(result);
+  });
+});
+/*import fdSequenceDiagramPrimitives from 'dummy/utils/fd-sequence-diagram-primitives';*/
+define('dummy/tests/unit/utils/fd-sequence-diagram-primitives-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/utils');
+  test('unit/utils/fd-sequence-diagram-primitives-test.js should pass jscs', function () {
+    ok(true, 'unit/utils/fd-sequence-diagram-primitives-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/utils/fd-sequence-diagram-primitives-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/utils/fd-sequence-diagram-primitives-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/utils/fd-sequence-diagram-primitives-test.js should pass jshint.');
   });
 });
 define('dummy/tests/unit/utils/fd-statechart-diagram-primitives-test', ['exports', 'qunit'], function (exports, _qunit) {
