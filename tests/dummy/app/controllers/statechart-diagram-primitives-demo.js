@@ -124,43 +124,8 @@ export default Ember.Controller.extend({
           attributes: ['attr1'],
           attrs: { '.rotatable': { title:'Состояние (StateEx)' } }
         });
-
-        var component = new joint.shapes.flexberryUml.deploymentDiagram_Component({
-          position: { x: 600, y: 100 },
-          name: ['StateName'],
-          attrs: { '.rotatable': { title:'Компонент (Component)' } }
-        });
-
-        var node = new joint.shapes.flexberryUml.deploymentDiagram_Node({
-          position: { x: 600, y: 150 },
-          name: ['NodeName', 'text', 'text'],
-          attrs: { '.rotatable': { title:'Узел (Node)' } }
-        });
-        node.addTo(_this.graph);
-
-        var obj = new joint.shapes.flexberryUml.deploymentDiagram_Object({
-          position: { x: 600, y: 220 },
-          name: ['ObjectName', 'text', 'text'],
-          attrs: { '.rotatable': { title:'Объект (Object)' } },
-        });
-        obj.addTo(_this.graph);
-
-        var interfaceObj = new joint.shapes.flexberryUml.deploymentDiagram_Interface({
-          position: { x: 650, y: 260 },
-          name: ['Interface'],
-          attrs: { '.rotatable': { title:'Интерфейс (Interface)' } },
-          sourceObj: obj,
-          graph: _this.graph
-        });
-
-        var activeObj = new joint.shapes.flexberryUml.deploymentDiagram_ActiveObject({
-          position: { x: 600, y: 320 },
-          name: ['ActiveObjectName', 'text'],
-          attrs: { '.rotatable': { title:'Объект (Object)' } },
-        });
-
-        _this.graph.addCell([activeObj, state, stateEx, statechartClass, note, startState, endState, сomplexTransitionHorizon,
-        сomplexTransitionVertical, history, deepHistory, compositeState, component, interfaceObj]);
+        _this.graph.addCell([state, stateEx, statechartClass, note, startState, endState, сomplexTransitionHorizon,
+        сomplexTransitionVertical, history, deepHistory, compositeState]);
       });
     }
   }
