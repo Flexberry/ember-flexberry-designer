@@ -155,6 +155,16 @@ export default EditFormController.extend(FdWorkPanelToggler, {
   allAttrsHidedn: false,
 
   /**
+    Show question of removal.
+
+    @private
+    @property _showModalDialog
+    @type Boolean
+    @default false
+  */
+  _showModalDialog: false,
+
+  /**
     Included plugins for left jsTree.
 
     @property pluginsLeft
@@ -442,15 +452,24 @@ export default EditFormController.extend(FdWorkPanelToggler, {
 
       @method actions.removeLeftNode
     */
-    removeLeftNode() {
-      let jstreeSelectedNodesLeft = this.get(&#x27;jstreeSelectedNodesLeft&#x27;);
-      if (jstreeSelectedNodesLeft.length === 0) {
-        return;
+    removeLeftNode(approve) {
+      if (approve) {
+        let jstreeSelectedNodesLeft = this.get(&#x27;jstreeSelectedNodesLeft&#x27;);
+        let classId = jstreeSelectedNodesLeft[0].original.idNode;
+        let store = this.get(&#x27;store&#x27;);
+        let allClasses = store.peekAll(&#x27;fd-dev-class&#x27;);
+        let forms = allClasses.filterBy(&#x27;formViews.firstObject.view.class.id&#x27;, classId);
+        if (forms.length === 0) {
+          this.get(&#x27;jstreeActionReceiverLeft&#x27;).send(&#x27;deleteNode&#x27;, jstreeSelectedNodesLeft[0]);
+          this.set(&#x27;jstreeSelectedNodesLeft&#x27;, Ember.A());
+          let deletedClass = allClasses.findBy(&#x27;id&#x27;, classId);
+          deletedClass.destroyRecord();
+        } else {
+          this.set(&#x27;error&#x27;, new Error(this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-appstruct-form.delete-error&#x27;)));
+        }
+      } else {
+        this.set(&#x27;_showModalDialog&#x27;, true);
       }
-
-      // TODO remove from BD.
-      this.get(&#x27;jstreeActionReceiverLeft&#x27;).send(&#x27;deleteNode&#x27;, jstreeSelectedNodesLeft[0]);
-      this.set(&#x27;jstreeSelectedNodesLeft&#x27;, Ember.A());
     },
 
     /**

@@ -206,7 +206,7 @@ export default Ember.Route.extend({
     // Add root tree.
     let treeRight = Ember.A([
       FdAppStructTree.create({
-        text: &#x27;Рабочий стол&#x27;,
+        text: this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-appstruct-form.desktop&#x27;),
         type: &#x27;desk&#x27;,
         id: &#x27;node_app&#x27;,
         children: rightTreeNodes,
