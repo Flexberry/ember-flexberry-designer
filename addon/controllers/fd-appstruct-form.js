@@ -354,43 +354,50 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       @method actions.addLeftListForm
     */
     addLeftEditForm() {
+      this.set('state', 'loading');
+
       let jstreeSelectedNodesLeft = this.get('jstreeSelectedNodesLeft');
       if (jstreeSelectedNodesLeft.length === 0) {
         return;
       }
 
-      this.set('state', 'loading');
-      let selectedNode = jstreeSelectedNodesLeft[0];
-      let classId = selectedNode.original.get('idNode');
+      let _this = this;
+      Ember.run.next(_this, () => {
+        let selectedNode = jstreeSelectedNodesLeft[0];
+        let classId = selectedNode.original.get('idNode');
 
-      let store = this.get('store');
-      let currentStage = this.get('currentProjectContext').getCurrentStageModel();
+        let store = this.get('store');
+        let currentStage = this.get('currentProjectContext').getCurrentStageModel();
 
-      let devClass = store.peekRecord('fd-dev-class', classId);
-      let baseCaption = devClass.get('name') || devClass.get('nameStr');
-      let newCaption = this._getNewEditFormCaption(baseCaption);
-      let newDescription = this._getNewEditFormDescription(newCaption);
+        let devClass = store.peekRecord('fd-dev-class', classId);
+        let baseCaption = devClass.get('name') || devClass.get('nameStr');
+        let newCaption = this._getNewEditFormCaption(baseCaption);
+        let newDescription = this._getNewEditFormDescription(newCaption);
 
-      store.createRecord('fd-dev-class', {
-        stage: currentStage,
-        caption: newCaption,
-        description: newDescription,
-        name: newCaption,
-        nameStr: newCaption,
-        stereotype: '«editform»'
-      }).save().then(savedDevClass => {
-        store.createRecord('fd-dev-view', {
-          class: devClass,
+        store.createRecord('fd-dev-class', {
+          stage: currentStage,
+          caption: newCaption,
+          description: newDescription,
           name: newCaption,
-          definition: '<View><ViewPropertiesList /><ViewDetailsList /></View>'
-        }).save().then(savedDevView => {
-          store.createRecord('fd-dev-form-view', {
-            class: savedDevClass,
-            view: savedDevView,
-            orderNum: 1
-          }).save().then(() => {
-            this.set('state', '');
-            this.transitionToRoute('fd-editform-constructor', savedDevClass.get('id'));
+          nameStr: newCaption,
+          stereotype: '«editform»'
+        }).save().then(savedDevClass => {
+          store.createRecord('fd-dev-view', {
+            class: devClass,
+            name: newCaption,
+            definition: '<View><ViewPropertiesList /><ViewDetailsList /></View>'
+          }).save().then(savedDevView => {
+            store.createRecord('fd-dev-form-view', {
+              class: savedDevClass,
+              view: savedDevView,
+              orderNum: 1
+            }).save().then(() => {
+              this.set('state', '');
+              this.transitionToRoute('fd-editform-constructor', savedDevClass.get('id'));
+            }, (error) => {
+              this.set('state', '');
+              this.set('error', error);
+            });
           }, (error) => {
             this.set('state', '');
             this.set('error', error);
@@ -399,9 +406,6 @@ export default EditFormController.extend(FdWorkPanelToggler, {
           this.set('state', '');
           this.set('error', error);
         });
-      }, (error) => {
-        this.set('state', '');
-        this.set('error', error);
       });
     },
 
