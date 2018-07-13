@@ -318,19 +318,22 @@ let getTreeNodeByNotUsedAggregation = function (aggregationData, view, addInText
 let parsingPropertyName = function (store, dataObject, propertyName) {
   let stageId = dataObject.get('stage.id');
   let allAssociation = store.peekAll('fd-dev-association').filterBy('stage.id', stageId);
+  let allAggregation = store.peekAll('fd-dev-aggregation').filterBy('stage.id', stageId);
+  allAssociation.pushObjects(allAggregation);
 
   let startRole = propertyName[0];
   let endRoleID = dataObject.get('id');
   let associationSelectedClass = allAssociation.filter(function(item) {
-    return item.get('endClass.id') === endRoleID && item.get('realStartRole') === startRole;
+    return item.get('endClass.id') === endRoleID && (item.get('realStartRole') === startRole || item.get('startRole') === startRole);
   });
 
   for (let i = 1; i < propertyName.length; i++) {
     startRole = propertyName[i];
     endRoleID = associationSelectedClass[0].get('startClass.id');
-    let associationFilteBuId = allAssociation.filterBy('endClass.id', endRoleID);
-    let associationFilteBRole = Ember.A(associationFilteBuId).filterBy('realStartRole', startRole);
-    associationSelectedClass = associationFilteBRole;
+    let associationFilteBuId = Ember.A(allAssociation.filterBy('endClass.id', endRoleID));
+    let associationFilteByRealRole = associationFilteBuId.filterBy('realStartRole', startRole);
+    let associationFilteByRole = associationFilteBuId.filterBy('startRole', startRole);
+    associationSelectedClass = Ember.A(associationFilteByRealRole).addObjects(associationFilteByRole);
   }
 
   return {
