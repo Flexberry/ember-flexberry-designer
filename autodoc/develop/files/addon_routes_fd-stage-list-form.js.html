@@ -170,7 +170,13 @@ export default ListFormRoute.extend({
     @type Object
     @default {}
   */
-  developerUserSettings: { FdStageListForm: {} },
+  developerUserSettings: {
+    FdStageListForm: {
+      &#x27;DEFAULT&#x27;: {
+        &#x27;columnWidths&#x27;: [{ &#x27;propName&#x27;: &#x27;OlvRowMenu&#x27;, &#x27;fixed&#x27;: true, &#x27;width&#x27;: 68 }]
+      }
+    }
+  },
 
   /**
     Link to {{#crossLink &quot;FdCurrentProjectContextService&quot;}}FdCurrentProjectContextService{{/crossLink}}.
