@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
+* The list form constructor:
+  * Add, sort and remove columns.
 * The edit form constructor:
   * Save the definition of the view.
   * Deselect.

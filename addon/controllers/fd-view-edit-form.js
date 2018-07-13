@@ -6,6 +6,7 @@ import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode } from '../utils/fd-attributes-for-tree';
 import { translationMacro as t } from 'ember-i18n';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
+import { createPropertyName, restorationNodeTree, afterCloseNodeTree } from '../utils/fd-metods-for-tree';
 
 export default EditFormController.extend(FdWorkPanelToggler, {
   parentRoute: 'fd-view-list-form',
@@ -174,7 +175,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     handleTreeDidBecomeReady() {
       let treeObject = this.get('jstreeObject');
       treeObject.on('open_node.jstree', this._openNodeTree.bind(this));
-      treeObject.on('after_close.jstree', this._afterCloseNodeTree.bind(this));
+      treeObject.on('after_close.jstree', afterCloseNodeTree.bind(this));
     },
 
     /**
@@ -189,24 +190,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       let model = this.get('model.view.definition');
 
       // Create propertyName
-      let parents = selectedNodes.parents;
-      let propertyName = '';
-      if (parents.length > 2) {
-        let indexParentID = parents.length - 3;
-        let parentAttributes = treeData[0].copyChildren;
-        while (indexParentID >= 0) {
-          let parentID = parents[indexParentID];
-          let parent = parentAttributes.findBy('id', parentID);
-          propertyName = propertyName + '.' + parent.text;
-          indexParentID--;
-          parentAttributes = parent.copyChildren;
-        }
-
-        propertyName = propertyName.slice(1) + '.' + selectedNodes.text;
-
-      } else {
-        propertyName = selectedNodes.text;
-      }
+      let propertyName = createPropertyName(selectedNodes, treeData[0], true);
 
       if (model.findBy('name', propertyName)) {
         return;
@@ -344,60 +328,15 @@ export default EditFormController.extend(FdWorkPanelToggler, {
   */
   _openNodeTree(e, data) {
     let treeData = this.get('model.tree');
-    this._restorationNodeTree(treeData, data.node.original);
+    restorationNodeTree(treeData, data.node.original, Ember.A(['master', 'class']), false, (function(node) {
+      let dataForBuildTree = getDataForBuildTree(this.get('store'), node.get('idNode'));
+      let childrenAttributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes);
+      let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, node.get('id'));
+
+      return childrenNode;
+    }).bind(this));
 
     this.get('jstreeActionReceiver').send('redraw');
-  },
-
-  /**
-    Overridden action for jsTree 'eventDidClose'.
-    @method _afterCloseNodeTree
-  */
-  _afterCloseNodeTree(e, data) {
-    data.node.original.state.opened = false;
-  },
-
-  /**
-    Method for restoring tree nodes.
-    @method _restorationNodeTree
-  */
-  _restorationNodeTree(nodeArray, wantedNode) {
-    let _this = this;
-    nodeArray.forEach(function(node) {
-      if (node.type === 'master' || node.type === 'class') {
-        node.set('children', node.get('copyChildren'));
-
-        if (!Ember.isNone(node.state) && node.state.opened) {
-          _this._restorationNodeTree(node.get('children'), wantedNode);
-        }
-
-        if (node.text === wantedNode.text && node.idNode === wantedNode.idNode && node.id === wantedNode.id) {
-          node.state = { opened: true };
-          if (node.get('children').length === 1 && node.get('children')[0] === '#') {
-            _this._getChildrenNode(node);
-          } else {
-            _this._restorationNodeTree(node.get('children'), wantedNode);
-          }
-        }
-      }
-    });
-  },
-
-  /**
-    Method for loading tree node data.
-    @method _getChildrenNode
-  */
-  _getChildrenNode(node) {
-    let store = this.get('store');
-    let idNode = node.get('idNode');
-    let idTree = node.get('id');
-
-    let dataForBuildTree = getDataForBuildTree(store, idNode);
-    let childrenAttributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes);
-    let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, idTree);
-
-    node.set('children', childrenNode);
-    node.set('copyChildren', childrenNode);
   },
 
   willDestroy() {
@@ -405,7 +344,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     let treeObject = this.get('jstreeObject');
     if (!Ember.isNone(treeObject)) {
       treeObject.off('open_node.jstree', this._openNodeTree.bind(this));
-      treeObject.off('after_close.jstree', this._afterCloseNodeTree.bind(this));
+      treeObject.off('after_close.jstree', afterCloseNodeTree.bind(this));
     }
   }
 });

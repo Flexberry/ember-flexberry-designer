@@ -124,7 +124,7 @@
             <button class="ui icon button" disabled={{or (not selectedItem) (not _selectedIsRow) _selectedIsFirst}} {{action "sortSelectedItem" -1}}>
               <i class="up arrow icon"></i>
             </button>
-            <button class="ui icon button" disabled={{or (not selectedItem) (not _selectedIsRow)}} {{action "sortSelectedItem" 1}}>
+            <button class="ui icon button" disabled={{or (not selectedItem) (not _selectedIsRow) _selectedIsLast}} {{action "sortSelectedItem" 1}}>
               <i class="down arrow icon"></i>
             </button>
           </div>
