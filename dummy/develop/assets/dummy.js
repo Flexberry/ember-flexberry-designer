@@ -501,12 +501,20 @@ define('dummy/controllers/activity-diagram-primitives-demo', ['exports', 'ember'
         var linkObjectFlow = new _npmJointjs['default'].shapes.flexberryUml.ObjectFlow({
           source: { x: 100, y: 150 },
           target: { x: 300, y: 150 },
-          attrs: { path: { title: 'Изменение объекта (Object Flow)' } }
+          labels: [{
+            attrs: { text: { text: 'Label' } }
+          }],
+          attrs: {
+            path: { title: 'Изменение объекта (Object Flow)' }
+          }
         });
 
         var linkTransition = new _npmJointjs['default'].shapes.flexberryUml.Transition({
           source: { x: 100, y: 250 },
           target: { x: 300, y: 250 },
+          labels: [{
+            attrs: { text: { text: 'Label' } }
+          }],
           attrs: { path: { title: 'Переход (Transition)' } }
         });
 
@@ -531,49 +539,54 @@ define('dummy/controllers/activity-diagram-primitives-demo', ['exports', 'ember'
         var note = new _npmJointjs['default'].shapes.flexberryUml.Note({
           position: { x: 450, y: 100 },
           size: { width: 100, height: 50 },
-          attrs: { text: { text: 'Note' }, '.rotatable': { title: 'Комментарий (Note)' } }
+          name: 'note',
+          attrs: { '.rotatable': { title: 'Комментарий (Note)' } }
         });
 
         var SignalReceiptRight = new _npmJointjs['default'].shapes.flexberryUml.SignalReceiptRight({
           position: { x: 450, y: 200 },
-          size: { width: 100, height: 50 },
+          name: ['Receipt1', 'text'],
           attrs: {
-            text: { text: 'Receipt1' },
             '.rotatable': { title: 'Получение сигнала (Signal Receipt)' }
           }
         });
 
         var SignalReceiptLeft = new _npmJointjs['default'].shapes.flexberryUml.SignalReceiptLeft({
           position: { x: 450, y: 300 },
-          size: { width: 100, height: 50 },
+          name: 'Receipt2',
           attrs: {
-            text: { text: 'Receipt2' },
             '.rotatable': { title: 'Получение сигнала (Signal Receipt)' }
           }
         });
 
         var SignalSendingRight = new _npmJointjs['default'].shapes.flexberryUml.SignalSendingRight({
           position: { x: 450, y: 400 },
-          size: { width: 100, height: 50 },
+          name: ['Sending1', 'text', 'moreText'],
           attrs: {
-            text: { text: 'Receipt2' }
+            '.rotatable': { title: 'Отправка сигнала (Signal Sending)' }
           }
         });
 
         var SignalSendingLeft = new _npmJointjs['default'].shapes.flexberryUml.SignalSendingLeft({
           position: { x: 450, y: 500 },
-          size: { width: 100, height: 50 },
+          name: 'Sending2',
           attrs: {
-            text: { text: 'Receipt2' }
+            '.rotatable': { title: 'Отправка сигнала (Signal Sending)' }
           }
         });
 
         var startState = new _npmJointjs['default'].shapes.flexberryUml.StartState({
-          position: { x: 100, y: 204 }
+          position: { x: 100, y: 204 },
+          attrs: {
+            text: { text: 'Start State' }
+          }
         });
 
         var endState = new _npmJointjs['default'].shapes.flexberryUml.EndState({
-          position: { x: 150, y: 200 }
+          position: { x: 150, y: 200 },
+          attrs: {
+            text: { text: 'End State' }
+          }
         });
 
         var decision = new _npmJointjs['default'].shapes.flexberryUml.Decision({
@@ -644,6 +657,10 @@ define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-de
             link: 'activity-diagram-primitives-demo',
             caption: i18n.t('forms.application.sitemap.root.activity-diagram-primitives-demo.caption'),
             title: i18n.t('forms.application.sitemap.root.activity-diagram-primitives-demo.title')
+          }, {
+            link: 'usecase-diagram-primitives-demo',
+            caption: i18n.t('forms.application.sitemap.root.usecase-diagram-primitives-demo.caption'),
+            title: i18n.t('forms.application.sitemap.root.usecase-diagram-primitives-demo.title')
           }]
         });
       }
@@ -913,7 +930,6 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
 
           var classWithoutStp = new _npmJointjs['default'].shapes.flexberryUml.Class({
             position: { x: 350, y: 30 },
-            size: { width: 100, height: 100 },
             name: 'Class1',
             attributes: attributes,
             methods: methods
@@ -921,8 +937,7 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
 
           var classWithStp = new _npmJointjs['default'].shapes.flexberryUml.Class({
             position: { x: 350, y: 150 },
-            size: { width: 100, height: 100 },
-            name: 'Class2',
+            name: 'Class2textextext',
             stereotype: 'enumeration',
             attributes: attributes,
             methods: methods
@@ -931,14 +946,11 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
           var nAryAssociation = new _npmJointjs['default'].shapes.flexberryUml.NAryAssociation({
             position: { x: 550, y: 30 },
             size: { width: 150, height: 75 },
-            attrs: {
-              text: { text: 'n-ary Association' }
-            }
+            name: 'n-ary Association'
           });
 
           var obj = new _npmJointjs['default'].shapes.flexberryUml.Object({
             position: { x: 350, y: 300 },
-            size: { width: 100, height: 70 },
             name: 'Object',
             attributes: attributes,
             methods: methods
@@ -946,33 +958,23 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
 
           var instance = new _npmJointjs['default'].shapes.flexberryUml.Instance({
             position: { x: 350, y: 400 },
-            size: { width: 150, height: 40 },
-            attrs: {
-              text: { text: 'Instance' }
-            }
+            name: 'Instance'
           });
 
           var multiObject = new _npmJointjs['default'].shapes.flexberryUml.MultiObject({
             position: { x: 350, y: 500 },
             size: { width: 150, height: 40 },
-            attrs: {
-              text: { text: 'multiObject' }
-            }
+            name: 'multiObject'
           });
 
           var activeObj = new _npmJointjs['default'].shapes.flexberryUml.ActiveObject({
             position: { x: 350, y: 600 },
-            size: { width: 150, height: 40 },
-            attrs: {
-              text: { text: 'Active object' }
-            }
+            name: 'Active object'
           });
 
           var templateClass = new _npmJointjs['default'].shapes.flexberryUml.TemplateClass({
             position: { x: 550, y: 150 },
-            size: { width: 150, height: 100 },
-            name: 'Class2',
-            stereotype: 'enumeration',
+            name: 'Class2textextext',
             attributes: attributes,
             methods: methods,
             params: 'params'
@@ -980,11 +982,7 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
 
           var note = new _npmJointjs['default'].shapes.flexberryUml.Note({
             position: { x: 550, y: 300 },
-            size: { width: 100, height: 50 },
-            name: 'Class2',
-            attrs: {
-              text: { text: 'Note' }
-            }
+            name: 'Comment'
           });
 
           var moreClasses = new _npmJointjs['default'].shapes.flexberryUml.MoreClasses({
@@ -993,7 +991,6 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
 
           var packagePr = new _npmJointjs['default'].shapes.flexberryUml.Package({
             position: { x: 550, y: 500 },
-            size: { width: 100, height: 50 },
             name: 'Class2',
             attributes: attributes
           });
@@ -12553,6 +12550,10 @@ define('dummy/locales/en/translations', ['exports', 'ember', 'ember-flexberry-de
             'activity-diagram-primitives-demo': {
               caption: 'Activity Diagram',
               title: ''
+            },
+            'usecase-diagram-primitives-demo': {
+              caption: 'Usecase Diagram',
+              title: ''
             }
           }
         }
@@ -12720,6 +12721,10 @@ define('dummy/locales/ru/translations', ['exports', 'ember', 'ember-flexberry-de
             },
             'activity-diagram-primitives-demo': {
               caption: 'Диаграмма активностей',
+              title: ''
+            },
+            'usecase-diagram-primitives-demo': {
+              caption: 'Диаграмма вариантов использования',
               title: ''
             }
           }
@@ -46928,7 +46933,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+a6846e06"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+4c32ced8"});
 }
 
 /* jshint ignore:end */
