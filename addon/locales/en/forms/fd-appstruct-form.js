@@ -5,6 +5,7 @@ export default {
   'add-editform-text': 'Add edit form',
   'remove-text': 'Remove',
   'edit-text': 'Edit',
+  'list-classes-text': 'Open classes list',
   'button-save': 'Save',
   'button-precess-editor': 'Process editor',
   'button-generation': 'Generation',
