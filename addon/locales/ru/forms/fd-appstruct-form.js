@@ -12,6 +12,10 @@ export default {
   'app-forms-panel-caption':'Формы приложения',
   'close-panel-btn-caption':'Нажмите, чтобы скрыть все формы',
   'show-panel-btn-caption':'Нажмите, чтобы показать все формы',
+  'remove-control': 'Удалить',
+  'remove-approve': 'Вы уверены?',
+  'delete-error': 'Класса удалить нельзя, у него есть вложенные элементы. Удалите их чтобы удалить класс',
+  desktop: 'Рабочий стол',
   'form-config-panel': {
     caption: 'Редактор приложения',
     'app-properties-header': 'Свойства класса application и стадии',

@@ -12,6 +12,10 @@ export default {
   'app-forms-panel-caption':'App forms',
   'close-panel-btn-caption':'Click to hide all forms',
   'show-panel-btn-caption':'Click to show all forms',
+  'remove-control': 'Remove',
+  'remove-approve': 'Are you sure?',
+  'delete-error': 'You can not delete a class, it has nested elements. Delete them to delete the class',
+  desktop: 'Desktop',
   'form-config-panel': {
     caption: 'App editor',
     'app-properties-header': 'Application and stage properties',

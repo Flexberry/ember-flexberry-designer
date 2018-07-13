@@ -103,6 +103,18 @@
   </div>
 </form>
 
+{{#if _showModalDialog}}
+  {{#modal-dialog
+    title=(t "forms.fd-appstruct-form.remove-control")
+    ok=(action "removeLeftNode" true)
+    settings=(hash
+      onHidden=(action set "_showModalDialog" false)
+    )
+  }}
+    {{t "forms.fd-appstruct-form.remove-approve"}}
+  {{/modal-dialog}}
+{{/if}}
+
 {{#fd-config-panel}}
 
   {{#fd-tabs tabsMenuTheme="vertical tabular" class="ui segments horizontal right-tabs"}}
