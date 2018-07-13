@@ -5,6 +5,7 @@ export default {
   'add-editform-text': 'Добавить форму редактирования',
   'remove-text': 'Удалить',
   'edit-text': 'Редактировать',
+  'list-classes-text': 'Перейти к списку классов',
   'button-save': 'Сохранить',
   'button-precess-editor': 'Редактор процессов',
   'button-generation': 'Генерация',

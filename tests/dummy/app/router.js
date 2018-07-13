@@ -1,4 +1,6 @@
 import Ember from 'ember';
+import 'ember-flexberry-designer/utils/fd-sequence-diagram-primitives';
+
 import config from './config/environment';
 
 const Router = Ember.Router.extend({
@@ -99,10 +101,12 @@ Router.map(function () {
   this.route('fd-generation-process-form',
   { path: 'fd-generation-process-form/:id' });
   this.route('fd-generation-list-form');
+  this.route('fd-sequence-diagram-primitives-demo');
   this.route('class-diagram-primitives-demo');
   this.route('activity-diagram-primitives-demo');
   this.route('usecase-diagram-primitives-demo');
   this.route('deployment-diagram-primitives-demo');
+  this.route('statechart-diagram-primitives-demo');
 });
 
 export default Router;

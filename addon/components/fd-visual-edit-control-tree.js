@@ -56,9 +56,6 @@ export default Ember.Component.extend({
    */
   readonly: false,
 
-  // TODO Delete this property when will make 'propertyLookupStr'.
-  view: '',
-
   /*
     Setting off for buttons of the tree.
   */
@@ -199,26 +196,29 @@ export default Ember.Component.extend({
   }),
 
   /**
-    Handles changes in propertyName.
+    Handles changes in propertyName and selectedNodesTypeTree.
 
     @method _propertyNameObserver
   */
-  _propertyNameObserver: Ember.observer('propertyName', function() {
+  _propertyNameObserver: Ember.observer('propertyName', 'selectedNodesTypeTree', function() {
     let propertyName = this.get('propertyName');
-    let oldPropertyName = this.get('oldPropertyName');
-    if (!Ember.isNone(oldPropertyName) && propertyName === oldPropertyName) {
-      this.set('applyTypeDisabled', '');
+    let selectedNodes = this.get('selectedNodesTypeTree');
+    if (selectedNodes.length === 0 || selectedNodes[0].type === 'class' || propertyName === '') {
+      this.set('applyTypeDisabled', 'disabled');
     } else {
       this.set('applyTypeDisabled', '');
-      let attributesTree = this.get('dataAttributesTree');
-      attributesTree.forEach((nodes)=> {
-        let findNodes = nodes.copyChildren.filter(function(item) {
-          return item.get('name').toLocaleLowerCase() === propertyName.toLocaleLowerCase();
+      let oldPropertyName = this.get('oldPropertyName');
+      if (Ember.isNone(oldPropertyName) || propertyName !== oldPropertyName) {
+        let attributesTree = this.get('dataAttributesTree');
+        attributesTree.forEach((nodes)=> {
+          let findNodes = nodes.copyChildren.filter(function(item) {
+            return item.get('name').toLocaleLowerCase() === propertyName.toLocaleLowerCase();
+          });
+          if (findNodes.length !== 0) {
+            this.set('applyTypeDisabled', 'disabled');
+          }
         });
-        if (findNodes.length !== 0 || propertyName === '') {
-          this.set('applyTypeDisabled', 'disabled');
-        }
-      });
+      }
     }
   }),
 
@@ -279,20 +279,6 @@ export default Ember.Component.extend({
     }
   }),
 
-  /**
-    Handles changes in selectedNodesTypeTree.
-
-    @method _selectedNodesTypeTreeObserver
-  */
-  _selectedNodesTypeTreeObserver: Ember.observer('selectedNodesTypeTree', function() {
-    let selectedNodes = this.get('selectedNodesTypeTree');
-    if (selectedNodes.length === 0 || selectedNodes[0].type === 'class') {
-      this.set('applyTypeDisabled', 'disabled');
-    } else {
-      this._propertyNameObserver();
-    }
-  }),
-
   init() {
     this._super(...arguments);
     let attributesTree = this._createAttributesTree();
@@ -349,50 +335,8 @@ export default Ember.Component.extend({
       @method actions.removeAttribute
     */
     removeAttribute() {
+      this._deleteAttribute();
       let selectedNode = this.get('selectedNodesAttributesTree')[0];
-      let dataobject = this.get('model.dataobject');
-      let arrayChengeClassElements = this.get('model.arrayChengeClassElements');
-
-      // Delete node from parent copyChildren.
-      let parentSelectedNode = this.get('treeObjectAttributesTree').jstree(true).get_node(selectedNode.parent);
-      let arrayChildrensParentSelectedNode = parentSelectedNode.original.get('copyChildren');
-      let selectedObject = arrayChildrensParentSelectedNode.findBy('text', selectedNode.text);
-      arrayChildrensParentSelectedNode.removeObject(selectedObject);
-
-      switch (selectedNode.type) {
-        case 'property':
-          let attributes = dataobject.get('attributes');
-          let deleteAttribute = attributes.findBy('name', selectedNode.original.name);
-          deleteAttribute.deleteRecord();
-          arrayChengeClassElements.pushObject(deleteAttribute);
-          break;
-        case 'master':
-          let association = this.get('model.association');
-          let associationCurrentClass = association.filterBy('endClass.id', dataobject.id);
-          let deleteAssociation = Ember.A(associationCurrentClass).filterBy('startClass.name', selectedNode.original.name);
-          deleteAssociation.deleteRecord();
-          arrayChengeClassElements.pushObject(deleteAssociation);
-          break;
-        case 'detail':
-          let aggregation = this.get('model.aggregation');
-          let aggregationCurrentClass = aggregation.filterBy('startClass.id', dataobject.id);
-          let deleteAggregation = Ember.A(aggregationCurrentClass).filterBy('endClass.name', selectedNode.original.name);
-          deleteAggregation.deleteRecord();
-          arrayChengeClassElements.pushObject(deleteAggregation);
-          let typeTree = this.get('dataTypeTree')[5];
-          let nodeId = findFreeNodeTreeNameIndex('detail', 0, typeTree.copyChildren, 'id');
-          let recordsDevClass = this.get('store').peekAll('fd-dev-class');
-          let classData = recordsDevClass.findBy('id', selectedObject.idNode);
-          typeTree.copyChildren.pushObject(
-            FdAttributesTree.create({
-              text: classData.get('name'),
-              type: selectedObject.type,
-              id: 'detail' + nodeId,
-              idNode: selectedObject.idNode
-            }));
-          break;
-      }
-
       this.get('actionReceiverAttributesTree').send('deleteNode', selectedNode);
       this.set('selectedNodesAttributesTree', Ember.A());
     },
@@ -459,9 +403,7 @@ export default Ember.Component.extend({
     */
     applyСlick() {
       let selectedNode = this.get('selectedNodesTypeTree')[0];
-      let attributesTree = this.get('dataAttributesTree');
       let nodeId = findFreeNodeTreeID('np', 0, this.get('treeObjectAttributesTree'));
-
       let newNode = FdAttributesTree.create({
         text: this.get('propertyName') + ' (' + selectedNode.text + ')',
         type: selectedNode.type,
@@ -471,34 +413,73 @@ export default Ember.Component.extend({
         idNode: selectedNode.original.idNode
       });
 
+      let store = this.get('store');
+      let dataobject = this.get('model.dataobject');
+      let arrayChengeClassElements = this.get('model.arrayChengeClassElements');
+      let attributesTree = this.get('dataAttributesTree');
+      let recordsDevClass = store.peekAll('fd-dev-class');
+      let newAttribute;
       switch (selectedNode.type) {
         case 'master':
+
+          // Update attributesTree.
           newNode.set('children', ['#']);
           newNode.set('copyChildren', ['#']);
           newNode.set('typeNode', 'master');
           attributesTree[1].copyChildren.pushObject(newNode);
+
+          // Create new association.
+          let startClass = recordsDevClass.findBy('id', selectedNode.original.idNode);
+          newAttribute = store.createRecord('fd-dev-association', {
+            endClass: dataobject,
+            startClass: startClass,
+            startRole: this.get('propertyName'),
+            stage: dataobject.get('stage')
+          });
+          arrayChengeClassElements.pushObject(newAttribute);
           break;
         case 'detail':
+
+          // Update attributesTree.
           newNode.set('typeNode', 'detail');
           attributesTree[2].copyChildren.pushObject(newNode);
+
+          // Update typeTree.
           let dataTypeTree = this.get('dataTypeTree');
           let arrayChildrens = dataTypeTree[5].get('copyChildren');
           let selectedObject = arrayChildrens.findBy('text', selectedNode.text);
           arrayChildrens.removeObject(selectedObject);
+
+          // Create new aggregation.
+          let endClass = recordsDevClass.findBy('id', selectedNode.original.idNode);
+          newAttribute = store.createRecord('fd-dev-aggregation', {
+            endClass: endClass,
+            startClass: dataobject,
+            endRole: this.get('propertyName'),
+            stage: dataobject.get('stage')
+          });
+          arrayChengeClassElements.pushObject(newAttribute);
           break;
         default:
           attributesTree[0].copyChildren.pushObject(newNode);
+
+          // Create new attribute.
+          store.createRecord('fd-dev-attribute', {
+            class: dataobject,
+            name: this.get('propertyName'),
+            type: selectedNode.text,
+          });
       }
 
+      // Delete old attribute.
       if (!Ember.isNone(this.get('oldPropertyName'))) {
-        let selectedNodesAttributesTree = this.get('selectedNodesAttributesTree');
-        let parentSelectedNodes = this.get('treeObjectAttributesTree').jstree(true).get_node(selectedNodesAttributesTree[0].parent);
-        parentSelectedNodes.original.copyChildren.removeObject(selectedNodesAttributesTree[0].original);
+        this._deleteAttribute();
       }
 
       restorationNodeTree(attributesTree, {}, Ember.A(['master', 'class']), false);
       this.set('oldPropertyName', undefined);
       this.set('treeViewMode', true);
+      this.set('selectedNodesTypeTree', Ember.A());
     },
 
     /**
@@ -510,6 +491,7 @@ export default Ember.Component.extend({
       let attributesTree = this.get('dataAttributesTree');
       restorationNodeTree(attributesTree, {}, Ember.A(['master', 'class']), false);
       this.set('treeViewMode', true);
+      this.set('selectedNodesTypeTree', Ember.A());
     }
   },
 
@@ -529,6 +511,57 @@ export default Ember.Component.extend({
     }).bind(this));
 
     this.get('actionReceiverAttributesTree').send('redraw');
+  },
+
+  /**
+    Method delete attributes from class.
+
+    @method _deleteAttribute
+  */
+  _deleteAttribute() {
+    let selectedNode = this.get('selectedNodesAttributesTree')[0];
+    let dataobject = this.get('model.dataobject');
+    let arrayChengeClassElements = this.get('model.arrayChengeClassElements');
+
+    // Delete node from parent copyChildren.
+    let parentSelectedNode = this.get('treeObjectAttributesTree').jstree(true).get_node(selectedNode.parent);
+    let arrayChildrensParentSelectedNode = parentSelectedNode.original.get('copyChildren');
+    let selectedObject = arrayChildrensParentSelectedNode.findBy('text', selectedNode.text);
+    arrayChildrensParentSelectedNode.removeObject(selectedObject);
+
+    switch (selectedNode.type) {
+      case 'property':
+        let attributes = dataobject.get('attributes');
+        let deleteAttribute = attributes.findBy('name', selectedNode.original.name);
+        deleteAttribute.deleteRecord();
+        arrayChengeClassElements.pushObject(deleteAttribute);
+        break;
+      case 'master':
+        let association = this.get('model.association');
+        let associationCurrentClass = association.filterBy('endClass.id', dataobject.id);
+        let deleteAssociation = Ember.A(associationCurrentClass).findBy('startClass.name', selectedNode.original.name);
+        deleteAssociation.deleteRecord();
+        arrayChengeClassElements.pushObject(deleteAssociation);
+        break;
+      case 'detail':
+        let aggregation = this.get('model.aggregation');
+        let aggregationCurrentClass = aggregation.filterBy('startClass.id', dataobject.id);
+        let deleteAggregation = Ember.A(aggregationCurrentClass).findBy('endClass.name', selectedNode.original.name);
+        deleteAggregation.deleteRecord();
+        arrayChengeClassElements.pushObject(deleteAggregation);
+        let typeTree = this.get('dataTypeTree')[5];
+        let nodeId = findFreeNodeTreeNameIndex('detail', 0, typeTree.copyChildren, 'id');
+        let recordsDevClass = this.get('store').peekAll('fd-dev-class');
+        let classData = recordsDevClass.findBy('id', selectedObject.idNode);
+        typeTree.copyChildren.pushObject(
+          FdAttributesTree.create({
+            text: classData.get('name'),
+            type: selectedObject.type,
+            id: 'detail' + nodeId,
+            idNode: selectedObject.idNode
+          }));
+        break;
+    }
   },
 
   /**

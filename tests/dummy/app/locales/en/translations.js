@@ -155,6 +155,18 @@ Ember.$.extend(true, translations, {
             caption: 'Deployment Diagram',
             title: '',
           },
+          'statechart-diagram-primitives-demo': {
+            caption: 'Statechart Diagram',
+            title: '',
+          },
+          'usecase-diagram-primitives-demo': {
+            caption: 'Usecase Diagram',
+            title: '',
+          },
+          'sequence-diagram-primitives-demo': {
+            caption: 'Sequence Diagram',
+            title: '',
+          },
         },
       }
     },
