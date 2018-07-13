@@ -151,6 +151,10 @@ Ember.$.extend(true, translations, {
             caption: 'Activity Diagram',
             title: '',
           },
+          'statechart-diagram-primitives-demo': {
+            caption: 'Statechart Diagram',
+            title: '',
+          },
         },
       }
     },
