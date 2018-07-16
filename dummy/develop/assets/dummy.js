@@ -611,7 +611,12 @@ define('dummy/controllers/activity-diagram-primitives-demo', ['exports', 'ember'
           state: 'state'
         });
 
-        _this.graph.addCell([note, SignalReceiptRight, SignalReceiptLeft, SignalSendingRight, SignalSendingLeft, startState, endState, decision, objectInState, activeState]);
+        var partition = new _npmJointjs['default'].shapes.flexberryUml.Partition({
+          position: { x: 600, y: 350 },
+          name: 'partition'
+        });
+
+        _this.graph.addCell([note, SignalReceiptRight, SignalReceiptLeft, SignalSendingRight, SignalSendingLeft, startState, endState, decision, objectInState, activeState, partition]);
       }
     }
   });
@@ -657,6 +662,10 @@ define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-de
             link: 'activity-diagram-primitives-demo',
             caption: i18n.t('forms.application.sitemap.root.activity-diagram-primitives-demo.caption'),
             title: i18n.t('forms.application.sitemap.root.activity-diagram-primitives-demo.title')
+          }, {
+            link: 'deployment-diagram-primitives-demo',
+            caption: i18n.t('forms.application.sitemap.root.deployment-diagram-primitives-demo.caption'),
+            title: i18n.t('forms.application.sitemap.root.deployment-diagram-primitives-demo.title')
           }, {
             link: 'statechart-diagram-primitives-demo',
             caption: i18n.t('forms.application.sitemap.root.statechart-diagram-primitives-demo.caption'),
@@ -1011,6 +1020,102 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
 });
 define('dummy/controllers/colsconfig-dialog', ['exports', 'ember-flexberry/controllers/colsconfig-dialog'], function (exports, _emberFlexberryControllersColsconfigDialog) {
   exports['default'] = _emberFlexberryControllersColsconfigDialog['default'];
+});
+define('dummy/controllers/deployment-diagram-primitives-demo', ['exports', 'ember', 'npm:jointjs'], function (exports, _ember, _npmJointjs) {
+  exports['default'] = _ember['default'].Controller.extend({
+    actions: {
+      printDiagram: function printDiagram() {
+        var _this = this;
+        _ember['default'].run.schedule('afterRender', function () {
+          _this.graph = new _npmJointjs['default'].dia.Graph();
+
+          var paper = document.getElementById('paper');
+          var minX = 16384;
+          var minY = 16384;
+          var maxX = 0;
+          var maxY = 0;
+
+          if (minX > maxX) {
+            maxX = paper && 'offsetWidth' in paper ? paper.offsetWidth : 1024;
+            maxY = 840;
+          } else {
+            maxX = minX + maxX;
+            maxY = minY + maxY;
+          }
+
+          _this.paper = new _npmJointjs['default'].dia.Paper({
+            el: paper,
+            width: maxX,
+            height: maxY,
+            gridSize: 1,
+            model: _this.graph
+          });
+
+          var linkNoteConnector = new _npmJointjs['default'].shapes.flexberryUml.NoteConnector({
+            source: { x: 100, y: 100 },
+            target: { x: 300, y: 100 },
+            attrs: { path: { title: 'Коннектор комментария (Note Connector)' } }
+          });
+
+          var linkDependency = new _npmJointjs['default'].shapes.flexberryUml.Dependency({
+            source: { x: 100, y: 150 },
+            target: { x: 300, y: 150 },
+            labels: [{
+              attrs: { text: { text: 'Dependency' } }
+            }],
+            attrs: { path: { title: 'Переход (Dependency)' } }
+          });
+
+          var linkConnection = new _npmJointjs['default'].shapes.flexberryUml.deploymentDiagram_Connection({
+            source: { x: 100, y: 200 },
+            target: { x: 300, y: 200 },
+            labels: [{
+              attrs: { text: { text: 'Connection' } }
+            }],
+            attrs: { path: { title: 'Связь (Connection)' } }
+          });
+
+          _this.graph.addCell([linkNoteConnector, linkDependency, linkConnection]);
+
+          var component = new _npmJointjs['default'].shapes.flexberryUml.deploymentDiagram_Component({
+            position: { x: 450, y: 100 },
+            name: ['StateName'],
+            attrs: { '.rotatable': { title: 'Компонент (Component)' } }
+          });
+
+          var node = new _npmJointjs['default'].shapes.flexberryUml.deploymentDiagram_Node({
+            position: { x: 450, y: 150 },
+            name: ['NodeName', 'text', 'text'],
+            attrs: { '.rotatable': { title: 'Узел (Node)' } }
+          });
+          node.addTo(_this.graph);
+
+          var obj = new _npmJointjs['default'].shapes.flexberryUml.deploymentDiagram_Object({
+            position: { x: 450, y: 220 },
+            name: ['ObjectName', 'text', 'text'],
+            attrs: { '.rotatable': { title: 'Объект (Object)' } }
+          });
+          obj.addTo(_this.graph);
+
+          var interfaceObj = new _npmJointjs['default'].shapes.flexberryUml.deploymentDiagram_Interface({
+            position: { x: 500, y: 260 },
+            name: ['Interface'],
+            attrs: { '.rotatable': { title: 'Интерфейс (Interface)' } },
+            sourceObj: obj,
+            graph: _this.graph
+          });
+
+          var activeObj = new _npmJointjs['default'].shapes.flexberryUml.deploymentDiagram_ActiveObject({
+            position: { x: 450, y: 320 },
+            name: ['ActiveObjectName', 'text'],
+            attrs: { '.rotatable': { title: 'Объект (Object)' } }
+          });
+
+          _this.graph.addCell([activeObj, obj, node, component, interfaceObj]);
+        });
+      }
+    }
+  });
 });
 define('dummy/controllers/detail-edit-form', ['exports', 'ember-flexberry/controllers/detail-edit-form'], function (exports, _emberFlexberryControllersDetailEditForm) {
   Object.defineProperty(exports, 'default', {
@@ -11629,6 +11734,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ut
     assert.ok(true, 'modules/ember-flexberry-designer/utils/fd-datatypes.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-deployment-diagram-primitives.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/utils');
+  test('modules/ember-flexberry-designer/utils/fd-deployment-diagram-primitives.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/utils/fd-deployment-diagram-primitives.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-deployment-diagram-primitives.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/utils/fd-deployment-diagram-primitives.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/utils/fd-deployment-diagram-primitives.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-metods-for-tree.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/utils');
   test('modules/ember-flexberry-designer/utils/fd-metods-for-tree.js should pass jscs', function () {
@@ -12797,6 +12915,10 @@ define('dummy/locales/en/translations', ['exports', 'ember', 'ember-flexberry-de
               caption: 'Activity Diagram',
               title: ''
             },
+            'deployment-diagram-primitives-demo': {
+              caption: 'Deployment Diagram',
+              title: ''
+            },
             'statechart-diagram-primitives-demo': {
               caption: 'Statechart Diagram',
               title: ''
@@ -12975,6 +13097,10 @@ define('dummy/locales/ru/translations', ['exports', 'ember', 'ember-flexberry-de
             },
             'activity-diagram-primitives-demo': {
               caption: 'Диаграмма активностей',
+              title: ''
+            },
+            'deployment-diagram-primitives-demo': {
+              caption: 'Диаграмма развертывания',
               title: ''
             },
             'statechart-diagram-primitives-demo': {
@@ -13772,6 +13898,7 @@ define('dummy/router', ['exports', 'ember', 'ember-flexberry-designer/utils/fd-s
     this.route('class-diagram-primitives-demo');
     this.route('activity-diagram-primitives-demo');
     this.route('usecase-diagram-primitives-demo');
+    this.route('deployment-diagram-primitives-demo');
     this.route('statechart-diagram-primitives-demo');
   });
 
@@ -13845,6 +13972,16 @@ define('dummy/routes/application', ['exports', 'ember', 'ember-flexberry/mixins/
   });
 });
 define('dummy/routes/class-diagram-primitives-demo', ['exports', 'ember', 'ember-flexberry-designer/utils/fd-class-diagram-primitives'], function (exports, _ember, _emberFlexberryDesignerUtilsFdClassDiagramPrimitives) {
+  exports['default'] = _ember['default'].Route.extend({
+    activate: function activate() {
+      var _this = this;
+      _ember['default'].run.schedule('afterRender', this, function () {
+        _this.controller.send('printDiagram');
+      });
+    }
+  });
+});
+define('dummy/routes/deployment-diagram-primitives-demo', ['exports', 'ember', 'ember-flexberry-designer/utils/fd-deployment-diagram-primitives'], function (exports, _ember, _emberFlexberryDesignerUtilsFdDeploymentDiagramPrimitives) {
   exports['default'] = _ember['default'].Route.extend({
     activate: function activate() {
       var _this = this;
@@ -27677,6 +27814,47 @@ define("dummy/templates/components/ui-radio", ["exports"], function (exports) {
         return morphs;
       },
       statements: [["attribute", "type", ["get", "type", ["loc", [null, [1, 14], [1, 18]]]]], ["attribute", "name", ["get", "name", ["loc", [null, [1, 28], [1, 32]]]]], ["attribute", "checked", ["get", "checked", ["loc", [null, [1, 45], [1, 52]]]]], ["attribute", "disabled", ["get", "readonly", ["loc", [null, [1, 66], [1, 74]]]]], ["attribute", "data-id", ["get", "data-id", ["loc", [null, [1, 87], [1, 94]]]]], ["content", "label", ["loc", [null, [2, 7], [2, 16]]]]],
+      locals: [],
+      templates: []
+    };
+  })());
+});
+define("dummy/templates/deployment-diagram-primitives-demo", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "triple-curlies"
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 22
+          }
+        },
+        "moduleName": "dummy/templates/deployment-diagram-primitives-demo.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "id", "paper");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes() {
+        return [];
+      },
+      statements: [],
       locals: [],
       templates: []
     };
@@ -47215,6 +47393,14 @@ define('dummy/utils/fd-common-primitives', ['exports', 'ember-flexberry-designer
     }
   });
 });
+define('dummy/utils/fd-deployment-diagram-primitives', ['exports', 'ember-flexberry-designer/utils/fd-deployment-diagram-primitives'], function (exports, _emberFlexberryDesignerUtilsFdDeploymentDiagramPrimitives) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerUtilsFdDeploymentDiagramPrimitives['default'];
+    }
+  });
+});
 define('dummy/utils/fd-preload-stage-metadata', ['exports', 'ember-flexberry-designer/utils/fd-preload-stage-metadata'], function (exports, _emberFlexberryDesignerUtilsFdPreloadStageMetadata) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -47334,7 +47520,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+da302207"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+2fc313dd"});
 }
 
 /* jshint ignore:end */
