@@ -10,6 +10,7 @@ moduleForModel('fd-dev-class', 'Unit | Serializer | fd-dev-class', {
 
     /* merged manually start */
     'transform:containers-tree',
+    'transform:fd-propertylookupstr',
     /* merged manually end */
     'transform:fd-generation-state',
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-access-type',
