@@ -2633,7 +2633,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 243,
+            "line": 245,
             "description": "Handles changes in jstreeSelectedNodesRight and jstreeSelectedNodesLeft.",
             "itemtype": "method",
             "name": "_jstreeSelectedNodesObserver",
@@ -2643,7 +2643,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 265,
+            "line": 268,
             "description": "Index selected attribute in right tree.",
             "itemtype": "property",
             "name": "indexSelectedRight",
@@ -2654,7 +2654,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 306,
+            "line": 309,
             "description": "Handles move node from left in right jsTree.",
             "itemtype": "method",
             "name": "actions.moveRightHighlighted",
@@ -2664,7 +2664,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 336,
+            "line": 339,
             "description": "Handles remove node from left jsTree.",
             "itemtype": "method",
             "name": "actions.removeLeftNode",
@@ -2674,7 +2674,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 361,
+            "line": 364,
             "description": "Handles create new class left jsTree.",
             "itemtype": "method",
             "name": "actions.addLeftClass",
@@ -2684,7 +2684,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 370,
+            "line": 373,
             "description": "Handles add edit form for class in left jsTree.",
             "itemtype": "method",
             "name": "actions.addLeftListForm",
@@ -2694,7 +2694,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 431,
+            "line": 434,
             "description": "Handles add list form for class in left jsTree.",
             "itemtype": "method",
             "name": "actions.addLeftListForm",
@@ -2704,7 +2704,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 453,
+            "line": 456,
             "description": "Handles edit node left jsTree.",
             "itemtype": "method",
             "name": "actions.editLeftNode",
@@ -2714,7 +2714,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 486,
+            "line": 489,
             "description": "Handles open class list form.",
             "itemtype": "method",
             "name": "actions.listLeft",
@@ -2724,7 +2724,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 495,
+            "line": 498,
             "description": "Handles add url node.",
             "itemtype": "method",
             "name": "actions.addUrlNode",
@@ -2734,7 +2734,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 527,
+            "line": 530,
             "description": "Handles edit node right jsTree.",
             "itemtype": "method",
             "name": "actions.editRightNode",
@@ -2744,7 +2744,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 536,
+            "line": 539,
             "description": "Handles remove node from right jsTree.",
             "itemtype": "method",
             "name": "actions.removeRightNode",
@@ -2754,7 +2754,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 557,
+            "line": 560,
             "description": "Handles add node in right jsTree.",
             "itemtype": "method",
             "name": "actions.addFolderNode",
@@ -2764,7 +2764,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 587,
+            "line": 590,
             "description": "Handles up move tree node.",
             "itemtype": "method",
             "name": "actions.upRightNode",
@@ -2774,7 +2774,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 612,
+            "line": 615,
             "description": "Handles down move tree node.",
             "itemtype": "method",
             "name": "actions.downRightNode",
@@ -2784,7 +2784,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 637,
+            "line": 640,
             "description": "Handles save in right tree.",
             "itemtype": "method",
             "name": "actions.saveTree",
@@ -2794,7 +2794,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 660,
+            "line": 663,
             "description": "Handles open process editor form.",
             "itemtype": "method",
             "name": "actions.openProcessEditorForm",
@@ -2804,7 +2804,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 669,
+            "line": 672,
             "description": "Handles open generation form.",
             "itemtype": "method",
             "name": "actions.openGenerationForm",
@@ -2814,7 +2814,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 693,
+            "line": 696,
             "description": "Method for restoring tree nodes.",
             "itemtype": "method",
             "name": "_restorationNodeTree",
@@ -2826,7 +2826,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 708,
+            "line": 711,
             "description": "Method for update data in tree.",
             "itemtype": "method",
             "name": "_updateTreeData",
@@ -2838,7 +2838,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 720,
+            "line": 723,
             "description": "Get unique caption for new edit form.",
             "itemtype": "method",
             "name": "_getNewEditFormCaption",
@@ -2850,7 +2850,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 751,
+            "line": 754,
             "description": "Get description for new edit form.",
             "itemtype": "method",
             "name": "_getNewEditFormDescription",

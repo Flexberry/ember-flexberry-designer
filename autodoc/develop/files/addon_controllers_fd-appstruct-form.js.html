@@ -338,20 +338,22 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       this.set(&#x27;selectedElementForEdit&#x27;, selectedNode.original);
       let typeNode = selectedNode.original.type;
 
-      if (typeNode === &#x27;desk&#x27;) {
-        this.set(&#x27;removeRightNodeDisabled&#x27;, &#x27;disabled&#x27;);
-        this.set(&#x27;editRightNodeDisabled&#x27;, &#x27;disabled&#x27;);
-      } else {
-        this.set(&#x27;removeRightNodeDisabled&#x27;, &#x27;&#x27;);
-        this.set(&#x27;editRightNodeDisabled&#x27;, &#x27;&#x27;);
-      }
-
       if (typeNode === &#x27;«listform»&#x27; || typeNode === &#x27;«editform»&#x27; || typeNode === &#x27;url&#x27;) {
         this.set(&#x27;addRightNodeDisabled&#x27;, &#x27;disabled&#x27;);
         this.set(&#x27;addFolderNodeDisabled&#x27;, &#x27;disabled&#x27;);
+        this.set(&#x27;removeRightNodeDisabled&#x27;, &#x27;&#x27;);
+        this.set(&#x27;editRightNodeDisabled&#x27;, &#x27;&#x27;);
       } else {
-        this.set(&#x27;addRightNodeDisabled&#x27;, &#x27;&#x27;);
         this.set(&#x27;addFolderNodeDisabled&#x27;, &#x27;&#x27;);
+        if (typeNode === &#x27;desk&#x27;) {
+          this.set(&#x27;addRightNodeDisabled&#x27;, &#x27;disabled&#x27;);
+          this.set(&#x27;removeRightNodeDisabled&#x27;, &#x27;disabled&#x27;);
+          this.set(&#x27;editRightNodeDisabled&#x27;, &#x27;disabled&#x27;);
+        } else {
+          this.set(&#x27;addRightNodeDisabled&#x27;, &#x27;&#x27;);
+          this.set(&#x27;removeRightNodeDisabled&#x27;, &#x27;&#x27;);
+          this.set(&#x27;editRightNodeDisabled&#x27;, &#x27;&#x27;);
+        }
       }
     }
   }),
@@ -371,7 +373,8 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     let jstreeSelectedNodesRightType = jstreeSelectedNodesRight[0].original.type;
     let jstreeSelectedNodesLeftType = jstreeSelectedNodesLeft[0].original.type;
     if ((jstreeSelectedNodesLeftType !== &#x27;«listform»&#x27; &amp;&amp; jstreeSelectedNodesLeftType !== &#x27;«editform»&#x27;) ||
-      jstreeSelectedNodesRightType === &#x27;«listform»&#x27; || jstreeSelectedNodesRightType === &#x27;«editform»&#x27; || jstreeSelectedNodesRightType === &#x27;url&#x27;) {
+      jstreeSelectedNodesRightType === &#x27;«listform»&#x27; || jstreeSelectedNodesRightType === &#x27;«editform»&#x27; ||
+      jstreeSelectedNodesRightType === &#x27;url&#x27; || jstreeSelectedNodesRightType === &#x27;desk&#x27;) {
       this.set(&#x27;moveRightDisabled&#x27;, &#x27;disabled&#x27;);
     } else {
       this.set(&#x27;moveRightDisabled&#x27;, &#x27;&#x27;);
