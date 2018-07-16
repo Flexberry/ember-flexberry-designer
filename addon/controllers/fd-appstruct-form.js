@@ -222,20 +222,22 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       this.set('selectedElementForEdit', selectedNode.original);
       let typeNode = selectedNode.original.type;
 
-      if (typeNode === 'desk') {
-        this.set('removeRightNodeDisabled', 'disabled');
-        this.set('editRightNodeDisabled', 'disabled');
-      } else {
-        this.set('removeRightNodeDisabled', '');
-        this.set('editRightNodeDisabled', '');
-      }
-
       if (typeNode === '«listform»' || typeNode === '«editform»' || typeNode === 'url') {
         this.set('addRightNodeDisabled', 'disabled');
         this.set('addFolderNodeDisabled', 'disabled');
+        this.set('removeRightNodeDisabled', '');
+        this.set('editRightNodeDisabled', '');
       } else {
-        this.set('addRightNodeDisabled', '');
         this.set('addFolderNodeDisabled', '');
+        if (typeNode === 'desk') {
+          this.set('addRightNodeDisabled', 'disabled');
+          this.set('removeRightNodeDisabled', 'disabled');
+          this.set('editRightNodeDisabled', 'disabled');
+        } else {
+          this.set('addRightNodeDisabled', '');
+          this.set('removeRightNodeDisabled', '');
+          this.set('editRightNodeDisabled', '');
+        }
       }
     }
   }),
@@ -255,7 +257,8 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     let jstreeSelectedNodesRightType = jstreeSelectedNodesRight[0].original.type;
     let jstreeSelectedNodesLeftType = jstreeSelectedNodesLeft[0].original.type;
     if ((jstreeSelectedNodesLeftType !== '«listform»' && jstreeSelectedNodesLeftType !== '«editform»') ||
-      jstreeSelectedNodesRightType === '«listform»' || jstreeSelectedNodesRightType === '«editform»' || jstreeSelectedNodesRightType === 'url') {
+      jstreeSelectedNodesRightType === '«listform»' || jstreeSelectedNodesRightType === '«editform»' ||
+      jstreeSelectedNodesRightType === 'url' || jstreeSelectedNodesRightType === 'desk') {
       this.set('moveRightDisabled', 'disabled');
     } else {
       this.set('moveRightDisabled', '');
