@@ -32,7 +32,7 @@ export default Ember.Controller.extend({
 
         let jUseCase = new joint.shapes.flexberryUml.Usecase({
           position: { x: 50, y: 10 },
-          size: { width: 100, height: 40 },
+          size: { width: 300, height: 40 },
           name: 'UseCase \n primitive \n 1',
           ports: {
             groups: {
