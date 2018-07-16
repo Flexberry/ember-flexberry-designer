@@ -281,6 +281,9 @@ export default Ember.Component.extend({
       return;
     }
 
+    let attributesTree = this.get(&#x27;dataAttributesTree&#x27;);
+    restorationNodeTree(attributesTree, {}, Ember.A([&#x27;master&#x27;, &#x27;class&#x27;]), false);
+
     let attribute;
     let namesPropertyDefinition = propertyDefinition.name.split(&#x27;.&#x27;);
     if (namesPropertyDefinition.length &gt; 1) {
@@ -289,17 +292,33 @@ export default Ember.Component.extend({
       this.set(&#x27;readonly&#x27;, false);
     }
 
+    let store = this.get(&#x27;store&#x27;);
+    let allClasses = store.peekAll(&#x27;fd-dev-class&#x27;);
+    let stagePk = this.get(&#x27;currentProjectContext&#x27;).getCurrentStage();
+    let classesCurrentStage = allClasses.filterBy(&#x27;stage.id&#x27;, stagePk);
+
     if (propertyDefinition instanceof FdViewAttributesDetail) {
       this.set(&#x27;selectedItem.type&#x27;, &#x27;detail&#x27;);
-      let aggregation = this.get(&#x27;model.aggregation&#x27;);
-      attribute = aggregation.findBy(&#x27;endRole&#x27;, namesPropertyDefinition[0]);
+      attribute = this.get(&#x27;model.aggregation&#x27;).findBy(&#x27;endRole&#x27;, namesPropertyDefinition[0]);
+
+      let classData = classesCurrentStage.findBy(&#x27;name&#x27;, namesPropertyDefinition[0]);
+      let detailViews = classData.get(&#x27;views&#x27;);
+      this.set(&#x27;dropdownItems&#x27;, detailViews.mapBy(&#x27;name&#x27;));
+
     } else if (propertyDefinition instanceof FdViewAttributesMaster) {
       this.set(&#x27;selectedItem.type&#x27;, &#x27;master&#x27;);
-      let parsingResult = parsingPropertyName(this.get(&#x27;store&#x27;), this.get(&#x27;model.dataobject&#x27;), namesPropertyDefinition);
+      let parsingResult = parsingPropertyName(store, this.get(&#x27;model.dataobject&#x27;), namesPropertyDefinition);
       attribute = parsingResult.associations[0];
+
+      let listForms = classesCurrentStage.filter(function(item) {
+        return item.get(&#x27;formViews.firstObject.view.class.id&#x27;) === attribute.get(&#x27;startClass.id&#x27;) &amp;&amp;
+         item.get(&#x27;stereotype&#x27;) === &#x27;«listform»&#x27;;
+      });
+      this.set(&#x27;dropdownItems&#x27;, Ember.A(listForms).mapBy(&#x27;name&#x27;));
+
     } else {
-      let parsingResult = parsingPropertyName(this.get(&#x27;store&#x27;), this.get(&#x27;model.dataobject&#x27;), namesPropertyDefinition);
-      let selectedClass = this.get(&#x27;store&#x27;).peekAll(&#x27;fd-dev-class&#x27;).findBy(&#x27;id&#x27;, parsingResult.classId);
+      let parsingResult = parsingPropertyName(store, this.get(&#x27;model.dataobject&#x27;), namesPropertyDefinition);
+      let selectedClass = classesCurrentStage.findBy(&#x27;id&#x27;, parsingResult.classId);
       let attributes = selectedClass.get(&#x27;attributes&#x27;);
       let index = namesPropertyDefinition.length - 1;
       attribute = attributes.findBy(&#x27;name&#x27;, namesPropertyDefinition[index]);
@@ -311,6 +330,29 @@ export default Ember.Component.extend({
     return attribute;
   }),
 
+  /**
+    PropertyLookupStr selected attribute for editing.
+
+    @property propertyLookupStr
+    @type Object
+  */
+  propertyLookupStr: Ember.computed(&#x27;selectedAttribute&#x27;, function() {
+    let propertyDefinition = this.get(&#x27;selectedItem.propertyDefinition&#x27;);
+    if (!(propertyDefinition instanceof FdViewAttributesMaster)) {
+      return {};
+    }
+
+    let selectedAttribute = this.get(&#x27;selectedAttribute&#x27;);
+    let realStartRole = selectedAttribute.get(&#x27;realStartRole&#x27;) || selectedAttribute.get(&#x27;startRole&#x27;);
+    let propertyLookupStrArray = this.get(&#x27;model.editform.propertyLookupStr&#x27;);
+    let propertyLookupStr = propertyLookupStrArray.findBy(&#x27;property&#x27;, realStartRole);
+    if (Ember.isNone(propertyLookupStr)) {
+      propertyLookupStr = { property: realStartRole, container: &#x27;&#x27; };
+      propertyLookupStrArray.pushObject(propertyLookupStr);
+    }
+
+    return propertyLookupStr;
+  }),
   /**
     Handles changes in propertyName and selectedNodesTypeTree.
 
@@ -334,40 +376,6 @@ export default Ember.Component.extend({
             this.set(&#x27;applyTypeDisabled&#x27;, &#x27;disabled&#x27;);
           }
         });
-      }
-    }
-  }),
-
-  /**
-    Handles changes in selectedItem.
-
-    @method _selectedItemObserver
-  */
-  _selectedItemObserver: Ember.observer(&#x27;selectedItem&#x27;, function() {
-    let selectedItem = this.get(&#x27;selectedItem&#x27;);
-    if (!Ember.isNone(selectedItem)) {
-      let attributesTree = this.get(&#x27;dataAttributesTree&#x27;);
-      restorationNodeTree(attributesTree, {}, Ember.A([&#x27;master&#x27;, &#x27;class&#x27;]), false);
-      if (selectedItem.type === &#x27;master&#x27;) {
-        let allClasses = this.get(&#x27;store&#x27;).peekAll(&#x27;fd-dev-class&#x27;);
-        let stagePk = this.get(&#x27;currentProjectContext&#x27;).getCurrentStage();
-        let classesCurrentStage = allClasses.filterBy(&#x27;stage.id&#x27;, stagePk);
-        let namesPropertyDefinition = selectedItem.propertyDefinition.name.split(&#x27;.&#x27;);
-        let selectedItemClass = parsingPropertyName(this.get(&#x27;store&#x27;), this.get(&#x27;model.dataobject&#x27;), namesPropertyDefinition);
-        let listForms = classesCurrentStage.filter(function(item) {
-          return item.get(&#x27;formViews.firstObject.view.class.id&#x27;) === selectedItemClass.classId &amp;&amp;
-           item.get(&#x27;stereotype&#x27;) === &#x27;«listform»&#x27;;
-        });
-        let listFormsName = Ember.A(listForms).mapBy(&#x27;name&#x27;);
-        this.set(&#x27;dropdownItems&#x27;, listFormsName);
-      } else if (selectedItem.type === &#x27;detail&#x27;) {
-        let allClasses = this.get(&#x27;store&#x27;).peekAll(&#x27;fd-dev-class&#x27;);
-        let stagePk = this.get(&#x27;currentProjectContext&#x27;).getCurrentStage();
-        let classesCurrentStage = allClasses.filterBy(&#x27;stage.id&#x27;, stagePk);
-        let classData = classesCurrentStage.findBy(&#x27;name&#x27;, selectedItem.propertyDefinition.name);
-        let detailViews = classData.get(&#x27;views&#x27;);
-        let detailViewsItems = detailViews.mapBy(&#x27;name&#x27;);
-        this.set(&#x27;dropdownItems&#x27;, detailViewsItems);
       }
     }
   }),

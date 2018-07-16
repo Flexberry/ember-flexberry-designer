@@ -919,11 +919,14 @@ export default Ember.Controller.extend({
     let changedAssociations = model.association.filterBy(&#x27;hasDirtyAttributes&#x27;);
 
     // Сохранить класс формы редактирования
+    let editform = this.get(&#x27;model.editform&#x27;);
+    editform.set(&#x27;propertyLookupStr&#x27;, Ember.A(editform.get(&#x27;propertyLookupStr&#x27;).toArray()));
 
     return Ember.RSVP.all([
       view.save(),
       attributes.save(),
       dataobject.save(),
+      editform.save(),
       Ember.RSVP.all(arrayChengeClassElements.map(a =&gt; a.save())),
       Ember.RSVP.all(changedAssociations.map(a =&gt; a.save())),
     ]);

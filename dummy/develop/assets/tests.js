@@ -5100,7 +5100,7 @@ define('dummy/tests/unit/serializers/fd-dev-class-test', ['exports', 'ember-quni
     needs: ['serializer:fd-dev-class', 'transform:file', 'transform:decimal', 'transform:guid',
 
     /* merged manually start */
-    'transform:containers-tree',
+    'transform:containers-tree', 'transform:fd-propertylookupstr',
     /* merged manually end */
     'transform:fd-generation-state', 'transform:i-c-s-soft-s-t-o-r-m-n-e-t-access-type', 'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode', 'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events', 'transform:s-t-o-r-m-c-a-s-e-repository-access-modifier', 'transform:s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier', 'transform:new-platform-flexberry-web-designer-business-server-class',
     /* merged manually start */
