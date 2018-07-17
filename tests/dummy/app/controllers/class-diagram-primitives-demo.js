@@ -36,6 +36,12 @@ export default Ember.Controller.extend({
         var linkAggregation = new joint.shapes.flexberryUml.Aggregation({
           source: { x:100, y:30 },
           target: { x:300, y:30 },
+          labels: [{
+            attrs: { text: { text:  '*' } } }, {
+            attrs: { text: { text:  'txt' } } }, {
+            attrs: { text: { text:  '' } } }, {
+            attrs: { text: { text:  '1' } }
+          }],
         });
 
         var linkAssociation = new joint.shapes.flexberryUml.Association({
@@ -43,8 +49,10 @@ export default Ember.Controller.extend({
           target: { x:300, y:80 },
           labels: [{
             attrs: { text: { text:  '*' } } }, {
+            attrs: { text: { text:  '' } } }, {
+            attrs: { text: { text:  '' } } }, {
             attrs: { text: { text:  '0..1' } }
-          }]
+          }],
         });
 
         var linkComposition = new joint.shapes.flexberryUml.Composition({
@@ -75,6 +83,11 @@ export default Ember.Controller.extend({
         var linkQualifiedAggregation = new joint.shapes.flexberryUml.QualifiedAggregation({
           source: { x:100, y:370 },
           target: { x:300, y:370 },
+          labels: [{
+            attrs: { text: { text:  'txt' } } }, {
+            attrs: { text: { text:  '' } } }, {
+            attrs: { text: { text:  'lbl' } }
+          }],
         });
 
         var linkQualifiedComposition = new joint.shapes.flexberryUml.QualifiedComposition({
