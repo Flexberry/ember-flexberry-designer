@@ -88,8 +88,8 @@
       <label>{{t "components.fd-visual-edit-control-tree.detail-view"}}</label>
       {{
         flexberry-dropdown
-        items=dropdownItems
-        value=selectedItem.propertyDefinition.detailViewName
+        items=dropdownElements.dropdownItems
+        value=dropdownElements.dropdownValue.detailViewName
       }}
     </div>
   {{/if}}
@@ -98,8 +98,8 @@
       <label>{{t "components.fd-visual-edit-control-tree.master-list-form"}}</label>
       {{
         flexberry-dropdown
-        items=dropdownItems
-        value=propertyLookupStr.container
+        items=dropdownElements.dropdownItems
+        value=dropdownElements.dropdownValue.container
       }}
     </div>
     <div class="field">
@@ -118,7 +118,7 @@
       flexberry-checkbox
       onChange=(action "changeMasterNotNull")
       value=(eq selectedAttribute.startMultiplicity "1")
-      readonly=readonly
+      readonly=(or (eq selectedItem.type 'detail') readonly)
     }}
   </div>
   {{else}}

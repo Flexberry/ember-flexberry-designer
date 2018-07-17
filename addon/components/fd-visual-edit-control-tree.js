@@ -56,8 +56,6 @@ export default FlexberryBaseComponent.extend({
   */
   oldPropertyName: undefined,
 
-  dropdownItems: [],
-
   /**
     Flag: indicates whether selectet property is readonly.
 
@@ -188,10 +186,7 @@ export default FlexberryBaseComponent.extend({
     }
 
     let store = this.get('store');
-    let allClasses = store.peekAll('fd-dev-class');
     let stagePk = this.get('currentProjectContext').getCurrentStage();
-    let classesCurrentStage = allClasses.filterBy('stage.id', stagePk);
-
     if (propertyDefinition instanceof FdViewAttributesDetail) {
       this.set('selectedItem.type', 'detail');
       let allAggregation = store.peekAll('fd-dev-aggregation');
@@ -199,24 +194,14 @@ export default FlexberryBaseComponent.extend({
       attribute = aggregationCurrentStage.find(function(item) {
         return item.get('endRole') === namesPropertyDefinition[0] || item.get('endClass.name') === namesPropertyDefinition[0];
       });
-
-      let classData = classesCurrentStage.findBy('name', attribute.get('endClass.name'));
-      let detailViews = classData.get('views');
-      this.set('dropdownItems', detailViews.mapBy('name'));
-
     } else if (propertyDefinition instanceof FdViewAttributesMaster) {
       this.set('selectedItem.type', 'master');
       let parsingResult = parsingPropertyName(store, this.get('model.dataobject'), namesPropertyDefinition);
       attribute = parsingResult.associations[0];
-
-      let listForms = classesCurrentStage.filter(function(item) {
-        return item.get('formViews.firstObject.view.class.id') === attribute.get('startClass.id') &&
-         item.get('stereotype') === '«listform»';
-      });
-      this.set('dropdownItems', Ember.A(listForms).mapBy('name'));
-
     } else {
       let parsingResult = parsingPropertyName(store, this.get('model.dataobject'), namesPropertyDefinition);
+      let allClasses = store.peekAll('fd-dev-class');
+      let classesCurrentStage = allClasses.filterBy('stage.id', stagePk);
       let selectedClass = classesCurrentStage.findBy('id', parsingResult.classId);
       let attributes = selectedClass.get('attributes');
       let index = namesPropertyDefinition.length - 1;
@@ -230,27 +215,45 @@ export default FlexberryBaseComponent.extend({
   }),
 
   /**
-    PropertyLookupStr selected attribute for editing.
+    Computes view for details and list forms for masters.
 
-    @property propertyLookupStr
+    @property dropdownElements
     @type Object
   */
-  propertyLookupStr: Ember.computed('selectedAttribute', function() {
+  dropdownElements: Ember.computed('selectedAttribute', function() {
+    let attribute = this.get('selectedAttribute');
     let propertyDefinition = this.get('selectedItem.propertyDefinition');
-    if (!(propertyDefinition instanceof FdViewAttributesMaster)) {
-      return {};
+
+    let allClasses = this.get('store').peekAll('fd-dev-class');
+    let stagePk = this.get('currentProjectContext').getCurrentStage();
+    let classesCurrentStage = allClasses.filterBy('stage.id', stagePk);
+
+    let dropdownItems = [];
+    let dropdownValue = '';
+    if (propertyDefinition instanceof FdViewAttributesDetail) {
+      let classData = classesCurrentStage.findBy('name', attribute.get('endClass.name'));
+      let detailViews = classData.get('views');
+      dropdownItems = detailViews.mapBy('name');
+      dropdownValue = propertyDefinition;
+    } else if (propertyDefinition instanceof FdViewAttributesMaster) {
+      let listForms = classesCurrentStage.filter(function(item) {
+        return item.get('formViews.firstObject.view.class.id') === attribute.get('startClass.id') &&
+         item.get('stereotype') === '«listform»';
+      });
+      dropdownItems = Ember.A(listForms).mapBy('name');
+      let realStartRole = attribute.get('realStartRole') || attribute.get('startRole');
+      let propertyLookupStrArray = this.get('model.editform.propertyLookupStr');
+      dropdownValue = propertyLookupStrArray.findBy('property', realStartRole);
+      if (Ember.isNone(dropdownValue)) {
+        dropdownValue = { property: realStartRole, container: '' };
+        propertyLookupStrArray.pushObject(dropdownValue);
+      }
     }
 
-    let selectedAttribute = this.get('selectedAttribute');
-    let realStartRole = selectedAttribute.get('realStartRole') || selectedAttribute.get('startRole');
-    let propertyLookupStrArray = this.get('model.editform.propertyLookupStr');
-    let propertyLookupStr = propertyLookupStrArray.findBy('property', realStartRole);
-    if (Ember.isNone(propertyLookupStr)) {
-      propertyLookupStr = { property: realStartRole, container: '' };
-      propertyLookupStrArray.pushObject(propertyLookupStr);
-    }
-
-    return propertyLookupStr;
+    return {
+      dropdownItems: dropdownItems,
+      dropdownValue: dropdownValue
+    };
   }),
 
   /**
