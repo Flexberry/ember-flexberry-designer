@@ -487,7 +487,7 @@ export default Ember.Controller.extend({
     /**
       Set attribute in control.
 
-      @method actions.applyСlick
+      @method actions.setAttributeInControl
     */
     setAttributeInControl() {
       let selectedNodes = this.get('selectedNodesNotUsedAttributesTree')[0];
