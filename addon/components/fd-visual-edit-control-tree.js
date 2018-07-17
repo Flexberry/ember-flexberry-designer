@@ -56,6 +56,8 @@ export default FlexberryBaseComponent.extend({
   */
   oldPropertyName: undefined,
 
+  dropdownItems: [],
+
   /**
     Flag: indicates whether selectet property is readonly.
 
@@ -192,9 +194,13 @@ export default FlexberryBaseComponent.extend({
 
     if (propertyDefinition instanceof FdViewAttributesDetail) {
       this.set('selectedItem.type', 'detail');
-      attribute = this.get('model.aggregation').findBy('endRole', namesPropertyDefinition[0]);
+      let allAggregation = store.peekAll('fd-dev-aggregation');
+      let aggregationCurrentStage = allAggregation.filterBy('stage.id', stagePk);
+      attribute = aggregationCurrentStage.find(function(item) {
+        return item.get('endRole') === namesPropertyDefinition[0] || item.get('endClass.name') === namesPropertyDefinition[0];
+      });
 
-      let classData = classesCurrentStage.findBy('name', namesPropertyDefinition[0]);
+      let classData = classesCurrentStage.findBy('name', attribute.get('endClass.name'));
       let detailViews = classData.get('views');
       this.set('dropdownItems', detailViews.mapBy('name'));
 
@@ -246,6 +252,7 @@ export default FlexberryBaseComponent.extend({
 
     return propertyLookupStr;
   }),
+
   /**
     Handles changes in propertyName and selectedNodesTypeTree.
 
