@@ -16,7 +16,6 @@ export default Ember.Controller.extend({
         let sidebar = Ember.$('.ui.sidebar.main.menu');
         let sidebarWidth = sidebar.hasClass('visible') ? sidebar.width() : 0;
 
-
         if (minX > maxX) {
           maxX = paper && ('offsetWidth' in paper) ? paper.offsetWidth : 1024;
           maxX += sidebarWidth;
