@@ -30,17 +30,118 @@ export default Ember.Controller.extend({
           model: _this.graph,
         });
 
-        let instance = new joint.shapes.flexberryUml.CollaborationInstance({
+        let instance = new joint.shapes.flexberryUml.CollInstance({
           position: { x: 50, y: 10 },
           name: 'Instance',
         });
 
-        let multiObject = new joint.shapes.flexberryUml.CollaborationMultiObj({
+        let multiObject = new joint.shapes.flexberryUml.CollMultiObj({
           position: { x: 50, y: 60 },
           name: 'Multi Object \n new string',
         });
 
-        _this.graph.addCell([instance, multiObject]);
+        let activeObject = new joint.shapes.flexberryUml.CollActiveObj({
+          position: { x: 50, y: 120 },
+          name: 'Active object',
+        });
+
+        let nArrayAssociation = new joint.shapes.flexberryUml.CollNArrayAssociation({
+          position: { x: 50, y: 170 },
+          name: 'N-array association',
+        });
+
+        let designPattern = new joint.shapes.flexberryUml.CollDesignPattern({
+          position: { x: 50, y: 240 },
+          name: 'Design Pattern',
+        });
+
+        let nAssociationConnector = new joint.shapes.flexberryUml.CollNAssociationConnect({
+          source: { x:400, y:10 },
+          target: { x:700, y:10 },
+          labels: [{ attrs: { text: { text:  'n-Association' } } }]
+        });
+
+        let associationConnector = new joint.shapes.flexberryUml.CollAssociationConnect({
+          source: { x:400, y:50 },
+          target: { x:700, y:50 },
+          labels: [{
+            attrs: { text: { text: '1' } } }, {
+            attrs: { text: { text: 'Association' } } }, {
+            attrs: { text: { text: '2' } }
+          }]
+        });
+
+        let qualifiedConnector = new joint.shapes.flexberryUml.CollQualifiedConnect({
+          source: { x:400, y:90 },
+          target: { x:700, y:90 },
+          labels: [{
+            attrs: { text: { text: '1' } } }, {
+            attrs: { text: { text: 'Qualified' } } }, {
+            attrs: { text: { text: '2' } }
+          }]
+        });
+
+        let agregationConnector = new joint.shapes.flexberryUml.CollAggregationConnect({
+          source: { x:400, y:140 },
+          target: { x:700, y:140 },
+          labels: [{
+            attrs: { text: { text: '1' } } }, {
+            attrs: { text: { text: 'Agregation' } } }, {
+            attrs: { text: { text: '2' } }
+          }]
+        });
+
+        let qAgregationConnector = new joint.shapes.flexberryUml.CollQAggregationConnect({
+          source: { x:400, y:180 },
+          target: { x:700, y:180 },
+          labels: [{
+            attrs: { text: { text: '1' } } }, {
+            attrs: { text: { text: 'Q-Agregation' } } }, {
+            attrs: { text: { text: '2' } }
+          }]
+        });
+
+        let compositionConnector = new joint.shapes.flexberryUml.CollCompositionConnect({
+          source: { x:400, y:210 },
+          target: { x:700, y:210 },
+          labels: [{
+            attrs: { text: { text: '1' } } }, {
+            attrs: { text: { text: 'Composition' } } }, {
+            attrs: { text: { text: '2' } }
+          }]
+        });
+
+        let qCompositionConnector = new joint.shapes.flexberryUml.CollQCompositionConnect({
+          source: { x:400, y:250 },
+          target: { x:700, y:250 },
+          labels: [{
+            attrs: { text: { text: '1' } } }, {
+            attrs: { text: { text: 'Q-Composition' } } }, {
+            attrs: { text: { text: '2' } }
+          }]
+        });
+
+        let designPatternConnector = new joint.shapes.flexberryUml.CollPatternConnect({
+          source: { x:400, y:290 },
+          target: { x:700, y:290  },
+          labels: [{ attrs: { text: { text:  'Design Pattern' } } }]
+        });
+
+        _this.graph.addCell([
+          instance,
+          multiObject,
+          activeObject,
+          nArrayAssociation,
+          designPattern,
+          nAssociationConnector,
+          associationConnector,
+          qualifiedConnector,
+          agregationConnector,
+          qAgregationConnector,
+          compositionConnector,
+          qCompositionConnector,
+          designPatternConnector
+        ]);
       });
     }
   }
