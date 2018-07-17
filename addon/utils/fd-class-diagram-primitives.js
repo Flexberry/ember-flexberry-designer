@@ -187,7 +187,7 @@ joint.dia.Link.define('flexberryUml.BaseLink', {
   labels: [{
     position: { distance: 10, offset: -15 }, attrs: { text: { text:  '*' } } }, {
     position: { distance: 10, offset: 15 }, attrs: { text: { text:  '', 'text-anchor':'start' } } }, {
-    position: { distance: -40, offset: 15 }, attrs: { text: { text:  '','text-anchor':'end' } } }, {
+    position: { distance: -40, offset: 15 }, attrs: { text: { text:  '', 'text-anchor':'end' } } }, {
     position: { distance: -40, offset: -15 }, attrs: { text: { text:  '1' } }
   }]
 });
