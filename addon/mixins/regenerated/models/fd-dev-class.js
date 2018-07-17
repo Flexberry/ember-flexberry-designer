@@ -280,7 +280,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.propertyLookupCompute && typeof this.propertyLookupCompute === 'function') ? this.propertyLookupCompute() : null;
     this.set('propertyLookup', result);
   },
-  propertyLookupStr: DS.attr('string'),
+  propertyLookupStr: DS.attr('fd-propertylookupstr'),
   publishToEBSD: DS.attr('boolean'),
   /**
     Non-stored property.

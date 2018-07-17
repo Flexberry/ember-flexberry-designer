@@ -174,6 +174,9 @@ export default FlexberryBaseComponent.extend({
       return;
     }
 
+    let attributesTree = this.get('dataAttributesTree');
+    restorationNodeTree(attributesTree, {}, Ember.A(['master', 'class']), false);
+
     let attribute;
     let namesPropertyDefinition = propertyDefinition.name.split('.');
     if (namesPropertyDefinition.length > 1) {
@@ -182,17 +185,33 @@ export default FlexberryBaseComponent.extend({
       this.set('readonly', false);
     }
 
+    let store = this.get('store');
+    let allClasses = store.peekAll('fd-dev-class');
+    let stagePk = this.get('currentProjectContext').getCurrentStage();
+    let classesCurrentStage = allClasses.filterBy('stage.id', stagePk);
+
     if (propertyDefinition instanceof FdViewAttributesDetail) {
       this.set('selectedItem.type', 'detail');
-      let aggregation = this.get('model.aggregation');
-      attribute = aggregation.findBy('endRole', namesPropertyDefinition[0]);
+      attribute = this.get('model.aggregation').findBy('endRole', namesPropertyDefinition[0]);
+
+      let classData = classesCurrentStage.findBy('name', namesPropertyDefinition[0]);
+      let detailViews = classData.get('views');
+      this.set('dropdownItems', detailViews.mapBy('name'));
+
     } else if (propertyDefinition instanceof FdViewAttributesMaster) {
       this.set('selectedItem.type', 'master');
-      let parsingResult = parsingPropertyName(this.get('store'), this.get('model.dataobject'), namesPropertyDefinition);
+      let parsingResult = parsingPropertyName(store, this.get('model.dataobject'), namesPropertyDefinition);
       attribute = parsingResult.associations[0];
+
+      let listForms = classesCurrentStage.filter(function(item) {
+        return item.get('formViews.firstObject.view.class.id') === attribute.get('startClass.id') &&
+         item.get('stereotype') === '«listform»';
+      });
+      this.set('dropdownItems', Ember.A(listForms).mapBy('name'));
+
     } else {
-      let parsingResult = parsingPropertyName(this.get('store'), this.get('model.dataobject'), namesPropertyDefinition);
-      let selectedClass = this.get('store').peekAll('fd-dev-class').findBy('id', parsingResult.classId);
+      let parsingResult = parsingPropertyName(store, this.get('model.dataobject'), namesPropertyDefinition);
+      let selectedClass = classesCurrentStage.findBy('id', parsingResult.classId);
       let attributes = selectedClass.get('attributes');
       let index = namesPropertyDefinition.length - 1;
       attribute = attributes.findBy('name', namesPropertyDefinition[index]);
@@ -204,6 +223,29 @@ export default FlexberryBaseComponent.extend({
     return attribute;
   }),
 
+  /**
+    PropertyLookupStr selected attribute for editing.
+
+    @property propertyLookupStr
+    @type Object
+  */
+  propertyLookupStr: Ember.computed('selectedAttribute', function() {
+    let propertyDefinition = this.get('selectedItem.propertyDefinition');
+    if (!(propertyDefinition instanceof FdViewAttributesMaster)) {
+      return {};
+    }
+
+    let selectedAttribute = this.get('selectedAttribute');
+    let realStartRole = selectedAttribute.get('realStartRole') || selectedAttribute.get('startRole');
+    let propertyLookupStrArray = this.get('model.editform.propertyLookupStr');
+    let propertyLookupStr = propertyLookupStrArray.findBy('property', realStartRole);
+    if (Ember.isNone(propertyLookupStr)) {
+      propertyLookupStr = { property: realStartRole, container: '' };
+      propertyLookupStrArray.pushObject(propertyLookupStr);
+    }
+
+    return propertyLookupStr;
+  }),
   /**
     Handles changes in propertyName and selectedNodesTypeTree.
 
@@ -227,40 +269,6 @@ export default FlexberryBaseComponent.extend({
             this.set('applyTypeDisabled', 'disabled');
           }
         });
-      }
-    }
-  }),
-
-  /**
-    Handles changes in selectedItem.
-
-    @method _selectedItemObserver
-  */
-  _selectedItemObserver: Ember.observer('selectedItem', function() {
-    let selectedItem = this.get('selectedItem');
-    if (!Ember.isNone(selectedItem)) {
-      let attributesTree = this.get('dataAttributesTree');
-      restorationNodeTree(attributesTree, {}, Ember.A(['master', 'class']), false);
-      if (selectedItem.type === 'master') {
-        let allClasses = this.get('store').peekAll('fd-dev-class');
-        let stagePk = this.get('currentProjectContext').getCurrentStage();
-        let classesCurrentStage = allClasses.filterBy('stage.id', stagePk);
-        let namesPropertyDefinition = selectedItem.propertyDefinition.name.split('.');
-        let selectedItemClass = parsingPropertyName(this.get('store'), this.get('model.dataobject'), namesPropertyDefinition);
-        let listForms = classesCurrentStage.filter(function(item) {
-          return item.get('formViews.firstObject.view.class.id') === selectedItemClass.classId &&
-           item.get('stereotype') === '«listform»';
-        });
-        let listFormsName = Ember.A(listForms).mapBy('name');
-        this.set('dropdownItems', listFormsName);
-      } else if (selectedItem.type === 'detail') {
-        let allClasses = this.get('store').peekAll('fd-dev-class');
-        let stagePk = this.get('currentProjectContext').getCurrentStage();
-        let classesCurrentStage = allClasses.filterBy('stage.id', stagePk);
-        let classData = classesCurrentStage.findBy('name', selectedItem.propertyDefinition.name);
-        let detailViews = classData.get('views');
-        let detailViewsItems = detailViews.mapBy('name');
-        this.set('dropdownItems', detailViewsItems);
       }
     }
   }),

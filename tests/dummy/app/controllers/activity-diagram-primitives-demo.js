@@ -148,8 +148,13 @@ export default Ember.Controller.extend({
         state: 'state'
       });
 
+      let partition = new joint.shapes.flexberryUml.Partition({
+        position: { x: 600, y: 350 },
+        name: 'partition'
+      });
+
       _this.graph.addCell([note, SignalReceiptRight, SignalReceiptLeft, SignalSendingRight,
-        SignalSendingLeft, startState, endState, decision, objectInState, activeState]);
+        SignalSendingLeft, startState, endState, decision, objectInState, activeState, partition]);
     }
   }
 });
