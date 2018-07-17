@@ -10,7 +10,13 @@ import FdViewAttributesProperty from '../objects/fd-view-attributes-property';
 import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 import FdAttributesTree from '../objects/fd-attributes-tree';
-import { getDataForBuildTree, getTreeNodeByNotUsedAttributes, getAssociationTreeNode, getTreeNodeByNotUsedAggregation } from '../utils/fd-attributes-for-tree';
+import {
+  getDataForBuildTree,
+  getTreeNodeByNotUsedAttributes,
+  getAssociationTreeNode,
+  getTreeNodeByNotUsedAggregation,
+  getClassTreeNode
+ } from '../utils/fd-attributes-for-tree';
 import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
 
 export default Ember.Controller.extend({
@@ -266,14 +272,17 @@ export default Ember.Controller.extend({
       let attributes = dataobject.get('attributes');
       let atrIndex = findFreeNodeTreeNameIndex('newAttribute', 1, attributes, 'name');
 
-      let newAttribute = this.get('store').createRecord('fd-dev-attribute', {
+      this.get('store').createRecord('fd-dev-attribute', {
         class: dataobject,
         name: 'newAttribute' + atrIndex,
         type: 'string',
         notNull: false,
         defaultValue: ''
       });
-      attributes.pushObject(newAttribute);
+
+      let dataForBuildTree = getDataForBuildTree(this.get('store'), dataobject.get('id'));
+      let newTree = getClassTreeNode(Ember.A(), dataForBuildTree.classes, dataobject.get('id'), 'type');
+      this.set('model.attributes', newTree);
 
       let view = this.get('model.editform.formViews.firstObject.view');
       let viewDefinition = view.get('definition');

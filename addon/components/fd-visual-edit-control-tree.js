@@ -287,6 +287,16 @@ export default Ember.Component.extend({
     }
   }),
 
+  /**
+    Handles changes in model.attributes.
+
+    @method _modelAttributesObserver
+  */
+  _modelAttributesObserver: Ember.observer('model.attributes', function() {
+    let attributesTree = this._createAttributesTree();
+    this.set('dataAttributesTree', attributesTree);
+  }),
+
   init() {
     this._super(...arguments);
     let attributesTree = this._createAttributesTree();
