@@ -200,7 +200,7 @@ joint.dia.Link.define('flexberryUml.Qualified', {
   attrs: { '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 z', fill: 'white' } },
   labels: [{
     position: { distance: 10, offset: 15 }, attrs: { text: { text:  '', 'text-anchor':'start' } } }, {
-    position: { distance: -40, offset: 15 }, attrs: { text: { text:  '','text-anchor':'end' } } }, {
+    position: { distance: -40, offset: 15 }, attrs: { text: { text:  '', 'text-anchor':'end' } } }, {
   }]
 });
 
