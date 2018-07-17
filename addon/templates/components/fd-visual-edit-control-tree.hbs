@@ -112,7 +112,7 @@
   {{/if}}
 
   {{#if (or (eq selectedItem.type 'master') (eq selectedItem.type 'detail'))}}
-  <div class="field">
+  <div class="field {{if readonly "disabled"}}">
     <label>{{t "components.fd-visual-edit-control-tree.not-null"}}</label>
     {{
       flexberry-checkbox
@@ -122,7 +122,7 @@
     }}
   </div>
   {{else}}
-  <div class="field">
+  <div class="field {{if readonly "disabled"}}">
     <label>{{t "components.fd-visual-edit-control-tree.not-null"}}</label>
     {{
       flexberry-checkbox
