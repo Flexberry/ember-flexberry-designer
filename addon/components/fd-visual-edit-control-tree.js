@@ -201,19 +201,21 @@ export default FlexberryBaseComponent.extend({
 
     let store = this.get('store');
     let stagePk = this.get('currentProjectContext').getCurrentStage();
+    let dataobject = this.get('model.dataobject');
     if (propertyDefinition instanceof FdViewAttributesDetail) {
       this.set('selectedItem.type', 'detail');
       let allAggregation = store.peekAll('fd-dev-aggregation');
       let aggregationCurrentStage = allAggregation.filterBy('stage.id', stagePk);
       attribute = aggregationCurrentStage.find(function(item) {
-        return item.get('endRole') === namesPropertyDefinition[0] || item.get('endClass.name') === namesPropertyDefinition[0];
+        return (item.get('endRole') === namesPropertyDefinition[0] || item.get('endClass.name') === namesPropertyDefinition[0]) &&
+         item.get('startClass.id') === dataobject.id;
       });
     } else if (propertyDefinition instanceof FdViewAttributesMaster) {
       this.set('selectedItem.type', 'master');
-      let parsingResult = parsingPropertyName(store, this.get('model.dataobject'), namesPropertyDefinition);
+      let parsingResult = parsingPropertyName(store, dataobject, namesPropertyDefinition);
       attribute = parsingResult.associations[0];
     } else {
-      let parsingResult = parsingPropertyName(store, this.get('model.dataobject'), namesPropertyDefinition);
+      let parsingResult = parsingPropertyName(store, dataobject, namesPropertyDefinition);
       let allClasses = store.peekAll('fd-dev-class');
       let classesCurrentStage = allClasses.filterBy('stage.id', stagePk);
       let selectedClass = classesCurrentStage.findBy('id', parsingResult.classId);
