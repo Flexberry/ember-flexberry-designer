@@ -33440,7 +33440,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
                   "column": 6
                 },
                 "end": {
-                  "line": 83,
+                  "line": 81,
                   "column": 6
                 }
               },
@@ -33477,7 +33477,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
               morphs[1] = dom.createMorphAt(fragment, 3, 3, contextualElement);
               return morphs;
             },
-            statements: [["inline", "t", ["forms.fd-editform-constructor.form-config-panel.control-properties-header"], [], ["loc", [null, [75, 10], [75, 91]]]], ["inline", "fd-visual-edit-control-tree", [], ["selectedItem", ["subexpr", "@mut", [["get", "selectedItem", ["loc", [null, [78, 23], [78, 35]]]]], [], []], "model", ["subexpr", "@mut", [["get", "model", ["loc", [null, [79, 16], [79, 21]]]]], [], []], "items", ["subexpr", "@mut", [["get", "model.controls", ["loc", [null, [80, 16], [80, 30]]]]], [], []], "typeForm", "editform"], ["loc", [null, [77, 8], [82, 10]]]]],
+            statements: [["inline", "t", ["forms.fd-editform-constructor.form-config-panel.control-properties-header"], [], ["loc", [null, [75, 10], [75, 91]]]], ["inline", "fd-visual-edit-control-tree", [], ["selectedItem", ["subexpr", "@mut", [["get", "selectedItem", ["loc", [null, [78, 23], [78, 35]]]]], [], []], "model", ["subexpr", "@mut", [["get", "model", ["loc", [null, [79, 16], [79, 21]]]]], [], []]], ["loc", [null, [77, 8], [80, 10]]]]],
             locals: [],
             templates: []
           };
@@ -33491,11 +33491,11 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
                 "loc": {
                   "source": null,
                   "start": {
-                    "line": 138,
+                    "line": 136,
                     "column": 8
                   },
                   "end": {
-                    "line": 162,
+                    "line": 160,
                     "column": 8
                   }
                 },
@@ -33574,7 +33574,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
                 morphs[6] = dom.createMorphAt(element1, 1, 1);
                 return morphs;
               },
-              statements: [["inline", "t", ["forms.fd-editform-constructor.form-config-panel.attributes-control"], [], ["loc", [null, [140, 12], [140, 86]]]], ["inline", "ember-jstree", [], ["actionReceiver", ["subexpr", "@mut", [["get", "actionReceiverNotUsedAttributesTree", ["loc", [null, [146, 31], [146, 66]]]]], [], []], "selectedNodes", ["subexpr", "@mut", [["get", "selectedNodesNotUsedAttributesTree", ["loc", [null, [147, 30], [147, 64]]]]], [], []], "data", ["subexpr", "@mut", [["get", "dataNotUsedAttributesTree", ["loc", [null, [148, 21], [148, 46]]]]], [], []], "plugins", ["subexpr", "@mut", [["get", "pluginsTree", ["loc", [null, [149, 24], [149, 35]]]]], [], []], "typesOptions", ["subexpr", "@mut", [["get", "typesOptionsTree", ["loc", [null, [150, 29], [150, 45]]]]], [], []], "treeObject", ["subexpr", "@mut", [["get", "treeObjectNotUsedAttributesTree", ["loc", [null, [151, 27], [151, 58]]]]], [], []], "eventDidBecomeReady", ["subexpr", "action", ["handleTreeDidBecomeReady"], [], ["loc", [null, [152, 36], [152, 71]]]]], ["loc", [null, [144, 14], [153, 16]]]], ["attribute", "class", ["concat", ["ui button ", ["get", "_applyDisabled", ["loc", [null, [156, 37], [156, 51]]]]]]], ["element", "action", ["setAttributeInControl"], ["on", "click"], ["loc", [null, [156, 55], [156, 101]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.apply"], [], ["loc", [null, [157, 12], [157, 73]]]], ["element", "action", ["deleteEmptyControl"], ["on", "click"], ["loc", [null, [159, 36], [159, 79]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.cancel"], [], ["loc", [null, [160, 12], [160, 74]]]]],
+              statements: [["inline", "t", ["forms.fd-editform-constructor.form-config-panel.attributes-control"], [], ["loc", [null, [138, 12], [138, 86]]]], ["inline", "ember-jstree", [], ["actionReceiver", ["subexpr", "@mut", [["get", "actionReceiverNotUsedAttributesTree", ["loc", [null, [144, 31], [144, 66]]]]], [], []], "selectedNodes", ["subexpr", "@mut", [["get", "selectedNodesNotUsedAttributesTree", ["loc", [null, [145, 30], [145, 64]]]]], [], []], "data", ["subexpr", "@mut", [["get", "dataNotUsedAttributesTree", ["loc", [null, [146, 21], [146, 46]]]]], [], []], "plugins", ["subexpr", "@mut", [["get", "pluginsTree", ["loc", [null, [147, 24], [147, 35]]]]], [], []], "typesOptions", ["subexpr", "@mut", [["get", "typesOptionsTree", ["loc", [null, [148, 29], [148, 45]]]]], [], []], "treeObject", ["subexpr", "@mut", [["get", "treeObjectNotUsedAttributesTree", ["loc", [null, [149, 27], [149, 58]]]]], [], []], "eventDidBecomeReady", ["subexpr", "action", ["handleTreeDidBecomeReady"], [], ["loc", [null, [150, 36], [150, 71]]]]], ["loc", [null, [142, 14], [151, 16]]]], ["attribute", "class", ["concat", ["ui button ", ["get", "_applyDisabled", ["loc", [null, [154, 37], [154, 51]]]]]]], ["element", "action", ["setAttributeInControl"], ["on", "click"], ["loc", [null, [154, 55], [154, 101]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.apply"], [], ["loc", [null, [155, 12], [155, 73]]]], ["element", "action", ["deleteEmptyControl"], ["on", "click"], ["loc", [null, [157, 36], [157, 79]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.cancel"], [], ["loc", [null, [158, 12], [158, 74]]]]],
               locals: [],
               templates: []
             };
@@ -33586,11 +33586,11 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 85,
+                  "line": 83,
                   "column": 6
                 },
                 "end": {
-                  "line": 163,
+                  "line": 161,
                   "column": 6
                 }
               },
@@ -33845,7 +33845,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
               dom.insertBoundary(fragment, null);
               return morphs;
             },
-            statements: [["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-controls-header"], [], ["loc", [null, [87, 10], [87, 85]]]], ["element", "action", ["addControl"], [], ["loc", [null, [90, 38], [90, 61]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-control"], [], ["loc", [null, [91, 14], [91, 81]]]], ["element", "action", ["addGroup"], [], ["loc", [null, [93, 38], [93, 59]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-group"], [], ["loc", [null, [94, 14], [94, 79]]]], ["element", "action", ["addTab"], [], ["loc", [null, [96, 38], [96, 57]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-tab"], [], ["loc", [null, [97, 14], [97, 77]]]], ["element", "action", ["addEmptyControl"], [], ["loc", [null, [101, 36], [101, 64]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.empty-control"], [], ["loc", [null, [102, 12], [102, 81]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.move-controls-header"], [], ["loc", [null, [106, 10], [106, 86]]]], ["attribute", "class", ["concat", ["ui ", ["subexpr", "if", [["get", "_moveItem", ["loc", [null, [110, 35], [110, 44]]]], "active"], [], ["loc", [null, [110, 30], [110, 55]]]], " button"]]], ["attribute", "disabled", ["subexpr", "not", [["get", "selectedItem", ["loc", [null, [110, 79], [110, 91]]]]], [], ["loc", [null, [110, 73], [110, 93]]]]], ["element", "action", [["get", "toggleProperty", ["loc", [null, [110, 103], [110, 117]]]], "_moveItem"], [], ["loc", [null, [110, 94], [110, 131]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.move-control"], [], ["loc", [null, [111, 14], [111, 82]]]], ["attribute", "disabled", ["subexpr", "not", [["get", "selectedItem", ["loc", [null, [115, 53], [115, 65]]]]], [], ["loc", [null, [115, 47], [115, 67]]]]], ["element", "action", ["removeSelectedItem", false], [], ["loc", [null, [115, 68], [115, 105]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.remove-control"], [], ["loc", [null, [116, 14], [116, 84]]]], ["attribute", "disabled", ["subexpr", "or", [["subexpr", "not", [["get", "selectedItem", ["loc", [null, [122, 62], [122, 74]]]]], [], ["loc", [null, [122, 57], [122, 75]]]], ["subexpr", "not", [["get", "_selectedIsRow", ["loc", [null, [122, 81], [122, 95]]]]], [], ["loc", [null, [122, 76], [122, 96]]]], ["get", "_selectedIsFirst", ["loc", [null, [122, 97], [122, 113]]]]], [], ["loc", [null, [122, 52], [122, 115]]]]], ["element", "action", ["sortSelectedItem", -1], [], ["loc", [null, [122, 116], [122, 148]]]], ["attribute", "disabled", ["subexpr", "or", [["subexpr", "not", [["get", "selectedItem", ["loc", [null, [125, 62], [125, 74]]]]], [], ["loc", [null, [125, 57], [125, 75]]]], ["subexpr", "not", [["get", "_selectedIsRow", ["loc", [null, [125, 81], [125, 95]]]]], [], ["loc", [null, [125, 76], [125, 96]]]], ["get", "_selectedIsLast", ["loc", [null, [125, 97], [125, 112]]]]], [], ["loc", [null, [125, 52], [125, 114]]]]], ["element", "action", ["sortSelectedItem", 1], [], ["loc", [null, [125, 115], [125, 146]]]], ["attribute", "disabled", ["subexpr", "or", [["subexpr", "not", [["get", "selectedItem", ["loc", [null, [130, 62], [130, 74]]]]], [], ["loc", [null, [130, 57], [130, 75]]]], ["get", "_selectedIsRow", ["loc", [null, [130, 76], [130, 90]]]], ["get", "_selectedIsFirst", ["loc", [null, [130, 91], [130, 107]]]]], [], ["loc", [null, [130, 52], [130, 109]]]]], ["element", "action", ["sortSelectedItem", -1], [], ["loc", [null, [130, 110], [130, 142]]]], ["attribute", "disabled", ["subexpr", "or", [["subexpr", "not", [["get", "selectedItem", ["loc", [null, [133, 62], [133, 74]]]]], [], ["loc", [null, [133, 57], [133, 75]]]], ["get", "_selectedIsRow", ["loc", [null, [133, 76], [133, 90]]]], ["get", "_selectedIsLast", ["loc", [null, [133, 91], [133, 106]]]]], [], ["loc", [null, [133, 52], [133, 108]]]]], ["element", "action", ["sortSelectedItem", 1], [], ["loc", [null, [133, 109], [133, 140]]]], ["block", "if", [["get", "_showNotUsedAttributesTree", ["loc", [null, [138, 14], [138, 40]]]]], [], 0, null, ["loc", [null, [138, 8], [162, 15]]]]],
+            statements: [["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-controls-header"], [], ["loc", [null, [85, 10], [85, 85]]]], ["element", "action", ["addControl"], [], ["loc", [null, [88, 38], [88, 61]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-control"], [], ["loc", [null, [89, 14], [89, 81]]]], ["element", "action", ["addGroup"], [], ["loc", [null, [91, 38], [91, 59]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-group"], [], ["loc", [null, [92, 14], [92, 79]]]], ["element", "action", ["addTab"], [], ["loc", [null, [94, 38], [94, 57]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.add-tab"], [], ["loc", [null, [95, 14], [95, 77]]]], ["element", "action", ["addEmptyControl"], [], ["loc", [null, [99, 36], [99, 64]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.empty-control"], [], ["loc", [null, [100, 12], [100, 81]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.move-controls-header"], [], ["loc", [null, [104, 10], [104, 86]]]], ["attribute", "class", ["concat", ["ui ", ["subexpr", "if", [["get", "_moveItem", ["loc", [null, [108, 35], [108, 44]]]], "active"], [], ["loc", [null, [108, 30], [108, 55]]]], " button"]]], ["attribute", "disabled", ["subexpr", "not", [["get", "selectedItem", ["loc", [null, [108, 79], [108, 91]]]]], [], ["loc", [null, [108, 73], [108, 93]]]]], ["element", "action", [["get", "toggleProperty", ["loc", [null, [108, 103], [108, 117]]]], "_moveItem"], [], ["loc", [null, [108, 94], [108, 131]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.move-control"], [], ["loc", [null, [109, 14], [109, 82]]]], ["attribute", "disabled", ["subexpr", "not", [["get", "selectedItem", ["loc", [null, [113, 53], [113, 65]]]]], [], ["loc", [null, [113, 47], [113, 67]]]]], ["element", "action", ["removeSelectedItem", false], [], ["loc", [null, [113, 68], [113, 105]]]], ["inline", "t", ["forms.fd-editform-constructor.form-config-panel.remove-control"], [], ["loc", [null, [114, 14], [114, 84]]]], ["attribute", "disabled", ["subexpr", "or", [["subexpr", "not", [["get", "selectedItem", ["loc", [null, [120, 62], [120, 74]]]]], [], ["loc", [null, [120, 57], [120, 75]]]], ["subexpr", "not", [["get", "_selectedIsRow", ["loc", [null, [120, 81], [120, 95]]]]], [], ["loc", [null, [120, 76], [120, 96]]]], ["get", "_selectedIsFirst", ["loc", [null, [120, 97], [120, 113]]]]], [], ["loc", [null, [120, 52], [120, 115]]]]], ["element", "action", ["sortSelectedItem", -1], [], ["loc", [null, [120, 116], [120, 148]]]], ["attribute", "disabled", ["subexpr", "or", [["subexpr", "not", [["get", "selectedItem", ["loc", [null, [123, 62], [123, 74]]]]], [], ["loc", [null, [123, 57], [123, 75]]]], ["subexpr", "not", [["get", "_selectedIsRow", ["loc", [null, [123, 81], [123, 95]]]]], [], ["loc", [null, [123, 76], [123, 96]]]], ["get", "_selectedIsLast", ["loc", [null, [123, 97], [123, 112]]]]], [], ["loc", [null, [123, 52], [123, 114]]]]], ["element", "action", ["sortSelectedItem", 1], [], ["loc", [null, [123, 115], [123, 146]]]], ["attribute", "disabled", ["subexpr", "or", [["subexpr", "not", [["get", "selectedItem", ["loc", [null, [128, 62], [128, 74]]]]], [], ["loc", [null, [128, 57], [128, 75]]]], ["get", "_selectedIsRow", ["loc", [null, [128, 76], [128, 90]]]], ["get", "_selectedIsFirst", ["loc", [null, [128, 91], [128, 107]]]]], [], ["loc", [null, [128, 52], [128, 109]]]]], ["element", "action", ["sortSelectedItem", -1], [], ["loc", [null, [128, 110], [128, 142]]]], ["attribute", "disabled", ["subexpr", "or", [["subexpr", "not", [["get", "selectedItem", ["loc", [null, [131, 62], [131, 74]]]]], [], ["loc", [null, [131, 57], [131, 75]]]], ["get", "_selectedIsRow", ["loc", [null, [131, 76], [131, 90]]]], ["get", "_selectedIsLast", ["loc", [null, [131, 91], [131, 106]]]]], [], ["loc", [null, [131, 52], [131, 108]]]]], ["element", "action", ["sortSelectedItem", 1], [], ["loc", [null, [131, 109], [131, 140]]]], ["block", "if", [["get", "_showNotUsedAttributesTree", ["loc", [null, [136, 14], [136, 40]]]]], [], 0, null, ["loc", [null, [136, 8], [160, 15]]]]],
             locals: [],
             templates: [child0]
           };
@@ -33861,7 +33861,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
                 "column": 2
               },
               "end": {
-                "line": 166,
+                "line": 164,
                 "column": 2
               }
             },
@@ -33923,7 +33923,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
             morphs[3] = dom.createMorphAt(element19, 7, 7);
             return morphs;
           },
-          statements: [["inline", "t", ["forms.fd-editform-constructor.caption"], [], ["loc", [null, [56, 10], [56, 55]]]], ["block", "ui-tab-segment", [], ["tab", "first", "title", ["subexpr", "t", ["forms.fd-editform-constructor.form-config-panel.form-properties-header"], [], ["loc", [null, [59, 42], [59, 118]]]], "theme", "", "active", true], 0, null, ["loc", [null, [59, 6], [71, 25]]]], ["block", "ui-tab-segment", [], ["tab", "control-properties", "title", ["subexpr", "t", ["forms.fd-editform-constructor.form-config-panel.control-properties-header"], [], ["loc", [null, [73, 55], [73, 134]]]], "theme", ""], 1, null, ["loc", [null, [73, 6], [83, 25]]]], ["block", "ui-tab-segment", [], ["tab", "add-controls", "title", ["subexpr", "t", ["forms.fd-editform-constructor.form-config-panel.add-controls-header"], [], ["loc", [null, [85, 49], [85, 122]]]], "theme", ""], 2, null, ["loc", [null, [85, 6], [163, 25]]]]],
+          statements: [["inline", "t", ["forms.fd-editform-constructor.caption"], [], ["loc", [null, [56, 10], [56, 55]]]], ["block", "ui-tab-segment", [], ["tab", "first", "title", ["subexpr", "t", ["forms.fd-editform-constructor.form-config-panel.form-properties-header"], [], ["loc", [null, [59, 42], [59, 118]]]], "theme", "", "active", true], 0, null, ["loc", [null, [59, 6], [71, 25]]]], ["block", "ui-tab-segment", [], ["tab", "control-properties", "title", ["subexpr", "t", ["forms.fd-editform-constructor.form-config-panel.control-properties-header"], [], ["loc", [null, [73, 55], [73, 134]]]], "theme", ""], 1, null, ["loc", [null, [73, 6], [81, 25]]]], ["block", "ui-tab-segment", [], ["tab", "add-controls", "title", ["subexpr", "t", ["forms.fd-editform-constructor.form-config-panel.add-controls-header"], [], ["loc", [null, [83, 49], [83, 122]]]], "theme", ""], 2, null, ["loc", [null, [83, 6], [161, 25]]]]],
           locals: [],
           templates: [child0, child1, child2]
         };
@@ -33939,7 +33939,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
               "column": 0
             },
             "end": {
-              "line": 167,
+              "line": 165,
               "column": 0
             }
           },
@@ -33962,7 +33962,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [["block", "fd-tabs", [], ["tabsMenuTheme", "vertical tabular", "class", "ui segments horizontal right-tabs"], 0, null, ["loc", [null, [52, 2], [166, 14]]]]],
+        statements: [["block", "fd-tabs", [], ["tabsMenuTheme", "vertical tabular", "class", "ui segments horizontal right-tabs"], 0, null, ["loc", [null, [52, 2], [164, 14]]]]],
         locals: [],
         templates: [child0]
       };
@@ -33981,7 +33981,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
             "column": 0
           },
           "end": {
-            "line": 168,
+            "line": 166,
             "column": 0
           }
         },
@@ -34080,7 +34080,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["content", "model.editform.caption", ["loc", [null, [1, 22], [1, 48]]]], ["attribute", "class", ["concat", ["ui form flexberry-vertical-form ", ["get", "state", ["loc", [null, [3, 47], [3, 52]]]]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [4, 26], [4, 31]]]]], [], []]], ["loc", [null, [4, 2], [4, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [7, 16], [7, 24]]]]], [], 0, null, ["loc", [null, [7, 6], [16, 17]]]], ["inline", "t", ["forms.fd-visual-edit-form.preview-mobile-variant"], [], ["loc", [null, [18, 8], [18, 64]]]], ["element", "action", ["close"], [], ["loc", [null, [20, 59], [20, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [21, 8], [21, 49]]]], ["block", "each", [["get", "model.controls", ["loc", [null, [26, 10], [26, 24]]]]], [], 1, null, ["loc", [null, [26, 2], [35, 11]]]], ["block", "if", [["get", "_showModalDialog", ["loc", [null, [38, 6], [38, 22]]]]], [], 2, null, ["loc", [null, [38, 0], [49, 7]]]], ["block", "fd-config-panel", [], [], 3, null, ["loc", [null, [51, 0], [167, 20]]]]],
+      statements: [["content", "model.editform.caption", ["loc", [null, [1, 22], [1, 48]]]], ["attribute", "class", ["concat", ["ui form flexberry-vertical-form ", ["get", "state", ["loc", [null, [3, 47], [3, 52]]]]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [4, 26], [4, 31]]]]], [], []]], ["loc", [null, [4, 2], [4, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [7, 16], [7, 24]]]]], [], 0, null, ["loc", [null, [7, 6], [16, 17]]]], ["inline", "t", ["forms.fd-visual-edit-form.preview-mobile-variant"], [], ["loc", [null, [18, 8], [18, 64]]]], ["element", "action", ["close"], [], ["loc", [null, [20, 59], [20, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [21, 8], [21, 49]]]], ["block", "each", [["get", "model.controls", ["loc", [null, [26, 10], [26, 24]]]]], [], 1, null, ["loc", [null, [26, 2], [35, 11]]]], ["block", "if", [["get", "_showModalDialog", ["loc", [null, [38, 6], [38, 22]]]]], [], 2, null, ["loc", [null, [38, 0], [49, 7]]]], ["block", "fd-config-panel", [], [], 3, null, ["loc", [null, [51, 0], [165, 20]]]]],
       locals: [],
       templates: [child0, child1, child2, child3]
     };
@@ -37219,7 +37219,7 @@ define("dummy/templates/fd-listform-constructor", ["exports"], function (exports
               morphs[1] = dom.createMorphAt(fragment, 3, 3, contextualElement);
               return morphs;
             },
-            statements: [["inline", "t", ["forms.fd-listform-constructor.form-config-panel.control-properties-header"], [], ["loc", [null, [101, 10], [101, 91]]]], ["inline", "fd-visual-edit-control-tree", [], ["selectedItem", ["subexpr", "@mut", [["get", "selectedColumn", ["loc", [null, [104, 23], [104, 37]]]]], [], []], "model", ["subexpr", "@mut", [["get", "model", ["loc", [null, [105, 16], [105, 21]]]]], [], []], "items", ["subexpr", "@mut", [["get", "columns", ["loc", [null, [106, 16], [106, 23]]]]], [], []], "typeForm", "listform"], ["loc", [null, [103, 8], [108, 10]]]]],
+            statements: [["inline", "t", ["forms.fd-editform-constructor.form-config-panel.control-properties-header"], [], ["loc", [null, [101, 10], [101, 91]]]], ["inline", "fd-visual-edit-control", [], ["selectedControl", ["subexpr", "@mut", [["get", "selectedAttribute", ["loc", [null, [104, 26], [104, 43]]]]], [], []], "typemap", ["subexpr", "@mut", [["get", "model.typemap", ["loc", [null, [105, 18], [105, 31]]]]], [], []], "enums", ["subexpr", "@mut", [["get", "model.enums", ["loc", [null, [106, 16], [106, 27]]]]], [], []], "fbtypes", ["subexpr", "@mut", [["get", "model.types", ["loc", [null, [107, 18], [107, 29]]]]], [], []]], ["loc", [null, [103, 8], [108, 10]]]]],
             locals: [],
             templates: []
           };
@@ -37468,7 +37468,7 @@ define("dummy/templates/fd-listform-constructor", ["exports"], function (exports
             morphs[3] = dom.createMorphAt(element7, 7, 7);
             return morphs;
           },
-          statements: [["inline", "t", ["forms.fd-listform-constructor.caption"], [], ["loc", [null, [78, 10], [78, 55]]]], ["block", "ui-tab-segment", [], ["tab", "first", "title", ["subexpr", "t", ["forms.fd-editform-constructor.form-config-panel.form-properties-header"], [], ["loc", [null, [81, 42], [81, 118]]]], "theme", "", "active", true], 0, null, ["loc", [null, [81, 6], [97, 25]]]], ["block", "ui-tab-segment", [], ["tab", "control-properties", "title", ["subexpr", "t", ["forms.fd-listform-constructor.form-config-panel.control-properties-header"], [], ["loc", [null, [99, 55], [99, 134]]]], "theme", ""], 1, null, ["loc", [null, [99, 6], [109, 25]]]], ["block", "ui-tab-segment", [], ["tab", "actions-with-columns", "title", ["subexpr", "t", ["forms.fd-listform-constructor.form-config-panel.actions-with-columns-header"], [], ["loc", [null, [111, 57], [111, 138]]]], "theme", ""], 2, null, ["loc", [null, [111, 6], [143, 25]]]]],
+          statements: [["inline", "t", ["forms.fd-editform-constructor.caption"], [], ["loc", [null, [78, 10], [78, 55]]]], ["block", "ui-tab-segment", [], ["tab", "first", "title", ["subexpr", "t", ["forms.fd-editform-constructor.form-config-panel.form-properties-header"], [], ["loc", [null, [81, 42], [81, 118]]]], "theme", "", "active", true], 0, null, ["loc", [null, [81, 6], [97, 25]]]], ["block", "ui-tab-segment", [], ["tab", "control-properties", "title", ["subexpr", "t", ["forms.fd-editform-constructor.form-config-panel.control-properties-header"], [], ["loc", [null, [99, 55], [99, 134]]]], "theme", ""], 1, null, ["loc", [null, [99, 6], [109, 25]]]], ["block", "ui-tab-segment", [], ["tab", "actions-with-columns", "title", ["subexpr", "t", ["forms.fd-listform-constructor.form-config-panel.actions-with-columns-header"], [], ["loc", [null, [111, 57], [111, 138]]]], "theme", ""], 2, null, ["loc", [null, [111, 6], [143, 25]]]]],
           locals: [],
           templates: [child0, child1, child2]
         };
@@ -37526,8 +37526,8 @@ define("dummy/templates/fd-listform-constructor", ["exports"], function (exports
             "column": 0
           },
           "end": {
-            "line": 148,
-            "column": 0
+            "line": 147,
+            "column": 20
           }
         },
         "moduleName": "dummy/templates/fd-listform-constructor.hbs"
@@ -47529,7 +47529,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+49b61986"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+207b6f95"});
 }
 
 /* jshint ignore:end */

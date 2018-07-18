@@ -150,11 +150,11 @@ export default Ember.Controller.extend({
 
   queryParams: [&#x27;form&#x27;, &#x27;class&#x27;],
 
-  formClass: Ember.computed.alias(&#x27;model.listform&#x27;),
+  formClass: Ember.computed.alias(&#x27;model.form&#x27;),
 
-  view: Ember.computed.alias(&#x27;model.view&#x27;),
+  view: Ember.computed.alias(&#x27;model.form.formViews.firstObject.view&#x27;),
 
-  dataObject: Ember.computed.alias(&#x27;model.dataobject&#x27;),
+  dataObject: Ember.computed.alias(&#x27;model.form.formViews.firstObject.view.class&#x27;),
 
   /**
     The selected column.
@@ -204,7 +204,6 @@ export default Ember.Controller.extend({
       this.get(&#x27;columns&#x27;).pushObject(FdListformColumn.create({
         propertyDefinition: FdViewAttributesProperty.create({
           caption: &#x60;${this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-listform-constructor.new-column-caption&#x27;).toString()} #${this.incrementProperty(&#x27;_newColumnIndex&#x27;)}&#x60;,
-          name: &#x27;&#x27;,
         }),
       }));
     },
@@ -243,15 +242,37 @@ export default Ember.Controller.extend({
     },
 
     save() {
-      let view = Ember.A(this.get(&#x27;view&#x27;));
-      let viewDefinition = Ember.A();
-      let columns = this.get(&#x27;columns&#x27;);
-      for (let i = 0; i &lt; columns.get(&#x27;length&#x27;); i++) {
-        let column = columns[i];
-        viewDefinition.pushObject(column.get(&#x27;propertyDefinition&#x27;));
-      }
+      let attributes = [];
+      let definition = Ember.A(this.get(&#x27;view.definition&#x27;));
+      this.get(&#x27;attributes&#x27;).forEach((attribute) =&gt; {
+        let property = definition.findBy(&#x27;propertyName&#x27;, attribute.propertyName);
+        if (property) {
+          property.caption = attribute.name;
+        } else {
+          let attributeName = this._translate(attribute.name);
+          let classAttribute = this.get(&#x27;dataObject.attributes&#x27;).findBy(&#x27;name&#x27;, attributeName);
+          if (!classAttribute) {
+            classAttribute = this.get(&#x27;dataObject.attributes&#x27;).createRecord({ name: attributeName });
+          }
 
-      view.set(&#x27;definition&#x27;, viewDefinition);
+          attribute.classAttribute = classAttribute;
+          property = { caption: attribute.name };
+          property.propertyName = attributeName;
+          property.visible = &#x27;True&#x27;;
+          property.isMaster = &#x27;False&#x27;;
+          property.lookupType = &#x27;&#x27;;
+          property.masterPropertyName = &#x27;&#x27;;
+          property.masterCustomizationString = &#x27;&#x27;;
+        }
+
+        attribute.classAttribute.set(&#x27;type&#x27;, attribute.type);
+        attribute.classAttribute.set(&#x27;notNull&#x27;, attribute.notNull);
+        attribute.classAttribute.set(&#x27;defaultValue&#x27;, attribute.defaultValue);
+        attributes.push(property);
+      });
+
+      definition.filterBy(&#x27;visible&#x27;, &#x27;False&#x27;).forEach(attributes.push);
+      this.set(&#x27;view.definition&#x27;, attributes);
 
       let formName = this.get(&#x27;formClass.name&#x27;);
       if (this.get(&#x27;formClass.isNew&#x27;)) {
@@ -266,36 +287,17 @@ export default Ember.Controller.extend({
         this.set(&#x27;dataObject.caption&#x27;, &#x60;${formName}Object&#x60;);
       }
 
-      let dataobject = this.get(&#x27;dataObject&#x27;);
-      if (Ember.isNone(dataobject.get(&#x27;caption&#x27;))) {
-        dataobject.set(&#x27;caption&#x27;, dataobject.get(&#x27;name&#x27;));
-      }
-
-      let formClass = this.get(&#x27;formClass&#x27;);
-      if (Ember.isNone(formClass.get(&#x27;caption&#x27;))) {
-        formClass.set(&#x27;caption&#x27;, formClass.get(&#x27;name&#x27;));
-      }
-
-      let attributes = dataobject.get(&#x27;attributes&#x27;);
-      let changedAttributes = attributes.filterBy(&#x27;hasDirtyAttributes&#x27;);
-
-      let association = this.get(&#x27;store&#x27;).peekAll(&#x27;fd-dev-association&#x27;);
-      let changedAssociations = association.filterBy(&#x27;hasDirtyAttributes&#x27;);
-
-      let aggregation = this.get(&#x27;store&#x27;).peekAll(&#x27;fd-dev-aggregation&#x27;);
-      let changedAggregation = aggregation.filterBy(&#x27;hasDirtyAttributes&#x27;);
-
-      dataobject.save().then(() =&gt; {
-        this.get(&#x27;view&#x27;).save().then(() =&gt; {
-          formClass.save().then(() =&gt; {
-            this.get(&#x27;formClass.formViews.firstObject&#x27;).save().then(() =&gt; {
-              this.set(&#x27;class&#x27;, undefined);
-              this.set(&#x27;form&#x27;, this.get(&#x27;formClass.id&#x27;));
+      this.get(&#x27;dataObject&#x27;).save().then(() =&gt; {
+        let promises = this.get(&#x27;attributes&#x27;).map(a =&gt; a.classAttribute.save());
+        Ember.RSVP.all(promises).then(() =&gt; {
+          this.get(&#x27;view&#x27;).save().then(() =&gt; {
+            this.get(&#x27;formClass&#x27;).save().then(() =&gt; {
+              this.get(&#x27;formClass.formViews.firstObject&#x27;).save().then(() =&gt; {
+                this.set(&#x27;class&#x27;, undefined);
+                this.set(&#x27;form&#x27;, this.get(&#x27;formClass.id&#x27;));
+              });
             });
           });
-          changedAttributes.map(a =&gt; a.save());
-          changedAssociations.map(a =&gt; a.save());
-          changedAggregation.map(a =&gt; a.save());
         });
       });
     },
@@ -303,6 +305,10 @@ export default Ember.Controller.extend({
     close() {
       this.transitionToRoute(&#x27;fd-appstruct-form&#x27;);
     },
+  },
+
+  _translate(propertyName) {
+    return propertyName;
   },
 });
 
