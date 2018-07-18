@@ -115,6 +115,25 @@ export default Ember.Route.extend({
   },
 
   /**
+    A hook you can use to reset controller values either when the model changes or the route is exiting.
+    [More info](http://emberjs.com/api/classes/Ember.Route.html#method_resetController).
+
+    @method resetController
+    @param {Ember.Controller} controller
+    @param {Boolean} isExisting
+    @param {Object} transition
+   */
+  resetController() {
+    this._super(...arguments);
+
+    let store = this.get('store');
+    store.peekAll('fd-dev-class').forEach((item) => item.rollbackAll());
+    store.peekAll('fd-dev-stage').forEach((item) => item.rollbackAll());
+    store.peekAll('fd-dev-association').forEach((item) => item.rollbackAll());
+    store.peekAll('fd-dev-aggregation').forEach((item) => item.rollbackAll());
+  },
+
+  /**
       Create tree.
 
       @method _buildTree

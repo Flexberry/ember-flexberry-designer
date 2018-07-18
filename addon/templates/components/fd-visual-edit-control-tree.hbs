@@ -3,7 +3,12 @@
     <div class="header">
       {{t 'components.fd-visual-edit-control-tree.selected-element-null'}}
     </div>
-    <p>{{t 'components.fd-visual-edit-control-tree.selected-element-change'}}</p>
+    {{#if (eq typeForm 'editform')}}
+      <p>{{t 'components.fd-visual-edit-control-tree.selected-element-change-edit'}}</p>
+    {{/if}}
+    {{#if (eq typeForm 'listform')}}
+      <p>{{t 'components.fd-visual-edit-control-tree.selected-element-change-list'}}</p>
+    {{/if}}
   </div>
 {{else}}
 

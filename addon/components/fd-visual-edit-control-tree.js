@@ -36,6 +36,13 @@ export default FlexberryBaseComponent.extend({
   selectedItem: undefined,
 
   /**
+    Array item on the form.
+
+    @property selectedItem
+  */
+  items: undefined,
+
+  /**
     Type current form.
 
     @property typeForm
@@ -381,7 +388,12 @@ export default FlexberryBaseComponent.extend({
     removeAttribute() {
       let selectedNode = this.get('selectedNodesAttributesTree')[0];
       let changeControl = this._findControlByAttribute(selectedNode.original.name);
-      changeControl.forEach((item) => this.get('currentController')._removeItem(item));
+
+      if (this.get('typeForm') === 'editform') {
+        changeControl.forEach((item) => this.get('currentController')._removeItem(item));
+      } else if (this.get('typeForm') === 'listform') {
+        this.get('items').removeObjects(changeControl);
+      }
 
       this._deleteAttribute(selectedNode);
       this.get('actionReceiverAttributesTree').send('deleteNode', selectedNode);
@@ -605,10 +617,14 @@ export default FlexberryBaseComponent.extend({
     @param {String} attributeName Name to search.
   */
   _findControlByAttribute(attributeName) {
-    let controls = this.get('model.controls');
+    let items = this.get('items');
     let searchResults = Ember.A();
-    for (let i = 0; i < controls.length; i++) {
-      this._controlsRound(controls.objectAt(i), attributeName, searchResults);
+    if (this.get('typeForm') === 'editform') {
+      for (let i = 0; i < items.length; i++) {
+        this._controlsRound(items.objectAt(i), attributeName, searchResults);
+      }
+    } else if (this.get('typeForm') === 'listform') {
+      searchResults = items.filterBy('propertyDefinition.name', attributeName);
     }
 
     return searchResults;
@@ -664,16 +680,19 @@ export default FlexberryBaseComponent.extend({
       case 'property':
         propertyDefinition = FdViewAttributesProperty.create({
           name: propertyName,
+          caption: propertyName,
         });
         break;
       case 'master':
         propertyDefinition = FdViewAttributesMaster.create({
           name: propertyName,
+          caption: propertyName,
         });
         break;
       case 'detail':
         propertyDefinition = FdViewAttributesDetail.create({
           name: propertyName,
+          caption: propertyName,
         });
         break;
     }
