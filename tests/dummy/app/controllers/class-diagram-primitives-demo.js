@@ -13,12 +13,15 @@ export default Ember.Controller.extend({
         let minY = 16384;
         let maxX = 0;
         let maxY = 0;
+        let sidebar = Ember.$('.ui.sidebar.main.menu');
+        let sidebarWidth = sidebar.hasClass('visible') ? sidebar.width() : 0;
 
         if (minX > maxX) {
           maxX = paper && ('offsetWidth' in paper) ? paper.offsetWidth : 1024;
+          maxX += sidebarWidth;
           maxY = 840;
         } else {
-          maxX = minX + maxX;
+          maxX = minX + maxX + sidebarWidth;
           maxY = minY + maxY;
         }
 
@@ -33,6 +36,12 @@ export default Ember.Controller.extend({
         var linkAggregation = new joint.shapes.flexberryUml.Aggregation({
           source: { x:100, y:30 },
           target: { x:300, y:30 },
+          labels: [{
+            attrs: { text: { text:  '*' } } }, {
+            attrs: { text: { text:  'txt' } } }, {
+            attrs: { text: { text:  '' } } }, {
+            attrs: { text: { text:  '1' } }
+          }],
         });
 
         var linkAssociation = new joint.shapes.flexberryUml.Association({
@@ -40,8 +49,10 @@ export default Ember.Controller.extend({
           target: { x:300, y:80 },
           labels: [{
             attrs: { text: { text:  '*' } } }, {
+            attrs: { text: { text:  '' } } }, {
+            attrs: { text: { text:  '' } } }, {
             attrs: { text: { text:  '0..1' } }
-          }]
+          }],
         });
 
         var linkComposition = new joint.shapes.flexberryUml.Composition({
@@ -72,6 +83,11 @@ export default Ember.Controller.extend({
         var linkQualifiedAggregation = new joint.shapes.flexberryUml.QualifiedAggregation({
           source: { x:100, y:370 },
           target: { x:300, y:370 },
+          labels: [{
+            attrs: { text: { text:  'txt' } } }, {
+            attrs: { text: { text:  '' } } }, {
+            attrs: { text: { text:  'lbl' } }
+          }],
         });
 
         var linkQualifiedComposition = new joint.shapes.flexberryUml.QualifiedComposition({
@@ -99,6 +115,14 @@ export default Ember.Controller.extend({
         let classWithoutStp = new joint.shapes.flexberryUml.Class({
           position: { x: 350, y: 30 },
           name: 'Class1',
+          attributes: attributes,
+          methods: methods,
+        });
+
+        let classCollapsed = new joint.shapes.flexberryUml.ClassCollapsed({
+          position: { x: 450, y: 30 },
+          size: { width: 100 },
+          name: 'ClassCollapsed',
           attributes: attributes,
           methods: methods,
         });
@@ -163,7 +187,7 @@ export default Ember.Controller.extend({
           attributes: attributes,
         });
 
-        _this.graph.addCell([classWithoutStp, classWithStp, nAryAssociation, obj, instance, multiObject, activeObj,
+        _this.graph.addCell([classWithoutStp, classCollapsed, classWithStp, nAryAssociation, obj, instance, multiObject, activeObj,
           templateClass, note, moreClasses, packagePr]);
       });
     }
