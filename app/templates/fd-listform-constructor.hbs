@@ -75,7 +75,7 @@
     <form class="ui form segment">
       <div class="ui segment">
         <div class="ui large header">
-          {{t "forms.fd-editform-constructor.caption"}}
+          {{t "forms.fd-listform-constructor.caption"}}
         </div>
       </div>
       {{#ui-tab-segment tab='first' title=(t "forms.fd-editform-constructor.form-config-panel.form-properties-header") theme="" active=true}}
@@ -96,15 +96,15 @@
 
       {{/ui-tab-segment}}
 
-      {{#ui-tab-segment tab='control-properties' title=(t "forms.fd-editform-constructor.form-config-panel.control-properties-header") theme=""}}
+      {{#ui-tab-segment tab='control-properties' title=(t "forms.fd-listform-constructor.form-config-panel.control-properties-header") theme=""}}
         <div class="ui small dividing header">
-          {{t "forms.fd-editform-constructor.form-config-panel.control-properties-header"}}
+          {{t "forms.fd-listform-constructor.form-config-panel.control-properties-header"}}
         </div>
-        {{fd-visual-edit-control
-          selectedControl=selectedAttribute
-          typemap=model.typemap
-          enums=model.enums
-          fbtypes=model.types
+        {{fd-visual-edit-control-tree
+          selectedItem=selectedColumn
+          model=model
+          items=columns
+          typeForm='listform'
         }}
       {{/ui-tab-segment}}
 

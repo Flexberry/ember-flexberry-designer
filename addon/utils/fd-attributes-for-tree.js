@@ -286,8 +286,8 @@ let getTreeNodeByNotUsedAggregation = function (aggregationData, view, addInText
 
   let notUsedAggregation = aggregationData.filter(function(item) {
     let filterDefinitionArray = Ember.A(filterDefinition);
-    let endClass = item.get('endClass');
-    return Ember.isNone(filterDefinitionArray.findBy('name', endClass.get('name')));
+    let checkValue = item.get('endRole') || item.get('endClass.name');
+    return Ember.isNone(filterDefinitionArray.findBy('name', checkValue));
   });
 
   notUsedAggregation.forEach((detail) => {

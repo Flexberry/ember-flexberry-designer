@@ -36,6 +36,20 @@ export default FlexberryBaseComponent.extend({
   selectedItem: undefined,
 
   /**
+    Array item on the form.
+
+    @property selectedItem
+  */
+  items: undefined,
+
+  /**
+    Type current form.
+
+    @property typeForm
+  */
+  typeForm: undefined,
+
+  /**
     Flag: indicates whether to show attributesTree or typesTree .
 
     @property treeViewMode
@@ -187,19 +201,21 @@ export default FlexberryBaseComponent.extend({
 
     let store = this.get('store');
     let stagePk = this.get('currentProjectContext').getCurrentStage();
+    let dataobject = this.get('model.dataobject');
     if (propertyDefinition instanceof FdViewAttributesDetail) {
       this.set('selectedItem.type', 'detail');
       let allAggregation = store.peekAll('fd-dev-aggregation');
       let aggregationCurrentStage = allAggregation.filterBy('stage.id', stagePk);
       attribute = aggregationCurrentStage.find(function(item) {
-        return item.get('endRole') === namesPropertyDefinition[0] || item.get('endClass.name') === namesPropertyDefinition[0];
+        return (item.get('endRole') === namesPropertyDefinition[0] || item.get('endClass.name') === namesPropertyDefinition[0]) &&
+         item.get('startClass.id') === dataobject.id;
       });
     } else if (propertyDefinition instanceof FdViewAttributesMaster) {
       this.set('selectedItem.type', 'master');
-      let parsingResult = parsingPropertyName(store, this.get('model.dataobject'), namesPropertyDefinition);
+      let parsingResult = parsingPropertyName(store, dataobject, namesPropertyDefinition);
       attribute = parsingResult.associations[0];
     } else {
-      let parsingResult = parsingPropertyName(store, this.get('model.dataobject'), namesPropertyDefinition);
+      let parsingResult = parsingPropertyName(store, dataobject, namesPropertyDefinition);
       let allClasses = store.peekAll('fd-dev-class');
       let classesCurrentStage = allClasses.filterBy('stage.id', stagePk);
       let selectedClass = classesCurrentStage.findBy('id', parsingResult.classId);
@@ -306,6 +322,16 @@ export default FlexberryBaseComponent.extend({
     }
   }),
 
+  /**
+    Handles changes in model.attributes.
+
+    @method _modelAttributesObserver
+  */
+  _modelAttributesObserver: Ember.observer('model.attributes', function() {
+    let attributesTree = this._createAttributesTree();
+    this.set('dataAttributesTree', attributesTree);
+  }),
+
   init() {
     this._super(...arguments);
     let attributesTree = this._createAttributesTree();
@@ -364,7 +390,12 @@ export default FlexberryBaseComponent.extend({
     removeAttribute() {
       let selectedNode = this.get('selectedNodesAttributesTree')[0];
       let changeControl = this._findControlByAttribute(selectedNode.original.name);
-      changeControl.forEach((item) => this.get('currentController')._removeItem(item));
+
+      if (this.get('typeForm') === 'editform') {
+        changeControl.forEach((item) => this.get('currentController')._removeItem(item));
+      } else if (this.get('typeForm') === 'listform') {
+        this.get('items').removeObjects(changeControl);
+      }
 
       this._deleteAttribute(selectedNode);
       this.get('actionReceiverAttributesTree').send('deleteNode', selectedNode);
@@ -418,10 +449,8 @@ export default FlexberryBaseComponent.extend({
 
       let store = this.get('store');
       let dataobject = this.get('model.dataobject');
-      let arrayChengeClassElements = this.get('model.arrayChengeClassElements');
       let attributesTree = this.get('dataAttributesTree');
       let recordsDevClass = store.peekAll('fd-dev-class');
-      let newAttribute;
       switch (selectedNode.type) {
         case 'master':
 
@@ -433,13 +462,12 @@ export default FlexberryBaseComponent.extend({
 
           // Create new association.
           let startClass = recordsDevClass.findBy('id', selectedNode.original.idNode);
-          newAttribute = store.createRecord('fd-dev-association', {
+          store.createRecord('fd-dev-association', {
             endClass: dataobject,
             startClass: startClass,
             startRole: this.get('propertyName'),
             stage: dataobject.get('stage')
           });
-          arrayChengeClassElements.pushObject(newAttribute);
           break;
         case 'detail':
 
@@ -455,13 +483,12 @@ export default FlexberryBaseComponent.extend({
 
           // Create new aggregation.
           let endClass = recordsDevClass.findBy('id', selectedNode.original.idNode);
-          newAttribute = store.createRecord('fd-dev-aggregation', {
+          store.createRecord('fd-dev-aggregation', {
             endClass: endClass,
             startClass: dataobject,
             endRole: this.get('propertyName'),
             stage: dataobject.get('stage')
           });
-          arrayChengeClassElements.pushObject(newAttribute);
           break;
         default:
           attributesTree[0].copyChildren.pushObject(newNode);
@@ -538,7 +565,6 @@ export default FlexberryBaseComponent.extend({
   */
   _deleteAttribute(selectedNode) {
     let dataobject = this.get('model.dataobject');
-    let arrayChengeClassElements = this.get('model.arrayChengeClassElements');
 
     // Delete node from parent copyChildren.
     let parentSelectedNode = this.get('treeObjectAttributesTree').jstree(true).get_node(selectedNode.parent);
@@ -551,21 +577,21 @@ export default FlexberryBaseComponent.extend({
         let attributes = dataobject.get('attributes');
         let deleteAttribute = attributes.findBy('name', selectedNode.original.name);
         deleteAttribute.deleteRecord();
-        arrayChengeClassElements.pushObject(deleteAttribute);
         break;
       case 'master':
-        let association = this.get('model.association');
-        let associationCurrentClass = association.filterBy('endClass.id', dataobject.id);
+        let association = this.get('store').peekAll('fd-dev-association');
+        let aggregation = this.get('store').peekAll('fd-dev-aggregation');
+        let associationCurrentClass = association.filterBy('endClass.id',  dataobject.id);
+        associationCurrentClass.pushObjects(aggregation.filterBy('endClass.id',  dataobject.id));
+
         let deleteAssociation = Ember.A(associationCurrentClass).findBy('startClass.id', selectedNode.original.idNode);
         deleteAssociation.deleteRecord();
-        arrayChengeClassElements.pushObject(deleteAssociation);
         break;
       case 'detail':
-        let aggregation = this.get('model.aggregation');
-        let aggregationCurrentClass = aggregation.filterBy('startClass.id', dataobject.id);
+        let devAggregation = this.get('store').peekAll('fd-dev-aggregation');
+        let aggregationCurrentClass = devAggregation.filterBy('startClass.id', dataobject.id);
         let deleteAggregation = Ember.A(aggregationCurrentClass).findBy('endClass.id', selectedNode.original.idNode);
         deleteAggregation.deleteRecord();
-        arrayChengeClassElements.pushObject(deleteAggregation);
         let typeTree = this.get('dataTypeTree')[5];
         let nodeId = findFreeNodeTreeNameIndex('detail', 0, typeTree.copyChildren, 'id');
         let recordsDevClass = this.get('store').peekAll('fd-dev-class');
@@ -588,10 +614,14 @@ export default FlexberryBaseComponent.extend({
     @param {String} attributeName Name to search.
   */
   _findControlByAttribute(attributeName) {
-    let controls = this.get('model.controls');
+    let items = this.get('items');
     let searchResults = Ember.A();
-    for (let i = 0; i < controls.length; i++) {
-      this._controlsRound(controls.objectAt(i), attributeName, searchResults);
+    if (this.get('typeForm') === 'editform') {
+      for (let i = 0; i < items.length; i++) {
+        this._controlsRound(items.objectAt(i), attributeName, searchResults);
+      }
+    } else if (this.get('typeForm') === 'listform') {
+      searchResults = items.filterBy('propertyDefinition.name', attributeName);
     }
 
     return searchResults;
@@ -647,16 +677,19 @@ export default FlexberryBaseComponent.extend({
       case 'property':
         propertyDefinition = FdViewAttributesProperty.create({
           name: propertyName,
+          caption: propertyName,
         });
         break;
       case 'master':
         propertyDefinition = FdViewAttributesMaster.create({
           name: propertyName,
+          caption: propertyName,
         });
         break;
       case 'detail':
         propertyDefinition = FdViewAttributesDetail.create({
           name: propertyName,
+          caption: propertyName,
         });
         break;
     }

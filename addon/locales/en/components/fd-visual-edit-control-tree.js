@@ -1,6 +1,7 @@
 export default {
   'selected-element-null': 'Element is not selected',
-  'selected-element-change': 'Click on controls to select Element',
+  'selected-element-change-edit': 'Click on controls to select Element',
+  'selected-element-change-list': 'Click on columns to select Element',
   header: 'Header',
   'property-name': 'Property name',
   'edit-property': 'Edit property',

@@ -34,11 +34,11 @@ export default Ember.Controller.extend({
 
   queryParams: ['form', 'class'],
 
-  formClass: Ember.computed.alias('model.form'),
+  formClass: Ember.computed.alias('model.listform'),
 
-  view: Ember.computed.alias('model.form.formViews.firstObject.view'),
+  view: Ember.computed.alias('model.view'),
 
-  dataObject: Ember.computed.alias('model.form.formViews.firstObject.view.class'),
+  dataObject: Ember.computed.alias('model.dataobject'),
 
   /**
     The selected column.
@@ -88,6 +88,7 @@ export default Ember.Controller.extend({
       this.get('columns').pushObject(FdListformColumn.create({
         propertyDefinition: FdViewAttributesProperty.create({
           caption: `${this.get('i18n').t('forms.fd-listform-constructor.new-column-caption').toString()} #${this.incrementProperty('_newColumnIndex')}`,
+          name: '',
         }),
       }));
     },
@@ -126,37 +127,15 @@ export default Ember.Controller.extend({
     },
 
     save() {
-      let attributes = [];
-      let definition = Ember.A(this.get('view.definition'));
-      this.get('attributes').forEach((attribute) => {
-        let property = definition.findBy('propertyName', attribute.propertyName);
-        if (property) {
-          property.caption = attribute.name;
-        } else {
-          let attributeName = this._translate(attribute.name);
-          let classAttribute = this.get('dataObject.attributes').findBy('name', attributeName);
-          if (!classAttribute) {
-            classAttribute = this.get('dataObject.attributes').createRecord({ name: attributeName });
-          }
+      let view = Ember.A(this.get('view'));
+      let viewDefinition = Ember.A();
+      let columns = this.get('columns');
+      for (let i = 0; i < columns.get('length'); i++) {
+        let column = columns[i];
+        viewDefinition.pushObject(column.get('propertyDefinition'));
+      }
 
-          attribute.classAttribute = classAttribute;
-          property = { caption: attribute.name };
-          property.propertyName = attributeName;
-          property.visible = 'True';
-          property.isMaster = 'False';
-          property.lookupType = '';
-          property.masterPropertyName = '';
-          property.masterCustomizationString = '';
-        }
-
-        attribute.classAttribute.set('type', attribute.type);
-        attribute.classAttribute.set('notNull', attribute.notNull);
-        attribute.classAttribute.set('defaultValue', attribute.defaultValue);
-        attributes.push(property);
-      });
-
-      definition.filterBy('visible', 'False').forEach(attributes.push);
-      this.set('view.definition', attributes);
+      view.set('definition', viewDefinition);
 
       let formName = this.get('formClass.name');
       if (this.get('formClass.isNew')) {
@@ -171,17 +150,36 @@ export default Ember.Controller.extend({
         this.set('dataObject.caption', `${formName}Object`);
       }
 
-      this.get('dataObject').save().then(() => {
-        let promises = this.get('attributes').map(a => a.classAttribute.save());
-        Ember.RSVP.all(promises).then(() => {
-          this.get('view').save().then(() => {
-            this.get('formClass').save().then(() => {
-              this.get('formClass.formViews.firstObject').save().then(() => {
-                this.set('class', undefined);
-                this.set('form', this.get('formClass.id'));
-              });
+      let dataobject = this.get('dataObject');
+      if (Ember.isNone(dataobject.get('caption'))) {
+        dataobject.set('caption', dataobject.get('name'));
+      }
+
+      let formClass = this.get('formClass');
+      if (Ember.isNone(formClass.get('caption'))) {
+        formClass.set('caption', formClass.get('name'));
+      }
+
+      let attributes = dataobject.get('attributes');
+      let changedAttributes = attributes.filterBy('hasDirtyAttributes');
+
+      let association = this.get('store').peekAll('fd-dev-association');
+      let changedAssociations = association.filterBy('hasDirtyAttributes');
+
+      let aggregation = this.get('store').peekAll('fd-dev-aggregation');
+      let changedAggregation = aggregation.filterBy('hasDirtyAttributes');
+
+      dataobject.save().then(() => {
+        this.get('view').save().then(() => {
+          formClass.save().then(() => {
+            this.get('formClass.formViews.firstObject').save().then(() => {
+              this.set('class', undefined);
+              this.set('form', this.get('formClass.id'));
             });
           });
+          changedAttributes.map(a => a.save());
+          changedAssociations.map(a => a.save());
+          changedAggregation.map(a => a.save());
         });
       });
     },
@@ -189,9 +187,5 @@ export default Ember.Controller.extend({
     close() {
       this.transitionToRoute('fd-appstruct-form');
     },
-  },
-
-  _translate(propertyName) {
-    return propertyName;
   },
 });

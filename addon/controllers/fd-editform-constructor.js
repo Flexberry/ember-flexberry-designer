@@ -10,7 +10,13 @@ import FdViewAttributesProperty from '../objects/fd-view-attributes-property';
 import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 import FdAttributesTree from '../objects/fd-attributes-tree';
-import { getDataForBuildTree, getTreeNodeByNotUsedAttributes, getAssociationTreeNode, getTreeNodeByNotUsedAggregation } from '../utils/fd-attributes-for-tree';
+import {
+  getDataForBuildTree,
+  getTreeNodeByNotUsedAttributes,
+  getAssociationTreeNode,
+  getTreeNodeByNotUsedAggregation,
+  getClassTreeNode
+ } from '../utils/fd-attributes-for-tree';
 import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
 
 export default Ember.Controller.extend({
@@ -266,14 +272,17 @@ export default Ember.Controller.extend({
       let attributes = dataobject.get('attributes');
       let atrIndex = findFreeNodeTreeNameIndex('newAttribute', 1, attributes, 'name');
 
-      let newAttribute = this.get('store').createRecord('fd-dev-attribute', {
+      this.get('store').createRecord('fd-dev-attribute', {
         class: dataobject,
         name: 'newAttribute' + atrIndex,
         type: 'string',
         notNull: false,
         defaultValue: ''
       });
-      attributes.pushObject(newAttribute);
+
+      let dataForBuildTree = getDataForBuildTree(this.get('store'), dataobject.get('id'));
+      let newTree = getClassTreeNode(Ember.A(), dataForBuildTree.classes, dataobject.get('id'), 'type');
+      this.set('model.attributes', newTree);
 
       let view = this.get('model.editform.formViews.firstObject.view');
       let viewDefinition = view.get('definition');
@@ -481,7 +490,6 @@ export default Ember.Controller.extend({
       try {
         this._saveMetadata(this.get('model')).then(() => {
           this.set('state', '');
-          this.set('model.arrayChengeClassElements', Ember.A());
           if (close) {
             this.send('close');
           }
@@ -802,13 +810,18 @@ export default Ember.Controller.extend({
 
     // Save attributes.
     let dataobject = this.get('model.dataobject');
-    let attributes = dataobject.get('attributes');
     if (Ember.isNone(dataobject.get('caption'))) {
       dataobject.set('caption', dataobject.get('name'));
     }
 
-    let arrayChengeClassElements = this.get('model.arrayChengeClassElements');
-    let changedAssociations = model.association.filterBy('hasDirtyAttributes');
+    let attributes = dataobject.get('attributes');
+    let changedAttributes = attributes.filterBy('hasDirtyAttributes');
+
+    let association = this.get('store').peekAll('fd-dev-association');
+    let changedAssociations = association.filterBy('hasDirtyAttributes');
+
+    let aggregation = this.get('store').peekAll('fd-dev-aggregation');
+    let changedAggregation = aggregation.filterBy('hasDirtyAttributes');
 
     // Сохранить класс формы редактирования
     let editform = this.get('model.editform');
@@ -816,11 +829,11 @@ export default Ember.Controller.extend({
 
     return Ember.RSVP.all([
       view.save(),
-      attributes.save(),
       dataobject.save(),
       editform.save(),
-      Ember.RSVP.all(arrayChengeClassElements.map(a => a.save())),
+      Ember.RSVP.all(changedAttributes.map(a => a.save())),
       Ember.RSVP.all(changedAssociations.map(a => a.save())),
+      Ember.RSVP.all(changedAggregation.map(a => a.save())),
     ]);
   },
 
