@@ -28630,7 +28630,7 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
                 "column": 2
               },
               "end": {
-                "line": 115,
+                "line": 116,
                 "column": 2
               }
             },
@@ -28655,7 +28655,7 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
             morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
             return morphs;
           },
-          statements: [["inline", "t", ["forms.fd-appstruct-form.remove-approve"], [], ["loc", [null, [114, 4], [114, 50]]]]],
+          statements: [["inline", "t", ["forms.fd-appstruct-form.remove-approve"], [], ["loc", [null, [115, 4], [115, 50]]]]],
           locals: [],
           templates: []
         };
@@ -28671,7 +28671,7 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
               "column": 0
             },
             "end": {
-              "line": 116,
+              "line": 117,
               "column": 0
             }
           },
@@ -28694,7 +28694,7 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [["block", "modal-dialog", [], ["title", ["subexpr", "t", ["forms.fd-appstruct-form.remove-control"], [], ["loc", [null, [108, 10], [108, 54]]]], "ok", ["subexpr", "action", ["removeLeftNode", true], [], ["loc", [null, [109, 7], [109, 37]]]], "settings", ["subexpr", "hash", [], ["onHidden", ["subexpr", "action", [["get", "set", ["loc", [null, [111, 23], [111, 26]]]], "_showModalDialog", false], [], ["loc", [null, [111, 15], [111, 52]]]]], ["loc", [null, [110, 13], [112, 5]]]]], 0, null, ["loc", [null, [107, 2], [115, 19]]]]],
+        statements: [["block", "modal-dialog", [], ["title", ["subexpr", "t", ["forms.fd-appstruct-form.remove-control"], [], ["loc", [null, [108, 10], [108, 54]]]], "ok", ["subexpr", "action", ["removeLeftNode", true], [], ["loc", [null, [109, 7], [109, 37]]]], "settings", ["subexpr", "hash", [], ["onHidden", ["subexpr", "action", [["get", "set", ["loc", [null, [111, 23], [111, 26]]]], "_showModalDialog", false], [], ["loc", [null, [111, 15], [111, 52]]]], "context", ".pusher:first"], ["loc", [null, [110, 13], [113, 5]]]]], 0, null, ["loc", [null, [107, 2], [116, 19]]]]],
         locals: [],
         templates: [child0]
       };
@@ -28709,11 +28709,11 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 127,
+                  "line": 128,
                   "column": 6
                 },
                 "end": {
-                  "line": 131,
+                  "line": 132,
                   "column": 6
                 }
               },
@@ -28745,7 +28745,7 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
               morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
               return morphs;
             },
-            statements: [["inline", "t", ["forms.fd-appstruct-form.form-config-panel.app-properties-header"], [], ["loc", [null, [129, 10], [129, 81]]]]],
+            statements: [["inline", "t", ["forms.fd-appstruct-form.form-config-panel.app-properties-header"], [], ["loc", [null, [130, 10], [130, 81]]]]],
             locals: [],
             templates: []
           };
@@ -28759,11 +28759,11 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
                 "loc": {
                   "source": null,
                   "start": {
-                    "line": 133,
+                    "line": 134,
                     "column": 8
                   },
                   "end": {
-                    "line": 142,
+                    "line": 143,
                     "column": 8
                   }
                 },
@@ -28803,7 +28803,7 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
                 morphs[1] = dom.createMorphAt(element4, 3, 3);
                 return morphs;
               },
-              statements: [["inline", "t", ["forms.fd-appstruct-form.tab.formName"], [], ["loc", [null, [135, 19], [135, 63]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "selectedElementForEdit.className", ["loc", [null, [138, 20], [138, 52]]]]], [], []], "readonly", true], ["loc", [null, [136, 12], [140, 14]]]]],
+              statements: [["inline", "t", ["forms.fd-appstruct-form.tab.formName"], [], ["loc", [null, [136, 19], [136, 63]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "selectedElementForEdit.className", ["loc", [null, [139, 20], [139, 52]]]]], [], []], "readonly", true], ["loc", [null, [137, 12], [141, 14]]]]],
               locals: [],
               templates: []
             };
@@ -28816,11 +28816,11 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
                 "loc": {
                   "source": null,
                   "start": {
-                    "line": 151,
+                    "line": 152,
                     "column": 8
                   },
                   "end": {
-                    "line": 160,
+                    "line": 161,
                     "column": 8
                   }
                 },
@@ -28860,7 +28860,7 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
                 morphs[1] = dom.createMorphAt(element3, 3, 3);
                 return morphs;
               },
-              statements: [["inline", "t", ["forms.fd-appstruct-form.tab.title"], [], ["loc", [null, [153, 19], [153, 60]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "selectedElementForEdit.text", ["loc", [null, [156, 20], [156, 47]]]]], [], []], "readonly", ["subexpr", "eq", [["get", "selectedElementForEdit.type", ["loc", [null, [157, 27], [157, 54]]]], "desk"], [], ["loc", [null, [157, 23], [157, 62]]]]], ["loc", [null, [154, 12], [158, 14]]]]],
+              statements: [["inline", "t", ["forms.fd-appstruct-form.tab.title"], [], ["loc", [null, [154, 19], [154, 60]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "selectedElementForEdit.text", ["loc", [null, [157, 20], [157, 47]]]]], [], []], "readonly", ["subexpr", "eq", [["get", "selectedElementForEdit.type", ["loc", [null, [158, 27], [158, 54]]]], "desk"], [], ["loc", [null, [158, 23], [158, 62]]]]], ["loc", [null, [155, 12], [159, 14]]]]],
               locals: [],
               templates: []
             };
@@ -28873,11 +28873,11 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
                 "loc": {
                   "source": null,
                   "start": {
-                    "line": 160,
+                    "line": 161,
                     "column": 8
                   },
                   "end": {
-                    "line": 169,
+                    "line": 170,
                     "column": 8
                   }
                 },
@@ -28917,7 +28917,7 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
                 morphs[1] = dom.createMorphAt(element2, 3, 3);
                 return morphs;
               },
-              statements: [["inline", "t", ["forms.fd-appstruct-form.tab.title"], [], ["loc", [null, [162, 19], [162, 60]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "selectedElementForEdit.caption", ["loc", [null, [165, 20], [165, 50]]]]], [], []], "readonly", ["subexpr", "or", [["subexpr", "eq", [["get", "selectedElementForEdit.type", ["loc", [null, [166, 31], [166, 58]]]], "folder"], [], ["loc", [null, [166, 27], [166, 68]]]], ["subexpr", "eq", [["get", "selectedElementForEdit.type", ["loc", [null, [166, 73], [166, 100]]]], "desk"], [], ["loc", [null, [166, 69], [166, 108]]]]], [], ["loc", [null, [166, 23], [166, 109]]]]], ["loc", [null, [163, 12], [167, 14]]]]],
+              statements: [["inline", "t", ["forms.fd-appstruct-form.tab.title"], [], ["loc", [null, [163, 19], [163, 60]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "selectedElementForEdit.caption", ["loc", [null, [166, 20], [166, 50]]]]], [], []], "readonly", ["subexpr", "or", [["subexpr", "eq", [["get", "selectedElementForEdit.type", ["loc", [null, [167, 31], [167, 58]]]], "folder"], [], ["loc", [null, [167, 27], [167, 68]]]], ["subexpr", "eq", [["get", "selectedElementForEdit.type", ["loc", [null, [167, 73], [167, 100]]]], "desk"], [], ["loc", [null, [167, 69], [167, 108]]]]], [], ["loc", [null, [167, 23], [167, 109]]]]], ["loc", [null, [164, 12], [168, 14]]]]],
               locals: [],
               templates: []
             };
@@ -28930,11 +28930,11 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
                 "loc": {
                   "source": null,
                   "start": {
-                    "line": 170,
+                    "line": 171,
                     "column": 8
                   },
                   "end": {
-                    "line": 178,
+                    "line": 179,
                     "column": 8
                   }
                 },
@@ -28974,7 +28974,7 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
                 morphs[1] = dom.createMorphAt(element1, 3, 3);
                 return morphs;
               },
-              statements: [["inline", "t", ["forms.fd-appstruct-form.tab.url"], [], ["loc", [null, [172, 19], [172, 58]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "selectedElementForEdit.url", ["loc", [null, [175, 20], [175, 46]]]]], [], []]], ["loc", [null, [173, 12], [176, 14]]]]],
+              statements: [["inline", "t", ["forms.fd-appstruct-form.tab.url"], [], ["loc", [null, [173, 19], [173, 58]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "selectedElementForEdit.url", ["loc", [null, [176, 20], [176, 46]]]]], [], []]], ["loc", [null, [174, 12], [177, 14]]]]],
               locals: [],
               templates: []
             };
@@ -28987,11 +28987,11 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
                 "loc": {
                   "source": null,
                   "start": {
-                    "line": 179,
+                    "line": 180,
                     "column": 8
                   },
                   "end": {
-                    "line": 188,
+                    "line": 189,
                     "column": 8
                   }
                 },
@@ -29031,7 +29031,7 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
                 morphs[1] = dom.createMorphAt(element0, 3, 3);
                 return morphs;
               },
-              statements: [["inline", "t", ["forms.fd-appstruct-form.tab.description"], [], ["loc", [null, [181, 19], [181, 66]]]], ["inline", "flexberry-textarea", [], ["value", ["subexpr", "@mut", [["get", "selectedElementForEdit.description", ["loc", [null, [184, 20], [184, 54]]]]], [], []], "readonly", ["subexpr", "or", [["subexpr", "eq", [["get", "selectedElementForEdit.type", ["loc", [null, [185, 31], [185, 58]]]], "folder"], [], ["loc", [null, [185, 27], [185, 68]]]], ["subexpr", "eq", [["get", "selectedElementForEdit.type", ["loc", [null, [185, 73], [185, 100]]]], "desk"], [], ["loc", [null, [185, 69], [185, 108]]]]], [], ["loc", [null, [185, 23], [185, 109]]]]], ["loc", [null, [182, 12], [186, 14]]]]],
+              statements: [["inline", "t", ["forms.fd-appstruct-form.tab.description"], [], ["loc", [null, [182, 19], [182, 66]]]], ["inline", "flexberry-textarea", [], ["value", ["subexpr", "@mut", [["get", "selectedElementForEdit.description", ["loc", [null, [185, 20], [185, 54]]]]], [], []], "readonly", ["subexpr", "or", [["subexpr", "eq", [["get", "selectedElementForEdit.type", ["loc", [null, [186, 31], [186, 58]]]], "folder"], [], ["loc", [null, [186, 27], [186, 68]]]], ["subexpr", "eq", [["get", "selectedElementForEdit.type", ["loc", [null, [186, 73], [186, 100]]]], "desk"], [], ["loc", [null, [186, 69], [186, 108]]]]], [], ["loc", [null, [186, 23], [186, 109]]]]], ["loc", [null, [183, 12], [187, 14]]]]],
               locals: [],
               templates: []
             };
@@ -29043,11 +29043,11 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 132,
+                  "line": 133,
                   "column": 6
                 },
                 "end": {
-                  "line": 189,
+                  "line": 190,
                   "column": 6
                 }
               },
@@ -29101,7 +29101,7 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
               dom.insertBoundary(fragment, null);
               return morphs;
             },
-            statements: [["block", "if", [["subexpr", "and", [["subexpr", "not-eq", [["get", "selectedElementForEdit.type", ["loc", [null, [133, 27], [133, 54]]]], "url"], [], ["loc", [null, [133, 19], [133, 61]]]], ["subexpr", "not-eq", [["get", "selectedElementForEdit.type", ["loc", [null, [133, 70], [133, 97]]]], "folder"], [], ["loc", [null, [133, 62], [133, 107]]]], ["subexpr", "not-eq", [["get", "selectedElementForEdit.type", ["loc", [null, [133, 116], [133, 143]]]], "desk"], [], ["loc", [null, [133, 108], [133, 151]]]]], [], ["loc", [null, [133, 14], [133, 152]]]]], [], 0, null, ["loc", [null, [133, 8], [142, 15]]]], ["inline", "t", ["forms.fd-appstruct-form.tab.formType"], [], ["loc", [null, [144, 17], [144, 61]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "selectedElementForEdit.type", ["loc", [null, [147, 18], [147, 45]]]]], [], []], "readonly", true], ["loc", [null, [145, 10], [149, 12]]]], ["block", "if", [["subexpr", "or", [["subexpr", "eq", [["get", "selectedElementForEdit.type", ["loc", [null, [151, 22], [151, 49]]]], "folder"], [], ["loc", [null, [151, 18], [151, 59]]]], ["subexpr", "eq", [["get", "selectedElementForEdit.type", ["loc", [null, [151, 64], [151, 91]]]], "desk"], [], ["loc", [null, [151, 60], [151, 99]]]]], [], ["loc", [null, [151, 14], [151, 100]]]]], [], 1, 2, ["loc", [null, [151, 8], [169, 15]]]], ["block", "if", [["subexpr", "eq", [["get", "selectedElementForEdit.type", ["loc", [null, [170, 18], [170, 45]]]], "url"], [], ["loc", [null, [170, 14], [170, 52]]]]], [], 3, null, ["loc", [null, [170, 8], [178, 15]]]], ["block", "if", [["subexpr", "and", [["subexpr", "not-eq", [["get", "selectedElementForEdit.type", ["loc", [null, [179, 27], [179, 54]]]], "folder"], [], ["loc", [null, [179, 19], [179, 64]]]], ["subexpr", "not-eq", [["get", "selectedElementForEdit.type", ["loc", [null, [179, 73], [179, 100]]]], "desk"], [], ["loc", [null, [179, 65], [179, 108]]]]], [], ["loc", [null, [179, 14], [179, 109]]]]], [], 4, null, ["loc", [null, [179, 8], [188, 15]]]]],
+            statements: [["block", "if", [["subexpr", "and", [["subexpr", "not-eq", [["get", "selectedElementForEdit.type", ["loc", [null, [134, 27], [134, 54]]]], "url"], [], ["loc", [null, [134, 19], [134, 61]]]], ["subexpr", "not-eq", [["get", "selectedElementForEdit.type", ["loc", [null, [134, 70], [134, 97]]]], "folder"], [], ["loc", [null, [134, 62], [134, 107]]]], ["subexpr", "not-eq", [["get", "selectedElementForEdit.type", ["loc", [null, [134, 116], [134, 143]]]], "desk"], [], ["loc", [null, [134, 108], [134, 151]]]]], [], ["loc", [null, [134, 14], [134, 152]]]]], [], 0, null, ["loc", [null, [134, 8], [143, 15]]]], ["inline", "t", ["forms.fd-appstruct-form.tab.formType"], [], ["loc", [null, [145, 17], [145, 61]]]], ["inline", "flexberry-textbox", [], ["value", ["subexpr", "@mut", [["get", "selectedElementForEdit.type", ["loc", [null, [148, 18], [148, 45]]]]], [], []], "readonly", true], ["loc", [null, [146, 10], [150, 12]]]], ["block", "if", [["subexpr", "or", [["subexpr", "eq", [["get", "selectedElementForEdit.type", ["loc", [null, [152, 22], [152, 49]]]], "folder"], [], ["loc", [null, [152, 18], [152, 59]]]], ["subexpr", "eq", [["get", "selectedElementForEdit.type", ["loc", [null, [152, 64], [152, 91]]]], "desk"], [], ["loc", [null, [152, 60], [152, 99]]]]], [], ["loc", [null, [152, 14], [152, 100]]]]], [], 1, 2, ["loc", [null, [152, 8], [170, 15]]]], ["block", "if", [["subexpr", "eq", [["get", "selectedElementForEdit.type", ["loc", [null, [171, 18], [171, 45]]]], "url"], [], ["loc", [null, [171, 14], [171, 52]]]]], [], 3, null, ["loc", [null, [171, 8], [179, 15]]]], ["block", "if", [["subexpr", "and", [["subexpr", "not-eq", [["get", "selectedElementForEdit.type", ["loc", [null, [180, 27], [180, 54]]]], "folder"], [], ["loc", [null, [180, 19], [180, 64]]]], ["subexpr", "not-eq", [["get", "selectedElementForEdit.type", ["loc", [null, [180, 73], [180, 100]]]], "desk"], [], ["loc", [null, [180, 65], [180, 108]]]]], [], ["loc", [null, [180, 14], [180, 109]]]]], [], 4, null, ["loc", [null, [180, 8], [189, 15]]]]],
             locals: [],
             templates: [child0, child1, child2, child3, child4]
           };
@@ -29113,11 +29113,11 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 120,
+                "line": 121,
                 "column": 2
               },
               "end": {
-                "line": 191,
+                "line": 192,
                 "column": 2
               }
             },
@@ -29172,7 +29172,7 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
             morphs[2] = dom.createMorphAt(element6, 4, 4);
             return morphs;
           },
-          statements: [["inline", "t", ["forms.fd-appstruct-form.form-config-panel.caption"], [], ["loc", [null, [124, 10], [124, 67]]]], ["block", "ui-tab-segment", [], ["tab", "first", "title", ["subexpr", "t", ["forms.fd-appstruct-form.form-config-panel.app-properties-header"], [], ["loc", [null, [127, 42], [127, 111]]]], "theme", "", "active", true], 0, null, ["loc", [null, [127, 6], [131, 25]]]], ["block", "ui-tab-segment", [], ["tab", "second", "title", ["subexpr", "t", ["forms.fd-appstruct-form.form-config-panel.forms-properties-header"], [], ["loc", [null, [132, 43], [132, 114]]]], "theme", ""], 1, null, ["loc", [null, [132, 6], [189, 25]]]]],
+          statements: [["inline", "t", ["forms.fd-appstruct-form.form-config-panel.caption"], [], ["loc", [null, [125, 10], [125, 67]]]], ["block", "ui-tab-segment", [], ["tab", "first", "title", ["subexpr", "t", ["forms.fd-appstruct-form.form-config-panel.app-properties-header"], [], ["loc", [null, [128, 42], [128, 111]]]], "theme", "", "active", true], 0, null, ["loc", [null, [128, 6], [132, 25]]]], ["block", "ui-tab-segment", [], ["tab", "second", "title", ["subexpr", "t", ["forms.fd-appstruct-form.form-config-panel.forms-properties-header"], [], ["loc", [null, [133, 43], [133, 114]]]], "theme", ""], 1, null, ["loc", [null, [133, 6], [190, 25]]]]],
           locals: [],
           templates: [child0, child1]
         };
@@ -29184,11 +29184,11 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 118,
+              "line": 119,
               "column": 0
             },
             "end": {
-              "line": 193,
+              "line": 194,
               "column": 0
             }
           },
@@ -29213,7 +29213,7 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
           morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           return morphs;
         },
-        statements: [["block", "fd-tabs", [], ["tabsMenuTheme", "vertical tabular", "class", "ui segments horizontal right-tabs"], 0, null, ["loc", [null, [120, 2], [191, 14]]]]],
+        statements: [["block", "fd-tabs", [], ["tabsMenuTheme", "vertical tabular", "class", "ui segments horizontal right-tabs"], 0, null, ["loc", [null, [121, 2], [192, 14]]]]],
         locals: [],
         templates: [child0]
       };
@@ -29232,7 +29232,7 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 194,
+            "line": 195,
             "column": 0
           }
         },
@@ -29661,7 +29661,7 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["attribute", "class", ["concat", ["ui form flexberry-vertical-form ", ["get", "state", ["loc", [null, [1, 47], [1, 52]]]]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [2, 26], [2, 31]]]]], [], []]], ["loc", [null, [2, 2], [2, 33]]]], ["inline", "t", ["forms.fd-appstruct-form.caption"], [], ["loc", [null, [3, 6], [3, 45]]]], ["element", "action", ["openProcessEditorForm"], [], ["loc", [null, [6, 32], [6, 66]]]], ["inline", "t", ["forms.fd-appstruct-form.button-precess-editor"], [], ["loc", [null, [6, 95], [6, 148]]]], ["element", "action", ["openGenerationForm"], [], ["loc", [null, [7, 33], [7, 64]]]], ["inline", "t", ["forms.fd-appstruct-form.button-generation"], [], ["loc", [null, [7, 94], [7, 143]]]], ["element", "action", ["close"], [], ["loc", [null, [8, 59], [8, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [9, 8], [9, 49]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "removeLeftNodeDisabled", ["loc", [null, [17, 40], [17, 62]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.remove-text"], [], ["loc", [null, [17, 73], [17, 116]]]]]]], ["element", "action", ["removeLeftNode"], ["on", "click"], ["loc", [null, [17, 118], [17, 157]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.add-class-text"], [], ["loc", [null, [20, 55], [20, 101]]]]]]], ["element", "action", ["addLeftClass"], [], ["loc", [null, [20, 103], [20, 128]]]], ["attribute", "class", ["concat", ["ui button create-button ", ["get", "addLeftNodeDisabled", ["loc", [null, [23, 49], [23, 68]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.add-editform-text"], [], ["loc", [null, [23, 79], [23, 128]]]]]]], ["element", "action", ["addLeftEditForm"], [], ["loc", [null, [23, 130], [23, 158]]]], ["attribute", "class", ["concat", ["ui button create-button ", ["get", "addLeftNodeDisabled", ["loc", [null, [26, 49], [26, 68]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.add-listform-text"], [], ["loc", [null, [26, 79], [26, 128]]]]]]], ["element", "action", ["addLeftListForm"], [], ["loc", [null, [26, 130], [26, 158]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "editLeftNodeDisabled", ["loc", [null, [29, 40], [29, 60]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.edit-text"], [], ["loc", [null, [29, 71], [29, 112]]]]]]], ["element", "action", ["editLeftNode"], ["on", "click"], ["loc", [null, [29, 114], [29, 151]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.list-classes-text"], [], ["loc", [null, [32, 46], [32, 95]]]]]]], ["element", "action", ["listLeft"], ["on", "click"], ["loc", [null, [32, 97], [32, 130]]]], ["inline", "t", ["forms.fd-appstruct-form.all-forms-panel-caption"], [], ["loc", [null, [38, 10], [38, 65]]]], ["inline", "ember-jstree", [], ["actionReceiver", ["subexpr", "@mut", [["get", "jstreeActionReceiverLeft", ["loc", [null, [42, 27], [42, 51]]]]], [], []], "selectedNodes", ["subexpr", "@mut", [["get", "jstreeSelectedNodesLeft", ["loc", [null, [43, 26], [43, 49]]]]], [], []], "data", ["subexpr", "@mut", [["get", "model.leftTreeNodes", ["loc", [null, [44, 17], [44, 36]]]]], [], []], "plugins", ["subexpr", "@mut", [["get", "pluginsLeft", ["loc", [null, [45, 20], [45, 31]]]]], [], []], "typesOptions", ["subexpr", "@mut", [["get", "typesOptions", ["loc", [null, [46, 25], [46, 37]]]]], [], []]], ["loc", [null, [41, 10], [47, 12]]]], ["block", "ui-popup", [], ["content", ["subexpr", "@mut", [["get", "popupMessage", ["loc", [null, [53, 26], [53, 38]]]]], [], []]], 0, null, ["loc", [null, [53, 6], [57, 19]]]], ["attribute", "class", ["concat", ["ui button icon flexberry-button move ", ["get", "moveRightDisabled", ["loc", [null, [58, 60], [58, 77]]]]]]], ["element", "action", ["moveRightHighlighted"], ["on", "click"], ["loc", [null, [58, 81], [58, 126]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "addRightNodeDisabled", ["loc", [null, [65, 40], [65, 60]]]]]]], ["element", "action", ["addUrlNode"], ["on", "click"], ["loc", [null, [65, 64], [65, 99]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "editRightNodeDisabled", ["loc", [null, [68, 40], [68, 61]]]]]]], ["element", "action", ["editRightNode"], ["on", "click"], ["loc", [null, [68, 65], [68, 103]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "removeRightNodeDisabled", ["loc", [null, [71, 40], [71, 63]]]]]]], ["element", "action", ["removeRightNode"], ["on", "click"], ["loc", [null, [71, 67], [71, 107]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "addFolderNodeDisabled", ["loc", [null, [74, 40], [74, 61]]]]]]], ["element", "action", ["addFolderNode"], ["on", "click"], ["loc", [null, [74, 65], [74, 103]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "indexSelectedRight.upRightNodeDisabled", ["loc", [null, [77, 40], [77, 78]]]]]]], ["element", "action", ["upRightNode"], ["on", "click"], ["loc", [null, [77, 82], [77, 118]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "indexSelectedRight.downRightNodeDisabled", ["loc", [null, [80, 40], [80, 80]]]]]]], ["element", "action", ["downRightNode"], ["on", "click"], ["loc", [null, [80, 84], [80, 122]]]], ["element", "action", ["saveTree"], ["on", "click"], ["loc", [null, [83, 39], [83, 72]]]], ["inline", "t", ["forms.fd-appstruct-form.app-forms-panel-caption"], [], ["loc", [null, [89, 10], [89, 65]]]], ["inline", "ember-jstree", [], ["actionReceiver", ["subexpr", "@mut", [["get", "jstreeActionReceiverRight", ["loc", [null, [93, 27], [93, 52]]]]], [], []], "selectedNodes", ["subexpr", "@mut", [["get", "jstreeSelectedNodesRight", ["loc", [null, [94, 26], [94, 50]]]]], [], []], "data", ["subexpr", "@mut", [["get", "model.rightTreeNodes", ["loc", [null, [95, 17], [95, 37]]]]], [], []], "plugins", ["subexpr", "@mut", [["get", "pluginsRight", ["loc", [null, [96, 20], [96, 32]]]]], [], []], "typesOptions", ["subexpr", "@mut", [["get", "typesOptions", ["loc", [null, [97, 25], [97, 37]]]]], [], []], "treeObject", ["subexpr", "@mut", [["get", "jstreeObjectRight", ["loc", [null, [98, 23], [98, 40]]]]], [], []]], ["loc", [null, [92, 10], [99, 12]]]], ["block", "if", [["get", "_showModalDialog", ["loc", [null, [106, 6], [106, 22]]]]], [], 1, null, ["loc", [null, [106, 0], [116, 7]]]], ["block", "fd-config-panel", [], [], 2, null, ["loc", [null, [118, 0], [193, 20]]]]],
+      statements: [["attribute", "class", ["concat", ["ui form flexberry-vertical-form ", ["get", "state", ["loc", [null, [1, 47], [1, 52]]]]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [2, 26], [2, 31]]]]], [], []]], ["loc", [null, [2, 2], [2, 33]]]], ["inline", "t", ["forms.fd-appstruct-form.caption"], [], ["loc", [null, [3, 6], [3, 45]]]], ["element", "action", ["openProcessEditorForm"], [], ["loc", [null, [6, 32], [6, 66]]]], ["inline", "t", ["forms.fd-appstruct-form.button-precess-editor"], [], ["loc", [null, [6, 95], [6, 148]]]], ["element", "action", ["openGenerationForm"], [], ["loc", [null, [7, 33], [7, 64]]]], ["inline", "t", ["forms.fd-appstruct-form.button-generation"], [], ["loc", [null, [7, 94], [7, 143]]]], ["element", "action", ["close"], [], ["loc", [null, [8, 59], [8, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [9, 8], [9, 49]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "removeLeftNodeDisabled", ["loc", [null, [17, 40], [17, 62]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.remove-text"], [], ["loc", [null, [17, 73], [17, 116]]]]]]], ["element", "action", ["removeLeftNode"], ["on", "click"], ["loc", [null, [17, 118], [17, 157]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.add-class-text"], [], ["loc", [null, [20, 55], [20, 101]]]]]]], ["element", "action", ["addLeftClass"], [], ["loc", [null, [20, 103], [20, 128]]]], ["attribute", "class", ["concat", ["ui button create-button ", ["get", "addLeftNodeDisabled", ["loc", [null, [23, 49], [23, 68]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.add-editform-text"], [], ["loc", [null, [23, 79], [23, 128]]]]]]], ["element", "action", ["addLeftEditForm"], [], ["loc", [null, [23, 130], [23, 158]]]], ["attribute", "class", ["concat", ["ui button create-button ", ["get", "addLeftNodeDisabled", ["loc", [null, [26, 49], [26, 68]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.add-listform-text"], [], ["loc", [null, [26, 79], [26, 128]]]]]]], ["element", "action", ["addLeftListForm"], [], ["loc", [null, [26, 130], [26, 158]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "editLeftNodeDisabled", ["loc", [null, [29, 40], [29, 60]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.edit-text"], [], ["loc", [null, [29, 71], [29, 112]]]]]]], ["element", "action", ["editLeftNode"], ["on", "click"], ["loc", [null, [29, 114], [29, 151]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.list-classes-text"], [], ["loc", [null, [32, 46], [32, 95]]]]]]], ["element", "action", ["listLeft"], ["on", "click"], ["loc", [null, [32, 97], [32, 130]]]], ["inline", "t", ["forms.fd-appstruct-form.all-forms-panel-caption"], [], ["loc", [null, [38, 10], [38, 65]]]], ["inline", "ember-jstree", [], ["actionReceiver", ["subexpr", "@mut", [["get", "jstreeActionReceiverLeft", ["loc", [null, [42, 27], [42, 51]]]]], [], []], "selectedNodes", ["subexpr", "@mut", [["get", "jstreeSelectedNodesLeft", ["loc", [null, [43, 26], [43, 49]]]]], [], []], "data", ["subexpr", "@mut", [["get", "model.leftTreeNodes", ["loc", [null, [44, 17], [44, 36]]]]], [], []], "plugins", ["subexpr", "@mut", [["get", "pluginsLeft", ["loc", [null, [45, 20], [45, 31]]]]], [], []], "typesOptions", ["subexpr", "@mut", [["get", "typesOptions", ["loc", [null, [46, 25], [46, 37]]]]], [], []]], ["loc", [null, [41, 10], [47, 12]]]], ["block", "ui-popup", [], ["content", ["subexpr", "@mut", [["get", "popupMessage", ["loc", [null, [53, 26], [53, 38]]]]], [], []]], 0, null, ["loc", [null, [53, 6], [57, 19]]]], ["attribute", "class", ["concat", ["ui button icon flexberry-button move ", ["get", "moveRightDisabled", ["loc", [null, [58, 60], [58, 77]]]]]]], ["element", "action", ["moveRightHighlighted"], ["on", "click"], ["loc", [null, [58, 81], [58, 126]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "addRightNodeDisabled", ["loc", [null, [65, 40], [65, 60]]]]]]], ["element", "action", ["addUrlNode"], ["on", "click"], ["loc", [null, [65, 64], [65, 99]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "editRightNodeDisabled", ["loc", [null, [68, 40], [68, 61]]]]]]], ["element", "action", ["editRightNode"], ["on", "click"], ["loc", [null, [68, 65], [68, 103]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "removeRightNodeDisabled", ["loc", [null, [71, 40], [71, 63]]]]]]], ["element", "action", ["removeRightNode"], ["on", "click"], ["loc", [null, [71, 67], [71, 107]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "addFolderNodeDisabled", ["loc", [null, [74, 40], [74, 61]]]]]]], ["element", "action", ["addFolderNode"], ["on", "click"], ["loc", [null, [74, 65], [74, 103]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "indexSelectedRight.upRightNodeDisabled", ["loc", [null, [77, 40], [77, 78]]]]]]], ["element", "action", ["upRightNode"], ["on", "click"], ["loc", [null, [77, 82], [77, 118]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "indexSelectedRight.downRightNodeDisabled", ["loc", [null, [80, 40], [80, 80]]]]]]], ["element", "action", ["downRightNode"], ["on", "click"], ["loc", [null, [80, 84], [80, 122]]]], ["element", "action", ["saveTree"], ["on", "click"], ["loc", [null, [83, 39], [83, 72]]]], ["inline", "t", ["forms.fd-appstruct-form.app-forms-panel-caption"], [], ["loc", [null, [89, 10], [89, 65]]]], ["inline", "ember-jstree", [], ["actionReceiver", ["subexpr", "@mut", [["get", "jstreeActionReceiverRight", ["loc", [null, [93, 27], [93, 52]]]]], [], []], "selectedNodes", ["subexpr", "@mut", [["get", "jstreeSelectedNodesRight", ["loc", [null, [94, 26], [94, 50]]]]], [], []], "data", ["subexpr", "@mut", [["get", "model.rightTreeNodes", ["loc", [null, [95, 17], [95, 37]]]]], [], []], "plugins", ["subexpr", "@mut", [["get", "pluginsRight", ["loc", [null, [96, 20], [96, 32]]]]], [], []], "typesOptions", ["subexpr", "@mut", [["get", "typesOptions", ["loc", [null, [97, 25], [97, 37]]]]], [], []], "treeObject", ["subexpr", "@mut", [["get", "jstreeObjectRight", ["loc", [null, [98, 23], [98, 40]]]]], [], []]], ["loc", [null, [92, 10], [99, 12]]]], ["block", "if", [["get", "_showModalDialog", ["loc", [null, [106, 6], [106, 22]]]]], [], 1, null, ["loc", [null, [106, 0], [117, 7]]]], ["block", "fd-config-panel", [], [], 2, null, ["loc", [null, [119, 0], [194, 20]]]]],
       locals: [],
       templates: [child0, child1, child2]
     };
@@ -47544,7 +47544,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+24dabfe2"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+d3d5199e"});
 }
 
 /* jshint ignore:end */
