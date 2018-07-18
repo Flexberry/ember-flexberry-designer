@@ -864,12 +864,15 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
           var minY = 16384;
           var maxX = 0;
           var maxY = 0;
+          var sidebar = _ember['default'].$('.ui.sidebar.main.menu');
+          var sidebarWidth = sidebar.hasClass('visible') ? sidebar.width() : 0;
 
           if (minX > maxX) {
             maxX = paper && 'offsetWidth' in paper ? paper.offsetWidth : 1024;
+            maxX += sidebarWidth;
             maxY = 840;
           } else {
-            maxX = minX + maxX;
+            maxX = minX + maxX + sidebarWidth;
             maxY = minY + maxY;
           }
 
@@ -883,7 +886,13 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
 
           var linkAggregation = new _npmJointjs['default'].shapes.flexberryUml.Aggregation({
             source: { x: 100, y: 30 },
-            target: { x: 300, y: 30 }
+            target: { x: 300, y: 30 },
+            labels: [{
+              attrs: { text: { text: '*' } } }, {
+              attrs: { text: { text: 'txt' } } }, {
+              attrs: { text: { text: '' } } }, {
+              attrs: { text: { text: '1' } }
+            }]
           });
 
           var linkAssociation = new _npmJointjs['default'].shapes.flexberryUml.Association({
@@ -891,6 +900,8 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
             target: { x: 300, y: 80 },
             labels: [{
               attrs: { text: { text: '*' } } }, {
+              attrs: { text: { text: '' } } }, {
+              attrs: { text: { text: '' } } }, {
               attrs: { text: { text: '0..1' } }
             }]
           });
@@ -922,7 +933,12 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
 
           var linkQualifiedAggregation = new _npmJointjs['default'].shapes.flexberryUml.QualifiedAggregation({
             source: { x: 100, y: 370 },
-            target: { x: 300, y: 370 }
+            target: { x: 300, y: 370 },
+            labels: [{
+              attrs: { text: { text: 'txt' } } }, {
+              attrs: { text: { text: '' } } }, {
+              attrs: { text: { text: 'lbl' } }
+            }]
           });
 
           var linkQualifiedComposition = new _npmJointjs['default'].shapes.flexberryUml.QualifiedComposition({
@@ -948,6 +964,14 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
           var classWithoutStp = new _npmJointjs['default'].shapes.flexberryUml.Class({
             position: { x: 350, y: 30 },
             name: 'Class1',
+            attributes: attributes,
+            methods: methods
+          });
+
+          var classCollapsed = new _npmJointjs['default'].shapes.flexberryUml.ClassCollapsed({
+            position: { x: 450, y: 30 },
+            size: { width: 100 },
+            name: 'ClassCollapsed',
             attributes: attributes,
             methods: methods
           });
@@ -1012,7 +1036,7 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
             attributes: attributes
           });
 
-          _this.graph.addCell([classWithoutStp, classWithStp, nAryAssociation, obj, instance, multiObject, activeObj, templateClass, note, moreClasses, packagePr]);
+          _this.graph.addCell([classWithoutStp, classCollapsed, classWithStp, nAryAssociation, obj, instance, multiObject, activeObj, templateClass, note, moreClasses, packagePr]);
         });
       }
     }
@@ -47520,7 +47544,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+227c8218"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+afe73cf3"});
 }
 
 /* jshint ignore:end */
