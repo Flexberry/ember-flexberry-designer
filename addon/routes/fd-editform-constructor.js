@@ -79,9 +79,8 @@ export default Ember.Route.extend({
     modelHash.mastersType = this._buildTree(implementation, 'master', true);
 
     // Implementation not details.
-    let recordsAggregation = store.peekAll('fd-dev-aggregation');
     let details = implementation.filter(function(item) {
-      return recordsAggregation.findBy('endClass.id', item.id) === undefined && item.id !== dataobjectId;
+      return allAggregation.findBy('endClass.id', item.id) === undefined && item.id !== dataobjectId;
     });
     modelHash.detailsType = this._buildTree(details, 'detail', true);
 
@@ -130,6 +129,25 @@ export default Ember.Route.extend({
     this._super(...arguments);
     controller.set('selectedItem', undefined);
     controller.set('_showNotUsedAttributesTree', false);
+  },
+
+  /**
+    A hook you can use to reset controller values either when the model changes or the route is exiting.
+    [More info](http://emberjs.com/api/classes/Ember.Route.html#method_resetController).
+
+    @method resetController
+    @param {Ember.Controller} controller
+    @param {Boolean} isExisting
+    @param {Object} transition
+   */
+  resetController() {
+    this._super(...arguments);
+
+    let store = this.get('store');
+    store.peekAll('fd-dev-class').forEach((item) => item.rollbackAll());
+    store.peekAll('fd-dev-stage').forEach((item) => item.rollbackAll());
+    store.peekAll('fd-dev-association').forEach((item) => item.rollbackAll());
+    store.peekAll('fd-dev-aggregation').forEach((item) => item.rollbackAll());
   },
 
   /**
@@ -183,7 +201,6 @@ export default Ember.Route.extend({
     // TODO: вычислить type контрола из метаданных атрибута или FormControl и width из path.
     let control = FdEditformControl.create({
       caption: propertyDefinition.caption || propertyDefinition.name,
-      name: propertyDefinition.name,
       type: 'string',
       width: '100*',
       propertyDefinition: propertyDefinition,
@@ -254,6 +271,7 @@ export default Ember.Route.extend({
     if (!tabGroup) {
       tabGroup  = FdEditformTabgroup.create({ tabs: Ember.A(), width: '100*' });
       row.get('controls').pushObject(tabGroup);
+      row.incrementProperty('columnsCount');
     }
 
     if (!tab) {
@@ -318,6 +336,7 @@ export default Ember.Route.extend({
     if (!group) {
       group  = FdEditformGroup.create({ rows: Ember.A(), width: '100*', caption: groupCaption });
       row.get('controls').pushObject(group);
+      row.incrementProperty('columnsCount');
     }
 
     let nextPath = path.slice(groupCaptionEndIndex + 1, pathLength);
