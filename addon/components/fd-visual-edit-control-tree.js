@@ -36,6 +36,13 @@ export default FlexberryBaseComponent.extend({
   selectedItem: undefined,
 
   /**
+    Type current form.
+
+    @property typeForm
+  */
+  typeForm: undefined,
+
+  /**
     Flag: indicates whether to show attributesTree or typesTree .
 
     @property treeViewMode

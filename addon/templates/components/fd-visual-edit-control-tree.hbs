@@ -94,6 +94,7 @@
     </div>
   {{/if}}
   {{#if (eq selectedItem.type 'master')}}
+    {{#if (eq typeForm 'editform')}}
     <div class="field">
       <label>{{t "components.fd-visual-edit-control-tree.master-list-form"}}</label>
       {{
@@ -102,6 +103,7 @@
         value=dropdownElements.dropdownValue.container
       }}
     </div>
+    {{/if}}
     <div class="field">
       <label>{{t "components.fd-visual-edit-control-tree.master-property"}}</label>
       {{
