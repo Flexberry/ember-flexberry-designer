@@ -136,8 +136,6 @@ export default Ember.Route.extend({
     let modelHash = {
       editform: undefined,
       dataobject: undefined,
-      association: undefined,
-      aggregation: undefined,
       attributes: undefined,
       typemap: undefined,
       enums: undefined,
@@ -148,7 +146,6 @@ export default Ember.Route.extend({
       details: undefined,
       detailsType: undefined,
       controls: undefined,
-      arrayChengeClassElements: Ember.A()
     };
 
     let store = this.get(&#x27;store&#x27;);
@@ -156,7 +153,6 @@ export default Ember.Route.extend({
 
     let allClasses = store.peekAll(&#x27;fd-dev-class&#x27;);
     let allStages = store.peekAll(&#x27;fd-dev-stage&#x27;);
-    let allAssociation = store.peekAll(&#x27;fd-dev-association&#x27;);
     let allAggregation = store.peekAll(&#x27;fd-dev-aggregation&#x27;);
 
     // Editform.
@@ -170,13 +166,6 @@ export default Ember.Route.extend({
     // Dataobject.
     let dataobjectId = editform.get(&#x27;formViews&#x27;).objectAt(0).get(&#x27;view.class.id&#x27;);
     modelHash.dataobject = allClasses.findBy(&#x27;id&#x27;, dataobjectId);
-
-    // Association for current class.
-    modelHash.association = allAssociation.filterBy(&#x27;endClass.id&#x27;, dataobjectId);
-    modelHash.association.pushObjects(allAggregation.filterBy(&#x27;endClass.id&#x27;, dataobjectId));
-
-    // Aggregation for current class.
-    modelHash.aggregation = allAggregation.filterBy(&#x27;startClass.id&#x27;, dataobjectId);
 
     // Attributes.
     let dataForBuildTree = getDataForBuildTree(store, dataobjectId);
@@ -555,27 +544,6 @@ export default Ember.Route.extend({
 
     return treeData;
   },
-
-  /**
-      Create type tree.
-
-      @method _createTypeTree
-      @param {Array} data Data for type tree.
-      @return {Object} Object data for type tree.
-  */
-  _createTypeTree(nodes) {
-    let typeTree = Ember.A();
-    nodes.forEach((node) =&gt; {
-      typeTree.pushObject(
-        FdAttributesTree.create({
-          text: node.get(&#x27;name&#x27;),
-          type: node.get(&#x27;type&#x27;),
-          id: node.get(&#x27;id&#x27;)
-        }));
-    });
-
-    return typeTree;
-  }
 });
 
     </pre>

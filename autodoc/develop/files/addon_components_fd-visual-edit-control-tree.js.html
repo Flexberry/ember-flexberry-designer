@@ -152,6 +152,20 @@ export default FlexberryBaseComponent.extend({
   selectedItem: undefined,
 
   /**
+    Array item on the form.
+
+    @property selectedItem
+  */
+  items: undefined,
+
+  /**
+    Type current form.
+
+    @property typeForm
+  */
+  typeForm: undefined,
+
+  /**
     Flag: indicates whether to show attributesTree or typesTree .
 
     @property treeViewMode
@@ -303,19 +317,21 @@ export default FlexberryBaseComponent.extend({
 
     let store = this.get(&#x27;store&#x27;);
     let stagePk = this.get(&#x27;currentProjectContext&#x27;).getCurrentStage();
+    let dataobject = this.get(&#x27;model.dataobject&#x27;);
     if (propertyDefinition instanceof FdViewAttributesDetail) {
       this.set(&#x27;selectedItem.type&#x27;, &#x27;detail&#x27;);
       let allAggregation = store.peekAll(&#x27;fd-dev-aggregation&#x27;);
       let aggregationCurrentStage = allAggregation.filterBy(&#x27;stage.id&#x27;, stagePk);
       attribute = aggregationCurrentStage.find(function(item) {
-        return item.get(&#x27;endRole&#x27;) === namesPropertyDefinition[0] || item.get(&#x27;endClass.name&#x27;) === namesPropertyDefinition[0];
+        return (item.get(&#x27;endRole&#x27;) === namesPropertyDefinition[0] || item.get(&#x27;endClass.name&#x27;) === namesPropertyDefinition[0]) &amp;&amp;
+         item.get(&#x27;startClass.id&#x27;) === dataobject.id;
       });
     } else if (propertyDefinition instanceof FdViewAttributesMaster) {
       this.set(&#x27;selectedItem.type&#x27;, &#x27;master&#x27;);
-      let parsingResult = parsingPropertyName(store, this.get(&#x27;model.dataobject&#x27;), namesPropertyDefinition);
+      let parsingResult = parsingPropertyName(store, dataobject, namesPropertyDefinition);
       attribute = parsingResult.associations[0];
     } else {
-      let parsingResult = parsingPropertyName(store, this.get(&#x27;model.dataobject&#x27;), namesPropertyDefinition);
+      let parsingResult = parsingPropertyName(store, dataobject, namesPropertyDefinition);
       let allClasses = store.peekAll(&#x27;fd-dev-class&#x27;);
       let classesCurrentStage = allClasses.filterBy(&#x27;stage.id&#x27;, stagePk);
       let selectedClass = classesCurrentStage.findBy(&#x27;id&#x27;, parsingResult.classId);
@@ -422,6 +438,16 @@ export default FlexberryBaseComponent.extend({
     }
   }),
 
+  /**
+    Handles changes in model.attributes.
+
+    @method _modelAttributesObserver
+  */
+  _modelAttributesObserver: Ember.observer(&#x27;model.attributes&#x27;, function() {
+    let attributesTree = this._createAttributesTree();
+    this.set(&#x27;dataAttributesTree&#x27;, attributesTree);
+  }),
+
   init() {
     this._super(...arguments);
     let attributesTree = this._createAttributesTree();
@@ -480,7 +506,12 @@ export default FlexberryBaseComponent.extend({
     removeAttribute() {
       let selectedNode = this.get(&#x27;selectedNodesAttributesTree&#x27;)[0];
       let changeControl = this._findControlByAttribute(selectedNode.original.name);
-      changeControl.forEach((item) =&gt; this.get(&#x27;currentController&#x27;)._removeItem(item));
+
+      if (this.get(&#x27;typeForm&#x27;) === &#x27;editform&#x27;) {
+        changeControl.forEach((item) =&gt; this.get(&#x27;currentController&#x27;)._removeItem(item));
+      } else if (this.get(&#x27;typeForm&#x27;) === &#x27;listform&#x27;) {
+        this.get(&#x27;items&#x27;).removeObjects(changeControl);
+      }
 
       this._deleteAttribute(selectedNode);
       this.get(&#x27;actionReceiverAttributesTree&#x27;).send(&#x27;deleteNode&#x27;, selectedNode);
@@ -534,10 +565,8 @@ export default FlexberryBaseComponent.extend({
 
       let store = this.get(&#x27;store&#x27;);
       let dataobject = this.get(&#x27;model.dataobject&#x27;);
-      let arrayChengeClassElements = this.get(&#x27;model.arrayChengeClassElements&#x27;);
       let attributesTree = this.get(&#x27;dataAttributesTree&#x27;);
       let recordsDevClass = store.peekAll(&#x27;fd-dev-class&#x27;);
-      let newAttribute;
       switch (selectedNode.type) {
         case &#x27;master&#x27;:
 
@@ -549,13 +578,12 @@ export default FlexberryBaseComponent.extend({
 
           // Create new association.
           let startClass = recordsDevClass.findBy(&#x27;id&#x27;, selectedNode.original.idNode);
-          newAttribute = store.createRecord(&#x27;fd-dev-association&#x27;, {
+          store.createRecord(&#x27;fd-dev-association&#x27;, {
             endClass: dataobject,
             startClass: startClass,
             startRole: this.get(&#x27;propertyName&#x27;),
             stage: dataobject.get(&#x27;stage&#x27;)
           });
-          arrayChengeClassElements.pushObject(newAttribute);
           break;
         case &#x27;detail&#x27;:
 
@@ -571,13 +599,12 @@ export default FlexberryBaseComponent.extend({
 
           // Create new aggregation.
           let endClass = recordsDevClass.findBy(&#x27;id&#x27;, selectedNode.original.idNode);
-          newAttribute = store.createRecord(&#x27;fd-dev-aggregation&#x27;, {
+          store.createRecord(&#x27;fd-dev-aggregation&#x27;, {
             endClass: endClass,
             startClass: dataobject,
             endRole: this.get(&#x27;propertyName&#x27;),
             stage: dataobject.get(&#x27;stage&#x27;)
           });
-          arrayChengeClassElements.pushObject(newAttribute);
           break;
         default:
           attributesTree[0].copyChildren.pushObject(newNode);
@@ -654,7 +681,6 @@ export default FlexberryBaseComponent.extend({
   */
   _deleteAttribute(selectedNode) {
     let dataobject = this.get(&#x27;model.dataobject&#x27;);
-    let arrayChengeClassElements = this.get(&#x27;model.arrayChengeClassElements&#x27;);
 
     // Delete node from parent copyChildren.
     let parentSelectedNode = this.get(&#x27;treeObjectAttributesTree&#x27;).jstree(true).get_node(selectedNode.parent);
@@ -667,21 +693,21 @@ export default FlexberryBaseComponent.extend({
         let attributes = dataobject.get(&#x27;attributes&#x27;);
         let deleteAttribute = attributes.findBy(&#x27;name&#x27;, selectedNode.original.name);
         deleteAttribute.deleteRecord();
-        arrayChengeClassElements.pushObject(deleteAttribute);
         break;
       case &#x27;master&#x27;:
-        let association = this.get(&#x27;model.association&#x27;);
-        let associationCurrentClass = association.filterBy(&#x27;endClass.id&#x27;, dataobject.id);
+        let association = this.get(&#x27;store&#x27;).peekAll(&#x27;fd-dev-association&#x27;);
+        let aggregation = this.get(&#x27;store&#x27;).peekAll(&#x27;fd-dev-aggregation&#x27;);
+        let associationCurrentClass = association.filterBy(&#x27;endClass.id&#x27;,  dataobject.id);
+        associationCurrentClass.pushObjects(aggregation.filterBy(&#x27;endClass.id&#x27;,  dataobject.id));
+
         let deleteAssociation = Ember.A(associationCurrentClass).findBy(&#x27;startClass.id&#x27;, selectedNode.original.idNode);
         deleteAssociation.deleteRecord();
-        arrayChengeClassElements.pushObject(deleteAssociation);
         break;
       case &#x27;detail&#x27;:
-        let aggregation = this.get(&#x27;model.aggregation&#x27;);
-        let aggregationCurrentClass = aggregation.filterBy(&#x27;startClass.id&#x27;, dataobject.id);
+        let devAggregation = this.get(&#x27;store&#x27;).peekAll(&#x27;fd-dev-aggregation&#x27;);
+        let aggregationCurrentClass = devAggregation.filterBy(&#x27;startClass.id&#x27;, dataobject.id);
         let deleteAggregation = Ember.A(aggregationCurrentClass).findBy(&#x27;endClass.id&#x27;, selectedNode.original.idNode);
         deleteAggregation.deleteRecord();
-        arrayChengeClassElements.pushObject(deleteAggregation);
         let typeTree = this.get(&#x27;dataTypeTree&#x27;)[5];
         let nodeId = findFreeNodeTreeNameIndex(&#x27;detail&#x27;, 0, typeTree.copyChildren, &#x27;id&#x27;);
         let recordsDevClass = this.get(&#x27;store&#x27;).peekAll(&#x27;fd-dev-class&#x27;);
@@ -704,10 +730,14 @@ export default FlexberryBaseComponent.extend({
     @param {String} attributeName Name to search.
   */
   _findControlByAttribute(attributeName) {
-    let controls = this.get(&#x27;model.controls&#x27;);
+    let items = this.get(&#x27;items&#x27;);
     let searchResults = Ember.A();
-    for (let i = 0; i &lt; controls.length; i++) {
-      this._controlsRound(controls.objectAt(i), attributeName, searchResults);
+    if (this.get(&#x27;typeForm&#x27;) === &#x27;editform&#x27;) {
+      for (let i = 0; i &lt; items.length; i++) {
+        this._controlsRound(items.objectAt(i), attributeName, searchResults);
+      }
+    } else if (this.get(&#x27;typeForm&#x27;) === &#x27;listform&#x27;) {
+      searchResults = items.filterBy(&#x27;propertyDefinition.name&#x27;, attributeName);
     }
 
     return searchResults;
@@ -763,16 +793,19 @@ export default FlexberryBaseComponent.extend({
       case &#x27;property&#x27;:
         propertyDefinition = FdViewAttributesProperty.create({
           name: propertyName,
+          caption: propertyName,
         });
         break;
       case &#x27;master&#x27;:
         propertyDefinition = FdViewAttributesMaster.create({
           name: propertyName,
+          caption: propertyName,
         });
         break;
       case &#x27;detail&#x27;:
         propertyDefinition = FdViewAttributesDetail.create({
           name: propertyName,
+          caption: propertyName,
         });
         break;
     }

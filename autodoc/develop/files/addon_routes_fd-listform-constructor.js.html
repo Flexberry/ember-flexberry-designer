@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>addon/controllers/fd-listform-constructor.js - Flexberry Documentation</title>
+    <title>addon/routes/fd-listform-constructor.js - Flexberry Documentation</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -109,200 +109,170 @@
                 <div id="docs-main">
                     <div class="content">
 <div class="page-header">
-    <h1>addon/controllers/fd-listform-constructor.js <small>File</small></h1>
+    <h1>addon/routes/fd-listform-constructor.js <small>File</small></h1>
 </div>
 
 <div class="file">
     <pre class="prettyprint linenums">
 import Ember from &#x27;ember&#x27;;
+import FdAttributesTree from &#x27;../objects/fd-attributes-tree&#x27;;
+import FdDataTypes from &#x27;../utils/fd-datatypes&#x27;;
+import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode } from &#x27;../utils/fd-attributes-for-tree&#x27;;
 
-import FdListformColumn from &#x27;../objects/fd-listform-column&#x27;;
-import FdViewAttributesProperty from &#x27;../objects/fd-view-attributes-property&#x27;;
+export default Ember.Route.extend({
+  currentContext: Ember.inject.service(&#x27;fd-current-project-context&#x27;),
 
-export default Ember.Controller.extend({
-  /**
-    @private
-    @property _showModalDialog
-    @type Boolean
-    @default false
-  */
-  _showModalDialog: false,
+  queryParams: {
+    form: { refreshModel: true },
+    class: { refreshModel: true },
+  },
 
-  /**
-    @private
-    @property _selectedIsFirst
-    @readOnly
-    @type Boolean
-  */
-  _selectedIsFirst: Ember.computed(&#x27;selectedColumn&#x27;, &#x27;columns.[]&#x27;, function() {
-    return this.get(&#x27;selectedColumn&#x27;) === this.get(&#x27;columns.firstObject&#x27;);
-  }).readOnly(),
+  model(params) {
+    let modelHash = {
+      listform: undefined,
+      view: undefined,
+      dataobject: undefined,
+      attributes: undefined,
+      typemap: undefined,
+      enums: undefined,
+      simpleTypes: undefined,
+      types: undefined,
+      masters: undefined,
+      mastersType: undefined,
+      details: undefined,
+      detailsType: undefined,
+    };
 
-  /**
-    @private
-    @property _selectedIsLast
-    @readOnly
-    @type Boolean
-  */
-  _selectedIsLast: Ember.computed(&#x27;selectedColumn&#x27;, &#x27;columns.[]&#x27;, function() {
-    return this.get(&#x27;selectedColumn&#x27;) === this.get(&#x27;columns.lastObject&#x27;);
-  }).readOnly(),
+    let stage = this.get(&#x27;currentContext&#x27;).getCurrentStageModel();
+    let store = this.get(&#x27;store&#x27;);
+    let allClasses = store.peekAll(&#x27;fd-dev-class&#x27;);
 
-  queryParams: [&#x27;form&#x27;, &#x27;class&#x27;],
+    if (params.form) {
+      modelHash.listform = allClasses.findBy(&#x27;id&#x27;, params.form);
+      modelHash.view = modelHash.listform.get(&#x27;formViews.firstObject.view&#x27;);
+      modelHash.dataobject = allClasses.findBy(&#x27;id&#x27;, modelHash.view.get(&#x27;class.id&#x27;));
+    } else {
+      if (params.class) {
+        modelHash.dataobject = allClasses.findBy(&#x27;id&#x27;, params.class);
+      } else {
+        modelHash.dataobject = store.createRecord(&#x27;fd-dev-class&#x27;, { stage });
+      }
 
-  formClass: Ember.computed.alias(&#x27;model.listform&#x27;),
+      modelHash.view = store.createRecord(&#x27;fd-dev-view&#x27;, {
+        class: modelHash.dataobject,
+        definition: Ember.A(),
+      });
 
-  view: Ember.computed.alias(&#x27;model.view&#x27;),
-
-  dataObject: Ember.computed.alias(&#x27;model.dataobject&#x27;),
-
-  /**
-    The selected column.
-
-    @property selectedColumn
-    @type FdListformColumn
-  */
-  selectedColumn: undefined,
-
-  /**
-    Columns of the table in the list form.
-
-    @property columns
-    @type FdListformColumn[]
-    @readOnly
-  */
-  columns: Ember.computed(&#x27;view.definition&#x27;, function() {
-    let columns = Ember.A();
-    let definition = this.get(&#x27;view.definition&#x27;);
-    let length = definition.get(&#x27;length&#x27;);
-    for (let i = 0; i &lt; length; i++) {
-      columns.pushObject(FdListformColumn.create({
-        propertyDefinition: definition.objectAt(i),
-      }));
+      let formView = store.createRecord(&#x27;fd-dev-form-view&#x27;, { view: modelHash.view });
+      modelHash.listform = store.createRecord(&#x27;fd-dev-class&#x27;, {
+        stage: stage,
+        formViews: [formView],
+      });
     }
 
-    return columns;
-  }).readOnly(),
+    let allStages = store.peekAll(&#x27;fd-dev-stage&#x27;);
+    let dataobjectId = modelHash.dataobject.get(&#x27;id&#x27;);
 
-  actions: {
-    /**
-      Set the selected column.
+    // Attributes.
+    let dataForBuildTree = getDataForBuildTree(store, dataobjectId);
+    modelHash.attributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes, dataobjectId, &#x27;type&#x27;);
+    modelHash.masters = getAssociationTreeNode(Ember.A(), dataForBuildTree.associations, &#x27;node_&#x27;, dataobjectId, &#x27;name&#x27;);
+    modelHash.details = getAggregationTreeNode(Ember.A(), dataForBuildTree.aggregations, dataobjectId, &#x27;name&#x27;);
 
-      @method actions.selectColumn
-      @param {FdListformColumn} column
-    */
-    selectColumn(column) {
-      this.set(&#x27;selectedColumn&#x27;, this.get(&#x27;selectedColumn&#x27;) === column ? undefined : column);
-    },
+    // simpleTypes.
+    let fdDataTypes = FdDataTypes.create();
+    modelHash.simpleTypes = this._buildTree(fdDataTypes.flexberryTypes(), &#x27;property&#x27;);
 
-    /**
-      Adds a new column.
+    // Implementation.
+    let implementation = allClasses.filter(function(item) {
+      return (item.get(&#x27;stereotype&#x27;) === &#x27;«implementation»&#x27; || item.get(&#x27;stereotype&#x27;) === null) &amp;&amp; item.get(&#x27;stage.id&#x27;) === stage.get(&#x27;id&#x27;);
+    });
+    modelHash.mastersType = this._buildTree(implementation, &#x27;master&#x27;, true);
 
-      @method actions.addColumn
-    */
-    addColumn() {
-      this.get(&#x27;columns&#x27;).pushObject(FdListformColumn.create({
-        propertyDefinition: FdViewAttributesProperty.create({
-          caption: &#x60;${this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-listform-constructor.new-column-caption&#x27;).toString()} #${this.incrementProperty(&#x27;_newColumnIndex&#x27;)}&#x60;,
-          name: &#x27;&#x27;,
-        }),
-      }));
-    },
+    // Implementation not details.
+    let recordsAggregation = store.peekAll(&#x27;fd-dev-aggregation&#x27;);
+    let details = implementation.filter(function(item) {
+      return recordsAggregation.findBy(&#x27;endClass.id&#x27;, item.id) === undefined &amp;&amp; item.id !== dataobjectId;
+    });
+    modelHash.detailsType = this._buildTree(details, &#x27;detail&#x27;, true);
 
-    /**
-      Removes the selected column.
+    // Typemap.
+    let currentStage = allStages.findBy(&#x27;id&#x27;, stage.get(&#x27;id&#x27;));
+    let typeMapCSStr = currentStage.get(&#x27;typeMapCSStr&#x27;);
+    let typemap = typeMapCSStr.filter(function(item) {
+      return fdDataTypes.fDTypeToFlexberry(item.name) === null;
+    });
+    modelHash.typemap = this._buildTree(typemap, &#x27;«typemap»&#x27;);
 
-      @method actions.removeSelectedColumn
-      @param {Boolean} approve The user is sure.
-    */
-    removeSelectedColumn(approve) {
-      if (approve) {
-        let columns = this.get(&#x27;columns&#x27;);
-        let selectedColumn = this.get(&#x27;selectedColumn&#x27;);
+    // Enums.
+    let enums = allClasses.filter(function(item) {
+      return item.get(&#x27;stereotype&#x27;) === &#x27;«enumeration»&#x27; &amp;&amp; item.get(&#x27;stage.id&#x27;) === stage.get(&#x27;id&#x27;);
+    });
+    modelHash.enums = this._buildTree(enums, &#x27;«enumeration»&#x27;);
 
-        columns.removeObject(selectedColumn);
-        this.set(&#x27;selectedColumn&#x27;, undefined);
+    // Types.
+    let types = allClasses.filter(function(item) {
+      return item.get(&#x27;stereotype&#x27;) === &#x27;«type»&#x27; &amp;&amp; item.get(&#x27;stage.id&#x27;) === stage.get(&#x27;id&#x27;);
+    });
+    modelHash.types = this._buildTree(types, &#x27;«type»&#x27;);
+
+    return modelHash;
+  },
+
+  /**
+    A hook you can use to reset controller values either when the model changes or the route is exiting.
+    [More info](http://emberjs.com/api/classes/Ember.Route.html#method_resetController).
+
+    @method resetController
+    @param {Ember.Controller} controller
+    @param {Boolean} isExisting
+    @param {Object} transition
+   */
+  resetController() {
+    this._super(...arguments);
+
+    let store = this.get(&#x27;store&#x27;);
+    store.peekAll(&#x27;fd-dev-class&#x27;).forEach((item) =&gt; item.rollbackAll());
+    store.peekAll(&#x27;fd-dev-stage&#x27;).forEach((item) =&gt; item.rollbackAll());
+    store.peekAll(&#x27;fd-dev-association&#x27;).forEach((item) =&gt; item.rollbackAll());
+    store.peekAll(&#x27;fd-dev-aggregation&#x27;).forEach((item) =&gt; item.rollbackAll());
+  },
+
+  /**
+      Create tree.
+
+      @method _buildTree
+      @param {Array} data Data for tree.
+      @param {String} type Type for tree.
+      @param {Boolean} nodeId Flag need add in object node id.
+      @return {Object} Object data for tree.
+  */
+  _buildTree: function(data, type, nodeId) {
+    let treeData = Ember.A();
+    data.forEach((item, index)=&gt; {
+      let text;
+      if (type === &#x27;«typemap»&#x27;) {
+        text = item.name;
+      } else if (type === &#x27;property&#x27;) {
+        text = item;
       } else {
-        this.set(&#x27;_showModalDialog&#x27;, true);
-      }
-    },
-
-    /**
-      Sorts the selected column.
-
-      @method actions.sortSelectedColumn
-      @param {Number} step Step of moving the column.
-    */
-    sortSelectedColumn(step) {
-      let columns = this.get(&#x27;columns&#x27;);
-      let selectedColumn = this.get(&#x27;selectedColumn&#x27;);
-      let index = columns.indexOf(selectedColumn) + step;
-
-      columns.removeObject(selectedColumn);
-      columns.insertAt(index, selectedColumn);
-    },
-
-    save() {
-      let view = Ember.A(this.get(&#x27;view&#x27;));
-      let viewDefinition = Ember.A();
-      let columns = this.get(&#x27;columns&#x27;);
-      for (let i = 0; i &lt; columns.get(&#x27;length&#x27;); i++) {
-        let column = columns[i];
-        viewDefinition.pushObject(column.get(&#x27;propertyDefinition&#x27;));
+        text = item.get(&#x27;name&#x27;);
       }
 
-      view.set(&#x27;definition&#x27;, viewDefinition);
-
-      let formName = this.get(&#x27;formClass.name&#x27;);
-      if (this.get(&#x27;formClass.isNew&#x27;)) {
-        this.set(&#x27;formClass.caption&#x27;, formName);
-        this.set(&#x27;formClass.stereotype&#x27;, &#x27;«listform»&#x27;);
-        this.set(&#x27;view.name&#x27;, &#x60;${formName}ViewL&#x60;);
-        this.set(&#x27;formClass.formViews.firstObject.name&#x27;, &#x27;listview&#x27;);
-      }
-
-      if (this.get(&#x27;dataObject.isNew&#x27;)) {
-        this.set(&#x27;dataObject.name&#x27;, &#x60;${formName}Object&#x60;);
-        this.set(&#x27;dataObject.caption&#x27;, &#x60;${formName}Object&#x60;);
-      }
-
-      let dataobject = this.get(&#x27;dataObject&#x27;);
-      if (Ember.isNone(dataobject.get(&#x27;caption&#x27;))) {
-        dataobject.set(&#x27;caption&#x27;, dataobject.get(&#x27;name&#x27;));
-      }
-
-      let formClass = this.get(&#x27;formClass&#x27;);
-      if (Ember.isNone(formClass.get(&#x27;caption&#x27;))) {
-        formClass.set(&#x27;caption&#x27;, formClass.get(&#x27;name&#x27;));
-      }
-
-      let attributes = dataobject.get(&#x27;attributes&#x27;);
-      let changedAttributes = attributes.filterBy(&#x27;hasDirtyAttributes&#x27;);
-
-      let association = this.get(&#x27;store&#x27;).peekAll(&#x27;fd-dev-association&#x27;);
-      let changedAssociations = association.filterBy(&#x27;hasDirtyAttributes&#x27;);
-
-      let aggregation = this.get(&#x27;store&#x27;).peekAll(&#x27;fd-dev-aggregation&#x27;);
-      let changedAggregation = aggregation.filterBy(&#x27;hasDirtyAttributes&#x27;);
-
-      dataobject.save().then(() =&gt; {
-        this.get(&#x27;view&#x27;).save().then(() =&gt; {
-          formClass.save().then(() =&gt; {
-            this.get(&#x27;formClass.formViews.firstObject&#x27;).save().then(() =&gt; {
-              this.set(&#x27;class&#x27;, undefined);
-              this.set(&#x27;form&#x27;, this.get(&#x27;formClass.id&#x27;));
-            });
-          });
-          changedAttributes.map(a =&gt; a.save());
-          changedAssociations.map(a =&gt; a.save());
-          changedAggregation.map(a =&gt; a.save());
-        });
+      let newNode = FdAttributesTree.create({
+        text: text,
+        type: type,
+        id: type + index
       });
-    },
 
-    close() {
-      this.transitionToRoute(&#x27;fd-appstruct-form&#x27;);
-    },
+      if (!Ember.isNone(nodeId)) {
+        newNode.set(&#x27;idNode&#x27;, item.get(&#x27;id&#x27;));
+      }
+
+      treeData.pushObject(newNode);
+    });
+
+    return treeData;
   },
 });
 
