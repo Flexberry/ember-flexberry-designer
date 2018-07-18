@@ -1,13 +1,22 @@
 import Ember from 'ember';
+import FlexberryBaseComponent from 'ember-flexberry/components/flexberry-base-component';
 import layout from '../templates/components/fd-visual-edit-control-tree';
+
+import FdEditformRow from '../objects/fd-editform-row';
+import FdEditformControl from '../objects/fd-editform-control';
+import FdEditformGroup from '../objects/fd-editform-group';
+import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
+import FdEditformTab from '../objects/fd-editform-tab';
+
 import FdViewAttributesProperty from '../objects/fd-view-attributes-property';
 import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 import FdAttributesTree from '../objects/fd-attributes-tree';
+
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, parsingPropertyName } from '../utils/fd-attributes-for-tree';
 import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNodeTreeID, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
 
-export default Ember.Component.extend({
+export default FlexberryBaseComponent.extend({
   layout,
 
   /**
@@ -177,31 +186,22 @@ export default Ember.Component.extend({
     }
 
     let store = this.get('store');
-    let allClasses = store.peekAll('fd-dev-class');
     let stagePk = this.get('currentProjectContext').getCurrentStage();
-    let classesCurrentStage = allClasses.filterBy('stage.id', stagePk);
-
     if (propertyDefinition instanceof FdViewAttributesDetail) {
       this.set('selectedItem.type', 'detail');
-      attribute = this.get('model.aggregation').findBy('endRole', namesPropertyDefinition[0]);
-
-      let classData = classesCurrentStage.findBy('name', namesPropertyDefinition[0]);
-      let detailViews = classData.get('views');
-      this.set('dropdownItems', detailViews.mapBy('name'));
-
+      let allAggregation = store.peekAll('fd-dev-aggregation');
+      let aggregationCurrentStage = allAggregation.filterBy('stage.id', stagePk);
+      attribute = aggregationCurrentStage.find(function(item) {
+        return item.get('endRole') === namesPropertyDefinition[0] || item.get('endClass.name') === namesPropertyDefinition[0];
+      });
     } else if (propertyDefinition instanceof FdViewAttributesMaster) {
       this.set('selectedItem.type', 'master');
       let parsingResult = parsingPropertyName(store, this.get('model.dataobject'), namesPropertyDefinition);
       attribute = parsingResult.associations[0];
-
-      let listForms = classesCurrentStage.filter(function(item) {
-        return item.get('formViews.firstObject.view.class.id') === attribute.get('startClass.id') &&
-         item.get('stereotype') === '«listform»';
-      });
-      this.set('dropdownItems', Ember.A(listForms).mapBy('name'));
-
     } else {
       let parsingResult = parsingPropertyName(store, this.get('model.dataobject'), namesPropertyDefinition);
+      let allClasses = store.peekAll('fd-dev-class');
+      let classesCurrentStage = allClasses.filterBy('stage.id', stagePk);
       let selectedClass = classesCurrentStage.findBy('id', parsingResult.classId);
       let attributes = selectedClass.get('attributes');
       let index = namesPropertyDefinition.length - 1;
@@ -215,28 +215,47 @@ export default Ember.Component.extend({
   }),
 
   /**
-    PropertyLookupStr selected attribute for editing.
+    Computes view for details and list forms for masters.
 
-    @property propertyLookupStr
+    @property dropdownElements
     @type Object
   */
-  propertyLookupStr: Ember.computed('selectedAttribute', function() {
+  dropdownElements: Ember.computed('selectedAttribute', function() {
+    let attribute = this.get('selectedAttribute');
     let propertyDefinition = this.get('selectedItem.propertyDefinition');
-    if (!(propertyDefinition instanceof FdViewAttributesMaster)) {
-      return {};
+
+    let allClasses = this.get('store').peekAll('fd-dev-class');
+    let stagePk = this.get('currentProjectContext').getCurrentStage();
+    let classesCurrentStage = allClasses.filterBy('stage.id', stagePk);
+
+    let dropdownItems = [];
+    let dropdownValue = '';
+    if (propertyDefinition instanceof FdViewAttributesDetail) {
+      let classData = classesCurrentStage.findBy('name', attribute.get('endClass.name'));
+      let detailViews = classData.get('views');
+      dropdownItems = detailViews.mapBy('name');
+      dropdownValue = propertyDefinition;
+    } else if (propertyDefinition instanceof FdViewAttributesMaster) {
+      let listForms = classesCurrentStage.filter(function(item) {
+        return item.get('formViews.firstObject.view.class.id') === attribute.get('startClass.id') &&
+         item.get('stereotype') === '«listform»';
+      });
+      dropdownItems = Ember.A(listForms).mapBy('name');
+      let realStartRole = attribute.get('realStartRole') || attribute.get('startRole');
+      let propertyLookupStrArray = this.get('model.editform.propertyLookupStr');
+      dropdownValue = propertyLookupStrArray.findBy('property', realStartRole);
+      if (Ember.isNone(dropdownValue)) {
+        dropdownValue = { property: realStartRole, container: '' };
+        propertyLookupStrArray.pushObject(dropdownValue);
+      }
     }
 
-    let selectedAttribute = this.get('selectedAttribute');
-    let realStartRole = selectedAttribute.get('realStartRole') || selectedAttribute.get('startRole');
-    let propertyLookupStrArray = this.get('model.editform.propertyLookupStr');
-    let propertyLookupStr = propertyLookupStrArray.findBy('property', realStartRole);
-    if (Ember.isNone(propertyLookupStr)) {
-      propertyLookupStr = { property: realStartRole, container: '' };
-      propertyLookupStrArray.pushObject(propertyLookupStr);
-    }
-
-    return propertyLookupStr;
+    return {
+      dropdownItems: dropdownItems,
+      dropdownValue: dropdownValue
+    };
   }),
+
   /**
     Handles changes in propertyName and selectedNodesTypeTree.
 
@@ -343,8 +362,11 @@ export default Ember.Component.extend({
       @method actions.removeAttribute
     */
     removeAttribute() {
-      this._deleteAttribute();
       let selectedNode = this.get('selectedNodesAttributesTree')[0];
+      let changeControl = this._findControlByAttribute(selectedNode.original.name);
+      changeControl.forEach((item) => this.get('currentController')._removeItem(item));
+
+      this._deleteAttribute(selectedNode);
       this.get('actionReceiverAttributesTree').send('deleteNode', selectedNode);
       this.set('selectedNodesAttributesTree', Ember.A());
     },
@@ -360,34 +382,7 @@ export default Ember.Component.extend({
 
       // Create propertyName
       let propertyName = createPropertyName(selectedNode, treeData[1], false);
-      let recordsDevClass = this.get('store').peekAll('fd-dev-class');
-
-      let propertyDefinition;
-      switch (selectedNode.type) {
-        case 'property':
-          propertyDefinition = FdViewAttributesProperty.create({
-            name: propertyName,
-          });
-          break;
-        case 'master':
-          let listForms = recordsDevClass.filter(function(item) {
-            return item.get('formViews.firstObject.view.class.id') === selectedNode.original.idNode &&
-            item.get('stereotype') === '«listform»';
-          });
-          this.set('dropdownItems', Ember.A(listForms).mapBy('name'));
-          propertyDefinition = FdViewAttributesMaster.create({
-            name: propertyName,
-          });
-          break;
-        case 'detail':
-          let classData = recordsDevClass.findBy('id', selectedNode.original.idNode);
-          let detailViews = classData.get('views');
-          this.set('dropdownItems', detailViews.mapBy('name'));
-          propertyDefinition = FdViewAttributesDetail.create({
-            name: propertyName,
-          });
-          break;
-      }
+      let propertyDefinition = this._createPropertyDefinition(selectedNode.type, propertyName);
 
       this.set('selectedItem.propertyDefinition', propertyDefinition);
       this.set('selectedItem.type', selectedNode.original.typeNode);
@@ -481,12 +476,25 @@ export default Ember.Component.extend({
 
       // Delete old attribute.
       if (!Ember.isNone(this.get('oldPropertyName'))) {
-        this._deleteAttribute();
+        let selectedNodesAttributesTree = this.get('selectedNodesAttributesTree')[0];
+        let changeControl = this._findControlByAttribute(this.get('oldPropertyName'));
+        if (selectedNodesAttributesTree.type === selectedNode.type) {
+          changeControl.forEach((item) => item.set('propertyDefinition.name', this.get('propertyName')));
+        } else {
+          let newPropertyDefinition = this._createPropertyDefinition(selectedNode.type, this.get('propertyName'));
+          changeControl.forEach((item) => {
+            item.set('propertyDefinition', newPropertyDefinition);
+            item.set('type', selectedNode.original.typeNode);
+          });
+        }
+
+        this._deleteAttribute(selectedNodesAttributesTree);
       }
 
       restorationNodeTree(attributesTree, {}, Ember.A(['master', 'class']), false);
       this.set('oldPropertyName', undefined);
       this.set('treeViewMode', true);
+      this.set('selectedNodesAttributesTree', Ember.A());
       this.set('selectedNodesTypeTree', Ember.A());
     },
 
@@ -499,6 +507,7 @@ export default Ember.Component.extend({
       let attributesTree = this.get('dataAttributesTree');
       restorationNodeTree(attributesTree, {}, Ember.A(['master', 'class']), false);
       this.set('treeViewMode', true);
+      this.set('selectedNodesAttributesTree', Ember.A());
       this.set('selectedNodesTypeTree', Ember.A());
     }
   },
@@ -525,9 +534,9 @@ export default Ember.Component.extend({
     Method delete attributes from class.
 
     @method _deleteAttribute
+    @param {Object} selectedNode selected node from attribute tree.
   */
-  _deleteAttribute() {
-    let selectedNode = this.get('selectedNodesAttributesTree')[0];
+  _deleteAttribute(selectedNode) {
     let dataobject = this.get('model.dataobject');
     let arrayChengeClassElements = this.get('model.arrayChengeClassElements');
 
@@ -547,14 +556,14 @@ export default Ember.Component.extend({
       case 'master':
         let association = this.get('model.association');
         let associationCurrentClass = association.filterBy('endClass.id', dataobject.id);
-        let deleteAssociation = Ember.A(associationCurrentClass).findBy('startClass.name', selectedNode.original.name);
+        let deleteAssociation = Ember.A(associationCurrentClass).findBy('startClass.id', selectedNode.original.idNode);
         deleteAssociation.deleteRecord();
         arrayChengeClassElements.pushObject(deleteAssociation);
         break;
       case 'detail':
         let aggregation = this.get('model.aggregation');
         let aggregationCurrentClass = aggregation.filterBy('startClass.id', dataobject.id);
-        let deleteAggregation = Ember.A(aggregationCurrentClass).findBy('endClass.name', selectedNode.original.name);
+        let deleteAggregation = Ember.A(aggregationCurrentClass).findBy('endClass.id', selectedNode.original.idNode);
         deleteAggregation.deleteRecord();
         arrayChengeClassElements.pushObject(deleteAggregation);
         let typeTree = this.get('dataTypeTree')[5];
@@ -570,6 +579,89 @@ export default Ember.Component.extend({
           }));
         break;
     }
+  },
+
+  /**
+    Method for search control by attribute.
+
+    @method _findControlByAttribute
+    @param {String} attributeName Name to search.
+  */
+  _findControlByAttribute(attributeName) {
+    let controls = this.get('model.controls');
+    let searchResults = Ember.A();
+    for (let i = 0; i < controls.length; i++) {
+      this._controlsRound(controls.objectAt(i), attributeName, searchResults);
+    }
+
+    return searchResults;
+  },
+
+  /**
+    Method for controls round.
+
+    @method _controlsRound
+    @param {FdEditformControl|FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab} control Some item in object model.
+    @param {String} findAttributeName Name to search.
+    @param {Ember.Array} result Array with search result.
+  */
+  _controlsRound(control, findAttributeName, result) {
+    if (control instanceof FdEditformControl) {
+      let propertyName = control.get('propertyDefinition.name');
+      if (propertyName === findAttributeName) {
+        result.pushObject(control);
+      }
+    } else if (control instanceof FdEditformRow) {
+      for (let i = 0; i < control.get('controls.length'); i++) {
+        let controlInRow = control.get('controls').objectAt(i);
+        this._controlsRound(controlInRow, findAttributeName, result);
+      }
+    } else if (control instanceof FdEditformGroup) {
+      for (let i = 0; i < control.get('rows.length'); i++) {
+        let rowInGroup = control.get('rows').objectAt(i);
+        this._controlsRound(rowInGroup, findAttributeName, result);
+      }
+    } else if (control instanceof FdEditformTabgroup) {
+      for (let i = 0; i < control.get('tabs.length'); i++) {
+        let rowInGroup = control.get('tabs').objectAt(i);
+        this._controlsRound(rowInGroup, findAttributeName, result);
+      }
+    } else if (control instanceof FdEditformTab) {
+      for (let i = 0; i < control.get('rows.length'); i++) {
+        let rowInGroup = control.get('rows').objectAt(i);
+        this._controlsRound(rowInGroup, findAttributeName, result);
+      }
+    }
+  },
+
+  /**
+    Method for create new propertyDefinition.
+
+    @method _createPropertyDefinition
+    @param {String} type Type.
+    @param {String} propertyName PropertyName.
+  */
+  _createPropertyDefinition(type, propertyName) {
+    let propertyDefinition;
+    switch (type) {
+      case 'property':
+        propertyDefinition = FdViewAttributesProperty.create({
+          name: propertyName,
+        });
+        break;
+      case 'master':
+        propertyDefinition = FdViewAttributesMaster.create({
+          name: propertyName,
+        });
+        break;
+      case 'detail':
+        propertyDefinition = FdViewAttributesDetail.create({
+          name: propertyName,
+        });
+        break;
+    }
+
+    return propertyDefinition;
   },
 
   /**
