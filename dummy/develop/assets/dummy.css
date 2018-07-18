@@ -39137,10 +39137,18 @@ img.item-minus {
 .ui.right.sidebar.config-panel .ui.vertical.menu {
   width: 4rem;
   margin-top: 0;
+  box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15) !important;
 }
 .ui.right.sidebar.config-panel .ui.vertical.menu.tabular .item {
   -webkit-writing-mode: vertical-rl;
   writing-mode: tb-rl;
+  border-color: #D4D4D5;
+}
+.ui.right.sidebar.config-panel .ui.vertical.menu.tabular .item:last-child {
+  box-shadow: 0 5px 5px -5px rgba(34, 36, 38, 0.15);
+}
+.ui.right.sidebar.config-panel .ui.vertical.menu.tabular .item:first-child {
+  box-shadow: 0 -5px 5px -5px rgba(34, 36, 38, 0.15);
 }
 .ui.right.sidebar.config-panel .ui.selection.dropdown {
   min-width: auto;
