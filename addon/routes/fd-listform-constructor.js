@@ -25,7 +25,6 @@ export default Ember.Route.extend({
       mastersType: undefined,
       details: undefined,
       detailsType: undefined,
-      arrayChengeClassElements: Ember.A()
     };
 
     let stage = this.get('currentContext').getCurrentStageModel();
@@ -56,17 +55,7 @@ export default Ember.Route.extend({
     }
 
     let allStages = store.peekAll('fd-dev-stage');
-    let allAssociation = store.peekAll('fd-dev-association');
-    let allAggregation = store.peekAll('fd-dev-aggregation');
-
     let dataobjectId = modelHash.dataobject.get('id');
-
-    // Association for current class.
-    modelHash.association = allAssociation.filterBy('endClass.id', dataobjectId);
-    modelHash.association.pushObjects(allAggregation.filterBy('endClass.id', dataobjectId));
-
-    // Aggregation for current class.
-    modelHash.aggregation = allAggregation.filterBy('startClass.id', dataobjectId);
 
     // Attributes.
     let dataForBuildTree = getDataForBuildTree(store, dataobjectId);

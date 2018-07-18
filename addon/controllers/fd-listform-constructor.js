@@ -150,14 +150,36 @@ export default Ember.Controller.extend({
         this.set('dataObject.caption', `${formName}Object`);
       }
 
-      this.get('dataObject').save().then(() => {
+      let dataobject = this.get('dataObject');
+      if (Ember.isNone(dataobject.get('caption'))) {
+        dataobject.set('caption', dataobject.get('name'));
+      }
+
+      let formClass = this.get('formClass');
+      if (Ember.isNone(formClass.get('caption'))) {
+        formClass.set('caption', formClass.get('name'));
+      }
+
+      let attributes = dataobject.get('attributes');
+      let changedAttributes = attributes.filterBy('hasDirtyAttributes');
+
+      let association = this.get('store').peekAll('fd-dev-association');
+      let changedAssociations = association.filterBy('hasDirtyAttributes');
+
+      let aggregation = this.get('store').peekAll('fd-dev-aggregation');
+      let changedAggregation = aggregation.filterBy('hasDirtyAttributes');
+
+      dataobject.save().then(() => {
         this.get('view').save().then(() => {
-          this.get('formClass').save().then(() => {
+          formClass.save().then(() => {
             this.get('formClass.formViews.firstObject').save().then(() => {
               this.set('class', undefined);
               this.set('form', this.get('formClass.id'));
             });
           });
+          changedAttributes.map(a => a.save());
+          changedAssociations.map(a => a.save());
+          changedAggregation.map(a => a.save());
         });
       });
     },

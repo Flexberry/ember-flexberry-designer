@@ -20,8 +20,6 @@ export default Ember.Route.extend({
     let modelHash = {
       editform: undefined,
       dataobject: undefined,
-      association: undefined,
-      aggregation: undefined,
       attributes: undefined,
       typemap: undefined,
       enums: undefined,
@@ -32,7 +30,6 @@ export default Ember.Route.extend({
       details: undefined,
       detailsType: undefined,
       controls: undefined,
-      arrayChengeClassElements: Ember.A()
     };
 
     let store = this.get('store');
@@ -40,7 +37,6 @@ export default Ember.Route.extend({
 
     let allClasses = store.peekAll('fd-dev-class');
     let allStages = store.peekAll('fd-dev-stage');
-    let allAssociation = store.peekAll('fd-dev-association');
     let allAggregation = store.peekAll('fd-dev-aggregation');
 
     // Editform.
@@ -54,13 +50,6 @@ export default Ember.Route.extend({
     // Dataobject.
     let dataobjectId = editform.get('formViews').objectAt(0).get('view.class.id');
     modelHash.dataobject = allClasses.findBy('id', dataobjectId);
-
-    // Association for current class.
-    modelHash.association = allAssociation.filterBy('endClass.id', dataobjectId);
-    modelHash.association.pushObjects(allAggregation.filterBy('endClass.id', dataobjectId));
-
-    // Aggregation for current class.
-    modelHash.aggregation = allAggregation.filterBy('startClass.id', dataobjectId);
 
     // Attributes.
     let dataForBuildTree = getDataForBuildTree(store, dataobjectId);

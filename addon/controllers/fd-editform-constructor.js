@@ -482,7 +482,6 @@ export default Ember.Controller.extend({
       try {
         this._saveMetadata(this.get('model')).then(() => {
           this.set('state', '');
-          this.set('model.arrayChengeClassElements', Ember.A());
           if (close) {
             this.send('close');
           }
@@ -803,13 +802,18 @@ export default Ember.Controller.extend({
 
     // Save attributes.
     let dataobject = this.get('model.dataobject');
-    let attributes = dataobject.get('attributes');
     if (Ember.isNone(dataobject.get('caption'))) {
       dataobject.set('caption', dataobject.get('name'));
     }
 
-    let arrayChengeClassElements = this.get('model.arrayChengeClassElements');
-    let changedAssociations = model.association.filterBy('hasDirtyAttributes');
+    let attributes = dataobject.get('attributes');
+    let changedAttributes = attributes.filterBy('hasDirtyAttributes');
+
+    let association = this.get('store').peekAll('fd-dev-association');
+    let changedAssociations = association.filterBy('hasDirtyAttributes');
+
+    let aggregation = this.get('store').peekAll('fd-dev-aggregation');
+    let changedAggregation = aggregation.filterBy('hasDirtyAttributes');
 
     // Сохранить класс формы редактирования
     let editform = this.get('model.editform');
@@ -817,11 +821,11 @@ export default Ember.Controller.extend({
 
     return Ember.RSVP.all([
       view.save(),
-      attributes.save(),
       dataobject.save(),
       editform.save(),
-      Ember.RSVP.all(arrayChengeClassElements.map(a => a.save())),
+      Ember.RSVP.all(changedAttributes.map(a => a.save())),
       Ember.RSVP.all(changedAssociations.map(a => a.save())),
+      Ember.RSVP.all(changedAggregation.map(a => a.save())),
     ]);
   },
 

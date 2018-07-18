@@ -447,10 +447,8 @@ export default FlexberryBaseComponent.extend({
 
       let store = this.get('store');
       let dataobject = this.get('model.dataobject');
-      let arrayChengeClassElements = this.get('model.arrayChengeClassElements');
       let attributesTree = this.get('dataAttributesTree');
       let recordsDevClass = store.peekAll('fd-dev-class');
-      let newAttribute;
       switch (selectedNode.type) {
         case 'master':
 
@@ -462,13 +460,12 @@ export default FlexberryBaseComponent.extend({
 
           // Create new association.
           let startClass = recordsDevClass.findBy('id', selectedNode.original.idNode);
-          newAttribute = store.createRecord('fd-dev-association', {
+          store.createRecord('fd-dev-association', {
             endClass: dataobject,
             startClass: startClass,
             startRole: this.get('propertyName'),
             stage: dataobject.get('stage')
           });
-          arrayChengeClassElements.pushObject(newAttribute);
           break;
         case 'detail':
 
@@ -484,13 +481,12 @@ export default FlexberryBaseComponent.extend({
 
           // Create new aggregation.
           let endClass = recordsDevClass.findBy('id', selectedNode.original.idNode);
-          newAttribute = store.createRecord('fd-dev-aggregation', {
+          store.createRecord('fd-dev-aggregation', {
             endClass: endClass,
             startClass: dataobject,
             endRole: this.get('propertyName'),
             stage: dataobject.get('stage')
           });
-          arrayChengeClassElements.pushObject(newAttribute);
           break;
         default:
           attributesTree[0].copyChildren.pushObject(newNode);
@@ -567,7 +563,6 @@ export default FlexberryBaseComponent.extend({
   */
   _deleteAttribute(selectedNode) {
     let dataobject = this.get('model.dataobject');
-    let arrayChengeClassElements = this.get('model.arrayChengeClassElements');
 
     // Delete node from parent copyChildren.
     let parentSelectedNode = this.get('treeObjectAttributesTree').jstree(true).get_node(selectedNode.parent);
@@ -580,21 +575,21 @@ export default FlexberryBaseComponent.extend({
         let attributes = dataobject.get('attributes');
         let deleteAttribute = attributes.findBy('name', selectedNode.original.name);
         deleteAttribute.deleteRecord();
-        arrayChengeClassElements.pushObject(deleteAttribute);
         break;
       case 'master':
-        let association = this.get('model.association');
-        let associationCurrentClass = association.filterBy('endClass.id', dataobject.id);
+        let association = this.get('store').peekAll('fd-dev-association');
+        let aggregation = this.get('store').peekAll('fd-dev-aggregation');
+        let associationCurrentClass = association.filterBy('endClass.id',  dataobject.id);
+        associationCurrentClass.pushObjects(aggregation.filterBy('endClass.id',  dataobject.id));
+
         let deleteAssociation = Ember.A(associationCurrentClass).findBy('startClass.id', selectedNode.original.idNode);
         deleteAssociation.deleteRecord();
-        arrayChengeClassElements.pushObject(deleteAssociation);
         break;
       case 'detail':
-        let aggregation = this.get('model.aggregation');
-        let aggregationCurrentClass = aggregation.filterBy('startClass.id', dataobject.id);
+        let devAggregation = this.get('store').peekAll('fd-dev-aggregation');
+        let aggregationCurrentClass = devAggregation.filterBy('startClass.id', dataobject.id);
         let deleteAggregation = Ember.A(aggregationCurrentClass).findBy('endClass.id', selectedNode.original.idNode);
         deleteAggregation.deleteRecord();
-        arrayChengeClassElements.pushObject(deleteAggregation);
         let typeTree = this.get('dataTypeTree')[5];
         let nodeId = findFreeNodeTreeNameIndex('detail', 0, typeTree.copyChildren, 'id');
         let recordsDevClass = this.get('store').peekAll('fd-dev-class');
