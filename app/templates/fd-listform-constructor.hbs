@@ -100,11 +100,9 @@
         <div class="ui small dividing header">
           {{t "forms.fd-editform-constructor.form-config-panel.control-properties-header"}}
         </div>
-        {{fd-visual-edit-control
-          selectedControl=selectedAttribute
-          typemap=model.typemap
-          enums=model.enums
-          fbtypes=model.types
+        {{fd-visual-edit-control-tree
+          selectedItem=selectedColumn
+          model=model
         }}
       {{/ui-tab-segment}}
 

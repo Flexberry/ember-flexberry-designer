@@ -420,25 +420,4 @@ export default Ember.Route.extend({
 
     return treeData;
   },
-
-  /**
-      Create type tree.
-
-      @method _createTypeTree
-      @param {Array} data Data for type tree.
-      @return {Object} Object data for type tree.
-  */
-  _createTypeTree(nodes) {
-    let typeTree = Ember.A();
-    nodes.forEach((node) => {
-      typeTree.pushObject(
-        FdAttributesTree.create({
-          text: node.get('name'),
-          type: node.get('type'),
-          id: node.get('id')
-        }));
-    });
-
-    return typeTree;
-  }
 });

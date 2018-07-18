@@ -34,11 +34,11 @@ export default Ember.Controller.extend({
 
   queryParams: ['form', 'class'],
 
-  formClass: Ember.computed.alias('model.form'),
+  formClass: Ember.computed.alias('model.listform'),
 
-  view: Ember.computed.alias('model.form.formViews.firstObject.view'),
+  view: Ember.computed.alias('model.view'),
 
-  dataObject: Ember.computed.alias('model.form.formViews.firstObject.view.class'),
+  dataObject: Ember.computed.alias('model.dataobject'),
 
   /**
     The selected column.
