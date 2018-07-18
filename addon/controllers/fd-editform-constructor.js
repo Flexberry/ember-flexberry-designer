@@ -290,7 +290,8 @@ export default Ember.Controller.extend({
       });
 
       this._insertItem(control, this.get('selectedItem') || this.get('model.controls'));
-      this.set('selectedItem', control);
+      this.send('selectItem', control);
+      Ember.run.scheduleOnce('afterRender', this, this._scrollToSelected);
     },
 
     /**
@@ -309,8 +310,8 @@ export default Ember.Controller.extend({
       });
 
       this._insertItem(control, this.get('selectedItem') || this.get('model.controls'));
-      this.set('selectedItem', control);
-      this.set('_showNotUsedAttributesTree', true);
+      this.send('selectItem', control);
+      Ember.run.scheduleOnce('afterRender', this, this._scrollToSelected);
     },
 
     /**
@@ -873,6 +874,19 @@ export default Ember.Controller.extend({
         this._extractPathPart(rowInGroup, pathWithTab, viewDefinition);
       }
     }
+  },
+
+  /**
+    Scrolls the form to the selected control with jQuery.
+
+    @private
+    @method _scrollToSelected
+  */
+  _scrollToSelected() {
+    let form = Ember.$('.full.height');
+    let scrollTop = Ember.$('.selected:first').offset().top + form.scrollTop() - (form.offset().top + 10);
+
+    form.animate({ scrollTop });
   },
 
   /**
