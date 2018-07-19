@@ -14,6 +14,7 @@ export default Ember.Route.extend({
   model(params) {
     let modelHash = {
       listform: undefined,
+      originalDefinition: undefined,
       view: undefined,
       dataobject: undefined,
       attributes: undefined,
@@ -53,6 +54,8 @@ export default Ember.Route.extend({
         formViews: [formView],
       });
     }
+
+    modelHash.originalDefinition = modelHash.view.get('definition');
 
     let allStages = store.peekAll('fd-dev-stage');
     let dataobjectId = modelHash.dataobject.get('id');
@@ -112,7 +115,7 @@ export default Ember.Route.extend({
     @param {Boolean} isExisting
     @param {Object} transition
    */
-  resetController() {
+  resetController(controller) {
     this._super(...arguments);
 
     let store = this.get('store');
@@ -120,6 +123,7 @@ export default Ember.Route.extend({
     store.peekAll('fd-dev-stage').forEach((item) => item.rollbackAll());
     store.peekAll('fd-dev-association').forEach((item) => item.rollbackAll());
     store.peekAll('fd-dev-aggregation').forEach((item) => item.rollbackAll());
+    controller.set('model.view.definition', Ember.A(controller.get('model.originalDefinition')));
   },
 
   /**

@@ -489,6 +489,7 @@ export default Ember.Controller.extend({
       this.set('state', 'loading');
       try {
         this._saveMetadata(this.get('model')).then(() => {
+          this.set('model.originalDefinition', this.get('model.editform.formViews.firstObject.view.definition'));
           this.set('state', '');
           if (close) {
             this.send('close');
