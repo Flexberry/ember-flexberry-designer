@@ -339,6 +339,7 @@ export default Ember.Controller.extend({
               this.set('class', undefined);
               this.set('form', this.get('formClass.id'));
             });
+            this.set('model.originalDefinition', this.get('view.definition'));
           });
           changedAttributes.map(a => a.save());
           changedAssociations.map(a => a.save());
