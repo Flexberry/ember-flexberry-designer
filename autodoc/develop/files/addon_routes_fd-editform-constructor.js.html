@@ -135,6 +135,7 @@ export default Ember.Route.extend({
   model: function(params) {
     let modelHash = {
       editform: undefined,
+      originalDefinition: undefined,
       dataobject: undefined,
       attributes: undefined,
       typemap: undefined,
@@ -212,6 +213,7 @@ export default Ember.Route.extend({
     // Controls.
     let controlTree = Ember.A();
     let definition = modelHash.editform.get(&#x27;formViews.firstObject.view.definition&#x27;);
+    modelHash.originalDefinition = definition.slice();
     for (let i = 0; i &lt; definition.length; i++) {
       let propertyDefinition = definition[i];
       this._locateControl(controlTree, propertyDefinition, propertyDefinition.path);
@@ -245,7 +247,7 @@ export default Ember.Route.extend({
     @param {Boolean} isExisting
     @param {Object} transition
    */
-  resetController() {
+  resetController(controller) {
     this._super(...arguments);
 
     let store = this.get(&#x27;store&#x27;);
@@ -253,6 +255,7 @@ export default Ember.Route.extend({
     store.peekAll(&#x27;fd-dev-stage&#x27;).forEach((item) =&gt; item.rollbackAll());
     store.peekAll(&#x27;fd-dev-association&#x27;).forEach((item) =&gt; item.rollbackAll());
     store.peekAll(&#x27;fd-dev-aggregation&#x27;).forEach((item) =&gt; item.rollbackAll());
+    controller.set(&#x27;model.editform.formViews.firstObject.view.definition&#x27;, Ember.A(controller.get(&#x27;model.originalDefinition&#x27;)));
   },
 
   /**

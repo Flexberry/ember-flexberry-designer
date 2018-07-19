@@ -3447,7 +3447,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 503,
+            "line": 504,
             "description": "Set attribute in control.",
             "itemtype": "method",
             "name": "actions.setAttributeInControl",
@@ -3457,7 +3457,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 544,
+            "line": 545,
             "description": "Don't set attribute in control.",
             "itemtype": "method",
             "name": "actions.deleteEmptyControl",
@@ -3467,7 +3467,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 555,
+            "line": 556,
             "description": "Handles creating jsTree.",
             "itemtype": "method",
             "name": "actions.handleTreeDidBecomeReady",
@@ -3477,7 +3477,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 567,
+            "line": 568,
             "description": "Overridden action for jsTree 'openNode'.",
             "itemtype": "method",
             "name": "_openNodeTree",
@@ -3487,7 +3487,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 586,
+            "line": 587,
             "description": "Inserts an `item` into `container`, if `container` is `FdEditformControl`, `item` is inserted into the parent row after `container`.",
             "itemtype": "method",
             "name": "_insertItem",
@@ -3509,7 +3509,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 629,
+            "line": 630,
             "description": "Removes the specified item from the form.",
             "itemtype": "method",
             "name": "_removeItem",
@@ -3526,7 +3526,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 657,
+            "line": 658,
             "description": "Looks for a container that contains the item.",
             "itemtype": "method",
             "name": "_findItemContainer",
@@ -3553,7 +3553,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 691,
+            "line": 692,
             "description": "Returns the item storage in the container.",
             "access": "private",
             "tagname": "",
@@ -3576,7 +3576,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 713,
+            "line": 714,
             "description": "Returns a row that can be added to the form.",
             "access": "private",
             "tagname": "",
@@ -3599,7 +3599,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 738,
+            "line": 739,
             "description": "Returns the control that can be added to a row.",
             "itemtype": "method",
             "name": "_getControl",
@@ -3620,7 +3620,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 760,
+            "line": 761,
             "description": "Checks whether the control is suitable for placement in a row.",
             "access": "private",
             "tagname": "",
@@ -3643,7 +3643,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 772,
+            "line": 773,
             "description": "Save editform metadata: dataobject attributes, view, editform class.",
             "itemtype": "method",
             "name": "_saveMetadata",
@@ -3660,7 +3660,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 840,
+            "line": 841,
             "description": "Extract path part from object model.",
             "itemtype": "method",
             "name": "_extractPathPart",
@@ -3687,7 +3687,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 892,
+            "line": 893,
             "description": "Scrolls the form to the selected control with jQuery.",
             "access": "private",
             "tagname": "",
@@ -3699,7 +3699,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 905,
+            "line": 906,
             "description": "Destroys helper.",
             "class": "FdDraggableControlMixin",
             "module": "components",
@@ -4049,7 +4049,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 354,
+            "line": 355,
             "description": "Set attribute in control.",
             "itemtype": "method",
             "name": "actions.setAttributeInControl",
@@ -4059,7 +4059,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 398,
+            "line": 399,
             "description": "Don't set attribute in control.",
             "itemtype": "method",
             "name": "actions.deleteEmptyControl",
@@ -4069,7 +4069,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 411,
+            "line": 412,
             "description": "Handles creating jsTree.",
             "itemtype": "method",
             "name": "actions.handleTreeDidBecomeReady",
@@ -4079,7 +4079,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 423,
+            "line": 424,
             "description": "Scrolls the form to the selected control with jQuery.",
             "access": "private",
             "tagname": "",
@@ -4091,7 +4091,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 437,
+            "line": 438,
             "description": "Overridden action for jsTree 'openNode'.",
             "itemtype": "method",
             "name": "_openNodeTree",
@@ -4101,7 +4101,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 456,
+            "line": 457,
             "description": "Destroys helper.",
             "class": "FdDraggableControlMixin",
             "module": "components",
@@ -7496,7 +7496,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 109,
+            "line": 111,
             "description": "A hook you can use to setup the controller for the current route.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).",
             "itemtype": "method",
             "name": "setupController",
@@ -7517,7 +7517,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 123,
+            "line": 125,
             "description": "A hook you can use to reset controller values either when the model changes or the route is exiting.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_resetController).",
             "itemtype": "method",
             "name": "resetController",
@@ -7543,7 +7543,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 142,
+            "line": 145,
             "description": "Locate control by path.",
             "itemtype": "method",
             "name": "_locateControl",
@@ -7573,7 +7573,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 181,
+            "line": 184,
             "description": "Locate control in row by path.",
             "itemtype": "method",
             "name": "_locateControlInRow",
@@ -7598,7 +7598,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 204,
+            "line": 207,
             "description": "Locate tabs for control.",
             "itemtype": "method",
             "name": "_locateTabs",
@@ -7628,7 +7628,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 276,
+            "line": 279,
             "description": "Locate group for control.",
             "itemtype": "method",
             "name": "_locateGroup",
@@ -7658,7 +7658,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 336,
+            "line": 339,
             "description": "Locate column for control.",
             "itemtype": "method",
             "name": "_locateColumn",
@@ -7688,7 +7688,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 395,
+            "line": 398,
             "description": "Create tree.",
             "itemtype": "method",
             "name": "_buildTree",
@@ -7889,7 +7889,7 @@
         },
         {
             "file": "addon/routes/fd-listform-constructor.js",
-            "line": 106,
+            "line": 109,
             "description": "A hook you can use to reset controller values either when the model changes or the route is exiting.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_resetController).",
             "itemtype": "method",
             "name": "resetController",
@@ -7915,7 +7915,7 @@
         },
         {
             "file": "addon/routes/fd-listform-constructor.js",
-            "line": 125,
+            "line": 129,
             "description": "Create tree.",
             "itemtype": "method",
             "name": "_buildTree",
@@ -8876,11 +8876,11 @@
         },
         {
             "message": "Missing item type\nDestroys helper.",
-            "line": " addon/controllers/fd-editform-constructor.js:905"
+            "line": " addon/controllers/fd-editform-constructor.js:906"
         },
         {
             "message": "Missing item type\nDestroys helper.",
-            "line": " addon/controllers/fd-listform-constructor.js:456"
+            "line": " addon/controllers/fd-listform-constructor.js:457"
         },
         {
             "message": "Missing item type\nField name where object identifier is kept.",
