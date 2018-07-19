@@ -1989,7 +1989,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 233,
+            "line": 239,
             "description": "Computes view for details and list forms for masters.",
             "itemtype": "property",
             "name": "dropdownElements",
@@ -1999,7 +1999,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 275,
+            "line": 281,
             "description": "Handles changes in propertyName and selectedNodesTypeTree.",
             "itemtype": "method",
             "name": "_propertyNameObserver",
@@ -2008,7 +2008,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 302,
+            "line": 308,
             "description": "Handles changes in selectedNodesAttributesTree.",
             "itemtype": "method",
             "name": "_selectedNodesAttributesTreeObserver",
@@ -2017,7 +2017,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 325,
+            "line": 331,
             "description": "Handles changes in model.attributes.",
             "itemtype": "method",
             "name": "_modelAttributesObserver",
@@ -2026,7 +2026,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 346,
+            "line": 352,
             "description": "Changes the start multiplicity of the association.",
             "itemtype": "method",
             "name": "actions.changeMasterNotNull",
@@ -2042,7 +2042,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 356,
+            "line": 362,
             "description": "Add new attribute.",
             "itemtype": "method",
             "name": "actions.addAttribute",
@@ -2051,7 +2051,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 369,
+            "line": 375,
             "description": "Edit select attribute.",
             "itemtype": "method",
             "name": "actions.editAttribute",
@@ -2060,7 +2060,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 385,
+            "line": 391,
             "description": "Handles remove node from attribute jsTree.",
             "itemtype": "method",
             "name": "actions.removeAttribute",
@@ -2069,7 +2069,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 405,
+            "line": 411,
             "description": "Handles select node from attribute jsTree.",
             "itemtype": "method",
             "name": "actions.applyAttribute",
@@ -2078,7 +2078,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 422,
+            "line": 428,
             "description": "Handles creating jsTree.",
             "itemtype": "method",
             "name": "actions.handleTreeDidBecomeReady",
@@ -2087,7 +2087,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 433,
+            "line": 439,
             "description": "Add new node in attributes tree.",
             "itemtype": "method",
             "name": "actions.applyСlick",
@@ -2096,7 +2096,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 528,
+            "line": 534,
             "description": "Open attributes tree.",
             "itemtype": "method",
             "name": "actions.cancelСlick",
@@ -2105,7 +2105,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 542,
+            "line": 548,
             "description": "Overridden action for jsTree 'openNode'.",
             "itemtype": "method",
             "name": "_openNodeTree",
@@ -2114,7 +2114,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 560,
+            "line": 566,
             "description": "Method delete attributes from class.",
             "itemtype": "method",
             "name": "_deleteAttribute",
@@ -2130,7 +2130,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 610,
+            "line": 616,
             "description": "Method for search control by attribute.",
             "itemtype": "method",
             "name": "_findControlByAttribute",
@@ -2146,7 +2146,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 630,
+            "line": 636,
             "description": "Method for controls round.",
             "itemtype": "method",
             "name": "_controlsRound",
@@ -2172,7 +2172,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 667,
+            "line": 673,
             "description": "Method for create new propertyDefinition.",
             "itemtype": "method",
             "name": "_createPropertyDefinition",
@@ -2193,7 +2193,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 700,
+            "line": 706,
             "description": "Method for create attributes tree.",
             "itemtype": "method",
             "name": "_createAttributesTree",
@@ -2202,7 +2202,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 737,
+            "line": 743,
             "description": "Method for create type tree.",
             "itemtype": "method",
             "name": "_createTypeTree",
