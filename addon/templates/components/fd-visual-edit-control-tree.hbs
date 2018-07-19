@@ -119,13 +119,12 @@
   {{/if}}
 
   {{#if (or (eq selectedItem.type 'master') (eq selectedItem.type 'detail'))}}
-  <div class="field {{if readonly "disabled"}}">
+  <div class="field {{if (or (eq selectedItem.type 'detail') readonly) "disabled"}}">
     <label>{{t "components.fd-visual-edit-control-tree.not-null"}}</label>
     {{
       flexberry-checkbox
       onChange=(action "changeMasterNotNull")
       value=(eq selectedAttribute.startMultiplicity "1")
-      readonly=(or (eq selectedItem.type 'detail') readonly)
     }}
   </div>
   {{else}}
@@ -134,15 +133,13 @@
     {{
       flexberry-checkbox
       value=selectedAttribute.notNull
-      readonly=readonly
     }}
   </div>
-  <div class="field">
+  <div class="field {{if readonly "disabled"}}">
     <label>{{t "components.fd-visual-edit-control-tree.default-value"}}</label>
     {{
       flexberry-textbox
       value=selectedAttribute.defaultValue
-      readonly=readonly
     }}
   </div>
   {{/if}}
@@ -153,12 +150,11 @@
       value=selectedItem.propertyDefinition.visible
     }}
   </div>
-  <div class="field">
+  <div class="field {{if readonly "disabled"}}">
     <label>{{t "components.fd-visual-edit-control-tree.description"}}</label>
     {{
       flexberry-textarea
       value=selectedAttribute.description
-      readonly=readonly
     }}
   </div>
 
