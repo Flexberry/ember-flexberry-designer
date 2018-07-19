@@ -1,11 +1,7 @@
 import Ember from 'ember';
 import joint from 'npm:jointjs';
 
-import layout from '../templates/components/fd-visual-diagram';
-
 export default Ember.Component.extend({
-  layout,
-
   primitives: undefined,
 
   links: undefined,
