@@ -10,8 +10,7 @@ joint.shapes.flexberryUml.BaseClass.define('flexberryUml.Class', {
 
 }, {
   getClassName: function() {
-    let stereotype = this.get('stereotype').length > 0 ? '«' + this.get('stereotype') + '»' : '';
-    return [this.get('name'), stereotype];
+    return [this.get('name'), this.get('stereotype')];
   }
 });
 
