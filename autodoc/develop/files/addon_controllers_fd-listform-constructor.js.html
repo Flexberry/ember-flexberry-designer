@@ -118,6 +118,17 @@ import Ember from &#x27;ember&#x27;;
 
 import FdListformColumn from &#x27;../objects/fd-listform-column&#x27;;
 import FdViewAttributesProperty from &#x27;../objects/fd-view-attributes-property&#x27;;
+import FdAttributesTree from &#x27;../objects/fd-attributes-tree&#x27;;
+import FdViewAttributesMaster from &#x27;../objects/fd-view-attributes-master&#x27;;
+import FdViewAttributesDetail from &#x27;../objects/fd-view-attributes-detail&#x27;;
+import {
+  getDataForBuildTree,
+  getTreeNodeByNotUsedAttributes,
+  getAssociationTreeNode,
+  getTreeNodeByNotUsedAggregation,
+  getClassTreeNode
+ } from &#x27;../utils/fd-attributes-for-tree&#x27;;
+import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNodeTreeNameIndex } from &#x27;../utils/fd-metods-for-tree&#x27;;
 
 export default Ember.Controller.extend({
   /**
@@ -127,6 +138,112 @@ export default Ember.Controller.extend({
     @default false
   */
   _showModalDialog: false,
+
+  /**
+    Flag: indicates whether show tree.
+
+    @private
+    @property _showNotUsedAttributesTree
+    @type Boolean
+    @default false
+  */
+  _showNotUsedAttributesTree: false,
+
+  /**
+    Selected nodes in jsTree.
+
+    @property selectedNodesNotUsedAttributesTree
+    @type Array
+    @default []
+   */
+  selectedNodesNotUsedAttributesTree: Ember.A(),
+
+  /**
+    Included plugins for jsTree.
+
+    @property pluginsTree
+    @type String
+    @default &#x27;wholerow, types&#x27;
+   */
+  pluginsTree: &#x27;wholerow, types&#x27;,
+
+  /**
+    Type settings for jsTree.
+
+    @property typesOptionsTree
+    @type Object
+  */
+  typesOptionsTree: Ember.computed(() =&gt; ({
+    &#x27;property&#x27;: {
+      icon: &#x27;assets/images/attribute.bmp&#x27;
+    },
+    &#x27;master&#x27;: {
+      icon: &#x27;assets/images/master.bmp&#x27;
+    },
+    &#x27;detail&#x27;: {
+      icon: &#x27;assets/images/datail.png&#x27;
+    },
+    &#x27;class&#x27;: {
+      icon: &#x27;assets/images/class.bmp&#x27;
+    }
+  })),
+
+  /**
+    Data for jsTree.
+
+    @property dataNotUsedAttributesTree
+    @type Array
+  */
+  dataNotUsedAttributesTree: Ember.A(),
+
+  /**
+    Update data in tree.
+
+    @method dataNotUsedAttributesTreeObserver
+  */
+  dataNotUsedAttributesTreeObserver: Ember.observer(&#x27;_showNotUsedAttributesTree&#x27;, function() {
+    if (!this.get(&#x27;_showNotUsedAttributesTree&#x27;)) {
+      return;
+    }
+
+    let dataobjectId = this.get(&#x27;dataObject.id&#x27;);
+    let view = this.get(&#x27;view&#x27;);
+
+    let dataForBuildTree = getDataForBuildTree(this.get(&#x27;store&#x27;), dataobjectId);
+    let attributesForTree = getTreeNodeByNotUsedAttributes(this.get(&#x27;store&#x27;), dataForBuildTree.classes, view, &#x27;type&#x27;);
+    let associationForTree = getAssociationTreeNode(Ember.A(), dataForBuildTree.associations, &#x27;node_&#x27;, dataobjectId, &#x27;name&#x27;);
+    let aggregationForTree = getTreeNodeByNotUsedAggregation(dataForBuildTree.aggregations, view, &#x27;name&#x27;);
+
+    let attributesTree = Ember.A();
+    attributesTree.pushObjects([
+      FdAttributesTree.create({
+        text: this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-editform-constructor.form-config-panel.tree.not-used-attributes.property&#x27;),
+        type: &#x27;class&#x27;,
+        id: &#x27;attributes&#x27;,
+        children: attributesForTree,
+        copyChildren: attributesForTree,
+        state: { opened: true }
+      }),
+      FdAttributesTree.create({
+        text: this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-editform-constructor.form-config-panel.tree.not-used-attributes.master&#x27;),
+        type: &#x27;class&#x27;,
+        id: &#x27;masters&#x27;,
+        children: associationForTree,
+        copyChildren: associationForTree,
+        state: { opened: true }
+      }),
+      FdAttributesTree.create({
+        text: this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-editform-constructor.form-config-panel.tree.not-used-attributes.detail&#x27;),
+        type: &#x27;class&#x27;,
+        id: &#x27;details&#x27;,
+        children: aggregationForTree,
+        copyChildren: aggregationForTree,
+        state: { opened: true }
+      })
+    ]);
+
+    this.set(&#x27;dataNotUsedAttributesTree&#x27;, attributesTree);
+  }),
 
   /**
     @private
@@ -150,11 +267,11 @@ export default Ember.Controller.extend({
 
   queryParams: [&#x27;form&#x27;, &#x27;class&#x27;],
 
-  formClass: Ember.computed.alias(&#x27;model.form&#x27;),
+  formClass: Ember.computed.alias(&#x27;model.listform&#x27;),
 
-  view: Ember.computed.alias(&#x27;model.form.formViews.firstObject.view&#x27;),
+  view: Ember.computed.alias(&#x27;model.view&#x27;),
 
-  dataObject: Ember.computed.alias(&#x27;model.form.formViews.firstObject.view.class&#x27;),
+  dataObject: Ember.computed.alias(&#x27;model.dataobject&#x27;),
 
   /**
     The selected column.
@@ -192,7 +309,15 @@ export default Ember.Controller.extend({
       @param {FdListformColumn} column
     */
     selectColumn(column) {
-      this.set(&#x27;selectedColumn&#x27;, this.get(&#x27;selectedColumn&#x27;) === column ? undefined : column);
+      let selectedColumn = this.get(&#x27;selectedColumn&#x27;);
+      let newSelectedColumn = selectedColumn === column ? undefined : column;
+      this.set(&#x27;selectedColumn&#x27;, newSelectedColumn);
+
+      if (!Ember.isNone(newSelectedColumn) &amp;&amp; newSelectedColumn.get(&#x27;propertyDefinition.name&#x27;) === &#x27;&#x27;) {
+        this.set(&#x27;_showNotUsedAttributesTree&#x27;, true);
+      } else {
+        this.set(&#x27;_showNotUsedAttributesTree&#x27;, false);
+      }
     },
 
     /**
@@ -201,11 +326,50 @@ export default Ember.Controller.extend({
       @method actions.addColumn
     */
     addColumn() {
-      this.get(&#x27;columns&#x27;).pushObject(FdListformColumn.create({
+      let dataobject = this.get(&#x27;dataObject&#x27;);
+      let attributes = dataobject.get(&#x27;attributes&#x27;);
+      let atrIndex = findFreeNodeTreeNameIndex(&#x27;newAttribute&#x27;, 1, attributes, &#x27;name&#x27;);
+
+      this.get(&#x27;store&#x27;).createRecord(&#x27;fd-dev-attribute&#x27;, {
+        class: dataobject,
+        name: &#x27;newAttribute&#x27; + atrIndex,
+        type: &#x27;string&#x27;,
+        notNull: false,
+        defaultValue: &#x27;&#x27;
+      });
+
+      let dataForBuildTree = getDataForBuildTree(this.get(&#x27;store&#x27;), dataobject.get(&#x27;id&#x27;));
+      let newTree = getClassTreeNode(Ember.A(), dataForBuildTree.classes, dataobject.get(&#x27;id&#x27;), &#x27;type&#x27;);
+      this.set(&#x27;model.attributes&#x27;, newTree);
+
+      let view = this.get(&#x27;view&#x27;);
+      let viewDefinition = view.get(&#x27;definition&#x27;);
+      let propertyDefinition = FdViewAttributesProperty.create({
+        caption: &#x60;${this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-listform-constructor.new-column-caption&#x27;).toString()} #${this.incrementProperty(&#x27;_newColumnIndex&#x27;)}&#x60;,
+        name: &#x27;newAttribute&#x27; + atrIndex,
+      });
+      viewDefinition.pushObject(propertyDefinition);
+
+      let column = FdListformColumn.create({
+        propertyDefinition: propertyDefinition,
+      });
+
+      this.get(&#x27;columns&#x27;).pushObject(column);
+      this.send(&#x27;selectColumn&#x27;, column);
+      Ember.run.scheduleOnce(&#x27;afterRender&#x27;, this, this._scrollToSelected);
+    },
+
+    addEmptyControl() {
+      let column = FdListformColumn.create({
         propertyDefinition: FdViewAttributesProperty.create({
           caption: &#x60;${this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-listform-constructor.new-column-caption&#x27;).toString()} #${this.incrementProperty(&#x27;_newColumnIndex&#x27;)}&#x60;,
+          name: &#x27;&#x27;,
         }),
-      }));
+      });
+
+      this.get(&#x27;columns&#x27;).pushObject(column);
+      this.send(&#x27;selectColumn&#x27;, column);
+      Ember.run.scheduleOnce(&#x27;afterRender&#x27;, this, this._scrollToSelected);
     },
 
     /**
@@ -242,37 +406,15 @@ export default Ember.Controller.extend({
     },
 
     save() {
-      let attributes = [];
-      let definition = Ember.A(this.get(&#x27;view.definition&#x27;));
-      this.get(&#x27;attributes&#x27;).forEach((attribute) =&gt; {
-        let property = definition.findBy(&#x27;propertyName&#x27;, attribute.propertyName);
-        if (property) {
-          property.caption = attribute.name;
-        } else {
-          let attributeName = this._translate(attribute.name);
-          let classAttribute = this.get(&#x27;dataObject.attributes&#x27;).findBy(&#x27;name&#x27;, attributeName);
-          if (!classAttribute) {
-            classAttribute = this.get(&#x27;dataObject.attributes&#x27;).createRecord({ name: attributeName });
-          }
+      let view = Ember.A(this.get(&#x27;view&#x27;));
+      let viewDefinition = Ember.A();
+      let columns = this.get(&#x27;columns&#x27;);
+      for (let i = 0; i &lt; columns.get(&#x27;length&#x27;); i++) {
+        let column = columns[i];
+        viewDefinition.pushObject(column.get(&#x27;propertyDefinition&#x27;));
+      }
 
-          attribute.classAttribute = classAttribute;
-          property = { caption: attribute.name };
-          property.propertyName = attributeName;
-          property.visible = &#x27;True&#x27;;
-          property.isMaster = &#x27;False&#x27;;
-          property.lookupType = &#x27;&#x27;;
-          property.masterPropertyName = &#x27;&#x27;;
-          property.masterCustomizationString = &#x27;&#x27;;
-        }
-
-        attribute.classAttribute.set(&#x27;type&#x27;, attribute.type);
-        attribute.classAttribute.set(&#x27;notNull&#x27;, attribute.notNull);
-        attribute.classAttribute.set(&#x27;defaultValue&#x27;, attribute.defaultValue);
-        attributes.push(property);
-      });
-
-      definition.filterBy(&#x27;visible&#x27;, &#x27;False&#x27;).forEach(attributes.push);
-      this.set(&#x27;view.definition&#x27;, attributes);
+      view.set(&#x27;definition&#x27;, viewDefinition);
 
       let formName = this.get(&#x27;formClass.name&#x27;);
       if (this.get(&#x27;formClass.isNew&#x27;)) {
@@ -287,17 +429,36 @@ export default Ember.Controller.extend({
         this.set(&#x27;dataObject.caption&#x27;, &#x60;${formName}Object&#x60;);
       }
 
-      this.get(&#x27;dataObject&#x27;).save().then(() =&gt; {
-        let promises = this.get(&#x27;attributes&#x27;).map(a =&gt; a.classAttribute.save());
-        Ember.RSVP.all(promises).then(() =&gt; {
-          this.get(&#x27;view&#x27;).save().then(() =&gt; {
-            this.get(&#x27;formClass&#x27;).save().then(() =&gt; {
-              this.get(&#x27;formClass.formViews.firstObject&#x27;).save().then(() =&gt; {
-                this.set(&#x27;class&#x27;, undefined);
-                this.set(&#x27;form&#x27;, this.get(&#x27;formClass.id&#x27;));
-              });
+      let dataobject = this.get(&#x27;dataObject&#x27;);
+      if (Ember.isNone(dataobject.get(&#x27;caption&#x27;))) {
+        dataobject.set(&#x27;caption&#x27;, dataobject.get(&#x27;name&#x27;));
+      }
+
+      let formClass = this.get(&#x27;formClass&#x27;);
+      if (Ember.isNone(formClass.get(&#x27;caption&#x27;))) {
+        formClass.set(&#x27;caption&#x27;, formClass.get(&#x27;name&#x27;));
+      }
+
+      let attributes = dataobject.get(&#x27;attributes&#x27;);
+      let changedAttributes = attributes.filterBy(&#x27;hasDirtyAttributes&#x27;);
+
+      let association = this.get(&#x27;store&#x27;).peekAll(&#x27;fd-dev-association&#x27;);
+      let changedAssociations = association.filterBy(&#x27;hasDirtyAttributes&#x27;);
+
+      let aggregation = this.get(&#x27;store&#x27;).peekAll(&#x27;fd-dev-aggregation&#x27;);
+      let changedAggregation = aggregation.filterBy(&#x27;hasDirtyAttributes&#x27;);
+
+      dataobject.save().then(() =&gt; {
+        this.get(&#x27;view&#x27;).save().then(() =&gt; {
+          formClass.save().then(() =&gt; {
+            this.get(&#x27;formClass.formViews.firstObject&#x27;).save().then(() =&gt; {
+              this.set(&#x27;class&#x27;, undefined);
+              this.set(&#x27;form&#x27;, this.get(&#x27;formClass.id&#x27;));
             });
           });
+          changedAttributes.map(a =&gt; a.save());
+          changedAssociations.map(a =&gt; a.save());
+          changedAggregation.map(a =&gt; a.save());
         });
       });
     },
@@ -305,11 +466,120 @@ export default Ember.Controller.extend({
     close() {
       this.transitionToRoute(&#x27;fd-appstruct-form&#x27;);
     },
+
+    /**
+      Set attribute in control.
+
+      @method actions.setAttributeInControl
+    */
+    setAttributeInControl() {
+      let selectedNodes = this.get(&#x27;selectedNodesNotUsedAttributesTree&#x27;)[0];
+      let selectedColumn = this.get(&#x27;selectedColumn&#x27;);
+      let treeData = this.get(&#x27;dataNotUsedAttributesTree&#x27;);
+
+      // Create propertyName
+      let propertyName = createPropertyName(selectedNodes, treeData[1], false);
+
+      selectedColumn.set(&#x27;type&#x27;, selectedNodes.original.typeNode);
+      let propertyDefinition;
+      if (selectedNodes.type === &#x27;detail&#x27;) {
+        propertyDefinition = FdViewAttributesDetail.create({
+          caption: propertyName,
+          name: propertyName,
+          visible: true
+        });
+
+        selectedColumn.set(&#x27;propertyDefinition&#x27;, propertyDefinition);
+      } else if (selectedNodes.type === &#x27;master&#x27;) {
+        propertyDefinition = FdViewAttributesMaster.create({
+          caption: propertyName,
+          name: propertyName,
+          visible: true
+        });
+
+        selectedColumn.set(&#x27;propertyDefinition&#x27;, propertyDefinition);
+      } else {
+        selectedColumn.set(&#x27;propertyDefinition.caption&#x27;, propertyName);
+        selectedColumn.set(&#x27;propertyDefinition.name&#x27;, propertyName);
+        propertyDefinition = selectedColumn.get(&#x27;propertyDefinition&#x27;);
+      }
+
+      let view = this.get(&#x27;view&#x27;);
+      let viewDefinition = view.get(&#x27;definition&#x27;);
+      viewDefinition.pushObject(propertyDefinition);
+
+      this.set(&#x27;_showNotUsedAttributesTree&#x27;, false);
+    },
+
+    /**
+      Don&#x27;t set attribute in control.
+
+      @method actions.deleteEmptyControl
+    */
+    deleteEmptyControl() {
+      let columns = this.get(&#x27;columns&#x27;);
+      let selectedColumn = this.get(&#x27;selectedColumn&#x27;);
+      columns.removeObject(selectedColumn);
+      this.set(&#x27;selectedColumn&#x27;, undefined);
+      this.set(&#x27;_showNotUsedAttributesTree&#x27;, false);
+    },
+
+    /**
+      Handles creating jsTree.
+
+      @method actions.handleTreeDidBecomeReady
+    */
+    handleTreeDidBecomeReady() {
+      let treeObject = this.get(&#x27;treeObjectNotUsedAttributesTree&#x27;);
+      treeObject.on(&#x27;open_node.jstree&#x27;, this._openNodeTree.bind(this));
+      treeObject.on(&#x27;after_close.jstree&#x27;, afterCloseNodeTree.bind(this));
+    },
   },
 
-  _translate(propertyName) {
-    return propertyName;
+  /**
+    Scrolls the form to the selected control with jQuery.
+
+    @private
+    @method _scrollToSelected
+  */
+  _scrollToSelected() {
+    let $verticalForm = Ember.$(&#x27;.form.flexberry-vertical-form&#x27;);
+    let form = $verticalForm.children(&#x27;.ui.segment&#x27;);
+    let scrollLeft = Ember.$(&#x27;.positive:first&#x27;).offset().left + form.scrollLeft() - (form.offset().left + 10);
+
+    form.animate({ scrollLeft });
   },
+
+  /**
+    Overridden action for jsTree &#x27;openNode&#x27;.
+
+    @method _openNodeTree
+  */
+  _openNodeTree(e, data) {
+    let treeData = this.get(&#x27;dataNotUsedAttributesTree&#x27;);
+    restorationNodeTree(treeData, data.node.original, Ember.A([&#x27;master&#x27;, &#x27;class&#x27;]), false, (function(node) {
+      let view = this.get(&#x27;view&#x27;);
+      let dataForBuildTree = getDataForBuildTree(this.get(&#x27;store&#x27;), node.get(&#x27;idNode&#x27;));
+      let childrenAttributes = getTreeNodeByNotUsedAttributes(this.get(&#x27;store&#x27;), dataForBuildTree.classes, view, &#x27;type&#x27;);
+      let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, node.get(&#x27;id&#x27;), null, &#x27;name&#x27;);
+
+      return childrenNode;
+    }).bind(this));
+
+    this.get(&#x27;actionReceiverNotUsedAttributesTree&#x27;).send(&#x27;redraw&#x27;);
+  },
+
+  /**
+    Destroys helper.
+  */
+  willDestroy() {
+    this._super(...arguments);
+    let treeObject = this.get(&#x27;treeObjectNotUsedAttributesTree&#x27;);
+    if (!Ember.isNone(treeObject)) {
+      treeObject.off(&#x27;open_node.jstree&#x27;, this._openNodeTree.bind(this));
+      treeObject.off(&#x27;after_close.jstree&#x27;, afterCloseNodeTree.bind(this));
+    }
+  }
 });
 
     </pre>

@@ -126,7 +126,13 @@ import FdViewAttributesProperty from &#x27;../objects/fd-view-attributes-propert
 import FdViewAttributesMaster from &#x27;../objects/fd-view-attributes-master&#x27;;
 import FdViewAttributesDetail from &#x27;../objects/fd-view-attributes-detail&#x27;;
 import FdAttributesTree from &#x27;../objects/fd-attributes-tree&#x27;;
-import { getDataForBuildTree, getTreeNodeByNotUsedAttributes, getAssociationTreeNode, getTreeNodeByNotUsedAggregation } from &#x27;../utils/fd-attributes-for-tree&#x27;;
+import {
+  getDataForBuildTree,
+  getTreeNodeByNotUsedAttributes,
+  getAssociationTreeNode,
+  getTreeNodeByNotUsedAggregation,
+  getClassTreeNode
+ } from &#x27;../utils/fd-attributes-for-tree&#x27;;
 import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNodeTreeNameIndex } from &#x27;../utils/fd-metods-for-tree&#x27;;
 
 export default Ember.Controller.extend({
@@ -382,14 +388,17 @@ export default Ember.Controller.extend({
       let attributes = dataobject.get(&#x27;attributes&#x27;);
       let atrIndex = findFreeNodeTreeNameIndex(&#x27;newAttribute&#x27;, 1, attributes, &#x27;name&#x27;);
 
-      let newAttribute = this.get(&#x27;store&#x27;).createRecord(&#x27;fd-dev-attribute&#x27;, {
+      this.get(&#x27;store&#x27;).createRecord(&#x27;fd-dev-attribute&#x27;, {
         class: dataobject,
         name: &#x27;newAttribute&#x27; + atrIndex,
         type: &#x27;string&#x27;,
         notNull: false,
         defaultValue: &#x27;&#x27;
       });
-      attributes.pushObject(newAttribute);
+
+      let dataForBuildTree = getDataForBuildTree(this.get(&#x27;store&#x27;), dataobject.get(&#x27;id&#x27;));
+      let newTree = getClassTreeNode(Ember.A(), dataForBuildTree.classes, dataobject.get(&#x27;id&#x27;), &#x27;type&#x27;);
+      this.set(&#x27;model.attributes&#x27;, newTree);
 
       let view = this.get(&#x27;model.editform.formViews.firstObject.view&#x27;);
       let viewDefinition = view.get(&#x27;definition&#x27;);
@@ -597,7 +606,6 @@ export default Ember.Controller.extend({
       try {
         this._saveMetadata(this.get(&#x27;model&#x27;)).then(() =&gt; {
           this.set(&#x27;state&#x27;, &#x27;&#x27;);
-          this.set(&#x27;model.arrayChengeClassElements&#x27;, Ember.A());
           if (close) {
             this.send(&#x27;close&#x27;);
           }
@@ -918,13 +926,18 @@ export default Ember.Controller.extend({
 
     // Save attributes.
     let dataobject = this.get(&#x27;model.dataobject&#x27;);
-    let attributes = dataobject.get(&#x27;attributes&#x27;);
     if (Ember.isNone(dataobject.get(&#x27;caption&#x27;))) {
       dataobject.set(&#x27;caption&#x27;, dataobject.get(&#x27;name&#x27;));
     }
 
-    let arrayChengeClassElements = this.get(&#x27;model.arrayChengeClassElements&#x27;);
-    let changedAssociations = model.association.filterBy(&#x27;hasDirtyAttributes&#x27;);
+    let attributes = dataobject.get(&#x27;attributes&#x27;);
+    let changedAttributes = attributes.filterBy(&#x27;hasDirtyAttributes&#x27;);
+
+    let association = this.get(&#x27;store&#x27;).peekAll(&#x27;fd-dev-association&#x27;);
+    let changedAssociations = association.filterBy(&#x27;hasDirtyAttributes&#x27;);
+
+    let aggregation = this.get(&#x27;store&#x27;).peekAll(&#x27;fd-dev-aggregation&#x27;);
+    let changedAggregation = aggregation.filterBy(&#x27;hasDirtyAttributes&#x27;);
 
     // Сохранить класс формы редактирования
     let editform = this.get(&#x27;model.editform&#x27;);
@@ -932,11 +945,11 @@ export default Ember.Controller.extend({
 
     return Ember.RSVP.all([
       view.save(),
-      attributes.save(),
       dataobject.save(),
       editform.save(),
-      Ember.RSVP.all(arrayChengeClassElements.map(a =&gt; a.save())),
+      Ember.RSVP.all(changedAttributes.map(a =&gt; a.save())),
       Ember.RSVP.all(changedAssociations.map(a =&gt; a.save())),
+      Ember.RSVP.all(changedAggregation.map(a =&gt; a.save())),
     ]);
   },
 

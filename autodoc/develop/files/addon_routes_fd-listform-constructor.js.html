@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>addon/routes/fd-listform-constructor.js - Flexberry Documentation</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="Flexberry Documentation" src="../assets/css/logo.png" style="max-height: 65%;" title="Flexberry Documentation">
+            Flexberry Documentation
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>develop</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdAppStructTree", "classes/FdAttributesTree", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdListformColumn", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <h3>APIs</h3>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Type to filter APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/components.UiTabMenu.html">components.UiTabMenu</a></li>
+	                            <li><a href="../classes/components.UiTabSegment.html">components.UiTabSegment</a></li>
+	                            <li><a href="../classes/FdAppStructTree.html">FdAppStructTree</a></li>
+	                            <li><a href="../classes/FdAttributesTree.html">FdAttributesTree</a></li>
+	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
+	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
+	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
+	                            <li><a href="../classes/FdEditformControlComponent.html">FdEditformControlComponent</a></li>
+	                            <li><a href="../classes/FdEditformGroup.html">FdEditformGroup</a></li>
+	                            <li><a href="../classes/FdEditformRow.html">FdEditformRow</a></li>
+	                            <li><a href="../classes/FdEditformRowComponent.html">FdEditformRowComponent</a></li>
+	                            <li><a href="../classes/FdEditformTab.html">FdEditformTab</a></li>
+	                            <li><a href="../classes/FdEditformTabgroup.html">FdEditformTabgroup</a></li>
+	                            <li><a href="../classes/FdLimitByStageMixin.html">FdLimitByStageMixin</a></li>
+	                            <li><a href="../classes/FdListformColumn.html">FdListformColumn</a></li>
+	                            <li><a href="../classes/FdViewAttributesDetail.html">FdViewAttributesDetail</a></li>
+	                            <li><a href="../classes/FdViewAttributesMaster.html">FdViewAttributesMaster</a></li>
+	                            <li><a href="../classes/FdViewAttributesProperty.html">FdViewAttributesProperty</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">NewPlatformFlexberryFlexberryDesignerVisualEditControl</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">NewPlatformFlexberryFlexberryDesignerVisualEditForm</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/components.html">components</a></li>
+	                            <li><a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Show:
+                    <label for="api-show-inherited" class="checkbox">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>addon/routes/fd-listform-constructor.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+import Ember from &#x27;ember&#x27;;
+import FdAttributesTree from &#x27;../objects/fd-attributes-tree&#x27;;
+import FdDataTypes from &#x27;../utils/fd-datatypes&#x27;;
+import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode } from &#x27;../utils/fd-attributes-for-tree&#x27;;
+
+export default Ember.Route.extend({
+  currentContext: Ember.inject.service(&#x27;fd-current-project-context&#x27;),
+
+  queryParams: {
+    form: { refreshModel: true },
+    class: { refreshModel: true },
+  },
+
+  model(params) {
+    let modelHash = {
+      listform: undefined,
+      view: undefined,
+      dataobject: undefined,
+      attributes: undefined,
+      typemap: undefined,
+      enums: undefined,
+      simpleTypes: undefined,
+      types: undefined,
+      masters: undefined,
+      mastersType: undefined,
+      details: undefined,
+      detailsType: undefined,
+    };
+
+    let stage = this.get(&#x27;currentContext&#x27;).getCurrentStageModel();
+    let store = this.get(&#x27;store&#x27;);
+    let allClasses = store.peekAll(&#x27;fd-dev-class&#x27;);
+
+    if (params.form) {
+      modelHash.listform = allClasses.findBy(&#x27;id&#x27;, params.form);
+      modelHash.view = modelHash.listform.get(&#x27;formViews.firstObject.view&#x27;);
+      modelHash.dataobject = allClasses.findBy(&#x27;id&#x27;, modelHash.view.get(&#x27;class.id&#x27;));
+    } else {
+      if (params.class) {
+        modelHash.dataobject = allClasses.findBy(&#x27;id&#x27;, params.class);
+      } else {
+        modelHash.dataobject = store.createRecord(&#x27;fd-dev-class&#x27;, { stage });
+      }
+
+      modelHash.view = store.createRecord(&#x27;fd-dev-view&#x27;, {
+        class: modelHash.dataobject,
+        definition: Ember.A(),
+      });
+
+      let formView = store.createRecord(&#x27;fd-dev-form-view&#x27;, { view: modelHash.view });
+      modelHash.listform = store.createRecord(&#x27;fd-dev-class&#x27;, {
+        stage: stage,
+        formViews: [formView],
+      });
+    }
+
+    let allStages = store.peekAll(&#x27;fd-dev-stage&#x27;);
+    let dataobjectId = modelHash.dataobject.get(&#x27;id&#x27;);
+
+    // Attributes.
+    let dataForBuildTree = getDataForBuildTree(store, dataobjectId);
+    modelHash.attributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes, dataobjectId, &#x27;type&#x27;);
+    modelHash.masters = getAssociationTreeNode(Ember.A(), dataForBuildTree.associations, &#x27;node_&#x27;, dataobjectId, &#x27;name&#x27;);
+    modelHash.details = getAggregationTreeNode(Ember.A(), dataForBuildTree.aggregations, dataobjectId, &#x27;name&#x27;);
+
+    // simpleTypes.
+    let fdDataTypes = FdDataTypes.create();
+    modelHash.simpleTypes = this._buildTree(fdDataTypes.flexberryTypes(), &#x27;property&#x27;);
+
+    // Implementation.
+    let implementation = allClasses.filter(function(item) {
+      return (item.get(&#x27;stereotype&#x27;) === &#x27;«implementation»&#x27; || item.get(&#x27;stereotype&#x27;) === null) &amp;&amp; item.get(&#x27;stage.id&#x27;) === stage.get(&#x27;id&#x27;);
+    });
+    modelHash.mastersType = this._buildTree(implementation, &#x27;master&#x27;, true);
+
+    // Implementation not details.
+    let recordsAggregation = store.peekAll(&#x27;fd-dev-aggregation&#x27;);
+    let details = implementation.filter(function(item) {
+      return recordsAggregation.findBy(&#x27;endClass.id&#x27;, item.id) === undefined &amp;&amp; item.id !== dataobjectId;
+    });
+    modelHash.detailsType = this._buildTree(details, &#x27;detail&#x27;, true);
+
+    // Typemap.
+    let currentStage = allStages.findBy(&#x27;id&#x27;, stage.get(&#x27;id&#x27;));
+    let typeMapCSStr = currentStage.get(&#x27;typeMapCSStr&#x27;);
+    let typemap = typeMapCSStr.filter(function(item) {
+      return fdDataTypes.fDTypeToFlexberry(item.name) === null;
+    });
+    modelHash.typemap = this._buildTree(typemap, &#x27;«typemap»&#x27;);
+
+    // Enums.
+    let enums = allClasses.filter(function(item) {
+      return item.get(&#x27;stereotype&#x27;) === &#x27;«enumeration»&#x27; &amp;&amp; item.get(&#x27;stage.id&#x27;) === stage.get(&#x27;id&#x27;);
+    });
+    modelHash.enums = this._buildTree(enums, &#x27;«enumeration»&#x27;);
+
+    // Types.
+    let types = allClasses.filter(function(item) {
+      return item.get(&#x27;stereotype&#x27;) === &#x27;«type»&#x27; &amp;&amp; item.get(&#x27;stage.id&#x27;) === stage.get(&#x27;id&#x27;);
+    });
+    modelHash.types = this._buildTree(types, &#x27;«type»&#x27;);
+
+    return modelHash;
+  },
+
+  /**
+    A hook you can use to reset controller values either when the model changes or the route is exiting.
+    [More info](http://emberjs.com/api/classes/Ember.Route.html#method_resetController).
+
+    @method resetController
+    @param {Ember.Controller} controller
+    @param {Boolean} isExisting
+    @param {Object} transition
+   */
+  resetController() {
+    this._super(...arguments);
+
+    let store = this.get(&#x27;store&#x27;);
+    store.peekAll(&#x27;fd-dev-class&#x27;).forEach((item) =&gt; item.rollbackAll());
+    store.peekAll(&#x27;fd-dev-stage&#x27;).forEach((item) =&gt; item.rollbackAll());
+    store.peekAll(&#x27;fd-dev-association&#x27;).forEach((item) =&gt; item.rollbackAll());
+    store.peekAll(&#x27;fd-dev-aggregation&#x27;).forEach((item) =&gt; item.rollbackAll());
+  },
+
+  /**
+      Create tree.
+
+      @method _buildTree
+      @param {Array} data Data for tree.
+      @param {String} type Type for tree.
+      @param {Boolean} nodeId Flag need add in object node id.
+      @return {Object} Object data for tree.
+  */
+  _buildTree: function(data, type, nodeId) {
+    let treeData = Ember.A();
+    data.forEach((item, index)=&gt; {
+      let text;
+      if (type === &#x27;«typemap»&#x27;) {
+        text = item.name;
+      } else if (type === &#x27;property&#x27;) {
+        text = item;
+      } else {
+        text = item.get(&#x27;name&#x27;);
+      }
+
+      let newNode = FdAttributesTree.create({
+        text: text,
+        type: type,
+        id: type + index
+      });
+
+      if (!Ember.isNone(nodeId)) {
+        newNode.set(&#x27;idNode&#x27;, item.get(&#x27;id&#x27;));
+      }
+
+      treeData.pushObject(newNode);
+    });
+
+    return treeData;
+  },
+});
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>
