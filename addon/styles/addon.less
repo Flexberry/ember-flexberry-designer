@@ -55,11 +55,15 @@
   }
 
   .panel-wrapper{
-    overflow: scroll;
     height: auto;
     max-height: calc(~'100vh - 600px');
     margin: 1rem 0em;
+    transform: translate3d(0, 0, 0);
   }
+}
+
+.overflow-panel{
+  overflow: auto;
 }
 
 .panel-left, .panel-right{
@@ -72,9 +76,6 @@
 
   .ui.buttons{
     display: block;
-  }
-  .overflow-panel{
-    overflow: auto;
   }
 
   &.view-attributes{
