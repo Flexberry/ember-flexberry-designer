@@ -452,4 +452,16 @@ export default Ember.Controller.extend({
 
     this.get('actionReceiverNotUsedAttributesTree').send('redraw');
   },
+
+  /**
+    Destroys helper.
+  */
+  willDestroy() {
+    this._super(...arguments);
+    let treeObject = this.get('treeObjectNotUsedAttributesTree');
+    if (!Ember.isNone(treeObject)) {
+      treeObject.off('open_node.jstree', this._openNodeTree.bind(this));
+      treeObject.off('after_close.jstree', afterCloseNodeTree.bind(this));
+    }
+  }
 });
