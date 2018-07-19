@@ -184,7 +184,7 @@ export default FlexberryBaseComponent.extend({
   */
   selectedAttribute: Ember.computed('selectedItem.propertyDefinition.name', function() {
     let propertyDefinition = this.get('selectedItem.propertyDefinition');
-    if (Ember.isNone(propertyDefinition)) {
+    if (Ember.isNone(propertyDefinition) || propertyDefinition.name === '') {
       return;
     }
 
@@ -200,29 +200,35 @@ export default FlexberryBaseComponent.extend({
     }
 
     let store = this.get('store');
-    let stagePk = this.get('currentProjectContext').getCurrentStage();
     let dataobject = this.get('model.dataobject');
     if (propertyDefinition instanceof FdViewAttributesDetail) {
       this.set('selectedItem.type', 'detail');
-      let allAggregation = store.peekAll('fd-dev-aggregation');
-      let aggregationCurrentStage = allAggregation.filterBy('stage.id', stagePk);
-      attribute = aggregationCurrentStage.find(function(item) {
-        return (item.get('endRole') === namesPropertyDefinition[0] || item.get('endClass.name') === namesPropertyDefinition[0]) &&
-         item.get('startClass.id') === dataobject.id;
+      let currentClassData = getDataForBuildTree(store, dataobject.id);
+      attribute = currentClassData.aggregations.find(function(item) {
+        return (item.get('endRole') === namesPropertyDefinition[0] || item.get('endClass.name') === namesPropertyDefinition[0]);
       });
+      if (attribute.get('startClass.id') !== dataobject.id) {
+        this.set('readonly', true);
+      }
     } else if (propertyDefinition instanceof FdViewAttributesMaster) {
       this.set('selectedItem.type', 'master');
       let parsingResult = parsingPropertyName(store, dataobject, namesPropertyDefinition);
       attribute = parsingResult.associations[0];
+      if (attribute.get('endClass.id') !== parsingResult.classId) {
+        this.set('readonly', true);
+      }
     } else {
       let parsingResult = parsingPropertyName(store, dataobject, namesPropertyDefinition);
-      let allClasses = store.peekAll('fd-dev-class');
-      let classesCurrentStage = allClasses.filterBy('stage.id', stagePk);
-      let selectedClass = classesCurrentStage.findBy('id', parsingResult.classId);
-      let attributes = selectedClass.get('attributes');
+      let currentClassData = getDataForBuildTree(store, parsingResult.classId);
       let index = namesPropertyDefinition.length - 1;
-      attribute = attributes.findBy('name', namesPropertyDefinition[index]);
-      if (!attribute) {
+
+      let devClass = currentClassData.classes.find(function(item) {
+        let attributes = item.get('attributes');
+        attribute = attributes.findBy('name', namesPropertyDefinition[index]);
+        return !Ember.isNone(attribute);
+      });
+
+      if (devClass.id !== parsingResult.classId) {
         this.set('readonly', true);
       }
     }
