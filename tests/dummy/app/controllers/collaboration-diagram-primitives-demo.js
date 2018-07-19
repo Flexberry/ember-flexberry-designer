@@ -174,7 +174,7 @@ export default Ember.Controller.extend({
           inheritanceConnector,
           asyncMsgForward,
           asyncMsgBack,
-          flatMsgForward, 
+          flatMsgForward,
           flatMsgBack,
           nestedMsgForward,
           nestedMsgBack
