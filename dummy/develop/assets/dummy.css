@@ -39117,6 +39117,14 @@ img.item-minus {
 /*-------------------
         Heights
 --------------------*/
+/*******************************
+            Segment
+*******************************/
+/* Custom components colors */
+/*******************************
+            States
+*******************************/
+/* Loading Dimmer */
 #example.pusher {
   -webkit-transition: transform 500ms ease, width 500ms ease;
   -moz-transition: transform 500ms ease, width 500ms ease;
@@ -39128,16 +39136,18 @@ img.item-minus {
   z-index: 1;
   visibility: visible;
   top: 80px;
+  max-height: calc(100% - 80px - 40px);
 }
 .ui.right.sidebar.config-panel .right-tabs {
   flex-direction: row-reverse;
   height: auto;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 80px - 40px - 5px);
 }
 .ui.right.sidebar.config-panel .ui.vertical.menu {
   width: 4rem;
   margin-top: 0;
   box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15) !important;
+  margin: 0;
 }
 .ui.right.sidebar.config-panel .ui.vertical.menu.tabular .item {
   -webkit-writing-mode: vertical-rl;
@@ -39156,6 +39166,15 @@ img.item-minus {
 .ui.right.sidebar.config-panel .tab {
   padding: 1em;
 }
+.ui.right.sidebar.config-panel .panel-wrapper {
+  height: auto;
+  max-height: calc(100vh - 600px);
+  margin: 1rem 0em;
+  transform: translate3d(0, 0, 0);
+}
+.overflow-panel {
+  overflow: auto;
+}
 .panel-left,
 .panel-right {
   overflow: hidden;
@@ -39168,10 +39187,6 @@ img.item-minus {
 .panel-left .ui.buttons,
 .panel-right .ui.buttons {
   display: block;
-}
-.panel-left .overflow-panel,
-.panel-right .overflow-panel {
-  overflow: auto;
 }
 .panel-left.view-attributes,
 .panel-right.view-attributes {
