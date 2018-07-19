@@ -1,4 +1,5 @@
 import joint from 'npm:jointjs';
+import './fd-common-primitives';
 
 joint.shapes.basic.Generic.define('flexberryUml.BaseCollRect', {
   attrs: {
@@ -143,7 +144,7 @@ joint.shapes.flexberryUml.BaseCollRect.define('flexberryUml.CollNArrayAssociatio
     '<text class="uml-base-text"/>',
     '</g>'
   ].join(''),
-    
+
   updateRectangles: function() {
     let attrs = this.get('attrs');
     let rect = { type: 'name', text: this.getCollName() };
@@ -165,7 +166,7 @@ joint.shapes.flexberryUml.BaseCollRect.define('flexberryUml.CollNArrayAssociatio
     attrs['.uml-base-text'].text = rect.text;
     attrs['.uml-base-rect'].height = rectHeight;
     attrs['.uml-base-rect'].width = rectWidth;
-  
+
     this.resize(rectWidth, rectHeight);
   }
 });
@@ -210,21 +211,167 @@ joint.shapes.flexberryUml.CollTreeLabelsLink.define('flexberryUml.CollQualifiedC
 });
 
 joint.shapes.flexberryUml.CollTreeLabelsLink.define('flexberryUml.CollaborationAggregation', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' } },  
+  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' } },
 });
 
 joint.shapes.flexberryUml.CollTreeLabelsLink.define('flexberryUml.CollAggregationConnect', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' } },  
+  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' } },
 });
 
 joint.shapes.flexberryUml.CollTreeLabelsLink.define('flexberryUml.CollQAggregationConnect', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 L 26 10 M 52 10 L 39 17 L 26 10 L 39 3 z', fill: 'white' } },  
+  attrs: { '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 L 26 10 M 52 10 L 39 17 L 26 10 L 39 3 z', fill: 'white' } },
 });
 
 joint.shapes.flexberryUml.CollTreeLabelsLink.define('flexberryUml.CollCompositionConnect', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' } },    
+  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' } },
 });
 
 joint.shapes.flexberryUml.CollTreeLabelsLink.define('flexberryUml.CollQCompositionConnect', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 L 26 10 M 52 10 L 39 17 L 26 10 L 39 3 z', fill: 'black' } },  
+  attrs: { '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 L 26 10 M 52 10 L 39 17 L 26 10 L 39 3 z', fill: 'black' } },
+});
+
+joint.dia.Link.define('flexberryUml.CollInheritance', {
+  attrs: {
+    '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'white' }
+  },
+  labels: [{
+    position: { distance: -80 }, attrs: { text: { text: '' } }
+  }]
+});
+
+joint.dia.Link.define('flexberryUml.CollInheritance', {
+  attrs: {
+    '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'black' }
+  },
+  labels: [{
+    position: { distance: -80 }, attrs: { text: { text: '' } }
+  }]
+});
+
+joint.dia.Link.define('flexberryUml.CollInheritance', {
+  attrs: {
+    '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'black' }
+  },
+  labels: [{
+    position: { distance: -80 }, attrs: { text: { text: '' } }
+  }]
+});
+
+joint.shapes.basic.Generic.define('flexberryUml.CollMessageBase', {
+  attrs: {
+    '.line': {
+      'stroke': 'black',
+      'strokeWidth': '1',
+      'fill': '#ffffff',
+      'd':'M0,0 L 60,0'
+    },
+
+    '.arrow': {
+      'ref':'.line',
+      'stroke': 'black',
+      'stroke-width':'1',
+    },
+
+    '.uml-base-text': {
+      'ref': '.line',
+      'textAnchor': 'middle',
+      'yAlignment': 'middle',
+      'fontWeight': 'bold',
+      'refY': 20,
+      'refX': 30,
+      'fill': 'black',
+      'fontSize': 12,
+      'fontFamily': 'Arial',
+    }
+  },
+}, {
+  markup: [
+    '<g class="rotatable">',
+    '<g class="scalable">',
+    '</g>',
+    '<path class="line"/>',
+    '<text class="uml-base-text"/>',
+    '<path class="arrow"/>',
+    '</g>'
+  ].join('')
+});
+
+joint.shapes.flexberryUml.CollMessageBase.define('flexberryUml.CollAsyncMsgBack', {
+  attrs: {
+    '.arrow': {
+      'd':'M 0 0 L 5 -5'
+    },
+
+    '.uml-base-text': {
+      'text': 'Async message back'
+    }
+  }
+});
+
+joint.shapes.flexberryUml.CollMessageBase.define('flexberryUml.CollAsyncMsgForward', {
+  attrs: {
+    '.arrow': {
+      'd': 'M 5 0 L 0 -5',
+      'refX': 55
+    },
+
+    '.uml-base-text': {
+      'text': 'Async message forward'
+    }
+  }
+});
+
+joint.shapes.flexberryUml.CollMessageBase.define('flexberryUml.CollFlatMsgForward', {
+  attrs: {
+    '.arrow': {
+      'd': 'M 5 0 L 0 -5 L 5 0 L 0 5',
+      'refX': 55,
+    },
+
+    '.uml-base-text': {
+      'text': 'Flat message forward'
+    }
+  }
+});
+
+joint.shapes.flexberryUml.CollMessageBase.define('flexberryUml.CollFlatMsgBack', {
+  attrs: {
+    '.arrow': {
+      'd': 'M -5 0 L 0 -5 L -5 0 L 0 5',
+      'refX': 5
+    },
+
+    '.uml-base-text': {
+      'text': 'Flat message back'
+    }
+  }
+});
+
+joint.shapes.flexberryUml.CollMessageBase.define('flexberryUml.CollNestedMsgForward', {
+  attrs: {
+    '.arrow': {
+      'd': 'M -15 0 L 0 5 L -15 10 z',
+      'fill': 'black',
+      'refX': 60,
+      'refY': -5
+    },
+
+    '.uml-base-text': {
+      'text': 'Nested message forward'
+    }
+  }
+});
+
+joint.shapes.flexberryUml.CollMessageBase.define('flexberryUml.CollNestedMsgBack', {
+  attrs: {
+    '.arrow': {
+      'd': 'M 15 0 L 0 5 L 15 10 z',
+      'fill': 'black',
+      'refY': -5
+    },
+
+    '.uml-base-text': {
+      'text': 'Nested message back'
+    }
+  }
 });

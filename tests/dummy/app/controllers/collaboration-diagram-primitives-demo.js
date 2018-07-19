@@ -123,8 +123,38 @@ export default Ember.Controller.extend({
 
         let designPatternConnector = new joint.shapes.flexberryUml.CollPatternConnect({
           source: { x:400, y:290 },
-          target: { x:700, y:290  },
+          target: { x:700, y:290 },
           labels: [{ attrs: { text: { text:  'Design Pattern' } } }]
+        });
+
+        let inheritanceConnector = new joint.shapes.flexberryUml.CollInheritance({
+          source: { x:400, y:320 },
+          target: { x:700, y:320 },
+          labels: [{ attrs: { text: { text:  'Inheritance' } } }]
+        });
+
+        let asyncMsgForward = new joint.shapes.flexberryUml.CollAsyncMsgForward({
+          position: { x: 800, y: 50 }
+        });
+
+        let asyncMsgBack = new joint.shapes.flexberryUml.CollAsyncMsgBack({
+          position: { x: 800, y: 100 }
+        });
+
+        let flatMsgForward = new joint.shapes.flexberryUml.CollFlatMsgForward({
+          position: { x: 800, y: 140 }
+        });
+
+        let flatMsgBack = new joint.shapes.flexberryUml.CollFlatMsgBack({
+          position: { x: 800, y: 180 }
+        });
+
+        let nestedMsgForward = new joint.shapes.flexberryUml.CollNestedMsgForward({
+          position: { x: 800, y: 220 }
+        });
+
+        let nestedMsgBack = new joint.shapes.flexberryUml.CollNestedMsgBack({
+          position: { x: 800, y: 260 }
         });
 
         _this.graph.addCell([
@@ -140,7 +170,14 @@ export default Ember.Controller.extend({
           qAgregationConnector,
           compositionConnector,
           qCompositionConnector,
-          designPatternConnector
+          designPatternConnector,
+          inheritanceConnector,
+          asyncMsgForward,
+          asyncMsgBack,
+          flatMsgForward, 
+          flatMsgBack,
+          nestedMsgForward,
+          nestedMsgBack
         ]);
       });
     }
