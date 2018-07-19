@@ -475,12 +475,15 @@ define('dummy/controllers/activity-diagram-primitives-demo', ['exports', 'ember'
         var minY = 16384;
         var maxX = 0;
         var maxY = 0;
+        var sidebar = _ember['default'].$('.ui.sidebar.main.menu');
+        var sidebarWidth = sidebar.hasClass('visible') ? sidebar.width() : 0;
 
         if (minX > maxX) {
           maxX = paper && 'offsetWidth' in paper ? paper.offsetWidth : 1024;
+          maxX += sidebarWidth;
           maxY = 840;
         } else {
-          maxX = minX + maxX;
+          maxX = minX + maxX + sidebarWidth;
           maxY = minY + maxY;
         }
 
@@ -856,188 +859,186 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
     actions: {
       printDiagram: function printDiagram() {
         var _this = this;
-        _ember['default'].run.schedule('afterRender', function () {
-          _this.graph = new _npmJointjs['default'].dia.Graph();
+        _this.graph = new _npmJointjs['default'].dia.Graph();
 
-          var paper = document.getElementById('paper');
-          var minX = 16384;
-          var minY = 16384;
-          var maxX = 0;
-          var maxY = 0;
-          var sidebar = _ember['default'].$('.ui.sidebar.main.menu');
-          var sidebarWidth = sidebar.hasClass('visible') ? sidebar.width() : 0;
+        var paper = document.getElementById('paper');
+        var minX = 16384;
+        var minY = 16384;
+        var maxX = 0;
+        var maxY = 0;
+        var sidebar = _ember['default'].$('.ui.sidebar.main.menu');
+        var sidebarWidth = sidebar.hasClass('visible') ? sidebar.width() : 0;
 
-          if (minX > maxX) {
-            maxX = paper && 'offsetWidth' in paper ? paper.offsetWidth : 1024;
-            maxX += sidebarWidth;
-            maxY = 840;
-          } else {
-            maxX = minX + maxX + sidebarWidth;
-            maxY = minY + maxY;
-          }
+        if (minX > maxX) {
+          maxX = paper && 'offsetWidth' in paper ? paper.offsetWidth : 1024;
+          maxX += sidebarWidth;
+          maxY = 840;
+        } else {
+          maxX = minX + maxX + sidebarWidth;
+          maxY = minY + maxY;
+        }
 
-          _this.paper = new _npmJointjs['default'].dia.Paper({
-            el: paper,
-            width: maxX,
-            height: maxY,
-            gridSize: 1,
-            model: _this.graph
-          });
-
-          var linkAggregation = new _npmJointjs['default'].shapes.flexberryUml.Aggregation({
-            source: { x: 100, y: 30 },
-            target: { x: 300, y: 30 },
-            labels: [{
-              attrs: { text: { text: '*' } } }, {
-              attrs: { text: { text: 'txt' } } }, {
-              attrs: { text: { text: '' } } }, {
-              attrs: { text: { text: '1' } }
-            }]
-          });
-
-          var linkAssociation = new _npmJointjs['default'].shapes.flexberryUml.Association({
-            source: { x: 100, y: 80 },
-            target: { x: 300, y: 80 },
-            labels: [{
-              attrs: { text: { text: '*' } } }, {
-              attrs: { text: { text: '' } } }, {
-              attrs: { text: { text: '' } } }, {
-              attrs: { text: { text: '0..1' } }
-            }]
-          });
-
-          var linkComposition = new _npmJointjs['default'].shapes.flexberryUml.Composition({
-            source: { x: 100, y: 120 },
-            target: { x: 300, y: 120 }
-          });
-
-          var linkDependency = new _npmJointjs['default'].shapes.flexberryUml.Dependency({
-            source: { x: 100, y: 170 },
-            target: { x: 300, y: 170 }
-          });
-
-          var linkRealization = new _npmJointjs['default'].shapes.flexberryUml.Realization({
-            source: { x: 100, y: 220 },
-            target: { x: 300, y: 220 }
-          });
-
-          var linkGeneralization = new _npmJointjs['default'].shapes.flexberryUml.Generalization({
-            source: { x: 100, y: 270 },
-            target: { x: 300, y: 270 }
-          });
-
-          var linkQualified = new _npmJointjs['default'].shapes.flexberryUml.Qualified({
-            source: { x: 100, y: 320 },
-            target: { x: 300, y: 320 }
-          });
-
-          var linkQualifiedAggregation = new _npmJointjs['default'].shapes.flexberryUml.QualifiedAggregation({
-            source: { x: 100, y: 370 },
-            target: { x: 300, y: 370 },
-            labels: [{
-              attrs: { text: { text: 'txt' } } }, {
-              attrs: { text: { text: '' } } }, {
-              attrs: { text: { text: 'lbl' } }
-            }]
-          });
-
-          var linkQualifiedComposition = new _npmJointjs['default'].shapes.flexberryUml.QualifiedComposition({
-            source: { x: 100, y: 420 },
-            target: { x: 300, y: 420 }
-          });
-
-          var linkNestedClassAssociation = new _npmJointjs['default'].shapes.flexberryUml.NestedClassAssociation({
-            source: { x: 100, y: 470 },
-            target: { x: 300, y: 470 }
-          });
-
-          var linkNoteConnector = new _npmJointjs['default'].shapes.flexberryUml.NoteConnector({
-            source: { x: 100, y: 520 },
-            target: { x: 300, y: 520 }
-          });
-
-          _this.graph.addCell([linkAggregation, linkAssociation, linkComposition, linkDependency, linkRealization, linkGeneralization, linkQualified, linkQualifiedAggregation, linkQualifiedComposition, linkNestedClassAssociation, linkNoteConnector]);
-
-          var attributes = ['attr1', 'attr2'];
-          var methods = ['method1'];
-
-          var classWithoutStp = new _npmJointjs['default'].shapes.flexberryUml.Class({
-            position: { x: 350, y: 30 },
-            name: 'Class1',
-            attributes: attributes,
-            methods: methods
-          });
-
-          var classCollapsed = new _npmJointjs['default'].shapes.flexberryUml.ClassCollapsed({
-            position: { x: 450, y: 30 },
-            size: { width: 100 },
-            name: 'ClassCollapsed',
-            attributes: attributes,
-            methods: methods
-          });
-
-          var classWithStp = new _npmJointjs['default'].shapes.flexberryUml.Class({
-            position: { x: 350, y: 150 },
-            name: 'Class2textextext',
-            stereotype: 'enumeration',
-            attributes: attributes,
-            methods: methods
-          });
-
-          var nAryAssociation = new _npmJointjs['default'].shapes.flexberryUml.NAryAssociation({
-            position: { x: 550, y: 30 },
-            size: { width: 150, height: 75 },
-            name: 'n-ary Association'
-          });
-
-          var obj = new _npmJointjs['default'].shapes.flexberryUml.Object({
-            position: { x: 350, y: 300 },
-            name: 'Object',
-            attributes: attributes,
-            methods: methods
-          });
-
-          var instance = new _npmJointjs['default'].shapes.flexberryUml.Instance({
-            position: { x: 350, y: 400 },
-            name: 'Instance'
-          });
-
-          var multiObject = new _npmJointjs['default'].shapes.flexberryUml.MultiObject({
-            position: { x: 350, y: 500 },
-            size: { width: 150, height: 40 },
-            name: 'multiObject'
-          });
-
-          var activeObj = new _npmJointjs['default'].shapes.flexberryUml.ActiveObject({
-            position: { x: 350, y: 600 },
-            name: 'Active object'
-          });
-
-          var templateClass = new _npmJointjs['default'].shapes.flexberryUml.TemplateClass({
-            position: { x: 550, y: 150 },
-            name: 'Class2textextext',
-            attributes: attributes,
-            methods: methods,
-            params: 'params'
-          });
-
-          var note = new _npmJointjs['default'].shapes.flexberryUml.Note({
-            position: { x: 550, y: 300 },
-            name: 'Comment'
-          });
-
-          var moreClasses = new _npmJointjs['default'].shapes.flexberryUml.MoreClasses({
-            position: { x: 550, y: 400 }
-          });
-
-          var packagePr = new _npmJointjs['default'].shapes.flexberryUml.Package({
-            position: { x: 550, y: 500 },
-            name: 'Class2',
-            attributes: attributes
-          });
-
-          _this.graph.addCell([classWithoutStp, classCollapsed, classWithStp, nAryAssociation, obj, instance, multiObject, activeObj, templateClass, note, moreClasses, packagePr]);
+        _this.paper = new _npmJointjs['default'].dia.Paper({
+          el: paper,
+          width: maxX,
+          height: maxY,
+          gridSize: 1,
+          model: _this.graph
         });
+
+        var linkAggregation = new _npmJointjs['default'].shapes.flexberryUml.Aggregation({
+          source: { x: 100, y: 30 },
+          target: { x: 300, y: 30 },
+          labels: [{
+            attrs: { text: { text: '*' } } }, {
+            attrs: { text: { text: 'txt' } } }, {
+            attrs: { text: { text: '' } } }, {
+            attrs: { text: { text: '1' } }
+          }]
+        });
+
+        var linkAssociation = new _npmJointjs['default'].shapes.flexberryUml.Association({
+          source: { x: 100, y: 80 },
+          target: { x: 300, y: 80 },
+          labels: [{
+            attrs: { text: { text: '*' } } }, {
+            attrs: { text: { text: '' } } }, {
+            attrs: { text: { text: '' } } }, {
+            attrs: { text: { text: '0..1' } }
+          }]
+        });
+
+        var linkComposition = new _npmJointjs['default'].shapes.flexberryUml.Composition({
+          source: { x: 100, y: 120 },
+          target: { x: 300, y: 120 }
+        });
+
+        var linkDependency = new _npmJointjs['default'].shapes.flexberryUml.Dependency({
+          source: { x: 100, y: 170 },
+          target: { x: 300, y: 170 }
+        });
+
+        var linkRealization = new _npmJointjs['default'].shapes.flexberryUml.Realization({
+          source: { x: 100, y: 220 },
+          target: { x: 300, y: 220 }
+        });
+
+        var linkGeneralization = new _npmJointjs['default'].shapes.flexberryUml.Generalization({
+          source: { x: 100, y: 270 },
+          target: { x: 300, y: 270 }
+        });
+
+        var linkQualified = new _npmJointjs['default'].shapes.flexberryUml.Qualified({
+          source: { x: 100, y: 320 },
+          target: { x: 300, y: 320 }
+        });
+
+        var linkQualifiedAggregation = new _npmJointjs['default'].shapes.flexberryUml.QualifiedAggregation({
+          source: { x: 100, y: 370 },
+          target: { x: 300, y: 370 },
+          labels: [{
+            attrs: { text: { text: 'txt' } } }, {
+            attrs: { text: { text: '' } } }, {
+            attrs: { text: { text: 'lbl' } }
+          }]
+        });
+
+        var linkQualifiedComposition = new _npmJointjs['default'].shapes.flexberryUml.QualifiedComposition({
+          source: { x: 100, y: 420 },
+          target: { x: 300, y: 420 }
+        });
+
+        var linkNestedClassAssociation = new _npmJointjs['default'].shapes.flexberryUml.NestedClassAssociation({
+          source: { x: 100, y: 470 },
+          target: { x: 300, y: 470 }
+        });
+
+        var linkNoteConnector = new _npmJointjs['default'].shapes.flexberryUml.NoteConnector({
+          source: { x: 100, y: 520 },
+          target: { x: 300, y: 520 }
+        });
+
+        _this.graph.addCell([linkAggregation, linkAssociation, linkComposition, linkDependency, linkRealization, linkGeneralization, linkQualified, linkQualifiedAggregation, linkQualifiedComposition, linkNestedClassAssociation, linkNoteConnector]);
+
+        var attributes = ['attr1', 'attr2'];
+        var methods = ['method1'];
+
+        var classWithoutStp = new _npmJointjs['default'].shapes.flexberryUml.Class({
+          position: { x: 350, y: 30 },
+          name: 'Class1',
+          attributes: attributes,
+          methods: methods
+        });
+
+        var classCollapsed = new _npmJointjs['default'].shapes.flexberryUml.ClassCollapsed({
+          position: { x: 450, y: 30 },
+          size: { width: 100 },
+          name: 'ClassCollapsed',
+          attributes: attributes,
+          methods: methods
+        });
+
+        var classWithStp = new _npmJointjs['default'].shapes.flexberryUml.Class({
+          position: { x: 350, y: 150 },
+          name: 'Class2textextext',
+          stereotype: 'enumeration',
+          attributes: attributes,
+          methods: methods
+        });
+
+        var nAryAssociation = new _npmJointjs['default'].shapes.flexberryUml.NAryAssociation({
+          position: { x: 550, y: 30 },
+          size: { width: 150, height: 75 },
+          name: 'n-ary Association'
+        });
+
+        var obj = new _npmJointjs['default'].shapes.flexberryUml.Object({
+          position: { x: 350, y: 300 },
+          name: 'Object',
+          attributes: attributes,
+          methods: methods
+        });
+
+        var instance = new _npmJointjs['default'].shapes.flexberryUml.Instance({
+          position: { x: 350, y: 400 },
+          name: 'Instance'
+        });
+
+        var multiObject = new _npmJointjs['default'].shapes.flexberryUml.MultiObject({
+          position: { x: 350, y: 500 },
+          size: { width: 150, height: 40 },
+          name: 'multiObject'
+        });
+
+        var activeObj = new _npmJointjs['default'].shapes.flexberryUml.ActiveObject({
+          position: { x: 350, y: 600 },
+          name: 'Active object'
+        });
+
+        var templateClass = new _npmJointjs['default'].shapes.flexberryUml.TemplateClass({
+          position: { x: 550, y: 150 },
+          name: 'Class2textextext',
+          attributes: attributes,
+          methods: methods,
+          params: 'params'
+        });
+
+        var note = new _npmJointjs['default'].shapes.flexberryUml.Note({
+          position: { x: 550, y: 300 },
+          name: 'Comment'
+        });
+
+        var moreClasses = new _npmJointjs['default'].shapes.flexberryUml.MoreClasses({
+          position: { x: 550, y: 400 }
+        });
+
+        var packagePr = new _npmJointjs['default'].shapes.flexberryUml.Package({
+          position: { x: 550, y: 500 },
+          name: 'Class2',
+          attributes: attributes
+        });
+
+        _this.graph.addCell([classWithoutStp, classCollapsed, classWithStp, nAryAssociation, obj, instance, multiObject, activeObj, templateClass, note, moreClasses, packagePr]);
       }
     }
   });
@@ -1050,93 +1051,94 @@ define('dummy/controllers/deployment-diagram-primitives-demo', ['exports', 'embe
     actions: {
       printDiagram: function printDiagram() {
         var _this = this;
-        _ember['default'].run.schedule('afterRender', function () {
-          _this.graph = new _npmJointjs['default'].dia.Graph();
+        _this.graph = new _npmJointjs['default'].dia.Graph();
 
-          var paper = document.getElementById('paper');
-          var minX = 16384;
-          var minY = 16384;
-          var maxX = 0;
-          var maxY = 0;
+        var paper = document.getElementById('paper');
+        var minX = 16384;
+        var minY = 16384;
+        var maxX = 0;
+        var maxY = 0;
+        var sidebar = _ember['default'].$('.ui.sidebar.main.menu');
+        var sidebarWidth = sidebar.hasClass('visible') ? sidebar.width() : 0;
 
-          if (minX > maxX) {
-            maxX = paper && 'offsetWidth' in paper ? paper.offsetWidth : 1024;
-            maxY = 840;
-          } else {
-            maxX = minX + maxX;
-            maxY = minY + maxY;
-          }
+        if (minX > maxX) {
+          maxX = paper && 'offsetWidth' in paper ? paper.offsetWidth : 1024;
+          maxX += sidebarWidth;
+          maxY = 840;
+        } else {
+          maxX = minX + maxX + sidebarWidth;
+          maxY = minY + maxY;
+        }
 
-          _this.paper = new _npmJointjs['default'].dia.Paper({
-            el: paper,
-            width: maxX,
-            height: maxY,
-            gridSize: 1,
-            model: _this.graph
-          });
-
-          var linkNoteConnector = new _npmJointjs['default'].shapes.flexberryUml.NoteConnector({
-            source: { x: 100, y: 100 },
-            target: { x: 300, y: 100 },
-            attrs: { path: { title: 'Коннектор комментария (Note Connector)' } }
-          });
-
-          var linkDependency = new _npmJointjs['default'].shapes.flexberryUml.Dependency({
-            source: { x: 100, y: 150 },
-            target: { x: 300, y: 150 },
-            labels: [{
-              attrs: { text: { text: 'Dependency' } }
-            }],
-            attrs: { path: { title: 'Переход (Dependency)' } }
-          });
-
-          var linkConnection = new _npmJointjs['default'].shapes.flexberryUml.deploymentDiagram_Connection({
-            source: { x: 100, y: 200 },
-            target: { x: 300, y: 200 },
-            labels: [{
-              attrs: { text: { text: 'Connection' } }
-            }],
-            attrs: { path: { title: 'Связь (Connection)' } }
-          });
-
-          _this.graph.addCell([linkNoteConnector, linkDependency, linkConnection]);
-
-          var component = new _npmJointjs['default'].shapes.flexberryUml.deploymentDiagram_Component({
-            position: { x: 450, y: 100 },
-            name: ['StateName'],
-            attrs: { '.rotatable': { title: 'Компонент (Component)' } }
-          });
-
-          var node = new _npmJointjs['default'].shapes.flexberryUml.deploymentDiagram_Node({
-            position: { x: 450, y: 150 },
-            name: ['NodeName', 'text', 'text'],
-            attrs: { '.rotatable': { title: 'Узел (Node)' } }
-          });
-          node.addTo(_this.graph);
-
-          var obj = new _npmJointjs['default'].shapes.flexberryUml.deploymentDiagram_Object({
-            position: { x: 450, y: 220 },
-            name: ['ObjectName', 'text', 'text'],
-            attrs: { '.rotatable': { title: 'Объект (Object)' } }
-          });
-          obj.addTo(_this.graph);
-
-          var interfaceObj = new _npmJointjs['default'].shapes.flexberryUml.deploymentDiagram_Interface({
-            position: { x: 500, y: 260 },
-            name: ['Interface'],
-            attrs: { '.rotatable': { title: 'Интерфейс (Interface)' } },
-            sourceObj: obj,
-            graph: _this.graph
-          });
-
-          var activeObj = new _npmJointjs['default'].shapes.flexberryUml.deploymentDiagram_ActiveObject({
-            position: { x: 450, y: 320 },
-            name: ['ActiveObjectName', 'text'],
-            attrs: { '.rotatable': { title: 'Объект (Object)' } }
-          });
-
-          _this.graph.addCell([activeObj, obj, node, component, interfaceObj]);
+        _this.paper = new _npmJointjs['default'].dia.Paper({
+          el: paper,
+          width: maxX,
+          height: maxY,
+          gridSize: 1,
+          model: _this.graph
         });
+
+        var linkNoteConnector = new _npmJointjs['default'].shapes.flexberryUml.NoteConnector({
+          source: { x: 100, y: 100 },
+          target: { x: 300, y: 100 },
+          attrs: { path: { title: 'Коннектор комментария (Note Connector)' } }
+        });
+
+        var linkDependency = new _npmJointjs['default'].shapes.flexberryUml.Dependency({
+          source: { x: 100, y: 150 },
+          target: { x: 300, y: 150 },
+          labels: [{
+            attrs: { text: { text: 'Dependency' } }
+          }],
+          attrs: { path: { title: 'Переход (Dependency)' } }
+        });
+
+        var linkConnection = new _npmJointjs['default'].shapes.flexberryUml.deploymentDiagram_Connection({
+          source: { x: 100, y: 200 },
+          target: { x: 300, y: 200 },
+          labels: [{
+            attrs: { text: { text: 'Connection' } }
+          }],
+          attrs: { path: { title: 'Связь (Connection)' } }
+        });
+
+        _this.graph.addCell([linkNoteConnector, linkDependency, linkConnection]);
+
+        var component = new _npmJointjs['default'].shapes.flexberryUml.deploymentDiagram_Component({
+          position: { x: 450, y: 100 },
+          name: ['StateName'],
+          attrs: { '.rotatable': { title: 'Компонент (Component)' } }
+        });
+
+        var node = new _npmJointjs['default'].shapes.flexberryUml.deploymentDiagram_Node({
+          position: { x: 450, y: 150 },
+          name: ['NodeName', 'text', 'text'],
+          attrs: { '.rotatable': { title: 'Узел (Node)' } }
+        });
+        node.addTo(_this.graph);
+
+        var obj = new _npmJointjs['default'].shapes.flexberryUml.deploymentDiagram_Object({
+          position: { x: 450, y: 220 },
+          name: ['ObjectName', 'text', 'text'],
+          attrs: { '.rotatable': { title: 'Объект (Object)' } }
+        });
+        obj.addTo(_this.graph);
+
+        var interfaceObj = new _npmJointjs['default'].shapes.flexberryUml.deploymentDiagram_Interface({
+          position: { x: 500, y: 260 },
+          name: ['Interface'],
+          attrs: { '.rotatable': { title: 'Интерфейс (Interface)' } },
+          sourceObj: obj,
+          graph: _this.graph
+        });
+
+        var activeObj = new _npmJointjs['default'].shapes.flexberryUml.deploymentDiagram_ActiveObject({
+          position: { x: 450, y: 320 },
+          name: ['ActiveObjectName', 'text'],
+          attrs: { '.rotatable': { title: 'Объект (Object)' } }
+        });
+
+        _this.graph.addCell([activeObj, obj, node, component, interfaceObj]);
       }
     }
   });
@@ -1442,65 +1444,66 @@ define('dummy/controllers/fd-sequence-diagram-primitives-demo', ['exports', 'emb
     actions: {
       printDiagram: function printDiagram() {
         var _this = this;
-        _ember['default'].run.schedule('afterRender', function () {
-          _this.graph = new _npmJointjs['default'].dia.Graph();
+        _this.graph = new _npmJointjs['default'].dia.Graph();
 
-          var paper = document.getElementById('paper');
-          var minX = 16384;
-          var minY = 16384;
-          var maxX = 0;
-          var maxY = 0;
+        var paper = document.getElementById('paper');
+        var minX = 16384;
+        var minY = 16384;
+        var maxX = 0;
+        var maxY = 0;
+        var sidebar = _ember['default'].$('.ui.sidebar.main.menu');
+        var sidebarWidth = sidebar.hasClass('visible') ? sidebar.width() : 0;
 
-          if (minX > maxX) {
-            maxX = paper && 'offsetWidth' in paper ? paper.offsetWidth : 1024;
-            maxY = 840;
-          } else {
-            maxX = minX + maxX;
-            maxY = minY + maxY;
-          }
+        if (minX > maxX) {
+          maxX = paper && 'offsetWidth' in paper ? paper.offsetWidth : 1024;
+          maxX += sidebarWidth;
+          maxY = 840;
+        } else {
+          maxX = minX + maxX + sidebarWidth;
+          maxY = minY + maxY;
+        }
 
-          _this.paper = new _npmJointjs['default'].dia.Paper({
-            el: paper,
-            width: maxX,
-            height: maxY,
-            gridSize: 1,
-            model: _this.graph
-          });
-
-          /*let actor = */new _npmJointjs['default'].shapes.flexberryUml.sequencediagramActor({
-            position: { x: 0, y: 0 },
-            graph: _this.graph
-          });
-
-          /*let object = */new _npmJointjs['default'].shapes.flexberryUml.sequencediagramObject({
-            position: { x: 100, y: 0 },
-            graph: _this.graph
-          });
-
-          /*let activeObject = */new _npmJointjs['default'].shapes.flexberryUml.sequencediagramActiveObject({
-            position: { x: 200, y: 0 },
-            graph: _this.graph
-          });
-
-          /*let terminator = */new _npmJointjs['default'].shapes.flexberryUml.sequencediagramTerminator({
-            position: { x: 300, y: 0 },
-            graph: _this.graph
-          });
-
-          /*let sequencediagramProcedureCall = new joint.shapes.flexberryUml.sequencediagramProcedureCall({
-            source: { x: 0, y: 200 },
-            target: { x: 300, y: 200 },
-            labels: [{ attrs: { text: { text:  'Procedure Call' } } }],
-            graph: _this.graph
-          });*/
-
-          /*let sequencediagramFlatMessage = new joint.shapes.flexberryUml.sequencediagramFlatMessage({
-            source: { x: 0, y: 250 },
-            target: { x: 300, y: 250 },
-            labels: [{ attrs: { text: { text:  'Flat Message' } } }],
-            graph: _this.graph
-          });*/
+        _this.paper = new _npmJointjs['default'].dia.Paper({
+          el: paper,
+          width: maxX,
+          height: maxY,
+          gridSize: 1,
+          model: _this.graph
         });
+
+        /*let actor = */new _npmJointjs['default'].shapes.flexberryUml.sequencediagramActor({
+          position: { x: 0, y: 0 },
+          graph: _this.graph
+        });
+
+        /*let object = */new _npmJointjs['default'].shapes.flexberryUml.sequencediagramObject({
+          position: { x: 100, y: 0 },
+          graph: _this.graph
+        });
+
+        /*let activeObject = */new _npmJointjs['default'].shapes.flexberryUml.sequencediagramActiveObject({
+          position: { x: 200, y: 0 },
+          graph: _this.graph
+        });
+
+        /*let terminator = */new _npmJointjs['default'].shapes.flexberryUml.sequencediagramTerminator({
+          position: { x: 300, y: 0 },
+          graph: _this.graph
+        });
+
+        /*let sequencediagramProcedureCall = new joint.shapes.flexberryUml.sequencediagramProcedureCall({
+          source: { x: 0, y: 200 },
+          target: { x: 300, y: 200 },
+          labels: [{ attrs: { text: { text:  'Procedure Call' } } }],
+          graph: _this.graph
+        });*/
+
+        /*let sequencediagramFlatMessage = new joint.shapes.flexberryUml.sequencediagramFlatMessage({
+          source: { x: 0, y: 250 },
+          target: { x: 300, y: 250 },
+          labels: [{ attrs: { text: { text:  'Flat Message' } } }],
+          graph: _this.graph
+        });*/
       }
     }
   });
@@ -1700,127 +1703,128 @@ define('dummy/controllers/statechart-diagram-primitives-demo', ['exports', 'embe
     actions: {
       printDiagram: function printDiagram() {
         var _this = this;
-        _ember['default'].run.schedule('afterRender', function () {
-          _this.graph = new _npmJointjs['default'].dia.Graph();
+        _this.graph = new _npmJointjs['default'].dia.Graph();
 
-          var paper = document.getElementById('paper');
-          var minX = 16384;
-          var minY = 16384;
-          var maxX = 0;
-          var maxY = 0;
+        var paper = document.getElementById('paper');
+        var minX = 16384;
+        var minY = 16384;
+        var maxX = 0;
+        var maxY = 0;
+        var sidebar = _ember['default'].$('.ui.sidebar.main.menu');
+        var sidebarWidth = sidebar.hasClass('visible') ? sidebar.width() : 0;
 
-          if (minX > maxX) {
-            maxX = paper && 'offsetWidth' in paper ? paper.offsetWidth : 1024;
-            maxY = 840;
-          } else {
-            maxX = minX + maxX;
-            maxY = minY + maxY;
-          }
+        if (minX > maxX) {
+          maxX = paper && 'offsetWidth' in paper ? paper.offsetWidth : 1024;
+          maxX += sidebarWidth;
+          maxY = 840;
+        } else {
+          maxX = minX + maxX + sidebarWidth;
+          maxY = minY + maxY;
+        }
 
-          _this.paper = new _npmJointjs['default'].dia.Paper({
-            el: paper,
-            width: maxX,
-            height: maxY,
-            gridSize: 1,
-            model: _this.graph
-          });
-
-          var linkNoteConnector = new _npmJointjs['default'].shapes.flexberryUml.NoteConnector({
-            source: { x: 100, y: 100 },
-            target: { x: 300, y: 100 },
-            attrs: { path: { title: 'Коннектор комментария (Note Connector)' } }
-          });
-
-          var linkEventMessage = new _npmJointjs['default'].shapes.flexberryUml.statechartDiagram_EventMessage({
-            source: { x: 100, y: 150 },
-            target: { x: 300, y: 150 },
-            labels: [{
-              attrs: { text: { text: 'EventMessage' } }
-            }],
-            attrs: { path: { title: 'Сообщение (Event Message)' } }
-          });
-
-          var linkTransition = new _npmJointjs['default'].shapes.flexberryUml.statechartDiagram_Transition({
-            source: { x: 100, y: 250 },
-            target: { x: 300, y: 250 },
-            labels: [{
-              attrs: { text: { text: 'Transition' } }
-            }],
-            attrs: { path: { title: 'Переход (Transition)' } }
-          });
-
-          _this.graph.addCell([linkNoteConnector, linkEventMessage, linkTransition]);
-
-          var state = new _npmJointjs['default'].shapes.flexberryUml.statechartDiagram_State({
-            position: { x: 450, y: 100 },
-            name: 'StateName',
-            attrs: { '.rotatable': { title: 'Состояние (State)' } }
-          });
-
-          var stateEx = new _npmJointjs['default'].shapes.flexberryUml.statechartDiagram_StateEx({
-            position: { x: 450, y: 150 },
-            name: ['StateName', 'dsfsdg', 'dsfsdg'],
-            attributes: ['attr1'],
-            attrs: { '.rotatable': { title: 'Состояние (StateEx)' } }
-          });
-
-          var statechartClass = new _npmJointjs['default'].shapes.flexberryUml.statechartDiagram_Class({
-            position: { x: 450, y: 250 },
-            name: 'ClassName',
-            attrs: { '.rotatable': { title: 'Класс (Class)' } }
-          });
-
-          var note = new _npmJointjs['default'].shapes.flexberryUml.Note({
-            position: { x: 450, y: 300 },
-            name: 'Comment'
-          });
-
-          var startState = new _npmJointjs['default'].shapes.flexberryUml.StartState({
-            position: { x: 100, y: 204 },
-            attrs: {
-              text: { text: 'Start State' }
-            }
-          });
-
-          var endState = new _npmJointjs['default'].shapes.flexberryUml.EndState({
-            position: { x: 150, y: 200 },
-            attrs: {
-              text: { text: 'End State' }
-            }
-          });
-
-          var сomplexTransitionHorizon = new _npmJointjs['default'].shapes.flexberryUml.ComplexTransitionHorizon({
-            size: { width: 200 },
-            position: { x: 100, y: 300 },
-            attrs: {
-              text: { text: 'Some text' },
-              '.rotatable': { title: 'Синхронизатор/разветвитель (Complex Transition)' } }
-          });
-
-          var сomplexTransitionVertical = new _npmJointjs['default'].shapes.flexberryUml.ComplexTransitionVertical({
-            size: { height: 200 },
-            position: { x: 100, y: 350 },
-            attrs: {
-              text: { text: 'Some text' },
-              '.rotatable': { title: 'Синхронизатор/разветвитель (Complex Transition)' } }
-          });
-
-          var history = new _npmJointjs['default'].shapes.flexberryUml.statechartDiagram_History({
-            position: { x: 250, y: 200 }
-          });
-
-          var deepHistory = new _npmJointjs['default'].shapes.flexberryUml.statechartDiagram_DeepHistory({
-            position: { x: 280, y: 200 }
-          });
-
-          var compositeState = new _npmJointjs['default'].shapes.flexberryUml.statechartDiagram_CompositeState({
-            position: { x: 450, y: 350 },
-            name: ['StateName'],
-            attributes: ['attr1'],
-            attrs: { '.rotatable': { title: 'Состояние (StateEx)' } }
-          });
-          _this.graph.addCell([state, stateEx, statechartClass, note, startState, endState, сomplexTransitionHorizon, сomplexTransitionVertical, history, deepHistory, compositeState]);
+        _this.paper = new _npmJointjs['default'].dia.Paper({
+          el: paper,
+          width: maxX,
+          height: maxY,
+          gridSize: 1,
+          model: _this.graph
         });
+
+        var linkNoteConnector = new _npmJointjs['default'].shapes.flexberryUml.NoteConnector({
+          source: { x: 100, y: 100 },
+          target: { x: 300, y: 100 },
+          attrs: { path: { title: 'Коннектор комментария (Note Connector)' } }
+        });
+
+        var linkEventMessage = new _npmJointjs['default'].shapes.flexberryUml.statechartDiagram_EventMessage({
+          source: { x: 100, y: 150 },
+          target: { x: 300, y: 150 },
+          labels: [{
+            attrs: { text: { text: 'EventMessage' } }
+          }],
+          attrs: { path: { title: 'Сообщение (Event Message)' } }
+        });
+
+        var linkTransition = new _npmJointjs['default'].shapes.flexberryUml.statechartDiagram_Transition({
+          source: { x: 100, y: 250 },
+          target: { x: 300, y: 250 },
+          labels: [{
+            attrs: { text: { text: 'Transition' } }
+          }],
+          attrs: { path: { title: 'Переход (Transition)' } }
+        });
+
+        _this.graph.addCell([linkNoteConnector, linkEventMessage, linkTransition]);
+
+        var state = new _npmJointjs['default'].shapes.flexberryUml.statechartDiagram_State({
+          position: { x: 450, y: 100 },
+          name: 'StateName',
+          attrs: { '.rotatable': { title: 'Состояние (State)' } }
+        });
+
+        var stateEx = new _npmJointjs['default'].shapes.flexberryUml.statechartDiagram_StateEx({
+          position: { x: 450, y: 150 },
+          name: ['StateName', 'dsfsdg', 'dsfsdg'],
+          attributes: ['attr1'],
+          attrs: { '.rotatable': { title: 'Состояние (StateEx)' } }
+        });
+
+        var statechartClass = new _npmJointjs['default'].shapes.flexberryUml.statechartDiagram_Class({
+          position: { x: 450, y: 250 },
+          name: 'ClassName',
+          attrs: { '.rotatable': { title: 'Класс (Class)' } }
+        });
+
+        var note = new _npmJointjs['default'].shapes.flexberryUml.Note({
+          position: { x: 450, y: 300 },
+          name: 'Comment'
+        });
+
+        var startState = new _npmJointjs['default'].shapes.flexberryUml.StartState({
+          position: { x: 100, y: 204 },
+          attrs: {
+            text: { text: 'Start State' }
+          }
+        });
+
+        var endState = new _npmJointjs['default'].shapes.flexberryUml.EndState({
+          position: { x: 150, y: 200 },
+          attrs: {
+            text: { text: 'End State' }
+          }
+        });
+
+        var сomplexTransitionHorizon = new _npmJointjs['default'].shapes.flexberryUml.ComplexTransitionHorizon({
+          size: { width: 200 },
+          position: { x: 100, y: 300 },
+          attrs: {
+            text: { text: 'Some text' },
+            '.rotatable': { title: 'Синхронизатор/разветвитель (Complex Transition)' } }
+        });
+
+        var сomplexTransitionVertical = new _npmJointjs['default'].shapes.flexberryUml.ComplexTransitionVertical({
+          size: { height: 200 },
+          position: { x: 100, y: 350 },
+          attrs: {
+            text: { text: 'Some text' },
+            '.rotatable': { title: 'Синхронизатор/разветвитель (Complex Transition)' } }
+        });
+
+        var history = new _npmJointjs['default'].shapes.flexberryUml.statechartDiagram_History({
+          position: { x: 250, y: 200 }
+        });
+
+        var deepHistory = new _npmJointjs['default'].shapes.flexberryUml.statechartDiagram_DeepHistory({
+          position: { x: 280, y: 200 }
+        });
+
+        var compositeState = new _npmJointjs['default'].shapes.flexberryUml.statechartDiagram_CompositeState({
+          position: { x: 450, y: 350 },
+          name: ['StateName'],
+          attributes: ['attr1'],
+          attrs: { '.rotatable': { title: 'Состояние (StateEx)' } }
+        });
+        _this.graph.addCell([state, stateEx, statechartClass, note, startState, endState, сomplexTransitionHorizon, сomplexTransitionVertical, history, deepHistory, compositeState]);
       }
     }
   });
@@ -1830,102 +1834,103 @@ define('dummy/controllers/usecase-diagram-primitives-demo', ['exports', 'ember',
     actions: {
       printDiagram: function printDiagram() {
         var _this = this;
-        _ember['default'].run.schedule('afterRender', function () {
-          _this.graph = new _npmJointjs['default'].dia.Graph();
+        _this.graph = new _npmJointjs['default'].dia.Graph();
 
-          var paper = document.getElementById('paper');
-          var minX = 16384;
-          var minY = 16384;
-          var maxX = 0;
-          var maxY = 0;
+        var paper = document.getElementById('paper');
+        var minX = 16384;
+        var minY = 16384;
+        var maxX = 0;
+        var maxY = 0;
+        var sidebar = _ember['default'].$('.ui.sidebar.main.menu');
+        var sidebarWidth = sidebar.hasClass('visible') ? sidebar.width() : 0;
 
-          if (minX > maxX) {
-            maxX = paper && 'offsetWidth' in paper ? paper.offsetWidth : 1024;
-            maxY = 840;
-          } else {
-            maxX = minX + maxX;
-            maxY = minY + maxY;
-          }
+        if (minX > maxX) {
+          maxX = paper && 'offsetWidth' in paper ? paper.offsetWidth : 1024;
+          maxX += sidebarWidth;
+          maxY = 840;
+        } else {
+          maxX = minX + maxX + sidebarWidth;
+          maxY = minY + maxY;
+        }
 
-          _this.paper = new _npmJointjs['default'].dia.Paper({
-            el: paper,
-            width: maxX,
-            height: maxY,
-            gridSize: 1,
-            model: _this.graph
-          });
-
-          var jUseCase = new _npmJointjs['default'].shapes.flexberryUml.Usecase({
-            position: { x: 50, y: 10 },
-            size: { width: 100, height: 40 },
-            name: 'UseCase \n primitive \n 1',
-            ports: {
-              groups: {
-                'in': {
-                  position: 'absolute'
-                },
-                'out': {
-                  position: 'absolute'
-                }
-              }
-            }
-          });
-          _this.graph.addCell(jUseCase);
-
-          var jUseCaseBoundary = new _npmJointjs['default'].shapes.flexberryUml.UsecaseBoundary({
-            position: { x: 50, y: 150 },
-            size: { width: 70, height: 50 },
-            name: 'Boundary \n Very long string uuuuuuuuuuuuuuuuuuuuu \n the end',
-            ports: {
-              groups: {
-                'in': {
-                  position: 'absolute'
-                },
-                'out': {
-                  position: 'absolute'
-                }
-              }
-            }
-          });
-          _this.graph.addCell(jUseCaseBoundary);
-
-          var jUseCaseActor = new _npmJointjs['default'].shapes.flexberryUml.UsecaseActor({
-            position: { x: 250, y: 50 },
-            name: 'Actor',
-            ports: {
-              groups: {
-                'in': {
-                  position: 'absolute'
-                },
-                'out': {
-                  position: 'absolute'
-                }
-              }
-            }
-          });
-          _this.graph.addCell(jUseCaseActor);
-
-          var jUseCaseUndirAssociation = new _npmJointjs['default'].shapes.flexberryUml.UseCaseUndirAssociation({
-            source: { x: 500, y: 80 },
-            target: { x: 700, y: 80 },
-            labels: [{ attrs: { text: { text: 'Undir association' } } }]
-          });
-          _this.graph.addCell(jUseCaseUndirAssociation);
-
-          var jUseCaseDirAssociation = new _npmJointjs['default'].shapes.flexberryUml.UseCaseDirAssociation({
-            source: { x: 500, y: 150 },
-            target: { x: 700, y: 150 },
-            labels: [{ attrs: { text: { text: 'Directed association' } } }]
-          });
-          _this.graph.addCell(jUseCaseDirAssociation);
-
-          var jUseCaseGeneralization = new _npmJointjs['default'].shapes.flexberryUml.UseCaseGeneralization({
-            source: { x: 500, y: 200 },
-            target: { x: 700, y: 200 },
-            labels: [{ attrs: { text: { text: 'Generalization' } } }]
-          });
-          _this.graph.addCell(jUseCaseGeneralization);
+        _this.paper = new _npmJointjs['default'].dia.Paper({
+          el: paper,
+          width: maxX,
+          height: maxY,
+          gridSize: 1,
+          model: _this.graph
         });
+
+        var jUseCase = new _npmJointjs['default'].shapes.flexberryUml.Usecase({
+          position: { x: 50, y: 10 },
+          size: { width: 100, height: 40 },
+          name: 'UseCase \n primitive \n 1',
+          ports: {
+            groups: {
+              'in': {
+                position: 'absolute'
+              },
+              'out': {
+                position: 'absolute'
+              }
+            }
+          }
+        });
+        _this.graph.addCell(jUseCase);
+
+        var jUseCaseBoundary = new _npmJointjs['default'].shapes.flexberryUml.UsecaseBoundary({
+          position: { x: 50, y: 150 },
+          size: { width: 70, height: 50 },
+          name: 'Boundary \n Very long string uuuuuuuuuuuuuuuuuuuuu \n the end',
+          ports: {
+            groups: {
+              'in': {
+                position: 'absolute'
+              },
+              'out': {
+                position: 'absolute'
+              }
+            }
+          }
+        });
+        _this.graph.addCell(jUseCaseBoundary);
+
+        var jUseCaseActor = new _npmJointjs['default'].shapes.flexberryUml.UsecaseActor({
+          position: { x: 250, y: 50 },
+          name: 'Actor',
+          ports: {
+            groups: {
+              'in': {
+                position: 'absolute'
+              },
+              'out': {
+                position: 'absolute'
+              }
+            }
+          }
+        });
+        _this.graph.addCell(jUseCaseActor);
+
+        var jUseCaseUndirAssociation = new _npmJointjs['default'].shapes.flexberryUml.UseCaseUndirAssociation({
+          source: { x: 500, y: 80 },
+          target: { x: 700, y: 80 },
+          labels: [{ attrs: { text: { text: 'Undir association' } } }]
+        });
+        _this.graph.addCell(jUseCaseUndirAssociation);
+
+        var jUseCaseDirAssociation = new _npmJointjs['default'].shapes.flexberryUml.UseCaseDirAssociation({
+          source: { x: 500, y: 150 },
+          target: { x: 700, y: 150 },
+          labels: [{ attrs: { text: { text: 'Directed association' } } }]
+        });
+        _this.graph.addCell(jUseCaseDirAssociation);
+
+        var jUseCaseGeneralization = new _npmJointjs['default'].shapes.flexberryUml.UseCaseGeneralization({
+          source: { x: 500, y: 200 },
+          target: { x: 700, y: 200 },
+          labels: [{ attrs: { text: { text: 'Generalization' } } }]
+        });
+        _this.graph.addCell(jUseCaseGeneralization);
       }
     }
   });
@@ -47638,7 +47643,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+fc6daadf"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+b556cbd0"});
 }
 
 /* jshint ignore:end */
