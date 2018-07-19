@@ -1,6 +1,7 @@
 @import 'addon/styles/components/fd-editform-row';
 @import 'addon/styles/components/fd-editform-control';
 @import 'node_modules/ember-flexberry/addon/styles/themes/blue-sky/globals/site.variables';
+@import 'node_modules/ember-flexberry/addon/styles/themes/blue-sky/elements/segment.variables';
 
 @tree-row-padding: 3px;
 
@@ -17,17 +18,19 @@
   z-index: 1;
   visibility: visible;
   top: @headerHeight;
+  max-height: calc(~'100% - @{headerHeight} - @{footerHeight}');
 
   .right-tabs{
     flex-direction: row-reverse;
     height: auto;
-    min-height: calc(~'100vh - @{headerHeight}');
+    min-height: calc(~'100vh - @{headerHeight} - @{footerHeight} - 5px');
   }
 
   .ui.vertical.menu {
     width: 4rem;
     margin-top: 0;
     box-shadow: 0 1px 2px 0 rgba(34,36,38,.15)!important;
+    margin: 0;
 
     &.tabular .item {
       -webkit-writing-mode: vertical-rl;
@@ -50,6 +53,17 @@
   .tab{
     padding: 1em;
   }
+
+  .panel-wrapper{
+    height: auto;
+    max-height: calc(~'100vh - 600px');
+    margin: 1rem 0em;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.overflow-panel{
+  overflow: auto;
 }
 
 .panel-left, .panel-right{
@@ -62,9 +76,6 @@
 
   .ui.buttons{
     display: block;
-  }
-  .overflow-panel{
-    overflow: auto;
   }
 
   &.view-attributes{

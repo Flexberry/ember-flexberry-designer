@@ -46,7 +46,7 @@
             <i class="check icon"></i>
           </button>
         </div>
-        <div class="ui segments">
+        <div class="ui segments panel-wrapper">
           <div class="ui segment overflow-panel">
             {{
               ember-jstree
@@ -71,13 +71,17 @@
     </div>
     <div class="field">
       <label>{{t "components.fd-visual-edit-control-tree.type"}}</label>
-      {{
-        ember-jstree
-        selectedNodes=selectedNodesTypeTree
-        data=dataTypeTree
-        plugins=plugins
-        typesOptions=typesOptions
-      }}
+      <div class="ui segments panel-wrapper">
+        <div class="ui segment overflow-panel">
+          {{
+            ember-jstree
+            selectedNodes=selectedNodesTypeTree
+            data=dataTypeTree
+            plugins=plugins
+            typesOptions=typesOptions
+          }}
+        </div>
+      </div>
     </div>
     <button class='ui button {{applyTypeDisabled}}' {{action "applyСlick" on="click" }}>
       {{t "components.fd-visual-edit-control-tree.apply"}}

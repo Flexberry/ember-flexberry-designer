@@ -36,6 +36,7 @@ export default Ember.Mixin.create({
       Ember.run.next(function() {
         if (!configPanelSidebar.hasClass('visible')) {
           Ember.$('.ui.menu', configPanelSidebar).find('.item').removeClass('active');
+          Ember.$('.ui.form', configPanelSidebar).find('.tab').removeClass('active');
         }
       });
 
