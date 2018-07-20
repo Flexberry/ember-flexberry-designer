@@ -394,7 +394,8 @@ export default Ember.Controller.extend({
       @method actions.close
     */
     close() {
-      this.transitionToRoute('fd-appstruct-form');
+      this.set('state', 'loading');
+      Ember.run.later(this, this.transitionToRoute, 'fd-appstruct-form');
     },
 
     /**
