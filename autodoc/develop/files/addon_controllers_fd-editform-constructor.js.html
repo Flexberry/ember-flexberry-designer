@@ -134,6 +134,7 @@ import {
   getClassTreeNode
  } from &#x27;../utils/fd-attributes-for-tree&#x27;;
 import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNodeTreeNameIndex } from &#x27;../utils/fd-metods-for-tree&#x27;;
+import { copyViewDefinition } from &#x27;../utils/fd-copy-view-definition&#x27;;
 
 export default Ember.Controller.extend({
   queryParams: [&#x27;classId&#x27;],
@@ -605,7 +606,7 @@ export default Ember.Controller.extend({
       this.set(&#x27;state&#x27;, &#x27;loading&#x27;);
       try {
         this._saveMetadata(this.get(&#x27;model&#x27;)).then(() =&gt; {
-          this.set(&#x27;model.originalDefinition&#x27;, this.get(&#x27;model.editform.formViews.firstObject.view.definition&#x27;));
+          this.set(&#x27;model.originalDefinition&#x27;, copyViewDefinition(this.get(&#x27;model.editform.formViews.firstObject.view.definition&#x27;)));
           this.set(&#x27;state&#x27;, &#x27;&#x27;);
           if (close) {
             this.send(&#x27;close&#x27;);

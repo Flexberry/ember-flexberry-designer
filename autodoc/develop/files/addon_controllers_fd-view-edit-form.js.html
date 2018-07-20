@@ -163,9 +163,9 @@ export default EditFormController.extend(FdWorkPanelToggler, {
 
     @property lookupTypeItems
     @type Array
-    @default [&#x27;default&#x27;, &#x27;standard&#x27;, &#x27;combo&#x27;, &#x27;custom&#x27;]
+    @default [&#x27;default&#x27;, &#x27;standard&#x27;, &#x27;combo&#x27;]
    */
-  lookupTypeItems: [&#x27;default&#x27;, &#x27;standard&#x27;, &#x27;combo&#x27;, &#x27;custom&#x27;],
+  lookupTypeItems: [&#x27;default&#x27;, &#x27;standard&#x27;, &#x27;combo&#x27;],
 
   /**
     Included plugins for jsTree.
@@ -252,6 +252,20 @@ export default EditFormController.extend(FdWorkPanelToggler, {
   }),
 
   actions: {
+
+    /**
+      Resets &#x27;masterPropertyName&#x27; and &#x27;masterCustomizationString&#x27; if &#x27;LookupType&#x27; is &#x27;default&#x27;.
+
+      @method actions.changeLookupType
+      @param {Object} value An object with a new value in the &#x60;value&#x60; property.
+    */
+    changeLookupType(value) {
+      if (value === &#x27;default&#x27;) {
+        let rowModel = this.get(&#x27;rowModel&#x27;);
+        rowModel.set(&#x27;masterPropertyName&#x27;, &#x27;&#x27;);
+        rowModel.set(&#x27;masterCustomizationString&#x27;, &#x27;&#x27;);
+      }
+    },
 
     /**
       Handles form &#x27;onCreateCaptionClick&#x27; button click.
