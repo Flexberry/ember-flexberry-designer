@@ -13,6 +13,7 @@ import {
   getClassTreeNode
  } from '../utils/fd-attributes-for-tree';
 import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
+import { copyViewDefinition } from '../utils/fd-copy-view-definition';
 
 export default Ember.Controller.extend({
   /**
@@ -339,7 +340,7 @@ export default Ember.Controller.extend({
               this.set('class', undefined);
               this.set('form', this.get('formClass.id'));
             });
-            this.set('model.originalDefinition', this.get('view.definition'));
+            this.set('model.originalDefinition', copyViewDefinition(this.get('view.definition')));
           });
           changedAttributes.map(a => a.save());
           changedAssociations.map(a => a.save());

@@ -2,6 +2,7 @@ import Ember from 'ember';
 import FdAttributesTree from '../objects/fd-attributes-tree';
 import FdDataTypes from '../utils/fd-datatypes';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode } from '../utils/fd-attributes-for-tree';
+import { copyViewDefinition } from '../utils/fd-copy-view-definition';
 
 export default Ember.Route.extend({
   currentContext: Ember.inject.service('fd-current-project-context'),
@@ -55,7 +56,7 @@ export default Ember.Route.extend({
       });
     }
 
-    modelHash.originalDefinition = modelHash.view.get('definition');
+    modelHash.originalDefinition = copyViewDefinition(modelHash.view.get('definition'));
 
     let allStages = store.peekAll('fd-dev-stage');
     let dataobjectId = modelHash.dataobject.get('id');

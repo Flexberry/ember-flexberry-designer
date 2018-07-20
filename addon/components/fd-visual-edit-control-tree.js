@@ -79,6 +79,15 @@ export default FlexberryBaseComponent.extend({
    */
   readonly: false,
 
+  /**
+    Type of the selected master for editing.
+
+    @property lookupTypeItems
+    @type Array
+    @default ['default', 'standard', 'combo']
+   */
+  lookupTypeItems: ['default', 'standard', 'combo'],
+
   /*
     Setting off for buttons of the tree.
   */
@@ -343,6 +352,21 @@ export default FlexberryBaseComponent.extend({
   },
 
   actions: {
+
+    /**
+      Resets 'masterPropertyName' and 'masterCustomizationString' if 'LookupType' is 'default'.
+
+      @method actions.changeLookupType
+      @param {Object} value An object with a new value in the `value` property.
+    */
+    changeLookupType(value) {
+      if (value === 'default') {
+        let propertyDefinition = this.get('selectedItem.propertyDefinition');
+        propertyDefinition.set('masterPropertyName', '');
+        propertyDefinition.set('masterCustomizationString', '');
+      }
+    },
+
     /**
       Changes the start multiplicity of the association.
 

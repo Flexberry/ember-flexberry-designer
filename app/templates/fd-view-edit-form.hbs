@@ -204,11 +204,13 @@
               <label>{{t "forms.fd-view-edit-form.settings-master.lookup-type"}}</label>
               {{
                 flexberry-dropdown
+                onChange=(action "changeLookupType")
                 items=lookupTypeItems
                 value=rowModel.lookupType
                 readonly=readonly
               }}
             </div>
+            {{#if (not-eq rowModel.lookupType 'default')}}
             {{
               flexberry-field
               placeholder=(t 'components.flexberry-field.placeholder')
@@ -224,6 +226,7 @@
               value=rowModel.masterCustomizationString
               label=(t 'forms.fd-view-edit-form.settings-master.sample-setting')
             }}
+            {{/if}}
           </div>
           <div class="{{if (eq propertyType 'isDetail') "" " hidden"}}">
             <div class="field">

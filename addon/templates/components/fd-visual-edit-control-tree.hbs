@@ -110,12 +110,30 @@
     </div>
     {{/if}}
     <div class="field">
-      <label>{{t "components.fd-visual-edit-control-tree.master-property"}}</label>
+      <label>{{t "forms.fd-view-edit-form.settings-master.lookup-type"}}</label>
       {{
-        flexberry-textbox
-        value=selectedItem.propertyDefinition.masterPropertyName
+        flexberry-dropdown
+        onChange=(action "changeLookupType")
+        items=lookupTypeItems
+        value=selectedItem.propertyDefinition.lookupType
       }}
     </div>
+    {{#if (not-eq selectedItem.propertyDefinition.lookupType 'default')}}
+      <div class="field">
+        <label>{{t "components.fd-visual-edit-control-tree.master-property"}}</label>
+        {{
+          flexberry-textbox
+          value=selectedItem.propertyDefinition.masterPropertyName
+        }}
+      </div>
+      <div class="field">
+        <label>{{t "components.fd-visual-edit-control-tree.sample-setting"}}</label>
+        {{
+          flexberry-textbox
+          value=selectedItem.propertyDefinition.masterCustomizationString
+        }}
+      </div>
+    {{/if}}
   {{/if}}
 
   {{#if (or (eq selectedItem.type 'master') (eq selectedItem.type 'detail'))}}
