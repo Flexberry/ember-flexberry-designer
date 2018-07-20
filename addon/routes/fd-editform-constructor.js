@@ -7,6 +7,7 @@ import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
 import FdAttributesTree from '../objects/fd-attributes-tree';
 import FdDataTypes from '../utils/fd-datatypes';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode } from '../utils/fd-attributes-for-tree';
+import { copyViewDefinition } from '../utils/fd-copy-view-definition';
 
 export default Ember.Route.extend({
 
@@ -97,7 +98,7 @@ export default Ember.Route.extend({
     // Controls.
     let controlTree = Ember.A();
     let definition = modelHash.editform.get('formViews.firstObject.view.definition');
-    modelHash.originalDefinition = definition.slice();
+    modelHash.originalDefinition = copyViewDefinition(definition);
     for (let i = 0; i < definition.length; i++) {
       let propertyDefinition = definition[i];
       this._locateControl(controlTree, propertyDefinition, propertyDefinition.path);

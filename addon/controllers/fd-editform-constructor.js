@@ -18,6 +18,7 @@ import {
   getClassTreeNode
  } from '../utils/fd-attributes-for-tree';
 import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
+import { copyViewDefinition } from '../utils/fd-copy-view-definition';
 
 export default Ember.Controller.extend({
   queryParams: ['classId'],
@@ -489,7 +490,7 @@ export default Ember.Controller.extend({
       this.set('state', 'loading');
       try {
         this._saveMetadata(this.get('model')).then(() => {
-          this.set('model.originalDefinition', this.get('model.editform.formViews.firstObject.view.definition'));
+          this.set('model.originalDefinition', copyViewDefinition(this.get('model.editform.formViews.firstObject.view.definition')));
           this.set('state', '');
           if (close) {
             this.send('close');
