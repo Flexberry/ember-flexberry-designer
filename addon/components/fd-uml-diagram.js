@@ -72,10 +72,8 @@ export default Ember.Component.extend({
     let height = '100%';
     let width = '100%';
     if (this.get('notEmpty')) {
-      let maxX = elements.sortBy('x').get('lastObject');
-      let maxY = elements.sortBy('y').get('lastObject');
-      height = maxY.get('y') + maxY.get('height');
-      width = maxX.get('x') + maxX.get('width');
+      height = Math.max.apply(null, elements.map(e => e.get('y') + e.get('height'))) + 100;
+      width = Math.max.apply(null, elements.map(e => e.get('x') + e.get('width'))) + 100;
     }
 
     let graph = this.get('graph');
