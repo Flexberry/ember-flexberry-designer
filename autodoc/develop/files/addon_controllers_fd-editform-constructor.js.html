@@ -510,7 +510,8 @@ export default Ember.Controller.extend({
       @method actions.close
     */
     close() {
-      this.transitionToRoute(&#x27;fd-appstruct-form&#x27;);
+      this.set(&#x27;state&#x27;, &#x27;loading&#x27;);
+      Ember.run.later(this, this.transitionToRoute, &#x27;fd-appstruct-form&#x27;);
     },
 
     /**
