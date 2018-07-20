@@ -7,17 +7,21 @@ import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
 import FdAttributesTree from '../objects/fd-attributes-tree';
 import FdDataTypes from '../utils/fd-datatypes';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode } from '../utils/fd-attributes-for-tree';
+import { copyViewDefinition } from '../utils/fd-copy-view-definition';
 
 export default Ember.Route.extend({
 
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
+  queryParams: {
+    classId: { refreshModel: true },
+  },
+
   model: function(params) {
     let modelHash = {
       editform: undefined,
+      originalDefinition: undefined,
       dataobject: undefined,
-      association: undefined,
-      aggregation: undefined,
       attributes: undefined,
       typemap: undefined,
       enums: undefined,
@@ -27,7 +31,7 @@ export default Ember.Route.extend({
       mastersType: undefined,
       details: undefined,
       detailsType: undefined,
-      controls: undefined
+      controls: undefined,
     };
 
     let store = this.get('store');
@@ -35,7 +39,6 @@ export default Ember.Route.extend({
 
     let allClasses = store.peekAll('fd-dev-class');
     let allStages = store.peekAll('fd-dev-stage');
-    let allAssociation = store.peekAll('fd-dev-association');
     let allAggregation = store.peekAll('fd-dev-aggregation');
 
     // Editform.
@@ -49,13 +52,6 @@ export default Ember.Route.extend({
     // Dataobject.
     let dataobjectId = editform.get('formViews').objectAt(0).get('view.class.id');
     modelHash.dataobject = allClasses.findBy('id', dataobjectId);
-
-    // Association for current class.
-    modelHash.association = allAssociation.filterBy('endClass.id', dataobjectId);
-    modelHash.association.pushObjects(allAggregation.filterBy('endClass.id', dataobjectId));
-
-    // Aggregation for current class.
-    modelHash.aggregation = allAggregation.filterBy('startClass.id', dataobjectId);
 
     // Attributes.
     let dataForBuildTree = getDataForBuildTree(store, dataobjectId);
@@ -74,9 +70,8 @@ export default Ember.Route.extend({
     modelHash.mastersType = this._buildTree(implementation, 'master', true);
 
     // Implementation not details.
-    let recordsAggregation = store.peekAll('fd-dev-aggregation');
     let details = implementation.filter(function(item) {
-      return recordsAggregation.findBy('endClass.id', item.id) === undefined && item.id !== dataobjectId;
+      return allAggregation.findBy('endClass.id', item.id) === undefined && item.id !== dataobjectId;
     });
     modelHash.detailsType = this._buildTree(details, 'detail', true);
 
@@ -103,6 +98,7 @@ export default Ember.Route.extend({
     // Controls.
     let controlTree = Ember.A();
     let definition = modelHash.editform.get('formViews.firstObject.view.definition');
+    modelHash.originalDefinition = copyViewDefinition(definition);
     for (let i = 0; i < definition.length; i++) {
       let propertyDefinition = definition[i];
       this._locateControl(controlTree, propertyDefinition, propertyDefinition.path);
@@ -125,6 +121,26 @@ export default Ember.Route.extend({
     this._super(...arguments);
     controller.set('selectedItem', undefined);
     controller.set('_showNotUsedAttributesTree', false);
+  },
+
+  /**
+    A hook you can use to reset controller values either when the model changes or the route is exiting.
+    [More info](http://emberjs.com/api/classes/Ember.Route.html#method_resetController).
+
+    @method resetController
+    @param {Ember.Controller} controller
+    @param {Boolean} isExisting
+    @param {Object} transition
+   */
+  resetController(controller) {
+    this._super(...arguments);
+
+    let store = this.get('store');
+    store.peekAll('fd-dev-class').forEach((item) => item.rollbackAll());
+    store.peekAll('fd-dev-stage').forEach((item) => item.rollbackAll());
+    store.peekAll('fd-dev-association').forEach((item) => item.rollbackAll());
+    store.peekAll('fd-dev-aggregation').forEach((item) => item.rollbackAll());
+    controller.set('model.editform.formViews.firstObject.view.definition', Ember.A(controller.get('model.originalDefinition')));
   },
 
   /**
@@ -178,7 +194,6 @@ export default Ember.Route.extend({
     // TODO: вычислить type контрола из метаданных атрибута или FormControl и width из path.
     let control = FdEditformControl.create({
       caption: propertyDefinition.caption || propertyDefinition.name,
-      name: propertyDefinition.name,
       type: 'string',
       width: '100*',
       propertyDefinition: propertyDefinition,
@@ -249,6 +264,7 @@ export default Ember.Route.extend({
     if (!tabGroup) {
       tabGroup  = FdEditformTabgroup.create({ tabs: Ember.A(), width: '100*' });
       row.get('controls').pushObject(tabGroup);
+      row.incrementProperty('columnsCount');
     }
 
     if (!tab) {
@@ -313,6 +329,7 @@ export default Ember.Route.extend({
     if (!group) {
       group  = FdEditformGroup.create({ rows: Ember.A(), width: '100*', caption: groupCaption });
       row.get('controls').pushObject(group);
+      row.incrementProperty('columnsCount');
     }
 
     let nextPath = path.slice(groupCaptionEndIndex + 1, pathLength);
@@ -415,25 +432,4 @@ export default Ember.Route.extend({
 
     return treeData;
   },
-
-  /**
-      Create type tree.
-
-      @method _createTypeTree
-      @param {Array} data Data for type tree.
-      @return {Object} Object data for type tree.
-  */
-  _createTypeTree(nodes) {
-    let typeTree = Ember.A();
-    nodes.forEach((node) => {
-      typeTree.pushObject(
-        FdAttributesTree.create({
-          text: node.get('name'),
-          type: node.get('type'),
-          id: node.get('id')
-        }));
-    });
-
-    return typeTree;
-  }
 });

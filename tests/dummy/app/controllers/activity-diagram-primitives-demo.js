@@ -12,12 +12,15 @@ export default Ember.Controller.extend({
       let minY = 16384;
       let maxX = 0;
       let maxY = 0;
+      let sidebar = Ember.$('.ui.sidebar.main.menu');
+      let sidebarWidth = sidebar.hasClass('visible') ? sidebar.width() : 0;
 
       if (minX > maxX) {
         maxX = paper && ('offsetWidth' in paper) ? paper.offsetWidth : 1024;
+        maxX += sidebarWidth;
         maxY = 840;
       } else {
-        maxX = minX + maxX;
+        maxX = minX + maxX + sidebarWidth;
         maxY = minY + maxY;
       }
 
@@ -38,12 +41,20 @@ export default Ember.Controller.extend({
       var linkObjectFlow = new joint.shapes.flexberryUml.ObjectFlow({
         source: { x:100, y:150 },
         target: { x:300, y:150 },
-        attrs: { path: { title:'Изменение объекта (Object Flow)' } }
+        labels:[{
+          attrs: { text: { text: 'Label' } }
+        }],
+        attrs: {
+          path: { title:'Изменение объекта (Object Flow)' },
+        }
       });
 
       var linkTransition = new joint.shapes.flexberryUml.Transition({
         source: { x:100, y:250 },
         target: { x:300, y:250 },
+        labels:[{
+          attrs: { text: { text: 'Label' } }
+        }],
         attrs: { path: { title:'Переход (Transition)' } }
       });
 
@@ -68,49 +79,54 @@ export default Ember.Controller.extend({
       let note = new joint.shapes.flexberryUml.Note({
         position: { x: 450, y: 100 },
         size: { width: 100, height: 50 },
-        attrs: { text: { text: 'Note' }, '.rotatable': { title:'Комментарий (Note)' } }
+        name: 'note',
+        attrs: { '.rotatable': { title:'Комментарий (Note)' } }
       });
 
       let SignalReceiptRight = new joint.shapes.flexberryUml.SignalReceiptRight({
         position: { x: 450, y: 200 },
-        size: { width: 100, height: 50 },
+        name: ['Receipt1', 'text'],
         attrs: {
-          text: { text: 'Receipt1' },
           '.rotatable': { title:'Получение сигнала (Signal Receipt)' }
         }
       });
 
       let SignalReceiptLeft = new joint.shapes.flexberryUml.SignalReceiptLeft({
         position: { x: 450, y: 300 },
-        size: { width: 100, height: 50 },
+        name: 'Receipt2',
         attrs: {
-          text: { text: 'Receipt2' },
           '.rotatable': { title:'Получение сигнала (Signal Receipt)' }
         }
       });
 
       let SignalSendingRight = new joint.shapes.flexberryUml.SignalSendingRight({
         position: { x: 450, y: 400 },
-        size: { width: 100, height: 50 },
+        name: ['Sending1', 'text', 'moreText'],
         attrs: {
-          text: { text: 'Receipt2' }
+          '.rotatable': { title:'Отправка сигнала (Signal Sending)' }
         }
       });
 
       let SignalSendingLeft = new joint.shapes.flexberryUml.SignalSendingLeft({
         position: { x: 450, y: 500 },
-        size: { width: 100, height: 50 },
+        name: 'Sending2',
         attrs: {
-          text: { text: 'Receipt2' }
+          '.rotatable': { title:'Отправка сигнала (Signal Sending)' }
         }
       });
 
       let startState = new joint.shapes.flexberryUml.StartState({
         position: { x: 100, y: 204 },
+        attrs: {
+          text: { text: 'Start State' }
+        }
       });
 
       let endState = new joint.shapes.flexberryUml.EndState({
         position: { x: 150, y: 200 },
+        attrs: {
+          text: { text: 'End State' }
+        }
       });
 
       let decision = new joint.shapes.flexberryUml.Decision({
@@ -135,8 +151,13 @@ export default Ember.Controller.extend({
         state: 'state'
       });
 
+      let partition = new joint.shapes.flexberryUml.Partition({
+        position: { x: 600, y: 350 },
+        name: 'partition'
+      });
+
       _this.graph.addCell([note, SignalReceiptRight, SignalReceiptLeft, SignalSendingRight,
-        SignalSendingLeft, startState, endState, decision, objectInState, activeState]);
+        SignalSendingLeft, startState, endState, decision, objectInState, activeState, partition]);
     }
   }
 });

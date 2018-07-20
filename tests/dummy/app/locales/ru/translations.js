@@ -84,7 +84,7 @@ Ember.$.extend(true, translations, {
 
           },
 
-          'fd-visual-listform': {
+          'fd-listform-constructor': {
             caption: 'Конструктор списковой формы',
             title: '',
           },
@@ -151,6 +151,22 @@ Ember.$.extend(true, translations, {
           },
           'activity-diagram-primitives-demo': {
             caption: 'Диаграмма активностей',
+            title: '',
+          },
+          'deployment-diagram-primitives-demo': {
+            caption: 'Диаграмма развертывания',
+            title: '',
+          },
+          'statechart-diagram-primitives-demo': {
+            caption: 'Диаграмма состояний',
+            title: '',
+          },
+          'usecase-diagram-primitives-demo': {
+            caption: 'Диаграмма вариантов использования',
+            title: '',
+          },
+          'sequence-diagram-primitives-demo': {
+            caption: 'Диаграмма последовательности',
             title: '',
           },
         },

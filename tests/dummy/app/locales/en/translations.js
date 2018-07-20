@@ -83,8 +83,8 @@ Ember.$.extend(true, translations, {
             title: '',
           },
 
-          'fd-visual-listform': {
-            caption: 'Visual edit listform',
+          'fd-listform-constructor': {
+            caption: 'List form constructor',
             title: '',
           },
 
@@ -149,6 +149,22 @@ Ember.$.extend(true, translations, {
           },
           'activity-diagram-primitives-demo': {
             caption: 'Activity Diagram',
+            title: '',
+          },
+          'deployment-diagram-primitives-demo': {
+            caption: 'Deployment Diagram',
+            title: '',
+          },
+          'statechart-diagram-primitives-demo': {
+            caption: 'Statechart Diagram',
+            title: '',
+          },
+          'usecase-diagram-primitives-demo': {
+            caption: 'Usecase Diagram',
+            title: '',
+          },
+          'sequence-diagram-primitives-demo': {
+            caption: 'Sequence Diagram',
             title: '',
           },
         },

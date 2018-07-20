@@ -36,6 +36,7 @@ export default Ember.Mixin.create({
       Ember.run.next(function() {
         if (!configPanelSidebar.hasClass('visible')) {
           Ember.$('.ui.menu', configPanelSidebar).find('.item').removeClass('active');
+          Ember.$('.ui.form', configPanelSidebar).find('.tab').removeClass('active');
         }
       });
 
@@ -49,8 +50,8 @@ export default Ember.Mixin.create({
       let configPanelTabsWidth = this.configPanelTabsWidth;
 
       if (isMainSidebar) {
-        let routsNameWidthConfigPanel = ['fd-editform-constructor', 'fd-view-edit-form', 'fd-appstruct-form', 'fd-diagram-edit-form', 'fd-visual-listform'];
-        let showTabsPanel = routsNameWidthConfigPanel.includes(this.currentRouteName.split('.')[0]);
+        let routesWidthConfigPanel = ['fd-editform-constructor', 'fd-view-edit-form', 'fd-appstruct-form', 'fd-diagram-edit-form', 'fd-listform-constructor'];
+        let showTabsPanel = routesWidthConfigPanel.includes(this.currentRouteName.split('.')[0]);
         configPanelTabsWidth = showTabsPanel ? this.configPanelTabsWidth : 0;
         sidebarVisible = !sidebarVisible;
         configPanelSidebarVisible = !configPanelSidebarVisible;

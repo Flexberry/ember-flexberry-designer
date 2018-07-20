@@ -3,8 +3,21 @@ import FdAppStructTree from '../objects/fd-appstruct-tree';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
 import { translationMacro as t } from 'ember-i18n';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
+import { restorationNodeTree, findFreeNodeTreeID, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
 
 export default EditFormController.extend(FdWorkPanelToggler, {
+
+  /**
+    @property store
+    @type Service
+  */
+  store: Ember.inject.service(),
+
+  /**
+    @property currentProjectContext
+    @type Service
+  */
+  currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
   /*
     Setting off for buttons of the left tree.
@@ -36,6 +49,16 @@ export default EditFormController.extend(FdWorkPanelToggler, {
   objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
 
   allAttrsHidedn: false,
+
+  /**
+    Show question of removal.
+
+    @private
+    @property _showModalDialog
+    @type Boolean
+    @default false
+  */
+  _showModalDialog: false,
 
   /**
     Included plugins for left jsTree.
@@ -199,20 +222,22 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       this.set('selectedElementForEdit', selectedNode.original);
       let typeNode = selectedNode.original.type;
 
-      if (typeNode === 'desk') {
-        this.set('removeRightNodeDisabled', 'disabled');
-        this.set('editRightNodeDisabled', 'disabled');
-      } else {
-        this.set('removeRightNodeDisabled', '');
-        this.set('editRightNodeDisabled', '');
-      }
-
       if (typeNode === '«listform»' || typeNode === '«editform»' || typeNode === 'url') {
         this.set('addRightNodeDisabled', 'disabled');
         this.set('addFolderNodeDisabled', 'disabled');
+        this.set('removeRightNodeDisabled', '');
+        this.set('editRightNodeDisabled', '');
       } else {
-        this.set('addRightNodeDisabled', '');
         this.set('addFolderNodeDisabled', '');
+        if (typeNode === 'desk') {
+          this.set('addRightNodeDisabled', 'disabled');
+          this.set('removeRightNodeDisabled', 'disabled');
+          this.set('editRightNodeDisabled', 'disabled');
+        } else {
+          this.set('addRightNodeDisabled', '');
+          this.set('removeRightNodeDisabled', '');
+          this.set('editRightNodeDisabled', '');
+        }
       }
     }
   }),
@@ -232,7 +257,8 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     let jstreeSelectedNodesRightType = jstreeSelectedNodesRight[0].original.type;
     let jstreeSelectedNodesLeftType = jstreeSelectedNodesLeft[0].original.type;
     if ((jstreeSelectedNodesLeftType !== '«listform»' && jstreeSelectedNodesLeftType !== '«editform»') ||
-      jstreeSelectedNodesRightType === '«listform»' || jstreeSelectedNodesRightType === '«editform»' || jstreeSelectedNodesRightType === 'url') {
+      jstreeSelectedNodesRightType === '«listform»' || jstreeSelectedNodesRightType === '«editform»' ||
+      jstreeSelectedNodesRightType === 'url' || jstreeSelectedNodesRightType === 'desk') {
       this.set('moveRightDisabled', 'disabled');
     } else {
       this.set('moveRightDisabled', '');
@@ -278,31 +304,6 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     };
   }),
 
-  /**
-    Method for restoring tree nodes.
-    @method _restorationNodeTree
-  */
-  _restorationNodeTree(nodeArray) {
-    let _this = this;
-    nodeArray.forEach(function(node) {
-      if (node.type === 'folder' || node.type === 'desk') {
-        node.set('children', node.get('copyChildren'));
-        _this._restorationNodeTree(node.get('children'));
-      }
-    });
-  },
-
-  /**
-    Method for update data in tree.
-    @method _updateTreeData
-  */
-  _updateTreeData() {
-    let dataTree = this.get('model.rightTreeNodes');
-    this._restorationNodeTree(dataTree);
-
-    this.get('jstreeActionReceiverRight').send('redraw');
-  },
-
   actions: {
 
     /**
@@ -317,14 +318,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
         return;
       }
 
-      // Find free id.
-      let nodeId = 0;
-      let foundId = this.get('jstreeObjectRight').jstree(true).get_node('move' + nodeId);
-      while (foundId) {
-        nodeId++;
-        foundId = this.get('jstreeObjectRight').jstree(true).get_node('move' + nodeId);
-      }
-
+      let nodeId = findFreeNodeTreeID('move', 0, this.get('jstreeObjectRight'));
       let leftSelectedNodes = jstreeSelectedNodesLeft[0].original;
       let rightSelectedNodes = jstreeSelectedNodesRight[0].original.get('copyChildren');
       let newNode = FdAppStructTree.create({
@@ -347,15 +341,24 @@ export default EditFormController.extend(FdWorkPanelToggler, {
 
       @method actions.removeLeftNode
     */
-    removeLeftNode() {
-      let jstreeSelectedNodesLeft = this.get('jstreeSelectedNodesLeft');
-      if (jstreeSelectedNodesLeft.length === 0) {
-        return;
+    removeLeftNode(approve) {
+      if (approve) {
+        let jstreeSelectedNodesLeft = this.get('jstreeSelectedNodesLeft');
+        let classId = jstreeSelectedNodesLeft[0].original.idNode;
+        let store = this.get('store');
+        let allClasses = store.peekAll('fd-dev-class');
+        let forms = allClasses.filterBy('formViews.firstObject.view.class.id', classId);
+        if (forms.length === 0) {
+          this.get('jstreeActionReceiverLeft').send('deleteNode', jstreeSelectedNodesLeft[0]);
+          this.set('jstreeSelectedNodesLeft', Ember.A());
+          let deletedClass = allClasses.findBy('id', classId);
+          deletedClass.destroyRecord();
+        } else {
+          this.set('error', new Error(this.get('i18n').t('forms.fd-appstruct-form.delete-error')));
+        }
+      } else {
+        this.set('_showModalDialog', true);
       }
-
-      // TODO remove from BD.
-      this.get('jstreeActionReceiverLeft').send('deleteNode', jstreeSelectedNodesLeft[0]);
-      this.set('jstreeSelectedNodesLeft', Ember.A());
     },
 
     /**
@@ -373,19 +376,58 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       @method actions.addLeftListForm
     */
     addLeftEditForm() {
+      this.set('state', 'loading');
+
       let jstreeSelectedNodesLeft = this.get('jstreeSelectedNodesLeft');
       if (jstreeSelectedNodesLeft.length === 0) {
         return;
       }
 
-      let selectedNode = jstreeSelectedNodesLeft[0];
-      let classId = selectedNode.original.get('idNode');
+      let _this = this;
+      Ember.run.next(_this, () => {
+        let selectedNode = jstreeSelectedNodesLeft[0];
+        let classId = selectedNode.original.get('idNode');
 
-      // TODO fd-editform-constructor don't work. Need update queryParams.
-      this.transitionToRoute('fd-editform-constructor', {
-        queryParams: {
-          classId: classId,
-        }
+        let store = this.get('store');
+        let currentStage = this.get('currentProjectContext').getCurrentStageModel();
+
+        let devClass = store.peekRecord('fd-dev-class', classId);
+        let baseCaption = devClass.get('name') || devClass.get('nameStr');
+        let newCaption = this._getNewEditFormCaption(baseCaption);
+        let newDescription = this._getNewEditFormDescription(newCaption);
+
+        store.createRecord('fd-dev-class', {
+          stage: currentStage,
+          caption: newCaption,
+          description: newDescription,
+          name: newCaption,
+          nameStr: newCaption,
+          stereotype: '«editform»'
+        }).save().then(savedDevClass => {
+          store.createRecord('fd-dev-view', {
+            class: devClass,
+            name: newCaption,
+            definition: '<View><ViewPropertiesList /><ViewDetailsList /></View>'
+          }).save().then(savedDevView => {
+            store.createRecord('fd-dev-form-view', {
+              class: savedDevClass,
+              view: savedDevView,
+              orderNum: 1
+            }).save().then(() => {
+              this.set('state', '');
+              this.transitionToRoute('fd-editform-constructor', savedDevClass.get('id'));
+            }, (error) => {
+              this.set('state', '');
+              this.set('error', error);
+            });
+          }, (error) => {
+            this.set('state', '');
+            this.set('error', error);
+          });
+        }, (error) => {
+          this.set('state', '');
+          this.set('error', error);
+        });
       });
     },
 
@@ -403,7 +445,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       let selectedNode = jstreeSelectedNodesLeft[0];
       let classId = selectedNode.original.get('idNode');
 
-      this.transitionToRoute('fd-visual-listform', {
+      this.transitionToRoute('fd-listform-constructor', {
         queryParams: {
           form: undefined,
           class: classId,
@@ -427,7 +469,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
 
       switch (selectedNode.original.get('type')) {
         case '«listform»':
-          this.transitionToRoute('fd-visual-listform', {
+          this.transitionToRoute('fd-listform-constructor', {
             queryParams: {
               form: nodeId,
               class: undefined,
@@ -464,35 +506,21 @@ export default EditFormController.extend(FdWorkPanelToggler, {
         return;
       }
 
-      // Find free name.
-      let urlName = 'NewUrl';
       let selectedNodes = jstreeSelectedNodesRight[0].original.get('copyChildren');
-      let foundName = selectedNodes.findBy('text', urlName);
-      let urlIndex = '';
-      while (!Ember.isNone(foundName)) {
-        urlIndex++;
-        foundName = selectedNodes.findBy('text', urlName + urlIndex);
-      }
+      let urlIndex = findFreeNodeTreeNameIndex('NewUrl', '', selectedNodes, 'text');
+      let urlId = findFreeNodeTreeID('NU', 0, this.get('jstreeObjectRight'));
 
-      // Find free id.
-      let urlId = 0;
-      let foundId = this.get('jstreeObjectRight').jstree(true).get_node('NU' + urlId);
-      while (foundId) {
-        urlId++;
-        foundId = this.get('jstreeObjectRight').jstree(true).get_node('NU' + urlId);
-      }
-
-      let folder = FdAppStructTree.create({
-        text: urlName + urlIndex,
+      let urlValue = FdAppStructTree.create({
+        text: 'NewUrl' + urlIndex,
         type: 'url',
         id: 'NU' + urlId,
-        caption: urlName + urlIndex,
+        caption: 'NewUrl' + urlIndex,
         description: '',
         url: '',
         a_attr: { title: 'url' }
       });
 
-      selectedNodes.pushObject(folder);
+      selectedNodes.pushObject(urlValue);
 
       // Restoration tree.
       this._updateTreeData();
@@ -540,26 +568,12 @@ export default EditFormController.extend(FdWorkPanelToggler, {
         return;
       }
 
-      // Find free name.
-      let folderName = 'NewFolder';
       let selectedNodes = jstreeSelectedNodesRight[0].original.get('copyChildren');
-      let foundName = selectedNodes.findBy('text', folderName);
-      let folderIndex = '';
-      while (!Ember.isNone(foundName)) {
-        folderIndex++;
-        foundName = selectedNodes.findBy('text', folderName + folderIndex);
-      }
-
-      // Find free id.
-      let folderId = 0;
-      let foundId = this.get('jstreeObjectRight').jstree(true).get_node('NF' + folderId);
-      while (foundId) {
-        folderId++;
-        foundId = this.get('jstreeObjectRight').jstree(true).get_node('NF' + folderId);
-      }
+      let folderIndex = findFreeNodeTreeNameIndex('NewFolder', '', selectedNodes, 'text');
+      let folderId = findFreeNodeTreeID('NF', 0, this.get('jstreeObjectRight'));
 
       let folder = FdAppStructTree.create({
-        text: folderName + folderIndex,
+        text: 'NewFolder' + folderIndex,
         type: 'folder',
         children: Ember.A(),
         copyChildren: Ember.A(),
@@ -677,5 +691,94 @@ export default EditFormController.extend(FdWorkPanelToggler, {
 
       this.toggleProperty('allAttrsHidedn');
     }
-  }
+  },
+
+  /**
+    Method for restoring tree nodes.
+    @method _restorationNodeTree
+    @private
+  */
+  _restorationNodeTree(nodeArray) {
+    let _this = this;
+    nodeArray.forEach(function(node) {
+      if (node.type === 'folder' || node.type === 'desk') {
+        node.set('children', node.get('copyChildren'));
+        _this._restorationNodeTree(node.get('children'));
+      }
+    });
+  },
+
+  /**
+    Method for update data in tree.
+    @method _updateTreeData
+    @private
+  */
+  _updateTreeData() {
+    let dataTree = this.get('model.rightTreeNodes');
+    restorationNodeTree(dataTree, {}, Ember.A(['folder', 'desk']), true);
+
+    this.get('jstreeActionReceiverRight').send('redraw');
+  },
+
+  /**
+    Get unique caption for new edit form.
+    @method _getNewEditFormCaption
+    @private
+  */
+  _getNewEditFormCaption(baseCaption) {
+    let found = true;
+    let allClasses = this.get('store').peekAll('fd-dev-class');
+    let allViews = this.get('store').peekAll('fd-dev-view');
+    let captionToReturn = '';
+    let captionToFound = '';
+    let i = 0;
+    let iterateClasses = item => item.get('caption') === captionToFound || item.get('name') === captionToFound || item.get('nameStr') === captionToFound;
+    let iterateViews = item => item.get('name') === captionToFound;
+    while (found) {
+      captionToFound = i === 0 ? `${baseCaption}E` : `${baseCaption}${i}E`;
+      let foundClass = allClasses.find(iterateClasses);
+      let foundView = allViews.find(iterateViews);
+
+      // If class or view with specified name was found then we should try to generate another name (new edit form and new view should have same name).
+      found = foundClass !== undefined || foundView !== undefined;
+      if (!found) {
+        captionToReturn = captionToFound;
+      }
+
+      i++;
+    }
+
+    return captionToReturn;
+  },
+
+  /**
+    Get description for new edit form.
+    @method _getNewEditFormDescription
+    @private
+  */
+  _getNewEditFormDescription(caption) {
+    var temp = '';
+    var tempArray = [];
+
+    for (let i = 0; i < caption.length; i++)
+    {
+      //If found capital letter...
+      if (((caption.charCodeAt(i) >= 65 && caption.charCodeAt(i) <= 90) || (caption.charCodeAt(i) >= 1040 && caption.charCodeAt(i) <= 1071)) && temp !== '')
+      {
+        tempArray.push(temp);
+        temp = caption.charAt(i);
+      } else {
+        temp += caption.charAt(i);
+      }
+    }
+
+    tempArray.push(temp);
+    for (let i = 0; i < tempArray.length; i++) {
+      if (i > 0 && i < tempArray.length - 1) {
+        tempArray[i] = tempArray[i].toLowerCase();
+      }
+    }
+
+    return tempArray.join(' ');
+  },
 });
