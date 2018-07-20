@@ -39172,6 +39172,7 @@ img.item-minus {
 .ui.right.sidebar.config-panel .panel-wrapper {
   height: auto;
   max-height: calc(100vh - 600px);
+  min-height: 200px;
   margin: 1rem 0em;
   transform: translate3d(0, 0, 0);
 }
