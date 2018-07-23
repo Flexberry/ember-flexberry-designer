@@ -18,7 +18,7 @@ export default {
     'tab-caption': 'Tab caption',
     'control-not-selected': 'Control not selected',
     'add-controls-header': 'Add controls',
-    'add-control': 'Add new field',
+    'add-control': 'New property',
     'empty-control': 'Select from existing properties',
     'attributes-control': 'Set attribute for the control',
     'add-group': 'Group',

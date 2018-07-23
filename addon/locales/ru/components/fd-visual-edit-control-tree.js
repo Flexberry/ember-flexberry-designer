@@ -1,6 +1,7 @@
 export default {
   'selected-element-null': 'Элемент не выбран',
-  'selected-element-change': 'Нажмите на контролы чтобы выбрать элемент',
+  'selected-element-change-edit': 'Нажмите на контролы чтобы выбрать элемент',
+  'selected-element-change-list': 'Нажмите на столбец чтобы выбрать элемент',
   header: 'Заголовок',
   'property-name': 'Название свойства',
   'edit-property': 'Редактировать свойство',
@@ -13,5 +14,6 @@ export default {
   'detail-view': 'Представление детейла',
   'master-list-form': 'Списковая форма для лукапа',
   'master-property': 'Свойство в мастере',
+  'sample-setting': 'Настройка выборки',
   visibility: 'Видимость',
 };
