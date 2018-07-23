@@ -221,7 +221,7 @@
               label=(t 'forms.fd-stage-edit-form.bpm.process-methodology')
             }}
           </div>
-          <div class="field">
+          <div class="field {{if (not moduleSetting.ProcessMethodology) " disabled"}}">
             {{flexberry-field
               value=moduleSetting.ProcessConsoleAddress
               readonly=readonly
