@@ -15,6 +15,18 @@ joint.shapes.flexberryUml.BaseClass.define('flexberryUml.Class', {
   }
 });
 
+joint.shapes.flexberryUml.Class.define('flexberryUml.ClassCollapsed', {
+}, {
+  markup: [
+    '<g class="rotatable">',
+    '<g class="scalable">',
+    '<rect class="flexberry-uml-header-rect"/>',
+    '</g>',
+    '<text class="flexberry-uml-header-text"/>',
+    '</g>'
+  ].join('')
+});
+
 joint.shapes.flexberryUml.BaseClass.define('flexberryUml.Object', {
   attrs: {
     '.flexberry-uml-header-text': {
@@ -171,25 +183,34 @@ joint.shapes.flexberryUml.BaseObject.define('flexberryUml.MultiObject', {
 
 });
 
-joint.dia.Link.define('flexberryUml.Aggregation', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' } },
+joint.dia.Link.define('flexberryUml.BaseLink', {
   labels: [{
     position: { distance: 10, offset: -15 }, attrs: { text: { text:  '*' } } }, {
+    position: { distance: 10, offset: 15 }, attrs: { text: { text:  '', 'text-anchor':'start' } } }, {
+    position: { distance: -40, offset: 15 }, attrs: { text: { text:  '', 'text-anchor':'end' } } }, {
     position: { distance: -40, offset: -15 }, attrs: { text: { text:  '1' } }
   }]
 });
 
-joint.dia.Link.define('flexberryUml.Qualified', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 z', fill: 'white' } },
+joint.shapes.flexberryUml.BaseLink.define('flexberryUml.Aggregation', {
+  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' } },
 });
 
-joint.dia.Link.define('flexberryUml.QualifiedAggregation', {
+joint.dia.Link.define('flexberryUml.Qualified', {
+  attrs: { '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 z', fill: 'white' } },
+  labels: [{
+    position: { distance: 10, offset: 15 }, attrs: { text: { text:  '', 'text-anchor':'start' } } }, {
+    position: { distance: -40, offset: 15 }, attrs: { text: { text:  '', 'text-anchor':'end' } } }, {
+  }]
+});
+
+joint.shapes.flexberryUml.Qualified.define('flexberryUml.QualifiedAggregation', {
   attrs: {
     '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 L 26 10 M 52 10 L 39 17 L 26 10 L 39 3 z', fill: 'white' }
   },
 });
 
-joint.dia.Link.define('flexberryUml.QualifiedComposition', {
+joint.shapes.flexberryUml.Qualified.define('flexberryUml.QualifiedComposition', {
   attrs: {
     '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 L 26 10 M 52 10 L 39 17 L 26 10 L 39 3 z', fill: 'url(#solids)' }
   },
@@ -214,12 +235,8 @@ joint.dia.Link.define('flexberryUml.QualifiedComposition', {
   }
 });
 
-joint.dia.Link.define('flexberryUml.Composition', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' } },
-  labels: [{
-    position: { distance: 10, offset: -15 }, attrs: { text: { text:  '*' } } }, {
-    position: { distance: -40, offset: -15 }, attrs: { text: { text:  '1' } }
-  }]
+joint.shapes.flexberryUml.BaseLink.define('flexberryUml.Composition', {
+  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' } }
 });
 
 joint.dia.Link.define('flexberryUml.Realization', {
@@ -229,11 +246,7 @@ joint.dia.Link.define('flexberryUml.Realization', {
   },
 });
 
-joint.dia.Link.define('flexberryUml.Association', {
-  labels: [{
-    position: { distance: 10, offset: -15 }, attrs: { text: { text:  '*' } } }, {
-    position: { distance: -10, offset: -15 }, attrs: { text: { text:  '1' } }
-  }]
+joint.shapes.flexberryUml.BaseLink.define('flexberryUml.Association', {
 });
 
 joint.dia.Link.define('flexberryUml.Generalization', {

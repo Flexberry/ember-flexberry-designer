@@ -1,7 +1,8 @@
 import Ember from 'ember';
-import { Query } from 'ember-flexberry-data';
-
-const { Builder, SimplePredicate } = Query;
+import FdAttributesTree from '../objects/fd-attributes-tree';
+import FdDataTypes from '../utils/fd-datatypes';
+import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode } from '../utils/fd-attributes-for-tree';
+import { copyViewDefinition } from '../utils/fd-copy-view-definition';
 
 export default Ember.Route.extend({
   currentContext: Ember.inject.service('fd-current-project-context'),
@@ -11,113 +12,169 @@ export default Ember.Route.extend({
     class: { refreshModel: true },
   },
 
-  beforeModel() {
-    let currentContext = this.get('currentContext');
-    if (currentContext.get('context.stage')) {
-      return Ember.RSVP.resolve();
-    }
-
-    let configurationQuery = new Builder(this.store, 'fd-configuration')
-      .selectByProjection('ListFormView')
-      .byId('694DCACB-4DD7-4F57-9DE8-1EC0E743E3F6')
-      .build();
-    let stageQuery = new Builder(this.store, 'fd-dev-stage')
-      .selectByProjection('ListFormView')
-      .byId('EEC8EDF4-04E6-4BF8-BB83-0372B7A9418E')
-      .build();
-
-    return this.store.queryRecord('fd-configuration', configurationQuery).then((configuration) => {
-      currentContext.setCurrentConfiguration(configuration);
-      return this.store.queryRecord('fd-dev-stage', stageQuery).then(stage => currentContext.setCurrentStage(stage));
-    });
-  },
-
   model(params) {
-    let formPromise;
+    let modelHash = {
+      listform: undefined,
+      originalDefinition: undefined,
+      view: undefined,
+      dataobject: undefined,
+      attributes: undefined,
+      typemap: undefined,
+      enums: undefined,
+      simpleTypes: undefined,
+      types: undefined,
+      masters: undefined,
+      mastersType: undefined,
+      details: undefined,
+      detailsType: undefined,
+    };
+
     let stage = this.get('currentContext').getCurrentStageModel();
+    let store = this.get('store');
+    let allClasses = store.peekAll('fd-dev-class');
 
     if (params.form) {
-      let formQuery = new Builder(this.store, 'fd-dev-class')
-        .selectByProjection('FormConstructor')
-        .byId(params.form).build();
-
-      formPromise =  this.store.queryRecord('fd-dev-class', formQuery);
+      modelHash.listform = allClasses.findBy('id', params.form);
+      modelHash.view = modelHash.listform.get('formViews.firstObject.view');
+      modelHash.dataobject = allClasses.findBy('id', modelHash.view.get('class.id'));
     } else {
-      let dataObjectPromise;
       if (params.class) {
-        let dataObjectQuery = new Builder(this.store, 'fd-dev-class')
-          .selectByProjection('DataObjects')
-          .byId(params.class).build();
-
-        dataObjectPromise = this.store.queryRecord('fd-dev-class', dataObjectQuery);
+        modelHash.dataobject = allClasses.findBy('id', params.class);
       } else {
-        dataObjectPromise = Ember.RSVP.resolve(this.store.createRecord('fd-dev-class', { stage }));
+        modelHash.dataobject = store.createRecord('fd-dev-class', { stage });
       }
 
-      formPromise = dataObjectPromise.then((dataObject) => {
-        let view = this.store.createRecord('fd-dev-view', {
-          class: dataObject,
-          definition: Ember.A(),
-        });
-        let formView = this.store.createRecord('fd-dev-form-view', { view });
-        return Ember.RSVP.resolve(this.store.createRecord('fd-dev-class', {
-          stage: stage,
-          formViews: [formView],
-        }));
+      modelHash.view = store.createRecord('fd-dev-view', {
+        class: modelHash.dataobject,
+        definition: Ember.A(),
+      });
+
+      let formView = store.createRecord('fd-dev-form-view', { view: modelHash.view });
+      modelHash.listform = store.createRecord('fd-dev-class', {
+        stage: stage,
+        formViews: [formView],
       });
     }
 
-    let builder = new Builder(this.store);
-    let associationsQuery = builder.from('fd-dev-association')
-      .selectByProjection('FormConstructor')
-      .where('stage', 'eq', stage.get('id'))
-      .build();
+    modelHash.originalDefinition = copyViewDefinition(modelHash.view.get('definition'));
 
-    let aggregationsQuery = builder.from('fd-dev-aggregation')
-      .selectByProjection('FormConstructor')
-      .where('stage', 'eq', stage.get('id'))
-      .build();
+    let allStages = store.peekAll('fd-dev-stage');
+    let dataobjectId = modelHash.dataobject.get('id');
 
-    let inheritancesQuery = builder.from('fd-dev-inheritance')
-      .selectByProjection('InhList')
-      .where('stage', 'eq', stage.get('id'))
-      .build();
+    // Attributes.
+    let dataForBuildTree = getDataForBuildTree(store, dataobjectId);
+    modelHash.attributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes, dataobjectId, 'type');
+    modelHash.masters = getAssociationTreeNode(Ember.A(), dataForBuildTree.associations, 'node_', dataobjectId, 'name');
+    modelHash.details = getAggregationTreeNode(Ember.A(), dataForBuildTree.aggregations, dataobjectId, 'name');
 
-    let dataObjectsPredicate = new SimplePredicate('stereotype', 'eq', '«implementation»')
-      .or(new SimplePredicate('stereotype', 'eq', null))
-      .or(new SimplePredicate('stereotype', 'eq', ''))
-      .and(new SimplePredicate('stage.id', 'eq', stage.get('id')));
-    let dataObjectsQuery = builder.from('fd-dev-class')
-      .selectByProjection('DataObjects')
-      .where(dataObjectsPredicate)
-      .build();
+    // simpleTypes.
+    let fdDataTypes = FdDataTypes.create();
+    modelHash.simpleTypes = this._buildTree(fdDataTypes.flexberryTypes(), 'property');
 
-    let stagePredicate = new SimplePredicate('stage.id', 'eq', stage.get('id'));
-
-    let typeQuery = new Builder(this.store, 'fd-dev-class')
-      .select('id,name,caption,description,stereotype,stage.id')
-      .where(new SimplePredicate('stereotype', 'eq', '«type»').and(stagePredicate))
-      .build();
-
-    let enumerationQuery = new Builder(this.store, 'fd-dev-class')
-      .select('id,name,caption,description,stereotype,stage.id')
-      .where(new SimplePredicate('stereotype', 'eq', '«enumeration»').and(stagePredicate))
-      .build();
-
-    let typemapQuery = new Builder(this.store, 'fd-dev-stage')
-      .select('id,typeMapCSStr')
-      .where('id', 'eq', stage.get('id'))
-      .build();
-
-    return Ember.RSVP.hash({
-      form: formPromise,
-      dataObjects: this.store.query('fd-dev-class', dataObjectsQuery),
-      associations: this.store.query('fd-dev-association', associationsQuery),
-      aggregations: this.store.query('fd-dev-aggregation', aggregationsQuery),
-      inheritances: this.store.query('fd-dev-inheritance', inheritancesQuery),
-      enums: this.store.query('fd-dev-class', enumerationQuery),
-      types: this.store.query('fd-dev-class', typeQuery),
-      typemap: this.store.queryRecord('fd-dev-stage', typemapQuery).then(typemap => typemap.get('typeMapCSStr')),
+    // Implementation.
+    let implementation = allClasses.filter(function(item) {
+      return (item.get('stereotype') === '«implementation»' || item.get('stereotype') === null) && item.get('stage.id') === stage.get('id');
     });
+    modelHash.mastersType = this._buildTree(implementation, 'master', true);
+
+    // Implementation not details.
+    let recordsAggregation = store.peekAll('fd-dev-aggregation');
+    let details = implementation.filter(function(item) {
+      return recordsAggregation.findBy('endClass.id', item.id) === undefined && item.id !== dataobjectId;
+    });
+    modelHash.detailsType = this._buildTree(details, 'detail', true);
+
+    // Typemap.
+    let currentStage = allStages.findBy('id', stage.get('id'));
+    let typeMapCSStr = currentStage.get('typeMapCSStr');
+    let typemap = typeMapCSStr.filter(function(item) {
+      return fdDataTypes.fDTypeToFlexberry(item.name) === null;
+    });
+    modelHash.typemap = this._buildTree(typemap, '«typemap»');
+
+    // Enums.
+    let enums = allClasses.filter(function(item) {
+      return item.get('stereotype') === '«enumeration»' && item.get('stage.id') === stage.get('id');
+    });
+    modelHash.enums = this._buildTree(enums, '«enumeration»');
+
+    // Types.
+    let types = allClasses.filter(function(item) {
+      return item.get('stereotype') === '«type»' && item.get('stage.id') === stage.get('id');
+    });
+    modelHash.types = this._buildTree(types, '«type»');
+
+    return modelHash;
+  },
+
+  /**
+    A hook you can use to reset controller values either when the model changes or the route is exiting.
+    [More info](http://emberjs.com/api/classes/Ember.Route.html#method_resetController).
+
+    @method resetController
+    @param {Ember.Controller} controller
+    @param {Boolean} isExisting
+    @param {Object} transition
+   */
+  resetController(controller) {
+    this._super(...arguments);
+
+    let store = this.get('store');
+    store.peekAll('fd-dev-class').forEach((item) => item.rollbackAll());
+    store.peekAll('fd-dev-stage').forEach((item) => item.rollbackAll());
+    store.peekAll('fd-dev-association').forEach((item) => item.rollbackAll());
+    store.peekAll('fd-dev-aggregation').forEach((item) => item.rollbackAll());
+    controller.set('model.view.definition', Ember.A(controller.get('model.originalDefinition')));
+  },
+
+  /**
+    A hook you can use to setup the controller for the current route.
+    [More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).
+
+    @method setupController
+    @param {Ember.Controller} controller
+    @param {Object} model
+   */
+  setupController(controller) {
+    this._super(...arguments);
+    controller.set('_showNotUsedAttributesTree', false);
+    controller.set('state', '');
+  },
+
+  /**
+      Create tree.
+
+      @method _buildTree
+      @param {Array} data Data for tree.
+      @param {String} type Type for tree.
+      @param {Boolean} nodeId Flag need add in object node id.
+      @return {Object} Object data for tree.
+  */
+  _buildTree: function(data, type, nodeId) {
+    let treeData = Ember.A();
+    data.forEach((item, index)=> {
+      let text;
+      if (type === '«typemap»') {
+        text = item.name;
+      } else if (type === 'property') {
+        text = item;
+      } else {
+        text = item.get('name');
+      }
+
+      let newNode = FdAttributesTree.create({
+        text: text,
+        type: type,
+        id: type + index
+      });
+
+      if (!Ember.isNone(nodeId)) {
+        newNode.set('idNode', item.get('id'));
+      }
+
+      treeData.pushObject(newNode);
+    });
+
+    return treeData;
   },
 });

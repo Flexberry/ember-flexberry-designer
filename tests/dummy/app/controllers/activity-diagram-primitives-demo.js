@@ -12,12 +12,15 @@ export default Ember.Controller.extend({
       let minY = 16384;
       let maxX = 0;
       let maxY = 0;
+      let sidebar = Ember.$('.ui.sidebar.main.menu');
+      let sidebarWidth = sidebar.hasClass('visible') ? sidebar.width() : 0;
 
       if (minX > maxX) {
         maxX = paper && ('offsetWidth' in paper) ? paper.offsetWidth : 1024;
+        maxX += sidebarWidth;
         maxY = 840;
       } else {
-        maxX = minX + maxX;
+        maxX = minX + maxX + sidebarWidth;
         maxY = minY + maxY;
       }
 
@@ -148,8 +151,13 @@ export default Ember.Controller.extend({
         state: 'state'
       });
 
+      let partition = new joint.shapes.flexberryUml.Partition({
+        position: { x: 600, y: 350 },
+        name: 'partition'
+      });
+
       _this.graph.addCell([note, SignalReceiptRight, SignalReceiptLeft, SignalSendingRight,
-        SignalSendingLeft, startState, endState, decision, objectInState, activeState]);
+        SignalSendingLeft, startState, endState, decision, objectInState, activeState, partition]);
     }
   }
 });

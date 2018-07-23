@@ -213,6 +213,7 @@ joint.shapes.basic.Generic.define('flexberryUml.BaseClass', {
       }
     });
 
+    newWidth = this.attributes.size.width > 1 ? this.attributes.size.width : newWidth;
     this.resize(newWidth, newHeight);
   }
 });

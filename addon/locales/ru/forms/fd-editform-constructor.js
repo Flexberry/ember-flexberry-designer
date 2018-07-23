@@ -18,7 +18,7 @@ export default {
     'tab-caption': 'Заголовок вкладки',
     'control-not-selected': 'Элемент управления не выбран',
     'add-controls-header': 'Добавить элементы управления',
-    'add-control': 'Добавить новое поле',
+    'add-control': 'Новое свойство',
     'empty-control': 'Выбрать из существующих свойств',
     'attributes-control': 'Установите атрибут для контрола',
     'add-group': 'Группа',

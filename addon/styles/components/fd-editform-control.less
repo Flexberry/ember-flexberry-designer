@@ -23,12 +23,16 @@
     border-width: .15em .15em .15em 0;
     border-top-right-radius: .5em;
     border-bottom-right-radius: .5em;
-    background: linear-gradient(90deg, #4F73B0 .5em, transparent 1%) center, linear-gradient(#4F73B0 .5em, transparent 1%) center, white;
+    background: linear-gradient(90deg, #b1cae8 .5em, transparent 1%) center, linear-gradient(#b1cae8 .5em, transparent 1%) center, white;
     background-size: .75em .75em;
     cursor: move;
   }
 
-  &:hover > .drag-anchor {
-    display: block;
+  &:hover {
+    background: rgba(177, 202, 232, 0.3);
+
+    & > .drag-anchor {
+      display: block;
+    }
   }
 }
