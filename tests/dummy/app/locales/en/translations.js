@@ -6,7 +6,7 @@ Ember.$.extend(true, translations, EmberFlexberryDesignerTranslations);
 
 Ember.$.extend(true, translations, {
 
-  'application-name': 'Application caption',
+  'application-name': '',
 
   forms: {
     loading: {
@@ -42,6 +42,10 @@ Ember.$.extend(true, translations, {
         },
         logout: {
           caption: 'Logout'
+        },
+        'demo-message': {
+          title: 'Demo-version FlexberryDesigner.',
+          caption: 'Regeneration is available for the following forms:',
         }
       },
 
