@@ -44,8 +44,8 @@ Ember.$.extend(true, translations, {
           caption: 'Logout'
         },
         'demo-message': {
-          title: 'Demo-version FlexberryDesigner.',
-          caption: 'Regeneration is available for the following forms:',
+          title: 'Flexberry Designer Demo-version.',
+          caption: 'Making changes is available for following object types:',
         }
       },
 

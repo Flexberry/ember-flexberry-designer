@@ -44,8 +44,8 @@ Ember.$.extend(true, translations, {
           caption: 'Выход'
         },
         'demo-message': {
-          title: 'Demo-версия FlexberryDesigner.',
-          caption: 'Перегенерация доступна для следующих форм:',
+          title: 'Demo-версия Flexberry Designer.',
+          caption: 'Внесение изменений доступно для следующих типов объектов:',
         },
       },
 
