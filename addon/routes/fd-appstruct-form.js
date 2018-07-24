@@ -34,6 +34,15 @@ export default Ember.Route.extend({
       return item.get('stereotype') === '«application»';
     });
 
+    // Demo data
+    let demoStage = 'FB6972D1-F04A-4617-B454-D2D0DB4CEC05';
+    if (stagePk.toLocaleLowerCase()  === demoStage.toLocaleLowerCase()) {
+      implementations = Ember.A(implementations).filter(function(item) {
+        let name = item.get('name');
+        return name === 'Организация' || name === 'Адрес' || name === 'Улица' || name === 'ВидТерриториальнойЗоны' || name === 'ФормированиеЗУ';
+      });
+    }
+
     /*
       Build tree.
     */
