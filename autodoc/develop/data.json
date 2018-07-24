@@ -3978,6 +3978,11 @@
                     "name": "viewDefinition",
                     "description": "View definition with result paths for controls.",
                     "type": "Ember.Array"
+                },
+                {
+                    "name": "column",
+                    "description": "Column path for current item.",
+                    "type": "String"
                 }
             ],
             "class": "FdDraggableControlMixin",
@@ -3986,7 +3991,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 895,
+            "line": 897,
             "description": "Scrolls the form to the selected control with jQuery.",
             "access": "private",
             "tagname": "",
@@ -3998,7 +4003,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 908,
+            "line": 910,
             "description": "Destroys helper.",
             "class": "FdDraggableControlMixin",
             "module": "components",
@@ -9482,7 +9487,7 @@
         },
         {
             "message": "Missing item type\nDestroys helper.",
-            "line": " addon/controllers/fd-editform-constructor.js:908"
+            "line": " addon/controllers/fd-editform-constructor.js:910"
         },
         {
             "message": "Missing item type\nDestroys helper.",

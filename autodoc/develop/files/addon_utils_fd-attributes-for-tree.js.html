@@ -444,7 +444,7 @@ let parsingPropertyName = function (store, dataObject, propertyName) {
   let endRoleID = dataObject.get(&#x27;id&#x27;);
   let endRoleData = getDataForBuildTree(store, endRoleID);
   let associationSelectedClass = endRoleData.associations.filter(function(item) {
-    return item.get(&#x27;realStartRole&#x27;) === startRole || item.get(&#x27;startRole&#x27;) === startRole;
+    return item.get(&#x27;realStartRole&#x27;) === startRole || item.get(&#x27;startRole&#x27;) === startRole || item.get(&#x27;startClass.name&#x27;) === startRole;
   });
 
   for (let i = 1; i &lt; propertyName.length; i++) {

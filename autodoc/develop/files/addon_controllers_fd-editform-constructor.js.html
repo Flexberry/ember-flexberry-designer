@@ -487,7 +487,7 @@ export default Ember.Controller.extend({
         let controls = this.get(&#x27;model.controls&#x27;);
         let viewDefinition = Ember.A();
         for (let i = 0; i &lt; controls.length; i++) {
-          this._extractPathPart(controls.objectAt(i), &#x27;&#x27;, viewDefinition);
+          this._extractPathPart(controls.objectAt(i), &#x27;&#x27;, viewDefinition, &#x27;&#x27;);
         }
 
         view.set(&#x27;definition&#x27;, viewDefinition);
@@ -908,7 +908,7 @@ export default Ember.Controller.extend({
     let controls = model.controls;
     let length = controls.get(&#x27;length&#x27;);
     for (let i = 0; i &lt; length; i++) {
-      this._extractPathPart(controls.objectAt(i), &#x27;&#x27;, viewDefinition);
+      this._extractPathPart(controls.objectAt(i), &#x27;&#x27;, viewDefinition, &#x27;&#x27;);
     }
 
     // Check viewDefinition on errors.
@@ -971,22 +971,24 @@ export default Ember.Controller.extend({
     @param {FdEditformControl|FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab} control Some item in object model.
     @param {String} path Path for current item.
     @param {Ember.Array} viewDefinition View definition with result paths for controls.
+    @param {String} column Column path for current item.
   */
-  _extractPathPart: function(control, path, viewDefinition) {
+  _extractPathPart: function(control, path, viewDefinition, column) {
     if (control instanceof FdEditformControl) {
-      control.set(&#x27;propertyDefinition.path&#x27;, path);
+      let pathWithColumn = &#x60;${path ? path + &#x27;\\&#x27; : &#x27;&#x27;}${column}&#x60;;
+      control.set(&#x27;propertyDefinition.path&#x27;, pathWithColumn);
       control.set(&#x27;propertyDefinition.caption&#x27;, control.get(&#x27;caption&#x27;));
       viewDefinition.pushObject(control.get(&#x27;propertyDefinition&#x27;));
       return path;
     } else if (control instanceof FdEditformRow) {
       for (let i = 0; i &lt; control.get(&#x27;controls.length&#x27;); i++) {
         let controlInRow = control.get(&#x27;controls&#x27;).objectAt(i);
-        let pathWithColumn = path;
+        let pathWithColumn = column;
         if (control.get(&#x27;controls.length&#x27;) &gt; 1) {
-          pathWithColumn = &#x60;${path ? path + &#x27;\\&#x27; : &#x27;&#x27;}#${i + 1}&#x60;;
+          pathWithColumn = &#x60;#${i + 1}&#x60;;
         }
 
-        this._extractPathPart(controlInRow, pathWithColumn, viewDefinition);
+        this._extractPathPart(controlInRow, path, viewDefinition, pathWithColumn);
       }
     } else if (control instanceof FdEditformGroup) {
       let pathWithGroup = &#x27;-&#x27; + control.caption;
@@ -996,12 +998,12 @@ export default Ember.Controller.extend({
 
       for (let i = 0; i &lt; control.get(&#x27;rows.length&#x27;); i++) {
         let rowInGroup = control.get(&#x27;rows&#x27;).objectAt(i);
-        this._extractPathPart(rowInGroup, pathWithGroup, viewDefinition);
+        this._extractPathPart(rowInGroup, pathWithGroup, viewDefinition, column);
       }
     } else if (control instanceof FdEditformTabgroup) {
       for (let i = 0; i &lt; control.get(&#x27;tabs.length&#x27;); i++) {
         let rowInGroup = control.get(&#x27;tabs&#x27;).objectAt(i);
-        this._extractPathPart(rowInGroup, path, viewDefinition);
+        this._extractPathPart(rowInGroup, path, viewDefinition, column);
       }
     } else if (control instanceof FdEditformTab) {
       let pathWithTab = &#x27;|&#x27; + control.caption;
@@ -1011,7 +1013,7 @@ export default Ember.Controller.extend({
 
       for (let i = 0; i &lt; control.get(&#x27;rows.length&#x27;); i++) {
         let rowInGroup = control.get(&#x27;rows&#x27;).objectAt(i);
-        this._extractPathPart(rowInGroup, pathWithTab, viewDefinition);
+        this._extractPathPart(rowInGroup, pathWithTab, viewDefinition, column);
       }
     }
   },
