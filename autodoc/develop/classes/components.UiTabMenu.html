@@ -26,7 +26,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdAppStructTree", "classes/FdAttributesTree", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdListformColumn", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdAppStructTree", "classes/FdAttributesTree", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdListformColumn", "classes/FdUmlAssociation", "classes/FdUmlClass", "classes/FdUmlComposition", "classes/FdUmlDiagramComponent", "classes/FdUmlElement", "classes/FdUmlGeneralization", "classes/FdUmlLink", "classes/FdUmlPrimitive", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
         </form>
     </div>
 </div>
@@ -63,6 +63,14 @@
 	                            <li><a href="../classes/FdEditformTabgroup.html">FdEditformTabgroup</a></li>
 	                            <li><a href="../classes/FdLimitByStageMixin.html">FdLimitByStageMixin</a></li>
 	                            <li><a href="../classes/FdListformColumn.html">FdListformColumn</a></li>
+	                            <li><a href="../classes/FdUmlAssociation.html">FdUmlAssociation</a></li>
+	                            <li><a href="../classes/FdUmlClass.html">FdUmlClass</a></li>
+	                            <li><a href="../classes/FdUmlComposition.html">FdUmlComposition</a></li>
+	                            <li><a href="../classes/FdUmlDiagramComponent.html">FdUmlDiagramComponent</a></li>
+	                            <li><a href="../classes/FdUmlElement.html">FdUmlElement</a></li>
+	                            <li><a href="../classes/FdUmlGeneralization.html">FdUmlGeneralization</a></li>
+	                            <li><a href="../classes/FdUmlLink.html">FdUmlLink</a></li>
+	                            <li><a href="../classes/FdUmlPrimitive.html">FdUmlPrimitive</a></li>
 	                            <li><a href="../classes/FdViewAttributesDetail.html">FdViewAttributesDetail</a></li>
 	                            <li><a href="../classes/FdViewAttributesMaster.html">FdViewAttributesMaster</a></li>
 	                            <li><a href="../classes/FdViewAttributesProperty.html">FdViewAttributesProperty</a></li>
@@ -254,10 +262,6 @@
                                 <a href="#" data-tabid="#methods" data-anchor="#method_init" data-tablink="init">init</a>
 
                             </li>
-                            <li class="index-item method public">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_registerChild" data-tablink="registerChild">registerChild</a>
-
-                            </li>
                             <li class="index-item method">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_selectedControlChanged" data-tablink="selectedControlChanged">selectedControlChanged</a>
 
@@ -283,14 +287,6 @@
                             </li>
                             <li class="index-item property">
                                 <a href="#" data-tabid="#properties" data-anchor="#property_active" data-tablink="active">active</a>
-
-                            </li>
-                            <li class="index-item property private">
-                                <a href="#" data-tabid="#properties" data-anchor="#property_childPanes" data-tablink="childPanes">childPanes</a>
-
-                            </li>
-                            <li class="index-item property protected">
-                                <a href="#" data-tabid="#properties" data-anchor="#property_children" data-tablink="children">children</a>
 
                             </li>
                             <li class="index-item property">
@@ -403,10 +399,6 @@
                             </li>
                             <li class="index-item property">
                                 <a href="#" data-tabid="#properties" data-anchor="#property_store" data-tablink="store">store</a>
-
-                            </li>
-                            <li class="index-item property private">
-                                <a href="#" data-tabid="#properties" data-anchor="#property_tabs" data-tablink="tabs">tabs</a>
 
                             </li>
                             <li class="index-item property">
@@ -1478,60 +1470,6 @@
                     
                     
                     </div>
-                    <div id="method_registerChild" class="method item public">
-                        <h3 class="name"><code>registerChild</code></h3>
-                    
-                            <div class="args">
-                                <span class="paren">(</span><ul class="args-list inline commas">
-                                    <li class="arg">
-                                            <code>child</code>
-                                    </li>
-                                </ul><span class="paren">)</span>
-                            </div>
-                    
-                    
-                    
-                            <span class="flag public">public</span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                        <p>Provided by the <a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a> module.</p>
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_components_fd-tabs.js.html#l24"><code>addon&#x2F;components&#x2F;fd-tabs.js:24</code></a>
-                            </p>
-                    
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Register a component as a child of this parent</p>
-                    
-                        </div>
-                    
-                            <div class="params">
-                                <h4>Parameters:</h4>
-                    
-                                <ul class="params-list">
-                                    <li class="param">
-                                            <code class="param-name">child</code>
-                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-                    
-                                        <div class="param-description">
-                                             
-                                        </div>
-                    
-                                    </li>
-                                </ul>
-                            </div>
-                    
-                    
-                    </div>
                     <div id="method_selectedControlChanged" class="method item">
                         <h3 class="name"><code>selectedControlChanged</code></h3>
                     
@@ -1665,60 +1603,6 @@
                     
                         <div class="description">
                             <p>the active tab name</p>
-                    
-                        </div>
-                    
-                    
-                    
-                    </div>
-                    <div id="property_childPanes" class="property item private">
-                        <h3 class="name"><code>childPanes</code></h3>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
-                    
-                    
-                            <span class="flag private">private</span>
-                    
-                    
-                    
-                        <div class="meta">
-                                        <p>Provided by the <a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a> module.</p>
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_components_fd-tabs.js.html#l37"><code>addon&#x2F;components&#x2F;fd-tabs.js:37</code></a>
-                            </p>
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>All child components</p>
-                    
-                        </div>
-                    
-                    
-                    
-                    </div>
-                    <div id="property_children" class="property item protected">
-                        <h3 class="name"><code>children</code></h3>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
-                    
-                    
-                            <span class="flag protected">protected</span>
-                    
-                    
-                    
-                        <div class="meta">
-                                        <p>Provided by the <a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a> module.</p>
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_components_fd-tabs.js.html#l10"><code>addon&#x2F;components&#x2F;fd-tabs.js:10</code></a>
-                            </p>
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Array of registered child components</p>
                     
                         </div>
                     
@@ -2033,7 +1917,7 @@
                                         <p>Provided by the <a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a> module.</p>
                                     <p>
                                     Defined in
-                            <a href="../files/addon_components_fd-visual-edit-control-tree.js.html#l22"><code>addon&#x2F;components&#x2F;fd-visual-edit-control-tree.js:22</code></a>
+                            <a href="../files/addon_components_fd-visual-edit-form.js.html#l20"><code>addon&#x2F;components&#x2F;fd-visual-edit-form.js:20</code></a>
                             </p>
                     
                     
@@ -2060,7 +1944,7 @@
                                         <p>Provided by the <a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a> module.</p>
                                     <p>
                                     Defined in
-                            <a href="../files/addon_components_fd-visual-edit-form.js.html#l20"><code>addon&#x2F;components&#x2F;fd-visual-edit-form.js:20</code></a>
+                            <a href="../files/addon_components_fd-visual-edit-control-tree.js.html#l22"><code>addon&#x2F;components&#x2F;fd-visual-edit-control-tree.js:22</code></a>
                             </p>
                     
                     
@@ -2236,32 +2120,6 @@
                     </div>
                     <div id="property_selectedControl" class="property item">
                         <h3 class="name"><code>selectedControl</code></h3>
-                        <span class="type"><a href="../classes/FdEditformControl.html" class="crosslink">FdEditformControl</a> | <a href="../classes/FdEditformGroup.html" class="crosslink">FdEditformGroup</a> | <a href="../classes/FdEditformTab.html" class="crosslink">FdEditformTab</a></span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                        <p>Provided by the <a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a> module.</p>
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_components_fd-visual-edit-control.js.html#l66"><code>addon&#x2F;components&#x2F;fd-visual-edit-control.js:66</code></a>
-                            </p>
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>The selected control.</p>
-                    
-                        </div>
-                    
-                    
-                    
-                    </div>
-                    <div id="property_selectedControl" class="property item">
-                        <h3 class="name"><code>selectedControl</code></h3>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
                     
@@ -2287,9 +2145,9 @@
                     
                     
                     </div>
-                    <div id="property_selectedItem" class="property item">
-                        <h3 class="name"><code>selectedItem</code></h3>
-                        <span class="type">Unknown</span>
+                    <div id="property_selectedControl" class="property item">
+                        <h3 class="name"><code>selectedControl</code></h3>
+                        <span class="type"><a href="../classes/FdEditformControl.html" class="crosslink">FdEditformControl</a> | <a href="../classes/FdEditformGroup.html" class="crosslink">FdEditformGroup</a> | <a href="../classes/FdEditformTab.html" class="crosslink">FdEditformTab</a></span>
                     
                     
                     
@@ -2299,14 +2157,14 @@
                                         <p>Provided by the <a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a> module.</p>
                                     <p>
                                     Defined in
-                            <a href="../files/addon_components_fd-visual-edit-control-tree.js.html#l38"><code>addon&#x2F;components&#x2F;fd-visual-edit-control-tree.js:38</code></a>
+                            <a href="../files/addon_components_fd-visual-edit-control.js.html#l66"><code>addon&#x2F;components&#x2F;fd-visual-edit-control.js:66</code></a>
                             </p>
                     
                     
                         </div>
                     
                         <div class="description">
-                            <p>Array item on the form.</p>
+                            <p>The selected control.</p>
                     
                         </div>
                     
@@ -2333,6 +2191,32 @@
                     
                         <div class="description">
                             <p>Selected item for change.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <div id="property_selectedItem" class="property item">
+                        <h3 class="name"><code>selectedItem</code></h3>
+                        <span class="type">Unknown</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                        <p>Provided by the <a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a> module.</p>
+                                    <p>
+                                    Defined in
+                            <a href="../files/addon_components_fd-visual-edit-control-tree.js.html#l38"><code>addon&#x2F;components&#x2F;fd-visual-edit-control-tree.js:38</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Array item on the form.</p>
                     
                         </div>
                     
@@ -2464,33 +2348,6 @@
                     
                         <div class="description">
                             
-                        </div>
-                    
-                    
-                    
-                    </div>
-                    <div id="property_tabs" class="property item private">
-                        <h3 class="name"><code>tabs</code></h3>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
-                    
-                    
-                            <span class="flag private">private</span>
-                    
-                    
-                    
-                        <div class="meta">
-                                        <p>Provided by the <a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a> module.</p>
-                                    <p>
-                                    Defined in
-                            <a href="../files/addon_components_fd-tabs.js.html#l49"><code>addon&#x2F;components&#x2F;fd-tabs.js:49</code></a>
-                            </p>
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Array of objects that define the tab structure</p>
-                    
                         </div>
                     
                     

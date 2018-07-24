@@ -658,9 +658,9 @@ define('dummy/tests/integration/components/fd-editform-row-test.jshint', ['expor
     assert.ok(true, 'integration/components/fd-editform-row-test.js should pass jshint.');
   });
 });
-define('dummy/tests/integration/components/fd-visual-diagram-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+define('dummy/tests/integration/components/fd-uml-diagram-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
-  (0, _emberQunit.moduleForComponent)('fd-visual-diagram', 'Integration | Component | fd visual diagram', {
+  (0, _emberQunit.moduleForComponent)('fd-uml-diagram', 'Integration | Component | fd-uml-diagram', {
     integration: true
   });
 
@@ -684,7 +684,7 @@ define('dummy/tests/integration/components/fd-visual-diagram-test', ['exports', 
             },
             'end': {
               'line': 1,
-              'column': 21
+              'column': 18
             }
           }
         },
@@ -705,114 +705,30 @@ define('dummy/tests/integration/components/fd-visual-diagram-test', ['exports', 
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [['content', 'fd-visual-diagram', ['loc', [null, [1, 0], [1, 21]]]]],
+        statements: [['content', 'fd-uml-diagram', ['loc', [null, [1, 0], [1, 18]]]]],
         locals: [],
         templates: []
       };
     })()));
 
     assert.equal(this.$().text().trim(), '');
-
-    // Template block usage:
-    this.render(Ember.HTMLBars.template((function () {
-      var child0 = (function () {
-        return {
-          meta: {
-            'fragmentReason': false,
-            'revision': 'Ember@2.4.6',
-            'loc': {
-              'source': null,
-              'start': {
-                'line': 2,
-                'column': 4
-              },
-              'end': {
-                'line': 4,
-                'column': 4
-              }
-            }
-          },
-          isEmpty: false,
-          arity: 0,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode('      template block text\n');
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes() {
-            return [];
-          },
-          statements: [],
-          locals: [],
-          templates: []
-        };
-      })();
-
-      return {
-        meta: {
-          'fragmentReason': {
-            'name': 'missing-wrapper',
-            'problems': ['wrong-type']
-          },
-          'revision': 'Ember@2.4.6',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 5,
-              'column': 2
-            }
-          }
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode('\n');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode('  ');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
-          return morphs;
-        },
-        statements: [['block', 'fd-visual-diagram', [], [], 0, null, ['loc', [null, [2, 4], [4, 26]]]]],
-        locals: [],
-        templates: [child0]
-      };
-    })()));
-
-    assert.equal(this.$().text().trim(), 'template block text');
   });
 });
-define('dummy/tests/integration/components/fd-visual-diagram-test.jscs-test', ['exports'], function (exports) {
+define('dummy/tests/integration/components/fd-uml-diagram-test.jscs-test', ['exports'], function (exports) {
   'use strict';
 
   module('JSCS - integration/components');
-  test('integration/components/fd-visual-diagram-test.js should pass jscs', function () {
-    ok(true, 'integration/components/fd-visual-diagram-test.js should pass jscs.');
+  test('integration/components/fd-uml-diagram-test.js should pass jscs', function () {
+    ok(true, 'integration/components/fd-uml-diagram-test.js should pass jscs.');
   });
 });
-define('dummy/tests/integration/components/fd-visual-diagram-test.jshint', ['exports'], function (exports) {
+define('dummy/tests/integration/components/fd-uml-diagram-test.jshint', ['exports'], function (exports) {
   'use strict';
 
-  QUnit.module('JSHint - integration/components/fd-visual-diagram-test.js');
+  QUnit.module('JSHint - integration/components/fd-uml-diagram-test.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'integration/components/fd-visual-diagram-test.js should pass jshint.');
+    assert.ok(true, 'integration/components/fd-uml-diagram-test.js should pass jshint.');
   });
 });
 define('dummy/tests/integration/components/fd-visual-listform-form', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
