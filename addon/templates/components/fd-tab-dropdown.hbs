@@ -1,0 +1,45 @@
+{{#ui-dropdown
+  class=(concat "flexberry-dropdown " class " selection" (if readonly " disabled" ""))
+  onChange=(action 'onChange')
+  onHide=(action 'onShowHide')
+  onShow=(action 'onShowHide')
+  on=on
+  allowReselection=allowReselection
+  allowAdditions=allowAdditions
+  hideAdditions=hideAdditions
+  minCharacters=minCharacters
+  match=match
+  selectOnKeydown=selectOnKeydown
+  forceSelection=forceSelection
+  allowCategorySelection=allowCategorySelection
+  direction=direction
+  keepOnScreen=keepOnScreen
+  context=context
+  fullTextSearch=fullTextSearch
+  preserveHTML=preserveHTML
+  sortSelect=sortSelect
+  showOnFocus=showOnFocus
+  allowTab=allowTab
+  transition=transition
+  duration=duration
+  action=action
+}}
+
+
+  <i class="dropdown icon"></i>
+  {{#if showPlaceholder}}
+    <div class="default text">{{placeholder}}</div>
+  {{else}}
+    <div class="text">{{text}}</div>
+  {{/if}}
+  <div class="menu">
+    {{yield}}
+    {{#each-in _items as |item|}}
+      {{#if item.tab}}
+        <a class="item" data-tab="{{item.tab}}">{{item.tab}}</a>
+      {{else}}
+        <a class="item" data-tab="_">{{item.title}}</a>
+      {{/if}}
+    {{/each-in}}
+  </div>
+{{/ui-dropdown}}
