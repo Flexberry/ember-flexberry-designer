@@ -39181,10 +39181,9 @@ img.item-minus {
 }
 .panel-left,
 .panel-right {
-  overflow: hidden;
   background: #FFFFFF;
   margin: 1rem 0em;
-  width: 50%;
+  width: 45%;
   display: flex;
   flex-direction: column;
 }
@@ -39208,7 +39207,7 @@ img.item-minus {
 .panel-wrapper .ui.segments {
   margin: 0;
   display: flex;
-  height: 100%;
+  height: 95%;
 }
 .panel-wrapper .jstree-default > .jstree-no-dots .jstree-node {
   padding: 3px 0;
@@ -39288,6 +39287,13 @@ img.item-minus {
 }
 .ui.button > .right.icon:not(.button) {
   margin: 0;
+}
+@-moz-document url-prefix() {
+  @media screen and (max-width: 1030px) {
+    .panel-wrapper {
+      max-height: calc(100vh - 290px);
+    }
+  }
 }
 /* General styles */
 @media only screen and (max-width: 991px) and (min-width: 768px) {
