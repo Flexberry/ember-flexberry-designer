@@ -17,23 +17,41 @@
     {{/each}}
   {{/flexberry-toggler}}
 {{else if _isTab}}
-  <div class="ui top attached tabular menu">
+
+
+
+
+  {{#fd-tabs 
+    tabsMenuTheme="top attached tabular" 
+    class="ui segments" 
+    tabClick = (action "changeTab")
+  }}
     {{#each control.tabs as |tab index|}}
-      <a class="item {{if (eq tab selectedItem) "selected"}} {{if (eq tab activeTab) "active"}}" {{action "changeTab" tab bubbles=false}}>{{tab.caption}}</a>
+      {{#ui-tab-segment
+        title=tab.caption
+        theme="bottom attached segment"
+        active=activeTab
+        selected=selectedItem
+        tab=tab.caption
+        tab=tab
+      }}
+
+        {{#each tab.rows as |row|}}
+          {{fd-editform-row
+            row=row
+            selectedItem=selectedItem
+            selectItemAction=selectItemAction
+            setDragItemAction=setDragItemAction
+            getDragItemAction=getDragItemAction
+            moveDragItemAction=moveDragItemAction
+          }}
+        {{/each}}
+
+      {{/ui-tab-segment}}
     {{/each}}
-  </div>
-  {{#each control.tabs as |tab index|}}
-    <div class="ui bottom attached tab segment {{if (eq tab selectedItem) "selected"}} {{if (eq tab activeTab) "active"}}">
-      {{#each tab.rows as |row|}}
-        {{fd-editform-row
-          row=row
-          selectedItem=selectedItem
-          selectItemAction=selectItemAction
-          setDragItemAction=setDragItemAction
-          getDragItemAction=getDragItemAction
-          moveDragItemAction=moveDragItemAction
-        }}
-      {{/each}}
-    </div>
-  {{/each}}
+  {{/fd-tabs}}
+
+
+
+
 {{/if}}

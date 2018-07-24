@@ -18,6 +18,7 @@ export default Ember.Component.extend({
   _theme: 'tab',
   theme: 'bottom attached',
   attributeBindings: ['tab:data-tab'],
+  selected: '',
 
   /**
   tab name
@@ -25,7 +26,7 @@ export default Ember.Component.extend({
   */
   tab: '',
 
-  title: null,
+  title: '',
 
   /**
    * The parent component
@@ -70,11 +71,5 @@ export default Ember.Component.extend({
   willRender() {
     this._super(...arguments);
     this._registerWithParent();
-  },
-
-  didInsertElement() {
-    if (this.active) {
-      this.$().addClass('active');
-    }
   }
 });

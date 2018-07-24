@@ -166,8 +166,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
       @param {FdEditformTab} tab New tab.
     */
     changeTab(tab) {
-      this.set('activeTab', tab);
-      this.get('selectItemAction')(tab);
+      this.get('selectItemAction')(tab.tab);
     },
   },
 

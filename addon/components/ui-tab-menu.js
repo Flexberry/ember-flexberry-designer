@@ -25,16 +25,5 @@ export default Ember.Component.extend({
     get() {
       return this.get('theme') ? this.get('theme') : 'top attached tabular';
     }
-  }),
-
-  /**
-  the active tab name
-  @property {String} active
-  */
-  active: '',
-
-  didInsertElement() {
-    this.$('.item').tab();
-    this.$('.item[data-tab="' + this.active + '"]').addClass('active');
-  }
+  })
 });
