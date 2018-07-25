@@ -291,52 +291,16 @@ joint.shapes.basic.Generic.define('flexberryUml.BaseClass', {
 });
 
 joint.dia.Link.define('flexberryUml.BaseLink', {
+  attrs: {
+    text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }
+  },
   labels: [{
-    position: { distance: 10, offset: -15 }, attrs: {
-      text: {
-        text: '',
-        'font-size': '12',
-        'font-family': 'Arial, helvetica, sans-serif'
-      }
-    }
-  }, {
-    position: { distance: 10, offset: 15 }, attrs: {
-      text: {
-        text: '',
-        'font-size': '12',
-        'font-family': 'Arial, helvetica, sans-serif',
-        'text-anchor': 'start'
-      }
-    }
-  }, {
-    textAnchor: 'middle', attrs: {
-      text: {
-        text: '',
-        'text-decoration': 'underline'
-      }
-    }
-  }, {
-    position: { distance: -40, offset: 15 }, attrs: {
-      text: {
-        text: '',
-        'font-size': '12',
-        'font-family': 'Arial, helvetica, sans-serif',
-        'text-anchor': 'end'
-      }
-    }
-  }, {
-    position: { distance: -40, offset: -15 }, attrs: {
-      text: {
-        text: '',
-        'font-size': '12',
-        'font-family': 'Arial, helvetica, sans-serif',
-        'text-anchor': 'start'
-      }
-    }
+    position: { distance: 10, offset: -15 }, attrs: { text: { text: '' } } }, {
+    position: { distance: 10, offset: 15 }, attrs: { text: { text: '' } } }, {
+    textAnchor: 'middle', attrs: { text: { text: '' } } }, {
+    position: { distance: -40, offset: 15 }, attrs: { text: { text: '' } } }, {
+    position: { distance: -40, offset: -15 }, attrs: { text: { text: '' } }
   }]
-});
-
-joint.shapes.flexberryUml.BaseLink.define('flexberryUml.Association', {
 });
 
 joint.shapes.flexberryUml.BaseLink.define('flexberryUml.Association', {

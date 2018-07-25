@@ -10,6 +10,7 @@ joint.shapes.flexberryUml.BaseObject.define('flexberryUml.CollDesignPattern', {
 joint.dia.Link.define('flexberryUml.CollPatternConnect', {
   attrs: {
     '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '3 2' },
+    text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }
   },
   labels: [{
     position: { distance: 50 }, attrs: { text: { text: '' } }
@@ -18,7 +19,8 @@ joint.dia.Link.define('flexberryUml.CollPatternConnect', {
 
 joint.dia.Link.define('flexberryUml.CollInheritance', {
   attrs: {
-    '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'white' }
+    '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'white' },
+    text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }
   },
   labels: [{
     position: { distance: -80 }, attrs: { text: { text: '' } }
