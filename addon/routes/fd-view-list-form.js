@@ -76,6 +76,7 @@ export default ListFormRoute.extend({
 
   objectListViewLimitPredicate() {
     let queryPredicate = this.get('_queryPredicate');
+
     // Demo data  TODO: Demo mode.
     if (Ember.isNone(queryPredicate)) {
       let demoStage = 'FB6972D1-F04A-4617-B454-D2D0DB4CEC05';
