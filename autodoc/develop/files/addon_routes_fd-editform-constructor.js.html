@@ -137,6 +137,19 @@ export default Ember.Route.extend({
 
   currentProjectContext: Ember.inject.service(&#x27;fd-current-project-context&#x27;),
 
+  actions: {
+    /**
+      See [EmberJS API](https://emberjs.com/).
+
+      @method actions.didTransition
+    */
+    didTransition() {
+      Ember.$(&#x27;.full.height&#x27;).on(&#x27;click.fd-editform-constructor&#x27;, () =&gt; {
+        this.get(&#x27;controller&#x27;).send(&#x27;selectItem&#x27;);
+      });
+    },
+  },
+
   queryParams: {
     classId: { refreshModel: true },
   },
@@ -257,8 +270,12 @@ export default Ember.Route.extend({
     @param {Boolean} isExisting
     @param {Object} transition
    */
-  resetController(controller) {
+  resetController(controller, isExiting) {
     this._super(...arguments);
+
+    if (isExiting) {
+      Ember.$(&#x27;.full.height&#x27;).off(&#x27;click.fd-editform-constructor&#x27;);
+    }
 
     let store = this.get(&#x27;store&#x27;);
     store.peekAll(&#x27;fd-dev-class&#x27;).forEach((item) =&gt; item.rollbackAll());
