@@ -77,6 +77,8 @@
         {{fd-visual-edit-control-tree
           selectedItem=selectedItem
           model=model
+          items=model.controls
+          typeForm='editform'
         }}
       {{/ui-tab-segment}}
 
@@ -84,25 +86,21 @@
         <div class="ui small dividing header">
           {{t "forms.fd-editform-constructor.form-config-panel.add-controls-header"}}
         </div>
-        <div class="equal width fields">
-          <div class="field">
+        <div class="field">
             <button class="ui button" {{action "addControl"}}>
               {{t "forms.fd-editform-constructor.form-config-panel.add-control"}}
             </button>
-            <button class="ui button" {{action "addEmptyControl"}}>
-              {{t "forms.fd-editform-constructor.form-config-panel.empty-control"}}
-            </button>
-          </div>
-          <div class="field">
             <button class="ui button" {{action "addGroup"}}>
               {{t "forms.fd-editform-constructor.form-config-panel.add-group"}}
             </button>
-          </div>
-          <div class="field">
             <button class="ui button" {{action "addTab"}}>
               {{t "forms.fd-editform-constructor.form-config-panel.add-tab"}}
             </button>
-          </div>
+        </div>
+        <div class="field">
+          <button class="ui button" {{action "addEmptyControl"}}>
+            {{t "forms.fd-editform-constructor.form-config-panel.empty-control"}}
+          </button>
         </div>
         <div class="ui small dividing header">
           {{t "forms.fd-editform-constructor.form-config-panel.move-controls-header"}}
@@ -141,7 +139,7 @@
           <div class="ui small dividing header">
             {{t "forms.fd-editform-constructor.form-config-panel.attributes-control"}}
           </div>
-          <div class="ui segments">
+          <div class="ui segments panel-wrapper">
             <div class="ui segment overflow-panel">
               {{
                 ember-jstree

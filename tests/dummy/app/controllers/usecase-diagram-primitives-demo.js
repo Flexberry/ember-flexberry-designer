@@ -2,10 +2,9 @@ import Ember from 'ember';
 import joint from 'npm:jointjs';
 
 export default Ember.Controller.extend({
-
-  init() {
-    let _this = this;
-    Ember.run.schedule('afterRender',	function() {
+  actions: {
+    printDiagram: function() {
+      let _this = this;
       _this.graph = new joint.dia.Graph();
 
       let paper = document.getElementById('paper');
@@ -13,12 +12,15 @@ export default Ember.Controller.extend({
       let minY = 16384;
       let maxX = 0;
       let maxY = 0;
+      let sidebar = Ember.$('.ui.sidebar.main.menu');
+      let sidebarWidth = sidebar.hasClass('visible') ? sidebar.width() : 0;
 
       if (minX > maxX) {
         maxX = paper && ('offsetWidth' in paper) ? paper.offsetWidth : 1024;
+        maxX += sidebarWidth;
         maxY = 840;
       } else {
-        maxX = minX + maxX;
+        maxX = minX + maxX + sidebarWidth;
         maxY = minY + maxY;
       }
 
@@ -100,6 +102,6 @@ export default Ember.Controller.extend({
         labels: [{ attrs: { text: { text:  'Generalization' } } }]
       });
       _this.graph.addCell(jUseCaseGeneralization);
-    });
-  },
+    }
+  }
 });

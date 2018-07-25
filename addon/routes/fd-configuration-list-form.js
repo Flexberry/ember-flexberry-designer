@@ -43,7 +43,13 @@ export default ListFormRoute.extend({
     @type Object
     @default {}
   */
-  developerUserSettings: { FdConfigurationListForm: {} },
+  developerUserSettings: {
+    FdConfigurationListForm: {
+      'DEFAULT': {
+        'columnWidths': [{ 'propName': 'OlvRowMenu', 'fixed': true, 'width': 68 }]
+      }
+    }
+  },
 
   /**
     Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.

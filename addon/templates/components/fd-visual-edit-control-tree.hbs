@@ -3,7 +3,12 @@
     <div class="header">
       {{t 'components.fd-visual-edit-control-tree.selected-element-null'}}
     </div>
-    <p>{{t 'components.fd-visual-edit-control-tree.selected-element-change'}}</p>
+    {{#if (eq typeForm 'editform')}}
+      <p>{{t 'components.fd-visual-edit-control-tree.selected-element-change-edit'}}</p>
+    {{/if}}
+    {{#if (eq typeForm 'listform')}}
+      <p>{{t 'components.fd-visual-edit-control-tree.selected-element-change-list'}}</p>
+    {{/if}}
   </div>
 {{else}}
 
@@ -41,7 +46,7 @@
             <i class="check icon"></i>
           </button>
         </div>
-        <div class="ui segments">
+        <div class="ui segments panel-wrapper">
           <div class="ui segment overflow-panel">
             {{
               ember-jstree
@@ -66,13 +71,17 @@
     </div>
     <div class="field">
       <label>{{t "components.fd-visual-edit-control-tree.type"}}</label>
-      {{
-        ember-jstree
-        selectedNodes=selectedNodesTypeTree
-        data=dataTypeTree
-        plugins=plugins
-        typesOptions=typesOptions
-      }}
+      <div class="ui segments panel-wrapper">
+        <div class="ui segment overflow-panel">
+          {{
+            ember-jstree
+            selectedNodes=selectedNodesTypeTree
+            data=dataTypeTree
+            plugins=plugins
+            typesOptions=typesOptions
+          }}
+        </div>
+      </div>
     </div>
     <button class='ui button {{applyTypeDisabled}}' {{action "applyСlick" on="click" }}>
       {{t "components.fd-visual-edit-control-tree.apply"}}
@@ -88,54 +97,71 @@
       <label>{{t "components.fd-visual-edit-control-tree.detail-view"}}</label>
       {{
         flexberry-dropdown
-        items=dropdownItems
-        value=selectedItem.propertyDefinition.detailViewName
+        items=dropdownElements.dropdownItems
+        value=dropdownElements.dropdownValue.detailViewName
       }}
     </div>
   {{/if}}
   {{#if (eq selectedItem.type 'master')}}
+    {{#if (eq typeForm 'editform')}}
     <div class="field">
       <label>{{t "components.fd-visual-edit-control-tree.master-list-form"}}</label>
       {{
         flexberry-dropdown
-        items=dropdownItems
-        value=value
+        items=dropdownElements.dropdownItems
+        value=dropdownElements.dropdownValue.container
       }}
     </div>
+    {{/if}}
     <div class="field">
-      <label>{{t "components.fd-visual-edit-control-tree.master-property"}}</label>
+      <label>{{t "forms.fd-view-edit-form.settings-master.lookup-type"}}</label>
       {{
-        flexberry-textbox
-        value=selectedItem.propertyDefinition.masterPropertyName
+        flexberry-dropdown
+        onChange=(action "changeLookupType")
+        items=lookupTypeItems
+        value=selectedItem.propertyDefinition.lookupType
       }}
     </div>
+    {{#if (not-eq selectedItem.propertyDefinition.lookupType 'default')}}
+      <div class="field">
+        <label>{{t "components.fd-visual-edit-control-tree.master-property"}}</label>
+        {{
+          flexberry-textbox
+          value=selectedItem.propertyDefinition.masterPropertyName
+        }}
+      </div>
+      <div class="field">
+        <label>{{t "components.fd-visual-edit-control-tree.sample-setting"}}</label>
+        {{
+          flexberry-textbox
+          value=selectedItem.propertyDefinition.masterCustomizationString
+        }}
+      </div>
+    {{/if}}
   {{/if}}
 
   {{#if (or (eq selectedItem.type 'master') (eq selectedItem.type 'detail'))}}
-  <div class="field">
+  <div class="field {{if (or (eq selectedItem.type 'detail') readonly) "disabled"}}">
     <label>{{t "components.fd-visual-edit-control-tree.not-null"}}</label>
     {{
       flexberry-checkbox
       onChange=(action "changeMasterNotNull")
       value=(eq selectedAttribute.startMultiplicity "1")
-      readonly=readonly
     }}
   </div>
   {{else}}
-  <div class="field">
+  <div class="field {{if readonly "disabled"}}">
     <label>{{t "components.fd-visual-edit-control-tree.not-null"}}</label>
     {{
       flexberry-checkbox
       value=selectedAttribute.notNull
-      readonly=readonly
     }}
   </div>
-  <div class="field">
+  <div class="field {{if readonly "disabled"}}">
     <label>{{t "components.fd-visual-edit-control-tree.default-value"}}</label>
     {{
       flexberry-textbox
       value=selectedAttribute.defaultValue
-      readonly=readonly
     }}
   </div>
   {{/if}}
@@ -146,12 +172,11 @@
       value=selectedItem.propertyDefinition.visible
     }}
   </div>
-  <div class="field">
+  <div class="field {{if readonly "disabled"}}">
     <label>{{t "components.fd-visual-edit-control-tree.description"}}</label>
     {{
       flexberry-textarea
       value=selectedAttribute.description
-      readonly=readonly
     }}
   </div>
 

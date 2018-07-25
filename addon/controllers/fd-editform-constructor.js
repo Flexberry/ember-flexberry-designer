@@ -10,8 +10,15 @@ import FdViewAttributesProperty from '../objects/fd-view-attributes-property';
 import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 import FdAttributesTree from '../objects/fd-attributes-tree';
-import { getDataForBuildTree, getTreeNodeByNotUsedAttributes, getAssociationTreeNode, getTreeNodeByNotUsedAggregation } from '../utils/fd-attributes-for-tree';
+import {
+  getDataForBuildTree,
+  getTreeNodeByNotUsedAttributes,
+  getAssociationTreeNode,
+  getTreeNodeByNotUsedAggregation,
+  getClassTreeNode
+ } from '../utils/fd-attributes-for-tree';
 import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
+import { copyViewDefinition } from '../utils/fd-copy-view-definition';
 
 export default Ember.Controller.extend({
   queryParams: ['classId'],
@@ -266,14 +273,17 @@ export default Ember.Controller.extend({
       let attributes = dataobject.get('attributes');
       let atrIndex = findFreeNodeTreeNameIndex('newAttribute', 1, attributes, 'name');
 
-      let newAttribute = this.get('store').createRecord('fd-dev-attribute', {
+      this.get('store').createRecord('fd-dev-attribute', {
         class: dataobject,
         name: 'newAttribute' + atrIndex,
         type: 'string',
         notNull: false,
         defaultValue: ''
       });
-      attributes.pushObject(newAttribute);
+
+      let dataForBuildTree = getDataForBuildTree(this.get('store'), dataobject.get('id'));
+      let newTree = getClassTreeNode(Ember.A(), dataForBuildTree.classes, dataobject.get('id'), 'type');
+      this.set('model.attributes', newTree);
 
       let view = this.get('model.editform.formViews.firstObject.view');
       let viewDefinition = view.get('definition');
@@ -283,11 +293,15 @@ export default Ember.Controller.extend({
       });
       viewDefinition.pushObject(propertyDefinition);
 
-      this._insertItem(FdEditformControl.create({
+      let control = FdEditformControl.create({
         caption: `${this.get('i18n').t('forms.fd-editform-constructor.new-control-caption').toString()} #${this.incrementProperty('_newControlIndex')}`,
         type: 'string',
         propertyDefinition: propertyDefinition,
-      }), this.get('selectedItem') || this.get('model.controls'));
+      });
+
+      this._insertItem(control, this.get('selectedItem') || this.get('model.controls'));
+      this.send('selectItem', control);
+      Ember.run.scheduleOnce('afterRender', this, this._scrollToSelected);
     },
 
     /**
@@ -296,14 +310,18 @@ export default Ember.Controller.extend({
       @method actions.addEmptyControl
     */
     addEmptyControl() {
-      this._insertItem(FdEditformControl.create({
+      let control = FdEditformControl.create({
         caption: `${this.get('i18n').t('forms.fd-editform-constructor.new-control-caption').toString()} #${this.incrementProperty('_newControlIndex')}`,
         type: 'string',
         propertyDefinition: FdViewAttributesProperty.create({
           name: '',
           visible: true,
         }),
-      }), this.get('selectedItem') || this.get('model.controls'));
+      });
+
+      this._insertItem(control, this.get('selectedItem') || this.get('model.controls'));
+      this.send('selectItem', control);
+      Ember.run.scheduleOnce('afterRender', this, this._scrollToSelected);
     },
 
     /**
@@ -345,7 +363,7 @@ export default Ember.Controller.extend({
         let controls = this.get('model.controls');
         let viewDefinition = Ember.A();
         for (let i = 0; i < controls.length; i++) {
-          this._extractPathPart(controls.objectAt(i), '', viewDefinition);
+          this._extractPathPart(controls.objectAt(i), '', viewDefinition, '');
         }
 
         view.set('definition', viewDefinition);
@@ -376,7 +394,8 @@ export default Ember.Controller.extend({
       @method actions.close
     */
     close() {
-      this.transitionToRoute('fd-appstruct-form');
+      this.set('state', 'loading');
+      Ember.run.later(this, this.transitionToRoute, 'fd-appstruct-form');
     },
 
     /**
@@ -472,6 +491,7 @@ export default Ember.Controller.extend({
       this.set('state', 'loading');
       try {
         this._saveMetadata(this.get('model')).then(() => {
+          this.set('model.originalDefinition', copyViewDefinition(this.get('model.editform.formViews.firstObject.view.definition')));
           this.set('state', '');
           if (close) {
             this.send('close');
@@ -486,7 +506,7 @@ export default Ember.Controller.extend({
     /**
       Set attribute in control.
 
-      @method actions.applyСlick
+      @method actions.setAttributeInControl
     */
     setAttributeInControl() {
       let selectedNodes = this.get('selectedNodesNotUsedAttributesTree')[0];
@@ -764,7 +784,7 @@ export default Ember.Controller.extend({
     let controls = model.controls;
     let length = controls.get('length');
     for (let i = 0; i < length; i++) {
-      this._extractPathPart(controls.objectAt(i), '', viewDefinition);
+      this._extractPathPart(controls.objectAt(i), '', viewDefinition, '');
     }
 
     // Check viewDefinition on errors.
@@ -793,22 +813,30 @@ export default Ember.Controller.extend({
 
     // Save attributes.
     let dataobject = this.get('model.dataobject');
-    let attributes = dataobject.get('attributes');
     if (Ember.isNone(dataobject.get('caption'))) {
       dataobject.set('caption', dataobject.get('name'));
     }
 
-    let arrayChengeClassElements = this.get('model.arrayChengeClassElements');
-    let changedAssociations = model.association.filterBy('hasDirtyAttributes');
+    let attributes = dataobject.get('attributes');
+    let changedAttributes = attributes.filterBy('hasDirtyAttributes');
+
+    let association = this.get('store').peekAll('fd-dev-association');
+    let changedAssociations = association.filterBy('hasDirtyAttributes');
+
+    let aggregation = this.get('store').peekAll('fd-dev-aggregation');
+    let changedAggregation = aggregation.filterBy('hasDirtyAttributes');
 
     // Сохранить класс формы редактирования
+    let editform = this.get('model.editform');
+    editform.set('propertyLookupStr', Ember.A(editform.get('propertyLookupStr').toArray()));
 
     return Ember.RSVP.all([
       view.save(),
-      attributes.save(),
       dataobject.save(),
-      Ember.RSVP.all(arrayChengeClassElements.map(a => a.save())),
+      editform.save(),
+      Ember.RSVP.all(changedAttributes.map(a => a.save())),
       Ember.RSVP.all(changedAssociations.map(a => a.save())),
+      Ember.RSVP.all(changedAggregation.map(a => a.save())),
     ]);
   },
 
@@ -819,22 +847,24 @@ export default Ember.Controller.extend({
     @param {FdEditformControl|FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab} control Some item in object model.
     @param {String} path Path for current item.
     @param {Ember.Array} viewDefinition View definition with result paths for controls.
+    @param {String} column Column path for current item.
   */
-  _extractPathPart: function(control, path, viewDefinition) {
+  _extractPathPart: function(control, path, viewDefinition, column) {
     if (control instanceof FdEditformControl) {
-      control.set('propertyDefinition.path', path);
+      let pathWithColumn = `${path ? path + '\\' : ''}${column}`;
+      control.set('propertyDefinition.path', pathWithColumn);
       control.set('propertyDefinition.caption', control.get('caption'));
       viewDefinition.pushObject(control.get('propertyDefinition'));
       return path;
     } else if (control instanceof FdEditformRow) {
       for (let i = 0; i < control.get('controls.length'); i++) {
         let controlInRow = control.get('controls').objectAt(i);
-        let pathWithColumn = path;
+        let pathWithColumn = column;
         if (control.get('controls.length') > 1) {
-          pathWithColumn = `${path ? path + '\\' : ''}#${i + 1}`;
+          pathWithColumn = `#${i + 1}`;
         }
 
-        this._extractPathPart(controlInRow, pathWithColumn, viewDefinition);
+        this._extractPathPart(controlInRow, path, viewDefinition, pathWithColumn);
       }
     } else if (control instanceof FdEditformGroup) {
       let pathWithGroup = '-' + control.caption;
@@ -844,12 +874,12 @@ export default Ember.Controller.extend({
 
       for (let i = 0; i < control.get('rows.length'); i++) {
         let rowInGroup = control.get('rows').objectAt(i);
-        this._extractPathPart(rowInGroup, pathWithGroup, viewDefinition);
+        this._extractPathPart(rowInGroup, pathWithGroup, viewDefinition, column);
       }
     } else if (control instanceof FdEditformTabgroup) {
       for (let i = 0; i < control.get('tabs.length'); i++) {
         let rowInGroup = control.get('tabs').objectAt(i);
-        this._extractPathPart(rowInGroup, path, viewDefinition);
+        this._extractPathPart(rowInGroup, path, viewDefinition, column);
       }
     } else if (control instanceof FdEditformTab) {
       let pathWithTab = '|' + control.caption;
@@ -859,9 +889,22 @@ export default Ember.Controller.extend({
 
       for (let i = 0; i < control.get('rows.length'); i++) {
         let rowInGroup = control.get('rows').objectAt(i);
-        this._extractPathPart(rowInGroup, pathWithTab, viewDefinition);
+        this._extractPathPart(rowInGroup, pathWithTab, viewDefinition, column);
       }
     }
+  },
+
+  /**
+    Scrolls the form to the selected control with jQuery.
+
+    @private
+    @method _scrollToSelected
+  */
+  _scrollToSelected() {
+    let form = Ember.$('.full.height');
+    let scrollTop = Ember.$('.selected:first').offset().top + form.scrollTop() - (form.offset().top + 10);
+
+    form.animate({ scrollTop });
   },
 
   /**

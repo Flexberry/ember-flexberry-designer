@@ -1,4 +1,4 @@
-<h3 class="ui header">{{t 'forms.fd-diagram-edit-form.caption'}}</h3>
+<h3 class="ui header">{{model.name}}</h3>
 
 {{#if errorMessages}}
   {{#each errorMessages as |currentError|}}
@@ -37,9 +37,7 @@
   </div>
 
   <div class="sixteen wide">
-    {{#fd-visual-diagram primitives=model.primitives}}
-      <div id='paper'></div>
-    {{/fd-visual-diagram}}
+    {{fd-uml-diagram primitives=model.primitives}}
   </div>
 
 </form>
