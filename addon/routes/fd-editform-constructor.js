@@ -123,17 +123,6 @@ export default Ember.Route.extend({
   },
 
   /**
-    See [EmberJS API](https://emberjs.com/).
-
-    @method resetController
-  */
-  resetController(controller, isExiting) {
-    if (isExiting) {
-      Ember.$('.full.height').off('click.fd-editform-constructor');
-    }
-  },
-
-  /**
     A hook you can use to setup the controller for the current route.
     [More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).
 
@@ -157,8 +146,12 @@ export default Ember.Route.extend({
     @param {Boolean} isExisting
     @param {Object} transition
    */
-  resetController(controller) {
+  resetController(controller, isExiting) {
     this._super(...arguments);
+
+    if (isExiting) {
+      Ember.$('.full.height').off('click.fd-editform-constructor');
+    }
 
     let store = this.get('store');
     store.peekAll('fd-dev-class').forEach((item) => item.rollbackAll());
