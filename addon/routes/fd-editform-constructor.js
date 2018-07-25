@@ -141,7 +141,9 @@ export default Ember.Route.extend({
     store.peekAll('fd-dev-stage').forEach((item) => item.rollbackAll());
     store.peekAll('fd-dev-association').forEach((item) => item.rollbackAll());
     store.peekAll('fd-dev-aggregation').forEach((item) => item.rollbackAll());
-    controller.set('model.editform.formViews.firstObject.view.definition', Ember.A(controller.get('model.originalDefinition')));
+    let definition = controller.get('model.editform.formViews.firstObject.view.definition');
+    definition.clear();
+    definition.pushObjects(controller.get('model.originalDefinition'));
   },
 
   /**
