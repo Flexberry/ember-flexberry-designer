@@ -42,7 +42,11 @@ Ember.$.extend(true, translations, {
         },
         logout: {
           caption: 'Выход'
-        }
+        },
+        'demo-message': {
+          title: 'Demo-версия Flexberry Designer.',
+          caption: 'Внесение изменений доступно для следующих типов объектов:',
+        },
       },
 
       footer: {
