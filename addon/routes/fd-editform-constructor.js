@@ -13,6 +13,19 @@ export default Ember.Route.extend({
 
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
+  actions: {
+    /**
+      See [EmberJS API](https://emberjs.com/).
+
+      @method actions.didTransition
+    */
+    didTransition() {
+      Ember.$('.full.height').on('click.fd-editform-constructor', () => {
+        this.get('controller').send('selectItem');
+      });
+    },
+  },
+
   queryParams: {
     classId: { refreshModel: true },
   },
@@ -107,6 +120,17 @@ export default Ember.Route.extend({
     modelHash.controls = controlTree;
 
     return modelHash;
+  },
+
+  /**
+    See [EmberJS API](https://emberjs.com/).
+
+    @method resetController
+  */
+  resetController(controller, isExiting) {
+    if (isExiting) {
+      Ember.$('.full.height').off('click.fd-editform-constructor');
+    }
   },
 
   /**
