@@ -531,7 +531,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
           store.createRecord(&#x27;fd-dev-view&#x27;, {
             class: devClass,
             name: newCaption,
-            definition: &#x27;&lt;View&gt;&lt;ViewPropertiesList /&gt;&lt;ViewDetailsList /&gt;&lt;/View&gt;&#x27;
+            definition: Ember.A()
           }).save().then(savedDevView =&gt; {
             store.createRecord(&#x27;fd-dev-form-view&#x27;, {
               class: savedDevClass,

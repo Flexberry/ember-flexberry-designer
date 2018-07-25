@@ -265,7 +265,9 @@ export default Ember.Route.extend({
     store.peekAll(&#x27;fd-dev-stage&#x27;).forEach((item) =&gt; item.rollbackAll());
     store.peekAll(&#x27;fd-dev-association&#x27;).forEach((item) =&gt; item.rollbackAll());
     store.peekAll(&#x27;fd-dev-aggregation&#x27;).forEach((item) =&gt; item.rollbackAll());
-    controller.set(&#x27;model.editform.formViews.firstObject.view.definition&#x27;, Ember.A(controller.get(&#x27;model.originalDefinition&#x27;)));
+    let definition = controller.get(&#x27;model.editform.formViews.firstObject.view.definition&#x27;);
+    definition.clear();
+    definition.pushObjects(controller.get(&#x27;model.originalDefinition&#x27;));
   },
 
   /**
