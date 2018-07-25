@@ -9648,7 +9648,7 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ro
   QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-editform-constructor.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-editform-constructor.js should pass jshint.');
+    assert.ok(false, 'modules/ember-flexberry-designer/routes/fd-editform-constructor.js should pass jshint.\nmodules/ember-flexberry-designer/routes/fd-editform-constructor.js: line 160, col 18, Duplicate key \'resetController\'.\n\n1 error');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-editform-constructor/new.jscs-test', ['exports'], function (exports) {
@@ -29653,7 +29653,6 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
         var el4 = dom.createTextNode("\n      ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("button");
-        dom.setAttribute(el4, "class", "ui button");
         var el5 = dom.createElement("i");
         dom.setAttribute(el5, "class", "sitemap icon");
         dom.appendChild(el4, el5);
@@ -29996,58 +29995,59 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
         var element33 = dom.childAt(element27, [11]);
         var element34 = dom.childAt(element27, [13]);
         var element35 = dom.childAt(element26, [3]);
-        var morphs = new Array(47);
+        var morphs = new Array(48);
         morphs[0] = dom.createAttrMorph(element9, 'class');
         morphs[1] = dom.createMorphAt(element9, 1, 1);
         morphs[2] = dom.createMorphAt(dom.childAt(element9, [3]), 0, 0);
-        morphs[3] = dom.createElementMorph(element11);
-        morphs[4] = dom.createMorphAt(element11, 1, 1);
-        morphs[5] = dom.createElementMorph(element12);
-        morphs[6] = dom.createMorphAt(element12, 1, 1);
-        morphs[7] = dom.createElementMorph(element13);
-        morphs[8] = dom.createMorphAt(element13, 1, 1);
-        morphs[9] = dom.createAttrMorph(element17, 'class');
-        morphs[10] = dom.createAttrMorph(element17, 'title');
-        morphs[11] = dom.createElementMorph(element17);
-        morphs[12] = dom.createAttrMorph(element18, 'title');
-        morphs[13] = dom.createElementMorph(element18);
-        morphs[14] = dom.createAttrMorph(element19, 'class');
-        morphs[15] = dom.createAttrMorph(element19, 'title');
-        morphs[16] = dom.createElementMorph(element19);
-        morphs[17] = dom.createAttrMorph(element20, 'class');
-        morphs[18] = dom.createAttrMorph(element20, 'title');
-        morphs[19] = dom.createElementMorph(element20);
-        morphs[20] = dom.createAttrMorph(element21, 'class');
-        morphs[21] = dom.createAttrMorph(element21, 'title');
-        morphs[22] = dom.createElementMorph(element21);
-        morphs[23] = dom.createAttrMorph(element22, 'title');
-        morphs[24] = dom.createElementMorph(element22);
-        morphs[25] = dom.createMorphAt(dom.childAt(element23, [1]), 1, 1);
-        morphs[26] = dom.createMorphAt(dom.childAt(element23, [3]), 1, 1);
-        morphs[27] = dom.createMorphAt(element24, 1, 1);
-        morphs[28] = dom.createAttrMorph(element25, 'class');
-        morphs[29] = dom.createElementMorph(element25);
-        morphs[30] = dom.createAttrMorph(element28, 'class');
-        morphs[31] = dom.createElementMorph(element28);
-        morphs[32] = dom.createAttrMorph(element29, 'class');
-        morphs[33] = dom.createElementMorph(element29);
-        morphs[34] = dom.createAttrMorph(element30, 'class');
-        morphs[35] = dom.createElementMorph(element30);
-        morphs[36] = dom.createAttrMorph(element31, 'class');
-        morphs[37] = dom.createElementMorph(element31);
-        morphs[38] = dom.createAttrMorph(element32, 'class');
-        morphs[39] = dom.createElementMorph(element32);
-        morphs[40] = dom.createAttrMorph(element33, 'class');
-        morphs[41] = dom.createElementMorph(element33);
-        morphs[42] = dom.createElementMorph(element34);
-        morphs[43] = dom.createMorphAt(dom.childAt(element35, [1]), 1, 1);
-        morphs[44] = dom.createMorphAt(dom.childAt(element35, [3]), 1, 1);
-        morphs[45] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        morphs[46] = dom.createMorphAt(fragment, 4, 4, contextualElement);
+        morphs[3] = dom.createAttrMorph(element11, 'class');
+        morphs[4] = dom.createElementMorph(element11);
+        morphs[5] = dom.createMorphAt(element11, 1, 1);
+        morphs[6] = dom.createElementMorph(element12);
+        morphs[7] = dom.createMorphAt(element12, 1, 1);
+        morphs[8] = dom.createElementMorph(element13);
+        morphs[9] = dom.createMorphAt(element13, 1, 1);
+        morphs[10] = dom.createAttrMorph(element17, 'class');
+        morphs[11] = dom.createAttrMorph(element17, 'title');
+        morphs[12] = dom.createElementMorph(element17);
+        morphs[13] = dom.createAttrMorph(element18, 'title');
+        morphs[14] = dom.createElementMorph(element18);
+        morphs[15] = dom.createAttrMorph(element19, 'class');
+        morphs[16] = dom.createAttrMorph(element19, 'title');
+        morphs[17] = dom.createElementMorph(element19);
+        morphs[18] = dom.createAttrMorph(element20, 'class');
+        morphs[19] = dom.createAttrMorph(element20, 'title');
+        morphs[20] = dom.createElementMorph(element20);
+        morphs[21] = dom.createAttrMorph(element21, 'class');
+        morphs[22] = dom.createAttrMorph(element21, 'title');
+        morphs[23] = dom.createElementMorph(element21);
+        morphs[24] = dom.createAttrMorph(element22, 'title');
+        morphs[25] = dom.createElementMorph(element22);
+        morphs[26] = dom.createMorphAt(dom.childAt(element23, [1]), 1, 1);
+        morphs[27] = dom.createMorphAt(dom.childAt(element23, [3]), 1, 1);
+        morphs[28] = dom.createMorphAt(element24, 1, 1);
+        morphs[29] = dom.createAttrMorph(element25, 'class');
+        morphs[30] = dom.createElementMorph(element25);
+        morphs[31] = dom.createAttrMorph(element28, 'class');
+        morphs[32] = dom.createElementMorph(element28);
+        morphs[33] = dom.createAttrMorph(element29, 'class');
+        morphs[34] = dom.createElementMorph(element29);
+        morphs[35] = dom.createAttrMorph(element30, 'class');
+        morphs[36] = dom.createElementMorph(element30);
+        morphs[37] = dom.createAttrMorph(element31, 'class');
+        morphs[38] = dom.createElementMorph(element31);
+        morphs[39] = dom.createAttrMorph(element32, 'class');
+        morphs[40] = dom.createElementMorph(element32);
+        morphs[41] = dom.createAttrMorph(element33, 'class');
+        morphs[42] = dom.createElementMorph(element33);
+        morphs[43] = dom.createElementMorph(element34);
+        morphs[44] = dom.createMorphAt(dom.childAt(element35, [1]), 1, 1);
+        morphs[45] = dom.createMorphAt(dom.childAt(element35, [3]), 1, 1);
+        morphs[46] = dom.createMorphAt(fragment, 2, 2, contextualElement);
+        morphs[47] = dom.createMorphAt(fragment, 4, 4, contextualElement);
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["attribute", "class", ["concat", ["ui form flexberry-vertical-form ", ["get", "state", ["loc", [null, [1, 47], [1, 52]]]]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [2, 26], [2, 31]]]]], [], []]], ["loc", [null, [2, 2], [2, 33]]]], ["inline", "t", ["forms.fd-appstruct-form.caption"], [], ["loc", [null, [3, 6], [3, 45]]]], ["element", "action", ["openProcessEditorForm"], [], ["loc", [null, [6, 32], [6, 66]]]], ["inline", "t", ["forms.fd-appstruct-form.button-precess-editor"], [], ["loc", [null, [6, 95], [6, 148]]]], ["element", "action", ["openGenerationForm"], [], ["loc", [null, [7, 33], [7, 64]]]], ["inline", "t", ["forms.fd-appstruct-form.button-generation"], [], ["loc", [null, [7, 94], [7, 143]]]], ["element", "action", ["close"], [], ["loc", [null, [8, 59], [8, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [9, 8], [9, 49]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "removeLeftNodeDisabled", ["loc", [null, [17, 40], [17, 62]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.remove-text"], [], ["loc", [null, [17, 73], [17, 116]]]]]]], ["element", "action", ["removeLeftNode"], ["on", "click"], ["loc", [null, [17, 118], [17, 157]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.add-class-text"], [], ["loc", [null, [20, 55], [20, 101]]]]]]], ["element", "action", ["addLeftClass"], [], ["loc", [null, [20, 103], [20, 128]]]], ["attribute", "class", ["concat", ["ui button create-button ", ["get", "addLeftNodeDisabled", ["loc", [null, [23, 49], [23, 68]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.add-editform-text"], [], ["loc", [null, [23, 79], [23, 128]]]]]]], ["element", "action", ["addLeftEditForm"], [], ["loc", [null, [23, 130], [23, 158]]]], ["attribute", "class", ["concat", ["ui button create-button ", ["get", "addLeftNodeDisabled", ["loc", [null, [26, 49], [26, 68]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.add-listform-text"], [], ["loc", [null, [26, 79], [26, 128]]]]]]], ["element", "action", ["addLeftListForm"], [], ["loc", [null, [26, 130], [26, 158]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "editLeftNodeDisabled", ["loc", [null, [29, 40], [29, 60]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.edit-text"], [], ["loc", [null, [29, 71], [29, 112]]]]]]], ["element", "action", ["editLeftNode"], ["on", "click"], ["loc", [null, [29, 114], [29, 151]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.list-classes-text"], [], ["loc", [null, [32, 46], [32, 95]]]]]]], ["element", "action", ["listLeft"], ["on", "click"], ["loc", [null, [32, 97], [32, 130]]]], ["inline", "t", ["forms.fd-appstruct-form.all-forms-panel-caption"], [], ["loc", [null, [38, 10], [38, 65]]]], ["inline", "ember-jstree", [], ["actionReceiver", ["subexpr", "@mut", [["get", "jstreeActionReceiverLeft", ["loc", [null, [42, 27], [42, 51]]]]], [], []], "selectedNodes", ["subexpr", "@mut", [["get", "jstreeSelectedNodesLeft", ["loc", [null, [43, 26], [43, 49]]]]], [], []], "data", ["subexpr", "@mut", [["get", "model.leftTreeNodes", ["loc", [null, [44, 17], [44, 36]]]]], [], []], "plugins", ["subexpr", "@mut", [["get", "pluginsLeft", ["loc", [null, [45, 20], [45, 31]]]]], [], []], "typesOptions", ["subexpr", "@mut", [["get", "typesOptions", ["loc", [null, [46, 25], [46, 37]]]]], [], []]], ["loc", [null, [41, 10], [47, 12]]]], ["block", "ui-popup", [], ["content", ["subexpr", "@mut", [["get", "popupMessage", ["loc", [null, [53, 26], [53, 38]]]]], [], []]], 0, null, ["loc", [null, [53, 6], [57, 19]]]], ["attribute", "class", ["concat", ["ui button icon flexberry-button move ", ["get", "moveRightDisabled", ["loc", [null, [58, 60], [58, 77]]]]]]], ["element", "action", ["moveRightHighlighted"], ["on", "click"], ["loc", [null, [58, 81], [58, 126]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "addRightNodeDisabled", ["loc", [null, [65, 40], [65, 60]]]]]]], ["element", "action", ["addUrlNode"], ["on", "click"], ["loc", [null, [65, 64], [65, 99]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "editRightNodeDisabled", ["loc", [null, [68, 40], [68, 61]]]]]]], ["element", "action", ["editRightNode"], ["on", "click"], ["loc", [null, [68, 65], [68, 103]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "removeRightNodeDisabled", ["loc", [null, [71, 40], [71, 63]]]]]]], ["element", "action", ["removeRightNode"], ["on", "click"], ["loc", [null, [71, 67], [71, 107]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "addFolderNodeDisabled", ["loc", [null, [74, 40], [74, 61]]]]]]], ["element", "action", ["addFolderNode"], ["on", "click"], ["loc", [null, [74, 65], [74, 103]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "indexSelectedRight.upRightNodeDisabled", ["loc", [null, [77, 40], [77, 78]]]]]]], ["element", "action", ["upRightNode"], ["on", "click"], ["loc", [null, [77, 82], [77, 118]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "indexSelectedRight.downRightNodeDisabled", ["loc", [null, [80, 40], [80, 80]]]]]]], ["element", "action", ["downRightNode"], ["on", "click"], ["loc", [null, [80, 84], [80, 122]]]], ["element", "action", ["saveTree"], ["on", "click"], ["loc", [null, [83, 39], [83, 72]]]], ["inline", "t", ["forms.fd-appstruct-form.app-forms-panel-caption"], [], ["loc", [null, [89, 10], [89, 65]]]], ["inline", "ember-jstree", [], ["actionReceiver", ["subexpr", "@mut", [["get", "jstreeActionReceiverRight", ["loc", [null, [93, 27], [93, 52]]]]], [], []], "selectedNodes", ["subexpr", "@mut", [["get", "jstreeSelectedNodesRight", ["loc", [null, [94, 26], [94, 50]]]]], [], []], "data", ["subexpr", "@mut", [["get", "model.rightTreeNodes", ["loc", [null, [95, 17], [95, 37]]]]], [], []], "plugins", ["subexpr", "@mut", [["get", "pluginsRight", ["loc", [null, [96, 20], [96, 32]]]]], [], []], "typesOptions", ["subexpr", "@mut", [["get", "typesOptions", ["loc", [null, [97, 25], [97, 37]]]]], [], []], "treeObject", ["subexpr", "@mut", [["get", "jstreeObjectRight", ["loc", [null, [98, 23], [98, 40]]]]], [], []]], ["loc", [null, [92, 10], [99, 12]]]], ["block", "if", [["get", "_showModalDialog", ["loc", [null, [106, 6], [106, 22]]]]], [], 1, null, ["loc", [null, [106, 0], [117, 7]]]], ["block", "fd-config-panel", [], [], 2, null, ["loc", [null, [119, 0], [194, 20]]]]],
+      statements: [["attribute", "class", ["concat", ["ui form flexberry-vertical-form ", ["get", "state", ["loc", [null, [1, 47], [1, 52]]]]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [2, 26], [2, 31]]]]], [], []]], ["loc", [null, [2, 2], [2, 33]]]], ["inline", "t", ["forms.fd-appstruct-form.caption"], [], ["loc", [null, [3, 6], [3, 45]]]], ["attribute", "class", ["concat", ["ui button ", ["subexpr", "if", [["subexpr", "not", [["get", "processMethodologyValue", ["loc", [null, [6, 41], [6, 64]]]]], [], ["loc", [null, [6, 36], [6, 65]]]], " disabled"], [], ["loc", [null, [6, 31], [6, 79]]]]]]], ["element", "action", ["openProcessEditorForm"], [], ["loc", [null, [6, 81], [6, 115]]]], ["inline", "t", ["forms.fd-appstruct-form.button-precess-editor"], [], ["loc", [null, [6, 144], [6, 197]]]], ["element", "action", ["openGenerationForm"], [], ["loc", [null, [7, 33], [7, 64]]]], ["inline", "t", ["forms.fd-appstruct-form.button-generation"], [], ["loc", [null, [7, 94], [7, 143]]]], ["element", "action", ["close"], [], ["loc", [null, [8, 59], [8, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [9, 8], [9, 49]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "removeLeftNodeDisabled", ["loc", [null, [17, 40], [17, 62]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.remove-text"], [], ["loc", [null, [17, 73], [17, 116]]]]]]], ["element", "action", ["removeLeftNode"], ["on", "click"], ["loc", [null, [17, 118], [17, 157]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.add-class-text"], [], ["loc", [null, [20, 55], [20, 101]]]]]]], ["element", "action", ["addLeftClass"], [], ["loc", [null, [20, 103], [20, 128]]]], ["attribute", "class", ["concat", ["ui button create-button ", ["get", "addLeftNodeDisabled", ["loc", [null, [23, 49], [23, 68]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.add-editform-text"], [], ["loc", [null, [23, 79], [23, 128]]]]]]], ["element", "action", ["addLeftEditForm"], [], ["loc", [null, [23, 130], [23, 158]]]], ["attribute", "class", ["concat", ["ui button create-button ", ["get", "addLeftNodeDisabled", ["loc", [null, [26, 49], [26, 68]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.add-listform-text"], [], ["loc", [null, [26, 79], [26, 128]]]]]]], ["element", "action", ["addLeftListForm"], [], ["loc", [null, [26, 130], [26, 158]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "editLeftNodeDisabled", ["loc", [null, [29, 40], [29, 60]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.edit-text"], [], ["loc", [null, [29, 71], [29, 112]]]]]]], ["element", "action", ["editLeftNode"], ["on", "click"], ["loc", [null, [29, 114], [29, 151]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.list-classes-text"], [], ["loc", [null, [32, 46], [32, 95]]]]]]], ["element", "action", ["listLeft"], ["on", "click"], ["loc", [null, [32, 97], [32, 130]]]], ["inline", "t", ["forms.fd-appstruct-form.all-forms-panel-caption"], [], ["loc", [null, [38, 10], [38, 65]]]], ["inline", "ember-jstree", [], ["actionReceiver", ["subexpr", "@mut", [["get", "jstreeActionReceiverLeft", ["loc", [null, [42, 27], [42, 51]]]]], [], []], "selectedNodes", ["subexpr", "@mut", [["get", "jstreeSelectedNodesLeft", ["loc", [null, [43, 26], [43, 49]]]]], [], []], "data", ["subexpr", "@mut", [["get", "model.leftTreeNodes", ["loc", [null, [44, 17], [44, 36]]]]], [], []], "plugins", ["subexpr", "@mut", [["get", "pluginsLeft", ["loc", [null, [45, 20], [45, 31]]]]], [], []], "typesOptions", ["subexpr", "@mut", [["get", "typesOptions", ["loc", [null, [46, 25], [46, 37]]]]], [], []]], ["loc", [null, [41, 10], [47, 12]]]], ["block", "ui-popup", [], ["content", ["subexpr", "@mut", [["get", "popupMessage", ["loc", [null, [53, 26], [53, 38]]]]], [], []]], 0, null, ["loc", [null, [53, 6], [57, 19]]]], ["attribute", "class", ["concat", ["ui button icon flexberry-button move ", ["get", "moveRightDisabled", ["loc", [null, [58, 60], [58, 77]]]]]]], ["element", "action", ["moveRightHighlighted"], ["on", "click"], ["loc", [null, [58, 81], [58, 126]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "addRightNodeDisabled", ["loc", [null, [65, 40], [65, 60]]]]]]], ["element", "action", ["addUrlNode"], ["on", "click"], ["loc", [null, [65, 64], [65, 99]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "editRightNodeDisabled", ["loc", [null, [68, 40], [68, 61]]]]]]], ["element", "action", ["editRightNode"], ["on", "click"], ["loc", [null, [68, 65], [68, 103]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "removeRightNodeDisabled", ["loc", [null, [71, 40], [71, 63]]]]]]], ["element", "action", ["removeRightNode"], ["on", "click"], ["loc", [null, [71, 67], [71, 107]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "addFolderNodeDisabled", ["loc", [null, [74, 40], [74, 61]]]]]]], ["element", "action", ["addFolderNode"], ["on", "click"], ["loc", [null, [74, 65], [74, 103]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "indexSelectedRight.upRightNodeDisabled", ["loc", [null, [77, 40], [77, 78]]]]]]], ["element", "action", ["upRightNode"], ["on", "click"], ["loc", [null, [77, 82], [77, 118]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "indexSelectedRight.downRightNodeDisabled", ["loc", [null, [80, 40], [80, 80]]]]]]], ["element", "action", ["downRightNode"], ["on", "click"], ["loc", [null, [80, 84], [80, 122]]]], ["element", "action", ["saveTree"], ["on", "click"], ["loc", [null, [83, 39], [83, 72]]]], ["inline", "t", ["forms.fd-appstruct-form.app-forms-panel-caption"], [], ["loc", [null, [89, 10], [89, 65]]]], ["inline", "ember-jstree", [], ["actionReceiver", ["subexpr", "@mut", [["get", "jstreeActionReceiverRight", ["loc", [null, [93, 27], [93, 52]]]]], [], []], "selectedNodes", ["subexpr", "@mut", [["get", "jstreeSelectedNodesRight", ["loc", [null, [94, 26], [94, 50]]]]], [], []], "data", ["subexpr", "@mut", [["get", "model.rightTreeNodes", ["loc", [null, [95, 17], [95, 37]]]]], [], []], "plugins", ["subexpr", "@mut", [["get", "pluginsRight", ["loc", [null, [96, 20], [96, 32]]]]], [], []], "typesOptions", ["subexpr", "@mut", [["get", "typesOptions", ["loc", [null, [97, 25], [97, 37]]]]], [], []], "treeObject", ["subexpr", "@mut", [["get", "jstreeObjectRight", ["loc", [null, [98, 23], [98, 40]]]]], [], []]], ["loc", [null, [92, 10], [99, 12]]]], ["block", "if", [["get", "_showModalDialog", ["loc", [null, [106, 6], [106, 22]]]]], [], 1, null, ["loc", [null, [106, 0], [117, 7]]]], ["block", "fd-config-panel", [], [], 2, null, ["loc", [null, [119, 0], [194, 20]]]]],
       locals: [],
       templates: [child0, child1, child2]
     };
@@ -34366,7 +34366,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
         var el4 = dom.createTextNode("      ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("button");
-        dom.setAttribute(el4, "class", "ui button");
+        dom.setAttribute(el4, "class", "ui button disabled");
         var el5 = dom.createTextNode("\n        ");
         dom.appendChild(el4, el5);
         var el5 = dom.createComment("");
@@ -38013,7 +38013,7 @@ define("dummy/templates/fd-listform-constructor", ["exports"], function (exports
         var el4 = dom.createTextNode("      ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("button");
-        dom.setAttribute(el4, "class", "ui button");
+        dom.setAttribute(el4, "class", "ui button disabled");
         var el5 = dom.createTextNode("\n        ");
         dom.appendChild(el4, el5);
         var el5 = dom.createComment("");
@@ -38310,10 +38310,10 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
             return el0;
           },
           buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-            var element7 = dom.childAt(fragment, [1]);
+            var element8 = dom.childAt(fragment, [1]);
             var morphs = new Array(2);
-            morphs[0] = dom.createElementMorph(element7);
-            morphs[1] = dom.createMorphAt(element7, 1, 1);
+            morphs[0] = dom.createElementMorph(element8);
+            morphs[1] = dom.createMorphAt(element8, 1, 1);
             return morphs;
           },
           statements: [["element", "action", ["delete"], [], ["loc", [null, [28, 66], [28, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [29, 12], [29, 54]]]]],
@@ -38363,10 +38363,10 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var element8 = dom.childAt(fragment, [1]);
+          var element9 = dom.childAt(fragment, [1]);
           var morphs = new Array(3);
-          morphs[0] = dom.createElementMorph(element8);
-          morphs[1] = dom.createMorphAt(element8, 1, 1);
+          morphs[0] = dom.createElementMorph(element9);
+          morphs[1] = dom.createMorphAt(element9, 1, 1);
           morphs[2] = dom.createMorphAt(fragment, 3, 3, contextualElement);
           dom.insertBoundary(fragment, null);
           return morphs;
@@ -38596,25 +38596,25 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var element2 = dom.childAt(fragment, [1]);
-          var element3 = dom.childAt(element2, [3]);
-          var element4 = dom.childAt(fragment, [3]);
-          var element5 = dom.childAt(element4, [3]);
-          var element6 = dom.childAt(fragment, [5]);
+          var element3 = dom.childAt(fragment, [1]);
+          var element4 = dom.childAt(element3, [3]);
+          var element5 = dom.childAt(fragment, [3]);
+          var element6 = dom.childAt(element5, [3]);
+          var element7 = dom.childAt(fragment, [5]);
           var morphs = new Array(13);
-          morphs[0] = dom.createMorphAt(dom.childAt(element2, [1, 1]), 0, 0);
-          morphs[1] = dom.createMorphAt(dom.childAt(element3, [1]), 1, 1);
-          morphs[2] = dom.createMorphAt(dom.childAt(element3, [3]), 1, 1);
-          morphs[3] = dom.createMorphAt(dom.childAt(element3, [5]), 1, 1);
-          morphs[4] = dom.createMorphAt(dom.childAt(element3, [7]), 1, 1);
-          morphs[5] = dom.createMorphAt(dom.childAt(element3, [9]), 1, 1);
-          morphs[6] = dom.createMorphAt(dom.childAt(element4, [1, 1]), 0, 0);
-          morphs[7] = dom.createMorphAt(dom.childAt(element5, [1]), 1, 1);
-          morphs[8] = dom.createMorphAt(dom.childAt(element5, [3]), 1, 1);
-          morphs[9] = dom.createMorphAt(dom.childAt(element5, [5]), 1, 1);
-          morphs[10] = dom.createMorphAt(dom.childAt(element5, [7]), 1, 1);
-          morphs[11] = dom.createMorphAt(dom.childAt(element6, [1, 1]), 0, 0);
-          morphs[12] = dom.createMorphAt(dom.childAt(element6, [3, 1]), 1, 1);
+          morphs[0] = dom.createMorphAt(dom.childAt(element3, [1, 1]), 0, 0);
+          morphs[1] = dom.createMorphAt(dom.childAt(element4, [1]), 1, 1);
+          morphs[2] = dom.createMorphAt(dom.childAt(element4, [3]), 1, 1);
+          morphs[3] = dom.createMorphAt(dom.childAt(element4, [5]), 1, 1);
+          morphs[4] = dom.createMorphAt(dom.childAt(element4, [7]), 1, 1);
+          morphs[5] = dom.createMorphAt(dom.childAt(element4, [9]), 1, 1);
+          morphs[6] = dom.createMorphAt(dom.childAt(element5, [1, 1]), 0, 0);
+          morphs[7] = dom.createMorphAt(dom.childAt(element6, [1]), 1, 1);
+          morphs[8] = dom.createMorphAt(dom.childAt(element6, [3]), 1, 1);
+          morphs[9] = dom.createMorphAt(dom.childAt(element6, [5]), 1, 1);
+          morphs[10] = dom.createMorphAt(dom.childAt(element6, [7]), 1, 1);
+          morphs[11] = dom.createMorphAt(dom.childAt(element7, [1, 1]), 0, 0);
+          morphs[12] = dom.createMorphAt(dom.childAt(element7, [3, 1]), 1, 1);
           return morphs;
         },
         statements: [["inline", "t", ["forms.fd-stage-edit-form.ember.frontend.caption"], [], ["loc", [null, [106, 13], [106, 68]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [111, 26], [111, 70]]]], "value", ["subexpr", "@mut", [["get", "moduleSetting.FrontendGitRepoUrl", ["loc", [null, [112, 20], [112, 52]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [113, 23], [113, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.frontend.git-url"], [], ["loc", [null, [114, 20], [114, 73]]]]], ["loc", [null, [110, 12], [115, 14]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [119, 26], [119, 70]]]], "value", ["subexpr", "@mut", [["get", "moduleSetting.FrontendLogin", ["loc", [null, [120, 20], [120, 47]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [121, 23], [121, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.frontend.login"], [], ["loc", [null, [122, 20], [122, 71]]]]], ["loc", [null, [118, 12], [123, 14]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [127, 26], [127, 70]]]], "value", ["subexpr", "@mut", [["get", "moduleSetting.FrontendPassword", ["loc", [null, [128, 20], [128, 50]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [129, 23], [129, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.frontend.password"], [], ["loc", [null, [130, 20], [130, 74]]]]], ["loc", [null, [126, 12], [131, 14]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [135, 26], [135, 70]]]], "value", ["subexpr", "@mut", [["get", "moduleSetting.FrontendBranch", ["loc", [null, [136, 20], [136, 48]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [137, 23], [137, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.frontend.branch"], [], ["loc", [null, [138, 20], [138, 72]]]]], ["loc", [null, [134, 12], [139, 14]]]], ["inline", "flexberry-checkbox", [], ["label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.frontend.publish"], [], ["loc", [null, [143, 20], [143, 73]]]], "value", ["subexpr", "@mut", [["get", "moduleSetting.FrontendPublishGh", ["loc", [null, [144, 20], [144, 51]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [145, 23], [145, 31]]]]], [], []]], ["loc", [null, [142, 12], [146, 14]]]], ["inline", "t", ["forms.fd-stage-edit-form.ember.backend.caption"], [], ["loc", [null, [153, 13], [153, 67]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [158, 26], [158, 70]]]], "value", ["subexpr", "@mut", [["get", "moduleSetting.BackendGitRepoUrl", ["loc", [null, [159, 20], [159, 51]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [160, 23], [160, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.backend.git-url"], [], ["loc", [null, [161, 20], [161, 72]]]]], ["loc", [null, [157, 12], [162, 14]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [166, 26], [166, 70]]]], "value", ["subexpr", "@mut", [["get", "moduleSetting.BackendLogin", ["loc", [null, [167, 20], [167, 46]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [168, 23], [168, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.backend.login"], [], ["loc", [null, [169, 20], [169, 70]]]]], ["loc", [null, [165, 12], [170, 14]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [174, 26], [174, 70]]]], "value", ["subexpr", "@mut", [["get", "moduleSetting.BackendPassword", ["loc", [null, [175, 20], [175, 49]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [176, 23], [176, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.backend.password"], [], ["loc", [null, [177, 20], [177, 73]]]]], ["loc", [null, [173, 12], [178, 14]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [182, 26], [182, 70]]]], "value", ["subexpr", "@mut", [["get", "moduleSetting.BackendBranch", ["loc", [null, [183, 20], [183, 47]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [184, 23], [184, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.backend.branch"], [], ["loc", [null, [185, 20], [185, 71]]]]], ["loc", [null, [181, 12], [186, 14]]]], ["inline", "t", ["forms.fd-stage-edit-form.ember.mobile.caption"], [], ["loc", [null, [193, 13], [193, 66]]]], ["inline", "flexberry-checkbox", [], ["value", ["subexpr", "@mut", [["get", "moduleSetting.GenerateCordova", ["loc", [null, [198, 20], [198, 49]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [199, 23], [199, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.mobile.cordova"], [], ["loc", [null, [200, 20], [200, 71]]]]], ["loc", [null, [197, 12], [201, 14]]]]],
@@ -38668,7 +38668,6 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
           var el3 = dom.createTextNode("\n          ");
           dom.appendChild(el2, el3);
           var el3 = dom.createElement("div");
-          dom.setAttribute(el3, "class", "field");
           var el4 = dom.createTextNode("\n            ");
           dom.appendChild(el3, el4);
           var el4 = dom.createComment("");
@@ -38688,12 +38687,14 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
           var element1 = dom.childAt(fragment, [1, 1]);
-          var morphs = new Array(2);
+          var element2 = dom.childAt(element1, [3]);
+          var morphs = new Array(3);
           morphs[0] = dom.createMorphAt(dom.childAt(element1, [1]), 1, 1);
-          morphs[1] = dom.createMorphAt(dom.childAt(element1, [3]), 1, 1);
+          morphs[1] = dom.createAttrMorph(element2, 'class');
+          morphs[2] = dom.createMorphAt(element2, 1, 1);
           return morphs;
         },
-        statements: [["inline", "flexberry-checkbox", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [218, 26], [218, 70]]]], "value", ["subexpr", "@mut", [["get", "moduleSetting.ProcessMethodology", ["loc", [null, [219, 20], [219, 52]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [220, 23], [220, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.bpm.process-methodology"], [], ["loc", [null, [221, 20], [221, 74]]]]], ["loc", [null, [217, 12], [222, 14]]]], ["inline", "flexberry-field", [], ["value", ["subexpr", "@mut", [["get", "moduleSetting.ProcessConsoleAddress", ["loc", [null, [226, 20], [226, 55]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [227, 23], [227, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.bpm.console-address"], [], ["loc", [null, [228, 20], [228, 70]]]]], ["loc", [null, [225, 12], [229, 14]]]]],
+        statements: [["inline", "flexberry-checkbox", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [218, 26], [218, 70]]]], "value", ["subexpr", "@mut", [["get", "moduleSetting.ProcessMethodology", ["loc", [null, [219, 20], [219, 52]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [220, 23], [220, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.bpm.process-methodology"], [], ["loc", [null, [221, 20], [221, 74]]]]], ["loc", [null, [217, 12], [222, 14]]]], ["attribute", "class", ["concat", ["field ", ["subexpr", "if", [["subexpr", "not", [["get", "moduleSetting.ProcessMethodology", ["loc", [null, [224, 38], [224, 70]]]]], [], ["loc", [null, [224, 33], [224, 71]]]], " disabled"], [], ["loc", [null, [224, 28], [224, 85]]]]]]], ["inline", "flexberry-field", [], ["value", ["subexpr", "@mut", [["get", "moduleSetting.ProcessConsoleAddress", ["loc", [null, [226, 20], [226, 55]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [227, 23], [227, 31]]]]], [], []], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.bpm.console-address"], [], ["loc", [null, [228, 20], [228, 70]]]]], ["loc", [null, [225, 12], [229, 14]]]]],
         locals: [],
         templates: []
       };
@@ -39059,35 +39060,35 @@ define("dummy/templates/fd-stage-edit-form", ["exports"], function (exports) {
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var element9 = dom.childAt(fragment, [3]);
-        var element10 = dom.childAt(element9, [5, 1]);
-        var element11 = dom.childAt(element10, [3]);
-        var element12 = dom.childAt(element9, [7]);
-        var element13 = dom.childAt(element9, [9]);
-        var element14 = dom.childAt(element9, [11]);
-        var element15 = dom.childAt(element9, [13]);
-        var element16 = dom.childAt(element9, [15]);
+        var element10 = dom.childAt(fragment, [3]);
+        var element11 = dom.childAt(element10, [5, 1]);
+        var element12 = dom.childAt(element11, [3]);
+        var element13 = dom.childAt(element10, [7]);
+        var element14 = dom.childAt(element10, [9]);
+        var element15 = dom.childAt(element10, [11]);
+        var element16 = dom.childAt(element10, [13]);
+        var element17 = dom.childAt(element10, [15]);
         var morphs = new Array(20);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
         morphs[1] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        morphs[2] = dom.createMorphAt(element9, 1, 1);
-        morphs[3] = dom.createMorphAt(dom.childAt(element9, [3, 1]), 1, 1);
-        morphs[4] = dom.createMorphAt(element10, 1, 1);
-        morphs[5] = dom.createElementMorph(element11);
-        morphs[6] = dom.createMorphAt(element11, 1, 1);
-        morphs[7] = dom.createMorphAt(element12, 1, 1);
-        morphs[8] = dom.createMorphAt(element12, 3, 3);
-        morphs[9] = dom.createMorphAt(element13, 1, 1);
-        morphs[10] = dom.createMorphAt(element13, 3, 3);
-        morphs[11] = dom.createMorphAt(element14, 1, 1);
-        morphs[12] = dom.createMorphAt(element14, 3, 3);
-        morphs[13] = dom.createMorphAt(element15, 1, 1);
-        morphs[14] = dom.createMorphAt(element15, 3, 3);
-        morphs[15] = dom.createMorphAt(element16, 1, 1);
-        morphs[16] = dom.createMorphAt(element16, 3, 3);
-        morphs[17] = dom.createMorphAt(dom.childAt(element9, [17]), 1, 1);
-        morphs[18] = dom.createMorphAt(dom.childAt(element9, [19]), 1, 1);
-        morphs[19] = dom.createMorphAt(dom.childAt(element9, [21]), 1, 1);
+        morphs[2] = dom.createMorphAt(element10, 1, 1);
+        morphs[3] = dom.createMorphAt(dom.childAt(element10, [3, 1]), 1, 1);
+        morphs[4] = dom.createMorphAt(element11, 1, 1);
+        morphs[5] = dom.createElementMorph(element12);
+        morphs[6] = dom.createMorphAt(element12, 1, 1);
+        morphs[7] = dom.createMorphAt(element13, 1, 1);
+        morphs[8] = dom.createMorphAt(element13, 3, 3);
+        morphs[9] = dom.createMorphAt(element14, 1, 1);
+        morphs[10] = dom.createMorphAt(element14, 3, 3);
+        morphs[11] = dom.createMorphAt(element15, 1, 1);
+        morphs[12] = dom.createMorphAt(element15, 3, 3);
+        morphs[13] = dom.createMorphAt(element16, 1, 1);
+        morphs[14] = dom.createMorphAt(element16, 3, 3);
+        morphs[15] = dom.createMorphAt(element17, 1, 1);
+        morphs[16] = dom.createMorphAt(element17, 3, 3);
+        morphs[17] = dom.createMorphAt(dom.childAt(element10, [17]), 1, 1);
+        morphs[18] = dom.createMorphAt(dom.childAt(element10, [19]), 1, 1);
+        morphs[19] = dom.createMorphAt(dom.childAt(element10, [21]), 1, 1);
         return morphs;
       },
       statements: [["inline", "t", ["forms.fd-stage-edit-form.caption"], [], ["loc", [null, [1, 22], [1, 62]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [3, 6], [3, 19]]]]], [], 0, null, ["loc", [null, [3, 0], [13, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [15, 26], [15, 31]]]]], [], []]], ["loc", [null, [15, 2], [15, 33]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [18, 43], [18, 55]]]]], [], []]], ["loc", [null, [18, 6], [18, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [23, 16], [23, 24]]]]], [], 1, null, ["loc", [null, [23, 6], [32, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [33, 59], [33, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [34, 8], [34, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [40, 18], [40, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [41, 15], [41, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [43, 12], [43, 22]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [44, 16], [44, 33]]]], "error", ""], [], ["loc", [null, [44, 12], [44, 45]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.name-caption"], [], ["loc", [null, [45, 12], [45, 55]]]]], ["loc", [null, [39, 4], [46, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [47, 40], [47, 57]]]]], [], []], "pointing", "pointing"], ["loc", [null, [47, 4], [47, 79]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [52, 18], [52, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [53, 15], [53, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [55, 12], [55, 29]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [56, 16], [56, 40]]]], "error", ""], [], ["loc", [null, [56, 12], [56, 52]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.description-caption"], [], ["loc", [null, [57, 12], [57, 62]]]]], ["loc", [null, [51, 4], [58, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [59, 40], [59, 64]]]]], [], []], "pointing", "pointing"], ["loc", [null, [59, 4], [59, 86]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [64, 18], [64, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [65, 15], [65, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.company", ["loc", [null, [67, 12], [67, 25]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.company", ["loc", [null, [68, 16], [68, 36]]]], "error", ""], [], ["loc", [null, [68, 12], [68, 48]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.company-caption"], [], ["loc", [null, [69, 12], [69, 58]]]]], ["loc", [null, [63, 4], [70, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.company", ["loc", [null, [71, 40], [71, 60]]]]], [], []], "pointing", "pointing"], ["loc", [null, [71, 4], [71, 82]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [76, 18], [76, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [77, 15], [77, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.copyright", ["loc", [null, [79, 12], [79, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.copyright", ["loc", [null, [80, 16], [80, 38]]]], "error", ""], [], ["loc", [null, [80, 12], [80, 50]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.copyright-caption"], [], ["loc", [null, [81, 12], [81, 60]]]]], ["loc", [null, [75, 4], [82, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.copyright", ["loc", [null, [83, 40], [83, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [83, 4], [83, 84]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [88, 18], [88, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [89, 15], [89, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.product", ["loc", [null, [91, 12], [91, 25]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.product", ["loc", [null, [92, 16], [92, 36]]]], "error", ""], [], ["loc", [null, [92, 12], [92, 48]]]], "label", ["subexpr", "t", ["forms.fd-stage-edit-form.product-caption"], [], ["loc", [null, [93, 12], [93, 58]]]]], ["loc", [null, [87, 4], [94, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.product", ["loc", [null, [95, 40], [95, 60]]]]], [], []], "pointing", "pointing"], ["loc", [null, [95, 4], [95, 82]]]], ["block", "flexberry-toggler", [], ["caption", ["subexpr", "t", ["forms.fd-stage-edit-form.ember.caption"], [], ["loc", [null, [100, 14], [100, 58]]]], "expanded", ["subexpr", "@mut", [["get", "expandedEmber", ["loc", [null, [101, 15], [101, 28]]]]], [], []], "iconClass", ["subexpr", "@mut", [["get", "iconClass", ["loc", [null, [102, 16], [102, 25]]]]], [], []]], 2, null, ["loc", [null, [99, 4], [205, 26]]]], ["block", "flexberry-toggler", [], ["caption", ["subexpr", "t", ["forms.fd-stage-edit-form.bpm.caption"], [], ["loc", [null, [210, 14], [210, 56]]]], "expanded", ["subexpr", "@mut", [["get", "expandedBPM", ["loc", [null, [211, 15], [211, 26]]]]], [], []], "iconClass", ["subexpr", "@mut", [["get", "iconClass", ["loc", [null, [212, 16], [212, 25]]]]], [], []]], 3, null, ["loc", [null, [209, 4], [233, 26]]]], ["block", "flexberry-toggler", [], ["caption", ["subexpr", "t", ["forms.fd-stage-edit-form.orm.caption"], [], ["loc", [null, [238, 14], [238, 56]]]], "expanded", ["subexpr", "@mut", [["get", "expandedORM", ["loc", [null, [239, 15], [239, 26]]]]], [], []], "iconClass", ["subexpr", "@mut", [["get", "iconClass", ["loc", [null, [240, 16], [240, 25]]]]], [], []]], 4, null, ["loc", [null, [237, 4], [259, 26]]]]],
@@ -42195,7 +42196,7 @@ define("dummy/templates/fd-visual-edit-form", ["exports"], function (exports) {
         var el4 = dom.createTextNode("\n      ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("button");
-        dom.setAttribute(el4, "class", "ui button");
+        dom.setAttribute(el4, "class", "ui button disabled");
         var el5 = dom.createTextNode("\n        ");
         dom.appendChild(el4, el5);
         var el5 = dom.createComment("");
@@ -48033,7 +48034,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+e4324dc4"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+8e65c1b2"});
 }
 
 /* jshint ignore:end */
