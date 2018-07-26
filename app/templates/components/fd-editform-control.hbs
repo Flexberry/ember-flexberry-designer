@@ -21,15 +21,14 @@
     tabsMenuTheme="top attached tabular" 
     class="ui segments" 
     tabClick = (action "changeTab")
+    selectedTab=selectedItem.caption
   }}
     {{#each control.tabs as |tab index|}}
       {{#ui-tab-segment
         title=tab.caption
-        theme="bottom attached segment"
-        active=activeTab
-        selected=selectedItem
-        tab=tab.caption
+        dataTab=tab.caption
         tab=tab
+        theme="bottom attached segment"
       }}
 
         {{#each tab.rows as |row|}}

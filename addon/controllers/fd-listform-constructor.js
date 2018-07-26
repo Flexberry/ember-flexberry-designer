@@ -14,8 +14,9 @@ import {
  } from '../utils/fd-attributes-for-tree';
 import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
+import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 
-export default Ember.Controller.extend({
+export default Ember.Controller.extend(FdWorkPanelToggler, {
   /**
     @private
     @property _showModalDialog
