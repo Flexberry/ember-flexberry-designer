@@ -65,6 +65,11 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
             link: 'fd-sequence-diagram-primitives-demo',
             caption: i18n.t('forms.application.sitemap.root.sequence-diagram-primitives-demo.caption'),
             title: i18n.t('forms.application.sitemap.root.sequence-diagram-primitives-demo.title'),
+          },
+          {
+            link: 'collaboration-diagram-primitives-demo',
+            caption: i18n.t('forms.application.sitemap.root.collaboration-diagram-primitives-demo.caption'),
+            title: i18n.t('forms.application.sitemap.root.collaboration-diagram-primitives-demo.title'),
           }
         ]
       });
