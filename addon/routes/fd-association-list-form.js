@@ -2,6 +2,21 @@ import ListFormRoute from 'ember-flexberry/routes/list-form';
 import LimitByStageMixin from '../mixins/fd-limit-by-stage';
 
 export default ListFormRoute.extend(LimitByStageMixin, {
+
+  /**
+    A hook you can implement to convert the URL into the model for this route.
+    [More info](http://emberjs.com/api/classes/Ember.Route.html#method_model).
+
+    @method model
+    @param {Object} params
+    @param {Object} transition
+   */
+  model: function() {
+    let store = this.get('store');
+    let records = store.peekAll('fd-dev-association');
+    return records;
+  },
+
   /**
     Name of model projection to be used as record's properties limitation.
 
