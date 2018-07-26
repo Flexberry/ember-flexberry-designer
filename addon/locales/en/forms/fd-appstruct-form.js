@@ -16,7 +16,7 @@ export default {
   'remove-control': 'Remove',
   'remove-approve': 'Are you sure?',
   'delete-error': 'You can not delete a class, it has nested elements. Delete them to delete the class',
-  search: 'Search tree elements',
+  search: 'Enter name to search',
   desktop: 'Desktop',
   'form-config-panel': {
     caption: 'App editor',

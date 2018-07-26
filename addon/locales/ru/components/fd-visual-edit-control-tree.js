@@ -16,7 +16,7 @@ export default {
   'master-property': 'Свойство в мастере',
   'sample-setting': 'Настройка выборки',
   visibility: 'Видимость',
-  search: 'Поиск элементов дерева',
+  search: 'Введите имя для поиска',
   tree: {
     'property': 'Собственные свойства',
     'type': 'Простые типы',
