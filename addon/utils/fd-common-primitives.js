@@ -303,6 +303,19 @@ joint.dia.Link.define('flexberryUml.BaseLink', {
   }]
 });
 
+joint.dia.Link.define('flexberryUml.LabelNameLink', {
+  attrs: {
+    text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }
+  },
+  labels: [{
+    position: { distance: 10, offset: -15 }, attrs: { text: { text: '' } } }, {
+    position: { distance: 10, offset: 15 }, attrs: { text: { text: '' } } }, {
+    textAnchor: 'middle', attrs: { text: { text: '' } } }, {
+    position: { distance: -40, offset: 15 }, attrs: { text: { text: '' } } }, {
+    position: { distance: -40, offset: -15 }, attrs: { text: { text: '' } }
+  }]
+});
+
 joint.shapes.flexberryUml.BaseLink.define('flexberryUml.Association', {
 });
 

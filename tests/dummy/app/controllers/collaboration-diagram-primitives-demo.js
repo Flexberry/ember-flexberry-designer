@@ -169,6 +169,17 @@ export default Ember.Controller.extend({
           position: { x: 800, y: 260 }
         });
 
+        let testLink = new joint.shapes.flexberryUml.LabelNameLink({
+          source: { x:400, y:350 },
+          target: { x:700, y:350 }
+        });
+
+        testLink.label(0, {
+            attrs: {
+              text: { text: 'Label' }
+            }
+        });
+
         _this.graph.addCell([
           instance,
           multiObject,
@@ -189,7 +200,8 @@ export default Ember.Controller.extend({
           flatMsgForward,
           flatMsgBack,
           nestedMsgForward,
-          nestedMsgBack
+          nestedMsgBack,
+          testLink
         ]);
       });
     }
