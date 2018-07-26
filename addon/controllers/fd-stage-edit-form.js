@@ -81,8 +81,8 @@ export default EditFormController.extend({
         'Name': moduleSettingTypes[i]
       };
 
-      valueModuleSetting.push(valueModuleSettingData);
-      moduleSettingData.push(moduleSettingTypeData);
+      valueModuleSetting.pushObject(valueModuleSettingData);
+      moduleSettingData.pushObject(moduleSettingTypeData);
     }
 
     let data = { 'project': stagePk, 'moduleSettingType': moduleSettingData, 'valueModuleSetting': valueModuleSetting };

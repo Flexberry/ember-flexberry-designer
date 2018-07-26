@@ -19,6 +19,15 @@ export default EditFormController.extend(FdWorkPanelToggler, {
   */
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
+  /**
+    Setting off for 'openProcessEditorForm' buttons.
+
+    @property processMethodologyValue
+    @type Boolean
+    @default false
+  */
+  processMethodologyValue: false,
+
   /*
     Setting off for buttons of the left tree.
   */
@@ -435,7 +444,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
           store.createRecord('fd-dev-view', {
             class: devClass,
             name: newCaption,
-            definition: '<View><ViewPropertiesList /><ViewDetailsList /></View>'
+            definition: Ember.A()
           }).save().then(savedDevView => {
             store.createRecord('fd-dev-form-view', {
               class: savedDevClass,

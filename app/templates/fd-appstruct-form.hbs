@@ -3,8 +3,8 @@
   <h3>{{t 'forms.fd-appstruct-form.caption'}}</h3>
   <div class="field">
     <div class="flexberry-edit-panel">
-      <button class="ui button" type='button' {{action "openProcessEditorForm"}}><i class="sitemap icon"></i>{{t "forms.fd-appstruct-form.button-precess-editor"}}</button>
-      <button class="ui  button" type='button' {{action "openGenerationForm"}}><i class="settings icon"></i>{{t "forms.fd-appstruct-form.button-generation"}}</button>
+      <button class="ui button {{if (not processMethodologyValue) " disabled"}}" type="button" {{action "openProcessEditorForm"}}><i class="sitemap icon"></i>{{t "forms.fd-appstruct-form.button-precess-editor"}}</button>
+      <button class="ui  button" type="button" {{action "openGenerationForm"}}><i class="settings icon"></i>{{t "forms.fd-appstruct-form.button-generation"}}</button>
       <button type="button" class="ui button close-button" {{action 'close'}}>
         {{t "forms.edit-form.close-button-text"}}
       </button>

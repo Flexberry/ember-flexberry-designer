@@ -111,6 +111,17 @@ export default Ember.Route.extend({
   setupController(controller) {
     this._super(...arguments);
     controller.set('parentRoute', this.get('router.url'));
+
+    let stagePk = this.get('currentProjectContext').getCurrentStage();
+    let host = this.get('store').adapterFor('application').host;
+    Ember.$.ajax({
+      type: 'GET',
+      xhrFields: { withCredentials: true },
+      url: `${host}/GetCurrentProcessMethodology(project=${stagePk})`,
+      success(result) {
+        controller.set('processMethodologyValue', result.value);
+      }
+    });
   },
 
   /**
