@@ -1,5 +1,5 @@
 {{#ui-tab-menu theme=tabsMenuTheme}}
-  {{#each tabs as |tab|}}
+  {{#each _showedTabs as |tab|}}
     <a class="item {{if (eq selectedTab tab.dataTab) "selected"}} {{if (eq activeTab tab.dataTab) "active"}}" {{action "tabClick" tab bubbles=false}} data-tab="{{tab.dataTab}}" >{{tab.title}}</a>
   {{/each}}
   {{#if overflowButtonShow}}

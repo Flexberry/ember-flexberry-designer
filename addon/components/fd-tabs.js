@@ -22,11 +22,15 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
   },
 
   updateOverflowTabs: function() {
+    if (this.overflowButtonShow) {
+      return;
+    }
+
     this._calculateWidths();
 
-    if (this.get('hideTabsCount') > 0) {
+    this.set('overflowButtonShow', this.get('hideTabsCount') > 0);
+    if (this.overflowButtonShow) {
       this._hideTab();
-      this.toggleProperty('overflowButtonShow');
     }
   },
 
@@ -43,19 +47,19 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
       }
     });
 
-    _this.hideTabsCount = countHide;
+    _this.hideTabsCount += countHide;
   },
 
   _hideTab: function() {
     let hideTabs = this.get('hideTabsCount');
 
     for (let i = 0; i < hideTabs; i++) {
-      let _currentTabs = this.get('tabs');
+      let _currentTabs = this.get('_showedTabs');
       let lastTab = _currentTabs.get('lastObject');
 
       this.get('_hideTabs').pushObject(lastTab);
       _currentTabs.popObject();
-      this.set('tabs', _currentTabs);
+      this.set('_showedTabs', _currentTabs);
     }
 
     this.get('_hideTabs').reverse();
@@ -71,11 +75,13 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
   children: null,
 
   _hideTabs: null,
+  _showedTabs: null,
 
   init() {
     this._super(...arguments);
     this.set('children', Ember.A());
     this.set('_hideTabs', Ember.A());
+    // this.set('_showedTabs', this.get('tabs'));
   },
 
   /**
@@ -103,6 +109,16 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
     return view instanceof TabPane;
   }),
 
+  _showedTabs: Ember.computed('tabs', function() {
+    let items = Ember.A();
+    this.get('tabs').forEach((tab) => {
+      let item = tab;
+      items.push(item);
+    });
+
+    return items;
+  }),
+
   /**
    * Array of objects that define the tab structure
    *
@@ -123,7 +139,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
 
   activeTab:'',
 
-  tabsObserver: Ember.observer('tabs', function() {
+  tabsObserver: Ember.observer('tabs.[]', function() {
     let _this = this;
     Ember.run.schedule('afterRender',	function() {
       _this.$('.item').tab();
@@ -151,7 +167,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
     changeLastTab(selectedValue) {
       let _this = this;
 
-      let _currentTabs = _this.get('tabs');
+      let _currentTabs = _this.get('_showedTabs');
       let _currentHideTabs =  _this.get('_hideTabs');
       let lastTab = _currentTabs.get('lastObject');
 
@@ -167,7 +183,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
         _currentTabs.pushObject(_currentHideTabs.get('lastObject'));
         _currentHideTabs.replace(_currentHideTabs.indexOf(replaceTabIndex), 1, lastTab);
 
-        _this.set('tabs', _currentTabs);
+        _this.set('_showedTabs', _currentTabs);
         _this.set('_hideTabs', _currentHideTabs);
         _this.set('activeTab', selectedValue);
       }
