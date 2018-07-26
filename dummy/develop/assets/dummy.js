@@ -681,6 +681,10 @@ define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-de
             link: 'fd-sequence-diagram-primitives-demo',
             caption: i18n.t('forms.application.sitemap.root.sequence-diagram-primitives-demo.caption'),
             title: i18n.t('forms.application.sitemap.root.sequence-diagram-primitives-demo.title')
+          }, {
+            link: 'collaboration-diagram-primitives-demo',
+            caption: i18n.t('forms.application.sitemap.root.collaboration-diagram-primitives-demo.caption'),
+            title: i18n.t('forms.application.sitemap.root.collaboration-diagram-primitives-demo.title')
           }]
         });
       }
@@ -891,7 +895,8 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
           target: { x: 300, y: 30 },
           labels: [{
             attrs: { text: { text: '*' } } }, {
-            attrs: { text: { text: 'txt' } } }, {
+            attrs: { text: { text: '' } } }, {
+            attrs: { text: { text: 'Agregation', 'text-decoration': '' } } }, {
             attrs: { text: { text: '' } } }, {
             attrs: { text: { text: '1' } }
           }]
@@ -903,6 +908,7 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
           labels: [{
             attrs: { text: { text: '*' } } }, {
             attrs: { text: { text: '' } } }, {
+            attrs: { text: { text: 'Association', 'text-decoration': '' } } }, {
             attrs: { text: { text: '' } } }, {
             attrs: { text: { text: '0..1' } }
           }]
@@ -910,7 +916,14 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
 
         var linkComposition = new _npmJointjs['default'].shapes.flexberryUml.Composition({
           source: { x: 100, y: 120 },
-          target: { x: 300, y: 120 }
+          target: { x: 300, y: 120 },
+          labels: [{
+            attrs: { text: { text: '*' } } }, {
+            attrs: { text: { text: '' } } }, {
+            attrs: { text: { text: 'Composition', 'text-decoration': '' } } }, {
+            attrs: { text: { text: '' } } }, {
+            attrs: { text: { text: '0..1' } }
+          }]
         });
 
         var linkDependency = new _npmJointjs['default'].shapes.flexberryUml.Dependency({
@@ -930,22 +943,38 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
 
         var linkQualified = new _npmJointjs['default'].shapes.flexberryUml.Qualified({
           source: { x: 100, y: 320 },
-          target: { x: 300, y: 320 }
+          target: { x: 300, y: 320 },
+          labels: [{
+            attrs: { text: { text: '' } } }, {
+            attrs: { text: { text: '1' } } }, {
+            attrs: { text: { text: 'Qualified' } } }, {
+            attrs: { text: { text: '2' } } }, {
+            attrs: { text: { text: '' } }
+          }]
         });
 
         var linkQualifiedAggregation = new _npmJointjs['default'].shapes.flexberryUml.QualifiedAggregation({
           source: { x: 100, y: 370 },
           target: { x: 300, y: 370 },
           labels: [{
-            attrs: { text: { text: 'txt' } } }, {
             attrs: { text: { text: '' } } }, {
-            attrs: { text: { text: 'lbl' } }
+            attrs: { text: { text: '1' } } }, {
+            attrs: { text: { text: 'Q-Agregation' } } }, {
+            attrs: { text: { text: '2' } } }, {
+            attrs: { text: { text: '' } }
           }]
         });
 
         var linkQualifiedComposition = new _npmJointjs['default'].shapes.flexberryUml.QualifiedComposition({
           source: { x: 100, y: 420 },
-          target: { x: 300, y: 420 }
+          target: { x: 300, y: 420 },
+          labels: [{
+            attrs: { text: { text: '' } } }, {
+            attrs: { text: { text: '1' } } }, {
+            attrs: { text: { text: 'Q-Composition' } } }, {
+            attrs: { text: { text: '2' } } }, {
+            attrs: { text: { text: '' } }
+          }]
         });
 
         var linkNestedClassAssociation = new _npmJointjs['default'].shapes.flexberryUml.NestedClassAssociation({
@@ -1073,22 +1102,22 @@ define('dummy/controllers/collaboration-diagram-primitives-demo', ['exports', 'e
             model: _this.graph
           });
 
-          var instance = new _npmJointjs['default'].shapes.flexberryUml.CollInstance({
+          var instance = new _npmJointjs['default'].shapes.flexberryUml.Instance({
             position: { x: 50, y: 10 },
             name: 'Instance'
           });
 
-          var multiObject = new _npmJointjs['default'].shapes.flexberryUml.CollMultiObj({
+          var multiObject = new _npmJointjs['default'].shapes.flexberryUml.MultiObject({
             position: { x: 50, y: 60 },
-            name: 'Multi Object \n new string'
+            name: 'Multi Object'
           });
 
-          var activeObject = new _npmJointjs['default'].shapes.flexberryUml.CollActiveObj({
+          var activeObject = new _npmJointjs['default'].shapes.flexberryUml.ActiveObject({
             position: { x: 50, y: 120 },
             name: 'Active object'
           });
 
-          var nArrayAssociation = new _npmJointjs['default'].shapes.flexberryUml.CollNArrayAssociation({
+          var nArrayAssociation = new _npmJointjs['default'].shapes.flexberryUml.NAryAssociation({
             position: { x: 50, y: 170 },
             name: 'N-array association'
           });
@@ -1098,69 +1127,81 @@ define('dummy/controllers/collaboration-diagram-primitives-demo', ['exports', 'e
             name: 'Design Pattern'
           });
 
-          var nAssociationConnector = new _npmJointjs['default'].shapes.flexberryUml.CollNAssociationConnect({
+          var nAssociationConnector = new _npmJointjs['default'].shapes.flexberryUml.NArrayAssociationConnect({
             source: { x: 400, y: 10 },
             target: { x: 700, y: 10 },
             labels: [{ attrs: { text: { text: 'n-Association' } } }]
           });
 
-          var associationConnector = new _npmJointjs['default'].shapes.flexberryUml.CollAssociationConnect({
+          var associationConnector = new _npmJointjs['default'].shapes.flexberryUml.Association({
             source: { x: 400, y: 50 },
             target: { x: 700, y: 50 },
             labels: [{
+              attrs: { text: { text: '' } } }, {
               attrs: { text: { text: '1' } } }, {
               attrs: { text: { text: 'Association' } } }, {
-              attrs: { text: { text: '2' } }
+              attrs: { text: { text: '2' } } }, {
+              attrs: { text: { text: '' } }
             }]
           });
 
-          var qualifiedConnector = new _npmJointjs['default'].shapes.flexberryUml.CollQualifiedConnect({
+          var qualifiedConnector = new _npmJointjs['default'].shapes.flexberryUml.Qualified({
             source: { x: 400, y: 90 },
             target: { x: 700, y: 90 },
             labels: [{
+              attrs: { text: { text: '' } } }, {
               attrs: { text: { text: '1' } } }, {
               attrs: { text: { text: 'Qualified' } } }, {
-              attrs: { text: { text: '2' } }
+              attrs: { text: { text: '2' } } }, {
+              attrs: { text: { text: '' } }
             }]
           });
 
-          var agregationConnector = new _npmJointjs['default'].shapes.flexberryUml.CollAggregationConnect({
+          var agregationConnector = new _npmJointjs['default'].shapes.flexberryUml.Aggregation({
             source: { x: 400, y: 140 },
             target: { x: 700, y: 140 },
             labels: [{
+              attrs: { text: { text: '' } } }, {
               attrs: { text: { text: '1' } } }, {
               attrs: { text: { text: 'Agregation' } } }, {
-              attrs: { text: { text: '2' } }
+              attrs: { text: { text: '2' } } }, {
+              attrs: { text: { text: '' } }
             }]
           });
 
-          var qAgregationConnector = new _npmJointjs['default'].shapes.flexberryUml.CollQAggregationConnect({
+          var qAgregationConnector = new _npmJointjs['default'].shapes.flexberryUml.QualifiedAggregation({
             source: { x: 400, y: 180 },
             target: { x: 700, y: 180 },
             labels: [{
+              attrs: { text: { text: '' } } }, {
               attrs: { text: { text: '1' } } }, {
               attrs: { text: { text: 'Q-Agregation' } } }, {
-              attrs: { text: { text: '2' } }
+              attrs: { text: { text: '2' } } }, {
+              attrs: { text: { text: '' } }
             }]
           });
 
-          var compositionConnector = new _npmJointjs['default'].shapes.flexberryUml.CollCompositionConnect({
+          var compositionConnector = new _npmJointjs['default'].shapes.flexberryUml.Composition({
             source: { x: 400, y: 210 },
             target: { x: 700, y: 210 },
             labels: [{
+              attrs: { text: { text: '' } } }, {
               attrs: { text: { text: '1' } } }, {
               attrs: { text: { text: 'Composition' } } }, {
-              attrs: { text: { text: '2' } }
+              attrs: { text: { text: '2' } } }, {
+              attrs: { text: { text: '' } }
             }]
           });
 
-          var qCompositionConnector = new _npmJointjs['default'].shapes.flexberryUml.CollQCompositionConnect({
+          var qCompositionConnector = new _npmJointjs['default'].shapes.flexberryUml.QualifiedComposition({
             source: { x: 400, y: 250 },
             target: { x: 700, y: 250 },
             labels: [{
+              attrs: { text: { text: '' } } }, {
               attrs: { text: { text: '1' } } }, {
               attrs: { text: { text: 'Q-Composition' } } }, {
-              attrs: { text: { text: '2' } }
+              attrs: { text: { text: '2' } } }, {
+              attrs: { text: { text: '' } }
             }]
           });
 
@@ -13239,6 +13280,10 @@ define('dummy/locales/en/translations', ['exports', 'ember', 'ember-flexberry-de
             'sequence-diagram-primitives-demo': {
               caption: 'Sequence Diagram',
               title: ''
+            },
+            'collaboration-diagram-primitives-demo': {
+              caption: 'Collaboration Diagram',
+              title: ''
             }
           }
         }
@@ -13422,6 +13467,10 @@ define('dummy/locales/ru/translations', ['exports', 'ember', 'ember-flexberry-de
             },
             'sequence-diagram-primitives-demo': {
               caption: 'Диаграмма последовательности',
+              title: ''
+            },
+            'collaboration-diagram-primitives-demo': {
+              caption: 'Диаграмма сотрудничества',
               title: ''
             }
           }
@@ -48034,7 +48083,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+26336aa9"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+8c1f8583"});
 }
 
 /* jshint ignore:end */
