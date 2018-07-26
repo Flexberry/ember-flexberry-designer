@@ -174,7 +174,7 @@ export default Ember.Route.extend({
   */
   _locateControl: function (controlTree, propertyDefinition, path) {
     if (!path || path === '') {
-      let row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
+      let row  = FdEditformRow.create({ controls: Ember.A() });
 
       if (controlTree.get('rows')) {
         controlTree.get('rows').pushObject(row);
@@ -220,7 +220,6 @@ export default Ember.Route.extend({
     });
 
     row.get('controls').pushObject(control);
-    row.set('columnsCount', row.get('columnsCount') + 1);
 
     return row;
   },
@@ -272,7 +271,7 @@ export default Ember.Route.extend({
     }
 
     if (!row) {
-      row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
+      row  = FdEditformRow.create({ controls: Ember.A() });
 
       if (controlTree.get('rows')) {
         controlTree.get('rows').pushObject(row);
@@ -284,7 +283,6 @@ export default Ember.Route.extend({
     if (!tabGroup) {
       tabGroup  = FdEditformTabgroup.create({ tabs: Ember.A(), width: '100*' });
       row.get('controls').pushObject(tabGroup);
-      row.incrementProperty('columnsCount');
     }
 
     if (!tab) {
@@ -337,7 +335,7 @@ export default Ember.Route.extend({
     }
 
     if (!row) {
-      row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
+      row  = FdEditformRow.create({ controls: Ember.A() });
 
       if (controlTree.get('rows')) {
         controlTree.get('rows').pushObject(row);
@@ -349,7 +347,6 @@ export default Ember.Route.extend({
     if (!group) {
       group  = FdEditformGroup.create({ rows: Ember.A(), width: '100*', caption: groupCaption });
       row.get('controls').pushObject(group);
-      row.incrementProperty('columnsCount');
     }
 
     let nextPath = path.slice(groupCaptionEndIndex + 1, pathLength);
@@ -397,7 +394,7 @@ export default Ember.Route.extend({
     }
 
     if (!row) {
-      row  = FdEditformRow.create({ controls: Ember.A(), columnsCount: 0 });
+      row  = FdEditformRow.create({ controls: Ember.A() });
 
       if (controlTree.get('rows')) {
         controlTree.get('rows').pushObject(row);
