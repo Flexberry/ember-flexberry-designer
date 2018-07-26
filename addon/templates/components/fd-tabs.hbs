@@ -1,6 +1,6 @@
 {{#ui-tab-menu theme=tabsMenuTheme}}
-  {{#each tabs as |ta|}}
-    <a class="item" {{action "tabClick" ta bubbles=false}} data-tab="{{ta.tab}}" >{{ta.title}}</a>
+  {{#each tabs as |tab|}}
+    <a class="item {{if (eq selectedTab tab.dataTab) "selected"}} {{if (eq activeTab tab.dataTab) "active"}}" {{action "tabClick" tab bubbles=false}} data-tab="{{tab.dataTab}}" >{{tab.title}}</a>
   {{/each}}
   {{#if overflowButtonShow}}
     {{fd-tab-dropdown

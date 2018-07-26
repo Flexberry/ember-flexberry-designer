@@ -6,6 +6,18 @@ export default FlexberryDropdown.extend({
   layout,
   dynamicChange: true,
 
+  _items: Ember.computed('items.[]', function() {
+    let items = this.get('items');
+    let obj = null;
+
+    if (Ember.isArray(items)) {
+      obj = {};
+      items.forEach(item => obj[item.dataTab] = item.title);
+    }
+
+    return obj || items;
+  }),
+
   actions: {
     onChange(component, id, newValue) {
 
@@ -18,9 +30,9 @@ export default FlexberryDropdown.extend({
         if (newValue === oldValue) {
           return;
         }
-
-        this.sendAction('onChange', newValue);
       }
+
+      this.sendAction('onChange', newValue);
     },
 
     onShowHide() {

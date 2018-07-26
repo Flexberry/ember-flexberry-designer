@@ -34,11 +34,11 @@
   {{/if}}
   <div class="menu">
     {{yield}}
-    {{#each-in _items as |item|}}
-      {{#if item.tab}}
-        <a class="item" data-tab="{{item.tab}}">{{item.tab}}</a>
+    {{#each-in _items as |key value|}}
+      {{#if value}}
+        <a class="item" data-tab="{{key}}">{{value}}</a>
       {{else}}
-        <a class="item" data-tab="_">{{item.title}}</a>
+        <a class="item" data-tab="_">{{value}}</a>
       {{/if}}
     {{/each-in}}
   </div>

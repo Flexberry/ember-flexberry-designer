@@ -17,14 +17,7 @@ export default Ember.Component.extend({
   layout: layout,
   _theme: 'tab',
   theme: 'bottom attached',
-  attributeBindings: ['tab:data-tab'],
-  selected: '',
-
-  /**
-  tab name
-  @property {String} tab
-  */
-  tab: '',
+  attributeBindings: ['dataTab:data-tab'],
 
   title: '',
 
@@ -66,6 +59,9 @@ export default Ember.Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
     this._registerWithParent();
+  },
+
+  didInsertElement() {
   },
 
   willRender() {
