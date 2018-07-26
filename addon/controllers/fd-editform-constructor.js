@@ -364,7 +364,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
         let controls = this.get('model.controls');
         let viewDefinition = Ember.A();
         for (let i = 0; i < controls.length; i++) {
-          this._extractPathPart(controls.objectAt(i), '', viewDefinition);
+          this._extractPathPart(controls.objectAt(i), '', viewDefinition, '');
         }
 
         view.set('definition', viewDefinition);
@@ -785,7 +785,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     let controls = model.controls;
     let length = controls.get('length');
     for (let i = 0; i < length; i++) {
-      this._extractPathPart(controls.objectAt(i), '', viewDefinition);
+      this._extractPathPart(controls.objectAt(i), '', viewDefinition, '');
     }
 
     // Check viewDefinition on errors.
@@ -848,22 +848,24 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     @param {FdEditformControl|FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab} control Some item in object model.
     @param {String} path Path for current item.
     @param {Ember.Array} viewDefinition View definition with result paths for controls.
+    @param {String} column Column path for current item.
   */
-  _extractPathPart: function(control, path, viewDefinition) {
+  _extractPathPart: function(control, path, viewDefinition, column) {
     if (control instanceof FdEditformControl) {
-      control.set('propertyDefinition.path', path);
+      let pathWithColumn = `${path ? path + '\\' : ''}${column}`;
+      control.set('propertyDefinition.path', pathWithColumn);
       control.set('propertyDefinition.caption', control.get('caption'));
       viewDefinition.pushObject(control.get('propertyDefinition'));
       return path;
     } else if (control instanceof FdEditformRow) {
       for (let i = 0; i < control.get('controls.length'); i++) {
         let controlInRow = control.get('controls').objectAt(i);
-        let pathWithColumn = path;
+        let pathWithColumn = column;
         if (control.get('controls.length') > 1) {
-          pathWithColumn = `${path ? path + '\\' : ''}#${i + 1}`;
+          pathWithColumn = `#${i + 1}`;
         }
 
-        this._extractPathPart(controlInRow, pathWithColumn, viewDefinition);
+        this._extractPathPart(controlInRow, path, viewDefinition, pathWithColumn);
       }
     } else if (control instanceof FdEditformGroup) {
       let pathWithGroup = '-' + control.caption;
@@ -873,12 +875,12 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
       for (let i = 0; i < control.get('rows.length'); i++) {
         let rowInGroup = control.get('rows').objectAt(i);
-        this._extractPathPart(rowInGroup, pathWithGroup, viewDefinition);
+        this._extractPathPart(rowInGroup, pathWithGroup, viewDefinition, column);
       }
     } else if (control instanceof FdEditformTabgroup) {
       for (let i = 0; i < control.get('tabs.length'); i++) {
         let rowInGroup = control.get('tabs').objectAt(i);
-        this._extractPathPart(rowInGroup, path, viewDefinition);
+        this._extractPathPart(rowInGroup, path, viewDefinition, column);
       }
     } else if (control instanceof FdEditformTab) {
       let pathWithTab = '|' + control.caption;
@@ -888,7 +890,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
       for (let i = 0; i < control.get('rows.length'); i++) {
         let rowInGroup = control.get('rows').objectAt(i);
-        this._extractPathPart(rowInGroup, pathWithTab, viewDefinition);
+        this._extractPathPart(rowInGroup, pathWithTab, viewDefinition, column);
       }
     }
   },

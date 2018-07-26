@@ -320,7 +320,7 @@ let parsingPropertyName = function (store, dataObject, propertyName) {
   let endRoleID = dataObject.get('id');
   let endRoleData = getDataForBuildTree(store, endRoleID);
   let associationSelectedClass = endRoleData.associations.filter(function(item) {
-    return item.get('realStartRole') === startRole || item.get('startRole') === startRole;
+    return item.get('realStartRole') === startRole || item.get('startRole') === startRole || item.get('startClass.name') === startRole;
   });
 
   for (let i = 1; i < propertyName.length; i++) {

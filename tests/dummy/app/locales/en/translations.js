@@ -6,7 +6,7 @@ Ember.$.extend(true, translations, EmberFlexberryDesignerTranslations);
 
 Ember.$.extend(true, translations, {
 
-  'application-name': 'Application caption',
+  'application-name': '',
 
   forms: {
     loading: {
@@ -167,6 +167,10 @@ Ember.$.extend(true, translations, {
             caption: 'Sequence Diagram',
             title: '',
           },
+          'collaboration-diagram-primitives-demo': {
+            caption: 'Collaboration Diagram',
+            title: '',
+          }
         },
       }
     },

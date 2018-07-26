@@ -10,8 +10,7 @@ joint.shapes.flexberryUml.BaseClass.define('flexberryUml.Class', {
 
 }, {
   getClassName: function() {
-    let stereotype = this.get('stereotype').length > 0 ? '«' + this.get('stereotype') + '»' : '';
-    return [this.get('name'), stereotype];
+    return [this.get('name'), this.get('stereotype')];
   }
 });
 
@@ -110,143 +109,11 @@ joint.shapes.flexberryUml.Class.define('flexberryUml.TemplateClass', {
   }
 });
 
-joint.shapes.flexberryUml.BaseObject.define('flexberryUml.NAryAssociation', {
-  attrs: {
-    text: {
-      'text-decoration': 'underline',
-      'font-size':'12'
-    },
-    path: {
-      'd': 'M 0 20 L 50 0 100 20 50 40 Z',
-    }
-  },
-  heightPadding: 40,
-}, {
-  markup: [
-    '<g class="rotatable">',
-    '<g class="scalable">',
-    '<path class="flexberry-uml-header-rect"/>',
-    '</g>',
-    '<text class="flexberry-uml-header-text"/>',
-    '</g>'
-  ].join(''),
-});
-
-joint.shapes.flexberryUml.BaseObject.define('flexberryUml.Instance', {
-  attrs: {
-    text: {
-      'text-decoration': 'underline',
-    }
-  }
-});
-
-joint.shapes.flexberryUml.Instance.define('flexberryUml.ActiveObject', {
-  attrs: {
-    text: {
-      'font-weight':'bold'
-    }
-  }
-});
-
-joint.shapes.flexberryUml.BaseObject.define('flexberryUml.MultiObject', {
-  attrs: {
-    text: {
-      'text-decoration': 'underline',
-      'font-size':'12'
-    },
-    '.back-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff' }
-  }
-}, {
-
-  updateRectangles: function() {
-    joint.shapes.flexberryUml.BaseObject.prototype.updateRectangles.apply(this, arguments);
-
-    let attrs = this.get('attrs');
-    let backRectTransY = 6;
-    attrs['.back-rect'].transform = 'translate(3, ' + backRectTransY + ')';
-    attrs['.back-rect'].height = this.size().height;
-    attrs['.back-rect'].width = this.size().width;
-
-    let newWidth = this.size().width;
-    let newHeight = this.size().height + backRectTransY;
-    this.resize(newWidth, newHeight);
-  },
-
-  markup: [
-    '<g class="rotatable">',
-    '<g class="scalable">',
-    '<rect class="back-rect"/><rect class="flexberry-uml-header-rect"/>',
-    '</g>',
-    '<text class="flexberry-uml-header-text"/>',
-    '</g>'
-  ].join(''),
-
-});
-
-joint.dia.Link.define('flexberryUml.BaseLink', {
-  labels: [{
-    position: { distance: 10, offset: -15 }, attrs: { text: { text:  '*' } } }, {
-    position: { distance: 10, offset: 15 }, attrs: { text: { text:  '', 'text-anchor':'start' } } }, {
-    position: { distance: -40, offset: 15 }, attrs: { text: { text:  '', 'text-anchor':'end' } } }, {
-    position: { distance: -40, offset: -15 }, attrs: { text: { text:  '1' } }
-  }]
-});
-
-joint.shapes.flexberryUml.BaseLink.define('flexberryUml.Aggregation', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' } },
-});
-
-joint.dia.Link.define('flexberryUml.Qualified', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 z', fill: 'white' } },
-  labels: [{
-    position: { distance: 10, offset: 15 }, attrs: { text: { text:  '', 'text-anchor':'start' } } }, {
-    position: { distance: -40, offset: 15 }, attrs: { text: { text:  '', 'text-anchor':'end' } } }, {
-  }]
-});
-
-joint.shapes.flexberryUml.Qualified.define('flexberryUml.QualifiedAggregation', {
-  attrs: {
-    '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 L 26 10 M 52 10 L 39 17 L 26 10 L 39 3 z', fill: 'white' }
-  },
-});
-
-joint.shapes.flexberryUml.Qualified.define('flexberryUml.QualifiedComposition', {
-  attrs: {
-    '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 L 26 10 M 52 10 L 39 17 L 26 10 L 39 3 z', fill: 'url(#solids)' }
-  },
-}, {
-
-  initialize: function() {
-    // called from Backbone constructor
-    // call base initialize()
-    joint.dia.Link.prototype.initialize.apply(this, arguments);
-
-    // link markup is so complex that we need to fetch its definition
-    var markup = (this.markup || this.get('markup'));
-
-    // append <linearGradient> to markup, so that it covers whole path
-    markup += '<linearGradient id="solids" x1="0%" y1="0%" x2="100%" y2="0%">' +
-      '<stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:1" />' +
-      '<stop offset="50%" style="stop-color:rgb(255,255,255);stop-opacity:1" />' +
-      '<stop offset="50%" style="stop-color:rgb(0,0,0);stop-opacity:1" />' +
-      '<stop offset="100%" style="stop-color:rgb(0,0,0);stop-opacity:1" />' +
-      '</linearGradient>';
-    this.set('markup', markup);
-  }
-});
-
-joint.shapes.flexberryUml.BaseLink.define('flexberryUml.Composition', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' } }
-});
-
 joint.dia.Link.define('flexberryUml.Realization', {
   attrs: {
     '.marker-target': { d: 'M 0 0 z' },
     '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '7 2' },
   },
-});
-
-joint.shapes.flexberryUml.BaseLink.define('flexberryUml.Association', {
 });
 
 joint.dia.Link.define('flexberryUml.Generalization', {

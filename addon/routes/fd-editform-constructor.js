@@ -13,6 +13,19 @@ export default Ember.Route.extend({
 
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
+  actions: {
+    /**
+      See [EmberJS API](https://emberjs.com/).
+
+      @method actions.didTransition
+    */
+    didTransition() {
+      Ember.$('.full.height').on('click.fd-editform-constructor', () => {
+        this.get('controller').send('selectItem');
+      });
+    },
+  },
+
   queryParams: {
     classId: { refreshModel: true },
   },
@@ -133,15 +146,21 @@ export default Ember.Route.extend({
     @param {Boolean} isExisting
     @param {Object} transition
    */
-  resetController(controller) {
+  resetController(controller, isExiting) {
     this._super(...arguments);
+
+    if (isExiting) {
+      Ember.$('.full.height').off('click.fd-editform-constructor');
+    }
 
     let store = this.get('store');
     store.peekAll('fd-dev-class').forEach((item) => item.rollbackAll());
     store.peekAll('fd-dev-stage').forEach((item) => item.rollbackAll());
     store.peekAll('fd-dev-association').forEach((item) => item.rollbackAll());
     store.peekAll('fd-dev-aggregation').forEach((item) => item.rollbackAll());
-    controller.set('model.editform.formViews.firstObject.view.definition', Ember.A(controller.get('model.originalDefinition')));
+    let definition = controller.get('model.editform.formViews.firstObject.view.definition');
+    definition.clear();
+    definition.pushObjects(controller.get('model.originalDefinition'));
   },
 
   /**

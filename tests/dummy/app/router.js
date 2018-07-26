@@ -107,6 +107,7 @@ Router.map(function () {
   this.route('usecase-diagram-primitives-demo');
   this.route('deployment-diagram-primitives-demo');
   this.route('statechart-diagram-primitives-demo');
+  this.route('collaboration-diagram-primitives-demo');
 });
 
 export default Router;
