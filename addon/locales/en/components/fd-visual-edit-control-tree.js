@@ -16,4 +16,11 @@ export default {
   'master-property': 'Property in master',
   'sample-setting': 'Master customization string',
   visibility: 'Visibility',
+  search: 'Search tree elements',
+  tree: {
+    'property': 'Own properties',
+    'type': 'Simple types',
+    'master': 'Masters',
+    'detail': 'Details',
+  }
 };

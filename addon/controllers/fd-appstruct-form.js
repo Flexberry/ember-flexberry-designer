@@ -65,18 +65,18 @@ export default EditFormController.extend(FdWorkPanelToggler, {
 
     @property pluginsLeft
     @type String
-    @default 'wholerow, types, sort'
+    @default 'wholerow, types, sort, search'
    */
-  pluginsLeft: 'wholerow, types, sort',
+  pluginsLeft: 'wholerow, types, sort, search',
 
   /**
     Included plugins for right jsTree.
 
     @property pluginsRight
     @type String
-    @default 'wholerow, types'
+    @default 'wholerow, types, search'
    */
-  pluginsRight: 'wholerow, types',
+  pluginsRight: 'wholerow, types, search',
 
   /**
     Selected nodes in left jsTree.
@@ -137,6 +137,34 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     'url': {
       icon: 'globe icon'
     }
+  })),
+
+  /**
+    Data for search tree node.
+
+    @property searchTermLeft
+    @type String
+    @default ''
+   */
+  searchTermLeft: '',
+
+  /**
+    Data for search tree node.
+
+    @property searchTermRight
+    @type String
+    @default ''
+   */
+  searchTermRight: '',
+
+  /**
+    Search settings for jsTree.
+
+    @property searchOptions
+    @type Object
+  */
+  searchOptions: Ember.computed(() => ({
+    show_only_matches: true
   })),
 
   _modelObserver: Ember.on('init', Ember.observer('model', function() {

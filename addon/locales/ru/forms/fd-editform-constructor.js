@@ -29,6 +29,7 @@ export default {
     'remove-approve': 'Вы уверены?',
     apply: 'Применить',
     cancel: 'Отмена',
+    search: 'Поиск элементов дерева',
     tree: {
       'not-used-attributes': {
         'property': 'Собственные свойства',

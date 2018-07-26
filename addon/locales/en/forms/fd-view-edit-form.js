@@ -26,6 +26,7 @@ export default {
   },
   'attributes-tree': {
     caption: 'All attributes',
+    search: 'Search tree elements',
   },
   'attributes-panel': {
     'move-right-btn-title':'Add attribute',

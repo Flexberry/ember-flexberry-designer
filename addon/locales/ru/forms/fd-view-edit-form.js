@@ -26,6 +26,7 @@ export default {
   },
   'attributes-tree': {
     caption: 'Все атрибуты',
+    search: 'Поиск элементов дерева',
   },
   'attributes-panel': {
     'move-right-btn-title':'Добавить атрибут',

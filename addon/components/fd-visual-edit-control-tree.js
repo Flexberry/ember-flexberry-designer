@@ -151,9 +151,9 @@ export default FlexberryBaseComponent.extend({
 
     @property plugins
     @type String
-    @default 'wholerow, types'
+    @default 'wholerow, types, search'
    */
-  plugins: 'wholerow, types',
+  plugins: 'wholerow, types, search',
 
   /**
     Type settings for jsTree.
@@ -183,6 +183,34 @@ export default FlexberryBaseComponent.extend({
     'class': {
       icon: 'assets/images/class.bmp'
     }
+  })),
+
+  /**
+    Data for search for attributes.
+
+    @property searchAttributes
+    @type String
+    @default ''
+   */
+  searchAttributes: '',
+
+  /**
+    Data for search for type.
+
+    @property searchType
+    @type String
+    @default ''
+   */
+  searchType: '',
+
+  /**
+    Search settings for jsTree.
+
+    @property searchOptions
+    @type Object
+  */
+  searchOptions: Ember.computed(() => ({
+    show_only_matches: true
   })),
 
   /**
@@ -736,7 +764,7 @@ export default FlexberryBaseComponent.extend({
     let attributesTree = Ember.A();
     attributesTree.pushObjects([
       FdAttributesTree.create({
-        text: 'Собственные свойства',
+        text: this.get('i18n').t('components.fd-visual-edit-control-tree.tree.property').toString(),
         type: 'class',
         id: 'attributes',
         children: this.get('model.attributes'),
@@ -744,7 +772,7 @@ export default FlexberryBaseComponent.extend({
         state: { opened: true }
       }),
       FdAttributesTree.create({
-        text: 'Мастера',
+        text: this.get('i18n').t('components.fd-visual-edit-control-tree.tree.master').toString(),
         type: 'class',
         id: 'masters',
         children: this.get('model.masters'),
@@ -752,7 +780,7 @@ export default FlexberryBaseComponent.extend({
         state: { opened: true }
       }),
       FdAttributesTree.create({
-        text: 'Детейлы',
+        text: this.get('i18n').t('components.fd-visual-edit-control-tree.tree.detail').toString(),
         type: 'class',
         id: 'details',
         children: this.get('model.details'),
@@ -774,7 +802,7 @@ export default FlexberryBaseComponent.extend({
 
     typeTree.pushObjects([
       FdAttributesTree.create({
-        text: 'Простые типы',
+        text: this.get('i18n').t('components.fd-visual-edit-control-tree.tree.type').toString(),
         type: 'class',
         id: 'simpleTypes',
         children: this.get('model.simpleTypes'),
@@ -806,7 +834,7 @@ export default FlexberryBaseComponent.extend({
         state: { opened: true }
       }),
       FdAttributesTree.create({
-        text: 'Мастера',
+        text: this.get('i18n').t('components.fd-visual-edit-control-tree.tree.master').toString(),
         type: 'class',
         id: 'masters',
         children: this.get('model.mastersType'),
@@ -814,7 +842,7 @@ export default FlexberryBaseComponent.extend({
         state: { opened: true }
       }),
       FdAttributesTree.create({
-        text: 'Детейлы',
+        text: this.get('i18n').t('components.fd-visual-edit-control-tree.tree.detail').toString(),
         type: 'class',
         id: 'details',
         children: this.get('model.detailsType'),

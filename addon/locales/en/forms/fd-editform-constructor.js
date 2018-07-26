@@ -29,6 +29,7 @@ export default {
     'remove-approve': 'Are you sure?',
     apply: 'Apply',
     cancel: 'Cancel',
+    search: 'Search tree elements',
     tree: {
       'not-used-attributes': {
         'property': 'Own properties',

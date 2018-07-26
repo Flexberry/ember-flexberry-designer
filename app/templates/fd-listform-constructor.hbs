@@ -15,19 +15,19 @@
   <div class="field">
     <div class="flexberry-edit-panel">
       {{#unless readonly}}
-        <button type="submit" class="ui button save-button" {{action 'save'}}>
+        <button type="button" class="ui button save-button" {{action 'save'}}>
           {{t "forms.edit-form.save-button-text"}}
         </button>
         {{#unless model.isNew}}
-          <button type="submit" class="ui button save-close-button" {{action 'save-close'}}>
+          <button type="button" class="ui button save-close-button" {{action 'save-close'}}>
             {{t "forms.edit-form.saveAndClose-button-text"}}
           </button>
         {{/unless}}
       {{/unless}}
-      <button class="ui button">
+      <button class="ui button" type='button'>
         {{t "forms.fd-listform-constructor.preview-mobile-variant"}}
       </button>
-      <button type="submit" class="ui button close-button" {{action 'close'}}>
+      <button type="button" class="ui button close-button" {{action 'close'}}>
         {{t "forms.edit-form.close-button-text"}}
       </button>
     </div>
@@ -113,12 +113,12 @@
           {{t "forms.fd-listform-constructor.form-config-panel.add-columns-header"}}
         </div>
         <div class="field">
-          <button class="ui button" {{action "addColumn"}}>
+          <button class="ui button" type='button' {{action "addColumn"}}>
             {{t "forms.fd-listform-constructor.form-config-panel.add-column"}}
           </button>
         </div>
         <div class="field">
-          <button class="ui button" {{action "addEmptyControl"}}>
+          <button class="ui button" type='button' {{action "addEmptyControl"}}>
             {{t "forms.fd-listform-constructor.form-config-panel.select-column"}}
           </button>
         </div>
@@ -127,15 +127,15 @@
         </div>
         <div class="equal width fields">
           <div class="field">
-            <button class="ui icon button" disabled={{or (not selectedColumn) _selectedIsFirst}} {{action "sortSelectedColumn" -1}}>
+            <button class="ui icon button" type='button' disabled={{or (not selectedColumn) _selectedIsFirst}} {{action "sortSelectedColumn" -1}}>
               <i class="left arrow icon"></i>
             </button>
-            <button class="ui icon button" disabled={{or (not selectedColumn) _selectedIsLast}} {{action "sortSelectedColumn" 1}}>
+            <button class="ui icon button" type='button' disabled={{or (not selectedColumn) _selectedIsLast}} {{action "sortSelectedColumn" 1}}>
               <i class="right arrow icon"></i>
             </button>
           </div>
           <div class="field">
-            <button class="ui button" disabled={{not selectedColumn}} {{action "removeSelectedColumn" false}}>
+            <button class="ui button" type='button' disabled={{not selectedColumn}} {{action "removeSelectedColumn" false}}>
               {{t "forms.fd-listform-constructor.form-config-panel.remove-column"}}
             </button>
           </div>
@@ -145,6 +145,13 @@
             {{t "forms.fd-editform-constructor.form-config-panel.attributes-control"}}
           </div>
           <div class="ui segments">
+            <div class="field">
+              {{
+                flexberry-textbox
+                placeholder=(t 'forms.fd-editform-constructor.form-config-panel.search')
+                value=searchTermTree
+              }}
+            </div>
             <div class="ui segment overflow-panel">
               {{
                 ember-jstree
@@ -152,16 +159,18 @@
                 selectedNodes=selectedNodesNotUsedAttributesTree
                 data=dataNotUsedAttributesTree
                 plugins=pluginsTree
+                searchTerm=searchTermTree
+                searchOptions=searchOptionsTree
                 typesOptions=typesOptionsTree
                 treeObject=treeObjectNotUsedAttributesTree
                 eventDidBecomeReady=(action 'handleTreeDidBecomeReady')
               }}
             </div>
           </div>
-          <button class='ui button {{_applyDisabled}}' {{action "setAttributeInControl" on="click" }}>
+          <button class='ui button {{_applyDisabled}}' type='button' {{action "setAttributeInControl" on="click" }}>
             {{t "forms.fd-editform-constructor.form-config-panel.apply"}}
           </button>
-          <button class='ui button' {{action "deleteEmptyControl" on="click" }}>
+          <button class='ui button' type='button' {{action "deleteEmptyControl" on="click" }}>
             {{t "forms.fd-editform-constructor.form-config-panel.cancel"}}
           </button>
         {{/if}}
