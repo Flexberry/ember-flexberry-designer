@@ -111,6 +111,8 @@ export default Ember.Route.extend({
   setupController(controller) {
     this._super(...arguments);
     controller.set('parentRoute', this.get('router.url'));
+    controller.set('searchTermLeft', '');
+    controller.set('searchTermRight', '');
 
     let stagePk = this.get('currentProjectContext').getCurrentStage();
     let host = this.get('store').adapterFor('application').host;
