@@ -214,6 +214,15 @@ export default FlexberryBaseComponent.extend({
   })),
 
   /**
+    Setting off property notNull.
+
+    @property notNullDisabled
+    @type Boolean
+    @default false
+   */
+  notNullDisabled: false,
+
+  /**
     Data selected attribute for editing.
 
     @property selectedAttribute
@@ -240,6 +249,7 @@ export default FlexberryBaseComponent.extend({
     let dataobject = this.get('model.dataobject');
     if (propertyDefinition instanceof FdViewAttributesDetail) {
       this.set('selectedItem.type', 'detail');
+      this.set('notNullDisabled', true);
       let currentClassData = getDataForBuildTree(store, dataobject.id);
       attribute = currentClassData.aggregations.find(function(item) {
         return (item.get('endRole') === namesPropertyDefinition[0] || item.get('endClass.name') === namesPropertyDefinition[0]);
@@ -251,6 +261,12 @@ export default FlexberryBaseComponent.extend({
       this.set('selectedItem.type', 'master');
       let parsingResult = parsingPropertyName(store, dataobject, namesPropertyDefinition);
       attribute = parsingResult.associations[0];
+      if (attribute.constructor.modelName === 'fd-dev-aggregation') {
+        this.set('notNullDisabled', true);
+      } else {
+        this.set('notNullDisabled', false);
+      }
+
       if (attribute.get('endClass.id') !== parsingResult.classId) {
         this.set('readonly', true);
       }
