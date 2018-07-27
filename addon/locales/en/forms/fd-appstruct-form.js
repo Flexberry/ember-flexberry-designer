@@ -19,7 +19,7 @@ export default {
   desktop: 'Desktop',
   'form-config-panel': {
     caption: 'App editor',
-    'app-properties-header': 'Application and stage properties',
+    'app-properties-header': 'Application properties',
     'forms-properties-header': 'Form properties',
   },
   tab: {
@@ -27,6 +27,12 @@ export default {
     formType: 'Type (stereotype)',
     title: 'Navigation element title',
     url: 'Url',
-    description: 'Description'
+    description: 'Description',
+    name: 'Application Name',
+    caption: 'Application caption',
+    'standart-desktop': 'Standard desktop',
+    'namespace-postfix': 'Namespace postfix',
+    'pb-custom-attributes': 'Programmer brackets for arbitrary attributes',
+    'disable-all-right-checks': 'Disable authorization check',
   }
 };
