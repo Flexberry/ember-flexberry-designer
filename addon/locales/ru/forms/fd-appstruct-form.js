@@ -24,6 +24,8 @@ export default {
     'forms-properties-header': 'Свойства формы',
   },
   tab: {
+    'selected-element-null': 'Элемент не выбран',
+    'selected-element-change': 'Нажмите на объект дерева \'Формы приложения\' чтобы выбрать элемент',
     formName: 'Название класса формы',
     formType: 'Тип (стереотип)',
     title: 'Заголовок элемента навигации',
