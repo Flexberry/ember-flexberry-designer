@@ -122,10 +122,37 @@
 
 <div class="file">
     <pre class="prettyprint linenums">
+import Ember from &#x27;ember&#x27;;
 import ListFormRoute from &#x27;ember-flexberry/routes/list-form&#x27;;
 import LimitByStageMixin from &#x27;../mixins/fd-limit-by-stage&#x27;;
 
 export default ListFormRoute.extend(LimitByStageMixin, {
+
+  /**
+   Service that get current project contexts.
+
+   @property currentProjectContext
+   @type {Class}
+   @default Ember.inject.service()
+   */
+  currentProjectContext: Ember.inject.service(&#x27;fd-current-project-context&#x27;),
+
+  /**
+    A hook you can implement to convert the URL into the model for this route.
+    [More info](http://emberjs.com/api/classes/Ember.Route.html#method_model).
+
+    @method model
+    @param {Object} params
+    @param {Object} transition
+   */
+  model: function() {
+    let store = this.get(&#x27;store&#x27;);
+    let stagePk = this.get(&#x27;currentProjectContext&#x27;).getCurrentStage();
+    let allAssociation = store.peekAll(&#x27;fd-dev-association&#x27;);
+    let records = allAssociation.filterBy(&#x27;stage.id&#x27;, stagePk);
+    return records;
+  },
+
   /**
     Name of model projection to be used as record&#x27;s properties limitation.
 
