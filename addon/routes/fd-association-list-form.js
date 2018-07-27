@@ -1,7 +1,34 @@
+import Ember from 'ember';
 import ListFormRoute from 'ember-flexberry/routes/list-form';
 import LimitByStageMixin from '../mixins/fd-limit-by-stage';
 
 export default ListFormRoute.extend(LimitByStageMixin, {
+
+  /**
+   Service that get current project contexts.
+
+   @property currentProjectContext
+   @type {Class}
+   @default Ember.inject.service()
+   */
+  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+
+  /**
+    A hook you can implement to convert the URL into the model for this route.
+    [More info](http://emberjs.com/api/classes/Ember.Route.html#method_model).
+
+    @method model
+    @param {Object} params
+    @param {Object} transition
+   */
+  model: function() {
+    let store = this.get('store');
+    let stagePk = this.get('currentProjectContext').getCurrentStage();
+    let allAssociation = store.peekAll('fd-dev-association');
+    let records = allAssociation.filterBy('stage.id', stagePk);
+    return records;
+  },
+
   /**
     Name of model projection to be used as record's properties limitation.
 
