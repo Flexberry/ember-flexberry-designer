@@ -24,6 +24,8 @@ export default {
     'forms-properties-header': 'Form properties',
   },
   tab: {
+    'selected-element-null': 'Element is not selected',
+    'selected-element-change': 'Click on node \'App forms\' tree to select Element',
     formName: 'Form class name',
     formType: 'Type (stereotype)',
     title: 'Navigation element title',
