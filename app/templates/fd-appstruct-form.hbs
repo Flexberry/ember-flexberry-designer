@@ -147,6 +147,55 @@
         <div class="ui small dividing header">
           {{t "forms.fd-appstruct-form.form-config-panel.app-properties-header"}}
         </div>
+        <div class="field">
+          <label>{{t "forms.fd-appstruct-form.tab.name"}}</label>
+          {{
+            flexberry-textbox
+            value=model.applications.0.name
+          }}
+        </div>
+        <div class="field">
+          <label>{{t "forms.fd-appstruct-form.tab.description"}}</label>
+          {{
+            flexberry-textarea
+            value=model.applications.0.description
+          }}
+        </div>
+        <div class="field">
+          <label>{{t "forms.fd-appstruct-form.tab.caption"}}</label>
+          {{
+            flexberry-textbox
+            value=model.applications.0.caption
+          }}
+        </div>
+        <div class="field">
+          <label>{{t "forms.fd-appstruct-form.tab.standart-desktop"}}</label>
+          {{
+            flexberry-checkbox
+            value=model.applications.0.standartDesktop
+          }}
+        </div>
+        <div class="field">
+          <label>{{t "forms.fd-appstruct-form.tab.namespace-postfix"}}</label>
+          {{
+            flexberry-textbox
+            value=model.applications.0.namespacePostfix
+          }}
+        </div>
+        <div class="field">
+          <label>{{t "forms.fd-appstruct-form.tab.pb-custom-attributes"}}</label>
+          {{
+            flexberry-checkbox
+            value=model.applications.0.pBCustomAttributes
+          }}
+        </div>
+        <div class="field">
+          <label>{{t "forms.fd-appstruct-form.tab.disable-all-right-checks"}}</label>
+          {{
+            flexberry-checkbox
+            value=model.applications.0.disableAllRightChecks
+          }}
+        </div>
       {{/ui-tab-segment}}
       {{#ui-tab-segment tab='second' title=(t "forms.fd-appstruct-form.form-config-panel.forms-properties-header") theme="" }}
         {{#if (and (not-eq selectedElementForEdit.type 'url') (not-eq selectedElementForEdit.type 'folder') (not-eq selectedElementForEdit.type 'desk'))}}

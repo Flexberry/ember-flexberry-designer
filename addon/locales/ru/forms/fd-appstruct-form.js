@@ -20,7 +20,7 @@ export default {
   desktop: 'Рабочий стол',
   'form-config-panel': {
     caption: 'Редактор приложения',
-    'app-properties-header': 'Свойства класса application и стадии',
+    'app-properties-header': 'Свойства приложения',
     'forms-properties-header': 'Свойства формы',
   },
   tab: {
@@ -28,6 +28,12 @@ export default {
     formType: 'Тип (стереотип)',
     title: 'Заголовок элемента навигации',
     url: 'Ссылка',
-    description: 'Описание'
+    description: 'Описание',
+    name: 'Имя приложения',
+    caption: 'Заголовок приложения',
+    'standart-desktop': 'Стандартный рабочий стол',
+    'namespace-postfix': 'Суффикс для пространства имен',
+    'pb-custom-attributes': 'Скобки программиста для произвольных атрибутов',
+    'disable-all-right-checks': 'Отключение проверки полномочий',
   }
 };
