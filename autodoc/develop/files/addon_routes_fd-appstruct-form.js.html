@@ -137,11 +137,11 @@ export default Ember.Route.extend({
 
   model: function() {
     let store = this.get(&#x27;store&#x27;);
-    let stagePk = this.get(&#x27;currentProjectContext&#x27;).getCurrentStage();
+    let stage = this.get(&#x27;currentProjectContext&#x27;).getCurrentStageModel();
 
     // Get current classes.
     let allClasses = store.peekAll(&#x27;fd-dev-class&#x27;);
-    let classesCurrentStage = allClasses.filterBy(&#x27;stage.id&#x27;, stagePk);
+    let classesCurrentStage = allClasses.filterBy(&#x27;stage.id&#x27;, stage.id);
 
     // null or «implementation»
     let implementations = classesCurrentStage.filter(function(item) {
@@ -157,6 +157,17 @@ export default Ember.Route.extend({
     let applications = classesCurrentStage.filter(function(item) {
       return item.get(&#x27;stereotype&#x27;) === &#x27;«application»&#x27;;
     });
+
+    if (applications.length === 0) {
+      Ember.A(applications).pushObject(store.createRecord(&#x27;fd-dev-class&#x27;, {
+        stage: stage,
+        caption: &#x27;Application&#x27;,
+        name: &#x27;Application&#x27;,
+        nameStr: &#x27;Application&#x27;,
+        stereotype: &#x27;«application»&#x27;,
+        containersStr: Ember.A()
+      }));
+    }
 
     /*
       Build tree.
