@@ -425,7 +425,7 @@ export default Ember.Controller.extend({
     */
     selectItem(item) {
       let selectedItem = this.get('selectedItem');
-      if (this.get('_moveItem')) {
+      if (this.get('_moveItem') && !Ember.isNone(item)) {
         if (this._findItemContainer(item, selectedItem) === null) {
           let selectedItemContainer = this._findItemContainer(selectedItem);
           try {
@@ -438,7 +438,7 @@ export default Ember.Controller.extend({
             this.set('error', error);
           }
         }
-      } else {
+      } else if (!this.get('_moveItem')) {
         let newSelectedItem = selectedItem === item ? undefined : item;
         this.set('selectedItem', newSelectedItem);
 
