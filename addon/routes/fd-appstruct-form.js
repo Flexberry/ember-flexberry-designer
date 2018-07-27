@@ -90,7 +90,7 @@ export default Ember.Route.extend({
     // Add root tree.
     let treeRight = Ember.A([
       FdAppStructTree.create({
-        text: this.get('i18n').t('forms.fd-appstruct-form.desktop'),
+        text: this.get('i18n').t('forms.fd-appstruct-form.desktop').toString(),
         type: 'desk',
         id: 'node_app',
         children: rightTreeNodes,
@@ -111,6 +111,8 @@ export default Ember.Route.extend({
   setupController(controller) {
     this._super(...arguments);
     controller.set('parentRoute', this.get('router.url'));
+    controller.set('searchTermLeft', '');
+    controller.set('searchTermRight', '');
 
     let stagePk = this.get('currentProjectContext').getCurrentStage();
     let host = this.get('store').adapterFor('application').host;

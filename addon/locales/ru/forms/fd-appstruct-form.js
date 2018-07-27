@@ -16,6 +16,7 @@ export default {
   'remove-control': 'Удалить',
   'remove-approve': 'Вы уверены?',
   'delete-error': 'Класса удалить нельзя, у него есть вложенные элементы. Удалите их чтобы удалить класс',
+  search: 'Введите имя для поиска',
   desktop: 'Рабочий стол',
   'form-config-panel': {
     caption: 'Редактор приложения',

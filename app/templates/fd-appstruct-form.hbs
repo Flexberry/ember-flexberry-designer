@@ -3,9 +3,9 @@
   <h3>{{t 'forms.fd-appstruct-form.caption'}}</h3>
   <div class="field">
     <div class="flexberry-edit-panel">
-      <button class="ui button {{if (not processMethodologyValue) " disabled"}}" {{action "openProcessEditorForm"}}><i class="sitemap icon"></i>{{t "forms.fd-appstruct-form.button-precess-editor"}}</button>
-      <button class="ui  button" {{action "openGenerationForm"}}><i class="settings icon"></i>{{t "forms.fd-appstruct-form.button-generation"}}</button>
-      <button type="submit" class="ui button close-button" {{action 'close'}}>
+      <button class="ui button {{if (not processMethodologyValue) " disabled"}}" type="button" {{action "openProcessEditorForm"}}><i class="sitemap icon"></i>{{t "forms.fd-appstruct-form.button-precess-editor"}}</button>
+      <button class="ui  button" type="button" {{action "openGenerationForm"}}><i class="settings icon"></i>{{t "forms.fd-appstruct-form.button-generation"}}</button>
+      <button type="button" class="ui button close-button" {{action 'close'}}>
         {{t "forms.edit-form.close-button-text"}}
       </button>
     </div>
@@ -14,22 +14,22 @@
   <div class="panel-wrapper">
     <div class="panel-left closable">
       <div class="ui buttons">
-        <button class='ui button icon {{removeLeftNodeDisabled}}' title="{{t "forms.fd-appstruct-form.remove-text"}}" {{action "removeLeftNode" on="click" }}>
+        <button class='ui button icon {{removeLeftNodeDisabled}}' type='button' title="{{t "forms.fd-appstruct-form.remove-text"}}" {{action "removeLeftNode" on="click" }}>
           <i class="remove icon" ></i>
         </button>
-        <button class="ui button create-button" title="{{t "forms.fd-appstruct-form.add-class-text"}}" {{action 'addLeftClass'}}>
+        <button class="ui button create-button" type='button' title="{{t "forms.fd-appstruct-form.add-class-text"}}" {{action 'addLeftClass'}}>
           <i class="add circle icon"></i>
         </button>
-        <button class="ui button create-button {{addLeftNodeDisabled}}" title="{{t "forms.fd-appstruct-form.add-editform-text"}}" {{action 'addLeftEditForm'}}>
+        <button class="ui button create-button {{addLeftNodeDisabled}}" type='button' title="{{t "forms.fd-appstruct-form.add-editform-text"}}" {{action 'addLeftEditForm'}}>
           <i class="add circle icon"></i><i class="pencil icon"></i>
         </button>
-        <button class="ui button create-button {{addLeftNodeDisabled}}" title="{{t "forms.fd-appstruct-form.add-listform-text"}}" {{action 'addLeftListForm'}}>
+        <button class="ui button create-button {{addLeftNodeDisabled}}" type='button' title="{{t "forms.fd-appstruct-form.add-listform-text"}}" {{action 'addLeftListForm'}}>
           <i class="add circle icon"></i><i class="list ul icon"></i>
         </button>
-        <button class='ui button icon {{editLeftNodeDisabled}}' title="{{t "forms.fd-appstruct-form.edit-text"}}" {{action "editLeftNode" on="click" }}>
+        <button class='ui button icon {{editLeftNodeDisabled}}' type='button' title="{{t "forms.fd-appstruct-form.edit-text"}}" {{action "editLeftNode" on="click" }}>
           <i class="edit icon"></i>
         </button>
-        <button class='ui button icon' title="{{t "forms.fd-appstruct-form.list-classes-text"}}" {{action "listLeft" on="click" }}>
+        <button class='ui button icon' type='button' title="{{t "forms.fd-appstruct-form.list-classes-text"}}" {{action "listLeft" on="click" }}>
           <i class="list icon"></i>
         </button>
       </div>
@@ -37,12 +37,21 @@
         <div class="ui segment">
           {{t "forms.fd-appstruct-form.all-forms-panel-caption"}}
         </div>
+        <div class="field">
+          {{
+            flexberry-textbox
+            placeholder=(t 'forms.fd-appstruct-form.search')
+            value=searchTermLeft
+          }}
+        </div>
         <div class="ui segment overflow-panel">
           {{ember-jstree
             actionReceiver=jstreeActionReceiverLeft
             selectedNodes=jstreeSelectedNodesLeft
             data=model.leftTreeNodes
             plugins=pluginsLeft
+            searchTerm=searchTermLeft
+            searchOptions=searchOptions
             typesOptions=typesOptions
           }}
         </div>
@@ -51,36 +60,36 @@
 
     <div class="panel-toolbar">
       {{#ui-popup content=popupMessage}}
-        <button class='ui inverted button icon close-panel-btn' {{action "closeRightpanel" on="click" }} >
+        <button class='ui inverted button icon close-panel-btn' type='button' {{action "closeRightpanel" on="click" }} >
           <i class="{{if allAttrsHidedn 'chevron right' 'chevron left'}} icon"></i>
         </button>
       {{/ui-popup}}
-      <button class='ui button icon flexberry-button move {{moveRightDisabled}}' {{action "moveRightHighlighted" on="click" }}>
+      <button class='ui button icon flexberry-button move {{moveRightDisabled}}' type='button' {{action "moveRightHighlighted" on="click" }}>
         <i class="right long arrow icon"></i>
       </button>
     </div>
 
     <div class="panel-right">
       <div class="ui buttons">
-        <button class='ui button icon {{addRightNodeDisabled}}' {{action "addUrlNode" on="click" }}>
+        <button class='ui button icon {{addRightNodeDisabled}}' type='button' {{action "addUrlNode" on="click" }}>
           <i class="plus icon"></i>
         </button>
-        <button class='ui button icon {{editRightNodeDisabled}}' {{action "editRightNode" on="click" }}>
+        <button class='ui button icon {{editRightNodeDisabled}}' type='button' {{action "editRightNode" on="click" }}>
           <i class="edit icon"></i>
         </button>
-        <button class='ui button icon {{removeRightNodeDisabled}}' {{action "removeRightNode" on="click" }}>
+        <button class='ui button icon {{removeRightNodeDisabled}}' type='button' {{action "removeRightNode" on="click" }}>
           <i class="remove icon"></i>
         </button>
-        <button class='ui button icon {{addFolderNodeDisabled}}' {{action "addFolderNode" on="click" }}>
+        <button class='ui button icon {{addFolderNodeDisabled}}' type='button' {{action "addFolderNode" on="click" }}>
           <i class="folder icon"></i>
         </button>
-        <button class='ui button icon {{indexSelectedRight.upRightNodeDisabled}}' {{action "upRightNode" on="click" }}>
+        <button class='ui button icon {{indexSelectedRight.upRightNodeDisabled}}' type='button' {{action "upRightNode" on="click" }}>
           <i class="arrow up icon"></i>
         </button>
-        <button class='ui button icon {{indexSelectedRight.downRightNodeDisabled}}' {{action "downRightNode" on="click" }}>
+        <button class='ui button icon {{indexSelectedRight.downRightNodeDisabled}}' type='button' {{action "downRightNode" on="click" }}>
           <i class="arrow down icon"></i>
         </button>
-        <button class='ui button icon' {{action "saveTree" on="click" }}>
+        <button class='ui button icon' type='button' {{action "saveTree" on="click" }}>
           <i class="arrow save icon"></i>
         </button>
       </div>
@@ -88,12 +97,21 @@
         <div class="ui segment">
           {{t "forms.fd-appstruct-form.app-forms-panel-caption"}}
         </div>
+        <div class="field">
+          {{
+            flexberry-textbox
+            placeholder=(t 'forms.fd-appstruct-form.search')
+            value=searchTermRight
+          }}
+        </div>
         <div class="ui segment overflow-panel">
           {{ember-jstree
             actionReceiver=jstreeActionReceiverRight
             selectedNodes=jstreeSelectedNodesRight
             data=model.rightTreeNodes
             plugins=pluginsRight
+            searchTerm=searchTermRight
+            searchOptions=searchOptions
             typesOptions=typesOptions
             treeObject=jstreeObjectRight
           }}
