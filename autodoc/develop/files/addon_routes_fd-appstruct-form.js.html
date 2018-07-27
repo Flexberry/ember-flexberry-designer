@@ -245,11 +245,13 @@ export default Ember.Route.extend({
 
   setupController(controller) {
     this._super(...arguments);
+    let context = this.get(&#x27;currentProjectContext&#x27;);
     controller.set(&#x27;parentRoute&#x27;, this.get(&#x27;router.url&#x27;));
     controller.set(&#x27;searchTermLeft&#x27;, &#x27;&#x27;);
     controller.set(&#x27;searchTermRight&#x27;, &#x27;&#x27;);
+    controller.set(&#x27;singleModeStage&#x27;, context.singleStageMode);
 
-    let stagePk = this.get(&#x27;currentProjectContext&#x27;).getCurrentStage();
+    let stagePk = context.getCurrentStage();
     let host = this.get(&#x27;store&#x27;).adapterFor(&#x27;application&#x27;).host;
     Ember.$.ajax({
       type: &#x27;GET&#x27;,

@@ -300,6 +300,15 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     show_only_matches: true
   })),
 
+  /**
+    Flag: indicates whether to show close button.
+
+    @property singleModeStage
+    @type Boolean
+    @default false
+   */
+  singleModeStage: false,
+
   _modelObserver: Ember.on(&#x27;init&#x27;, Ember.observer(&#x27;model&#x27;, function() {
     // Reset selection.
     this.set(&#x27;jstreeSelectedNodesLeft&#x27;, Ember.A());
