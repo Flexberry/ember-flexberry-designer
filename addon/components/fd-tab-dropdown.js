@@ -20,8 +20,14 @@ export default FlexberryDropdown.extend({
 
   actions: {
     onChange(component, id, newValue) {
+      let _this = this;
+      _this.set('dynamicChange', false);
+      this.get('items').forEach(function(element, index) {
+        if (element.title === newValue) {
+          _this.set('dynamicChange', index > -1);
+        }
+      });
 
-      this.dynamicChange = this.get('items').indexOf(newValue) > -1;
       if (this.dynamicChange) {
         let oldValue = !Ember.isNone(this.get('value')) ? this.get('value') : null;
         newValue = !Ember.isNone(newValue) ? newValue : null;
@@ -30,9 +36,9 @@ export default FlexberryDropdown.extend({
         if (newValue === oldValue) {
           return;
         }
+        this.sendAction('onChange', newValue);
       }
 
-      this.sendAction('onChange', newValue);
     },
 
     onShowHide() {

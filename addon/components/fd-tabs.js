@@ -75,13 +75,11 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
   children: null,
 
   _hideTabs: null,
-  _showedTabs: null,
 
   init() {
     this._super(...arguments);
     this.set('children', Ember.A());
     this.set('_hideTabs', Ember.A());
-    // this.set('_showedTabs', this.get('tabs'));
   },
 
   /**
@@ -137,8 +135,6 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
     return items;
   }),
 
-  activeTab:'',
-
   tabsObserver: Ember.observer('tabs.[]', function() {
     let _this = this;
     Ember.run.schedule('afterRender',	function() {
@@ -149,6 +145,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
 
   didInsertElement() {
     this.updateOverflowTabs();
+
     // if (this.get('tabs').length > 0){
     //   this.set('activeTab', this.get('tabs')[0].dataTab);
     // }
@@ -172,20 +169,21 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
       let lastTab = _currentTabs.get('lastObject');
 
       let replaceTabIndex = -1;
-      _currentHideTabs.forEach(function(element, index){
-        if (element.dataTab === selectedValue) {
+      _currentHideTabs.forEach(function(element, index) {
+        if (element.title === selectedValue) {
           replaceTabIndex = index;
         }
       });
 
       if (replaceTabIndex > -1) {
+        let activeTabIndex = _currentHideTabs[replaceTabIndex].dataTab;
         _currentTabs.popObject();
-        _currentTabs.pushObject(_currentHideTabs.get('lastObject'));
-        _currentHideTabs.replace(_currentHideTabs.indexOf(replaceTabIndex), 1, lastTab);
+        _currentTabs.pushObject(_currentHideTabs[replaceTabIndex]);
+        _currentHideTabs.replace(replaceTabIndex, 1, lastTab);
 
         _this.set('_showedTabs', _currentTabs);
         _this.set('_hideTabs', _currentHideTabs);
-        _this.set('activeTab', selectedValue);
+        _this.set('activeTab', activeTabIndex);
       }
     }
   }
