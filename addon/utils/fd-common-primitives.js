@@ -301,19 +301,31 @@ joint.dia.Link.define('flexberryUml.BaseLink', {
     position: { distance: -40, offset: 15 }, attrs: { text: { text: '' } } }, {
     position: { distance: -40, offset: -15 }, attrs: { text: { text: '' } }
   }]
-});
+}, {
+  setLabel: function (label, text) {
+    switch (label) {
+      case 'startMultiplicity':
+        this.label(0, { attrs: { text: { text: text } } });
+        break;
+      case 'startRole':
+        this.label(1, { attrs: { text: { text: text } } });
+        break;
+      case 'description':
+        this.label(2, { attrs: { text: { text: text } } });
+        break;
+      case 'endRole':
+        this.label(3, { attrs: { text: { text: text } } });
+        break;
+      case 'endMultiplicity':
+        this.label(4, { attrs: { text: { text: text } } });
+        break;
+      default:
+        console.log('ERROR - choose correct label name');
+        break;
+    }
 
-joint.dia.Link.define('flexberryUml.LabelNameLink', {
-  attrs: {
-    text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }
+    return;
   },
-  labels: [{
-    position: { distance: 10, offset: -15 }, attrs: { text: { text: '' } } }, {
-    position: { distance: 10, offset: 15 }, attrs: { text: { text: '' } } }, {
-    textAnchor: 'middle', attrs: { text: { text: '' } } }, {
-    position: { distance: -40, offset: 15 }, attrs: { text: { text: '' } } }, {
-    position: { distance: -40, offset: -15 }, attrs: { text: { text: '' } }
-  }]
 });
 
 joint.shapes.flexberryUml.BaseLink.define('flexberryUml.Association', {

@@ -34,39 +34,27 @@ export default Ember.Controller.extend({
 
       var linkAggregation = new joint.shapes.flexberryUml.Aggregation({
         source: { x:100, y:30 },
-        target: { x:300, y:30 },
-        labels: [{
-          attrs: { text: { text: '*' } } }, {
-          attrs: { text: { text: '' } } }, {
-          attrs: { text: { text: 'Agregation', 'text-decoration': '' } } }, {
-          attrs: { text: { text: '' } } }, {
-          attrs: { text: { text: '1' } }
-        }],
+        target: { x:300, y:30 }
       });
+      linkAggregation.setLabel('startMultiplicity', '*');
+      linkAggregation.setLabel('endMultiplicity', '1');
+      linkAggregation.setLabel('description', 'Agregation');
 
       var linkAssociation = new joint.shapes.flexberryUml.Association({
         source: { x:100, y:80 },
-        target: { x:300, y:80 },
-        labels: [{
-          attrs: { text: { text: '*' } } }, {
-          attrs: { text: { text: '' } } }, {
-          attrs: { text: { text: 'Association', 'text-decoration': '' } } }, {
-          attrs: { text: { text: '' } } }, {
-          attrs: { text: { text: '0..1' } }
-        }],
+        target: { x:300, y:80 }
       });
+      linkAssociation.setLabel('startMultiplicity', '*');
+      linkAssociation.setLabel('endMultiplicity', '1');
+      linkAssociation.setLabel('description', 'Association');
 
       var linkComposition = new joint.shapes.flexberryUml.Composition({
         source: { x:100, y:120 },
-        target: { x: 300, y: 120 },
-        labels: [{
-          attrs: { text: { text: '*' } } }, {
-          attrs: { text: { text: '' } } }, {
-          attrs: { text: { text: 'Composition', 'text-decoration': '' } } }, {
-          attrs: { text: { text: '' } } }, {
-          attrs: { text: { text: '0..1' } }
-        }],
+        target: { x: 300, y: 120 }
       });
+      linkComposition.setLabel('startMultiplicity', '*');
+      linkComposition.setLabel('endMultiplicity', '0..1');
+      linkComposition.setLabel('description', 'Composition');
 
       var linkDependency = new joint.shapes.flexberryUml.Dependency({
         source: { x:100, y:170 },
@@ -85,39 +73,27 @@ export default Ember.Controller.extend({
 
       var linkQualified = new joint.shapes.flexberryUml.Qualified({
         source: { x:100, y:320 },
-        target: { x: 300, y: 320 },
-        labels: [{
-          attrs: { text: { text: '' } } }, {
-          attrs: { text: { text: '1' } } }, {
-          attrs: { text: { text: 'Qualified' } } }, {
-          attrs: { text: { text: '2' } } }, {
-          attrs: { text: { text: '' } }
-        }]
+        target: { x: 300, y: 320 }
       });
+      linkQualified.setLabel('startRole', '1');
+      linkQualified.setLabel('endRole', '2');
+      linkQualified.setLabel('description', 'Qualified');
 
       var linkQualifiedAggregation = new joint.shapes.flexberryUml.QualifiedAggregation({
         source: { x:100, y:370 },
-        target: { x:300, y:370 },
-        labels: [{
-          attrs: { text: { text: '' } } }, {
-          attrs: { text: { text: '1' } } }, {
-          attrs: { text: { text: 'Q-Agregation' } } }, {
-          attrs: { text: { text: '2' } } }, {
-          attrs: { text: { text: '' } }
-        }],
+        target: { x:300, y:370 }
       });
+      linkQualifiedAggregation.setLabel('startRole', '1');
+      linkQualifiedAggregation.setLabel('endRole', '2');
+      linkQualifiedAggregation.setLabel('description', 'Q-Agregation');
 
       var linkQualifiedComposition = new joint.shapes.flexberryUml.QualifiedComposition({
         source: { x:100, y:420 },
-        target: { x: 300, y: 420 },
-        labels: [{
-          attrs: { text: { text: '' } } }, {
-          attrs: { text: { text: '1' } } }, {
-          attrs: { text: { text: 'Q-Composition' } } }, {
-          attrs: { text: { text: '2' } } }, {
-          attrs: { text: { text: '' } }
-        }]
+        target: { x: 300, y: 420 }
       });
+      linkQualifiedComposition.setLabel('startRole', '1');
+      linkQualifiedComposition.setLabel('endRole', '2');
+      linkQualifiedComposition.setLabel('description', 'Q-Composition');
 
       var linkNestedClassAssociation = new joint.shapes.flexberryUml.NestedClassAssociation({
         source: { x:100, y:470 },
