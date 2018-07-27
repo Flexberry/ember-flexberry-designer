@@ -198,9 +198,9 @@ export default Ember.Controller.extend({
 
     @property pluginsTree
     @type String
-    @default &#x27;wholerow, types&#x27;
+    @default &#x27;wholerow, types, search&#x27;
    */
-  pluginsTree: &#x27;wholerow, types&#x27;,
+  pluginsTree: &#x27;wholerow, types, search&#x27;,
 
   /**
     Type settings for jsTree.
@@ -221,6 +221,25 @@ export default Ember.Controller.extend({
     &#x27;class&#x27;: {
       icon: &#x27;assets/images/class.bmp&#x27;
     }
+  })),
+
+  /**
+    Data for search tree node.
+
+    @property searchTermTree
+    @type String
+    @default &#x27;&#x27;
+   */
+  searchTermTree: &#x27;&#x27;,
+
+  /**
+    Search settings for jsTree.
+
+    @property searchOptionsTree
+    @type Object
+  */
+  searchOptionsTree: Ember.computed(() =&gt; ({
+    show_only_matches: true
   })),
 
   /**
@@ -252,7 +271,7 @@ export default Ember.Controller.extend({
     let attributesTree = Ember.A();
     attributesTree.pushObjects([
       FdAttributesTree.create({
-        text: this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-editform-constructor.form-config-panel.tree.not-used-attributes.property&#x27;),
+        text: this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-editform-constructor.form-config-panel.tree.not-used-attributes.property&#x27;).toString(),
         type: &#x27;class&#x27;,
         id: &#x27;attributes&#x27;,
         children: attributesForTree,
@@ -260,7 +279,7 @@ export default Ember.Controller.extend({
         state: { opened: true }
       }),
       FdAttributesTree.create({
-        text: this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-editform-constructor.form-config-panel.tree.not-used-attributes.master&#x27;),
+        text: this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-editform-constructor.form-config-panel.tree.not-used-attributes.master&#x27;).toString(),
         type: &#x27;class&#x27;,
         id: &#x27;masters&#x27;,
         children: associationForTree,
@@ -268,7 +287,7 @@ export default Ember.Controller.extend({
         state: { opened: true }
       }),
       FdAttributesTree.create({
-        text: this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-editform-constructor.form-config-panel.tree.not-used-attributes.detail&#x27;),
+        text: this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-editform-constructor.form-config-panel.tree.not-used-attributes.detail&#x27;).toString(),
         type: &#x27;class&#x27;,
         id: &#x27;details&#x27;,
         children: aggregationForTree,

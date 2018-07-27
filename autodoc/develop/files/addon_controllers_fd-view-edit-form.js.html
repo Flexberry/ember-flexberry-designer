@@ -180,9 +180,9 @@ export default EditFormController.extend(FdWorkPanelToggler, {
 
     @property plugins
     @type String
-    @default &#x27;wholerow, types&#x27;
+    @default &#x27;wholerow, types, search&#x27;
    */
-  plugins: &#x27;wholerow, types&#x27;,
+  plugins: &#x27;wholerow, types, search&#x27;,
 
   /**
     Selected nodes in jsTree.
@@ -212,6 +212,25 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     &#x27;class&#x27;: {
       icon: &#x27;assets/images/class.bmp&#x27;
     }
+  })),
+
+  /**
+    Data for search tree nodes.
+
+    @property searchTerm
+    @type String
+    @default &#x27;&#x27;
+   */
+  searchTerm: &#x27;&#x27;,
+
+  /**
+    Search settings for jsTree.
+
+    @property searchOptions
+    @type Object
+  */
+  searchOptions: Ember.computed(() =&gt; ({
+    show_only_matches: true
   })),
 
   /**
