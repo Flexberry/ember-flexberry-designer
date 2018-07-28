@@ -65,49 +65,49 @@ export default Ember.Controller.extend({
           source: { x:400, y:50 },
           target: { x:700, y:50 }
         });
-        associationConnector.setLabel('startRole', '1');
-        associationConnector.setLabel('endRole', '2');
-        associationConnector.setLabel('description', 'Association');
+        associationConnector.setLabel('startRole', { text: { text: '1' } });
+        associationConnector.setLabel('endRole', { text: { text: '2' } });
+        associationConnector.setLabel('description', { text: { text: 'Association', 'text-decoration': 'underline' } });
 
         let qualifiedConnector = new joint.shapes.flexberryUml.Qualified({
           source: { x:400, y:90 },
           target: { x:700, y:90 }
         });
-        qualifiedConnector.setLabel('startRole', '1');
-        qualifiedConnector.setLabel('endRole', '2');
-        qualifiedConnector.setLabel('description', 'Qualified');
+        qualifiedConnector.setLabel('startRole', { text: { text: '1' } });
+        qualifiedConnector.setLabel('endRole', { text: { text: '2' } });
+        qualifiedConnector.setLabel('description', { text: { text: 'Qualified', 'text-decoration': 'underline' } });
 
         let agregationConnector = new joint.shapes.flexberryUml.Aggregation({
           source: { x:400, y:140 },
           target: { x:700, y:140 }
         });
-        agregationConnector.setLabel('startRole', '1');
-        agregationConnector.setLabel('endRole', '2');
-        agregationConnector.setLabel('description', 'Agregation');
+        agregationConnector.setLabel('startRole', { text: { text: '1' } });
+        agregationConnector.setLabel('endRole', { text: { text: '2' } });
+        agregationConnector.setLabel('description', { text: { text: 'Agregation', 'text-decoration': 'underline' } });
 
         let qAgregationConnector = new joint.shapes.flexberryUml.QualifiedAggregation({
           source: { x:400, y:180 },
           target: { x:700, y:180 }
         });
-        qAgregationConnector.setLabel('startRole', '1');
-        qAgregationConnector.setLabel('endRole', '2');
-        qAgregationConnector.setLabel('description', 'Q-Agregation');
+        qAgregationConnector.setLabel('startRole', { text: { text: '1' } });
+        qAgregationConnector.setLabel('endRole', { text: { text: '2' } });
+        qAgregationConnector.setLabel('description', { text: { text: 'Q-Agregation', 'text-decoration': 'underline' } });
 
         let compositionConnector = new joint.shapes.flexberryUml.Composition({
           source: { x:400, y:210 },
           target: { x:700, y:210 }
         });
-        compositionConnector.setLabel('startRole', '1');
-        compositionConnector.setLabel('endRole', '2');
-        compositionConnector.setLabel('description', 'Composition');
+        compositionConnector.setLabel('startRole', { text: { text: '1' } });
+        compositionConnector.setLabel('endRole', { text: { text: '2' } });
+        compositionConnector.setLabel('description', { text: { text: 'Composition', 'text-decoration': 'underline' } });
 
         let qCompositionConnector = new joint.shapes.flexberryUml.QualifiedComposition({
           source: { x:400, y:250 },
           target: { x:700, y:250 }
         });
-        qCompositionConnector.setLabel('startRole', '1');
-        qCompositionConnector.setLabel('endRole', '2');
-        qCompositionConnector.setLabel('description', 'Q-Composition');
+        qCompositionConnector.setLabel('startRole', { text: { text: '1' } });
+        qCompositionConnector.setLabel('endRole', { text: { text: '2' } });
+        qCompositionConnector.setLabel('description', { text: { text: 'Q-Composition', 'text-decoration': 'underline' } });
 
         let designPatternConnector = new joint.shapes.flexberryUml.CollPatternConnect({
           source: { x:400, y:290 },

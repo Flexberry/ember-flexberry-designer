@@ -302,22 +302,22 @@ joint.dia.Link.define('flexberryUml.BaseLink', {
     position: { distance: -40, offset: -15 }, attrs: { text: { text: '' } }
   }]
 }, {
-  setLabel: function (label, text) {
+  setLabel: function (label, attributes) {
     switch (label) {
       case 'startMultiplicity':
-        this.label(0, { attrs: { text: { text: text } } });
+        this.label(0, { attrs: attributes });
         break;
       case 'startRole':
-        this.label(1, { attrs: { text: { text: text } } });
+        this.label(1, { attrs: attributes });
         break;
       case 'description':
-        this.label(2, { attrs: { text: { text: text } } });
+        this.label(2, { attrs: attributes });
         break;
       case 'endRole':
-        this.label(3, { attrs: { text: { text: text } } });
+        this.label(3, { attrs: attributes });
         break;
       case 'endMultiplicity':
-        this.label(4, { attrs: { text: { text: text } } });
+        this.label(4, { attrs: attributes });
         break;
       default:
         console.log('ERROR - choose correct label name');
