@@ -39355,14 +39355,4 @@ img.item-minus {
 .warning-log-record {
   color: #c1c140;
 }
-.ui.message.demo {
-  display: flex;
-  margin-top: 1.5rem;
-  margin-left: 3rem;
-  padding-bottom: 5px;
-}
-.ui.message.demo ul {
-  margin-top: 0;
-  font-size: 12px;
-}
 /*# sourceMappingURL=/assets/dummy.css.map */
