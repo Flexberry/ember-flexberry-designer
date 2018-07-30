@@ -48,7 +48,7 @@ export default Ember.Route.extend({
     // TODO: Demo mode.
     let demoStage = 'FB6972D1-F04A-4617-B454-D2D0DB4CEC05';
     let demoData = Ember.A();
-    if (stagePk.toLocaleLowerCase()  === demoStage.toLocaleLowerCase()) {
+    if (stage.get('id').toLocaleLowerCase()  === demoStage.toLocaleLowerCase()) {
       Ember.A(implementations).forEach(function(item) {
         let name = item.get('name');
         if (name === 'Организация' || name === 'Адрес' || name === 'Улица' || name === 'ВидТерриториальнойЗоны' || name === 'ФормированиеЗУ') {

@@ -73,8 +73,6 @@ export default ListFormRoute.extend(LimitByStageMixin, {
   */
   developerUserSettings: { FdAssociationListForm: {} },
 
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
-
   objectListViewLimitPredicate() {
     // Demo data  TODO: Demo mode.
     let demoStage = 'FB6972D1-F04A-4617-B454-D2D0DB4CEC05';
