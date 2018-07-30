@@ -13,11 +13,11 @@ export default Ember.Route.extend({
 
   model: function() {
     let store = this.get('store');
-    let stagePk = this.get('currentProjectContext').getCurrentStage();
+    let stage = this.get('currentProjectContext').getCurrentStageModel();
 
     // Get current classes.
     let allClasses = store.peekAll('fd-dev-class');
-    let classesCurrentStage = allClasses.filterBy('stage.id', stagePk);
+    let classesCurrentStage = allClasses.filterBy('stage.id', stage.id);
 
     // null or «implementation»
     let implementations = classesCurrentStage.filter(function(item) {
@@ -33,6 +33,17 @@ export default Ember.Route.extend({
     let applications = classesCurrentStage.filter(function(item) {
       return item.get('stereotype') === '«application»';
     });
+
+    if (applications.length === 0) {
+      Ember.A(applications).pushObject(store.createRecord('fd-dev-class', {
+        stage: stage,
+        caption: 'Application',
+        name: 'Application',
+        nameStr: 'Application',
+        stereotype: '«application»',
+        containersStr: Ember.A()
+      }));
+    }
 
     // TODO: Demo mode.
     let demoStage = 'FB6972D1-F04A-4617-B454-D2D0DB4CEC05';
@@ -118,7 +129,7 @@ export default Ember.Route.extend({
     // Add root tree.
     let treeRight = Ember.A([
       FdAppStructTree.create({
-        text: this.get('i18n').t('forms.fd-appstruct-form.desktop'),
+        text: this.get('i18n').t('forms.fd-appstruct-form.desktop').toString(),
         type: 'desk',
         id: 'node_app',
         children: rightTreeNodes,
@@ -138,9 +149,13 @@ export default Ember.Route.extend({
 
   setupController(controller) {
     this._super(...arguments);
+    let context = this.get('currentProjectContext');
     controller.set('parentRoute', this.get('router.url'));
+    controller.set('searchTermLeft', '');
+    controller.set('searchTermRight', '');
+    controller.set('singleModeStage', context.singleStageMode);
 
-    let stagePk = this.get('currentProjectContext').getCurrentStage();
+    let stagePk = context.getCurrentStage();
     let host = this.get('store').adapterFor('application').host;
     Ember.$.ajax({
       type: 'GET',

@@ -151,9 +151,9 @@ export default FlexberryBaseComponent.extend({
 
     @property plugins
     @type String
-    @default 'wholerow, types'
+    @default 'wholerow, types, search'
    */
-  plugins: 'wholerow, types',
+  plugins: 'wholerow, types, search',
 
   /**
     Type settings for jsTree.
@@ -186,6 +186,43 @@ export default FlexberryBaseComponent.extend({
   })),
 
   /**
+    Data for search for attributes.
+
+    @property searchAttributes
+    @type String
+    @default ''
+   */
+  searchAttributes: '',
+
+  /**
+    Data for search for type.
+
+    @property searchType
+    @type String
+    @default ''
+   */
+  searchType: '',
+
+  /**
+    Search settings for jsTree.
+
+    @property searchOptions
+    @type Object
+  */
+  searchOptions: Ember.computed(() => ({
+    show_only_matches: true
+  })),
+
+  /**
+    Setting off property notNull.
+
+    @property notNullDisabled
+    @type Boolean
+    @default false
+   */
+  notNullDisabled: false,
+
+  /**
     Data selected attribute for editing.
 
     @property selectedAttribute
@@ -212,6 +249,7 @@ export default FlexberryBaseComponent.extend({
     let dataobject = this.get('model.dataobject');
     if (propertyDefinition instanceof FdViewAttributesDetail) {
       this.set('selectedItem.type', 'detail');
+      this.set('notNullDisabled', true);
       let currentClassData = getDataForBuildTree(store, dataobject.id);
       attribute = currentClassData.aggregations.find(function(item) {
         return (item.get('endRole') === namesPropertyDefinition[0] || item.get('endClass.name') === namesPropertyDefinition[0]);
@@ -223,6 +261,12 @@ export default FlexberryBaseComponent.extend({
       this.set('selectedItem.type', 'master');
       let parsingResult = parsingPropertyName(store, dataobject, namesPropertyDefinition);
       attribute = parsingResult.associations[0];
+      if (attribute.constructor.modelName === 'fd-dev-aggregation') {
+        this.set('notNullDisabled', true);
+      } else {
+        this.set('notNullDisabled', false);
+      }
+
       if (attribute.get('endClass.id') !== parsingResult.classId) {
         this.set('readonly', true);
       }
@@ -736,7 +780,7 @@ export default FlexberryBaseComponent.extend({
     let attributesTree = Ember.A();
     attributesTree.pushObjects([
       FdAttributesTree.create({
-        text: 'Собственные свойства',
+        text: this.get('i18n').t('components.fd-visual-edit-control-tree.tree.property').toString(),
         type: 'class',
         id: 'attributes',
         children: this.get('model.attributes'),
@@ -744,7 +788,7 @@ export default FlexberryBaseComponent.extend({
         state: { opened: true }
       }),
       FdAttributesTree.create({
-        text: 'Мастера',
+        text: this.get('i18n').t('components.fd-visual-edit-control-tree.tree.master').toString(),
         type: 'class',
         id: 'masters',
         children: this.get('model.masters'),
@@ -752,7 +796,7 @@ export default FlexberryBaseComponent.extend({
         state: { opened: true }
       }),
       FdAttributesTree.create({
-        text: 'Детейлы',
+        text: this.get('i18n').t('components.fd-visual-edit-control-tree.tree.detail').toString(),
         type: 'class',
         id: 'details',
         children: this.get('model.details'),
@@ -774,7 +818,7 @@ export default FlexberryBaseComponent.extend({
 
     typeTree.pushObjects([
       FdAttributesTree.create({
-        text: 'Простые типы',
+        text: this.get('i18n').t('components.fd-visual-edit-control-tree.tree.type').toString(),
         type: 'class',
         id: 'simpleTypes',
         children: this.get('model.simpleTypes'),
@@ -806,7 +850,7 @@ export default FlexberryBaseComponent.extend({
         state: { opened: true }
       }),
       FdAttributesTree.create({
-        text: 'Мастера',
+        text: this.get('i18n').t('components.fd-visual-edit-control-tree.tree.master').toString(),
         type: 'class',
         id: 'masters',
         children: this.get('model.mastersType'),
@@ -814,7 +858,7 @@ export default FlexberryBaseComponent.extend({
         state: { opened: true }
       }),
       FdAttributesTree.create({
-        text: 'Детейлы',
+        text: this.get('i18n').t('components.fd-visual-edit-control-tree.tree.detail').toString(),
         type: 'class',
         id: 'details',
         children: this.get('model.detailsType'),

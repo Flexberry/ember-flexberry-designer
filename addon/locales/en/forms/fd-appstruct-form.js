@@ -16,17 +16,26 @@ export default {
   'remove-control': 'Remove',
   'remove-approve': 'Are you sure?',
   'delete-error': 'You can not delete a class, it has nested elements. Delete them to delete the class',
+  search: 'Enter name to search',
   desktop: 'Desktop',
   'form-config-panel': {
     caption: 'App editor',
-    'app-properties-header': 'Application and stage properties',
+    'app-properties-header': 'Application properties',
     'forms-properties-header': 'Form properties',
   },
   tab: {
+    'selected-element-null': 'Element is not selected',
+    'selected-element-change': 'Click on node \'App forms\' tree to select Element',
     formName: 'Form class name',
     formType: 'Type (stereotype)',
     title: 'Navigation element title',
     url: 'Url',
-    description: 'Description'
+    description: 'Description',
+    name: 'Application Name',
+    caption: 'Application caption',
+    'standart-desktop': 'Standard desktop',
+    'namespace-postfix': 'Namespace postfix',
+    'pb-custom-attributes': 'Programmer brackets for arbitrary attributes',
+    'disable-all-right-checks': 'Disable authorization check',
   }
 };

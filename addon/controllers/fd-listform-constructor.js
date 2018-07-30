@@ -48,9 +48,9 @@ export default Ember.Controller.extend({
 
     @property pluginsTree
     @type String
-    @default 'wholerow, types'
+    @default 'wholerow, types, search'
    */
-  pluginsTree: 'wholerow, types',
+  pluginsTree: 'wholerow, types, search',
 
   /**
     Type settings for jsTree.
@@ -71,6 +71,25 @@ export default Ember.Controller.extend({
     'class': {
       icon: 'assets/images/class.bmp'
     }
+  })),
+
+  /**
+    Data for search tree node.
+
+    @property searchTermTree
+    @type String
+    @default ''
+   */
+  searchTermTree: '',
+
+  /**
+    Search settings for jsTree.
+
+    @property searchOptionsTree
+    @type Object
+  */
+  searchOptionsTree: Ember.computed(() => ({
+    show_only_matches: true
   })),
 
   /**
@@ -102,7 +121,7 @@ export default Ember.Controller.extend({
     let attributesTree = Ember.A();
     attributesTree.pushObjects([
       FdAttributesTree.create({
-        text: this.get('i18n').t('forms.fd-editform-constructor.form-config-panel.tree.not-used-attributes.property'),
+        text: this.get('i18n').t('forms.fd-editform-constructor.form-config-panel.tree.not-used-attributes.property').toString(),
         type: 'class',
         id: 'attributes',
         children: attributesForTree,
@@ -110,7 +129,7 @@ export default Ember.Controller.extend({
         state: { opened: true }
       }),
       FdAttributesTree.create({
-        text: this.get('i18n').t('forms.fd-editform-constructor.form-config-panel.tree.not-used-attributes.master'),
+        text: this.get('i18n').t('forms.fd-editform-constructor.form-config-panel.tree.not-used-attributes.master').toString(),
         type: 'class',
         id: 'masters',
         children: associationForTree,
@@ -118,7 +137,7 @@ export default Ember.Controller.extend({
         state: { opened: true }
       }),
       FdAttributesTree.create({
-        text: this.get('i18n').t('forms.fd-editform-constructor.form-config-panel.tree.not-used-attributes.detail'),
+        text: this.get('i18n').t('forms.fd-editform-constructor.form-config-panel.tree.not-used-attributes.detail').toString(),
         type: 'class',
         id: 'details',
         children: aggregationForTree,
