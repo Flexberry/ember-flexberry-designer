@@ -2316,6 +2316,17 @@
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
             "line": 216,
+            "description": "Setting off property notNull.",
+            "itemtype": "property",
+            "name": "notNullDisabled",
+            "type": "Boolean",
+            "default": "false",
+            "class": "components.UiTabMenu",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-visual-edit-control-tree.js",
+            "line": 225,
             "description": "Data selected attribute for editing.",
             "itemtype": "property",
             "name": "selectedAttribute",
@@ -2325,7 +2336,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 276,
+            "line": 292,
             "description": "Computes view for details and list forms for masters.",
             "itemtype": "property",
             "name": "dropdownElements",
@@ -2335,7 +2346,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 318,
+            "line": 334,
             "description": "Handles changes in propertyName and selectedNodesTypeTree.",
             "itemtype": "method",
             "name": "_propertyNameObserver",
@@ -2344,7 +2355,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 345,
+            "line": 361,
             "description": "Handles changes in selectedNodesAttributesTree.",
             "itemtype": "method",
             "name": "_selectedNodesAttributesTreeObserver",
@@ -2353,7 +2364,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 368,
+            "line": 384,
             "description": "Handles changes in model.attributes.",
             "itemtype": "method",
             "name": "_modelAttributesObserver",
@@ -2362,7 +2373,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 390,
+            "line": 406,
             "description": "Resets 'masterPropertyName' and 'masterCustomizationString' if 'LookupType' is 'default'.",
             "itemtype": "method",
             "name": "actions.changeLookupType",
@@ -2378,7 +2389,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 404,
+            "line": 420,
             "description": "Changes the start multiplicity of the association.",
             "itemtype": "method",
             "name": "actions.changeMasterNotNull",
@@ -2394,7 +2405,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 414,
+            "line": 430,
             "description": "Add new attribute.",
             "itemtype": "method",
             "name": "actions.addAttribute",
@@ -2403,7 +2414,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 427,
+            "line": 443,
             "description": "Edit select attribute.",
             "itemtype": "method",
             "name": "actions.editAttribute",
@@ -2412,7 +2423,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 443,
+            "line": 459,
             "description": "Handles remove node from attribute jsTree.",
             "itemtype": "method",
             "name": "actions.removeAttribute",
@@ -2421,7 +2432,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 463,
+            "line": 479,
             "description": "Handles select node from attribute jsTree.",
             "itemtype": "method",
             "name": "actions.applyAttribute",
@@ -2430,7 +2441,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 480,
+            "line": 496,
             "description": "Handles creating jsTree.",
             "itemtype": "method",
             "name": "actions.handleTreeDidBecomeReady",
@@ -2439,7 +2450,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 491,
+            "line": 507,
             "description": "Add new node in attributes tree.",
             "itemtype": "method",
             "name": "actions.applyСlick",
@@ -2448,7 +2459,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 586,
+            "line": 602,
             "description": "Open attributes tree.",
             "itemtype": "method",
             "name": "actions.cancelСlick",
@@ -2457,7 +2468,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 600,
+            "line": 616,
             "description": "Overridden action for jsTree 'openNode'.",
             "itemtype": "method",
             "name": "_openNodeTree",
@@ -2466,7 +2477,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 618,
+            "line": 634,
             "description": "Method delete attributes from class.",
             "itemtype": "method",
             "name": "_deleteAttribute",
@@ -2482,7 +2493,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 668,
+            "line": 684,
             "description": "Method for search control by attribute.",
             "itemtype": "method",
             "name": "_findControlByAttribute",
@@ -2498,7 +2509,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 688,
+            "line": 704,
             "description": "Method for controls round.",
             "itemtype": "method",
             "name": "_controlsRound",
@@ -2524,7 +2535,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 725,
+            "line": 741,
             "description": "Method for create new propertyDefinition.",
             "itemtype": "method",
             "name": "_createPropertyDefinition",
@@ -2545,7 +2556,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 758,
+            "line": 774,
             "description": "Method for create attributes tree.",
             "itemtype": "method",
             "name": "_createAttributesTree",
@@ -2554,7 +2565,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 795,
+            "line": 811,
             "description": "Method for create type tree.",
             "itemtype": "method",
             "name": "_createTypeTree",
