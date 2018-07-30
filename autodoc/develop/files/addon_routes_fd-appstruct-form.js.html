@@ -169,18 +169,6 @@ export default Ember.Route.extend({
       }));
     }
 
-    // TODO: Demo mode.
-    let demoStage = &#x27;FB6972D1-F04A-4617-B454-D2D0DB4CEC05&#x27;;
-    let demoData = Ember.A();
-    if (stage.get(&#x27;id&#x27;).toLocaleLowerCase()  === demoStage.toLocaleLowerCase()) {
-      Ember.A(implementations).forEach(function(item) {
-        let name = item.get(&#x27;name&#x27;);
-        if (name === &#x27;Организация&#x27; || name === &#x27;Адрес&#x27; || name === &#x27;Улица&#x27; || name === &#x27;ВидТерриториальнойЗоны&#x27; || name === &#x27;ФормированиеЗУ&#x27;) {
-          demoData.pushObject(item);
-        }
-      });
-    }
-
     /*
       Build tree.
     */
@@ -189,14 +177,6 @@ export default Ember.Route.extend({
     let treeNodeForms = Ember.A();
     forms.forEach((form, index) =&gt; {
       let idParent = form.get(&#x27;formViews&#x27;).mapBy(&#x27;view.class.id&#x27;);
-
-      // TODO: Demo mode.
-      let attr = { title: form.get(&#x27;stereotype&#x27;) + &#x27; &#x27; + form.get(&#x27;name&#x27;) };
-      let state = { disabled: false };
-      if (demoData.length !== 0 &amp;&amp; Ember.isNone(demoData.findBy(&#x27;id&#x27;, idParent[0]))) {
-        attr = { class: &#x27;jstree-disabled&#x27;, &#x27;aria-disabled&#x27;: true,  title: form.get(&#x27;stereotype&#x27;) + &#x27; &#x27; + form.get(&#x27;name&#x27;), style: &#x27;background: #9fa099&#x27; };
-        state = { disabled: true };
-      }
 
       treeNodeForms.pushObject(
         FdAppStructTree.create({
@@ -207,9 +187,7 @@ export default Ember.Route.extend({
           type: form.get(&#x27;stereotype&#x27;),
           id: &#x27;node_form_&#x27; + index,
           idNode: form.get(&#x27;id&#x27;),
-          idParent: idParent[0],
-          state: state,
-          a_attr: attr
+          idParent: idParent[0]
         }));
     });
 
@@ -219,14 +197,6 @@ export default Ember.Route.extend({
       let implementationsChildren = treeNodeForms.filterBy(&#x27;idParent&#x27;, implementation.id);
       let typeImplementation = implementation.get(&#x27;stored&#x27;) ? &#x27;implementations&#x27; : &#x27;notStored&#x27;;
 
-      // TODO: Demo mode.
-      let attr = { title: implementation.get(&#x27;name&#x27;) };
-      let state = { disabled: false };
-      if (demoData.length !== 0 &amp;&amp; Ember.isNone(demoData.findBy(&#x27;id&#x27;, implementation.id))) {
-        attr = { class: &#x27;jstree-disabled&#x27;, &#x27;aria-disabled&#x27;: true,  title: implementation.get(&#x27;name&#x27;), style: &#x27;background: #9fa099&#x27; };
-        state = { disabled: true };
-      }
-
       treeLeft.pushObject(
         FdAppStructTree.create({
           text: implementation.get(&#x27;caption&#x27;) || implementation.get(&#x27;name&#x27;),
@@ -235,9 +205,7 @@ export default Ember.Route.extend({
           id: &#x27;node_impl_&#x27; + index,
           idNode: implementation.get(&#x27;id&#x27;),
           children: implementationsChildren,
-          copyChildren: implementationsChildren,
-          state: state,
-          a_attr: attr
+          copyChildren: implementationsChildren
         }));
     });
 

@@ -123,11 +123,19 @@
 <div class="file">
     <pre class="prettyprint linenums">
 import Ember from &#x27;ember&#x27;;
-import { Query } from &#x27;ember-flexberry-data&#x27;;
 import ListFormRoute from &#x27;ember-flexberry/routes/list-form&#x27;;
 import LimitByStageMixin from &#x27;../mixins/fd-limit-by-stage&#x27;;
 
 export default ListFormRoute.extend(LimitByStageMixin, {
+  /**
+   Service that get current project contexts.
+
+   @property currentProjectContext
+   @type {Class}
+   @default Ember.inject.service()
+   */
+  currentProjectContext: Ember.inject.service(&#x27;fd-current-project-context&#x27;),
+
   /**
     Name of model projection to be used as record&#x27;s properties limitation.
 
@@ -170,25 +178,6 @@ export default ListFormRoute.extend(LimitByStageMixin, {
     @default {}
   */
   developerUserSettings: { FdInheritanceListForm: {} },
-
-  currentProjectContext: Ember.inject.service(&#x27;fd-current-project-context&#x27;),
-
-  objectListViewLimitPredicate() {
-    // Demo data  TODO: Demo mode.
-    let demoStage = &#x27;FB6972D1-F04A-4617-B454-D2D0DB4CEC05&#x27;;
-    let stagePk = this.get(&#x27;currentProjectContext&#x27;).getCurrentStage();
-    let simplePredicates = Ember.A();
-    if (stagePk.toLocaleLowerCase()  === demoStage.toLocaleLowerCase()) {
-      simplePredicates.pushObject(new Query.SimplePredicate(&#x27;parent.id&#x27;, Query.FilterOperator.Eq, &#x27;5b6bd5cd-66f2-4c38-85d1-9b0633df17b9&#x27;));
-      simplePredicates.pushObject(new Query.SimplePredicate(&#x27;parent.id&#x27;, Query.FilterOperator.Eq, &#x27;83daf0b0-a6df-4298-8980-1325b5c4ad09&#x27;));
-      simplePredicates.pushObject(new Query.SimplePredicate(&#x27;parent.id&#x27;, Query.FilterOperator.Eq, &#x27;a58fcb63-69dd-4003-a7d1-17795568b3ce&#x27;));
-      simplePredicates.pushObject(new Query.SimplePredicate(&#x27;parent.id&#x27;, Query.FilterOperator.Eq, &#x27;91b136b8-ba32-43e7-aaf7-ac01c809d67c&#x27;));
-      simplePredicates.pushObject(new Query.SimplePredicate(&#x27;parent.id&#x27;, Query.FilterOperator.Eq, &#x27;1594c7c7-ea8f-46ea-a137-277258548945&#x27;));
-      return new Query.ComplexPredicate(Query.Condition.Or, ...simplePredicates);
-    }
-
-    return;
-  },
 });
 
     </pre>
