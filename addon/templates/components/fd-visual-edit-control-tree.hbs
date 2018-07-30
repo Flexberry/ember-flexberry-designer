@@ -159,7 +159,7 @@
   {{/if}}
 
   {{#if (or (eq selectedItem.type 'master') (eq selectedItem.type 'detail'))}}
-  <div class="field {{if (or (eq selectedItem.type 'detail') readonly) "disabled"}}">
+  <div class="field {{if (or notNullDisabled readonly) "disabled"}}">
     <label>{{t "components.fd-visual-edit-control-tree.not-null"}}</label>
     {{
       flexberry-checkbox
