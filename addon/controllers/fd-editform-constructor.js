@@ -19,6 +19,7 @@ import {
  } from '../utils/fd-attributes-for-tree';
 import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
+import { controlsToDefinition } from '../utils/fd-view-path-functions';
 
 export default Ember.Controller.extend({
   queryParams: ['classId'],
@@ -379,13 +380,7 @@ export default Ember.Controller.extend({
 
         // Refresh definition for filter not used attributes in 'dataNotUsedAttributesTreeObserver'.
         let view = this.get('model.editform.formViews.firstObject.view');
-        let controls = this.get('model.controls');
-        let viewDefinition = Ember.A();
-        for (let i = 0; i < controls.length; i++) {
-          this._extractPathPart(controls.objectAt(i), '', viewDefinition, '');
-        }
-
-        view.set('definition', viewDefinition);
+        view.set('definition', controlsToDefinition(this.get('model.controls')));
         this.set('selectedItem', undefined);
       } else {
         this.set('_showModalDialog', true);
@@ -799,12 +794,7 @@ export default Ember.Controller.extend({
   */
   _saveMetadata(model) {
     let view = model.editform.get('formViews.firstObject.view');
-    let viewDefinition = Ember.A();
-    let controls = model.controls;
-    let length = controls.get('length');
-    for (let i = 0; i < length; i++) {
-      this._extractPathPart(controls.objectAt(i), '', viewDefinition, '');
-    }
+    let viewDefinition = controlsToDefinition(model.controls);
 
     // Check viewDefinition on errors.
     let duplicateValues = Ember.A();
@@ -857,60 +847,6 @@ export default Ember.Controller.extend({
       Ember.RSVP.all(changedAssociations.map(a => a.save())),
       Ember.RSVP.all(changedAggregation.map(a => a.save())),
     ]);
-  },
-
-  /**
-    Extract path part from object model.
-
-    @method _extractPathPart
-    @param {FdEditformControl|FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab} control Some item in object model.
-    @param {String} path Path for current item.
-    @param {Ember.Array} viewDefinition View definition with result paths for controls.
-    @param {String} column Column path for current item.
-  */
-  _extractPathPart: function(control, path, viewDefinition, column) {
-    if (control instanceof FdEditformControl) {
-      let pathWithColumn = `${path ? path + '\\' : ''}${column}`;
-      control.set('propertyDefinition.path', pathWithColumn);
-      control.set('propertyDefinition.caption', control.get('caption'));
-      viewDefinition.pushObject(control.get('propertyDefinition'));
-      return path;
-    } else if (control instanceof FdEditformRow) {
-      for (let i = 0; i < control.get('controls.length'); i++) {
-        let controlInRow = control.get('controls').objectAt(i);
-        let pathWithColumn = column;
-        if (control.get('controls.length') > 1) {
-          pathWithColumn = `#${i + 1}`;
-        }
-
-        this._extractPathPart(controlInRow, path, viewDefinition, pathWithColumn);
-      }
-    } else if (control instanceof FdEditformGroup) {
-      let pathWithGroup = '-' + control.caption;
-      if (path) {
-        pathWithGroup = path + '\\' + pathWithGroup;
-      }
-
-      for (let i = 0; i < control.get('rows.length'); i++) {
-        let rowInGroup = control.get('rows').objectAt(i);
-        this._extractPathPart(rowInGroup, pathWithGroup, viewDefinition, column);
-      }
-    } else if (control instanceof FdEditformTabgroup) {
-      for (let i = 0; i < control.get('tabs.length'); i++) {
-        let rowInGroup = control.get('tabs').objectAt(i);
-        this._extractPathPart(rowInGroup, path, viewDefinition, column);
-      }
-    } else if (control instanceof FdEditformTab) {
-      let pathWithTab = '|' + control.caption;
-      if (path) {
-        pathWithTab = path + '\\' + pathWithTab;
-      }
-
-      for (let i = 0; i < control.get('rows.length'); i++) {
-        let rowInGroup = control.get('rows').objectAt(i);
-        this._extractPathPart(rowInGroup, pathWithTab, viewDefinition, column);
-      }
-    }
   },
 
   /**
