@@ -122,8 +122,10 @@
 
 <div class="file">
     <pre class="prettyprint linenums">
+import Ember from &#x27;ember&#x27;;
 import ListFormRoute from &#x27;ember-flexberry/routes/list-form&#x27;;
 import FdLimitByStageMixin from &#x27;../mixins/fd-limit-by-stage&#x27;;
+import { Query } from &#x27;ember-flexberry-data&#x27;;
 
 export default ListFormRoute.extend(FdLimitByStageMixin, {
   /**
@@ -167,7 +169,36 @@ export default ListFormRoute.extend(FdLimitByStageMixin, {
     @type Object
     @default {}
   */
-  developerUserSettings: { FdClassListForm: {} }
+  developerUserSettings: { FdClassListForm: {} },
+
+  currentProjectContext: Ember.inject.service(&#x27;fd-current-project-context&#x27;),
+
+  objectListViewLimitPredicate() {
+    // Demo data  TODO: Demo mode.
+    let demoStage = &#x27;FB6972D1-F04A-4617-B454-D2D0DB4CEC05&#x27;;
+    let stagePk = this.get(&#x27;currentProjectContext&#x27;).getCurrentStage();
+    let simplePredicates = Ember.A();
+    if (stagePk.toLocaleLowerCase()  === demoStage.toLocaleLowerCase()) {
+      simplePredicates.pushObject(new Query.SimplePredicate(&#x27;id&#x27;, Query.FilterOperator.Eq, &#x27;5b6bd5cd-66f2-4c38-85d1-9b0633df17b9&#x27;));
+      simplePredicates.pushObject(new Query.SimplePredicate(&#x27;id&#x27;, Query.FilterOperator.Eq, &#x27;83daf0b0-a6df-4298-8980-1325b5c4ad09&#x27;));
+      simplePredicates.pushObject(new Query.SimplePredicate(&#x27;id&#x27;, Query.FilterOperator.Eq, &#x27;a58fcb63-69dd-4003-a7d1-17795568b3ce&#x27;));
+      simplePredicates.pushObject(new Query.SimplePredicate(&#x27;id&#x27;, Query.FilterOperator.Eq, &#x27;91b136b8-ba32-43e7-aaf7-ac01c809d67c&#x27;));
+      simplePredicates.pushObject(new Query.SimplePredicate(&#x27;id&#x27;, Query.FilterOperator.Eq, &#x27;1594c7c7-ea8f-46ea-a137-277258548945&#x27;));
+      simplePredicates.pushObject(new Query.SimplePredicate(&#x27;id&#x27;, Query.FilterOperator.Eq, &#x27;3404edce-a908-46d3-871f-485a436a949f&#x27;));
+      simplePredicates.pushObject(new Query.SimplePredicate(&#x27;id&#x27;, Query.FilterOperator.Eq, &#x27;29a058f5-fd78-42f2-b371-5de6c8bbd38e&#x27;));
+      simplePredicates.pushObject(new Query.SimplePredicate(&#x27;id&#x27;, Query.FilterOperator.Eq, &#x27;1233c3a2-0306-4777-966a-68a423c0ec6f&#x27;));
+      simplePredicates.pushObject(new Query.SimplePredicate(&#x27;id&#x27;, Query.FilterOperator.Eq, &#x27;b3841653-3274-4f18-b132-899150fc28b6&#x27;));
+      simplePredicates.pushObject(new Query.SimplePredicate(&#x27;id&#x27;, Query.FilterOperator.Eq, &#x27;2bc9872d-2f67-4984-aa80-c41b41037854&#x27;));
+      simplePredicates.pushObject(new Query.SimplePredicate(&#x27;id&#x27;, Query.FilterOperator.Eq, &#x27;de436800-c2fc-4412-b052-d5935d0bee24&#x27;));
+      simplePredicates.pushObject(new Query.SimplePredicate(&#x27;id&#x27;, Query.FilterOperator.Eq, &#x27;d048eebb-695b-4b3d-b195-e43660c17fcc&#x27;));
+      simplePredicates.pushObject(new Query.SimplePredicate(&#x27;id&#x27;, Query.FilterOperator.Eq, &#x27;d5870419-1279-4462-a1ff-e465e038eeb8&#x27;));
+      simplePredicates.pushObject(new Query.SimplePredicate(&#x27;id&#x27;, Query.FilterOperator.Eq, &#x27;5b35731d-0645-46f0-a4ec-ee54efbfb527&#x27;));
+      simplePredicates.pushObject(new Query.SimplePredicate(&#x27;id&#x27;, Query.FilterOperator.Eq, &#x27;7dc18ea4-ea84-4311-80a3-c691844dc25c&#x27;));
+      return new Query.ComplexPredicate(Query.Condition.Or, ...simplePredicates);
+    }
+
+    return;
+  },
 });
 
     </pre>

@@ -716,11 +716,14 @@ define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-de
             link: 'fd-generation-list-form',
             caption: i18n.t('forms.application.sitemap.root.fd-generation-list-form.caption'),
             title: i18n.t('forms.application.sitemap.root.fd-generation-list-form.title')
-          }, {
+          },
+          /* TODO: Demo mode.
+          {
             link: 'fd-system-list-form',
             caption: i18n.t('forms.application.sitemap.root.fd-system-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-system-list-form.title')
-          }, {
+            title: i18n.t('forms.application.sitemap.root.fd-system-list-form.title'),
+          },*/
+          {
             link: 'fd-diagram-list-form',
             caption: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.caption'),
             title: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.title')
@@ -13160,6 +13163,10 @@ define('dummy/locales/en/translations', ['exports', 'ember', 'ember-flexberry-de
           },
           logout: {
             caption: 'Logout'
+          },
+          'demo-message': {
+            title: 'Flexberry Designer Demo-version.',
+            caption: 'Making changes is available for following object types:'
           }
         },
 
@@ -13346,6 +13353,10 @@ define('dummy/locales/ru/translations', ['exports', 'ember', 'ember-flexberry-de
           },
           logout: {
             caption: 'Выход'
+          },
+          'demo-message': {
+            title: 'Demo-версия Flexberry Designer.',
+            caption: 'Внесение изменений доступно для следующих типов объектов:'
           }
         },
 
@@ -16063,7 +16074,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
               "column": 0
             },
             "end": {
-              "line": 71,
+              "line": 85,
               "column": 0
             }
           },
@@ -16163,6 +16174,67 @@ define("dummy/templates/application", ["exports"], function (exports) {
           dom.appendChild(el2, el3);
           var el3 = dom.createElement("div");
           dom.setAttribute(el3, "class", "page-header-caption");
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("div");
+          dom.setAttribute(el4, "class", "ui red message demo");
+          var el5 = dom.createTextNode("\n        ");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createElement("div");
+          var el6 = dom.createTextNode("\n          ");
+          dom.appendChild(el5, el6);
+          var el6 = dom.createElement("h3");
+          var el7 = dom.createComment("");
+          dom.appendChild(el6, el7);
+          dom.appendChild(el5, el6);
+          var el6 = dom.createTextNode("\n            ");
+          dom.appendChild(el5, el6);
+          var el6 = dom.createComment("");
+          dom.appendChild(el5, el6);
+          var el6 = dom.createTextNode("\n        ");
+          dom.appendChild(el5, el6);
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("\n        ");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createElement("ul");
+          var el6 = dom.createTextNode(" \n          ");
+          dom.appendChild(el5, el6);
+          var el6 = dom.createElement("li");
+          var el7 = dom.createTextNode("Организация");
+          dom.appendChild(el6, el7);
+          dom.appendChild(el5, el6);
+          var el6 = dom.createTextNode(" \n          ");
+          dom.appendChild(el5, el6);
+          var el6 = dom.createElement("li");
+          var el7 = dom.createTextNode("Адрес");
+          dom.appendChild(el6, el7);
+          dom.appendChild(el5, el6);
+          var el6 = dom.createTextNode("\n          ");
+          dom.appendChild(el5, el6);
+          var el6 = dom.createElement("li");
+          var el7 = dom.createTextNode("Улица");
+          dom.appendChild(el6, el7);
+          dom.appendChild(el5, el6);
+          var el6 = dom.createTextNode("\n          ");
+          dom.appendChild(el5, el6);
+          var el6 = dom.createElement("li");
+          var el7 = dom.createTextNode("Вид территориальной зоны");
+          dom.appendChild(el6, el7);
+          dom.appendChild(el5, el6);
+          var el6 = dom.createTextNode("\n          ");
+          dom.appendChild(el5, el6);
+          var el6 = dom.createElement("li");
+          var el7 = dom.createTextNode("Формирование земельного участка");
+          dom.appendChild(el6, el7);
+          dom.appendChild(el5, el6);
+          var el6 = dom.createTextNode("\n        ");
+          dom.appendChild(el5, el6);
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("\n      ");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
           var el4 = dom.createElement("a");
           dom.setAttribute(el4, "href", "https://github.com/flexberry");
           var el5 = dom.createComment("");
@@ -16309,9 +16381,11 @@ define("dummy/templates/application", ["exports"], function (exports) {
           var element1 = dom.childAt(element0, [1, 1, 1, 1]);
           var element2 = dom.childAt(element1, [3]);
           var element3 = dom.childAt(element0, [3]);
-          var element4 = dom.childAt(fragment, [5, 1]);
-          var element5 = dom.childAt(fragment, [9, 1, 1]);
-          var morphs = new Array(16);
+          var element4 = dom.childAt(element0, [5]);
+          var element5 = dom.childAt(element4, [1, 1]);
+          var element6 = dom.childAt(fragment, [5, 1]);
+          var element7 = dom.childAt(fragment, [9, 1, 1]);
+          var morphs = new Array(18);
           morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
           morphs[1] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           morphs[2] = dom.createAttrMorph(element1, 'title');
@@ -16321,17 +16395,19 @@ define("dummy/templates/application", ["exports"], function (exports) {
           morphs[6] = dom.createMorphAt(dom.childAt(element2, [1]), 0, 0);
           morphs[7] = dom.createMorphAt(dom.childAt(element1, [5, 0]), 0, 0);
           morphs[8] = dom.createAttrMorph(element3, 'title');
-          morphs[9] = dom.createMorphAt(dom.childAt(element0, [5, 0]), 0, 0);
-          morphs[10] = dom.createMorphAt(dom.childAt(element0, [7, 3]), 0, 0);
-          morphs[11] = dom.createAttrMorph(element4, 'class');
-          morphs[12] = dom.createMorphAt(dom.childAt(element4, [1, 1, 1, 1]), 1, 1);
-          morphs[13] = dom.createMorphAt(dom.childAt(fragment, [7]), 1, 1);
-          morphs[14] = dom.createMorphAt(dom.childAt(element5, [1]), 1, 1);
-          morphs[15] = dom.createMorphAt(dom.childAt(element5, [3]), 1, 1);
+          morphs[9] = dom.createMorphAt(dom.childAt(element5, [1]), 0, 0);
+          morphs[10] = dom.createMorphAt(element5, 3, 3);
+          morphs[11] = dom.createMorphAt(dom.childAt(element4, [3]), 0, 0);
+          morphs[12] = dom.createMorphAt(dom.childAt(element0, [7, 3]), 0, 0);
+          morphs[13] = dom.createAttrMorph(element6, 'class');
+          morphs[14] = dom.createMorphAt(dom.childAt(element6, [1, 1, 1, 1]), 1, 1);
+          morphs[15] = dom.createMorphAt(dom.childAt(fragment, [7]), 1, 1);
+          morphs[16] = dom.createMorphAt(dom.childAt(element7, [1]), 1, 1);
+          morphs[17] = dom.createMorphAt(dom.childAt(element7, [3]), 1, 1);
           dom.insertBoundary(fragment, 0);
           return morphs;
         },
-        statements: [["block", "ui-sidebar", [], ["class", "inverted vertical main menu"], 0, null, ["loc", [null, [5, 0], [7, 15]]]], ["inline", "outlet", ["right-sidebar"], [], ["loc", [null, [8, 0], [8, 26]]]], ["attribute", "title", ["subexpr", "t", ["forms.application.header.menu.sitemap-button.title"], [], ["loc", [null, [16, 18], [16, 76]]]]], ["element", "action", ["toggleSidebar"], [], ["loc", [null, [14, 13], [14, 39]]]], ["inline", "t", ["forms.application.header.menu.sitemap-button.caption"], [], ["loc", [null, [17, 12], [17, 72]]]], ["inline", "t", ["forms.application.header.menu.show-menu.caption"], [], ["loc", [null, [18, 76], [18, 131]]]], ["inline", "t", ["forms.application.header.menu.hide-menu.caption"], [], ["loc", [null, [18, 184], [18, 239]]]], ["inline", "t", ["forms.application.header.menu.hide-menu.caption"], [], ["loc", [null, [19, 106], [19, 161]]]], ["attribute", "title", ["subexpr", "t", ["forms.application.sitemap.application-name.title"], [], ["loc", [null, [27, 12], [27, 68]]]]], ["inline", "t", ["application-name"], [], ["loc", [null, [30, 76], [30, 100]]]], ["inline", "t", ["forms.application.header.logout.caption"], [], ["loc", [null, [33, 68], [33, 115]]]], ["attribute", "class", ["concat", ["ui form ", ["get", "objectlistviewEventsService.loadingState", ["loc", [null, [38, 24], [38, 64]]]]]]], ["content", "outlet", ["loc", [null, [43, 12], [43, 22]]]], ["inline", "outlet", ["modal"], [], ["loc", [null, [51, 2], [51, 20]]]], ["inline", "t", ["forms.application.footer.application-name"], [], ["loc", [null, [57, 8], [57, 57]]]], ["inline", "flexberry-dropdown", [], ["class", "compact", "items", ["subexpr", "@mut", [["get", "locales", ["loc", [null, [62, 16], [62, 23]]]]], [], []], "value", ["subexpr", "@mut", [["get", "i18n.locale", ["loc", [null, [63, 16], [63, 27]]]]], [], []], "placeholder", ["subexpr", "t", ["forms.application.header.menu.language-dropdown.placeholder"], [], ["loc", [null, [64, 22], [64, 87]]]], "direction", "upward"], ["loc", [null, [60, 8], [66, 10]]]]],
+        statements: [["block", "ui-sidebar", [], ["class", "inverted vertical main menu"], 0, null, ["loc", [null, [5, 0], [7, 15]]]], ["inline", "outlet", ["right-sidebar"], [], ["loc", [null, [8, 0], [8, 26]]]], ["attribute", "title", ["subexpr", "t", ["forms.application.header.menu.sitemap-button.title"], [], ["loc", [null, [16, 18], [16, 76]]]]], ["element", "action", ["toggleSidebar"], [], ["loc", [null, [14, 13], [14, 39]]]], ["inline", "t", ["forms.application.header.menu.sitemap-button.caption"], [], ["loc", [null, [17, 12], [17, 72]]]], ["inline", "t", ["forms.application.header.menu.show-menu.caption"], [], ["loc", [null, [18, 76], [18, 131]]]], ["inline", "t", ["forms.application.header.menu.hide-menu.caption"], [], ["loc", [null, [18, 184], [18, 239]]]], ["inline", "t", ["forms.application.header.menu.hide-menu.caption"], [], ["loc", [null, [19, 106], [19, 161]]]], ["attribute", "title", ["subexpr", "t", ["forms.application.sitemap.application-name.title"], [], ["loc", [null, [27, 12], [27, 68]]]]], ["inline", "t", ["forms.application.header.demo-message.title"], [], ["loc", [null, [33, 14], [33, 65]]]], ["inline", "t", ["forms.application.header.demo-message.caption"], [], ["loc", [null, [34, 12], [34, 65]]]], ["inline", "t", ["application-name"], [], ["loc", [null, [44, 45], [44, 69]]]], ["inline", "t", ["forms.application.header.logout.caption"], [], ["loc", [null, [47, 68], [47, 115]]]], ["attribute", "class", ["concat", ["ui form ", ["get", "objectlistviewEventsService.loadingState", ["loc", [null, [52, 24], [52, 64]]]]]]], ["content", "outlet", ["loc", [null, [57, 12], [57, 22]]]], ["inline", "outlet", ["modal"], [], ["loc", [null, [65, 2], [65, 20]]]], ["inline", "t", ["forms.application.footer.application-name"], [], ["loc", [null, [71, 8], [71, 57]]]], ["inline", "flexberry-dropdown", [], ["class", "compact", "items", ["subexpr", "@mut", [["get", "locales", ["loc", [null, [76, 16], [76, 23]]]]], [], []], "value", ["subexpr", "@mut", [["get", "i18n.locale", ["loc", [null, [77, 16], [77, 27]]]]], [], []], "placeholder", ["subexpr", "t", ["forms.application.header.menu.language-dropdown.placeholder"], [], ["loc", [null, [78, 22], [78, 87]]]], "direction", "upward"], ["loc", [null, [74, 8], [80, 10]]]]],
         locals: [],
         templates: [child0]
       };
@@ -16350,7 +16426,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 72,
+            "line": 86,
             "column": 0
           }
         },
@@ -16373,7 +16449,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["block", "if", [["get", "isInAcceptanceTestMode", ["loc", [null, [1, 6], [1, 28]]]]], [], 0, 1, ["loc", [null, [1, 0], [71, 7]]]]],
+      statements: [["block", "if", [["get", "isInAcceptanceTestMode", ["loc", [null, [1, 6], [1, 28]]]]], [], 0, 1, ["loc", [null, [1, 0], [85, 7]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -48828,7 +48904,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+b7e3db72"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+3303e708"});
 }
 
 /* jshint ignore:end */
