@@ -8197,7 +8197,7 @@
         },
         {
             "file": "addon/routes/fd-appstruct-form.js",
-            "line": 138,
+            "line": 170,
             "description": "Method for update type right tree.",
             "itemtype": "method",
             "name": "_updateTypeRightTree",
@@ -8238,7 +8238,7 @@
         },
         {
             "file": "addon/routes/fd-association-list-form.js",
-            "line": 7,
+            "line": 8,
             "description": "Service that get current project contexts.",
             "itemtype": "property",
             "name": "currentProjectContext",
@@ -8249,7 +8249,7 @@
         },
         {
             "file": "addon/routes/fd-association-list-form.js",
-            "line": 16,
+            "line": 17,
             "description": "Name of model projection to be used as record's properties limitation.",
             "itemtype": "property",
             "name": "modelProjection",
@@ -8260,7 +8260,7 @@
         },
         {
             "file": "addon/routes/fd-association-list-form.js",
-            "line": 25,
+            "line": 26,
             "description": "Name of model to be used as list's records types.",
             "itemtype": "property",
             "name": "modelName",
@@ -8271,7 +8271,7 @@
         },
         {
             "file": "addon/routes/fd-association-list-form.js",
-            "line": 34,
+            "line": 35,
             "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
             "itemtype": "property",
             "name": "developerUserSettings",
@@ -8282,18 +8282,7 @@
         },
         {
             "file": "addon/routes/fd-class-list-form.js",
-            "line": 6,
-            "description": "Service that get current project contexts.",
-            "itemtype": "property",
-            "name": "currentProjectContext",
-            "type": "{Class}",
-            "default": "Ember.inject.service()",
-            "class": "FdCurrentProjectContextService",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/routes/fd-class-list-form.js",
-            "line": 15,
+            "line": 7,
             "description": "Name of model projection to be used as record's properties limitation.",
             "itemtype": "property",
             "name": "modelProjection",
@@ -8304,7 +8293,7 @@
         },
         {
             "file": "addon/routes/fd-class-list-form.js",
-            "line": 24,
+            "line": 16,
             "description": "Name of model to be used as list's records types.",
             "itemtype": "property",
             "name": "modelName",
@@ -8315,7 +8304,7 @@
         },
         {
             "file": "addon/routes/fd-class-list-form.js",
-            "line": 33,
+            "line": 25,
             "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
             "itemtype": "property",
             "name": "developerUserSettings",
@@ -8794,18 +8783,7 @@
         },
         {
             "file": "addon/routes/fd-inheritance-list-form.js",
-            "line": 6,
-            "description": "Service that get current project contexts.",
-            "itemtype": "property",
-            "name": "currentProjectContext",
-            "type": "{Class}",
-            "default": "Ember.inject.service()",
-            "class": "FdCurrentProjectContextService",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/routes/fd-inheritance-list-form.js",
-            "line": 15,
+            "line": 7,
             "description": "Name of model projection to be used as record's properties limitation.",
             "itemtype": "property",
             "name": "modelProjection",
@@ -8816,7 +8794,7 @@
         },
         {
             "file": "addon/routes/fd-inheritance-list-form.js",
-            "line": 24,
+            "line": 16,
             "description": "Name of model to be used as list's records types.",
             "itemtype": "property",
             "name": "modelName",
@@ -8827,7 +8805,7 @@
         },
         {
             "file": "addon/routes/fd-inheritance-list-form.js",
-            "line": 33,
+            "line": 25,
             "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
             "itemtype": "property",
             "name": "developerUserSettings",
@@ -9014,17 +8992,6 @@
         {
             "file": "addon/routes/fd-view-list-form.js",
             "line": 6,
-            "description": "Service that get current project contexts.",
-            "itemtype": "property",
-            "name": "currentProjectContext",
-            "type": "{Class}",
-            "default": "Ember.inject.service()",
-            "class": "FdCurrentProjectContextService",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/routes/fd-view-list-form.js",
-            "line": 15,
             "description": "Query simple predicate.",
             "itemtype": "property",
             "name": "modelProjection",
@@ -9037,7 +9004,7 @@
         },
         {
             "file": "addon/routes/fd-view-list-form.js",
-            "line": 25,
+            "line": 16,
             "description": "Name of model projection to be used as record's properties limitation.",
             "itemtype": "property",
             "name": "modelProjection",
@@ -9048,7 +9015,7 @@
         },
         {
             "file": "addon/routes/fd-view-list-form.js",
-            "line": 34,
+            "line": 25,
             "description": "Name of model to be used as list's records types.",
             "itemtype": "property",
             "name": "modelName",
@@ -9059,7 +9026,7 @@
         },
         {
             "file": "addon/routes/fd-view-list-form.js",
-            "line": 43,
+            "line": 34,
             "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
             "itemtype": "property",
             "name": "developerUserSettings",
@@ -9070,7 +9037,7 @@
         },
         {
             "file": "addon/routes/fd-view-list-form.js",
-            "line": 68,
+            "line": 59,
             "description": "This hook is the first of the route entry validation hooks called when an attempt is made to transition into a route or one of its children.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_beforeModel).",
             "itemtype": "method",
             "name": "beforeModel",
