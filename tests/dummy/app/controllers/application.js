@@ -104,7 +104,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
             caption: i18n.t('forms.application.sitemap.root.fd-generation-list-form.caption'),
             title: i18n.t('forms.application.sitemap.root.fd-generation-list-form.title'),
           },
-          /* TODO: Demo mode.
+          /* TODO: Propably it's redundant.
           {
             link: 'fd-system-list-form',
             caption: i18n.t('forms.application.sitemap.root.fd-system-list-form.caption'),
