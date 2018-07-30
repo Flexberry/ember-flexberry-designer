@@ -2,6 +2,7 @@ import Ember from 'ember';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
 import { Query } from 'ember-flexberry-data';
 import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
+const { getOwner } = Ember;
 
 export default EditFormController.extend({
 
@@ -67,7 +68,6 @@ export default EditFormController.extend({
     let stagePk = this.get('model.id');
     let moduleSetting = this.get('moduleSetting');
     let moduleSettingTypes = Object.keys(moduleSetting);
-    let host = this.get('store').adapterFor('application').host;
 
     let valueModuleSetting = Ember.A();
     let moduleSettingData = Ember.A();
@@ -86,14 +86,8 @@ export default EditFormController.extend({
     }
 
     let data = { 'project': stagePk, 'moduleSettingType': moduleSettingData, 'valueModuleSetting': valueModuleSetting };
+    let adapter = getOwner(this).lookup('adapter:application');
 
-    Ember.$.ajax({
-      type: 'POST',
-      xhrFields: { withCredentials: true },
-      url: `${host}/SaveCurrentModuleSetting`,
-      data: JSON.stringify(data),
-      contentType: 'application/json; charset=utf-8',
-      dataType: 'json',
-    });
+    adapter.callAction('SaveCurrentModuleSetting', data, null, { withCredentials: true });
   }
 });

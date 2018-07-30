@@ -1,4 +1,5 @@
 import Ember from 'ember';
+const { getOwner } = Ember;
 
 export default Ember.Controller.extend({
   /**
@@ -51,19 +52,15 @@ export default Ember.Controller.extend({
     generate() {
       let _this = this;
       let stagePk = _this.get('currentProjectContext').getCurrentStage();
-      let host = _this.get('store').adapterFor('application').host;
-      Ember.$.ajax({
-        type: 'GET',
-        xhrFields: { withCredentials: true },
-        url: `${host}/Generate(project=${stagePk})`,
-        success(result) {
-          _this.set('generationService.lastGenerationToken', result);
-          _this.transitionToRoute('fd-generation-process-form', Ember.get(result, 'value'));
-        },
-        error() {
+      let adapter = getOwner(this).lookup('adapter:application');
 
-        },
-      });
+      adapter.callFunction('Generate', { project: stagePk }, null, { withCredentials: true },
+      (result) => {
+        _this.set('generationService.lastGenerationToken', result);
+        result = result || {};
+        _this.transitionToRoute(_this.get('editFormRoute'), Ember.get(result, 'value'));
+      },
+      () => {});
     }
   },
 

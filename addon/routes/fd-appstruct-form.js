@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import FdAppStructTree from '../objects/fd-appstruct-tree';
+const { getOwner } = Ember;
 export default Ember.Route.extend({
 
   /**
@@ -128,14 +129,11 @@ export default Ember.Route.extend({
     controller.set('singleModeStage', context.singleStageMode);
 
     let stagePk = context.getCurrentStage();
-    let host = this.get('store').adapterFor('application').host;
-    Ember.$.ajax({
-      type: 'GET',
-      xhrFields: { withCredentials: true },
-      url: `${host}/GetCurrentProcessMethodology(project=${stagePk})`,
-      success(result) {
-        controller.set('processMethodologyValue', result.value);
-      }
+    let adapter = getOwner(this).lookup('adapter:application');
+
+    adapter.callFunction('GetCurrentProcessMethodology', { project: stagePk }, null, { withCredentials: true },
+    (result) => {
+      controller.set('processMethodologyValue', result.value);
     });
   },
 
