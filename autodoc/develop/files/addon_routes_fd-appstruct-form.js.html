@@ -141,7 +141,7 @@ export default Ember.Route.extend({
 
     // Get current classes.
     let allClasses = store.peekAll(&#x27;fd-dev-class&#x27;);
-    let classesCurrentStage = allClasses.filterBy(&#x27;stage.id&#x27;, stage.id);
+    let classesCurrentStage = allClasses.filterBy(&#x27;stage.id&#x27;, stage.get(&#x27;id&#x27;));
 
     // null or «implementation»
     let implementations = classesCurrentStage.filter(function(item) {
