@@ -104,12 +104,11 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
             caption: i18n.t('forms.application.sitemap.root.fd-generation-list-form.caption'),
             title: i18n.t('forms.application.sitemap.root.fd-generation-list-form.title'),
           },
-          /* TODO: Demo mode.
           {
             link: 'fd-system-list-form',
             caption: i18n.t('forms.application.sitemap.root.fd-system-list-form.caption'),
             title: i18n.t('forms.application.sitemap.root.fd-system-list-form.title'),
-          },*/
+          },
           {
             link: 'fd-diagram-list-form',
             caption: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.caption'),
