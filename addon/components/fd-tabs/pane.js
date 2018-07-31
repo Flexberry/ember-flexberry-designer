@@ -119,11 +119,11 @@ export default Ember.Component.extend({
   }).readOnly(),
 
   _showHide: Ember.observer('isActive', function() {
-    if (this.get('isActive')) {
-      this.set('active', true);
-    } else {
-      this.set('active', false);
-    }
+    this.set('active', this.get('isActive'));
+  }),
+
+  _toggleSelect: Ember.observer('isSelected', function() {
+    this.set('selected', this.get('isSelected'));
   }),
 
   /**
