@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import ListFormRoute from 'ember-flexberry/routes/list-form';
 import FdLimitByStageMixin from '../mixins/fd-limit-by-stage';
 
@@ -53,5 +52,5 @@ export default ListFormRoute.extend(FdLimitByStageMixin, {
     @type Object
     @default {}
   */
-  developerUserSettings: { FdClassListForm: {} },
+  developerUserSettings: { FdClassListForm: {} }
 });

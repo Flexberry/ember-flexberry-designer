@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import ListFormRoute from 'ember-flexberry/routes/list-form';
 import LimitByStageMixin from '../mixins/fd-limit-by-stage';
 

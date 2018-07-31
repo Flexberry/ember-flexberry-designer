@@ -53,7 +53,6 @@ export default Ember.Route.extend({
     let treeNodeForms = Ember.A();
     forms.forEach((form, index) => {
       let idParent = form.get('formViews').mapBy('view.class.id');
-
       treeNodeForms.pushObject(
         FdAppStructTree.create({
           text: form.get('caption') || form.get('name'),
@@ -63,7 +62,10 @@ export default Ember.Route.extend({
           type: form.get('stereotype'),
           id: 'node_form_' + index,
           idNode: form.get('id'),
-          idParent: idParent[0]
+          idParent: idParent[0],
+          a_attr: {
+            title: form.get('stereotype') + ' ' + form.get('name')
+          }
         }));
     });
 
@@ -72,7 +74,6 @@ export default Ember.Route.extend({
     implementations.forEach((implementation, index) => {
       let implementationsChildren = treeNodeForms.filterBy('idParent', implementation.id);
       let typeImplementation = implementation.get('stored') ? 'implementations' : 'notStored';
-
       treeLeft.pushObject(
         FdAppStructTree.create({
           text: implementation.get('caption') || implementation.get('name'),
@@ -81,7 +82,10 @@ export default Ember.Route.extend({
           id: 'node_impl_' + index,
           idNode: implementation.get('id'),
           children: implementationsChildren,
-          copyChildren: implementationsChildren
+          copyChildren: implementationsChildren,
+          a_attr: {
+            title: implementation.get('name')
+          }
         }));
     });
 
