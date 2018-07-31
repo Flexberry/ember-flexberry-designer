@@ -39,7 +39,7 @@
       <thead>
         <tr>
           {{#each columns as |column|}}
-            <th {{action "selectColumn" column}}>{{column.caption}}</th>
+            <th class={{if (eq selectedColumn column) "fd-selected"}} {{action "selectColumn" column}}>{{column.caption}}</th>
           {{/each}}
         </tr>
       </thead>
