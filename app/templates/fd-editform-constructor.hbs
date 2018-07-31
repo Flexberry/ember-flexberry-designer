@@ -76,7 +76,19 @@
         </div>
         {{fd-visual-edit-control-tree
           selectedItem=selectedItem
-          model=model
+          model=(hash
+            dataobject=model.dataobject
+            editform=model.editform
+            attributes=attributes
+            masters=masters
+            details=details
+            simpleTypes=simpleTypes
+            typemap=typemap
+            enums=enums
+            types=types
+            mastersType=mastersType
+            detailsType=detailsType
+          )
           items=model.controls
           typeForm='editform'
         }}

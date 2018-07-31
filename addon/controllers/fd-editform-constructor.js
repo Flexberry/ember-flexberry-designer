@@ -14,15 +14,33 @@ import {
   getDataForBuildTree,
   getTreeNodeByNotUsedAttributes,
   getAssociationTreeNode,
+  getAggregationTreeNode,
   getTreeNodeByNotUsedAggregation,
   getClassTreeNode
  } from '../utils/fd-attributes-for-tree';
 import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
 import { controlsToDefinition } from '../utils/fd-view-path-functions';
+import FdDataTypes from '../utils/fd-datatypes';
 
 export default Ember.Controller.extend({
   queryParams: ['classId'],
+
+  /**
+    @private
+    @property _dataTypes
+    @type Ember.Object
+  */
+  _dataTypes: FdDataTypes.create(),
+
+  /**
+    @private
+    @property _dataForBuildTree
+    @type Object
+  */
+  _dataForBuildTree: Ember.computed('model.dataobject.id', function() {
+    return getDataForBuildTree(this.get('store'), this.get('model.dataobject.id'));
+  }),
 
   /**
     @private
@@ -282,6 +300,91 @@ export default Ember.Controller.extend({
   */
   selectedItem: undefined,
 
+  /**
+    @property implementations
+    @type Ember.NativeArray
+  */
+  implementations: Ember.computed.filter('model.classes', clazz => clazz.get('stereotype') === '«implementation»' || clazz.get('stereotype') === null),
+
+  /**
+    @property attributes
+    @type Ember.NativeArray
+  */
+  attributes: Ember.computed('_dataForBuildTree', function() {
+    return getClassTreeNode(Ember.A(), this.get('_dataForBuildTree.classes'), this.get('model.dataobject.id'), 'type');
+  }),
+
+  /**
+    @property masters
+    @type Ember.NativeArray
+  */
+  masters: Ember.computed('_dataForBuildTree', function() {
+    return getAssociationTreeNode(Ember.A(), this.get('_dataForBuildTree.associations'), 'node_', this.get('model.dataobject.id'), 'name');
+  }),
+
+  /**
+    @property details
+    @type Ember.NativeArray
+  */
+  details: Ember.computed('_dataForBuildTree', function() {
+    return getAggregationTreeNode(Ember.A(), this.get('_dataForBuildTree.aggregations'), this.get('model.dataobject.id'), 'name');
+  }),
+
+  /**
+    @property mastersType
+    @type Ember.NativeArray
+  */
+  mastersType: Ember.computed('implementations', function() {
+    return this._buildTree(this.get('implementations'), 'master', true);
+  }),
+
+  /**
+    @property detailsType
+    @type Ember.NativeArray
+  */
+  detailsType: Ember.computed('implementations', 'model.aggregations', 'model.dataobject.id', function() {
+    let implementations = this.get('implementations');
+    let aggregations = this.get('model.aggregations');
+    let dataObjectId = this.get('model.dataobject.id');
+    let details = implementations.filter(clazz => clazz.get('id') !== dataObjectId && aggregations.findBy('endClass.id', clazz.get('id')) === undefined);
+
+    return this._buildTree(details, 'detail', true);
+  }),
+
+  /**
+    @property simpleTypes
+    @type Ember.NativeArray
+  */
+  simpleTypes: Ember.computed('_dataTypes', function() {
+    return this._buildTree(this.get('_dataTypes').flexberryTypes(), 'property');
+  }),
+
+  /**
+    @property typemap
+    @type Ember.NativeArray
+  */
+  typemap: Ember.computed('model.stage.typeMapCSStr', '_dataTypes', function() {
+    let dataTypes = this.get('_dataTypes');
+    let typemap = this.get('model.stage.typeMapCSStr').filter(t => dataTypes.fDTypeToFlexberry(t.name) === null);
+    return this._buildTree(typemap, '«typemap»');
+  }),
+
+  /**
+    @property enums
+    @type Ember.NativeArray
+  */
+  enums: Ember.computed('model.classes', function() {
+    return this._buildTree(this.get('model.classes').filterBy('stereotype', '«enumeration»'), '«enumeration»');
+  }),
+
+  /**
+    @property types
+    @type Ember.NativeArray
+  */
+  types: Ember.computed('model.classes', function() {
+    return this._buildTree(this.get('model.classes').filterBy('stereotype', '«type»'), '«type»');
+  }),
+
   actions: {
     /**
       Adds a new control to the form, if there is a selected item, the control will be added to it.
@@ -301,9 +404,7 @@ export default Ember.Controller.extend({
         defaultValue: ''
       });
 
-      let dataForBuildTree = getDataForBuildTree(this.get('store'), dataobject.get('id'));
-      let newTree = getClassTreeNode(Ember.A(), dataForBuildTree.classes, dataobject.get('id'), 'type');
-      this.set('model.attributes', newTree);
+      this.notifyPropertyChange('_dataForBuildTree');
 
       let view = this.get('model.editform.formViews.firstObject.view');
       let viewDefinition = view.get('definition');
@@ -860,6 +961,43 @@ export default Ember.Controller.extend({
     let scrollTop = Ember.$('.selected:first').offset().top + form.scrollTop() - (form.offset().top + 10);
 
     form.animate({ scrollTop });
+  },
+
+  /**
+    Create tree.
+
+    @method _buildTree
+    @param {Array} data Data for tree.
+    @param {String} type Type for tree.
+    @param {Boolean} nodeId Flag need add in object node id.
+    @return {Object} Object data for tree.
+  */
+  _buildTree(data, type, nodeId) {
+    let treeData = Ember.A();
+    data.forEach((item, index) => {
+      let text;
+      if (type === '«typemap»') {
+        text = item.name;
+      } else if (type === 'property') {
+        text = item;
+      } else {
+        text = item.get('name');
+      }
+
+      let newNode = FdAttributesTree.create({
+        text: text,
+        type: type,
+        id: type + index
+      });
+
+      if (!Ember.isNone(nodeId)) {
+        newNode.set('idNode', item.get('id'));
+      }
+
+      treeData.pushObject(newNode);
+    });
+
+    return treeData;
   },
 
   /**

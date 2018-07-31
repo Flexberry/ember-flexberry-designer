@@ -1,8 +1,6 @@
 import Ember from 'ember';
 import FdEditformControl from '../objects/fd-editform-control';
-import FdAttributesTree from '../objects/fd-attributes-tree';
-import FdDataTypes from '../utils/fd-datatypes';
-import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode } from '../utils/fd-attributes-for-tree';
+
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
 import { locateControlByPath } from '../utils/fd-view-path-functions';
 
@@ -32,27 +30,20 @@ export default Ember.Route.extend({
       editform: undefined,
       originalDefinition: undefined,
       dataobject: undefined,
-      attributes: undefined,
-      typemap: undefined,
-      enums: undefined,
-      simpleTypes: undefined,
-      types: undefined,
-      masters: undefined,
-      mastersType: undefined,
-      details: undefined,
-      detailsType: undefined,
       controls: undefined,
+      classes: undefined,
+      aggregations: undefined,
+      stage: undefined,
     };
 
     let store = this.get('store');
-    let stageId = this.get('currentProjectContext').getCurrentStage();
 
-    let allClasses = store.peekAll('fd-dev-class');
-    let allStages = store.peekAll('fd-dev-stage');
-    let allAggregation = store.peekAll('fd-dev-aggregation');
+    modelHash.stage = this.get('currentProjectContext').getCurrentStageModel();
+    modelHash.classes = store.peekAll('fd-dev-class');
+    modelHash.aggregations = store.peekAll('fd-dev-aggregation');
 
     // Editform.
-    let editform = allClasses.findBy('id', params.id);
+    let editform = store.peekRecord('fd-dev-class', params.id);
     if (!editform.get('caption')) {
       editform.set('caption', editform.get('name'));
     }
@@ -60,50 +51,8 @@ export default Ember.Route.extend({
     modelHash.editform = editform;
 
     // Dataobject.
-    let dataobjectId = editform.get('formViews').objectAt(0).get('view.class.id');
-    modelHash.dataobject = allClasses.findBy('id', dataobjectId);
-
-    // Attributes.
-    let dataForBuildTree = getDataForBuildTree(store, dataobjectId);
-    modelHash.attributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes, dataobjectId, 'type');
-    modelHash.masters = getAssociationTreeNode(Ember.A(), dataForBuildTree.associations, 'node_', dataobjectId, 'name');
-    modelHash.details = getAggregationTreeNode(Ember.A(), dataForBuildTree.aggregations, dataobjectId, 'name');
-
-    // simpleTypes.
-    let fdDataTypes = FdDataTypes.create();
-    modelHash.simpleTypes = this._buildTree(fdDataTypes.flexberryTypes(), 'property');
-
-    // Implementation.
-    let implementation = allClasses.filter(function(item) {
-      return (item.get('stereotype') === '«implementation»' || item.get('stereotype') === null) && item.get('stage.id') === stageId;
-    });
-    modelHash.mastersType = this._buildTree(implementation, 'master', true);
-
-    // Implementation not details.
-    let details = implementation.filter(function(item) {
-      return allAggregation.findBy('endClass.id', item.id) === undefined && item.id !== dataobjectId;
-    });
-    modelHash.detailsType = this._buildTree(details, 'detail', true);
-
-    // Typemap.
-    let currentStage = allStages.findBy('id', stageId);
-    let typeMapCSStr = currentStage.get('typeMapCSStr');
-    let typemap = typeMapCSStr.filter(function(item) {
-      return fdDataTypes.fDTypeToFlexberry(item.name) === null;
-    });
-    modelHash.typemap = this._buildTree(typemap, '«typemap»');
-
-    // Enums.
-    let enums = allClasses.filter(function(item) {
-      return item.get('stereotype') === '«enumeration»' && item.get('stage.id') === stageId;
-    });
-    modelHash.enums = this._buildTree(enums, '«enumeration»');
-
-    // Types.
-    let types = allClasses.filter(function(item) {
-      return item.get('stereotype') === '«type»' && item.get('stage.id') === stageId;
-    });
-    modelHash.types = this._buildTree(types, '«type»');
+    let dataobjectId = editform.get('formViews.firstObject.view.class.id');
+    modelHash.dataobject = store.peekRecord('fd-dev-class', dataobjectId);
 
     // Controls.
     let controlTree = Ember.A();
@@ -161,42 +110,5 @@ export default Ember.Route.extend({
     let definition = controller.get('model.editform.formViews.firstObject.view.definition');
     definition.clear();
     definition.pushObjects(controller.get('model.originalDefinition'));
-  },
-
-  /**
-      Create tree.
-
-      @method _buildTree
-      @param {Array} data Data for tree.
-      @param {String} type Type for tree.
-      @param {Boolean} nodeId Flag need add in object node id.
-      @return {Object} Object data for tree.
-  */
-  _buildTree: function(data, type, nodeId) {
-    let treeData = Ember.A();
-    data.forEach((item, index)=> {
-      let text;
-      if (type === '«typemap»') {
-        text = item.name;
-      } else if (type === 'property') {
-        text = item;
-      } else {
-        text = item.get('name');
-      }
-
-      let newNode = FdAttributesTree.create({
-        text: text,
-        type: type,
-        id: type + index
-      });
-
-      if (!Ember.isNone(nodeId)) {
-        newNode.set('idNode', item.get('id'));
-      }
-
-      treeData.pushObject(newNode);
-    });
-
-    return treeData;
   },
 });
