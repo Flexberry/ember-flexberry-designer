@@ -1,25 +1,33 @@
 import Ember from 'ember';
-import layout from '../templates/components/ui-tab-segment';
-import ComponentParent from './fd-tabs';
-
+import layout from 'ember-flexberry-designer/templates/components/ui-tab-menu';
+import ComponentParent from 'ember-flexberry-designer/components/fd-tabs';
 /**
-ui-tab-segment component
-
-@module components
-@namespace components
-@class UiTabSegment
-@constructor
-*/
+ The tab pane of a tab component.
+ @class TabPane
+ @namespace Components
+ @extends Ember.Component
+ @uses Mixins.ComponentChild
+ @public
+ */
 export default Ember.Component.extend({
-  classNameBindings: ['_uiClass', 'theme', '_theme', '_componentClass', 'active'],
+  layout: layout,
+  classNameBindings: ['_uiClass', 'theme', '_theme', '_componentClass', 'active', 'selected'],  
   _uiClass: 'ui',
   _componentClass: '',
-  layout: layout,
   _theme: 'tab',
   theme: 'bottom attached',
   attributeBindings: ['dataTab:data-tab'],
 
-  title: '',
+  /**
+   * The title for this tab pane. This is used by the `fd-tabs` component to automatically generate
+   * the tab navigation.
+   *
+   * @property title
+   * @type string
+   * @default null
+   * @public
+   */
+  title: null,
 
   /**
    * Used to apply "active" class
@@ -32,10 +40,26 @@ export default Ember.Component.extend({
   active: false,
 
   /**
+   * Used to apply "selected" class
+   *
+   * @property active
+   * @type boolean
+   * @default false
+   * @private
+   */
+  selected: false,
+
+  /**
    * @property activeTab
    * @private
    */
-  isActiveTab: null,
+  activeTab: null,
+
+  /**
+   * @property selectedTab
+   * @private
+   */
+  selectedTab: null,
 
   /**
    * The parent component
@@ -90,8 +114,28 @@ export default Ember.Component.extend({
    * @readonly
    * @private
    */
-  isActive: Ember.computed('isActiveTab', 'dataTab', function() {
-    return this.get('isActiveTab') === this.get('dataTab');
+  isActive: Ember.computed('activeTab', 'dataTab', function() {
+    return this.get('activeTab') === this.get('dataTab');
+  }).readOnly(),
+
+  _showHide: Ember.observer('isActive', function() {
+    if (this.get('isActive')) {
+      this.set('active', true);
+    } else {
+      this.set('active', false);
+    }
+  }),
+
+  /**
+   * True if this pane is active (visible)
+   *
+   * @property isActive
+   * @type boolean
+   * @readonly
+   * @private
+   */
+  isSelected: Ember.computed('selectedTab', 'dataTab', function() {
+    return this.get('selectedTab') === this.get('dataTab');
   }).readOnly(),
 
   init() {
@@ -99,6 +143,7 @@ export default Ember.Component.extend({
     Ember.run.schedule('afterRender', this, function() {
       // isActive comes from parent component, so only available after render...
       this.set('active', this.get('isActive'));
+      this.set('selected', this.get('isSelected'));
     });
   },
 });

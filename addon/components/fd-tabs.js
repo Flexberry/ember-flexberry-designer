@@ -1,8 +1,29 @@
 import Ember from 'ember';
 import layout from '../templates/components/fd-tabs';
-import TabPane from '../components/ui-tab-segment';
+import TabPane from '../components/fd-tabs/pane';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 
+/**
+ Tab component for dynamic tab functionality
+ ### Usage
+ Just nest any number of yielded [Components.TabPane](Components.TabPane.html) components that hold the tab content.
+ The tab navigation is automatically generated from the tab panes' `title` property:
+ ```hbs
+ {{#fd-tabs as |tab|}}
+   {{#tab.pane dataTab='tab1' title="Tab 1"}}
+     <p>...</p>
+   {{/tab.pane}}
+   {{#tab.pane dataTab='tab2' title="Tab 2"}}
+     <p>...</p>
+   {{/tab.pane}}
+ {{/fd-tabs}}
+ ```
+ @class Tab
+ @namespace Components
+ @extends Ember.Component
+ @uses Mixins.ComponentParent
+ @public
+ */
 export default Ember.Component.extend(FdWorkPanelToggler, {
 
   layout: layout,
@@ -11,7 +32,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
   hideTabsCount: 0,
   overflowButtonShow: false,
   overflowListShow: false,
-  moreValue: 'Другие',
+  moreValue: 'Еще',
   selectedTab: '',
 
   activeTab: Ember.computed.oneWay('childPanes.firstObject.dataTab'),
@@ -139,20 +160,13 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
   tabsObserver: Ember.observer('tabs.[]', function() {
     let _this = this;
     Ember.run.schedule('afterRender',	function() {
-      _this.$('.item').tab();
+      // _this.$('.item').tab();
       _this.updateOverflowTabs();
     });
   }),
 
   didInsertElement() {
     this.updateOverflowTabs();
-    // if (this.get('activeTab') === '') {
-    //   this.set('activeTab', this.get('_showedTabs').get('firstObject').dataTab);
-    // }
-  },
-
-  didRender() {
-    this.$('.item').tab();
   },
 
   actions: {
