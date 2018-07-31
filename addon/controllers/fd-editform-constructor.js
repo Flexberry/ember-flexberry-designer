@@ -20,7 +20,7 @@ import {
  } from '../utils/fd-attributes-for-tree';
 import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
-import { controlsToDefinition } from '../utils/fd-view-path-functions';
+import { controlsToDefinition, locateControlByPath } from '../utils/fd-view-path-functions';
 import FdDataTypes from '../utils/fd-datatypes';
 
 export default Ember.Controller.extend({
@@ -385,6 +385,29 @@ export default Ember.Controller.extend({
     return this._buildTree(this.get('model.classes').filterBy('stereotype', '«type»'), '«type»');
   }),
 
+  /**
+    The controls tree created from a view definition.
+
+    @property controlsTree
+    @readOnly
+    @type Ember.NativeArray
+  */
+  controlsTree: Ember.computed('model.editform.formViews.firstObject.view.definition', function() {
+    let controlsTree = Ember.A();
+
+    let definition = this.get('model.editform.formViews.firstObject.view.definition');
+    let length = definition.get('length');
+    for (let i = 0; i < length; i++) {
+      let propertyDefinition = definition.objectAt(i);
+      let path = propertyDefinition.get('path');
+      let caption = propertyDefinition.get('caption') || propertyDefinition.get('name');
+      let control = FdEditformControl.create({ caption, propertyDefinition });
+      locateControlByPath(controlsTree, control, path);
+    }
+
+    return controlsTree;
+  }).readOnly(),
+
   actions: {
     /**
       Adds a new control to the form, if there is a selected item, the control will be added to it.
@@ -420,7 +443,7 @@ export default Ember.Controller.extend({
         propertyDefinition: propertyDefinition,
       });
 
-      this._insertItem(control, this.get('selectedItem') || this.get('model.controls'));
+      this._insertItem(control, this.get('selectedItem') || this.get('controlsTree'));
       this.send('selectItem', control);
       Ember.run.scheduleOnce('afterRender', this, this._scrollToSelected);
     },
@@ -440,7 +463,7 @@ export default Ember.Controller.extend({
         }),
       });
 
-      this._insertItem(control, this.get('selectedItem') || this.get('model.controls'));
+      this._insertItem(control, this.get('selectedItem') || this.get('controlsTree'));
       this.send('selectItem', control);
       Ember.run.scheduleOnce('afterRender', this, this._scrollToSelected);
     },
@@ -454,7 +477,7 @@ export default Ember.Controller.extend({
       this._insertItem(FdEditformGroup.create({
         caption: `${this.get('i18n').t('forms.fd-editform-constructor.new-group-caption').toString()} #${this.incrementProperty('_newGroupIndex')}`,
         rows: Ember.A(),
-      }), this.get('selectedItem') || this.get('model.controls'));
+      }), this.get('selectedItem') || this.get('controlsTree'));
     },
 
     /**
@@ -466,7 +489,7 @@ export default Ember.Controller.extend({
       this._insertItem(FdEditformTab.create({
         caption: `${this.get('i18n').t('forms.fd-editform-constructor.new-tab-caption').toString()} #${this.incrementProperty('_newTabIndex')}`,
         rows: Ember.A(),
-      }), this.get('selectedItem') || this.get('model.controls'));
+      }), this.get('selectedItem') || this.get('controlsTree'));
     },
 
     /**
@@ -481,7 +504,7 @@ export default Ember.Controller.extend({
 
         // Refresh definition for filter not used attributes in 'dataNotUsedAttributesTreeObserver'.
         let view = this.get('model.editform.formViews.firstObject.view');
-        view.set('definition', controlsToDefinition(this.get('model.controls')));
+        view.set('definition', controlsToDefinition(this.get('controlsTree')));
         this.set('selectedItem', undefined);
       } else {
         this.set('_showModalDialog', true);
@@ -605,7 +628,7 @@ export default Ember.Controller.extend({
     save(close) {
       this.set('state', 'loading');
       try {
-        this._saveMetadata(this.get('model')).then(() => {
+        this._saveMetadata(this.get('model'), this.get('controlsTree')).then(() => {
           this.set('model.originalDefinition', copyViewDefinition(this.get('model.editform.formViews.firstObject.view.definition')));
           this.set('state', '');
           if (close) {
@@ -779,11 +802,11 @@ export default Ember.Controller.extend({
     @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item
       The sought item.
     @param {Ember.NativeArray|FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab} [container]
-      The container from which to start the search, if not specified, uses `model.controls`.
+      The container from which to start the search, if not specified, uses `controlsTree`.
     @return {Ember.NativeArray|FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab}
       The container that was found or `null`.
   */
-  _findItemContainer(item, container = this.get('model.controls')) {
+  _findItemContainer(item, container = this.get('controlsTree')) {
     let foundContainer;
     if (container instanceof FdEditformControl) {
       foundContainer = null;
@@ -892,10 +915,12 @@ export default Ember.Controller.extend({
 
     @method _saveMetadata
     @param {Object} model Complex model for processing and save.
+    @param {Ember.NativeArray} controlsTree The controls tree.
+    @return {Ember.RSVP.Promise}
   */
-  _saveMetadata(model) {
+  _saveMetadata(model, controlsTree) {
     let view = model.editform.get('formViews.firstObject.view');
-    let viewDefinition = controlsToDefinition(model.controls);
+    let viewDefinition = controlsToDefinition(controlsTree);
 
     // Check viewDefinition on errors.
     let duplicateValues = Ember.A();

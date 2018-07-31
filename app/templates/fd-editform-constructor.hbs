@@ -23,9 +23,9 @@
     </div>
   </div>
 
-  {{#each model.controls as |control|}}
+  {{#each controlsTree as |row|}}
     {{fd-editform-row
-      row=control
+      row=row
       selectedItem=(readonly selectedItem)
       selectItemAction=(action "selectItem")
       setDragItemAction=(action "setDragItem")
@@ -89,7 +89,7 @@
             mastersType=mastersType
             detailsType=detailsType
           )
-          items=model.controls
+          items=controlsTree
           typeForm='editform'
         }}
       {{/ui-tab-segment}}

@@ -1,8 +1,6 @@
 import Ember from 'ember';
-import FdEditformControl from '../objects/fd-editform-control';
 
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
-import { locateControlByPath } from '../utils/fd-view-path-functions';
 
 export default Ember.Route.extend({
 
@@ -30,7 +28,6 @@ export default Ember.Route.extend({
       editform: undefined,
       originalDefinition: undefined,
       dataobject: undefined,
-      controls: undefined,
       classes: undefined,
       aggregations: undefined,
       stage: undefined,
@@ -54,20 +51,6 @@ export default Ember.Route.extend({
     let dataobjectId = editform.get('formViews.firstObject.view.class.id');
     modelHash.dataobject = store.peekRecord('fd-dev-class', dataobjectId);
 
-    // Controls.
-    let controlTree = Ember.A();
-    let definition = modelHash.editform.get('formViews.firstObject.view.definition');
-    modelHash.originalDefinition = copyViewDefinition(definition);
-    for (let i = 0; i < definition.length; i++) {
-      let propertyDefinition = definition[i];
-      let path = propertyDefinition.get('path');
-      let caption = propertyDefinition.get('caption') || propertyDefinition.get('name');
-      let control = FdEditformControl.create({ caption, propertyDefinition });
-      locateControlByPath(controlTree, control, path);
-    }
-
-    modelHash.controls = controlTree;
-
     return modelHash;
   },
 
@@ -78,9 +61,12 @@ export default Ember.Route.extend({
     @method setupController
     @param {Ember.Controller} controller
     @param {Object} model
-   */
-  setupController(controller) {
+  */
+  setupController(controller, model) {
     this._super(...arguments);
+
+    model.originalDefinition = copyViewDefinition(model.editform.get('formViews.firstObject.view.definition'));
+
     controller.set('selectedItem', undefined);
     controller.set('_showNotUsedAttributesTree', false);
     controller.set('state', '');
