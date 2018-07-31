@@ -4,15 +4,6 @@ import ListFormRoute from 'ember-flexberry/routes/list-form';
 
 export default ListFormRoute.extend({
   /**
-   Service that get current project contexts.
-
-   @property currentProjectContext
-   @type {Class}
-   @default Ember.inject.service()
-   */
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
-
-  /**
     Query simple predicate.
 
     @property modelProjection

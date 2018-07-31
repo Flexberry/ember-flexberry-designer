@@ -3,15 +3,6 @@ import LimitByStageMixin from '../mixins/fd-limit-by-stage';
 
 export default ListFormRoute.extend(LimitByStageMixin, {
   /**
-   Service that get current project contexts.
-
-   @property currentProjectContext
-   @type {Class}
-   @default Ember.inject.service()
-   */
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
-
-  /**
     Name of model projection to be used as record's properties limitation.
 
     @property modelProjection
