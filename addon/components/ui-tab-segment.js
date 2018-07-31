@@ -11,7 +11,7 @@ ui-tab-segment component
 @constructor
 */
 export default Ember.Component.extend({
-  classNameBindings: ['_uiClass', 'theme', '_theme', '_componentClass'],
+  classNameBindings: ['_uiClass', 'theme', '_theme', '_componentClass', 'active'],
   _uiClass: 'ui',
   _componentClass: '',
   layout: layout,
@@ -20,6 +20,22 @@ export default Ember.Component.extend({
   attributeBindings: ['dataTab:data-tab'],
 
   title: '',
+
+  /**
+   * Used to apply "active" class
+   *
+   * @property active
+   * @type boolean
+   * @default false
+   * @private
+   */
+  active: false,
+
+  /**
+   * @property activeTab
+   * @private
+   */
+  isActiveTab: null,
 
   /**
    * The parent component
@@ -61,11 +77,28 @@ export default Ember.Component.extend({
     this._registerWithParent();
   },
 
-  didInsertElement() {
-  },
-
   willRender() {
     this._super(...arguments);
     this._registerWithParent();
-  }
+  },
+
+  /**
+   * True if this pane is active (visible)
+   *
+   * @property isActive
+   * @type boolean
+   * @readonly
+   * @private
+   */
+  isActive: Ember.computed('isActiveTab', 'dataTab', function() {
+    return this.get('isActiveTab') === this.get('dataTab');
+  }).readOnly(),
+
+  init() {
+    this._super(...arguments);
+    Ember.run.schedule('afterRender', this, function() {
+      // isActive comes from parent component, so only available after render...
+      this.set('active', this.get('isActive'));
+    });
+  },
 });

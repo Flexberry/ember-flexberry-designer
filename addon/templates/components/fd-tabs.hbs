@@ -15,6 +15,7 @@
 
 {{yield
   (hash
-    pane=(component "ui-tab-segment" parent=this)
+    pane=(component "ui-tab-segment" parent=this isActiveTab=activeTab)
+    isActiveTab=activeTab
   )
 }}

@@ -13,7 +13,8 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
   overflowListShow: false,
   moreValue: 'Другие',
   selectedTab: '',
-  activeTab: '',
+
+  activeTab: Ember.computed.oneWay('childPanes.firstObject.dataTab'),
 
   options: {
     tabPadding: 25,
@@ -145,9 +146,8 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
 
   didInsertElement() {
     this.updateOverflowTabs();
-
-    // if (this.get('tabs').length > 0){
-    //   this.set('activeTab', this.get('tabs')[0].dataTab);
+    // if (this.get('activeTab') === '') {
+    //   this.set('activeTab', this.get('_showedTabs').get('firstObject').dataTab);
     // }
   },
 
