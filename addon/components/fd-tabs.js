@@ -2,7 +2,6 @@ import Ember from 'ember';
 import layout from '../templates/components/fd-tabs';
 import TabPane from '../components/fd-tabs/pane';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
-import { translationMacro as t } from 'ember-i18n';
 
 /**
  Tab component for dynamic tab functionality
