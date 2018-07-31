@@ -309,7 +309,13 @@ export default Ember.Controller.extend({
       columns.insertAt(index, selectedColumn);
     },
 
-    save() {
+    /**
+      Saves the form's metadata.
+
+      @method actions.save
+      @param {Boolean} close If `true`, the `close` action will be run.
+    */
+    save(close) {
       this.set('state', 'loading');
       let view = Ember.A(this.get('view'));
       let viewDefinition = Ember.A();
