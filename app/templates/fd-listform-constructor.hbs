@@ -35,7 +35,7 @@
   <div class="ui segment" style="overflow:scroll;">
     <h3 class="ui header">{{formClass.name}}</h3>
     <img src="assets/images/visualEditListFormTop.png" />
-    <table class="ui celled selectable collapsing table">
+    <table class="ui celled selectable collapsing table fd-listform">
       <thead>
         <tr>
           {{#each columns as |column|}}
@@ -47,7 +47,7 @@
         {{#each columns as |column|}}
           <tr>
             {{#each columns as |column|}}
-              <td class={{if (eq selectedColumn column) "positive"}} {{action "selectColumn" column}}>&nbsp;</td>
+              <td class={{if (eq selectedColumn column) "fd-selected"}} {{action "selectColumn" column}}>&nbsp;</td>
             {{/each}}
           </tr>
         {{/each}}
