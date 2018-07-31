@@ -61,53 +61,53 @@ export default Ember.Controller.extend({
           labels: [{ attrs: { text: { text:  'n-Association' } } }]
         });
 
-        let associationConnector = new joint.shapes.flexberryUml.Association({
+        let associationConnector = new joint.shapes.flexberryUml.AssociationWithUnderline({
           source: { x:400, y:50 },
           target: { x:700, y:50 }
         });
-        associationConnector.setLabel('startRole', { text: { text: '1' } });
-        associationConnector.setLabel('endRole', { text: { text: '2' } });
-        associationConnector.setLabel('description', { text: { text: 'Association', 'text-decoration': 'underline' } });
+        associationConnector.setLabelText('startRole', '1');
+        associationConnector.setLabelText('endRole', '2');
+        associationConnector.setLabelText('description', 'Association');
 
         let qualifiedConnector = new joint.shapes.flexberryUml.Qualified({
           source: { x:400, y:90 },
           target: { x:700, y:90 }
         });
-        qualifiedConnector.setLabel('startRole', { text: { text: '1' } });
-        qualifiedConnector.setLabel('endRole', { text: { text: '2' } });
-        qualifiedConnector.setLabel('description', { text: { text: 'Qualified', 'text-decoration': 'underline' } });
+        qualifiedConnector.setLabelText('startRole', '1');
+        qualifiedConnector.setLabelText('endRole', '2');
+        qualifiedConnector.setLabelText('description', 'Qualified');
 
-        let agregationConnector = new joint.shapes.flexberryUml.Aggregation({
+        let agregationConnector = new joint.shapes.flexberryUml.AggregationWithUnderline({
           source: { x:400, y:140 },
           target: { x:700, y:140 }
         });
-        agregationConnector.setLabel('startRole', { text: { text: '1' } });
-        agregationConnector.setLabel('endRole', { text: { text: '2' } });
-        agregationConnector.setLabel('description', { text: { text: 'Agregation', 'text-decoration': 'underline' } });
+        agregationConnector.setLabelText('startRole', '1');
+        agregationConnector.setLabelText('endRole', '2');
+        agregationConnector.setLabelText('description', 'Agregation');
 
         let qAgregationConnector = new joint.shapes.flexberryUml.QualifiedAggregation({
           source: { x:400, y:180 },
           target: { x:700, y:180 }
         });
-        qAgregationConnector.setLabel('startRole', { text: { text: '1' } });
-        qAgregationConnector.setLabel('endRole', { text: { text: '2' } });
-        qAgregationConnector.setLabel('description', { text: { text: 'Q-Agregation', 'text-decoration': 'underline' } });
+        qAgregationConnector.setLabelText('startRole', '1');
+        qAgregationConnector.setLabelText('endRole', '2');
+        qAgregationConnector.setLabelText('description', 'Q-Agregation');
 
-        let compositionConnector = new joint.shapes.flexberryUml.Composition({
+        let compositionConnector = new joint.shapes.flexberryUml.CompositionWithUnderline({
           source: { x:400, y:210 },
           target: { x:700, y:210 }
         });
-        compositionConnector.setLabel('startRole', { text: { text: '1' } });
-        compositionConnector.setLabel('endRole', { text: { text: '2' } });
-        compositionConnector.setLabel('description', { text: { text: 'Composition', 'text-decoration': 'underline' } });
+        compositionConnector.setLabelText('startRole', '1');
+        compositionConnector.setLabelText('endRole', '2');
+        compositionConnector.setLabelText('description', 'Composition');
 
         let qCompositionConnector = new joint.shapes.flexberryUml.QualifiedComposition({
           source: { x:400, y:250 },
           target: { x:700, y:250 }
         });
-        qCompositionConnector.setLabel('startRole', { text: { text: '1' } });
-        qCompositionConnector.setLabel('endRole', { text: { text: '2' } });
-        qCompositionConnector.setLabel('description', { text: { text: 'Q-Composition', 'text-decoration': 'underline' } });
+        qCompositionConnector.setLabelText('startRole', '1');
+        qCompositionConnector.setLabelText('endRole', '2');
+        qCompositionConnector.setLabelText('description', 'Q-Composition');
 
         let designPatternConnector = new joint.shapes.flexberryUml.CollPatternConnect({
           source: { x:400, y:290 },
