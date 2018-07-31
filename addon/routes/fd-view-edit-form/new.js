@@ -63,5 +63,6 @@ export default Ember.Route.extend({
     this._super(...arguments);
     controller.set('routeName', this.get('routeName'));
     controller.set('parentRoute', this.get('router.url'));
+    controller.set('searchTerm', '');
   }
 });
