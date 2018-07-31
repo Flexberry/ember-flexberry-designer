@@ -310,6 +310,7 @@ export default Ember.Controller.extend({
     },
 
     save() {
+      this.set('state', 'loading');
       let view = Ember.A(this.get('view'));
       let viewDefinition = Ember.A();
       let columns = this.get('columns');
@@ -353,18 +354,35 @@ export default Ember.Controller.extend({
       let changedAggregation = aggregation.filterBy('hasDirtyAttributes');
 
       dataobject.save().then(() => {
-        this.get('view').save().then(() => {
-          formClass.save().then(() => {
+        formClass.save().then(() => {
+          this.get('view').save().then(() => {
             this.get('formClass.formViews.firstObject').save().then(() => {
               this.set('class', undefined);
               this.set('form', this.get('formClass.id'));
+              if (close) {
+                this.send('close');
+              } else {
+                this.set('state', '');
+              }
+            }, (error) => {
+              this.set('state', '');
+              this.set('error', error);
             });
-            this.set('model.originalDefinition', copyViewDefinition(this.get('view.definition')));
+          }, (error) => {
+            this.set('state', '');
+            this.set('error', error);
           });
+          this.set('model.originalDefinition', copyViewDefinition(this.get('view.definition')));
           changedAttributes.map(a => a.save());
           changedAssociations.map(a => a.save());
           changedAggregation.map(a => a.save());
+        }, (error) => {
+          this.set('state', '');
+          this.set('error', error);
         });
+      }, (error) => {
+        this.set('state', '');
+        this.set('error', error);
       });
     },
 

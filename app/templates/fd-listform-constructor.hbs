@@ -19,7 +19,7 @@
           {{t "forms.edit-form.save-button-text"}}
         </button>
         {{#unless model.isNew}}
-          <button type="button" class="ui button save-close-button" {{action 'save-close'}}>
+          <button type="button" class="ui button save-close-button" {{action 'save' true}}>
             {{t "forms.edit-form.saveAndClose-button-text"}}
           </button>
         {{/unless}}
