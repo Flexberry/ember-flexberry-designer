@@ -22,17 +22,17 @@
     class="ui segments" 
     tabClick = (action "changeTab")
     selectedTab=selectedItem.caption
-    activeTab=activeTab.caption
+    as |tab|
   }}
-    {{#each control.tabs as |tab index|}}
-      {{#ui-tab-segment
-        title=tab.caption
-        dataTab=tab.caption
-        tab=tab
+    {{#each control.tabs as |tabObj index|}}
+      {{#tab.pane
+        title=tabObj.caption
+        dataTab=tabObj.caption
+        tab=tabObj
         theme="bottom attached segment"
       }}
 
-        {{#each tab.rows as |row|}}
+        {{#each tabObj.rows as |row|}}
           {{fd-editform-row
             row=row
             selectedItem=selectedItem
@@ -43,7 +43,7 @@
           }}
         {{/each}}
 
-      {{/ui-tab-segment}}
+      {{/tab.pane}}
     {{/each}}
   {{/fd-tabs}}
 {{/if}}

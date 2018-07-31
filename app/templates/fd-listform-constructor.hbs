@@ -71,14 +71,14 @@
 {{/if}}
 
 {{#fd-config-panel}}
-  {{#fd-tabs tabsMenuTheme="vertical tabular" class="ui segments horizontal right-tabs" tabClick = (action "toggleConfigPanel") activeTab="none"}}
+  {{#fd-tabs tabsMenuTheme="vertical tabular" class="ui segments horizontal right-tabs" tabClick = (action "toggleConfigPanel") activeTab="none" as |tab|}}
     <form class="ui form segment">
       <div class="ui segment">
         <div class="ui large header">
           {{t "forms.fd-listform-constructor.caption"}}
         </div>
       </div>
-      {{#ui-tab-segment dataTab='first' title=(t "forms.fd-editform-constructor.form-config-panel.form-properties-header") theme=""}}
+      {{#tab.pane dataTab='first' title=(t "forms.fd-editform-constructor.form-config-panel.form-properties-header") theme=""}}
         <div class="ui small dividing header">
           {{t "forms.fd-editform-constructor.form-config-panel.form-properties-header"}}
         </div>
@@ -94,9 +94,9 @@
           }}
         </div>
 
-      {{/ui-tab-segment}}
+      {{/tab.pane}}
 
-      {{#ui-tab-segment dataTab='control-properties' title=(t "forms.fd-listform-constructor.form-config-panel.control-properties-header") theme=""}}
+      {{#tab.pane dataTab='control-properties' title=(t "forms.fd-listform-constructor.form-config-panel.control-properties-header") theme=""}}
         <div class="ui small dividing header">
           {{t "forms.fd-listform-constructor.form-config-panel.control-properties-header"}}
         </div>
@@ -106,9 +106,9 @@
           items=columns
           typeForm='listform'
         }}
-      {{/ui-tab-segment}}
+      {{/tab.pane}}
 
-      {{#ui-tab-segment dataTab="actions-with-columns" title=(t "forms.fd-listform-constructor.form-config-panel.actions-with-columns-header") theme=""}}
+      {{#tab.pane dataTab="actions-with-columns" title=(t "forms.fd-listform-constructor.form-config-panel.actions-with-columns-header") theme=""}}
         <div class="ui small dividing header">
           {{t "forms.fd-listform-constructor.form-config-panel.add-columns-header"}}
         </div>
@@ -165,7 +165,7 @@
             {{t "forms.fd-editform-constructor.form-config-panel.cancel"}}
           </button>
         {{/if}}
-      {{/ui-tab-segment}}
+      {{/tab.pane}}
 
     </form>
   {{/fd-tabs}}
