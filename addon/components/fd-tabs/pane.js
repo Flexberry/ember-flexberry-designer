@@ -11,7 +11,7 @@ import ComponentParent from 'ember-flexberry-designer/components/fd-tabs';
  */
 export default Ember.Component.extend({
   layout: layout,
-  classNameBindings: ['_uiClass', 'theme', '_theme', '_componentClass', 'active', 'selected'],  
+  classNameBindings: ['_uiClass', 'theme', '_theme', '_componentClass', 'active', 'selected'],
   _uiClass: 'ui',
   _componentClass: '',
   _theme: 'tab',

@@ -36,6 +36,7 @@ export default FlexberryDropdown.extend({
         if (newValue === oldValue) {
           return;
         }
+
         this.sendAction('onChange', newValue);
       }
 
