@@ -100,6 +100,7 @@ import FdViewModel from './models/fd-view';
 import FdVisualControlModel from './models/fd-visual-control';
 import FdVisualControlComponent from './components/fd-visual-control';
 import FdVisualEditControlTreeComponent from './components/fd-visual-edit-control-tree';
+import FdTabs from './components/fd-tabs';
 
 const translations = {};
 Ember.$.extend(true, translations, EmberFlexberryTranslations);
@@ -211,7 +212,8 @@ Ember.$.extend(true, translations, {
 
   components: {
     'fd-visual-control': FdVisualControlComponent,
-    'fd-visual-edit-control-tree': FdVisualEditControlTreeComponent
+    'fd-visual-edit-control-tree': FdVisualEditControlTreeComponent,
+    'fd-tabs': FdTabs
   }
 
 });

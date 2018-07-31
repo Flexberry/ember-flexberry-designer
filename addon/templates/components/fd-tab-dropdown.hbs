@@ -27,7 +27,11 @@
 
 
   <i class="dropdown icon"></i>
-  <div class="text">{{text}}</div>
+  {{#if showPlaceholder}}
+    <div class="default text">{{placeholder}}</div>
+  {{else}}
+    <div class="text">{{text}}</div>
+  {{/if}}
   <div class="menu">
     {{yield}}
     {{#each-in _items as |key value|}}
