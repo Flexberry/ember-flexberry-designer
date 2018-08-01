@@ -39,7 +39,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
   options: {
     tabPadding: 25,
     containerPadding: 0,
-    dropdownSize: 95
+    dropdownSize: 78
   },
 
   updateOverflowTabs: function() {
@@ -115,6 +115,31 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
     this._super(...arguments);
     this.set('children', Ember.A());
     this.set('_hideTabs', Ember.A());
+
+    Ember.run.schedule('afterRender', this, function() {
+      let _this = this;
+      Ember.$(window).resize(function() {
+        if ( !(_this.get('isDestroyed') || _this.get('isDestroyed')) ) {
+          _this.reinitTabs();
+        }
+      });
+    });
+  },
+
+  reinitTabs(){
+    this.set('overflowButtonShow', false);
+    this.set('_hideTabs', Ember.A());
+    this.set('_showedTabs', this.get('tabs').slice());
+    this.set('activeTab', this.get('tabs').get('firstObject').dataTab);
+
+    Ember.run.schedule('afterRender', this,	function() {
+      this._calculateWidths();
+
+      this.set('overflowButtonShow', this.get('hideTabsCount') > 0);
+      if (this.overflowButtonShow) {
+        this._hideTab();
+      }
+    });
   },
 
   /**
