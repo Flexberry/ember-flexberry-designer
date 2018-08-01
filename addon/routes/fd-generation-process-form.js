@@ -50,6 +50,7 @@ export default Ember.Route.extend({
   setupController(controller, model) {
     this._super(...arguments);
 
+    controller.set('state', '');
     controller.set('modelName', this.get('modelName'));
     controller.set('modelProjection', this.get('modelProjection'));
     controller.set('generationId', Ember.get(this.paramsFor('fd-generation-process-form'), 'id'));

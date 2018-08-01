@@ -49,6 +49,7 @@ export default Ember.Controller.extend({
       @method actions.generate
      */
     generate() {
+      this.set('state', 'loading');
       let _this = this;
       let stagePk = _this.get('currentProjectContext').getCurrentStage();
       let host = _this.get('store').adapterFor('application').host;
@@ -60,8 +61,9 @@ export default Ember.Controller.extend({
           _this.set('generationService.lastGenerationToken', result);
           _this.transitionToRoute('fd-generation-process-form', Ember.get(result, 'value'));
         },
-        error() {
-
+        error(error) {
+          _this.set('state', '');
+          _this.set('error', new Error(error.status + '(' + error.statusText +')'));
         },
       });
     }
