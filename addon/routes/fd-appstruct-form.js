@@ -67,10 +67,10 @@ export default Ember.Route.extend({
       let idParent = form.get('formViews').mapBy('view.class.id');
 
       // TODO: Demo mode.
-      let attr_2 = { title: form.get('stereotype') + ' ' + form.get('name') };
+      let attr = { title: form.get('stereotype') + ' ' + form.get('name') };
       let state = { disabled: false };
       if (demoData.length !== 0 && Ember.isNone(demoData.findBy('id', idParent[0]))) {
-        attr_2 = { class: 'jstree-disabled', 'aria-disabled': true,  title: form.get('stereotype') + ' ' + form.get('name'), style: 'background: #9fa099' };
+        attr = { class: 'jstree-disabled', 'aria-disabled': true,  title: form.get('stereotype') + ' ' + form.get('name'), style: 'background: #9fa099' };
         state = { disabled: true };
       }
 
@@ -85,7 +85,7 @@ export default Ember.Route.extend({
           idNode: form.get('id'),
           idParent: idParent[0],
           state: state,
-          a_attr: attr_2
+          a_attr: attr
         }));
     });
 
@@ -94,6 +94,7 @@ export default Ember.Route.extend({
     implementations.forEach((implementation, index) => {
       let implementationsChildren = treeNodeForms.filterBy('idParent', implementation.id);
       let typeImplementation = implementation.get('stored') ? 'implementations' : 'notStored';
+
 
       // TODO: Demo mode.
       let attr = { title: implementation.get('name') };
