@@ -1,0 +1,18 @@
+<thead>
+  <tr>
+    <th class="collapsing"><i class="sort icon"></i></th>
+    {{#each _headers as |header|}}
+      <th>{{header}}</th>
+    {{/each}}
+  </tr>
+</thead>
+<tbody>
+  {{#each _rows as |row|}}
+    <tr>
+      <td><div class="ui checkbox"><label></label></div></td>
+      {{#each row as |cell|}}
+        <td>{{cell}}</td>
+      {{/each}}
+    </tr>
+  {{/each}}
+</tbody>
