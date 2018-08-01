@@ -19,6 +19,11 @@ Router.map(function () {
   { path: 'fd-association-edit-form/:id' });
   this.route('fd-association-edit-form.new',
   { path: 'fd-association-edit-form/new' });
+  this.route('fd-aggregation-list-form');
+  this.route('fd-aggregation-edit-form',
+  { path: 'fd-aggregation-edit-form/:id' });
+  this.route('fd-aggregation-edit-form.new',
+  { path: 'fd-aggregation-edit-form/new' });
   this.route('fd-business-server-edit-form',
   { path: 'fd-business-server-edit-form/:id' });
   this.route('fd-business-server-edit-form.new',

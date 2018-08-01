@@ -1,11 +1,12 @@
 {{flexberry-error error=error}}
-<h3>{{t 'forms.fd-view-list-form.caption'}}</h3>
+<h3>{{t 'forms.fd-aggregation-list-form.caption'}}</h3>
 <div class="row">
   {{flexberry-objectlistview
-    modelName="fd-dev-view"
+    modelName="fd-dev-aggregation"
     modelProjection=modelProjection
     editFormRoute=editFormRoute
     content=model
+    createNewButton=true
     refreshButton=true
     sorting=computedSorting
     orderable=true
@@ -22,6 +23,6 @@
     previousPage=(action "previousPage")
     gotoPage=(action "gotoPage")
     nextPage=(action "nextPage")
-    componentName="FdViewListForm"
+    componentName="FdAggregationListForm"
   }}
 </div>
