@@ -1,19 +1,20 @@
 table.fd-listform {
+  @width: 0.2em;
   position: relative;
 
   td.fd-selected
   {
-    border-right: 0.25em dashed rgb(79,115,176);
-    border-left: 0.25em dashed rgb(79,115,176);
+    border-right: @width dashed rgb(79,115,176);
+    border-left: @width dashed rgb(79,115,176) !important;
     background-color: rgba(79,115,176, 0.25);
   }
   th.fd-selected {
-    border-right: 0.25em dashed rgb(79,115,176);
-    border-left: 0.25em dashed rgb(79,115,176);
-    border-top: 0.25em dashed rgb(79,115,176);
+    border-right: @width dashed rgb(79,115,176);
+    border-left: @width dashed rgb(79,115,176) !important;
+    border-top: @width dashed rgb(79,115,176);
     background-color: rgba(79,115,176, 0.25);
   }
   tr:last-child > td.fd-selected {
-    border-bottom: 0.25em dashed rgb(79,115,176);
+    border-bottom: @width dashed rgb(79,115,176);
   }
 }
