@@ -53,7 +53,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
         this.set('overflowButtonShow', false);
         this.set('_hideTabs', Ember.A());
         this.set('_showedTabs', this.get('tabs').slice());
-        this.set('activeTab', this.get('tabs').get('firstObject').dataTab)
+        this.set('activeTab', this.get('tabs').get('firstObject').dataTab);
       }
     }
 
@@ -87,7 +87,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
   _hideTab: function() {
     let hideTabs = this.get('hideTabsCount');
     this.set('_showedTabs', this.get('tabs').slice());
-    
+
     for (let i = 0; i < hideTabs; i++) {
       let _currentTabs = this.get('_showedTabs');
       let lastTab = Ember.A(_currentTabs).get('lastObject');
@@ -188,7 +188,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
   tabsObserver: Ember.observer('tabs.[]', function() {
     Ember.run.schedule('afterRender', this,	function() {
       this.updateOverflowTabs();
-    })
+    });
   }),
 
   didInsertElement() {
