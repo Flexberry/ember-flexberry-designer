@@ -159,14 +159,6 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
     return items;
   }),
 
-  removeTabsObserver: Ember.observer('tabs.dataTab', function() {
-    let _this = this;
-    Ember.run.schedule('afterRender',	function() {
-      // _this.$('.item').tab();
-      _this.updateOverflowTabs();
-    });
-  }),
-
   tabsObserver: Ember.observer('tabs.[]', function() {
     let _this = this;
     Ember.run.schedule('afterRender',	function() {
