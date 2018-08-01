@@ -32,28 +32,28 @@ export default Ember.Controller.extend({
         model: _this.graph,
       });
 
-      var linkAggregation = new joint.shapes.flexberryUml.Aggregation({
+      var linkAggregation = new joint.shapes.flexberryUml.ClassDiagramAggregation({
         source: { x:100, y:30 },
         target: { x:300, y:30 }
       });
-      linkAggregation.setLabelText('startMultiplicity', '*');
-      linkAggregation.setLabelText('endMultiplicity', '1');
+      linkAggregation.setLabelText('startMultiplicity', '1');
+      linkAggregation.setLabelText('endMultiplicity', '*');
       linkAggregation.setLabelText('description', 'Agregation');
 
-      var linkAssociation = new joint.shapes.flexberryUml.Association({
+      var linkAssociation = new joint.shapes.flexberryUml.ClassDiagramAssociation({
         source: { x:100, y:80 },
         target: { x:300, y:80 }
       });
-      linkAssociation.setLabelText('startMultiplicity', '*');
-      linkAssociation.setLabelText('endMultiplicity', '1');
+      linkAssociation.setLabelText('startMultiplicity', '1');
+      linkAssociation.setLabelText('endMultiplicity', '*');
       linkAssociation.setLabelText('description', 'Association');
 
-      var linkComposition = new joint.shapes.flexberryUml.Composition({
+      var linkComposition = new joint.shapes.flexberryUml.ClassDiagramComposition({
         source: { x:100, y:120 },
         target: { x: 300, y: 120 }
       });
-      linkComposition.setLabelText('startMultiplicity', '*');
-      linkComposition.setLabelText('endMultiplicity', '0..1');
+      linkComposition.setLabelText('startMultiplicity', '0..1');
+      linkComposition.setLabelText('endMultiplicity', '*');
       linkComposition.setLabelText('description', 'Composition');
 
       var linkDependency = new joint.shapes.flexberryUml.Dependency({

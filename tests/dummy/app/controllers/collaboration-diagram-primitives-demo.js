@@ -61,7 +61,7 @@ export default Ember.Controller.extend({
           labels: [{ attrs: { text: { text:  'n-Association' } } }]
         });
 
-        let associationConnector = new joint.shapes.flexberryUml.AssociationWithUnderline({
+        let associationConnector = new joint.shapes.flexberryUml.CollaborationDiagramAssociation({
           source: { x:400, y:50 },
           target: { x:700, y:50 }
         });
@@ -77,7 +77,7 @@ export default Ember.Controller.extend({
         qualifiedConnector.setLabelText('endRole', '2');
         qualifiedConnector.setLabelText('description', 'Qualified');
 
-        let agregationConnector = new joint.shapes.flexberryUml.AggregationWithUnderline({
+        let agregationConnector = new joint.shapes.flexberryUml.CollaborationDiagramAggregation({
           source: { x:400, y:140 },
           target: { x:700, y:140 }
         });
@@ -93,7 +93,7 @@ export default Ember.Controller.extend({
         qAgregationConnector.setLabelText('endRole', '2');
         qAgregationConnector.setLabelText('description', 'Q-Agregation');
 
-        let compositionConnector = new joint.shapes.flexberryUml.CompositionWithUnderline({
+        let compositionConnector = new joint.shapes.flexberryUml.CollaborationDiagramComposition({
           source: { x:400, y:210 },
           target: { x:700, y:210 }
         });
