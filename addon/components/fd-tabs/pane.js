@@ -96,6 +96,20 @@ export default Ember.Component.extend({
     }
   },
 
+  /**
+   * Unregister from the parent component
+   *
+   * @method _unregisterFromParent
+   * @private
+   */
+  _unregisterFromParent() {
+    let parent = this.get('_parent');
+    if (this._didRegister && parent) {
+      parent.removeChild(this);
+      this._didRegister = false;
+    }
+  },
+
   didReceiveAttrs() {
     this._super(...arguments);
     this._registerWithParent();
@@ -104,6 +118,11 @@ export default Ember.Component.extend({
   willRender() {
     this._super(...arguments);
     this._registerWithParent();
+  },
+
+  willDestroyElement() {
+    this._super(...arguments);
+    this._unregisterFromParent();
   },
 
   /**
