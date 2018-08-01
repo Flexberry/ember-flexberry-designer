@@ -36,8 +36,10 @@ export default EditFormNewRoute.extend({
 
     let implementationsName = Ember.A(implementations).mapBy('name');
     controller.set('implementations', implementations);
-    controller.set('parentName', implementationsName);
-    controller.set('childName', implementationsName);
+    controller.set('parentNames', implementationsName);
+    controller.set('childNames', implementationsName);
+    controller.set('parentName', '');
+    controller.set('childName', '');
     controller.set('readonlyDropdown', false);
     controller.set('model.stage', currentStage);
   }

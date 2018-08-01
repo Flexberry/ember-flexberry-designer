@@ -22,7 +22,7 @@ export default EditFormRoute.extend({
     @param {Ember.Controller} controller
     @param {Object} model
    */
-  setupController: function(controller) {
+  setupController: function(controller, model) {
     this._super(...arguments);
     let stagePk = this.get('currentProjectContext').getCurrentStage();
 
@@ -34,8 +34,10 @@ export default EditFormRoute.extend({
     });
 
     let implementationsName = Ember.A(implementations).mapBy('name');
-    controller.set('parentName', implementationsName);
-    controller.set('childName', implementationsName);
+    controller.set('parentNames', implementationsName);
+    controller.set('childNames', implementationsName);
+    controller.set('parentName', model.get('parent.name'));
+    controller.set('childName', model.get('child.name'));
     controller.set('readonlyDropdown', true);
   }
 });

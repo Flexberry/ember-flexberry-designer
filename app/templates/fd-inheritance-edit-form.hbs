@@ -46,8 +46,8 @@
     <label>{{t "forms.fd-inheritance-edit-form.parent-caption"}}</label>
     {{
       flexberry-dropdown
-      items=parentName
-      value=model.parent.name
+      items=parentNames
+      value=parentName
       readonly=readonlyDropdown
       onChange=(action "changeParent")
     }}
@@ -57,8 +57,8 @@
     <label>{{t "forms.fd-inheritance-edit-form.child-caption"}}</label>
     {{
       flexberry-dropdown
-      items=childName
-      value=model.child.name
+      items=childNames
+      value=childName
       readonly=readonlyDropdown
       onChange=(action "changeChild")
     }}

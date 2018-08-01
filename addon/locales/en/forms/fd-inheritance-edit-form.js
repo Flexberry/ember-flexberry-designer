@@ -4,4 +4,5 @@ export default {
   'description-caption': 'Description',
   'parent-caption': 'Parent',
   'child-caption': 'Child',
+  'error': 'A cycle was discovered in inheritance. Saving is not possible',
 };
