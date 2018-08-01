@@ -16,24 +16,22 @@ export default ListFormController.extend({
       switch (record.data.stereotype) {
         case '«listform»':
           editFormRoute = 'fd-listform-constructor';
+          this.transitionToRoute(editFormRoute, {
+            queryParams: {
+              form: record.id,
+              class: undefined,
+            },
+          });
         break;
         case '«editform»':
           editFormRoute = 'fd-editform-constructor';
+          this.transitionToRoute(editFormRoute, record.id);
         break;
         default:
           editFormRoute = this.get('editFormRoute');
+          this.transitionToRoute(editFormRoute, record.id);
         break;
       }
-
-      Ember.assert('Edit form route must be defined for flexberry-objectlistview', editFormRoute);
-      if (Ember.isNone(options)) {
-        options = {};
-        options.editFormRoute = editFormRoute;
-      } else {
-        options = Ember.merge(options, { editFormRoute: editFormRoute });
-      }
-
-      this.transitionToRoute(editFormRoute, record);
     }
 
   }
