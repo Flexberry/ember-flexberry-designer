@@ -63,7 +63,7 @@ export default Ember.Controller.extend({
         },
         error(error) {
           _this.set('state', '');
-          _this.set('error', new Error(error.status + '(' + error.statusText +')'));
+          _this.set('error', new Error(error.status + '(' + error.statusText + ')'));
         },
       });
     }
