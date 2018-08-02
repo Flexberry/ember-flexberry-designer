@@ -4373,7 +4373,7 @@
         },
         {
             "file": "addon/controllers/fd-generation-process-form.js",
-            "line": 70,
+            "line": 72,
             "description": "Update generation log records array.",
             "itemtype": "method",
             "name": "generationLogUpdate",

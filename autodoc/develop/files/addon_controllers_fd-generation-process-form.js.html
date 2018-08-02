@@ -173,6 +173,7 @@ export default Ember.Controller.extend({
       @method actions.generate
      */
     generate() {
+      this.set(&#x27;state&#x27;, &#x27;loading&#x27;);
       let _this = this;
       let stagePk = _this.get(&#x27;currentProjectContext&#x27;).getCurrentStage();
       let host = _this.get(&#x27;store&#x27;).adapterFor(&#x27;application&#x27;).host;
@@ -185,7 +186,8 @@ export default Ember.Controller.extend({
           _this.transitionToRoute(&#x27;fd-generation-process-form&#x27;, Ember.get(result, &#x27;value&#x27;));
         },
         error() {
-
+          _this.set(&#x27;state&#x27;, &#x27;&#x27;);
+          _this.set(&#x27;error&#x27;, new Error(_this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-generation-process-form.connection-error-text&#x27;)));
         },
       });
     }
