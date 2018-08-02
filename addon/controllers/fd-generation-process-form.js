@@ -61,9 +61,9 @@ export default Ember.Controller.extend({
           _this.set('generationService.lastGenerationToken', result);
           _this.transitionToRoute('fd-generation-process-form', Ember.get(result, 'value'));
         },
-        error(error) {
+        error() {
           _this.set('state', '');
-          _this.set('error', new Error(error.status + '(' + error.statusText + ')'));
+          _this.set('error', new Error(_this.get('i18n').t('forms.fd-generation-process-form.connection-error-text')));
         },
       });
     }
