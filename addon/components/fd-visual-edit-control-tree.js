@@ -332,6 +332,8 @@ export default FlexberryBaseComponent.extend({
         this.set('widthValue', width.slice(0, -1));
         this.set('widthType', '%');
       }
+    } else {
+      this.set('customWidth', false);
     }
 
     return attribute;
