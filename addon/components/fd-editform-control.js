@@ -54,18 +54,24 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
   }).readOnly(),
 
   /**
-    Type of rendered component.
+    An object with properties for rendering the component.
 
     @private
     @property _component
     @readOnly
-    @type String
+    @type Object
   */
-  _component: Ember.computed('control.type', function() {
+  _component: Ember.computed('control.propertyDefinition.name', 'control.propertyDefinition.visible', 'control.propertyDefinition.detailViewName', function() {
     switch (this.get('control.type')) {
-      case 'date': return 'flexberry-datepicker';
-      case 'bool': return 'flexberry-checkbox';
-      default: return 'flexberry-textbox';
+      case 'date': return { name: 'flexberry-datepicker' };
+      case 'bool': return { name: 'flexberry-checkbox' };
+      default:
+        let propertyDefinition = this.get('control.propertyDefinition');
+        if (propertyDefinition && propertyDefinition.get('visible')) {
+          return this.get('getComponentPropertiesAction')(propertyDefinition);
+        } else {
+          return { name: 'flexberry-textbox' };
+        }
     }
   }).readOnly(),
 

@@ -2,7 +2,10 @@
 <div class="drag-anchor" {{action set "draggable" true on="mouseEnter"}} {{action set "draggable" false on="mouseLeave"}}></div>
 {{#if _isControl}}
   <label>{{control.caption}}</label>
-  {{component _component}}
+  {{component _component.name
+    items=_component.items
+    view=_component.view
+  }}
 {{else if _isGroup}}
   {{#flexberry-toggler caption=control.caption expanded=true}}
     {{#each control.rows as |row|}}
@@ -13,6 +16,7 @@
         setDragItemAction=setDragItemAction
         getDragItemAction=getDragItemAction
         moveDragItemAction=moveDragItemAction
+        getComponentPropertiesAction=getComponentPropertiesAction
       }}
     {{/each}}
   {{/flexberry-toggler}}
@@ -32,6 +36,7 @@
           setDragItemAction=setDragItemAction
           getDragItemAction=getDragItemAction
           moveDragItemAction=moveDragItemAction
+          getComponentPropertiesAction=getComponentPropertiesAction
         }}
       {{/each}}
     </div>
