@@ -22,15 +22,15 @@ export default ListFormController.extend({
               class: undefined,
             },
           });
-        break;
+          break;
         case '«editform»':
           editFormRoute = 'fd-editform-constructor';
           this.transitionToRoute(editFormRoute, record.id);
-        break;
+          break;
         default:
           editFormRoute = this.get('editFormRoute');
           this.transitionToRoute(editFormRoute, record.id);
-        break;
+          break;
       }
     }
 
