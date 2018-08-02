@@ -16,6 +16,7 @@ export default {
   'master-property': 'Property in master',
   'sample-setting': 'Master customization string',
   visibility: 'Visibility',
+  'custom-width': 'Customize width of control',
   search: 'Enter name to search',
   tree: {
     'property': 'Own properties',
