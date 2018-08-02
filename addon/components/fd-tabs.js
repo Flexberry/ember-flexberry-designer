@@ -73,7 +73,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
   }),
 
   /**
-   * Array of hidden child components
+   * Array of showed child components
    *
    * @property children
    * @type array
