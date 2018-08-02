@@ -107,6 +107,28 @@ export default Ember.Controller.extend({
   _showModalDialog: false,
 
   /**
+    @private
+    @property _showLookupDialog
+    @type Boolean
+    @default false
+  */
+  _showLookupDialog: false,
+
+  /**
+    @private
+    @property _lookupCaption
+    @type String
+  */
+  _lookupCaption: undefined,
+
+  /**
+    @private
+    @property _lookupView
+    @type FdDevViewModel
+  */
+  _lookupView: undefined,
+
+  /**
     Indicates that the user has started moving control, and the next selected control will be the target of the move.
 
     @private
@@ -680,7 +702,7 @@ export default Ember.Controller.extend({
         view = this.get('model.views').filterBy('class.id', relation.get('endClass.id')).findBy('name', propertyDefinition.get('detailViewName'));
         name = 'fd-object-list-view';
       } else if (propertyDefinition instanceof FdViewAttributesMaster) {
-        name = 'flexberry-lookup';
+        name = 'fd-lookup';
         let propertyLookup = this.get('model.editform.propertyLookupStr').findBy('property', propertyDefinition.get('name'));
         if (propertyLookup) {
           let form = this.get('model.classes').findBy('name', propertyLookup.container);
@@ -718,6 +740,19 @@ export default Ember.Controller.extend({
       }
 
       return { name, view, items };
+    },
+
+    /**
+      Shows the lookup form in modal dialog.
+
+      @method actions.showLookup
+      @param {String} caption Caption for the lookup form.
+      @param {FdDevViewModel} view The view on which the table will be render in the lookup form.
+    */
+    showLookup(caption, view) {
+      this.set('_lookupCaption', caption);
+      this.set('_lookupView', view);
+      this.set('_showLookupDialog', true);
     },
 
     /**

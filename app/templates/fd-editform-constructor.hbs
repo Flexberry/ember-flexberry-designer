@@ -32,6 +32,7 @@
       getDragItemAction=(action "getDragItem")
       moveDragItemAction=(action "moveDragItem")
       getComponentPropertiesAction=(action "getComponentProperties")
+      showLookupAction=(action "showLookup")
     }}
   {{/each}}
 </form>
@@ -46,6 +47,20 @@
     )
   }}
     {{t "forms.fd-editform-constructor.form-config-panel.remove-approve"}}
+  {{/modal-dialog}}
+{{/if}}
+
+{{#if _showLookupDialog}}
+  {{#modal-dialog
+    title=_lookupCaption
+    useOkButton=false
+    useCloseButton=false
+    settings=(hash
+      onHidden=(action set "_showLookupDialog" false)
+      context=".pusher:first"
+    )
+  }}
+    {{fd-object-list-view view=_lookupView}}
   {{/modal-dialog}}
 {{/if}}
 
