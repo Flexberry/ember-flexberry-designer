@@ -31,6 +31,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
   containerWidth: 0,
   hideTabsCount: 0,
   overflowButtonShow: false,
+  overflowedTabs: true,
   selectedTab: '',
   addTab: true,
   reloadTabs: true,
@@ -116,14 +117,16 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
     this.set('children', Ember.A());
     this.set('_hideTabs', Ember.A());
 
-    Ember.run.schedule('afterRender', this, function() {
-      let _this = this;
-      Ember.$(window).resize(function() {
-        if ( !(_this.get('isDestroyed') || _this.get('isDestroyed')) ) {
-          _this.reinitTabs();
-        }
+    if (this.overflowedTabs) {
+      Ember.run.schedule('afterRender', this, function() {
+        let _this = this;
+        Ember.$(window).resize(function() {
+          if ( !(_this.get('isDestroyed') || _this.get('isDestroyed')) ) {
+            _this.reinitTabs();
+          }
+        });
       });
-    });
+    }
   },
 
   reinitTabs(){
@@ -182,7 +185,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
     return view instanceof TabPane;
   }),
 
-  _showedTabs: Ember.computed('childPanes.[]', 'childPanes.@each.{tab,title,dataTab}', function() {
+  _showedTabs: Ember.computed('tabs', function() {
     let items = Ember.A();
     this.get('tabs').forEach((tab) => {
       let item = tab;
@@ -211,13 +214,17 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
   }),
 
   tabsObserver: Ember.observer('tabs.[]', function() {
-    Ember.run.schedule('afterRender', this,	function() {
-      this.updateOverflowTabs();
-    });
+    if (this.overflowedTabs) {
+      Ember.run.schedule('afterRender', this,	function() {
+        this.updateOverflowTabs();
+      });
+    }
   }),
 
   didInsertElement() {
-    this.updateOverflowTabs();
+    if (this.overflowedTabs) {
+      this.updateOverflowTabs();
+    }
   },
 
   willRender() {
