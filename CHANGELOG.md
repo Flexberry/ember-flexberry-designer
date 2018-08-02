@@ -20,6 +20,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 * The edit form constructor:
   * The addition of controls takes place depending on the selected item.
+  * The type of the displayed component for the control depends on the type of property.
 
 ### Fixed
 * The view edit form:
