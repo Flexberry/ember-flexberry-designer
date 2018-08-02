@@ -276,9 +276,9 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       } else {
         this.set('addFolderNodeDisabled', '');
         if (typeNode === 'desk') {
-          this.set('addRightNodeDisabled', 'disabled');
           this.set('removeRightNodeDisabled', 'disabled');
           this.set('editRightNodeDisabled', 'disabled');
+          this.set('addRightNodeDisabled', '');
         } else {
           this.set('addRightNodeDisabled', '');
           this.set('removeRightNodeDisabled', '');
