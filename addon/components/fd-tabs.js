@@ -39,7 +39,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
   options: {
     tabPadding: 25,
     containerPadding: 0,
-    dropdownSize: 78
+    dropdownSize: 70
   },
 
   /**
@@ -109,9 +109,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
 
   tabsObserver: Ember.observer('tabs.[]', function() {
     if (this.overflowedTabs) {
-      Ember.run.schedule('afterRender', this,	function() {
-        this.reinitTabs();
-      });
+      this.reinitTabs();
     }
   }),
 
@@ -164,20 +162,22 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
   },
 
   reinitTabs() {
-    this.set('overflowButtonShow', false);
-    this.set('_hideTabs', Ember.A());
-    this.set('_showedTabs', this.get('tabs').slice());
+    Ember.run.schedule('afterRender', this, function() {
+      this.set('overflowButtonShow', false);
+      this.set('_hideTabs', Ember.A());
+      this.set('_showedTabs', this.get('tabs').slice());
 
-    let activeTab = this.get('tabs').get('firstObject') ? this.get('tabs').get('firstObject').dataTab : null;
-    this.set('activeTab', activeTab);
+      let activeTab = this.get('tabs').get('firstObject') ? this.get('tabs').get('firstObject').dataTab : null;
+      this.set('activeTab', activeTab);
 
-    Ember.run.schedule('afterRender', this,	function() {
-      this._calculateWidths();
+      Ember.run.schedule('afterRender', this,	function() {
+        this._calculateWidths();
 
-      this.set('overflowButtonShow', this.get('hideTabsCount') > 0);
-      if (this.overflowButtonShow) {
-        this._hideTab();
-      }
+        this.set('overflowButtonShow', this.get('hideTabsCount') > 0);
+        if (this.overflowButtonShow) {
+          this._hideTab();
+        }
+      });
     });
   },
 
@@ -211,11 +211,6 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
     if (this.overflowedTabs) {
       this.reinitTabs();
     }
-  },
-
-  willRender() {
-    this._super(...arguments);
-
   },
 
   actions: {

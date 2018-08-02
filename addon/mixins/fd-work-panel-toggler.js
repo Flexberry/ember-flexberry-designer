@@ -31,6 +31,11 @@ export default Ember.Mixin.create({
         }).sidebar('toggle');
         configPanelSidebar.removeClass('overlay');
         this.send('workPlaceConfig');
+
+        // For reinit overflowed tabs.
+        Ember.run.later(this, function() {
+          Ember.$(window).trigger('resize');
+        }, 500);
       }
 
       Ember.run.next(function() {
@@ -39,7 +44,6 @@ export default Ember.Mixin.create({
           Ember.$('.ui.form', configPanelSidebar).find('.tab').removeClass('active');
         }
       });
-
     },
 
     workPlaceConfig(isMainSidebar = false) {
