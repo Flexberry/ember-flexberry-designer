@@ -11,7 +11,7 @@ export default ListFormController.extend({
   editFormRoute: 'fd-class-edit-form',
 
   actions: {
-    onRowClick(record, options) {
+    onRowClick(record) {
       let editFormRoute;
       switch (record.data.stereotype) {
         case '«listform»':

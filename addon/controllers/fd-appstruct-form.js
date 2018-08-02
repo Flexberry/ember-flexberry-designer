@@ -532,14 +532,14 @@ export default EditFormController.extend(FdWorkPanelToggler, {
               class: undefined,
             },
           });
-          break;
+        break;
         case '«editform»':
           this.transitionToRoute('fd-editform-constructor', nodeId);
-          break;
+        break;
         case 'implementations':
         case 'notStored':
           this.transitionToRoute('fd-class-edit-form', nodeId);
-          break;
+        break;
       }
     },
 
