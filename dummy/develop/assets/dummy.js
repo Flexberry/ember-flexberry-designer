@@ -12071,6 +12071,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ut
     assert.ok(true, 'modules/ember-flexberry-designer/utils/fd-copy-view-definition.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-create-form-properties.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/utils');
+  test('modules/ember-flexberry-designer/utils/fd-create-form-properties.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/utils/fd-create-form-properties.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-create-form-properties.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/utils/fd-create-form-properties.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/utils/fd-create-form-properties.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-datatypes.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/utils');
   test('modules/ember-flexberry-designer/utils/fd-datatypes.js should pass jscs', function () {
@@ -37980,7 +37993,7 @@ define("dummy/templates/fd-listform-constructor", ["exports"], function (exports
             morphs[1] = dom.createMorphAt(element13, 1, 1);
             return morphs;
           },
-          statements: [["element", "action", ["save-close"], [], ["loc", [null, [22, 68], [22, 91]]]], ["inline", "t", ["forms.edit-form.saveAndClose-button-text"], [], ["loc", [null, [23, 12], [23, 60]]]]],
+          statements: [["element", "action", ["save", true], [], ["loc", [null, [22, 68], [22, 90]]]], ["inline", "t", ["forms.edit-form.saveAndClose-button-text"], [], ["loc", [null, [23, 12], [23, 60]]]]],
           locals: [],
           templates: []
         };
@@ -48882,7 +48895,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+6da24c88"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+31b49741"});
 }
 
 /* jshint ignore:end */

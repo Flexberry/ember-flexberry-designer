@@ -128,6 +128,7 @@ import EditFormController from &#x27;ember-flexberry/controllers/edit-form&#x27;
 import { translationMacro as t } from &#x27;ember-i18n&#x27;;
 import FdWorkPanelToggler from &#x27;../mixins/fd-work-panel-toggler&#x27;;
 import { restorationNodeTree, findFreeNodeTreeID, findFreeNodeTreeNameIndex } from &#x27;../utils/fd-metods-for-tree&#x27;;
+import { getNewFormCaption, getNewFormDescription } from &#x27;../utils/fd-create-form-properties&#x27;;
 
 export default EditFormController.extend(FdWorkPanelToggler, {
 
@@ -563,8 +564,8 @@ export default EditFormController.extend(FdWorkPanelToggler, {
 
         let devClass = store.peekRecord(&#x27;fd-dev-class&#x27;, classId);
         let baseCaption = devClass.get(&#x27;name&#x27;) || devClass.get(&#x27;nameStr&#x27;);
-        let newCaption = this._getNewEditFormCaption(baseCaption);
-        let newDescription = this._getNewEditFormDescription(newCaption);
+        let newCaption = getNewFormCaption(store, baseCaption, &#x27;E&#x27;);
+        let newDescription = getNewFormDescription(newCaption);
 
         store.createRecord(&#x27;fd-dev-class&#x27;, {
           stage: currentStage,
@@ -888,68 +889,6 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     restorationNodeTree(dataTree, {}, Ember.A([&#x27;folder&#x27;, &#x27;desk&#x27;]), true);
 
     this.get(&#x27;jstreeActionReceiverRight&#x27;).send(&#x27;redraw&#x27;);
-  },
-
-  /**
-    Get unique caption for new edit form.
-    @method _getNewEditFormCaption
-    @private
-  */
-  _getNewEditFormCaption(baseCaption) {
-    let found = true;
-    let allClasses = this.get(&#x27;store&#x27;).peekAll(&#x27;fd-dev-class&#x27;);
-    let allViews = this.get(&#x27;store&#x27;).peekAll(&#x27;fd-dev-view&#x27;);
-    let captionToReturn = &#x27;&#x27;;
-    let captionToFound = &#x27;&#x27;;
-    let i = 0;
-    let iterateClasses = item =&gt; item.get(&#x27;caption&#x27;) === captionToFound || item.get(&#x27;name&#x27;) === captionToFound || item.get(&#x27;nameStr&#x27;) === captionToFound;
-    let iterateViews = item =&gt; item.get(&#x27;name&#x27;) === captionToFound;
-    while (found) {
-      captionToFound = i === 0 ? &#x60;${baseCaption}E&#x60; : &#x60;${baseCaption}${i}E&#x60;;
-      let foundClass = allClasses.find(iterateClasses);
-      let foundView = allViews.find(iterateViews);
-
-      // If class or view with specified name was found then we should try to generate another name (new edit form and new view should have same name).
-      found = foundClass !== undefined || foundView !== undefined;
-      if (!found) {
-        captionToReturn = captionToFound;
-      }
-
-      i++;
-    }
-
-    return captionToReturn;
-  },
-
-  /**
-    Get description for new edit form.
-    @method _getNewEditFormDescription
-    @private
-  */
-  _getNewEditFormDescription(caption) {
-    var temp = &#x27;&#x27;;
-    var tempArray = [];
-
-    for (let i = 0; i &lt; caption.length; i++)
-    {
-      //If found capital letter...
-      if (((caption.charCodeAt(i) &gt;= 65 &amp;&amp; caption.charCodeAt(i) &lt;= 90) || (caption.charCodeAt(i) &gt;= 1040 &amp;&amp; caption.charCodeAt(i) &lt;= 1071)) &amp;&amp; temp !== &#x27;&#x27;)
-      {
-        tempArray.push(temp);
-        temp = caption.charAt(i);
-      } else {
-        temp += caption.charAt(i);
-      }
-    }
-
-    tempArray.push(temp);
-    for (let i = 0; i &lt; tempArray.length; i++) {
-      if (i &gt; 0 &amp;&amp; i &lt; tempArray.length - 1) {
-        tempArray[i] = tempArray[i].toLowerCase();
-      }
-    }
-
-    return tempArray.join(&#x27; &#x27;);
   },
 });
 

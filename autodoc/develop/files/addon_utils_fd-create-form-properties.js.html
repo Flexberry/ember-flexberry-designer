@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>addon/routes/fd-listform-constructor.js - Flexberry Documentation</title>
+    <title>addon/utils/fd-create-form-properties.js - Flexberry Documentation</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -117,214 +117,76 @@
                 <div id="docs-main">
                     <div class="content">
 <div class="page-header">
-    <h1>addon/routes/fd-listform-constructor.js <small>File</small></h1>
+    <h1>addon/utils/fd-create-form-properties.js <small>File</small></h1>
 </div>
 
 <div class="file">
     <pre class="prettyprint linenums">
-import Ember from &#x27;ember&#x27;;
-import FdAttributesTree from &#x27;../objects/fd-attributes-tree&#x27;;
-import FdDataTypes from &#x27;../utils/fd-datatypes&#x27;;
-import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode } from &#x27;../utils/fd-attributes-for-tree&#x27;;
-import { copyViewDefinition } from &#x27;../utils/fd-copy-view-definition&#x27;;
-import { getNewFormCaption, getNewFormDescription } from &#x27;../utils/fd-create-form-properties&#x27;;
 
-export default Ember.Route.extend({
-  currentContext: Ember.inject.service(&#x27;fd-current-project-context&#x27;),
+/**
+  Get unique caption for new form.
+  @method getNewFormCaption
+*/
+let getNewFormCaption = function(store, baseCaption, typeCaption) {
+  let found = true;
+  let allClasses = store.peekAll(&#x27;fd-dev-class&#x27;);
+  let allViews = store.peekAll(&#x27;fd-dev-view&#x27;);
+  let captionToReturn = &#x27;&#x27;;
+  let captionToFound = &#x27;&#x27;;
+  let i = 0;
+  let iterateClasses = item =&gt; item.get(&#x27;caption&#x27;) === captionToFound || item.get(&#x27;name&#x27;) === captionToFound || item.get(&#x27;nameStr&#x27;) === captionToFound;
+  let iterateViews = item =&gt; item.get(&#x27;name&#x27;) === captionToFound;
+  while (found) {
+    captionToFound = i === 0 ? &#x60;${baseCaption}${typeCaption}&#x60; : &#x60;${baseCaption}${i}${typeCaption}&#x60;;
+    let foundClass = allClasses.find(iterateClasses);
+    let foundView = allViews.find(iterateViews);
 
-  queryParams: {
-    form: { refreshModel: true },
-    class: { refreshModel: true },
-  },
-
-  model(params) {
-    let modelHash = {
-      listform: undefined,
-      originalDefinition: undefined,
-      view: undefined,
-      dataobject: undefined,
-      attributes: undefined,
-      typemap: undefined,
-      enums: undefined,
-      simpleTypes: undefined,
-      types: undefined,
-      masters: undefined,
-      mastersType: undefined,
-      details: undefined,
-      detailsType: undefined,
-    };
-
-    let stage = this.get(&#x27;currentContext&#x27;).getCurrentStageModel();
-    let store = this.get(&#x27;store&#x27;);
-    let allClasses = store.peekAll(&#x27;fd-dev-class&#x27;);
-
-    if (params.form) {
-      modelHash.listform = allClasses.findBy(&#x27;id&#x27;, params.form);
-      modelHash.view = modelHash.listform.get(&#x27;formViews.firstObject.view&#x27;);
-      modelHash.dataobject = allClasses.findBy(&#x27;id&#x27;, modelHash.view.get(&#x27;class.id&#x27;));
-    } else {
-      if (params.class) {
-        modelHash.dataobject = allClasses.findBy(&#x27;id&#x27;, params.class);
-      } else {
-        let newClassCaption = getNewFormCaption(store, &#x27;NewClass&#x27;, &#x27;&#x27;);
-        modelHash.dataobject = store.createRecord(&#x27;fd-dev-class&#x27;, {
-          stage: stage,
-          caption: newClassCaption,
-          name: newClassCaption,
-          nameStr: newClassCaption,
-        });
-      }
-
-      let baseCaption = modelHash.dataobject.get(&#x27;name&#x27;) || modelHash.dataobject.get(&#x27;nameStr&#x27;);
-      let newCaption = getNewFormCaption(store, baseCaption, &#x27;L&#x27;);
-      let newDescription = getNewFormDescription(newCaption);
-
-      modelHash.listform = store.createRecord(&#x27;fd-dev-class&#x27;, {
-        stage: stage,
-        caption: newCaption,
-        description: newDescription,
-        name: newCaption,
-        nameStr: newCaption,
-        stereotype: &#x27;«listform»&#x27;
-      });
-
-      modelHash.view = store.createRecord(&#x27;fd-dev-view&#x27;, {
-        class: modelHash.dataobject,
-        name: newCaption,
-        definition: Ember.A()
-      });
-
-      let formView = store.createRecord(&#x27;fd-dev-form-view&#x27;, {
-        class: modelHash.dataobject,
-        view: modelHash.view,
-        orderNum: 1
-      });
-
-      modelHash.listform.set(&#x27;formViews&#x27;, [formView]);
+    // If class or view with specified name was found then we should try to generate another name (new edit form and new view should have same name).
+    found = foundClass !== undefined || foundView !== undefined;
+    if (!found) {
+      captionToReturn = captionToFound;
     }
 
-    modelHash.originalDefinition = copyViewDefinition(modelHash.view.get(&#x27;definition&#x27;));
+    i++;
+  }
 
-    let allStages = store.peekAll(&#x27;fd-dev-stage&#x27;);
-    let dataobjectId = modelHash.dataobject.get(&#x27;id&#x27;);
+  return captionToReturn;
+};
 
-    // Attributes.
-    let dataForBuildTree = getDataForBuildTree(store, dataobjectId);
-    modelHash.attributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes, dataobjectId, &#x27;type&#x27;);
-    modelHash.masters = getAssociationTreeNode(Ember.A(), dataForBuildTree.associations, &#x27;node_&#x27;, dataobjectId, &#x27;name&#x27;);
-    modelHash.details = getAggregationTreeNode(Ember.A(), dataForBuildTree.aggregations, dataobjectId, &#x27;name&#x27;);
+/**
+  Get description for new form.
+  @method getNewFormDescription
+*/
+let getNewFormDescription = function(caption) {
+  var temp = &#x27;&#x27;;
+  var tempArray = [];
 
-    // simpleTypes.
-    let fdDataTypes = FdDataTypes.create();
-    modelHash.simpleTypes = this._buildTree(fdDataTypes.flexberryTypes(), &#x27;property&#x27;);
+  for (let i = 0; i &lt; caption.length; i++)
+  {
+    //If found capital letter...
+    if (((caption.charCodeAt(i) &gt;= 65 &amp;&amp; caption.charCodeAt(i) &lt;= 90) || (caption.charCodeAt(i) &gt;= 1040 &amp;&amp; caption.charCodeAt(i) &lt;= 1071)) &amp;&amp; temp !== &#x27;&#x27;)
+    {
+      tempArray.push(temp);
+      temp = caption.charAt(i);
+    } else {
+      temp += caption.charAt(i);
+    }
+  }
 
-    // Implementation.
-    let implementation = allClasses.filter(function(item) {
-      return (item.get(&#x27;stereotype&#x27;) === &#x27;«implementation»&#x27; || item.get(&#x27;stereotype&#x27;) === null) &amp;&amp; item.get(&#x27;stage.id&#x27;) === stage.get(&#x27;id&#x27;);
-    });
-    modelHash.mastersType = this._buildTree(implementation, &#x27;master&#x27;, true);
+  tempArray.push(temp);
+  for (let i = 0; i &lt; tempArray.length; i++) {
+    if (i &gt; 0 &amp;&amp; i &lt; tempArray.length - 1) {
+      tempArray[i] = tempArray[i].toLowerCase();
+    }
+  }
 
-    // Implementation not details.
-    let recordsAggregation = store.peekAll(&#x27;fd-dev-aggregation&#x27;);
-    let details = implementation.filter(function(item) {
-      return recordsAggregation.findBy(&#x27;endClass.id&#x27;, item.id) === undefined &amp;&amp; item.id !== dataobjectId;
-    });
-    modelHash.detailsType = this._buildTree(details, &#x27;detail&#x27;, true);
+  return tempArray.join(&#x27; &#x27;);
+};
 
-    // Typemap.
-    let currentStage = allStages.findBy(&#x27;id&#x27;, stage.get(&#x27;id&#x27;));
-    let typeMapCSStr = currentStage.get(&#x27;typeMapCSStr&#x27;);
-    let typemap = typeMapCSStr.filter(function(item) {
-      return fdDataTypes.fDTypeToFlexberry(item.name) === null;
-    });
-    modelHash.typemap = this._buildTree(typemap, &#x27;«typemap»&#x27;);
-
-    // Enums.
-    let enums = allClasses.filter(function(item) {
-      return item.get(&#x27;stereotype&#x27;) === &#x27;«enumeration»&#x27; &amp;&amp; item.get(&#x27;stage.id&#x27;) === stage.get(&#x27;id&#x27;);
-    });
-    modelHash.enums = this._buildTree(enums, &#x27;«enumeration»&#x27;);
-
-    // Types.
-    let types = allClasses.filter(function(item) {
-      return item.get(&#x27;stereotype&#x27;) === &#x27;«type»&#x27; &amp;&amp; item.get(&#x27;stage.id&#x27;) === stage.get(&#x27;id&#x27;);
-    });
-    modelHash.types = this._buildTree(types, &#x27;«type»&#x27;);
-
-    return modelHash;
-  },
-
-  /**
-    A hook you can use to reset controller values either when the model changes or the route is exiting.
-    [More info](http://emberjs.com/api/classes/Ember.Route.html#method_resetController).
-
-    @method resetController
-    @param {Ember.Controller} controller
-    @param {Boolean} isExisting
-    @param {Object} transition
-   */
-  resetController(controller) {
-    this._super(...arguments);
-
-    let store = this.get(&#x27;store&#x27;);
-    store.peekAll(&#x27;fd-dev-class&#x27;).forEach((item) =&gt; item.rollbackAll());
-    store.peekAll(&#x27;fd-dev-stage&#x27;).forEach((item) =&gt; item.rollbackAll());
-    store.peekAll(&#x27;fd-dev-association&#x27;).forEach((item) =&gt; item.rollbackAll());
-    store.peekAll(&#x27;fd-dev-aggregation&#x27;).forEach((item) =&gt; item.rollbackAll());
-    controller.set(&#x27;model.view.definition&#x27;, Ember.A(controller.get(&#x27;model.originalDefinition&#x27;)));
-  },
-
-  /**
-    A hook you can use to setup the controller for the current route.
-    [More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).
-
-    @method setupController
-    @param {Ember.Controller} controller
-    @param {Object} model
-   */
-  setupController(controller) {
-    this._super(...arguments);
-    controller.set(&#x27;_showNotUsedAttributesTree&#x27;, false);
-    controller.set(&#x27;state&#x27;, &#x27;&#x27;);
-  },
-
-  /**
-      Create tree.
-
-      @method _buildTree
-      @param {Array} data Data for tree.
-      @param {String} type Type for tree.
-      @param {Boolean} nodeId Flag need add in object node id.
-      @return {Object} Object data for tree.
-  */
-  _buildTree: function(data, type, nodeId) {
-    let treeData = Ember.A();
-    data.forEach((item, index)=&gt; {
-      let text;
-      if (type === &#x27;«typemap»&#x27;) {
-        text = item.name;
-      } else if (type === &#x27;property&#x27;) {
-        text = item;
-      } else {
-        text = item.get(&#x27;name&#x27;);
-      }
-
-      let newNode = FdAttributesTree.create({
-        text: text,
-        type: type,
-        id: type + index
-      });
-
-      if (!Ember.isNone(nodeId)) {
-        newNode.set(&#x27;idNode&#x27;, item.get(&#x27;id&#x27;));
-      }
-
-      treeData.pushObject(newNode);
-    });
-
-    return treeData;
-  },
-});
+export {
+  getNewFormCaption,
+  getNewFormDescription
+};
 
     </pre>
 </div>

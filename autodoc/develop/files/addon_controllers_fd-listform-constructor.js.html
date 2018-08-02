@@ -433,7 +433,14 @@ export default Ember.Controller.extend({
       columns.insertAt(index, selectedColumn);
     },
 
-    save() {
+    /**
+      Saves the form&#x27;s metadata.
+
+      @method actions.save
+      @param {Boolean} close If &#x60;true&#x60;, the &#x60;close&#x60; action will be run.
+    */
+    save(close) {
+      this.set(&#x27;state&#x27;, &#x27;loading&#x27;);
       let view = Ember.A(this.get(&#x27;view&#x27;));
       let viewDefinition = Ember.A();
       let columns = this.get(&#x27;columns&#x27;);
@@ -477,18 +484,35 @@ export default Ember.Controller.extend({
       let changedAggregation = aggregation.filterBy(&#x27;hasDirtyAttributes&#x27;);
 
       dataobject.save().then(() =&gt; {
-        this.get(&#x27;view&#x27;).save().then(() =&gt; {
-          formClass.save().then(() =&gt; {
+        formClass.save().then(() =&gt; {
+          this.get(&#x27;view&#x27;).save().then(() =&gt; {
             this.get(&#x27;formClass.formViews.firstObject&#x27;).save().then(() =&gt; {
               this.set(&#x27;class&#x27;, undefined);
               this.set(&#x27;form&#x27;, this.get(&#x27;formClass.id&#x27;));
+              if (close) {
+                this.send(&#x27;close&#x27;);
+              } else {
+                this.set(&#x27;state&#x27;, &#x27;&#x27;);
+              }
+            }, (error) =&gt; {
+              this.set(&#x27;state&#x27;, &#x27;&#x27;);
+              this.set(&#x27;error&#x27;, error);
             });
-            this.set(&#x27;model.originalDefinition&#x27;, copyViewDefinition(this.get(&#x27;view.definition&#x27;)));
+          }, (error) =&gt; {
+            this.set(&#x27;state&#x27;, &#x27;&#x27;);
+            this.set(&#x27;error&#x27;, error);
           });
+          this.set(&#x27;model.originalDefinition&#x27;, copyViewDefinition(this.get(&#x27;view.definition&#x27;)));
           changedAttributes.map(a =&gt; a.save());
           changedAssociations.map(a =&gt; a.save());
           changedAggregation.map(a =&gt; a.save());
+        }, (error) =&gt; {
+          this.set(&#x27;state&#x27;, &#x27;&#x27;);
+          this.set(&#x27;error&#x27;, error);
         });
+      }, (error) =&gt; {
+        this.set(&#x27;state&#x27;, &#x27;&#x27;);
+        this.set(&#x27;error&#x27;, error);
       });
     },
 
