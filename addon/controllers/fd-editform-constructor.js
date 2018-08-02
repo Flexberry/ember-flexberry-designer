@@ -27,6 +27,62 @@ export default Ember.Controller.extend({
   queryParams: ['classId'],
 
   /**
+    An object in the format `{ 'typeName': 'componentName' }`, which describes which components should be rendered for each type.
+
+    @private
+    @property _componentsTypeMap
+    @type Object
+  */
+  _componentsTypeMap: {
+    'bool': 'flexberry-checkbox',
+    'System.Boolean': 'flexberry-checkbox',
+
+    'DateTime': 'flexberry-datetime',
+    'System.DateTime': 'flexberry-datetime',
+    'ICSSoft.STORMNET.UserDataTypes.NullableDateTime': 'flexberry-datetime',
+
+    'ICSSoft.STORMNET.UserDataTypes.WebFile': 'flexberry-file',
+
+    'char': 'flexberry-textbox',
+    'System.Char': 'flexberry-textbox',
+    'string': 'flexberry-textbox',
+    'System.String': 'flexberry-textbox',
+
+    'byte': 'flexberry-textbox',
+    'System.Byte': 'flexberry-textbox',
+    'sbyte': 'flexberry-textbox',
+    'System.SByte': 'flexberry-textbox',
+    'short': 'flexberry-textbox',
+    'System.Int16': 'flexberry-textbox',
+    'ushort': 'flexberry-textbox',
+    'System.UInt16': 'flexberry-textbox',
+    'int': 'flexberry-textbox',
+    'System.Int32': 'flexberry-textbox',
+    'uint': 'flexberry-textbox',
+    'System.UInt32': 'flexberry-textbox',
+    'long': 'flexberry-textbox',
+    'System.Int64': 'flexberry-textbox',
+    'ulong': 'flexberry-textbox',
+    'System.UInt64': 'flexberry-textbox',
+    'ICSSoft.STORMNET.UserDataTypes.NullableInt': 'flexberry-textbox',
+
+    'float': 'flexberry-textbox',
+    'System.Single': 'flexberry-textbox',
+    'double': 'flexberry-textbox',
+    'System.Double': 'flexberry-textbox',
+    'decimal': 'flexberry-textbox',
+    'System.Decimal': 'flexberry-textbox',
+    'ICSSoft.STORMNET.UserDataTypes.NullableDecimal': 'flexberry-textbox',
+
+    'object': 'flexberry-textbox',
+    'System.Object': 'flexberry-textbox',
+    'guid': 'flexberry-textbox',
+    'System.Guid': 'flexberry-textbox',
+
+    'default': 'flexberry-textbox',
+  },
+
+  /**
     @private
     @property _dataTypes
     @type Ember.Object
@@ -386,6 +442,21 @@ export default Ember.Controller.extend({
   }),
 
   /**
+    An object with all (including inherited) the attributes, associations and aggregations for the this form data object.
+
+    @property dataObjectProperties
+    @type Object
+  */
+  dataObjectProperties: Ember.computed('model.dataobject', 'model.inheritances', 'model.associations', 'model.aggregations', function() {
+    let dataObject = this.get('model.dataobject');
+    let inheritances = this.get('model.inheritances');
+    let associations = this.get('model.associations');
+    let aggregations = this.get('model.aggregations');
+
+    return this._getClassProperties(dataObject, inheritances, associations, aggregations);
+  }),
+
+  /**
     The controls tree created from a view definition.
 
     @property controlsTree
@@ -587,6 +658,66 @@ export default Ember.Controller.extend({
     */
     getDragItem() {
       return this.get('_draggedItem');
+    },
+
+    /**
+      Returns an object with properties to render the component.
+
+      @method actions.getComponentProperties
+      @param {FdViewAttributesProperty|FdViewAttributesMaster|FdViewAttributesDetail} propertyDefinition Definition a property in a view.
+      @return {Object} An object with properties for the component.
+    */
+    getComponentProperties(propertyDefinition) {
+      let name;
+      let view;
+      let items;
+
+      let path = propertyDefinition.get('name').split('.');
+      let propertyName = path.pop();
+      if (propertyDefinition instanceof FdViewAttributesDetail) {
+        let { aggregations } = this.get('dataObjectProperties');
+        let relation = aggregations.findBy('endRole', propertyName) || aggregations.findBy('endClass.name', propertyName);
+        view = this.get('model.views').filterBy('class.id', relation.get('endClass.id')).findBy('name', propertyDefinition.get('detailViewName'));
+        name = 'fd-object-list-view';
+      } else if (propertyDefinition instanceof FdViewAttributesMaster) {
+        name = 'flexberry-lookup';
+        let propertyLookup = this.get('model.editform.propertyLookupStr').findBy('property', propertyDefinition.get('name'));
+        if (propertyLookup) {
+          let form = this.get('model.classes').findBy('name', propertyLookup.container);
+          if (form) {
+            view = form.get('formViews.firstObject.view');
+          }
+        }
+      } else if (propertyDefinition instanceof FdViewAttributesProperty) {
+        let properties = this.get('dataObjectProperties');
+        let inheritances = this.get('model.inheritances');
+        let associations = this.get('model.associations');
+        let aggregations = this.get('model.aggregations');
+        while (path.length > 0) {
+          let role = path.shift();
+          let relation = properties.associations.findBy('startRole', role) || properties.associations.findBy('startClass.name', role);
+          properties = this._getClassProperties(relation.get('startClass'), inheritances, associations, aggregations);
+        }
+
+        let attribute = properties.attributes.findBy('name', propertyName);
+        let type = this.get('model.stage.typeMapCSStr').findBy('name', attribute.get('type'));
+
+        if (type) {
+          name = this.get('_componentsTypeMap')[type.value || 'default'];
+        } else {
+          let clazz = this.get('model.classes').findBy('name', attribute.get('type'));
+          if (clazz && clazz.get('stereotype') === '«enumeration»') {
+            name = 'flexberry-dropdown';
+            items = clazz.get('attributes').mapBy('name');
+          } else {
+            name = 'flexberry-textbox';
+          }
+        }
+      } else {
+        throw new Error('Invalid property definition.');
+      }
+
+      return { name, view, items };
     },
 
     /**
@@ -986,6 +1117,48 @@ export default Ember.Controller.extend({
     let scrollTop = Ember.$('.selected:first').offset().top + form.scrollTop() - (form.offset().top + 10);
 
     form.animate({ scrollTop });
+  },
+
+  /**
+    Returns an object with all (including inherited) the attributes, associations and aggregations for the class.
+
+    @private
+    @method _getClassProperties
+    @param {FdDevClassModel} clazz The class for which to get the properties.
+    @param {Ember.NativeArray} inheritances All inheritances.
+    @param {Ember.NativeArray} associations All associations.
+    @param {Ember.NativeArray} aggregations All aggregations.
+    @return {Object} An object with properties for the class.
+  */
+  _getClassProperties(clazz, inheritances, associations, aggregations) {
+    let properties = {
+      attributes: Ember.A(),
+      associations: Ember.A(),
+      aggregations: Ember.A(),
+    };
+    let clazzId = clazz.get('id');
+
+    properties.attributes.pushObjects(clazz.get('attributes').toArray());
+    properties.associations.pushObjects(associations.filterBy('endClass.id', clazzId));
+    properties.associations.pushObjects(aggregations.filterBy('endClass.id', clazzId));
+    properties.aggregations.pushObjects(aggregations.filterBy('startClass.id', clazzId));
+
+    let parents = inheritances.filterBy('child.id', clazzId);
+    while (parents.length > 0) {
+      let parent = parents.pop().get('parent');
+      let parentId = parent.get('id');
+
+      properties.attributes.pushObjects(parent.get('attributes').toArray());
+      properties.associations.pushObjects(associations.filterBy('endClass.id', parentId));
+      properties.associations.pushObjects(aggregations.filterBy('endClass.id', parentId));
+      properties.aggregations.pushObjects(aggregations.filterBy('startClass.id', parentId));
+
+      if (parents.length === 0) {
+        parents = inheritances.filterBy('child.id', parentId);
+      }
+    }
+
+    return properties;
   },
 
   /**

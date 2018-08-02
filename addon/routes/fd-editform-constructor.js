@@ -29,6 +29,9 @@ export default Ember.Route.extend({
       originalDefinition: undefined,
       dataobject: undefined,
       classes: undefined,
+      views: undefined,
+      inheritances: undefined,
+      associations: undefined,
       aggregations: undefined,
       stage: undefined,
     };
@@ -37,6 +40,9 @@ export default Ember.Route.extend({
 
     modelHash.stage = this.get('currentProjectContext').getCurrentStageModel();
     modelHash.classes = store.peekAll('fd-dev-class');
+    modelHash.views = store.peekAll('fd-dev-view');
+    modelHash.inheritances = store.peekAll('fd-dev-inheritance');
+    modelHash.associations = store.peekAll('fd-dev-association');
     modelHash.aggregations = store.peekAll('fd-dev-aggregation');
 
     // Editform.
