@@ -12,7 +12,7 @@ export default Ember.Mixin.create({
 
     toggleConfigPanel(currentTab, currentAttr = -1) {
       let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
-      let toggleconfigPanel = this.prevTab[0] === currentTab;
+      let toggleconfigPanel = this.prevTab[0] ? this.prevTab[0].dataTab === currentTab.dataTab : false;
       if (currentAttr !== -1) {
         toggleconfigPanel = this.prevAttr === currentAttr && toggleconfigPanel;
         this.prevAttr = currentAttr;

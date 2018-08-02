@@ -32,6 +32,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
   hideTabsCount: 0,
   overflowButtonShow: false,
   overflowedTabs: true,
+  inactiveTabs: false,
   selectedTab: '',
   addTab: true,
   reloadTabs: true,
@@ -234,7 +235,10 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
 
   actions: {
     tabClick(tab) {
-      this.set('activeTab', tab.dataTab);
+      let previous = this.get('activeTab');
+      let activeTab = tab.dataTab === previous && this.inactiveTabs ? null : tab.dataTab;
+      this.set('activeTab', activeTab);
+
       this.sendAction('tabClick', tab);
     },
 

@@ -138,7 +138,15 @@
 
 {{#fd-config-panel}}
 
-  {{#fd-tabs overflowedTabs=false tabsMenuTheme="vertical tabular" class="ui segments horizontal right-tabs" tabClick = (action "toggleConfigPanel") activeTab="none" as |tab|}}
+  {{#fd-tabs 
+    tabsMenuTheme="vertical tabular" 
+    class="ui segments horizontal right-tabs" 
+    tabClick = (action "toggleConfigPanel") 
+    activeTab="none"
+    overflowedTabs=false
+    inactiveTabs=true
+    as |tab|
+  }}
     <form class="ui form segment">
       <div class="ui segment">
         <div class="ui large header">
