@@ -41,7 +41,7 @@ export default Ember.Controller.extend({
     'System.DateTime': 'flexberry-datetime',
     'ICSSoft.STORMNET.UserDataTypes.NullableDateTime': 'flexberry-datetime',
 
-    'ICSSoft.STORMNET.UserDataTypes.WebFile': 'flexberry-file',
+    'ICSSoft.STORMNET.UserDataTypes.WebFile': 'fd-file',
 
     'char': 'flexberry-textbox',
     'System.Char': 'flexberry-textbox',
