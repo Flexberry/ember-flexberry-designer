@@ -353,6 +353,17 @@ export default EditFormController.extend(FdWorkPanelToggler, {
   actions: {
 
     /**
+      Close current form, go back
+      .
+
+      @method actions.close
+    */
+    close() {
+      this.set('state', 'loading');
+      history.back();
+    },
+
+    /**
       Handles move node from left in right jsTree.
 
       @method actions.moveRightHighlighted
