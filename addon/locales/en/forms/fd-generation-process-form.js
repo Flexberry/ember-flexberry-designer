@@ -5,6 +5,7 @@ export default {
   'generation-button-text': 'Generate',
   'generation-start-error-caption': 'Error happens, see console.',
   'start-generation': 'Starting generation...',
+  'connection-error-text': 'Error connecting to ther server. Please, check your Internet connection',
 
   'log-message-types': {
     error: 'Error',
