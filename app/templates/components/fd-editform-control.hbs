@@ -5,6 +5,8 @@
   {{component _component.name
     items=_component.items
     view=_component.view
+    showLookupAction=showLookupAction
+    caption=control.caption
   }}
 {{else if _isGroup}}
   {{#flexberry-toggler caption=control.caption expanded=true}}
@@ -17,6 +19,7 @@
         getDragItemAction=getDragItemAction
         moveDragItemAction=moveDragItemAction
         getComponentPropertiesAction=getComponentPropertiesAction
+        showLookupAction=showLookupAction
       }}
     {{/each}}
   {{/flexberry-toggler}}
@@ -37,6 +40,7 @@
           getDragItemAction=getDragItemAction
           moveDragItemAction=moveDragItemAction
           getComponentPropertiesAction=getComponentPropertiesAction
+          showLookupAction=showLookupAction
         }}
       {{/each}}
     </div>
