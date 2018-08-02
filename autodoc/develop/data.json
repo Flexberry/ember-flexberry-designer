@@ -153,6 +153,13 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/controllers/fd-inheritance-edit-form.js": {
+            "name": "addon/controllers/fd-inheritance-edit-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/controllers/fd-inheritance-list-form.js": {
             "name": "addon/controllers/fd-inheritance-list-form.js",
             "modules": {},
@@ -598,6 +605,13 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/routes/fd-inheritance-edit-form/new.js": {
+            "name": "addon/routes/fd-inheritance-edit-form/new.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/routes/fd-stage-edit-form/new.js": {
             "name": "addon/routes/fd-stage-edit-form/new.js",
             "modules": {},
@@ -663,6 +677,13 @@
         },
         "addon/routes/fd-generation-process-form.js": {
             "name": "addon/routes/fd-generation-process-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/routes/fd-inheritance-edit-form.js": {
+            "name": "addon/routes/fd-inheritance-edit-form.js",
             "modules": {},
             "classes": {},
             "fors": {},
@@ -3414,6 +3435,30 @@
         {
             "file": "addon/controllers/fd-association-edit-form.js",
             "line": 25,
+            "description": "Name start class.",
+            "itemtype": "property",
+            "name": "startClassName",
+            "type": "String",
+            "default": "''",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-association-edit-form.js",
+            "line": 34,
+            "description": "Name end class.",
+            "itemtype": "property",
+            "name": "endClassName",
+            "type": "String",
+            "default": "''",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-association-edit-form.js",
+            "line": 43,
             "description": "Flag: indicates whether to edit classes.",
             "itemtype": "property",
             "name": "readonlyClass",
@@ -3425,7 +3470,7 @@
         },
         {
             "file": "addon/controllers/fd-association-edit-form.js",
-            "line": 34,
+            "line": 52,
             "description": "Array of access modifiers for the master property.",
             "itemtype": "property",
             "name": "itemsAccessModifier",
@@ -3437,7 +3482,7 @@
         },
         {
             "file": "addon/controllers/fd-association-edit-form.js",
-            "line": 45,
+            "line": 63,
             "description": "Set 'startClass'.",
             "itemtype": "method",
             "name": "actions.changeStartClass",
@@ -3447,7 +3492,7 @@
         },
         {
             "file": "addon/controllers/fd-association-edit-form.js",
-            "line": 58,
+            "line": 77,
             "description": "Set 'endClass'.",
             "itemtype": "method",
             "name": "actions.changeEndClass",
@@ -4356,6 +4401,130 @@
                     "type": "Integer"
                 }
             ],
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-inheritance-edit-form.js",
+            "line": 7,
+            "description": "Service that get current project contexts.",
+            "itemtype": "property",
+            "name": "currentProjectContext",
+            "type": "{Class}",
+            "default": "Ember.inject.service()",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-inheritance-edit-form.js",
+            "line": 16,
+            "description": "Array all classes.",
+            "itemtype": "property",
+            "name": "implementations",
+            "type": "Array",
+            "default": "[]",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-inheritance-edit-form.js",
+            "line": 25,
+            "description": "Array name parent classes.",
+            "itemtype": "property",
+            "name": "parentNames",
+            "type": "Array",
+            "default": "[]",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-inheritance-edit-form.js",
+            "line": 34,
+            "description": "Array name child classes.",
+            "itemtype": "property",
+            "name": "childNames",
+            "type": "Array",
+            "default": "[]",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-inheritance-edit-form.js",
+            "line": 43,
+            "description": "Name parent class.",
+            "itemtype": "property",
+            "name": "parentName",
+            "type": "String",
+            "default": "''",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-inheritance-edit-form.js",
+            "line": 52,
+            "description": "Name child class.",
+            "itemtype": "property",
+            "name": "childName",
+            "type": "String",
+            "default": "''",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-inheritance-edit-form.js",
+            "line": 61,
+            "description": "Flag: indicates whether to edit dropdowns.",
+            "itemtype": "property",
+            "name": "readonlyDropdown",
+            "type": "Boolean",
+            "default": "true",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-inheritance-edit-form.js",
+            "line": 72,
+            "description": "Set 'Parent'.",
+            "itemtype": "method",
+            "name": "actions.changeParent",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-inheritance-edit-form.js",
+            "line": 89,
+            "description": "Set 'Child'.",
+            "itemtype": "method",
+            "name": "actions.changeChild",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-inheritance-edit-form.js",
+            "line": 106,
+            "description": "Overridden action for button 'Save'.",
+            "itemtype": "method",
+            "name": "actions.save",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-inheritance-edit-form.js",
+            "line": 132,
+            "description": "Create new items for dropdown.",
+            "itemtype": "method",
+            "name": "_getNewItems",
             "class": "FdDraggableControlMixin",
             "module": "components",
             "namespace": "components"
@@ -8175,6 +8344,38 @@
             "module": "ember-flexberry-designer"
         },
         {
+            "file": "addon/routes/fd-inheritance-edit-form/new.js",
+            "line": 9,
+            "description": "Service that get current project contexts.",
+            "itemtype": "property",
+            "name": "currentProjectContext",
+            "type": "{Class}",
+            "default": "Ember.inject.service()",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-inheritance-edit-form/new.js",
+            "line": 18,
+            "description": "A hook you can use to setup the controller for the current route.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).",
+            "itemtype": "method",
+            "name": "setupController",
+            "params": [
+                {
+                    "name": "controller",
+                    "description": "",
+                    "type": "Ember.Controller"
+                },
+                {
+                    "name": "model",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
             "file": "addon/routes/fd-stage-edit-form/new.js",
             "line": 10,
             "description": "Link to {{#crossLink \"FdCurrentProjectContextService\"}}FdCurrentProjectContextService{{/crossLink}}.",
@@ -8763,6 +8964,38 @@
         {
             "file": "addon/routes/fd-generation-process-form.js",
             "line": 42,
+            "description": "A hook you can use to setup the controller for the current route.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).",
+            "itemtype": "method",
+            "name": "setupController",
+            "params": [
+                {
+                    "name": "controller",
+                    "description": "",
+                    "type": "Ember.Controller"
+                },
+                {
+                    "name": "model",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-inheritance-edit-form.js",
+            "line": 8,
+            "description": "Service that get current project contexts.",
+            "itemtype": "property",
+            "name": "currentProjectContext",
+            "type": "{Class}",
+            "default": "Ember.inject.service()",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-inheritance-edit-form.js",
+            "line": 17,
             "description": "A hook you can use to setup the controller for the current route.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).",
             "itemtype": "method",
             "name": "setupController",

@@ -147,6 +147,24 @@ export default EditFormController.extend({
   implementationsName: Ember.A(),
 
   /**
+      Name start class.
+
+    @property startClassName
+    @type String
+    @default &#x27;&#x27;
+   */
+  startClassName: &#x27;&#x27;,
+
+  /**
+      Name end class.
+
+    @property endClassName
+    @type String
+    @default &#x27;&#x27;
+   */
+  endClassName: &#x27;&#x27;,
+
+  /**
     Flag: indicates whether to edit classes.
 
     @property readonlyClass
@@ -176,6 +194,7 @@ export default EditFormController.extend({
         let startClass = this.get(&#x27;implementations&#x27;).findBy(&#x27;name&#x27;, value);
         let model = this.get(&#x27;model&#x27;);
         Ember.set(model, &#x27;startClass&#x27;, startClass);
+        Ember.set(this, &#x27;startClassName&#x27;, startClass.get(&#x27;name&#x27;));
       }
     },
 
@@ -189,6 +208,7 @@ export default EditFormController.extend({
         let endClass = this.get(&#x27;implementations&#x27;).findBy(&#x27;name&#x27;, value);
         let model = this.get(&#x27;model&#x27;);
         Ember.set(model, &#x27;endClass&#x27;, endClass);
+        Ember.set(this, &#x27;endClassName&#x27;, endClass.get(&#x27;name&#x27;));
       }
     }
   }

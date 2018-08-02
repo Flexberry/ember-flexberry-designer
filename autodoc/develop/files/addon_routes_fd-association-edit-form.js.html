@@ -146,7 +146,7 @@ export default EditFormRoute.extend({
     @param {Ember.Controller} controller
     @param {Object} model
    */
-  setupController: function(controller) {
+  setupController: function(controller, model) {
     this._super(...arguments);
     let stagePk = this.get(&#x27;currentProjectContext&#x27;).getCurrentStage();
 
@@ -159,6 +159,8 @@ export default EditFormRoute.extend({
 
     let implementationsName = Ember.A(implementations).mapBy(&#x27;name&#x27;);
     controller.set(&#x27;implementationsName&#x27;, implementationsName);
+    controller.set(&#x27;startClassName&#x27;, model.get(&#x27;startClass.name&#x27;));
+    controller.set(&#x27;endClassName&#x27;, model.get(&#x27;endClass.name&#x27;));
     controller.set(&#x27;readonlyClass&#x27;, true);
   }
 });
