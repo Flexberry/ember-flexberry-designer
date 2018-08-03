@@ -135,6 +135,15 @@ export default ListFormController.extend({
    */
   editFormRoute: &#x27;fd-generation-process-form&#x27;,
 
+  /**
+   Service that triggers objectlistview events.
+
+   @property objectlistviewEventsService
+   @type {Class}
+   @default Ember.inject.service()
+   */
+  objectlistviewEventsService: Ember.inject.service(&#x27;objectlistview-events&#x27;),
+
   currentProjectContext: Ember.inject.service(&#x27;fd-current-project-context&#x27;),
 
   generationService: Ember.inject.service(&#x27;fd-generation&#x27;),
@@ -163,6 +172,7 @@ export default ListFormController.extend({
      */
     generationStartButtonClick() {
       let _this = this;
+      _this.get(&#x27;objectlistviewEventsService&#x27;).setLoadingState(&#x27;loading&#x27;);
       let stagePk = _this.get(&#x27;currentProjectContext&#x27;).getCurrentStage();
       let host = _this.get(&#x27;store&#x27;).adapterFor(&#x27;application&#x27;).host;
       Ember.$.ajax({
@@ -172,10 +182,12 @@ export default ListFormController.extend({
         success(result) {
           _this.set(&#x27;generationService.lastGenerationToken&#x27;, result);
           result = result || {};
+          _this.get(&#x27;objectlistviewEventsService&#x27;).setLoadingState(&#x27;&#x27;);
           _this.transitionToRoute(_this.get(&#x27;editFormRoute&#x27;), Ember.get(result, &#x27;value&#x27;));
         },
         error() {
-
+          _this.get(&#x27;objectlistviewEventsService&#x27;).setLoadingState(&#x27;&#x27;);
+          _this.set(&#x27;error&#x27;, new Error(_this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-generation-process-form.connection-error-text&#x27;)));
         },
       });
     }

@@ -4357,7 +4357,19 @@
         },
         {
             "file": "addon/controllers/fd-generation-list-form.js",
-            "line": 18,
+            "line": 14,
+            "description": "Service that triggers objectlistview events.",
+            "itemtype": "property",
+            "name": "objectlistviewEventsService",
+            "type": "{Class}",
+            "default": "Ember.inject.service()",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-generation-list-form.js",
+            "line": 27,
             "description": "Property to form array of special structures of custom user buttons.",
             "itemtype": "property",
             "name": "customButtons",
@@ -4368,7 +4380,7 @@
         },
         {
             "file": "addon/controllers/fd-generation-list-form.js",
-            "line": 35,
+            "line": 44,
             "description": "Handler for click on generate button.",
             "itemtype": "method",
             "name": "actions.generationStartButtonClick",
@@ -4378,7 +4390,7 @@
         },
         {
             "file": "addon/controllers/fd-generation-list-form.js",
-            "line": 60,
+            "line": 72,
             "description": "Method to get type and attributes of a component,\nwhich will be embeded in object-list-view cell.",
             "itemtype": "method",
             "name": "getCellComponent.",
