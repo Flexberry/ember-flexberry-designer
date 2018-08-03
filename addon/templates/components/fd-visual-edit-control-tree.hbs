@@ -183,6 +183,34 @@
     }}
   </div>
   {{/if}}
+  {{#if (eq typeForm 'editform')}}
+    <div class="field">
+      <label>{{t "components.fd-visual-edit-control-tree.custom-width"}}</label>
+      {{
+        flexberry-checkbox
+        value=customWidth
+        onChange=(action "useCustomWidth")
+      }}
+    </div>
+    {{#if customWidth}}
+      <div class="slider">
+        <div class="flexberry-textbox ui input">
+          {{
+            input
+            type="number"
+            value=widthValue
+            input=(action "changeWidth" value="target.value")
+          }}
+        </div>
+        {{
+          flexberry-dropdown
+          onChange=(action "changeWidthType")
+          items=itemsWidthType
+          value=widthType
+        }}
+      </div>
+    {{/if}}
+  {{/if}}
   <div class="field">
     <label>{{t "components.fd-visual-edit-control-tree.visibility"}}</label>
     {{
