@@ -212,10 +212,11 @@ export default Ember.Route.extend({
   */
   _locateControlInRow: function (row, propertyDefinition) {
     // TODO: вычислить type контрола из метаданных атрибута или FormControl и width из path.
+    let width = this._getWidth(propertyDefinition.path);
     let control = FdEditformControl.create({
       caption: propertyDefinition.caption || propertyDefinition.name,
       type: 'string',
-      width: '100*',
+      width: width,
       propertyDefinition: propertyDefinition,
     });
 
@@ -414,6 +415,25 @@ export default Ember.Route.extend({
     } else {
       return this._locateControlInRow(row, propertyDefinition);
     }
+  },
+
+  /**
+      Looks for width in the path
+
+      @method _getWidth
+      @param {String} path Property path from view.
+  */
+  _getWidth: function(path) {
+    let partsPath = path.split('\\');
+    let lastPartsPath = partsPath[partsPath.length - 1];
+    let startWidth = lastPartsPath.lastIndexOf('(');
+    let endWidth = lastPartsPath.lastIndexOf(')');
+    let width = '';
+    if (endWidth !== -1 && startWidth !== -1 && endWidth === lastPartsPath.length - 1 && lastPartsPath.charAt(0) === '#') {
+      width = lastPartsPath.slice(startWidth + 1, endWidth);
+    }
+
+    return width;
   },
 
   /**

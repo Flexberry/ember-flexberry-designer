@@ -16,6 +16,7 @@ export default {
   'master-property': 'Свойство в мастере',
   'sample-setting': 'Настройка выборки',
   visibility: 'Видимость',
+  'custom-width': 'Настроить ширину контрола',
   search: 'Введите имя для поиска',
   tree: {
     'property': 'Собственные свойства',

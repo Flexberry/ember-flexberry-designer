@@ -37,6 +37,8 @@ export default EditFormNewRoute.extend({
     let implementationsName = Ember.A(implementations).mapBy('name');
     controller.set('implementations', implementations);
     controller.set('implementationsName', implementationsName);
+    controller.set('startClassName', '');
+    controller.set('endClassName', '');
     controller.set('readonlyClass', false);
     controller.set('model.stage', currentStage);
   }
