@@ -890,41 +890,29 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
           model: _this.graph
         });
 
-        var linkAggregation = new _npmJointjs['default'].shapes.flexberryUml.Aggregation({
+        var linkAggregation = new _npmJointjs['default'].shapes.flexberryUml.ClassDiagramAggregation({
           source: { x: 100, y: 30 },
-          target: { x: 300, y: 30 },
-          labels: [{
-            attrs: { text: { text: '*' } } }, {
-            attrs: { text: { text: '' } } }, {
-            attrs: { text: { text: 'Agregation', 'text-decoration': '' } } }, {
-            attrs: { text: { text: '' } } }, {
-            attrs: { text: { text: '1' } }
-          }]
+          target: { x: 300, y: 30 }
         });
+        linkAggregation.setLabelText('startMultiplicity', '1');
+        linkAggregation.setLabelText('endMultiplicity', '*');
+        linkAggregation.setLabelText('description', 'Agregation');
 
-        var linkAssociation = new _npmJointjs['default'].shapes.flexberryUml.Association({
+        var linkAssociation = new _npmJointjs['default'].shapes.flexberryUml.ClassDiagramAssociation({
           source: { x: 100, y: 80 },
-          target: { x: 300, y: 80 },
-          labels: [{
-            attrs: { text: { text: '*' } } }, {
-            attrs: { text: { text: '' } } }, {
-            attrs: { text: { text: 'Association', 'text-decoration': '' } } }, {
-            attrs: { text: { text: '' } } }, {
-            attrs: { text: { text: '0..1' } }
-          }]
+          target: { x: 300, y: 80 }
         });
+        linkAssociation.setLabelText('startMultiplicity', '1');
+        linkAssociation.setLabelText('endMultiplicity', '*');
+        linkAssociation.setLabelText('description', 'Association');
 
-        var linkComposition = new _npmJointjs['default'].shapes.flexberryUml.Composition({
+        var linkComposition = new _npmJointjs['default'].shapes.flexberryUml.ClassDiagramComposition({
           source: { x: 100, y: 120 },
-          target: { x: 300, y: 120 },
-          labels: [{
-            attrs: { text: { text: '*' } } }, {
-            attrs: { text: { text: '' } } }, {
-            attrs: { text: { text: 'Composition', 'text-decoration': '' } } }, {
-            attrs: { text: { text: '' } } }, {
-            attrs: { text: { text: '0..1' } }
-          }]
+          target: { x: 300, y: 120 }
         });
+        linkComposition.setLabelText('startMultiplicity', '0..1');
+        linkComposition.setLabelText('endMultiplicity', '*');
+        linkComposition.setLabelText('description', 'Composition');
 
         var linkDependency = new _npmJointjs['default'].shapes.flexberryUml.Dependency({
           source: { x: 100, y: 170 },
@@ -943,39 +931,27 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
 
         var linkQualified = new _npmJointjs['default'].shapes.flexberryUml.Qualified({
           source: { x: 100, y: 320 },
-          target: { x: 300, y: 320 },
-          labels: [{
-            attrs: { text: { text: '' } } }, {
-            attrs: { text: { text: '1' } } }, {
-            attrs: { text: { text: 'Qualified' } } }, {
-            attrs: { text: { text: '2' } } }, {
-            attrs: { text: { text: '' } }
-          }]
+          target: { x: 300, y: 320 }
         });
+        linkQualified.setLabelText('startRole', '1');
+        linkQualified.setLabelText('endRole', '2');
+        linkQualified.setLabelText('description', 'Qualified');
 
         var linkQualifiedAggregation = new _npmJointjs['default'].shapes.flexberryUml.QualifiedAggregation({
           source: { x: 100, y: 370 },
-          target: { x: 300, y: 370 },
-          labels: [{
-            attrs: { text: { text: '' } } }, {
-            attrs: { text: { text: '1' } } }, {
-            attrs: { text: { text: 'Q-Agregation' } } }, {
-            attrs: { text: { text: '2' } } }, {
-            attrs: { text: { text: '' } }
-          }]
+          target: { x: 300, y: 370 }
         });
+        linkQualifiedAggregation.setLabelText('startRole', '1');
+        linkQualifiedAggregation.setLabelText('endRole', '2');
+        linkQualifiedAggregation.setLabelText('description', 'Q-Agregation');
 
         var linkQualifiedComposition = new _npmJointjs['default'].shapes.flexberryUml.QualifiedComposition({
           source: { x: 100, y: 420 },
-          target: { x: 300, y: 420 },
-          labels: [{
-            attrs: { text: { text: '' } } }, {
-            attrs: { text: { text: '1' } } }, {
-            attrs: { text: { text: 'Q-Composition' } } }, {
-            attrs: { text: { text: '2' } } }, {
-            attrs: { text: { text: '' } }
-          }]
+          target: { x: 300, y: 420 }
         });
+        linkQualifiedComposition.setLabelText('startRole', '1');
+        linkQualifiedComposition.setLabelText('endRole', '2');
+        linkQualifiedComposition.setLabelText('description', 'Q-Composition');
 
         var linkNestedClassAssociation = new _npmJointjs['default'].shapes.flexberryUml.NestedClassAssociation({
           source: { x: 100, y: 470 },
@@ -1133,77 +1109,53 @@ define('dummy/controllers/collaboration-diagram-primitives-demo', ['exports', 'e
             labels: [{ attrs: { text: { text: 'n-Association' } } }]
           });
 
-          var associationConnector = new _npmJointjs['default'].shapes.flexberryUml.Association({
+          var associationConnector = new _npmJointjs['default'].shapes.flexberryUml.CollaborationDiagramAssociation({
             source: { x: 400, y: 50 },
-            target: { x: 700, y: 50 },
-            labels: [{
-              attrs: { text: { text: '' } } }, {
-              attrs: { text: { text: '1' } } }, {
-              attrs: { text: { text: 'Association' } } }, {
-              attrs: { text: { text: '2' } } }, {
-              attrs: { text: { text: '' } }
-            }]
+            target: { x: 700, y: 50 }
           });
+          associationConnector.setLabelText('startRole', '1');
+          associationConnector.setLabelText('endRole', '2');
+          associationConnector.setLabelText('description', 'Association');
 
           var qualifiedConnector = new _npmJointjs['default'].shapes.flexberryUml.Qualified({
             source: { x: 400, y: 90 },
-            target: { x: 700, y: 90 },
-            labels: [{
-              attrs: { text: { text: '' } } }, {
-              attrs: { text: { text: '1' } } }, {
-              attrs: { text: { text: 'Qualified' } } }, {
-              attrs: { text: { text: '2' } } }, {
-              attrs: { text: { text: '' } }
-            }]
+            target: { x: 700, y: 90 }
           });
+          qualifiedConnector.setLabelText('startRole', '1');
+          qualifiedConnector.setLabelText('endRole', '2');
+          qualifiedConnector.setLabelText('description', 'Qualified');
 
-          var agregationConnector = new _npmJointjs['default'].shapes.flexberryUml.Aggregation({
+          var agregationConnector = new _npmJointjs['default'].shapes.flexberryUml.CollaborationDiagramAggregation({
             source: { x: 400, y: 140 },
-            target: { x: 700, y: 140 },
-            labels: [{
-              attrs: { text: { text: '' } } }, {
-              attrs: { text: { text: '1' } } }, {
-              attrs: { text: { text: 'Agregation' } } }, {
-              attrs: { text: { text: '2' } } }, {
-              attrs: { text: { text: '' } }
-            }]
+            target: { x: 700, y: 140 }
           });
+          agregationConnector.setLabelText('startRole', '1');
+          agregationConnector.setLabelText('endRole', '2');
+          agregationConnector.setLabelText('description', 'Agregation');
 
           var qAgregationConnector = new _npmJointjs['default'].shapes.flexberryUml.QualifiedAggregation({
             source: { x: 400, y: 180 },
-            target: { x: 700, y: 180 },
-            labels: [{
-              attrs: { text: { text: '' } } }, {
-              attrs: { text: { text: '1' } } }, {
-              attrs: { text: { text: 'Q-Agregation' } } }, {
-              attrs: { text: { text: '2' } } }, {
-              attrs: { text: { text: '' } }
-            }]
+            target: { x: 700, y: 180 }
           });
+          qAgregationConnector.setLabelText('startRole', '1');
+          qAgregationConnector.setLabelText('endRole', '2');
+          qAgregationConnector.setLabelText('description', 'Q-Agregation');
 
-          var compositionConnector = new _npmJointjs['default'].shapes.flexberryUml.Composition({
+          var compositionConnector = new _npmJointjs['default'].shapes.flexberryUml.CollaborationDiagramComposition({
             source: { x: 400, y: 210 },
-            target: { x: 700, y: 210 },
-            labels: [{
-              attrs: { text: { text: '' } } }, {
-              attrs: { text: { text: '1' } } }, {
-              attrs: { text: { text: 'Composition' } } }, {
-              attrs: { text: { text: '2' } } }, {
-              attrs: { text: { text: '' } }
-            }]
+            target: { x: 700, y: 210 }
           });
+          compositionConnector.setLabelText('startRole', '1');
+          compositionConnector.setLabelText('endRole', '2');
+          compositionConnector.setLabelText('description', 'Composition');
 
           var qCompositionConnector = new _npmJointjs['default'].shapes.flexberryUml.QualifiedComposition({
             source: { x: 400, y: 250 },
-            target: { x: 700, y: 250 },
-            labels: [{
-              attrs: { text: { text: '' } } }, {
-              attrs: { text: { text: '1' } } }, {
-              attrs: { text: { text: 'Q-Composition' } } }, {
-              attrs: { text: { text: '2' } } }, {
-              attrs: { text: { text: '' } }
-            }]
+            target: { x: 700, y: 250 }
           });
+          qCompositionConnector.setLabelText('startRole', '1');
+          qCompositionConnector.setLabelText('endRole', '2');
+          qCompositionConnector.setLabelText('description', 'Q-Composition');
 
           var designPatternConnector = new _npmJointjs['default'].shapes.flexberryUml.CollPatternConnect({
             source: { x: 400, y: 290 },
@@ -48909,7 +48861,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+fa3dfbda"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+bdd0d75c"});
 }
 
 /* jshint ignore:end */
