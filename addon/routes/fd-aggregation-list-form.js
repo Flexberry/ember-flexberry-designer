@@ -8,9 +8,9 @@ export default ListFormRoute.extend(LimitByStageMixin, {
 
     @property modelProjection
     @type String
-    @default 'FormConstructor'
+    @default 'ListFormView'
   */
-  modelProjection: 'FormConstructor',
+  modelProjection: 'ListFormView',
 
   /**
     Name of model to be used as list's records types.
