@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
+* The application structure constructor:
+  * Add links in root desktop.
 * The list form constructor:
   * Add, sort and remove columns.
 * The edit form constructor:
