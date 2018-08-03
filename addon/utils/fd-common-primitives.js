@@ -295,39 +295,53 @@ joint.dia.Link.define('flexberryUml.BaseLink', {
     text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }
   },
   labels: [{
-    position: { distance: 10, offset: -15 }, attrs: { text: { text: '' } } }, {
-    position: { distance: 10, offset: 15 }, attrs: { text: { text: '' } } }, {
-    textAnchor: 'middle', attrs: { text: { text: '' } } }, {
+    position: { distance: -40, offset: -15 }, attrs: { text: { text: '' } } }, {
     position: { distance: -40, offset: 15 }, attrs: { text: { text: '' } } }, {
-    position: { distance: -40, offset: -15 }, attrs: { text: { text: '' } }
+    textAnchor: 'middle', attrs: { text: { text: '' } } }, {
+    position: { distance: 10, offset: 15 }, attrs: { text: { text: '' } } }, {
+    position: { distance: 10, offset: -15 }, attrs: { text: { text: '' } }
   }]
-});
+}, {
+  setLabelText: function (label, text) {
+    switch (label) {
+      case 'startMultiplicity':
+        this.label(0, { attrs: { text: { text: text } } });
+        break;
+      case 'startRole':
+        this.label(1, { attrs: { text: { text: text } } });
+        break;
+      case 'description':
+        this.label(2, { attrs: { text: { text: text } } });
+        break;
+      case 'endRole':
+        this.label(3, { attrs: { text: { text: text } } });
+        break;
+      case 'endMultiplicity':
+        this.label(4, { attrs: { text: { text: text } } });
+        break;
+      default:
+        console.log('ERROR - choose correct label name');
+        break;
+    }
 
-joint.shapes.flexberryUml.BaseLink.define('flexberryUml.Association', {
-});
-
-joint.shapes.flexberryUml.BaseLink.define('flexberryUml.Aggregation', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' } },
-});
-
-joint.shapes.flexberryUml.BaseLink.define('flexberryUml.Qualified', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 z', fill: 'white' } },
-});
-
-joint.shapes.flexberryUml.Qualified.define('flexberryUml.QualifiedAggregation', {
-  attrs: {
-    '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 L 26 10 M 52 10 L 39 17 L 26 10 L 39 3 z', fill: 'white' }
+    return;
   },
 });
 
-joint.dia.Link.define('flexberryUml.NArrayAssociationConnect', {
-  labels: [{
-    position: { distance: 50 }, attrs: { text: { text: '' } }
-  }]
+joint.shapes.flexberryUml.BaseLink.define('flexberryUml.BaseLinkWithUnderline', {
+}, {
+  initialize: function() {
+    this.label(2, { attrs: { text: { 'text-decoration': 'underline', } } });
+    joint.dia.Link.prototype.initialize.apply(this, arguments);
+  },
 });
 
-joint.shapes.flexberryUml.BaseLink.define('flexberryUml.Composition', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' } }
+joint.shapes.flexberryUml.BaseLinkWithUnderline.define('flexberryUml.Qualified', {
+  attrs: { '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 z', fill: 'white' } }
+});
+
+joint.shapes.flexberryUml.Qualified.define('flexberryUml.QualifiedAggregation', {
+  attrs: { '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 L 26 10 M 52 10 L 39 17 L 26 10 L 39 3 z', fill: 'white' } },
 });
 
 joint.shapes.flexberryUml.Qualified.define('flexberryUml.QualifiedComposition', {
@@ -341,6 +355,8 @@ joint.shapes.flexberryUml.Qualified.define('flexberryUml.QualifiedComposition', 
     // call base initialize()
     joint.dia.Link.prototype.initialize.apply(this, arguments);
 
+    this.label(2, { attrs: { text: { 'text-decoration': 'underline', } } });
+
     // link markup is so complex that we need to fetch its definition
     var markup = (this.markup || this.get('markup'));
 
@@ -353,6 +369,12 @@ joint.shapes.flexberryUml.Qualified.define('flexberryUml.QualifiedComposition', 
       '</linearGradient>';
     this.set('markup', markup);
   }
+});
+
+joint.dia.Link.define('flexberryUml.NArrayAssociationConnect', {
+  labels: [{
+    position: { distance: 50 }, attrs: { text: { text: '' } }
+  }]
 });
 
 joint.dia.Link.define('flexberryUml.NoteConnector', {
