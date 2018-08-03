@@ -11,6 +11,15 @@ export default ListFormController.extend({
    */
   editFormRoute: 'fd-generation-process-form',
 
+  /**
+   Service that triggers objectlistview events.
+
+   @property objectlistviewEventsService
+   @type {Class}
+   @default Ember.inject.service()
+   */
+  objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
+
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
   generationService: Ember.inject.service('fd-generation'),
@@ -39,6 +48,7 @@ export default ListFormController.extend({
      */
     generationStartButtonClick() {
       let _this = this;
+      _this.get('objectlistviewEventsService').setLoadingState('loading');
       let stagePk = _this.get('currentProjectContext').getCurrentStage();
       let host = _this.get('store').adapterFor('application').host;
       Ember.$.ajax({
@@ -48,10 +58,12 @@ export default ListFormController.extend({
         success(result) {
           _this.set('generationService.lastGenerationToken', result);
           result = result || {};
+          _this.get('objectlistviewEventsService').setLoadingState('');
           _this.transitionToRoute(_this.get('editFormRoute'), Ember.get(result, 'value'));
         },
         error() {
-
+          _this.get('objectlistviewEventsService').setLoadingState('');
+          _this.set('error', new Error(_this.get('i18n').t('forms.fd-generation-process-form.connection-error-text')));
         },
       });
     }
