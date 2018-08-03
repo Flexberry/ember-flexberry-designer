@@ -39038,7 +39038,7 @@ img.item-minus {
   margin-top: 1rem;
 }
 .fd-editform-row.selected {
-  outline: 0.25em dashed #4f73b0;
+  outline: 0.2em dashed #4f73b0;
   background-color: rgba(79, 115, 176, 0.25);
 }
 .fd-editform-row.dimmed.dimmable {
@@ -39065,13 +39065,30 @@ img.item-minus {
 .fd-editform-row .top.attached.tabular.menu {
   margin-top: 0;
 }
+table.fd-listform {
+  position: relative;
+}
+table.fd-listform td.fd-selected {
+  border-right: 0.2em dashed #4f73b0;
+  border-left: 0.2em dashed #4f73b0 !important;
+  background-color: rgba(79, 115, 176, 0.25);
+}
+table.fd-listform th.fd-selected {
+  border-right: 0.2em dashed #4f73b0;
+  border-left: 0.2em dashed #4f73b0 !important;
+  border-top: 0.2em dashed #4f73b0;
+  background-color: rgba(79, 115, 176, 0.25);
+}
+table.fd-listform tr:last-child > td.fd-selected {
+  border-bottom: 0.2em dashed #4f73b0;
+}
 .fd-editform-control {
   position: relative;
 }
 .fd-editform-control.selected,
 .fd-editform-control .tab.selected,
 .fd-editform-control .item.selected {
-  outline: 0.25em dashed #4f73b0;
+  outline: 0.2em dashed #4f73b0;
   background-color: rgba(79, 115, 176, 0.25);
 }
 .fd-editform-control.dimmed.dimmable {

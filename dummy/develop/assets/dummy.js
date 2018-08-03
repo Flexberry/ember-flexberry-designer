@@ -38102,12 +38102,13 @@ define("dummy/templates/fd-listform-constructor", ["exports"], function (exports
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
           var element12 = dom.childAt(fragment, [1]);
-          var morphs = new Array(2);
-          morphs[0] = dom.createElementMorph(element12);
-          morphs[1] = dom.createMorphAt(element12, 0, 0);
+          var morphs = new Array(3);
+          morphs[0] = dom.createAttrMorph(element12, 'class');
+          morphs[1] = dom.createElementMorph(element12);
+          morphs[2] = dom.createMorphAt(element12, 0, 0);
           return morphs;
         },
-        statements: [["element", "action", ["selectColumn", ["get", "column", ["loc", [null, [42, 40], [42, 46]]]]], [], ["loc", [null, [42, 16], [42, 48]]]], ["content", "column.caption", ["loc", [null, [42, 49], [42, 67]]]]],
+        statements: [["attribute", "class", ["subexpr", "if", [["subexpr", "eq", [["get", "selectedColumn", ["loc", [null, [42, 31], [42, 45]]]], ["get", "column", ["loc", [null, [42, 46], [42, 52]]]]], [], ["loc", [null, [42, 27], [42, 53]]]], "fd-selected"], [], ["loc", [null, [42, 22], [42, 69]]]]], ["element", "action", ["selectColumn", ["get", "column", ["loc", [null, [42, 94], [42, 100]]]]], [], ["loc", [null, [42, 70], [42, 102]]]], ["content", "column.caption", ["loc", [null, [42, 103], [42, 121]]]]],
         locals: ["column"],
         templates: []
       };
@@ -38154,7 +38155,7 @@ define("dummy/templates/fd-listform-constructor", ["exports"], function (exports
             morphs[1] = dom.createElementMorph(element11);
             return morphs;
           },
-          statements: [["attribute", "class", ["subexpr", "if", [["subexpr", "eq", [["get", "selectedColumn", ["loc", [null, [50, 33], [50, 47]]]], ["get", "column", ["loc", [null, [50, 48], [50, 54]]]]], [], ["loc", [null, [50, 29], [50, 55]]]], "positive"], [], ["loc", [null, [50, 24], [50, 68]]]]], ["element", "action", ["selectColumn", ["get", "column", ["loc", [null, [50, 93], [50, 99]]]]], [], ["loc", [null, [50, 69], [50, 101]]]]],
+          statements: [["attribute", "class", ["subexpr", "if", [["subexpr", "eq", [["get", "selectedColumn", ["loc", [null, [50, 33], [50, 47]]]], ["get", "column", ["loc", [null, [50, 48], [50, 54]]]]], [], ["loc", [null, [50, 29], [50, 55]]]], "fd-selected"], [], ["loc", [null, [50, 24], [50, 71]]]]], ["element", "action", ["selectColumn", ["get", "column", ["loc", [null, [50, 96], [50, 102]]]]], [], ["loc", [null, [50, 72], [50, 104]]]]],
           locals: ["column"],
           templates: []
         };
@@ -38827,8 +38828,8 @@ define("dummy/templates/fd-listform-constructor", ["exports"], function (exports
             "column": 0
           },
           "end": {
-            "line": 182,
-            "column": 0
+            "line": 181,
+            "column": 20
           }
         },
         "moduleName": "dummy/templates/fd-listform-constructor.hbs"
@@ -38916,7 +38917,7 @@ define("dummy/templates/fd-listform-constructor", ["exports"], function (exports
         var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("table");
-        dom.setAttribute(el3, "class", "ui celled selectable collapsing table");
+        dom.setAttribute(el3, "class", "ui celled selectable collapsing table fd-listform");
         var el4 = dom.createTextNode("\n      ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("thead");
@@ -48908,7 +48909,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+4bdf8c0e"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+fa3dfbda"});
 }
 
 /* jshint ignore:end */
