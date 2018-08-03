@@ -195,7 +195,7 @@ export default FlexberryBaseComponent.extend({
   oldPropertyName: undefined,
 
   /**
-    Flag: indicates whether selectet property is readonly.
+    Flag: indicates whether selected property is readonly.
 
     @property readonly
     @type Boolean
@@ -347,6 +347,42 @@ export default FlexberryBaseComponent.extend({
   notNullDisabled: false,
 
   /**
+    Flag: indicates whether to show settings custom width.
+
+    @property customWidth
+    @type Boolean
+    @default false
+   */
+  customWidth: false,
+
+  /**
+    Value custom width.
+
+    @property widthValue
+    @type Number
+    @default 100
+   */
+  widthValue: 100,
+
+  /**
+    Selected unit of width.
+
+    @property widthType
+    @type String
+    @default &#x27;%&#x27;
+   */
+  widthType: &#x27;%&#x27;,
+
+  /**
+    Array units of width.
+
+    @property itemsWidthType
+    @type Array
+    @default [&#x27;%&#x27;, &#x27;px&#x27;]
+   */
+  itemsWidthType: [&#x27;%&#x27;, &#x27;px&#x27;],
+
+  /**
     Data selected attribute for editing.
 
     @property selectedAttribute
@@ -408,6 +444,20 @@ export default FlexberryBaseComponent.extend({
       if (devClass.id !== parsingResult.classId) {
         this.set(&#x27;readonly&#x27;, true);
       }
+    }
+
+    let width = this.get(&#x27;selectedItem.width&#x27;);
+    if (width !== &#x27;&#x27; &amp;&amp; !Ember.isNone(width)) {
+      this.set(&#x27;customWidth&#x27;, true);
+      if (width.lastIndexOf(&#x27;*&#x27;) === -1) {
+        this.set(&#x27;widthValue&#x27;, width);
+        this.set(&#x27;widthType&#x27;, &#x27;px&#x27;);
+      } else {
+        this.set(&#x27;widthValue&#x27;, width.slice(0, -1));
+        this.set(&#x27;widthType&#x27;, &#x27;%&#x27;);
+      }
+    } else {
+      this.set(&#x27;customWidth&#x27;, false);
     }
 
     return attribute;
@@ -526,6 +576,53 @@ export default FlexberryBaseComponent.extend({
   },
 
   actions: {
+
+    /**
+      Changes the width type.
+
+      @method actions.changeWidthType
+      @param {Object} value An object with a new value.
+    */
+    changeWidthType(value) {
+      let widthType = value === &#x27;%&#x27; ? &#x27;*&#x27; : &#x27;&#x27;;
+      if (widthType === &#x27;*&#x27; &amp;&amp; this.get(&#x27;widthValue&#x27;) &gt; 100) {
+        this.set(&#x27;widthValue&#x27;, 100);
+      }
+
+      this.set(&#x27;selectedItem.width&#x27;, this.get(&#x27;widthValue&#x27;).toString() + widthType);
+    },
+
+    /**
+      Changes the width Value.
+
+      @method actions.changeWidth
+      @param {Object} value An object with a new value.
+    */
+    changeWidth(value) {
+      let widthType = this.get(&#x27;widthType&#x27;) === &#x27;%&#x27; ? &#x27;*&#x27; : &#x27;&#x27;;
+      if (widthType === &#x27;*&#x27; &amp;&amp; value &gt; 100) {
+        this.set(&#x27;widthValue&#x27;, 100);
+      } else if (value &lt; 1) {
+        this.set(&#x27;widthValue&#x27;, 1);
+      }
+
+      this.set(&#x27;selectedItem.width&#x27;, this.get(&#x27;widthValue&#x27;).toString() + widthType);
+    },
+
+    /**
+      Changes the width settings.
+
+      @method actions.changeWidth
+      @param {Object} value An object with a new value in the &#x60;checked&#x60; property.
+    */
+    useCustomWidth(value) {
+      if (value.checked) {
+        this.set(&#x27;widthValue&#x27;, 100);
+        this.set(&#x27;widthType&#x27;, &#x27;%&#x27;);
+      } else {
+        this.set(&#x27;selectedItem.width&#x27;, &#x27;&#x27;);
+      }
+    },
 
     /**
       Resets &#x27;masterPropertyName&#x27; and &#x27;masterCustomizationString&#x27; if &#x27;LookupType&#x27; is &#x27;default&#x27;.

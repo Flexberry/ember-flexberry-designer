@@ -994,7 +994,9 @@ export default Ember.Controller.extend({
   */
   _extractPathPart: function(control, path, viewDefinition, column) {
     if (control instanceof FdEditformControl) {
-      let pathWithColumn = &#x60;${path ? path + &#x27;\\&#x27; : &#x27;&#x27;}${column}&#x60;;
+      let mockColumn = &#x60;${column ? column : &#x27;#1&#x27;}&#x60;;
+      let pathColumn = &#x60;${control.width ? mockColumn + &#x27;(&#x27; + control.width + &#x27;)&#x27; : column}&#x60;;
+      let pathWithColumn = &#x60;${path ? path + &#x27;\\&#x27; : &#x27;&#x27;}${pathColumn}&#x60;;
       control.set(&#x27;propertyDefinition.path&#x27;, pathWithColumn);
       control.set(&#x27;propertyDefinition.caption&#x27;, control.get(&#x27;caption&#x27;));
       viewDefinition.pushObject(control.get(&#x27;propertyDefinition&#x27;));
