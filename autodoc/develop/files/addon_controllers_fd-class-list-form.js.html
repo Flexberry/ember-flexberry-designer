@@ -132,7 +132,33 @@ export default ListFormController.extend({
     @type String
     @default &#x27;fd-class-edit-form&#x27;
    */
-  editFormRoute: &#x27;fd-class-edit-form&#x27;
+  editFormRoute: &#x27;fd-class-edit-form&#x27;,
+
+  actions: {
+    onRowClick(record) {
+      let editFormRoute;
+      switch (record.data.stereotype) {
+        case &#x27;«listform»&#x27;:
+          editFormRoute = &#x27;fd-listform-constructor&#x27;;
+          this.transitionToRoute(editFormRoute, {
+            queryParams: {
+              form: record.id,
+              class: undefined,
+            },
+          });
+          break;
+        case &#x27;«editform»&#x27;:
+          editFormRoute = &#x27;fd-editform-constructor&#x27;;
+          this.transitionToRoute(editFormRoute, record.id);
+          break;
+        default:
+          editFormRoute = this.get(&#x27;editFormRoute&#x27;);
+          this.transitionToRoute(editFormRoute, record.id);
+          break;
+      }
+    }
+
+  }
 });
 
     </pre>
