@@ -1,6 +1,6 @@
 <h3 class="ui header">{{t 'forms.fd-enum-edit-form.caption'}}</h3>
 
-<form class="ui form flexberry-vertical-form" role="form">
+<form class="ui form flexberry-vertical-form {{state}}" role="form">
   {{flexberry-error error=error}}
   <div class="field">
     <div class="sixteen wide">
@@ -53,8 +53,8 @@
 <div class="field">
   <label>{{t 'forms.fd-enum-edit-form.onlyShowSelectedValue-caption'}}</label>
   {{
-    flexberry-checkbox 
-    readonly=readonly 
+    flexberry-checkbox
+    readonly=readonly
     value=model.onlyShowSelectedValue
   }}
   {{flexberry-validationmessage error=model.errors.onlyShowSelectedValue pointing="pointing"}}

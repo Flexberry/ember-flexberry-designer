@@ -413,7 +413,6 @@ export default Ember.Controller.extend({
       @method actions.close
     */
     close() {
-      this.set('state', 'loading');
       history.back();
     },
 
