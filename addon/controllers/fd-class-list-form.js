@@ -27,6 +27,10 @@ export default ListFormController.extend({
           editFormRoute = 'fd-editform-constructor';
           this.transitionToRoute(editFormRoute, record.id);
           break;
+        case '«typedef»':
+          editFormRoute = 'fd-typedef-edit-form';
+          this.transitionToRoute(editFormRoute, record.id);
+          break;
         default:
           editFormRoute = this.get('editFormRoute');
           this.transitionToRoute(editFormRoute, record.id);

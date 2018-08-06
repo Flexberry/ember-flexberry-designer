@@ -28,6 +28,10 @@ Router.map(function () {
   { path: 'fd-class-edit-form/:id' });
   this.route('fd-class-edit-form.new',
   { path: 'fd-class-edit-form/new' });
+  this.route('fd-typedef-edit-form',
+  { path: 'fd-typedef-edit-form/:id' });
+  this.route('fd-typedef-edit-form.new',
+  { path: 'fd-typedef-edit-form/new' });
   this.route('fd-configuration-list-form');
   this.route('fd-configuration-edit-form',
   { path: 'fd-configuration-edit-form/:id' });
