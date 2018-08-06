@@ -102,6 +102,7 @@ function extractControlPath(definition, control, path, column) {
     let mockColumn = `${column ? column : '#1'}`;
     let pathColumn = `${control.width ? mockColumn + '(' + control.width + ')' : column}`;
     control.set('propertyDefinition.path', `${path ? path + '\\' : ''}${pathColumn}`);
+    control.set('propertyDefinition.caption', control.get('caption'));
     definition.pushObject(control.get('propertyDefinition'));
   }
 }
