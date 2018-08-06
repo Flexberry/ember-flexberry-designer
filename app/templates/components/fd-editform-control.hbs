@@ -2,9 +2,10 @@
 <div class="drag-anchor" {{action set "draggable" true on="mouseEnter"}} {{action set "draggable" false on="mouseLeave"}}></div>
 {{#if _isControl}}
   <label>{{control.caption}}</label>
-  {{component _component.name
-    items=_component.items
-    view=_component.view
+  {{component _componentName
+    items=_componentProperties.items
+    types=_componentProperties.types
+    view=_componentProperties.view
     showLookupAction=showLookupAction
     caption=control.caption
   }}

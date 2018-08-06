@@ -18,6 +18,66 @@ import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
 */
 export default Ember.Component.extend(FdDraggableControlMixin, {
   /**
+    An object in the format `{ 'typeName': 'componentName' }`, which describes which components should be rendered for each type.
+
+    @private
+    @property _componentsTypeMap
+    @type Object
+  */
+  _componentsTypeMap: {
+    'bool': 'flexberry-checkbox',
+    'System.Boolean': 'flexberry-checkbox',
+
+    'DateTime': 'flexberry-datetime',
+    'System.DateTime': 'flexberry-datetime',
+    'ICSSoft.STORMNET.UserDataTypes.NullableDateTime': 'flexberry-datetime',
+
+    'ICSSoft.STORMNET.UserDataTypes.WebFile': 'fd-file',
+
+    'char': 'flexberry-textbox',
+    'System.Char': 'flexberry-textbox',
+    'string': 'flexberry-textbox',
+    'System.String': 'flexberry-textbox',
+
+    'byte': 'flexberry-textbox',
+    'System.Byte': 'flexberry-textbox',
+    'sbyte': 'flexberry-textbox',
+    'System.SByte': 'flexberry-textbox',
+    'short': 'flexberry-textbox',
+    'System.Int16': 'flexberry-textbox',
+    'ushort': 'flexberry-textbox',
+    'System.UInt16': 'flexberry-textbox',
+    'int': 'flexberry-textbox',
+    'System.Int32': 'flexberry-textbox',
+    'uint': 'flexberry-textbox',
+    'System.UInt32': 'flexberry-textbox',
+    'long': 'flexberry-textbox',
+    'System.Int64': 'flexberry-textbox',
+    'ulong': 'flexberry-textbox',
+    'System.UInt64': 'flexberry-textbox',
+    'ICSSoft.STORMNET.UserDataTypes.NullableInt': 'flexberry-textbox',
+
+    'float': 'flexberry-textbox',
+    'System.Single': 'flexberry-textbox',
+    'double': 'flexberry-textbox',
+    'System.Double': 'flexberry-textbox',
+    'decimal': 'flexberry-textbox',
+    'System.Decimal': 'flexberry-textbox',
+    'ICSSoft.STORMNET.UserDataTypes.NullableDecimal': 'flexberry-textbox',
+
+    'object': 'flexberry-textbox',
+    'System.Object': 'flexberry-textbox',
+    'guid': 'flexberry-textbox',
+    'System.Guid': 'flexberry-textbox',
+
+    'enumeration': 'flexberry-dropdown',
+    'master': 'fd-lookup',
+    'detail': 'fd-groupedit',
+
+    'default': 'flexberry-textbox',
+  },
+
+  /**
     The passed control is a simple control.
 
     @private
@@ -54,24 +114,31 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
   }).readOnly(),
 
   /**
+    The name of the component that will be rendered for this control.
+
+    @private
+    @property _componentName
+    @readOnly
+    @type String
+  */
+  _componentName: Ember.computed('_componentProperties.type', function() {
+    return this.get('_componentsTypeMap')[this.get('_componentProperties.type')];
+  }).readOnly(),
+
+  /**
     An object with properties for rendering the component.
 
     @private
-    @property _component
+    @property _componentProperties
     @readOnly
     @type Object
   */
-  _component: Ember.computed('control.propertyDefinition.name', 'control.propertyDefinition.visible', 'control.propertyDefinition.detailViewName', function() {
-    switch (this.get('control.type')) {
-      case 'date': return { name: 'flexberry-datepicker' };
-      case 'bool': return { name: 'flexberry-checkbox' };
-      default:
-        let propertyDefinition = this.get('control.propertyDefinition');
-        if (propertyDefinition && propertyDefinition.get('visible')) {
-          return this.get('getComponentPropertiesAction')(propertyDefinition);
-        } else {
-          return { name: 'flexberry-textbox' };
-        }
+  _componentProperties: Ember.computed('control.propertyDefinition.name', 'control.propertyDefinition.detailViewName', function() {
+    let propertyDefinition = this.get('control.propertyDefinition');
+    if (propertyDefinition) {
+      return this.get('getComponentPropertiesAction')(propertyDefinition);
+    } else {
+      return { type: 'default' };
     }
   }).readOnly(),
 

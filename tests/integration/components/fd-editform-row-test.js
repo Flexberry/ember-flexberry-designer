@@ -2,11 +2,25 @@ import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
+import FlexberryTextboxComponent from 'ember-flexberry/components/flexberry-textbox';
+
 import FdEditformRow from 'ember-flexberry-designer/objects/fd-editform-row';
 import FdEditformControl from 'ember-flexberry-designer/objects/fd-editform-control';
 
 moduleForComponent('fd-editform-row', 'Integration | Component | fd-editform-row', {
-  integration: true
+  integration: true,
+
+  beforeEach() {
+    if (FlexberryTextboxComponent.proto().i18n) {
+      Ember.assert(`Please, delete 'beforeEach' and 'afterEach' hooks.`);
+    } else {
+      FlexberryTextboxComponent.reopen({ i18n: Ember.inject.service() });
+    }
+  },
+
+  afterEach() {
+    FlexberryTextboxComponent.reopen({ i18n: null });
+  },
 });
 
 test('it renders and works', function(assert) {
@@ -15,10 +29,7 @@ test('it renders and works', function(assert) {
 
   this.set('row', FdEditformRow.create({
     controls: Ember.A([
-      FdEditformControl.create({
-        type: 'bool',
-        caption: 'Attribute #1',
-      }),
+      FdEditformControl.create({ caption: 'Attribute #1' }),
     ]),
   }));
   assert.ok(/\s*Attribute #1\s*/.test(this.$().text()), 'With one control.');
@@ -28,14 +39,8 @@ test('it renders and works', function(assert) {
 
   this.set('row', FdEditformRow.create({
     controls: Ember.A([
-      FdEditformControl.create({
-        type: 'bool',
-        caption: 'Attribute #1',
-      }),
-      FdEditformControl.create({
-        type: 'bool',
-        caption: 'Attribute #2',
-      }),
+      FdEditformControl.create({ caption: 'Attribute #1' }),
+      FdEditformControl.create({ caption: 'Attribute #2' }),
     ]),
   }));
   assert.ok(/\s*Attribute #1\s*Attribute #2\s*/.test(this.$().text()), 'With many controls.');
