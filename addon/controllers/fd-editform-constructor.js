@@ -73,6 +73,13 @@ export default Ember.Controller.extend({
   _lookupView: undefined,
 
   /**
+    @private
+    @property _lookupTypes
+    @type Array
+  */
+  _lookupTypes: undefined,
+
+  /**
     Indicates that the user has started moving control, and the next selected control will be the target of the move.
 
     @private
@@ -643,10 +650,12 @@ export default Ember.Controller.extend({
       @method actions.showLookup
       @param {String} caption Caption for the lookup form.
       @param {FdDevViewModel} view The view on which the table will be render in the lookup form.
+      @param {Array} types An array of types for the view.
     */
-    showLookup(caption, view) {
+    showLookup(caption, view, types) {
       this.set('_lookupCaption', caption);
       this.set('_lookupView', view);
+      this.set('_lookupTypes', types);
       this.set('_showLookupDialog', true);
     },
 
