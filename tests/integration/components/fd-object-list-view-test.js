@@ -7,18 +7,22 @@ moduleForComponent('fd-object-list-view', 'Integration | Component | fd-object-l
 });
 
 test('it renders and works', function(assert) {
-  this.render(hbs`{{fd-object-list-view view=ne-view}}`);
+  this.render(hbs`{{fd-object-list-view headers=headers rows=rows showCheckBoxInRow=showCheckBoxInRow}}`);
 
   assert.equal(this.$().text().trim(), '');
 
-  this.set('ne-view', {
-    definition: Ember.A([
-      { caption: 'Column #1' },
-      { caption: 'Column #2' },
-    ]),
-  });
+  this.set('headers', Ember.A(['Column #1', 'Column #2']));
+  this.set('rows', Ember.A([
+    Ember.A(['Cell #1', 'Cell #2']),
+    Ember.A(['Cell #3', 'Cell #4']),
+  ]));
 
   assert.equal(this.$('thead tr').length, 1, 'The table has a header.');
-  assert.equal(this.$('tbody tr').length, 5, 'In the table 5 rows.');
+  assert.equal(this.$('tbody tr').length, this.get('rows.length'), 'The table has all rows.');
   assert.ok(/\s*Column #1\s*Column #2\s*/.test(this.$('th').text()), 'The headers are correct.');
+  assert.notOk(this.$('th').is('.collapsing'), 'The column with checkboxes - no.');
+
+  this.set('showCheckBoxInRow', true);
+
+  assert.ok(this.$('th').is('.collapsing'), 'The column with checkboxes - yes.');
 });
