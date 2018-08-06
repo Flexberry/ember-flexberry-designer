@@ -6,17 +6,19 @@ moduleForComponent('fd-lookup', 'Integration | Component | fd-lookup', {
 });
 
 test('it renders and works', function(assert) {
-  assert.expect(2);
+  assert.expect(3);
 
-  this.set('caption', {});
-  this.set('wiev', {});
-
-  this.set('showLookupAction', (caption, view) => {
+  this.set('showLookupAction', (caption, wiev) => {
     assert.ok(this.get('caption') === caption);
-    assert.ok(this.get('wiev') === view);
+    assert.ok(this.get('wiev') === wiev);
   });
 
   this.render(hbs`{{fd-lookup caption=caption view=wiev showLookupAction=showLookupAction}}`);
+
+  assert.ok(this.$('.button.ui-change').hasClass('disabled'), 'Can not open without the view.');
+
+  this.set('caption', {});
+  this.set('wiev', {});
 
   this.$('.button.ui-change').click();
 });
