@@ -27,62 +27,6 @@ export default Ember.Controller.extend({
   queryParams: ['classId'],
 
   /**
-    An object in the format `{ 'typeName': 'componentName' }`, which describes which components should be rendered for each type.
-
-    @private
-    @property _componentsTypeMap
-    @type Object
-  */
-  _componentsTypeMap: {
-    'bool': 'flexberry-checkbox',
-    'System.Boolean': 'flexberry-checkbox',
-
-    'DateTime': 'flexberry-datetime',
-    'System.DateTime': 'flexberry-datetime',
-    'ICSSoft.STORMNET.UserDataTypes.NullableDateTime': 'flexberry-datetime',
-
-    'ICSSoft.STORMNET.UserDataTypes.WebFile': 'fd-file',
-
-    'char': 'flexberry-textbox',
-    'System.Char': 'flexberry-textbox',
-    'string': 'flexberry-textbox',
-    'System.String': 'flexberry-textbox',
-
-    'byte': 'flexberry-textbox',
-    'System.Byte': 'flexberry-textbox',
-    'sbyte': 'flexberry-textbox',
-    'System.SByte': 'flexberry-textbox',
-    'short': 'flexberry-textbox',
-    'System.Int16': 'flexberry-textbox',
-    'ushort': 'flexberry-textbox',
-    'System.UInt16': 'flexberry-textbox',
-    'int': 'flexberry-textbox',
-    'System.Int32': 'flexberry-textbox',
-    'uint': 'flexberry-textbox',
-    'System.UInt32': 'flexberry-textbox',
-    'long': 'flexberry-textbox',
-    'System.Int64': 'flexberry-textbox',
-    'ulong': 'flexberry-textbox',
-    'System.UInt64': 'flexberry-textbox',
-    'ICSSoft.STORMNET.UserDataTypes.NullableInt': 'flexberry-textbox',
-
-    'float': 'flexberry-textbox',
-    'System.Single': 'flexberry-textbox',
-    'double': 'flexberry-textbox',
-    'System.Double': 'flexberry-textbox',
-    'decimal': 'flexberry-textbox',
-    'System.Decimal': 'flexberry-textbox',
-    'ICSSoft.STORMNET.UserDataTypes.NullableDecimal': 'flexberry-textbox',
-
-    'object': 'flexberry-textbox',
-    'System.Object': 'flexberry-textbox',
-    'guid': 'flexberry-textbox',
-    'System.Guid': 'flexberry-textbox',
-
-    'default': 'flexberry-textbox',
-  },
-
-  /**
     @private
     @property _dataTypes
     @type Ember.Object
@@ -690,56 +634,7 @@ export default Ember.Controller.extend({
       @return {Object} An object with properties for the component.
     */
     getComponentProperties(propertyDefinition) {
-      let name;
-      let view;
-      let items;
-
-      let path = propertyDefinition.get('name').split('.');
-      let propertyName = path.pop();
-      if (propertyDefinition instanceof FdViewAttributesDetail) {
-        let { aggregations } = this.get('dataObjectProperties');
-        let relation = aggregations.findBy('endRole', propertyName) || aggregations.findBy('endClass.name', propertyName);
-        view = this.get('model.views').filterBy('class.id', relation.get('endClass.id')).findBy('name', propertyDefinition.get('detailViewName'));
-        name = 'fd-object-list-view';
-      } else if (propertyDefinition instanceof FdViewAttributesMaster) {
-        name = 'fd-lookup';
-        let propertyLookup = this.get('model.editform.propertyLookupStr').findBy('property', propertyDefinition.get('name'));
-        if (propertyLookup) {
-          let form = this.get('model.classes').findBy('name', propertyLookup.container);
-          if (form) {
-            view = form.get('formViews.firstObject.view');
-          }
-        }
-      } else if (propertyDefinition instanceof FdViewAttributesProperty) {
-        let properties = this.get('dataObjectProperties');
-        let inheritances = this.get('model.inheritances');
-        let associations = this.get('model.associations');
-        let aggregations = this.get('model.aggregations');
-        while (path.length > 0) {
-          let role = path.shift();
-          let relation = properties.associations.findBy('startRole', role) || properties.associations.findBy('startClass.name', role);
-          properties = this._getClassProperties(relation.get('startClass'), inheritances, associations, aggregations);
-        }
-
-        let attribute = properties.attributes.findBy('name', propertyName);
-        let type = this.get('model.stage.typeMapCSStr').findBy('name', attribute.get('type'));
-
-        if (type) {
-          name = this.get('_componentsTypeMap')[type.value || 'default'];
-        } else {
-          let clazz = this.get('model.classes').findBy('name', attribute.get('type'));
-          if (clazz && clazz.get('stereotype') === '«enumeration»') {
-            name = 'flexberry-dropdown';
-            items = clazz.get('attributes').mapBy('name');
-          } else {
-            name = 'flexberry-textbox';
-          }
-        }
-      } else {
-        throw new Error('Invalid property definition.');
-      }
-
-      return { name, view, items };
+      return this._getComponentProperties(propertyDefinition, this.get('dataObjectProperties'));
     },
 
     /**
@@ -1194,6 +1089,97 @@ export default Ember.Controller.extend({
     }
 
     return properties;
+  },
+
+  /**
+    Returns an object with properties to render the component.
+
+    @private
+    @method _getComponentProperties
+    @param {FdViewAttributesProperty|FdViewAttributesMaster|FdViewAttributesDetail} propertyDefinition Definition a property in a view.
+    @param {Object} dataObjectProperties
+    @return {Object} An object with properties for the component.
+  */
+  _getComponentProperties(propertyDefinition, dataObjectProperties) {
+    let type;
+    let view;
+    let types;
+    let items;
+
+    let path = propertyDefinition.get('name').split('.');
+    let propertyName = path.pop();
+    if (propertyDefinition instanceof FdViewAttributesDetail) {
+      let { aggregations } = dataObjectProperties;
+      let relation = aggregations.findBy('endRole', propertyName) || aggregations.findBy('endClass.name', propertyName);
+      type = 'detail';
+      view = this.get('model.views').filterBy('class.id', relation.get('endClass.id')).findBy('name', propertyDefinition.get('detailViewName'));
+      types = this._getTypesForView(view);
+    } else if (propertyDefinition instanceof FdViewAttributesMaster) {
+      type = 'master';
+      let propertyLookup = this.get('model.editform.propertyLookupStr').findBy('property', propertyDefinition.get('name'));
+      if (propertyLookup) {
+        let form = this.get('model.classes').findBy('name', propertyLookup.container);
+        if (form) {
+          view = form.get('formViews.firstObject.view');
+          types = this._getTypesForView(view);
+        }
+      }
+    } else if (propertyDefinition instanceof FdViewAttributesProperty) {
+      let properties = dataObjectProperties;
+      let inheritances = this.get('model.inheritances');
+      let associations = this.get('model.associations');
+      let aggregations = this.get('model.aggregations');
+      while (path.length > 0) {
+        let role = path.shift();
+        let relation = properties.associations.findBy('startRole', role) || properties.associations.findBy('startClass.name', role);
+        properties = this._getClassProperties(relation.get('startClass'), inheritances, associations, aggregations);
+      }
+
+      let attribute = properties.attributes.findBy('name', propertyName);
+      let typeInMap = this.get('model.stage.typeMapCSStr').findBy('name', attribute.get('type'));
+
+      if (typeInMap) {
+        type = typeInMap.value || typeInMap.name;
+      } else {
+        let clazz = this.get('model.classes').findBy('name', attribute.get('type'));
+        if (clazz && clazz.get('stereotype') === '«enumeration»') {
+          type = 'enumeration';
+          items = clazz.get('attributes').mapBy('name');
+        } else {
+          type = 'default';
+        }
+      }
+    } else {
+      throw new Error('Invalid property definition.');
+    }
+
+    return { type, view, types, items };
+  },
+
+  /**
+    Returns an array of types used in the view.
+
+    @private
+    @method _getTypesForView
+    @param {FdDevViewModel} view A view for which types are needed.
+    @return {Array} An array of types used in the view.
+  */
+  _getTypesForView(view) {
+    let types = [];
+
+    let clazz = view.get('class');
+    let definition = view.get('definition');
+    let inheritances = this.get('model.inheritances');
+    let associations = this.get('model.associations');
+    let aggregations = this.get('model.aggregations');
+    let dataObjectProperties = this._getClassProperties(clazz, inheritances, associations, aggregations);
+
+    let length = definition.get('length');
+    for (let i = 0; i < length; i++) {
+      types.push(this._getComponentProperties(definition.objectAt(i), dataObjectProperties));
+    }
+
+    return types;
   },
 
   /**
