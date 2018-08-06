@@ -414,7 +414,7 @@ export default Ember.Controller.extend({
     */
     close() {
       this.set('state', 'loading');
-      Ember.run.later(this, this.transitionToRoute, 'fd-appstruct-form');
+      history.back();
     },
 
     /**
@@ -870,7 +870,9 @@ export default Ember.Controller.extend({
   */
   _extractPathPart: function(control, path, viewDefinition, column) {
     if (control instanceof FdEditformControl) {
-      let pathWithColumn = `${path ? path + '\\' : ''}${column}`;
+      let mockColumn = `${column ? column : '#1'}`;
+      let pathColumn = `${control.width ? mockColumn + '(' + control.width + ')' : column}`;
+      let pathWithColumn = `${path ? path + '\\' : ''}${pathColumn}`;
       control.set('propertyDefinition.path', pathWithColumn);
       control.set('propertyDefinition.caption', control.get('caption'));
       viewDefinition.pushObject(control.get('propertyDefinition'));
