@@ -1,7 +1,7 @@
 import EditFormRoute from 'ember-flexberry/routes/edit-form';
 
 export default EditFormRoute.extend({
-  modelProjection: 'FdEditTypedefForm',
+  modelProjection: 'TypeDefinitionE',
   modelName: 'fd-dev-type-definition',
 
   afterModel: function(model) {

@@ -20,7 +20,8 @@ export default EditFormRoute.extend({
       '«interface»': 'fd-interface-edit-form',
       '«listform»': 'fd-list-form-edit-form',
       '«type»': 'fd-type-edit-form',
-      '«userform»': 'fd-user-form-edit-form'
+      '«userform»': 'fd-user-form-edit-form',
+      '«typedef»': 'fd-typedef-edit-form'
     };
     let target = transitionMap[model.get('stereotype')];
 
