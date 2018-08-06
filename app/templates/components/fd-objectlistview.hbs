@@ -1,0 +1,36 @@
+{{fd-object-list-view
+  showCheckBoxInRow=false
+  headers=_headers
+  rows=_rowsOnPage
+}}
+<div class="ui secondary menu no-margin nav-bar">
+  <div class="ui basic buttons">
+    <button class="ui {{if (eq page _pages.firstObject) "disabled"}} button prev-page-button" {{action decrementProperty "page"}}></button>
+      {{#each _pages as |p|}}
+        {{#if (eq p page)}}
+          <button type="button" class="ui active button">{{p}}</button>
+        {{else}}
+          <button class="ui button" {{action set "page" p}}>{{p}}</button>
+        {{/if}}
+      {{/each}}
+    <button class="ui {{if (eq page _pages.lastObject) "disabled"}} button next-page-button" {{action incrementProperty "page"}}></button>
+  </div>
+  <div class="right menu">
+    <div class="showing-entries">
+      {{concat
+        (t "components.flexberry-objectlistview.showing-entries.showing")
+        perPage
+        (t "components.flexberry-objectlistview.showing-entries.of")
+        rowsCount
+        (t "components.flexberry-objectlistview.showing-entries.entries")
+      }}
+    </div>
+    {{flexberry-dropdown
+      items=(array 5 10 20 50)
+      value=perPage
+      onChange=(action set "page" 1)
+      class="compact selection"
+      direction="upward"
+    }}
+  </div>
+</div>
