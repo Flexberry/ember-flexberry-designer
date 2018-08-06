@@ -99,7 +99,9 @@ function extractControlPath(definition, control, path, column) {
       extractControlPath(definition, rows.objectAt(i), pathWithTab, column);
     }
   } else if (control instanceof FdEditformControl) {
-    control.set('propertyDefinition.path', `${path ? path + '\\' : ''}${column}`);
+    let mockColumn = `${column ? column : '#1'}`;
+    let pathColumn = `${control.width ? mockColumn + '(' + control.width + ')' : column}`;
+    control.set('propertyDefinition.path', `${path ? path + '\\' : ''}${pathColumn}`);
     definition.pushObject(control.get('propertyDefinition'));
   }
 }

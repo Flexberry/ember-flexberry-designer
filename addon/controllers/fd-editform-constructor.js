@@ -445,7 +445,8 @@ export default Ember.Controller.extend({
       let propertyDefinition = definition.objectAt(i);
       let path = propertyDefinition.get('path');
       let caption = propertyDefinition.get('caption') || propertyDefinition.get('name');
-      let control = FdEditformControl.create({ caption, propertyDefinition });
+      let width = this._getWidth(path);
+      let control = FdEditformControl.create({ caption, width, propertyDefinition });
       locateControlByPath(controlsTree, control, path);
     }
 
@@ -577,7 +578,7 @@ export default Ember.Controller.extend({
     */
     close() {
       this.set('state', 'loading');
-      Ember.run.later(this, this.transitionToRoute, 'fd-appstruct-form');
+      history.back();
     },
 
     /**
@@ -1226,6 +1227,25 @@ export default Ember.Controller.extend({
     });
 
     return treeData;
+  },
+
+  /**
+      Looks for width in the path
+
+      @method _getWidth
+      @param {String} path Property path from view.
+  */
+  _getWidth: function(path) {
+    let partsPath = path.split('\\');
+    let lastPartsPath = partsPath[partsPath.length - 1];
+    let startWidth = lastPartsPath.lastIndexOf('(');
+    let endWidth = lastPartsPath.lastIndexOf(')');
+    let width = '';
+    if (endWidth !== -1 && startWidth !== -1 && endWidth === lastPartsPath.length - 1 && lastPartsPath.charAt(0) === '#') {
+      width = lastPartsPath.slice(startWidth + 1, endWidth);
+    }
+
+    return width;
   },
 
   /**

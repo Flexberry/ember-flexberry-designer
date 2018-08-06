@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
+* The application structure constructor:
+  * Add links in root desktop.
 * The list form constructor:
   * Add, sort and remove columns.
 * The edit form constructor:
@@ -21,12 +23,14 @@ All notable changes to this project will be documented in this file.
 * The edit form constructor:
   * The addition of controls takes place depending on the selected item.
   * The type of the displayed component for the control depends on the type of property.
+* Clicking on class with stereotype `listform` or `edit form` will open form constructor.
 
 ### Fixed
 * The view edit form:
   * Loading recursion in the tree.
   * Duplicating Aggregators.
   * Editing the title and description of view in the panel.
+* Pressing 'Close' button in form constructors will open previous page.
 
 ## [0.2.0] - 2018-06-26
 ### Added
