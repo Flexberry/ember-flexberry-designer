@@ -1,8 +1,7 @@
 import Ember from 'ember';
-
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(FdLoadingForTransitionMixin, {
 
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
@@ -75,7 +74,6 @@ export default Ember.Route.extend({
 
     controller.set('selectedItem', undefined);
     controller.set('_showNotUsedAttributesTree', false);
-    controller.set('state', '');
   },
 
   /**

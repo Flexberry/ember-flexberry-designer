@@ -123,6 +123,11 @@ Ember.$.extend(true, translations, {
             title: '',
 
           },
+          'fd-aggregation-list-form': {
+            caption: 'Аггрегации',
+            title: '',
+
+          },
           'fd-inheritance-list-form': {
             caption: 'Наследование',
             title: '',

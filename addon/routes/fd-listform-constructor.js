@@ -1,11 +1,12 @@
 import Ember from 'ember';
 import FdAttributesTree from '../objects/fd-attributes-tree';
 import FdDataTypes from '../utils/fd-datatypes';
+import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode } from '../utils/fd-attributes-for-tree';
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
 import { getNewFormCaption, getNewFormDescription } from '../utils/fd-create-form-properties';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(FdLoadingForTransitionMixin, {
   currentContext: Ember.inject.service('fd-current-project-context'),
 
   actions: {
@@ -178,7 +179,6 @@ export default Ember.Route.extend({
   setupController(controller) {
     this._super(...arguments);
     controller.set('_showNotUsedAttributesTree', false);
-    controller.set('state', '');
   },
 
   /**
