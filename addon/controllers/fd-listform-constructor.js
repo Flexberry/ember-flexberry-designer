@@ -393,7 +393,6 @@ export default Ember.Controller.extend({
     },
 
     close() {
-      this.set('state', 'loading');
       history.back();
     },
 

@@ -360,7 +360,6 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       @method actions.close
     */
     close() {
-      this.set('state', 'loading');
       history.back();
     },
 

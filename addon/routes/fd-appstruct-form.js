@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import FdAppStructTree from '../objects/fd-appstruct-tree';
-export default Ember.Route.extend({
+import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
+export default Ember.Route.extend(FdLoadingForTransitionMixin, {
 
   /**
    Service that get current project contexts.

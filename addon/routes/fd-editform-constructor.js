@@ -6,10 +6,11 @@ import FdEditformTab from '../objects/fd-editform-tab';
 import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
 import FdAttributesTree from '../objects/fd-attributes-tree';
 import FdDataTypes from '../utils/fd-datatypes';
+import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode } from '../utils/fd-attributes-for-tree';
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(FdLoadingForTransitionMixin, {
 
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
@@ -134,7 +135,6 @@ export default Ember.Route.extend({
     this._super(...arguments);
     controller.set('selectedItem', undefined);
     controller.set('_showNotUsedAttributesTree', false);
-    controller.set('state', '');
   },
 
   /**
