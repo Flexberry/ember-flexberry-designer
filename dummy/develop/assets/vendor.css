@@ -28664,7 +28664,7 @@ a.ui.card:hover,
 
 .ui.accordion .active.content,
 .ui.accordion .accordion .active.content {
-  /* display: block; /*
+  /* display: block; */
 }
 
 /*******************************
@@ -36974,6 +36974,7 @@ html.ios body {
 /*******************************
          Site Overrides
 *******************************/
+
 @font-face {
   font-family: 'Icons';
   src: url("fonts/icons.eot");

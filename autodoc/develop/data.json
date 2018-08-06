@@ -83,6 +83,20 @@
                 "components": 1
             }
         },
+        "addon/controllers/fd-aggregation-edit-form.js": {
+            "name": "addon/controllers/fd-aggregation-edit-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/controllers/fd-aggregation-list-form.js": {
+            "name": "addon/controllers/fd-aggregation-list-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/controllers/fd-appstruct-form.js": {
             "name": "addon/controllers/fd-appstruct-form.js",
             "modules": {},
@@ -397,6 +411,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/mixins/fd-loading-for-transition.js": {
+            "name": "addon/mixins/fd-loading-for-transition.js",
+            "modules": {},
+            "classes": {
+                "FdLoadingForTransitionMixin": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/models/fd-dev-uml-cad.js": {
             "name": "addon/models/fd-dev-uml-cad.js",
             "modules": {},
@@ -584,6 +607,13 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/routes/fd-aggregation-edit-form/new.js": {
+            "name": "addon/routes/fd-aggregation-edit-form/new.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/routes/fd-association-edit-form/new.js": {
             "name": "addon/routes/fd-association-edit-form/new.js",
             "modules": {},
@@ -614,6 +644,20 @@
         },
         "addon/routes/fd-stage-edit-form/new.js": {
             "name": "addon/routes/fd-stage-edit-form/new.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/routes/fd-aggregation-edit-form.js": {
+            "name": "addon/routes/fd-aggregation-edit-form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/routes/fd-aggregation-list-form.js": {
+            "name": "addon/routes/fd-aggregation-list-form.js",
             "modules": {},
             "classes": {},
             "fors": {},
@@ -1249,6 +1293,7 @@
                 "FdUmlDiagramComponent": 1,
                 "FdDraggableControlMixin": 1,
                 "FdLimitByStageMixin": 1,
+                "FdLoadingForTransitionMixin": 1,
                 "NewPlatformFlexberryFlexberryDesignerVisualEditControl": 1,
                 "NewPlatformFlexberryFlexberryDesignerVisualEditForm": 1,
                 "FdUmlAssociation": 1,
@@ -1409,6 +1454,24 @@
             "file": "addon/mixins/fd-limit-by-stage.js",
             "line": 8,
             "description": "Simple way of inject {{#crossLink \"FdCurrentProjectContextService\"}}FdCurrentProjectContextService{{/crossLink}} and limit list objects by stage.",
+            "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Mixin.html\">Ember.Mixin</a>"
+        },
+        "FdLoadingForTransitionMixin": {
+            "name": "FdLoadingForTransitionMixin",
+            "shortname": "FdLoadingForTransitionMixin",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "",
+            "file": "addon/mixins/fd-loading-for-transition.js",
+            "line": 3,
+            "description": "Add loading for transitions from edit form.",
+            "example": [
+                "\nTo enable the loading for transitions, you need to connect this mixin to the edit form:\n\n```javascript\nimport FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';\nexport default Ember.Route.extend(FdLoadingForTransitionMixin, {\n});\n```\n\nIn template need in <form> add class {{state}}:\n\n```handlebars\n<form class=\"ui form flexberry-vertical-form {{state}}\" role=\"form\">\n```"
+            ],
             "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Mixin.html\">Ember.Mixin</a>"
         },
         "NewPlatformFlexberryFlexberryDesignerVisualEditControl": {
@@ -3064,6 +3127,110 @@
             "namespace": "components"
         },
         {
+            "file": "addon/controllers/fd-aggregation-edit-form.js",
+            "line": 7,
+            "description": "Service that get current project contexts.",
+            "itemtype": "property",
+            "name": "currentProjectContext",
+            "type": "{Class}",
+            "default": "Ember.inject.service()",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-aggregation-edit-form.js",
+            "line": 16,
+            "description": "Array all classes.",
+            "itemtype": "property",
+            "name": "implementations",
+            "type": "Array",
+            "default": "[]",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-aggregation-edit-form.js",
+            "line": 25,
+            "description": "Array name all classes.",
+            "itemtype": "property",
+            "name": "implementationsName",
+            "type": "Array",
+            "default": "[]",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-aggregation-edit-form.js",
+            "line": 34,
+            "description": "Name end class.",
+            "itemtype": "property",
+            "name": "endClassName",
+            "type": "String",
+            "default": "''",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-aggregation-edit-form.js",
+            "line": 43,
+            "description": "Name start class.",
+            "itemtype": "property",
+            "name": "startClassName",
+            "type": "String",
+            "default": "''",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-aggregation-edit-form.js",
+            "line": 52,
+            "description": "Flag: indicates whether to edit classes.",
+            "itemtype": "property",
+            "name": "readonlyClass",
+            "type": "Boolean",
+            "default": "true",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-aggregation-edit-form.js",
+            "line": 63,
+            "description": "Set 'startClass'.",
+            "itemtype": "method",
+            "name": "actions.changeStartClass",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-aggregation-edit-form.js",
+            "line": 77,
+            "description": "Set 'endClass'.",
+            "itemtype": "method",
+            "name": "actions.changeEndClass",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-aggregation-list-form.js",
+            "line": 4,
+            "description": "Name of related edit form route.",
+            "itemtype": "property",
+            "name": "editFormRoute",
+            "type": "String",
+            "default": "'fd-aggregation-edit-form'",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
             "file": "addon/controllers/fd-appstruct-form.js",
             "line": 11,
             "itemtype": "property",
@@ -3311,7 +3478,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 367,
+            "line": 366,
             "description": "Handles move node from left in right jsTree.",
             "itemtype": "method",
             "name": "actions.moveRightHighlighted",
@@ -3321,7 +3488,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 397,
+            "line": 396,
             "description": "Handles remove node from left jsTree.",
             "itemtype": "method",
             "name": "actions.removeLeftNode",
@@ -3331,7 +3498,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 422,
+            "line": 421,
             "description": "Handles create new class left jsTree.",
             "itemtype": "method",
             "name": "actions.addLeftClass",
@@ -3341,7 +3508,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 431,
+            "line": 430,
             "description": "Handles add edit form for class in left jsTree.",
             "itemtype": "method",
             "name": "actions.addLeftListForm",
@@ -3351,7 +3518,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 492,
+            "line": 491,
             "description": "Handles add list form for class in left jsTree.",
             "itemtype": "method",
             "name": "actions.addLeftListForm",
@@ -3361,7 +3528,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 514,
+            "line": 513,
             "description": "Handles edit node left jsTree.",
             "itemtype": "method",
             "name": "actions.editLeftNode",
@@ -3371,7 +3538,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 547,
+            "line": 546,
             "description": "Handles open class list form.",
             "itemtype": "method",
             "name": "actions.listLeft",
@@ -3381,7 +3548,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 556,
+            "line": 555,
             "description": "Handles add url node.",
             "itemtype": "method",
             "name": "actions.addUrlNode",
@@ -3391,7 +3558,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 588,
+            "line": 587,
             "description": "Handles edit node right jsTree.",
             "itemtype": "method",
             "name": "actions.editRightNode",
@@ -3401,7 +3568,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 597,
+            "line": 596,
             "description": "Handles remove node from right jsTree.",
             "itemtype": "method",
             "name": "actions.removeRightNode",
@@ -3411,7 +3578,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 618,
+            "line": 617,
             "description": "Handles add node in right jsTree.",
             "itemtype": "method",
             "name": "actions.addFolderNode",
@@ -3421,7 +3588,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 648,
+            "line": 647,
             "description": "Handles up move tree node.",
             "itemtype": "method",
             "name": "actions.upRightNode",
@@ -3431,7 +3598,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 673,
+            "line": 672,
             "description": "Handles down move tree node.",
             "itemtype": "method",
             "name": "actions.downRightNode",
@@ -3441,7 +3608,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 698,
+            "line": 697,
             "description": "Handles save in right tree.",
             "itemtype": "method",
             "name": "actions.saveTree",
@@ -3451,7 +3618,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 721,
+            "line": 720,
             "description": "Handles open process editor form.",
             "itemtype": "method",
             "name": "actions.openProcessEditorForm",
@@ -3461,7 +3628,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 730,
+            "line": 729,
             "description": "Handles open generation form.",
             "itemtype": "method",
             "name": "actions.openGenerationForm",
@@ -3471,7 +3638,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 754,
+            "line": 753,
             "description": "Method for restoring tree nodes.",
             "itemtype": "method",
             "name": "_restorationNodeTree",
@@ -3483,7 +3650,7 @@
         },
         {
             "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 769,
+            "line": 768,
             "description": "Method for update data in tree.",
             "itemtype": "method",
             "name": "_updateTreeData",
@@ -3647,7 +3814,7 @@
         },
         {
             "file": "addon/controllers/fd-class-edit-form.js",
-            "line": 81,
+            "line": 80,
             "description": "Sets 'businessServerEvents' model property value to default if business server is not present.",
             "itemtype": "method",
             "name": "_setDefaultBusinessServerEvents",
@@ -4013,7 +4180,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 420,
+            "line": 419,
             "description": "Set the selected item.",
             "itemtype": "method",
             "name": "actions.selectItem",
@@ -4030,7 +4197,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 453,
+            "line": 452,
             "description": "Set the current dragged item.",
             "itemtype": "method",
             "name": "actions.setDragItem",
@@ -4047,7 +4214,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 463,
+            "line": 462,
             "description": "Get the current dragged item.",
             "itemtype": "method",
             "name": "actions.getDragItem",
@@ -4061,7 +4228,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 473,
+            "line": 472,
             "description": "Move the current dragged item above or below relative to the passed item.",
             "itemtype": "method",
             "name": "actions.moveDragItem",
@@ -4083,7 +4250,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 503,
+            "line": 502,
             "description": "Saves the form's metadata.",
             "itemtype": "method",
             "name": "actions.save",
@@ -4100,7 +4267,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 525,
+            "line": 524,
             "description": "Set attribute in control.",
             "itemtype": "method",
             "name": "actions.setAttributeInControl",
@@ -4110,7 +4277,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 566,
+            "line": 565,
             "description": "Don't set attribute in control.",
             "itemtype": "method",
             "name": "actions.deleteEmptyControl",
@@ -4120,7 +4287,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 577,
+            "line": 576,
             "description": "Handles creating jsTree.",
             "itemtype": "method",
             "name": "actions.handleTreeDidBecomeReady",
@@ -4130,7 +4297,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 589,
+            "line": 588,
             "description": "Overridden action for jsTree 'openNode'.",
             "itemtype": "method",
             "name": "_openNodeTree",
@@ -4140,7 +4307,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 608,
+            "line": 607,
             "description": "Inserts an `item` into `container`, if `container` is `FdEditformControl`, `item` is inserted into the parent row after `container`.",
             "itemtype": "method",
             "name": "_insertItem",
@@ -4162,7 +4329,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 651,
+            "line": 650,
             "description": "Removes the specified item from the form.",
             "itemtype": "method",
             "name": "_removeItem",
@@ -4179,7 +4346,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 679,
+            "line": 678,
             "description": "Looks for a container that contains the item.",
             "itemtype": "method",
             "name": "_findItemContainer",
@@ -4206,7 +4373,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 713,
+            "line": 712,
             "description": "Returns the item storage in the container.",
             "access": "private",
             "tagname": "",
@@ -4229,7 +4396,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 735,
+            "line": 734,
             "description": "Returns a row that can be added to the form.",
             "access": "private",
             "tagname": "",
@@ -4252,7 +4419,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 760,
+            "line": 759,
             "description": "Returns the control that can be added to a row.",
             "itemtype": "method",
             "name": "_getControl",
@@ -4273,7 +4440,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 782,
+            "line": 781,
             "description": "Checks whether the control is suitable for placement in a row.",
             "access": "private",
             "tagname": "",
@@ -4296,7 +4463,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 794,
+            "line": 793,
             "description": "Save editform metadata: dataobject attributes, view, editform class.",
             "itemtype": "method",
             "name": "_saveMetadata",
@@ -4313,7 +4480,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 862,
+            "line": 861,
             "description": "Extract path part from object model.",
             "itemtype": "method",
             "name": "_extractPathPart",
@@ -4345,7 +4512,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 918,
+            "line": 917,
             "description": "Scrolls the form to the selected control with jQuery.",
             "access": "private",
             "tagname": "",
@@ -4357,7 +4524,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 931,
+            "line": 930,
             "description": "Destroys helper.",
             "class": "FdDraggableControlMixin",
             "module": "components",
@@ -4883,7 +5050,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 400,
+            "line": 399,
             "description": "Set attribute in control.",
             "itemtype": "method",
             "name": "actions.setAttributeInControl",
@@ -4893,7 +5060,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 444,
+            "line": 443,
             "description": "Don't set attribute in control.",
             "itemtype": "method",
             "name": "actions.deleteEmptyControl",
@@ -4903,7 +5070,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 457,
+            "line": 456,
             "description": "Handles creating jsTree.",
             "itemtype": "method",
             "name": "actions.handleTreeDidBecomeReady",
@@ -4913,7 +5080,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 469,
+            "line": 468,
             "description": "Scrolls the form to the selected control with jQuery.",
             "access": "private",
             "tagname": "",
@@ -4925,7 +5092,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 483,
+            "line": 482,
             "description": "Overridden action for jsTree 'openNode'.",
             "itemtype": "method",
             "name": "_openNodeTree",
@@ -4935,7 +5102,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 502,
+            "line": 501,
             "description": "Destroys helper.",
             "class": "FdDraggableControlMixin",
             "module": "components",
@@ -7654,6 +7821,43 @@
             "module": "ember-flexberry-designer"
         },
         {
+            "file": "addon/mixins/fd-loading-for-transition.js",
+            "line": 26,
+            "description": "A hook you can use to setup the controller for the current route.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).",
+            "itemtype": "method",
+            "name": "setupController",
+            "params": [
+                {
+                    "name": "controller",
+                    "description": "",
+                    "type": "Ember.Controller"
+                },
+                {
+                    "name": "model",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "FdLoadingForTransitionMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/mixins/fd-loading-for-transition.js",
+            "line": 40,
+            "description": "It sends message about transition to corresponding controller.\n\nThe willTransition action is fired at the beginning of any attempted transition with a Transition object as the sole argument.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#event_willTransition).",
+            "itemtype": "method",
+            "name": "actions.willTransition",
+            "params": [
+                {
+                    "name": "transition",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "FdLoadingForTransitionMixin",
+            "module": "ember-flexberry-designer"
+        },
+        {
             "file": "addon/models/fd-dev-uml-cad.js",
             "line": 16,
             "description": "The array of primitives of this diagram.",
@@ -8396,6 +8600,38 @@
             "module": "ember-flexberry-designer"
         },
         {
+            "file": "addon/routes/fd-aggregation-edit-form/new.js",
+            "line": 9,
+            "description": "Service that get current project contexts.",
+            "itemtype": "property",
+            "name": "currentProjectContext",
+            "type": "{Class}",
+            "default": "Ember.inject.service()",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-aggregation-edit-form/new.js",
+            "line": 18,
+            "description": "A hook you can use to setup the controller for the current route.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).",
+            "itemtype": "method",
+            "name": "setupController",
+            "params": [
+                {
+                    "name": "controller",
+                    "description": "",
+                    "type": "Ember.Controller"
+                },
+                {
+                    "name": "model",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
             "file": "addon/routes/fd-association-edit-form/new.js",
             "line": 9,
             "description": "Service that get current project contexts.",
@@ -8510,8 +8746,73 @@
             "module": "ember-flexberry-designer"
         },
         {
+            "file": "addon/routes/fd-aggregation-edit-form.js",
+            "line": 9,
+            "description": "Service that get current project contexts.",
+            "itemtype": "property",
+            "name": "currentProjectContext",
+            "type": "{Class}",
+            "default": "Ember.inject.service()",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-aggregation-edit-form.js",
+            "line": 18,
+            "description": "A hook you can use to setup the controller for the current route.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).",
+            "itemtype": "method",
+            "name": "setupController",
+            "params": [
+                {
+                    "name": "controller",
+                    "description": "",
+                    "type": "Ember.Controller"
+                },
+                {
+                    "name": "model",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-aggregation-list-form.js",
+            "line": 6,
+            "description": "Name of model projection to be used as record's properties limitation.",
+            "itemtype": "property",
+            "name": "modelProjection",
+            "type": "String",
+            "default": "'ListFormView'",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-aggregation-list-form.js",
+            "line": 15,
+            "description": "Name of model to be used as list's records types.",
+            "itemtype": "property",
+            "name": "modelName",
+            "type": "String",
+            "default": "'fd-dev-aggregation'",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/routes/fd-aggregation-list-form.js",
+            "line": 24,
+            "description": "Defined user settings developer.\nFor default userSetting use empty name ('').\nProperty `<componentName>` may contain any of properties: `colsOrder`, `sorting`, `colsWidth` or being empty.\n\n```javascript\n{\n  <componentName>: {\n    <settingName>: {\n      colsOrder: [ { propName :<colName>, hide: true|false }, ... ],\n      sorting: [{ propName: <colName>, direction: \"asc\"|\"desc\" }, ... ],\n      colsWidths: [ <colName>:<colWidth>, ... ],\n    },\n    ...\n  },\n  ...\n}\n```",
+            "itemtype": "property",
+            "name": "developerUserSettings",
+            "type": "Object",
+            "default": "{}",
+            "class": "FdCurrentProjectContextService",
+            "module": "ember-flexberry-designer"
+        },
+        {
             "file": "addon/routes/fd-appstruct-form.js",
-            "line": 5,
+            "line": 6,
             "description": "Service that get current project contexts.",
             "itemtype": "property",
             "name": "currentProjectContext",
@@ -8522,7 +8823,7 @@
         },
         {
             "file": "addon/routes/fd-appstruct-form.js",
-            "line": 142,
+            "line": 143,
             "description": "Method for update type right tree.",
             "itemtype": "method",
             "name": "_updateTypeRightTree",
@@ -8531,7 +8832,7 @@
         },
         {
             "file": "addon/routes/fd-association-edit-form.js",
-            "line": 8,
+            "line": 9,
             "description": "Service that get current project contexts.",
             "itemtype": "property",
             "name": "currentProjectContext",
@@ -8542,7 +8843,7 @@
         },
         {
             "file": "addon/routes/fd-association-edit-form.js",
-            "line": 17,
+            "line": 18,
             "description": "A hook you can use to setup the controller for the current route.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).",
             "itemtype": "method",
             "name": "setupController",
@@ -8739,7 +9040,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 17,
+            "line": 18,
             "description": "See [EmberJS API](https://emberjs.com/).",
             "itemtype": "method",
             "name": "actions.didTransition",
@@ -8748,7 +9049,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 125,
+            "line": 126,
             "description": "A hook you can use to setup the controller for the current route.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).",
             "itemtype": "method",
             "name": "setupController",
@@ -9061,7 +9362,7 @@
         },
         {
             "file": "addon/routes/fd-generation-process-form.js",
-            "line": 7,
+            "line": 8,
             "description": "A hook you can implement to convert the URL into the model for this route.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_model).",
             "itemtype": "method",
             "name": "model",
@@ -9077,7 +9378,7 @@
         },
         {
             "file": "addon/routes/fd-generation-process-form.js",
-            "line": 24,
+            "line": 25,
             "description": "A hook you can use to reset controller values either when the model changes or the route is exiting.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_resetController).",
             "itemtype": "method",
             "name": "resetController",
@@ -9103,7 +9404,7 @@
         },
         {
             "file": "addon/routes/fd-generation-process-form.js",
-            "line": 42,
+            "line": 43,
             "description": "A hook you can use to setup the controller for the current route.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).",
             "itemtype": "method",
             "name": "setupController",
@@ -9124,7 +9425,7 @@
         },
         {
             "file": "addon/routes/fd-inheritance-edit-form.js",
-            "line": 8,
+            "line": 9,
             "description": "Service that get current project contexts.",
             "itemtype": "property",
             "name": "currentProjectContext",
@@ -9135,7 +9436,7 @@
         },
         {
             "file": "addon/routes/fd-inheritance-edit-form.js",
-            "line": 17,
+            "line": 18,
             "description": "A hook you can use to setup the controller for the current route.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).",
             "itemtype": "method",
             "name": "setupController",
@@ -9189,7 +9490,7 @@
         },
         {
             "file": "addon/routes/fd-listform-constructor.js",
-            "line": 12,
+            "line": 13,
             "description": "See [EmberJS API](https://emberjs.com/).",
             "itemtype": "method",
             "name": "actions.didTransition",
@@ -9198,7 +9499,7 @@
         },
         {
             "file": "addon/routes/fd-listform-constructor.js",
-            "line": 146,
+            "line": 147,
             "description": "A hook you can use to reset controller values either when the model changes or the route is exiting.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_resetController).",
             "itemtype": "method",
             "name": "resetController",
@@ -9224,7 +9525,7 @@
         },
         {
             "file": "addon/routes/fd-listform-constructor.js",
-            "line": 170,
+            "line": 171,
             "description": "A hook you can use to setup the controller for the current route.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).",
             "itemtype": "method",
             "name": "setupController",
@@ -9362,7 +9663,7 @@
         },
         {
             "file": "addon/routes/fd-view-edit-form.js",
-            "line": 7,
+            "line": 8,
             "description": "Service that triggers objectlistview events.",
             "itemtype": "property",
             "name": "objectlistviewEventsService",
@@ -10231,11 +10532,11 @@
         },
         {
             "message": "Missing item type\nDestroys helper.",
-            "line": " addon/controllers/fd-editform-constructor.js:931"
+            "line": " addon/controllers/fd-editform-constructor.js:930"
         },
         {
             "message": "Missing item type\nDestroys helper.",
-            "line": " addon/controllers/fd-listform-constructor.js:502"
+            "line": " addon/controllers/fd-listform-constructor.js:501"
         },
         {
             "message": "Missing item type\nField name where object identifier is kept.",

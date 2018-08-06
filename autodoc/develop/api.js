@@ -14,6 +14,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "FdEditformTabgroup",
         "FdLimitByStageMixin",
         "FdListformColumn",
+        "FdLoadingForTransitionMixin",
         "FdUmlAssociation",
         "FdUmlClass",
         "FdUmlComposition",
