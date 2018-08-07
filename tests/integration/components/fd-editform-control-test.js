@@ -2,6 +2,8 @@ import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
+import FlexberryTextboxComponent from 'ember-flexberry/components/flexberry-textbox';
+
 import FdEditformRow from 'ember-flexberry-designer/objects/fd-editform-row';
 import FdEditformControl from 'ember-flexberry-designer/objects/fd-editform-control';
 import FdEditformGroup from 'ember-flexberry-designer/objects/fd-editform-group';
@@ -9,14 +11,26 @@ import FdEditformTabgroup from 'ember-flexberry-designer/objects/fd-editform-tab
 import FdEditformTab from 'ember-flexberry-designer/objects/fd-editform-tab';
 
 moduleForComponent('fd-editform-control', 'Integration | Component | fd-editform-control', {
-  integration: true
+  integration: true,
+
+  beforeEach() {
+    if (FlexberryTextboxComponent.proto().i18n) {
+      Ember.assert(`Please, delete 'beforeEach' and 'afterEach' hooks.`);
+    } else {
+      FlexberryTextboxComponent.reopen({ i18n: Ember.inject.service() });
+    }
+  },
+
+  afterEach() {
+    FlexberryTextboxComponent.reopen({ i18n: null });
+  },
 });
 
 test('it renders and works', function(assert) {
   this.set('selectItemAction', control => this.set('selectedControl', control));
   this.render(hbs`{{fd-editform-control control=control selectedItem=selectedControl selectItemAction=selectItemAction}}`);
 
-  this.set('control', FdEditformControl.create({ type: 'bool', caption: 'Attribute #1' }));
+  this.set('control', FdEditformControl.create({ caption: 'Attribute #1' }));
   assert.ok(/\s*Attribute #1\s*/.test(this.$().text()), 'With simple control.');
 
   assert.notOk(this.get('selectedControl'), 'No selected control.');
@@ -31,7 +45,7 @@ test('it renders and works', function(assert) {
     rows: Ember.A([
       FdEditformRow.create({
         controls: Ember.A([
-          FdEditformControl.create({ type: 'bool', caption: 'Attribute #1' }),
+          FdEditformControl.create({ caption: 'Attribute #1' }),
         ]),
       }),
     ]),
@@ -53,7 +67,7 @@ test('it renders and works', function(assert) {
         rows: Ember.A([
           FdEditformRow.create({
             controls: Ember.A([
-              FdEditformControl.create({ type: 'bool', caption: 'Attribute #1' }),
+              FdEditformControl.create({ caption: 'Attribute #1' }),
             ]),
           }),
         ]),

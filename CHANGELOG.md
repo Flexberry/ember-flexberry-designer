@@ -22,6 +22,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 * The edit form constructor:
   * The addition of controls takes place depending on the selected item.
+  * The type of the displayed component for the control depends on the type of property.
 * Clicking on class with stereotype `listform` or `edit form` will open form constructor.
 
 ### Fixed

@@ -23,14 +23,16 @@
     </div>
   </div>
 
-  {{#each model.controls as |control|}}
+  {{#each controlsTree as |row|}}
     {{fd-editform-row
-      row=control
+      row=row
       selectedItem=(readonly selectedItem)
       selectItemAction=(action "selectItem")
       setDragItemAction=(action "setDragItem")
       getDragItemAction=(action "getDragItem")
       moveDragItemAction=(action "moveDragItem")
+      getComponentPropertiesAction=(action "getComponentProperties")
+      showLookupAction=(action "showLookup")
     }}
   {{/each}}
 </form>
@@ -45,6 +47,20 @@
     )
   }}
     {{t "forms.fd-editform-constructor.form-config-panel.remove-approve"}}
+  {{/modal-dialog}}
+{{/if}}
+
+{{#if _showLookupDialog}}
+  {{#modal-dialog
+    title=_lookupCaption
+    useOkButton=false
+    useCloseButton=false
+    settings=(hash
+      onHidden=(action set "_showLookupDialog" false)
+      context=".pusher:first"
+    )
+  }}
+    {{fd-objectlistview view=_lookupView types=_lookupTypes}}
   {{/modal-dialog}}
 {{/if}}
 
@@ -76,8 +92,20 @@
         </div>
         {{fd-visual-edit-control-tree
           selectedItem=selectedItem
-          model=model
-          items=model.controls
+          model=(hash
+            dataobject=model.dataobject
+            editform=model.editform
+            attributes=attributes
+            masters=masters
+            details=details
+            simpleTypes=simpleTypes
+            typemap=typemap
+            enums=enums
+            types=types
+            mastersType=mastersType
+            detailsType=detailsType
+          )
+          items=controlsTree
           typeForm='editform'
         }}
       {{/ui-tab-segment}}
