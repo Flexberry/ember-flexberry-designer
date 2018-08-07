@@ -3,6 +3,7 @@ import joint from 'npm:jointjs';
 
 import { Class, ClassCollapsed } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-class';
 import { Association } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-association';
+import { Composition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-composition';
 import { Generalization } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-generalization';
 
 export default Ember.Controller.extend({
@@ -52,7 +53,7 @@ export default Ember.Controller.extend({
       linkAssociation.setLabelText('endMultiplicity', '*');
       linkAssociation.setLabelText('description', 'Association');
 
-      var linkComposition = new joint.shapes.flexberryUml.ClassDiagramComposition({
+      var linkComposition = new Composition({
         source: { x:100, y:120 },
         target: { x: 300, y: 120 }
       });
