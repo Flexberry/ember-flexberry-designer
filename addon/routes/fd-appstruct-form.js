@@ -133,7 +133,7 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
     Ember.$.ajax({
       type: 'GET',
       xhrFields: { withCredentials: true },
-      url: `${host}/GetCurrentProcessMethodology(project=${stagePk})`,
+      url: `${host}/GetCurrentProcessMethodology(project='${stagePk}')`,
       success(result) {
         controller.set('processMethodologyValue', result.value);
       }
