@@ -549,8 +549,9 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
         this._removeItem(this.get('selectedItem'));
 
         // Refresh definition for filter not used attributes in 'dataNotUsedAttributesTreeObserver'.
-        let view = this.get('model.editform.formViews.firstObject.view');
-        view.set('definition', controlsToDefinition(this.get('controlsTree')));
+        // let view = this.get('model.editform.formViews.firstObject.view');
+        // view.set('definition', controlsToDefinition(this.get('controlsTree')));
+
         this.set('selectedItem', undefined);
       } else {
         this.set('_showModalDialog', true);
