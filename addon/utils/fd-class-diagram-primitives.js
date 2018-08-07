@@ -1,9 +1,9 @@
 import joint from 'npm:jointjs';
 import './fd-common-primitives';
 
-import { Class } from '../objects/uml-primitives/fd-uml-class';
+import { BaseClass, Class } from '../objects/uml-primitives/fd-uml-class';
 
-joint.shapes.flexberryUml.BaseClass.define('flexberryUml.Object', {
+BaseClass.define('flexberryUml.Object', {
   attrs: {
     '.flexberry-uml-header-text': {
       'text-decoration': 'underline'
@@ -130,7 +130,7 @@ joint.shapes.basic.Generic.define('flexberryUml.MoreClasses', {
   ].join(''),
 });
 
-joint.shapes.flexberryUml.BaseClass.define('flexberryUml.Package', {
+BaseClass.define('flexberryUml.Package', {
   attrs: {
     '.flexberry-uml-header-text': {
       'text-decoration': 'underline',
