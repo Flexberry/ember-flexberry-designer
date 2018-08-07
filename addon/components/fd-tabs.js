@@ -180,7 +180,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
         }
 
         let activeTab = this.get('activeTab');
-        let showedTabs= this.get('_showedTabs');
+        let showedTabs = this.get('_showedTabs');
 
         let activeTabShowed = showedTabs.filter(function(element) {
           return element.dataTab === activeTab;
@@ -189,6 +189,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
         if (activeTabShowed.length === 0) {
           activeTab = this.get('tabs').get('firstObject') ? this.get('tabs').get('firstObject').dataTab : null;
         }
+
         this.set('activeTab', activeTab);
       });
     });
