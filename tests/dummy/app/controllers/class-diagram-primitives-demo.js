@@ -2,6 +2,7 @@ import Ember from 'ember';
 import joint from 'npm:jointjs';
 
 import { Class, ClassCollapsed } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-class';
+import { Association } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-association';
 import { Generalization } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-generalization';
 
 export default Ember.Controller.extend({
@@ -43,7 +44,7 @@ export default Ember.Controller.extend({
       linkAggregation.setLabelText('endMultiplicity', '*');
       linkAggregation.setLabelText('description', 'Agregation');
 
-      var linkAssociation = new joint.shapes.flexberryUml.ClassDiagramAssociation({
+      var linkAssociation = new Association({
         source: { x:100, y:80 },
         target: { x:300, y:80 }
       });

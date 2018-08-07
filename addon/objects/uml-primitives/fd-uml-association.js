@@ -5,6 +5,8 @@
 import Ember from 'ember';
 import joint from 'npm:jointjs';
 
+import '../../utils/fd-common-primitives';
+
 import FdUmlLink from './fd-uml-link';
 
 /**
@@ -50,6 +52,17 @@ export default FdUmlLink.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
-    return new joint.shapes.flexberryUml.ClassDiagramAssociation(properties);
+    return new Association(properties);
   },
 });
+
+/**
+  Defines the JointJS link, which represents a association in the UML diagram.
+
+  @for FdUmlAssociation
+  @class Association
+  @extends flexberryUml.BaseLink
+  @namespace flexberry.uml
+  @constructor
+*/
+export let Association = joint.shapes.flexberryUml.BaseLink.define('flexberry.uml.Association', {});
