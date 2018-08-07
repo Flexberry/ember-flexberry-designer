@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>addon/components/fd-objectlistview.js - Flexberry Documentation</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="Flexberry Documentation" src="../assets/css/logo.png" style="max-height: 65%;" title="Flexberry Documentation">
+            Flexberry Documentation
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>develop</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdAppStructTree", "classes/FdAttributesTree", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdFileComponent", "classes/FdGroupeditComponent", "classes/FdLimitByStageMixin", "classes/FdListformColumn", "classes/FdLoadingForTransitionMixin", "classes/FdLookupComponent", "classes/FdObjectListViewComponent", "classes/FdObjectlistviewComponent", "classes/FdUmlAssociation", "classes/FdUmlClass", "classes/FdUmlComposition", "classes/FdUmlDiagramComponent", "classes/FdUmlElement", "classes/FdUmlGeneralization", "classes/FdUmlLink", "classes/FdUmlPrimitive", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <h3>APIs</h3>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Type to filter APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/components.UiTabMenu.html">components.UiTabMenu</a></li>
+	                            <li><a href="../classes/components.UiTabSegment.html">components.UiTabSegment</a></li>
+	                            <li><a href="../classes/FdAppStructTree.html">FdAppStructTree</a></li>
+	                            <li><a href="../classes/FdAttributesTree.html">FdAttributesTree</a></li>
+	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
+	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
+	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
+	                            <li><a href="../classes/FdEditformControlComponent.html">FdEditformControlComponent</a></li>
+	                            <li><a href="../classes/FdEditformGroup.html">FdEditformGroup</a></li>
+	                            <li><a href="../classes/FdEditformRow.html">FdEditformRow</a></li>
+	                            <li><a href="../classes/FdEditformRowComponent.html">FdEditformRowComponent</a></li>
+	                            <li><a href="../classes/FdEditformTab.html">FdEditformTab</a></li>
+	                            <li><a href="../classes/FdEditformTabgroup.html">FdEditformTabgroup</a></li>
+	                            <li><a href="../classes/FdFileComponent.html">FdFileComponent</a></li>
+	                            <li><a href="../classes/FdGroupeditComponent.html">FdGroupeditComponent</a></li>
+	                            <li><a href="../classes/FdLimitByStageMixin.html">FdLimitByStageMixin</a></li>
+	                            <li><a href="../classes/FdListformColumn.html">FdListformColumn</a></li>
+	                            <li><a href="../classes/FdLoadingForTransitionMixin.html">FdLoadingForTransitionMixin</a></li>
+	                            <li><a href="../classes/FdLookupComponent.html">FdLookupComponent</a></li>
+	                            <li><a href="../classes/FdObjectListViewComponent.html">FdObjectListViewComponent</a></li>
+	                            <li><a href="../classes/FdObjectlistviewComponent.html">FdObjectlistviewComponent</a></li>
+	                            <li><a href="../classes/FdUmlAssociation.html">FdUmlAssociation</a></li>
+	                            <li><a href="../classes/FdUmlClass.html">FdUmlClass</a></li>
+	                            <li><a href="../classes/FdUmlComposition.html">FdUmlComposition</a></li>
+	                            <li><a href="../classes/FdUmlDiagramComponent.html">FdUmlDiagramComponent</a></li>
+	                            <li><a href="../classes/FdUmlElement.html">FdUmlElement</a></li>
+	                            <li><a href="../classes/FdUmlGeneralization.html">FdUmlGeneralization</a></li>
+	                            <li><a href="../classes/FdUmlLink.html">FdUmlLink</a></li>
+	                            <li><a href="../classes/FdUmlPrimitive.html">FdUmlPrimitive</a></li>
+	                            <li><a href="../classes/FdViewAttributesDetail.html">FdViewAttributesDetail</a></li>
+	                            <li><a href="../classes/FdViewAttributesMaster.html">FdViewAttributesMaster</a></li>
+	                            <li><a href="../classes/FdViewAttributesProperty.html">FdViewAttributesProperty</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">NewPlatformFlexberryFlexberryDesignerVisualEditControl</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">NewPlatformFlexberryFlexberryDesignerVisualEditForm</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/components.html">components</a></li>
+	                            <li><a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Show:
+                    <label for="api-show-inherited" class="checkbox">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>addon/components/fd-objectlistview.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+  @module ember-flexberry-designer
+*/
+
+import Ember from &#x27;ember&#x27;;
+import FdDataTypes from &#x27;../utils/fd-datatypes&#x27;;
+
+/**
+  This component mimics the &#x60;flexberry-objectlistview&#x60; component in the edit form constructor.
+
+  @class FdObjectlistviewComponent
+  @extends &lt;a href=&quot;http://emberjs.com/api/classes/Ember.Component.html&quot;&gt;Ember.Component&lt;/a&gt;
+*/
+export default Ember.Component.extend({
+  /**
+    @private
+    @property _dataTypes
+    @type Ember.Object
+  */
+  _dataTypes: FdDataTypes.create(),
+
+  /**
+    Table headings.
+
+    @private
+    @property _headers
+    @type Ember.NativeArray
+  */
+  _headers: Ember.computed.map(&#x27;view.definition&#x27;, pd =&gt; pd.get(&#x27;caption&#x27;) || pd.get(&#x27;name&#x27;)),
+
+  /**
+    Cells for each row, they are always generated anew.
+
+    @private
+    @property _cells
+    @type Ember.NativeArray
+  */
+  _cells: Ember.computed(&#x27;_headers.length&#x27;, function() {
+    let cells = Ember.A();
+    let types = this.get(&#x27;types&#x27;);
+    let dataTypes = this.get(&#x27;_dataTypes&#x27;);
+    let length = this.get(&#x27;_headers.length&#x27;);
+    for (let i = 0; i &lt; length; i++) {
+      let type = dataTypes.flexberryTypeToFD(types &amp;&amp; types[i] &amp;&amp; types[i].type);
+      cells.pushObject(dataTypes.randomValue(type));
+    }
+
+    return cells;
+  }).volatile(),
+
+  /**
+    The rows generated for rendering in the table.
+
+    @private
+    @property _rows
+    @type Ember.NativeArray
+  */
+  _rows: Ember.computed(&#x27;rowsCount&#x27;, function() {
+    let rows = Ember.A();
+    let rowsCount = this.get(&#x27;rowsCount&#x27;);
+    for (let i = 0; i &lt; rowsCount; i++) {
+      rows.pushObject(this.get(&#x27;_cells&#x27;));
+    }
+
+    return rows;
+  }),
+
+  /**
+    The rows displayed on the current page.
+
+    @private
+    @property _rowsOnPage
+    @type Ember.NativeArray
+  */
+  _rowsOnPage: Ember.computed(&#x27;_rows.[]&#x27;, &#x27;page&#x27;, &#x27;perPage&#x27;, function() {
+    let { page, perPage } = this.getProperties(&#x27;page&#x27;, &#x27;perPage&#x27;);
+
+    return this.get(&#x27;_rows&#x27;).slice((page - 1) * perPage, perPage * page);
+  }),
+
+  /**
+    Page numbers.
+
+    @private
+    @property _pages
+    @type Ember.NativeArray
+  */
+  _pages: Ember.computed(&#x27;rowsCount&#x27;, &#x27;perPage&#x27;, function() {
+    let pages = Ember.A();
+    let count = Math.ceil(this.get(&#x27;rowsCount&#x27;) / this.get(&#x27;perPage&#x27;));
+    for (let i = 1; i &lt;= count; i++) {
+      pages.pushObject(i);
+    }
+
+    return pages;
+  }),
+
+  /**
+    An array of types used in the view.
+
+    @property types
+    @type Array
+  */
+  types: undefined,
+
+  /**
+    The view on which the table will be rendered.
+
+    @property view
+    @type FdDevViewModel
+  */
+  view: undefined,
+
+  /**
+    The count of rows that will be generated to render the table.
+
+    @property rowsCount
+    @type Number
+    @default 15
+  */
+  rowsCount: 15,
+
+  /**
+    The current page.
+
+    @property page
+    @type Number
+    @default 1
+  */
+  page: 1,
+
+  /**
+    The count of rows showing on per page.
+
+    @property perPage
+    @type Number
+    @default 5
+  */
+  perPage: 5,
+});
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

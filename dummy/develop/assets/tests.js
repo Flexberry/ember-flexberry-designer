@@ -427,10 +427,22 @@ define('dummy/tests/helpers/validate-properties', ['exports', 'ember', 'ember-qu
     testPropertyValues(propertyName, values, false, context);
   }
 });
-define('dummy/tests/integration/components/fd-editform-control-test', ['exports', 'ember', 'ember-qunit', 'ember-flexberry-designer/objects/fd-editform-row', 'ember-flexberry-designer/objects/fd-editform-control', 'ember-flexberry-designer/objects/fd-editform-group', 'ember-flexberry-designer/objects/fd-editform-tabgroup', 'ember-flexberry-designer/objects/fd-editform-tab'], function (exports, _ember, _emberQunit, _emberFlexberryDesignerObjectsFdEditformRow, _emberFlexberryDesignerObjectsFdEditformControl, _emberFlexberryDesignerObjectsFdEditformGroup, _emberFlexberryDesignerObjectsFdEditformTabgroup, _emberFlexberryDesignerObjectsFdEditformTab) {
+define('dummy/tests/integration/components/fd-editform-control-test', ['exports', 'ember', 'ember-qunit', 'ember-flexberry/components/flexberry-textbox', 'ember-flexberry-designer/objects/fd-editform-row', 'ember-flexberry-designer/objects/fd-editform-control', 'ember-flexberry-designer/objects/fd-editform-group', 'ember-flexberry-designer/objects/fd-editform-tabgroup', 'ember-flexberry-designer/objects/fd-editform-tab'], function (exports, _ember, _emberQunit, _emberFlexberryComponentsFlexberryTextbox, _emberFlexberryDesignerObjectsFdEditformRow, _emberFlexberryDesignerObjectsFdEditformControl, _emberFlexberryDesignerObjectsFdEditformGroup, _emberFlexberryDesignerObjectsFdEditformTabgroup, _emberFlexberryDesignerObjectsFdEditformTab) {
 
   (0, _emberQunit.moduleForComponent)('fd-editform-control', 'Integration | Component | fd-editform-control', {
-    integration: true
+    integration: true,
+
+    beforeEach: function beforeEach() {
+      if (_emberFlexberryComponentsFlexberryTextbox['default'].proto().i18n) {
+        _ember['default'].assert('Please, delete \'beforeEach\' and \'afterEach\' hooks.');
+      } else {
+        _emberFlexberryComponentsFlexberryTextbox['default'].reopen({ i18n: _ember['default'].inject.service() });
+      }
+    },
+
+    afterEach: function afterEach() {
+      _emberFlexberryComponentsFlexberryTextbox['default'].reopen({ i18n: null });
+    }
   });
 
   (0, _emberQunit.test)('it renders and works', function (assert) {
@@ -482,7 +494,7 @@ define('dummy/tests/integration/components/fd-editform-control-test', ['exports'
       };
     })()));
 
-    this.set('control', _emberFlexberryDesignerObjectsFdEditformControl['default'].create({ type: 'bool', caption: 'Attribute #1' }));
+    this.set('control', _emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Attribute #1' }));
     assert.ok(/\s*Attribute #1\s*/.test(this.$().text()), 'With simple control.');
 
     assert.notOk(this.get('selectedControl'), 'No selected control.');
@@ -495,7 +507,7 @@ define('dummy/tests/integration/components/fd-editform-control-test', ['exports'
     this.set('control', _emberFlexberryDesignerObjectsFdEditformGroup['default'].create({
       caption: 'Group #1',
       rows: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
-        controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ type: 'bool', caption: 'Attribute #1' })])
+        controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Attribute #1' })])
       })])
     }));
     assert.ok(/\s*Group #1\s*Attribute #1\s*/.test(this.$().text()), 'With group.');
@@ -512,7 +524,7 @@ define('dummy/tests/integration/components/fd-editform-control-test', ['exports'
       tabs: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformTab['default'].create({
         caption: 'Tab #1',
         rows: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
-          controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ type: 'bool', caption: 'Attribute #1' })])
+          controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Attribute #1' })])
         })])
       })])
     }));
@@ -549,10 +561,22 @@ define('dummy/tests/integration/components/fd-editform-control-test.jshint', ['e
     assert.ok(true, 'integration/components/fd-editform-control-test.js should pass jshint.');
   });
 });
-define('dummy/tests/integration/components/fd-editform-row-test', ['exports', 'ember', 'ember-qunit', 'ember-flexberry-designer/objects/fd-editform-row', 'ember-flexberry-designer/objects/fd-editform-control'], function (exports, _ember, _emberQunit, _emberFlexberryDesignerObjectsFdEditformRow, _emberFlexberryDesignerObjectsFdEditformControl) {
+define('dummy/tests/integration/components/fd-editform-row-test', ['exports', 'ember', 'ember-qunit', 'ember-flexberry/components/flexberry-textbox', 'ember-flexberry-designer/objects/fd-editform-row', 'ember-flexberry-designer/objects/fd-editform-control'], function (exports, _ember, _emberQunit, _emberFlexberryComponentsFlexberryTextbox, _emberFlexberryDesignerObjectsFdEditformRow, _emberFlexberryDesignerObjectsFdEditformControl) {
 
   (0, _emberQunit.moduleForComponent)('fd-editform-row', 'Integration | Component | fd-editform-row', {
-    integration: true
+    integration: true,
+
+    beforeEach: function beforeEach() {
+      if (_emberFlexberryComponentsFlexberryTextbox['default'].proto().i18n) {
+        _ember['default'].assert('Please, delete \'beforeEach\' and \'afterEach\' hooks.');
+      } else {
+        _emberFlexberryComponentsFlexberryTextbox['default'].reopen({ i18n: _ember['default'].inject.service() });
+      }
+    },
+
+    afterEach: function afterEach() {
+      _emberFlexberryComponentsFlexberryTextbox['default'].reopen({ i18n: null });
+    }
   });
 
   (0, _emberQunit.test)('it renders and works', function (assert) {
@@ -605,10 +629,7 @@ define('dummy/tests/integration/components/fd-editform-row-test', ['exports', 'e
     })()));
 
     this.set('row', _emberFlexberryDesignerObjectsFdEditformRow['default'].create({
-      controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({
-        type: 'bool',
-        caption: 'Attribute #1'
-      })])
+      controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Attribute #1' })])
     }));
     assert.ok(/\s*Attribute #1\s*/.test(this.$().text()), 'With one control.');
     assert.notOk(this.$('.fd-editform-row').hasClass('fields'));
@@ -616,13 +637,7 @@ define('dummy/tests/integration/components/fd-editform-row-test', ['exports', 'e
     assert.notOk(this.$('.fd-editform-row').hasClass('width'));
 
     this.set('row', _emberFlexberryDesignerObjectsFdEditformRow['default'].create({
-      controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({
-        type: 'bool',
-        caption: 'Attribute #1'
-      }), _emberFlexberryDesignerObjectsFdEditformControl['default'].create({
-        type: 'bool',
-        caption: 'Attribute #2'
-      })])
+      controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Attribute #1' }), _emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Attribute #2' })])
     }));
     assert.ok(/\s*Attribute #1\s*Attribute #2\s*/.test(this.$().text()), 'With many controls.');
     assert.ok(this.$('.fd-editform-row').hasClass('fields'));
@@ -656,6 +671,397 @@ define('dummy/tests/integration/components/fd-editform-row-test.jshint', ['expor
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'integration/components/fd-editform-row-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/integration/components/fd-file-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleForComponent)('fd-file', 'Integration | Component | fd-file', {
+    integration: true
+  });
+
+  (0, _emberQunit.test)('it renders', function (assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
+
+    this.render(Ember.HTMLBars.template((function () {
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.4.6',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 1,
+              'column': 11
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [['content', 'fd-file', ['loc', [null, [1, 0], [1, 11]]]]],
+        locals: [],
+        templates: []
+      };
+    })()));
+
+    assert.equal(this.$().text().trim(), '');
+  });
+});
+define('dummy/tests/integration/components/fd-file-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - integration/components');
+  test('integration/components/fd-file-test.js should pass jscs', function () {
+    ok(true, 'integration/components/fd-file-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/integration/components/fd-file-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/fd-file-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/fd-file-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/integration/components/fd-groupedit-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleForComponent)('fd-groupedit', 'Integration | Component | fd-groupedit', {
+    integration: true
+  });
+
+  (0, _emberQunit.test)('it renders and enough', function (assert) {
+    this.render(Ember.HTMLBars.template((function () {
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.4.6',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 1,
+              'column': 16
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [['content', 'fd-groupedit', ['loc', [null, [1, 0], [1, 16]]]]],
+        locals: [],
+        templates: []
+      };
+    })()));
+    assert.equal(this.$().text().trim(), '');
+  });
+});
+define('dummy/tests/integration/components/fd-groupedit-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - integration/components');
+  test('integration/components/fd-groupedit-test.js should pass jscs', function () {
+    ok(true, 'integration/components/fd-groupedit-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/integration/components/fd-groupedit-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/fd-groupedit-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/fd-groupedit-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/integration/components/fd-lookup-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleForComponent)('fd-lookup', 'Integration | Component | fd-lookup', {
+    integration: true
+  });
+
+  (0, _emberQunit.test)('it renders and works', function (assert) {
+    var _this = this;
+
+    assert.expect(3);
+
+    this.set('showLookupAction', function (caption, wiev) {
+      assert.ok(_this.get('caption') === caption);
+      assert.ok(_this.get('wiev') === wiev);
+    });
+
+    this.render(Ember.HTMLBars.template((function () {
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.4.6',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 1,
+              'column': 73
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [['inline', 'fd-lookup', [], ['caption', ['subexpr', '@mut', [['get', 'caption', ['loc', [null, [1, 20], [1, 27]]]]], [], []], 'view', ['subexpr', '@mut', [['get', 'wiev', ['loc', [null, [1, 33], [1, 37]]]]], [], []], 'showLookupAction', ['subexpr', '@mut', [['get', 'showLookupAction', ['loc', [null, [1, 55], [1, 71]]]]], [], []]], ['loc', [null, [1, 0], [1, 73]]]]],
+        locals: [],
+        templates: []
+      };
+    })()));
+
+    assert.ok(this.$('.button.ui-change').hasClass('disabled'), 'Can not open without the view.');
+
+    this.set('caption', {});
+    this.set('wiev', {});
+
+    this.$('.button.ui-change').click();
+  });
+});
+define('dummy/tests/integration/components/fd-lookup-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - integration/components');
+  test('integration/components/fd-lookup-test.js should pass jscs', function () {
+    ok(true, 'integration/components/fd-lookup-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/integration/components/fd-lookup-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/fd-lookup-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/fd-lookup-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/integration/components/fd-object-list-view-test', ['exports', 'ember', 'ember-qunit'], function (exports, _ember, _emberQunit) {
+
+  (0, _emberQunit.moduleForComponent)('fd-object-list-view', 'Integration | Component | fd-object-list-view', {
+    integration: true
+  });
+
+  (0, _emberQunit.test)('it renders and works', function (assert) {
+    this.render(_ember['default'].HTMLBars.template((function () {
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.4.6',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 1,
+              'column': 85
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [['inline', 'fd-object-list-view', [], ['headers', ['subexpr', '@mut', [['get', 'headers', ['loc', [null, [1, 30], [1, 37]]]]], [], []], 'rows', ['subexpr', '@mut', [['get', 'rows', ['loc', [null, [1, 43], [1, 47]]]]], [], []], 'showCheckBoxInRow', ['subexpr', '@mut', [['get', 'showCheckBoxInRow', ['loc', [null, [1, 66], [1, 83]]]]], [], []]], ['loc', [null, [1, 0], [1, 85]]]]],
+        locals: [],
+        templates: []
+      };
+    })()));
+
+    assert.equal(this.$().text().trim(), '');
+
+    this.set('headers', _ember['default'].A(['Column #1', 'Column #2']));
+    this.set('rows', _ember['default'].A([_ember['default'].A(['Cell #1', 'Cell #2']), _ember['default'].A(['Cell #3', 'Cell #4'])]));
+
+    assert.equal(this.$('thead tr').length, 1, 'The table has a header.');
+    assert.equal(this.$('tbody tr').length, this.get('rows.length'), 'The table has all rows.');
+    assert.ok(/\s*Column #1\s*Column #2\s*/.test(this.$('th').text()), 'The headers are correct.');
+    assert.notOk(this.$('th').is('.collapsing'), 'The column with checkboxes - no.');
+
+    this.set('showCheckBoxInRow', true);
+
+    assert.ok(this.$('th').is('.collapsing'), 'The column with checkboxes - yes.');
+  });
+});
+define('dummy/tests/integration/components/fd-object-list-view-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - integration/components');
+  test('integration/components/fd-object-list-view-test.js should pass jscs', function () {
+    ok(true, 'integration/components/fd-object-list-view-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/integration/components/fd-object-list-view-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/fd-object-list-view-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/fd-object-list-view-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/integration/components/fd-objectlistview-test', ['exports', 'ember', 'ember-qunit'], function (exports, _ember, _emberQunit) {
+
+  (0, _emberQunit.moduleForComponent)('fd-objectlistview', 'Integration | Component | fd-objectlistview', {
+    integration: true
+  });
+
+  (0, _emberQunit.test)('it renders and works', function (assert) {
+    this.render(_ember['default'].HTMLBars.template((function () {
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.4.6',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 1,
+              'column': 43
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [['inline', 'fd-objectlistview', [], ['view', ['subexpr', '@mut', [['get', 'wiev', ['loc', [null, [1, 25], [1, 29]]]]], [], []], 'types', ['subexpr', '@mut', [['get', 'types', ['loc', [null, [1, 36], [1, 41]]]]], [], []]], ['loc', [null, [1, 0], [1, 43]]]]],
+        locals: [],
+        templates: []
+      };
+    })()));
+
+    this.set('types', [{ type: 'string' }, { type: 'bool' }]);
+    this.set('wiev', {
+      definition: _ember['default'].A([_ember['default'].Object.create({ caption: 'Column #1' }), _ember['default'].Object.create({ name: 'Column #2' })])
+    });
+
+    assert.equal(this.$('tbody tr').length, 5, '5 rows per page by default.');
+    assert.ok(/\s*Column #1\s*Column #2\s*/.test(this.$('th').text()), 'The headers are correct.');
+
+    this.$('.flexberry-dropdown .item[data-value=10]').click();
+    assert.equal(this.$('tbody tr').length, 10, 'Switch to 10 rows on per page.');
+
+    this.$('.next-page-button').click();
+    assert.equal(this.$('tbody tr').length, 5, 'Go to next page.');
+    assert.ok(this.$('.next-page-button').hasClass('disabled'), 'This is the last page.');
+  });
+});
+define('dummy/tests/integration/components/fd-objectlistview-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - integration/components');
+  test('integration/components/fd-objectlistview-test.js should pass jscs', function () {
+    ok(true, 'integration/components/fd-objectlistview-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/integration/components/fd-objectlistview-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/fd-objectlistview-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/fd-objectlistview-test.js should pass jshint.');
   });
 });
 define('dummy/tests/integration/components/fd-uml-diagram-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
@@ -1454,101 +1860,99 @@ define('dummy/tests/unit/controllers/fd-editform-constructor-test', ['exports', 
 
   (0, _emberQunit.test)('\'_findItemContainer\' function', function (assert) {
     var controller = this.subject();
-    controller.set('model', {
-      controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
-        controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control' })])
-      }), _emberFlexberryDesignerObjectsFdEditformRow['default'].create({
-        controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control #1' }), _emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control #2' })])
-      }), _emberFlexberryDesignerObjectsFdEditformRow['default'].create({
-        controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformGroup['default'].create({
-          caption: 'Group',
+    controller.controlsTree = _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+      controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control' })])
+    }), _emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+      controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control #1' }), _emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control #2' })])
+    }), _emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+      controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformGroup['default'].create({
+        caption: 'Group',
+        rows: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+          controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control' })])
+        })])
+      })])
+    }), _emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+      controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformTabgroup['default'].create({
+        tabs: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformTab['default'].create({
+          caption: 'Tab #1',
           rows: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
             controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control' })])
           })])
-        })])
-      }), _emberFlexberryDesignerObjectsFdEditformRow['default'].create({
-        controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformTabgroup['default'].create({
-          tabs: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformTab['default'].create({
-            caption: 'Tab #1',
-            rows: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
-              controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control' })])
-            })])
-          }), _emberFlexberryDesignerObjectsFdEditformTab['default'].create({
-            caption: 'Tab #2',
-            rows: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
-              controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control' })])
-            }), _emberFlexberryDesignerObjectsFdEditformRow['default'].create({
-              controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformGroup['default'].create({
-                caption: 'Group',
-                rows: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
-                  controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control' })])
-                })])
+        }), _emberFlexberryDesignerObjectsFdEditformTab['default'].create({
+          caption: 'Tab #2',
+          rows: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+            controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control' })])
+          }), _emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+            controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformGroup['default'].create({
+              caption: 'Group',
+              rows: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+                controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control' })])
               })])
             })])
           })])
         })])
       })])
-    });
+    })]);
 
     [{
       message: 'First control.',
-      item: controller.get('model.controls.firstObject.controls.firstObject'),
-      container: controller.get('model.controls.firstObject'),
+      item: controller.get('controlsTree.firstObject.controls.firstObject'),
+      container: controller.get('controlsTree.firstObject'),
       startContainer: undefined
     }, {
       message: 'One of controls from row.',
-      item: controller.get('model.controls').objectAt(1).get('controls.lastObject'),
-      container: controller.get('model.controls').objectAt(1),
+      item: controller.get('controlsTree').objectAt(1).get('controls.lastObject'),
+      container: controller.get('controlsTree').objectAt(1),
       startContainer: undefined
     }, {
       message: 'First group.',
-      item: controller.get('model.controls').objectAt(2).get('controls.firstObject'),
-      container: controller.get('model.controls').objectAt(2),
+      item: controller.get('controlsTree').objectAt(2).get('controls.firstObject'),
+      container: controller.get('controlsTree').objectAt(2),
       startContainer: undefined
     }, {
       message: 'Row in group.',
-      item: controller.get('model.controls').objectAt(2).get('controls.firstObject.rows.firstObject'),
-      container: controller.get('model.controls').objectAt(2).get('controls.firstObject'),
+      item: controller.get('controlsTree').objectAt(2).get('controls.firstObject.rows.firstObject'),
+      container: controller.get('controlsTree').objectAt(2).get('controls.firstObject'),
       startContainer: undefined
     }, {
       message: 'Row in group with start container.',
-      item: controller.get('model.controls').objectAt(2).get('controls.firstObject.rows.firstObject'),
-      container: controller.get('model.controls').objectAt(2).get('controls.firstObject'),
-      startContainer: controller.get('model.controls').objectAt(2)
+      item: controller.get('controlsTree').objectAt(2).get('controls.firstObject.rows.firstObject'),
+      container: controller.get('controlsTree').objectAt(2).get('controls.firstObject'),
+      startContainer: controller.get('controlsTree').objectAt(2)
     }, {
       message: 'Control in group.',
-      item: controller.get('model.controls').objectAt(2).get('controls.firstObject.rows.firstObject.controls.firstObject'),
-      container: controller.get('model.controls').objectAt(2).get('controls.firstObject.rows.firstObject'),
+      item: controller.get('controlsTree').objectAt(2).get('controls.firstObject.rows.firstObject.controls.firstObject'),
+      container: controller.get('controlsTree').objectAt(2).get('controls.firstObject.rows.firstObject'),
       startContainer: undefined
     }, {
       message: 'First tabs group.',
-      item: controller.get('model.controls.lastObject.controls.firstObject'),
-      container: controller.get('model.controls.lastObject'),
+      item: controller.get('controlsTree.lastObject.controls.firstObject'),
+      container: controller.get('controlsTree.lastObject'),
       startContainer: undefined
     }, {
       message: 'Tab in tabs group.',
-      item: controller.get('model.controls.lastObject.controls.firstObject.tabs.firstObject'),
-      container: controller.get('model.controls.lastObject.controls.firstObject'),
+      item: controller.get('controlsTree.lastObject.controls.firstObject.tabs.firstObject'),
+      container: controller.get('controlsTree.lastObject.controls.firstObject'),
       startContainer: undefined
     }, {
       message: 'Row in tab.',
-      item: controller.get('model.controls.lastObject.controls.firstObject.tabs.firstObject.rows.firstObject'),
-      container: controller.get('model.controls.lastObject.controls.firstObject.tabs.firstObject'),
+      item: controller.get('controlsTree.lastObject.controls.firstObject.tabs.firstObject.rows.firstObject'),
+      container: controller.get('controlsTree.lastObject.controls.firstObject.tabs.firstObject'),
       startContainer: undefined
     }, {
       message: 'Control in tab.',
-      item: controller.get('model.controls.lastObject.controls.firstObject.tabs.firstObject.rows.firstObject.controls.firstObject'),
-      container: controller.get('model.controls.lastObject.controls.firstObject.tabs.firstObject.rows.firstObject'),
+      item: controller.get('controlsTree.lastObject.controls.firstObject.tabs.firstObject.rows.firstObject.controls.firstObject'),
+      container: controller.get('controlsTree.lastObject.controls.firstObject.tabs.firstObject.rows.firstObject'),
       startContainer: undefined
     }, {
       message: 'Control in other tab.',
-      item: controller.get('model.controls.lastObject.controls.firstObject.tabs.firstObject.rows.firstObject.controls.firstObject'),
+      item: controller.get('controlsTree.lastObject.controls.firstObject.tabs.firstObject.rows.firstObject.controls.firstObject'),
       container: null,
-      startContainer: controller.get('model.controls.lastObject.controls.firstObject.tabs.lastObject')
+      startContainer: controller.get('controlsTree.lastObject.controls.firstObject.tabs.lastObject')
     }, {
       message: 'Group in tab.',
-      item: controller.get('model.controls.lastObject.controls.firstObject.tabs.lastObject.rows.lastObject.controls.firstObject.rows.firstObject'),
-      container: controller.get('model.controls.lastObject.controls.firstObject.tabs.lastObject.rows.lastObject.controls.firstObject'),
+      item: controller.get('controlsTree.lastObject.controls.firstObject.tabs.lastObject.rows.lastObject.controls.firstObject.rows.firstObject'),
+      container: controller.get('controlsTree.lastObject.controls.firstObject.tabs.lastObject.rows.lastObject.controls.firstObject'),
       startContainer: undefined
     }].forEach(function (set) {
       assert.ok(controller._findItemContainer(set.item, set.startContainer) === set.container, set.message);
@@ -7297,6 +7701,78 @@ define('dummy/tests/unit/utils/fd-usecase-diagram-primitives-test.jshint', ['exp
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/utils/fd-usecase-diagram-primitives-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/unit/utils/fd-view-path-functions-test', ['exports', 'ember', 'qunit', 'ember-flexberry-designer/utils/fd-view-path-functions', 'ember-flexberry-designer/objects/fd-view-attributes-property', 'ember-flexberry-designer/objects/fd-editform-row', 'ember-flexberry-designer/objects/fd-editform-control', 'ember-flexberry-designer/objects/fd-editform-group', 'ember-flexberry-designer/objects/fd-editform-tabgroup', 'ember-flexberry-designer/objects/fd-editform-tab'], function (exports, _ember, _qunit, _emberFlexberryDesignerUtilsFdViewPathFunctions, _emberFlexberryDesignerObjectsFdViewAttributesProperty, _emberFlexberryDesignerObjectsFdEditformRow, _emberFlexberryDesignerObjectsFdEditformControl, _emberFlexberryDesignerObjectsFdEditformGroup, _emberFlexberryDesignerObjectsFdEditformTabgroup, _emberFlexberryDesignerObjectsFdEditformTab) {
+
+  (0, _qunit.module)('Unit | Utility | fd-view-path-functions');
+
+  (0, _qunit.test)('it works', function (assert) {
+    var definition = _ember['default'].A([_emberFlexberryDesignerObjectsFdViewAttributesProperty['default'].create({ caption: 'Control' }), _emberFlexberryDesignerObjectsFdViewAttributesProperty['default'].create({ caption: 'Control #1', path: '#1' }), _emberFlexberryDesignerObjectsFdViewAttributesProperty['default'].create({ caption: 'Control #2', path: '#2' }), _emberFlexberryDesignerObjectsFdViewAttributesProperty['default'].create({ caption: 'Control', path: '-Group' }), _emberFlexberryDesignerObjectsFdViewAttributesProperty['default'].create({ caption: 'Control', path: '|Tab #1' }), _emberFlexberryDesignerObjectsFdViewAttributesProperty['default'].create({ caption: 'Control', path: '|Tab #2' }), _emberFlexberryDesignerObjectsFdViewAttributesProperty['default'].create({ caption: 'Control', path: '|Tab #2\\-Group' })]);
+
+    var controlsTree = _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+      controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control', propertyDefinition: definition.objectAt(0) })])
+    }), _emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+      controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control #1', propertyDefinition: definition.objectAt(1) }), _emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control #2', propertyDefinition: definition.objectAt(2) })])
+    }), _emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+      controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformGroup['default'].create({
+        caption: 'Group',
+        rows: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+          controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control', propertyDefinition: definition.objectAt(3) })])
+        })])
+      })])
+    }), _emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+      controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformTabgroup['default'].create({
+        tabs: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformTab['default'].create({
+          caption: 'Tab #1',
+          rows: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+            controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control', propertyDefinition: definition.objectAt(4) })])
+          })])
+        }), _emberFlexberryDesignerObjectsFdEditformTab['default'].create({
+          caption: 'Tab #2',
+          rows: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+            controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control', propertyDefinition: definition.objectAt(5) })])
+          }), _emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+            controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformGroup['default'].create({
+              caption: 'Group',
+              rows: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformRow['default'].create({
+                controls: _ember['default'].A([_emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control', propertyDefinition: definition.objectAt(6) })])
+              })])
+            })])
+          })])
+        })])
+      })])
+    })]);
+
+    var testTree = _ember['default'].A();
+    var length = definition.get('length');
+    for (var i = 0; i < length; i++) {
+      var propertyDefinition = definition.objectAt(i);
+      var caption = propertyDefinition.get('caption');
+      var path = propertyDefinition.get('path');
+
+      (0, _emberFlexberryDesignerUtilsFdViewPathFunctions.locateControlByPath)(testTree, _emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: caption, propertyDefinition: propertyDefinition }), path);
+    }
+
+    assert.deepEqual(testTree, controlsTree, 'The \'locateControlByPath\' function is OK.');
+    assert.deepEqual((0, _emberFlexberryDesignerUtilsFdViewPathFunctions.controlsToDefinition)(controlsTree), definition, 'The \'controlsToDefinition\' function is OK.');
+  });
+});
+define('dummy/tests/unit/utils/fd-view-path-functions-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/utils');
+  test('unit/utils/fd-view-path-functions-test.js should pass jscs', function () {
+    ok(true, 'unit/utils/fd-view-path-functions-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/utils/fd-view-path-functions-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/utils/fd-view-path-functions-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/utils/fd-view-path-functions-test.js should pass jshint.');
   });
 });
 define('dummy/tests/views/application.jscs-test', ['exports'], function (exports) {

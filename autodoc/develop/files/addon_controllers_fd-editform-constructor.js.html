@@ -26,7 +26,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdAppStructTree", "classes/FdAttributesTree", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdListformColumn", "classes/FdLoadingForTransitionMixin", "classes/FdUmlAssociation", "classes/FdUmlClass", "classes/FdUmlComposition", "classes/FdUmlDiagramComponent", "classes/FdUmlElement", "classes/FdUmlGeneralization", "classes/FdUmlLink", "classes/FdUmlPrimitive", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdAppStructTree", "classes/FdAttributesTree", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdFileComponent", "classes/FdGroupeditComponent", "classes/FdLimitByStageMixin", "classes/FdListformColumn", "classes/FdLoadingForTransitionMixin", "classes/FdLookupComponent", "classes/FdObjectListViewComponent", "classes/FdObjectlistviewComponent", "classes/FdUmlAssociation", "classes/FdUmlClass", "classes/FdUmlComposition", "classes/FdUmlDiagramComponent", "classes/FdUmlElement", "classes/FdUmlGeneralization", "classes/FdUmlLink", "classes/FdUmlPrimitive", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
         </form>
     </div>
 </div>
@@ -61,9 +61,14 @@
 	                            <li><a href="../classes/FdEditformRowComponent.html">FdEditformRowComponent</a></li>
 	                            <li><a href="../classes/FdEditformTab.html">FdEditformTab</a></li>
 	                            <li><a href="../classes/FdEditformTabgroup.html">FdEditformTabgroup</a></li>
+	                            <li><a href="../classes/FdFileComponent.html">FdFileComponent</a></li>
+	                            <li><a href="../classes/FdGroupeditComponent.html">FdGroupeditComponent</a></li>
 	                            <li><a href="../classes/FdLimitByStageMixin.html">FdLimitByStageMixin</a></li>
 	                            <li><a href="../classes/FdListformColumn.html">FdListformColumn</a></li>
 	                            <li><a href="../classes/FdLoadingForTransitionMixin.html">FdLoadingForTransitionMixin</a></li>
+	                            <li><a href="../classes/FdLookupComponent.html">FdLookupComponent</a></li>
+	                            <li><a href="../classes/FdObjectListViewComponent.html">FdObjectListViewComponent</a></li>
+	                            <li><a href="../classes/FdObjectlistviewComponent.html">FdObjectlistviewComponent</a></li>
 	                            <li><a href="../classes/FdUmlAssociation.html">FdUmlAssociation</a></li>
 	                            <li><a href="../classes/FdUmlClass.html">FdUmlClass</a></li>
 	                            <li><a href="../classes/FdUmlComposition.html">FdUmlComposition</a></li>
@@ -139,14 +144,33 @@ import {
   getDataForBuildTree,
   getTreeNodeByNotUsedAttributes,
   getAssociationTreeNode,
+  getAggregationTreeNode,
   getTreeNodeByNotUsedAggregation,
   getClassTreeNode
  } from &#x27;../utils/fd-attributes-for-tree&#x27;;
 import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNodeTreeNameIndex } from &#x27;../utils/fd-metods-for-tree&#x27;;
 import { copyViewDefinition } from &#x27;../utils/fd-copy-view-definition&#x27;;
+import { controlsToDefinition, locateControlByPath } from &#x27;../utils/fd-view-path-functions&#x27;;
+import FdDataTypes from &#x27;../utils/fd-datatypes&#x27;;
 
 export default Ember.Controller.extend({
   queryParams: [&#x27;classId&#x27;],
+
+  /**
+    @private
+    @property _dataTypes
+    @type Ember.Object
+  */
+  _dataTypes: FdDataTypes.create(),
+
+  /**
+    @private
+    @property _dataForBuildTree
+    @type Object
+  */
+  _dataForBuildTree: Ember.computed(&#x27;model.dataobject.id&#x27;, function() {
+    return getDataForBuildTree(this.get(&#x27;store&#x27;), this.get(&#x27;model.dataobject.id&#x27;));
+  }),
 
   /**
     @private
@@ -155,6 +179,35 @@ export default Ember.Controller.extend({
     @default false
   */
   _showModalDialog: false,
+
+  /**
+    @private
+    @property _showLookupDialog
+    @type Boolean
+    @default false
+  */
+  _showLookupDialog: false,
+
+  /**
+    @private
+    @property _lookupCaption
+    @type String
+  */
+  _lookupCaption: undefined,
+
+  /**
+    @private
+    @property _lookupView
+    @type FdDevViewModel
+  */
+  _lookupView: undefined,
+
+  /**
+    @private
+    @property _lookupTypes
+    @type Array
+  */
+  _lookupTypes: undefined,
 
   /**
     Indicates that the user has started moving control, and the next selected control will be the target of the move.
@@ -406,6 +459,130 @@ export default Ember.Controller.extend({
   */
   selectedItem: undefined,
 
+  /**
+    @property implementations
+    @type Ember.NativeArray
+  */
+  implementations: Ember.computed.filter(&#x27;model.classes&#x27;, clazz =&gt; clazz.get(&#x27;stereotype&#x27;) === &#x27;«implementation»&#x27; || clazz.get(&#x27;stereotype&#x27;) === null),
+
+  /**
+    @property attributes
+    @type Ember.NativeArray
+  */
+  attributes: Ember.computed(&#x27;_dataForBuildTree&#x27;, function() {
+    return getClassTreeNode(Ember.A(), this.get(&#x27;_dataForBuildTree.classes&#x27;), this.get(&#x27;model.dataobject.id&#x27;), &#x27;type&#x27;);
+  }),
+
+  /**
+    @property masters
+    @type Ember.NativeArray
+  */
+  masters: Ember.computed(&#x27;_dataForBuildTree&#x27;, function() {
+    return getAssociationTreeNode(Ember.A(), this.get(&#x27;_dataForBuildTree.associations&#x27;), &#x27;node_&#x27;, this.get(&#x27;model.dataobject.id&#x27;), &#x27;name&#x27;);
+  }),
+
+  /**
+    @property details
+    @type Ember.NativeArray
+  */
+  details: Ember.computed(&#x27;_dataForBuildTree&#x27;, function() {
+    return getAggregationTreeNode(Ember.A(), this.get(&#x27;_dataForBuildTree.aggregations&#x27;), this.get(&#x27;model.dataobject.id&#x27;), &#x27;name&#x27;);
+  }),
+
+  /**
+    @property mastersType
+    @type Ember.NativeArray
+  */
+  mastersType: Ember.computed(&#x27;implementations&#x27;, function() {
+    return this._buildTree(this.get(&#x27;implementations&#x27;), &#x27;master&#x27;, true);
+  }),
+
+  /**
+    @property detailsType
+    @type Ember.NativeArray
+  */
+  detailsType: Ember.computed(&#x27;implementations&#x27;, &#x27;model.aggregations&#x27;, &#x27;model.dataobject.id&#x27;, function() {
+    let implementations = this.get(&#x27;implementations&#x27;);
+    let aggregations = this.get(&#x27;model.aggregations&#x27;);
+    let dataObjectId = this.get(&#x27;model.dataobject.id&#x27;);
+    let details = implementations.filter(clazz =&gt; clazz.get(&#x27;id&#x27;) !== dataObjectId &amp;&amp; aggregations.findBy(&#x27;endClass.id&#x27;, clazz.get(&#x27;id&#x27;)) === undefined);
+
+    return this._buildTree(details, &#x27;detail&#x27;, true);
+  }),
+
+  /**
+    @property simpleTypes
+    @type Ember.NativeArray
+  */
+  simpleTypes: Ember.computed(&#x27;_dataTypes&#x27;, function() {
+    return this._buildTree(this.get(&#x27;_dataTypes&#x27;).flexberryTypes(), &#x27;property&#x27;);
+  }),
+
+  /**
+    @property typemap
+    @type Ember.NativeArray
+  */
+  typemap: Ember.computed(&#x27;model.stage.typeMapCSStr&#x27;, &#x27;_dataTypes&#x27;, function() {
+    let dataTypes = this.get(&#x27;_dataTypes&#x27;);
+    let typemap = this.get(&#x27;model.stage.typeMapCSStr&#x27;).filter(t =&gt; dataTypes.fDTypeToFlexberry(t.name) === null);
+    return this._buildTree(typemap, &#x27;«typemap»&#x27;);
+  }),
+
+  /**
+    @property enums
+    @type Ember.NativeArray
+  */
+  enums: Ember.computed(&#x27;model.classes&#x27;, function() {
+    return this._buildTree(this.get(&#x27;model.classes&#x27;).filterBy(&#x27;stereotype&#x27;, &#x27;«enumeration»&#x27;), &#x27;«enumeration»&#x27;);
+  }),
+
+  /**
+    @property types
+    @type Ember.NativeArray
+  */
+  types: Ember.computed(&#x27;model.classes&#x27;, function() {
+    return this._buildTree(this.get(&#x27;model.classes&#x27;).filterBy(&#x27;stereotype&#x27;, &#x27;«type»&#x27;), &#x27;«type»&#x27;);
+  }),
+
+  /**
+    An object with all (including inherited) the attributes, associations and aggregations for the this form data object.
+
+    @property dataObjectProperties
+    @type Object
+  */
+  dataObjectProperties: Ember.computed(&#x27;model.dataobject&#x27;, &#x27;model.inheritances&#x27;, &#x27;model.associations&#x27;, &#x27;model.aggregations&#x27;, function() {
+    let dataObject = this.get(&#x27;model.dataobject&#x27;);
+    let inheritances = this.get(&#x27;model.inheritances&#x27;);
+    let associations = this.get(&#x27;model.associations&#x27;);
+    let aggregations = this.get(&#x27;model.aggregations&#x27;);
+
+    return this._getClassProperties(dataObject, inheritances, associations, aggregations);
+  }),
+
+  /**
+    The controls tree created from a view definition.
+
+    @property controlsTree
+    @readOnly
+    @type Ember.NativeArray
+  */
+  controlsTree: Ember.computed(&#x27;model.editform.formViews.firstObject.view.definition&#x27;, function() {
+    let controlsTree = Ember.A();
+
+    let definition = this.get(&#x27;model.editform.formViews.firstObject.view.definition&#x27;);
+    let length = definition.get(&#x27;length&#x27;);
+    for (let i = 0; i &lt; length; i++) {
+      let propertyDefinition = definition.objectAt(i);
+      let path = propertyDefinition.get(&#x27;path&#x27;);
+      let caption = propertyDefinition.get(&#x27;caption&#x27;) || propertyDefinition.get(&#x27;name&#x27;);
+      let width = this._getWidth(path);
+      let control = FdEditformControl.create({ caption, width, propertyDefinition });
+      locateControlByPath(controlsTree, control, path);
+    }
+
+    return controlsTree;
+  }).readOnly(),
+
   actions: {
     /**
       Adds a new control to the form, if there is a selected item, the control will be added to it.
@@ -425,9 +602,7 @@ export default Ember.Controller.extend({
         defaultValue: &#x27;&#x27;
       });
 
-      let dataForBuildTree = getDataForBuildTree(this.get(&#x27;store&#x27;), dataobject.get(&#x27;id&#x27;));
-      let newTree = getClassTreeNode(Ember.A(), dataForBuildTree.classes, dataobject.get(&#x27;id&#x27;), &#x27;type&#x27;);
-      this.set(&#x27;model.attributes&#x27;, newTree);
+      this.notifyPropertyChange(&#x27;_dataForBuildTree&#x27;);
 
       let view = this.get(&#x27;model.editform.formViews.firstObject.view&#x27;);
       let viewDefinition = view.get(&#x27;definition&#x27;);
@@ -443,7 +618,7 @@ export default Ember.Controller.extend({
         propertyDefinition: propertyDefinition,
       });
 
-      this._insertItem(control, this.get(&#x27;selectedItem&#x27;) || this.get(&#x27;model.controls&#x27;));
+      this._insertItem(control, this.get(&#x27;selectedItem&#x27;) || this.get(&#x27;controlsTree&#x27;));
       this.send(&#x27;selectItem&#x27;, control);
       Ember.run.scheduleOnce(&#x27;afterRender&#x27;, this, this._scrollToSelected);
     },
@@ -463,7 +638,7 @@ export default Ember.Controller.extend({
         }),
       });
 
-      this._insertItem(control, this.get(&#x27;selectedItem&#x27;) || this.get(&#x27;model.controls&#x27;));
+      this._insertItem(control, this.get(&#x27;selectedItem&#x27;) || this.get(&#x27;controlsTree&#x27;));
       this.send(&#x27;selectItem&#x27;, control);
       Ember.run.scheduleOnce(&#x27;afterRender&#x27;, this, this._scrollToSelected);
     },
@@ -477,7 +652,7 @@ export default Ember.Controller.extend({
       this._insertItem(FdEditformGroup.create({
         caption: &#x60;${this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-editform-constructor.new-group-caption&#x27;).toString()} #${this.incrementProperty(&#x27;_newGroupIndex&#x27;)}&#x60;,
         rows: Ember.A(),
-      }), this.get(&#x27;selectedItem&#x27;) || this.get(&#x27;model.controls&#x27;));
+      }), this.get(&#x27;selectedItem&#x27;) || this.get(&#x27;controlsTree&#x27;));
     },
 
     /**
@@ -489,7 +664,7 @@ export default Ember.Controller.extend({
       this._insertItem(FdEditformTab.create({
         caption: &#x60;${this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-editform-constructor.new-tab-caption&#x27;).toString()} #${this.incrementProperty(&#x27;_newTabIndex&#x27;)}&#x60;,
         rows: Ember.A(),
-      }), this.get(&#x27;selectedItem&#x27;) || this.get(&#x27;model.controls&#x27;));
+      }), this.get(&#x27;selectedItem&#x27;) || this.get(&#x27;controlsTree&#x27;));
     },
 
     /**
@@ -504,13 +679,7 @@ export default Ember.Controller.extend({
 
         // Refresh definition for filter not used attributes in &#x27;dataNotUsedAttributesTreeObserver&#x27;.
         let view = this.get(&#x27;model.editform.formViews.firstObject.view&#x27;);
-        let controls = this.get(&#x27;model.controls&#x27;);
-        let viewDefinition = Ember.A();
-        for (let i = 0; i &lt; controls.length; i++) {
-          this._extractPathPart(controls.objectAt(i), &#x27;&#x27;, viewDefinition, &#x27;&#x27;);
-        }
-
-        view.set(&#x27;definition&#x27;, viewDefinition);
+        view.set(&#x27;definition&#x27;, controlsToDefinition(this.get(&#x27;controlsTree&#x27;)));
         this.set(&#x27;selectedItem&#x27;, undefined);
       } else {
         this.set(&#x27;_showModalDialog&#x27;, true);
@@ -595,6 +764,32 @@ export default Ember.Controller.extend({
     },
 
     /**
+      Returns an object with properties to render the component.
+
+      @method actions.getComponentProperties
+      @param {FdViewAttributesProperty|FdViewAttributesMaster|FdViewAttributesDetail} propertyDefinition Definition a property in a view.
+      @return {Object} An object with properties for the component.
+    */
+    getComponentProperties(propertyDefinition) {
+      return this._getComponentProperties(propertyDefinition, this.get(&#x27;dataObjectProperties&#x27;));
+    },
+
+    /**
+      Shows the lookup form in modal dialog.
+
+      @method actions.showLookup
+      @param {String} caption Caption for the lookup form.
+      @param {FdDevViewModel} view The view on which the table will be render in the lookup form.
+      @param {Array} types An array of types for the view.
+    */
+    showLookup(caption, view, types) {
+      this.set(&#x27;_lookupCaption&#x27;, caption);
+      this.set(&#x27;_lookupView&#x27;, view);
+      this.set(&#x27;_lookupTypes&#x27;, types);
+      this.set(&#x27;_showLookupDialog&#x27;, true);
+    },
+
+    /**
       Move the current dragged item above or below relative to the passed item.
 
       @method actions.moveDragItem
@@ -633,7 +828,7 @@ export default Ember.Controller.extend({
     save(close) {
       this.set(&#x27;state&#x27;, &#x27;loading&#x27;);
       try {
-        this._saveMetadata(this.get(&#x27;model&#x27;)).then(() =&gt; {
+        this._saveMetadata(this.get(&#x27;model&#x27;), this.get(&#x27;controlsTree&#x27;)).then(() =&gt; {
           this.set(&#x27;model.originalDefinition&#x27;, copyViewDefinition(this.get(&#x27;model.editform.formViews.firstObject.view.definition&#x27;)));
           this.set(&#x27;state&#x27;, &#x27;&#x27;);
           if (close) {
@@ -807,11 +1002,11 @@ export default Ember.Controller.extend({
     @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item
       The sought item.
     @param {Ember.NativeArray|FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab} [container]
-      The container from which to start the search, if not specified, uses &#x60;model.controls&#x60;.
+      The container from which to start the search, if not specified, uses &#x60;controlsTree&#x60;.
     @return {Ember.NativeArray|FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab}
       The container that was found or &#x60;null&#x60;.
   */
-  _findItemContainer(item, container = this.get(&#x27;model.controls&#x27;)) {
+  _findItemContainer(item, container = this.get(&#x27;controlsTree&#x27;)) {
     let foundContainer;
     if (container instanceof FdEditformControl) {
       foundContainer = null;
@@ -920,15 +1115,12 @@ export default Ember.Controller.extend({
 
     @method _saveMetadata
     @param {Object} model Complex model for processing and save.
+    @param {Ember.NativeArray} controlsTree The controls tree.
+    @return {Ember.RSVP.Promise}
   */
-  _saveMetadata(model) {
+  _saveMetadata(model, controlsTree) {
     let view = model.editform.get(&#x27;formViews.firstObject.view&#x27;);
-    let viewDefinition = Ember.A();
-    let controls = model.controls;
-    let length = controls.get(&#x27;length&#x27;);
-    for (let i = 0; i &lt; length; i++) {
-      this._extractPathPart(controls.objectAt(i), &#x27;&#x27;, viewDefinition, &#x27;&#x27;);
-    }
+    let viewDefinition = controlsToDefinition(controlsTree);
 
     // Check viewDefinition on errors.
     let duplicateValues = Ember.A();
@@ -984,62 +1176,6 @@ export default Ember.Controller.extend({
   },
 
   /**
-    Extract path part from object model.
-
-    @method _extractPathPart
-    @param {FdEditformControl|FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab} control Some item in object model.
-    @param {String} path Path for current item.
-    @param {Ember.Array} viewDefinition View definition with result paths for controls.
-    @param {String} column Column path for current item.
-  */
-  _extractPathPart: function(control, path, viewDefinition, column) {
-    if (control instanceof FdEditformControl) {
-      let mockColumn = &#x60;${column ? column : &#x27;#1&#x27;}&#x60;;
-      let pathColumn = &#x60;${control.width ? mockColumn + &#x27;(&#x27; + control.width + &#x27;)&#x27; : column}&#x60;;
-      let pathWithColumn = &#x60;${path ? path + &#x27;\\&#x27; : &#x27;&#x27;}${pathColumn}&#x60;;
-      control.set(&#x27;propertyDefinition.path&#x27;, pathWithColumn);
-      control.set(&#x27;propertyDefinition.caption&#x27;, control.get(&#x27;caption&#x27;));
-      viewDefinition.pushObject(control.get(&#x27;propertyDefinition&#x27;));
-      return path;
-    } else if (control instanceof FdEditformRow) {
-      for (let i = 0; i &lt; control.get(&#x27;controls.length&#x27;); i++) {
-        let controlInRow = control.get(&#x27;controls&#x27;).objectAt(i);
-        let pathWithColumn = column;
-        if (control.get(&#x27;controls.length&#x27;) &gt; 1) {
-          pathWithColumn = &#x60;#${i + 1}&#x60;;
-        }
-
-        this._extractPathPart(controlInRow, path, viewDefinition, pathWithColumn);
-      }
-    } else if (control instanceof FdEditformGroup) {
-      let pathWithGroup = &#x27;-&#x27; + control.caption;
-      if (path) {
-        pathWithGroup = path + &#x27;\\&#x27; + pathWithGroup;
-      }
-
-      for (let i = 0; i &lt; control.get(&#x27;rows.length&#x27;); i++) {
-        let rowInGroup = control.get(&#x27;rows&#x27;).objectAt(i);
-        this._extractPathPart(rowInGroup, pathWithGroup, viewDefinition, column);
-      }
-    } else if (control instanceof FdEditformTabgroup) {
-      for (let i = 0; i &lt; control.get(&#x27;tabs.length&#x27;); i++) {
-        let rowInGroup = control.get(&#x27;tabs&#x27;).objectAt(i);
-        this._extractPathPart(rowInGroup, path, viewDefinition, column);
-      }
-    } else if (control instanceof FdEditformTab) {
-      let pathWithTab = &#x27;|&#x27; + control.caption;
-      if (path) {
-        pathWithTab = path + &#x27;\\&#x27; + pathWithTab;
-      }
-
-      for (let i = 0; i &lt; control.get(&#x27;rows.length&#x27;); i++) {
-        let rowInGroup = control.get(&#x27;rows&#x27;).objectAt(i);
-        this._extractPathPart(rowInGroup, pathWithTab, viewDefinition, column);
-      }
-    }
-  },
-
-  /**
     Scrolls the form to the selected control with jQuery.
 
     @private
@@ -1050,6 +1186,195 @@ export default Ember.Controller.extend({
     let scrollTop = Ember.$(&#x27;.selected:first&#x27;).offset().top + form.scrollTop() - (form.offset().top + 10);
 
     form.animate({ scrollTop });
+  },
+
+  /**
+    Returns an object with all (including inherited) the attributes, associations and aggregations for the class.
+
+    @private
+    @method _getClassProperties
+    @param {FdDevClassModel} clazz The class for which to get the properties.
+    @param {Ember.NativeArray} inheritances All inheritances.
+    @param {Ember.NativeArray} associations All associations.
+    @param {Ember.NativeArray} aggregations All aggregations.
+    @return {Object} An object with properties for the class.
+  */
+  _getClassProperties(clazz, inheritances, associations, aggregations) {
+    let properties = {
+      attributes: Ember.A(),
+      associations: Ember.A(),
+      aggregations: Ember.A(),
+    };
+    let clazzId = clazz.get(&#x27;id&#x27;);
+
+    properties.attributes.pushObjects(clazz.get(&#x27;attributes&#x27;).toArray());
+    properties.associations.pushObjects(associations.filterBy(&#x27;endClass.id&#x27;, clazzId));
+    properties.associations.pushObjects(aggregations.filterBy(&#x27;endClass.id&#x27;, clazzId));
+    properties.aggregations.pushObjects(aggregations.filterBy(&#x27;startClass.id&#x27;, clazzId));
+
+    let parents = inheritances.filterBy(&#x27;child.id&#x27;, clazzId);
+    while (parents.length &gt; 0) {
+      let parent = parents.pop().get(&#x27;parent&#x27;);
+      let parentId = parent.get(&#x27;id&#x27;);
+
+      properties.attributes.pushObjects(parent.get(&#x27;attributes&#x27;).toArray());
+      properties.associations.pushObjects(associations.filterBy(&#x27;endClass.id&#x27;, parentId));
+      properties.associations.pushObjects(aggregations.filterBy(&#x27;endClass.id&#x27;, parentId));
+      properties.aggregations.pushObjects(aggregations.filterBy(&#x27;startClass.id&#x27;, parentId));
+
+      if (parents.length === 0) {
+        parents = inheritances.filterBy(&#x27;child.id&#x27;, parentId);
+      }
+    }
+
+    return properties;
+  },
+
+  /**
+    Returns an object with properties to render the component.
+
+    @private
+    @method _getComponentProperties
+    @param {FdViewAttributesProperty|FdViewAttributesMaster|FdViewAttributesDetail} propertyDefinition Definition a property in a view.
+    @param {Object} dataObjectProperties
+    @return {Object} An object with properties for the component.
+  */
+  _getComponentProperties(propertyDefinition, dataObjectProperties) {
+    let type;
+    let view;
+    let types;
+    let items;
+
+    let path = propertyDefinition.get(&#x27;name&#x27;).split(&#x27;.&#x27;);
+    let propertyName = path.pop();
+    if (propertyDefinition instanceof FdViewAttributesDetail) {
+      let { aggregations } = dataObjectProperties;
+      let relation = aggregations.findBy(&#x27;endRole&#x27;, propertyName) || aggregations.findBy(&#x27;endClass.name&#x27;, propertyName);
+      type = &#x27;detail&#x27;;
+      view = this.get(&#x27;model.views&#x27;).filterBy(&#x27;class.id&#x27;, relation.get(&#x27;endClass.id&#x27;)).findBy(&#x27;name&#x27;, propertyDefinition.get(&#x27;detailViewName&#x27;));
+      types = this._getTypesForView(view);
+    } else if (propertyDefinition instanceof FdViewAttributesMaster) {
+      type = &#x27;master&#x27;;
+      let propertyLookup = this.get(&#x27;model.editform.propertyLookupStr&#x27;).findBy(&#x27;property&#x27;, propertyDefinition.get(&#x27;name&#x27;));
+      if (propertyLookup) {
+        let form = this.get(&#x27;model.classes&#x27;).findBy(&#x27;name&#x27;, propertyLookup.container);
+        if (form) {
+          view = form.get(&#x27;formViews.firstObject.view&#x27;);
+          types = this._getTypesForView(view);
+        }
+      }
+    } else if (propertyDefinition instanceof FdViewAttributesProperty) {
+      let properties = dataObjectProperties;
+      let inheritances = this.get(&#x27;model.inheritances&#x27;);
+      let associations = this.get(&#x27;model.associations&#x27;);
+      let aggregations = this.get(&#x27;model.aggregations&#x27;);
+      while (path.length &gt; 0) {
+        let role = path.shift();
+        let relation = properties.associations.findBy(&#x27;startRole&#x27;, role) || properties.associations.findBy(&#x27;startClass.name&#x27;, role);
+        properties = this._getClassProperties(relation.get(&#x27;startClass&#x27;), inheritances, associations, aggregations);
+      }
+
+      let attribute = properties.attributes.findBy(&#x27;name&#x27;, propertyName);
+      let typeInMap = this.get(&#x27;model.stage.typeMapCSStr&#x27;).findBy(&#x27;name&#x27;, attribute.get(&#x27;type&#x27;));
+
+      if (typeInMap) {
+        type = typeInMap.value || typeInMap.name;
+      } else {
+        let clazz = this.get(&#x27;model.classes&#x27;).findBy(&#x27;name&#x27;, attribute.get(&#x27;type&#x27;));
+        if (clazz &amp;&amp; clazz.get(&#x27;stereotype&#x27;) === &#x27;«enumeration»&#x27;) {
+          type = &#x27;enumeration&#x27;;
+          items = clazz.get(&#x27;attributes&#x27;).mapBy(&#x27;name&#x27;);
+        } else {
+          type = &#x27;default&#x27;;
+        }
+      }
+    } else {
+      throw new Error(&#x27;Invalid property definition.&#x27;);
+    }
+
+    return { type, view, types, items };
+  },
+
+  /**
+    Returns an array of types used in the view.
+
+    @private
+    @method _getTypesForView
+    @param {FdDevViewModel} view A view for which types are needed.
+    @return {Array} An array of types used in the view.
+  */
+  _getTypesForView(view) {
+    let types = [];
+
+    let clazz = view.get(&#x27;class&#x27;);
+    let definition = view.get(&#x27;definition&#x27;);
+    let inheritances = this.get(&#x27;model.inheritances&#x27;);
+    let associations = this.get(&#x27;model.associations&#x27;);
+    let aggregations = this.get(&#x27;model.aggregations&#x27;);
+    let dataObjectProperties = this._getClassProperties(clazz, inheritances, associations, aggregations);
+
+    let length = definition.get(&#x27;length&#x27;);
+    for (let i = 0; i &lt; length; i++) {
+      types.push(this._getComponentProperties(definition.objectAt(i), dataObjectProperties));
+    }
+
+    return types;
+  },
+
+  /**
+    Create tree.
+
+    @method _buildTree
+    @param {Array} data Data for tree.
+    @param {String} type Type for tree.
+    @param {Boolean} nodeId Flag need add in object node id.
+    @return {Object} Object data for tree.
+  */
+  _buildTree(data, type, nodeId) {
+    let treeData = Ember.A();
+    data.forEach((item, index) =&gt; {
+      let text;
+      if (type === &#x27;«typemap»&#x27;) {
+        text = item.name;
+      } else if (type === &#x27;property&#x27;) {
+        text = item;
+      } else {
+        text = item.get(&#x27;name&#x27;);
+      }
+
+      let newNode = FdAttributesTree.create({
+        text: text,
+        type: type,
+        id: type + index
+      });
+
+      if (!Ember.isNone(nodeId)) {
+        newNode.set(&#x27;idNode&#x27;, item.get(&#x27;id&#x27;));
+      }
+
+      treeData.pushObject(newNode);
+    });
+
+    return treeData;
+  },
+
+  /**
+      Looks for width in the path
+
+      @method _getWidth
+      @param {String} path Property path from view.
+  */
+  _getWidth: function(path) {
+    let partsPath = path.split(&#x27;\\&#x27;);
+    let lastPartsPath = partsPath[partsPath.length - 1];
+    let startWidth = lastPartsPath.lastIndexOf(&#x27;(&#x27;);
+    let endWidth = lastPartsPath.lastIndexOf(&#x27;)&#x27;);
+    let width = &#x27;&#x27;;
+    if (endWidth !== -1 &amp;&amp; startWidth !== -1 &amp;&amp; endWidth === lastPartsPath.length - 1 &amp;&amp; lastPartsPath.charAt(0) === &#x27;#&#x27;) {
+      width = lastPartsPath.slice(startWidth + 1, endWidth);
+    }
+
+    return width;
   },
 
   /**

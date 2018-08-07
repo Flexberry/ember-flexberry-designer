@@ -22,6 +22,51 @@
             "fors": {},
             "namespaces": {}
         },
+        "addon/components/fd-file.js": {
+            "name": "addon/components/fd-file.js",
+            "modules": {},
+            "classes": {
+                "FdFileComponent": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/components/fd-groupedit.js": {
+            "name": "addon/components/fd-groupedit.js",
+            "modules": {},
+            "classes": {
+                "FdGroupeditComponent": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/components/fd-lookup.js": {
+            "name": "addon/components/fd-lookup.js",
+            "modules": {},
+            "classes": {
+                "FdLookupComponent": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/components/fd-object-list-view.js": {
+            "name": "addon/components/fd-object-list-view.js",
+            "modules": {},
+            "classes": {
+                "FdObjectListViewComponent": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "addon/components/fd-objectlistview.js": {
+            "name": "addon/components/fd-objectlistview.js",
+            "modules": {},
+            "classes": {
+                "FdObjectlistviewComponent": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "addon/components/fd-tabs.js": {
             "name": "addon/components/fd-tabs.js",
             "modules": {},
@@ -1280,6 +1325,13 @@
             "classes": {},
             "fors": {},
             "namespaces": {}
+        },
+        "addon/utils/fd-view-path-functions.js": {
+            "name": "addon/utils/fd-view-path-functions.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
         }
     },
     "modules": {
@@ -1290,6 +1342,11 @@
             "classes": {
                 "FdEditformControlComponent": 1,
                 "FdEditformRowComponent": 1,
+                "FdFileComponent": 1,
+                "FdGroupeditComponent": 1,
+                "FdLookupComponent": 1,
+                "FdObjectListViewComponent": 1,
+                "FdObjectlistviewComponent": 1,
                 "FdUmlDiagramComponent": 1,
                 "FdDraggableControlMixin": 1,
                 "FdLimitByStageMixin": 1,
@@ -1377,6 +1434,81 @@
             "uses": [
                 "FdDraggableControlMixin"
             ]
+        },
+        "FdFileComponent": {
+            "name": "FdFileComponent",
+            "shortname": "FdFileComponent",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "",
+            "file": "addon/components/fd-file.js",
+            "line": 7,
+            "description": "This component mimics the `flexberry-file` component in the edit form constructor.",
+            "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Component.html\">Ember.Component</a>"
+        },
+        "FdGroupeditComponent": {
+            "name": "FdGroupeditComponent",
+            "shortname": "FdGroupeditComponent",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "",
+            "file": "addon/components/fd-groupedit.js",
+            "line": 7,
+            "description": "This component mimics the `flexberry-groupedit` component in the edit form constructor.",
+            "extends": "FdObjectlistviewComponent"
+        },
+        "FdLookupComponent": {
+            "name": "FdLookupComponent",
+            "shortname": "FdLookupComponent",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "",
+            "file": "addon/components/fd-lookup.js",
+            "line": 7,
+            "description": "This component mimics the `flexberry-lookup` component in the edit form constructor.",
+            "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Component.html\">Ember.Component</a>"
+        },
+        "FdObjectListViewComponent": {
+            "name": "FdObjectListViewComponent",
+            "shortname": "FdObjectListViewComponent",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "",
+            "file": "addon/components/fd-object-list-view.js",
+            "line": 7,
+            "description": "This component render table from passed headers and rows.",
+            "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Component.html\">Ember.Component</a>"
+        },
+        "FdObjectlistviewComponent": {
+            "name": "FdObjectlistviewComponent",
+            "shortname": "FdObjectlistviewComponent",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "",
+            "file": "addon/components/fd-objectlistview.js",
+            "line": 8,
+            "description": "This component mimics the `flexberry-objectlistview` component in the edit form constructor.",
+            "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Component.html\">Ember.Component</a>"
         },
         "FdUmlDiagramComponent": {
             "name": "FdUmlDiagramComponent",
@@ -1795,6 +1927,18 @@
         {
             "file": "addon/components/fd-editform-control.js",
             "line": 20,
+            "description": "An object in the format `{ 'typeName': 'componentName' }`, which describes which components should be rendered for each type.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_componentsTypeMap",
+            "type": "Object",
+            "class": "FdEditformControlComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-control.js",
+            "line": 80,
             "description": "The passed control is a simple control.",
             "access": "private",
             "tagname": "",
@@ -1807,7 +1951,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 32,
+            "line": 92,
             "description": "The passed control is a group.",
             "access": "private",
             "tagname": "",
@@ -1820,7 +1964,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 44,
+            "line": 104,
             "description": "The passed control is tabs.",
             "access": "private",
             "tagname": "",
@@ -1833,12 +1977,12 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 56,
-            "description": "Type of rendered component.",
+            "line": 116,
+            "description": "The name of the component that will be rendered for this control.",
             "access": "private",
             "tagname": "",
             "itemtype": "property",
-            "name": "_component",
+            "name": "_componentName",
             "readonly": "",
             "type": "String",
             "class": "FdEditformControlComponent",
@@ -1846,7 +1990,20 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 72,
+            "line": 128,
+            "description": "An object with properties for rendering the component.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_componentProperties",
+            "readonly": "",
+            "type": "Object",
+            "class": "FdEditformControlComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-editform-control.js",
+            "line": 145,
             "description": "Used in class name bindings to overlap the content of the control.",
             "access": "private",
             "tagname": "",
@@ -1858,7 +2015,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 81,
+            "line": 154,
             "description": "Used in class name bindings to add a class when this control is selected.",
             "access": "private",
             "tagname": "",
@@ -1871,7 +2028,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 93,
+            "line": 166,
             "description": "Used in class name bindings visibility.",
             "access": "private",
             "tagname": "",
@@ -1884,7 +2041,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 110,
+            "line": 183,
             "description": "{{#crossLink \"FdEditformConstructorController/selectedItem:property\"}}Passed from above{{/crossLink}}, the selected item.",
             "itemtype": "property",
             "name": "selectedItem",
@@ -1893,7 +2050,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 117,
+            "line": 190,
             "description": "The control to render.",
             "itemtype": "property",
             "name": "control",
@@ -1903,7 +2060,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 125,
+            "line": 198,
             "description": "If the passed control is tabs, contains active tab.",
             "itemtype": "property",
             "name": "activeTab",
@@ -1913,7 +2070,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 133,
+            "line": 206,
             "description": "See description {{#crossLink \"FdDraggableControlMixin/draggableProperty:property\"}}here{{/crossLink}}.",
             "itemtype": "property",
             "name": "draggableProperty",
@@ -1922,7 +2079,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 140,
+            "line": 213,
             "description": "See description {{#crossLink \"FdDraggableControlMixin/dragDirection:property\"}}here{{/crossLink}}.",
             "itemtype": "property",
             "name": "dragDirection",
@@ -1931,7 +2088,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 147,
+            "line": 220,
             "description": "See [EmberJS API](https://emberjs.com/api/).",
             "itemtype": "property",
             "name": "classNameBindings",
@@ -1940,7 +2097,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 154,
+            "line": 227,
             "description": "See [EmberJS API](https://emberjs.com/api/).",
             "itemtype": "property",
             "name": "classNames",
@@ -1949,7 +2106,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 162,
+            "line": 235,
             "description": "Change active tab.",
             "itemtype": "method",
             "name": "actions.changeTab",
@@ -1965,7 +2122,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 174,
+            "line": 247,
             "description": "The event handler is `click`.\nCalls the `selectItemAction` action when the component is clicked.\nThe action `selectItemAction` should be passed, for example, from the controller.",
             "itemtype": "method",
             "name": "click",
@@ -2085,6 +2242,228 @@
                 }
             ],
             "class": "FdEditformRowComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-file.js",
+            "line": 14,
+            "description": "See [EmberJS API](https://emberjs.com/api/).",
+            "itemtype": "property",
+            "name": "classNames",
+            "class": "FdFileComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-groupedit.js",
+            "line": 14,
+            "description": "The count of rows that will be generated to render the table.",
+            "itemtype": "property",
+            "name": "rowsCount",
+            "type": "Number",
+            "default": "5",
+            "class": "FdGroupeditComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-lookup.js",
+            "line": 14,
+            "description": "Caption for the lookup form.",
+            "itemtype": "property",
+            "name": "caption",
+            "type": "String",
+            "class": "FdLookupComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-lookup.js",
+            "line": 22,
+            "description": "The view on which the table will be render in the lookup form.",
+            "itemtype": "property",
+            "name": "view",
+            "type": "FdDevViewModel",
+            "class": "FdLookupComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-lookup.js",
+            "line": 30,
+            "description": "See [EmberJS API](https://emberjs.com/api/).",
+            "itemtype": "property",
+            "name": "classNames",
+            "class": "FdLookupComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-object-list-view.js",
+            "line": 14,
+            "description": "An array of header for rendering.",
+            "itemtype": "property",
+            "name": "headers",
+            "type": "Ember.NativeArray",
+            "class": "FdObjectListViewComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-object-list-view.js",
+            "line": 22,
+            "description": "An array of rows for rendering.",
+            "itemtype": "property",
+            "name": "rows",
+            "type": "Ember.NativeArray",
+            "class": "FdObjectListViewComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-object-list-view.js",
+            "line": 30,
+            "description": "Do need to render a checkbox for each row.",
+            "itemtype": "property",
+            "name": "showCheckBoxInRow",
+            "type": "Boolean",
+            "default": "true",
+            "class": "FdObjectListViewComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-object-list-view.js",
+            "line": 39,
+            "description": "See [EmberJS API](https://emberjs.com/api/).",
+            "itemtype": "property",
+            "name": "tagName",
+            "class": "FdObjectListViewComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-object-list-view.js",
+            "line": 46,
+            "description": "See [EmberJS API](https://emberjs.com/api/).",
+            "itemtype": "property",
+            "name": "classNames",
+            "class": "FdObjectListViewComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-objectlistview.js",
+            "line": 15,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_dataTypes",
+            "type": "Ember.Object",
+            "class": "FdObjectlistviewComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-objectlistview.js",
+            "line": 22,
+            "description": "Table headings.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_headers",
+            "type": "Ember.NativeArray",
+            "class": "FdObjectlistviewComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-objectlistview.js",
+            "line": 31,
+            "description": "Cells for each row, they are always generated anew.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_cells",
+            "type": "Ember.NativeArray",
+            "class": "FdObjectlistviewComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-objectlistview.js",
+            "line": 51,
+            "description": "The rows generated for rendering in the table.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_rows",
+            "type": "Ember.NativeArray",
+            "class": "FdObjectlistviewComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-objectlistview.js",
+            "line": 68,
+            "description": "The rows displayed on the current page.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_rowsOnPage",
+            "type": "Ember.NativeArray",
+            "class": "FdObjectlistviewComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-objectlistview.js",
+            "line": 81,
+            "description": "Page numbers.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_pages",
+            "type": "Ember.NativeArray",
+            "class": "FdObjectlistviewComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-objectlistview.js",
+            "line": 98,
+            "description": "An array of types used in the view.",
+            "itemtype": "property",
+            "name": "types",
+            "type": "Array",
+            "class": "FdObjectlistviewComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-objectlistview.js",
+            "line": 106,
+            "description": "The view on which the table will be rendered.",
+            "itemtype": "property",
+            "name": "view",
+            "type": "FdDevViewModel",
+            "class": "FdObjectlistviewComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-objectlistview.js",
+            "line": 114,
+            "description": "The count of rows that will be generated to render the table.",
+            "itemtype": "property",
+            "name": "rowsCount",
+            "type": "Number",
+            "default": "15",
+            "class": "FdObjectlistviewComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-objectlistview.js",
+            "line": 123,
+            "description": "The current page.",
+            "itemtype": "property",
+            "name": "page",
+            "type": "Number",
+            "default": "1",
+            "class": "FdObjectlistviewComponent",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/components/fd-objectlistview.js",
+            "line": 132,
+            "description": "The count of rows showing on per page.",
+            "itemtype": "property",
+            "name": "perPage",
+            "type": "Number",
+            "default": "5",
+            "class": "FdObjectlistviewComponent",
             "module": "ember-flexberry-designer"
         },
         {
@@ -3860,7 +4239,31 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 26,
+            "line": 29,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_dataTypes",
+            "type": "Ember.Object",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 36,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_dataForBuildTree",
+            "type": "Object",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 45,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -3873,7 +4276,56 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 34,
+            "line": 53,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_showLookupDialog",
+            "type": "Boolean",
+            "default": "false",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 61,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_lookupCaption",
+            "type": "String",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 68,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_lookupView",
+            "type": "FdDevViewModel",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 75,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "_lookupTypes",
+            "type": "Array",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 82,
             "description": "Indicates that the user has started moving control, and the next selected control will be the target of the move.",
             "access": "private",
             "tagname": "",
@@ -3887,7 +4339,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 44,
+            "line": 92,
             "description": "The current dragged item.",
             "access": "private",
             "tagname": "",
@@ -3900,7 +4352,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 53,
+            "line": 101,
             "description": "Flag: indicates whether show tree.",
             "access": "private",
             "tagname": "",
@@ -3914,7 +4366,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 63,
+            "line": 111,
             "description": "Selected nodes in jsTree.",
             "itemtype": "property",
             "name": "selectedNodesNotUsedAttributesTree",
@@ -3926,7 +4378,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 72,
+            "line": 120,
             "description": "Included plugins for jsTree.",
             "itemtype": "property",
             "name": "pluginsTree",
@@ -3938,7 +4390,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 81,
+            "line": 129,
             "description": "Type settings for jsTree.",
             "itemtype": "property",
             "name": "typesOptionsTree",
@@ -3949,7 +4401,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 102,
+            "line": 150,
             "description": "Data for search tree node.",
             "itemtype": "property",
             "name": "searchTermTree",
@@ -3961,7 +4413,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 111,
+            "line": 159,
             "description": "Search settings for jsTree.",
             "itemtype": "property",
             "name": "searchOptionsTree",
@@ -3972,7 +4424,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 121,
+            "line": 169,
             "description": "Data for jsTree.",
             "itemtype": "property",
             "name": "dataNotUsedAttributesTree",
@@ -3983,7 +4435,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 129,
+            "line": 177,
             "description": "Update data in tree.",
             "itemtype": "method",
             "name": "dataNotUsedAttributesTreeObserver",
@@ -3993,7 +4445,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 187,
+            "line": 235,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -4006,7 +4458,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 197,
+            "line": 245,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -4019,7 +4471,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 207,
+            "line": 255,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -4032,7 +4484,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 217,
+            "line": 265,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -4045,7 +4497,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 227,
+            "line": 275,
             "description": "An array in the container of the selected item.",
             "access": "private",
             "tagname": "",
@@ -4059,7 +4511,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 242,
+            "line": 290,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -4072,7 +4524,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 259,
+            "line": 307,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -4085,7 +4537,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 276,
+            "line": 324,
             "description": "The selected item.",
             "itemtype": "property",
             "name": "selectedItem",
@@ -4096,7 +4548,130 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 285,
+            "line": 332,
+            "itemtype": "property",
+            "name": "implementations",
+            "type": "Ember.NativeArray",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 338,
+            "itemtype": "property",
+            "name": "attributes",
+            "type": "Ember.NativeArray",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 346,
+            "itemtype": "property",
+            "name": "masters",
+            "type": "Ember.NativeArray",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 354,
+            "itemtype": "property",
+            "name": "details",
+            "type": "Ember.NativeArray",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 362,
+            "itemtype": "property",
+            "name": "mastersType",
+            "type": "Ember.NativeArray",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 370,
+            "itemtype": "property",
+            "name": "detailsType",
+            "type": "Ember.NativeArray",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 383,
+            "itemtype": "property",
+            "name": "simpleTypes",
+            "type": "Ember.NativeArray",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 391,
+            "itemtype": "property",
+            "name": "typemap",
+            "type": "Ember.NativeArray",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 401,
+            "itemtype": "property",
+            "name": "enums",
+            "type": "Ember.NativeArray",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 409,
+            "itemtype": "property",
+            "name": "types",
+            "type": "Ember.NativeArray",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 417,
+            "description": "An object with all (including inherited) the attributes, associations and aggregations for the this form data object.",
+            "itemtype": "property",
+            "name": "dataObjectProperties",
+            "type": "Object",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 432,
+            "description": "The controls tree created from a view definition.",
+            "itemtype": "property",
+            "name": "controlsTree",
+            "readonly": "",
+            "type": "Ember.NativeArray",
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 457,
             "description": "Adds a new control to the form, if there is a selected item, the control will be added to it.",
             "itemtype": "method",
             "name": "actions.addControl",
@@ -4106,7 +4681,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 326,
+            "line": 496,
             "description": "Adds a new empty control to the form, if there is a selected item, the empty control will be added to it.",
             "itemtype": "method",
             "name": "actions.addEmptyControl",
@@ -4116,7 +4691,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 346,
+            "line": 516,
             "description": "Adds a new group to the form, if there is a selected item, the group will be added to it.",
             "itemtype": "method",
             "name": "actions.addGroup",
@@ -4126,7 +4701,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 358,
+            "line": 528,
             "description": "Adds a new tab to the form, if there is a selected item, the tab will be added to it.",
             "itemtype": "method",
             "name": "actions.addTab",
@@ -4136,7 +4711,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 370,
+            "line": 540,
             "description": "Removes the selected item.",
             "itemtype": "method",
             "name": "actions.removeSelectedItem",
@@ -4153,7 +4728,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 395,
+            "line": 559,
             "description": "Sorts the selected item in its container.",
             "itemtype": "method",
             "name": "actions.sortSelectedItem",
@@ -4170,7 +4745,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 410,
+            "line": 574,
             "description": "Close edit form constructor and go to application structure constructor.",
             "itemtype": "method",
             "name": "actions.close",
@@ -4180,7 +4755,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 419,
+            "line": 583,
             "description": "Set the selected item.",
             "itemtype": "method",
             "name": "actions.selectItem",
@@ -4197,7 +4772,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 452,
+            "line": 616,
             "description": "Set the current dragged item.",
             "itemtype": "method",
             "name": "actions.setDragItem",
@@ -4214,7 +4789,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 462,
+            "line": 626,
             "description": "Get the current dragged item.",
             "itemtype": "method",
             "name": "actions.getDragItem",
@@ -4228,7 +4803,55 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 472,
+            "line": 636,
+            "description": "Returns an object with properties to render the component.",
+            "itemtype": "method",
+            "name": "actions.getComponentProperties",
+            "params": [
+                {
+                    "name": "propertyDefinition",
+                    "description": "Definition a property in a view.",
+                    "type": "FdViewAttributesProperty|FdViewAttributesMaster|FdViewAttributesDetail"
+                }
+            ],
+            "return": {
+                "description": "An object with properties for the component.",
+                "type": "Object"
+            },
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 647,
+            "description": "Shows the lookup form in modal dialog.",
+            "itemtype": "method",
+            "name": "actions.showLookup",
+            "params": [
+                {
+                    "name": "caption",
+                    "description": "Caption for the lookup form.",
+                    "type": "String"
+                },
+                {
+                    "name": "view",
+                    "description": "The view on which the table will be render in the lookup form.",
+                    "type": "FdDevViewModel"
+                },
+                {
+                    "name": "types",
+                    "description": "An array of types for the view.",
+                    "type": "Array"
+                }
+            ],
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 662,
             "description": "Move the current dragged item above or below relative to the passed item.",
             "itemtype": "method",
             "name": "actions.moveDragItem",
@@ -4250,7 +4873,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 502,
+            "line": 692,
             "description": "Saves the form's metadata.",
             "itemtype": "method",
             "name": "actions.save",
@@ -4267,7 +4890,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 524,
+            "line": 714,
             "description": "Set attribute in control.",
             "itemtype": "method",
             "name": "actions.setAttributeInControl",
@@ -4277,7 +4900,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 565,
+            "line": 755,
             "description": "Don't set attribute in control.",
             "itemtype": "method",
             "name": "actions.deleteEmptyControl",
@@ -4287,7 +4910,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 576,
+            "line": 766,
             "description": "Handles creating jsTree.",
             "itemtype": "method",
             "name": "actions.handleTreeDidBecomeReady",
@@ -4297,7 +4920,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 588,
+            "line": 778,
             "description": "Overridden action for jsTree 'openNode'.",
             "itemtype": "method",
             "name": "_openNodeTree",
@@ -4307,7 +4930,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 607,
+            "line": 797,
             "description": "Inserts an `item` into `container`, if `container` is `FdEditformControl`, `item` is inserted into the parent row after `container`.",
             "itemtype": "method",
             "name": "_insertItem",
@@ -4329,7 +4952,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 650,
+            "line": 840,
             "description": "Removes the specified item from the form.",
             "itemtype": "method",
             "name": "_removeItem",
@@ -4346,7 +4969,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 678,
+            "line": 868,
             "description": "Looks for a container that contains the item.",
             "itemtype": "method",
             "name": "_findItemContainer",
@@ -4358,7 +4981,7 @@
                 },
                 {
                     "name": "container",
-                    "description": "\n  The container from which to start the search, if not specified, uses `model.controls`.",
+                    "description": "\n  The container from which to start the search, if not specified, uses `controlsTree`.",
                     "type": "Ember.NativeArray|FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab",
                     "optional": true
                 }
@@ -4373,7 +4996,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 712,
+            "line": 902,
             "description": "Returns the item storage in the container.",
             "access": "private",
             "tagname": "",
@@ -4396,7 +5019,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 734,
+            "line": 924,
             "description": "Returns a row that can be added to the form.",
             "access": "private",
             "tagname": "",
@@ -4419,7 +5042,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 759,
+            "line": 949,
             "description": "Returns the control that can be added to a row.",
             "itemtype": "method",
             "name": "_getControl",
@@ -4440,7 +5063,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 781,
+            "line": 971,
             "description": "Checks whether the control is suitable for placement in a row.",
             "access": "private",
             "tagname": "",
@@ -4463,7 +5086,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 793,
+            "line": 983,
             "description": "Save editform metadata: dataobject attributes, view, editform class.",
             "itemtype": "method",
             "name": "_saveMetadata",
@@ -4472,47 +5095,24 @@
                     "name": "model",
                     "description": "Complex model for processing and save.",
                     "type": "Object"
+                },
+                {
+                    "name": "controlsTree",
+                    "description": "The controls tree.",
+                    "type": "Ember.NativeArray"
                 }
             ],
+            "return": {
+                "description": "",
+                "type": "Ember.RSVP.Promise"
+            },
             "class": "FdDraggableControlMixin",
             "module": "components",
             "namespace": "components"
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 861,
-            "description": "Extract path part from object model.",
-            "itemtype": "method",
-            "name": "_extractPathPart",
-            "params": [
-                {
-                    "name": "control",
-                    "description": "Some item in object model.",
-                    "type": "FdEditformControl|FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab"
-                },
-                {
-                    "name": "path",
-                    "description": "Path for current item.",
-                    "type": "String"
-                },
-                {
-                    "name": "viewDefinition",
-                    "description": "View definition with result paths for controls.",
-                    "type": "Ember.Array"
-                },
-                {
-                    "name": "column",
-                    "description": "Column path for current item.",
-                    "type": "String"
-                }
-            ],
-            "class": "FdDraggableControlMixin",
-            "module": "components",
-            "namespace": "components"
-        },
-        {
-            "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 917,
+            "line": 1048,
             "description": "Scrolls the form to the selected control with jQuery.",
             "access": "private",
             "tagname": "",
@@ -4524,7 +5124,144 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 930,
+            "line": 1061,
+            "description": "Returns an object with all (including inherited) the attributes, associations and aggregations for the class.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_getClassProperties",
+            "params": [
+                {
+                    "name": "clazz",
+                    "description": "The class for which to get the properties.",
+                    "type": "FdDevClassModel"
+                },
+                {
+                    "name": "inheritances",
+                    "description": "All inheritances.",
+                    "type": "Ember.NativeArray"
+                },
+                {
+                    "name": "associations",
+                    "description": "All associations.",
+                    "type": "Ember.NativeArray"
+                },
+                {
+                    "name": "aggregations",
+                    "description": "All aggregations.",
+                    "type": "Ember.NativeArray"
+                }
+            ],
+            "return": {
+                "description": "An object with properties for the class.",
+                "type": "Object"
+            },
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 1103,
+            "description": "Returns an object with properties to render the component.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_getComponentProperties",
+            "params": [
+                {
+                    "name": "propertyDefinition",
+                    "description": "Definition a property in a view.",
+                    "type": "FdViewAttributesProperty|FdViewAttributesMaster|FdViewAttributesDetail"
+                },
+                {
+                    "name": "dataObjectProperties",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "An object with properties for the component.",
+                "type": "Object"
+            },
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 1168,
+            "description": "Returns an array of types used in the view.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_getTypesForView",
+            "params": [
+                {
+                    "name": "view",
+                    "description": "A view for which types are needed.",
+                    "type": "FdDevViewModel"
+                }
+            ],
+            "return": {
+                "description": "An array of types used in the view.",
+                "type": "Array"
+            },
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 1194,
+            "description": "Create tree.",
+            "itemtype": "method",
+            "name": "_buildTree",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "Data for tree.",
+                    "type": "Array"
+                },
+                {
+                    "name": "type",
+                    "description": "Type for tree.",
+                    "type": "String"
+                },
+                {
+                    "name": "nodeId",
+                    "description": "Flag need add in object node id.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "Object data for tree.",
+                "type": "Object"
+            },
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 1231,
+            "description": "Looks for width in the path",
+            "itemtype": "method",
+            "name": "_getWidth",
+            "params": [
+                {
+                    "name": "path",
+                    "description": "Property path from view.",
+                    "type": "String"
+                }
+            ],
+            "class": "FdDraggableControlMixin",
+            "module": "components",
+            "namespace": "components"
+        },
+        {
+            "file": "addon/controllers/fd-editform-constructor.js",
+            "line": 1250,
             "description": "Destroys helper.",
             "class": "FdDraggableControlMixin",
             "module": "components",
@@ -9040,7 +9777,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 18,
+            "line": 10,
             "description": "See [EmberJS API](https://emberjs.com/).",
             "itemtype": "method",
             "name": "actions.didTransition",
@@ -9049,7 +9786,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 126,
+            "line": 63,
             "description": "A hook you can use to setup the controller for the current route.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).",
             "itemtype": "method",
             "name": "setupController",
@@ -9070,7 +9807,7 @@
         },
         {
             "file": "addon/routes/fd-editform-constructor.js",
-            "line": 140,
+            "line": 80,
             "description": "A hook you can use to reset controller values either when the model changes or the route is exiting.\n[More info](http://emberjs.com/api/classes/Ember.Route.html#method_resetController).",
             "itemtype": "method",
             "name": "resetController",
@@ -9091,197 +9828,6 @@
                     "type": "Object"
                 }
             ],
-            "class": "FdCurrentProjectContextService",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/routes/fd-editform-constructor.js",
-            "line": 166,
-            "description": "Locate control by path.",
-            "itemtype": "method",
-            "name": "_locateControl",
-            "params": [
-                {
-                    "name": "controlTree",
-                    "description": "Controls tree.",
-                    "type": "Object"
-                },
-                {
-                    "name": "propertyDefinition",
-                    "description": "Property definition from view.",
-                    "type": "FdDefinition"
-                },
-                {
-                    "name": "path",
-                    "description": "Property path from view.",
-                    "type": "String"
-                }
-            ],
-            "return": {
-                "description": "Modified controlTree with placed control.",
-                "type": "Object"
-            },
-            "class": "FdCurrentProjectContextService",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/routes/fd-editform-constructor.js",
-            "line": 205,
-            "description": "Locate control in row by path.",
-            "itemtype": "method",
-            "name": "_locateControlInRow",
-            "params": [
-                {
-                    "name": "row",
-                    "description": "Row for control placement.",
-                    "type": "FdEditformRow"
-                },
-                {
-                    "name": "propertyDefinition",
-                    "description": "Property definition from view.",
-                    "type": "FdDefinition"
-                }
-            ],
-            "return": {
-                "description": "Modified controlTree with placed control.",
-                "type": "Object"
-            },
-            "class": "FdCurrentProjectContextService",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/routes/fd-editform-constructor.js",
-            "line": 229,
-            "description": "Locate tabs for control.",
-            "itemtype": "method",
-            "name": "_locateTabs",
-            "params": [
-                {
-                    "name": "controlTree",
-                    "description": "Controls tree.",
-                    "type": "Object"
-                },
-                {
-                    "name": "propertyDefinition",
-                    "description": "Property definition from view.",
-                    "type": "FdDefinition"
-                },
-                {
-                    "name": "path",
-                    "description": "Property path from view.",
-                    "type": "String"
-                }
-            ],
-            "return": {
-                "description": "Modified controlTree with placed tabs.",
-                "type": "Object"
-            },
-            "class": "FdCurrentProjectContextService",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/routes/fd-editform-constructor.js",
-            "line": 301,
-            "description": "Locate group for control.",
-            "itemtype": "method",
-            "name": "_locateGroup",
-            "params": [
-                {
-                    "name": "controlTree",
-                    "description": "Controls tree.",
-                    "type": "Object"
-                },
-                {
-                    "name": "propertyDefinition",
-                    "description": "Property definition from view.",
-                    "type": "FdDefinition"
-                },
-                {
-                    "name": "path",
-                    "description": "Property path from view.",
-                    "type": "String"
-                }
-            ],
-            "return": {
-                "description": "Modified controlTree with placed group.",
-                "type": "Object"
-            },
-            "class": "FdCurrentProjectContextService",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/routes/fd-editform-constructor.js",
-            "line": 361,
-            "description": "Locate column for control.",
-            "itemtype": "method",
-            "name": "_locateColumn",
-            "params": [
-                {
-                    "name": "controlTree",
-                    "description": "Controls tree.",
-                    "type": "Object"
-                },
-                {
-                    "name": "propertyDefinition",
-                    "description": "Property definition from view.",
-                    "type": "FdDefinition"
-                },
-                {
-                    "name": "path",
-                    "description": "Property path from view.",
-                    "type": "String"
-                }
-            ],
-            "return": {
-                "description": "Modified controlTree with placed column.",
-                "type": "Object"
-            },
-            "class": "FdCurrentProjectContextService",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/routes/fd-editform-constructor.js",
-            "line": 420,
-            "description": "Looks for width in the path",
-            "itemtype": "method",
-            "name": "_getWidth",
-            "params": [
-                {
-                    "name": "path",
-                    "description": "Property path from view.",
-                    "type": "String"
-                }
-            ],
-            "class": "FdCurrentProjectContextService",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/routes/fd-editform-constructor.js",
-            "line": 439,
-            "description": "Create tree.",
-            "itemtype": "method",
-            "name": "_buildTree",
-            "params": [
-                {
-                    "name": "data",
-                    "description": "Data for tree.",
-                    "type": "Array"
-                },
-                {
-                    "name": "type",
-                    "description": "Type for tree.",
-                    "type": "String"
-                },
-                {
-                    "name": "nodeId",
-                    "description": "Flag need add in object node id.",
-                    "type": "Boolean"
-                }
-            ],
-            "return": {
-                "description": "Object data for tree.",
-                "type": "Object"
-            },
             "class": "FdCurrentProjectContextService",
             "module": "ember-flexberry-designer"
         },
@@ -10519,6 +11065,191 @@
             },
             "class": "",
             "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/utils/fd-view-path-functions.js",
+            "line": 13,
+            "description": "Creates a view definition from the controls tree.",
+            "itemtype": "method",
+            "name": "controlsToDefinition",
+            "params": [
+                {
+                    "name": "controlsTree",
+                    "description": "The controls tree.",
+                    "type": "Ember.NativeArray"
+                }
+            ],
+            "return": {
+                "description": "An array of view items.",
+                "type": "Ember.NativeArray"
+            },
+            "class": "",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/utils/fd-view-path-functions.js",
+            "line": 30,
+            "description": "Locates control in the controls tree by path.",
+            "itemtype": "method",
+            "name": "locateControlByPath",
+            "params": [
+                {
+                    "name": "controlsTree",
+                    "description": "The controls tree.",
+                    "type": "Ember.NativeArray|FdEditformGroup|FdEditformTab"
+                },
+                {
+                    "name": "control",
+                    "description": "The control.",
+                    "type": "FdEditformControl"
+                },
+                {
+                    "name": "path",
+                    "description": "The path on which the control will be located in the form.",
+                    "type": "String"
+                }
+            ],
+            "class": "",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/utils/fd-view-path-functions.js",
+            "line": 62,
+            "description": "Adds a view item to the definition and updates its path by its location in the controls tree.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "extractControlPath",
+            "params": [
+                {
+                    "name": "definition",
+                    "description": "An array of view items.",
+                    "type": "Ember.NativeArray"
+                },
+                {
+                    "name": "control",
+                    "description": "The control from the controls tree.",
+                    "type": "FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab"
+                },
+                {
+                    "name": "path",
+                    "description": "The path of the current view item.",
+                    "type": "String",
+                    "optional": true
+                },
+                {
+                    "name": "column",
+                    "description": "Part of the path describing the column of the current view item.",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/utils/fd-view-path-functions.js",
+            "line": 110,
+            "description": "Locates control in the tab group.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "locateInTabs",
+            "params": [
+                {
+                    "name": "controlsTree",
+                    "description": "The controls tree.",
+                    "type": "Ember.NativeArray|FdEditformGroup|FdEditformTab"
+                },
+                {
+                    "name": "control",
+                    "description": "The control.",
+                    "type": "FdEditformControl"
+                },
+                {
+                    "name": "path",
+                    "description": "A string describing the path beginning with the tabs.",
+                    "type": "String"
+                }
+            ],
+            "class": "",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/utils/fd-view-path-functions.js",
+            "line": 153,
+            "description": "Locates control in group.",
+            "itemtype": "method",
+            "name": "locateInGroup",
+            "params": [
+                {
+                    "name": "controlsTree",
+                    "description": "The controls tree.",
+                    "type": "Ember.NativeArray|FdEditformGroup|FdEditformTab"
+                },
+                {
+                    "name": "control",
+                    "description": "The control.",
+                    "type": "FdEditformControl"
+                },
+                {
+                    "name": "path",
+                    "description": "A string describing the path beginning with the group.",
+                    "type": "String"
+                }
+            ],
+            "class": "",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/utils/fd-view-path-functions.js",
+            "line": 188,
+            "description": "Locates control in column.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "locateInColumn",
+            "params": [
+                {
+                    "name": "controlsTree",
+                    "description": "The controls tree.",
+                    "type": "Ember.NativeArray|FdEditformGroup|FdEditformTab"
+                },
+                {
+                    "name": "control",
+                    "description": "The control.",
+                    "type": "FdEditformControl"
+                },
+                {
+                    "name": "path",
+                    "description": "A string describing the column in which the control should be located.",
+                    "type": "String"
+                }
+            ],
+            "class": "",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/utils/fd-view-path-functions.js",
+            "line": 210,
+            "description": "Returns an array of rows in the controls tree.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "getRows",
+            "params": [
+                {
+                    "name": "controlsTree",
+                    "description": "The controls tree.",
+                    "type": "Ember.NativeArray|FdEditformGroup|FdEditformTab"
+                }
+            ],
+            "return": {
+                "description": "An array of rows in the controls tree.",
+                "type": "Ember.NativeArray"
+            },
+            "class": "",
+            "module": "ember-flexberry-designer"
         }
     ],
     "warnings": [
@@ -10532,7 +11263,7 @@
         },
         {
             "message": "Missing item type\nDestroys helper.",
-            "line": " addon/controllers/fd-editform-constructor.js:930"
+            "line": " addon/controllers/fd-editform-constructor.js:1250"
         },
         {
             "message": "Missing item type\nDestroys helper.",

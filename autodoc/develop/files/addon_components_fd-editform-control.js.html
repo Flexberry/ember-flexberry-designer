@@ -26,7 +26,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdAppStructTree", "classes/FdAttributesTree", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdLimitByStageMixin", "classes/FdListformColumn", "classes/FdLoadingForTransitionMixin", "classes/FdUmlAssociation", "classes/FdUmlClass", "classes/FdUmlComposition", "classes/FdUmlDiagramComponent", "classes/FdUmlElement", "classes/FdUmlGeneralization", "classes/FdUmlLink", "classes/FdUmlPrimitive", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdAppStructTree", "classes/FdAttributesTree", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdFileComponent", "classes/FdGroupeditComponent", "classes/FdLimitByStageMixin", "classes/FdListformColumn", "classes/FdLoadingForTransitionMixin", "classes/FdLookupComponent", "classes/FdObjectListViewComponent", "classes/FdObjectlistviewComponent", "classes/FdUmlAssociation", "classes/FdUmlClass", "classes/FdUmlComposition", "classes/FdUmlDiagramComponent", "classes/FdUmlElement", "classes/FdUmlGeneralization", "classes/FdUmlLink", "classes/FdUmlPrimitive", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
         </form>
     </div>
 </div>
@@ -61,9 +61,14 @@
 	                            <li><a href="../classes/FdEditformRowComponent.html">FdEditformRowComponent</a></li>
 	                            <li><a href="../classes/FdEditformTab.html">FdEditformTab</a></li>
 	                            <li><a href="../classes/FdEditformTabgroup.html">FdEditformTabgroup</a></li>
+	                            <li><a href="../classes/FdFileComponent.html">FdFileComponent</a></li>
+	                            <li><a href="../classes/FdGroupeditComponent.html">FdGroupeditComponent</a></li>
 	                            <li><a href="../classes/FdLimitByStageMixin.html">FdLimitByStageMixin</a></li>
 	                            <li><a href="../classes/FdListformColumn.html">FdListformColumn</a></li>
 	                            <li><a href="../classes/FdLoadingForTransitionMixin.html">FdLoadingForTransitionMixin</a></li>
+	                            <li><a href="../classes/FdLookupComponent.html">FdLookupComponent</a></li>
+	                            <li><a href="../classes/FdObjectListViewComponent.html">FdObjectListViewComponent</a></li>
+	                            <li><a href="../classes/FdObjectlistviewComponent.html">FdObjectlistviewComponent</a></li>
 	                            <li><a href="../classes/FdUmlAssociation.html">FdUmlAssociation</a></li>
 	                            <li><a href="../classes/FdUmlClass.html">FdUmlClass</a></li>
 	                            <li><a href="../classes/FdUmlComposition.html">FdUmlComposition</a></li>
@@ -143,6 +148,66 @@ import FdEditformTabgroup from &#x27;../objects/fd-editform-tabgroup&#x27;;
 */
 export default Ember.Component.extend(FdDraggableControlMixin, {
   /**
+    An object in the format &#x60;{ &#x27;typeName&#x27;: &#x27;componentName&#x27; }&#x60;, which describes which components should be rendered for each type.
+
+    @private
+    @property _componentsTypeMap
+    @type Object
+  */
+  _componentsTypeMap: {
+    &#x27;bool&#x27;: &#x27;flexberry-checkbox&#x27;,
+    &#x27;System.Boolean&#x27;: &#x27;flexberry-checkbox&#x27;,
+
+    &#x27;DateTime&#x27;: &#x27;flexberry-datetime&#x27;,
+    &#x27;System.DateTime&#x27;: &#x27;flexberry-datetime&#x27;,
+    &#x27;ICSSoft.STORMNET.UserDataTypes.NullableDateTime&#x27;: &#x27;flexberry-datetime&#x27;,
+
+    &#x27;ICSSoft.STORMNET.UserDataTypes.WebFile&#x27;: &#x27;fd-file&#x27;,
+
+    &#x27;char&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;System.Char&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;string&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;System.String&#x27;: &#x27;flexberry-textbox&#x27;,
+
+    &#x27;byte&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;System.Byte&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;sbyte&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;System.SByte&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;short&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;System.Int16&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;ushort&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;System.UInt16&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;int&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;System.Int32&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;uint&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;System.UInt32&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;long&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;System.Int64&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;ulong&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;System.UInt64&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;ICSSoft.STORMNET.UserDataTypes.NullableInt&#x27;: &#x27;flexberry-textbox&#x27;,
+
+    &#x27;float&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;System.Single&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;double&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;System.Double&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;decimal&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;System.Decimal&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;ICSSoft.STORMNET.UserDataTypes.NullableDecimal&#x27;: &#x27;flexberry-textbox&#x27;,
+
+    &#x27;object&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;System.Object&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;guid&#x27;: &#x27;flexberry-textbox&#x27;,
+    &#x27;System.Guid&#x27;: &#x27;flexberry-textbox&#x27;,
+
+    &#x27;enumeration&#x27;: &#x27;flexberry-dropdown&#x27;,
+    &#x27;master&#x27;: &#x27;fd-lookup&#x27;,
+    &#x27;detail&#x27;: &#x27;fd-groupedit&#x27;,
+
+    &#x27;default&#x27;: &#x27;flexberry-textbox&#x27;,
+  },
+
+  /**
     The passed control is a simple control.
 
     @private
@@ -179,18 +244,31 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
   }).readOnly(),
 
   /**
-    Type of rendered component.
+    The name of the component that will be rendered for this control.
 
     @private
-    @property _component
+    @property _componentName
     @readOnly
     @type String
   */
-  _component: Ember.computed(&#x27;control.type&#x27;, function() {
-    switch (this.get(&#x27;control.type&#x27;)) {
-      case &#x27;date&#x27;: return &#x27;flexberry-datepicker&#x27;;
-      case &#x27;bool&#x27;: return &#x27;flexberry-checkbox&#x27;;
-      default: return &#x27;flexberry-textbox&#x27;;
+  _componentName: Ember.computed(&#x27;_componentProperties.type&#x27;, function() {
+    return this.get(&#x27;_componentsTypeMap&#x27;)[this.get(&#x27;_componentProperties.type&#x27;)];
+  }).readOnly(),
+
+  /**
+    An object with properties for rendering the component.
+
+    @private
+    @property _componentProperties
+    @readOnly
+    @type Object
+  */
+  _componentProperties: Ember.computed(&#x27;control.propertyDefinition.name&#x27;, &#x27;control.propertyDefinition.detailViewName&#x27;, function() {
+    let propertyDefinition = this.get(&#x27;control.propertyDefinition&#x27;);
+    if (propertyDefinition) {
+      return this.get(&#x27;getComponentPropertiesAction&#x27;)(propertyDefinition);
+    } else {
+      return { type: &#x27;default&#x27; };
     }
   }).readOnly(),
 
