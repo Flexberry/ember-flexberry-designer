@@ -12,31 +12,8 @@ export default ListFormController.extend({
 
   actions: {
     onRowClick(record) {
-      let editFormRoute;
-      switch (record.data.stereotype) {
-        case '«listform»':
-          editFormRoute = 'fd-listform-constructor';
-          this.transitionToRoute(editFormRoute, {
-            queryParams: {
-              form: record.id,
-              class: undefined,
-            },
-          });
-          break;
-        case '«editform»':
-          editFormRoute = 'fd-editform-constructor';
-          this.transitionToRoute(editFormRoute, record.id);
-          break;
-        case '«typedef»':
-          editFormRoute = 'fd-typedef-edit-form';
-          this.transitionToRoute(editFormRoute, record.id);
-          break;
-        default:
-          editFormRoute = this.get('editFormRoute');
-          this.transitionToRoute(editFormRoute, record.id);
-          break;
-      }
+      let editFormRoute = this.get('editFormRoute');
+      this.transitionToRoute(editFormRoute, record.id);
     }
-
   }
 });

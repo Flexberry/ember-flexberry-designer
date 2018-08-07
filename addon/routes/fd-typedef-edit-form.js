@@ -14,7 +14,7 @@ export default EditFormRoute.extend({
     let transitionMap = {
       '«application»': 'fd-application-edit-form',
       '«businessserver»': 'fd-business-server-edit-form',
-      '«editform»': 'fd-edit-form-edit-form',
+      '«editform»': 'fd-editform-constructor',
       '«enumeration»': 'fd-enum-edit-form',
       '«external»': 'fd-external-edit-form',
       '«interface»': 'fd-interface-edit-form',
