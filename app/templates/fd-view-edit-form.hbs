@@ -133,14 +133,22 @@
 
 {{#fd-config-panel}}
 
-  {{#fd-tabs tabsMenuTheme="vertical tabular" class="ui segments horizontal right-tabs"}}
+  {{#fd-tabs 
+    tabsMenuTheme="vertical tabular"
+    class="ui segments horizontal right-tabs"
+    tabClick = (action "toggleConfigPanel")
+    overflowedTabs=false
+    inactiveTabs=true
+    activeTab="none"
+    as |tab|
+  }}
     <form class="ui form segment">
       <div class="ui segment">
         <div class="ui large header">
           {{t "forms.fd-view-edit-form.form-config-panel.caption"}}
         </div>
       </div>
-      {{#ui-tab-segment tab='first' title=(t "forms.fd-view-edit-form.form-config-panel.view-properties-header") theme="" active=true}}
+      {{#tab.pane dataTab='first' title=(t "forms.fd-view-edit-form.form-config-panel.view-properties-header") theme=""}}
         <div class="field">
           {{
             flexberry-field
@@ -163,8 +171,8 @@
           }}
           {{flexberry-validationmessage error=model.errors.description pointing="pointing"}}
         </div>
-      {{/ui-tab-segment}}
-      {{#ui-tab-segment tab='active-tree-tab' title=(t "forms.fd-view-edit-form.form-config-panel.attribute-properties-header") theme=""}}
+      {{/tab.pane}}
+      {{#tab.pane dataTab='active-tree-tab' title=(t "forms.fd-view-edit-form.form-config-panel.attribute-properties-header") theme=""}}
         {{#if  (eq selectedRowIndex null)}}
           <div class="ui info message">
             <div class="header">
@@ -258,7 +266,7 @@
             </div>
           </div>
         {{/if}}
-      {{/ui-tab-segment}}
+      {{/tab.pane}}
     </form>
   {{/fd-tabs}}
 

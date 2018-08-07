@@ -184,6 +184,25 @@
   margin: 0;
 }
 
+// overflowed tabs dropdown
+.ui.selection.dropdown.overflovwed-dropdown{
+  border: none;
+  border-bottom: none;
+  margin-left: auto;
+  min-width: 0px;
+
+  .menu{
+    width: auto;
+    left: auto;
+    right: 0;
+    border-top-width: 1px !important;
+
+    .item{
+      white-space: nowrap;
+    }
+  }
+}
+
 @-moz-document url-prefix() {
   @media screen and (max-width: 1030px) {
     .panel-wrapper{

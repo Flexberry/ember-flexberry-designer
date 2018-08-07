@@ -20,10 +20,11 @@ import {
  } from '../utils/fd-attributes-for-tree';
 import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
+import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 import { controlsToDefinition, locateControlByPath } from '../utils/fd-view-path-functions';
 import FdDataTypes from '../utils/fd-datatypes';
 
-export default Ember.Controller.extend({
+export default Ember.Controller.extend(FdWorkPanelToggler, {
   queryParams: ['classId'],
 
   /**

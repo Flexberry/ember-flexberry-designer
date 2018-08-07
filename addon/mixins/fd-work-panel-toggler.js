@@ -12,7 +12,7 @@ export default Ember.Mixin.create({
 
     toggleConfigPanel(currentTab, currentAttr = -1) {
       let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
-      let toggleconfigPanel = this.prevTab[0] === currentTab;
+      let toggleconfigPanel = this.prevTab[0] ? this.prevTab[0].dataTab === currentTab.dataTab : false;
       if (currentAttr !== -1) {
         toggleconfigPanel = this.prevAttr === currentAttr && toggleconfigPanel;
         this.prevAttr = currentAttr;
@@ -31,6 +31,11 @@ export default Ember.Mixin.create({
         }).sidebar('toggle');
         configPanelSidebar.removeClass('overlay');
         this.send('workPlaceConfig');
+
+        // For reinit overflowed tabs.
+        Ember.run.later(this, function() {
+          Ember.$(window).trigger('resize');
+        }, 500);
       }
 
       Ember.run.next(function() {
@@ -39,7 +44,6 @@ export default Ember.Mixin.create({
           Ember.$('.ui.form', configPanelSidebar).find('.tab').removeClass('active');
         }
       });
-
     },
 
     workPlaceConfig(isMainSidebar = false) {

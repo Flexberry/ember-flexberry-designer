@@ -229,6 +229,11 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       Ember.$('.inverted.vertical.main.menu').removeClass('overlay');
 
       this.send('workPlaceConfig', true);
+
+      // For reinit overflowed tabs.
+      Ember.run.later(this, function() {
+        Ember.$(window).trigger('resize');
+      }, 500);
     },
 
     toggleSidebarMobile() {
