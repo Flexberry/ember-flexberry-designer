@@ -915,7 +915,7 @@ define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-de
     }
   });
 });
-define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', 'npm:jointjs'], function (exports, _ember, _npmJointjs) {
+define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', 'npm:jointjs', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-class'], function (exports, _ember, _npmJointjs, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlClass) {
   exports['default'] = _ember['default'].Controller.extend({
     actions: {
       printDiagram: function printDiagram() {
@@ -1025,14 +1025,14 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
         var attributes = ['attr1', 'attr2'];
         var methods = ['method1'];
 
-        var classWithoutStp = new _npmJointjs['default'].shapes.flexberryUml.Class({
+        var classWithoutStp = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlClass.Class({
           position: { x: 350, y: 30 },
           name: 'Class1',
           attributes: attributes,
           methods: methods
         });
 
-        var classCollapsed = new _npmJointjs['default'].shapes.flexberryUml.ClassCollapsed({
+        var classCollapsed = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlClass.ClassCollapsed({
           position: { x: 450, y: 30 },
           size: { width: 100 },
           name: 'ClassCollapsed',
@@ -1040,7 +1040,7 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
           methods: methods
         });
 
-        var classWithStp = new _npmJointjs['default'].shapes.flexberryUml.Class({
+        var classWithStp = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlClass.Class({
           position: { x: 350, y: 150 },
           name: 'Class2textextext',
           stereotype: 'enumeration',
@@ -51060,7 +51060,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+4e857259"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+7eed172f"});
 }
 
 /* jshint ignore:end */

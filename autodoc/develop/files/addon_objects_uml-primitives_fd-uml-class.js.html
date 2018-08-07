@@ -26,7 +26,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Components.Tab", "classes/Components.TabPane", "classes/components.UiTabMenu", "classes/FdAppStructTree", "classes/FdAttributesTree", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdFileComponent", "classes/FdGroupeditComponent", "classes/FdLimitByStageMixin", "classes/FdListformColumn", "classes/FdLoadingForTransitionMixin", "classes/FdLookupComponent", "classes/FdObjectlistviewComponent", "classes/FdObjectListViewComponent", "classes/FdUmlAssociation", "classes/FdUmlClass", "classes/FdUmlComposition", "classes/FdUmlDiagramComponent", "classes/FdUmlElement", "classes/FdUmlGeneralization", "classes/FdUmlLink", "classes/FdUmlPrimitive", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Components.Tab", "classes/Components.TabPane", "classes/components.UiTabMenu", "classes/FdAppStructTree", "classes/FdAttributesTree", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdFileComponent", "classes/FdGroupeditComponent", "classes/FdLimitByStageMixin", "classes/FdListformColumn", "classes/FdLoadingForTransitionMixin", "classes/FdLookupComponent", "classes/FdObjectlistviewComponent", "classes/FdObjectListViewComponent", "classes/FdUmlAssociation", "classes/FdUmlClass", "classes/FdUmlComposition", "classes/FdUmlDiagramComponent", "classes/FdUmlElement", "classes/FdUmlGeneralization", "classes/FdUmlLink", "classes/FdUmlPrimitive", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/flexberry.uml.Class", "classes/flexberry.uml.ClassCollapsed", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
         </form>
     </div>
 </div>
@@ -81,6 +81,8 @@
 	                            <li><a href="../classes/FdViewAttributesDetail.html">FdViewAttributesDetail</a></li>
 	                            <li><a href="../classes/FdViewAttributesMaster.html">FdViewAttributesMaster</a></li>
 	                            <li><a href="../classes/FdViewAttributesProperty.html">FdViewAttributesProperty</a></li>
+	                            <li><a href="../classes/flexberry.uml.Class.html">flexberry.uml.Class</a></li>
+	                            <li><a href="../classes/flexberry.uml.ClassCollapsed.html">flexberry.uml.ClassCollapsed</a></li>
 	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">NewPlatformFlexberryFlexberryDesignerVisualEditControl</a></li>
 	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">NewPlatformFlexberryFlexberryDesignerVisualEditForm</a></li>
 	                    </ul>
@@ -135,6 +137,8 @@
 
 import Ember from &#x27;ember&#x27;;
 import joint from &#x27;npm:jointjs&#x27;;
+
+import &#x27;../../utils/fd-common-primitives&#x27;;
 
 import FdUmlElement from &#x27;./fd-uml-element&#x27;;
 
@@ -197,11 +201,53 @@ export default FdUmlElement.extend({
   JointJS() {
     let properties = this.getProperties(&#x27;id&#x27;, &#x27;name&#x27;, &#x27;stereotype&#x27;, &#x27;size&#x27;, &#x27;position&#x27;, &#x27;methods&#x27;, &#x27;attributes&#x27;);
     if (this.get(&#x27;collapsed&#x27;)) {
-      return new joint.shapes.flexberryUml.ClassCollapsed(properties);
+      return new ClassCollapsed(properties);
     } else {
-      return new joint.shapes.flexberryUml.Class(properties);
+      return new Class(properties);
     }
   },
+});
+
+/**
+  Defines the JointJS element, which represents the UML class in the diagram.
+
+  @for FdUmlClass
+  @class Class
+  @extends flexberryUml.BaseClass
+  @namespace flexberry.uml
+  @constructor
+*/
+export let Class = joint.shapes.flexberryUml.BaseClass.define(&#x27;flexberry.uml.Class&#x27;, {
+  attrs: {
+    &#x27;.flexberry-uml-header-text&#x27;: { &#x27;font-weight&#x27;: &#x27;bold&#x27; },
+    &#x27;.flexberry-uml-header-text tspan[x]&#x27;: { &#x27;font-weight&#x27;: &#x27;normal&#x27; },
+  },
+
+  stereotype: [],
+}, {
+  getClassName() {
+    return [this.get(&#x27;name&#x27;), this.get(&#x27;stereotype&#x27;)];
+  },
+});
+
+/**
+  Defines the JointJS element, which represents the UML class in collapsed state.
+
+  @for FdUmlClass
+  @class ClassCollapsed
+  @extends flexberry.uml.Class
+  @namespace flexberry.uml
+  @constructor
+*/
+export let ClassCollapsed = Class.define(&#x27;flexberry.uml.ClassCollapsed&#x27;, {}, {
+  markup: [
+    &#x27;&lt;g class=&quot;rotatable&quot;&gt;&#x27;,
+    &#x27;&lt;g class=&quot;scalable&quot;&gt;&#x27;,
+    &#x27;&lt;rect class=&quot;flexberry-uml-header-rect&quot;/&gt;&#x27;,
+    &#x27;&lt;/g&gt;&#x27;,
+    &#x27;&lt;text class=&quot;flexberry-uml-header-text&quot;/&gt;&#x27;,
+    &#x27;&lt;/g&gt;&#x27;
+  ].join(&#x27;&#x27;)
 });
 
     </pre>

@@ -35,7 +35,9 @@ YUI.add("yuidoc-meta", function(Y) {
         "FdViewAttributesProperty",
         "NewPlatformFlexberryFlexberryDesignerVisualEditControl",
         "NewPlatformFlexberryFlexberryDesignerVisualEditForm",
-        "components.UiTabMenu"
+        "components.UiTabMenu",
+        "flexberry.uml.Class",
+        "flexberry.uml.ClassCollapsed"
     ],
     "modules": [
         "components",

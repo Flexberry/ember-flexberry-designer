@@ -507,10 +507,16 @@
             "name": "addon/objects/uml-primitives/fd-uml-class.js",
             "modules": {},
             "classes": {
+                "FdUmlClass": 1,
+                "flexberry.uml.Class": 1,
+                "flexberry.uml.ClassCollapsed": 1
+            },
+            "fors": {
                 "FdUmlClass": 1
             },
-            "fors": {},
-            "namespaces": {}
+            "namespaces": {
+                "flexberry.uml": 1
+            }
         },
         "addon/objects/uml-primitives/fd-uml-composition.js": {
             "name": "addon/objects/uml-primitives/fd-uml-composition.js",
@@ -1361,6 +1367,8 @@
                 "NewPlatformFlexberryFlexberryDesignerVisualEditForm": 1,
                 "FdUmlAssociation": 1,
                 "FdUmlClass": 1,
+                "flexberry.uml.Class": 1,
+                "flexberry.uml.ClassCollapsed": 1,
                 "FdUmlComposition": 1,
                 "FdUmlElement": 1,
                 "FdUmlGeneralization": 1,
@@ -1379,9 +1387,12 @@
                 "FdViewAttributesProperty": 1,
                 "FdCurrentProjectContextService": 1
             },
-            "fors": {},
+            "fors": {
+                "FdUmlClass": 1
+            },
             "namespaces": {
-                "Components": 1
+                "Components": 1,
+                "flexberry.uml": 1
             },
             "tag": "module",
             "file": "addon/services/fd-current-project-context.js",
@@ -1695,9 +1706,41 @@
             "module": "ember-flexberry-designer",
             "namespace": "",
             "file": "addon/objects/uml-primitives/fd-uml-class.js",
-            "line": 10,
+            "line": 12,
             "description": "An object that describes a class on the UML diagram.",
             "extends": "FdUmlObject"
+        },
+        "flexberry.uml.Class": {
+            "name": "flexberry.uml.Class",
+            "shortname": "flexberry.uml.Class",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "flexberry.uml",
+            "file": "addon/objects/uml-primitives/fd-uml-class.js",
+            "line": 78,
+            "description": "Defines the JointJS element, which represents the UML class in the diagram.",
+            "extends": "flexberryUml.BaseClass",
+            "is_constructor": 1
+        },
+        "flexberry.uml.ClassCollapsed": {
+            "name": "flexberry.uml.ClassCollapsed",
+            "shortname": "flexberry.uml.ClassCollapsed",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "flexberry.uml",
+            "file": "addon/objects/uml-primitives/fd-uml-class.js",
+            "line": 100,
+            "description": "Defines the JointJS element, which represents the UML class in collapsed state.",
+            "extends": "flexberry.uml.Class",
+            "is_constructor": 1
         },
         "FdUmlComposition": {
             "name": "FdUmlComposition",
@@ -8797,7 +8840,7 @@
         },
         {
             "file": "addon/objects/uml-primitives/fd-uml-class.js",
-            "line": 17,
+            "line": 19,
             "description": "The name of the class.",
             "itemtype": "property",
             "name": "name",
@@ -8807,7 +8850,7 @@
         },
         {
             "file": "addon/objects/uml-primitives/fd-uml-class.js",
-            "line": 25,
+            "line": 27,
             "description": "Stereotype of the class.",
             "itemtype": "property",
             "name": "stereotype",
@@ -8817,7 +8860,7 @@
         },
         {
             "file": "addon/objects/uml-primitives/fd-uml-class.js",
-            "line": 33,
+            "line": 35,
             "description": "Indicates that the class is in a collapsed state.",
             "itemtype": "property",
             "name": "collapsed",
@@ -8827,7 +8870,7 @@
         },
         {
             "file": "addon/objects/uml-primitives/fd-uml-class.js",
-            "line": 41,
+            "line": 43,
             "description": "List of class attributes.",
             "itemtype": "property",
             "name": "attributes",
@@ -8837,7 +8880,7 @@
         },
         {
             "file": "addon/objects/uml-primitives/fd-uml-class.js",
-            "line": 51,
+            "line": 53,
             "description": "List of methods of the class.",
             "itemtype": "property",
             "name": "methods",
@@ -8847,7 +8890,7 @@
         },
         {
             "file": "addon/objects/uml-primitives/fd-uml-class.js",
-            "line": 61,
+            "line": 63,
             "description": "See {{#crossLink \"FdUmlPrimitive/JointJS:method\"}}here{{/crossLink}}.",
             "itemtype": "method",
             "name": "JointJS",
