@@ -230,6 +230,18 @@ export let defineProjections = function (modelClass) {
     }, { hidden: true })
   });
 
+  modelClass.defineProjection('ListFormView', 'fd-dev-aggregation', {
+    startClass: Projection.belongsTo('fd-class', '', {
+      name: Projection.attr('Start class')
+    }, { hidden: true }),
+    endClass: Projection.belongsTo('fd-class', '', {
+      name: Projection.attr('End class')
+    }, { hidden: true }),
+    startRole: Projection.attr('Start role'),
+    endRole: Projection.attr('End role'),
+    storage: Projection.attr('Storage')
+  });
+
   /* merged manually start */
   modelClass.defineProjection('FormConstructor', 'fd-dev-association', {
     startRole: Projection.attr(''),

@@ -1,8 +1,9 @@
 import Ember from 'ember';
 import FdAttributesTree from '../objects/fd-attributes-tree';
+import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode, getDetailView } from '../utils/fd-attributes-for-tree';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(FdLoadingForTransitionMixin, {
 
   /**
    Service that triggers objectlistview events.

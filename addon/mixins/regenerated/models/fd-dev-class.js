@@ -1483,7 +1483,6 @@ export let defineProjections = function (modelClass) {
     })
   });
   modelClass.defineProjection('ListFormView', 'fd-dev-class', {
-    referenceCount: Projection.attr('Reference count'),
     stereotype: Projection.attr('Stereotype'),
     name: Projection.attr('Name'),
     description: Projection.attr('Description'),

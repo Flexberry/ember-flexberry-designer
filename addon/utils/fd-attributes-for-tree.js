@@ -323,13 +323,18 @@ let parsingPropertyName = function (store, dataObject, propertyName) {
     return item.get('realStartRole') === startRole || item.get('startRole') === startRole || item.get('startClass.name') === startRole;
   });
 
-  for (let i = 1; i < propertyName.length; i++) {
-    startRole = propertyName[i];
-    endRoleID = associationSelectedClass[0].get('startClass.id');
-    endRoleData = getDataForBuildTree(store, endRoleID);
-    let associationFilteByRealRole = endRoleData.associations.filterBy('realStartRole', startRole);
-    let associationFilteByRole = endRoleData.associations.filterBy('startRole', startRole);
-    associationSelectedClass = Ember.A(associationFilteByRealRole).addObjects(associationFilteByRole);
+  if (associationSelectedClass.length !== 0) {
+    for (let i = 1; i < propertyName.length; i++) {
+      startRole = propertyName[i];
+      endRoleID = associationSelectedClass[0].get('startClass.id');
+      endRoleData = getDataForBuildTree(store, endRoleID);
+      let associationFilteByRealRole = endRoleData.associations.filterBy('realStartRole', startRole);
+      let associationFilteByRole = endRoleData.associations.filterBy('startRole', startRole);
+      associationSelectedClass = Ember.A(associationFilteByRealRole).addObjects(associationFilteByRole);
+    }
+  } else if (propertyName.length > 1) {
+    console.error('Not found association with name:' + startRole);
+    endRoleID = null;
   }
 
   return {

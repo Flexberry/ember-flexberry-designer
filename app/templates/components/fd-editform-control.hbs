@@ -2,7 +2,13 @@
 <div class="drag-anchor" {{action set "draggable" true on="mouseEnter"}} {{action set "draggable" false on="mouseLeave"}}></div>
 {{#if _isControl}}
   <label>{{control.caption}}</label>
-  {{component _component}}
+  {{component _componentName
+    items=_componentProperties.items
+    types=_componentProperties.types
+    view=_componentProperties.view
+    showLookupAction=showLookupAction
+    caption=control.caption
+  }}
 {{else if _isGroup}}
   {{#flexberry-toggler caption=control.caption expanded=true}}
     {{#each control.rows as |row|}}
@@ -13,13 +19,15 @@
         setDragItemAction=setDragItemAction
         getDragItemAction=getDragItemAction
         moveDragItemAction=moveDragItemAction
+        getComponentPropertiesAction=getComponentPropertiesAction
+        showLookupAction=showLookupAction
       }}
     {{/each}}
   {{/flexberry-toggler}}
 {{else if _isTab}}
-  {{#fd-tabs 
-    tabsMenuTheme="top attached tabular" 
-    class="ui segments" 
+  {{#fd-tabs
+    tabsMenuTheme="top attached tabular"
+    class="ui segments"
     tabClick = (action "changeTab")
     selectedTab=selectedItem.caption
     as |tab|

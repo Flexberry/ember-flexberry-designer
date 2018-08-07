@@ -83,7 +83,6 @@ export let defineProjections = function (modelClass) {
     }, { hidden: true })
   });
   modelClass.defineProjection('ListFormView', 'fd-dev-inheritance', {
-    referenceCount: Projection.attr('Reference count'),
     parent: Projection.belongsTo('fd-class', '', {
       name: Projection.attr('Parent')
     }, { hidden: true }),

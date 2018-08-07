@@ -1,11 +1,26 @@
 import Ember from 'ember';
 import FdAttributesTree from '../objects/fd-attributes-tree';
 import FdDataTypes from '../utils/fd-datatypes';
+import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode } from '../utils/fd-attributes-for-tree';
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
+import { getNewFormCaption, getNewFormDescription } from '../utils/fd-create-form-properties';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(FdLoadingForTransitionMixin, {
   currentContext: Ember.inject.service('fd-current-project-context'),
+
+  actions: {
+    /**
+      See [EmberJS API](https://emberjs.com/).
+
+      @method actions.didTransition
+    */
+    didTransition() {
+      Ember.$('.full.height').on('click.fd-editform-constructor', () => {
+        this.get('controller').send('selectColumn');
+      });
+    },
+  },
 
   queryParams: {
     form: { refreshModel: true },
@@ -41,19 +56,41 @@ export default Ember.Route.extend({
       if (params.class) {
         modelHash.dataobject = allClasses.findBy('id', params.class);
       } else {
-        modelHash.dataobject = store.createRecord('fd-dev-class', { stage });
+        let newClassCaption = getNewFormCaption(store, 'NewClass', '');
+        modelHash.dataobject = store.createRecord('fd-dev-class', {
+          stage: stage,
+          caption: newClassCaption,
+          name: newClassCaption,
+          nameStr: newClassCaption,
+        });
       }
+
+      let baseCaption = modelHash.dataobject.get('name') || modelHash.dataobject.get('nameStr');
+      let newCaption = getNewFormCaption(store, baseCaption, 'L');
+      let newDescription = getNewFormDescription(newCaption);
+
+      modelHash.listform = store.createRecord('fd-dev-class', {
+        stage: stage,
+        caption: newCaption,
+        description: newDescription,
+        name: newCaption,
+        nameStr: newCaption,
+        stereotype: '«listform»'
+      });
 
       modelHash.view = store.createRecord('fd-dev-view', {
         class: modelHash.dataobject,
-        definition: Ember.A(),
+        name: newCaption,
+        definition: Ember.A()
       });
 
-      let formView = store.createRecord('fd-dev-form-view', { view: modelHash.view });
-      modelHash.listform = store.createRecord('fd-dev-class', {
-        stage: stage,
-        formViews: [formView],
+      let formView = store.createRecord('fd-dev-form-view', {
+        class: modelHash.dataobject,
+        view: modelHash.view,
+        orderNum: 1
       });
+
+      modelHash.listform.set('formViews', [formView]);
     }
 
     modelHash.originalDefinition = copyViewDefinition(modelHash.view.get('definition'));
@@ -116,8 +153,12 @@ export default Ember.Route.extend({
     @param {Boolean} isExisting
     @param {Object} transition
    */
-  resetController(controller) {
+  resetController(controller, isExiting) {
     this._super(...arguments);
+
+    if (isExiting) {
+      Ember.$('.full.height').off('click.fd-editform-constructor');
+    }
 
     let store = this.get('store');
     store.peekAll('fd-dev-class').forEach((item) => item.rollbackAll());
@@ -138,7 +179,6 @@ export default Ember.Route.extend({
   setupController(controller) {
     this._super(...arguments);
     controller.set('_showNotUsedAttributesTree', false);
-    controller.set('state', '');
   },
 
   /**

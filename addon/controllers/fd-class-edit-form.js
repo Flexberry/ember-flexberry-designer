@@ -65,7 +65,16 @@ export default EditFormController.extend({
     saveAndClose(skipTransition) {
       this._setDefaultBusinessServerEvents();
       this._super(skipTransition);
-    }
+    },
+
+    /**
+      Overridden action for 'Close' button.
+
+      @method actions.close
+    */
+    close() {
+      history.back();
+    },
   },
 
   /**

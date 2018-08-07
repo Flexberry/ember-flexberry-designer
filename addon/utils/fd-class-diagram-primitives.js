@@ -120,6 +120,17 @@ joint.dia.Link.define('flexberryUml.Generalization', {
   attrs: { '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'white' } }
 });
 
+joint.shapes.flexberryUml.BaseLink.define('flexberryUml.ClassDiagramAssociation', {
+});
+
+joint.shapes.flexberryUml.BaseLink.define('flexberryUml.ClassDiagramAggregation', {
+  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' } },
+});
+
+joint.shapes.flexberryUml.BaseLink.define('flexberryUml.ClassDiagramComposition', {
+  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' } }
+});
+
 joint.dia.Link.define('flexberryUml.NestedClassAssociation', {
   attrs: { '.marker-target': { d: 'M 10, 10 ' +
                 'm -8, 0 ' +

@@ -225,27 +225,60 @@ export default Ember.Object.extend({
   },
 
   _flexberryTypeToFD: {
-    bool: 'bool',
-    WebFile: 'tFile',
-    char: 'string',
-    string: 'string',
-    guid: 'guid',
-    decimal: 'decimal',
-    double: 'double',
-    float: 'float',
-    sbyte: 'sbyte',
-    short: 'short',
-    byte: 'byte',
-    int: 'int',
-    long: 'long',
-    uint: 'uint',
-    ushort: 'ushort',
-    ulong: 'ulong',
-    DateTime: 'DateTime',
-    NullableDateTime: 'DateTime',
-    NullableDecimal: 'Decimal',
-    NullableInt: 'Int',
-    object: 'object'
+    'bool': 'bool',
+    'System.Boolean': 'bool',
+
+    'byte': 'byte',
+    'System.Byte': 'byte',
+    'sbyte': 'sbyte',
+    'System.SByte': 'sbyte',
+
+    'short': 'short',
+    'System.Int16': 'short',
+    'ushort': 'ushort',
+    'System.UInt16': 'ushort',
+
+    'int': 'int',
+    'System.Int32': 'int',
+    'uint': 'uint',
+    'System.UInt32': 'uint',
+
+    'long': 'long',
+    'System.Int64': 'long',
+    'ulong': 'ulong',
+    'System.UInt64': 'ulong',
+
+    'float': 'float',
+    'System.Single': 'float',
+
+    'double': 'double',
+    'System.Double': 'double',
+
+    'decimal': 'decimal',
+    'System.Decimal': 'decimal',
+
+    'DateTime': 'DateTime',
+    'System.DateTime': 'DateTime',
+
+    'char': 'string',
+    'System.Char': 'string',
+    'string': 'string',
+    'System.String': 'string',
+
+    'guid': 'guid',
+    'System.Guid': 'guid',
+
+    'object': 'object',
+    'System.Object': 'object',
+
+    'NullableDateTime': 'DateTime',
+    'ICSSoft.STORMNET.UserDataTypes.NullableDateTime': 'DateTime',
+    'NullableInt': 'Int',
+    'ICSSoft.STORMNET.UserDataTypes.NullableInt': 'Int',
+    'NullableDecimal': 'Decimal',
+    'ICSSoft.STORMNET.UserDataTypes.NullableDecimal': 'Decimal',
+    'WebFile': 'tFile',
+    'ICSSoft.STORMNET.UserDataTypes.WebFile': 'tFile',
   },
 
   flexberryTypes: function() {

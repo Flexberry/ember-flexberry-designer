@@ -11,7 +11,7 @@
     }}
   {{/each}}
 {{/if}}
-<form class="ui form flexberry-vertical-form" role="form">
+<form class="ui form flexberry-vertical-form {{state}}" role="form">
   {{flexberry-error error=error}}
   <div class="field">
     <div class="sixteen wide">
@@ -47,7 +47,7 @@
     {{
       flexberry-dropdown
       items=implementationsName
-      value=model.startClass.name
+      value=startClassName
       readonly=readonlyClass
       onChange=(action "changeStartClass")
     }}
@@ -58,7 +58,7 @@
     {{
       flexberry-dropdown
       items=implementationsName
-      value=model.endClass.name
+      value=endClassName
       readonly=readonlyClass
       onChange=(action "changeEndClass")
     }}
