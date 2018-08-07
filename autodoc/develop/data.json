@@ -4,6 +4,17 @@
         "version": "develop"
     },
     "files": {
+        "addon/components/fd-tabs/pane.js": {
+            "name": "addon/components/fd-tabs/pane.js",
+            "modules": {},
+            "classes": {
+                "Components.TabPane": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Components": 1
+            }
+        },
         "addon/components/fd-editform-control.js": {
             "name": "addon/components/fd-editform-control.js",
             "modules": {},
@@ -70,9 +81,13 @@
         "addon/components/fd-tabs.js": {
             "name": "addon/components/fd-tabs.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "Components.Tab": 1
+            },
             "fors": {},
-            "namespaces": {}
+            "namespaces": {
+                "Components": 1
+            }
         },
         "addon/components/fd-uml-diagram.js": {
             "name": "addon/components/fd-uml-diagram.js",
@@ -111,17 +126,6 @@
             },
             "classes": {
                 "components.UiTabMenu": 1
-            },
-            "fors": {},
-            "namespaces": {
-                "components": 1
-            }
-        },
-        "addon/components/ui-tab-segment.js": {
-            "name": "addon/components/ui-tab-segment.js",
-            "modules": {},
-            "classes": {
-                "components.UiTabSegment": 1
             },
             "fors": {},
             "namespaces": {
@@ -1340,6 +1344,7 @@
             "submodules": {},
             "elements": {},
             "classes": {
+                "Components.TabPane": 1,
                 "FdEditformControlComponent": 1,
                 "FdEditformRowComponent": 1,
                 "FdFileComponent": 1,
@@ -1347,6 +1352,7 @@
                 "FdLookupComponent": 1,
                 "FdObjectListViewComponent": 1,
                 "FdObjectlistviewComponent": 1,
+                "Components.Tab": 1,
                 "FdUmlDiagramComponent": 1,
                 "FdDraggableControlMixin": 1,
                 "FdLimitByStageMixin": 1,
@@ -1374,7 +1380,9 @@
                 "FdCurrentProjectContextService": 1
             },
             "fors": {},
-            "namespaces": {},
+            "namespaces": {
+                "Components": 1
+            },
             "tag": "module",
             "file": "addon/services/fd-current-project-context.js",
             "line": 17
@@ -1384,21 +1392,40 @@
             "submodules": {},
             "elements": {},
             "classes": {
-                "components.UiTabMenu": 1,
-                "components.UiTabSegment": 1
+                "components.UiTabMenu": 1
             },
             "fors": {},
             "namespaces": {
                 "components": 1
             },
             "tag": "module",
-            "file": "addon/components/ui-tab-segment.js",
-            "line": 5,
+            "file": "addon/components/ui-tab-menu.js",
+            "line": 4,
             "description": "ui-tab-menu component",
             "is_constructor": 1
         }
     },
     "classes": {
+        "Components.TabPane": {
+            "name": "Components.TabPane",
+            "shortname": "Components.TabPane",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "Components",
+            "file": "addon/components/fd-tabs/pane.js",
+            "line": 4,
+            "description": "The tab pane of a tab component.",
+            "extends": "Ember.Component",
+            "uses": [
+                "Mixins.ComponentChild"
+            ],
+            "access": "public",
+            "tagname": ""
+        },
         "FdEditformControlComponent": {
             "name": "FdEditformControlComponent",
             "shortname": "FdEditformControlComponent",
@@ -1510,6 +1537,26 @@
             "description": "This component mimics the `flexberry-objectlistview` component in the edit form constructor.",
             "extends": "<a href=\"http://emberjs.com/api/classes/Ember.Component.html\">Ember.Component</a>"
         },
+        "Components.Tab": {
+            "name": "Components.Tab",
+            "shortname": "Components.Tab",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "Components",
+            "file": "addon/components/fd-tabs.js",
+            "line": 6,
+            "description": "Tab component for dynamic tab functionality\n### Usage\nJust nest any number of yielded [Components.TabPane](Components.TabPane.html) components that hold the tab content.\nThe tab navigation is automatically generated from the tab panes' `title` property:\n```hbs\n{{#fd-tabs as |tab|}}\n  {{#tab.pane dataTab='tab1' title=\"Tab 1\"}}\n    <p>...</p>\n  {{/tab.pane}}\n  {{#tab.pane dataTab='tab2' title=\"Tab 2\"}}\n    <p>...</p>\n  {{/tab.pane}}\n{{/fd-tabs}}\n```",
+            "extends": "Ember.Component",
+            "uses": [
+                "Mixins.ComponentParent"
+            ],
+            "access": "public",
+            "tagname": ""
+        },
         "FdUmlDiagramComponent": {
             "name": "FdUmlDiagramComponent",
             "shortname": "FdUmlDiagramComponent",
@@ -1538,20 +1585,6 @@
             "file": "addon/components/ui-tab-menu.js",
             "line": 4,
             "description": "ui-tab-menu component"
-        },
-        "components.UiTabSegment": {
-            "name": "components.UiTabSegment",
-            "shortname": "components.UiTabSegment",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "components",
-            "namespace": "components",
-            "file": "addon/components/ui-tab-segment.js",
-            "line": 5,
-            "description": "ui-tab-segment component"
         },
         "FdDraggableControlMixin": {
             "name": "FdDraggableControlMixin",
@@ -1925,6 +1958,136 @@
     "elements": {},
     "classitems": [
         {
+            "file": "addon/components/fd-tabs/pane.js",
+            "line": 21,
+            "description": "The title for this tab pane. This is used by the `fd-tabs` component to automatically generate\nthe tab navigation.",
+            "itemtype": "property",
+            "name": "title",
+            "type": "string",
+            "default": "null",
+            "access": "public",
+            "tagname": "",
+            "class": "Components.TabPane",
+            "namespace": "Components"
+        },
+        {
+            "file": "addon/components/fd-tabs/pane.js",
+            "line": 32,
+            "description": "Used to apply \"active\" class",
+            "itemtype": "property",
+            "name": "active",
+            "type": "boolean",
+            "default": "false",
+            "access": "private",
+            "tagname": "",
+            "class": "Components.TabPane",
+            "namespace": "Components"
+        },
+        {
+            "file": "addon/components/fd-tabs/pane.js",
+            "line": 42,
+            "description": "Used to apply \"selected\" class",
+            "itemtype": "property",
+            "name": "active",
+            "type": "boolean",
+            "default": "false",
+            "access": "private",
+            "tagname": "",
+            "class": "Components.TabPane",
+            "namespace": "Components"
+        },
+        {
+            "file": "addon/components/fd-tabs/pane.js",
+            "line": 52,
+            "itemtype": "property",
+            "name": "activeTab",
+            "access": "private",
+            "tagname": "",
+            "class": "Components.TabPane",
+            "namespace": "Components"
+        },
+        {
+            "file": "addon/components/fd-tabs/pane.js",
+            "line": 58,
+            "itemtype": "property",
+            "name": "selectedTab",
+            "access": "private",
+            "tagname": "",
+            "class": "Components.TabPane",
+            "namespace": "Components"
+        },
+        {
+            "file": "addon/components/fd-tabs/pane.js",
+            "line": 64,
+            "description": "The parent component",
+            "itemtype": "property",
+            "name": "_parent",
+            "access": "private",
+            "tagname": "",
+            "class": "Components.TabPane",
+            "namespace": "Components"
+        },
+        {
+            "file": "addon/components/fd-tabs/pane.js",
+            "line": 74,
+            "description": "flag to check if component has already been registered",
+            "itemtype": "property",
+            "name": "_didRegister",
+            "type": "boolean",
+            "access": "private",
+            "tagname": "",
+            "class": "Components.TabPane",
+            "namespace": "Components"
+        },
+        {
+            "file": "addon/components/fd-tabs/pane.js",
+            "line": 82,
+            "description": "Register ourself as a child at the parent component\nWe use the `willRender` event here to also support the fastboot environment, where there is no `didInsertElement`",
+            "itemtype": "method",
+            "name": "_registerWithParent",
+            "access": "private",
+            "tagname": "",
+            "class": "Components.TabPane",
+            "namespace": "Components"
+        },
+        {
+            "file": "addon/components/fd-tabs/pane.js",
+            "line": 99,
+            "description": "Unregister from the parent component",
+            "itemtype": "method",
+            "name": "_unregisterFromParent",
+            "access": "private",
+            "tagname": "",
+            "class": "Components.TabPane",
+            "namespace": "Components"
+        },
+        {
+            "file": "addon/components/fd-tabs/pane.js",
+            "line": 128,
+            "description": "True if this pane is active (visible)",
+            "itemtype": "property",
+            "name": "isActive",
+            "type": "boolean",
+            "readonly": "",
+            "access": "private",
+            "tagname": "",
+            "class": "Components.TabPane",
+            "namespace": "Components"
+        },
+        {
+            "file": "addon/components/fd-tabs/pane.js",
+            "line": 148,
+            "description": "True if this pane is active (visible)",
+            "itemtype": "property",
+            "name": "isActive",
+            "type": "boolean",
+            "readonly": "",
+            "access": "private",
+            "tagname": "",
+            "class": "Components.TabPane",
+            "namespace": "Components"
+        },
+        {
             "file": "addon/components/fd-editform-control.js",
             "line": 20,
             "description": "An object in the format `{ 'typeName': 'componentName' }`, which describes which components should be rendered for each type.",
@@ -2122,7 +2285,7 @@
         },
         {
             "file": "addon/components/fd-editform-control.js",
-            "line": 247,
+            "line": 246,
             "description": "The event handler is `click`.\nCalls the `selectItemAction` action when the component is clicked.\nThe action `selectItemAction` should be passed, for example, from the controller.",
             "itemtype": "method",
             "name": "click",
@@ -2468,19 +2631,74 @@
         },
         {
             "file": "addon/components/fd-tabs.js",
-            "line": 10,
+            "line": 45,
             "description": "Array of registered child components",
             "itemtype": "property",
             "name": "children",
             "type": "array",
             "access": "protected",
             "tagname": "",
-            "class": "FdUmlDiagramComponent",
-            "module": "ember-flexberry-designer"
+            "class": "Components.Tab",
+            "module": "ember-flexberry-designer",
+            "namespace": "Components"
         },
         {
             "file": "addon/components/fd-tabs.js",
-            "line": 24,
+            "line": 54,
+            "description": "Array of hidden child components",
+            "itemtype": "property",
+            "name": "_hideTabs",
+            "type": "array",
+            "access": "protected",
+            "tagname": "",
+            "class": "Components.Tab",
+            "module": "ember-flexberry-designer",
+            "namespace": "Components"
+        },
+        {
+            "file": "addon/components/fd-tabs.js",
+            "line": 63,
+            "description": "All child components",
+            "itemtype": "property",
+            "name": "childPanes",
+            "type": "array",
+            "readonly": "",
+            "access": "private",
+            "tagname": "",
+            "class": "Components.Tab",
+            "module": "ember-flexberry-designer",
+            "namespace": "Components"
+        },
+        {
+            "file": "addon/components/fd-tabs.js",
+            "line": 75,
+            "description": "Array of showed child components",
+            "itemtype": "property",
+            "name": "children",
+            "type": "array",
+            "access": "private",
+            "tagname": "",
+            "class": "Components.Tab",
+            "module": "ember-flexberry-designer",
+            "namespace": "Components"
+        },
+        {
+            "file": "addon/components/fd-tabs.js",
+            "line": 92,
+            "description": "Array of objects that define the tab structure",
+            "itemtype": "property",
+            "name": "tabs",
+            "type": "array",
+            "readonly": "",
+            "access": "private",
+            "tagname": "",
+            "class": "Components.Tab",
+            "module": "ember-flexberry-designer",
+            "namespace": "Components"
+        },
+        {
+            "file": "addon/components/fd-tabs.js",
+            "line": 184,
             "description": "Register a component as a child of this parent",
             "itemtype": "method",
             "name": "registerChild",
@@ -2492,34 +2710,27 @@
             ],
             "access": "public",
             "tagname": "",
-            "class": "FdUmlDiagramComponent",
-            "module": "ember-flexberry-designer"
+            "class": "Components.Tab",
+            "module": "ember-flexberry-designer",
+            "namespace": "Components"
         },
         {
             "file": "addon/components/fd-tabs.js",
-            "line": 37,
-            "description": "All child components",
-            "itemtype": "property",
-            "name": "childPanes",
-            "type": "array",
-            "readonly": "",
-            "access": "private",
+            "line": 197,
+            "description": "Remove the child component from this parent component",
+            "itemtype": "method",
+            "name": "removeChild",
+            "params": [
+                {
+                    "name": "child",
+                    "description": ""
+                }
+            ],
+            "access": "public",
             "tagname": "",
-            "class": "FdUmlDiagramComponent",
-            "module": "ember-flexberry-designer"
-        },
-        {
-            "file": "addon/components/fd-tabs.js",
-            "line": 49,
-            "description": "Array of objects that define the tab structure",
-            "itemtype": "property",
-            "name": "tabs",
-            "type": "array",
-            "readonly": "",
-            "access": "private",
-            "tagname": "",
-            "class": "FdUmlDiagramComponent",
-            "module": "ember-flexberry-designer"
+            "class": "Components.Tab",
+            "module": "ember-flexberry-designer",
+            "namespace": "Components"
         },
         {
             "file": "addon/components/fd-uml-diagram.js",
@@ -3447,65 +3658,6 @@
             "module": "ember-flexberry-designer"
         },
         {
-            "file": "addon/components/ui-tab-menu.js",
-            "line": 30,
-            "description": "the active tab name",
-            "itemtype": "property",
-            "name": "active",
-            "type": "String",
-            "class": "components.UiTabMenu",
-            "module": "components",
-            "namespace": "components"
-        },
-        {
-            "file": "addon/components/ui-tab-segment.js",
-            "line": 22,
-            "description": "tab name",
-            "itemtype": "property",
-            "name": "tab",
-            "type": "String",
-            "class": "components.UiTabSegment",
-            "module": "components",
-            "namespace": "components"
-        },
-        {
-            "file": "addon/components/ui-tab-segment.js",
-            "line": 30,
-            "description": "The parent component",
-            "itemtype": "property",
-            "name": "_parent",
-            "access": "private",
-            "tagname": "",
-            "class": "components.UiTabSegment",
-            "module": "components",
-            "namespace": "components"
-        },
-        {
-            "file": "addon/components/ui-tab-segment.js",
-            "line": 40,
-            "description": "flag to check if component has already been registered",
-            "itemtype": "property",
-            "name": "_didRegister",
-            "type": "boolean",
-            "access": "private",
-            "tagname": "",
-            "class": "components.UiTabSegment",
-            "module": "components",
-            "namespace": "components"
-        },
-        {
-            "file": "addon/components/ui-tab-segment.js",
-            "line": 48,
-            "description": "Register ourself as a child at the parent component\nWe use the `willRender` event here to also support the fastboot environment, where there is no `didInsertElement`",
-            "itemtype": "method",
-            "name": "_registerWithParent",
-            "access": "private",
-            "tagname": "",
-            "class": "components.UiTabSegment",
-            "module": "components",
-            "namespace": "components"
-        },
-        {
             "file": "addon/controllers/fd-aggregation-edit-form.js",
             "line": 7,
             "description": "Service that get current project contexts.",
@@ -4239,7 +4391,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 29,
+            "line": 30,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -4251,7 +4403,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 36,
+            "line": 37,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -4263,7 +4415,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 45,
+            "line": 46,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -4276,7 +4428,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 53,
+            "line": 54,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -4289,7 +4441,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 61,
+            "line": 62,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -4301,7 +4453,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 68,
+            "line": 69,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -4313,7 +4465,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 75,
+            "line": 76,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -4325,7 +4477,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 82,
+            "line": 83,
             "description": "Indicates that the user has started moving control, and the next selected control will be the target of the move.",
             "access": "private",
             "tagname": "",
@@ -4339,7 +4491,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 92,
+            "line": 93,
             "description": "The current dragged item.",
             "access": "private",
             "tagname": "",
@@ -4352,7 +4504,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 101,
+            "line": 102,
             "description": "Flag: indicates whether show tree.",
             "access": "private",
             "tagname": "",
@@ -4366,7 +4518,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 111,
+            "line": 112,
             "description": "Selected nodes in jsTree.",
             "itemtype": "property",
             "name": "selectedNodesNotUsedAttributesTree",
@@ -4378,7 +4530,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 120,
+            "line": 121,
             "description": "Included plugins for jsTree.",
             "itemtype": "property",
             "name": "pluginsTree",
@@ -4390,7 +4542,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 129,
+            "line": 130,
             "description": "Type settings for jsTree.",
             "itemtype": "property",
             "name": "typesOptionsTree",
@@ -4401,7 +4553,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 150,
+            "line": 151,
             "description": "Data for search tree node.",
             "itemtype": "property",
             "name": "searchTermTree",
@@ -4413,7 +4565,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 159,
+            "line": 160,
             "description": "Search settings for jsTree.",
             "itemtype": "property",
             "name": "searchOptionsTree",
@@ -4424,7 +4576,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 169,
+            "line": 170,
             "description": "Data for jsTree.",
             "itemtype": "property",
             "name": "dataNotUsedAttributesTree",
@@ -4435,7 +4587,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 177,
+            "line": 178,
             "description": "Update data in tree.",
             "itemtype": "method",
             "name": "dataNotUsedAttributesTreeObserver",
@@ -4445,7 +4597,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 235,
+            "line": 236,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -4458,7 +4610,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 245,
+            "line": 246,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -4471,7 +4623,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 255,
+            "line": 256,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -4484,7 +4636,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 265,
+            "line": 266,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -4497,7 +4649,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 275,
+            "line": 276,
             "description": "An array in the container of the selected item.",
             "access": "private",
             "tagname": "",
@@ -4511,7 +4663,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 290,
+            "line": 291,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -4524,7 +4676,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 307,
+            "line": 308,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -4537,7 +4689,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 324,
+            "line": 325,
             "description": "The selected item.",
             "itemtype": "property",
             "name": "selectedItem",
@@ -4548,7 +4700,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 332,
+            "line": 333,
             "itemtype": "property",
             "name": "implementations",
             "type": "Ember.NativeArray",
@@ -4558,7 +4710,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 338,
+            "line": 339,
             "itemtype": "property",
             "name": "attributes",
             "type": "Ember.NativeArray",
@@ -4568,7 +4720,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 346,
+            "line": 347,
             "itemtype": "property",
             "name": "masters",
             "type": "Ember.NativeArray",
@@ -4578,7 +4730,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 354,
+            "line": 355,
             "itemtype": "property",
             "name": "details",
             "type": "Ember.NativeArray",
@@ -4588,7 +4740,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 362,
+            "line": 363,
             "itemtype": "property",
             "name": "mastersType",
             "type": "Ember.NativeArray",
@@ -4598,7 +4750,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 370,
+            "line": 371,
             "itemtype": "property",
             "name": "detailsType",
             "type": "Ember.NativeArray",
@@ -4608,7 +4760,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 383,
+            "line": 384,
             "itemtype": "property",
             "name": "simpleTypes",
             "type": "Ember.NativeArray",
@@ -4618,7 +4770,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 391,
+            "line": 392,
             "itemtype": "property",
             "name": "typemap",
             "type": "Ember.NativeArray",
@@ -4628,7 +4780,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 401,
+            "line": 402,
             "itemtype": "property",
             "name": "enums",
             "type": "Ember.NativeArray",
@@ -4638,7 +4790,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 409,
+            "line": 410,
             "itemtype": "property",
             "name": "types",
             "type": "Ember.NativeArray",
@@ -4648,7 +4800,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 417,
+            "line": 418,
             "description": "An object with all (including inherited) the attributes, associations and aggregations for the this form data object.",
             "itemtype": "property",
             "name": "dataObjectProperties",
@@ -4659,7 +4811,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 432,
+            "line": 433,
             "description": "The controls tree created from a view definition.",
             "itemtype": "property",
             "name": "controlsTree",
@@ -4671,7 +4823,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 457,
+            "line": 458,
             "description": "Adds a new control to the form, if there is a selected item, the control will be added to it.",
             "itemtype": "method",
             "name": "actions.addControl",
@@ -4681,7 +4833,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 496,
+            "line": 497,
             "description": "Adds a new empty control to the form, if there is a selected item, the empty control will be added to it.",
             "itemtype": "method",
             "name": "actions.addEmptyControl",
@@ -4691,7 +4843,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 516,
+            "line": 517,
             "description": "Adds a new group to the form, if there is a selected item, the group will be added to it.",
             "itemtype": "method",
             "name": "actions.addGroup",
@@ -4701,7 +4853,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 528,
+            "line": 529,
             "description": "Adds a new tab to the form, if there is a selected item, the tab will be added to it.",
             "itemtype": "method",
             "name": "actions.addTab",
@@ -4711,7 +4863,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 540,
+            "line": 541,
             "description": "Removes the selected item.",
             "itemtype": "method",
             "name": "actions.removeSelectedItem",
@@ -4728,7 +4880,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 559,
+            "line": 560,
             "description": "Sorts the selected item in its container.",
             "itemtype": "method",
             "name": "actions.sortSelectedItem",
@@ -4745,7 +4897,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 574,
+            "line": 575,
             "description": "Close edit form constructor and go to application structure constructor.",
             "itemtype": "method",
             "name": "actions.close",
@@ -4755,7 +4907,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 583,
+            "line": 584,
             "description": "Set the selected item.",
             "itemtype": "method",
             "name": "actions.selectItem",
@@ -4772,7 +4924,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 616,
+            "line": 617,
             "description": "Set the current dragged item.",
             "itemtype": "method",
             "name": "actions.setDragItem",
@@ -4789,7 +4941,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 626,
+            "line": 627,
             "description": "Get the current dragged item.",
             "itemtype": "method",
             "name": "actions.getDragItem",
@@ -4803,7 +4955,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 636,
+            "line": 637,
             "description": "Returns an object with properties to render the component.",
             "itemtype": "method",
             "name": "actions.getComponentProperties",
@@ -4824,7 +4976,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 647,
+            "line": 648,
             "description": "Shows the lookup form in modal dialog.",
             "itemtype": "method",
             "name": "actions.showLookup",
@@ -4851,7 +5003,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 662,
+            "line": 663,
             "description": "Move the current dragged item above or below relative to the passed item.",
             "itemtype": "method",
             "name": "actions.moveDragItem",
@@ -4873,7 +5025,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 692,
+            "line": 693,
             "description": "Saves the form's metadata.",
             "itemtype": "method",
             "name": "actions.save",
@@ -4890,7 +5042,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 714,
+            "line": 715,
             "description": "Set attribute in control.",
             "itemtype": "method",
             "name": "actions.setAttributeInControl",
@@ -4900,7 +5052,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 755,
+            "line": 756,
             "description": "Don't set attribute in control.",
             "itemtype": "method",
             "name": "actions.deleteEmptyControl",
@@ -4910,7 +5062,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 766,
+            "line": 767,
             "description": "Handles creating jsTree.",
             "itemtype": "method",
             "name": "actions.handleTreeDidBecomeReady",
@@ -4920,7 +5072,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 778,
+            "line": 779,
             "description": "Overridden action for jsTree 'openNode'.",
             "itemtype": "method",
             "name": "_openNodeTree",
@@ -4930,7 +5082,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 797,
+            "line": 798,
             "description": "Inserts an `item` into `container`, if `container` is `FdEditformControl`, `item` is inserted into the parent row after `container`.",
             "itemtype": "method",
             "name": "_insertItem",
@@ -4952,7 +5104,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 840,
+            "line": 841,
             "description": "Removes the specified item from the form.",
             "itemtype": "method",
             "name": "_removeItem",
@@ -4969,7 +5121,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 868,
+            "line": 869,
             "description": "Looks for a container that contains the item.",
             "itemtype": "method",
             "name": "_findItemContainer",
@@ -4996,7 +5148,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 902,
+            "line": 903,
             "description": "Returns the item storage in the container.",
             "access": "private",
             "tagname": "",
@@ -5019,7 +5171,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 924,
+            "line": 925,
             "description": "Returns a row that can be added to the form.",
             "access": "private",
             "tagname": "",
@@ -5042,7 +5194,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 949,
+            "line": 950,
             "description": "Returns the control that can be added to a row.",
             "itemtype": "method",
             "name": "_getControl",
@@ -5063,7 +5215,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 971,
+            "line": 972,
             "description": "Checks whether the control is suitable for placement in a row.",
             "access": "private",
             "tagname": "",
@@ -5086,7 +5238,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 983,
+            "line": 984,
             "description": "Save editform metadata: dataobject attributes, view, editform class.",
             "itemtype": "method",
             "name": "_saveMetadata",
@@ -5112,7 +5264,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 1048,
+            "line": 1049,
             "description": "Scrolls the form to the selected control with jQuery.",
             "access": "private",
             "tagname": "",
@@ -5124,7 +5276,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 1061,
+            "line": 1062,
             "description": "Returns an object with all (including inherited) the attributes, associations and aggregations for the class.",
             "access": "private",
             "tagname": "",
@@ -5162,7 +5314,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 1103,
+            "line": 1104,
             "description": "Returns an object with properties to render the component.",
             "access": "private",
             "tagname": "",
@@ -5190,7 +5342,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 1168,
+            "line": 1169,
             "description": "Returns an array of types used in the view.",
             "access": "private",
             "tagname": "",
@@ -5213,7 +5365,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 1194,
+            "line": 1195,
             "description": "Create tree.",
             "itemtype": "method",
             "name": "_buildTree",
@@ -5244,7 +5396,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 1231,
+            "line": 1232,
             "description": "Looks for width in the path",
             "itemtype": "method",
             "name": "_getWidth",
@@ -5261,7 +5413,7 @@
         },
         {
             "file": "addon/controllers/fd-editform-constructor.js",
-            "line": 1250,
+            "line": 1251,
             "description": "Destroys helper.",
             "class": "FdDraggableControlMixin",
             "module": "components",
@@ -5554,7 +5706,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 19,
+            "line": 20,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -5567,7 +5719,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 27,
+            "line": 28,
             "description": "Flag: indicates whether show tree.",
             "access": "private",
             "tagname": "",
@@ -5581,7 +5733,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 37,
+            "line": 38,
             "description": "Selected nodes in jsTree.",
             "itemtype": "property",
             "name": "selectedNodesNotUsedAttributesTree",
@@ -5593,7 +5745,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 46,
+            "line": 47,
             "description": "Included plugins for jsTree.",
             "itemtype": "property",
             "name": "pluginsTree",
@@ -5605,7 +5757,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 55,
+            "line": 56,
             "description": "Type settings for jsTree.",
             "itemtype": "property",
             "name": "typesOptionsTree",
@@ -5616,7 +5768,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 76,
+            "line": 77,
             "description": "Data for search tree node.",
             "itemtype": "property",
             "name": "searchTermTree",
@@ -5628,7 +5780,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 85,
+            "line": 86,
             "description": "Search settings for jsTree.",
             "itemtype": "property",
             "name": "searchOptionsTree",
@@ -5639,7 +5791,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 95,
+            "line": 96,
             "description": "Data for jsTree.",
             "itemtype": "property",
             "name": "dataNotUsedAttributesTree",
@@ -5650,7 +5802,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 103,
+            "line": 104,
             "description": "Update data in tree.",
             "itemtype": "method",
             "name": "dataNotUsedAttributesTreeObserver",
@@ -5660,7 +5812,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 152,
+            "line": 153,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -5673,7 +5825,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 162,
+            "line": 163,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -5686,7 +5838,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 180,
+            "line": 181,
             "description": "The selected column.",
             "itemtype": "property",
             "name": "selectedColumn",
@@ -5697,7 +5849,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 188,
+            "line": 189,
             "description": "Columns of the table in the list form.",
             "itemtype": "property",
             "name": "columns",
@@ -5709,7 +5861,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 209,
+            "line": 210,
             "description": "Set the selected column.",
             "itemtype": "method",
             "name": "actions.selectColumn",
@@ -5726,7 +5878,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 227,
+            "line": 228,
             "description": "Adds a new column.",
             "itemtype": "method",
             "name": "actions.addColumn",
@@ -5736,7 +5888,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 279,
+            "line": 280,
             "description": "Removes the selected column.",
             "itemtype": "method",
             "name": "actions.removeSelectedColumn",
@@ -5753,7 +5905,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 297,
+            "line": 298,
             "description": "Sorts the selected column.",
             "itemtype": "method",
             "name": "actions.sortSelectedColumn",
@@ -5770,7 +5922,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 312,
+            "line": 313,
             "description": "Saves the form's metadata.",
             "itemtype": "method",
             "name": "actions.save",
@@ -5787,7 +5939,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 399,
+            "line": 400,
             "description": "Set attribute in control.",
             "itemtype": "method",
             "name": "actions.setAttributeInControl",
@@ -5797,7 +5949,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 443,
+            "line": 444,
             "description": "Don't set attribute in control.",
             "itemtype": "method",
             "name": "actions.deleteEmptyControl",
@@ -5807,7 +5959,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 456,
+            "line": 457,
             "description": "Handles creating jsTree.",
             "itemtype": "method",
             "name": "actions.handleTreeDidBecomeReady",
@@ -5817,7 +5969,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 468,
+            "line": 469,
             "description": "Scrolls the form to the selected control with jQuery.",
             "access": "private",
             "tagname": "",
@@ -5829,7 +5981,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 482,
+            "line": 483,
             "description": "Overridden action for jsTree 'openNode'.",
             "itemtype": "method",
             "name": "_openNodeTree",
@@ -5839,7 +5991,7 @@
         },
         {
             "file": "addon/controllers/fd-listform-constructor.js",
-            "line": 501,
+            "line": 502,
             "description": "Destroys helper.",
             "class": "FdDraggableControlMixin",
             "module": "components",
@@ -11263,11 +11415,11 @@
         },
         {
             "message": "Missing item type\nDestroys helper.",
-            "line": " addon/controllers/fd-editform-constructor.js:1250"
+            "line": " addon/controllers/fd-editform-constructor.js:1251"
         },
         {
             "message": "Missing item type\nDestroys helper.",
-            "line": " addon/controllers/fd-listform-constructor.js:501"
+            "line": " addon/controllers/fd-listform-constructor.js:502"
         },
         {
             "message": "Missing item type\nField name where object identifier is kept.",

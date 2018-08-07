@@ -26,7 +26,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/components.UiTabMenu", "classes/components.UiTabSegment", "classes/FdAppStructTree", "classes/FdAttributesTree", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdFileComponent", "classes/FdGroupeditComponent", "classes/FdLimitByStageMixin", "classes/FdListformColumn", "classes/FdLoadingForTransitionMixin", "classes/FdLookupComponent", "classes/FdObjectListViewComponent", "classes/FdObjectlistviewComponent", "classes/FdUmlAssociation", "classes/FdUmlClass", "classes/FdUmlComposition", "classes/FdUmlDiagramComponent", "classes/FdUmlElement", "classes/FdUmlGeneralization", "classes/FdUmlLink", "classes/FdUmlPrimitive", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Components.Tab", "classes/Components.TabPane", "classes/components.UiTabMenu", "classes/FdAppStructTree", "classes/FdAttributesTree", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdFileComponent", "classes/FdGroupeditComponent", "classes/FdLimitByStageMixin", "classes/FdListformColumn", "classes/FdLoadingForTransitionMixin", "classes/FdLookupComponent", "classes/FdObjectlistviewComponent", "classes/FdObjectListViewComponent", "classes/FdUmlAssociation", "classes/FdUmlClass", "classes/FdUmlComposition", "classes/FdUmlDiagramComponent", "classes/FdUmlElement", "classes/FdUmlGeneralization", "classes/FdUmlLink", "classes/FdUmlPrimitive", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
         </form>
     </div>
 </div>
@@ -48,8 +48,9 @@
 	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
 	                <div class="tab-pane active" id="classes">
 	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/Components.Tab.html">Components.Tab</a></li>
+	                            <li><a href="../classes/Components.TabPane.html">Components.TabPane</a></li>
 	                            <li><a href="../classes/components.UiTabMenu.html">components.UiTabMenu</a></li>
-	                            <li><a href="../classes/components.UiTabSegment.html">components.UiTabSegment</a></li>
 	                            <li><a href="../classes/FdAppStructTree.html">FdAppStructTree</a></li>
 	                            <li><a href="../classes/FdAttributesTree.html">FdAttributesTree</a></li>
 	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
@@ -67,8 +68,8 @@
 	                            <li><a href="../classes/FdListformColumn.html">FdListformColumn</a></li>
 	                            <li><a href="../classes/FdLoadingForTransitionMixin.html">FdLoadingForTransitionMixin</a></li>
 	                            <li><a href="../classes/FdLookupComponent.html">FdLookupComponent</a></li>
-	                            <li><a href="../classes/FdObjectListViewComponent.html">FdObjectListViewComponent</a></li>
 	                            <li><a href="../classes/FdObjectlistviewComponent.html">FdObjectlistviewComponent</a></li>
+	                            <li><a href="../classes/FdObjectListViewComponent.html">FdObjectListViewComponent</a></li>
 	                            <li><a href="../classes/FdUmlAssociation.html">FdUmlAssociation</a></li>
 	                            <li><a href="../classes/FdUmlClass.html">FdUmlClass</a></li>
 	                            <li><a href="../classes/FdUmlComposition.html">FdUmlComposition</a></li>
@@ -130,12 +131,47 @@
     <pre class="prettyprint linenums">
 import Ember from &#x27;ember&#x27;;
 import layout from &#x27;../templates/components/fd-tabs&#x27;;
-import TabPane from &#x27;../components/ui-tab-segment&#x27;;
+import TabPane from &#x27;../components/fd-tabs/pane&#x27;;
 import FdWorkPanelToggler from &#x27;../mixins/fd-work-panel-toggler&#x27;;
 
+/**
+ Tab component for dynamic tab functionality
+ ### Usage
+ Just nest any number of yielded [Components.TabPane](Components.TabPane.html) components that hold the tab content.
+ The tab navigation is automatically generated from the tab panes&#x27; &#x60;title&#x60; property:
+ &#x60;&#x60;&#x60;hbs
+ {{#fd-tabs as |tab|}}
+   {{#tab.pane dataTab=&#x27;tab1&#x27; title=&quot;Tab 1&quot;}}
+     &lt;p&gt;...&lt;/p&gt;
+   {{/tab.pane}}
+   {{#tab.pane dataTab=&#x27;tab2&#x27; title=&quot;Tab 2&quot;}}
+     &lt;p&gt;...&lt;/p&gt;
+   {{/tab.pane}}
+ {{/fd-tabs}}
+ &#x60;&#x60;&#x60;
+ @class Tab
+ @namespace Components
+ @extends Ember.Component
+ @uses Mixins.ComponentParent
+ @public
+ */
 export default Ember.Component.extend(FdWorkPanelToggler, {
 
   layout: layout,
+  tabsWidth: 0,
+  containerWidth: 0,
+  hideTabsCount: 0,
+  overflowButtonShow: false,
+  overflowedTabs: true,
+  inactiveTabs: false,
+  selectedTab: &#x27;&#x27;,
+  reloadTabs: true,
+  activeTab: Ember.computed.oneWay(&#x27;childPanes.firstObject.dataTab&#x27;),
+  options: {
+    tabPadding: 25,
+    containerPadding: 0,
+    dropdownSize: 70
+  },
 
   /**
    * Array of registered child components
@@ -146,9 +182,134 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
    */
   children: null,
 
+  /**
+   * Array of hidden child components
+   *
+   * @property _hideTabs
+   * @type array
+   * @protected
+   */
+  _hideTabs: null,
+
+  /**
+   * All child components
+   *
+   * @property childPanes
+   * @type array
+   * @readonly
+   * @private
+   */
+  childPanes: Ember.computed.filter(&#x27;children&#x27;, function(view) {
+    return view instanceof TabPane;
+  }),
+
+  /**
+   * Array of showed child components
+   *
+   * @property children
+   * @type array
+   * @private
+   */
+  _showedTabs: Ember.computed(&#x27;tabs&#x27;, {
+    get() {
+      return Ember.getWithDefault(this, &#x27;tabs&#x27;, null);
+    },
+
+    set(key, value) {
+      return value;
+    }
+  }),
+
+  /**
+   * Array of objects that define the tab structure
+   *
+   * @property tabs
+   * @type array
+   * @readonly
+   * @private
+   */
+  tabs: Ember.computed(&#x27;childPanes.@each.{tab,title,dataTab}&#x27;, function() {
+    let items = Ember.A();
+    this.get(&#x27;childPanes&#x27;).forEach((pane) =&gt; {
+      let item = pane.getProperties(&#x27;tab&#x27;, &#x27;title&#x27;, &#x27;dataTab&#x27;);
+      items.push(item);
+    });
+
+    return items;
+  }),
+
+  tabsObserver: Ember.observer(&#x27;tabs.[]&#x27;, function() {
+    if (this.overflowedTabs) {
+      this.reinitTabs();
+    }
+  }),
+
+  _calculateWidths: function() {
+    let width = 0;
+    let countHide = this.get(&#x27;tabs&#x27;).length;
+    let _this = this;
+    _this.containerWidth = Ember.$(this.element).parent().width() - _this.options.containerPadding - _this.options.dropdownSize;
+
+    Ember.$(_this.element).find(&#x27;a.item&#x27;).each(function() {
+      if ((width + Ember.$(this).outerWidth(true)) &lt; _this.containerWidth) {
+        width += Ember.$(this).outerWidth(true);
+        countHide--;
+      }
+    });
+
+    this.hideTabsCount = countHide;
+  },
+
+  _hideTab: function() {
+    let hideTabs = this.get(&#x27;hideTabsCount&#x27;);
+
+    for (let i = 0; i &lt; hideTabs; i++) {
+      let _currentTabs = this.get(&#x27;_showedTabs&#x27;);
+      let lastTab = Ember.A(_currentTabs).get(&#x27;lastObject&#x27;);
+
+      this.get(&#x27;_hideTabs&#x27;).pushObject(lastTab);
+      _currentTabs.popObject();
+      this.set(&#x27;_showedTabs&#x27;, _currentTabs);
+    }
+
+    this.get(&#x27;_hideTabs&#x27;).reverse();
+  },
+
   init() {
     this._super(...arguments);
     this.set(&#x27;children&#x27;, Ember.A());
+    this.set(&#x27;_hideTabs&#x27;, Ember.A());
+
+    if (this.overflowedTabs) {
+      Ember.run.schedule(&#x27;afterRender&#x27;, this, function() {
+        let _this = this;
+        Ember.$(window).resize(function() {
+          if (!(_this.get(&#x27;isDestroyed&#x27;) || _this.get(&#x27;isDestroyed&#x27;))) {
+            _this.reinitTabs();
+          }
+        });
+      });
+    }
+  },
+
+  reinitTabs() {
+    Ember.run.schedule(&#x27;afterRender&#x27;, this, function() {
+      this.set(&#x27;overflowButtonShow&#x27;, false);
+      this.set(&#x27;_hideTabs&#x27;, Ember.A());
+      this.set(&#x27;_showedTabs&#x27;, this.get(&#x27;tabs&#x27;).slice());
+
+      let activeTab = this.get(&#x27;tabs&#x27;).get(&#x27;firstObject&#x27;) ? this.get(&#x27;tabs&#x27;).get(&#x27;firstObject&#x27;).dataTab : null;
+      this.set(&#x27;activeTab&#x27;, activeTab);
+
+      Ember.run.schedule(&#x27;afterRender&#x27;, this,	function() {
+        this._calculateWidths();
+
+        this.set(&#x27;overflowButtonShow&#x27;, this.get(&#x27;hideTabsCount&#x27;) &gt; 0);
+        if (this.overflowButtonShow) {
+          this._hideTab();
+        }
+      });
+    });
   },
 
   /**
@@ -165,34 +326,59 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
   },
 
   /**
-   * All child components
+   * Remove the child component from this parent component
    *
-   * @property childPanes
-   * @type array
-   * @readonly
-   * @private
+   * @method removeChild
+   * @param child
+   * @public
    */
-  childPanes: Ember.computed.filter(&#x27;children&#x27;, function(view) {
-    return view instanceof TabPane;
-  }),
-
-  /**
-   * Array of objects that define the tab structure
-   *
-   * @property tabs
-   * @type array
-   * @readonly
-   * @private
-   */
-  tabs: Ember.computed(&#x27;childPanes.@each.{tab,title}&#x27;, function() {
-    let items = Ember.A();
-    this.get(&#x27;childPanes&#x27;).forEach((pane) =&gt; {
-      let item = pane.getProperties(&#x27;tab&#x27;, &#x27;title&#x27;);
-      items.push(item);
+  removeChild(child) {
+    Ember.run.schedule(&#x27;actions&#x27;, this, function() {
+      this.get(&#x27;children&#x27;).removeObject(child);
     });
+  },
 
-    return items;
-  })
+  didInsertElement() {
+    if (this.overflowedTabs) {
+      this.reinitTabs();
+    }
+  },
+
+  actions: {
+    tabClick(tab) {
+      let previous = this.get(&#x27;activeTab&#x27;);
+      let activeTab = tab.dataTab === previous &amp;&amp; this.inactiveTabs ? null : tab.dataTab;
+      this.set(&#x27;activeTab&#x27;, activeTab);
+
+      this.sendAction(&#x27;tabClick&#x27;, tab);
+    },
+
+    changeLastTab(selectedValue) {
+      let _this = this;
+
+      let _currentTabs = _this.get(&#x27;_showedTabs&#x27;);
+      let _currentHideTabs =  _this.get(&#x27;_hideTabs&#x27;);
+      let lastTab = _currentTabs.get(&#x27;lastObject&#x27;);
+
+      let replaceTabIndex = -1;
+      _currentHideTabs.forEach(function(element, index) {
+        if (element.title === selectedValue) {
+          replaceTabIndex = index;
+        }
+      });
+
+      if (replaceTabIndex &gt; -1) {
+        let activeTabIndex = _currentHideTabs[replaceTabIndex].dataTab;
+        _currentTabs.popObject();
+        _currentTabs.pushObject(_currentHideTabs[replaceTabIndex]);
+        _currentHideTabs.replace(replaceTabIndex, 1, lastTab);
+
+        _this.set(&#x27;_showedTabs&#x27;, _currentTabs);
+        _this.set(&#x27;_hideTabs&#x27;, _currentHideTabs);
+        _this.set(&#x27;activeTab&#x27;, activeTabIndex);
+      }
+    }
+  }
 });
 
     </pre>

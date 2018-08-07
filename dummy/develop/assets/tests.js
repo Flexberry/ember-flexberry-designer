@@ -1064,6 +1064,50 @@ define('dummy/tests/integration/components/fd-objectlistview-test.jshint', ['exp
     assert.ok(true, 'integration/components/fd-objectlistview-test.js should pass jshint.');
   });
 });
+define('dummy/tests/integration/components/fd-tab-dropdown-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  // import hbs from 'htmlbars-inline-precompile';
+
+  (0, _emberQunit.moduleForComponent)('fd-tab-dropdown', 'Integration | Component | fd tab dropdown', {
+    integration: true
+  });
+
+  (0, _emberQunit.test)('it renders', function (assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
+
+    // this.render(hbs`{{fd-tab-dropdown}}`);
+
+    // assert.equal(this.$().text().trim(), '');
+
+    // Template block usage:
+    // this.render(hbs`
+    //   {{#fd-tab-dropdown}}
+    //     template block text
+    //   {{/fd-tab-dropdown}}
+    // `);
+
+    // assert.equal(this.$().text().trim(), 'template block text');
+    assert.equal('', '');
+  });
+});
+define('dummy/tests/integration/components/fd-tab-dropdown-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - integration/components');
+  test('integration/components/fd-tab-dropdown-test.js should pass jscs', function () {
+    ok(true, 'integration/components/fd-tab-dropdown-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/integration/components/fd-tab-dropdown-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/fd-tab-dropdown-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/fd-tab-dropdown-test.js should pass jshint.');
+  });
+});
 define('dummy/tests/integration/components/fd-uml-diagram-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
   (0, _emberQunit.moduleForComponent)('fd-uml-diagram', 'Integration | Component | fd-uml-diagram', {

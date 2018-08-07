@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>addon/components/fd-tabs/pane.js - Flexberry Documentation</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="Flexberry Documentation" src="../assets/css/logo.png" style="max-height: 65%;" title="Flexberry Documentation">
+            Flexberry Documentation
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>develop</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Components.Tab", "classes/Components.TabPane", "classes/components.UiTabMenu", "classes/FdAppStructTree", "classes/FdAttributesTree", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdFileComponent", "classes/FdGroupeditComponent", "classes/FdLimitByStageMixin", "classes/FdListformColumn", "classes/FdLoadingForTransitionMixin", "classes/FdLookupComponent", "classes/FdObjectlistviewComponent", "classes/FdObjectListViewComponent", "classes/FdUmlAssociation", "classes/FdUmlClass", "classes/FdUmlComposition", "classes/FdUmlDiagramComponent", "classes/FdUmlElement", "classes/FdUmlGeneralization", "classes/FdUmlLink", "classes/FdUmlPrimitive", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <h3>APIs</h3>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Type to filter APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/Components.Tab.html">Components.Tab</a></li>
+	                            <li><a href="../classes/Components.TabPane.html">Components.TabPane</a></li>
+	                            <li><a href="../classes/components.UiTabMenu.html">components.UiTabMenu</a></li>
+	                            <li><a href="../classes/FdAppStructTree.html">FdAppStructTree</a></li>
+	                            <li><a href="../classes/FdAttributesTree.html">FdAttributesTree</a></li>
+	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
+	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
+	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
+	                            <li><a href="../classes/FdEditformControlComponent.html">FdEditformControlComponent</a></li>
+	                            <li><a href="../classes/FdEditformGroup.html">FdEditformGroup</a></li>
+	                            <li><a href="../classes/FdEditformRow.html">FdEditformRow</a></li>
+	                            <li><a href="../classes/FdEditformRowComponent.html">FdEditformRowComponent</a></li>
+	                            <li><a href="../classes/FdEditformTab.html">FdEditformTab</a></li>
+	                            <li><a href="../classes/FdEditformTabgroup.html">FdEditformTabgroup</a></li>
+	                            <li><a href="../classes/FdFileComponent.html">FdFileComponent</a></li>
+	                            <li><a href="../classes/FdGroupeditComponent.html">FdGroupeditComponent</a></li>
+	                            <li><a href="../classes/FdLimitByStageMixin.html">FdLimitByStageMixin</a></li>
+	                            <li><a href="../classes/FdListformColumn.html">FdListformColumn</a></li>
+	                            <li><a href="../classes/FdLoadingForTransitionMixin.html">FdLoadingForTransitionMixin</a></li>
+	                            <li><a href="../classes/FdLookupComponent.html">FdLookupComponent</a></li>
+	                            <li><a href="../classes/FdObjectlistviewComponent.html">FdObjectlistviewComponent</a></li>
+	                            <li><a href="../classes/FdObjectListViewComponent.html">FdObjectListViewComponent</a></li>
+	                            <li><a href="../classes/FdUmlAssociation.html">FdUmlAssociation</a></li>
+	                            <li><a href="../classes/FdUmlClass.html">FdUmlClass</a></li>
+	                            <li><a href="../classes/FdUmlComposition.html">FdUmlComposition</a></li>
+	                            <li><a href="../classes/FdUmlDiagramComponent.html">FdUmlDiagramComponent</a></li>
+	                            <li><a href="../classes/FdUmlElement.html">FdUmlElement</a></li>
+	                            <li><a href="../classes/FdUmlGeneralization.html">FdUmlGeneralization</a></li>
+	                            <li><a href="../classes/FdUmlLink.html">FdUmlLink</a></li>
+	                            <li><a href="../classes/FdUmlPrimitive.html">FdUmlPrimitive</a></li>
+	                            <li><a href="../classes/FdViewAttributesDetail.html">FdViewAttributesDetail</a></li>
+	                            <li><a href="../classes/FdViewAttributesMaster.html">FdViewAttributesMaster</a></li>
+	                            <li><a href="../classes/FdViewAttributesProperty.html">FdViewAttributesProperty</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">NewPlatformFlexberryFlexberryDesignerVisualEditControl</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">NewPlatformFlexberryFlexberryDesignerVisualEditForm</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/components.html">components</a></li>
+	                            <li><a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Show:
+                    <label for="api-show-inherited" class="checkbox">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>addon/components/fd-tabs/pane.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+import Ember from &#x27;ember&#x27;;
+import layout from &#x27;ember-flexberry-designer/templates/components/ui-tab-menu&#x27;;
+import ComponentParent from &#x27;ember-flexberry-designer/components/fd-tabs&#x27;;
+/**
+ The tab pane of a tab component.
+ @class TabPane
+ @namespace Components
+ @extends Ember.Component
+ @uses Mixins.ComponentChild
+ @public
+ */
+export default Ember.Component.extend({
+  layout: layout,
+  classNameBindings: [&#x27;_uiClass&#x27;, &#x27;theme&#x27;, &#x27;_theme&#x27;, &#x27;_componentClass&#x27;, &#x27;active&#x27;, &#x27;selected&#x27;],
+  _uiClass: &#x27;ui&#x27;,
+  _componentClass: &#x27;&#x27;,
+  _theme: &#x27;tab&#x27;,
+  theme: &#x27;bottom attached&#x27;,
+  attributeBindings: [&#x27;dataTab:data-tab&#x27;],
+
+  /**
+   * The title for this tab pane. This is used by the &#x60;fd-tabs&#x60; component to automatically generate
+   * the tab navigation.
+   *
+   * @property title
+   * @type string
+   * @default null
+   * @public
+   */
+  title: null,
+
+  /**
+   * Used to apply &quot;active&quot; class
+   *
+   * @property active
+   * @type boolean
+   * @default false
+   * @private
+   */
+  active: false,
+
+  /**
+   * Used to apply &quot;selected&quot; class
+   *
+   * @property active
+   * @type boolean
+   * @default false
+   * @private
+   */
+  selected: false,
+
+  /**
+   * @property activeTab
+   * @private
+   */
+  activeTab: null,
+
+  /**
+   * @property selectedTab
+   * @private
+   */
+  selectedTab: null,
+
+  /**
+   * The parent component
+   *
+   * @property _parent
+   * @private
+   */
+  _parent: Ember.computed(function() {
+    return this.nearestOfType(ComponentParent);
+  }),
+
+  /**
+   * flag to check if component has already been registered
+   * @property _didRegister
+   * @type boolean
+   * @private
+   */
+  _didRegister: false,
+
+  /**
+   * Register ourself as a child at the parent component
+   * We use the &#x60;willRender&#x60; event here to also support the fastboot environment, where there is no &#x60;didInsertElement&#x60;
+   *
+   * @method _registerWithParent
+   * @private
+   */
+  _registerWithParent() {
+    if (!this._didRegister) {
+      let parent = this.get(&#x27;_parent&#x27;);
+      if (parent) {
+        parent.registerChild(this);
+        this._didRegister = true;
+      }
+    }
+  },
+
+  /**
+   * Unregister from the parent component
+   *
+   * @method _unregisterFromParent
+   * @private
+   */
+  _unregisterFromParent() {
+    let parent = this.get(&#x27;_parent&#x27;);
+    if (this._didRegister &amp;&amp; parent) {
+      parent.removeChild(this);
+      this._didRegister = false;
+    }
+  },
+
+  didReceiveAttrs() {
+    this._super(...arguments);
+    this._registerWithParent();
+  },
+
+  willRender() {
+    this._super(...arguments);
+    this._registerWithParent();
+  },
+
+  willDestroyElement() {
+    this._super(...arguments);
+    this._unregisterFromParent();
+  },
+
+  /**
+   * True if this pane is active (visible)
+   *
+   * @property isActive
+   * @type boolean
+   * @readonly
+   * @private
+   */
+  isActive: Ember.computed(&#x27;activeTab&#x27;, &#x27;dataTab&#x27;, function() {
+    return this.get(&#x27;activeTab&#x27;) === this.get(&#x27;dataTab&#x27;);
+  }).readOnly(),
+
+  _showHide: Ember.observer(&#x27;isActive&#x27;, function() {
+    this.set(&#x27;active&#x27;, this.get(&#x27;isActive&#x27;));
+  }),
+
+  _toggleSelect: Ember.observer(&#x27;isSelected&#x27;, function() {
+    this.set(&#x27;selected&#x27;, this.get(&#x27;isSelected&#x27;));
+  }),
+
+  /**
+   * True if this pane is active (visible)
+   *
+   * @property isActive
+   * @type boolean
+   * @readonly
+   * @private
+   */
+  isSelected: Ember.computed(&#x27;selectedTab&#x27;, &#x27;dataTab&#x27;, function() {
+    return this.get(&#x27;selectedTab&#x27;) === this.get(&#x27;dataTab&#x27;);
+  }).readOnly(),
+
+  init() {
+    this._super(...arguments);
+    Ember.run.schedule(&#x27;afterRender&#x27;, this, function() {
+      // isActive comes from parent component, so only available after render...
+      this.set(&#x27;active&#x27;, this.get(&#x27;isActive&#x27;));
+      this.set(&#x27;selected&#x27;, this.get(&#x27;isSelected&#x27;));
+    });
+  },
+});
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

@@ -1,6 +1,8 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
+        "Components.Tab",
+        "Components.TabPane",
         "FdAppStructTree",
         "FdAttributesTree",
         "FdCurrentProjectContextService",
@@ -33,8 +35,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "FdViewAttributesProperty",
         "NewPlatformFlexberryFlexberryDesignerVisualEditControl",
         "NewPlatformFlexberryFlexberryDesignerVisualEditForm",
-        "components.UiTabMenu",
-        "components.UiTabSegment"
+        "components.UiTabMenu"
     ],
     "modules": [
         "components",
