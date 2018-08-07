@@ -93,10 +93,6 @@ joint.dia.Link.define('flexberryUml.Realization', {
   },
 });
 
-joint.dia.Link.define('flexberryUml.Generalization', {
-  attrs: { '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'white' } }
-});
-
 joint.shapes.flexberryUml.BaseLink.define('flexberryUml.ClassDiagramAssociation', {
 });
 

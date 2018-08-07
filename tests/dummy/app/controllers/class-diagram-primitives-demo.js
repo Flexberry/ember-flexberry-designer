@@ -2,6 +2,7 @@ import Ember from 'ember';
 import joint from 'npm:jointjs';
 
 import { Class, ClassCollapsed } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-class';
+import { Generalization } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-generalization';
 
 export default Ember.Controller.extend({
   actions: {
@@ -68,7 +69,7 @@ export default Ember.Controller.extend({
         target: { x:300, y:220 },
       });
 
-      var linkGeneralization = new joint.shapes.flexberryUml.Generalization({
+      var linkGeneralization = new Generalization({
         source: { x:100, y:270 },
         target: { x:300, y:270 },
       });
