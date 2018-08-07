@@ -33,9 +33,11 @@ export default EditFormRoute.extend({
             class: undefined
           }
         });
-      } else {
-        this.transitionTo(target, model.get('id'));
+        return;
       }
+
+      this.transitionTo(target, model.get('id'));
+
     }
   }
 });

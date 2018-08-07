@@ -1,8 +1,9 @@
-import EditFormRoute from 'ember-flexberry/routes/edit-form';
+import Ember from 'ember';
 
-export default EditFormRoute.extend({
+export default Ember.Route.extend({
   modelProjection: 'TypeDefinitionE',
   modelName: 'fd-dev-type-definition',
+  currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
   afterModel: function(model) {
     this._super(model);
@@ -10,22 +11,19 @@ export default EditFormRoute.extend({
     if (!model.get('caption')) {
       model.set('caption', model.get('name'));
     }
-
-    let transitionMap = {
-      '«application»': 'fd-application-edit-form',
-      '«businessserver»': 'fd-business-server-edit-form',
-      '«editform»': 'fd-editform-constructor',
-      '«enumeration»': 'fd-enum-edit-form',
-      '«external»': 'fd-external-edit-form',
-      '«interface»': 'fd-interface-edit-form',
-      '«listform»': 'fd-list-form-edit-form',
-      '«type»': 'fd-type-edit-form',
-      '«userform»': 'fd-user-form-edit-form'
-    };
-    let target = transitionMap[model.get('stereotype')];
-
-    if (target) {
-      this.transitionTo(target, model);
-    }
   },
+
+  model: function(params) {
+
+    let store = this.get('store');
+    let stageId = this.get('currentProjectContext').getCurrentStage();
+
+    let allClasses = store.peekAll('fd-dev-class');
+    let allStages = store.peekAll('fd-dev-stage');
+
+    let typedef = allClasses.findBy('id', params.id);
+
+    let stage = allStages.findBy('id', stageId); // typemaps are inside, in XML. Need to find one equal to current type and let change it.
+    return modelHash;
+  }
 });
