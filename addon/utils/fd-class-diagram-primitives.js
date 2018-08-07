@@ -1,30 +1,7 @@
 import joint from 'npm:jointjs';
 import './fd-common-primitives';
 
-joint.shapes.flexberryUml.BaseClass.define('flexberryUml.Class', {
-  attrs: {
-    '.flexberry-uml-header-text': { 'font-weight': 'bold' },
-    '.flexberry-uml-header-text tspan[x]': { 'font-weight': 'normal' },
-  },
-  stereotype:[],
-
-}, {
-  getClassName: function() {
-    return [this.get('name'), this.get('stereotype')];
-  }
-});
-
-joint.shapes.flexberryUml.Class.define('flexberryUml.ClassCollapsed', {
-}, {
-  markup: [
-    '<g class="rotatable">',
-    '<g class="scalable">',
-    '<rect class="flexberry-uml-header-rect"/>',
-    '</g>',
-    '<text class="flexberry-uml-header-text"/>',
-    '</g>'
-  ].join('')
-});
+import { Class } from '../objects/uml-primitives/fd-uml-class';
 
 joint.shapes.flexberryUml.BaseClass.define('flexberryUml.Object', {
   attrs: {
@@ -43,7 +20,7 @@ joint.shapes.flexberryUml.BaseClass.define('flexberryUml.Object', {
   ].join('')
 });
 
-joint.shapes.flexberryUml.Class.define('flexberryUml.TemplateClass', {
+Class.define('flexberryUml.TemplateClass', {
   attrs: {
     '.flexberry-uml-params-rect': {
       'stroke': 'black', 'stroke-width': 1,
@@ -78,7 +55,7 @@ joint.shapes.flexberryUml.Class.define('flexberryUml.TemplateClass', {
   ].join(''),
 
   updateRectangles: function() {
-    joint.shapes.flexberryUml.Class.prototype.updateRectangles.apply(this, arguments);
+    Class.prototype.updateRectangles.apply(this, arguments);
 
     var attrs = this.get('attrs');
 
