@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
+import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
 
 export default Ember.Route.extend(FdLoadingForTransitionMixin, {
 
