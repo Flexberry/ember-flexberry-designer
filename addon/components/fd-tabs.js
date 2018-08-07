@@ -177,7 +177,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
           if (this.dynamicTabs) {
             this.send('changeLastTab', this.get('_hideTabs').get('lastObject').title);
           }
-        };
+        }
 
         let activeTab = this.get('activeTab');
         let showedTabs= this.get('_showedTabs');
