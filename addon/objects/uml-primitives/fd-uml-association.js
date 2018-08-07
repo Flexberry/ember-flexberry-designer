@@ -50,6 +50,6 @@ export default FdUmlLink.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
-    return new joint.shapes.flexberryUml.Association(properties);
+    return new joint.shapes.flexberryUml.ClassDiagramAssociation(properties);
   },
 });
