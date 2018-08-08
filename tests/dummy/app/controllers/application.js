@@ -214,14 +214,19 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       if (Ember.$('.inverted.vertical.main.menu').hasClass('visible')) {
         Ember.$('.sidebar.icon.text-menu-show').removeClass('hidden');
         Ember.$('.sidebar.icon.text-menu-hide').addClass('hidden');
-        Ember.$('.bgw-opacity').addClass('hidden');
-        Ember.$('.full.height').css({ transition: 'width 0.45s ease-in-out 0s', width: '100%' });
       } else {
         Ember.$('.sidebar.icon.text-menu-show').addClass('hidden');
         Ember.$('.sidebar.icon.text-menu-hide').removeClass('hidden');
-        Ember.$('.bgw-opacity').removeClass('hidden');
-        Ember.$('.full.height').css({ transition: 'width 0.3s ease-in-out 0s', width: 'calc(100% - ' + sidebar.width() + 'px)' });
       }
+
+      Ember.$('.inverted.vertical.main.menu').removeClass('overlay');
+
+      this.send('workPlaceConfig', true);
+
+      // For reinit overflowed tabs.
+      Ember.run.later(this, function() {
+        Ember.$(window).trigger('resize');
+      }, 500);
     },
 
     /**
