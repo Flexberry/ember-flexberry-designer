@@ -11,7 +11,7 @@ import FdUmlElement from './fd-uml-element';
   An object that describes a class on the UML diagram.
 
   @class FdUmlClass
-  @extends FdUmlObject
+  @extends FdUmlElement
 */
 export default FdUmlElement.extend({
   /**
