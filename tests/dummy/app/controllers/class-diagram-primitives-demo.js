@@ -3,6 +3,7 @@ import joint from 'npm:jointjs';
 
 import { Note } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note';
 import { Class, ClassCollapsed } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-class';
+import { NoteConnector } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector';
 import { Association } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-association';
 import { Composition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-composition';
 import { Generalization } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-generalization';
@@ -106,7 +107,7 @@ export default Ember.Controller.extend({
         target: { x: 300, y: 470 },
       });
 
-      var linkNoteConnector = new joint.shapes.flexberryUml.NoteConnector({
+      var linkNoteConnector = new NoteConnector({
         source: { x:100, y:520 },
         target: { x:300, y:520 },
       });

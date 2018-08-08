@@ -9,6 +9,7 @@ import {
 
 import FdUmlNote from '../objects/uml-primitives/fd-uml-note';
 import FdUmlClass from '../objects/uml-primitives/fd-uml-class';
+import FdUmlNoteConnector from '../objects/uml-primitives/fd-uml-note-connector';
 import FdUmlAssociation from '../objects/uml-primitives/fd-uml-association';
 import FdUmlComposition from '../objects/uml-primitives/fd-uml-composition';
 import FdUmlGeneralization from '../objects/uml-primitives/fd-uml-generalization';
@@ -33,6 +34,10 @@ let Model = CADModel.extend(DevUMLCADMixin, {
 
         case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin':
           result.pushObject(FdUmlClass.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':
+          result.pushObject(FdUmlNoteConnector.create({ primitive }));
           break;
 
         case 'STORMCASE.UML.cad.Association, UMLCAD':

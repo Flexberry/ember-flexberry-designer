@@ -230,13 +230,6 @@ joint.dia.Link.define('flexberryUml.NArrayAssociationConnect', {
   }]
 });
 
-joint.dia.Link.define('flexberryUml.NoteConnector', {
-  attrs: {
-    '.marker-target': { d: 'M 0 0 z' },
-    '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '3 2' },
-  },
-});
-
 joint.dia.Link.define('flexberryUml.Dependency', {
   attrs: {
     text: { 'font-size':'12', 'font-family':'Arial, helvetica, sans-serif' },
