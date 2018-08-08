@@ -4213,18 +4213,6 @@
         {
             "file": "addon/controllers/fd-appstruct-form.js",
             "line": 753,
-            "description": "Method for restoring tree nodes.",
-            "itemtype": "method",
-            "name": "_restorationNodeTree",
-            "access": "private",
-            "tagname": "",
-            "class": "FdDraggableControlMixin",
-            "module": "components",
-            "namespace": "components"
-        },
-        {
-            "file": "addon/controllers/fd-appstruct-form.js",
-            "line": 768,
             "description": "Method for update data in tree.",
             "itemtype": "method",
             "name": "_updateTreeData",

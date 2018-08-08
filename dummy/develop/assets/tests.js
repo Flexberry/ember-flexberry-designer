@@ -7315,7 +7315,7 @@ define('dummy/tests/unit/transforms/containers-tree-test', ['exports', 'ember', 
       caption: 'Настройка рассылки писем',
       text: 'Настройка рассылки писем',
       type: 'property',
-      id: 'p0l0i2',
+      id: 'p2l0i2',
       url: ''
     })]);
 
@@ -7325,7 +7325,7 @@ define('dummy/tests/unit/transforms/containers-tree-test', ['exports', 'ember', 
       caption: 'Журнал импорта',
       text: 'Журнал импорта',
       type: 'property',
-      id: 'p0l0i3',
+      id: 'p2l0i3',
       url: ''
     })]);
 
@@ -7355,7 +7355,7 @@ define('dummy/tests/unit/transforms/containers-tree-test', ['exports', 'ember', 
       caption: 'Учет рабочего времени',
       text: 'Учет рабочего времени',
       type: 'property',
-      id: 'p0l0i4',
+      id: 'p1l0i4',
       url: ''
     }), _emberFlexberryDesignerObjectsFdAppstructTree['default'].create({
       className: 'ПроизводственныйКалендарьWebL',
