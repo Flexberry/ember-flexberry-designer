@@ -320,7 +320,7 @@ export default Ember.Object.extend({
   },
 
   randomValue: function(type) {
-    if (type === undefined) {
+    if (!type) {
       type = 'string';
     }
 
