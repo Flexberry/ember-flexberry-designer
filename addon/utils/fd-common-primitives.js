@@ -143,49 +143,6 @@ joint.shapes.flexberryUml.BaseObject.define('flexberryUml.NAryAssociation', {
   ].join(''),
 });
 
-joint.shapes.flexberryUml.BaseObject.define('flexberryUml.Note', {
-  attrs: {
-    '.flexberry-uml-header-text': {
-      'font-weight': 'bold',
-      'ref-y': 0,
-      'ref-x': 0,
-      'text-anchor': 'start',
-      'y-alignment': 'start',
-    },
-    '.corner-rect': {
-      'ref':'.flexberry-uml-header-rect',
-      'stroke': 'white',
-      'stroke-width':'2'
-    },
-    '.corner': {
-      'ref':'.flexberry-uml-header-rect',
-      'stroke': 'black',
-      'stroke-width':'1',
-      'd':'M0,0 L0,10 L10,10 L0,0'
-    },
-  },
-}, {
-  markup: [
-    '<g class="rotatable">',
-    '<g class="scalable">',
-    '<rect class="flexberry-uml-header-rect"/>',
-    '</g>',
-    '<text class="flexberry-uml-header-text"/>',
-    '<rect class="corner-rect" width="10" height="10"/>',
-    '<path class="corner"/>',
-    '</g>'
-  ].join(''),
-
-  updateRectangles: function() {
-    joint.shapes.flexberryUml.BaseObject.prototype.updateRectangles.apply(this, arguments);
-
-    let attrs = this.get('attrs');
-    let transX = this.size().width - 10;
-    attrs['.corner-rect'].transform = 'translate(' + transX + ', 0)';
-    attrs['.corner'].transform = 'translate(' + transX + ', 0)';
-  }
-});
-
 joint.dia.Link.define('flexberryUml.BaseLink', {
   attrs: {
     text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }

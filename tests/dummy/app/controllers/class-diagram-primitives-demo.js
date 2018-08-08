@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import joint from 'npm:jointjs';
 
+import { Note } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note';
 import { Class, ClassCollapsed } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-class';
 import { Association } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-association';
 import { Composition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-composition';
@@ -177,7 +178,7 @@ export default Ember.Controller.extend({
         params: 'params'
       });
 
-      let note = new joint.shapes.flexberryUml.Note({
+      let note = new Note({
         position: { x: 550, y: 300 },
         name: 'Comment'
       });

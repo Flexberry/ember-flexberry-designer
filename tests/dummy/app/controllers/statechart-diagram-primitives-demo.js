@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import joint from 'npm:jointjs';
 
+import { Note } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note';
+
 export default Ember.Controller.extend({
   actions: {
     printDiagram: function() {
@@ -77,7 +79,7 @@ export default Ember.Controller.extend({
         attrs: { '.rotatable': { title:'Класс (Class)' } }
       });
 
-      let note = new joint.shapes.flexberryUml.Note({
+      let note = new Note({
         position: { x: 450, y: 300 },
         name: 'Comment'
       });
