@@ -219,7 +219,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
       let sidebarOpened = configPanelSidebar.hasClass('visible');
 
-      if (!Ember.isNone(column) || sidebarOpened) {
+      if (column || sidebarOpened) {
         this.send('toggleConfigPanel', 'control-properties', newSelectedColumn);
       }
 
