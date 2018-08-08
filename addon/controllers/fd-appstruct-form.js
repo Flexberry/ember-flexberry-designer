@@ -751,21 +751,6 @@ export default EditFormController.extend(FdWorkPanelToggler, {
   },
 
   /**
-    Method for restoring tree nodes.
-    @method _restorationNodeTree
-    @private
-  */
-  _restorationNodeTree(nodeArray) {
-    let _this = this;
-    nodeArray.forEach(function(node) {
-      if (node.type === 'folder' || node.type === 'desk') {
-        node.set('children', node.get('copyChildren'));
-        _this._restorationNodeTree(node.get('children'));
-      }
-    });
-  },
-
-  /**
     Method for update data in tree.
     @method _updateTreeData
     @private
