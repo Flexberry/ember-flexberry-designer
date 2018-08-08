@@ -138,7 +138,12 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
             link: 'fd-view-list-form',
             caption: i18n.t('forms.application.sitemap.root.fd-view-list-form.caption'),
             title: i18n.t('forms.application.sitemap.root.fd-view-list-form.title'),
-          }
+          },
+          {
+            link: 'fd-data-types-map',
+            caption: i18n.t('forms.application.sitemap.root.fd-data-types-map.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-data-types-map.title'),
+          },
         ]
       });
     }
