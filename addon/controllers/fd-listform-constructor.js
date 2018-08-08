@@ -216,6 +216,13 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     selectColumn(column) {
       let selectedColumn = this.get('selectedColumn');
       let newSelectedColumn = selectedColumn === column ? undefined : column;
+      let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
+      let sidebarOpened = configPanelSidebar.hasClass('visible');
+
+      if (!Ember.isNone(column) || sidebarOpened) {
+        this.send('toggleConfigPanel', 'control-properties', newSelectedColumn);
+      }
+
       this.set('selectedColumn', newSelectedColumn);
 
       if (!Ember.isNone(newSelectedColumn) && newSelectedColumn.get('propertyDefinition.name') === '') {

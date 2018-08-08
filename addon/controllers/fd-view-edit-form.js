@@ -196,8 +196,14 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       @method actions.onAttributesClick
     */
     onAttributesClick(index) {
+      let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
+      let sidebarOpened = configPanelSidebar.hasClass('visible');
+
+      if (!Ember.isNone(index) || sidebarOpened) {
+        this.send('toggleConfigPanel', 'active-tree-tab', index);
+      }
+
       this.set('selectedRowIndex', index);
-      this.send('toggleConfigPanel', 'active-tree-tab', index);
     },
 
     /**
