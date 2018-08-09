@@ -7,20 +7,16 @@ export default Ember.Route.extend({
 
   afterModel: function(model) {
     this._super(model);
-
-    if (!model.get('caption')) {
-      model.set('caption', model.get('name'));
-    }
   },
 
   model: function(params) {
-    let modelHash = {
+    let modelHash = Ember.Object.create({
       className: undefined,
       CSStr: undefined,
       oracleStr: undefined,
-      postgreSql: undefined,
+      postgreStr: undefined,
       SQLStr: undefined
-    };
+    });
 
     let store = this.get('store');
     let stageId = this.get('currentProjectContext').getCurrentStage();
@@ -40,7 +36,7 @@ export default Ember.Route.extend({
     }
 
     if (!Ember.isEmpty(stage.get('typeMapPostgreStr'))) {
-      modelHash.postgreSql = stage.get('typeMapPostgreStr').findBy('name', modelHash.className);
+      modelHash.postgreStr = stage.get('typeMapPostgreStr').findBy('name', modelHash.className);
     }
 
     if (!Ember.isEmpty(stage.get('typeMapSQLStr'))) {

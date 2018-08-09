@@ -1,41 +1,40 @@
-<h3 class="ui header">{{t 'forms.fd-class-edit-form.caption'}}</h3>
-
-{{#if errorMessages}}
-  {{#each errorMessages as |currentError|}}
-    {{ui-message
-      type='error'
-      closeable=true
-      visible=true
-      title='Error occurred'
-      message=currentError
-    }}
-  {{/each}}
-{{/if}}
-
+<h3 class="ui header">{{t 'forms.fd-class-edit-form.caption'}} {{model.className}}</h3>
 <form class="ui form flexberry-vertical-form" role="form">
-  <!-- {{flexberry-error error=error}}
-  <div class="field">
-    <div class="sixteen wide">
-      {{flexberry-validationsummary errors=model.errors}}
-    </div>
-  </div>
   <div class="field">
     <div class="flexberry-edit-panel">
-      {{#unless readonly}}
-        <button type="submit" class="ui button save-button" {{action 'save'}}>
-          {{t "forms.edit-form.save-button-text"}}
-        </button>
-        {{#unless model.isNew}}
-          <button type="submit" class="ui button save-del-button" {{action 'delete'}}>
-            {{t "forms.edit-form.delete-button-text"}}
-          </button>
-        {{/unless}}
-      {{/unless}}
+    <button type="submit" class="ui button save-button" {{action 'save'}}>
+      {{t "forms.edit-form.save-button-text"}}
+    </button>
+      <button type="submit" class="ui button save-del-button" {{action 'delete'}}>
+        {{t "forms.edit-form.delete-button-text"}}
+      </button>
       <button type="submit" class="ui button close-button" {{action 'close'}}>
         {{t "forms.edit-form.close-button-text"}}
       </button>
     </div>
-  </div> -->
-
-
+  </div>
+  <div class="field">
+    {{flexberry-field
+      value=model.CSStr.value
+      label=CSStrLabel
+    }}
+  </div>
+  <div class="field">
+    {{flexberry-field
+      value=model.SQLStr.value
+      label=SQLStrLabel
+    }}
+  </div>
+  <div class="field">
+    {{flexberry-field
+      value=model.oracleStr.value
+      label=oracleStrLabel
+    }}
+  </div>
+  <div class="field">
+    {{flexberry-field
+      value=model.postgreStr.value
+      label=postgreStrLabel
+    }}
+  </div>
 </form>
