@@ -183,7 +183,7 @@ export default Ember.Mixin.create({
       if (this.controller.get(&#x27;state&#x27;) === &#x27;&#x27;) {
         transition.abort();
         this.controller.set(&#x27;state&#x27;, &#x27;loading&#x27;);
-        Ember.run.later(() =&gt; {
+        Ember.run.next(() =&gt; {
           transition.retry();
         });
       }
