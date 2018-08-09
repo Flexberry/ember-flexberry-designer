@@ -424,7 +424,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     @property dataObjectProperties
     @type Object
   */
-  dataObjectProperties: Ember.computed('model.dataobject', 'model.inheritances', 'model.associations', 'model.aggregations', function() {
+  dataObjectProperties: Ember.computed('model.dataobject.attributes.@each.type', 'model.inheritances', 'model.associations', 'model.aggregations', function() {
     let dataObject = this.get('model.dataobject');
     let inheritances = this.get('model.inheritances');
     let associations = this.get('model.associations');
