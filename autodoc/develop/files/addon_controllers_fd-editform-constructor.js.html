@@ -319,12 +319,15 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     }
 
     let dataobjectId = this.get(&#x27;model.dataobject.id&#x27;);
-    let view = this.get(&#x27;model.editform.formViews.firstObject.view&#x27;);
+    let mockView = Ember.Object.create({
+      definition: controlsToDefinition(this.get(&#x27;controlsTree&#x27;)),
+      class: this.get(&#x27;model.dataobject&#x27;)
+    });
 
     let dataForBuildTree = getDataForBuildTree(this.get(&#x27;store&#x27;), dataobjectId);
-    let attributesForTree = getTreeNodeByNotUsedAttributes(this.get(&#x27;store&#x27;), dataForBuildTree.classes, view, &#x27;type&#x27;);
+    let attributesForTree = getTreeNodeByNotUsedAttributes(this.get(&#x27;store&#x27;), dataForBuildTree.classes, mockView, &#x27;type&#x27;);
     let associationForTree = getAssociationTreeNode(Ember.A(), dataForBuildTree.associations, &#x27;node_&#x27;, dataobjectId, &#x27;name&#x27;);
-    let aggregationForTree = getTreeNodeByNotUsedAggregation(dataForBuildTree.aggregations, view, &#x27;name&#x27;);
+    let aggregationForTree = getTreeNodeByNotUsedAggregation(dataForBuildTree.aggregations, mockView, &#x27;name&#x27;);
 
     let attributesTree = Ember.A();
     attributesTree.pushObjects([
@@ -608,13 +611,10 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
       this.notifyPropertyChange(&#x27;_dataForBuildTree&#x27;);
 
-      let view = this.get(&#x27;model.editform.formViews.firstObject.view&#x27;);
-      let viewDefinition = view.get(&#x27;definition&#x27;);
       let propertyDefinition = FdViewAttributesProperty.create({
         name: &#x27;newAttribute&#x27; + atrIndex,
         visible: true,
       });
-      viewDefinition.pushObject(propertyDefinition);
 
       let control = FdEditformControl.create({
         caption: &#x60;${this.get(&#x27;i18n&#x27;).t(&#x27;forms.fd-editform-constructor.new-control-caption&#x27;).toString()} #${this.incrementProperty(&#x27;_newControlIndex&#x27;)}&#x60;,
@@ -1255,7 +1255,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       let { aggregations } = dataObjectProperties;
       let relation = aggregations.findBy(&#x27;endRole&#x27;, propertyName) || aggregations.findBy(&#x27;endClass.name&#x27;, propertyName);
       type = &#x27;detail&#x27;;
-      view = this.get(&#x27;model.views&#x27;).filterBy(&#x27;class.id&#x27;, relation.get(&#x27;endClass.id&#x27;)).findBy(&#x27;name&#x27;, propertyDefinition.get(&#x27;detailViewName&#x27;));
+      view = Ember.A(this.get(&#x27;model.views&#x27;).filterBy(&#x27;class.id&#x27;, relation.get(&#x27;endClass.id&#x27;))).findBy(&#x27;name&#x27;, propertyDefinition.get(&#x27;detailViewName&#x27;));
       types = this._getTypesForView(view);
     } else if (propertyDefinition instanceof FdViewAttributesMaster) {
       type = &#x27;master&#x27;;
@@ -1275,22 +1275,29 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       while (path.length &gt; 0) {
         let role = path.shift();
         let relation = properties.associations.findBy(&#x27;startRole&#x27;, role) || properties.associations.findBy(&#x27;startClass.name&#x27;, role);
-        properties = this._getClassProperties(relation.get(&#x27;startClass&#x27;), inheritances, associations, aggregations);
+        if (relation) {
+          properties = this._getClassProperties(relation.get(&#x27;startClass&#x27;), inheritances, associations, aggregations);
+        } else {
+          console.error(&#x27;Not found association with name:&#x27; + role);
+        }
       }
 
       let attribute = properties.attributes.findBy(&#x27;name&#x27;, propertyName);
-      let typeInMap = this.get(&#x27;model.stage.typeMapCSStr&#x27;).findBy(&#x27;name&#x27;, attribute.get(&#x27;type&#x27;));
-
-      if (typeInMap) {
-        type = typeInMap.value || typeInMap.name;
-      } else {
-        let clazz = this.get(&#x27;model.classes&#x27;).findBy(&#x27;name&#x27;, attribute.get(&#x27;type&#x27;));
-        if (clazz &amp;&amp; clazz.get(&#x27;stereotype&#x27;) === &#x27;«enumeration»&#x27;) {
-          type = &#x27;enumeration&#x27;;
-          items = clazz.get(&#x27;attributes&#x27;).mapBy(&#x27;name&#x27;);
+      if (attribute) {
+        let typeInMap = this.get(&#x27;model.stage.typeMapCSStr&#x27;).findBy(&#x27;name&#x27;, attribute.get(&#x27;type&#x27;));
+        if (typeInMap) {
+          type = typeInMap.value || typeInMap.name;
         } else {
-          type = &#x27;default&#x27;;
+          let clazz = this.get(&#x27;model.classes&#x27;).findBy(&#x27;name&#x27;, attribute.get(&#x27;type&#x27;));
+          if (clazz &amp;&amp; clazz.get(&#x27;stereotype&#x27;) === &#x27;«enumeration»&#x27;) {
+            type = &#x27;enumeration&#x27;;
+            items = clazz.get(&#x27;attributes&#x27;).mapBy(&#x27;name&#x27;);
+          } else {
+            type = &#x27;default&#x27;;
+          }
         }
+      } else {
+        type = &#x27;default&#x27;;
       }
     } else {
       throw new Error(&#x27;Invalid property definition.&#x27;);

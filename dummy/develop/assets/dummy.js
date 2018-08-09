@@ -17681,7 +17681,7 @@ define("dummy/templates/components/fd-editform-control", ["exports"], function (
                           "column": 8
                         },
                         "end": {
-                          "line": 52,
+                          "line": 54,
                           "column": 8
                         }
                       },
@@ -17706,7 +17706,7 @@ define("dummy/templates/components/fd-editform-control", ["exports"], function (
                       morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
                       return morphs;
                     },
-                    statements: [["inline", "fd-editform-row", [], ["row", ["subexpr", "@mut", [["get", "row", ["loc", [null, [45, 16], [45, 19]]]]], [], []], "selectedItem", ["subexpr", "@mut", [["get", "selectedItem", ["loc", [null, [46, 25], [46, 37]]]]], [], []], "selectItemAction", ["subexpr", "@mut", [["get", "selectItemAction", ["loc", [null, [47, 29], [47, 45]]]]], [], []], "setDragItemAction", ["subexpr", "@mut", [["get", "setDragItemAction", ["loc", [null, [48, 30], [48, 47]]]]], [], []], "getDragItemAction", ["subexpr", "@mut", [["get", "getDragItemAction", ["loc", [null, [49, 30], [49, 47]]]]], [], []], "moveDragItemAction", ["subexpr", "@mut", [["get", "moveDragItemAction", ["loc", [null, [50, 31], [50, 49]]]]], [], []]], ["loc", [null, [44, 10], [51, 12]]]]],
+                    statements: [["inline", "fd-editform-row", [], ["row", ["subexpr", "@mut", [["get", "row", ["loc", [null, [45, 16], [45, 19]]]]], [], []], "selectedItem", ["subexpr", "@mut", [["get", "selectedItem", ["loc", [null, [46, 25], [46, 37]]]]], [], []], "selectItemAction", ["subexpr", "@mut", [["get", "selectItemAction", ["loc", [null, [47, 29], [47, 45]]]]], [], []], "setDragItemAction", ["subexpr", "@mut", [["get", "setDragItemAction", ["loc", [null, [48, 30], [48, 47]]]]], [], []], "getDragItemAction", ["subexpr", "@mut", [["get", "getDragItemAction", ["loc", [null, [49, 30], [49, 47]]]]], [], []], "moveDragItemAction", ["subexpr", "@mut", [["get", "moveDragItemAction", ["loc", [null, [50, 31], [50, 49]]]]], [], []], "getComponentPropertiesAction", ["subexpr", "@mut", [["get", "getComponentPropertiesAction", ["loc", [null, [51, 41], [51, 69]]]]], [], []], "showLookupAction", ["subexpr", "@mut", [["get", "showLookupAction", ["loc", [null, [52, 29], [52, 45]]]]], [], []]], ["loc", [null, [44, 10], [53, 12]]]]],
                     locals: ["row"],
                     templates: []
                   };
@@ -17722,7 +17722,7 @@ define("dummy/templates/components/fd-editform-control", ["exports"], function (
                         "column": 6
                       },
                       "end": {
-                        "line": 54,
+                        "line": 56,
                         "column": 6
                       }
                     },
@@ -17747,7 +17747,7 @@ define("dummy/templates/components/fd-editform-control", ["exports"], function (
                     morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
                     return morphs;
                   },
-                  statements: [["block", "each", [["get", "tabObj.rows", ["loc", [null, [43, 16], [43, 27]]]]], [], 0, null, ["loc", [null, [43, 8], [52, 17]]]]],
+                  statements: [["block", "each", [["get", "tabObj.rows", ["loc", [null, [43, 16], [43, 27]]]]], [], 0, null, ["loc", [null, [43, 8], [54, 17]]]]],
                   locals: [],
                   templates: [child0]
                 };
@@ -17763,7 +17763,7 @@ define("dummy/templates/components/fd-editform-control", ["exports"], function (
                       "column": 4
                     },
                     "end": {
-                      "line": 55,
+                      "line": 57,
                       "column": 4
                     }
                   },
@@ -17786,7 +17786,7 @@ define("dummy/templates/components/fd-editform-control", ["exports"], function (
                   dom.insertBoundary(fragment, null);
                   return morphs;
                 },
-                statements: [["block", "tab.pane", [], ["title", ["subexpr", "@mut", [["get", "tabObj.caption", ["loc", [null, [37, 14], [37, 28]]]]], [], []], "dataTab", ["subexpr", "@mut", [["get", "tabObj.caption", ["loc", [null, [38, 16], [38, 30]]]]], [], []], "tab", ["subexpr", "@mut", [["get", "tabObj", ["loc", [null, [39, 12], [39, 18]]]]], [], []], "theme", "bottom attached segment"], 0, null, ["loc", [null, [36, 6], [54, 19]]]]],
+                statements: [["block", "tab.pane", [], ["title", ["subexpr", "@mut", [["get", "tabObj.caption", ["loc", [null, [37, 14], [37, 28]]]]], [], []], "dataTab", ["subexpr", "@mut", [["get", "tabObj.caption", ["loc", [null, [38, 16], [38, 30]]]]], [], []], "tab", ["subexpr", "@mut", [["get", "tabObj", ["loc", [null, [39, 12], [39, 18]]]]], [], []], "theme", "bottom attached segment"], 0, null, ["loc", [null, [36, 6], [56, 19]]]]],
                 locals: ["tabObj", "index"],
                 templates: [child0]
               };
@@ -17802,7 +17802,7 @@ define("dummy/templates/components/fd-editform-control", ["exports"], function (
                     "column": 2
                   },
                   "end": {
-                    "line": 56,
+                    "line": 58,
                     "column": 2
                   }
                 },
@@ -17825,7 +17825,7 @@ define("dummy/templates/components/fd-editform-control", ["exports"], function (
                 dom.insertBoundary(fragment, null);
                 return morphs;
               },
-              statements: [["block", "each", [["get", "control.tabs", ["loc", [null, [35, 12], [35, 24]]]]], [], 0, null, ["loc", [null, [35, 4], [55, 13]]]]],
+              statements: [["block", "each", [["get", "control.tabs", ["loc", [null, [35, 12], [35, 24]]]]], [], 0, null, ["loc", [null, [35, 4], [57, 13]]]]],
               locals: ["tab"],
               templates: [child0]
             };
@@ -17841,7 +17841,7 @@ define("dummy/templates/components/fd-editform-control", ["exports"], function (
                   "column": 0
                 },
                 "end": {
-                  "line": 57,
+                  "line": 59,
                   "column": 0
                 }
               },
@@ -17864,7 +17864,7 @@ define("dummy/templates/components/fd-editform-control", ["exports"], function (
               dom.insertBoundary(fragment, null);
               return morphs;
             },
-            statements: [["block", "fd-tabs", [], ["tabsMenuTheme", "top attached tabular", "class", "ui segments", "tabClick", ["subexpr", "action", ["changeTab"], [], ["loc", [null, [31, 15], [31, 35]]]], "selectedTab", ["subexpr", "@mut", [["get", "selectedItem.caption", ["loc", [null, [32, 16], [32, 36]]]]], [], []]], 0, null, ["loc", [null, [28, 2], [56, 14]]]]],
+            statements: [["block", "fd-tabs", [], ["tabsMenuTheme", "top attached tabular", "class", "ui segments", "tabClick", ["subexpr", "action", ["changeTab"], [], ["loc", [null, [31, 15], [31, 35]]]], "selectedTab", ["subexpr", "@mut", [["get", "selectedItem.caption", ["loc", [null, [32, 16], [32, 36]]]]], [], []]], 0, null, ["loc", [null, [28, 2], [58, 14]]]]],
             locals: [],
             templates: [child0]
           };
@@ -17880,7 +17880,7 @@ define("dummy/templates/components/fd-editform-control", ["exports"], function (
                 "column": 0
               },
               "end": {
-                "line": 57,
+                "line": 59,
                 "column": 0
               }
             },
@@ -17903,7 +17903,7 @@ define("dummy/templates/components/fd-editform-control", ["exports"], function (
             dom.insertBoundary(fragment, null);
             return morphs;
           },
-          statements: [["block", "if", [["get", "_isTab", ["loc", [null, [27, 10], [27, 16]]]]], [], 0, null, ["loc", [null, [27, 0], [57, 0]]]]],
+          statements: [["block", "if", [["get", "_isTab", ["loc", [null, [27, 10], [27, 16]]]]], [], 0, null, ["loc", [null, [27, 0], [59, 0]]]]],
           locals: [],
           templates: [child0]
         };
@@ -17919,7 +17919,7 @@ define("dummy/templates/components/fd-editform-control", ["exports"], function (
               "column": 0
             },
             "end": {
-              "line": 57,
+              "line": 59,
               "column": 0
             }
           },
@@ -17942,7 +17942,7 @@ define("dummy/templates/components/fd-editform-control", ["exports"], function (
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [["block", "if", [["get", "_isGroup", ["loc", [null, [12, 10], [12, 18]]]]], [], 0, 1, ["loc", [null, [12, 0], [57, 0]]]]],
+        statements: [["block", "if", [["get", "_isGroup", ["loc", [null, [12, 10], [12, 18]]]]], [], 0, 1, ["loc", [null, [12, 0], [59, 0]]]]],
         locals: [],
         templates: [child0, child1]
       };
@@ -17961,8 +17961,8 @@ define("dummy/templates/components/fd-editform-control", ["exports"], function (
             "column": 0
           },
           "end": {
-            "line": 57,
-            "column": 7
+            "line": 60,
+            "column": 0
           }
         },
         "moduleName": "dummy/templates/components/fd-editform-control.hbs"
@@ -17996,7 +17996,7 @@ define("dummy/templates/components/fd-editform-control", ["exports"], function (
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["element", "action", [["get", "set", ["loc", [null, [2, 34], [2, 37]]]], "draggable", true], ["on", "mouseEnter"], ["loc", [null, [2, 25], [2, 72]]]], ["element", "action", [["get", "set", ["loc", [null, [2, 82], [2, 85]]]], "draggable", false], ["on", "mouseLeave"], ["loc", [null, [2, 73], [2, 121]]]], ["block", "if", [["get", "_isControl", ["loc", [null, [3, 6], [3, 16]]]]], [], 0, 1, ["loc", [null, [3, 0], [57, 7]]]]],
+      statements: [["element", "action", [["get", "set", ["loc", [null, [2, 34], [2, 37]]]], "draggable", true], ["on", "mouseEnter"], ["loc", [null, [2, 25], [2, 72]]]], ["element", "action", [["get", "set", ["loc", [null, [2, 82], [2, 85]]]], "draggable", false], ["on", "mouseLeave"], ["loc", [null, [2, 73], [2, 121]]]], ["block", "if", [["get", "_isControl", ["loc", [null, [3, 6], [3, 16]]]]], [], 0, 1, ["loc", [null, [3, 0], [59, 7]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -51060,7 +51060,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+c6fc54a0"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+4c6cb198"});
 }
 
 /* jshint ignore:end */

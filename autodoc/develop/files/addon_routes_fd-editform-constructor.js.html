@@ -172,11 +172,20 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
     let store = this.get(&#x27;store&#x27;);
 
     modelHash.stage = this.get(&#x27;currentProjectContext&#x27;).getCurrentStageModel();
-    modelHash.classes = store.peekAll(&#x27;fd-dev-class&#x27;);
-    modelHash.views = store.peekAll(&#x27;fd-dev-view&#x27;);
-    modelHash.inheritances = store.peekAll(&#x27;fd-dev-inheritance&#x27;);
-    modelHash.associations = store.peekAll(&#x27;fd-dev-association&#x27;);
-    modelHash.aggregations = store.peekAll(&#x27;fd-dev-aggregation&#x27;);
+
+    let allClassesInStore = store.peekAll(&#x27;fd-dev-class&#x27;);
+    let allViewsInStore = store.peekAll(&#x27;fd-dev-view&#x27;);
+    let allInheritancesInStore = store.peekAll(&#x27;fd-dev-inheritance&#x27;);
+    let allAssociationsInStore = store.peekAll(&#x27;fd-dev-association&#x27;);
+    let allAggregationsInStore = store.peekAll(&#x27;fd-dev-aggregation&#x27;);
+
+    modelHash.classes = allClassesInStore.filterBy(&#x27;stage.id&#x27;, modelHash.stage.get(&#x27;id&#x27;));
+    modelHash.views = allViewsInStore.filter(function(item) {
+      return !Ember.isNone(modelHash.classes.findBy(&#x27;id&#x27;, item.get(&#x27;class.id&#x27;)));
+    });
+    modelHash.inheritances = allInheritancesInStore.filterBy(&#x27;stage.id&#x27;, modelHash.stage.get(&#x27;id&#x27;));
+    modelHash.associations = allAssociationsInStore.filterBy(&#x27;stage.id&#x27;, modelHash.stage.get(&#x27;id&#x27;));
+    modelHash.aggregations = allAggregationsInStore.filterBy(&#x27;stage.id&#x27;, modelHash.stage.get(&#x27;id&#x27;));
 
     // Editform.
     let editform = store.peekRecord(&#x27;fd-dev-class&#x27;, params.id);
