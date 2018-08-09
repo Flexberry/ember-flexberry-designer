@@ -1019,27 +1019,20 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
     // Save attributes.
     let dataobject = this.get('model.dataobject');
-    console.log(dataobject);
     if (Ember.isNone(dataobject.get('caption'))) {
       dataobject.set('caption', dataobject.get('name'));
     }
 
     let attributes = dataobject.get('attributes');
-    console.log(attributes);
     let changedAttributes = attributes.filterBy('hasDirtyAttributes');
-    console.log(changedAttributes);
 
     let association = this.get('store').peekAll('fd-dev-association');
-    console.log(association);
     let changedAssociations = association.filterBy('hasDirtyAttributes');
-    console.log(changedAssociations);
     let aggregation = this.get('store').peekAll('fd-dev-aggregation');
-    console.log(aggregation);
     let changedAggregation = aggregation.filterBy('hasDirtyAttributes');
-    console.log(changedAggregation);
+
     // Сохранить класс формы редактирования
     let editform = this.get('model.editform');
-    console.log(editform );
     editform.set('propertyLookupStr', Ember.A(editform.get('propertyLookupStr').toArray()));
 
     return Ember.RSVP.all([
@@ -1265,20 +1258,39 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     let originalArrayLength = originalModel.length;
     let formModelArrayLength = formDefinitions.length
     let checkResult = false;
-    
-    if (originalArrayLength === formModelArrayLength) {
+
+    if (originalArrayLength !== formModelArrayLength) {
       checkResult = true;
-      return checkResult;
     }
 
     for (let i = 0; i < originalArrayLength; i++) {
-      checkResult = access = originalModel[i].name !== formDefinitions[i].name ? true : false;
-      checkResult = access = originalModel[i].caption !== formDefinitions[i].caption ? true : false;
-      checkResult = access = originalModel[i].path !== formDefinitions[i].path ? true : false;
-      heckResult = access = originalModel[i].visible !== formDefinitions[i].visible ? true : false;
-     
+      if (originalModel[i].name !== formDefinitions[i].name) {
+        checkResult = true;
+      }
+
+      if (originalModel[i].caption !== formDefinitions[i].caption) {
+        checkResult = true;
+      }
+
+      if (originalModel[i].path !== formDefinitions[i].path) {
+        checkResult = true;
+      }
+
+      if (originalModel[i].visible !== formDefinitions[i].visible) {
+        checkResult = true;
+      }
     }
-    
+
+    let dataobject = this.get('model.dataobject');
+    let attributes = dataobject.get('attributes');
+    let changedAttributes = attributes.filterBy('hasDirtyAttributes');
+
+    if (changedAttributes.length > 0) {
+      checkResult = true;
+    }
+
+    console.log('REULT = ' + checkResult);
+
     return checkResult;
   },
 
