@@ -50,7 +50,7 @@ export default Ember.Mixin.create({
       if (this.controller.get('state') === '') {
         transition.abort();
         this.controller.set('state', 'loading');
-        Ember.run.later(() => {
+        Ember.run.next(() => {
           transition.retry();
         });
       }
