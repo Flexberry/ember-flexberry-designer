@@ -389,7 +389,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     @type Ember.NativeArray
   */
   simpleTypes: Ember.computed('_dataTypes', function() {
-    return this._buildTree(this.get('_dataTypes').flexberryTypes(), 'property');
+    return this._buildTree(this.get('_dataTypes').fDTypes(), 'property');
   }),
 
   /**
