@@ -9,10 +9,10 @@ export default EditFormRoute.extend({
   setupController: function(controller, model) {
     this._super(...arguments);
 
-    let stagePk = model.id;
+    let stagePk = model.get('id');
     let adapter = getOwner(this).lookup('adapter:application');
 
-    adapter.callFunction('GetCurrentModuleSetting', { project: stagePk }, null, { withCredentials: true },
+    adapter.callFunction('GetCurrentModuleSetting', { project: stagePk.toString() }, null, { withCredentials: true },
     (result) => {
       let moduleSettingValue = JSON.parse(result.value);
 

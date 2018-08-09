@@ -43,7 +43,7 @@ export default ListFormController.extend({
       let stagePk = _this.get('currentProjectContext').getCurrentStage();
       let adapter = getOwner(this).lookup('adapter:application');
 
-      adapter.callFunction('Generate', { project: stagePk }, null, { withCredentials: true },
+      adapter.callFunction('Generate', { project: stagePk.toString() }, null, { withCredentials: true },
       (result) => {
         _this.set('generationService.lastGenerationToken', result);
         result = result || {};

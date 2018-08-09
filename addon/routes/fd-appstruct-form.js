@@ -131,7 +131,7 @@ export default Ember.Route.extend({
     let stagePk = context.getCurrentStage();
     let adapter = getOwner(this).lookup('adapter:application');
 
-    adapter.callFunction('GetCurrentProcessMethodology', { project: stagePk }, null, { withCredentials: true },
+    adapter.callFunction('GetCurrentProcessMethodology', { project: stagePk.toString() }, null, { withCredentials: true },
     (result) => {
       controller.set('processMethodologyValue', result.value);
     });

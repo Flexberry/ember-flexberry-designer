@@ -85,7 +85,7 @@ export default EditFormController.extend({
       moduleSettingData.pushObject(moduleSettingTypeData);
     }
 
-    let data = { 'project': stagePk, 'moduleSettingType': moduleSettingData, 'valueModuleSetting': valueModuleSetting };
+    let data = { 'project': stagePk.toString(), 'moduleSettingType': moduleSettingData, 'valueModuleSetting': valueModuleSetting };
     let adapter = getOwner(this).lookup('adapter:application');
 
     adapter.callAction('SaveCurrentModuleSetting', data, null, { withCredentials: true });
