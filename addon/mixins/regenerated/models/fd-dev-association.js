@@ -204,8 +204,6 @@ export let defineProjections = function (modelClass) {
     }, { hidden: true })
   });
   modelClass.defineProjection('ListFormView', 'fd-dev-association', {
-    referenceCount: Projection.attr('Reference count'),
-    assocType: Projection.attr('Association type'),
     startClass: Projection.belongsTo('fd-class', '', {
       name: Projection.attr('Start class')
     }, { hidden: true }),

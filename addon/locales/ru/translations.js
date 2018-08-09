@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import EmberFlexberryTranslations from 'ember-flexberry/locales/ru/translations';
 import FdAppstructListFormForm from './forms/fd-appstruct-form';
+import FdAggregationListFormForm from './forms/fd-aggregation-list-form';
 import FdAssociationListFormForm from './forms/fd-association-list-form';
 import FdClassListFormForm from './forms/fd-class-list-form';
 import FdConfigurationListFormForm from './forms/fd-configuration-list-form';
@@ -10,6 +11,7 @@ import FdInheritanceListFormForm from './forms/fd-inheritance-list-form';
 import FdStageListFormForm from './forms/fd-stage-list-form';
 import FdSystemListFormForm from './forms/fd-system-list-form';
 import FdViewListFormForm from './forms/fd-view-list-form';
+import FdAggregationEditFormForm from './forms/fd-aggregation-edit-form';
 import FdAssociationEditFormForm from './forms/fd-association-edit-form';
 import FdClassEditFormForm from './forms/fd-class-edit-form';
 import FdConfigurationEditFormForm from './forms/fd-configuration-edit-form';
@@ -100,6 +102,7 @@ import FdViewModel from './models/fd-view';
 import FdVisualControlModel from './models/fd-visual-control';
 import FdVisualControlComponent from './components/fd-visual-control';
 import FdVisualEditControlTreeComponent from './components/fd-visual-edit-control-tree';
+import FdTabs from './components/fd-tabs';
 
 const translations = {};
 Ember.$.extend(true, translations, EmberFlexberryTranslations);
@@ -178,6 +181,7 @@ Ember.$.extend(true, translations, {
   forms: {
     'fd-appstruct-form': FdAppstructListFormForm,
     'fd-application-edit-form': FdApplicationEditFormForm,
+    'fd-aggregation-list-form': FdAggregationListFormForm,
     'fd-association-list-form': FdAssociationListFormForm,
     'fd-business-server-edit-form': FdBusinessServerEditFormForm,
     'fd-class-list-form': FdClassListFormForm,
@@ -188,6 +192,7 @@ Ember.$.extend(true, translations, {
     'fd-stage-list-form': FdStageListFormForm,
     'fd-system-list-form': FdSystemListFormForm,
     'fd-view-list-form': FdViewListFormForm,
+    'fd-aggregation-edit-form': FdAggregationEditFormForm,
     'fd-association-edit-form': FdAssociationEditFormForm,
     'fd-class-edit-form': FdClassEditFormForm,
     'fd-configuration-edit-form': FdConfigurationEditFormForm,
@@ -211,7 +216,8 @@ Ember.$.extend(true, translations, {
 
   components: {
     'fd-visual-control': FdVisualControlComponent,
-    'fd-visual-edit-control-tree': FdVisualEditControlTreeComponent
+    'fd-visual-edit-control-tree': FdVisualEditControlTreeComponent,
+    'fd-tabs': FdTabs
   }
 
 });

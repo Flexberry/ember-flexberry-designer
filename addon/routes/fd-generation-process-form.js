@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(FdLoadingForTransitionMixin, {
   modelProjection: 'EditFormView',
   modelName: 'fd-generation',
 
@@ -50,7 +51,6 @@ export default Ember.Route.extend({
   setupController(controller, model) {
     this._super(...arguments);
 
-    controller.set('state', '');
     controller.set('modelName', this.get('modelName'));
     controller.set('modelProjection', this.get('modelProjection'));
     controller.set('generationId', Ember.get(this.paramsFor('fd-generation-process-form'), 'id'));

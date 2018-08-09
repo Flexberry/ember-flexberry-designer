@@ -73,7 +73,6 @@ export default EditFormController.extend({
       @method actions.close
     */
     close() {
-      this.set('state', 'loading');
       history.back();
     },
   },

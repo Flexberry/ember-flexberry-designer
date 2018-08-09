@@ -360,7 +360,6 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       @method actions.close
     */
     close() {
-      this.set('state', 'loading');
       history.back();
     },
 
@@ -749,21 +748,6 @@ export default EditFormController.extend(FdWorkPanelToggler, {
 
       this.toggleProperty('allAttrsHidedn');
     }
-  },
-
-  /**
-    Method for restoring tree nodes.
-    @method _restorationNodeTree
-    @private
-  */
-  _restorationNodeTree(nodeArray) {
-    let _this = this;
-    nodeArray.forEach(function(node) {
-      if (node.type === 'folder' || node.type === 'desk') {
-        node.set('children', node.get('copyChildren'));
-        _this._restorationNodeTree(node.get('children'));
-      }
-    });
   },
 
   /**
