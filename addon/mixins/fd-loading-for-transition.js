@@ -47,6 +47,8 @@ export default Ember.Mixin.create({
       @param {Object} transition
      */
     willTransition(transition) {
+      let controller = this.controller
+      let isUnsavedFields = controller.findUnsavedFields();
       if (this.controller.get('state') === '') {
         transition.abort();
         this.controller.set('state', 'loading');
