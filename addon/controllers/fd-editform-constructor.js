@@ -389,7 +389,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     @type Ember.NativeArray
   */
   simpleTypes: Ember.computed('_dataTypes', function() {
-    return this._buildTree(this.get('_dataTypes').flexberryTypes(), 'property');
+    return this._buildTree(this.get('_dataTypes').fDTypes(), 'property');
   }),
 
   /**
@@ -424,7 +424,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     @property dataObjectProperties
     @type Object
   */
-  dataObjectProperties: Ember.computed('model.dataobject', 'model.inheritances', 'model.associations', 'model.aggregations', function() {
+  dataObjectProperties: Ember.computed('model.dataobject.attributes.@each.type', 'model.inheritances', 'model.associations', 'model.aggregations', function() {
     let dataObject = this.get('model.dataobject');
     let inheritances = this.get('model.inheritances');
     let associations = this.get('model.associations');
@@ -604,9 +604,16 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
           }
         }
       } else if (!this.get('_moveItem')) {
-        let newSelectedItem = selectedItem === item ? undefined : item;
-        this.set('selectedItem', newSelectedItem);
+        let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
+        let sidebarOpened = configPanelSidebar.hasClass('visible');
 
+        if ((item || sidebarOpened) && selectedItem !== item) {
+          this.send('toggleConfigPanel', 'control-properties', item);
+        }
+
+        this.set('selectedItem', item);
+
+        let newSelectedItem = selectedItem === item ? undefined : item;
         if (!Ember.isNone(newSelectedItem) && newSelectedItem.get('propertyDefinition.name') === '') {
           this.set('_showNotUsedAttributesTree', true);
         } else {

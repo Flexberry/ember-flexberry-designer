@@ -89,7 +89,7 @@
     <div class="panel-right view-attributes">
       <div class="ui segments">
         <div class="ui segment overflow-panel">
-          <table class="ui very basic collapsing celled table">
+          <table class="ui very basic collapsing celled table fd-view-properties-table">
             <thead>
               <tr>
                 <th>{{t "forms.fd-view-edit-form.table-column.type"}}</th>
@@ -133,7 +133,7 @@
 
 {{#fd-config-panel}}
 
-  {{#fd-tabs 
+  {{#fd-tabs
     tabsMenuTheme="vertical tabular"
     class="ui segments horizontal right-tabs"
     tabClick = (action "toggleConfigPanel")
