@@ -146,8 +146,12 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
       @method actions.didTransition
     */
     didTransition() {
-      Ember.$(&#x27;.full.height&#x27;).on(&#x27;click.fd-editform-constructor&#x27;, () =&gt; {
-        this.get(&#x27;controller&#x27;).send(&#x27;selectItem&#x27;);
+      Ember.$(&#x27;.full.height&#x27;).on(&#x27;click.fd-editform-constructor&#x27;, (e) =&gt; {
+        let path = Ember.get(e, &#x27;originalEvent.path&#x27;) || [];
+        let editRow = path.find((element) =&gt; Ember.$(element).hasClass(&#x27;fd-editform-row&#x27;));
+        if (Ember.isNone(editRow)) {
+          this.get(&#x27;controller&#x27;).send(&#x27;selectItem&#x27;);
+        }
       });
     },
   },

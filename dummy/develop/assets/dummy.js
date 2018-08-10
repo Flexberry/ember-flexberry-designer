@@ -40259,7 +40259,7 @@ define("dummy/templates/fd-listform-constructor", ["exports"], function (exports
           morphs[2] = dom.createMorphAt(element12, 0, 0);
           return morphs;
         },
-        statements: [["attribute", "class", ["subexpr", "if", [["subexpr", "eq", [["get", "selectedColumn", ["loc", [null, [42, 31], [42, 45]]]], ["get", "column", ["loc", [null, [42, 46], [42, 52]]]]], [], ["loc", [null, [42, 27], [42, 53]]]], "fd-selected"], [], ["loc", [null, [42, 22], [42, 69]]]]], ["element", "action", ["selectColumn", ["get", "column", ["loc", [null, [42, 94], [42, 100]]]]], [], ["loc", [null, [42, 70], [42, 102]]]], ["content", "column.caption", ["loc", [null, [42, 103], [42, 121]]]]],
+        statements: [["attribute", "class", ["subexpr", "if", [["subexpr", "eq", [["get", "selectedColumn", ["loc", [null, [42, 31], [42, 45]]]], ["get", "column", ["loc", [null, [42, 46], [42, 52]]]]], [], ["loc", [null, [42, 27], [42, 53]]]], "fd-selected"], [], ["loc", [null, [42, 22], [42, 69]]]]], ["element", "action", ["selectColumn", ["get", "column", ["loc", [null, [42, 94], [42, 100]]]]], ["bubbles", false], ["loc", [null, [42, 70], [42, 116]]]], ["content", "column.caption", ["loc", [null, [42, 117], [42, 135]]]]],
         locals: ["column"],
         templates: []
       };
@@ -40306,7 +40306,7 @@ define("dummy/templates/fd-listform-constructor", ["exports"], function (exports
             morphs[1] = dom.createElementMorph(element11);
             return morphs;
           },
-          statements: [["attribute", "class", ["subexpr", "if", [["subexpr", "eq", [["get", "selectedColumn", ["loc", [null, [50, 33], [50, 47]]]], ["get", "column", ["loc", [null, [50, 48], [50, 54]]]]], [], ["loc", [null, [50, 29], [50, 55]]]], "fd-selected"], [], ["loc", [null, [50, 24], [50, 71]]]]], ["element", "action", ["selectColumn", ["get", "column", ["loc", [null, [50, 96], [50, 102]]]]], [], ["loc", [null, [50, 72], [50, 104]]]]],
+          statements: [["attribute", "class", ["subexpr", "if", [["subexpr", "eq", [["get", "selectedColumn", ["loc", [null, [50, 33], [50, 47]]]], ["get", "column", ["loc", [null, [50, 48], [50, 54]]]]], [], ["loc", [null, [50, 29], [50, 55]]]], "fd-selected"], [], ["loc", [null, [50, 24], [50, 71]]]]], ["element", "action", ["selectColumn", ["get", "column", ["loc", [null, [50, 96], [50, 102]]]]], ["bubbles", false], ["loc", [null, [50, 72], [50, 118]]]]],
           locals: ["column"],
           templates: []
         };
@@ -44724,7 +44724,7 @@ define("dummy/templates/fd-view-edit-form", ["exports"], function (exports) {
         var el6 = dom.createTextNode("\n          ");
         dom.appendChild(el5, el6);
         var el6 = dom.createElement("table");
-        dom.setAttribute(el6, "class", "ui very basic collapsing celled table");
+        dom.setAttribute(el6, "class", "ui very basic collapsing celled table fd-view-properties-table");
         var el7 = dom.createTextNode("\n            ");
         dom.appendChild(el6, el7);
         var el7 = dom.createElement("thead");
@@ -51060,7 +51060,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+fdc8d758"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+f3c6bead"});
 }
 
 /* jshint ignore:end */
