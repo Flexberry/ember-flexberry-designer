@@ -39320,6 +39320,9 @@ table.fd-listform tr:last-child > td.fd-selected {
 .ui.selection.dropdown.overflovwed-dropdown .menu .item {
   white-space: nowrap;
 }
+.list-form-constructor .panel-wrapper {
+  max-height: calc(100vh - 475px);
+}
 @-moz-document url-prefix() {
   @media screen and (max-width: 1030px) {
     .panel-wrapper {
