@@ -23,6 +23,19 @@ import Ember from 'ember';
 */
 export default Ember.Mixin.create({
 
+  currentTransition: null,
+  _forceTransition: false,
+
+  /**
+    Retry transition forced, when there are unsaved fields
+
+    @method retryTransitionForced
+  */
+  retryTransitionForced() {
+    this.set('_forceTransition', true);
+    this.get('currentTransition').retry();
+  },
+
   /**
     A hook you can use to setup the controller for the current route.
     [More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).
@@ -47,15 +60,29 @@ export default Ember.Mixin.create({
       @param {Object} transition
      */
     willTransition(transition) {
+      console.log('WILL TRANS');
+      console.log(this.get('_forceTransition'));
+      this.set('currentTransition', transition);
       let controller = this.controller
       let isUnsavedFields = controller.findUnsavedFields();
-      if (this.controller.get('state') === '') {
+      let forcedTransition = this.get('_forceTransition');
+
+      if (!isUnsavedFields || forcedTransition) {
+        if (controller.get('state') === '') {
+          transition.abort();
+          controller.set('state', 'loading');
+          Ember.run.later(() => {
+            transition.retry();
+          });
+        }
+      } else {
         transition.abort();
-        this.controller.set('state', 'loading');
-        Ember.run.later(() => {
-          transition.retry();
-        });
       }
     },
+
+    didTransition() {
+      console.log('DID TRANS');
+      this.set('_forceTransition', false);
+    }
   }
 });
