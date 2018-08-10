@@ -274,7 +274,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.typeMapCSCompute && typeof this.typeMapCSCompute === 'function') ? this.typeMapCSCompute() : null;
     this.set('typeMapCS', result);
   },
-  typeMapCSStr: DS.attr('typemap'),
+  typeMapCSStr: DS.attr('string'),
   /**
     Non-stored property.
 
@@ -299,7 +299,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.typeMapOracleCompute && typeof this.typeMapOracleCompute === 'function') ? this.typeMapOracleCompute() : null;
     this.set('typeMapOracle', result);
   },
-  typeMapOracleStr: DS.attr('typemap'),
+  typeMapOracleStr: DS.attr('string'),
   /**
     Non-stored property.
 
@@ -324,7 +324,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.typeMapPostgreCompute && typeof this.typeMapPostgreCompute === 'function') ? this.typeMapPostgreCompute() : null;
     this.set('typeMapPostgre', result);
   },
-  typeMapPostgreStr: DS.attr('typemap'),
+  typeMapPostgreStr: DS.attr('string'),
   /**
     Non-stored property.
 
@@ -349,7 +349,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.typeMapSQLCompute && typeof this.typeMapSQLCompute === 'function') ? this.typeMapSQLCompute() : null;
     this.set('typeMapSQL', result);
   },
-  typeMapSQLStr: DS.attr('typemap'),
+  typeMapSQLStr: DS.attr('string'),
   /**
     Non-stored property.
 
