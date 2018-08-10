@@ -522,7 +522,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     @type Ember.NativeArray
   */
   simpleTypes: Ember.computed(&#x27;_dataTypes&#x27;, function() {
-    return this._buildTree(this.get(&#x27;_dataTypes&#x27;).flexberryTypes(), &#x27;property&#x27;);
+    return this._buildTree(this.get(&#x27;_dataTypes&#x27;).fDTypes(), &#x27;property&#x27;);
   }),
 
   /**
@@ -557,7 +557,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     @property dataObjectProperties
     @type Object
   */
-  dataObjectProperties: Ember.computed(&#x27;model.dataobject&#x27;, &#x27;model.inheritances&#x27;, &#x27;model.associations&#x27;, &#x27;model.aggregations&#x27;, function() {
+  dataObjectProperties: Ember.computed(&#x27;model.dataobject.attributes.@each.type&#x27;, &#x27;model.inheritances&#x27;, &#x27;model.associations&#x27;, &#x27;model.aggregations&#x27;, function() {
     let dataObject = this.get(&#x27;model.dataobject&#x27;);
     let inheritances = this.get(&#x27;model.inheritances&#x27;);
     let associations = this.get(&#x27;model.associations&#x27;);

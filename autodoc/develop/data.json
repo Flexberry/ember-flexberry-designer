@@ -3275,7 +3275,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 699,
+            "line": 702,
             "description": "Open attributes tree.",
             "itemtype": "method",
             "name": "actions.cancelСlick",
@@ -3284,7 +3284,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 713,
+            "line": 716,
             "description": "Overridden action for jsTree 'openNode'.",
             "itemtype": "method",
             "name": "_openNodeTree",
@@ -3293,7 +3293,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 731,
+            "line": 734,
             "description": "Method delete attributes from class.",
             "itemtype": "method",
             "name": "_deleteAttribute",
@@ -3309,7 +3309,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 781,
+            "line": 784,
             "description": "Method for search control by attribute.",
             "itemtype": "method",
             "name": "_findControlByAttribute",
@@ -3325,7 +3325,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 801,
+            "line": 804,
             "description": "Method for controls round.",
             "itemtype": "method",
             "name": "_controlsRound",
@@ -3351,7 +3351,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 838,
+            "line": 841,
             "description": "Method for create new propertyDefinition.",
             "itemtype": "method",
             "name": "_createPropertyDefinition",
@@ -3372,7 +3372,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 871,
+            "line": 874,
             "description": "Method for create attributes tree.",
             "itemtype": "method",
             "name": "_createAttributesTree",
@@ -3381,7 +3381,7 @@
         },
         {
             "file": "addon/components/fd-visual-edit-control-tree.js",
-            "line": 908,
+            "line": 911,
             "description": "Method for create type tree.",
             "itemtype": "method",
             "name": "_createTypeTree",
