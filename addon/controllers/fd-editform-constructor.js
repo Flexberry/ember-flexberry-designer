@@ -186,12 +186,15 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     }
 
     let dataobjectId = this.get('model.dataobject.id');
-    let view = this.get('model.editform.formViews.firstObject.view');
+    let mockView = Ember.Object.create({
+      definition: controlsToDefinition(this.get('controlsTree')),
+      class: this.get('model.dataobject')
+    });
 
     let dataForBuildTree = getDataForBuildTree(this.get('store'), dataobjectId);
-    let attributesForTree = getTreeNodeByNotUsedAttributes(this.get('store'), dataForBuildTree.classes, view, 'type');
+    let attributesForTree = getTreeNodeByNotUsedAttributes(this.get('store'), dataForBuildTree.classes, mockView, 'type');
     let associationForTree = getAssociationTreeNode(Ember.A(), dataForBuildTree.associations, 'node_', dataobjectId, 'name');
-    let aggregationForTree = getTreeNodeByNotUsedAggregation(dataForBuildTree.aggregations, view, 'name');
+    let aggregationForTree = getTreeNodeByNotUsedAggregation(dataForBuildTree.aggregations, mockView, 'name');
 
     let attributesTree = Ember.A();
     attributesTree.pushObjects([
@@ -475,13 +478,10 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
       this.notifyPropertyChange('_dataForBuildTree');
 
-      let view = this.get('model.editform.formViews.firstObject.view');
-      let viewDefinition = view.get('definition');
       let propertyDefinition = FdViewAttributesProperty.create({
         name: 'newAttribute' + atrIndex,
         visible: true,
       });
-      viewDefinition.pushObject(propertyDefinition);
 
       let control = FdEditformControl.create({
         caption: `${this.get('i18n').t('forms.fd-editform-constructor.new-control-caption').toString()} #${this.incrementProperty('_newControlIndex')}`,
@@ -1129,7 +1129,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       let { aggregations } = dataObjectProperties;
       let relation = aggregations.findBy('endRole', propertyName) || aggregations.findBy('endClass.name', propertyName);
       type = 'detail';
-      view = this.get('model.views').filterBy('class.id', relation.get('endClass.id')).findBy('name', propertyDefinition.get('detailViewName'));
+      view = Ember.A(this.get('model.views').filterBy('class.id', relation.get('endClass.id'))).findBy('name', propertyDefinition.get('detailViewName'));
       types = this._getTypesForView(view);
     } else if (propertyDefinition instanceof FdViewAttributesMaster) {
       type = 'master';
@@ -1149,22 +1149,29 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       while (path.length > 0) {
         let role = path.shift();
         let relation = properties.associations.findBy('startRole', role) || properties.associations.findBy('startClass.name', role);
-        properties = this._getClassProperties(relation.get('startClass'), inheritances, associations, aggregations);
+        if (relation) {
+          properties = this._getClassProperties(relation.get('startClass'), inheritances, associations, aggregations);
+        } else {
+          console.error('Not found association with name:' + role);
+        }
       }
 
       let attribute = properties.attributes.findBy('name', propertyName);
-      let typeInMap = this.get('model.stage.typeMapCSStr').findBy('name', attribute.get('type'));
-
-      if (typeInMap) {
-        type = typeInMap.value || typeInMap.name;
-      } else {
-        let clazz = this.get('model.classes').findBy('name', attribute.get('type'));
-        if (clazz && clazz.get('stereotype') === '«enumeration»') {
-          type = 'enumeration';
-          items = clazz.get('attributes').mapBy('name');
+      if (attribute) {
+        let typeInMap = this.get('model.stage.typeMapCSStr').findBy('name', attribute.get('type'));
+        if (typeInMap) {
+          type = typeInMap.value || typeInMap.name;
         } else {
-          type = 'default';
+          let clazz = this.get('model.classes').findBy('name', attribute.get('type'));
+          if (clazz && clazz.get('stereotype') === '«enumeration»') {
+            type = 'enumeration';
+            items = clazz.get('attributes').mapBy('name');
+          } else {
+            type = 'default';
+          }
         }
+      } else {
+        type = 'default';
       }
     } else {
       throw new Error('Invalid property definition.');

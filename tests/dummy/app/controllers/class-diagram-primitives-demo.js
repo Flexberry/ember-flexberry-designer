@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import joint from 'npm:jointjs';
 
+import { Class, ClassCollapsed } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-class';
+
 export default Ember.Controller.extend({
   actions: {
     printDiagram: function() {
@@ -112,14 +114,14 @@ export default Ember.Controller.extend({
       let attributes = ['attr1', 'attr2'];
       let methods = ['method1'];
 
-      let classWithoutStp = new joint.shapes.flexberryUml.Class({
+      let classWithoutStp = new Class({
         position: { x: 350, y: 30 },
         name: 'Class1',
         attributes: attributes,
         methods: methods,
       });
 
-      let classCollapsed = new joint.shapes.flexberryUml.ClassCollapsed({
+      let classCollapsed = new ClassCollapsed({
         position: { x: 450, y: 30 },
         size: { width: 100 },
         name: 'ClassCollapsed',
@@ -127,7 +129,7 @@ export default Ember.Controller.extend({
         methods: methods,
       });
 
-      let classWithStp = new joint.shapes.flexberryUml.Class({
+      let classWithStp = new Class({
         position: { x: 350, y: 150 },
         name: 'Class2textextext',
         stereotype: 'enumeration',

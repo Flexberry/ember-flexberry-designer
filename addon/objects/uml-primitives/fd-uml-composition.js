@@ -20,6 +20,6 @@ export default FdUmlLink.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'source', 'target', 'vertices');
-    return new joint.shapes.flexberryUml.Composition(properties);
+    return new joint.shapes.flexberryUml.ClassDiagramComposition(properties);
   },
 });

@@ -1,6 +1,8 @@
 import joint from 'npm:jointjs';
 import './fd-common-primitives';
 
+import { Class } from '../objects/uml-primitives/fd-uml-class';
+
 joint.shapes.flexberryUml.statechartDiagram_EventMessage = joint.shapes.flexberryUml.Dependency;
 
 joint.shapes.flexberryUml.BaseObject.define('flexberryUml.statechartDiagram_State', {
@@ -38,7 +40,7 @@ joint.shapes.flexberryUml.BaseClass.define('flexberryUml.statechartDiagram_State
   ].join(''),
 
   updateRectangles: function() {
-    joint.shapes.flexberryUml.Class.prototype.updateRectangles.apply(this, arguments);
+    Class.prototype.updateRectangles.apply(this, arguments);
 
     let attrs = this.get('attrs');
     let rectHeight = attrs['.flexberry-uml-header-rect'].height;
