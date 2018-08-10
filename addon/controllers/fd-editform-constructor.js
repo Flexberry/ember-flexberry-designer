@@ -603,9 +603,16 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
           }
         }
       } else if (!this.get('_moveItem')) {
-        let newSelectedItem = selectedItem === item ? undefined : item;
-        this.set('selectedItem', newSelectedItem);
+        let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
+        let sidebarOpened = configPanelSidebar.hasClass('visible');
 
+        if ((item || sidebarOpened) && selectedItem !== item) {
+          this.send('toggleConfigPanel', 'control-properties', item);
+        }
+
+        this.set('selectedItem', item);
+
+        let newSelectedItem = selectedItem === item ? undefined : item;
         if (!Ember.isNone(newSelectedItem) && newSelectedItem.get('propertyDefinition.name') === '') {
           this.set('_showNotUsedAttributesTree', true);
         } else {

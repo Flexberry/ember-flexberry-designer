@@ -39,7 +39,7 @@
       <thead>
         <tr>
           {{#each columns as |column|}}
-            <th class={{if (eq selectedColumn column) "fd-selected"}} {{action "selectColumn" column}}>{{column.caption}}</th>
+            <th class={{if (eq selectedColumn column) "fd-selected"}} {{action "selectColumn" column bubbles=false}}>{{column.caption}}</th>
           {{/each}}
         </tr>
       </thead>
@@ -47,7 +47,7 @@
         {{#each columns as |column|}}
           <tr>
             {{#each columns as |column|}}
-              <td class={{if (eq selectedColumn column) "fd-selected"}} {{action "selectColumn" column}}>&nbsp;</td>
+              <td class={{if (eq selectedColumn column) "fd-selected"}} {{action "selectColumn" column bubbles=false}}>&nbsp;</td>
             {{/each}}
           </tr>
         {{/each}}
@@ -71,7 +71,7 @@
 {{/if}}
 
 {{#fd-config-panel}}
-  {{#fd-tabs 
+  {{#fd-tabs
     tabsMenuTheme="vertical tabular"
     class="ui segments horizontal right-tabs"
     tabClick = (action "toggleConfigPanel")
