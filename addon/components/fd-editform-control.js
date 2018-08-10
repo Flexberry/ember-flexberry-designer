@@ -28,9 +28,9 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     'bool': 'flexberry-checkbox',
     'System.Boolean': 'flexberry-checkbox',
 
-    'DateTime': 'flexberry-datetime',
-    'System.DateTime': 'flexberry-datetime',
-    'ICSSoft.STORMNET.UserDataTypes.NullableDateTime': 'flexberry-datetime',
+    'DateTime': 'flexberry-simpledatetime',
+    'System.DateTime': 'flexberry-simpledatetime',
+    'ICSSoft.STORMNET.UserDataTypes.NullableDateTime': 'flexberry-simpledatetime',
 
     'ICSSoft.STORMNET.UserDataTypes.WebFile': 'fd-file',
 
