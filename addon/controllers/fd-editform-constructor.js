@@ -1246,10 +1246,10 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
   },
 
   /**
-      Looks for width in the path
+    Looks for width in the path
 
-      @method _getWidth
-      @param {String} path Property path from view.
+    @method _getWidth
+    @param {String} path Property path from view.
   */
   _getWidth: function(path) {
     let partsPath = path.split('\\');
@@ -1265,9 +1265,9 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
   },
 
   /**
-      Check if fields changed, but unsaved
+    Check if fields changed, but unsaved
 
-      @method findUnsavedFields
+    @method findUnsavedFields
   */
   findUnsavedFields: function () {
     let originalModel = this.get('model').originalDefinition;
@@ -1279,13 +1279,13 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     if (originalArrayLength !== formModelArrayLength) {
       checkResult = true;
     }
-    
+
     for (let i = 0; i < originalArrayLength; i++) {
       if (originalModel[i].name !== formDefinitions[i].name ||
         originalModel[i].caption !== formDefinitions[i].caption ||
         originalModel[i].path !== formDefinitions[i].path ||
         originalModel[i].visible !== formDefinitions[i].visible)
-      {        
+      {
         checkResult = true;
       }
     }
@@ -1296,10 +1296,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
     if (changedAttributes.length > 0) {
       checkResult = true;
-    }
-
-    if (checkResult) {
-      this.set('_showConfirmDialog', true);
     }
 
     return checkResult;

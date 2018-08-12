@@ -26,6 +26,14 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
   _showModalDialog: false,
 
   /**
+    @private
+    @property _showConfirmDialog
+    @type Boolean
+    @default false
+  */
+  _showConfirmDialog: false,
+
+  /**
     Flag: indicates whether show tree.
 
     @private
@@ -497,6 +505,23 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     }).bind(this));
 
     this.get('actionReceiverNotUsedAttributesTree').send('redraw');
+  },
+
+  /**
+    Check if fields changed, but unsaved
+
+    @method findUnsavedFields
+  */
+  findUnsavedFields: function () {
+    let checkResult = false;
+    let mdd = this.get('model.originalDefinition');
+    console.log(mdd);
+    let dataobject = this.get('view').get('definition');
+    console.log(dataobject);
+     //let formDefinitions = controlsToDefinition(this.get('controlsTree'));
+  //  console.log(formDefinitions);
+
+    return checkResult;
   },
 
   /**

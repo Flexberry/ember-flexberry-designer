@@ -46,6 +46,7 @@ export default Ember.Mixin.create({
    */
   setupController(controller) {
     this._super(...arguments);
+    this.set('_forceTransition', false);
     controller.set('state', '');
   },
 
@@ -60,8 +61,6 @@ export default Ember.Mixin.create({
       @param {Object} transition
      */
     willTransition(transition) {
-      console.log('WILL TRANS');
-      console.log(this.get('_forceTransition'));
       this.set('currentTransition', transition);
       let controller = this.controller
       let isUnsavedFields = controller.findUnsavedFields();
@@ -76,6 +75,7 @@ export default Ember.Mixin.create({
           });
         }
       } else {
+        controller.set('_showConfirmDialog', true);
         transition.abort();
       }
     },
