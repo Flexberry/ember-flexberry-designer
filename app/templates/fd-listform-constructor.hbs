@@ -10,7 +10,7 @@
     }}
   {{/each}}
 {{/if}}
-<form class="ui form flexberry-vertical-form {{state}}" role="form">
+<form class="ui form flexberry-vertical-form list-form-constructor {{state}}" role="form">
   {{flexberry-error error=error}}
   <div class="field">
     <div class="flexberry-edit-panel">
@@ -32,14 +32,15 @@
       </button>
     </div>
   </div>
-  <div class="ui segment" style="overflow:scroll;">
+  <div class="ui segment">
     <h3 class="ui header">{{formClass.name}}</h3>
     <img src="assets/images/visualEditListFormTop.png" />
+    <div class="panel-wrapper overflow-panel">
     <table class="ui celled selectable collapsing table fd-listform">
       <thead>
         <tr>
           {{#each columns as |column|}}
-            <th class="{{if (eq selectedColumn column) "fd-selected"}} {{unless column.propertyDefinition.visible "blackout"}}" {{action "selectColumn" column}}>{{column.caption}}</th>
+            <th class="{{if (eq selectedColumn column) "fd-selected"}} {{unless column.propertyDefinition.visible "blackout"}}" {{action "selectColumn" column bubbles=false}}>{{column.caption}}</th>
           {{/each}}
         </tr>
       </thead>
@@ -47,12 +48,13 @@
         {{#each columns as |column|}}
           <tr>
             {{#each columns as |column|}}
-              <td class="{{if (eq selectedColumn column) "fd-selected"}} {{unless column.propertyDefinition.visible "blackout"}}" {{action "selectColumn" column}}>&nbsp;</td>
+              <td class="{{if (eq selectedColumn column) "fd-selected"}} {{unless column.propertyDefinition.visible "blackout"}}" {{action "selectColumn" column bubbles=false}}>&nbsp;</td>
             {{/each}}
           </tr>
         {{/each}}
       </tbody>
     </table>
+    </div>
     <img src="assets/images/visualEditListFormBottom.png" />
   </div>
 </form>
@@ -71,7 +73,7 @@
 {{/if}}
 
 {{#fd-config-panel}}
-  {{#fd-tabs 
+  {{#fd-tabs
     tabsMenuTheme="vertical tabular"
     class="ui segments horizontal right-tabs"
     tabClick = (action "toggleConfigPanel")
