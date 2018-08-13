@@ -26,6 +26,7 @@ export default {
     'move-controls-header': 'Переместить элементы управления',
     'move-control': 'Переместить',
     'remove-control': 'Удалить',
+    'remove-unsaved': 'Удалить несохраненные данные',
     'remove-approve': 'Вы уверены?',
     apply: 'Применить',
     cancel: 'Отмена',

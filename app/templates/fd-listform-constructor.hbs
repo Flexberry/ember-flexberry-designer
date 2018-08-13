@@ -70,6 +70,19 @@
   {{/modal-dialog}}
 {{/if}}
 
+{{#if _showConfirmDialog}}
+  {{#modal-dialog
+    title=(t "forms.fd-listform-constructor.form-config-panel.remove-unsaved")
+    ok=(action "confirmCloseUnsavedFormAction")
+    settings=(hash
+      onHidden=(action set "_showConfirmDialog" false)
+      context=".pusher:first"
+    )
+  }}
+    {{t "forms.fd-listform-constructor.form-config-panel.remove-approve"}}
+  {{/modal-dialog}}
+{{/if}}
+
 {{#fd-config-panel}}
   {{#fd-tabs 
     tabsMenuTheme="vertical tabular"

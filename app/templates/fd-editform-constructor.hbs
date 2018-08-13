@@ -66,14 +66,14 @@
 
 {{#if _showConfirmDialog}}
   {{#modal-dialog
-    title=(t "forms.fd-appstruct-form.remove-control")
+    title=(t "forms.fd-editform-constructor.form-config-panel.remove-unsaved")
     ok=(action "confirmCloseUnsavedFormAction")
     settings=(hash
       onHidden=(action set "_showConfirmDialog" false)
       context=".pusher:first"
     )
   }}
-    {{t "forms.fd-appstruct-form.remove-approve"}}
+    {{t "forms.fd-editform-constructor.form-config-panel.remove-approve"}}
   {{/modal-dialog}}
 {{/if}}
 

@@ -19,6 +19,7 @@ export default {
     're-move-columns-header': 'Move and remove columns',
     'remove-column': 'Remove',
     'remove-approve': 'Are you sure?',
+    'remove-unsaved': 'Removed unsaved data',
     'control-properties-header': 'Columns',
   },
 };

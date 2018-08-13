@@ -19,6 +19,7 @@ export default {
     're-move-columns-header': 'Переместить и удалить столбцы',
     'remove-column': 'Удалить',
     'remove-approve': 'Вы уверены?',
+    'remove-unsaved': 'Удалить несохраненные данные',
     'control-properties-header': 'Столбец',
   },
 };

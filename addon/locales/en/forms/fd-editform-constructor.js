@@ -26,6 +26,7 @@ export default {
     'move-controls-header': 'Move controls',
     'move-control': 'Move',
     'remove-control': 'Remove',
+    'remove-unsaved': 'Removed unsaved data',
     'remove-approve': 'Are you sure?',
     apply: 'Apply',
     cancel: 'Cancel',

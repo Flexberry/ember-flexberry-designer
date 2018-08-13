@@ -11,6 +11,15 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
 
   actions: {
     /**
+      Confirm transition with unsaved fields
+
+      @method actions.confirmCloseUnsavedForm
+    */
+    confirmCloseUnsavedForm() {
+      this.retryTransitionForced();
+    },
+
+    /**
       See [EmberJS API](https://emberjs.com/).
 
       @method actions.didTransition

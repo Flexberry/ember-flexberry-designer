@@ -22,8 +22,20 @@ import Ember from 'ember';
   @extends <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
 export default Ember.Mixin.create({
+  /**
+    @private
+    @property  _currentTransition
+    @type Transition
+    @default null
+  */
+  _currentTransition: null,
 
-  currentTransition: null,
+  /**
+    @private
+    @property _forceTransition
+    @type Boolean
+    @default false
+  */
   _forceTransition: false,
 
   /**
@@ -33,7 +45,7 @@ export default Ember.Mixin.create({
   */
   retryTransitionForced() {
     this.set('_forceTransition', true);
-    this.get('currentTransition').retry();
+    this.get('_currentTransition').retry();
   },
 
   /**
@@ -61,8 +73,8 @@ export default Ember.Mixin.create({
       @param {Object} transition
      */
     willTransition(transition) {
-      this.set('currentTransition', transition);
-      let controller = this.controller
+      this.set('_currentTransition', transition);
+      let controller = this.controller;
       let isUnsavedFields = controller.findUnsavedFields();
       let forcedTransition = this.get('_forceTransition');
 
@@ -78,11 +90,6 @@ export default Ember.Mixin.create({
         controller.set('_showConfirmDialog', true);
         transition.abort();
       }
-    },
-
-    didTransition() {
-      console.log('DID TRANS');
-      this.set('_forceTransition', false);
     }
   }
 });
