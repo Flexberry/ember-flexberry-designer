@@ -65,7 +65,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     @type Boolean
     @default false
   */
- _showConfirmDialog: false,
+  _showConfirmDialog: false,
 
   /**
     @private
