@@ -22,19 +22,28 @@ export default Ember.Route.extend({
     let stage = allStages.findBy('id', stageId);
 
     if (!Ember.isEmpty(stage.get('typeMapCSStr'))) {
-      this.set('typeMapCSStr', this.fromXML(stage.get('typeMapCSStr')).findBy('name', this.get('className')).value);
+      if (!Ember.isEmpty(this.fromXML(stage.get('typeMapCSStr')).findBy('name', this.get('className')))) {
+        this.set('typeMapCSStr', this.fromXML(stage.get('typeMapCSStr')).findBy('name', this.get('className')).value);
+      }
     }
 
     if (!Ember.isEmpty(stage.get('typeMapSQLStr'))) {
-      this.set('typeMapSQLStr', this.fromXML(stage.get('typeMapSQLStr')).findBy('name', this.get('className')).value);
+      if (!Ember.isEmpty(this.fromXML(stage.get('typeMapSQLStr')).findBy('name', this.get('className')))) {
+        this.set('typeMapSQLStr', this.fromXML(stage.get('typeMapSQLStr')).findBy('name', this.get('className')).value);
+      }
     }
 
     if (!Ember.isEmpty(stage.get('typeMapOracleStr'))) {
-      this.set('typeMapOracleStr', this.fromXML(stage.get('typeMapOracleStr')).findBy('name', this.get('className')).value);
+      if (!Ember.isEmpty(this.fromXML(stage.get('typeMapOracleStr')).findBy('name', this.get('className')))) {
+        this.set('typeMapOracleStr', this.fromXML(stage.get('typeMapOracleStr')).findBy('name', this.get('className')).value);
+      }
     }
 
     if (!Ember.isEmpty(stage.get('typeMapPostgreStr'))) {
-      this.set('typeMapPostgreStr', this.fromXML(stage.get('typeMapPostgreStr')).findBy('name', this.get('className')).value);
+      if (!Ember.isEmpty(this.fromXML(stage.get('typeMapPostgreStr')).findBy('name', this.get('className'))))
+      {
+        this.set('typeMapPostgreStr', this.fromXML(stage.get('typeMapPostgreStr')).findBy('name', this.get('className')).value);
+      }
     }
 
     return stage;
