@@ -3,72 +3,41 @@ import BusinessDataObjectEvents from 'ember-flexberry-designer/enums/i-c-s-soft-
 
 export default Ember.Controller.extend({
   CSStrLabel: 'C#',
-  CSStr: Ember.computed('className', {
-    get(key) {
-      let m = this.model;
-      if (!Ember.isEmpty(m.get('typeMapCSStr'))) {
-        return this.deserialize(m.get('typeMapCSStr')).findBy('name', this.get('className')).value;
-      }
-    },
-    set(key, value) {
+  CSStrText: undefined,
+  CSStr: Ember.observer('CSStrText', function() {
       let m = this.model;
       let deserialized = this.deserialize(m.get('typeMapCSStr'));
       let objToEdit = deserialized.findBy('name', this.get('className'));
-      objToEdit.value = value;
+      objToEdit.value = this.get('CSStrText');
       m.set('typeMapCSStr', this.serialize(deserialized));
-    }
-
-  }),
+    }),
   SQLStrLabel: 'SQL',
-  SQLStr: Ember.computed('className', {
-    get(key) {
-      let m = this.model;
-      if (!Ember.isEmpty(m.get('typeMapSQLStr'))) {
-        return this.deserialize(m.get('typeMapSQLStr')).findBy('name', this.get('className')).value;
-      }
-    },
-    set(key, value) {
+  SQLStrText: undefined,
+  SQLStr: Ember.observer('SQLStrText', function() {
       let m = this.model;
       let deserialized = this.deserialize(m.get('typeMapSQLStr'));
       let objToEdit = deserialized.findBy('name', this.get('className'));
-      objToEdit.value = value;
+      objToEdit.value = this.get('SQLStrText');
       m.set('typeMapSQLStr', this.serialize(deserialized));
-    }
-
-  }),
+    }),
   oracleStrLabel: 'Oracle',
-  oracleStr: Ember.computed('className', {
-    get(key) {
+  oracleStrText: undefined,
+  oracleStr: Ember.observer('oracleStrText', function() {
       let m = this.model;
-      if (!Ember.isEmpty(m.get('typeMapOracleStr'))) {
-        return this.deserialize(m.get('typeMapOracleStr')).findBy('name', this.get('className')).value;
-      }
-    },
-    set(key, value) {
-      let m = this.model;
-      let deserialized = this.deserialize(m.get('typeMapOracleStr')).findBy('name', this.get('className'));
+      let deserialized = this.deserialize(m.get('typeMapOracleStr'));
       let objToEdit = deserialized.findBy('name', this.get('className'));
-      objToEdit.value = value;
+      objToEdit.value = this.get('oracleStrText');
       m.set('typeMapOracleStr', this.serialize(deserialized));
-    }
-
-  }),
+    }),
   postgreStrLabel: 'Postgre',
-  postgreStr: Ember.computed('className', {
-    get(key) {
+  postgreStrText: undefined,
+  postgreStr: Ember.observer('postgreStrText', function() {
       let m = this.model;
-      if (!Ember.isEmpty(m.get('typeMapPostgreStr'))) {
-        return this.deserialize(m.get('typeMapPostgreStr')).findBy('name', this.get('className')).value;
-      }
-    },
-    set(key, value) {
-      let m = this.model;
-      let deserialized = this.deserialize(m.get('typeMapPostgreStr')).findBy('name', this.get('className'));
+      let deserialized = this.deserialize(m.get('typeMapPostgreStr'));
       let objToEdit = deserialized.findBy('name', this.get('className'));
-      objToEdit.value = value;
+      objToEdit.value = this.get('postgreStrText');
       m.set('typeMapPostgreStr', this.serialize(deserialized));
-    }
-  }),
+    }),
   className: undefined,
   classId: undefined,
 
@@ -127,6 +96,7 @@ export default Ember.Controller.extend({
     save() {
       this._setDefaultBusinessServerEvents();
       this._super();
+      this.model.save();
     },
 
     /**

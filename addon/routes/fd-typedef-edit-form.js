@@ -4,28 +4,100 @@ export default Ember.Route.extend({
   modelProjection: 'TypeDefinitionE',
   modelName: 'fd-dev-type-definition',
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
+
   className: undefined,
-  classId: undefined,
 
-  afterModel: function(model) {
-    this._super(model);
-  },
+  typeMapCSStr: undefined,
+  typeMapSQLStr: undefined,
+  typeMapOracleStr: undefined,
+  typeMapPostgreStr: undefined,
 
-  model: function(params) {
+  model(params) {
     let store = this.get('store');
     let stageId = this.get('currentProjectContext').getCurrentStage();
     let allStages = store.peekAll('fd-dev-stage');
     let allClasses = store.peekAll('fd-dev-class');
     this.set('className', allClasses.findBy('id', params.id).get('name'));
-    this.set('classId', params.id);
 
-    return allStages.findBy('id', stageId); // typemaps are inside, in XML. Need to find one equal to current type and let change it.
+    let stage = allStages.findBy('id', stageId);
+
+    if (!Ember.isEmpty(stage.get('typeMapCSStr'))) {
+      this.set('typeMapCSStr', this.fromXML(stage.get('typeMapCSStr')).findBy('name', this.get('className')).value);
+    }
+
+    if (!Ember.isEmpty(stage.get('typeMapSQLStr'))) {
+      this.set('typeMapSQLStr', this.fromXML(stage.get('typeMapSQLStr')).findBy('name', this.get('className')).value);
+    }
+
+    if (!Ember.isEmpty(stage.get('typeMapOracleStr'))) {
+      this.set('typeMapOracleStr', this.fromXML(stage.get('typeMapOracleStr')).findBy('name', this.get('className')).value);
+    }
+
+    if (!Ember.isEmpty(stage.get('typeMapPostgreStr'))) {
+      this.set('typeMapPostgreStr', this.fromXML(stage.get('typeMapPostgreStr')).findBy('name', this.get('className')).value);
+    }
+
+    return stage;
   },
 
-  setupController: function(controller) {
+  afterModel(model) {
+    this._super(model);
+  },
+
+  setupController(controller) {
     this._super(...arguments);
 
     controller.set('className', this.get('className'));
-    controller.set('classId', this.get('classId'));
-  }
+    controller.set('CSStrText', this.get('typeMapCSStr'));
+    controller.set('SQLStrText', this.get('typeMapSQLStr'));
+    controller.set('oracleStrText', this.get('typeMapOracleStr'));
+    controller.set('postgreStrText', this.get('typeMapPostgreStr'));
+  },
+
+  fromXML(serialized) {
+    if (!serialized) {
+      return serialized;
+    }
+
+    let ret = Ember.A();
+    let parser = new DOMParser();
+    let xmlDoc = parser.parseFromString(serialized, 'text/xml');
+
+    if (xmlDoc) {
+      let items = xmlDoc.getElementsByTagName('TypeMap');
+      if (items.length > 0) {
+        let arr = items[0].getElementsByTagName('*');
+        for (let item of arr) {
+          let obj = {
+            name: item.tagName
+          };
+
+          for (let attr of item.attributes) {
+            obj[attr.nodeName] = attr.nodeValue;
+          }
+
+          ret.push(obj);
+        }
+      }
+    }
+
+    return ret;
+  },
+
+  toXML(deserialized) {
+    if (!deserialized) {
+      return deserialized;
+    }
+
+    let serializer = new XMLSerializer();
+    let doc = document.implementation.createDocument('', '', null);
+    let typeMap = doc.createElement('TypeMap');
+    deserialized.forEach(item => {
+      let elem = doc.createElement(item.name);
+      elem.setAttribute('value', item.value);
+      elem.setAttribute('assemblydll', item.assemblydll);
+      typeMap.appendChild(elem);
+    });
+    return serializer.serializeToString(typeMap);
+  },
 });
