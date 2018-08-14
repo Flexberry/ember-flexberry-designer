@@ -1062,7 +1062,8 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
   */
   _scrollToSelected() {
     let form = Ember.$('.full.height');
-    let scrollTop = Ember.$('.selected:first').offset().top + form.scrollTop() - (form.offset().top + 10);
+    let firstSelectedOffsetTop = Ember.$('.selected:first').length > 0 ? Ember.$('.selected:first').offset().top : 0;
+    let scrollTop = firstSelectedOffsetTop + form.scrollTop() - (form.offset().top + 10);
 
     form.animate({ scrollTop });
   },
