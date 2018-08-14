@@ -474,12 +474,12 @@ export let Model = Ember.Mixin.create({
     let parentValidations = this._super();
     let thisValidations = {
       /* merged manually start */
-      caption: {
-        presence: {
-          // message: this.get('i18n').t('models.fd-dev-class.validations.caption')
-          message: 'Caption is required'
-        }
-      }
+      // caption: {
+      //   presence: {
+      //     // message: this.get('i18n').t('models.fd-dev-class.validations.caption')
+      //     message: 'Caption is required'
+      //   }
+      // }
       /* merged manually end */
     };
     return Ember.$.extend(true, {}, parentValidations, thisValidations);
