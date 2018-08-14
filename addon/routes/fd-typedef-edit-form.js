@@ -24,18 +24,24 @@ export default Ember.Route.extend({
     if (!Ember.isEmpty(stage.get('typeMapCSStr'))) {
       if (!Ember.isEmpty(this.fromXML(stage.get('typeMapCSStr')).findBy('name', this.get('className')))) {
         this.set('typeMapCSStr', this.fromXML(stage.get('typeMapCSStr')).findBy('name', this.get('className')).value);
+      }  else {
+        this.set('typeMapCSStr', undefined);
       }
     }
 
     if (!Ember.isEmpty(stage.get('typeMapSQLStr'))) {
       if (!Ember.isEmpty(this.fromXML(stage.get('typeMapSQLStr')).findBy('name', this.get('className')))) {
         this.set('typeMapSQLStr', this.fromXML(stage.get('typeMapSQLStr')).findBy('name', this.get('className')).value);
+      } else {
+        this.set('typeMapSQLStr', undefined);
       }
     }
 
     if (!Ember.isEmpty(stage.get('typeMapOracleStr'))) {
       if (!Ember.isEmpty(this.fromXML(stage.get('typeMapOracleStr')).findBy('name', this.get('className')))) {
         this.set('typeMapOracleStr', this.fromXML(stage.get('typeMapOracleStr')).findBy('name', this.get('className')).value);
+      } else {
+        this.set('typeMapOracleStr', undefined);
       }
     }
 
@@ -43,6 +49,8 @@ export default Ember.Route.extend({
       if (!Ember.isEmpty(this.fromXML(stage.get('typeMapPostgreStr')).findBy('name', this.get('className'))))
       {
         this.set('typeMapPostgreStr', this.fromXML(stage.get('typeMapPostgreStr')).findBy('name', this.get('className')).value);
+      } else {
+        this.set('typeMapPostgreStr', undefined);
       }
     }
 

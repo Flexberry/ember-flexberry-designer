@@ -16,8 +16,18 @@ export default Ember.Controller.extend({
           assemblydll: ''
         }];
       } else {
-        let objToEdit = deserialized.findBy('name', this.get('className'));
-        objToEdit.value = this.get('CSStrText');
+        if (Ember.isEmpty(deserialized.findBy('name', this.get('className')))) {
+          if (!Ember.isEmpty(this.get('CSStrText'))) {
+            deserialized.push({
+              name: this.get('className'),
+              value: this.get('CSStrText'),
+              assemblydll: ''
+            });
+          }
+        } else {
+          let objToEdit = deserialized.findBy('name', this.get('className'));
+          objToEdit.value = this.get('CSStrText');
+        }
       }
 
       m.set('typeMapCSStr', this.serialize(deserialized));
@@ -34,8 +44,18 @@ export default Ember.Controller.extend({
           assemblydll: ''
         }];
       } else {
-        let objToEdit = deserialized.findBy('name', this.get('className'));
-        objToEdit.value = this.get('SQLStrText');
+        if (Ember.isEmpty(deserialized.findBy('name', this.get('className')))) {
+          if (!Ember.isEmpty(this.get('SQLStrText'))) {
+            deserialized.push({
+              name: this.get('className'),
+              value: this.get('SQLStrText'),
+              assemblydll: ''
+            });
+          }
+        } else {
+          let objToEdit = deserialized.findBy('name', this.get('className'));
+          objToEdit.value = this.get('SQLStrText');
+        }
       }
 
       m.set('typeMapSQLStr', this.serialize(deserialized));
@@ -52,8 +72,18 @@ export default Ember.Controller.extend({
           assemblydll: ''
         }];
       } else {
-        let objToEdit = deserialized.findBy('name', this.get('className'));
-        objToEdit.value = this.get('oracleStrText');
+        if (Ember.isEmpty(deserialized.findBy('name', this.get('className')))) {
+          if (!Ember.isEmpty(this.get('oracleStrText'))) {
+            deserialized.push({
+              name: this.get('className'),
+              value: this.get('oracleStrText'),
+              assemblydll: ''
+            });
+          }
+        } else {
+          let objToEdit = deserialized.findBy('name', this.get('className'));
+          objToEdit.value = this.get('oracleStrText');
+        }
       }
 
       m.set('typeMapOracleStr', this.serialize(deserialized));
@@ -70,8 +100,18 @@ export default Ember.Controller.extend({
           assemblydll: ''
         }];
       } else {
-        let objToEdit = deserialized.findBy('name', this.get('className'));
-        objToEdit.value = this.get('postgreStrText');
+        if (Ember.isEmpty(deserialized.findBy('name', this.get('className')))) {
+          if (!Ember.isEmpty(this.get('postgreStrText'))) {
+            deserialized.push({
+              name: this.get('className'),
+              value: this.get('postgreStrText'),
+              assemblydll: ''
+            });
+          }
+        } else {
+          let objToEdit = deserialized.findBy('name', this.get('className'));
+          objToEdit.value = this.get('postgreStrText');
+        }
       }
 
       m.set('typeMapPostgreStr', this.serialize(deserialized));
