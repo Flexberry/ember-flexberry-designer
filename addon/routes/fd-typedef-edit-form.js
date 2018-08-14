@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(FdLoadingForTransitionMixin, {
   modelProjection: 'TypeDefinitionE',
   modelName: 'fd-dev-type-definition',
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
