@@ -1,6 +1,6 @@
 <h3 class="ui header">{{t "forms.fd-data-types-map.caption"}}</h3>
 
-<form class="ui form flexberry-vertical-form" role="form">
+<form class="ui form flexberry-vertical-form {{loading}}" role="form">
   {{flexberry-error error=error}}
   <div class="field">
     <div class="flexberry-edit-panel">
@@ -17,5 +17,32 @@
       </button>
     </div>
   </div>
+
+  {{#if showTypeMap}}
+    {{#flexberry-tree class="styled fluid"}}
+      {{#block-slot "content"}}
+        {{#each typeMap as |dataType|}}
+          {{#flexberry-treenode}}
+            {{#block-slot "header"}}
+              {{dataType.name}}
+            {{/block-slot}}
+            {{#block-slot "content"}}
+              {{#unless dataType.sqlOnly}}
+                <div class="equal width fields">
+                  {{flexberry-field label="C#" value=dataType.cs}}
+                  {{flexberry-field label="Assembly DLL" value=dataType.assemblyDll}}
+                </div>
+              {{/unless}}
+              <div class="equal width fields">
+                {{flexberry-field label="Microsoft SQL Server" value=dataType.sql}}
+                {{flexberry-field label="Postgre SQL" value=dataType.postgre}}
+                {{flexberry-field label="Oracle" value=dataType.oracle}}
+              </div>
+            {{/block-slot}}
+          {{/flexberry-treenode}}
+        {{/each}}
+      {{/block-slot}}
+    {{/flexberry-tree}}
+  {{/if}}
 
 </form>
