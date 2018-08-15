@@ -123,8 +123,8 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
 
     // Typemap.
     let currentStage = allStages.findBy('id', stage.get('id'));
-    let typeMapCSStr = currentStage.get('typeMapCSStr');
-    let typemap = typeMapCSStr.filter(function(item) {
+    let typeMapCS = currentStage.get('typeMapCS');
+    let typemap = typeMapCS.filter(function(item) {
       return fdDataTypes.fDTypeToFlexberry(item.name) === null;
     });
     modelHash.typemap = this._buildTree(typemap, '«typemap»');
