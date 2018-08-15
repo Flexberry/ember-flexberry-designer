@@ -1,5 +1,5 @@
 export default {
-  caption: 'FdBusinessServerEditForm',
+  caption: 'Edit Business Server properties',
   'name-caption': 'name',
   'description-caption': 'description',
   'packet-caption': 'packet',

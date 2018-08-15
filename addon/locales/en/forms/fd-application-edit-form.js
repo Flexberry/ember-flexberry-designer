@@ -1,5 +1,5 @@
 export default {
-  caption: 'Application',
+  caption: 'Edit application properties',
   'name-caption': 'Name',
   'description-caption': 'Description',
   'caption-caption': 'Caption',

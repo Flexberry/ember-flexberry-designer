@@ -1,4 +1,4 @@
-<h3 class="ui header">{{model.editform.caption}}</h3>
+<h3 class="ui header">{{t "forms.fd-editform-constructor.caption"}} ({{header}})</h3>
 
 <form class="ui form flexberry-vertical-form {{state}}" role="form">
   {{flexberry-error error=error}}
@@ -22,7 +22,7 @@
       </button>
     </div>
   </div>
-
+  <h3 class="ui header">{{model.editform.caption}}</h3>
   {{#each controlsTree as |row|}}
     {{fd-editform-row
       row=row
@@ -65,7 +65,7 @@
 {{/if}}
 
 {{#fd-config-panel}}
-  {{#fd-tabs 
+  {{#fd-tabs
     tabsMenuTheme="vertical tabular"
     class="ui segments horizontal right-tabs"
     tabClick = (action "toggleConfigPanel")

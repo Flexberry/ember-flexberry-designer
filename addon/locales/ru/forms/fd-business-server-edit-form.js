@@ -1,5 +1,5 @@
 export default {
-  caption: 'Business server',
+  caption: 'Редактирование свойств бизнес-сервера',
   'name-caption': '',
   'description-caption': '',
   'packet-caption': '',
