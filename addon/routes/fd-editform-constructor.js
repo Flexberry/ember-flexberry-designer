@@ -13,8 +13,12 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
       @method actions.didTransition
     */
     didTransition() {
-      Ember.$('.full.height').on('click.fd-editform-constructor', () => {
-        this.get('controller').send('selectItem');
+      Ember.$('.full.height').on('click.fd-editform-constructor', (e) => {
+        let path = Ember.get(e, 'originalEvent.path') || [];
+        let editRow = path.find((element) => Ember.$(element).hasClass('fd-editform-row'));
+        if (Ember.isNone(editRow)) {
+          this.get('controller').send('selectItem');
+        }
       });
     },
   },
@@ -39,11 +43,20 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
     let store = this.get('store');
 
     modelHash.stage = this.get('currentProjectContext').getCurrentStageModel();
-    modelHash.classes = store.peekAll('fd-dev-class');
-    modelHash.views = store.peekAll('fd-dev-view');
-    modelHash.inheritances = store.peekAll('fd-dev-inheritance');
-    modelHash.associations = store.peekAll('fd-dev-association');
-    modelHash.aggregations = store.peekAll('fd-dev-aggregation');
+
+    let allClassesInStore = store.peekAll('fd-dev-class');
+    let allViewsInStore = store.peekAll('fd-dev-view');
+    let allInheritancesInStore = store.peekAll('fd-dev-inheritance');
+    let allAssociationsInStore = store.peekAll('fd-dev-association');
+    let allAggregationsInStore = store.peekAll('fd-dev-aggregation');
+
+    modelHash.classes = allClassesInStore.filterBy('stage.id', modelHash.stage.get('id'));
+    modelHash.views = allViewsInStore.filter(function(item) {
+      return !Ember.isNone(modelHash.classes.findBy('id', item.get('class.id')));
+    });
+    modelHash.inheritances = allInheritancesInStore.filterBy('stage.id', modelHash.stage.get('id'));
+    modelHash.associations = allAssociationsInStore.filterBy('stage.id', modelHash.stage.get('id'));
+    modelHash.aggregations = allAggregationsInStore.filterBy('stage.id', modelHash.stage.get('id'));
 
     // Editform.
     let editform = store.peekRecord('fd-dev-class', params.id);

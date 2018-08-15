@@ -16,8 +16,12 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
       @method actions.didTransition
     */
     didTransition() {
-      Ember.$('.full.height').on('click.fd-editform-constructor', () => {
-        this.get('controller').send('selectColumn');
+      Ember.$('.full.height').on('click.fd-listform-constructor', (e) => {
+        let table = Ember.$('.ui.table.fd-listform')[0];
+        let path = Ember.get(e, 'originalEvent.path') || [];
+        if (path.indexOf(table) === -1) {
+          this.get('controller').send('selectColumn');
+        }
       });
     },
   },
@@ -157,7 +161,7 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
     this._super(...arguments);
 
     if (isExiting) {
-      Ember.$('.full.height').off('click.fd-editform-constructor');
+      Ember.$('.full.height').off('click.fd-listform-constructor');
     }
 
     let store = this.get('store');

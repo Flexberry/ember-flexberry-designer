@@ -33,6 +33,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
   overflowButtonShow: false,
   overflowedTabs: true,
   inactiveTabs: false,
+  dynamicTabs: false,
   selectedTab: '',
   reloadTabs: true,
   activeTab: Ember.computed.oneWay('childPanes.firstObject.dataTab'),
@@ -123,6 +124,8 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
       if ((width + Ember.$(this).outerWidth(true)) < _this.containerWidth) {
         width += Ember.$(this).outerWidth(true);
         countHide--;
+      } else {
+        return false;
       }
     });
 
@@ -154,6 +157,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
         let _this = this;
         Ember.$(window).resize(function() {
           if (!(_this.get('isDestroyed') || _this.get('isDestroyed'))) {
+            _this.set('dynamicTabs', false);
             _this.reinitTabs();
           }
         });
@@ -164,11 +168,10 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
   reinitTabs() {
     Ember.run.schedule('afterRender', this, function() {
       this.set('overflowButtonShow', false);
-      this.set('_hideTabs', Ember.A());
-      this.set('_showedTabs', this.get('tabs').slice());
+      let _showedTabs =  this.dynamicTabs ? this.get('tabs').slice() : this.get('_showedTabs').slice().concat(this.get('_hideTabs'));
 
-      let activeTab = this.get('tabs').get('firstObject') ? this.get('tabs').get('firstObject').dataTab : null;
-      this.set('activeTab', activeTab);
+      this.set('_showedTabs', _showedTabs);
+      this.set('_hideTabs', Ember.A());
 
       Ember.run.schedule('afterRender', this,	function() {
         this._calculateWidths();
@@ -176,6 +179,22 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
         this.set('overflowButtonShow', this.get('hideTabsCount') > 0);
         if (this.overflowButtonShow) {
           this._hideTab();
+          if (this.dynamicTabs) {
+            this.send('changeLastTab', this.get('_hideTabs').get('lastObject').title);
+          }
+        }
+
+        this.set('dynamicTabs', true);
+        let activeTab = this.get('activeTab');
+        let showedTabs = this.get('_showedTabs');
+
+        let activeTabShowed = showedTabs.filter(function(element) {
+          return element.dataTab === activeTab;
+        });
+
+        if (activeTabShowed.length === 0) {
+          activeTab = this.get('tabs').get('firstObject') ? this.get('tabs').get('firstObject').dataTab : null;
+          this.set('activeTab', activeTab);
         }
       });
     });
@@ -207,12 +226,6 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
     });
   },
 
-  didInsertElement() {
-    if (this.overflowedTabs) {
-      this.reinitTabs();
-    }
-  },
-
   actions: {
     tabClick(tab) {
       let previous = this.get('activeTab');
@@ -233,6 +246,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
       _currentHideTabs.forEach(function(element, index) {
         if (element.title === selectedValue) {
           replaceTabIndex = index;
+          return;
         }
       });
 

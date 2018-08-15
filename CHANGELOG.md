@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
   * Add links in root desktop.
 * The list form constructor:
   * Add, sort and remove columns.
+  * Add sidebar opening when column is select.
 * The edit form constructor:
   * Save the definition of the view.
   * Deselect.
@@ -16,9 +17,11 @@ All notable changes to this project will be documented in this file.
   * Button for removing items.
   * Button for moving items.
   * Buttons for sorting items.
+  * Add sidebar opening when control is select.
 * The view edit form:
   * Add the "Visibility" checkbox to the table.
   * Retracting controls if nothing is selected.
+  * Add sidebar opening when view's property is select.
 
 ### Changed
 * The edit form constructor:
