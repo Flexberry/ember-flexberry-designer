@@ -6,11 +6,44 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
   modelName: 'fd-dev-type-definition',
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
+  /**
+    Name of current <<typedef>> class.
+    @property className
+    @type String
+    @default undefined
+  */
   className: undefined,
 
+  /**
+    C# XML typemap string of current stage.
+    @property typeMapCSStr
+    @type String
+    @default undefined
+  */
   typeMapCSStr: undefined,
+
+  /**
+    SQL XML typemap string of current stage.
+    @property typeMapSQLStr
+    @type String
+    @default undefined
+  */
   typeMapSQLStr: undefined,
+
+  /**
+    Oracle XML typemap string of current stage.
+    @property typeMapOracleStr
+    @type String
+    @default undefined
+  */
   typeMapOracleStr: undefined,
+
+  /**
+    Postgre XML typemap string of current stage.
+    @property typeMapPostgreStr
+    @type String
+    @default undefined
+  */
   typeMapPostgreStr: undefined,
 
   model(params) {
@@ -71,7 +104,10 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
     controller.set('oracleStrText', this.get('typeMapOracleStr'));
     controller.set('postgreStrText', this.get('typeMapPostgreStr'));
   },
-
+  /**
+    Deserializes XML string typemap to array of objects
+    @method fromXML
+  */
   fromXML(serialized) {
     if (!serialized) {
       return serialized;
@@ -102,6 +138,10 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
     return ret;
   },
 
+  /**
+    Serializes typemap (array of objects) to XML string.
+    @method toXML
+  */
   toXML(deserialized) {
     if (!deserialized) {
       return deserialized;
