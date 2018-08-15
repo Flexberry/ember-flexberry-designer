@@ -5,6 +5,7 @@
 import Ember from 'ember';
 
 import FdDataType from '../objects/fd-data-type';
+import { deserialize } from '../utils/fd-type-map-functions';
 
 /**
   Controller for the edit form of the type map.
@@ -83,7 +84,7 @@ export default Ember.Controller.extend({
   typeMap: Ember.computed('stage', 'types', 'typedefs', function() {
     let typeMap = this.createDefaultTypeMap();
 
-    let typeMapCS = this.deserialize(this.get('stage.typeMapCSStr'));
+    let typeMapCS = deserialize(this.get('stage.typeMapCSStr'));
     for (let i = 0; i < typeMapCS.length; i++) {
       let type = typeMapCS[i];
       let dataType = typeMap.findBy('name', type.name);
@@ -95,7 +96,7 @@ export default Ember.Controller.extend({
       }
     }
 
-    let typeMapSQL = this.deserialize(this.get('stage.typeMapSQLStr'));
+    let typeMapSQL = deserialize(this.get('stage.typeMapSQLStr'));
     for (let i = 0; i < typeMapSQL.length; i++) {
       let type = typeMapSQL[i];
       let dataType = typeMap.findBy('name', type.name);
@@ -106,7 +107,7 @@ export default Ember.Controller.extend({
       }
     }
 
-    let typeMapPostgre = this.deserialize(this.get('stage.typeMapPostgreStr'));
+    let typeMapPostgre = deserialize(this.get('stage.typeMapPostgreStr'));
     for (let i = 0; i < typeMapPostgre.length; i++) {
       let type = typeMapPostgre[i];
       let dataType = typeMap.findBy('name', type.name);
@@ -117,7 +118,7 @@ export default Ember.Controller.extend({
       }
     }
 
-    let typeMapOracle = this.deserialize(this.get('stage.typeMapOracleStr'));
+    let typeMapOracle = deserialize(this.get('stage.typeMapOracleStr'));
     for (let i = 0; i < typeMapOracle.length; i++) {
       let type = typeMapOracle[i];
       let dataType = typeMap.findBy('name', type.name);
@@ -230,32 +231,6 @@ export default Ember.Controller.extend({
     });
 
     return this.get('stage.hasDirtyAttributes');
-  },
-
-  /**
-    Returns an array of types created from the `xml` definition of the type map.
-
-    @method deserialize
-    @param {String} serialized `xml` type map definition.
-    @return {Array} An array of types created from the `xml` definition of the type map.
-  */
-  deserialize(serialized) {
-    let deserialized = [];
-    if (serialized) {
-      let document = new DOMParser().parseFromString(serialized, 'text/xml');
-      let typeMaps = document.getElementsByTagName('TypeMap');
-      let types = typeMaps[0].getElementsByTagName('*');
-      for (let i = 0; i < types.length; i++) {
-        let name = types[i].tagName;
-        let value = types[i].getAttribute('value');
-        let assemblyDll = types[i].getAttribute('assemblydll');
-        deserialized.push({ name, value, assemblyDll });
-      }
-
-      Ember.assert('The type map must contain one definition.', typeMaps.length === 1);
-    }
-
-    return deserialized;
   },
 
   /**
