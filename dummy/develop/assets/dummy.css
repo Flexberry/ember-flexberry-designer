@@ -39110,7 +39110,7 @@ table.fd-listform tr:last-child > td.fd-selected {
   cursor: move;
 }
 .fd-editform-control:hover {
-  background: rgba(177, 202, 232, 0.3);
+  background-color: rgba(177, 202, 232, 0.3);
 }
 .fd-editform-control:hover > .drag-anchor {
   display: block;
@@ -39319,6 +39319,44 @@ table.fd-listform tr:last-child > td.fd-selected {
 }
 .ui.selection.dropdown.overflowed-dropdown .menu .item {
   white-space: nowrap;
+}
+.blackout {
+  opacity: 0.6;
+  background: -webkit-linear-gradient(right bottom, rgba(0, 0, 0, 0) 49.9%, rgba(177, 202, 232, 0.47) 49.9%, rgba(177, 202, 232, 0.47) 60%, rgba(0, 0, 0, 0) 60%), -webkit-linear-gradient(right bottom, rgba(177, 202, 232, 0.47) 10%, rgba(0, 0, 0, 0) 10%);
+  background: -o-linear-gradient(right bottom, rgba(0, 0, 0, 0) 49.9%, rgba(177, 202, 232, 0.47) 49.9%, rgba(177, 202, 232, 0.47) 60%, rgba(0, 0, 0, 0) 60%), -o-linear-gradient(right bottom, rgba(177, 202, 232, 0.47) 10%, rgba(0, 0, 0, 0) 10%);
+  background: linear-gradient(to right bottom, rgba(0, 0, 0, 0) 49.9%, rgba(177, 202, 232, 0.47) 49.9%, rgba(177, 202, 232, 0.47) 60%, rgba(0, 0, 0, 0) 60%), linear-gradient(to right bottom, rgba(177, 202, 232, 0.47) 10%, rgba(0, 0, 0, 0) 10%);
+  background-size: 1em 1em;
+  background-color: #ffffff;
+}
+.blackout::after {
+  content: "\f070";
+  font-family: Icons;
+  font-size: 2em;
+  color: #4f73b0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.ui.table thead th.blackout {
+  position: relative;
+  opacity: 0.6;
+  background: -webkit-linear-gradient(right bottom, rgba(0, 0, 0, 0) 49.9%, rgba(177, 202, 232, 0.47) 49.9%, rgba(177, 202, 232, 0.47) 60%, rgba(0, 0, 0, 0) 60%), -webkit-linear-gradient(right bottom, rgba(177, 202, 232, 0.47) 10%, rgba(0, 0, 0, 0) 10%);
+  background: -o-linear-gradient(right bottom, rgba(0, 0, 0, 0) 49.9%, rgba(177, 202, 232, 0.47) 49.9%, rgba(177, 202, 232, 0.47) 60%, rgba(0, 0, 0, 0) 60%), -o-linear-gradient(right bottom, rgba(177, 202, 232, 0.47) 10%, rgba(0, 0, 0, 0) 10%);
+  background: linear-gradient(to right bottom, rgba(0, 0, 0, 0) 49.9%, rgba(177, 202, 232, 0.47) 49.9%, rgba(177, 202, 232, 0.47) 60%, rgba(0, 0, 0, 0) 60%), linear-gradient(to right bottom, rgba(177, 202, 232, 0.47) 10%, rgba(0, 0, 0, 0) 10%);
+  background-size: 1em 1em;
+  background-color: #ffffff;
+}
+.ui.table thead th.blackout::after {
+  content: "\f070";
+  font-family: Icons;
+  font-size: 2em;
+  color: #4f73b0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.ui.table td.blackout::after {
+  content: '';
 }
 .flexberry-content .tab.active {
   overflow-x: auto;

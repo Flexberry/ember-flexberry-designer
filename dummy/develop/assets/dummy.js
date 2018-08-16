@@ -18404,12 +18404,12 @@ define("dummy/templates/components/fd-object-list-view", ["exports"], function (
           "loc": {
             "source": null,
             "start": {
-              "line": 3,
-              "column": 4
+              "line": 4,
+              "column": 6
             },
             "end": {
-              "line": 5,
-              "column": 4
+              "line": 6,
+              "column": 6
             }
           },
           "moduleName": "dummy/templates/components/fd-object-list-view.hbs"
@@ -18420,7 +18420,7 @@ define("dummy/templates/components/fd-object-list-view", ["exports"], function (
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("      ");
+          var el1 = dom.createTextNode("        ");
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("th");
           dom.setAttribute(el1, "class", "collapsing");
@@ -18448,12 +18448,12 @@ define("dummy/templates/components/fd-object-list-view", ["exports"], function (
           "loc": {
             "source": null,
             "start": {
-              "line": 6,
-              "column": 4
+              "line": 7,
+              "column": 6
             },
             "end": {
-              "line": 8,
-              "column": 4
+              "line": 9,
+              "column": 6
             }
           },
           "moduleName": "dummy/templates/components/fd-object-list-view.hbs"
@@ -18464,7 +18464,7 @@ define("dummy/templates/components/fd-object-list-view", ["exports"], function (
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("      ");
+          var el1 = dom.createTextNode("        ");
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("th");
           var el2 = dom.createComment("");
@@ -18479,7 +18479,7 @@ define("dummy/templates/components/fd-object-list-view", ["exports"], function (
           morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 0, 0);
           return morphs;
         },
-        statements: [["content", "header", ["loc", [null, [7, 10], [7, 20]]]]],
+        statements: [["content", "header", ["loc", [null, [8, 12], [8, 22]]]]],
         locals: ["header"],
         templates: []
       };
@@ -18493,12 +18493,12 @@ define("dummy/templates/components/fd-object-list-view", ["exports"], function (
             "loc": {
               "source": null,
               "start": {
-                "line": 14,
-                "column": 6
+                "line": 15,
+                "column": 8
               },
               "end": {
-                "line": 16,
-                "column": 6
+                "line": 17,
+                "column": 8
               }
             },
             "moduleName": "dummy/templates/components/fd-object-list-view.hbs"
@@ -18509,7 +18509,7 @@ define("dummy/templates/components/fd-object-list-view", ["exports"], function (
           hasRendered: false,
           buildFragment: function buildFragment(dom) {
             var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode("        ");
+            var el1 = dom.createTextNode("          ");
             dom.appendChild(el0, el1);
             var el1 = dom.createElement("td");
             var el2 = dom.createElement("div");
@@ -18538,12 +18538,12 @@ define("dummy/templates/components/fd-object-list-view", ["exports"], function (
             "loc": {
               "source": null,
               "start": {
-                "line": 17,
-                "column": 6
+                "line": 18,
+                "column": 8
               },
               "end": {
-                "line": 19,
-                "column": 6
+                "line": 20,
+                "column": 8
               }
             },
             "moduleName": "dummy/templates/components/fd-object-list-view.hbs"
@@ -18554,7 +18554,7 @@ define("dummy/templates/components/fd-object-list-view", ["exports"], function (
           hasRendered: false,
           buildFragment: function buildFragment(dom) {
             var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode("        ");
+            var el1 = dom.createTextNode("          ");
             dom.appendChild(el0, el1);
             var el1 = dom.createElement("td");
             var el2 = dom.createComment("");
@@ -18569,7 +18569,7 @@ define("dummy/templates/components/fd-object-list-view", ["exports"], function (
             morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 0, 0);
             return morphs;
           },
-          statements: [["content", "cell", ["loc", [null, [18, 12], [18, 20]]]]],
+          statements: [["content", "cell", ["loc", [null, [19, 14], [19, 22]]]]],
           locals: ["cell"],
           templates: []
         };
@@ -18581,12 +18581,12 @@ define("dummy/templates/components/fd-object-list-view", ["exports"], function (
           "loc": {
             "source": null,
             "start": {
-              "line": 12,
-              "column": 2
+              "line": 13,
+              "column": 4
             },
             "end": {
-              "line": 21,
-              "column": 2
+              "line": 22,
+              "column": 4
             }
           },
           "moduleName": "dummy/templates/components/fd-object-list-view.hbs"
@@ -18597,7 +18597,7 @@ define("dummy/templates/components/fd-object-list-view", ["exports"], function (
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("    ");
+          var el1 = dom.createTextNode("      ");
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("tr");
           var el2 = dom.createTextNode("\n");
@@ -18606,7 +18606,7 @@ define("dummy/templates/components/fd-object-list-view", ["exports"], function (
           dom.appendChild(el1, el2);
           var el2 = dom.createComment("");
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("    ");
+          var el2 = dom.createTextNode("      ");
           dom.appendChild(el1, el2);
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n");
@@ -18620,7 +18620,7 @@ define("dummy/templates/components/fd-object-list-view", ["exports"], function (
           morphs[1] = dom.createMorphAt(element0, 2, 2);
           return morphs;
         },
-        statements: [["block", "if", [["get", "showCheckBoxInRow", ["loc", [null, [14, 12], [14, 29]]]]], [], 0, null, ["loc", [null, [14, 6], [16, 13]]]], ["block", "each", [["get", "row", ["loc", [null, [17, 14], [17, 17]]]]], [], 1, null, ["loc", [null, [17, 6], [19, 15]]]]],
+        statements: [["block", "if", [["get", "showCheckBoxInRow", ["loc", [null, [15, 14], [15, 31]]]]], [], 0, null, ["loc", [null, [15, 8], [17, 15]]]], ["block", "each", [["get", "row", ["loc", [null, [18, 16], [18, 19]]]]], [], 1, null, ["loc", [null, [18, 8], [20, 17]]]]],
         locals: ["row"],
         templates: [child0, child1]
       };
@@ -18628,8 +18628,7 @@ define("dummy/templates/components/fd-object-list-view", ["exports"], function (
     return {
       meta: {
         "fragmentReason": {
-          "name": "missing-wrapper",
-          "problems": ["multiple-nodes"]
+          "name": "triple-curlies"
         },
         "revision": "Ember@2.4.6",
         "loc": {
@@ -18639,8 +18638,8 @@ define("dummy/templates/components/fd-object-list-view", ["exports"], function (
             "column": 0
           },
           "end": {
-            "line": 22,
-            "column": 8
+            "line": 25,
+            "column": 0
           }
         },
         "moduleName": "dummy/templates/components/fd-object-list-view.hbs"
@@ -18651,13 +18650,30 @@ define("dummy/templates/components/fd-object-list-view", ["exports"], function (
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
-        var el1 = dom.createElement("thead");
+        var el1 = dom.createElement("table");
+        dom.setAttribute(el1, "class", "ui celled table");
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
-        var el2 = dom.createElement("tr");
-        var el3 = dom.createTextNode("\n");
+        var el2 = dom.createElement("thead");
+        var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
-        var el3 = dom.createComment("");
+        var el3 = dom.createElement("tr");
+        var el4 = dom.createTextNode("\n");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("tbody");
+        var el3 = dom.createTextNode("\n");
         dom.appendChild(el2, el3);
         var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
@@ -18669,23 +18685,18 @@ define("dummy/templates/components/fd-object-list-view", ["exports"], function (
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
-        var el1 = dom.createElement("tbody");
-        var el2 = dom.createTextNode("\n");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createComment("");
-        dom.appendChild(el1, el2);
-        dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var element1 = dom.childAt(fragment, [0, 1]);
+        var element1 = dom.childAt(fragment, [0]);
+        var element2 = dom.childAt(element1, [1, 1]);
         var morphs = new Array(3);
-        morphs[0] = dom.createMorphAt(element1, 1, 1);
-        morphs[1] = dom.createMorphAt(element1, 2, 2);
-        morphs[2] = dom.createMorphAt(dom.childAt(fragment, [2]), 1, 1);
+        morphs[0] = dom.createMorphAt(element2, 1, 1);
+        morphs[1] = dom.createMorphAt(element2, 2, 2);
+        morphs[2] = dom.createMorphAt(dom.childAt(element1, [3]), 1, 1);
         return morphs;
       },
-      statements: [["block", "if", [["get", "showCheckBoxInRow", ["loc", [null, [3, 10], [3, 27]]]]], [], 0, null, ["loc", [null, [3, 4], [5, 11]]]], ["block", "each", [["get", "headers", ["loc", [null, [6, 12], [6, 19]]]]], [], 1, null, ["loc", [null, [6, 4], [8, 13]]]], ["block", "each", [["get", "rows", ["loc", [null, [12, 10], [12, 14]]]]], [], 2, null, ["loc", [null, [12, 2], [21, 11]]]]],
+      statements: [["block", "if", [["get", "showCheckBoxInRow", ["loc", [null, [4, 12], [4, 29]]]]], [], 0, null, ["loc", [null, [4, 6], [6, 13]]]], ["block", "each", [["get", "headers", ["loc", [null, [7, 14], [7, 21]]]]], [], 1, null, ["loc", [null, [7, 6], [9, 15]]]], ["block", "each", [["get", "rows", ["loc", [null, [13, 12], [13, 16]]]]], [], 2, null, ["loc", [null, [13, 4], [22, 13]]]]],
       locals: [],
       templates: [child0, child1, child2]
     };
@@ -37247,7 +37258,7 @@ define("dummy/templates/fd-editform-constructor", ["exports"], function (exports
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [["block", "fd-tabs", [], ["tabsMenuTheme", "vertical tabular", "class", "ui segments horizontal right-tabs", "tabClick", ["subexpr", "action", ["toggleConfigPanel"], [], ["loc", [null, [71, 15], [71, 43]]]], "activeTab", "none", "overflowedTabs", false, "inactiveTabs", true], 0, null, ["loc", [null, [68, 2], [211, 14]]]]],
+        statements: [["block", "fd-tabs", [], ["tabsMenuTheme", "vertical tabular", "class", "ui segments horizontal right-tabs", "tabClick", ["subexpr", "action", ["toggleConfigPanel"], [], ["loc", [null, [71, 15], [71, 43]]]], "activeTab", ["subexpr", "@mut", [["get", "activeTab", ["loc", [null, [72, 14], [72, 23]]]]], [], []], "overflowedTabs", false, "inactiveTabs", true], 0, null, ["loc", [null, [68, 2], [211, 14]]]]],
         locals: [],
         templates: [child0]
       };
@@ -40285,7 +40296,7 @@ define("dummy/templates/fd-listform-constructor", ["exports"], function (exports
           morphs[2] = dom.createMorphAt(element12, 0, 0);
           return morphs;
         },
-        statements: [["attribute", "class", ["subexpr", "if", [["subexpr", "eq", [["get", "selectedColumn", ["loc", [null, [43, 31], [43, 45]]]], ["get", "column", ["loc", [null, [43, 46], [43, 52]]]]], [], ["loc", [null, [43, 27], [43, 53]]]], "fd-selected"], [], ["loc", [null, [43, 22], [43, 69]]]]], ["element", "action", ["selectColumn", ["get", "column", ["loc", [null, [43, 94], [43, 100]]]]], ["bubbles", false], ["loc", [null, [43, 70], [43, 116]]]], ["content", "column.caption", ["loc", [null, [43, 117], [43, 135]]]]],
+        statements: [["attribute", "class", ["concat", [["subexpr", "if", [["subexpr", "eq", [["get", "selectedColumn", ["loc", [null, [43, 32], [43, 46]]]], ["get", "column", ["loc", [null, [43, 47], [43, 53]]]]], [], ["loc", [null, [43, 28], [43, 54]]]], "fd-selected"], [], ["loc", [null, [43, 23], [43, 70]]]], " ", ["subexpr", "unless", [["get", "column.propertyDefinition.visible", ["loc", [null, [43, 80], [43, 113]]]], "blackout"], [], ["loc", [null, [43, 71], [43, 126]]]]]]], ["element", "action", ["selectColumn", ["get", "column", ["loc", [null, [43, 152], [43, 158]]]]], ["bubbles", false], ["loc", [null, [43, 128], [43, 174]]]], ["content", "column.caption", ["loc", [null, [43, 175], [43, 193]]]]],
         locals: ["column"],
         templates: []
       };
@@ -40332,7 +40343,7 @@ define("dummy/templates/fd-listform-constructor", ["exports"], function (exports
             morphs[1] = dom.createElementMorph(element11);
             return morphs;
           },
-          statements: [["attribute", "class", ["subexpr", "if", [["subexpr", "eq", [["get", "selectedColumn", ["loc", [null, [51, 33], [51, 47]]]], ["get", "column", ["loc", [null, [51, 48], [51, 54]]]]], [], ["loc", [null, [51, 29], [51, 55]]]], "fd-selected"], [], ["loc", [null, [51, 24], [51, 71]]]]], ["element", "action", ["selectColumn", ["get", "column", ["loc", [null, [51, 96], [51, 102]]]]], ["bubbles", false], ["loc", [null, [51, 72], [51, 118]]]]],
+          statements: [["attribute", "class", ["concat", [["subexpr", "if", [["subexpr", "eq", [["get", "selectedColumn", ["loc", [null, [51, 34], [51, 48]]]], ["get", "column", ["loc", [null, [51, 49], [51, 55]]]]], [], ["loc", [null, [51, 30], [51, 56]]]], "fd-selected"], [], ["loc", [null, [51, 25], [51, 72]]]], " ", ["subexpr", "unless", [["get", "column.propertyDefinition.visible", ["loc", [null, [51, 82], [51, 115]]]], "blackout"], [], ["loc", [null, [51, 73], [51, 128]]]]]]], ["element", "action", ["selectColumn", ["get", "column", ["loc", [null, [51, 154], [51, 160]]]]], ["bubbles", false], ["loc", [null, [51, 130], [51, 176]]]]],
           locals: ["column"],
           templates: []
         };
@@ -40380,7 +40391,7 @@ define("dummy/templates/fd-listform-constructor", ["exports"], function (exports
           return morphs;
         },
         statements: [["block", "each", [["get", "columns", ["loc", [null, [50, 20], [50, 27]]]]], [], 0, null, ["loc", [null, [50, 12], [52, 21]]]]],
-        locals: ["column"],
+        locals: ["row"],
         templates: [child0]
       };
     })();
@@ -40986,7 +40997,7 @@ define("dummy/templates/fd-listform-constructor", ["exports"], function (exports
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [["block", "fd-tabs", [], ["tabsMenuTheme", "vertical tabular", "class", "ui segments horizontal right-tabs", "tabClick", ["subexpr", "action", ["toggleConfigPanel"], [], ["loc", [null, [79, 15], [79, 43]]]], "overflowedTabs", false, "inactiveTabs", true, "activeTab", "none"], 0, null, ["loc", [null, [76, 2], [190, 14]]]]],
+        statements: [["block", "fd-tabs", [], ["tabsMenuTheme", "vertical tabular", "class", "ui segments horizontal right-tabs", "tabClick", ["subexpr", "action", ["toggleConfigPanel"], [], ["loc", [null, [79, 15], [79, 43]]]], "overflowedTabs", false, "inactiveTabs", true, "activeTab", ["subexpr", "@mut", [["get", "activeTab", ["loc", [null, [82, 14], [82, 23]]]]], [], []]], 0, null, ["loc", [null, [76, 2], [190, 14]]]]],
         locals: [],
         templates: [child0]
       };
@@ -41174,7 +41185,7 @@ define("dummy/templates/fd-listform-constructor", ["exports"], function (exports
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-listform-constructor.caption"], [], ["loc", [null, [1, 22], [1, 67]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [2, 6], [2, 19]]]]], [], 0, null, ["loc", [null, [2, 0], [12, 7]]]], ["attribute", "class", ["concat", ["ui form flexberry-vertical-form list-form-constructor ", ["get", "state", ["loc", [null, [13, 69], [13, 74]]]]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [14, 26], [14, 31]]]]], [], []]], ["loc", [null, [14, 2], [14, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [17, 16], [17, 24]]]]], [], 1, null, ["loc", [null, [17, 6], [26, 17]]]], ["inline", "t", ["forms.fd-listform-constructor.preview-mobile-variant"], [], ["loc", [null, [28, 8], [28, 68]]]], ["element", "action", ["close"], [], ["loc", [null, [30, 59], [30, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [31, 8], [31, 49]]]], ["content", "formClass.name", ["loc", [null, [36, 26], [36, 44]]]], ["block", "each", [["get", "columns", ["loc", [null, [42, 18], [42, 25]]]]], [], 2, null, ["loc", [null, [42, 10], [44, 19]]]], ["block", "each", [["get", "columns", ["loc", [null, [48, 16], [48, 23]]]]], [], 3, null, ["loc", [null, [48, 8], [54, 17]]]], ["block", "if", [["get", "_showModalDialog", ["loc", [null, [62, 6], [62, 22]]]]], [], 4, null, ["loc", [null, [62, 0], [73, 7]]]], ["block", "fd-config-panel", [], [], 5, null, ["loc", [null, [75, 0], [191, 20]]]]],
+      statements: [["inline", "t", ["forms.fd-listform-constructor.caption"], [], ["loc", [null, [1, 22], [1, 67]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [2, 6], [2, 19]]]]], [], 0, null, ["loc", [null, [2, 0], [12, 7]]]], ["attribute", "class", ["concat", ["ui form flexberry-vertical-form list-form-constructor ", ["get", "state", ["loc", [null, [13, 69], [13, 74]]]]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [14, 26], [14, 31]]]]], [], []]], ["loc", [null, [14, 2], [14, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [17, 16], [17, 24]]]]], [], 1, null, ["loc", [null, [17, 6], [26, 17]]]], ["inline", "t", ["forms.fd-listform-constructor.preview-mobile-variant"], [], ["loc", [null, [28, 8], [28, 68]]]], ["element", "action", ["close"], [], ["loc", [null, [30, 59], [30, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [31, 8], [31, 49]]]], ["content", "formClass.name", ["loc", [null, [36, 26], [36, 44]]]], ["block", "each", [["get", "columns", ["loc", [null, [42, 18], [42, 25]]]]], [], 2, null, ["loc", [null, [42, 10], [44, 19]]]], ["block", "each", [["get", "rows", ["loc", [null, [48, 16], [48, 20]]]]], [], 3, null, ["loc", [null, [48, 8], [54, 17]]]], ["block", "if", [["get", "_showModalDialog", ["loc", [null, [62, 6], [62, 22]]]]], [], 4, null, ["loc", [null, [62, 0], [73, 7]]]], ["block", "fd-config-panel", [], [], 5, null, ["loc", [null, [75, 0], [191, 20]]]]],
       locals: [],
       templates: [child0, child1, child2, child3, child4, child5]
     };
@@ -44520,7 +44531,7 @@ define("dummy/templates/fd-view-edit-form", ["exports"], function (exports) {
           morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           return morphs;
         },
-        statements: [["block", "fd-tabs", [], ["tabsMenuTheme", "vertical tabular", "class", "ui segments horizontal right-tabs", "tabClick", ["subexpr", "action", ["toggleConfigPanel"], [], ["loc", [null, [139, 15], [139, 43]]]], "overflowedTabs", false, "inactiveTabs", true, "activeTab", "none"], 0, null, ["loc", [null, [136, 2], [271, 14]]]]],
+        statements: [["block", "fd-tabs", [], ["tabsMenuTheme", "vertical tabular", "class", "ui segments horizontal right-tabs", "tabClick", ["subexpr", "action", ["toggleConfigPanel"], [], ["loc", [null, [139, 15], [139, 43]]]], "overflowedTabs", false, "inactiveTabs", true, "activeTab", ["subexpr", "@mut", [["get", "activeTab", ["loc", [null, [142, 14], [142, 23]]]]], [], []]], 0, null, ["loc", [null, [136, 2], [271, 14]]]]],
         locals: [],
         templates: [child0]
       };
@@ -51092,7 +51103,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+91a737ae"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+6b451924"});
 }
 
 /* jshint ignore:end */
