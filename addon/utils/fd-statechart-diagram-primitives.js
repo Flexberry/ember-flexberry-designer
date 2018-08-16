@@ -1,7 +1,7 @@
 import joint from 'npm:jointjs';
 import './fd-common-primitives';
 
-import { Class } from '../objects/uml-primitives/fd-uml-class';
+import { BaseClass, Class } from '../objects/uml-primitives/fd-uml-class';
 
 joint.shapes.flexberryUml.statechartDiagram_EventMessage = joint.shapes.flexberryUml.Dependency;
 
@@ -22,7 +22,7 @@ joint.shapes.flexberryUml.Dependency.define('flexberryUml.statechartDiagram_Tran
   attrs: { '.connection': { 'stroke-dasharray': 0 } }
 });
 
-joint.shapes.flexberryUml.BaseClass.define('flexberryUml.statechartDiagram_StateEx', {
+BaseClass.define('flexberryUml.statechartDiagram_StateEx', {
   attrs: {
     '.flexberry-uml-header-rect': { d:'M 0 10 Q 0 0 10 0 L 90 0 Q 100 0 100 10 L 100 10 100 40 0 40 Z' },
     '.flexberry-uml-body-rect': { d:'M 0 0 L 100 0 100 30 Q 100 40 90 40 L 10 40 Q 0 40 0 30 Z' },
