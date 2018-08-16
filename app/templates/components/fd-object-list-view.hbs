@@ -1,22 +1,24 @@
-<thead>
-  <tr>
-    {{#if showCheckBoxInRow}}
-      <th class="collapsing"><i class="sort icon"></i></th>
-    {{/if}}
-    {{#each headers as |header|}}
-      <th>{{header}}</th>
-    {{/each}}
-  </tr>
-</thead>
-<tbody>
-  {{#each rows as |row|}}
+<table class="ui celled table">
+  <thead>
     <tr>
       {{#if showCheckBoxInRow}}
-        <td><div class="ui checkbox"><label></label></div></td>
+        <th class="collapsing"><i class="sort icon"></i></th>
       {{/if}}
-      {{#each row as |cell|}}
-        <td>{{cell}}</td>
+      {{#each headers as |header|}}
+        <th>{{header}}</th>
       {{/each}}
     </tr>
-  {{/each}}
-</tbody>
+  </thead>
+  <tbody>
+    {{#each rows as |row|}}
+      <tr>
+        {{#if showCheckBoxInRow}}
+          <td><div class="ui checkbox"><label></label></div></td>
+        {{/if}}
+        {{#each row as |cell|}}
+          <td>{{cell}}</td>
+        {{/each}}
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

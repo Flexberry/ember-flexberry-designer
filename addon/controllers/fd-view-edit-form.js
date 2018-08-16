@@ -201,7 +201,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       let selectedRowIndex = this.get('selectedRowIndex');
 
       if ((!Ember.isNone(index) || sidebarOpened) && selectedRowIndex !== index) {
-        this.send('toggleConfigPanel', 'active-tree-tab', index);
+        this.send('toggleConfigPanel', { dataTab: 'active-tree-tab' }, index);
       }
 
       this.set('selectedRowIndex', index);
