@@ -21,7 +21,7 @@ All notable changes to this project will be documented in this file.
   * Add the "Visibility" checkbox to the table.
   * Retracting controls if nothing is selected.
   * Add sidebar opening when view's property is select.
-
+* Edit form for classes with `typemap` stereotype.
 ### Changed
 * The edit form constructor:
   * The addition of controls takes place depending on the selected item.
