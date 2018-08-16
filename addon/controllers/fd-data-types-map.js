@@ -215,11 +215,11 @@ export default Ember.Controller.extend({
     let typeMapOracle = [];
     this.get('typeMap').forEach((type) => {
       let { name, sql, postgre, oracle, sqlOnly } = type.getProperties('name', 'sql', 'postgre', 'oracle', 'sqlOnly');
-      typeMapSQL.push(`<${name} value="${sql}" assemblydll="" />`);
-      typeMapPostgre.push(`<${name} value="${postgre}" assemblydll="" />`);
-      typeMapOracle.push(`<${name} value="${oracle}" assemblydll="" />`);
+      typeMapSQL.push(`<${name} value="${sql || ''}" assemblydll="" />`);
+      typeMapPostgre.push(`<${name} value="${postgre || ''}" assemblydll="" />`);
+      typeMapOracle.push(`<${name} value="${oracle || ''}" assemblydll="" />`);
       if (!sqlOnly) {
-        typeMapCS.push(`<${name} value="${type.get('cs')}" assemblydll="${type.get('assemblyDll') || ''}" />`);
+        typeMapCS.push(`<${name} value="${type.get('cs') || ''}" assemblydll="${type.get('assemblyDll') || ''}" />`);
       }
     });
 
