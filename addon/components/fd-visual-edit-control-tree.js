@@ -677,7 +677,10 @@ export default FlexberryBaseComponent.extend({
         let selectedNodesAttributesTree = this.get('selectedNodesAttributesTree')[0];
         let changeControl = this._findControlByAttribute(this.get('oldPropertyName'));
         if (selectedNodesAttributesTree.type === selectedNode.type) {
-          changeControl.forEach((item) => item.set('propertyDefinition.name', this.get('propertyName')));
+          changeControl.forEach((item) => {
+            item.set('propertyDefinition.name', this.get('propertyName'));
+            item.notifyPropertyChange('propertyDefinition');
+          });
         } else {
           let newPropertyDefinition = this._createPropertyDefinition(selectedNode.type, this.get('propertyName'));
           changeControl.forEach((item) => {
