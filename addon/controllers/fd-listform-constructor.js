@@ -45,6 +45,14 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
   selectedNodesNotUsedAttributesTree: Ember.A(),
 
   /**
+    Empty rows array, for 10 rows render.
+
+    @property rows
+    @type Array
+   */
+  rows: Ember.A(Array.apply(null, { length: 10 })),
+
+  /**
     Included plugins for jsTree.
 
     @property pluginsTree
