@@ -43,6 +43,14 @@ export default Ember.Controller.extend({
   rollbackButtonLocaleKey: 'forms.fd-data-types-map.rollback-button',
 
   /**
+    Service for controlling the load indication.
+
+    @property objectlistviewEvents
+    @type ObjectlistviewEvents
+  */
+  objectlistviewEvents: Ember.inject.service('objectlistview-events'),
+
+  /**
     Specifies whether to render the type map.
 
     @property showTypeMap
@@ -186,7 +194,7 @@ export default Ember.Controller.extend({
     save(close) {
       let promise = Ember.RSVP.resolve();
       if (this.serializeTypeMap()) {
-        this.set('state', 'loading');
+        this.get('objectlistviewEvents').setLoadingState('loading');
         promise = this.get('stage').save();
       }
 
@@ -197,7 +205,7 @@ export default Ember.Controller.extend({
       }).catch((error) => {
         this.set('error', error);
       }).finally(() => {
-        this.set('state', '');
+        this.get('objectlistviewEvents').setLoadingState('');
       });
     },
   },
