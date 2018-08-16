@@ -1,5 +1,5 @@
 export default {
-  caption: 'Метаданные класса',
+  caption: 'Редактировать метаданные класса',
   'caption-caption': 'Заголовок',
   'name-caption': 'Имя',
   'publishName-caption': 'Алиас',

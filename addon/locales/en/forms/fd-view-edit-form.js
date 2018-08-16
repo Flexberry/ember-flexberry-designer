@@ -1,5 +1,5 @@
 export default {
-  caption: 'FdViewEditForm',
+  caption: 'Edit view',
   'name-caption': 'Name view',
   'description-caption': 'Description view',
   'settings-view': {

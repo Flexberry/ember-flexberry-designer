@@ -8,6 +8,8 @@ const { SimplePredicate, FilterOperator, ComplexPredicate, Condition } = Query;
 export default EditFormController.extend({
   parentRoute: 'fd-class-list-form',
 
+  header: Ember.computed.alias('model.data.name'),
+
   currentContext: Ember.inject.service('fd-current-project-context'),
 
   getCellComponent(attr, bindingPath, model) {
