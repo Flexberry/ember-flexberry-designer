@@ -1,9 +1,9 @@
 import joint from 'npm:jointjs';
 import './fd-common-primitives';
 
-import { Class } from '../objects/uml-primitives/fd-uml-class';
+import { BaseClass, Class } from '../objects/uml-primitives/fd-uml-class';
 
-joint.shapes.flexberryUml.BaseClass.define('flexberryUml.Object', {
+BaseClass.define('flexberryUml.Object', {
   attrs: {
     '.flexberry-uml-header-text': {
       'text-decoration': 'underline'
@@ -93,19 +93,8 @@ joint.dia.Link.define('flexberryUml.Realization', {
   },
 });
 
-joint.dia.Link.define('flexberryUml.Generalization', {
-  attrs: { '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'white' } }
-});
-
-joint.shapes.flexberryUml.BaseLink.define('flexberryUml.ClassDiagramAssociation', {
-});
-
 joint.shapes.flexberryUml.BaseLink.define('flexberryUml.ClassDiagramAggregation', {
   attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' } },
-});
-
-joint.shapes.flexberryUml.BaseLink.define('flexberryUml.ClassDiagramComposition', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' } }
 });
 
 joint.dia.Link.define('flexberryUml.NestedClassAssociation', {
@@ -130,7 +119,7 @@ joint.shapes.basic.Generic.define('flexberryUml.MoreClasses', {
   ].join(''),
 });
 
-joint.shapes.flexberryUml.BaseClass.define('flexberryUml.Package', {
+BaseClass.define('flexberryUml.Package', {
   attrs: {
     '.flexberry-uml-header-text': {
       'text-decoration': 'underline',

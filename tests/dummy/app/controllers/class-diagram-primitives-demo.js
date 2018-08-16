@@ -1,7 +1,12 @@
 import Ember from 'ember';
 import joint from 'npm:jointjs';
 
+import { Note } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note';
 import { Class, ClassCollapsed } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-class';
+import { NoteConnector } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector';
+import { Association } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-association';
+import { Composition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-composition';
+import { Generalization } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-generalization';
 
 export default Ember.Controller.extend({
   actions: {
@@ -42,7 +47,7 @@ export default Ember.Controller.extend({
       linkAggregation.setLabelText('endMultiplicity', '*');
       linkAggregation.setLabelText('description', 'Agregation');
 
-      var linkAssociation = new joint.shapes.flexberryUml.ClassDiagramAssociation({
+      var linkAssociation = new Association({
         source: { x:100, y:80 },
         target: { x:300, y:80 }
       });
@@ -50,7 +55,7 @@ export default Ember.Controller.extend({
       linkAssociation.setLabelText('endMultiplicity', '*');
       linkAssociation.setLabelText('description', 'Association');
 
-      var linkComposition = new joint.shapes.flexberryUml.ClassDiagramComposition({
+      var linkComposition = new Composition({
         source: { x:100, y:120 },
         target: { x: 300, y: 120 }
       });
@@ -68,7 +73,7 @@ export default Ember.Controller.extend({
         target: { x:300, y:220 },
       });
 
-      var linkGeneralization = new joint.shapes.flexberryUml.Generalization({
+      var linkGeneralization = new Generalization({
         source: { x:100, y:270 },
         target: { x:300, y:270 },
       });
@@ -102,7 +107,7 @@ export default Ember.Controller.extend({
         target: { x: 300, y: 470 },
       });
 
-      var linkNoteConnector = new joint.shapes.flexberryUml.NoteConnector({
+      var linkNoteConnector = new NoteConnector({
         source: { x:100, y:520 },
         target: { x:300, y:520 },
       });
@@ -174,7 +179,7 @@ export default Ember.Controller.extend({
         params: 'params'
       });
 
-      let note = new joint.shapes.flexberryUml.Note({
+      let note = new Note({
         position: { x: 550, y: 300 },
         name: 'Comment'
       });
