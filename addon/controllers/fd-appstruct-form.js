@@ -590,7 +590,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       @method actions.editRightNode
     */
     editRightNode() {
-      this.send('toggleConfigPanel', 'second', 1);
+      this.send('toggleConfigPanel', { dataTab: 'second' }, 1);
     },
 
     /**
