@@ -498,16 +498,22 @@
             "name": "addon/objects/uml-primitives/fd-uml-association.js",
             "modules": {},
             "classes": {
+                "FdUmlAssociation": 1,
+                "flexberry.uml.Association": 1
+            },
+            "fors": {
                 "FdUmlAssociation": 1
             },
-            "fors": {},
-            "namespaces": {}
+            "namespaces": {
+                "flexberry.uml": 1
+            }
         },
         "addon/objects/uml-primitives/fd-uml-class.js": {
             "name": "addon/objects/uml-primitives/fd-uml-class.js",
             "modules": {},
             "classes": {
                 "FdUmlClass": 1,
+                "flexberry.uml.BaseClass": 1,
                 "flexberry.uml.Class": 1,
                 "flexberry.uml.ClassCollapsed": 1
             },
@@ -522,10 +528,15 @@
             "name": "addon/objects/uml-primitives/fd-uml-composition.js",
             "modules": {},
             "classes": {
+                "FdUmlComposition": 1,
+                "flexberry.uml.Composition": 1
+            },
+            "fors": {
                 "FdUmlComposition": 1
             },
-            "fors": {},
-            "namespaces": {}
+            "namespaces": {
+                "flexberry.uml": 1
+            }
         },
         "addon/objects/uml-primitives/fd-uml-element.js": {
             "name": "addon/objects/uml-primitives/fd-uml-element.js",
@@ -540,10 +551,15 @@
             "name": "addon/objects/uml-primitives/fd-uml-generalization.js",
             "modules": {},
             "classes": {
+                "FdUmlGeneralization": 1,
+                "flexberry.uml.Generalization": 1
+            },
+            "fors": {
                 "FdUmlGeneralization": 1
             },
-            "fors": {},
-            "namespaces": {}
+            "namespaces": {
+                "flexberry.uml": 1
+            }
         },
         "addon/objects/uml-primitives/fd-uml-link.js": {
             "name": "addon/objects/uml-primitives/fd-uml-link.js",
@@ -553,6 +569,34 @@
             },
             "fors": {},
             "namespaces": {}
+        },
+        "addon/objects/uml-primitives/fd-uml-note-connector.js": {
+            "name": "addon/objects/uml-primitives/fd-uml-note-connector.js",
+            "modules": {},
+            "classes": {
+                "FdUmlNoteConnector": 1,
+                "flexberry.uml.NoteConnector": 1
+            },
+            "fors": {
+                "FdUmlNoteConnector": 1
+            },
+            "namespaces": {
+                "flexberry.uml": 1
+            }
+        },
+        "addon/objects/uml-primitives/fd-uml-note.js": {
+            "name": "addon/objects/uml-primitives/fd-uml-note.js",
+            "modules": {},
+            "classes": {
+                "FdUmlNote": 1,
+                "flexberry.uml.Note": 1
+            },
+            "fors": {
+                "FdUmlNote": 1
+            },
+            "namespaces": {
+                "flexberry.uml": 1
+            }
         },
         "addon/objects/uml-primitives/fd-uml-primitive.js": {
             "name": "addon/objects/uml-primitives/fd-uml-primitive.js",
@@ -1366,13 +1410,21 @@
                 "NewPlatformFlexberryFlexberryDesignerVisualEditControl": 1,
                 "NewPlatformFlexberryFlexberryDesignerVisualEditForm": 1,
                 "FdUmlAssociation": 1,
+                "flexberry.uml.Association": 1,
                 "FdUmlClass": 1,
+                "flexberry.uml.BaseClass": 1,
                 "flexberry.uml.Class": 1,
                 "flexberry.uml.ClassCollapsed": 1,
                 "FdUmlComposition": 1,
+                "flexberry.uml.Composition": 1,
                 "FdUmlElement": 1,
                 "FdUmlGeneralization": 1,
+                "flexberry.uml.Generalization": 1,
                 "FdUmlLink": 1,
+                "FdUmlNoteConnector": 1,
+                "flexberry.uml.NoteConnector": 1,
+                "FdUmlNote": 1,
+                "flexberry.uml.Note": 1,
                 "FdUmlPrimitive": 1,
                 "FdAppStructTree": 1,
                 "FdAttributesTree": 1,
@@ -1388,7 +1440,12 @@
                 "FdCurrentProjectContextService": 1
             },
             "fors": {
-                "FdUmlClass": 1
+                "FdUmlAssociation": 1,
+                "FdUmlClass": 1,
+                "FdUmlComposition": 1,
+                "FdUmlGeneralization": 1,
+                "FdUmlNoteConnector": 1,
+                "FdUmlNote": 1
             },
             "namespaces": {
                 "Components": 1,
@@ -1691,9 +1748,25 @@
             "module": "ember-flexberry-designer",
             "namespace": "",
             "file": "addon/objects/uml-primitives/fd-uml-association.js",
-            "line": 10,
+            "line": 12,
             "description": "An object that describes a link of the association type on the UML diagram.",
             "extends": "FdUmlLink"
+        },
+        "flexberry.uml.Association": {
+            "name": "flexberry.uml.Association",
+            "shortname": "flexberry.uml.Association",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "flexberry.uml",
+            "file": "addon/objects/uml-primitives/fd-uml-association.js",
+            "line": 59,
+            "description": "Defines the JointJS link, which represents a association in the UML diagram.",
+            "extends": "flexberryUml.BaseLink",
+            "is_constructor": 1
         },
         "FdUmlClass": {
             "name": "FdUmlClass",
@@ -1706,9 +1779,25 @@
             "module": "ember-flexberry-designer",
             "namespace": "",
             "file": "addon/objects/uml-primitives/fd-uml-class.js",
-            "line": 12,
+            "line": 10,
             "description": "An object that describes a class on the UML diagram.",
-            "extends": "FdUmlObject"
+            "extends": "FdUmlElement"
+        },
+        "flexberry.uml.BaseClass": {
+            "name": "flexberry.uml.BaseClass",
+            "shortname": "flexberry.uml.BaseClass",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "flexberry.uml",
+            "file": "addon/objects/uml-primitives/fd-uml-class.js",
+            "line": 76,
+            "description": "Defines the JointJS element, which represents the UML base class in the diagram.",
+            "extends": "basic.Generic",
+            "is_constructor": 1
         },
         "flexberry.uml.Class": {
             "name": "flexberry.uml.Class",
@@ -1721,9 +1810,9 @@
             "module": "ember-flexberry-designer",
             "namespace": "flexberry.uml",
             "file": "addon/objects/uml-primitives/fd-uml-class.js",
-            "line": 78,
+            "line": 189,
             "description": "Defines the JointJS element, which represents the UML class in the diagram.",
-            "extends": "flexberryUml.BaseClass",
+            "extends": "flexberry.uml.BaseClass",
             "is_constructor": 1
         },
         "flexberry.uml.ClassCollapsed": {
@@ -1737,7 +1826,7 @@
             "module": "ember-flexberry-designer",
             "namespace": "flexberry.uml",
             "file": "addon/objects/uml-primitives/fd-uml-class.js",
-            "line": 100,
+            "line": 211,
             "description": "Defines the JointJS element, which represents the UML class in collapsed state.",
             "extends": "flexberry.uml.Class",
             "is_constructor": 1
@@ -1753,9 +1842,25 @@
             "module": "ember-flexberry-designer",
             "namespace": "",
             "file": "addon/objects/uml-primitives/fd-uml-composition.js",
-            "line": 9,
+            "line": 11,
             "description": "An object that describes a link of the composition type on the UML diagram.",
             "extends": "FdUmlLink"
+        },
+        "flexberry.uml.Composition": {
+            "name": "flexberry.uml.Composition",
+            "shortname": "flexberry.uml.Composition",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "flexberry.uml",
+            "file": "addon/objects/uml-primitives/fd-uml-composition.js",
+            "line": 29,
+            "description": "Defines the JointJS link, which represents a composition in the UML diagram.",
+            "extends": "flexberryUml.BaseLink",
+            "is_constructor": 1
         },
         "FdUmlElement": {
             "name": "FdUmlElement",
@@ -1787,6 +1892,22 @@
             "description": "An object that describes a link of the inheritance type on the UML diagram.",
             "extends": "FdUmlLink"
         },
+        "flexberry.uml.Generalization": {
+            "name": "flexberry.uml.Generalization",
+            "shortname": "flexberry.uml.Generalization",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "flexberry.uml",
+            "file": "addon/objects/uml-primitives/fd-uml-generalization.js",
+            "line": 27,
+            "description": "Defines the JointJS link, which represents a generalization in the UML diagram.",
+            "extends": "Link",
+            "is_constructor": 1
+        },
         "FdUmlLink": {
             "name": "FdUmlLink",
             "shortname": "FdUmlLink",
@@ -1801,6 +1922,68 @@
             "line": 8,
             "description": "An object that defines any link on the UML diagram.",
             "extends": "FdUmlPrimitive"
+        },
+        "FdUmlNoteConnector": {
+            "name": "FdUmlNoteConnector",
+            "shortname": "FdUmlNoteConnector",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "",
+            "file": "addon/objects/uml-primitives/fd-uml-note-connector.js",
+            "line": 9,
+            "description": "An object that describes a link of the note connector type on the UML diagram.",
+            "extends": "FdUmlLink"
+        },
+        "flexberry.uml.NoteConnector": {
+            "name": "flexberry.uml.NoteConnector",
+            "shortname": "flexberry.uml.NoteConnector",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "flexberry.uml",
+            "file": "addon/objects/uml-primitives/fd-uml-note-connector.js",
+            "line": 27,
+            "description": "Defines the JointJS link, which represents a note connector in the UML diagram.",
+            "extends": "Link",
+            "is_constructor": 1
+        },
+        "FdUmlNote": {
+            "name": "FdUmlNote",
+            "shortname": "FdUmlNote",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "",
+            "file": "addon/objects/uml-primitives/fd-uml-note.js",
+            "line": 12,
+            "description": "An object that describes a note on the UML diagram.",
+            "extends": "FdUmlElement"
+        },
+        "flexberry.uml.Note": {
+            "name": "flexberry.uml.Note",
+            "shortname": "flexberry.uml.Note",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ember-flexberry-designer",
+            "namespace": "flexberry.uml",
+            "file": "addon/objects/uml-primitives/fd-uml-note.js",
+            "line": 38,
+            "description": "Defines the JointJS element, which represents the note in the UML diagram.",
+            "extends": "flexberryUml.BaseObject",
+            "is_constructor": 1
         },
         "FdUmlPrimitive": {
             "name": "FdUmlPrimitive",
@@ -8779,7 +8962,7 @@
         },
         {
             "file": "addon/models/fd-dev-uml-cad.js",
-            "line": 16,
+            "line": 18,
             "description": "The array of primitives of this diagram.",
             "itemtype": "property",
             "name": "primitives",
@@ -8789,7 +8972,7 @@
         },
         {
             "file": "addon/objects/uml-primitives/fd-uml-association.js",
-            "line": 17,
+            "line": 19,
             "description": "The start multiplicity of a link.",
             "itemtype": "property",
             "name": "startMultiplicity",
@@ -8799,7 +8982,7 @@
         },
         {
             "file": "addon/objects/uml-primitives/fd-uml-association.js",
-            "line": 25,
+            "line": 27,
             "description": "The end multiplicity of a link.",
             "itemtype": "property",
             "name": "endMultiplicity",
@@ -8809,7 +8992,7 @@
         },
         {
             "file": "addon/objects/uml-primitives/fd-uml-association.js",
-            "line": 33,
+            "line": 35,
             "description": "The array of labels for this link.",
             "itemtype": "property",
             "name": "labels",
@@ -8819,7 +9002,7 @@
         },
         {
             "file": "addon/objects/uml-primitives/fd-uml-association.js",
-            "line": 46,
+            "line": 48,
             "description": "See {{#crossLink \"FdUmlPrimitive/JointJS:method\"}}here{{/crossLink}}.",
             "itemtype": "method",
             "name": "JointJS",
@@ -8828,7 +9011,7 @@
         },
         {
             "file": "addon/objects/uml-primitives/fd-uml-class.js",
-            "line": 19,
+            "line": 17,
             "description": "The name of the class.",
             "itemtype": "property",
             "name": "name",
@@ -8838,7 +9021,7 @@
         },
         {
             "file": "addon/objects/uml-primitives/fd-uml-class.js",
-            "line": 27,
+            "line": 25,
             "description": "Stereotype of the class.",
             "itemtype": "property",
             "name": "stereotype",
@@ -8848,7 +9031,7 @@
         },
         {
             "file": "addon/objects/uml-primitives/fd-uml-class.js",
-            "line": 35,
+            "line": 33,
             "description": "Indicates that the class is in a collapsed state.",
             "itemtype": "property",
             "name": "collapsed",
@@ -8858,7 +9041,7 @@
         },
         {
             "file": "addon/objects/uml-primitives/fd-uml-class.js",
-            "line": 43,
+            "line": 41,
             "description": "List of class attributes.",
             "itemtype": "property",
             "name": "attributes",
@@ -8868,7 +9051,7 @@
         },
         {
             "file": "addon/objects/uml-primitives/fd-uml-class.js",
-            "line": 53,
+            "line": 51,
             "description": "List of methods of the class.",
             "itemtype": "property",
             "name": "methods",
@@ -8878,7 +9061,7 @@
         },
         {
             "file": "addon/objects/uml-primitives/fd-uml-class.js",
-            "line": 63,
+            "line": 61,
             "description": "See {{#crossLink \"FdUmlPrimitive/JointJS:method\"}}here{{/crossLink}}.",
             "itemtype": "method",
             "name": "JointJS",
@@ -8887,7 +9070,7 @@
         },
         {
             "file": "addon/objects/uml-primitives/fd-uml-composition.js",
-            "line": 16,
+            "line": 18,
             "description": "See {{#crossLink \"FdUmlPrimitive/JointJS:method\"}}here{{/crossLink}}.",
             "itemtype": "method",
             "name": "JointJS",
@@ -8991,6 +9174,34 @@
             "name": "vertices",
             "type": "Array",
             "class": "FdUmlLink",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/uml-primitives/fd-uml-note-connector.js",
+            "line": 16,
+            "description": "See {{#crossLink \"FdUmlPrimitive/JointJS:method\"}}here{{/crossLink}}.",
+            "itemtype": "method",
+            "name": "JointJS",
+            "class": "FdUmlNoteConnector",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/uml-primitives/fd-uml-note.js",
+            "line": 19,
+            "description": "The name of the note, the content is actually.",
+            "itemtype": "property",
+            "name": "name",
+            "type": "String",
+            "class": "FdUmlNote",
+            "module": "ember-flexberry-designer"
+        },
+        {
+            "file": "addon/objects/uml-primitives/fd-uml-note.js",
+            "line": 27,
+            "description": "See {{#crossLink \"FdUmlPrimitive/JointJS:method\"}}here{{/crossLink}}.",
+            "itemtype": "method",
+            "name": "JointJS",
+            "class": "FdUmlNote",
             "module": "ember-flexberry-designer"
         },
         {

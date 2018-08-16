@@ -29,6 +29,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "FdUmlElement",
         "FdUmlGeneralization",
         "FdUmlLink",
+        "FdUmlNote",
+        "FdUmlNoteConnector",
         "FdUmlPrimitive",
         "FdViewAttributesDetail",
         "FdViewAttributesMaster",
@@ -36,8 +38,14 @@ YUI.add("yuidoc-meta", function(Y) {
         "NewPlatformFlexberryFlexberryDesignerVisualEditControl",
         "NewPlatformFlexberryFlexberryDesignerVisualEditForm",
         "components.UiTabMenu",
+        "flexberry.uml.Association",
+        "flexberry.uml.BaseClass",
         "flexberry.uml.Class",
-        "flexberry.uml.ClassCollapsed"
+        "flexberry.uml.ClassCollapsed",
+        "flexberry.uml.Composition",
+        "flexberry.uml.Generalization",
+        "flexberry.uml.Note",
+        "flexberry.uml.NoteConnector"
     ],
     "modules": [
         "components",

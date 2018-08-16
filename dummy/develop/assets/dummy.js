@@ -511,7 +511,7 @@ define('dummy/components/yield-slot', ['exports', 'ember-block-slots/components/
     }
   });
 });
-define('dummy/controllers/activity-diagram-primitives-demo', ['exports', 'ember', 'npm:jointjs'], function (exports, _ember, _npmJointjs) {
+define('dummy/controllers/activity-diagram-primitives-demo', ['exports', 'ember', 'npm:jointjs', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector'], function (exports, _ember, _npmJointjs, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNote, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNoteConnector) {
   exports['default'] = _ember['default'].Controller.extend({
     actions: {
       printDiagram: function printDiagram() {
@@ -543,7 +543,7 @@ define('dummy/controllers/activity-diagram-primitives-demo', ['exports', 'ember'
           model: _this.graph
         });
 
-        var linkNoteConnector = new _npmJointjs['default'].shapes.flexberryUml.NoteConnector({
+        var linkNoteConnector = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNoteConnector.NoteConnector({
           source: { x: 100, y: 100 },
           target: { x: 300, y: 100 },
           attrs: { path: { title: 'Коннектор комментария (Note Connector)' } }
@@ -587,7 +587,7 @@ define('dummy/controllers/activity-diagram-primitives-demo', ['exports', 'ember'
 
         _this.graph.addCell([linkNoteConnector, linkObjectFlow, linkTransition, сomplexTransitionHorizon, сomplexTransitionVertical]);
 
-        var note = new _npmJointjs['default'].shapes.flexberryUml.Note({
+        var note = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNote.Note({
           position: { x: 450, y: 100 },
           size: { width: 100, height: 50 },
           name: 'note',
@@ -915,7 +915,7 @@ define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-de
     }
   });
 });
-define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', 'npm:jointjs', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-class'], function (exports, _ember, _npmJointjs, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlClass) {
+define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', 'npm:jointjs', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-class', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-association', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-composition', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-generalization'], function (exports, _ember, _npmJointjs, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNote, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlClass, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNoteConnector, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlAssociation, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlComposition, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlGeneralization) {
   exports['default'] = _ember['default'].Controller.extend({
     actions: {
       printDiagram: function printDiagram() {
@@ -955,7 +955,7 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
         linkAggregation.setLabelText('endMultiplicity', '*');
         linkAggregation.setLabelText('description', 'Agregation');
 
-        var linkAssociation = new _npmJointjs['default'].shapes.flexberryUml.ClassDiagramAssociation({
+        var linkAssociation = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlAssociation.Association({
           source: { x: 100, y: 80 },
           target: { x: 300, y: 80 }
         });
@@ -963,7 +963,7 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
         linkAssociation.setLabelText('endMultiplicity', '*');
         linkAssociation.setLabelText('description', 'Association');
 
-        var linkComposition = new _npmJointjs['default'].shapes.flexberryUml.ClassDiagramComposition({
+        var linkComposition = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlComposition.Composition({
           source: { x: 100, y: 120 },
           target: { x: 300, y: 120 }
         });
@@ -981,7 +981,7 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
           target: { x: 300, y: 220 }
         });
 
-        var linkGeneralization = new _npmJointjs['default'].shapes.flexberryUml.Generalization({
+        var linkGeneralization = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlGeneralization.Generalization({
           source: { x: 100, y: 270 },
           target: { x: 300, y: 270 }
         });
@@ -1015,7 +1015,7 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
           target: { x: 300, y: 470 }
         });
 
-        var linkNoteConnector = new _npmJointjs['default'].shapes.flexberryUml.NoteConnector({
+        var linkNoteConnector = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNoteConnector.NoteConnector({
           source: { x: 100, y: 520 },
           target: { x: 300, y: 520 }
         });
@@ -1085,7 +1085,7 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
           params: 'params'
         });
 
-        var note = new _npmJointjs['default'].shapes.flexberryUml.Note({
+        var note = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNote.Note({
           position: { x: 550, y: 300 },
           name: 'Comment'
         });
@@ -1259,7 +1259,7 @@ define('dummy/controllers/collaboration-diagram-primitives-demo', ['exports', 'e
 define('dummy/controllers/colsconfig-dialog', ['exports', 'ember-flexberry/controllers/colsconfig-dialog'], function (exports, _emberFlexberryControllersColsconfigDialog) {
   exports['default'] = _emberFlexberryControllersColsconfigDialog['default'];
 });
-define('dummy/controllers/deployment-diagram-primitives-demo', ['exports', 'ember', 'npm:jointjs'], function (exports, _ember, _npmJointjs) {
+define('dummy/controllers/deployment-diagram-primitives-demo', ['exports', 'ember', 'npm:jointjs', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector'], function (exports, _ember, _npmJointjs, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNoteConnector) {
   exports['default'] = _ember['default'].Controller.extend({
     actions: {
       printDiagram: function printDiagram() {
@@ -1291,7 +1291,7 @@ define('dummy/controllers/deployment-diagram-primitives-demo', ['exports', 'embe
           model: _this.graph
         });
 
-        var linkNoteConnector = new _npmJointjs['default'].shapes.flexberryUml.NoteConnector({
+        var linkNoteConnector = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNoteConnector.NoteConnector({
           source: { x: 100, y: 100 },
           target: { x: 300, y: 100 },
           attrs: { path: { title: 'Коннектор комментария (Note Connector)' } }
@@ -1935,7 +1935,7 @@ define('dummy/controllers/sitemap-node', ['exports', 'ember'], function (exports
     }
   });
 });
-define('dummy/controllers/statechart-diagram-primitives-demo', ['exports', 'ember', 'npm:jointjs'], function (exports, _ember, _npmJointjs) {
+define('dummy/controllers/statechart-diagram-primitives-demo', ['exports', 'ember', 'npm:jointjs', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector'], function (exports, _ember, _npmJointjs, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNote, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNoteConnector) {
   exports['default'] = _ember['default'].Controller.extend({
     actions: {
       printDiagram: function printDiagram() {
@@ -1967,7 +1967,7 @@ define('dummy/controllers/statechart-diagram-primitives-demo', ['exports', 'embe
           model: _this.graph
         });
 
-        var linkNoteConnector = new _npmJointjs['default'].shapes.flexberryUml.NoteConnector({
+        var linkNoteConnector = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNoteConnector.NoteConnector({
           source: { x: 100, y: 100 },
           target: { x: 300, y: 100 },
           attrs: { path: { title: 'Коннектор комментария (Note Connector)' } }
@@ -2012,7 +2012,7 @@ define('dummy/controllers/statechart-diagram-primitives-demo', ['exports', 'embe
           attrs: { '.rotatable': { title: 'Класс (Class)' } }
         });
 
-        var note = new _npmJointjs['default'].shapes.flexberryUml.Note({
+        var note = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNote.Note({
           position: { x: 450, y: 300 },
           name: 'Comment'
         });
@@ -9645,6 +9645,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ob
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-link.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives');
+  test('modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-note.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives');
+  test('modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-note.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-note.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-note.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-note.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-note.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-primitive.jscs-test', ['exports'], function (exports) {
@@ -51066,7 +51092,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+9d9e458c"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+4a11e39e"});
 }
 
 /* jshint ignore:end */

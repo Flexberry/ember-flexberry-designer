@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>addon/objects/uml-primitives/fd-uml-note.js - Flexberry Documentation</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="Flexberry Documentation" src="../assets/css/logo.png" style="max-height: 65%;" title="Flexberry Documentation">
+            Flexberry Documentation
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>develop</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Components.Tab", "classes/Components.TabPane", "classes/components.UiTabMenu", "classes/FdAppStructTree", "classes/FdAttributesTree", "classes/FdCurrentProjectContextService", "classes/FdDraggableControlMixin", "classes/FdEditformControl", "classes/FdEditformControlComponent", "classes/FdEditformGroup", "classes/FdEditformRow", "classes/FdEditformRowComponent", "classes/FdEditformTab", "classes/FdEditformTabgroup", "classes/FdFileComponent", "classes/FdGroupeditComponent", "classes/FdLimitByStageMixin", "classes/FdListformColumn", "classes/FdLoadingForTransitionMixin", "classes/FdLookupComponent", "classes/FdObjectListViewComponent", "classes/FdObjectlistviewComponent", "classes/FdUmlAssociation", "classes/FdUmlClass", "classes/FdUmlComposition", "classes/FdUmlDiagramComponent", "classes/FdUmlElement", "classes/FdUmlGeneralization", "classes/FdUmlLink", "classes/FdUmlNote", "classes/FdUmlNoteConnector", "classes/FdUmlPrimitive", "classes/FdViewAttributesDetail", "classes/FdViewAttributesMaster", "classes/FdViewAttributesProperty", "classes/flexberry.uml.Association", "classes/flexberry.uml.BaseClass", "classes/flexberry.uml.Class", "classes/flexberry.uml.ClassCollapsed", "classes/flexberry.uml.Composition", "classes/flexberry.uml.Generalization", "classes/flexberry.uml.Note", "classes/flexberry.uml.NoteConnector", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl", "classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm", "modules/components", "modules/ember-flexberry-designer"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <h3>APIs</h3>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Type to filter APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/Components.Tab.html">Components.Tab</a></li>
+	                            <li><a href="../classes/Components.TabPane.html">Components.TabPane</a></li>
+	                            <li><a href="../classes/components.UiTabMenu.html">components.UiTabMenu</a></li>
+	                            <li><a href="../classes/FdAppStructTree.html">FdAppStructTree</a></li>
+	                            <li><a href="../classes/FdAttributesTree.html">FdAttributesTree</a></li>
+	                            <li><a href="../classes/FdCurrentProjectContextService.html">FdCurrentProjectContextService</a></li>
+	                            <li><a href="../classes/FdDraggableControlMixin.html">FdDraggableControlMixin</a></li>
+	                            <li><a href="../classes/FdEditformControl.html">FdEditformControl</a></li>
+	                            <li><a href="../classes/FdEditformControlComponent.html">FdEditformControlComponent</a></li>
+	                            <li><a href="../classes/FdEditformGroup.html">FdEditformGroup</a></li>
+	                            <li><a href="../classes/FdEditformRow.html">FdEditformRow</a></li>
+	                            <li><a href="../classes/FdEditformRowComponent.html">FdEditformRowComponent</a></li>
+	                            <li><a href="../classes/FdEditformTab.html">FdEditformTab</a></li>
+	                            <li><a href="../classes/FdEditformTabgroup.html">FdEditformTabgroup</a></li>
+	                            <li><a href="../classes/FdFileComponent.html">FdFileComponent</a></li>
+	                            <li><a href="../classes/FdGroupeditComponent.html">FdGroupeditComponent</a></li>
+	                            <li><a href="../classes/FdLimitByStageMixin.html">FdLimitByStageMixin</a></li>
+	                            <li><a href="../classes/FdListformColumn.html">FdListformColumn</a></li>
+	                            <li><a href="../classes/FdLoadingForTransitionMixin.html">FdLoadingForTransitionMixin</a></li>
+	                            <li><a href="../classes/FdLookupComponent.html">FdLookupComponent</a></li>
+	                            <li><a href="../classes/FdObjectListViewComponent.html">FdObjectListViewComponent</a></li>
+	                            <li><a href="../classes/FdObjectlistviewComponent.html">FdObjectlistviewComponent</a></li>
+	                            <li><a href="../classes/FdUmlAssociation.html">FdUmlAssociation</a></li>
+	                            <li><a href="../classes/FdUmlClass.html">FdUmlClass</a></li>
+	                            <li><a href="../classes/FdUmlComposition.html">FdUmlComposition</a></li>
+	                            <li><a href="../classes/FdUmlDiagramComponent.html">FdUmlDiagramComponent</a></li>
+	                            <li><a href="../classes/FdUmlElement.html">FdUmlElement</a></li>
+	                            <li><a href="../classes/FdUmlGeneralization.html">FdUmlGeneralization</a></li>
+	                            <li><a href="../classes/FdUmlLink.html">FdUmlLink</a></li>
+	                            <li><a href="../classes/FdUmlNote.html">FdUmlNote</a></li>
+	                            <li><a href="../classes/FdUmlNoteConnector.html">FdUmlNoteConnector</a></li>
+	                            <li><a href="../classes/FdUmlPrimitive.html">FdUmlPrimitive</a></li>
+	                            <li><a href="../classes/FdViewAttributesDetail.html">FdViewAttributesDetail</a></li>
+	                            <li><a href="../classes/FdViewAttributesMaster.html">FdViewAttributesMaster</a></li>
+	                            <li><a href="../classes/FdViewAttributesProperty.html">FdViewAttributesProperty</a></li>
+	                            <li><a href="../classes/flexberry.uml.Association.html">flexberry.uml.Association</a></li>
+	                            <li><a href="../classes/flexberry.uml.BaseClass.html">flexberry.uml.BaseClass</a></li>
+	                            <li><a href="../classes/flexberry.uml.Class.html">flexberry.uml.Class</a></li>
+	                            <li><a href="../classes/flexberry.uml.ClassCollapsed.html">flexberry.uml.ClassCollapsed</a></li>
+	                            <li><a href="../classes/flexberry.uml.Composition.html">flexberry.uml.Composition</a></li>
+	                            <li><a href="../classes/flexberry.uml.Generalization.html">flexberry.uml.Generalization</a></li>
+	                            <li><a href="../classes/flexberry.uml.Note.html">flexberry.uml.Note</a></li>
+	                            <li><a href="../classes/flexberry.uml.NoteConnector.html">flexberry.uml.NoteConnector</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditControl.html">NewPlatformFlexberryFlexberryDesignerVisualEditControl</a></li>
+	                            <li><a href="../classes/NewPlatformFlexberryFlexberryDesignerVisualEditForm.html">NewPlatformFlexberryFlexberryDesignerVisualEditForm</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/components.html">components</a></li>
+	                            <li><a href="../modules/ember-flexberry-designer.html">ember-flexberry-designer</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Show:
+                    <label for="api-show-inherited" class="checkbox">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>addon/objects/uml-primitives/fd-uml-note.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+  @module ember-flexberry-designer
+*/
+
+import Ember from &#x27;ember&#x27;;
+import joint from &#x27;npm:jointjs&#x27;;
+
+import &#x27;../../utils/fd-common-primitives&#x27;;
+
+import FdUmlElement from &#x27;./fd-uml-element&#x27;;
+
+/**
+  An object that describes a note on the UML diagram.
+
+  @class FdUmlNote
+  @extends FdUmlElement
+*/
+export default FdUmlElement.extend({
+  /**
+    The name of the note, the content is actually.
+
+    @property name
+    @type String
+  */
+  name: Ember.computed.alias(&#x27;primitive.Name.Text&#x27;),
+
+  /**
+    See {{#crossLink &quot;FdUmlPrimitive/JointJS:method&quot;}}here{{/crossLink}}.
+
+    @method JointJS
+  */
+  JointJS() {
+    let properties = this.getProperties(&#x27;id&#x27;, &#x27;size&#x27;, &#x27;position&#x27;, &#x27;name&#x27;);
+    return new Note(properties);
+  },
+});
+
+/**
+  Defines the JointJS element, which represents the note in the UML diagram.
+
+  @for FdUmlNote
+  @class Note
+  @extends flexberryUml.BaseObject
+  @namespace flexberry.uml
+  @constructor
+*/
+export let Note = joint.shapes.flexberryUml.BaseObject.define(&#x27;flexberry.uml.Note&#x27;, {
+  attrs: {
+    &#x27;.flexberry-uml-header-text&#x27;: {
+      &#x27;font-weight&#x27;: &#x27;bold&#x27;,
+      &#x27;ref-y&#x27;: 0,
+      &#x27;ref-x&#x27;: 0,
+      &#x27;text-anchor&#x27;: &#x27;start&#x27;,
+      &#x27;y-alignment&#x27;: &#x27;start&#x27;,
+    },
+    &#x27;.corner-rect&#x27;: {
+      &#x27;ref&#x27;:&#x27;.flexberry-uml-header-rect&#x27;,
+      &#x27;stroke&#x27;: &#x27;white&#x27;,
+      &#x27;stroke-width&#x27;:&#x27;2&#x27;
+    },
+    &#x27;.corner&#x27;: {
+      &#x27;ref&#x27;:&#x27;.flexberry-uml-header-rect&#x27;,
+      &#x27;stroke&#x27;: &#x27;black&#x27;,
+      &#x27;stroke-width&#x27;:&#x27;1&#x27;,
+      &#x27;d&#x27;:&#x27;M0,0 L0,10 L10,10 L0,0&#x27;
+    },
+  },
+}, {
+  markup: [
+    &#x27;&lt;g class=&quot;rotatable&quot;&gt;&#x27;,
+    &#x27;&lt;g class=&quot;scalable&quot;&gt;&#x27;,
+    &#x27;&lt;rect class=&quot;flexberry-uml-header-rect&quot;/&gt;&#x27;,
+    &#x27;&lt;/g&gt;&#x27;,
+    &#x27;&lt;text class=&quot;flexberry-uml-header-text&quot;/&gt;&#x27;,
+    &#x27;&lt;rect class=&quot;corner-rect&quot; width=&quot;10&quot; height=&quot;10&quot;/&gt;&#x27;,
+    &#x27;&lt;path class=&quot;corner&quot;/&gt;&#x27;,
+    &#x27;&lt;/g&gt;&#x27;
+  ].join(&#x27;&#x27;),
+
+  updateRectangles() {
+    joint.shapes.flexberryUml.BaseObject.prototype.updateRectangles.apply(this, arguments);
+
+    let attrs = this.get(&#x27;attrs&#x27;);
+    let transX = this.size().width - 10;
+    attrs[&#x27;.corner-rect&#x27;].transform = &#x27;translate(&#x27; + transX + &#x27;, 0)&#x27;;
+    attrs[&#x27;.corner&#x27;].transform = &#x27;translate(&#x27; + transX + &#x27;, 0)&#x27;;
+  },
+});
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>
