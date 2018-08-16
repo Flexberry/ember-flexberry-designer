@@ -1,5 +1,5 @@
 export default {
-  caption: 'Изменить представление',
+  caption: 'Редактировать представление',
   'name-caption': 'Название представления',
   'description-caption': 'Описание представления',
   'settings-view': {
