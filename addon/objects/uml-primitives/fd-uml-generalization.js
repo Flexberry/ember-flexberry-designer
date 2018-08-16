@@ -20,6 +20,19 @@ export default FdUmlLink.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'source', 'target', 'vertices');
-    return new joint.shapes.flexberryUml.Generalization(properties);
+    return new Generalization(properties);
   },
+});
+
+/**
+  Defines the JointJS link, which represents a generalization in the UML diagram.
+
+  @for FdUmlGeneralization
+  @class Generalization
+  @extends Link
+  @namespace flexberry.uml
+  @constructor
+*/
+export let Generalization = joint.dia.Link.define('flexberry.uml.Generalization', {
+  attrs: { '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'white' } },
 });
