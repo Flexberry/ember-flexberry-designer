@@ -1,5 +1,6 @@
 export default {
   caption: 'Edit Business Server properties',
+  'bs': 'Businerss Server',
   'name-caption': 'name',
   'description-caption': 'description',
   'packet-caption': 'packet',
