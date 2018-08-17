@@ -55,9 +55,9 @@ export default Ember.Controller.extend({
 
     @property showTypeMap
     @type Boolean
-    @default true
+    @default false
   */
-  showTypeMap: true,
+  showTypeMap: false,
 
   /**
     The stage for which the type map will be edited.
