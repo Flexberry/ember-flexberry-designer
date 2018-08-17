@@ -1,4 +1,10 @@
-<h3 class="ui header">{{t "forms.fd-editform-constructor.caption"}} ({{header}})</h3>
+<h3 class="ui header">{{t "forms.fd-editform-constructor.caption"}}
+  <div class="sub header">
+    {{t "forms.fd-editform-constructor.view"}}: {{viewName}}
+    <br>
+    {{t "forms.fd-editform-constructor.class"}}: {{className}}
+  </div>
+</h3>
 
 <form class="ui form flexberry-vertical-form {{state}}" role="form">
   {{flexberry-error error=error}}

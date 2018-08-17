@@ -1,5 +1,5 @@
 export default {
-  caption: 'Метаданные перечисления',
+  caption: 'Редактировать метаданные перечисления',
   'name-caption': 'Имя',
   'description-caption': 'Описание',
   'onlyShowSelectedValue-caption': 'Просто показывать выбранное значение',

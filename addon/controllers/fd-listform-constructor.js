@@ -178,7 +178,21 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   dataObject: Ember.computed.alias('model.dataobject'),
 
-  header: Ember.computed.alias('model.listform.data.name'),
+  /**
+    View, edited in this exact constructor.
+
+    @property header
+    @type String
+  */
+  viewName: Ember.computed.alias('model.listform.data.name'),
+
+  /**
+    Class, edited by this form.
+
+    @property className
+    @type String
+  */
+  className: Ember.computed.alias('model.dataobject.data.name'),
 
   /**
     The selected column.
