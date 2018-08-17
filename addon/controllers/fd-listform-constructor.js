@@ -535,7 +535,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       let dataobject = this.get('model.dataobject');
       let attributes = dataobject.get('attributes');
       let changedAttributes = attributes.filterBy('hasDirtyAttributes');
-      
+
       if (changedAttributes.length > 0) {
         checkResult = true;
       } else {

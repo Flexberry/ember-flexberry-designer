@@ -738,6 +738,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       record.save().then(() => {
         _this.get('objectlistviewEventsService').setLoadingState('');
       });
+      
       this.set('_dataIsSaved', true);
     },
 

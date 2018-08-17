@@ -12,6 +12,30 @@ export default EditFormController.extend(FdWorkPanelToggler, {
   parentRoute: 'fd-view-list-form',
 
   /**
+    @private
+    @property _showConfirmDialog
+    @type Boolean
+    @default false
+  */
+  _showConfirmDialog: false,
+
+  /**
+    @private
+    @property _dataIsSaved
+    @type Boolean
+    @default false
+  */
+  _dataIsSaved: false,
+
+  /**
+    @private
+    @property _originalData
+    @type Object
+    @default null
+  */
+  _originalData: null,
+
+  /**
    Service that triggers objectlistview events.
 
    @property objectlistviewEventsService
@@ -352,6 +376,17 @@ export default EditFormController.extend(FdWorkPanelToggler, {
           _this.get('objectlistviewEventsService').setLoadingState('');
         }
       });
+
+      this.set('_dataIsSaved', true);
+    },
+
+    /**
+      Confirm close form with unsaved attributes.
+      
+      @method actions.confirmCloseUnsavedFormAction
+    */
+    confirmCloseUnsavedFormAction() {
+      this.send('confirmCloseUnsavedForm');
     }
   },
 
@@ -370,6 +405,44 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     }).bind(this));
 
     this.get('jstreeActionReceiver').send('redraw');
+  },
+
+  originalDataInit: function () {
+    Ember.run.next(this, () => {
+      this.saveOriginalData();
+    });
+  },
+
+  /**
+    Save fields before changes
+
+    @method saveOriginalData
+  */
+  saveOriginalData: function () {
+    this.set('_dataIsSaved', false);
+    let originalData = this.get('model.view');
+    let originalDataString = JSON.stringify(originalData);
+
+    this.set('_originalData', originalDataString);
+  },
+
+  /**
+    Check if fields changed, but unsaved
+
+    @method findUnsavedFields
+  */
+  findUnsavedFields: function () {
+    let checkResult = false;
+    let isSaved = this.get('_dataIsSaved');
+    let originalData = this.get('_originalData');
+    let currentData = this.get('model.view');
+    let currentDataString = JSON.stringify(currentData);
+
+    if (!Ember.isEqual(originalData, currentDataString) && !isSaved) {
+      checkResult = true;
+    }
+
+    return checkResult;
   },
 
   willDestroy() {

@@ -2,6 +2,8 @@ export default {
   caption: 'Представление',
   'name-caption': 'Название представления',
   'description-caption': 'Описание представления',
+  'remove-unsaved': 'Удалить несохраненные данные',
+  'remove-approve': 'Вы уверены?',
   'settings-view': {
     caption: 'Настройки представления',
     'name-caption': 'Заголовок ("~" - пустое значение)',
@@ -36,6 +38,7 @@ export default {
     'close-panel-btn-caption':'Нажмите, чтобы скрыть все атрибуты',
     'show-panel-btn-caption':'Нажмите, чтобы показать все атрибуты',
   },
+
   'form-config-panel': {
     caption: 'Редактор представления',
     'view-properties-header': 'Свойства представления',

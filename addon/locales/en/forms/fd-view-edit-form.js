@@ -2,6 +2,8 @@ export default {
   caption: 'FdViewEditForm',
   'name-caption': 'Name view',
   'description-caption': 'Description view',
+  'remove-unsaved': 'Removed unsaved data',
+  'remove-approve': 'Are you sure?',
   'settings-view': {
     caption: 'Settings view',
     'name-caption': 'Caption ("~" - empty value)',
