@@ -192,20 +192,22 @@ export default Ember.Controller.extend({
       @param {Boolean} close Close or not form after saving.
     */
     save(close) {
-      let promise = Ember.RSVP.resolve();
-      if (this.serializeTypeMap()) {
-        this.get('objectlistviewEvents').setLoadingState('loading');
-        promise = this.get('stage').save();
-      }
-
-      promise.then(() => {
-        if (close) {
-          this.send('close');
+      this.get('objectlistviewEvents').setLoadingState('loading');
+      Ember.run.next(() => {
+        let promise = Ember.RSVP.resolve();
+        if (this.serializeTypeMap()) {
+          promise = this.get('stage').save();
         }
-      }).catch((error) => {
-        this.set('error', error);
-      }).finally(() => {
-        this.get('objectlistviewEvents').setLoadingState('');
+
+        promise.then(() => {
+          if (close) {
+            this.send('close');
+          }
+        }).catch((error) => {
+          this.set('error', error);
+        }).finally(() => {
+          this.get('objectlistviewEvents').setLoadingState('');
+        });
       });
     },
   },
