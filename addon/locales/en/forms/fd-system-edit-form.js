@@ -1,5 +1,6 @@
 export default {
-  caption: 'FdSystemEditForm',
+  caption: 'Edit subsystem',
   'name-caption': 'name',
-  'description-caption': 'description'
+  'description-caption': 'description',
+  'subsystem': 'Subsystem'
 };

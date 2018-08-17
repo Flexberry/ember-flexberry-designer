@@ -1,5 +1,7 @@
 export default {
   caption: 'Edit view',
+  'view': 'View',
+  'class': 'Class',
   'name-caption': 'Name view',
   'description-caption': 'Description view',
   'settings-view': {

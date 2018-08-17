@@ -1,4 +1,14 @@
-<h3 class="ui header">{{t "forms.fd-view-edit-form.caption"}} {{model.view.name}} ({{model.tree.0.text}})</h3>
+<h3 class="ui header">{{t "forms.fd-view-edit-form.caption"}}
+  <div class="sub header">
+    {{#if model.view.name}}
+      {{t "forms.fd-view-edit-form.view"}}: {{model.view.name}}<br>
+    {{/if}}
+    {{#if model.tree.0.text}}
+      {{t "forms.fd-view-edit-form.class"}}: {{model.tree.0.text}}
+    {{/if}}
+  </div>
+
+</h3>
 
 {{#if errorMessages}}
   {{#each errorMessages as |currentError|}}
