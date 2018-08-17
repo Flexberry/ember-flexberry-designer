@@ -136,6 +136,19 @@
   {{/modal-dialog}}
 {{/if}}
 
+{{#if _showConfirmDialog}}
+  {{#modal-dialog
+    title=(t "forms.fd-appstruct-form.remove-unsaved")
+    ok=(action "confirmCloseUnsavedFormAction")
+    settings=(hash
+      onHidden=(action set "_showConfirmDialog" false)
+      context=".pusher:first"
+    )
+  }}
+    {{t "forms.fd-appstruct-form.remove-approve"}}
+  {{/modal-dialog}}
+{{/if}}
+
 {{#fd-config-panel}}
 
   {{#fd-tabs 

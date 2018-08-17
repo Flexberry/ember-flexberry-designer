@@ -7,6 +7,29 @@ import { restorationNodeTree, findFreeNodeTreeID, findFreeNodeTreeNameIndex } fr
 import { getNewFormCaption, getNewFormDescription } from '../utils/fd-create-form-properties';
 
 export default EditFormController.extend(FdWorkPanelToggler, {
+  /**
+    @private
+    @property _showConfirmDialog
+    @type Boolean
+    @default false
+  */
+  _showConfirmDialog: false,
+
+  /**
+    @private
+    @property _dataIsSaved
+    @type Boolean
+    @default false
+  */
+  _dataIsSaved: false,
+
+  /**
+    @private
+    @property _originalData
+    @type Object
+    @default null
+  */
+  _originalData: null,
 
   /**
     @property store
@@ -186,7 +209,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
    */
   singleModeStage: false,
 
-  _modelObserver: Ember.on('init', Ember.observer('model', function() {
+  _modelObserver: Ember.on('init', Ember.observer('model', function () {
     // Reset selection.
     this.set('jstreeSelectedNodesLeft', Ember.A());
     this.set('jstreeSelectedNodesRight', Ember.A());
@@ -715,6 +738,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       record.save().then(() => {
         _this.get('objectlistviewEventsService').setLoadingState('');
       });
+      this.set('_dataIsSaved', true);
     },
 
     /**
@@ -747,6 +771,15 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       }
 
       this.toggleProperty('allAttrsHidedn');
+    },
+
+    /**
+      Confirm close form with unsaved attributes.
+
+      @method actions.confirmCloseUnsavedFormAction
+    */
+    confirmCloseUnsavedFormAction() {
+      this.send('confirmCloseUnsavedForm');
     }
   },
 
@@ -776,4 +809,42 @@ export default EditFormController.extend(FdWorkPanelToggler, {
 
     this.get('jstreeActionReceiverRight').send('redraw');
   },
+
+  originalDataInit: function () {
+    Ember.run.next(this, () => {
+      this.saveOriginalData();
+    });
+  },
+
+  /**
+    Save fields before changes
+
+    @method saveOriginalData
+  */
+  saveOriginalData: function () {
+    this.set('_dataIsSaved', false);
+    let originalData = this.get('model.rightTreeNodes')[0];
+    let originalDataString = JSON.stringify(originalData);
+
+    this.set('_originalData', originalDataString);
+  },
+
+  /**
+    Check if fields changed, but unsaved
+
+    @method findUnsavedFields
+  */
+  findUnsavedFields: function () {
+    let checkResult = false;
+    let isSaved = this.get('_dataIsSaved');
+    let originalData = this.get('_originalData');
+    let currentData = this.get('model.rightTreeNodes')[0];
+    let currentDataString = JSON.stringify(currentData);
+
+    if (!Ember.isEqual(originalData, currentDataString) && !isSaved) {
+      checkResult = true;
+    }
+
+    return checkResult;
+  }
 });

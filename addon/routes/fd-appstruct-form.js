@@ -138,6 +138,7 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
         controller.set('processMethodologyValue', result.value);
       }
     });
+    controller.originalDataInit();
   },
 
   /**
@@ -168,7 +169,16 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
     });
   },
 
-  actions:{
+  actions: {
+    /**
+      Confirm transition with unsaved fields
+
+      @method actions.confirmCloseUnsavedForm
+    */
+    confirmCloseUnsavedForm() {
+      this.retryTransitionForced();
+    },
+
     didTransition() {
       Ember.$('#example .flexberry-content').css('padding-bottom', 0);
       Ember.$('.flexberry-content > .ui.main.container').css('margin-bottom', 0);

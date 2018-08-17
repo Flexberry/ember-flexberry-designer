@@ -527,6 +527,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     let originalArrayLength = originalModel.length;
     let formModelArrayLength = formDefinitions.length;
     let checkResult = false;
+    let columns = this.get('columns');
 
     if (originalArrayLength !== formModelArrayLength) {
       checkResult = true;
@@ -534,15 +535,15 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       let dataobject = this.get('model.dataobject');
       let attributes = dataobject.get('attributes');
       let changedAttributes = attributes.filterBy('hasDirtyAttributes');
-
+      
       if (changedAttributes.length > 0) {
         checkResult = true;
       } else {
         for (let i = 0; i < originalArrayLength; i++) {
-          if (originalModel[i].name !== formDefinitions[i].name ||
-            originalModel[i].caption !== formDefinitions[i].caption ||
-            originalModel[i].path !== formDefinitions[i].path ||
-            originalModel[i].visible !== formDefinitions[i].visible) {
+          if (originalModel[i].name !== columns[i].propertyDefinition.name ||
+            originalModel[i].caption !== columns[i].propertyDefinition.caption ||
+            originalModel[i].path !== columns[i].propertyDefinition.path ||
+            originalModel[i].visible !== columns[i].propertyDefinition.visible) {
             checkResult = true;
           }
         }

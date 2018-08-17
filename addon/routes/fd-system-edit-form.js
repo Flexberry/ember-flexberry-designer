@@ -3,5 +3,16 @@ import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
 
 export default EditFormRoute.extend(FdLoadingForTransitionMixin, {
   modelProjection: 'EditFormView',
-  modelName: 'fd-dev-system'
+  modelName: 'fd-dev-system',
+
+  actions: {
+    /**
+      Confirm transition with unsaved fields
+
+      @method actions.confirmCloseUnsavedForm
+    */
+    confirmCloseUnsavedForm() {
+      this.retryTransitionForced();
+    }
+  }
 });

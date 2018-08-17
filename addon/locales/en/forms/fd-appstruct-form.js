@@ -14,6 +14,7 @@ export default {
   'close-panel-btn-caption':'Click to hide all forms',
   'show-panel-btn-caption':'Click to show all forms',
   'remove-control': 'Remove',
+  'remove-unsaved': 'Removed unsaved data',
   'remove-approve': 'Are you sure?',
   'delete-error': 'You can not delete a class, it has nested elements. Delete them to delete the class',
   search: 'Enter name to search',
