@@ -22,24 +22,37 @@
     {{#flexberry-tree class="styled fluid"}}
       {{#block-slot "content"}}
         {{#each typeMap as |dataType|}}
-          {{#flexberry-treenode}}
-            {{#block-slot "header"}}
-              {{dataType.name}}
-            {{/block-slot}}
-            {{#block-slot "content"}}
-              {{#unless dataType.sqlOnly}}
-                <div class="equal width fields">
-                  {{flexberry-field label="C#" value=dataType.cs}}
-                  {{flexberry-field label="Assembly DLL" value=dataType.assemblyDll}}
-                </div>
-              {{/unless}}
+          <div class="title">
+            <i class="dropdown icon"></i>{{dataType.name}}
+          </div>
+          <div class="content">
+            {{#unless dataType.sqlOnly}}
               <div class="equal width fields">
-                {{flexberry-field label="Microsoft SQL Server" value=dataType.sql}}
-                {{flexberry-field label="Postgre SQL" value=dataType.postgre}}
-                {{flexberry-field label="Oracle" value=dataType.oracle}}
+                <div class="ui field">
+                  <label>C#</label>
+                  <div class="ui input">{{input value=dataType.cs placeholder=(t "components.flexberry-textbox.placeholder")}}</div>
+                </div>
+                <div class="ui field">
+                  <label>Assembly DLL</label>
+                  <div class="ui input">{{input value=dataType.assemblyDll placeholder=(t "components.flexberry-textbox.placeholder")}}</div>
+                </div>
               </div>
-            {{/block-slot}}
-          {{/flexberry-treenode}}
+            {{/unless}}
+            <div class="equal width fields">
+              <div class="ui field">
+                <label>Microsoft SQL Server</label>
+                <div class="ui input">{{input value=dataType.sql placeholder=(t "components.flexberry-textbox.placeholder")}}</div>
+              </div>
+              <div class="ui field">
+                <label>Postgre SQL</label>
+                <div class="ui input">{{input value=dataType.postgre placeholder=(t "components.flexberry-textbox.placeholder")}}</div>
+              </div>
+              <div class="ui field">
+                <label>Oracle</label>
+                <div class="ui input">{{input value=dataType.oracle placeholder=(t "components.flexberry-textbox.placeholder")}}</div>
+              </div>
+            </div>
+          </div>
         {{/each}}
       {{/block-slot}}
     {{/flexberry-tree}}
