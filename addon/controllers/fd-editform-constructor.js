@@ -490,7 +490,9 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       });
 
       this._insertItem(control, this.get('selectedItem') || this.get('controlsTree'));
-      this.send('selectItem', control);
+      this.send('selectItem', control, true);
+      let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
+      Ember.$('.ui.menu', configPanelSidebar).find(`.item[data-tab="control-properties"]`).click();
       Ember.run.scheduleOnce('afterRender', this, this._scrollToSelected);
     },
 
@@ -510,7 +512,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       });
 
       this._insertItem(control, this.get('selectedItem') || this.get('controlsTree'));
-      this.send('selectItem', control);
+      this.send('selectItem', control, true);
       Ember.run.scheduleOnce('afterRender', this, this._scrollToSelected);
     },
 
@@ -587,8 +589,9 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
       @method actions.selectItem
       @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item
+      @param {Boolean} notTogglePanel
     */
-    selectItem(item) {
+    selectItem(item, notTogglePanel) {
       let selectedItem = this.get('selectedItem');
       if (this.get('_moveItem') && !Ember.isNone(item)) {
         if (this._findItemContainer(item, selectedItem) === null) {
@@ -607,8 +610,8 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
         let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
         let sidebarOpened = configPanelSidebar.hasClass('visible');
 
-        if ((item || sidebarOpened) && selectedItem !== item) {
-          this.send('toggleConfigPanel', 'control-properties', item);
+        if (!notTogglePanel && selectedItem !== item && (item || sidebarOpened)) {
+          this.send('toggleConfigPanel', { dataTab: 'control-properties' }, item);
         }
 
         this.set('selectedItem', item);
@@ -1062,7 +1065,8 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
   */
   _scrollToSelected() {
     let form = Ember.$('.full.height');
-    let scrollTop = Ember.$('.selected:first').offset().top + form.scrollTop() - (form.offset().top + 10);
+    let firstSelectedOffsetTop = Ember.$('.selected:first').length > 0 ? Ember.$('.selected:first').offset().top : 0;
+    let scrollTop = firstSelectedOffsetTop + form.scrollTop() - (form.offset().top + 10);
 
     form.animate({ scrollTop });
   },
