@@ -192,7 +192,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     @property header
     @type String
   */
-  viewName: Ember.computed.alias('model.listform.data.name'),
+  viewName: Ember.computed.readOnly('model.listform.name'),
 
   /**
     Class, edited by this form.
@@ -200,7 +200,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     @property className
     @type String
   */
-  className: Ember.computed.alias('model.dataobject.data.name'),
+  className: Ember.computed.alias('model.dataobject.name'),
 
   /**
     The selected column.
