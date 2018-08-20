@@ -176,6 +176,22 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
   dataNotUsedAttributesTree: Ember.A(),
 
   /**
+    View, edited in this exact constructor.
+
+    @property header
+    @type String
+  */
+  viewName: Ember.computed.readOnly('model.editform.name'),
+
+  /**
+    Class, edited by this form.
+
+    @property className
+    @type String
+  */
+  className: Ember.computed.alias('model.dataobject.name'),
+
+  /**
     Update data in tree.
 
     @method dataNotUsedAttributesTreeObserver

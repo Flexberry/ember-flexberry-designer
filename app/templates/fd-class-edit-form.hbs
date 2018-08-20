@@ -1,4 +1,9 @@
-<h3 class="ui header">{{t 'forms.fd-class-edit-form.caption'}}</h3>
+<h3 class="ui header">
+  {{t 'forms.fd-class-edit-form.caption'}}
+  <div class="sub header">
+      {{t 'forms.fd-class-edit-form.class'}}: {{header}}
+  </div>
+</h3>
 
 {{#if errorMessages}}
   {{#each errorMessages as |currentError|}}

@@ -1,5 +1,5 @@
 export default {
-  caption: 'FdInheritanceEditForm',
+  caption: 'Edit inheritance',
   'name-caption': 'Name',
   'description-caption': 'Description',
   'parent-caption': 'Parent',

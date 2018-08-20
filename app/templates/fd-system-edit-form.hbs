@@ -1,4 +1,8 @@
-<h3 class="ui header">{{t 'forms.fd-system-edit-form.caption'}}</h3>
+<h3 class="ui header">{{t 'forms.fd-system-edit-form.caption'}}
+<div class="sub header">
+  {{t 'forms.fd-system-edit-form.subsystem'}}: {{sybsystemName}}
+</div>
+</h3>
 
 {{#if errorMessages}}
   {{#each errorMessages as |currentError|}}
