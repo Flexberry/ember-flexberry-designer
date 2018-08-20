@@ -55,6 +55,7 @@ export default Ember.Route.extend({
       let controller = this.get('controller');
       if (controller.serializeTypeMap()) {
         this.send('showModalDialog', 'modal/save', { controller });
+        controller.set('abortedTransition', transition);
         transition.abort();
       }
     },

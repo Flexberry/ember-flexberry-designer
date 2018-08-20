@@ -51,6 +51,14 @@ export default Ember.Controller.extend({
   objectlistviewEvents: Ember.inject.service('objectlistview-events'),
 
   /**
+    Transition, aborted for some reason.
+
+    @property abortedTransition
+    @type Transition
+  */
+  abortedTransition: undefined,
+
+  /**
     Specifies whether to render the type map.
 
     @property showTypeMap
@@ -158,13 +166,14 @@ export default Ember.Controller.extend({
 
   actions: {
     /**
-      Closes the form and transition to the application structure form.
+      Repeats an attempt to perform a previously aborted transition, or transition to the application structure form.
 
       @method actions.close
     */
     close() {
-      if (this.serializeTypeMap()) {
-        this.send('showModalDialog', 'modal/save', { controller: this });
+      if (this.get('abortedTransition')) {
+        this.get('abortedTransition').retry();
+        this.set('abortedTransition', undefined);
       } else {
         this.transitionToRoute('fd-appstruct-form');
       }
