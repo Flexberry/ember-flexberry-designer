@@ -103,5 +103,14 @@ export default Ember.Controller.extend({
         }, interval);
       });
     }
+  },
+
+  /**
+    Check if fields changed, but unsaved
+
+    @method findUnsavedFields
+  */
+  findUnsavedFields: function () {
+    return false;
   }
 });

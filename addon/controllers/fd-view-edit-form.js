@@ -382,7 +382,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
 
     /**
       Confirm close form with unsaved attributes.
-      
+
       @method actions.confirmCloseUnsavedFormAction
     */
     confirmCloseUnsavedFormAction() {
