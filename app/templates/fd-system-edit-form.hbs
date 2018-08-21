@@ -46,32 +46,29 @@
     label=(t 'forms.fd-system-edit-form.name-caption')
   }}
   {{flexberry-validationmessage error=model.errors.name pointing="pointing"}}
-</div>
-
-<div class="field">
-  {{
-    flexberry-field
-    placeholder=(t 'components.flexberry-field.placeholder')
-    readonly=readonly
-    required=true
-    value=model.description
-    class=(if model.errors.description 'error' '')
-    label=(t 'forms.fd-system-edit-form.description-caption')
-  }}
-  {{flexberry-validationmessage error=model.errors.description pointing="pointing"}}
-</div>
-
-{{#if _showConfirmDialog}}
-  {{#modal-dialog
+  </div>
+  <div class="field">
+    {{
+      flexberry-field
+      placeholder=(t 'components.flexberry-field.placeholder')
+      readonly=readonly
+      required=true
+      value=model.description
+      class=(if model.errors.description 'error' '')
+      label=(t 'forms.fd-system-edit-form.description-caption')
+    }}
+    {{flexberry-validationmessage error=model.errors.description pointing="pointing"}}
+  </div>
+  {{#if _showConfirmDialog}}
+    {{#modal-dialog
     title=(t "forms.fd-system-edit-form.remove-unsaved")
     ok=(action "confirmCloseUnsavedFormAction")
     settings=(hash
       onHidden=(action set "_showConfirmDialog" false)
       context=".pusher:first"
-    )
-  }}
+      )
+    }}
     {{t "forms.fd-system-edit-form.remove-approve"}}
-  {{/modal-dialog}}
-{{/if}}
-
+    {{/modal-dialog}}
+  {{/if}}
 </form>

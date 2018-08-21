@@ -32,6 +32,14 @@ export default EditFormController.extend(FdWorkPanelToggler, {
   _originalData: null,
 
   /**
+    @private
+    @property _originalAppData
+    @type Object
+    @default null
+  */
+  _originalAppData: null,
+
+  /**
     @property store
     @type Service
   */
@@ -828,6 +836,11 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     let originalDataString = JSON.stringify(originalData);
 
     this.set('_originalData', originalDataString);
+
+    let originalAppData = this.get('model.applications')[0];
+    let originalAppDataString = JSON.stringify(originalAppData);
+
+    this.set('_originalAppData', originalAppDataString);
   },
 
   /**
@@ -842,7 +855,15 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     let currentData = this.get('model.rightTreeNodes')[0];
     let currentDataString = JSON.stringify(currentData);
 
-    if (!Ember.isEqual(originalData, currentDataString) && !isSaved) {
+    let originalAppData = this.get('_originalAppData');
+    let currentAppData = this.get('model.applications')[0];
+    let currentAppDataString = JSON.stringify(currentAppData);
+
+    let isMainDataEqual = Ember.isEqual(originalData, currentDataString);
+    let isAppDataEqual = Ember.isEqual(originalAppData, currentAppDataString);
+    let isChanges = (!isMainDataEqual || !isAppDataEqual) ? true : false;
+
+    if (isChanges && !isSaved) {
       checkResult = true;
     }
 

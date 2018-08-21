@@ -40,5 +40,16 @@ export default EditFormRoute.extend(FdLoadingForTransitionMixin, {
     controller.set('parentName', model.get('parent.name'));
     controller.set('childName', model.get('child.name'));
     controller.set('readonlyDropdown', true);
+  },
+
+  actions: {
+    /**
+      Confirm transition with unsaved fields
+
+      @method actions.confirmCloseUnsavedForm
+    */
+    confirmCloseUnsavedForm() {
+      this.retryTransitionForced();
+    }
   }
 });

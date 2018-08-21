@@ -19,4 +19,6 @@ export default {
   'pb-master-get-end-caption': 'Brackets of the programmer after the getter master property',
   'pb-master-set-start-caption': 'Brackets of the programmer before the masters setter',
   'pb-master-set-end-caption': 'Brackets of the programmer after the master setter',
+  'remove-unsaved': 'Removed unsaved data',
+  'remove-approve': 'Are you sure?'
 };

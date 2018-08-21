@@ -15,6 +15,17 @@ export default EditFormRoute.extend(FdLoadingForTransitionMixin, {
    */
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
+  actions: {
+    /**
+      Confirm transition with unsaved fields
+
+      @method actions.confirmCloseUnsavedForm
+    */
+    confirmCloseUnsavedForm() {
+      this.retryTransitionForced();
+    }
+  },
+
   /**
     A hook you can use to setup the controller for the current route.
     [More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).

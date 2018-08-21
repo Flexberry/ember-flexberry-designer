@@ -24,4 +24,6 @@ export default {
   'pb-detail-get-end-caption': 'Brackets of the programmer after the detail getter',
   'pb-detail-set-start-caption': 'Brackets of the programmer before the detail setter',
   'pb-detail-set-end-caption': 'Brackets of the programmer after the detail setter',
+  'remove-unsaved': 'Removed unsaved data',
+  'remove-approve': 'Are you sure?'
 };

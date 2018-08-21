@@ -19,4 +19,6 @@ export default {
   'pb-master-get-end-caption': 'Скобки программиста после геттером мастерового свойства',
   'pb-master-set-start-caption': 'Скобки программиста перед сеттером мастера',
   'pb-master-set-end-caption': 'Скобки программиста после сеттером мастера',
+  'remove-unsaved': 'Удалить несохраненные данные',
+  'remove-approve': 'Вы уверены?'
 };

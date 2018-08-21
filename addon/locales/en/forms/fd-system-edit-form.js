@@ -3,5 +3,5 @@ export default {
   'name-caption': 'name',
   'description-caption': 'description',
   'remove-unsaved': 'Removed unsaved data',
-  'remove-approve': 'Are you sure?',
+  'remove-approve': 'Are you sure?'
 };

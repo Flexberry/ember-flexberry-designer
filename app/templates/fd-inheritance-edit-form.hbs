@@ -11,6 +11,18 @@
     }}
   {{/each}}
 {{/if}}
+{{#if _showConfirmDialog}}
+  {{#modal-dialog
+    title=(t "forms.fd-inheritance-edit-form.remove-unsaved")
+    ok=(action "confirmCloseUnsavedFormAction")
+    settings=(hash
+      onHidden=(action set "_showConfirmDialog" false)
+      context=".pusher:first"
+    )
+  }}
+    {{t "forms.fd-inheritance-edit-form.remove-approve"}}
+  {{/modal-dialog}}
+{{/if}}
 <form class="ui form flexberry-vertical-form {{state}}" role="form">
   {{flexberry-error error=error}}
   <div class="field">
@@ -70,5 +82,5 @@
       flexberry-textarea
       value=model.description
     }}
-  </div>
+  </div>  
 </form>
