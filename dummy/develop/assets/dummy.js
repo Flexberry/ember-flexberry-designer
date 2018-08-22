@@ -38339,7 +38339,7 @@ define("dummy/templates/fd-generation-list-form", ["exports"], function (exports
         dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-generation-list-form.caption"], [], ["loc", [null, [2, 4], [2, 49]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-generation", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [11, 12], [11, 27]]]]], [], []], "orderable", true, "enableFilters", true, "filters", ["subexpr", "@mut", [["get", "filters", ["loc", [null, [14, 12], [14, 19]]]]], [], []], "disableHierarchicalMode", true, "applyFilters", ["subexpr", "action", ["applyFilters"], [], ["loc", [null, [16, 17], [16, 40]]]], "resetFilters", ["subexpr", "action", ["resetFilters"], [], ["loc", [null, [17, 17], [17, 40]]]], "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [18, 17], [18, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [19, 23], [19, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [20, 10], [20, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [21, 17], [21, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [22, 18], [22, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [23, 22], [23, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [24, 20], [24, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [25, 16], [25, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [26, 17], [26, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [27, 13], [27, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [28, 13], [28, 32]]]], "componentName", "FdGenerationListForm", "columnsWidthAutoresize", true, "customButtons", ["subexpr", "@mut", [["get", "customButtons", ["loc", [null, [31, 18], [31, 31]]]]], [], []], "generationStartButtonClick", "generationStartButtonClick"], ["loc", [null, [4, 2], [33, 4]]]]],
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-generation-list-form.caption"], [], ["loc", [null, [2, 4], [2, 49]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-generation", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", false, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [11, 12], [11, 27]]]]], [], []], "orderable", true, "enableFilters", true, "filters", ["subexpr", "@mut", [["get", "filters", ["loc", [null, [14, 12], [14, 19]]]]], [], []], "disableHierarchicalMode", true, "applyFilters", ["subexpr", "action", ["applyFilters"], [], ["loc", [null, [16, 17], [16, 40]]]], "resetFilters", ["subexpr", "action", ["resetFilters"], [], ["loc", [null, [17, 17], [17, 40]]]], "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [18, 17], [18, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [19, 23], [19, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [20, 10], [20, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [21, 17], [21, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [22, 18], [22, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [23, 22], [23, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [24, 20], [24, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [25, 16], [25, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [26, 17], [26, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [27, 13], [27, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [28, 13], [28, 32]]]], "componentName", "FdGenerationListForm", "columnsWidthAutoresize", true, "customButtons", ["subexpr", "@mut", [["get", "customButtons", ["loc", [null, [31, 18], [31, 31]]]]], [], []], "generationStartButtonClick", "generationStartButtonClick"], ["loc", [null, [4, 2], [33, 4]]]]],
       locals: [],
       templates: []
     };
@@ -38412,11 +38412,11 @@ define("dummy/templates/fd-generation-process-form", ["exports"], function (expo
           "loc": {
             "source": null,
             "start": {
-              "line": 6,
+              "line": 8,
               "column": 2
             },
             "end": {
-              "line": 11,
+              "line": 13,
               "column": 2
             }
           },
@@ -38468,11 +38468,11 @@ define("dummy/templates/fd-generation-process-form", ["exports"], function (expo
           "loc": {
             "source": null,
             "start": {
-              "line": 14,
+              "line": 16,
               "column": 2
             },
             "end": {
-              "line": 23,
+              "line": 25,
               "column": 2
             }
           },
@@ -38527,55 +38527,13 @@ define("dummy/templates/fd-generation-process-form", ["exports"], function (expo
           morphs[4] = dom.createMorphAt(element0, 7, 7);
           return morphs;
         },
-        statements: [["attribute", "class", ["concat", [["subexpr", "if", [["get", "logRecord.thisIsError", ["loc", [null, [16, 24], [16, 45]]]], "error", ["subexpr", "if", [["get", "logRecord.isWarn", ["loc", [null, [16, 58], [16, 74]]]], "warning", "default"], [], ["loc", [null, [16, 54], [16, 95]]]]], [], ["loc", [null, [16, 19], [16, 97]]]], "-log-record"]]], ["inline", "concat", [["subexpr", "get-formatted", [["get", "logRecord", ["loc", [null, [17, 32], [17, 41]]]], "time"], ["dateFormat", "DD.MM.YYYY, HH:mm:ss", "moment", ["get", "moment", ["loc", [null, [17, 90], [17, 96]]]]], ["loc", [null, [17, 17], [17, 97]]]], ": "], [], ["loc", [null, [17, 8], [17, 104]]]], ["inline", "if", [["get", "logRecord.thisIsError", ["loc", [null, [18, 13], [18, 34]]]], ["subexpr", "concat", ["[", ["subexpr", "t", ["forms.fd-generation-process-form.log-message-types.error"], [], ["loc", [null, [18, 47], [18, 109]]]], "]: "], [], ["loc", [null, [18, 35], [18, 116]]]]], [], ["loc", [null, [18, 8], [18, 118]]]], ["inline", "if", [["get", "logRecord.isWarn", ["loc", [null, [19, 13], [19, 29]]]], ["subexpr", "concat", ["[", ["subexpr", "t", ["forms.fd-generation-process-form.log-message-types.warning"], [], ["loc", [null, [19, 42], [19, 106]]]], "]: "], [], ["loc", [null, [19, 30], [19, 113]]]]], [], ["loc", [null, [19, 8], [19, 115]]]], ["content", "logRecord.text", ["loc", [null, [20, 8], [20, 26]]]]],
+        statements: [["attribute", "class", ["concat", [["subexpr", "if", [["get", "logRecord.thisIsError", ["loc", [null, [18, 24], [18, 45]]]], "error", ["subexpr", "if", [["get", "logRecord.isWarn", ["loc", [null, [18, 58], [18, 74]]]], "warning", "default"], [], ["loc", [null, [18, 54], [18, 95]]]]], [], ["loc", [null, [18, 19], [18, 97]]]], "-log-record"]]], ["inline", "concat", [["subexpr", "get-formatted", [["get", "logRecord", ["loc", [null, [19, 32], [19, 41]]]], "time"], ["dateFormat", "DD.MM.YYYY, HH:mm:ss", "moment", ["get", "moment", ["loc", [null, [19, 90], [19, 96]]]]], ["loc", [null, [19, 17], [19, 97]]]], ": "], [], ["loc", [null, [19, 8], [19, 104]]]], ["inline", "if", [["get", "logRecord.thisIsError", ["loc", [null, [20, 13], [20, 34]]]], ["subexpr", "concat", ["[", ["subexpr", "t", ["forms.fd-generation-process-form.log-message-types.error"], [], ["loc", [null, [20, 47], [20, 109]]]], "]: "], [], ["loc", [null, [20, 35], [20, 116]]]]], [], ["loc", [null, [20, 8], [20, 118]]]], ["inline", "if", [["get", "logRecord.isWarn", ["loc", [null, [21, 13], [21, 29]]]], ["subexpr", "concat", ["[", ["subexpr", "t", ["forms.fd-generation-process-form.log-message-types.warning"], [], ["loc", [null, [21, 42], [21, 106]]]], "]: "], [], ["loc", [null, [21, 30], [21, 113]]]]], [], ["loc", [null, [21, 8], [21, 115]]]], ["content", "logRecord.text", ["loc", [null, [22, 8], [22, 26]]]]],
         locals: ["logRecord"],
         templates: []
       };
     })();
     var child2 = (function () {
       var child0 = (function () {
-        return {
-          meta: {
-            "fragmentReason": false,
-            "revision": "Ember@2.4.6",
-            "loc": {
-              "source": null,
-              "start": {
-                "line": 25,
-                "column": 6
-              },
-              "end": {
-                "line": 27,
-                "column": 6
-              }
-            },
-            "moduleName": "dummy/templates/fd-generation-process-form.hbs"
-          },
-          isEmpty: false,
-          arity: 0,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode("        ");
-            dom.appendChild(el0, el1);
-            var el1 = dom.createComment("");
-            dom.appendChild(el0, el1);
-            var el1 = dom.createTextNode("\n");
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-            var morphs = new Array(1);
-            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
-            return morphs;
-          },
-          statements: [["inline", "t", ["forms.fd-generation-process-form.start-generation"], [], ["loc", [null, [26, 8], [26, 65]]]]],
-          locals: [],
-          templates: []
-        };
-      })();
-      var child1 = (function () {
         return {
           meta: {
             "fragmentReason": false,
@@ -38612,7 +38570,49 @@ define("dummy/templates/fd-generation-process-form", ["exports"], function (expo
             morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
             return morphs;
           },
-          statements: [["inline", "t", ["forms.fd-generation-process-form.no-log-caption"], [], ["loc", [null, [28, 8], [28, 63]]]]],
+          statements: [["inline", "t", ["forms.fd-generation-process-form.start-generation"], [], ["loc", [null, [28, 8], [28, 65]]]]],
+          locals: [],
+          templates: []
+        };
+      })();
+      var child1 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 29,
+                "column": 6
+              },
+              "end": {
+                "line": 31,
+                "column": 6
+              }
+            },
+            "moduleName": "dummy/templates/fd-generation-process-form.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("        ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "t", ["forms.fd-generation-process-form.no-log-caption"], [], ["loc", [null, [30, 8], [30, 63]]]]],
           locals: [],
           templates: []
         };
@@ -38624,11 +38624,11 @@ define("dummy/templates/fd-generation-process-form", ["exports"], function (expo
           "loc": {
             "source": null,
             "start": {
-              "line": 23,
+              "line": 25,
               "column": 2
             },
             "end": {
-              "line": 31,
+              "line": 33,
               "column": 2
             }
           },
@@ -38660,7 +38660,7 @@ define("dummy/templates/fd-generation-process-form", ["exports"], function (expo
           morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
           return morphs;
         },
-        statements: [["block", "if", [["get", "generationId", ["loc", [null, [25, 12], [25, 24]]]]], [], 0, 1, ["loc", [null, [25, 6], [29, 13]]]]],
+        statements: [["block", "if", [["get", "generationId", ["loc", [null, [27, 12], [27, 24]]]]], [], 0, 1, ["loc", [null, [27, 6], [31, 13]]]]],
         locals: [],
         templates: [child0, child1]
       };
@@ -38679,7 +38679,7 @@ define("dummy/templates/fd-generation-process-form", ["exports"], function (expo
             "column": 0
           },
           "end": {
-            "line": 33,
+            "line": 35,
             "column": 0
           }
         },
@@ -38707,9 +38707,13 @@ define("dummy/templates/fd-generation-process-form", ["exports"], function (expo
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("button");
-        dom.setAttribute(el2, "type", "submit");
+        dom.setAttribute(el2, "type", "button");
         dom.setAttribute(el2, "class", "ui button");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
         var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n\n");
@@ -38735,18 +38739,19 @@ define("dummy/templates/fd-generation-process-form", ["exports"], function (expo
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element1 = dom.childAt(fragment, [2]);
         var element2 = dom.childAt(element1, [3]);
-        var morphs = new Array(8);
+        var morphs = new Array(9);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
         morphs[1] = dom.createAttrMorph(element1, 'class');
         morphs[2] = dom.createMorphAt(element1, 1, 1);
-        morphs[3] = dom.createElementMorph(element2);
-        morphs[4] = dom.createMorphAt(element2, 0, 0);
-        morphs[5] = dom.createMorphAt(element1, 5, 5);
-        morphs[6] = dom.createMorphAt(dom.childAt(element1, [7]), 0, 0);
-        morphs[7] = dom.createMorphAt(element1, 9, 9);
+        morphs[3] = dom.createAttrMorph(element2, 'disabled');
+        morphs[4] = dom.createElementMorph(element2);
+        morphs[5] = dom.createMorphAt(element2, 1, 1);
+        morphs[6] = dom.createMorphAt(element1, 5, 5);
+        morphs[7] = dom.createMorphAt(dom.childAt(element1, [7]), 0, 0);
+        morphs[8] = dom.createMorphAt(element1, 9, 9);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-generation-process-form.caption"], [], ["loc", [null, [1, 22], [1, 70]]]], ["attribute", "class", ["concat", ["ui form flexberry-vertical-form ", ["get", "state", ["loc", [null, [2, 47], [2, 52]]]]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [3, 26], [3, 31]]]]], [], []]], ["loc", [null, [3, 2], [3, 33]]]], ["element", "action", ["generate"], [], ["loc", [null, [4, 42], [4, 63]]]], ["inline", "t", ["forms.fd-generation-process-form.generation-button-text"], [], ["loc", [null, [4, 64], [4, 127]]]], ["block", "if", [["get", "generationId", ["loc", [null, [6, 8], [6, 20]]]]], [], 0, null, ["loc", [null, [6, 2], [11, 9]]]], ["inline", "t", ["forms.fd-generation-process-form.generation-log-caption"], [], ["loc", [null, [13, 24], [13, 87]]]], ["block", "each", [["get", "sortedGenerationLog", ["loc", [null, [14, 10], [14, 29]]]]], [], 1, 2, ["loc", [null, [14, 2], [31, 11]]]]],
+      statements: [["inline", "t", ["forms.fd-generation-process-form.caption"], [], ["loc", [null, [1, 22], [1, 70]]]], ["attribute", "class", ["concat", ["ui form flexberry-vertical-form ", ["get", "state", ["loc", [null, [2, 47], [2, 52]]]]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [3, 26], [3, 31]]]]], [], []]], ["loc", [null, [3, 2], [3, 33]]]], ["attribute", "disabled", ["get", "model.isRunning", ["loc", [null, [4, 53], [4, 68]]]]], ["element", "action", ["generate"], [], ["loc", [null, [4, 71], [4, 92]]]], ["inline", "t", ["forms.fd-generation-process-form.generation-button-text"], [], ["loc", [null, [5, 4], [5, 67]]]], ["block", "if", [["get", "generationId", ["loc", [null, [8, 8], [8, 20]]]]], [], 0, null, ["loc", [null, [8, 2], [13, 9]]]], ["inline", "t", ["forms.fd-generation-process-form.generation-log-caption"], [], ["loc", [null, [15, 24], [15, 87]]]], ["block", "each", [["get", "sortedGenerationLog", ["loc", [null, [16, 10], [16, 29]]]]], [], 1, 2, ["loc", [null, [16, 2], [33, 11]]]]],
       locals: [],
       templates: [child0, child1, child2]
     };
@@ -51445,7 +51450,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+5edf7f46"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.2.0+585abc7d"});
 }
 
 /* jshint ignore:end */
