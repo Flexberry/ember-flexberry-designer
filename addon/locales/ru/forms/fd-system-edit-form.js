@@ -1,5 +1,6 @@
 export default {
-  caption: 'Подсистема',
+  caption: 'Редактировать подсистему',
   'name-caption': 'Название',
-  'description-caption': 'Описание'
+  'description-caption': 'Описание',
+  'subsystem': 'Подсистема'
 };

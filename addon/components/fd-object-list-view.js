@@ -41,12 +41,12 @@ export default Ember.Component.extend({
 
     @property tagName
   */
-  tagName: 'table',
+  tagName: 'div',
 
   /**
     See [EmberJS API](https://emberjs.com/api/).
 
     @property classNames
   */
-  classNames: ['ui', 'celled', 'table'],
+  classNames: ['panel-wrapper', 'overflow-panel'],
 });

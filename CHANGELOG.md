@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
+* Edit form for the type map.
 * The application structure constructor:
   * Add links in root desktop.
 * The list form constructor:
@@ -27,6 +28,7 @@ All notable changes to this project will be documented in this file.
   * The addition of controls takes place depending on the selected item.
   * The type of the displayed component for the control depends on the type of property.
 * Clicking on class with stereotype `listform` or `edit form` will open form constructor.
+* Unified headings for edit-forms.
 
 ### Fixed
 * The view edit form:
