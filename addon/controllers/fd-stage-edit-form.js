@@ -85,7 +85,7 @@ export default EditFormController.extend({
       moduleSettingData.pushObject(moduleSettingTypeData);
     }
 
-    let data = { 'project': stagePk, 'moduleSettingType': moduleSettingData, 'valueModuleSetting': valueModuleSetting };
+    let data = { 'project': stagePk.toString(), 'moduleSettingType': moduleSettingData, 'valueModuleSetting': valueModuleSetting };
 
     Ember.$.ajax({
       type: 'POST',
