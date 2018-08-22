@@ -383,10 +383,8 @@ export default EditFormController.extend(FdWorkPanelToggler, {
   }),
 
   actions: {
-
     /**
-      Close current form, go back
-      .
+      Close current form, go back.
 
       @method actions.close
     */
@@ -621,7 +619,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       @method actions.editRightNode
     */
     editRightNode() {
-      this.send('toggleConfigPanel', 'second', 1);
+      this.send('toggleConfigPanel', { dataTab: 'second' }, 1);
     },
 
     /**
@@ -790,21 +788,6 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     confirmCloseUnsavedFormAction() {
       this.send('confirmCloseUnsavedForm');
     }
-  },
-
-  /**
-    Method for restoring tree nodes.
-    @method _restorationNodeTree
-    @private
-  */
-  _restorationNodeTree(nodeArray) {
-    let _this = this;
-    nodeArray.forEach(function(node) {
-      if (node.type === 'folder' || node.type === 'desk') {
-        node.set('children', node.get('copyChildren'));
-        _this._restorationNodeTree(node.get('children'));
-      }
-    });
   },
 
   /**

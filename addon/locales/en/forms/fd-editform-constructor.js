@@ -1,6 +1,8 @@
 export default {
   caption: 'Edit form constructor',
   'new-control-caption': 'New attribute',
+  'class': 'Class',
+  'view': 'View',
   'new-group-caption': 'New group',
   'new-tab-caption': 'New tab',
   'duplicate-value-error': 'Duplicate values',

@@ -1,9 +1,9 @@
 import Ember from 'ember';
 import FdAttributesTree from '../objects/fd-attributes-tree';
-import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
+import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode, getDetailView } from '../utils/fd-attributes-for-tree';
 
-export default Ember.Route.extend(FdLoadingForTransitionMixin, {
+export default Ember.Route.extend(FdFormCheckTransitionMixin, {
 
   /**
    Service that triggers objectlistview events.
@@ -65,6 +65,22 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
     };
   },
 
+  /**
+    A hook you can use to reset controller values either when the model changes or the route is exiting.
+    [More info](http://emberjs.com/api/classes/Ember.Route.html#method_resetController).
+
+    @method resetController
+    @param {Ember.Controller} controller
+    @param {Boolean} isExisting
+   */
+  resetController(controller, isExiting) {
+    this._super(...arguments);
+
+    if (isExiting) {
+      Ember.$('.full.height').off('click.fd-view-editform-constructor');
+    }
+  },
+
   setupController(controller) {
     this._super(...arguments);
     controller.set('routeName', this.get('routeName'));
@@ -74,18 +90,17 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
   },
 
   actions: {
-    /**
-      Confirm transition with unsaved fields
-
-      @method actions.confirmCloseUnsavedForm
-    */
-    confirmCloseUnsavedForm() {
-      this.retryTransitionForced();
-    },
-
     didTransition() {
       Ember.$('#example .flexberry-content').css('padding-bottom', 0);
       Ember.$('.flexberry-content > .ui.main.container').css('margin-bottom', 0);
+
+      Ember.$('.full.height').on('click.fd-view-editform-constructor', (e) => {
+        let table = Ember.$('.ui.table.fd-view-properties-table')[0];
+        let path = Ember.get(e, 'originalEvent.path') || [];
+        if (path.indexOf(table) === -1) {
+          this.get('controller').send('onAttributesClick');
+        }
+      });
     }
   }
 });

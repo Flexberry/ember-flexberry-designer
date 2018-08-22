@@ -53,6 +53,14 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
   selectedNodesNotUsedAttributesTree: Ember.A(),
 
   /**
+    Empty rows array, for 10 rows render.
+
+    @property rows
+    @type Array
+   */
+  rows: Ember.A(Array.apply(null, { length: 10 })),
+
+  /**
     Included plugins for jsTree.
 
     @property pluginsTree
@@ -187,6 +195,22 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
   dataObject: Ember.computed.alias('model.dataobject'),
 
   /**
+    View, edited in this exact constructor.
+
+    @property header
+    @type String
+  */
+  viewName: Ember.computed.readOnly('model.listform.name'),
+
+  /**
+    Class, edited by this form.
+
+    @property className
+    @type String
+  */
+  className: Ember.computed.alias('model.dataobject.name'),
+
+  /**
     The selected column.
 
     @property selectedColumn
@@ -220,12 +244,20 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
       @method actions.selectColumn
       @param {FdListformColumn} column
+      @param {Boolean} notTogglePanel
     */
-    selectColumn(column) {
+    selectColumn(column, notTogglePanel) {
       let selectedColumn = this.get('selectedColumn');
-      let newSelectedColumn = selectedColumn === column ? undefined : column;
-      this.set('selectedColumn', newSelectedColumn);
+      let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
+      let sidebarOpened = configPanelSidebar.hasClass('visible');
 
+      if (!notTogglePanel && selectedColumn !== column && (column || sidebarOpened)) {
+        this.send('toggleConfigPanel', { dataTab: 'control-properties' }, column);
+      }
+
+      this.set('selectedColumn', column);
+
+      let newSelectedColumn = selectedColumn === column ? undefined : column;
       if (!Ember.isNone(newSelectedColumn) && newSelectedColumn.get('propertyDefinition.name') === '') {
         this.set('_showNotUsedAttributesTree', true);
       } else {
@@ -268,7 +300,9 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       });
 
       this.get('columns').pushObject(column);
-      this.send('selectColumn', column);
+      this.send('selectColumn', column, true);
+      let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
+      Ember.$('.ui.menu', configPanelSidebar).find(`.item[data-tab="control-properties"]`).click();
       Ember.run.scheduleOnce('afterRender', this, this._scrollToSelected);
     },
 
@@ -281,7 +315,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       });
 
       this.get('columns').pushObject(column);
-      this.send('selectColumn', column);
+      this.send('selectColumn', column, true);
       Ember.run.scheduleOnce('afterRender', this, this._scrollToSelected);
     },
 
@@ -492,7 +526,8 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
   _scrollToSelected() {
     let $verticalForm = Ember.$('.form.flexberry-vertical-form');
     let form = $verticalForm.children('.ui.segment');
-    let scrollLeft = Ember.$('.positive:first').offset().left + form.scrollLeft() - (form.offset().left + 10);
+    let firstSelectedOffsetLeft = Ember.$('.positive:first').length > 0 ? Ember.$('.positive:first').offset().left : 0;
+    let scrollLeft = firstSelectedOffsetLeft + form.scrollLeft() - (form.offset().left + 10);
 
     form.animate({ scrollLeft });
   },

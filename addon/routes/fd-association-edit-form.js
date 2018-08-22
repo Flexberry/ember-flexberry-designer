@@ -1,8 +1,8 @@
 import Ember from 'ember';
 import EditFormRoute from 'ember-flexberry/routes/edit-form';
-import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
+import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 
-export default EditFormRoute.extend(FdLoadingForTransitionMixin, {
+export default EditFormRoute.extend(FdFormCheckTransitionMixin, {
   modelProjection: 'EditFormView',
   modelName: 'fd-dev-association',
 
@@ -14,17 +14,6 @@ export default EditFormRoute.extend(FdLoadingForTransitionMixin, {
    @default Ember.inject.service()
    */
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
-
-  actions: {
-    /**
-      Confirm transition with unsaved fields
-
-      @method actions.confirmCloseUnsavedForm
-    */
-    confirmCloseUnsavedForm() {
-      this.retryTransitionForced();
-    }
-  },
 
   /**
     A hook you can use to setup the controller for the current route.
@@ -45,7 +34,7 @@ export default EditFormRoute.extend(FdLoadingForTransitionMixin, {
       return item.get('stereotype') === '«implementation»' || item.get('stereotype') === null;
     });
 
-    let implementationsName = Ember.A(implementations).mapBy('name');
+    let implementationsName = Ember.A(implementations).map(i => i.get('name') || i.get('nameStr'));
     controller.set('implementationsName', implementationsName);
     controller.set('startClassName', model.get('startClass.name'));
     controller.set('endClassName', model.get('endClass.name'));

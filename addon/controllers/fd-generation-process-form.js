@@ -56,7 +56,7 @@ export default Ember.Controller.extend({
       Ember.$.ajax({
         type: 'GET',
         xhrFields: { withCredentials: true },
-        url: `${host}/Generate(project=${stagePk})`,
+        url: `${host}/Generate(project='${stagePk}')`,
         success(result) {
           _this.set('generationService.lastGenerationToken', result);
           _this.transitionToRoute('fd-generation-process-form', Ember.get(result, 'value'));

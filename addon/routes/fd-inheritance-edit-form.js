@@ -1,8 +1,8 @@
 import Ember from 'ember';
 import EditFormRoute from 'ember-flexberry/routes/edit-form';
-import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
+import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 
-export default EditFormRoute.extend(FdLoadingForTransitionMixin, {
+export default EditFormRoute.extend(FdFormCheckTransitionMixin, {
   modelProjection: 'EditFormView',
   modelName: 'fd-dev-inheritance',
 
@@ -34,22 +34,11 @@ export default EditFormRoute.extend(FdLoadingForTransitionMixin, {
       return item.get('stereotype') !== '«application»' && item.get('stereotype') !== '«enumeration»';
     });
 
-    let implementationsName = Ember.A(implementations).mapBy('name');
+    let implementationsName = Ember.A(implementations).map(i => i.get('name') || i.get('nameStr'));
     controller.set('parentNames', implementationsName);
     controller.set('childNames', implementationsName);
     controller.set('parentName', model.get('parent.name'));
     controller.set('childName', model.get('child.name'));
     controller.set('readonlyDropdown', true);
-  },
-
-  actions: {
-    /**
-      Confirm transition with unsaved fields
-
-      @method actions.confirmCloseUnsavedForm
-    */
-    confirmCloseUnsavedForm() {
-      this.retryTransitionForced();
-    }
   }
 });

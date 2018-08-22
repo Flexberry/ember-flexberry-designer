@@ -1,5 +1,5 @@
 export default {
-  caption: 'Аггрегация',
+  caption: 'Редактировать аггрегацию',
   'name-caption': 'Имя связи',
   'description-caption': 'Описание связи',
   'start-class-caption': 'Аггрегатор',

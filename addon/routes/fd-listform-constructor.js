@@ -1,32 +1,27 @@
 import Ember from 'ember';
 import FdAttributesTree from '../objects/fd-attributes-tree';
 import FdDataTypes from '../utils/fd-datatypes';
-import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
+import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode } from '../utils/fd-attributes-for-tree';
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
 import { getNewFormCaption, getNewFormDescription } from '../utils/fd-create-form-properties';
 
-export default Ember.Route.extend(FdLoadingForTransitionMixin, {
+export default Ember.Route.extend(FdFormCheckTransitionMixin, {
   currentContext: Ember.inject.service('fd-current-project-context'),
 
   actions: {
-    /**
-      Confirm transition with unsaved fields
-
-      @method actions.confirmCloseUnsavedForm
-    */
-    confirmCloseUnsavedForm() {
-      this.retryTransitionForced();
-    },
-
     /**
       See [EmberJS API](https://emberjs.com/).
 
       @method actions.didTransition
     */
     didTransition() {
-      Ember.$('.full.height').on('click.fd-editform-constructor', () => {
-        this.get('controller').send('selectColumn');
+      Ember.$('.full.height').on('click.fd-listform-constructor', (e) => {
+        let table = Ember.$('.ui.table.fd-listform')[0];
+        let path = Ember.get(e, 'originalEvent.path') || [];
+        if (path.indexOf(table) === -1) {
+          this.get('controller').send('selectColumn');
+        }
       });
     },
   },
@@ -132,8 +127,8 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
 
     // Typemap.
     let currentStage = allStages.findBy('id', stage.get('id'));
-    let typeMapCSStr = currentStage.get('typeMapCSStr');
-    let typemap = typeMapCSStr.filter(function(item) {
+    let typeMapCS = currentStage.get('typeMapCS');
+    let typemap = typeMapCS.filter(function(item) {
       return fdDataTypes.fDTypeToFlexberry(item.name) === null;
     });
     modelHash.typemap = this._buildTree(typemap, '«typemap»');
@@ -166,7 +161,7 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
     this._super(...arguments);
 
     if (isExiting) {
-      Ember.$('.full.height').off('click.fd-editform-constructor');
+      Ember.$('.full.height').off('click.fd-listform-constructor');
     }
 
     let store = this.get('store');

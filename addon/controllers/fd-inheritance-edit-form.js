@@ -84,7 +84,7 @@ export default EditFormController.extend({
     */
     changeParent(value) {
       if (!this.get('readonlyDropdown')) {
-        let parent = this.get('implementations').findBy('name', value);
+        let parent = this.get('implementations').find(i => i.get('name') === value || i.get('nameStr') === value);
         let model = this.get('model');
         Ember.set(model, 'parent', parent);
         Ember.set(this, 'parentName', parent.get('name'));
@@ -101,7 +101,7 @@ export default EditFormController.extend({
     */
     changeChild(value) {
       if (!this.get('readonlyDropdown')) {
-        let child = this.get('implementations').findBy('name', value);
+        let child = this.get('implementations').find(i => i.get('name') === value || i.get('nameStr') === value);
         let model = this.get('model');
         Ember.set(model, 'child', child);
         Ember.set(this, 'childName', child.get('name'));
@@ -153,10 +153,10 @@ export default EditFormController.extend({
   */
   _getNewItems(value) {
     let newItems = this.get('implementations').filter(function(item) {
-      return item.get('name') !== value;
+      return item.get('name') !== value && item.get('nameStr') !== value;
     });
 
-    return Ember.A(newItems).mapBy('name');
+    return Ember.A(newItems).map(i => i.get('name') || i.get('nameStr'));
   },
 
   /**

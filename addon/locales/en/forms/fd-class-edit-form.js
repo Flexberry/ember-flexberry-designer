@@ -1,5 +1,6 @@
 export default {
-  caption: 'Class metadata',
+  caption: 'Edit class metadata',
+  'class': 'Class',
   'caption-caption': 'Caption',
   'name-caption': 'Name',
   'publishName-caption': 'Alias',

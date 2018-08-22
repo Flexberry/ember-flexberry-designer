@@ -3,6 +3,9 @@ export default {
   name: 'Name',
   description: 'Description',
 
+  'class': 'Class',
+  'view': 'View',
+
   'edit-form-header': 'Edit form: ',
 
   'add-button-text': 'Add',

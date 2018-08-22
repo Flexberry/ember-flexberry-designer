@@ -14,7 +14,6 @@ moduleForModel('fd-dev-stage', 'Unit | Serializer | fd-dev-stage', {
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events',
     'transform:s-t-o-r-m-c-a-s-e-repository-access-modifier',
     'transform:s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier',
-    'transform:typemap',
 
     'transform:new-platform-flexberry-web-designer-business-server-class',
 

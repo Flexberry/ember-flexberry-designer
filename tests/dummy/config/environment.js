@@ -1,7 +1,7 @@
 /* jshint node: true */
 
 module.exports = function (environment) {
-  var backendUrl = 'http://rtc-web.ics.perm.ru:2018';
+  var backendUrl = 'https://ember-flexberry-designer-dummy.azurewebsites.net';
 
   if (environment === 'development-loc') {
     // Use `ember s -e development-loc` command for local backend usage.
@@ -172,7 +172,7 @@ module.exports = function (environment) {
 
     // Change base URL to force paths to application assets be relative.
     ENV.baseURL = '/' + ENV.repositoryName + '/' + branch + '/';
-    ENV.locationType = 'none';
+    ENV.locationType = 'hash';
   }
 
   return ENV;

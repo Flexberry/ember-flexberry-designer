@@ -54,7 +54,7 @@ export default ListFormController.extend({
       Ember.$.ajax({
         type: 'GET',
         xhrFields: { withCredentials: true },
-        url: `${host}/Generate(project=${stagePk})`,
+        url: `${host}/Generate(project='${stagePk}')`,
         success(result) {
           _this.set('generationService.lastGenerationToken', result);
           result = result || {};

@@ -1,5 +1,5 @@
 export default {
-  caption: 'FdAggregationEditForm',
+  caption: 'Edit aggregation',
   'name-caption': 'Relation name',
   'description-caption': 'Relation description',
   'start-class-caption': 'Aggregator',

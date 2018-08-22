@@ -1,9 +1,9 @@
 import Ember from 'ember';
 import { Query } from 'ember-flexberry-data';
-import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
+import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 const { Builder } = Query;
 
-export default Ember.Route.extend(FdLoadingForTransitionMixin, {
+export default Ember.Route.extend(FdFormCheckTransitionMixin, {
 
   formId: null,
 

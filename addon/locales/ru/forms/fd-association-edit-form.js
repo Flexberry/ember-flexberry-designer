@@ -1,5 +1,5 @@
 export default {
-  caption: 'Ассоциация',
+  caption: 'Редактировать ассоциацию',
   'name-caption': 'Имя связи',
   'description-caption': 'Описание связи',
   'start-class-caption': 'Мастер',

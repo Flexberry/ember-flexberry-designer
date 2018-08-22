@@ -43,16 +43,5 @@ export default ListFormRoute.extend(LimitByStageMixin, {
     @type Object
     @default {}
   */
-  developerUserSettings: { FdInheritanceListForm: {} },
-
-  actions: {
-    /**
-      Confirm transition with unsaved fields
-
-      @method actions.confirmCloseUnsavedForm
-    */
-    confirmCloseUnsavedForm() {
-      this.retryTransitionForced();
-    }
-  }
+  developerUserSettings: { FdInheritanceListForm: {} }
 });

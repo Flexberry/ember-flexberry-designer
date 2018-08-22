@@ -1,5 +1,5 @@
 export default {
-  caption: 'Application',
+  caption: 'Редактировать свойства приложения',
   'name-caption': 'Имя',
   'description-caption': 'Описание',
   'caption-caption': 'Заголовок',

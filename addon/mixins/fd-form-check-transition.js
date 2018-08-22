@@ -7,8 +7,8 @@ import Ember from 'ember';
   To enable the loading for transitions, you need to connect this mixin to the edit form:
 
   ```javascript
-  import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
-  export default Ember.Route.extend(FdLoadingForTransitionMixin, {
+  import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
+  export default Ember.Route.extend(FdFormCheckTransitionMixin, {
   });
   ```
 
@@ -18,7 +18,7 @@ import Ember from 'ember';
   <form class="ui form flexberry-vertical-form {{state}}" role="form">
   ```
 
-  @class FdLoadingForTransitionMixin
+  @class FdFormCheckTransitionMixin
   @extends <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
 export default Ember.Mixin.create({
@@ -90,6 +90,15 @@ export default Ember.Mixin.create({
         controller.set('_showConfirmDialog', true);
         transition.abort();
       }
+    },
+
+    /**
+      Confirm transition with unsaved fields
+
+      @method actions.confirmCloseUnsavedForm
+    */
+    confirmCloseUnsavedForm() {
+      this.retryTransitionForced();
     }
   }
 });

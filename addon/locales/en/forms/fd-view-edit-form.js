@@ -1,5 +1,7 @@
 export default {
-  caption: 'FdViewEditForm',
+  caption: 'Edit view',
+  'view': 'View',
+  'class': 'Class',
   'name-caption': 'Name view',
   'description-caption': 'Description view',
   'remove-unsaved': 'Removed unsaved data',

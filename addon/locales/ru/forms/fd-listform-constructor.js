@@ -3,6 +3,9 @@ export default {
   name: 'Название',
   description: 'Описание',
 
+  'class': 'Класс',
+  'view': 'Представление',
+
   'edit-form-header': 'Форма для редактирования: ',
 
   'add-button-text': 'Добавить',

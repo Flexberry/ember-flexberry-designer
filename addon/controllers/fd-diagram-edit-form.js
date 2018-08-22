@@ -34,7 +34,15 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     let modelChanges = this.get('model').changedAttributes();
 
     if (Ember.keys(modelChanges).length > 0) {
-      checkResult = true;
+      for (var key in modelChanges) {
+        let argumentBefore = modelChanges[key][0];
+        let argumentAfter = modelChanges[key][1];
+        if (!Ember.isEmpty(argumentBefore) || !Ember.isEmpty(argumentAfter)) {
+          if (!Ember.isEqual(argumentBefore, argumentAfter)) {
+            checkResult = true;
+          }
+        }
+      }
     }
 
     return checkResult;

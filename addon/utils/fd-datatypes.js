@@ -273,12 +273,12 @@ export default Ember.Object.extend({
 
     'NullableDateTime': 'DateTime',
     'ICSSoft.STORMNET.UserDataTypes.NullableDateTime': 'DateTime',
-    'NullableInt': 'Int',
-    'ICSSoft.STORMNET.UserDataTypes.NullableInt': 'Int',
-    'NullableDecimal': 'Decimal',
-    'ICSSoft.STORMNET.UserDataTypes.NullableDecimal': 'Decimal',
-    'WebFile': 'tFile',
-    'ICSSoft.STORMNET.UserDataTypes.WebFile': 'tFile',
+    'NullableInt': 'int',
+    'ICSSoft.STORMNET.UserDataTypes.NullableInt': 'int',
+    'NullableDecimal': 'decimal',
+    'ICSSoft.STORMNET.UserDataTypes.NullableDecimal': 'decimal',
+    'WebFile': 'WebFile',
+    'ICSSoft.STORMNET.UserDataTypes.WebFile': 'WebFile',
   },
 
   flexberryTypes: function() {
@@ -320,7 +320,7 @@ export default Ember.Object.extend({
   },
 
   randomValue: function(type) {
-    if (type === undefined) {
+    if (!type) {
       type = 'string';
     }
 

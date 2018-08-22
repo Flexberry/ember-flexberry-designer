@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import FdAppStructTree from '../objects/fd-appstruct-tree';
-import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
-export default Ember.Route.extend(FdLoadingForTransitionMixin, {
+import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
+export default Ember.Route.extend(FdFormCheckTransitionMixin, {
 
   /**
    Service that get current project contexts.
@@ -133,7 +133,7 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
     Ember.$.ajax({
       type: 'GET',
       xhrFields: { withCredentials: true },
-      url: `${host}/GetCurrentProcessMethodology(project=${stagePk})`,
+      url: `${host}/GetCurrentProcessMethodology(project='${stagePk}')`,
       success(result) {
         controller.set('processMethodologyValue', result.value);
       }
@@ -170,15 +170,6 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
   },
 
   actions: {
-    /**
-      Confirm transition with unsaved fields
-
-      @method actions.confirmCloseUnsavedForm
-    */
-    confirmCloseUnsavedForm() {
-      this.retryTransitionForced();
-    },
-
     didTransition() {
       Ember.$('#example .flexberry-content').css('padding-bottom', 0);
       Ember.$('.flexberry-content > .ui.main.container').css('margin-bottom', 0);

@@ -1,6 +1,8 @@
 export default {
   caption: 'Конструктор формы редактирования',
   'new-control-caption': 'Новый атрибут',
+  'class': 'Класс',
+  'view': 'Представление',
   'new-group-caption': 'Новая группа',
   'new-tab-caption': 'Новая вкладка',
   'duplicate-value-error': 'Дублирующееся значение',
