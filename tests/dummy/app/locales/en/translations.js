@@ -175,7 +175,11 @@ Ember.$.extend(true, translations, {
           'collaboration-diagram-primitives-demo': {
             caption: 'Collaboration Diagram',
             title: '',
-          }
+          },
+          'fd-data-types-map': {
+            caption: 'Data types map',
+            title: '',
+          },
         },
       }
     },

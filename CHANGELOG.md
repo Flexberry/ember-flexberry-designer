@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
+* Edit form for the type map.
 * The application structure constructor:
   * Add links in root desktop.
 * The list form constructor:

@@ -412,9 +412,9 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     @property typemap
     @type Ember.NativeArray
   */
-  typemap: Ember.computed('model.stage.typeMapCSStr', '_dataTypes', function() {
+  typemap: Ember.computed('model.stage.typeMapCS', '_dataTypes', function() {
     let dataTypes = this.get('_dataTypes');
-    let typemap = this.get('model.stage.typeMapCSStr').filter(t => dataTypes.fDTypeToFlexberry(t.name) === null);
+    let typemap = this.get('model.stage.typeMapCS').filter(t => dataTypes.fDTypeToFlexberry(t.name) === null);
     return this._buildTree(typemap, '«typemap»');
   }),
 
@@ -1179,7 +1179,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
       let attribute = properties.attributes.findBy('name', propertyName);
       if (attribute) {
-        let typeInMap = this.get('model.stage.typeMapCSStr').findBy('name', attribute.get('type'));
+        let typeInMap = this.get('model.stage.typeMapCS').findBy('name', attribute.get('type'));
         if (typeInMap) {
           type = typeInMap.value || typeInMap.name;
         } else {
