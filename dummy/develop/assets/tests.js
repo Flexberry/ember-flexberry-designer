@@ -1829,6 +1829,36 @@ define('dummy/tests/unit/controllers/fd-configuration-list-form-test.jshint', ['
     assert.ok(true, 'unit/controllers/fd-configuration-list-form-test.js should pass jshint.');
   });
 });
+define('dummy/tests/unit/controllers/fd-data-types-map-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('controller:fd-data-types-map', 'Unit | Controller | fd data types map', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  // Replace this with your real tests.
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var controller = this.subject();
+    assert.ok(controller);
+  });
+});
+define('dummy/tests/unit/controllers/fd-data-types-map-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/controllers');
+  test('unit/controllers/fd-data-types-map-test.js should pass jscs', function () {
+    ok(true, 'unit/controllers/fd-data-types-map-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/controllers/fd-data-types-map-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/controllers/fd-data-types-map-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/controllers/fd-data-types-map-test.js should pass jshint.');
+  });
+});
 define('dummy/tests/unit/controllers/fd-diagram-edit-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
   (0, _emberQunit.moduleFor)('controller:fd-diagram-edit-form', 'Unit | Controller | fd diagram edit form', {
@@ -4628,6 +4658,35 @@ define('dummy/tests/unit/routes/fd-configuration-list-form-test.jshint', ['expor
     assert.ok(true, 'unit/routes/fd-configuration-list-form-test.js should pass jshint.');
   });
 });
+define('dummy/tests/unit/routes/fd-data-types-map-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('route:fd-data-types-map', 'Unit | Route | fd data types map', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var route = this.subject();
+    assert.ok(route);
+  });
+});
+define('dummy/tests/unit/routes/fd-data-types-map-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/routes');
+  test('unit/routes/fd-data-types-map-test.js should pass jscs', function () {
+    ok(true, 'unit/routes/fd-data-types-map-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/routes/fd-data-types-map-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/routes/fd-data-types-map-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/routes/fd-data-types-map-test.js should pass jshint.');
+  });
+});
 define('dummy/tests/unit/routes/fd-diagram-edit-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
   (0, _emberQunit.moduleFor)('route:fd-diagram-edit-form', 'Unit | Route | fd diagram edit form', {
@@ -5968,7 +6027,7 @@ define('dummy/tests/unit/serializers/fd-dev-stage-test', ['exports', 'ember-quni
 
   (0, _emberQunit.moduleForModel)('fd-dev-stage', 'Unit | Serializer | fd-dev-stage', {
     // Specify the other units that are required for this test.
-    needs: ['serializer:fd-dev-stage', 'transform:file', 'transform:decimal', 'transform:guid', 'transform:fd-generation-state', 'transform:i-c-s-soft-s-t-o-r-m-n-e-t-access-type', 'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode', 'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events', 'transform:s-t-o-r-m-c-a-s-e-repository-access-modifier', 'transform:s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier', 'transform:typemap', 'transform:new-platform-flexberry-web-designer-business-server-class', 'model:fd-ad', 'model:fd-aggregation', 'model:fd-association', 'model:fd-base-association', 'model:fd-cad', 'model:fd-case-property', 'model:fd-class-storage-type', 'model:fd-class', 'model:fd-cod', 'model:fd-configuration', 'model:fd-dev-aggregation', 'model:fd-dev-associated-detail-view', 'model:fd-dev-association', 'model:fd-dev-attribute', 'model:fd-dev-base-association', 'model:fd-dev-class', 'model:fd-dev-control-type', 'model:fd-dev-diagram-link', 'model:fd-dev-filelink', 'model:fd-dev-form-control', 'model:fd-dev-form-view', 'model:fd-dev-inheritance', 'model:fd-dev-method', 'model:fd-dev-module-setting-type', 'model:fd-dev-module-setting', 'model:fd-dev-parameter', 'model:fd-dev-process-status', 'model:fd-dev-stage-history', 'model:fd-dev-stage', 'model:fd-dev-system', 'model:fd-dev-task', 'model:fd-dev-type-definition', 'model:fd-dev-uml-ad', 'model:fd-dev-uml-cad', 'model:fd-dev-uml-cod', 'model:fd-dev-uml-dpd', 'model:fd-dev-uml-sd', 'model:fd-dev-uml-std', 'model:fd-dev-uml-ucd', 'model:fd-dev-view', 'model:fd-diagram-link', 'model:fd-diagram', 'model:fd-dpd', 'model:fd-filelink', 'model:fd-form-control', 'model:fd-form-view', 'model:fd-generation-step-log', 'model:fd-generation', 'model:fd-inheritance', 'model:fd-object-in-system', 'model:fd-plugin-on-rep-object', 'model:fd-project', 'model:fd-registered-plug-in', 'model:fd-repository-browser-data-object-with-a-c-l', 'model:fd-repository-browser-data-object', 'model:fd-repository-data-object', 'model:fd-repository-object-with-plugins', 'model:fd-repository-ref-data-object', 'model:fd-repository', 'model:fd-sd', 'model:fd-stage', 'model:fd-std', 'model:fd-subsystem', 'model:fd-ucd', 'model:fd-view']
+    needs: ['serializer:fd-dev-stage', 'transform:file', 'transform:decimal', 'transform:guid', 'transform:fd-generation-state', 'transform:i-c-s-soft-s-t-o-r-m-n-e-t-access-type', 'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode', 'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events', 'transform:s-t-o-r-m-c-a-s-e-repository-access-modifier', 'transform:s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier', 'transform:new-platform-flexberry-web-designer-business-server-class', 'model:fd-ad', 'model:fd-aggregation', 'model:fd-association', 'model:fd-base-association', 'model:fd-cad', 'model:fd-case-property', 'model:fd-class-storage-type', 'model:fd-class', 'model:fd-cod', 'model:fd-configuration', 'model:fd-dev-aggregation', 'model:fd-dev-associated-detail-view', 'model:fd-dev-association', 'model:fd-dev-attribute', 'model:fd-dev-base-association', 'model:fd-dev-class', 'model:fd-dev-control-type', 'model:fd-dev-diagram-link', 'model:fd-dev-filelink', 'model:fd-dev-form-control', 'model:fd-dev-form-view', 'model:fd-dev-inheritance', 'model:fd-dev-method', 'model:fd-dev-module-setting-type', 'model:fd-dev-module-setting', 'model:fd-dev-parameter', 'model:fd-dev-process-status', 'model:fd-dev-stage-history', 'model:fd-dev-stage', 'model:fd-dev-system', 'model:fd-dev-task', 'model:fd-dev-type-definition', 'model:fd-dev-uml-ad', 'model:fd-dev-uml-cad', 'model:fd-dev-uml-cod', 'model:fd-dev-uml-dpd', 'model:fd-dev-uml-sd', 'model:fd-dev-uml-std', 'model:fd-dev-uml-ucd', 'model:fd-dev-view', 'model:fd-diagram-link', 'model:fd-diagram', 'model:fd-dpd', 'model:fd-filelink', 'model:fd-form-control', 'model:fd-form-view', 'model:fd-generation-step-log', 'model:fd-generation', 'model:fd-inheritance', 'model:fd-object-in-system', 'model:fd-plugin-on-rep-object', 'model:fd-project', 'model:fd-registered-plug-in', 'model:fd-repository-browser-data-object-with-a-c-l', 'model:fd-repository-browser-data-object', 'model:fd-repository-data-object', 'model:fd-repository-object-with-plugins', 'model:fd-repository-ref-data-object', 'model:fd-repository', 'model:fd-sd', 'model:fd-stage', 'model:fd-std', 'model:fd-subsystem', 'model:fd-ucd', 'model:fd-view']
   });
 
   // Replace this with your real tests.
@@ -7719,6 +7778,35 @@ define('dummy/tests/unit/utils/fd-statechart-diagram-primitives-test.jshint', ['
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/utils/fd-statechart-diagram-primitives-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/unit/utils/fd-type-map-functions-test', ['exports', 'qunit', 'ember-flexberry-designer/utils/fd-type-map-functions'], function (exports, _qunit, _emberFlexberryDesignerUtilsFdTypeMapFunctions) {
+
+  (0, _qunit.module)('Unit | Utility | fd-type-map-functions');
+
+  (0, _qunit.test)('it works', function (assert) {
+    var deserialized = [{ name: 'bool', value: 'System.Boolean', assemblyDll: '' }];
+    var serialized = '<TypeMap><bool value="System.Boolean" assemblydll="" /></TypeMap>';
+
+    assert.deepEqual((0, _emberFlexberryDesignerUtilsFdTypeMapFunctions.deserialize)(serialized), deserialized, 'The \'deserialize\' function is OK.');
+    assert.equal((0, _emberFlexberryDesignerUtilsFdTypeMapFunctions.serialize)(deserialized), serialized, 'The \'serialize\' function is OK.');
+  });
+});
+define('dummy/tests/unit/utils/fd-type-map-functions-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/utils');
+  test('unit/utils/fd-type-map-functions-test.js should pass jscs', function () {
+    ok(true, 'unit/utils/fd-type-map-functions-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/utils/fd-type-map-functions-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/utils/fd-type-map-functions-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/utils/fd-type-map-functions-test.js should pass jshint.');
   });
 });
 define('dummy/tests/unit/utils/fd-usecase-diagram-primitives-test', ['exports', 'qunit'], function (exports, _qunit) {

@@ -39412,10 +39412,6 @@ table.fd-listform tr:last-child > td.fd-selected {
 .ui.footer .ui.container {
   width: 100% !important;
 }
-.ui.styled.accordion {
-  width: 520px;
-  margin: 1px;
-}
 /* Edit control form styles */
 .control-field {
   padding: 5px;
