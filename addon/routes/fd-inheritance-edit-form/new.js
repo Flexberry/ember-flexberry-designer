@@ -34,7 +34,7 @@ export default EditFormNewRoute.extend({
       return item.get('stereotype') !== '«application»' && item.get('stereotype') !== '«enumeration»';
     });
 
-    let implementationsName = Ember.A(implementations).mapBy('name');
+    let implementationsName = Ember.A(implementations).map(i => i.get('name') || i.get('nameStr'));
     controller.set('implementations', implementations);
     controller.set('parentNames', implementationsName);
     controller.set('childNames', implementationsName);
