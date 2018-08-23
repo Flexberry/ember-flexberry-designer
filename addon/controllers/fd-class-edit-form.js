@@ -8,6 +8,8 @@ const { SimplePredicate, FilterOperator, ComplexPredicate, Condition } = Query;
 export default EditFormController.extend({
   parentRoute: 'fd-class-list-form',
 
+  header: Ember.computed.readOnly('model.name'),
+
   currentContext: Ember.inject.service('fd-current-project-context'),
 
   getCellComponent(attr, bindingPath, model) {
@@ -65,7 +67,16 @@ export default EditFormController.extend({
     saveAndClose(skipTransition) {
       this._setDefaultBusinessServerEvents();
       this._super(skipTransition);
-    }
+    },
+
+    /**
+      Overridden action for 'Close' button.
+
+      @method actions.close
+    */
+    close() {
+      history.back();
+    },
   },
 
   /**

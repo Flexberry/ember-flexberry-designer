@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import FdAppStructTree from '../objects/fd-appstruct-tree';
-export default Ember.Route.extend({
+import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
+export default Ember.Route.extend(FdLoadingForTransitionMixin, {
 
   /**
    Service that get current project contexts.
@@ -161,7 +162,7 @@ export default Ember.Route.extend({
     Ember.$.ajax({
       type: 'GET',
       xhrFields: { withCredentials: true },
-      url: `${host}/GetCurrentProcessMethodology(project=${stagePk})`,
+      url: `${host}/GetCurrentProcessMethodology(project='${stagePk}')`,
       success(result) {
         controller.set('processMethodologyValue', result.value);
       }

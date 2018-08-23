@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import EditFormRoute from 'ember-flexberry/routes/edit-form';
+import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
 
-export default EditFormRoute.extend({
+export default EditFormRoute.extend(FdLoadingForTransitionMixin, {
   modelProjection: 'EditFormView',
   modelName: 'fd-dev-association',
 
@@ -22,7 +23,7 @@ export default EditFormRoute.extend({
     @param {Ember.Controller} controller
     @param {Object} model
    */
-  setupController: function(controller) {
+  setupController: function(controller, model) {
     this._super(...arguments);
     let stagePk = this.get('currentProjectContext').getCurrentStage();
 
@@ -33,8 +34,10 @@ export default EditFormRoute.extend({
       return item.get('stereotype') === '«implementation»' || item.get('stereotype') === null;
     });
 
-    let implementationsName = Ember.A(implementations).mapBy('name');
+    let implementationsName = Ember.A(implementations).map(i => i.get('name') || i.get('nameStr'));
     controller.set('implementationsName', implementationsName);
+    controller.set('startClassName', model.get('startClass.name'));
+    controller.set('endClassName', model.get('endClass.name'));
     controller.set('readonlyClass', true);
   }
 });

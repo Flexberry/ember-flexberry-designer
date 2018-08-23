@@ -1,5 +1,6 @@
 export default {
-  caption: 'Enum metadata',
+  caption: 'Edit enum metadata',
+  enum: 'Enumeration',
   'name-caption': 'Name',
   'description-caption': 'Description',
   'onlyShowSelectedValue-caption': 'Only show selected value',

@@ -1,0 +1,13 @@
+<div class="ui fluid action input">
+  <input type="text" readonly placeholder={{t "components.flexberry-lookup.placeholder"}}>
+  <button
+    class="ui button ui-change {{unless view "disabled"}}"
+    title={{t "components.flexberry-lookup.choose-button-text"}}
+    {{action showLookupAction caption view types}}
+  >
+    <i class="change icon"></i>
+  </button>
+  <button type="button" class="ui button ui-clear" title={{t "components.flexberry-lookup.remove-button-text"}}>
+    <i class="remove icon"></i>
+  </button>
+</div>

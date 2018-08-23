@@ -34,9 +34,11 @@ export default EditFormNewRoute.extend({
       return item.get('stereotype') === '«implementation»' || item.get('stereotype') === null;
     });
 
-    let implementationsName = Ember.A(implementations).mapBy('name');
+    let implementationsName = Ember.A(implementations).map(i => i.get('name') || i.get('nameStr'));
     controller.set('implementations', implementations);
     controller.set('implementationsName', implementationsName);
+    controller.set('startClassName', '');
+    controller.set('endClassName', '');
     controller.set('readonlyClass', false);
     controller.set('model.stage', currentStage);
   }

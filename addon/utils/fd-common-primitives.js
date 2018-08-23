@@ -143,191 +143,58 @@ joint.shapes.flexberryUml.BaseObject.define('flexberryUml.NAryAssociation', {
   ].join(''),
 });
 
-joint.shapes.flexberryUml.BaseObject.define('flexberryUml.Note', {
-  attrs: {
-    '.flexberry-uml-header-text': {
-      'font-weight': 'bold',
-      'ref-y': 0,
-      'ref-x': 0,
-      'text-anchor': 'start',
-      'y-alignment': 'start',
-    },
-    '.corner-rect': {
-      'ref':'.flexberry-uml-header-rect',
-      'stroke': 'white',
-      'stroke-width':'2'
-    },
-    '.corner': {
-      'ref':'.flexberry-uml-header-rect',
-      'stroke': 'black',
-      'stroke-width':'1',
-      'd':'M0,0 L0,10 L10,10 L0,0'
-    },
-  },
-}, {
-  markup: [
-    '<g class="rotatable">',
-    '<g class="scalable">',
-    '<rect class="flexberry-uml-header-rect"/>',
-    '</g>',
-    '<text class="flexberry-uml-header-text"/>',
-    '<rect class="corner-rect" width="10" height="10"/>',
-    '<path class="corner"/>',
-    '</g>'
-  ].join(''),
-
-  updateRectangles: function() {
-    joint.shapes.flexberryUml.BaseObject.prototype.updateRectangles.apply(this, arguments);
-
-    let attrs = this.get('attrs');
-    let transX = this.size().width - 10;
-    attrs['.corner-rect'].transform = 'translate(' + transX + ', 0)';
-    attrs['.corner'].transform = 'translate(' + transX + ', 0)';
-  }
-});
-
-joint.shapes.basic.Generic.define('flexberryUml.BaseClass', {
-  attrs: {
-    rect: { 'width': 200 },
-
-    '.flexberry-uml-header-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff' },
-    '.flexberry-uml-body-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff' },
-    '.flexberry-uml-footer-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff' },
-
-    '.flexberry-uml-header-text': {
-      'ref': '.flexberry-uml-header-rect',
-      'ref-y': 0.5,
-      'ref-x': 0.5,
-      'text-anchor': 'middle',
-      'y-alignment': 'middle',
-      'fill': 'black',
-      'fontSize': 12,
-      'font-family': 'Arial'
-    },
-    '.flexberry-uml-body-text': {
-      'ref': '.flexberry-uml-body-rect', 'ref-y': 5, 'ref-x': 5,
-      'fill': 'black', 'font-size': 12, 'font-family': 'Arial'
-    },
-    '.flexberry-uml-footer-text': {
-      'ref': '.flexberry-uml-footer-rect', 'ref-y': 5, 'ref-x': 5,
-      'fill': 'black', 'font-size': 12, 'font-family': 'Arial'
-    }
-  },
-
-  name: [],
-  attributes: [],
-  methods: []
-}, {
-  markup: [
-    '<g class="rotatable">',
-    '<g class="scalable">',
-    '<rect class="flexberry-uml-header-rect"/><rect class="flexberry-uml-body-rect"/><rect class="flexberry-uml-footer-rect"/>',
-    '</g>',
-    '<text class="flexberry-uml-header-text"/><text class="flexberry-uml-body-text"/><text class="flexberry-uml-footer-text"/>',
-    '</g>'
-  ].join(''),
-
-  initialize: function() {
-
-    this.on('change:name change:attributes change:methods', function() {
-      this.updateRectangles();
-      this.trigger('uml-update');
-    }, this);
-
-    this.updateRectangles();
-
-    joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
-  },
-
-  getClassName: function() {
-    return this.get('name');
-  },
-
-  updateRectangles: function() {
-
-    var attrs = this.get('attrs');
-
-    var rects = [
-        { type: 'header', text: this.getClassName() },
-        { type: 'body', text: this.get('attributes') },
-        { type: 'footer', text: this.get('methods') }
-    ];
-
-    let offsetY = 0;
-    let newHeight = 0;
-    let newWidth = 0;
-    let _this = this;
-    rects.forEach(function(rect) {
-      if (_this.markup.includes('flexberry-uml-' + rect.type + '-rect')) {
-
-        let lines = Array.isArray(rect.text) ? rect.text : [rect.text];
-
-        let maxStringChars = 0;
-        lines.forEach(function(line) {
-          if (line.length > maxStringChars) {
-            maxStringChars = line.length;
-          }
-        });
-
-        let hightStep = attrs['.flexberry-uml-header-text'].fontSize;
-        let rectHeight = lines.length * hightStep + 10;
-
-        let widthStep = attrs['.flexberry-uml-header-text'].fontSize / 1.5;
-        let rectWidth = maxStringChars * widthStep  + 10;
-
-        newHeight += rectHeight;
-        newWidth = newWidth > rectWidth ? newWidth : rectWidth;
-        attrs['.flexberry-uml-' + rect.type + '-text'].text = lines.join('\n');
-        attrs['.flexberry-uml-' + rect.type + '-rect'].height = rectHeight;
-        attrs['.flexberry-uml-' + rect.type + '-rect'].transform = 'translate(0,' + offsetY + ')';
-
-        offsetY += rectHeight;
-      }
-    });
-
-    newWidth = this.attributes.size.width > 1 ? this.attributes.size.width : newWidth;
-    this.resize(newWidth, newHeight);
-  }
-});
-
 joint.dia.Link.define('flexberryUml.BaseLink', {
   attrs: {
     text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }
   },
   labels: [{
-    position: { distance: 10, offset: -15 }, attrs: { text: { text: '' } } }, {
-    position: { distance: 10, offset: 15 }, attrs: { text: { text: '' } } }, {
-    textAnchor: 'middle', attrs: { text: { text: '' } } }, {
+    position: { distance: -40, offset: -15 }, attrs: { text: { text: '' } } }, {
     position: { distance: -40, offset: 15 }, attrs: { text: { text: '' } } }, {
-    position: { distance: -40, offset: -15 }, attrs: { text: { text: '' } }
+    textAnchor: 'middle', attrs: { text: { text: '' } } }, {
+    position: { distance: 10, offset: 15 }, attrs: { text: { text: '' } } }, {
+    position: { distance: 10, offset: -15 }, attrs: { text: { text: '' } }
   }]
-});
+}, {
+  setLabelText: function (label, text) {
+    switch (label) {
+      case 'startMultiplicity':
+        this.label(0, { attrs: { text: { text: text } } });
+        break;
+      case 'startRole':
+        this.label(1, { attrs: { text: { text: text } } });
+        break;
+      case 'description':
+        this.label(2, { attrs: { text: { text: text } } });
+        break;
+      case 'endRole':
+        this.label(3, { attrs: { text: { text: text } } });
+        break;
+      case 'endMultiplicity':
+        this.label(4, { attrs: { text: { text: text } } });
+        break;
+      default:
+        console.log('ERROR - choose correct label name');
+        break;
+    }
 
-joint.shapes.flexberryUml.BaseLink.define('flexberryUml.Association', {
-});
-
-joint.shapes.flexberryUml.BaseLink.define('flexberryUml.Aggregation', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' } },
-});
-
-joint.shapes.flexberryUml.BaseLink.define('flexberryUml.Qualified', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 z', fill: 'white' } },
-});
-
-joint.shapes.flexberryUml.Qualified.define('flexberryUml.QualifiedAggregation', {
-  attrs: {
-    '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 L 26 10 M 52 10 L 39 17 L 26 10 L 39 3 z', fill: 'white' }
+    return;
   },
 });
 
-joint.dia.Link.define('flexberryUml.NArrayAssociationConnect', {
-  labels: [{
-    position: { distance: 50 }, attrs: { text: { text: '' } }
-  }]
+joint.shapes.flexberryUml.BaseLink.define('flexberryUml.BaseLinkWithUnderline', {
+}, {
+  initialize: function() {
+    this.label(2, { attrs: { text: { 'text-decoration': 'underline', } } });
+    joint.dia.Link.prototype.initialize.apply(this, arguments);
+  },
 });
 
-joint.shapes.flexberryUml.BaseLink.define('flexberryUml.Composition', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' } }
+joint.shapes.flexberryUml.BaseLinkWithUnderline.define('flexberryUml.Qualified', {
+  attrs: { '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 z', fill: 'white' } }
+});
+
+joint.shapes.flexberryUml.Qualified.define('flexberryUml.QualifiedAggregation', {
+  attrs: { '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 L 26 10 M 52 10 L 39 17 L 26 10 L 39 3 z', fill: 'white' } },
 });
 
 joint.shapes.flexberryUml.Qualified.define('flexberryUml.QualifiedComposition', {
@@ -340,6 +207,8 @@ joint.shapes.flexberryUml.Qualified.define('flexberryUml.QualifiedComposition', 
     // called from Backbone constructor
     // call base initialize()
     joint.dia.Link.prototype.initialize.apply(this, arguments);
+
+    this.label(2, { attrs: { text: { 'text-decoration': 'underline', } } });
 
     // link markup is so complex that we need to fetch its definition
     var markup = (this.markup || this.get('markup'));
@@ -355,11 +224,10 @@ joint.shapes.flexberryUml.Qualified.define('flexberryUml.QualifiedComposition', 
   }
 });
 
-joint.dia.Link.define('flexberryUml.NoteConnector', {
-  attrs: {
-    '.marker-target': { d: 'M 0 0 z' },
-    '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '3 2' },
-  },
+joint.dia.Link.define('flexberryUml.NArrayAssociationConnect', {
+  labels: [{
+    position: { distance: 50 }, attrs: { text: { text: '' } }
+  }]
 });
 
 joint.dia.Link.define('flexberryUml.Dependency', {

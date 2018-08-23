@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import EditFormRoute from 'ember-flexberry/routes/edit-form';
+import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
 
-export default EditFormRoute.extend({
+export default EditFormRoute.extend(FdLoadingForTransitionMixin, {
   modelProjection: 'EditFormView',
   modelName: 'fd-dev-stage',
 
@@ -13,7 +14,7 @@ export default EditFormRoute.extend({
     Ember.$.ajax({
       type: 'GET',
       xhrFields: { withCredentials: true },
-      url: `${host}/GetCurrentModuleSetting(project=${stagePk})`,
+      url: `${host}/GetCurrentModuleSetting(project='${stagePk}')`,
       success(result) {
         let moduleSettingValue = JSON.parse(result.value);
 

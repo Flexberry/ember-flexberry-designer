@@ -8,5 +8,12 @@ export default ListFormController.extend({
     @type String
     @default 'fd-class-edit-form'
    */
-  editFormRoute: 'fd-class-edit-form'
+  editFormRoute: 'fd-class-edit-form',
+
+  actions: {
+    onRowClick(record) {
+      let editFormRoute = this.get('editFormRoute');
+      this.transitionToRoute(editFormRoute, record.id);
+    }
+  }
 });

@@ -14,8 +14,9 @@ import {
  } from '../utils/fd-attributes-for-tree';
 import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
+import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 
-export default Ember.Controller.extend({
+export default Ember.Controller.extend(FdWorkPanelToggler, {
   /**
     @private
     @property _showModalDialog
@@ -42,6 +43,14 @@ export default Ember.Controller.extend({
     @default []
    */
   selectedNodesNotUsedAttributesTree: Ember.A(),
+
+  /**
+    Empty rows array, for 10 rows render.
+
+    @property rows
+    @type Array
+   */
+  rows: Ember.A(Array.apply(null, { length: 10 })),
 
   /**
     Included plugins for jsTree.
@@ -178,6 +187,22 @@ export default Ember.Controller.extend({
   dataObject: Ember.computed.alias('model.dataobject'),
 
   /**
+    View, edited in this exact constructor.
+
+    @property header
+    @type String
+  */
+  viewName: Ember.computed.readOnly('model.listform.name'),
+
+  /**
+    Class, edited by this form.
+
+    @property className
+    @type String
+  */
+  className: Ember.computed.alias('model.dataobject.name'),
+
+  /**
     The selected column.
 
     @property selectedColumn
@@ -211,12 +236,20 @@ export default Ember.Controller.extend({
 
       @method actions.selectColumn
       @param {FdListformColumn} column
+      @param {Boolean} notTogglePanel
     */
-    selectColumn(column) {
+    selectColumn(column, notTogglePanel) {
       let selectedColumn = this.get('selectedColumn');
-      let newSelectedColumn = selectedColumn === column ? undefined : column;
-      this.set('selectedColumn', newSelectedColumn);
+      let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
+      let sidebarOpened = configPanelSidebar.hasClass('visible');
 
+      if (!notTogglePanel && selectedColumn !== column && (column || sidebarOpened)) {
+        this.send('toggleConfigPanel', { dataTab: 'control-properties' }, column);
+      }
+
+      this.set('selectedColumn', column);
+
+      let newSelectedColumn = selectedColumn === column ? undefined : column;
       if (!Ember.isNone(newSelectedColumn) && newSelectedColumn.get('propertyDefinition.name') === '') {
         this.set('_showNotUsedAttributesTree', true);
       } else {
@@ -259,7 +292,9 @@ export default Ember.Controller.extend({
       });
 
       this.get('columns').pushObject(column);
-      this.send('selectColumn', column);
+      this.send('selectColumn', column, true);
+      let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
+      Ember.$('.ui.menu', configPanelSidebar).find(`.item[data-tab="control-properties"]`).click();
       Ember.run.scheduleOnce('afterRender', this, this._scrollToSelected);
     },
 
@@ -272,7 +307,7 @@ export default Ember.Controller.extend({
       });
 
       this.get('columns').pushObject(column);
-      this.send('selectColumn', column);
+      this.send('selectColumn', column, true);
       Ember.run.scheduleOnce('afterRender', this, this._scrollToSelected);
     },
 
@@ -309,7 +344,14 @@ export default Ember.Controller.extend({
       columns.insertAt(index, selectedColumn);
     },
 
-    save() {
+    /**
+      Saves the form's metadata.
+
+      @method actions.save
+      @param {Boolean} close If `true`, the `close` action will be run.
+    */
+    save(close) {
+      this.set('state', 'loading');
       let view = Ember.A(this.get('view'));
       let viewDefinition = Ember.A();
       let columns = this.get('columns');
@@ -353,24 +395,40 @@ export default Ember.Controller.extend({
       let changedAggregation = aggregation.filterBy('hasDirtyAttributes');
 
       dataobject.save().then(() => {
-        this.get('view').save().then(() => {
-          formClass.save().then(() => {
+        formClass.save().then(() => {
+          this.get('view').save().then(() => {
             this.get('formClass.formViews.firstObject').save().then(() => {
               this.set('class', undefined);
               this.set('form', this.get('formClass.id'));
+              if (close) {
+                this.send('close');
+              } else {
+                this.set('state', '');
+              }
+            }, (error) => {
+              this.set('state', '');
+              this.set('error', error);
             });
-            this.set('model.originalDefinition', copyViewDefinition(this.get('view.definition')));
+          }, (error) => {
+            this.set('state', '');
+            this.set('error', error);
           });
+          this.set('model.originalDefinition', copyViewDefinition(this.get('view.definition')));
           changedAttributes.map(a => a.save());
           changedAssociations.map(a => a.save());
           changedAggregation.map(a => a.save());
+        }, (error) => {
+          this.set('state', '');
+          this.set('error', error);
         });
+      }, (error) => {
+        this.set('state', '');
+        this.set('error', error);
       });
     },
 
     close() {
-      this.set('state', 'loading');
-      Ember.run.later(this, this.transitionToRoute, 'fd-appstruct-form');
+      history.back();
     },
 
     /**
@@ -451,7 +509,8 @@ export default Ember.Controller.extend({
   _scrollToSelected() {
     let $verticalForm = Ember.$('.form.flexberry-vertical-form');
     let form = $verticalForm.children('.ui.segment');
-    let scrollLeft = Ember.$('.positive:first').offset().left + form.scrollLeft() - (form.offset().left + 10);
+    let firstSelectedOffsetLeft = Ember.$('.positive:first').length > 0 ? Ember.$('.positive:first').offset().left : 0;
+    let scrollLeft = firstSelectedOffsetLeft + form.scrollLeft() - (form.offset().left + 10);
 
     form.animate({ scrollLeft });
   },

@@ -126,6 +126,11 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
             title: i18n.t('forms.application.sitemap.root.fd-association-list-form.title'),
           },
           {
+            link: 'fd-aggregation-list-form',
+            caption: i18n.t('forms.application.sitemap.root.fd-aggregation-list-form.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-aggregation-list-form.title'),
+          },
+          {
             link: 'fd-inheritance-list-form',
             caption: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.caption'),
             title: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.title'),
@@ -134,7 +139,12 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
             link: 'fd-view-list-form',
             caption: i18n.t('forms.application.sitemap.root.fd-view-list-form.caption'),
             title: i18n.t('forms.application.sitemap.root.fd-view-list-form.title'),
-          }
+          },
+          {
+            link: 'fd-data-types-map',
+            caption: i18n.t('forms.application.sitemap.root.fd-data-types-map.caption'),
+            title: i18n.t('forms.application.sitemap.root.fd-data-types-map.title'),
+          },
         ]
       });
     }
@@ -225,6 +235,11 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       Ember.$('.inverted.vertical.main.menu').removeClass('overlay');
 
       this.send('workPlaceConfig', true);
+
+      // For reinit overflowed tabs.
+      Ember.run.later(this, function() {
+        Ember.$(window).trigger('resize');
+      }, 500);
     },
 
     toggleSidebarMobile() {

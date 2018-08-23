@@ -1,6 +1,13 @@
 import Ember from 'ember';
 import joint from 'npm:jointjs';
 
+import { Note } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note';
+import { Class, ClassCollapsed } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-class';
+import { NoteConnector } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector';
+import { Association } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-association';
+import { Composition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-composition';
+import { Generalization } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-generalization';
+
 export default Ember.Controller.extend({
   actions: {
     printDiagram: function() {
@@ -32,41 +39,29 @@ export default Ember.Controller.extend({
         model: _this.graph,
       });
 
-      var linkAggregation = new joint.shapes.flexberryUml.Aggregation({
+      var linkAggregation = new joint.shapes.flexberryUml.ClassDiagramAggregation({
         source: { x:100, y:30 },
-        target: { x:300, y:30 },
-        labels: [{
-          attrs: { text: { text: '*' } } }, {
-          attrs: { text: { text: '' } } }, {
-          attrs: { text: { text: 'Agregation', 'text-decoration': '' } } }, {
-          attrs: { text: { text: '' } } }, {
-          attrs: { text: { text: '1' } }
-        }],
+        target: { x:300, y:30 }
       });
+      linkAggregation.setLabelText('startMultiplicity', '1');
+      linkAggregation.setLabelText('endMultiplicity', '*');
+      linkAggregation.setLabelText('description', 'Agregation');
 
-      var linkAssociation = new joint.shapes.flexberryUml.Association({
+      var linkAssociation = new Association({
         source: { x:100, y:80 },
-        target: { x:300, y:80 },
-        labels: [{
-          attrs: { text: { text: '*' } } }, {
-          attrs: { text: { text: '' } } }, {
-          attrs: { text: { text: 'Association', 'text-decoration': '' } } }, {
-          attrs: { text: { text: '' } } }, {
-          attrs: { text: { text: '0..1' } }
-        }],
+        target: { x:300, y:80 }
       });
+      linkAssociation.setLabelText('startMultiplicity', '1');
+      linkAssociation.setLabelText('endMultiplicity', '*');
+      linkAssociation.setLabelText('description', 'Association');
 
-      var linkComposition = new joint.shapes.flexberryUml.Composition({
+      var linkComposition = new Composition({
         source: { x:100, y:120 },
-        target: { x: 300, y: 120 },
-        labels: [{
-          attrs: { text: { text: '*' } } }, {
-          attrs: { text: { text: '' } } }, {
-          attrs: { text: { text: 'Composition', 'text-decoration': '' } } }, {
-          attrs: { text: { text: '' } } }, {
-          attrs: { text: { text: '0..1' } }
-        }],
+        target: { x: 300, y: 120 }
       });
+      linkComposition.setLabelText('startMultiplicity', '0..1');
+      linkComposition.setLabelText('endMultiplicity', '*');
+      linkComposition.setLabelText('description', 'Composition');
 
       var linkDependency = new joint.shapes.flexberryUml.Dependency({
         source: { x:100, y:170 },
@@ -78,53 +73,41 @@ export default Ember.Controller.extend({
         target: { x:300, y:220 },
       });
 
-      var linkGeneralization = new joint.shapes.flexberryUml.Generalization({
+      var linkGeneralization = new Generalization({
         source: { x:100, y:270 },
         target: { x:300, y:270 },
       });
 
       var linkQualified = new joint.shapes.flexberryUml.Qualified({
         source: { x:100, y:320 },
-        target: { x: 300, y: 320 },
-        labels: [{
-          attrs: { text: { text: '' } } }, {
-          attrs: { text: { text: '1' } } }, {
-          attrs: { text: { text: 'Qualified' } } }, {
-          attrs: { text: { text: '2' } } }, {
-          attrs: { text: { text: '' } }
-        }]
+        target: { x: 300, y: 320 }
       });
+      linkQualified.setLabelText('startRole', '1');
+      linkQualified.setLabelText('endRole', '2');
+      linkQualified.setLabelText('description', 'Qualified');
 
       var linkQualifiedAggregation = new joint.shapes.flexberryUml.QualifiedAggregation({
         source: { x:100, y:370 },
-        target: { x:300, y:370 },
-        labels: [{
-          attrs: { text: { text: '' } } }, {
-          attrs: { text: { text: '1' } } }, {
-          attrs: { text: { text: 'Q-Agregation' } } }, {
-          attrs: { text: { text: '2' } } }, {
-          attrs: { text: { text: '' } }
-        }],
+        target: { x:300, y:370 }
       });
+      linkQualifiedAggregation.setLabelText('startRole', '1');
+      linkQualifiedAggregation.setLabelText('endRole', '2');
+      linkQualifiedAggregation.setLabelText('description', 'Q-Agregation');
 
       var linkQualifiedComposition = new joint.shapes.flexberryUml.QualifiedComposition({
         source: { x:100, y:420 },
-        target: { x: 300, y: 420 },
-        labels: [{
-          attrs: { text: { text: '' } } }, {
-          attrs: { text: { text: '1' } } }, {
-          attrs: { text: { text: 'Q-Composition' } } }, {
-          attrs: { text: { text: '2' } } }, {
-          attrs: { text: { text: '' } }
-        }]
+        target: { x: 300, y: 420 }
       });
+      linkQualifiedComposition.setLabelText('startRole', '1');
+      linkQualifiedComposition.setLabelText('endRole', '2');
+      linkQualifiedComposition.setLabelText('description', 'Q-Composition');
 
       var linkNestedClassAssociation = new joint.shapes.flexberryUml.NestedClassAssociation({
         source: { x:100, y:470 },
         target: { x: 300, y: 470 },
       });
 
-      var linkNoteConnector = new joint.shapes.flexberryUml.NoteConnector({
+      var linkNoteConnector = new NoteConnector({
         source: { x:100, y:520 },
         target: { x:300, y:520 },
       });
@@ -136,14 +119,14 @@ export default Ember.Controller.extend({
       let attributes = ['attr1', 'attr2'];
       let methods = ['method1'];
 
-      let classWithoutStp = new joint.shapes.flexberryUml.Class({
+      let classWithoutStp = new Class({
         position: { x: 350, y: 30 },
         name: 'Class1',
         attributes: attributes,
         methods: methods,
       });
 
-      let classCollapsed = new joint.shapes.flexberryUml.ClassCollapsed({
+      let classCollapsed = new ClassCollapsed({
         position: { x: 450, y: 30 },
         size: { width: 100 },
         name: 'ClassCollapsed',
@@ -151,7 +134,7 @@ export default Ember.Controller.extend({
         methods: methods,
       });
 
-      let classWithStp = new joint.shapes.flexberryUml.Class({
+      let classWithStp = new Class({
         position: { x: 350, y: 150 },
         name: 'Class2textextext',
         stereotype: 'enumeration',
@@ -196,7 +179,7 @@ export default Ember.Controller.extend({
         params: 'params'
       });
 
-      let note = new joint.shapes.flexberryUml.Note({
+      let note = new Note({
         position: { x: 550, y: 300 },
         name: 'Comment'
       });

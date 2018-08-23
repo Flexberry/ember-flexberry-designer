@@ -2,7 +2,13 @@
 <div class="drag-anchor" {{action set "draggable" true on="mouseEnter"}} {{action set "draggable" false on="mouseLeave"}}></div>
 {{#if _isControl}}
   <label>{{control.caption}}</label>
-  {{component _component}}
+  {{component _componentName
+    items=_componentProperties.items
+    types=_componentProperties.types
+    view=_componentProperties.view
+    showLookupAction=showLookupAction
+    caption=control.caption
+  }}
 {{else if _isGroup}}
   {{#flexberry-toggler caption=control.caption expanded=true}}
     {{#each control.rows as |row|}}
@@ -13,27 +19,41 @@
         setDragItemAction=setDragItemAction
         getDragItemAction=getDragItemAction
         moveDragItemAction=moveDragItemAction
+        getComponentPropertiesAction=getComponentPropertiesAction
+        showLookupAction=showLookupAction
       }}
     {{/each}}
   {{/flexberry-toggler}}
 {{else if _isTab}}
-  <div class="ui top attached tabular menu">
-    {{#each control.tabs as |tab index|}}
-      <a class="item {{if (eq tab selectedItem) "selected"}} {{if (eq tab activeTab) "active"}}" {{action "changeTab" tab bubbles=false}}>{{tab.caption}}</a>
+  {{#fd-tabs
+    tabsMenuTheme="top attached tabular"
+    class="ui segments"
+    tabClick = (action "changeTab")
+    selectedTab=selectedItem.caption
+    as |tab|
+  }}
+    {{#each control.tabs as |tabObj index|}}
+      {{#tab.pane
+        title=tabObj.caption
+        dataTab=tabObj.caption
+        tab=tabObj
+        theme="bottom attached segment"
+      }}
+
+        {{#each tabObj.rows as |row|}}
+          {{fd-editform-row
+            row=row
+            selectedItem=selectedItem
+            selectItemAction=selectItemAction
+            setDragItemAction=setDragItemAction
+            getDragItemAction=getDragItemAction
+            moveDragItemAction=moveDragItemAction
+            getComponentPropertiesAction=getComponentPropertiesAction
+            showLookupAction=showLookupAction
+          }}
+        {{/each}}
+
+      {{/tab.pane}}
     {{/each}}
-  </div>
-  {{#each control.tabs as |tab index|}}
-    <div class="ui bottom attached tab segment {{if (eq tab selectedItem) "selected"}} {{if (eq tab activeTab) "active"}}">
-      {{#each tab.rows as |row|}}
-        {{fd-editform-row
-          row=row
-          selectedItem=selectedItem
-          selectItemAction=selectItemAction
-          setDragItemAction=setDragItemAction
-          getDragItemAction=getDragItemAction
-          moveDragItemAction=moveDragItemAction
-        }}
-      {{/each}}
-    </div>
-  {{/each}}
+  {{/fd-tabs}}
 {{/if}}

@@ -1,5 +1,7 @@
 export default {
-  caption: 'Представление',
+  caption: 'Редактировать представление',
+  'view': 'Представление',
+  'class': 'Класс',
   'name-caption': 'Название представления',
   'description-caption': 'Описание представления',
   'settings-view': {

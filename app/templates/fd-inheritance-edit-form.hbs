@@ -1,4 +1,9 @@
-<h3 class="ui header">{{t 'forms.fd-inheritance-edit-form.caption'}}</h3>
+<h3 class="ui header">
+  {{t 'forms.fd-inheritance-edit-form.caption'}}
+  <div class="sub header">
+    {{parentName}} - {{childName}}
+  </div>
+</h3>
 
 {{#if errorMessages}}
   {{#each errorMessages as |currentError|}}
@@ -11,7 +16,7 @@
     }}
   {{/each}}
 {{/if}}
-<form class="ui form flexberry-vertical-form" role="form">
+<form class="ui form flexberry-vertical-form {{state}}" role="form">
   {{flexberry-error error=error}}
   <div class="field">
     <div class="sixteen wide">
@@ -24,11 +29,9 @@
         <button type="submit" class="ui button save-button" {{action 'save'}}>
           {{t "forms.edit-form.save-button-text"}}
         </button>
-        {{#unless model.isNew}}
-          <button type="submit" class="ui button save-del-button" {{action 'delete'}}>
-            {{t "forms.edit-form.delete-button-text"}}
-          </button>
-        {{/unless}}
+        <button type="submit" class="ui button save-close-button" {{action 'saveAndClose'}}>
+          {{t "forms.edit-form.saveAndClose-button-text"}}
+        </button>
       {{/unless}}
       <button type="submit" class="ui button close-button" {{action 'close'}}>
         {{t "forms.edit-form.close-button-text"}}
@@ -36,29 +39,39 @@
     </div>
   </div>
   <div class="field">
-  {{
-    flexberry-field
-    placeholder=(t 'components.flexberry-field.placeholder')
-    readonly=readonly
-    required=true
-    value=model.name
-    class=(if model.errors.name 'error' '')
-    label=(t 'forms.fd-inheritance-edit-form.name-caption')
-  }}
-  {{flexberry-validationmessage error=model.errors.name pointing="pointing"}}
-</div>
-
-<div class="field">
-  {{
-    flexberry-field
-    placeholder=(t 'components.flexberry-field.placeholder')
-    readonly=readonly
-    required=true
-    value=model.description
-    class=(if model.errors.description 'error' '')
-    label=(t 'forms.fd-inheritance-edit-form.description-caption')
-  }}
-  {{flexberry-validationmessage error=model.errors.description pointing="pointing"}}
-</div>
-
+    <label>{{t "forms.fd-inheritance-edit-form.name-caption"}}</label>
+    {{
+      flexberry-textbox
+      value=model.name
+    }}
+  </div>
+  <div class="field">
+    <label>{{t "forms.fd-inheritance-edit-form.parent-caption"}}</label>
+    {{
+      flexberry-dropdown
+      items=parentNames
+      value=parentName
+      readonly=readonlyDropdown
+      onChange=(action "changeParent")
+    }}
+    {{flexberry-validationmessage error=model.errors.changeParent pointing="pointing"}}
+  </div>
+  <div class="field">
+    <label>{{t "forms.fd-inheritance-edit-form.child-caption"}}</label>
+    {{
+      flexberry-dropdown
+      items=childNames
+      value=childName
+      readonly=readonlyDropdown
+      onChange=(action "changeChild")
+    }}
+    {{flexberry-validationmessage error=model.errors.changeChild pointing="pointing"}}
+  </div>
+  <div class="field">
+    <label>{{t "forms.fd-inheritance-edit-form.description-caption"}}</label>
+    {{
+      flexberry-textarea
+      value=model.description
+    }}
+  </div>
 </form>

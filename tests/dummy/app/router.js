@@ -19,6 +19,11 @@ Router.map(function () {
   { path: 'fd-association-edit-form/:id' });
   this.route('fd-association-edit-form.new',
   { path: 'fd-association-edit-form/new' });
+  this.route('fd-aggregation-list-form');
+  this.route('fd-aggregation-edit-form',
+  { path: 'fd-aggregation-edit-form/:id' });
+  this.route('fd-aggregation-edit-form.new',
+  { path: 'fd-aggregation-edit-form/new' });
   this.route('fd-business-server-edit-form',
   { path: 'fd-business-server-edit-form/:id' });
   this.route('fd-business-server-edit-form.new',
@@ -28,6 +33,10 @@ Router.map(function () {
   { path: 'fd-class-edit-form/:id' });
   this.route('fd-class-edit-form.new',
   { path: 'fd-class-edit-form/new' });
+  this.route('fd-typedef-edit-form',
+  { path: 'fd-typedef-edit-form/:id' });
+  this.route('fd-typedef-edit-form.new',
+  { path: 'fd-typedef-edit-form/new' });
   this.route('fd-configuration-list-form');
   this.route('fd-configuration-edit-form',
   { path: 'fd-configuration-edit-form/:id' });
@@ -101,6 +110,7 @@ Router.map(function () {
   this.route('fd-generation-process-form',
   { path: 'fd-generation-process-form/:id' });
   this.route('fd-generation-list-form');
+  this.route('fd-data-types-map');
   this.route('fd-sequence-diagram-primitives-demo');
   this.route('class-diagram-primitives-demo');
   this.route('activity-diagram-primitives-demo');

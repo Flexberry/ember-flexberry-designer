@@ -1,32 +1,9 @@
 import joint from 'npm:jointjs';
 import './fd-common-primitives';
 
-joint.shapes.flexberryUml.BaseClass.define('flexberryUml.Class', {
-  attrs: {
-    '.flexberry-uml-header-text': { 'font-weight': 'bold' },
-    '.flexberry-uml-header-text tspan[x]': { 'font-weight': 'normal' },
-  },
-  stereotype:[],
+import { BaseClass, Class } from '../objects/uml-primitives/fd-uml-class';
 
-}, {
-  getClassName: function() {
-    return [this.get('name'), this.get('stereotype')];
-  }
-});
-
-joint.shapes.flexberryUml.Class.define('flexberryUml.ClassCollapsed', {
-}, {
-  markup: [
-    '<g class="rotatable">',
-    '<g class="scalable">',
-    '<rect class="flexberry-uml-header-rect"/>',
-    '</g>',
-    '<text class="flexberry-uml-header-text"/>',
-    '</g>'
-  ].join('')
-});
-
-joint.shapes.flexberryUml.BaseClass.define('flexberryUml.Object', {
+BaseClass.define('flexberryUml.Object', {
   attrs: {
     '.flexberry-uml-header-text': {
       'text-decoration': 'underline'
@@ -43,7 +20,7 @@ joint.shapes.flexberryUml.BaseClass.define('flexberryUml.Object', {
   ].join('')
 });
 
-joint.shapes.flexberryUml.Class.define('flexberryUml.TemplateClass', {
+Class.define('flexberryUml.TemplateClass', {
   attrs: {
     '.flexberry-uml-params-rect': {
       'stroke': 'black', 'stroke-width': 1,
@@ -78,7 +55,7 @@ joint.shapes.flexberryUml.Class.define('flexberryUml.TemplateClass', {
   ].join(''),
 
   updateRectangles: function() {
-    joint.shapes.flexberryUml.Class.prototype.updateRectangles.apply(this, arguments);
+    Class.prototype.updateRectangles.apply(this, arguments);
 
     var attrs = this.get('attrs');
 
@@ -116,8 +93,8 @@ joint.dia.Link.define('flexberryUml.Realization', {
   },
 });
 
-joint.dia.Link.define('flexberryUml.Generalization', {
-  attrs: { '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'white' } }
+joint.shapes.flexberryUml.BaseLink.define('flexberryUml.ClassDiagramAggregation', {
+  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' } },
 });
 
 joint.dia.Link.define('flexberryUml.NestedClassAssociation', {
@@ -142,7 +119,7 @@ joint.shapes.basic.Generic.define('flexberryUml.MoreClasses', {
   ].join(''),
 });
 
-joint.shapes.flexberryUml.BaseClass.define('flexberryUml.Package', {
+BaseClass.define('flexberryUml.Package', {
   attrs: {
     '.flexberry-uml-header-text': {
       'text-decoration': 'underline',
