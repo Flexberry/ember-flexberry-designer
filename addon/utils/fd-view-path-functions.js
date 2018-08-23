@@ -74,7 +74,7 @@ function extractControlPath(definition, control, path, column) {
     let controls = control.get('controls');
     let length = controls.get('length');
     for (let i = 0; i < length; i++) {
-      extractControlPath(definition, controls.objectAt(i), path, length > 1 ? `#${i + 1}` : '');
+      extractControlPath(definition, controls.objectAt(i), path, length > 1 ? `#${i + 1}` : '#1');
     }
   } else if (control instanceof FdEditformGroup) {
     let pathWithGroup = `${path ? path + '\\' : ''}-${control.get('caption')}`;
