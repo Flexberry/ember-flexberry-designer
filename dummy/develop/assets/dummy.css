@@ -39217,7 +39217,6 @@ table.fd-listform tr:last-child > td.fd-selected {
   width: 100%;
 }
 .panel-wrapper {
-  height: -webkit-fill-available;
   max-height: calc(100vh - 250px);
   display: flex;
 }
@@ -39363,6 +39362,7 @@ table.fd-listform tr:last-child > td.fd-selected {
   padding: 1em 2em;
 }
 .list-form-constructor .panel-wrapper {
+  height: -webkit-fill-available;
   max-height: calc(100vh - 475px);
 }
 @-moz-document url-prefix() {
