@@ -27,6 +27,17 @@ joint.dia.Link.define('flexberryUml.CollInheritance', {
   }]
 });
 
+joint.shapes.flexberryUml.BaseLinkWithUnderline.define('flexberryUml.CollaborationDiagramAssociation', {
+});
+
+joint.shapes.flexberryUml.BaseLinkWithUnderline.define('flexberryUml.CollaborationDiagramAggregation', {
+  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' } },
+});
+
+joint.shapes.flexberryUml.BaseLinkWithUnderline.define('flexberryUml.CollaborationDiagramComposition', {
+  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' } }
+});
+
 joint.shapes.basic.Generic.define('flexberryUml.CollMessageBase', {
   attrs: {
     '.line': {

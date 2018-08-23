@@ -127,8 +127,9 @@ export default DS.Transform.extend({
     for (let i = 0; i < itemList.length; i++) {
       let item = itemList[i];
       let menuPath = item.getAttribute('MenuPath') || item.getAttribute('menupath');
+      let path = menuPath ? menuPath.split('\\') : [];
       if (currentPath !== menuPath) {
-        currentNodes = this._findOrCreateCurrentNodes(rootTree, copyRootTree, menuPath.split('\\'), 0, i);
+        currentNodes = this._findOrCreateCurrentNodes(rootTree, copyRootTree, path.slice(), 0, i);
         currentPath = menuPath;
       }
 
@@ -140,7 +141,7 @@ export default DS.Transform.extend({
           type: 'property',
           className: className,
           description: item.getAttribute('Description') || item.getAttribute('description'),
-          id: 'p' + menuPath.split('\\').length + 'l' + currentNodes.nodes.length + 'i' + i,
+          id: 'p' + path.length + 'l' + currentNodes.nodes.length + 'i' + i,
           url: item.getAttribute('Url')
         }));
         currentNodes.copyNodes.pushObject(FdAppStructTree.create({
@@ -149,7 +150,7 @@ export default DS.Transform.extend({
           type: 'property',
           className: className,
           description: item.getAttribute('Description') || item.getAttribute('description'),
-          id: 'p' + menuPath.split('\\').length + 'l' + currentNodes.copyNodes.length + 'i' + i,
+          id: 'p' + path.length + 'l' + currentNodes.copyNodes.length + 'i' + i,
           url: item.getAttribute('Url')
         }));
       }

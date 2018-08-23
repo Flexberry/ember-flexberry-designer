@@ -25,5 +25,5 @@ export default Ember.Object.extend({
     @property columnsCount
     @type Number
   */
-  columnsCount: undefined,
+  columnsCount: Ember.computed.readOnly('controls.length'),
 });

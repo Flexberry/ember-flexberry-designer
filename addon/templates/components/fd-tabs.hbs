@@ -1,11 +1,24 @@
+{{#if reloadTabs}}
 {{#ui-tab-menu theme=tabsMenuTheme}}
-	{{#each tabs as |ta|}}
-			<a class="item" {{action 'toggleConfigPanel' ta.tab}} data-tab="{{ta.tab}}" >{{ta.title}}</a>
-	{{/each}}
+  {{#each _showedTabs as |tab|}}
+    <a class="item {{if (eq selectedTab tab.dataTab) "selected"}} {{if (eq activeTab tab.dataTab) "active"}}" {{action "tabClick" tab bubbles=false}} data-tab="{{tab.dataTab}}" >{{tab.title}}</a>
+  {{/each}}
+  {{#if overflowButtonShow}}
+    {{fd-tab-dropdown
+      items = _hideTabs
+      class = 'overflowed-dropdown'
+      placeholder = (t "components.fd-tabs.dd-placeholder")
+      onChange = (action "changeLastTab")
+      needChecksOnValue = false
+    }}
+  {{/if}}
 {{/ui-tab-menu}}
 
 {{yield
-	(hash
-		pane=(component "ui-tab-segment" parent=this)
-	)
+  (hash
+    pane=(component "fd-tabs/pane" parent=this activeTab=activeTab selectedTab=selectedTab)
+    activeTab=activeTab
+    selectedTab=selectedTab
+  )
 }}
+{{/if}}

@@ -1,5 +1,5 @@
 export default {
-  caption: 'FdAssociationEditForm',
+  caption: 'Edit association',
   'name-caption': 'Relation name',
   'description-caption': 'Relation description',
   'start-class-caption': 'Master',

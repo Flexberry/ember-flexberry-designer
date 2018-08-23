@@ -71,7 +71,7 @@ export default FlexberryBaseComponent.extend({
   oldPropertyName: undefined,
 
   /**
-    Flag: indicates whether selectet property is readonly.
+    Flag: indicates whether selected property is readonly.
 
     @property readonly
     @type Boolean
@@ -223,6 +223,42 @@ export default FlexberryBaseComponent.extend({
   notNullDisabled: false,
 
   /**
+    Flag: indicates whether to show settings custom width.
+
+    @property customWidth
+    @type Boolean
+    @default false
+   */
+  customWidth: false,
+
+  /**
+    Value custom width.
+
+    @property widthValue
+    @type Number
+    @default 100
+   */
+  widthValue: 100,
+
+  /**
+    Selected unit of width.
+
+    @property widthType
+    @type String
+    @default '%'
+   */
+  widthType: '%',
+
+  /**
+    Array units of width.
+
+    @property itemsWidthType
+    @type Array
+    @default ['%', 'px']
+   */
+  itemsWidthType: ['%', 'px'],
+
+  /**
     Data selected attribute for editing.
 
     @property selectedAttribute
@@ -284,6 +320,20 @@ export default FlexberryBaseComponent.extend({
       if (devClass.id !== parsingResult.classId) {
         this.set('readonly', true);
       }
+    }
+
+    let width = this.get('selectedItem.width');
+    if (width !== '' && !Ember.isNone(width)) {
+      this.set('customWidth', true);
+      if (width.lastIndexOf('*') === -1) {
+        this.set('widthValue', width);
+        this.set('widthType', 'px');
+      } else {
+        this.set('widthValue', width.slice(0, -1));
+        this.set('widthType', '%');
+      }
+    } else {
+      this.set('customWidth', false);
     }
 
     return attribute;
@@ -402,6 +452,53 @@ export default FlexberryBaseComponent.extend({
   },
 
   actions: {
+
+    /**
+      Changes the width type.
+
+      @method actions.changeWidthType
+      @param {Object} value An object with a new value.
+    */
+    changeWidthType(value) {
+      let widthType = value === '%' ? '*' : '';
+      if (widthType === '*' && this.get('widthValue') > 100) {
+        this.set('widthValue', 100);
+      }
+
+      this.set('selectedItem.width', this.get('widthValue').toString() + widthType);
+    },
+
+    /**
+      Changes the width Value.
+
+      @method actions.changeWidth
+      @param {Object} value An object with a new value.
+    */
+    changeWidth(value) {
+      let widthType = this.get('widthType') === '%' ? '*' : '';
+      if (widthType === '*' && value > 100) {
+        this.set('widthValue', 100);
+      } else if (value < 1) {
+        this.set('widthValue', 1);
+      }
+
+      this.set('selectedItem.width', this.get('widthValue').toString() + widthType);
+    },
+
+    /**
+      Changes the width settings.
+
+      @method actions.changeWidth
+      @param {Object} value An object with a new value in the `checked` property.
+    */
+    useCustomWidth(value) {
+      if (value.checked) {
+        this.set('widthValue', 100);
+        this.set('widthType', '%');
+      } else {
+        this.set('selectedItem.width', '');
+      }
+    },
 
     /**
       Resets 'masterPropertyName' and 'masterCustomizationString' if 'LookupType' is 'default'.
@@ -580,7 +677,10 @@ export default FlexberryBaseComponent.extend({
         let selectedNodesAttributesTree = this.get('selectedNodesAttributesTree')[0];
         let changeControl = this._findControlByAttribute(this.get('oldPropertyName'));
         if (selectedNodesAttributesTree.type === selectedNode.type) {
-          changeControl.forEach((item) => item.set('propertyDefinition.name', this.get('propertyName')));
+          changeControl.forEach((item) => {
+            item.set('propertyDefinition.name', this.get('propertyName'));
+            item.notifyPropertyChange('propertyDefinition');
+          });
         } else {
           let newPropertyDefinition = this._createPropertyDefinition(selectedNode.type, this.get('propertyName'));
           changeControl.forEach((item) => {

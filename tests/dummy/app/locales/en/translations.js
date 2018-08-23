@@ -121,6 +121,11 @@ Ember.$.extend(true, translations, {
             title: 'fd-association-list-form',
 
           },
+          'fd-aggregation-list-form': {
+            caption: 'fd-aggregation-list-form',
+            title: 'fd-aggregation-list-form',
+
+          },
           'fd-inheritance-list-form': {
             caption: 'fd-inheritance-list-form',
             title: 'fd-inheritance-list-form',
@@ -170,7 +175,11 @@ Ember.$.extend(true, translations, {
           'collaboration-diagram-primitives-demo': {
             caption: 'Collaboration Diagram',
             title: '',
-          }
+          },
+          'fd-data-types-map': {
+            caption: 'Data types map',
+            title: '',
+          },
         },
       }
     },

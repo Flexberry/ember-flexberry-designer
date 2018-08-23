@@ -1,6 +1,6 @@
 <h3 class="ui header">{{t 'forms.fd-interface-edit-form.caption'}}</h3>
 
-<form class="ui form flexberry-vertical-form" role="form">
+<form class="ui form flexberry-vertical-form {{state}}" role="form">
   {{flexberry-error error=error}}
   <div class="field">
     <div class="sixteen wide">
@@ -13,11 +13,9 @@
         <button type="submit" class="ui button save-button" {{action 'save'}}>
           {{t "forms.edit-form.save-button-text"}}
         </button>
-        {{#unless model.isNew}}
-          <button type="submit" class="ui button save-del-button" {{action 'delete'}}>
-            {{t "forms.edit-form.delete-button-text"}}
-          </button>
-        {{/unless}}
+        <button type="submit" class="ui button save-close-button" {{action 'saveAndClose'}}>
+          {{t "forms.edit-form.saveAndClose-button-text"}}
+        </button>
       {{/unless}}
       <button type="submit" class="ui button close-button" {{action 'close'}}>
         {{t "forms.edit-form.close-button-text"}}
@@ -31,7 +29,7 @@
     choose='showLookupDialog'
     remove='removeLookupValue'
     value=model.businessServerClass
-    
+
     relationName='businessServerClass'
     projection='ListFormView'
     title=(t 'forms.fd-interface-edit-form.businessServerClass-caption')

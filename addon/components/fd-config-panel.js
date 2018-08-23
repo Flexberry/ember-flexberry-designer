@@ -16,11 +16,6 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
       let workPanel = sidebar.width() + this.configPanelTabsWidth;
       Ember.$('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)' });
     }
-
-    Ember.run.schedule('afterRender', function() {
-      let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
-      Ember.$('.menu .item', configPanelSidebar).tab();
-    });
   },
 
   willDestroyElement() {

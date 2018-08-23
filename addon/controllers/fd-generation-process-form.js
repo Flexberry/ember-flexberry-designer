@@ -50,6 +50,7 @@ export default Ember.Controller.extend({
       @method actions.generate
      */
     generate() {
+      this.set('state', 'loading');
       let _this = this;
       let stagePk = _this.get('currentProjectContext').getCurrentStage();
       let adapter = getOwner(this).lookup('adapter:application');
@@ -58,9 +59,13 @@ export default Ember.Controller.extend({
       (result) => {
         _this.set('generationService.lastGenerationToken', result);
         result = result || {};
+        _this.set('state', '');
         _this.transitionToRoute(_this.get('editFormRoute'), Ember.get(result, 'value'));
       },
-      () => {});
+      () => {
+        _this.set('state', '');
+        _this.set('error', new Error(_this.get('i18n').t('forms.fd-generation-process-form.connection-error-text')));
+      });
     }
   },
 

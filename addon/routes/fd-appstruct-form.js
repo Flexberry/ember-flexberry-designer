@@ -1,7 +1,12 @@
 import Ember from 'ember';
 import FdAppStructTree from '../objects/fd-appstruct-tree';
+<<<<<<< HEAD
 const { getOwner } = Ember;
 export default Ember.Route.extend({
+=======
+import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
+export default Ember.Route.extend(FdLoadingForTransitionMixin, {
+>>>>>>> develop
 
   /**
    Service that get current project contexts.

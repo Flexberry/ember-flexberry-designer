@@ -8,17 +8,27 @@ export default Ember.Mixin.create({
 
   configPanelTabsWidth: 58,
 
+  /**
+    Name of the active tab.
+
+    @property activeTab
+    @type String
+    @default 'none'
+   */
+  activeTab: 'none',
+
   actions: {
 
     toggleConfigPanel(currentTab, currentAttr = -1) {
       let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
-      let toggleconfigPanel = this.prevTab[0] === currentTab;
+      let toggleconfigPanel = this.prevTab[0] ? this.prevTab[0].dataTab === currentTab.dataTab : false;
       if (currentAttr !== -1) {
         toggleconfigPanel = this.prevAttr === currentAttr && toggleconfigPanel;
         this.prevAttr = currentAttr;
 
         // Open the properties of the attribute in the edit panel.
-        Ember.$('.ui.menu', configPanelSidebar).find('.item').tab('change tab', currentTab);
+        this.set('activeTab', currentTab.dataTab);
+        Ember.$('.ui.menu', configPanelSidebar).find('.item').tab('change tab', currentTab.dataTab);
       }
 
       this.prevTab.setObjects([currentTab]);
@@ -28,15 +38,21 @@ export default Ember.Mixin.create({
         configPanelSidebar.sidebar('toggle');
         configPanelSidebar.removeClass('overlay');
         this.send('workPlaceConfig');
+
+        // For reinit overflowed tabs.
+        Ember.run.later(this, function() {
+          Ember.$(window).trigger('resize');
+        }, 500);
       }
 
+      let _this = this;
       Ember.run.next(function() {
         if (!configPanelSidebar.hasClass('visible')) {
+          _this.set('activeTab', 'none');
           Ember.$('.ui.menu', configPanelSidebar).find('.item').removeClass('active');
           Ember.$('.ui.form', configPanelSidebar).find('.tab').removeClass('active');
         }
       });
-
     },
 
     workPlaceConfig(isMainSidebar = false) {

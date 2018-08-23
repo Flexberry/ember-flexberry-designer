@@ -1,5 +1,8 @@
 export default {
-  caption: 'FdInheritanceEditForm',
-  'name-caption': 'name',
-  'description-caption': 'description'
+  caption: 'Edit inheritance',
+  'name-caption': 'Name',
+  'description-caption': 'Description',
+  'parent-caption': 'Parent',
+  'child-caption': 'Child',
+  'error': 'A cycle was discovered in inheritance. Saving is not possible',
 };
