@@ -15,8 +15,11 @@ import {
 import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
+import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 
-export default Ember.Controller.extend(FdWorkPanelToggler, {
+export default Ember.Controller.extend(
+FdWorkPanelToggler,
+FdFormUnsavedData, {
   /**
     @private
     @property _showModalDialog
@@ -24,14 +27,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     @default false
   */
   _showModalDialog: false,
-
-  /**
-    @private
-    @property _showConfirmDialog
-    @type Boolean
-    @default false
-  */
-  _showConfirmDialog: false,
 
   /**
     Flag: indicates whether show tree.
@@ -505,15 +500,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       let treeObject = this.get('treeObjectNotUsedAttributesTree');
       treeObject.on('open_node.jstree', this._openNodeTree.bind(this));
       treeObject.on('after_close.jstree', afterCloseNodeTree.bind(this));
-    },
-
-    /**
-      Confirm close form with unsaved attributes.
-
-      @method actions.confirmCloseUnsavedFormAction
-    */
-    confirmCloseUnsavedFormAction() {
-      this.send('confirmCloseUnsavedForm');
     }
   },
 

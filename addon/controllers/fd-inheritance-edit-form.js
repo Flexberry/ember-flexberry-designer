@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
+import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 
-export default EditFormController.extend({
+export default EditFormController.extend(FdFormUnsavedData, {
   parentRoute: 'fd-inheritance-list-form',
 
   /**
@@ -12,14 +13,6 @@ export default EditFormController.extend({
    @default Ember.inject.service()
    */
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
-
-  /**
-    @private
-    @property _showConfirmDialog
-    @type Boolean
-    @default false
-  */
-  _showConfirmDialog: false,
 
   /**
     Array all classes.
@@ -134,15 +127,6 @@ export default EditFormController.extend({
       } else {
         this._super(...arguments);
       }
-    },
-
-    /**
-      Confirm close form with unsaved attributes.
-
-      @method actions.confirmCloseUnsavedFormAction
-    */
-    confirmCloseUnsavedFormAction() {
-      this.send('confirmCloseUnsavedForm');
     }
   },
 
@@ -157,29 +141,5 @@ export default EditFormController.extend({
     });
 
     return Ember.A(newItems).map(i => i.get('name') || i.get('nameStr'));
-  },
-
-  /**
-    Check if fields changed, but unsaved
-
-    @method findUnsavedFields
-  */
-  findUnsavedFields: function () {
-    let checkResult = false;
-    let modelChanges = this.get('model').changedAttributes();
-
-    if (Ember.keys(modelChanges).length > 0) {
-      for (var key in modelChanges) {
-        let argumentBefore = modelChanges[key][0];
-        let argumentAfter = modelChanges[key][1];
-        if (!Ember.isEmpty(argumentBefore) || !Ember.isEmpty(argumentAfter)) {
-          if (!Ember.isEqual(argumentBefore, argumentAfter)) {
-            checkResult = true;
-          }
-        }
-      }
-    }
-
-    return checkResult;
   }
 });

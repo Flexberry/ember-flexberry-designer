@@ -6,18 +6,13 @@ import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode } from '../utils/fd-attributes-for-tree';
 import { translationMacro as t } from 'ember-i18n';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
+import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 import { createPropertyName, restorationNodeTree, afterCloseNodeTree } from '../utils/fd-metods-for-tree';
 
-export default EditFormController.extend(FdWorkPanelToggler, {
+export default EditFormController.extend(
+FdWorkPanelToggler,
+FdFormUnsavedData, {
   parentRoute: 'fd-view-list-form',
-
-  /**
-    @private
-    @property _showConfirmDialog
-    @type Boolean
-    @default false
-  */
-  _showConfirmDialog: false,
 
   /**
     @private
@@ -385,15 +380,6 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       });
 
       this.set('_dataIsSaved', true);
-    },
-
-    /**
-      Confirm close form with unsaved attributes.
-
-      @method actions.confirmCloseUnsavedFormAction
-    */
-    confirmCloseUnsavedFormAction() {
-      this.send('confirmCloseUnsavedForm');
     }
   },
 

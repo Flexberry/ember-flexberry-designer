@@ -3,18 +3,13 @@ import FdAppStructTree from '../objects/fd-appstruct-tree';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
 import { translationMacro as t } from 'ember-i18n';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
+import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 import { restorationNodeTree, findFreeNodeTreeID, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
 import { getNewFormCaption, getNewFormDescription } from '../utils/fd-create-form-properties';
 
-export default EditFormController.extend(FdWorkPanelToggler, {
-  /**
-    @private
-    @property _showConfirmDialog
-    @type Boolean
-    @default false
-  */
-  _showConfirmDialog: false,
-
+export default EditFormController.extend(
+FdWorkPanelToggler,
+FdFormUnsavedData, {
   /**
     @private
     @property _dataIsSaved
@@ -778,15 +773,6 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       }
 
       this.toggleProperty('allAttrsHidedn');
-    },
-
-    /**
-      Confirm close form with unsaved attributes.
-
-      @method actions.confirmCloseUnsavedFormAction
-    */
-    confirmCloseUnsavedFormAction() {
-      this.send('confirmCloseUnsavedForm');
     }
   },
 

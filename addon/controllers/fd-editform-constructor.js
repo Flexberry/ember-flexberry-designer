@@ -21,10 +21,13 @@ import {
 import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
+import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 import { controlsToDefinition, locateControlByPath } from '../utils/fd-view-path-functions';
 import FdDataTypes from '../utils/fd-datatypes';
 
-export default Ember.Controller.extend(FdWorkPanelToggler, {
+export default Ember.Controller.extend(
+FdWorkPanelToggler,
+FdFormUnsavedData, {
   queryParams: ['classId'],
 
   /**
@@ -61,14 +64,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     @private
-    @property _showConfirmDialog
-    @type Boolean
-    @default false
-  */
-  _showConfirmDialog: false,
-
-  /**
-    @private
     @property _lookupCaption
     @type String
   */
@@ -90,7 +85,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Indicates that the user has started moving control, and the next selected control will be the target of the move.
-
     @private
     @property _moveItem
     @type Boolean
@@ -100,7 +94,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     The current dragged item.
-
     @private
     @property _draggedItem
     @type FdEditformRow|FdEditformControl
@@ -109,7 +102,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Flag: indicates whether show tree.
-
     @private
     @property _showNotUsedAttributesTree
     @type Boolean
@@ -119,7 +111,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Selected nodes in jsTree.
-
     @property selectedNodesNotUsedAttributesTree
     @type Array
     @default []
@@ -128,7 +119,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Included plugins for jsTree.
-
     @property pluginsTree
     @type String
     @default 'wholerow, types, search'
@@ -137,7 +127,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Type settings for jsTree.
-
     @property typesOptionsTree
     @type Object
   */
@@ -158,7 +147,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Data for search tree node.
-
     @property searchTermTree
     @type String
     @default ''
@@ -167,7 +155,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Search settings for jsTree.
-
     @property searchOptionsTree
     @type Object
   */
@@ -177,7 +164,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Data for jsTree.
-
     @property dataNotUsedAttributesTree
     @type Array
   */
@@ -185,7 +171,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     View, edited in this exact constructor.
-
     @property header
     @type String
   */
@@ -193,7 +178,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Class, edited by this form.
-
     @property className
     @type String
   */
@@ -201,7 +185,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Update data in tree.
-
     @method dataNotUsedAttributesTreeObserver
   */
   dataNotUsedAttributesTreeObserver: Ember.observer('_showNotUsedAttributesTree', function() {
@@ -302,7 +285,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     An array in the container of the selected item.
-
     @private
     @property _selectedItemStorage
     @readOnly
@@ -351,7 +333,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     The selected item.
-
     @property selectedItem
     @type {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab}
   */
@@ -444,7 +425,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     An object with all (including inherited) the attributes, associations and aggregations for the this form data object.
-
     @property dataObjectProperties
     @type Object
   */
@@ -459,7 +439,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     The controls tree created from a view definition.
-
     @property controlsTree
     @readOnly
     @type Ember.NativeArray
@@ -484,7 +463,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
   actions: {
     /**
       Adds a new control to the form, if there is a selected item, the control will be added to it.
-
       @method actions.addControl
     */
     addControl() {
@@ -522,7 +500,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
     /**
       Adds a new empty control to the form, if there is a selected item, the empty control will be added to it.
-
       @method actions.addEmptyControl
     */
     addEmptyControl() {
@@ -542,7 +519,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
     /**
       Adds a new group to the form, if there is a selected item, the group will be added to it.
-
       @method actions.addGroup
     */
     addGroup() {
@@ -554,7 +530,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
     /**
       Adds a new tab to the form, if there is a selected item, the tab will be added to it.
-
       @method actions.addTab
     */
     addTab() {
@@ -566,7 +541,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
     /**
       Removes the selected item.
-
       @method actions.removeSelectedItem
       @param {Boolean} approve The user is sure.
     */
@@ -586,7 +560,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
     /**
       Sorts the selected item in its container.
-
       @method actions.sortSelectedItem
       @param {Number} step Step of moving the item.
     */
@@ -601,7 +574,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
     /**
       Close edit form constructor and go to application structure constructor.
-
       @method actions.close
     */
     close() {
@@ -610,7 +582,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
     /**
       Set the selected item.
-
       @method actions.selectItem
       @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item
       @param {Boolean} notTogglePanel
@@ -651,7 +622,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
     /**
       Set the current dragged item.
-
       @method actions.setDragItem
       @param {FdEditformRow|FdEditformControl} item New dragged item.
     */
@@ -661,7 +631,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
     /**
       Get the current dragged item.
-
       @method actions.getDragItem
       @return {FdEditformRow|FdEditformControl} The current dragged item or `undefined`.
     */
@@ -671,7 +640,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
     /**
       Returns an object with properties to render the component.
-
       @method actions.getComponentProperties
       @param {FdViewAttributesProperty|FdViewAttributesMaster|FdViewAttributesDetail} propertyDefinition Definition a property in a view.
       @return {Object} An object with properties for the component.
@@ -682,7 +650,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
     /**
       Shows the lookup form in modal dialog.
-
       @method actions.showLookup
       @param {String} caption Caption for the lookup form.
       @param {FdDevViewModel} view The view on which the table will be render in the lookup form.
@@ -697,7 +664,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
     /**
       Move the current dragged item above or below relative to the passed item.
-
       @method actions.moveDragItem
       @param {FdEditformRow|FdEditformControl} item The item above or below which will be moved the current dragged item.
       @param {String} direction The direction of the item move, allowed values: 'up' or 'down'.
@@ -727,7 +693,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
     /**
       Saves the form's metadata.
-
       @method actions.save
       @param {Boolean} close If `true`, the `close` action will be run.
     */
@@ -749,7 +714,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
     /**
       Set attribute in control.
-
       @method actions.setAttributeInControl
     */
     setAttributeInControl() {
@@ -790,7 +754,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
     /**
       Don't set attribute in control.
-
       @method actions.deleteEmptyControl
     */
     deleteEmptyControl() {
@@ -801,28 +764,17 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
     /**
       Handles creating jsTree.
-
       @method actions.handleTreeDidBecomeReady
     */
     handleTreeDidBecomeReady() {
       let treeObject = this.get('treeObjectNotUsedAttributesTree');
       treeObject.on('open_node.jstree', this._openNodeTree.bind(this));
       treeObject.on('after_close.jstree', afterCloseNodeTree.bind(this));
-    },
-
-    /**
-      Confirm close form with unsaved attributes.
-
-      @method actions.confirmCloseUnsavedFormAction
-    */
-    confirmCloseUnsavedFormAction() {
-      this.send('confirmCloseUnsavedForm');
     }
   },
 
   /**
     Overridden action for jsTree 'openNode'.
-
     @method _openNodeTree
   */
   _openNodeTree(e, data) {
@@ -841,7 +793,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Inserts an `item` into `container`, if `container` is `FdEditformControl`, `item` is inserted into the parent row after `container`.
-
     @method _insertItem
     @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item
       The item that need to insert.
@@ -884,7 +835,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Removes the specified item from the form.
-
     @method _removeItem
     @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item The item that need to remove.
   */
@@ -912,7 +862,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Looks for a container that contains the item.
-
     @method _findItemContainer
     @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item
       The sought item.
@@ -946,7 +895,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Returns the item storage in the container.
-
     @private
     @method _getItemStorage
     @param {FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab} container Item container.
@@ -968,7 +916,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Returns a row that can be added to the form.
-
     @private
     @method _getRow
     @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item The item to be converted.
@@ -993,7 +940,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Returns the control that can be added to a row.
-
     @method _getControl
     @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item The item to be converted.
     @return {FdEditformControl|FdEditformGroup|FdEditformTabgroup} The control that can be added to a row.
@@ -1015,7 +961,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Checks whether the control is suitable for placement in a row.
-
     @private
     @method _isControl
     @param {Any} control The control to check.
@@ -1027,7 +972,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Save editform metadata: dataobject attributes, view, editform class.
-
     @method _saveMetadata
     @param {Object} model Complex model for processing and save.
     @param {Ember.NativeArray} controlsTree The controls tree.
@@ -1091,7 +1035,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Scrolls the form to the selected control with jQuery.
-
     @private
     @method _scrollToSelected
   */
@@ -1105,7 +1048,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Returns an object with all (including inherited) the attributes, associations and aggregations for the class.
-
     @private
     @method _getClassProperties
     @param {FdDevClassModel} clazz The class for which to get the properties.
@@ -1147,7 +1089,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Returns an object with properties to render the component.
-
     @private
     @method _getComponentProperties
     @param {FdViewAttributesProperty|FdViewAttributesMaster|FdViewAttributesDetail} propertyDefinition Definition a property in a view.
@@ -1219,7 +1160,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Returns an array of types used in the view.
-
     @private
     @method _getTypesForView
     @param {FdDevViewModel} view A view for which types are needed.
@@ -1245,7 +1185,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Create tree.
-
     @method _buildTree
     @param {Array} data Data for tree.
     @param {String} type Type for tree.
@@ -1282,7 +1221,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Looks for width in the path
-
     @method _getWidth
     @param {String} path Property path from view.
   */
@@ -1301,7 +1239,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   /**
     Check if fields changed, but unsaved
-
     @method findUnsavedFields
   */
   findUnsavedFields: function () {

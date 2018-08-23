@@ -86,6 +86,25 @@ export default Ember.Mixin.create({
         let workPanel = sidebar.width() + configPanelSidebar.width();
         Ember.$('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)', transform: 'translate3d(' + sidebar.width() + 'px, 0, 0)' });
       }
+    },
+
+    /**
+      Confirm close form with unsaved attributes.
+
+      @method actions.confirmCloseUnsavedFormAction
+    */
+    confirmCloseUnsavedFormAction() {
+      this.send('confirmCloseUnsavedForm');
     }
+  },
+
+  /**
+    Check if fields changed, but unsaved
+
+    @method findUnsavedFields
+  */
+  findUnsavedFields: function () {
+    let isDirtyAttributes = this.get('model.hasDirtyAttributes');
+    return isDirtyAttributes;
   }
 });
