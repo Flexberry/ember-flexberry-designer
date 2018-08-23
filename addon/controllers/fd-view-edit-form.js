@@ -12,13 +12,11 @@ export default EditFormController.extend(FdWorkPanelToggler, {
   parentRoute: 'fd-view-list-form',
 
   /**
-   Service that triggers objectlistview events.
-
-   @property objectlistviewEventsService
-   @type {Class}
-   @default Ember.inject.service()
-   */
-  objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
+    Service for managing the state of the application.
+     @property appState
+    @type AppStateService
+  */
+  appState: Ember.inject.service(),
 
   allAttrsHidedn: false,
 
@@ -350,13 +348,13 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       view.set('definition', Ember.A(view.get('definition').toArray()));
       let _this = this;
 
-      this.get('objectlistviewEventsService').setLoadingState('loading');
+      this.get('appState').loading();
       view.save().then(() => {
         let routeName = _this.get('routeName');
         if (routeName.indexOf('.new') > 0) {
           _this.transitionToRoute(routeName.slice(0, -4), view.get('id'));
         } else {
-          _this.get('objectlistviewEventsService').setLoadingState('');
+          _this.get('appState').reset();
         }
       });
     }

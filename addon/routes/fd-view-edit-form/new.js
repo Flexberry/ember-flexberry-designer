@@ -7,7 +7,7 @@ export default Ember.Route.extend({
   modelName: 'fd-dev-view',
   templateName: 'fd-view-edit-form',
 
-  objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
+  appState: Ember.inject.service(),
 
   detailInteractionService: Ember.inject.service('detail-interaction'),
 
@@ -50,7 +50,7 @@ export default Ember.Route.extend({
       })
     ]);
 
-    this.get('objectlistviewEventsService').setLoadingState('');
+    this.get('appState').reset();
 
     return {
       view: data,

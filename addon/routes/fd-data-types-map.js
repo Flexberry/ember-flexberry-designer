@@ -20,12 +20,11 @@ export default Ember.Route.extend({
   currentContext: Ember.inject.service('fd-current-project-context'),
 
   /**
-    Service for controlling the load indication.
-
-    @property objectlistviewEvents
-    @type ObjectlistviewEvents
+    Service for managing the state of the application.
+     @property appState
+    @type AppStateService
   */
-  objectlistviewEvents: Ember.inject.service('objectlistview-events'),
+  appState: Ember.inject.service(),
 
   actions: {
     /**
@@ -41,7 +40,7 @@ export default Ember.Route.extend({
         if (this.get('controller').serializeTypeMap()) {
           this.get('controller').send('save');
         } else {
-          this.get('objectlistviewEvents').setLoadingState('');
+          this.get('appState').reset();
         }
       });
     },
@@ -67,7 +66,7 @@ export default Ember.Route.extend({
     @method model
   */
   model() {
-    this.get('objectlistviewEvents').setLoadingState('loading');
+    this.get('appState').loading();
     return {
       stage: this.get('currentContext').getCurrentStageModel(),
       classes: this.get('store').peekAll('fd-dev-class'),

@@ -43,12 +43,11 @@ export default Ember.Controller.extend({
   rollbackButtonLocaleKey: 'forms.fd-data-types-map.rollback-button',
 
   /**
-    Service for controlling the load indication.
-
-    @property objectlistviewEvents
-    @type ObjectlistviewEvents
+    Service for managing the state of the application.
+     @property appState
+    @type AppStateService
   */
-  objectlistviewEvents: Ember.inject.service('objectlistview-events'),
+  appState: Ember.inject.service(),
 
   /**
     Transition, aborted for some reason.
@@ -201,7 +200,7 @@ export default Ember.Controller.extend({
       @param {Boolean} close Close or not form after saving.
     */
     save(close) {
-      this.get('objectlistviewEvents').setLoadingState('loading');
+      this.get('appState').loading();
       Ember.run.next(() => {
         let promise = Ember.RSVP.resolve();
         if (this.serializeTypeMap()) {
@@ -215,7 +214,7 @@ export default Ember.Controller.extend({
         }).catch((error) => {
           this.set('error', error);
         }).finally(() => {
-          this.get('objectlistviewEvents').setLoadingState('');
+          this.get('appState').reset();
         });
       });
     },
