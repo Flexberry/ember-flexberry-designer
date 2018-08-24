@@ -87,21 +87,6 @@ joint.dia.Link.define('flexberryUml.NestedClassAssociation', {
                 'a 8,8 0 1,0 -16,0 M 10 2 L 10 2 L 10 18', fill: 'transparent' } }
 });
 
-joint.shapes.basic.Generic.define('flexberryUml.MoreClasses', {
-  size: { width: 50, height: 10 },
-  attrs: {
-    circle: { fill: 'black', r:'10' },
-  },
-}, {
-  markup: [
-      '<g class="rotatable">',
-      '<g class="scalable">',
-      '<circle/><circle transform="translate(40,0)"/><circle transform="translate(80,0)"/>',
-      '</g>',
-      '</g>'
-  ].join(''),
-});
-
 BaseClass.define('flexberryUml.Package', {
   attrs: {
     '.flexberry-uml-header-text': {

@@ -4,6 +4,7 @@ import joint from 'npm:jointjs';
 import { Note } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note';
 import { Class, ClassCollapsed } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-class';
 import { PropertyObject } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-property-object';
+import { MoreClasses } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-more-classes';
 import { NoteConnector } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector';
 import { Association } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-association';
 import { Composition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-composition';
@@ -185,7 +186,7 @@ export default Ember.Controller.extend({
         name: 'Comment'
       });
 
-      let moreClasses = new joint.shapes.flexberryUml.MoreClasses({
+      let moreClasses = new MoreClasses({
         position: { x: 550, y: 400 },
       });
 
