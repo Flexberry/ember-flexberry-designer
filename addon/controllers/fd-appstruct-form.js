@@ -21,18 +21,10 @@ FdFormUnsavedData, {
   /**
     @private
     @property _originalData
-    @type Object
-    @default null
+    @type String
+    @default ''
   */
-  _originalData: null,
-
-  /**
-    @private
-    @property _originalAppData
-    @type Object
-    @default null
-  */
-  _originalAppData: null,
+  _originalData: '',
 
   /**
     @property store
@@ -788,6 +780,28 @@ FdFormUnsavedData, {
     this.get('jstreeActionReceiverRight').send('redraw');
   },
 
+  /**
+    Get model data in string
+
+    @method _getStringifyModel
+  */
+  _getStringifyModel() {
+    let rightTreeNodes = this.get('model.rightTreeNodes')[0];
+    let rightTreeNodesString = JSON.stringify(rightTreeNodes);
+
+    let applications = this.get('model.applications')[0];
+    let applicationsString = JSON.stringify(applications);
+
+    let allDataString = rightTreeNodesString + applicationsString;
+
+    return allDataString;
+  },
+
+  /**
+    This method run data saved when model is loaded
+
+    @method saveOriginalData
+  */
   originalDataInit: function () {
     Ember.run.next(this, () => {
       this.saveOriginalData();
@@ -801,15 +815,8 @@ FdFormUnsavedData, {
   */
   saveOriginalData: function () {
     this.set('_dataIsSaved', false);
-    let originalData = this.get('model.rightTreeNodes')[0];
-    let originalDataString = JSON.stringify(originalData);
-
+    let originalDataString = this._getStringifyModel();
     this.set('_originalData', originalDataString);
-
-    let originalAppData = this.get('model.applications')[0];
-    let originalAppDataString = JSON.stringify(originalAppData);
-
-    this.set('_originalAppData', originalAppDataString);
   },
 
   /**
@@ -820,19 +827,9 @@ FdFormUnsavedData, {
   findUnsavedFields: function () {
     let checkResult = false;
     let isSaved = this.get('_dataIsSaved');
-    let originalData = this.get('_originalData');
-    let currentData = this.get('model.rightTreeNodes')[0];
-    let currentDataString = JSON.stringify(currentData);
-
-    let originalAppData = this.get('_originalAppData');
-    let currentAppData = this.get('model.applications')[0];
-    let currentAppDataString = JSON.stringify(currentAppData);
-
-    let isMainDataEqual = Ember.isEqual(originalData, currentDataString);
-    let isAppDataEqual = Ember.isEqual(originalAppData, currentAppDataString);
-    let isChanges = (!isMainDataEqual || !isAppDataEqual) ? true : false;
-
-    if (isChanges && !isSaved) {
+    let originalDataString = this.get('_originalData');
+    let currentDataString = this._getStringifyModel();
+    if (!Ember.isEqual(originalDataString, currentDataString) && !isSaved) {
       checkResult = true;
     }
 

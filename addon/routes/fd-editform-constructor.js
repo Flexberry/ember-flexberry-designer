@@ -88,6 +88,7 @@ export default Ember.Route.extend(FdFormCheckTransitionMixin, {
 
     controller.set('selectedItem', undefined);
     controller.set('_showNotUsedAttributesTree', false);
+    controller.originalDataInit();
   },
 
   /**

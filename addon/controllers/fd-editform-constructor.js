@@ -64,6 +64,14 @@ FdFormUnsavedData, {
 
   /**
     @private
+    @property _dataIsSaved
+    @type Boolean
+    @default false
+  */
+  _dataIsSaved: false,
+
+  /**
+    @private
     @property _lookupCaption
     @type String
   */
@@ -710,6 +718,7 @@ FdFormUnsavedData, {
         this.set('state', '');
         this.set('error', error);
       }
+      this.set('_dataIsSaved', true);
     },
 
     /**
@@ -1238,35 +1247,64 @@ FdFormUnsavedData, {
   },
 
   /**
+    Get model data in string
+
+    @method _getStringifyModel
+  */
+  _getStringifyModel() {
+    let views = this.get('model.views');
+    let viewsString = JSON.stringify(views);
+
+    let aggregations = this.get('model.aggregations');
+    let aggregationsString = JSON.stringify(aggregations);
+
+    let associations = this.get('model.associations');
+    let associationsString = JSON.stringify(associations);
+
+    let classes = this.get('model.classes');
+    let classesString = JSON.stringify(classes);
+
+    let editform = this.get('model.editform');
+    let editformString = JSON.stringify(editform);
+
+    let allDataString = viewsString + aggregationsString + associationsString + classesString + editformString;
+
+    return allDataString;
+  },
+
+  /**
+    This method run data saved when model is loaded
+
+    @method saveOriginalData
+  */
+  originalDataInit: function () {
+    Ember.run.next(this, () => {
+      this.saveOriginalData();
+    });
+  },
+
+  /**
+    Save fields before changes
+
+    @method saveOriginalData
+  */
+  saveOriginalData: function () {
+    this.set('_dataIsSaved', false);
+    let originalDataString = this._getStringifyModel();
+    this.set('_originalData', originalDataString);
+  },
+
+  /**
     Check if fields changed, but unsaved
     @method findUnsavedFields
   */
   findUnsavedFields: function () {
-    let originalModel = this.get('model').originalDefinition;
-    let formDefinitions = controlsToDefinition(this.get('controlsTree'));
-    let originalArrayLength = originalModel.length;
-    let formModelArrayLength = formDefinitions.length;
     let checkResult = false;
-
-    if (originalArrayLength !== formModelArrayLength) {
+    let isSaved = this.get('_dataIsSaved');
+    let originalDataString = this.get('_originalData');
+    let currentDataString = this._getStringifyModel();
+    if (!Ember.isEqual(originalDataString, currentDataString) && !isSaved) {
       checkResult = true;
-    } else {
-      let dataobject = this.get('model.dataobject');
-      let attributes = dataobject.get('attributes');
-      let changedAttributes = attributes.filterBy('hasDirtyAttributes');
-
-      if (changedAttributes.length > 0) {
-        checkResult = true;
-      } else {
-        for (let i = 0; i < originalArrayLength; i++) {
-          if (originalModel[i].name !== formDefinitions[i].name ||
-            originalModel[i].caption !== formDefinitions[i].caption ||
-            originalModel[i].path !== formDefinitions[i].path ||
-            originalModel[i].visible !== formDefinitions[i].visible) {
-            checkResult = true;
-          }
-        }
-      }
     }
 
     return checkResult;

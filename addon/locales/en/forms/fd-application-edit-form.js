@@ -12,5 +12,7 @@ export default {
   'auditWinServiceUrl-caption': 'Audit WinService Url',
   'writeSessions-caption': 'Write sessions',
   'attributes-caption': 'Attributes',
-  'methods-caption': 'Methods'
+  'methods-caption': 'Methods',
+  'remove-unsaved': 'Removed unsaved data',
+  'remove-approve': 'Are you sure?'
 };

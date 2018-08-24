@@ -77,7 +77,6 @@ export default Ember.Mixin.create({
       let controller = this.controller;
       let isUnsavedFields = controller.findUnsavedFields();
       let forcedTransition = this.get('_forceTransition');
-
       if (!isUnsavedFields || forcedTransition) {
         if (controller.get('state') === '') {
           transition.abort();

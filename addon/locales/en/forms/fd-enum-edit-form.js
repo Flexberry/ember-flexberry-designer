@@ -6,5 +6,7 @@ export default {
   'onlyShowSelectedValue-caption': 'Only show selected value',
   'packet-caption': 'Packet',
   'namespacePostfix-caption': 'Namespace postfix',
-  'attributes-caption': 'Values'
+  'attributes-caption': 'Values',
+  'remove-unsaved': 'Removed unsaved data',
+  'remove-approve': 'Are you sure?'
 };

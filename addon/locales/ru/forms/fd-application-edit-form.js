@@ -12,5 +12,7 @@ export default {
   'auditWinServiceUrl-caption': 'Адрес сервиса аудита',
   'writeSessions-caption': 'Вести аудит сессий пользователей',
   'attributes-caption': 'Атрибуты',
-  'methods-caption': 'Методы'
+  'methods-caption': 'Методы',
+  'remove-unsaved': 'Удалить несохраненные данные',
+  'remove-approve': 'Вы уверены?'
 };

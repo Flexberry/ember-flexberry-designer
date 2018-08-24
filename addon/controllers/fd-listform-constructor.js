@@ -22,6 +22,22 @@ FdWorkPanelToggler,
 FdFormUnsavedData, {
   /**
     @private
+    @property _originalData
+    @type string
+    @default ''
+  */
+  _originalData: '',
+
+  /**
+    @private
+    @property _dataIsSaved
+    @type Boolean
+    @default false
+  */
+  _dataIsSaved: false,
+
+  /**
+    @private
     @property _showModalDialog
     @type Boolean
     @default false
@@ -428,6 +444,7 @@ FdFormUnsavedData, {
         this.set('state', '');
         this.set('error', error);
       });
+      this.set('_dataIsSaved', true);
     },
 
     close() {
@@ -538,37 +555,56 @@ FdFormUnsavedData, {
   },
 
   /**
+    Get model data in string
+
+    @method _getStringifyModel
+  */
+  _getStringifyModel() {
+    let attributes = this.get('model.attributes');
+    let attributesString = JSON.stringify(attributes);
+
+    let view = this.get('model.view');
+    let viewString = JSON.stringify(view);
+
+    let allDataString = attributesString + viewString;
+
+    return allDataString;
+  },
+
+  /**
+    This method run data saved when model is loaded
+
+    @method saveOriginalData
+  */
+  originalDataInit: function () {
+    Ember.run.next(this, () => {
+      this.saveOriginalData();
+    });
+  },
+
+  /**
+    Save fields before changes
+
+    @method saveOriginalData
+  */
+  saveOriginalData: function () {
+    this.set('_dataIsSaved', false);
+    let originalDataString = this._getStringifyModel();
+    this.set('_originalData', originalDataString);
+  },
+
+  /**
     Check if fields changed, but unsaved
 
     @method findUnsavedFields
   */
   findUnsavedFields: function () {
-    let originalModel = this.get('model.originalDefinition');
-    let formDefinitions = this.get('view').get('definition');
-    let originalArrayLength = originalModel.length;
-    let formModelArrayLength = formDefinitions.length;
     let checkResult = false;
-    let columns = this.get('columns');
-
-    if (originalArrayLength !== formModelArrayLength) {
+    let isSaved = this.get('_dataIsSaved');
+    let originalDataString = this.get('_originalData');
+    let currentDataString = this._getStringifyModel();
+    if (!Ember.isEqual(originalDataString, currentDataString) && !isSaved) {
       checkResult = true;
-    } else {
-      let dataobject = this.get('model.dataobject');
-      let attributes = dataobject.get('attributes');
-      let changedAttributes = attributes.filterBy('hasDirtyAttributes');
-
-      if (changedAttributes.length > 0) {
-        checkResult = true;
-      } else {
-        for (let i = 0; i < originalArrayLength; i++) {
-          if (originalModel[i].name !== columns[i].propertyDefinition.name ||
-            originalModel[i].caption !== columns[i].propertyDefinition.caption ||
-            originalModel[i].path !== columns[i].propertyDefinition.path ||
-            originalModel[i].visible !== columns[i].propertyDefinition.visible) {
-            checkResult = true;
-          }
-        }
-      }
     }
 
     return checkResult;

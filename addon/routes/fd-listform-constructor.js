@@ -183,6 +183,7 @@ export default Ember.Route.extend(FdFormCheckTransitionMixin, {
   setupController(controller) {
     this._super(...arguments);
     controller.set('_showNotUsedAttributesTree', false);
+    controller.originalDataInit();
   },
 
   /**

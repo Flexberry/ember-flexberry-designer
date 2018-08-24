@@ -25,10 +25,10 @@ FdFormUnsavedData, {
   /**
     @private
     @property _originalData
-    @type Object
-    @default null
+    @type string
+    @default ''
   */
-  _originalData: null,
+  _originalData: '',
 
   /**
    Service that triggers objectlistview events.
@@ -400,6 +400,23 @@ FdFormUnsavedData, {
     this.get('jstreeActionReceiver').send('redraw');
   },
 
+  /**
+    Get model data in string
+
+    @method _getStringifyModel
+  */
+  _getStringifyModel() {
+    let view = this.get('model.view');
+    let viewString = JSON.stringify(view);
+
+    return viewString;
+  },
+
+  /**
+    This method run data saved when model is loaded
+
+    @method saveOriginalData
+  */
   originalDataInit: function () {
     Ember.run.next(this, () => {
       this.saveOriginalData();
@@ -413,9 +430,7 @@ FdFormUnsavedData, {
   */
   saveOriginalData: function () {
     this.set('_dataIsSaved', false);
-    let originalData = this.get('model.view');
-    let originalDataString = JSON.stringify(originalData);
-
+    let originalDataString = this._getStringifyModel();
     this.set('_originalData', originalDataString);
   },
 
@@ -427,11 +442,9 @@ FdFormUnsavedData, {
   findUnsavedFields: function () {
     let checkResult = false;
     let isSaved = this.get('_dataIsSaved');
-    let originalData = this.get('_originalData');
-    let currentData = this.get('model.view');
-    let currentDataString = JSON.stringify(currentData);
-
-    if (!Ember.isEqual(originalData, currentDataString) && !isSaved) {
+    let originalDataString = this.get('_originalData');
+    let currentDataString = this._getStringifyModel();
+    if (!Ember.isEqual(originalDataString, currentDataString) && !isSaved) {
       checkResult = true;
     }
 

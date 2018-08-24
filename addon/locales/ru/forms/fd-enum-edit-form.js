@@ -6,5 +6,7 @@ export default {
   'onlyShowSelectedValue-caption': 'Просто показывать выбранное значение',
   'packet-caption': 'Пакет',
   'namespacePostfix-caption': 'Постфикс пространства имен',
-  'attributes-caption': 'Возможные значения'
+  'attributes-caption': 'Возможные значения',
+  'remove-unsaved': 'Удалить несохраненные данные',
+  'remove-approve': 'Вы уверены?',
 };
