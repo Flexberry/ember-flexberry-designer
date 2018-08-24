@@ -4,8 +4,9 @@
 
 import Ember from 'ember';
 
-import FdUmlElement from './fd-uml-element';
 import { BaseClass } from './fd-uml-class';
+
+import FdUmlElement from './fd-uml-element';
 
 /**
   An object that describes a class on the UML diagram.
@@ -23,20 +24,12 @@ export default FdUmlElement.extend({
   name: Ember.computed.alias('primitive.Name.Text'),
 
   /**
-    Stereotype of the class.
-
-    @property stereotype
-    @type String
-  */
-  stereotype: Ember.computed.alias('primitive.StereotypeTxt.Text'),
-
-  /**
     Indicates that the class is in a collapsed state.
 
     @property collapsed
     @type Boolean
   */
-  collapsed: Ember.computed.alias('primitive.Folded'),
+  collapsed: Ember.computed.alias('primitive.Name.IsFolded'),
 
   /**
     List of class attributes.
@@ -45,22 +38,8 @@ export default FdUmlElement.extend({
     @type Array
   */
   attributes: Ember.computed('primitive.AttributesTxt.Text', function() {
-    if (!Ember.isEmpty(this.get('primitive.AttributesTxt.Text'))) {
-      return this.get('primitive.AttributesTxt.Text').split('\n');
-    }
-
-    return [];
-  }),
-
-  /**
-    List of methods of the class.
-
-    @property methods
-    @type Array
-  */
-  methods: Ember.computed('primitive.MethodsTxt.Text', function() {
-    if (!Ember.isEmpty(this.get('primitive.MethodsTxt.Text'))) {
-      return this.get('primitive.MethodsTxt.Text').split('\n');
+    if (!Ember.isEmpty(this.get('primitive.Prop.Text'))) {
+      return this.get('primitive.Prop.Text').split('\n');
     }
 
     return [];
@@ -72,7 +51,7 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'stereotype', 'size', 'position', 'methods', 'attributes');
+    let properties = this.getProperties('id', 'name', 'size', 'position', 'attributes');
 
     return new PropertyObject(properties);
 
