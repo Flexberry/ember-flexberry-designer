@@ -67,9 +67,10 @@ export default FdUmlElement.extend({
     let properties = this.getProperties('id', 'name', 'stereotype', 'size', 'position', 'methods', 'attributes');
     if (this.get('collapsed')) {
       return new ClassCollapsed(properties);
-    } else {
-      return new Class(properties);
     }
+
+    return new Class(properties);
+
   },
 });
 

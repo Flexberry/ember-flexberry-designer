@@ -3,23 +3,6 @@ import './fd-common-primitives';
 
 import { BaseClass, Class } from '../objects/uml-primitives/fd-uml-class';
 
-BaseClass.define('flexberryUml.Object', {
-  attrs: {
-    '.flexberry-uml-header-text': {
-      'text-decoration': 'underline'
-    },
-  },
-}, {
-  markup: [
-    '<g class="rotatable">',
-    '<g class="scalable">',
-    '<rect class="flexberry-uml-header-rect"/><rect class="flexberry-uml-body-rect"/>',
-    '</g>',
-    '<text class="flexberry-uml-header-text"/><text class="flexberry-uml-body-text"/>',
-    '</g>'
-  ].join('')
-});
-
 Class.define('flexberryUml.TemplateClass', {
   attrs: {
     '.flexberry-uml-params-rect': {

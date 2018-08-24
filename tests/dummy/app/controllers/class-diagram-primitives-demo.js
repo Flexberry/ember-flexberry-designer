@@ -3,6 +3,7 @@ import joint from 'npm:jointjs';
 
 import { Note } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note';
 import { Class, ClassCollapsed } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-class';
+import { PropertyObject } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-property-object';
 import { NoteConnector } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector';
 import { Association } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-association';
 import { Composition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-composition';
@@ -148,7 +149,7 @@ export default Ember.Controller.extend({
         name: 'n-ary Association'
       });
 
-      let obj = new joint.shapes.flexberryUml.Object({
+      let obj = new PropertyObject({
         position: { x: 350, y: 300 },
         name: 'Object',
         attributes: attributes,
