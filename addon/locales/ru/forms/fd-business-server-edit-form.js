@@ -9,7 +9,6 @@ export default {
   'generateComPlusServer-caption': '',
   'generateHttpRemoteServer-caption': '',
   'publishToEBSD-caption': '',
-  'namespacePostfix-caption': 'Постфикс пространства имен',
   'attributes-caption': 'Возможные значения',
   'remove-unsaved': 'Удалить несохраненные данные',
   'remove-approve': 'Вы уверены?',

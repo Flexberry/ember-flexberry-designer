@@ -718,6 +718,7 @@ FdFormUnsavedData, {
         this.set('state', '');
         this.set('error', error);
       }
+
       this.set('_dataIsSaved', true);
     },
 
