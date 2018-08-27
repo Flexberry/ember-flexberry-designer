@@ -52,7 +52,7 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels', 'text');
     return new Aggregation(properties);
   },
 });

@@ -51,7 +51,7 @@ export default FdUmlBaseLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels', 'text');
     return new Association(properties);
   },
 });

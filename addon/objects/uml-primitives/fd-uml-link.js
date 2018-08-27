@@ -14,7 +14,7 @@ import joint from 'npm:jointjs';
 */
 export default FdUmlBaseLink.extend({
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'source', 'target', 'vertices');
+    let properties = this.getProperties('id', 'name', 'source', 'target', 'vertices', 'text');
     return new Link(properties);
   }
 });

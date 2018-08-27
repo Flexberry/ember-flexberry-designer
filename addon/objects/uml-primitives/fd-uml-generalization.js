@@ -20,7 +20,7 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'vertices');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'text');
     return new Generalization(properties);
   },
 });

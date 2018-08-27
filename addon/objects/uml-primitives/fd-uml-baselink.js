@@ -4,7 +4,6 @@
 
 import Ember from 'ember';
 import FdUmlPrimitive from './fd-uml-primitive';
-import joint from 'npm:jointjs';
 
 /**
   An object that defines any link on the UML diagram.
@@ -31,6 +30,16 @@ export default FdUmlPrimitive.extend({
   */
   target: Ember.computed('primitive.StartPrimitive.$ref', function() {
     return { id: this.get('primitive.StartPrimitive.$ref') };
+  }),
+
+  /**
+    Stored text.
+
+    @property target
+    @type Object
+  */
+  text: Ember.computed('primitive.Name.Text', function() {
+    return this.get('primitive.Name.Text');
   }),
 
   /**
