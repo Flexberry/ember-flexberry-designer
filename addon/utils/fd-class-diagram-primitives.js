@@ -3,7 +3,7 @@ import './fd-common-primitives';
 
 import { BaseClass, Class } from '../objects/uml-primitives/fd-uml-class';
 
-Class.define('flexberryUml.TemplateClass', {
+Class.define('flexberry.uml.TemplateClass', {
   attrs: {
     '.flexberry-uml-params-rect': {
       'stroke': 'black', 'stroke-width': 1,
@@ -69,25 +69,25 @@ Class.define('flexberryUml.TemplateClass', {
   }
 });
 
-joint.dia.Link.define('flexberryUml.Realization', {
+joint.dia.Link.define('flexberry.uml.Realization', {
   attrs: {
     '.marker-target': { d: 'M 0 0 z' },
     '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '7 2' },
   },
 });
 
-joint.shapes.flexberryUml.BaseLink.define('flexberryUml.ClassDiagramAggregation', {
+joint.shapes.flexberry.uml.BaseLink.define('flexberry.uml.ClassDiagramAggregation', {
   attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' } },
 });
 
-joint.dia.Link.define('flexberryUml.NestedClassAssociation', {
+joint.dia.Link.define('flexberry.uml.NestedClassAssociation', {
   attrs: { '.marker-target': { d: 'M 10, 10 ' +
                 'm -8, 0 ' +
                 'a 8,8 0 1,0 16,0 ' +
                 'a 8,8 0 1,0 -16,0 M 10 2 L 10 2 L 10 18', fill: 'transparent' } }
 });
 
-BaseClass.define('flexberryUml.Package', {
+BaseClass.define('flexberry.uml.Package', {
   attrs: {
     '.flexberry-uml-header-text': {
       'text-decoration': 'underline',

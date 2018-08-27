@@ -4,7 +4,8 @@
 
 import joint from 'npm:jointjs';
 
-import FdUmlLink from './fd-uml-link';
+import FdUmlLink from './fd-uml-baselink';
+import { Link } from './fd-uml-link';
 
 /**
   An object that describes a link of the note connector type on the UML diagram.
@@ -33,7 +34,7 @@ export default FdUmlLink.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let NoteConnector = joint.dia.Link.define('flexberry.uml.NoteConnector', {
+export let NoteConnector = Link.define('flexberry.uml.NoteConnector', {
   attrs: {
     '.marker-target': { d: 'M 0 0 z' },
     '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '3 2' },

@@ -42,7 +42,7 @@ export default FdUmlElement.extend({
 
   @for FdUmlNote
   @class Note
-  @extends flexberryUml.BaseObject
+  @extends flexberry.uml.BaseObject
   @namespace flexberry.uml
   @constructor
 */

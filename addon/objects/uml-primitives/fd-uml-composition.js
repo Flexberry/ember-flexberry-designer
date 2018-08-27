@@ -2,11 +2,8 @@
   @module ember-flexberry-designer
 */
 
-import joint from 'npm:jointjs';
-
-import '../../utils/fd-common-primitives';
-
-import FdUmlLink from './fd-uml-link';
+import FdUmlLink from './fd-uml-baselink';
+import { Link } from './fd-uml-link';
 
 /**
   An object that describes a link of the composition type on the UML diagram.
@@ -31,10 +28,10 @@ export default FdUmlLink.extend({
 
   @for FdUmlComposition
   @class Composition
-  @extends flexberryUml.BaseLink
+  @extends flexberry.uml.Link
   @namespace flexberry.uml
   @constructor
 */
-export let Composition = joint.shapes.flexberryUml.BaseLink.define('flexberry.uml.Composition', {
+export let Composition = Link.define('flexberry.uml.Composition', {
   attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' } },
 });

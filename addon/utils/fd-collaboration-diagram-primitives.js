@@ -1,13 +1,13 @@
 import joint from 'npm:jointjs';
 import './fd-common-primitives';
 
-joint.shapes.flexberryUml.BaseObject.define('flexberryUml.CollDesignPattern', {
+joint.shapes.flexberry.uml.BaseObject.define('flexberry.uml.CollDesignPattern', {
   attrs: {
     '.flexberry-uml-header-rect': { 'rx': '120', 'ry': '120', 'stroke': 'black', 'strokeDasharray': '10,2', 'strokeWidth': '1', 'fill': '#ffffff' }
   }
 });
 
-joint.dia.Link.define('flexberryUml.CollPatternConnect', {
+joint.dia.Link.define('flexberry.uml.CollPatternConnect', {
   attrs: {
     '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '3 2' },
     text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }
@@ -17,7 +17,7 @@ joint.dia.Link.define('flexberryUml.CollPatternConnect', {
   }]
 });
 
-joint.dia.Link.define('flexberryUml.CollInheritance', {
+joint.dia.Link.define('flexberry.uml.CollInheritance', {
   attrs: {
     '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'white' },
     text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }
@@ -27,18 +27,18 @@ joint.dia.Link.define('flexberryUml.CollInheritance', {
   }]
 });
 
-joint.shapes.flexberryUml.BaseLinkWithUnderline.define('flexberryUml.CollaborationDiagramAssociation', {
+joint.shapes.flexberry.uml.BaseLinkWithUnderline.define('flexberry.uml.CollaborationDiagramAssociation', {
 });
 
-joint.shapes.flexberryUml.BaseLinkWithUnderline.define('flexberryUml.CollaborationDiagramAggregation', {
+joint.shapes.flexberry.uml.BaseLinkWithUnderline.define('flexberry.uml.CollaborationDiagramAggregation', {
   attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' } },
 });
 
-joint.shapes.flexberryUml.BaseLinkWithUnderline.define('flexberryUml.CollaborationDiagramComposition', {
+joint.shapes.flexberry.uml.BaseLinkWithUnderline.define('flexberry.uml.CollaborationDiagramComposition', {
   attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' } }
 });
 
-joint.shapes.basic.Generic.define('flexberryUml.CollMessageBase', {
+joint.shapes.basic.Generic.define('flexberry.uml.CollMessageBase', {
   attrs: {
     '.line': {
       'stroke': 'black',
@@ -77,7 +77,7 @@ joint.shapes.basic.Generic.define('flexberryUml.CollMessageBase', {
   ].join('')
 });
 
-joint.shapes.flexberryUml.CollMessageBase.define('flexberryUml.CollAsyncMsgBack', {
+joint.shapes.flexberry.uml.CollMessageBase.define('flexberry.uml.CollAsyncMsgBack', {
   attrs: {
     '.arrow': {
       'd':'M 0 0 L 5 -5'
@@ -89,7 +89,7 @@ joint.shapes.flexberryUml.CollMessageBase.define('flexberryUml.CollAsyncMsgBack'
   }
 });
 
-joint.shapes.flexberryUml.CollMessageBase.define('flexberryUml.CollAsyncMsgForward', {
+joint.shapes.flexberry.uml.CollMessageBase.define('flexberry.uml.CollAsyncMsgForward', {
   attrs: {
     '.arrow': {
       'd': 'M 5 0 L 0 -5',
@@ -102,7 +102,7 @@ joint.shapes.flexberryUml.CollMessageBase.define('flexberryUml.CollAsyncMsgForwa
   }
 });
 
-joint.shapes.flexberryUml.CollMessageBase.define('flexberryUml.CollFlatMsgForward', {
+joint.shapes.flexberry.uml.CollMessageBase.define('flexberry.uml.CollFlatMsgForward', {
   attrs: {
     '.arrow': {
       'd': 'M 5 0 L 0 -5 L 5 0 L 0 5',
@@ -115,7 +115,7 @@ joint.shapes.flexberryUml.CollMessageBase.define('flexberryUml.CollFlatMsgForwar
   }
 });
 
-joint.shapes.flexberryUml.CollMessageBase.define('flexberryUml.CollFlatMsgBack', {
+joint.shapes.flexberry.uml.CollMessageBase.define('flexberry.uml.CollFlatMsgBack', {
   attrs: {
     '.arrow': {
       'd': 'M -5 0 L 0 -5 L -5 0 L 0 5',
@@ -128,7 +128,7 @@ joint.shapes.flexberryUml.CollMessageBase.define('flexberryUml.CollFlatMsgBack',
   }
 });
 
-joint.shapes.flexberryUml.CollMessageBase.define('flexberryUml.CollNestedMsgForward', {
+joint.shapes.flexberry.uml.CollMessageBase.define('flexberry.uml.CollNestedMsgForward', {
   attrs: {
     '.arrow': {
       'd': 'M -15 0 L 0 5 L -15 10 z',
@@ -143,7 +143,7 @@ joint.shapes.flexberryUml.CollMessageBase.define('flexberryUml.CollNestedMsgForw
   }
 });
 
-joint.shapes.flexberryUml.CollMessageBase.define('flexberryUml.CollNestedMsgBack', {
+joint.shapes.flexberry.uml.CollMessageBase.define('flexberry.uml.CollNestedMsgBack', {
   attrs: {
     '.arrow': {
       'd': 'M 15 0 L 0 5 L 15 10 z',

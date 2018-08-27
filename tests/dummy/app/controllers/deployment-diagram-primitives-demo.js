@@ -40,7 +40,7 @@ export default Ember.Controller.extend({
         attrs: { path: { title:'Коннектор комментария (Note Connector)' } }
       });
 
-      var linkDependency = new joint.shapes.flexberryUml.Dependency({
+      var linkDependency = new joint.shapes.flexberry.uml.Dependency({
         source: { x:100, y:150 },
         target: { x:300, y:150 },
         labels:[{
@@ -49,7 +49,7 @@ export default Ember.Controller.extend({
         attrs: { path: { title:'Переход (Dependency)' } }
       });
 
-      var linkConnection = new joint.shapes.flexberryUml.deploymentDiagram_Connection({
+      var linkConnection = new joint.shapes.flexberry.uml.deploymentDiagram_Connection({
         source: { x:100, y:200 },
         target: { x:300, y:200 },
         labels:[{
@@ -60,27 +60,27 @@ export default Ember.Controller.extend({
 
       _this.graph.addCell([linkNoteConnector, linkDependency, linkConnection]);
 
-      var component = new joint.shapes.flexberryUml.deploymentDiagram_Component({
+      var component = new joint.shapes.flexberry.uml.deploymentDiagram_Component({
         position: { x: 450, y: 100 },
         name: ['StateName'],
         attrs: { '.rotatable': { title:'Компонент (Component)' } }
       });
 
-      var node = new joint.shapes.flexberryUml.deploymentDiagram_Node({
+      var node = new joint.shapes.flexberry.uml.deploymentDiagram_Node({
         position: { x: 450, y: 150 },
         name: ['NodeName', 'text', 'text'],
         attrs: { '.rotatable': { title:'Узел (Node)' } }
       });
       node.addTo(_this.graph);
 
-      var obj = new joint.shapes.flexberryUml.deploymentDiagram_Object({
+      var obj = new joint.shapes.flexberry.uml.deploymentDiagram_Object({
         position: { x: 450, y: 220 },
         name: ['ObjectName', 'text', 'text'],
         attrs: { '.rotatable': { title:'Объект (Object)' } },
       });
       obj.addTo(_this.graph);
 
-      var interfaceObj = new joint.shapes.flexberryUml.deploymentDiagram_Interface({
+      var interfaceObj = new joint.shapes.flexberry.uml.deploymentDiagram_Interface({
         position: { x: 500, y: 260 },
         name: ['Interface'],
         attrs: { '.rotatable': { title:'Интерфейс (Interface)' } },
@@ -88,7 +88,7 @@ export default Ember.Controller.extend({
         graph: _this.graph
       });
 
-      var activeObj = new joint.shapes.flexberryUml.deploymentDiagram_ActiveObject({
+      var activeObj = new joint.shapes.flexberry.uml.deploymentDiagram_ActiveObject({
         position: { x: 450, y: 320 },
         name: ['ActiveObjectName', 'text'],
         attrs: { '.rotatable': { title:'Объект (Object)' } },

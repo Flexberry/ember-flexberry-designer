@@ -1,6 +1,6 @@
 import joint from 'npm:jointjs';
 
-joint.shapes.basic.Generic.define('flexberryUml.BaseObject', {
+joint.shapes.basic.Generic.define('flexberry.uml.BaseObject', {
   attrs: {
     // rect: { 'width': 100 },
 
@@ -71,7 +71,7 @@ joint.shapes.basic.Generic.define('flexberryUml.BaseObject', {
   }
 });
 
-// joint.shapes.flexberryUml.BaseObject.define('flexberryUml.MultiObject', {
+// joint.shapes.flexberry.uml.BaseObject.define('flexberry.uml.MultiObject', {
 //   attrs: {
 //     text: {
 //       'text-decoration': 'underline',
@@ -82,7 +82,7 @@ joint.shapes.basic.Generic.define('flexberryUml.BaseObject', {
 // }, {
 
 //   updateRectangles: function() {
-//     joint.shapes.flexberryUml.BaseObject.prototype.updateRectangles.apply(this, arguments);
+//     joint.shapes.flexberry.uml.BaseObject.prototype.updateRectangles.apply(this, arguments);
 
 //     let attrs = this.get('attrs');
 //     let backRectTransY = 6;
@@ -105,7 +105,7 @@ joint.shapes.basic.Generic.define('flexberryUml.BaseObject', {
 //   ].join('')
 // });
 
-// joint.shapes.flexberryUml.BaseObject.define('flexberryUml.Instance', {
+// joint.shapes.flexberry.uml.BaseObject.define('flexberry.uml.Instance', {
 //   attrs: {
 //     text: {
 //       'text-decoration': 'underline',
@@ -113,7 +113,7 @@ joint.shapes.basic.Generic.define('flexberryUml.BaseObject', {
 //   }
 // });
 
-// // joint.shapes.flexberryUml.Instance.define('flexberryUml.ActiveObject', {
+// // joint.shapes.flexberry.uml.Instance.define('flexberry.uml.ActiveObject', {
 // //   attrs: {
 // //     text: {
 // //       'font-weight':'bold'
@@ -121,7 +121,7 @@ joint.shapes.basic.Generic.define('flexberryUml.BaseObject', {
 // //   }
 // // });
 
-// joint.shapes.flexberryUml.BaseObject.define('flexberryUml.NAryAssociation', {
+// joint.shapes.flexberry.uml.BaseObject.define('flexberry.uml.NAryAssociation', {
 //   attrs: {
 //     text: {
 //       'text-decoration': 'underline',
@@ -143,7 +143,7 @@ joint.shapes.basic.Generic.define('flexberryUml.BaseObject', {
 //   ].join(''),
 // });
 
-joint.dia.Link.define('flexberryUml.BaseLink', {
+joint.dia.Link.define('flexberry.uml.BaseLink', {
   attrs: {
     text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }
   },
@@ -181,7 +181,7 @@ joint.dia.Link.define('flexberryUml.BaseLink', {
   },
 });
 
-joint.shapes.flexberryUml.BaseLink.define('flexberryUml.BaseLinkWithUnderline', {
+joint.shapes.flexberry.uml.BaseLink.define('flexberry.uml.BaseLinkWithUnderline', {
 }, {
   initialize: function() {
     this.label(2, { attrs: { text: { 'text-decoration': 'underline', } } });
@@ -189,15 +189,15 @@ joint.shapes.flexberryUml.BaseLink.define('flexberryUml.BaseLinkWithUnderline', 
   },
 });
 
-joint.shapes.flexberryUml.BaseLinkWithUnderline.define('flexberryUml.Qualified', {
+joint.shapes.flexberry.uml.BaseLinkWithUnderline.define('flexberry.uml.Qualified', {
   attrs: { '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 z', fill: 'white' } }
 });
 
-joint.shapes.flexberryUml.Qualified.define('flexberryUml.QualifiedAggregation', {
+joint.shapes.flexberry.uml.Qualified.define('flexberry.uml.QualifiedAggregation', {
   attrs: { '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 L 26 10 M 52 10 L 39 17 L 26 10 L 39 3 z', fill: 'white' } },
 });
 
-joint.shapes.flexberryUml.Qualified.define('flexberryUml.QualifiedComposition', {
+joint.shapes.flexberry.uml.Qualified.define('flexberry.uml.QualifiedComposition', {
   attrs: {
     '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 L 26 10 M 52 10 L 39 17 L 26 10 L 39 3 z', fill: 'url(#solids)' }
   },
@@ -224,13 +224,13 @@ joint.shapes.flexberryUml.Qualified.define('flexberryUml.QualifiedComposition', 
   }
 });
 
-joint.dia.Link.define('flexberryUml.NArrayAssociationConnect', {
+joint.dia.Link.define('flexberry.uml.NArrayAssociationConnect', {
   labels: [{
     position: { distance: 50 }, attrs: { text: { text: '' } }
   }]
 });
 
-joint.dia.Link.define('flexberryUml.Dependency', {
+joint.dia.Link.define('flexberry.uml.Dependency', {
   attrs: {
     text: { 'font-size':'12', 'font-family':'Arial, helvetica, sans-serif' },
     '.marker-target': { d: 'M 0 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' },
@@ -238,7 +238,7 @@ joint.dia.Link.define('flexberryUml.Dependency', {
   },
 });
 
-joint.shapes.uml.StartState.define('flexberryUml.StartState', {
+joint.shapes.uml.StartState.define('flexberry.uml.StartState', {
   size: { width: 12, height: 12 },
   attrs: {
     circle: { 'fill': 'black', 'stroke': 'black', 'stroke-width': 2, 'rx': 1 },
@@ -252,7 +252,7 @@ joint.shapes.uml.StartState.define('flexberryUml.StartState', {
   }
 });
 
-joint.shapes.uml.EndState.define('flexberryUml.EndState', {
+joint.shapes.uml.EndState.define('flexberry.uml.EndState', {
   attrs: {
     'circle.inner': { fill: 'black' },
     text: {
@@ -271,7 +271,7 @@ joint.shapes.uml.EndState.define('flexberryUml.EndState', {
   markup: '<g class="rotatable"><g class="scalable"><circle class="outer"/><circle class="inner"/></g><text/></g>'
 });
 
-joint.dia.Element.define('flexberryUml.ComplexTransitionHorizon', {
+joint.dia.Element.define('flexberry.uml.ComplexTransitionHorizon', {
   attrs: {
     polyline: { refPoints: '0,0 10,0', stroke: 'black', 'stroke-width': 2 },
     text: {
@@ -294,7 +294,7 @@ joint.dia.Element.define('flexberryUml.ComplexTransitionHorizon', {
   ].join('')
 });
 
-joint.shapes.flexberryUml.ComplexTransitionHorizon.define('flexberryUml.ComplexTransitionVertical', {
+joint.shapes.flexberry.uml.ComplexTransitionHorizon.define('flexberry.uml.ComplexTransitionVertical', {
   attrs: {
     polyline: { refPoints: '0,0 0,10' },
     text: {

@@ -7,15 +7,16 @@ import joint from 'npm:jointjs';
 
 import '../../utils/fd-common-primitives';
 
-import FdUmlBaseLink from './fd-uml-baselink';
+import FdUmlLink from './fd-uml-baselink';
 import { Link } from './fd-uml-link';
+
 /**
   An object that describes a link of the association type on the UML diagram.
 
   @class FdUmlAssociation
   @extends FdUmlLink
 */
-export default FdUmlBaseLink.extend({
+export default FdUmlLink.extend({
   /**
     The start multiplicity of a link.
 
@@ -52,7 +53,7 @@ export default FdUmlBaseLink.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
-    return new Association(properties);
+    return new Aggregation(properties);
   },
 });
 
@@ -61,8 +62,10 @@ export default FdUmlBaseLink.extend({
 
   @for FdUmlAssociation
   @class Association
-  @extends flexberr.uml.BaseLink
+  @extends flexberry.uml.Link
   @namespace flexberry.uml
   @constructor
 */
-export let Association = Link.define('flexberry.uml.Association', {});
+export let Aggregation = Link.define('flexberry.uml.QualifiedAggregation', {
+  attrs: { '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 L 26 10 M 52 10 L 39 17 L 26 10 L 39 3 z', fill: 'white' } },
+});

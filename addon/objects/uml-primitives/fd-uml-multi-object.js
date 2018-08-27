@@ -45,7 +45,7 @@ export let MultiObject = BaseObject.define('flexberry.uml.MultiObject', {
   }
 }, {
   updateRectangles: function () {
-    joint.shapes.flexberryUml.BaseObject.prototype.updateRectangles.apply(this, arguments);
+    joint.shapes.flexberry.uml.BaseObject.prototype.updateRectangles.apply(this, arguments);
 
     let attrs = this.get('attrs');
     let backRectTransY = 6;

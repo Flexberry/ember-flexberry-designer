@@ -18,6 +18,7 @@ import FdUmlNoteConnector from '../objects/uml-primitives/fd-uml-note-connector'
 import FdUmlAssociation from '../objects/uml-primitives/fd-uml-association';
 import FdUmlComposition from '../objects/uml-primitives/fd-uml-composition';
 import FdUmlGeneralization from '../objects/uml-primitives/fd-uml-generalization';
+import FdUmlAggregation from '../objects/uml-primitives/fd-uml-aggregation';
 
 let Model = CADModel.extend(DevUMLCADMixin, {
   /**
@@ -47,6 +48,10 @@ let Model = CADModel.extend(DevUMLCADMixin, {
 
         case 'STORMCASE.UML.cad.Association, UMLCAD':
           result.pushObject(FdUmlAssociation.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.cad.Aggregation, UMLCAD':
+          result.pushObject(FdUmlAggregation.create({ primitive }));
           break;
 
         case 'STORMCASE.UML.cad.Composition, UMLCAD':

@@ -4,7 +4,8 @@
 
 import joint from 'npm:jointjs';
 
-import FdUmlLink from './fd-uml-link';
+import FdUmlLink from './fd-uml-baselink';
+import { Link } from './fd-uml-link';
 
 /**
   An object that describes a link of the inheritance type on the UML diagram.
@@ -33,6 +34,6 @@ export default FdUmlLink.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let Generalization = joint.dia.Link.define('flexberry.uml.Generalization', {
+export let Generalization = Link.define('flexberry.uml.Generalization', {
   attrs: { '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'white' } },
 });

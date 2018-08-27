@@ -6,7 +6,7 @@ import Ember from 'ember';
 import joint from 'npm:jointjs';
 
 import FdUmlElement from '../objects/uml-primitives/fd-uml-element';
-import FdUmlLink from '../objects/uml-primitives/fd-uml-link';
+import FdUmlLink from '../objects/uml-primitives/fd-uml-baselink';
 
 /**
   Component for working with the UML diagram through the JointJS.

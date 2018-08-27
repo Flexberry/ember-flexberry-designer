@@ -3,7 +3,8 @@
 */
 
 import Ember from 'ember';
-import FdUmlPrimitive from './fd-uml-primitive';
+import FdUmlBaseLink from './fd-uml-baselink';
+import joint from 'npm:jointjs';
 
 /**
   An object that defines any link on the UML diagram.
@@ -11,40 +12,51 @@ import FdUmlPrimitive from './fd-uml-primitive';
   @class FdUmlLink
   @extends FdUmlPrimitive
 */
-export default FdUmlPrimitive.extend({
-  /**
-    An object with an `id` of another UML primitive, which is the source, for example `{ id: '1' }`.
-
-    @property source
-    @type Object
-  */
-  source: Ember.computed('primitive.EndPrimitive.$ref', function() {
-    return { id: this.get('primitive.EndPrimitive.$ref') };
-  }),
-
-  /**
-    An object with an `id` of another UML primitive, which is the target, for example `{ id: '1' }`.
-
-    @property target
-    @type Object
-  */
-  target: Ember.computed('primitive.StartPrimitive.$ref', function() {
-    return { id: this.get('primitive.StartPrimitive.$ref') };
-  }),
-
-  /**
-    The vertices through which this link passes. An array of objects with `X` and `Y` coordinates, for example `[{ x: 100, y: 100 }]`.
-
-    @property vertices
-    @type Array
-  */
-  vertices: Ember.computed('primitive.Points', function() {
-    let vertices = [];
-    let points = this.get('primitive.Points');
-    for (let i = points.length - 2; i > 0; i--) {
-      vertices.push({ x: points[i].X, y: points[i].Y });
-    }
-
-    return vertices;
-  }),
+export default FdUmlBaseLink.extend({
+  JointJS() {
+    let properties = this.getProperties('id', 'name', 'source', 'target', 'vertices');
+    return new Link(properties);
+  }
 });
+
+export let Link = joint.dia.Link.define('flexberry.uml.Link', {
+  attrs: {
+    text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }
+  },
+  labels: [{
+    position: { distance: -40, offset: -15 }, attrs: { text: { text: '' } }
+  }, {
+    position: { distance: -40, offset: 15 }, attrs: { text: { text: '' } }
+  }, {
+    textAnchor: 'middle', attrs: { text: { text: '' } }
+  }, {
+    position: { distance: 10, offset: 15 }, attrs: { text: { text: '' } }
+  }, {
+    position: { distance: 10, offset: -15 }, attrs: { text: { text: '' } }
+  }]
+}, {
+    setLabelText: function (label, text) {
+      switch (label) {
+        case 'startMultiplicity':
+          this.label(0, { attrs: { text: { text: text } } });
+          break;
+        case 'startRole':
+          this.label(1, { attrs: { text: { text: text } } });
+          break;
+        case 'description':
+          this.label(2, { attrs: { text: { text: text } } });
+          break;
+        case 'endRole':
+          this.label(3, { attrs: { text: { text: text } } });
+          break;
+        case 'endMultiplicity':
+          this.label(4, { attrs: { text: { text: text } } });
+          break;
+        default:
+          console.log('ERROR - choose correct label name');
+          break;
+      }
+
+      return;
+    },
+  });
