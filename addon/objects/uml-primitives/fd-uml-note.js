@@ -5,9 +5,11 @@
 import Ember from 'ember';
 import joint from 'npm:jointjs';
 
-import '../../utils/fd-common-primitives';
+//import '../../utils/fd-common-primitives';
 
 import FdUmlElement from './fd-uml-element';
+
+import { BaseObject } from './fd-uml-object';
 
 /**
   An object that describes a note on the UML diagram.
@@ -44,7 +46,7 @@ export default FdUmlElement.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let Note = joint.shapes.flexberryUml.BaseObject.define('flexberry.uml.Note', {
+export let Note = BaseObject.define('flexberry.uml.Note', {
   attrs: {
     '.flexberry-uml-header-text': {
       'font-weight': 'bold',
@@ -78,7 +80,7 @@ export let Note = joint.shapes.flexberryUml.BaseObject.define('flexberry.uml.Not
   ].join(''),
 
   updateRectangles() {
-    joint.shapes.flexberryUml.BaseObject.prototype.updateRectangles.apply(this, arguments);
+    joint.shapes.flexberry.uml.BaseObject.prototype.updateRectangles.apply(this, arguments);
 
     let attrs = this.get('attrs');
     let transX = this.size().width - 10;

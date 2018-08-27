@@ -9,6 +9,8 @@ import {
 
 import FdUmlNote from '../objects/uml-primitives/fd-uml-note';
 import FdUmlClass from '../objects/uml-primitives/fd-uml-class';
+import FdUmlMultiObject from '../objects/uml-primitives/fd-uml-multi-object';
+import FdUmlInstance from '../objects/uml-primitives/fd-uml-instance';
 import FdUmlPropertyObject from '../objects/uml-primitives/fd-uml-property-object';
 import FdUmlMoreClasses from '../objects/uml-primitives/fd-uml-more-classes';
 import FdUmlNoteConnector from '../objects/uml-primitives/fd-uml-note-connector';
@@ -56,6 +58,14 @@ let Model = CADModel.extend(DevUMLCADMixin, {
 
         case 'STORMCASE.UML.cad.PropertyObject, UMLCAD':
           result.pushObject(FdUmlPropertyObject.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.cad.MultiObject, UMLCAD':
+          result.pushObject(FdUmlMultiObject.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.cad.Instance, UMLCAD':
+          result.pushObject(FdUmlInstance.create({ primitive }));
           break;
 
         case 'STORMCASE.UML.cad.MoreClasses, UMLCAD':

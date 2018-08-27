@@ -71,77 +71,77 @@ joint.shapes.basic.Generic.define('flexberryUml.BaseObject', {
   }
 });
 
-joint.shapes.flexberryUml.BaseObject.define('flexberryUml.MultiObject', {
-  attrs: {
-    text: {
-      'text-decoration': 'underline',
-      'font-size':'12'
-    },
-    '.back-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff' }
-  }
-}, {
+// joint.shapes.flexberryUml.BaseObject.define('flexberryUml.MultiObject', {
+//   attrs: {
+//     text: {
+//       'text-decoration': 'underline',
+//       'font-size':'12'
+//     },
+//     '.back-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff' }
+//   }
+// }, {
 
-  updateRectangles: function() {
-    joint.shapes.flexberryUml.BaseObject.prototype.updateRectangles.apply(this, arguments);
+//   updateRectangles: function() {
+//     joint.shapes.flexberryUml.BaseObject.prototype.updateRectangles.apply(this, arguments);
 
-    let attrs = this.get('attrs');
-    let backRectTransY = 6;
-    attrs['.back-rect'].transform = 'translate(3, ' + backRectTransY + ')';
-    attrs['.back-rect'].height = this.size().height;
-    attrs['.back-rect'].width = this.size().width;
+//     let attrs = this.get('attrs');
+//     let backRectTransY = 6;
+//     attrs['.back-rect'].transform = 'translate(3, ' + backRectTransY + ')';
+//     attrs['.back-rect'].height = this.size().height;
+//     attrs['.back-rect'].width = this.size().width;
 
-    let newWidth = this.size().width;
-    let newHeight = this.size().height + backRectTransY;
-    this.resize(newWidth, newHeight);
-  },
+//     let newWidth = this.size().width;
+//     let newHeight = this.size().height + backRectTransY;
+//     this.resize(newWidth, newHeight);
+//   },
 
-  markup: [
-    '<g class="rotatable">',
-    '<g class="scalable">',
-    '<rect class="back-rect"/><rect class="flexberry-uml-header-rect"/>',
-    '</g>',
-    '<text class="flexberry-uml-header-text"/>',
-    '</g>'
-  ].join('')
-});
+//   markup: [
+//     '<g class="rotatable">',
+//     '<g class="scalable">',
+//     '<rect class="back-rect"/><rect class="flexberry-uml-header-rect"/>',
+//     '</g>',
+//     '<text class="flexberry-uml-header-text"/>',
+//     '</g>'
+//   ].join('')
+// });
 
-joint.shapes.flexberryUml.BaseObject.define('flexberryUml.Instance', {
-  attrs: {
-    text: {
-      'text-decoration': 'underline',
-    }
-  }
-});
+// joint.shapes.flexberryUml.BaseObject.define('flexberryUml.Instance', {
+//   attrs: {
+//     text: {
+//       'text-decoration': 'underline',
+//     }
+//   }
+// });
 
-joint.shapes.flexberryUml.Instance.define('flexberryUml.ActiveObject', {
-  attrs: {
-    text: {
-      'font-weight':'bold'
-    }
-  }
-});
+// // joint.shapes.flexberryUml.Instance.define('flexberryUml.ActiveObject', {
+// //   attrs: {
+// //     text: {
+// //       'font-weight':'bold'
+// //     }
+// //   }
+// // });
 
-joint.shapes.flexberryUml.BaseObject.define('flexberryUml.NAryAssociation', {
-  attrs: {
-    text: {
-      'text-decoration': 'underline',
-      'font-size':'12'
-    },
-    path: {
-      'd': 'M 0 20 L 50 0 100 20 50 40 Z',
-    }
-  },
-  heightPadding: 40,
-}, {
-  markup: [
-    '<g class="rotatable">',
-    '<g class="scalable">',
-    '<path class="flexberry-uml-header-rect"/>',
-    '</g>',
-    '<text class="flexberry-uml-header-text"/>',
-    '</g>'
-  ].join(''),
-});
+// joint.shapes.flexberryUml.BaseObject.define('flexberryUml.NAryAssociation', {
+//   attrs: {
+//     text: {
+//       'text-decoration': 'underline',
+//       'font-size':'12'
+//     },
+//     path: {
+//       'd': 'M 0 20 L 50 0 100 20 50 40 Z',
+//     }
+//   },
+//   heightPadding: 40,
+// }, {
+//   markup: [
+//     '<g class="rotatable">',
+//     '<g class="scalable">',
+//     '<path class="flexberry-uml-header-rect"/>',
+//     '</g>',
+//     '<text class="flexberry-uml-header-text"/>',
+//     '</g>'
+//   ].join(''),
+// });
 
 joint.dia.Link.define('flexberryUml.BaseLink', {
   attrs: {
