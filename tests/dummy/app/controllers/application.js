@@ -10,6 +10,13 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
   */
   currentContext: Ember.inject.service('fd-current-project-context'),
 
+  /**
+    Service for managing the state of the application.
+    @property appState
+    @type AppStateService
+  */
+  appState: Ember.inject.service(),
+
   sitemap: Ember.computed('i18n.locale', 'currentContext.context.configuration', 'currentContext.context.stage', function() {
     let i18n = this.get('i18n');
     let context = this.get('currentContext.context');

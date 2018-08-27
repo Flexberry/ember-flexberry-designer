@@ -13,7 +13,7 @@ export default Ember.Route.extend(ModalApplicationRouteMixin, {
 
   /**
     Service for managing the state of the application.
-     @property appState
+    @property appState
     @type AppStateService
   */
   appState: Ember.inject.service(),
