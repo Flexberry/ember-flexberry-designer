@@ -129,7 +129,7 @@ export default DS.Transform.extend({
       let menuPath = item.getAttribute('MenuPath') || item.getAttribute('menupath');
       let path = menuPath ? menuPath.split('\\') : [];
       if (currentPath !== menuPath) {
-        currentNodes = this._findOrCreateCurrentNodes(rootTree, copyRootTree, path, 0, i);
+        currentNodes = this._findOrCreateCurrentNodes(rootTree, copyRootTree, path.slice(), 0, i);
         currentPath = menuPath;
       }
 

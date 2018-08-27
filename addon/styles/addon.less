@@ -71,7 +71,7 @@
 .panel-left, .panel-right{
   background: #FFFFFF;
   margin: 1rem 0em;
-  width: 45%;
+  width: calc(~'(100% - 50px)/2');
   display: flex;
   flex-direction: column;
 
@@ -89,7 +89,6 @@
 }
 
 .panel-wrapper{
-  height: -webkit-fill-available;
   max-height: calc(~'100vh - 250px');
   display: flex;
 
@@ -185,7 +184,7 @@
 }
 
 // overflowed tabs dropdown
-.ui.selection.dropdown.overflovwed-dropdown{
+.ui.selection.dropdown.overflowed-dropdown {
   border: none;
   border-bottom: none;
   margin-left: auto;
@@ -201,6 +200,51 @@
       white-space: nowrap;
     }
   }
+}
+
+@blackout-color: rgba(177, 202, 232, 0.47);
+.blackout {
+  opacity: 0.6;
+  background:
+    -webkit-linear-gradient(right bottom, rgba(0, 0, 0, 0) 49.9%, @blackout-color 49.9%, @blackout-color 60%, rgba(0, 0, 0, 0) 60%),
+    -webkit-linear-gradient(right bottom, @blackout-color 10%, rgba(0, 0, 0, 0) 10%);
+  background:
+    -o-linear-gradient(right bottom, rgba(0, 0, 0, 0) 49.9%, @blackout-color 49.9%, @blackout-color 60%, rgba(0, 0, 0, 0) 60%),
+    -o-linear-gradient(right bottom, @blackout-color 10%, rgba(0, 0, 0, 0) 10%);
+  background:
+    linear-gradient(to right bottom, rgba(0, 0, 0, 0) 49.9%, @blackout-color 49.9%, @blackout-color 60%, rgba(0, 0, 0, 0) 60%),
+    linear-gradient(to right bottom, @blackout-color 10%, rgba(0, 0, 0, 0) 10%);
+  background-size: 1em 1em;
+  background-color: #ffffff;
+
+  &::after {
+    content: "\f070";
+    font-family: Icons;
+    font-size: 2em;
+    color: #4f73b0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.ui.table thead th.blackout {
+  position: relative;
+  .blackout();
+}
+
+.ui.table td.blackout::after {
+  content: '';
+}
+
+.flexberry-content .tab.active {
+  overflow-x: auto;
+  padding: 1em 2em;
+}
+
+.list-form-constructor .panel-wrapper {
+  height: -webkit-fill-available;
+  max-height: calc(~'100vh - 475px');
 }
 
 @-moz-document url-prefix() {

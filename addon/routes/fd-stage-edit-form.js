@@ -14,7 +14,7 @@ export default EditFormRoute.extend(FdLoadingForTransitionMixin, {
     Ember.$.ajax({
       type: 'GET',
       xhrFields: { withCredentials: true },
-      url: `${host}/GetCurrentModuleSetting(project=${stagePk})`,
+      url: `${host}/GetCurrentModuleSetting(project='${stagePk}')`,
       success(result) {
         let moduleSettingValue = JSON.parse(result.value);
 

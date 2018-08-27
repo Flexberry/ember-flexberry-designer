@@ -1,6 +1,9 @@
 import Ember from 'ember';
 import joint from 'npm:jointjs';
 
+import { Note } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note';
+import { NoteConnector } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector';
+
 export default Ember.Controller.extend({
   actions: {
     printDiagram: function() {
@@ -32,7 +35,7 @@ export default Ember.Controller.extend({
         model: _this.graph,
       });
 
-      var linkNoteConnector = new joint.shapes.flexberryUml.NoteConnector({
+      var linkNoteConnector = new NoteConnector({
         source: { x:100, y:100 },
         target: { x:300, y:100 },
         attrs: { path: { title:'Коннектор комментария (Note Connector)' } }
@@ -76,7 +79,7 @@ export default Ember.Controller.extend({
 
       _this.graph.addCell([linkNoteConnector, linkObjectFlow, linkTransition, сomplexTransitionHorizon, сomplexTransitionVertical]);
 
-      let note = new joint.shapes.flexberryUml.Note({
+      let note = new Note({
         position: { x: 450, y: 100 },
         size: { width: 100, height: 50 },
         name: 'note',

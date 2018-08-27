@@ -67,7 +67,7 @@ export default EditFormController.extend({
     */
     changeStartClass(value) {
       if (!this.get('readonlyClass')) {
-        let startClass = this.get('implementations').findBy('name', value);
+        let startClass = this.get('implementations').find(i => i.get('name') === value || i.get('nameStr') === value);
         let model = this.get('model');
         Ember.set(model, 'startClass', startClass);
         Ember.set(this, 'startClassName', startClass.get('name'));
@@ -81,7 +81,7 @@ export default EditFormController.extend({
     */
     changeEndClass(value) {
       if (!this.get('readonlyClass')) {
-        let endClass = this.get('implementations').findBy('name', value);
+        let endClass = this.get('implementations').find(i => i.get('name') === value || i.get('nameStr') === value);
         let model = this.get('model');
         Ember.set(model, 'endClass', endClass);
         Ember.set(this, 'endClassName', endClass.get('name'));

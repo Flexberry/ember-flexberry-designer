@@ -1,4 +1,14 @@
-<h3 class="ui header">{{model.tree.0.text}} ({{model.view.name}})</h3>
+<h3 class="ui header">{{t "forms.fd-view-edit-form.caption"}}
+  <div class="sub header">
+    {{#if model.view.name}}
+      {{t "forms.fd-view-edit-form.view"}}: {{model.view.name}}<br>
+    {{/if}}
+    {{#if model.tree.0.text}}
+      {{t "forms.fd-view-edit-form.class"}}: {{model.tree.0.text}}
+    {{/if}}
+  </div>
+
+</h3>
 
 {{#if errorMessages}}
   {{#each errorMessages as |currentError|}}
@@ -23,6 +33,9 @@
       {{#unless readonly}}
         <button type="button" class="ui button save-button" {{action 'saveView'}}>
           {{t "forms.edit-form.save-button-text"}}
+        </button>
+        <button type="submit" class="ui button save-close-button" {{action 'saveAndClose'}}>
+          {{t "forms.edit-form.saveAndClose-button-text"}}
         </button>
       {{/unless}}
       <button type="button" class="ui button close-button" {{action 'close'}}>
@@ -89,7 +102,7 @@
     <div class="panel-right view-attributes">
       <div class="ui segments">
         <div class="ui segment overflow-panel">
-          <table class="ui very basic collapsing celled table">
+          <table class="ui very basic collapsing celled table fd-view-properties-table">
             <thead>
               <tr>
                 <th>{{t "forms.fd-view-edit-form.table-column.type"}}</th>
@@ -133,13 +146,13 @@
 
 {{#fd-config-panel}}
 
-  {{#fd-tabs 
+  {{#fd-tabs
     tabsMenuTheme="vertical tabular"
     class="ui segments horizontal right-tabs"
     tabClick = (action "toggleConfigPanel")
     overflowedTabs=false
     inactiveTabs=true
-    activeTab="none"
+    activeTab=activeTab
     as |tab|
   }}
     <form class="ui form segment">
