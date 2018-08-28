@@ -431,7 +431,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       @method actions.addLeftListForm
     */
     addLeftEditForm() {
-      this.set('state', 'loading');
+      this.get('appState').loading();
 
       let jstreeSelectedNodesLeft = this.get('jstreeSelectedNodesLeft');
       if (jstreeSelectedNodesLeft.length === 0) {
@@ -469,18 +469,18 @@ export default EditFormController.extend(FdWorkPanelToggler, {
               view: savedDevView,
               orderNum: 1
             }).save().then(() => {
-              this.set('state', '');
+              this.get('appState').reset();
               this.transitionToRoute('fd-editform-constructor', savedDevClass.get('id'));
             }, (error) => {
-              this.set('state', '');
+              this.get('appState').reset();
               this.set('error', error);
             });
           }, (error) => {
-            this.set('state', '');
+            this.get('appState').reset();
             this.set('error', error);
           });
         }, (error) => {
-          this.set('state', '');
+          this.get('appState').reset();
           this.set('error', error);
         });
       });

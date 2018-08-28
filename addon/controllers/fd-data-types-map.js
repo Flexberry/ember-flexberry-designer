@@ -6,6 +6,7 @@ import Ember from 'ember';
 
 import FdDataType from '../objects/fd-data-type';
 import { deserialize } from '../utils/fd-type-map-functions';
+import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 
 /**
   Controller for the edit form of the type map.
@@ -13,7 +14,7 @@ import { deserialize } from '../utils/fd-type-map-functions';
   @class FdDataTypesMapController
   @extends <a href="http://emberjs.com/api/classes/Ember.Controller.html">Ember.Controller</a>
 */
-export default Ember.Controller.extend({
+export default Ember.Controller.extend(FdWorkPanelToggler, {
   /**
     @property saveTitleLocaleKey
     @type String

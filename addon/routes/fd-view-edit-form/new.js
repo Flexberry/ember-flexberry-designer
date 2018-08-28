@@ -1,8 +1,9 @@
 import Ember from 'ember';
 import FdAttributesTree from '../../objects/fd-attributes-tree';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode, getDetailView } from '../../utils/fd-attributes-for-tree';
+import FdLoadingForTransitionMixin from '../../mixins/fd-loading-for-transition';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(FdLoadingForTransitionMixin, {
   modelProjection: 'EditFormView',
   modelName: 'fd-dev-view',
   templateName: 'fd-view-edit-form',
