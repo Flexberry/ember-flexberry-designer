@@ -2,8 +2,6 @@
   @module ember-flexberry-designer
 */
 
-import joint from 'npm:jointjs';
-
 import FdUmlLink from './fd-uml-baselink';
 import { Link } from './fd-uml-link';
 

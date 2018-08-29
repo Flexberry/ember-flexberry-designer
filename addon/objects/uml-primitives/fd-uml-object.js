@@ -22,7 +22,6 @@ export default FdUmlElement.extend({
   */
   name: Ember.computed.alias('primitive.Name.Text'),
 
-
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 

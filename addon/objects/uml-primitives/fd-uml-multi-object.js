@@ -8,7 +8,6 @@ import joint from 'npm:jointjs';
 import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-object';
 
-
 /**
   An object that describes an object on the UML diagram.
 
@@ -16,6 +15,7 @@ import { BaseObject } from './fd-uml-object';
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
+
   /**
     The name of the class.
 
@@ -23,7 +23,6 @@ export default FdUmlElement.extend({
     @type String
   */
   name: Ember.computed.alias('primitive.Name.Text'),
-
 
   /**See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 

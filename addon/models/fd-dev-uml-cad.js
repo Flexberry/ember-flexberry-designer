@@ -19,6 +19,8 @@ import FdUmlAssociation from '../objects/uml-primitives/fd-uml-association';
 import FdUmlComposition from '../objects/uml-primitives/fd-uml-composition';
 import FdUmlGeneralization from '../objects/uml-primitives/fd-uml-generalization';
 import FdUmlAggregation from '../objects/uml-primitives/fd-uml-aggregation';
+import FdUmlActiveObject from '../objects/uml-primitives/fd-uml-active-object';
+import FdUmlTemplateClass from '../objects/uml-primitives/fd-uml-template-class';
 
 let Model = CADModel.extend(DevUMLCADMixin, {
   /**
@@ -77,10 +79,17 @@ let Model = CADModel.extend(DevUMLCADMixin, {
         case 'STORMCASE.UML.cad.MoreClasses, UMLCAD':
           result.pushObject(FdUmlMoreClasses.create({ primitive }));
           break;
+
         case 'STORMCASE.UML.cad.NarLink, UMLCAD':
           result.pushObject(FdUmlNAryAssociation.create({ primitive }));
           break;
 
+        case 'STORMCASE.UML.cad.ActiveObject, UMLCAD':
+          result.pushObject(FdUmlActiveObject.create({ primitive }));
+          break;
+        case 'STORMCASE.UML.cad.TemplateClass, UMLCAD':
+          result.pushObject(FdUmlTemplateClass.create({ primitive }));
+          break;
         default:
           /* TODO: throw */ new Error(`Unknown primitive type: '${primitive.$type}'.`);
           break;

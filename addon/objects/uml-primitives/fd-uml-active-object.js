@@ -24,14 +24,6 @@ export default FdUmlElement.extend({
   name: Ember.computed.alias('primitive.Name.Text'),
 
   /**
-    Indicates that the class is in a collapsed state.
-
-    @property collapsed
-    @type Boolean
-  */
-  collapsed: Ember.computed.alias('primitive.Name.IsFolded'),
-
-  /**
     List of class attributes.
 
     @property attributes
@@ -52,30 +44,16 @@ export default FdUmlElement.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'name', 'size', 'position', 'attributes');
-
-    return new NAryAssociation(properties);
+    return new ActiveObject(properties);
 
   },
 });
 
-export let NAryAssociation = BaseObject.define('flexberry.uml.NAryAssociation', {
+export let ActiveObject = BaseObject.define('flexberry.uml.ActiveObject', {
   attrs: {
     text: {
       'text-decoration': 'underline',
-      'font-size': '12'
-    },
-    path: {
-      'd': 'M 0 20 L 50 0 100 20 50 40 Z',
+      'font-weight': 'bold'
     }
-  },
-  heightPadding: 40,
-}, {
-    markup: [
-      '<g class="rotatable">',
-      '<g class="scalable">',
-      '<path class="flexberry-uml-header-rect"/>',
-      '</g>',
-      '<text class="flexberry-uml-header-text"/>',
-      '</g>'
-    ].join(''),
-  });
+  }
+});

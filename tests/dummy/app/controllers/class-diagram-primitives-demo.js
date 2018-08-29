@@ -9,6 +9,10 @@ import { NoteConnector } from 'ember-flexberry-designer/objects/uml-primitives/f
 import { Association } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-association';
 import { Composition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-composition';
 import { Generalization } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-generalization';
+import { NAryAssociation } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-naryassociation';
+import { Instance } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-instance';
+import { MultiObject } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-multi-object';
+import { ActiveObject } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-active-object';
 
 export default Ember.Controller.extend({
   actions: {
@@ -144,7 +148,7 @@ export default Ember.Controller.extend({
         methods: methods,
       });
 
-      let nAryAssociation = new joint.shapes.flexberry.uml.NAryAssociation({
+      let nAryAssociation = new NAryAssociation({
         position: { x: 550, y: 30 },
         size: { width: 150, height: 75 },
         name: 'n-ary Association'
@@ -157,18 +161,18 @@ export default Ember.Controller.extend({
         methods: methods,
       });
 
-      var instance = new joint.shapes.flexberry.uml.Instance({
+      var instance = new Instance({
         position: { x: 350, y: 400 },
         name: 'Instance'
       });
 
-      var multiObject = new joint.shapes.flexberry.uml.MultiObject({
+      var multiObject = new MultiObject({
         position: { x: 350, y: 500 },
         size: { width: 150, height: 40 },
         name: 'multiObject'
       });
 
-      var activeObj = new joint.shapes.flexberry.uml.ActiveObject({
+      var activeObj = new ActiveObject({
         position: { x: 350, y: 600 },
         name: 'Active object'
       });

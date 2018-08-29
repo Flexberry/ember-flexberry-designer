@@ -3,7 +3,6 @@
 */
 
 import Ember from 'ember';
-import joint from 'npm:jointjs';
 
 import '../../utils/fd-common-primitives';
 
