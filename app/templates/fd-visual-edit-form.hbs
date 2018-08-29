@@ -1,4 +1,9 @@
-<h3 class="ui header">{{t 'forms.fd-visual-edit-form.caption'}}</h3>
+<h3 class="ui header">
+  {{t 'forms.fd-visual-edit-form.caption'}}
+  {{#if readonly}}
+    ({{t 'forms.fd-edit-form.readonly-mode'}})
+  {{/if}}
+</h3>
 {{#if errorMessages}}
   {{#each errorMessages as |currentError|}}
     {{ui-message
