@@ -18,10 +18,13 @@ import FdUmlNoteConnector from '../objects/uml-primitives/fd-uml-note-connector'
 import FdUmlAssociation from '../objects/uml-primitives/fd-uml-association';
 import FdUmlComposition from '../objects/uml-primitives/fd-uml-composition';
 import FdUmlGeneralization from '../objects/uml-primitives/fd-uml-generalization';
-import FdUmlAggregation from '../objects/uml-primitives/fd-uml-aggregation';
+import FdUmlQAggregation from '../objects/uml-primitives/fd-uml-q-aggregation';
 import FdUmlActiveObject from '../objects/uml-primitives/fd-uml-active-object';
 import FdUmlTemplateClass from '../objects/uml-primitives/fd-uml-template-class';
 import FdUmlPackage from '../objects/uml-primitives/fd-uml-package';
+import FdUmlNestedAssociation from '../objects/uml-primitives/fd-uml-nested-association';
+import FdUmlAggregation from '../objects/uml-primitives/fd-uml-aggregation';
+import FdUmlDependency from '../objects/uml-primitives/fd-uml-dependency';
 
 let Model = CADModel.extend(DevUMLCADMixin, {
   /**
@@ -53,8 +56,8 @@ let Model = CADModel.extend(DevUMLCADMixin, {
           result.pushObject(FdUmlAssociation.create({ primitive }));
           break;
 
-        case 'STORMCASE.UML.cad.Aggregation, UMLCAD':
-          result.pushObject(FdUmlAggregation.create({ primitive }));
+        case 'STORMCASE.UML.cad.QualifiedAggregationLink, UMLCAD':
+          result.pushObject(FdUmlQAggregation.create({ primitive }));
           break;
 
         case 'STORMCASE.UML.cad.Composition, UMLCAD':
@@ -95,6 +98,18 @@ let Model = CADModel.extend(DevUMLCADMixin, {
 
         case 'STORMCASE.UML.cad.Package, UMLCAD':
           result.pushObject(FdUmlPackage.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.cad.NestedClassAssoc, UMLCAD':
+          result.pushObject(FdUmlNestedAssociation.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.cad.Aggregation, UMLCAD':
+          result.pushObject(FdUmlAggregation.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.cad.Dependency, UMLCAD':
+          result.pushObject(FdUmlDependency.create({ primitive }));
           break;
 
         default:

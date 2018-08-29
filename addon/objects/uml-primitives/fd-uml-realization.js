@@ -52,7 +52,7 @@ export default FdUmlLink.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels', 'text');
-    return new Aggregation(properties);
+    return new Realization(properties);
   },
 });
 
@@ -65,6 +65,9 @@ export default FdUmlLink.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let Aggregation = Link.define('flexberry.uml.ClassDiagramAggregation', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' } },
+export let Realization = Link.define('flexberry.uml.Realization', {
+  attrs: {
+    '.marker-target': { d: 'M 0 0 z' },
+    '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '7 2' },
+  },
 });

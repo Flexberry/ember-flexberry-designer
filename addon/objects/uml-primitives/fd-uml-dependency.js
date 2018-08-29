@@ -1,0 +1,41 @@
+/**
+  @module ember-flexberry-designer
+*/
+
+import FdUmlLink from './fd-uml-baselink';
+import { Link } from './fd-uml-link';
+
+/**
+  An object that describes a link of the inheritance type on the UML diagram.
+
+  @class FdUmlGeneralization
+  @extends FdUmlLink
+*/
+export default FdUmlLink.extend({
+  /**
+    See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
+
+    @method JointJS
+  */
+  JointJS() {
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'text');
+    return new Dependency(properties);
+  },
+});
+
+/**
+  Defines the JointJS link, which represents a Dependency in the UML diagram.
+
+  @for FdUmlDependency
+  @class Dependency
+  @extends Link
+  @namespace flexberry.uml
+  @constructor
+*/
+export let Dependency = Link.define('flexberry.uml.Dependency', {
+  attrs: {
+    text: { 'font-size':'12', 'font-family':'Arial, helvetica, sans-serif' },
+    '.marker-source': { d: 'M 0 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' },
+    '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '7 2' },
+  },
+});

@@ -6,16 +6,15 @@ import Ember from 'ember';
 
 import '../../utils/fd-common-primitives';
 
-import FdUmlLink from './fd-uml-baselink';
+import FdUmlBaseLink from './fd-uml-baselink';
 import { Link } from './fd-uml-link';
-
 /**
   An object that describes a link of the association type on the UML diagram.
 
   @class FdUmlAssociation
   @extends FdUmlLink
 */
-export default FdUmlLink.extend({
+export default FdUmlBaseLink.extend({
   /**
     The start multiplicity of a link.
 
@@ -52,7 +51,7 @@ export default FdUmlLink.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels', 'text');
-    return new Aggregation(properties);
+    return new NestedClassAssociation(properties);
   },
 });
 
@@ -61,10 +60,13 @@ export default FdUmlLink.extend({
 
   @for FdUmlAssociation
   @class Association
-  @extends flexberry.uml.Link
+  @extends flexberr.uml.NestedClassAssociation
   @namespace flexberry.uml
   @constructor
 */
-export let Aggregation = Link.define('flexberry.uml.ClassDiagramAggregation', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' } },
+export let NestedClassAssociation = Link.define('flexberry.uml.NestedClassAssociation', {
+  attrs: { '.marker-target': { d: 'M 10, 10 ' +
+                'm -8, 0 ' +
+                'a 8,8 0 1,0 16,0 ' +
+                'a 8,8 0 1,0 -16,0 M 10 2 L 10 2 L 10 18', fill: 'transparent' } }
 });

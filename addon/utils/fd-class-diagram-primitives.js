@@ -69,44 +69,44 @@ import { BaseClass, Class } from '../objects/uml-primitives/fd-uml-class';
 //   }
 // });
 
-joint.dia.Link.define('flexberry.uml.Realization', {
-  attrs: {
-    '.marker-target': { d: 'M 0 0 z' },
-    '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '7 2' },
-  },
-});
+// joint.dia.Link.define('flexberry.uml.Realization', {
+//   attrs: {
+//     '.marker-target': { d: 'M 0 0 z' },
+//     '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '7 2' },
+//   },
+// });
 
-joint.shapes.flexberry.uml.BaseLink.define('flexberry.uml.ClassDiagramAggregation', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' } },
-});
+// joint.shapes.flexberry.uml.BaseLink.define('flexberry.uml.ClassDiagramAggregation', {
+//   attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' } },
+// });
 
-joint.dia.Link.define('flexberry.uml.NestedClassAssociation', {
-  attrs: { '.marker-target': { d: 'M 10, 10 ' +
-                'm -8, 0 ' +
-                'a 8,8 0 1,0 16,0 ' +
-                'a 8,8 0 1,0 -16,0 M 10 2 L 10 2 L 10 18', fill: 'transparent' } }
-});
+// joint.dia.Link.define('flexberry.uml.NestedClassAssociation', {
+//   attrs: { '.marker-target': { d: 'M 10, 10 ' +
+//                 'm -8, 0 ' +
+//                 'a 8,8 0 1,0 16,0 ' +
+//                 'a 8,8 0 1,0 -16,0 M 10 2 L 10 2 L 10 18', fill: 'transparent' } }
+// });
 
-BaseClass.define('flexberry.uml.Package', {
-  attrs: {
-    '.flexberry-uml-header-text': {
-      'text-decoration': 'underline',
-      'font-weight': 'normal'
-    },
-    '.flexberry-uml-body-text': {
-      'ref-y': 0.5,
-      'ref-x': 0.5,
-      'text-anchor': 'middle',
-      'y-alignment': 'middle'
-    },
-  },
-}, {
-  markup: [
-    '<g class="rotatable">',
-    '<g class="scalable">',
-    '<g transform="scale(0.8,1)"><rect class="flexberry-uml-header-rect" /></g><rect class="flexberry-uml-body-rect"/>',
-    '</g>',
-    '<text class="flexberry-uml-header-text"/><text class="flexberry-uml-body-text"/>',
-    '</g>'
-  ].join(''),
-});
+// BaseClass.define('flexberry.uml.Package', {
+//   attrs: {
+//     '.flexberry-uml-header-text': {
+//       'text-decoration': 'underline',
+//       'font-weight': 'normal'
+//     },
+//     '.flexberry-uml-body-text': {
+//       'ref-y': 0.5,
+//       'ref-x': 0.5,
+//       'text-anchor': 'middle',
+//       'y-alignment': 'middle'
+//     },
+//   },
+// }, {
+//   markup: [
+//     '<g class="rotatable">',
+//     '<g class="scalable">',
+//     '<g transform="scale(0.8,1)"><rect class="flexberry-uml-header-rect" /></g><rect class="flexberry-uml-body-rect"/>',
+//     '</g>',
+//     '<text class="flexberry-uml-header-text"/><text class="flexberry-uml-body-text"/>',
+//     '</g>'
+//   ].join(''),
+// });
