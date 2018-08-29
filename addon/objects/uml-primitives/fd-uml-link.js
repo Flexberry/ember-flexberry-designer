@@ -12,8 +12,16 @@ import joint from 'npm:jointjs';
   @extends FdUmlPrimitive
 */
 export default FdUmlBaseLink.extend({
+
+  /**
+    The array of labels for this link.
+
+    @property labels
+    @type Array
+  */
+
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'source', 'target', 'vertices', 'text');
+    let properties = this.getProperties('id', 'name', 'source', 'target', 'vertices', 'text', 'labels');
     return new Link(properties);
   }
 });

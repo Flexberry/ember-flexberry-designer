@@ -42,6 +42,13 @@ export default FdUmlPrimitive.extend({
     return this.get('primitive.Name.Text');
   }),
 
+  labels: Ember.computed('startMultiplicity', 'endMultiplicity', function () {
+    return [
+      { attrs: { text: { text: this.get('startMultiplicity') } } },
+      { attrs: { text: { text: this.get('endMultiplicity') } } },
+    ];
+  }),
+
   /**
     The vertices through which this link passes. An array of objects with `X` and `Y` coordinates, for example `[{ x: 100, y: 100 }]`.
 
@@ -56,5 +63,10 @@ export default FdUmlPrimitive.extend({
     }
 
     return vertices;
-  })
+  }),
+
+  JointJS() {
+    let properties = this.getProperties('id', 'name', 'source', 'target', 'vertices', 'text', 'labels');
+    return new BaseLink(properties);
+  }
 });

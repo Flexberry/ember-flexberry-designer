@@ -25,6 +25,8 @@ import FdUmlPackage from '../objects/uml-primitives/fd-uml-package';
 import FdUmlNestedAssociation from '../objects/uml-primitives/fd-uml-nested-association';
 import FdUmlAggregation from '../objects/uml-primitives/fd-uml-aggregation';
 import FdUmlDependency from '../objects/uml-primitives/fd-uml-dependency';
+import FdUmlQAssociation from '../objects/uml-primitives/fd-uml-q-association';
+import FdUmlQComposition from '../objects/uml-primitives/fd-uml-q-composition';
 
 let Model = CADModel.extend(DevUMLCADMixin, {
   /**
@@ -53,6 +55,14 @@ let Model = CADModel.extend(DevUMLCADMixin, {
           break;
 
         case 'STORMCASE.UML.cad.Association, UMLCAD':
+          result.pushObject(FdUmlAssociation.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.cad.ObjectAssociation, UMLCAD':
+          result.pushObject(FdUmlAssociation.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.cad.NaryLink, UMLCAD':
           result.pushObject(FdUmlAssociation.create({ primitive }));
           break;
 
@@ -110,6 +120,13 @@ let Model = CADModel.extend(DevUMLCADMixin, {
 
         case 'STORMCASE.UML.cad.Dependency, UMLCAD':
           result.pushObject(FdUmlDependency.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.cad.QualifiedLink, UMLCAD':
+          result.pushObject(FdUmlQAssociation.create({ primitive }));
+          break;
+        case 'STORMCASE.UML.cad.QualifiedCompositionLink, UMLCAD':
+          result.pushObject(FdUmlQComposition.create({ primitive }));
           break;
 
         default:
