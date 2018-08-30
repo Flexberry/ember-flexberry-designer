@@ -32,25 +32,12 @@ export default FdUmlBaseLink.extend({
   endMultiplicity: Ember.computed.alias('primitive.EndMultTxt.Text'),
 
   /**
-    The array of labels for this link.
-
-    @property labels
-    @type Array
-  */
-  labels: Ember.computed('startMultiplicity', 'endMultiplicity', function() {
-    return [
-      { attrs: { text: { text: this.get('startMultiplicity') } } },
-      { attrs: { text: { text: this.get('endMultiplicity') } } },
-    ];
-  }),
-
-  /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels', 'text');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
     return new NestedClassAssociation(properties);
   },
 });

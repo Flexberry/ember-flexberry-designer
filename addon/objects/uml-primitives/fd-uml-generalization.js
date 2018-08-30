@@ -18,7 +18,7 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'text');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
     return new Generalization(properties);
   },
 });

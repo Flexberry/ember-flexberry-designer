@@ -29,13 +29,15 @@ export default FdUmlBaseLink.extend({
   */
   endMultiplicity: Ember.computed.alias('primitive.EndMultTxt.Text'),
 
+  description: Ember.computed.alias('primitive.Name.Text'),
+
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels', 'text');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
     return new Association(properties);
   },
 });

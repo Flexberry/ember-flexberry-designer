@@ -21,7 +21,7 @@ export default FdUmlBaseLink.extend({
   */
 
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'source', 'target', 'vertices', 'text', 'labels');
+    let properties = this.getProperties('id', 'name', 'source', 'target', 'vertices', 'labels');
     return new Link(properties);
   }
 });
@@ -43,6 +43,7 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
   }]
 }, {
     setLabelText: function (label, text) {
+      console.log(`label: ${label}; text: ${text}`);
       switch (label) {
         case 'startMultiplicity':
           this.label(0, { attrs: { text: { text: text } } });

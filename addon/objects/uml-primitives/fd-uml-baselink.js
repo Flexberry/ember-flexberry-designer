@@ -38,14 +38,13 @@ export default FdUmlPrimitive.extend({
     @property target
     @type Object
   */
-  text: Ember.computed('primitive.Name.Text', function() {
-    return this.get('primitive.Name.Text');
-  }),
+  description: Ember.computed.alias('primitive.Name.Text'),
 
   labels: Ember.computed('startMultiplicity', 'endMultiplicity', function () {
     return [
       { attrs: { text: { text: this.get('startMultiplicity') } } },
       { attrs: { text: { text: this.get('endMultiplicity') } } },
+      { attrs: { text: { text: this.get('description') } } },
     ];
   }),
 
@@ -63,10 +62,5 @@ export default FdUmlPrimitive.extend({
     }
 
     return vertices;
-  }),
-
-  JointJS() {
-    let properties = this.getProperties('id', 'name', 'source', 'target', 'vertices', 'text', 'labels');
-    return new BaseLink(properties);
-  }
+  })
 });
