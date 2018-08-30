@@ -54,15 +54,15 @@ export let Note = BaseObject.define('flexberry.uml.Note', {
       'y-alignment': 'start',
     },
     '.corner-rect': {
-      'ref':'.flexberry-uml-header-rect',
+      'ref': '.flexberry-uml-header-rect',
       'stroke': 'white',
-      'stroke-width':'2'
+      'stroke-width': '2'
     },
     '.corner': {
-      'ref':'.flexberry-uml-header-rect',
+      'ref': '.flexberry-uml-header-rect',
       'stroke': 'black',
-      'stroke-width':'1',
-      'd':'M0,0 L0,10 L10,10 L0,0'
+      'stroke-width': '1',
+      'd': 'M0,0 L0,10 L10,10 L0,0'
     },
   },
 }, {

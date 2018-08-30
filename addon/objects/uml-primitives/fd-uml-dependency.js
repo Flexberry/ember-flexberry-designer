@@ -35,7 +35,7 @@ export default FdUmlLink.extend({
 */
 export let Dependency = Link.define('flexberry.uml.Dependency', {
   attrs: {
-    text: { 'font-size':'12', 'font-family':'Arial, helvetica, sans-serif' },
+    text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' },
     '.marker-source': { d: 'M 0 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' },
     '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '7 2' },
   },

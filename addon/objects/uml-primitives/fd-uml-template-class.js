@@ -93,7 +93,7 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
     },
   },
 
-  params:[],
+  params: [],
 }, {
   markup: [
     '<g class="rotatable">',

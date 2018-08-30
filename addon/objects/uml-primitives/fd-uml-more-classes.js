@@ -37,7 +37,7 @@ export default FdUmlElement.extend({
 export let MoreClasses = joint.shapes.basic.Generic.define('flexberry.uml.MoreClasses', {
   size: { width: 50, height: 10 },
   attrs: {
-    circle: { fill: 'black', r:'10' },
+    circle: { fill: 'black', r: '10' },
   },
 }, {
   markup: [
@@ -48,4 +48,3 @@ export let MoreClasses = joint.shapes.basic.Generic.define('flexberry.uml.MoreCl
       '</g>'
   ].join(''),
 });
-
