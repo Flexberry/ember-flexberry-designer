@@ -42,8 +42,8 @@ export default FdUmlPrimitive.extend({
 
   labels: Ember.computed('startMultiplicity', 'endMultiplicity', function () {
     return [
-      { attrs: { text: { text: this.get('startMultiplicity') } } },
       { attrs: { text: { text: this.get('endMultiplicity') } } },
+      { attrs: { text: { text: this.get('startMultiplicity') } } },
       { attrs: { text: { text: this.get('description') } } },
     ];
   }),
