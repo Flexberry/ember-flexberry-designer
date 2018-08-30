@@ -30,6 +30,30 @@ export default FdUmlBaseLink.extend({
     @type String
   */
   endMultiplicity: Ember.computed.alias('primitive.EndMultTxt.Text'),
+
+  /**
+    End role text.
+
+    @property endRoleTxt
+    @type String
+  */
+  endRoleTxt: Ember.computed.alias('primitive.RightText.Text'),
+
+  /**
+    Start role text.
+
+    @property startRoleTxt
+    @type String
+  */
+  startRoleTxt: Ember.computed.alias('primitive.LeftText.Text'),
+
+  /**
+    Link description.
+
+    @property description
+    @type String
+  */
+  description: Ember.computed.alias('primitive.Name.Text'),
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 

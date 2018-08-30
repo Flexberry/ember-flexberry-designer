@@ -40,11 +40,13 @@ export default FdUmlPrimitive.extend({
   */
   description: Ember.computed.alias('primitive.Name.Text'),
 
-  labels: Ember.computed('startMultiplicity', 'endMultiplicity', function () {
+  labels: Ember.computed('startMultiplicity', 'endMultiplicity', 'startRoleTxt', 'endRoleTxt', function () {
     return [
       { attrs: { text: { text: this.get('endMultiplicity') } } },
       { attrs: { text: { text: this.get('startMultiplicity') } } },
       { attrs: { text: { text: this.get('description') } } },
+      { attrs: { text: { text: this.get('endRoleTxt') } } },
+      { attrs: { text: { text: this.get('startRoleTxt') } } },
     ];
   }),
 

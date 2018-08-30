@@ -31,15 +31,15 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
     text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }
   },
   labels: [{
-    position: { distance: 0.05, offset: -10 }, attrs: { text: { text: '' } } //startMultiplicity
+    position: { distance: 0.05, offset: -12 }, attrs: { text: { text: '' } } //endMultiplicity
   }, {
-    position: { distance: 0.95, offset: -10 }, attrs: { text: { text: '' } } //endMultiplicity
+    position: { distance: 0.95, offset: -12 }, attrs: { text: { text: '' } } //startMultiplicity
   }, {
     textAnchor: 'middle', attrs: { text: { text: '' } } //description
   }, {
-    position: { distance: 0.05, offset: 10 }, attrs: { text: { text: '' } }
+    position: { distance: 0.05, offset: 12 }, attrs: { text: { text: '' } } //endRoleTxt
   }, {
-    position: { distance: 0.95, offset: 10 }, attrs: { text: { text: '' } }
+    position: { distance: 0.95, offset: 12 }, attrs: { text: { text: '' } } //startRoleTxt
   }]
 }, {
     setLabelText: function (label, text) {
