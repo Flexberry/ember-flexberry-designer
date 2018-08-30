@@ -98,9 +98,8 @@ export default EditFormController.extend({
     @method _setModelProperties
     @private
   */
-   _setModelProperties() {
-     let name = this.get('model.name');
-     this.set('model.nameStr', name);
-   }
-
+  _setModelProperties() {
+    let name = this.get('model.name');
+    this.set('model.nameStr', name);
+  }
 });
