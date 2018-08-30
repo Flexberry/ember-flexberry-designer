@@ -9,23 +9,30 @@ import joint from 'npm:jointjs';
   An object that defines any link on the UML diagram.
 
   @class FdUmlLink
-  @extends FdUmlPrimitive
+  @extends FdUmlBaseLink
 */
 export default FdUmlBaseLink.extend({
 
   /**
-    The array of labels for this link.
+    See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
-    @property labels
-    @type Array
+    @method JointJS
   */
-
   JointJS() {
     let properties = this.getProperties('id', 'name', 'source', 'target', 'vertices', 'labels');
     return new Link(properties);
   }
 });
 
+/**
+  Defines the JointJS link, which represents a Dependency in the UML diagram.
+
+  @for FdUmlLink
+  @class Link
+  @extends dia.Link
+  @namespace flexberry.uml
+  @constructor
+*/
 export let Link = joint.dia.Link.define('flexberry.uml.Link', {
   attrs: {
     text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }

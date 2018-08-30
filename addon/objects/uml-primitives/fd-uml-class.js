@@ -14,6 +14,7 @@ import FdUmlElement from './fd-uml-element';
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
+
   /**
     The name of the class.
 
@@ -39,7 +40,7 @@ export default FdUmlElement.extend({
   collapsed: Ember.computed.alias('primitive.Folded'),
 
   /**
-    List of class attributes.
+    List of attributes of the class.
 
     @property attributes
     @type Array

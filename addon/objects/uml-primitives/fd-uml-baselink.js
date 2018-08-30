@@ -8,10 +8,11 @@ import FdUmlPrimitive from './fd-uml-primitive';
 /**
   An object that defines any link on the UML diagram.
 
-  @class FdUmlLink
+  @class FdUmlBaseLink
   @extends FdUmlPrimitive
 */
 export default FdUmlPrimitive.extend({
+
   /**
     An object with an `id` of another UML primitive, which is the source, for example `{ id: '1' }`.
 
@@ -33,13 +34,19 @@ export default FdUmlPrimitive.extend({
   }),
 
   /**
-    Stored text.
+    Link description.
 
-    @property target
-    @type Object
+    @property description
+    @type String
   */
   description: Ember.computed.alias('primitive.Name.Text'),
 
+  /**
+    An array containing all the labels.
+
+    @property labels
+    @type Array
+  */
   labels: Ember.computed('startMultiplicity', 'endMultiplicity', 'startRoleTxt', 'endRoleTxt', function () {
     return [
       { attrs: { text: { text: this.get('endMultiplicity') } } },

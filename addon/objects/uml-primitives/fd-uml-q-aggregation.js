@@ -8,9 +8,9 @@ import FdUmlLink from './fd-uml-baselink';
 import { Link } from './fd-uml-link';
 
 /**
-  An object that describes a link of the association type on the UML diagram.
+  An object that describes a link of the `Qualified aggregation` type on the UML diagram.
 
-  @class FdUmlAssociation
+  @class FdUmlQualifiedAssociation
   @extends FdUmlLink
 */
 export default FdUmlLink.extend({
@@ -66,11 +66,11 @@ export default FdUmlLink.extend({
 });
 
 /**
-  Defines the JointJS link, which represents a association in the UML diagram.
+  Defines the JointJS link, which represents a Qualified aggregation in the UML diagram.
 
-  @for FdUmlAssociation
-  @class Association
-  @extends flexberry.uml.Link
+  @for FdUmlQualifiedAggregation
+  @class QualifiedAggregation
+  @extends Link
   @namespace flexberry.uml
   @constructor
 */

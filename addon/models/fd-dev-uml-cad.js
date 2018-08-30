@@ -129,6 +129,10 @@ let Model = CADModel.extend(DevUMLCADMixin, {
           result.pushObject(FdUmlQComposition.create({ primitive }));
           break;
 
+        case 'STORMCASE.UML.cad.ObjectAssociation, UMLCAD':
+          result.pushObject(FdUmlAssociation.create({ primitive }));
+          break;
+
         default:
           /* TODO: throw */ new Error(`Unknown primitive type: '${primitive.$type}'.`);
           break;

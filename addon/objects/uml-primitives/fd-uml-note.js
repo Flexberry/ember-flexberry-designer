@@ -5,10 +5,7 @@
 import Ember from 'ember';
 import joint from 'npm:jointjs';
 
-//import '../../utils/fd-common-primitives';
-
 import FdUmlElement from './fd-uml-element';
-
 import { BaseObject } from './fd-uml-object';
 
 /**
@@ -18,6 +15,7 @@ import { BaseObject } from './fd-uml-object';
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
+
   /**
     The name of the note, the content is actually.
 
@@ -42,7 +40,7 @@ export default FdUmlElement.extend({
 
   @for FdUmlNote
   @class Note
-  @extends flexberry.uml.BaseObject
+  @extends BaseObject
   @namespace flexberry.uml
   @constructor
 */

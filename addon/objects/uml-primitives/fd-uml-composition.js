@@ -1,6 +1,7 @@
 /**
   @module ember-flexberry-designer
 */
+import Ember from 'ember';
 
 import FdUmlLink from './fd-uml-baselink';
 import { Link } from './fd-uml-link';
@@ -12,6 +13,7 @@ import { Link } from './fd-uml-link';
   @extends FdUmlLink
 */
 export default FdUmlLink.extend({
+
   /**
     The start multiplicity of a link.
 
@@ -51,6 +53,7 @@ export default FdUmlLink.extend({
     @type String
   */
   description: Ember.computed.alias('primitive.Name.Text'),
+
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 

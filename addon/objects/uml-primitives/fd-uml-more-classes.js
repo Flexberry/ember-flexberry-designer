@@ -2,12 +2,11 @@
   @module ember-flexberry-designer
 */
 
-  import joint from 'npm:jointjs';
-
+import joint from 'npm:jointjs';
 import FdUmlElement from './fd-uml-element';
 
 /**
-  An object that describes a class on the UML diagram.
+  An object that describes a 'more classes' object on the UML diagram.
 
   @class FdUmlMoreClasses
   @extends FdUmlElement
@@ -23,16 +22,15 @@ export default FdUmlElement.extend({
     let properties = this.getProperties('id', 'position');
 
     return new MoreClasses(properties);
-
   },
 });
 
 /**
-  Defines the JointJS element, which represents the UML class in collapsed state.
+  Defines the JointJS object, which represents a 'MoreClasses' object in the UML diagram.
 
-  @for FdUmlClass
+  @for FdUmlMoreClasses
   @class MoreClasses
-  @extends flexberry.uml.MoreClasses
+  @extends basic.Generic
   @namespace flexberry.uml
   @constructor
 */

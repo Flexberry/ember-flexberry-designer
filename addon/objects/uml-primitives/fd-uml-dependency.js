@@ -6,12 +6,13 @@ import FdUmlLink from './fd-uml-baselink';
 import { Link } from './fd-uml-link';
 
 /**
-  An object that describes a link of the inheritance type on the UML diagram.
+  An object that describes a link of the dependency type on the UML diagram.
 
-  @class FdUmlGeneralization
+  @class FdUmlDependency
   @extends FdUmlLink
 */
 export default FdUmlLink.extend({
+
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 

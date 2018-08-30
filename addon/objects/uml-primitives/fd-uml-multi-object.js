@@ -9,9 +9,9 @@ import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-object';
 
 /**
-  An object that describes an object on the UML diagram.
+  An object that describes a Multiobject on the UML diagram.
 
-  @class FdUmlObject
+  @class FdUmlMultiObject
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
@@ -34,6 +34,15 @@ export default FdUmlElement.extend({
   },
 });
 
+/**
+  Defines the JointJS object, which represents a 'MoreClasses' object in the UML diagram.
+
+  @for FdUmlMoreClasses
+  @class MultiObject
+  @extends BaseObject
+  @namespace flexberry.uml
+  @constructor
+*/
 export let MultiObject = BaseObject.define('flexberry.uml.MultiObject', {
   attrs: {
     text: {

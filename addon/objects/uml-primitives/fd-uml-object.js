@@ -14,6 +14,7 @@ import FdUmlElement from './fd-uml-element';
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
+
   /**
     The name of the class.
 
@@ -33,6 +34,15 @@ export default FdUmlElement.extend({
   },
 });
 
+/**
+  Defines the JointJS object, which represents a BaseObject.
+
+  @for FdUmlBaseObject
+  @class BaseObject
+  @extends basic.Generic
+  @namespace flexberry.uml
+  @constructor
+*/
 export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObject', {
   attrs: {
     // rect: { 'width': 100 },

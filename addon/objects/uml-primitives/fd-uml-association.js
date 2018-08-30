@@ -6,19 +6,20 @@ import Ember from 'ember';
 
 import FdUmlBaseLink from './fd-uml-baselink';
 import { Link } from './fd-uml-link';
+
 /**
-  An object that describes a link of the association type on the UML diagram.
+  An object that describes an association link on the UML diagram.
 
   @class FdUmlAssociation
-  @extends FdUmlLink
+  @extends FdUmlBaseLink
 */
 export default FdUmlBaseLink.extend({
   /**
-  The start multiplicity of a link.
+    The start multiplicity of a link.
 
-  @property startMultiplicity
-  @type String
-*/
+    @property startMultiplicity
+    @type String
+  */
   startMultiplicity: Ember.computed.alias('primitive.StartMultTxt.Text'),
 
   /**
@@ -52,6 +53,7 @@ export default FdUmlBaseLink.extend({
     @type String
   */
   description: Ember.computed.alias('primitive.Name.Text'),
+
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
@@ -64,7 +66,7 @@ export default FdUmlBaseLink.extend({
 });
 
 /**
-  Defines the JointJS link, which represents a association in the UML diagram.
+  Defines the JointJS link, which represents an association in the UML diagram.
 
   @for FdUmlAssociation
   @class Association

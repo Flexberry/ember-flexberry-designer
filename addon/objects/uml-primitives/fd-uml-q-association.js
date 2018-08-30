@@ -4,17 +4,16 @@
 
 import Ember from 'ember';
 
-import '../../utils/fd-common-primitives';
-
 import FdUmlBaseLink from './fd-uml-baselink';
 import { Link } from './fd-uml-link';
 /**
-  An object that describes a link of the association type on the UML diagram.
+  An object that describes a link of the Qualified association type on the UML diagram.
 
   @class FdUmlAssociation
   @extends FdUmlLink
 */
 export default FdUmlBaseLink.extend({
+
   /**
     The start multiplicity of a link.
 
@@ -54,6 +53,7 @@ export default FdUmlBaseLink.extend({
     @type String
   */
   description: Ember.computed.alias('primitive.Name.Text'),
+
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
@@ -70,7 +70,7 @@ export default FdUmlBaseLink.extend({
 
   @for FdUmlAssociation
   @class Association
-  @extends flexberr.uml.BaseLink
+  @extends Link
   @namespace flexberry.uml
   @constructor
 */

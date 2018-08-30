@@ -5,13 +5,12 @@
 import Ember from 'ember';
 
 import { Class } from './fd-uml-class';
-
 import FdUmlElement from './fd-uml-element';
 
 /**
   An object that describes a class on the UML diagram.
 
-  @class FdUmlPropertyObject
+  @class FdUmlTemplateClass
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
@@ -24,9 +23,9 @@ export default FdUmlElement.extend({
   name: Ember.computed.alias('primitive.Name.Text'),
 
   /**
-    The name of the class.
+    Params textbox.
 
-    @property name
+    @property params
     @type String
   */
   params: Ember.computed.alias('primitive.TemplateTxt.Text'),
@@ -64,6 +63,15 @@ export default FdUmlElement.extend({
   },
 });
 
+/**
+  Defines the JointJS object, which represents a TemplateClass on the UML diagram.
+
+  @for FdUmlBaseObject
+  @class TemplateClass
+  @extends Class
+  @namespace flexberry.uml
+  @constructor
+*/
 export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
   attrs: {
     '.flexberry-uml-params-rect': {

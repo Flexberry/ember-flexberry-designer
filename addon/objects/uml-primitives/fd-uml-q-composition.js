@@ -10,12 +10,13 @@ import FdUmlLink from './fd-uml-baselink';
 import { Link } from './fd-uml-link';
 
 /**
-  An object that describes a link of the association type on the UML diagram.
+  An object that describes a link of the `Qualified Composition` type on the UML diagram.
 
-  @class FdUmlAssociation
+  @class FdUmlQualifiedComposition
   @extends FdUmlLink
 */
 export default FdUmlLink.extend({
+
   /**
     The start multiplicity of a link.
 
@@ -68,11 +69,11 @@ export default FdUmlLink.extend({
 });
 
 /**
-  Defines the JointJS link, which represents a association in the UML diagram.
+  Defines the JointJS link, which represents a Qualified Composition in the UML diagram.
 
-  @for FdUmlAssociation
-  @class Association
-  @extends flexberry.uml.Link
+  @for FdUmlQualifiedComposition
+  @class QualifiedComposition
+  @extends Link
   @namespace flexberry.uml
   @constructor
 */

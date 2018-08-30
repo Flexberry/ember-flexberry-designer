@@ -4,15 +4,13 @@
 
 import Ember from 'ember';
 
-import '../../utils/fd-common-primitives';
-
 import FdUmlBaseLink from './fd-uml-baselink';
 import { Link } from './fd-uml-link';
 /**
   An object that describes a link of the association type on the UML diagram.
 
-  @class FdUmlAssociation
-  @extends FdUmlLink
+  @class FdUmlNestedClassAssociation
+  @extends FdUmlBaseLink
 */
 export default FdUmlBaseLink.extend({
   /**
@@ -43,11 +41,11 @@ export default FdUmlBaseLink.extend({
 });
 
 /**
-  Defines the JointJS link, which represents a association in the UML diagram.
+  Defines the JointJS link, which represents a NestedClassAssociation in the UML diagram.
 
-  @for FdUmlAssociation
-  @class Association
-  @extends flexberr.uml.NestedClassAssociation
+  @for FdUmlNestedClassAssociation
+  @class NestedClassAssociation
+  @extends Link
   @namespace flexberry.uml
   @constructor
 */

@@ -15,8 +15,9 @@ import FdUmlElement from './fd-uml-element';
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
+
   /**
-    The name of the class.
+    The name of the ActiveObject.
 
     @property name
     @type String
@@ -24,7 +25,7 @@ export default FdUmlElement.extend({
   name: Ember.computed.alias('primitive.Name.Text'),
 
   /**
-    List of class attributes.
+    List of object's attributes.
 
     @property attributes
     @type Array
@@ -49,6 +50,15 @@ export default FdUmlElement.extend({
   },
 });
 
+/**
+  Defines the JointJS link, which represents a association in the UML diagram.
+
+  @for FdUmlActiveObject
+  @class ActiveObject
+  @extends flexberry.uml.BaseObject
+  @namespace flexberry.uml
+  @constructor
+*/
 export let ActiveObject = BaseObject.define('flexberry.uml.ActiveObject', {
   attrs: {
     text: {

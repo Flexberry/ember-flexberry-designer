@@ -57,6 +57,15 @@ export default FdUmlElement.extend({
   },
 });
 
+/**
+  Defines the JointJS object, which represents an Instance in the UML diagram.
+
+  @for FdUmlInstance
+  @class Instance
+  @extends BaseObject
+  @namespace flexberry.uml
+  @constructor
+*/
 export let Instance = BaseObject.define('flexberry.uml.Instance', {
   attrs: {
     text: {

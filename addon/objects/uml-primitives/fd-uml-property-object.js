@@ -5,7 +5,6 @@
 import Ember from 'ember';
 
 import { BaseClass } from './fd-uml-class';
-
 import FdUmlElement from './fd-uml-element';
 
 /**
@@ -15,6 +14,7 @@ import FdUmlElement from './fd-uml-element';
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
+
   /**
     The name of the class.
 
@@ -22,14 +22,6 @@ export default FdUmlElement.extend({
     @type String
   */
   name: Ember.computed.alias('primitive.Name.Text'),
-
-  /**
-    Indicates that the class is in a collapsed state.
-
-    @property collapsed
-    @type Boolean
-  */
-  collapsed: Ember.computed.alias('primitive.Name.IsFolded'),
 
   /**
     List of class attributes.
@@ -58,6 +50,15 @@ export default FdUmlElement.extend({
   },
 });
 
+/**
+  Defines the JointJS object, which represents a PropertyObject on the UML diagram.
+
+  @for FdUmlBaseObject
+  @class PropertyObject
+  @extends BaseClass
+  @namespace flexberry.uml
+  @constructor
+*/
 export let PropertyObject = BaseClass.define('flexberry.uml.PropertyObject', {
   attrs: {
     '.flexberry-uml-header-text': {

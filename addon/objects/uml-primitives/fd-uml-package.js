@@ -5,7 +5,6 @@
 import Ember from 'ember';
 
 import { BaseClass } from './fd-uml-class';
-
 import FdUmlElement from './fd-uml-element';
 
 /**
@@ -15,6 +14,7 @@ import FdUmlElement from './fd-uml-element';
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
+
   /**
     The name of the class.
 
@@ -44,6 +44,15 @@ export default FdUmlElement.extend({
   },
 });
 
+/**
+  Defines the JointJS object, which represents a Package object on the UML diagram.
+
+  @for FdUmlBaseObject
+  @class Package
+  @extends BaseClass
+  @namespace flexberry.uml
+  @constructor
+*/
 export let Package = BaseClass.define('flexberry.uml.Package', {
   attrs: {
     '.flexberry-uml-header-text': {
