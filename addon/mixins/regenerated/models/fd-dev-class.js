@@ -1151,6 +1151,7 @@ export let defineProjections = function (modelClass) {
   modelClass.defineProjection('FdEditClassForm', 'fd-dev-class', {
     caption: Projection.attr('Заголовок'),
     name: Projection.attr('Имя'),
+    nameStr: Projection.attr('', { hidden: true }),
     publishName: Projection.attr(''),
     stored: Projection.attr(''),
     storage: Projection.attr(''),
