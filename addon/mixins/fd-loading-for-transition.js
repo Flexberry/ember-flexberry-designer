@@ -12,16 +12,17 @@ import Ember from 'ember';
   });
   ```
 
-  In template need in <form> add class {{state}}:
-
-  ```handlebars
-  <form class="ui form flexberry-vertical-form {{state}}" role="form">
-  ```
-
   @class FdLoadingForTransitionMixin
   @extends <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
 export default Ember.Mixin.create({
+
+  /**
+    Service for managing the state of the application.
+    @property appState
+    @type AppStateService
+  */
+  appState: Ember.inject.service(),
 
   /**
     A hook you can use to setup the controller for the current route.
@@ -31,9 +32,9 @@ export default Ember.Mixin.create({
     @param {Ember.Controller} controller
     @param {Object} model
    */
-  setupController(controller) {
+  setupController() {
     this._super(...arguments);
-    controller.set('state', '');
+    this.get('appState').reset();
   },
 
   actions: {
@@ -47,9 +48,10 @@ export default Ember.Mixin.create({
       @param {Object} transition
      */
     willTransition(transition) {
-      if (this.controller.get('state') === '') {
+      this._super(...arguments);
+      if (this.get('appState.state') === '') {
         transition.abort();
-        this.controller.set('state', 'loading');
+        this.get('appState').loading();
         Ember.run.next(() => {
           transition.retry();
         });

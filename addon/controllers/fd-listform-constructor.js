@@ -18,6 +18,13 @@ import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 
 export default Ember.Controller.extend(FdWorkPanelToggler, {
   /**
+    Service for managing the state of the application.
+     @property appState
+    @type AppStateService
+  */
+  appState: Ember.inject.service(),
+
+  /**
     @private
     @property _showModalDialog
     @type Boolean
@@ -351,7 +358,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       @param {Boolean} close If `true`, the `close` action will be run.
     */
     save(close) {
-      this.set('state', 'loading');
+      this.get('appState').loading();
       let view = Ember.A(this.get('view'));
       let viewDefinition = Ember.A();
       let columns = this.get('columns');
@@ -403,14 +410,14 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
               if (close) {
                 this.send('close');
               } else {
-                this.set('state', '');
+                this.get('appState').reset();
               }
             }, (error) => {
-              this.set('state', '');
+              this.get('appState').reset();
               this.set('error', error);
             });
           }, (error) => {
-            this.set('state', '');
+            this.get('appState').reset();
             this.set('error', error);
           });
           this.set('model.originalDefinition', copyViewDefinition(this.get('view.definition')));
@@ -418,11 +425,11 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
           changedAssociations.map(a => a.save());
           changedAggregation.map(a => a.save());
         }, (error) => {
-          this.set('state', '');
+          this.get('appState').reset();
           this.set('error', error);
         });
       }, (error) => {
-        this.set('state', '');
+        this.get('appState').reset();
         this.set('error', error);
       });
     },

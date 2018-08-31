@@ -1,8 +1,9 @@
 import Ember from 'ember';
 import ListFormRoute from 'ember-flexberry/routes/list-form';
 import LimitByStageMixin from '../mixins/fd-limit-by-stage';
+import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
 
-export default ListFormRoute.extend(LimitByStageMixin, {
+export default ListFormRoute.extend(FdLoadingForTransitionMixin, LimitByStageMixin, {
 
   /**
    Service that get current project contexts.

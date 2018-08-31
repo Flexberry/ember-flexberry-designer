@@ -4,6 +4,13 @@ import BusinessDataObjectEvents from 'ember-flexberry-designer/enums/i-c-s-soft-
 export default Ember.Controller.extend({
 
   /**
+    Service for managing the state of the application.
+     @property appState
+    @type AppStateService
+  */
+  appState: Ember.inject.service(),
+
+  /**
     Name of current <<typedef>> class.
     @property className
     @type String
@@ -261,14 +268,14 @@ export default Ember.Controller.extend({
     */
     save() {
       this._setDefaultBusinessServerEvents();
-      this.set('state', 'loading');
+      this.get('appState').loading();
       this.model.save()
       .catch((error) => {
-        this.set('state', '');
+        this.get('appState').reset();
         this.set('error', error);
       })
       .finally(() => {
-        this.set('state', '');
+        this.get('appState').reset();
       });
       this._super();
     },
