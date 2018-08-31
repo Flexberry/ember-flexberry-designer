@@ -11,6 +11,11 @@ export default {
   'add-button-text': 'Добавить',
   'preview-mobile-variant': 'Предпросмотр мобильного варианта',
 
+  'save-title': 'Данные формы были изменены',
+  'save-message': 'Желаете сохранить внесенные изменения?',
+  'save-button': 'Сохранить изменения',
+  'rollback-button': 'Отменить изменения',
+
   'listform-forward': 'Вперед',
   'listform-back': 'Назад',
   'new-column-caption': 'Новый атрибут',
@@ -22,7 +27,6 @@ export default {
     're-move-columns-header': 'Переместить и удалить столбцы',
     'remove-column': 'Удалить',
     'remove-approve': 'Вы уверены?',
-    'remove-unsaved': 'Удалить несохраненные данные',
     'control-properties-header': 'Столбец',
   },
 };

@@ -1,7 +1,14 @@
 import Ember from 'ember';
 import BusinessDataObjectEvents from 'ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events';
+import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 
-export default Ember.Controller.extend({
+export default Ember.Controller.extend(FdFormUnsavedData, {
+  /**
+    @property formName
+    @type String
+    @default 'fd-typedef-edit-form'
+  */
+  formName: 'fd-typedef-edit-form',
 
   /**
     Name of current <<typedef>> class.

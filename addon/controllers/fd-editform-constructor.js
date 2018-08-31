@@ -64,14 +64,6 @@ FdFormUnsavedData, {
 
   /**
     @private
-    @property _dataIsSaved
-    @type Boolean
-    @default false
-  */
-  _dataIsSaved: false,
-
-  /**
-    @private
     @property _lookupCaption
     @type String
   */
@@ -116,6 +108,21 @@ FdFormUnsavedData, {
     @default false
   */
   _showNotUsedAttributesTree: false,
+
+  /**
+    @private
+    @property _originalData
+    @type String
+    @default ''
+  */
+  _originalData: '',
+
+  /**
+    @property formName
+    @type String
+    @default 'fd-editform-constructor'
+  */
+  formName: 'fd-editform-constructor',
 
   /**
     Selected nodes in jsTree.
@@ -589,6 +596,16 @@ FdFormUnsavedData, {
     },
 
     /**
+      Save changes and close form
+
+      @method actions.closeWithSaving
+    */
+    closeWithSaving() {
+      this.send('save');
+      this.send('close');
+    },
+
+    /**
       Set the selected item.
       @method actions.selectItem
       @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item
@@ -719,7 +736,7 @@ FdFormUnsavedData, {
         this.set('error', error);
       }
 
-      this.set('_dataIsSaved', true);
+      this.saveDataToOriginal();
     },
 
     /**
@@ -1265,22 +1282,25 @@ FdFormUnsavedData, {
     let classes = this.get('model.classes');
     let classesString = JSON.stringify(classes);
 
+    let inheritances = this.get('model.inheritances');
+    let inheritancesString = JSON.stringify(inheritances);
+
     let editform = this.get('model.editform');
     let editformString = JSON.stringify(editform);
 
-    let allDataString = viewsString + aggregationsString + associationsString + classesString + editformString;
-
+    let allDataString = viewsString + aggregationsString + associationsString + classesString + editformString + inheritancesString;
+  
     return allDataString;
   },
 
   /**
-    This method run data saved when model is loaded
+    This method run non ember data saved when model is loaded
 
     @method saveOriginalData
   */
   originalDataInit: function () {
     Ember.run.next(this, () => {
-      this.saveOriginalData();
+      this.saveDataToOriginal();
     });
   },
 
@@ -1289,22 +1309,29 @@ FdFormUnsavedData, {
 
     @method saveOriginalData
   */
-  saveOriginalData: function () {
-    this.set('_dataIsSaved', false);
+  saveDataToOriginal: function () {
     let originalDataString = this._getStringifyModel();
     this.set('_originalData', originalDataString);
   },
 
   /**
-    Check if fields changed, but unsaved
-    @method findUnsavedFields
+    Cancel form data changes
+
+    @method clearDirtyAttributes
   */
-  findUnsavedFields: function () {
+  clearDirtyAttributes: function () {
+    this.saveDataToOriginal();
+  },
+
+  /**
+    Check if fields changed, but unsaved
+    @method findUnsavedFormData
+  */
+  findUnsavedFormData: function () {
     let checkResult = false;
-    let isSaved = this.get('_dataIsSaved');
     let originalDataString = this.get('_originalData');
     let currentDataString = this._getStringifyModel();
-    if (!Ember.isEqual(originalDataString, currentDataString) && !isSaved) {
+    if (!Ember.isEqual(originalDataString, currentDataString)) {
       checkResult = true;
     }
 

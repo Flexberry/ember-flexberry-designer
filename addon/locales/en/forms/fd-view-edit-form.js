@@ -4,8 +4,10 @@ export default {
   'class': 'Class',
   'name-caption': 'Name view',
   'description-caption': 'Description view',
-  'remove-unsaved': 'Removed unsaved data',
-  'remove-approve': 'Are you sure?',
+  'save-title': 'Form data was changed',
+  'save-message': 'Would you like to save your changes?',
+  'save-button': 'Save changes',
+  'rollback-button': 'Cancel changes',
   'settings-view': {
     caption: 'Settings view',
     'name-caption': 'Caption ("~" - empty value)',

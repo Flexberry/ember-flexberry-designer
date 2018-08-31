@@ -1,7 +1,6 @@
 import EditFormRoute from 'ember-flexberry/routes/edit-form';
-import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 
-export default EditFormRoute.extend(FdFormCheckTransitionMixin, {
+export default EditFormRoute.extend({
   modelProjection: 'EditListForm',
   modelName: 'fd-dev-class'
 });

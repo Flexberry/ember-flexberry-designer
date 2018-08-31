@@ -13,6 +13,8 @@ export default {
   'writeSessions-caption': 'Вести аудит сессий пользователей',
   'attributes-caption': 'Атрибуты',
   'methods-caption': 'Методы',
-  'remove-unsaved': 'Удалить несохраненные данные',
-  'remove-approve': 'Вы уверены?'
+  'save-title': 'Данные формы были изменены',
+  'save-message': 'Желаете сохранить внесенные изменения?',
+  'save-button': 'Сохранить изменения',
+  'rollback-button': 'Отменить изменения',
 };

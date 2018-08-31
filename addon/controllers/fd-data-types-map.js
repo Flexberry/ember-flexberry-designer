@@ -6,6 +6,7 @@ import Ember from 'ember';
 
 import FdDataType from '../objects/fd-data-type';
 import { deserialize } from '../utils/fd-type-map-functions';
+import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 
 /**
   Controller for the edit form of the type map.
@@ -13,34 +14,13 @@ import { deserialize } from '../utils/fd-type-map-functions';
   @class FdDataTypesMapController
   @extends <a href="http://emberjs.com/api/classes/Ember.Controller.html">Ember.Controller</a>
 */
-export default Ember.Controller.extend({
+export default Ember.Controller.extend(FdFormUnsavedData, {
   /**
-    @property saveTitleLocaleKey
+    @property formName
     @type String
-    @default 'forms.fd-data-types-map.save-title'
+    @default 'fd-data-types-map'
   */
-  saveTitleLocaleKey: 'forms.fd-data-types-map.save-title',
-
-  /**
-    @property saveMessageLocaleKey
-    @type String
-    @default 'forms.fd-data-types-map.save-message'
-  */
-  saveMessageLocaleKey: 'forms.fd-data-types-map.save-message',
-
-  /**
-    @property saveButtonLocaleKey
-    @type String
-    @default ''
-  */
-  saveButtonLocaleKey: 'forms.fd-data-types-map.save-button',
-
-  /**
-    @property rollbackButtonLocaleKey
-    @type String
-    @default ''
-  */
-  rollbackButtonLocaleKey: 'forms.fd-data-types-map.rollback-button',
+  formName: 'fd-data-types-map',
 
   /**
     Service for controlling the load indication.
@@ -166,20 +146,6 @@ export default Ember.Controller.extend({
 
   actions: {
     /**
-      Repeats an attempt to perform a previously aborted transition, or transition to the application structure form.
-
-      @method actions.close
-    */
-    close() {
-      if (this.get('abortedTransition')) {
-        this.get('abortedTransition').retry();
-        this.set('abortedTransition', undefined);
-      } else {
-        this.transitionToRoute('fd-appstruct-form');
-      }
-    },
-
-    /**
       Cancels the changes made to the type map, and send `close` action.
 
       @method rollback
@@ -192,6 +158,24 @@ export default Ember.Controller.extend({
 
       this.send('removeModalDialog');
       this.send('close');
+    },
+
+    /**
+      Save changes and close form
+
+      @method actions.closeWithSaving
+    */
+    closeWithSaving() {
+      this.send('save', true);
+    },
+
+    /**
+      Save changes and close form
+
+      @method actions.closeWithSaving
+    */
+    close() {
+      history.back();
     },
 
     /**
@@ -227,7 +211,7 @@ export default Ember.Controller.extend({
     @method serializeTypeMap
     @return {Boolean} Changed or not a combined type map.
   */
-  serializeTypeMap() {
+  findUnsavedFormData() {
     let typeMapCS = [];
     let typeMapSQL = [];
     let typeMapPostgre = [];

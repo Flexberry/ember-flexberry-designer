@@ -24,6 +24,8 @@ export default {
   'pb-detail-get-end-caption': 'Скобки программиста после геттеа детейла',
   'pb-detail-set-start-caption': 'Скобки программиста перед сеттером детейла',
   'pb-detail-set-end-caption': 'Скобки программиста после сеттера детейла',
-  'remove-unsaved': 'Удалить несохраненные данные',
-  'remove-approve': 'Вы уверены?'
+  'save-title': 'Данные формы агрегации были изменены',
+  'save-message': 'Желаете сохранить внесенные изменения?',
+  'save-button': 'Сохранить изменения',
+  'rollback-button': 'Отменить изменения',
 };

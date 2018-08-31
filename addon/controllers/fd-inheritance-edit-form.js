@@ -6,12 +6,19 @@ export default EditFormController.extend(FdFormUnsavedData, {
   parentRoute: 'fd-inheritance-list-form',
 
   /**
-   Service that get current project contexts.
+    @property formName
+    @type String
+    @default 'fd-inheritance-edit-form'
+  */
+  formName: 'fd-inheritance-edit-form',
 
-   @property currentProjectContext
-   @type {Class}
-   @default Ember.inject.service()
-   */
+  /**
+    Service that get current project contexts.
+
+    @property currentProjectContext
+    @type {Class}
+    @default Ember.inject.service()
+  */
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
   /**
@@ -20,43 +27,43 @@ export default EditFormController.extend(FdFormUnsavedData, {
     @property implementations
     @type Array
     @default []
-   */
+  */
   implementations: Ember.A(),
 
   /**
-      Array name parent classes.
+    Array name parent classes.
 
     @property parentNames
     @type Array
     @default []
-   */
+  */
   parentNames: Ember.A(),
 
   /**
-      Array name child classes.
+    Array name child classes.
 
     @property childNames
     @type Array
     @default []
-   */
+  */
   childNames: Ember.A(),
 
   /**
-      Name parent class.
+    Name parent class.
 
     @property parentName
     @type String
     @default ''
-   */
+  */
   parentName: '',
 
   /**
-      Name child class.
+    Name child class.
 
     @property childName
     @type String
     @default ''
-   */
+  */
   childName: '',
 
   /**
@@ -65,11 +72,10 @@ export default EditFormController.extend(FdFormUnsavedData, {
     @property readonlyDropdown
     @type Boolean
     @default true
-   */
+  */
   readonlyDropdown: true,
 
   actions: {
-
     /**
       Set 'Parent'.
 

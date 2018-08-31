@@ -1,7 +1,6 @@
 import Ember from 'ember';
-import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 
-export default Ember.Route.extend(FdFormCheckTransitionMixin, {
+export default Ember.Route.extend({
   modelProjection: 'EditFormView',
   modelName: 'fd-generation',
 

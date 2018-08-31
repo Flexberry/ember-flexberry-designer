@@ -43,13 +43,13 @@ export default Ember.Mixin.create({
         this.send('workPlaceConfig');
 
         // For reinit overflowed tabs.
-        Ember.run.later(this, function() {
+        Ember.run.later(this, function () {
           Ember.$(window).trigger('resize');
         }, 500);
       }
 
       let _this = this;
-      Ember.run.next(function() {
+      Ember.run.next(function () {
         if (!configPanelSidebar.hasClass('visible')) {
           _this.set('activeTab', 'none');
           Ember.$('.ui.menu', configPanelSidebar).find('.item').removeClass('active');
@@ -86,25 +86,6 @@ export default Ember.Mixin.create({
         let workPanel = sidebar.width() + configPanelSidebar.width();
         Ember.$('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)', transform: 'translate3d(' + sidebar.width() + 'px, 0, 0)' });
       }
-    },
-
-    /**
-      Confirm close form with unsaved attributes.
-
-      @method actions.confirmCloseUnsavedFormAction
-    */
-    confirmCloseUnsavedFormAction() {
-      this.send('confirmCloseUnsavedForm');
     }
-  },
-
-  /**
-    Check if fields changed, but unsaved
-
-    @method findUnsavedFields
-  */
-  findUnsavedFields: function () {
-    let isDirtyAttributes = this.get('model.hasDirtyAttributes');
-    return isDirtyAttributes;
   }
 });

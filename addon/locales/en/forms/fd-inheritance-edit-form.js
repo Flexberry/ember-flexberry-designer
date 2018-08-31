@@ -5,6 +5,8 @@ export default {
   'parent-caption': 'Parent',
   'child-caption': 'Child',
   'error': 'A cycle was discovered in inheritance. Saving is not possible',
-  'remove-unsaved': 'Removed unsaved data',
-  'remove-approve': 'Are you sure?'
+  'save-title': 'Form data was changed',
+  'save-message': 'Would you like to save your changes?',
+  'save-button': 'Save changes',
+  'rollback-button': 'Cancel changes'
 };

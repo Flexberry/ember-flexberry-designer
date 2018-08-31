@@ -141,19 +141,7 @@
         </div>
       </div>
     </div>
-  </div>
-  {{#if _showConfirmDialog}}
-    {{#modal-dialog
-      title=(t "forms.fd-view-edit-form.remove-unsaved")
-      ok=(action "confirmCloseUnsavedFormAction")
-      settings=(hash
-        onHidden=(action set "_showConfirmDialog" false)
-        context=".pusher:first"
-      )
-    }}
-      {{t "forms.fd-view-edit-form.remove-approve"}}
-    {{/modal-dialog}}
-  {{/if}}
+  </div>  
 </form>
 
 {{#fd-config-panel}}

@@ -9,6 +9,10 @@ export default {
   'unknown-detail-view-error': 'Неизвестное представление у детейла',
   'unsupported-container-error': 'Неподдерживаемый тип контейнера',
   'item-cast-error': 'Переданный элемент не может быть преобразован в строку',
+  'save-title': 'Данные формы были изменены',
+  'save-message': 'Желаете сохранить внесенные изменения?',
+  'save-button': 'Сохранить изменения',
+  'rollback-button': 'Отменить изменения',
   'form-config-panel': {
     'form-properties-header': 'Свойства формы',
     'form-name': 'Название формы',
@@ -28,7 +32,6 @@ export default {
     'move-controls-header': 'Переместить элементы управления',
     'move-control': 'Переместить',
     'remove-control': 'Удалить',
-    'remove-unsaved': 'Удалить несохраненные данные',
     'remove-approve': 'Вы уверены?',
     apply: 'Применить',
     cancel: 'Отмена',

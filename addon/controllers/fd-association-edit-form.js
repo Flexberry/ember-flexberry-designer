@@ -1,16 +1,16 @@
 import Ember from 'ember';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
+import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 
-export default EditFormController.extend({
+export default EditFormController.extend(FdFormUnsavedData, {
   parentRoute: 'fd-association-list-form',
 
   /**
-    @private
-    @property _showConfirmDialog
-    @type Boolean
-    @default false
+    @property formName
+    @type String
+    @default 'fd-association-edit-form'
   */
-  _showConfirmDialog: false,
+  formName: 'fd-association-edit-form',
 
   /**
     Array all classes.
@@ -94,39 +94,6 @@ export default EditFormController.extend({
         Ember.set(model, 'endClass', endClass);
         Ember.set(this, 'endClassName', endClass.get('name'));
       }
-    },
-
-    /**
-      Confirm close form with unsaved attributes.
-
-      @method actions.confirmCloseUnsavedFormAction
-    */
-    confirmCloseUnsavedFormAction() {
-      this.send('confirmCloseUnsavedForm');
     }
-  },
-
-  /**
-    Check if fields changed, but unsaved
-
-    @method findUnsavedFields
-  */
-  findUnsavedFields: function () {
-    let checkResult = false;
-    let modelChanges = this.get('model').changedAttributes();
-
-    if (Ember.keys(modelChanges).length > 0) {
-      for (var key in modelChanges) {
-        let argumentBefore = modelChanges[key][0];
-        let argumentAfter = modelChanges[key][1];
-        if (!Ember.isEmpty(argumentBefore) || !Ember.isEmpty(argumentAfter)) {
-          if (!Ember.isEqual(argumentBefore, argumentAfter)) {
-            checkResult = true;
-          }
-        }
-      }
-    }
-
-    return checkResult;
   }
 });

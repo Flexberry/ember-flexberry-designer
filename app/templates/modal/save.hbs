@@ -1,7 +1,7 @@
 {{flexberry-dialog
   caption=(t saveTitleLocaleKey)
   content=(t saveMessageLocaleKey)
-  approve=(action "save" true)
+  approve=(action "closeWithSaving")
   deny=(action "rollback")
   hide=(action send "removeModalDialog")
   approveButtonCaption=(t saveButtonLocaleKey)

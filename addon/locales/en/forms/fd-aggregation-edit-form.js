@@ -24,6 +24,8 @@ export default {
   'pb-detail-get-end-caption': 'Brackets of the programmer after the detail getter',
   'pb-detail-set-start-caption': 'Brackets of the programmer before the detail setter',
   'pb-detail-set-end-caption': 'Brackets of the programmer after the detail setter',
-  'remove-unsaved': 'Removed unsaved data',
-  'remove-approve': 'Are you sure?'
+  'save-title': 'Aggregation form data was changed',
+  'save-message': 'Would you like to save your changes?',
+  'save-button': 'Save changes',
+  'rollback-button': 'Cancel changes',
 };

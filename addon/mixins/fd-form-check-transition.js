@@ -23,42 +23,15 @@ import Ember from 'ember';
 */
 export default Ember.Mixin.create({
   /**
-    @private
-    @property  _currentTransition
-    @type Transition
-    @default null
-  */
-  _currentTransition: null,
-
-  /**
-    @private
-    @property _forceTransition
-    @type Boolean
-    @default false
-  */
-  _forceTransition: false,
-
-  /**
-    Retry transition forced, when there are unsaved fields
-
-    @method retryTransitionForced
-  */
-  retryTransitionForced() {
-    this.set('_forceTransition', true);
-    this.get('_currentTransition').retry();
-  },
-
-  /**
     A hook you can use to setup the controller for the current route.
     [More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).
 
     @method setupController
     @param {Ember.Controller} controller
     @param {Object} model
-   */
+  */
   setupController(controller) {
     this._super(...arguments);
-    this.set('_forceTransition', false);
     controller.set('state', '');
   },
 
@@ -73,31 +46,12 @@ export default Ember.Mixin.create({
       @param {Object} transition
      */
     willTransition(transition) {
-      this.set('_currentTransition', transition);
-      let controller = this.controller;
-      let isUnsavedFields = controller.findUnsavedFields();
-      let forcedTransition = this.get('_forceTransition');
-      if (!isUnsavedFields || forcedTransition) {
-        if (controller.get('state') === '') {
-          transition.abort();
-          controller.set('state', 'loading');
-          Ember.run.later(() => {
-            transition.retry();
-          });
-        }
-      } else {
-        controller.set('_showConfirmDialog', true);
+      let controller = this.get('controller');
+      if (controller.findUnsavedFormData()) {
+        this.send('showModalDialog', 'modal/save', { controller });
+        controller.set('abortedTransition', transition);
         transition.abort();
       }
-    },
-
-    /**
-      Confirm transition with unsaved fields
-
-      @method actions.confirmCloseUnsavedForm
-    */
-    confirmCloseUnsavedForm() {
-      this.retryTransitionForced();
     }
   }
 });

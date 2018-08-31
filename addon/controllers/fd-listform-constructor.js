@@ -30,14 +30,6 @@ FdFormUnsavedData, {
 
   /**
     @private
-    @property _dataIsSaved
-    @type Boolean
-    @default false
-  */
-  _dataIsSaved: false,
-
-  /**
-    @private
     @property _showModalDialog
     @type Boolean
     @default false
@@ -53,6 +45,13 @@ FdFormUnsavedData, {
     @default false
   */
   _showNotUsedAttributesTree: false,
+
+  /**
+    @property formName
+    @type String
+    @default 'fd-listform-constructor'
+  */
+  formName: 'fd-listform-constructor',
 
   /**
     Selected nodes in jsTree.
@@ -444,11 +443,22 @@ FdFormUnsavedData, {
         this.set('state', '');
         this.set('error', error);
       });
-      this.set('_dataIsSaved', true);
+
+      this.saveDataToOriginal();
     },
 
     close() {
       history.back();
+    },
+
+    /**
+      Save changes and close form
+
+      @method actions.closeWithSaving
+    */
+    closeWithSaving() {
+      this.send('saveTree');
+      this.send('close');
     },
 
     /**
@@ -572,13 +582,13 @@ FdFormUnsavedData, {
   },
 
   /**
-    This method run data saved when model is loaded
+    This method run non ember data saved when model is loaded
 
     @method saveOriginalData
   */
   originalDataInit: function () {
     Ember.run.next(this, () => {
-      this.saveOriginalData();
+      this.saveDataToOriginal();
     });
   },
 
@@ -587,23 +597,30 @@ FdFormUnsavedData, {
 
     @method saveOriginalData
   */
-  saveOriginalData: function () {
-    this.set('_dataIsSaved', false);
+  saveDataToOriginal: function () {
     let originalDataString = this._getStringifyModel();
     this.set('_originalData', originalDataString);
   },
 
   /**
+    Cancel form data changes
+
+    @method clearDirtyAttributes
+  */
+  clearDirtyAttributes: function () {
+    this.saveDataToOriginal();
+  },
+
+  /**
     Check if fields changed, but unsaved
 
-    @method findUnsavedFields
+    @method findUnsavedFormData
   */
-  findUnsavedFields: function () {
+  findUnsavedFormData: function () {
     let checkResult = false;
-    let isSaved = this.get('_dataIsSaved');
     let originalDataString = this.get('_originalData');
     let currentDataString = this._getStringifyModel();
-    if (!Ember.isEqual(originalDataString, currentDataString) && !isSaved) {
+    if (!Ember.isEqual(originalDataString, currentDataString)) {
       checkResult = true;
     }
 

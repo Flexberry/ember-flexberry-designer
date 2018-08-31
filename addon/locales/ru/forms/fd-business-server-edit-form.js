@@ -10,6 +10,8 @@ export default {
   'generateHttpRemoteServer-caption': '',
   'publishToEBSD-caption': '',
   'attributes-caption': 'Возможные значения',
-  'remove-unsaved': 'Удалить несохраненные данные',
-  'remove-approve': 'Вы уверены?',
+  'save-title': 'Данные формы бизнес-сервера были изменены',
+  'save-message': 'Желаете сохранить внесенные изменения?',
+  'save-button': 'Сохранить изменения',
+  'rollback-button': 'Отменить изменения',
 };

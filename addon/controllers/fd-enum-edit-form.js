@@ -4,5 +4,12 @@ import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 
 export default EditFormController.extend(FdFormUnsavedData, {
   parentRoute: 'fd-class-list-form',
-  header: Ember.computed.alias('model.name')
+  header: Ember.computed.alias('model.name'),
+
+  /**
+    @property formName
+    @type String
+    @default 'fd-enum-edit-form'
+  */
+  formName: 'fd-enum-edit-form'
 });

@@ -37,19 +37,6 @@
   <div class="sixteen wide">
     {{fd-uml-diagram primitives=model.primitives}}
   </div>
-
-  {{#if _showConfirmDialog}}
-    {{#modal-dialog
-      title=(t "forms.fd-diagram-edit-form.remove-unsaved")
-      ok=(action "confirmCloseUnsavedFormAction")
-      settings=(hash
-        onHidden=(action set "_showConfirmDialog" false)
-        context=".pusher:first"
-      )
-    }}
-      {{t "forms.fd-diagram-edit-form.remove-approve"}}
-    {{/modal-dialog}}
-  {{/if}}
 </form>
 
 {{#fd-config-panel}}

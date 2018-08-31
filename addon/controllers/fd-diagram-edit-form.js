@@ -6,4 +6,11 @@ export default EditFormController.extend(
 FdWorkPanelToggler,
 FdFormUnsavedData, {
   parentRoute: 'fd-diagram-list-form',
+
+  /**
+    @property formName
+    @type String
+    @default 'fd-diagram-edit-form'
+  */
+  formName: 'fd-diagram-edit-form',
 });

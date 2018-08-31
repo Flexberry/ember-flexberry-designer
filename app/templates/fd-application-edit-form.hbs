@@ -178,17 +178,4 @@
   }}
   {{flexberry-validationmessage error=model.errors.methods pointing="pointing"}}
 </div>
-  {{#if _showConfirmDialog}}
-    {{#modal-dialog
-    title=(t "forms.fd-application-edit-form.remove-unsaved")
-    ok=(action "confirmCloseUnsavedFormAction")
-    settings=(hash
-      onHidden=(action set "_showConfirmDialog" false)
-      context=".pusher:first"
-      )
-    }}
-    {{t "forms.fd-application-edit-form.remove-approve"}}
-    {{/modal-dialog}}
-  {{/if}}
-
 </form>

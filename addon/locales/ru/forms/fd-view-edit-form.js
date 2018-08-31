@@ -4,8 +4,10 @@ export default {
   'class': 'Класс',
   'name-caption': 'Название представления',
   'description-caption': 'Описание представления',
-  'remove-unsaved': 'Удалить несохраненные данные',
-  'remove-approve': 'Вы уверены?',
+  'save-title': 'Данные формы были изменены',
+  'save-message': 'Желаете сохранить внесенные изменения?',
+  'save-button': 'Сохранить изменения',
+  'rollback-button': 'Отменить изменения',
   'settings-view': {
     caption: 'Настройки представления',
     'name-caption': 'Заголовок ("~" - пустое значение)',

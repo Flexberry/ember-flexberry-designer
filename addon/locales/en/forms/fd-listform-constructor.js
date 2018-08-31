@@ -11,6 +11,11 @@ export default {
   'add-button-text': 'Add',
   'preview-mobile-variant': 'Preview mobile variant',
 
+  'save-title': 'Form data was changed',
+  'save-message': 'Would you like to save your changes?',
+  'save-button': 'Save changes',
+  'rollback-button': 'Cancel changes',
+
   'listform-forward': 'Next',
   'listform-back': 'Back',
   'new-column-caption': 'New attribute',
@@ -22,7 +27,6 @@ export default {
     're-move-columns-header': 'Move and remove columns',
     'remove-column': 'Remove',
     'remove-approve': 'Are you sure?',
-    'remove-unsaved': 'Removed unsaved data',
     'control-properties-header': 'Columns',
   },
 };

@@ -6,6 +6,13 @@ export default EditFormController.extend(FdFormUnsavedData, {
   parentRoute: 'fd-aggregation-list-form',
 
   /**
+    @property formName
+    @type String
+    @default 'fd-aggregation-edit-form'
+  */
+  formName: 'fd-aggregation-edit-form',
+
+  /**
    Service that get current project contexts.
 
    @property currentProjectContext
@@ -86,6 +93,6 @@ export default EditFormController.extend(FdFormUnsavedData, {
         Ember.set(model, 'endClass', endClass);
         Ember.set(this, 'endClassName', endClass.get('name'));
       }
-    }
+    },    
   }
 });
