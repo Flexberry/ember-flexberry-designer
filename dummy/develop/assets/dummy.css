@@ -1266,6 +1266,9 @@ input::selection {
 .bgw-fix {
   position: relative;
 }
+.bgw-fix.mobile {
+  height: 50px;
+}
 .background-logo {
   height: 80px;
   position: fixed;
@@ -4858,6 +4861,9 @@ div.ui.secondary.menu.no-margin {
   background: none;
   border: none;
 }
+.ui.button.collexp-button {
+  border: 0px;
+}
 .ui.buttons.filter-active {
   border: 1px solid #7ba7d9;
   height: 35px;
@@ -4984,12 +4990,17 @@ div.ui.secondary.menu.no-margin {
 .ui.loading.button.ui-change i.icon.change:before {
   content: '';
 }
-.ui.button.ui-change i.icon,
-.ui.button.ui-clear i.icon {
-  margin: 0em 0.5em 0em 0.5em;
+.flexberry-lookup .ui.action.input .ui.button.ui-change,
+.flexberry-lookup .ui.action.input .ui.button.ui-clear {
+  padding: 0em 0.3em 0em 0.3em;
   font-size: 1em;
+  border: none;
 }
-ui.button.ui-clear:hover {
+.flexberry-lookup .ui.action.input .ui.button.ui-change i.icon,
+.flexberry-lookup .ui.action.input .ui.button.ui-clear i.icon {
+  margin: 0px 3px 0px 3px;
+}
+.flexberry-lookup .ui.fluid.action.input .ui.button.ui-clear:hover {
   color: #FF7500;
   opacity: 1;
 }
@@ -5003,18 +5014,6 @@ ui.button.ui-clear:hover {
 }
 .ui.fluid.action.input > button:hover {
   color: #7ba7d9;
-}
-.ui.fluid.action.input .ui.button.ui-change {
-  position: absolute;
-  right: 30px;
-}
-.ui.fluid.action.input .ui.button.ui-clear {
-  position: absolute;
-  right: 0px;
-}
-.ui.fluid.action.input .ui.loading.button.ui-change {
-  position: absolute;
-  right: 30px;
 }
 /* Table cell buttons */
 .cell .button:hover {
@@ -5033,6 +5032,122 @@ ui.button.ui-clear:hover {
 .ui.ui-delete.button:hover i.icon.minus:before {
   color: #FF7500;
 }
+.ui.check-all-at-page-button.button {
+  padding: 0px;
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  border: 0px;
+  background: none;
+  margin: 0 0 0 0px;
+}
+.ui.check-all-at-page-button.button:hover {
+  border: 0px;
+  background: none;
+}
+.ui.check-all-at-page-button.button:hover i.icon.check-square-o:before {
+  color: #FF7500;
+}
+.ui.check-all-button.button {
+  padding: 0px;
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  border: 0px;
+  background: none;
+  margin: 0 0 0 0px;
+}
+.ui.check-all-button.button:hover {
+  border: 0px;
+  background: none;
+}
+.ui.check-all-button.button:hover i.icon.check-all-square-o:before {
+  color: #FF7500;
+}
+.ui.check-all-button.button.activated i.icon.check-all-square-o:before {
+  color: #FF7500;
+}
+.ui.clear-sorting-button.button {
+  padding: 0px;
+  height: 25px;
+  width: 10px;
+  text-align: center;
+  border: 0px;
+  background: none;
+  margin: 0 0 0 0px;
+}
+.ui.clear-sorting-button.button:hover {
+  border: 0px;
+  background: none;
+}
+.ui.clear-sorting-button.button:hover i.icon.sort:before {
+  color: #FF7500;
+}
+.ui.check-all-at-page-button-mobile.button {
+  padding: 0px;
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  border: 0px;
+  background: none;
+  margin: 0 0 0 0px;
+}
+.ui.check-all-at-page-button-mobile.button:active {
+  border: 0px;
+  background: none;
+}
+.ui.check-all-at-page-button-mobile.button:active i.icon.check-square-o:before {
+  color: #FF7500;
+}
+.ui.check-all-button-mobile.button {
+  padding: 0px;
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  border: 0px;
+  background: none;
+  margin: 0 0 0 0px;
+}
+.ui.check-all-button-mobile.button:active {
+  border: 0px;
+  background: none;
+}
+.ui.check-all-button-mobile.button:active i.icon.check-all-square-o:before {
+  color: #FF7500;
+}
+.ui.check-all-button-mobile.button.activated i.icon.check-all-square-o:before {
+  color: #FF7500;
+}
+.ui.clear-sorting-button-mobile.button {
+  padding: 0px;
+  height: 25px;
+  width: 10px;
+  text-align: center;
+  border: 0px;
+  background: none;
+  margin: 0 0 0 0px;
+}
+.ui.clear-sorting-button-mobile.button:active {
+  border: 0px;
+  background: none;
+}
+.ui.clear-sorting-button-mobile.button:active i.icon.sort:before {
+  color: #FF7500;
+}
+.ui.ui-edit.button {
+  padding: 0px;
+  height: 30px;
+  width: 30px;
+  border: 1px solid #7ba7d9;
+  text-align: right;
+}
+.ui.ui-edit.button:hover {
+  border: 1px solid #FF7500;
+  background: #FFFFFF;
+}
+.ui.ui-edit.button:hover i.icon.edit:before {
+  color: #FF7500;
+}
 .ui.ui-add.button {
   padding: 0px;
   height: 30px;
@@ -5045,6 +5160,16 @@ ui.button.ui-clear:hover {
 }
 .ui.ui-add.button:hover i.icon.plus:before {
   color: #7dd4b4;
+}
+.ui.ui-clear-settings.button {
+  padding: 0px;
+  height: 30px;
+  width: 30px;
+  border: 1px solid #7ba7d9;
+  text-align: right;
+}
+.ui.ui-clear-settings.button:hover {
+  background: #FFFFFF;
 }
 .right.pointing.ui.icon.dropdown.button:hover i.icon.list.layout:before {
   color: #FFFFFF;
@@ -5588,8 +5713,12 @@ ui.button.ui-clear:hover {
   padding-top: 80px;
 }
 .full.height {
-  height: calc(100vh - 80px - 40px) !important;
+  height: calc(100vh - 80px - 40px);
   overflow: auto;
+}
+.pusher.mobile .ui.form .full.height {
+  height: calc(100vh - 50px - 40px);
+  min-height: calc(100vh - 50px - 40px);
 }
 .ui.attached.segment {
   width: 100%!important;
@@ -9115,6 +9244,15 @@ i.icon.calendar:before {
   color: #7ba7d9;
   font-family: 'Crimean';
 }
+i.icon.check-square-o:before {
+  content: "\f046";
+  font-size: 20px;
+}
+i.icon.check-all-square-o:before {
+  content: "\e815";
+  font-family: 'Crimean';
+  font-size: 20px;
+}
 /*******************************
             Aliases
 *******************************/
@@ -9946,6 +10084,9 @@ div.item-minus {
   position: relative;
   top: -2px;
 }
+.flexberry-file-image-preview-wrapper.ui.segment .ui.small.image {
+  min-height: 57px;
+}
 /*!
  * # Semantic UI - Input
  * http://github.com/semantic-org/semantic-ui/
@@ -10283,13 +10424,13 @@ div.item-minus {
 ---------------------*/
 /* browsers require these rules separate */
 .ui.input input::-webkit-input-placeholder {
-  color: rgba(0, 0, 0, 0.4);
+  color: #999999;
 }
 .ui.input input::-moz-placeholder {
-  color: rgba(0, 0, 0, 0.4);
+  color: #999999;
 }
 .ui.input input::-ms-input-placeholder {
-  color: rgba(0, 0, 0, 0.4);
+  color: #999999;
 }
 /*******************************
             States
@@ -10692,6 +10833,34 @@ input {
 ::-ms-reveal {
   width: 0;
   height: 0;
+}
+.ui.form input.ember-view.ember-text-field:-ms-input-placeholder {
+  color: #999999;
+}
+.ui.form textarea.ember-view.ember-text-area:-ms-input-placeholder {
+  color: #999999;
+}
+.ember-view.ui.dropdown div.default.text {
+  color: #999999;
+}
+.flexberry-file.mobile .flexberry-file-grid {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+.flexberry-lookup .input span.lookup-field {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 15px;
+}
+span.lookup-field {
+  word-break: break-all;
+}
+.ui.form .ui.input.error input {
+  background-color: #FFF6F6;
+  border-color: #E0B4B4;
+  color: #9F3A38;
+  box-shadow: none;
 }
 /*!
  * # Semantic UI - Label
@@ -15661,6 +15830,10 @@ ol.ui.horizontal.list li:before,
   background: #7ba7d9;
   color: #FFFFFF;
 }
+.flexberry-file-image-preview-wrapper.ui.segment {
+  padding-top: 10px;
+  padding-bottom: 4px;
+}
 /*!
  * # Semantic UI - Step
  * http://github.com/semantic-org/semantic-ui/
@@ -18071,6 +18244,24 @@ ol.ui.horizontal.list li:before,
   border-radius: 0px;
   outline: none;
 }
+.ember-view.flexberry-lookup input.lookup-field.ember-view.ember-text-field {
+  border-bottom: none;
+}
+.flexberry-lookup .ui.fluid.action.input {
+  border: none;
+  border-bottom: 1px solid #b1cae8;
+  border-radius: 0px;
+  outline: none;
+}
+.ember-view.example-simpledatetime input.flatpickr-input {
+  border-bottom: none;
+}
+.flexberry-simpledatetime .ui.fluid.action.input {
+  border: none;
+  border-bottom: 1px solid #b1cae8;
+  border-radius: 0px;
+  outline: none;
+}
 input[type="checkbox"]:after {
   content: "";
   display: inline-block;
@@ -18098,6 +18289,29 @@ input[type=checkbox]:indeterminate:after {
 .ui.form textarea,
 .ui.form input[type="checkbox"] {
   margin: 5px;
+}
+.ui.form .olv-toolbar-info-modal-dialog-content textarea {
+  background: white;
+}
+.center.aligned.ui.grid div {
+  margin: 0px 0px 10px 0px;
+}
+.ui.button.olv-toolbar-info-modal-dialog-ok-button {
+  padding: 0.8571em 1.284em 0.8571em;
+}
+.ui.button.flexberry-file-error-modal-dialog-ok-button {
+  padding: 0.8571em 1.284em 0.8571em;
+}
+.center.aligned.ui.grid .button {
+  background: white;
+  color: #4f73b0;
+  border: 1px solid #4f73b0;
+  opacity: 1;
+}
+.center.aligned.ui.grid .button:hover {
+  background: #7dd4b4;
+  color: white;
+  border: 1px solid #7dd4b4;
 }
 select {
   color: #7ba7d9;
@@ -22976,6 +23190,11 @@ div.ui.secondary.menu.no-margin.nav-bar .right.menu {
 /*******************************
          Theme Overrides
 *******************************/
+.ui.form .flexberry-colsconfig .success.message,
+.ui.form .flexberry-colsconfig .warning.message,
+.ui.form .flexberry-colsconfig .error.message {
+  display: block;
+}
 /*!
  * # Semantic UI - Table
  * http://github.com/semantic-org/semantic-ui/
@@ -24255,9 +24474,6 @@ div.ui.secondary.menu.no-margin.nav-bar .right.menu {
 .ui.large.table {
   font-size: 1.1em;
 }
-tr {
-  cursor: pointer;
-}
 .oveflow-text {
   overflow: hidden;
 }
@@ -24291,6 +24507,23 @@ table.object-list-view.selectable thead {
 }
 .object-list-view-helper-column {
   padding: 0px 7px!important;
+}
+.ui.fixed.table th.object-list-view-operations {
+  text-overflow: clip;
+  white-space: normal;
+}
+.ui.celled.table.object-list-view tr td.object-list-view-helper-column.hidden + td {
+  border-left: none;
+}
+.inline.fields.filter .filter-operation {
+  width: 70px;
+}
+.inline.fields.filter .filter-value {
+  width: 95%;
+  padding-left: 5px;
+}
+.inline.fields.filter .ui {
+  width: 100%;
 }
 /* Views */
 /*!
@@ -29852,6 +30085,10 @@ a.ui.card:hover,
   color: #7ba7d9;
   border-left: none;
 }
+/* Readonly checkbox */
+.ui.checkbox.flexberry-checkbox.read-only {
+  opacity: 0.5;
+}
 /*!
  * # Semantic UI - Dimmer
  * http://github.com/semantic-org/semantic-ui/
@@ -31827,6 +32064,12 @@ select.ui.dropdown {
   left: auto;
   right: -5em;
 }
+.flexberry-dropdown {
+  max-width: 100%;
+}
+.flexberry-dropdown div.text {
+  max-width: inherit;
+}
 /*!
  * # Semantic UI - Video
  * http://github.com/semantic-org/semantic-ui/
@@ -32973,6 +33216,9 @@ select.ui.dropdown {
 }
 .ui.modal > ui.table {
   margin-bottom: 0;
+}
+.ui.modal .content h2.ui.header {
+  word-wrap: break-word;
 }
 /*!
  * # Semantic UI - Nag
@@ -37031,7 +37277,7 @@ html.ios body {
   box-shadow: none!important;
   border-radius: 5px !important;
 }
-body.pushable {
+.pushable {
   overflow: hidden;
 }
 .pushable > .pusher:after {
@@ -39011,6 +39257,16 @@ img.item-minus {
 }
 .flexberry-colsconfig td > .input {
   width: 100%;
+  display: table-row;
+}
+.flexberry-colsconfig th > .input {
+  display: table-row;
+}
+.flexberry-colsconfig th > .input input.setting-name {
+  width: 250px;
+}
+.flexberry-colsconfig th .ui.action.input .ui.button {
+  display: inline-flex;
 }
 /**
  * Fix semantic-ui style for flexberry-menu.
@@ -39150,6 +39406,7 @@ table.fd-listform tr:last-child > td.fd-selected {
   -moz-transition: transform 500ms ease, width 500ms ease;
   -o-transition: transform 500ms ease, width 500ms ease;
   transition: transform 500ms ease, width 500ms ease;
+  background-color: #fff;
 }
 .ui.right.sidebar.config-panel {
   transform: translate3d(0, 0, 0);

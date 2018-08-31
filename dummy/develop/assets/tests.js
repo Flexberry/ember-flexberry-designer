@@ -1598,6 +1598,23 @@ define('dummy/tests/services/user-settings.jshint', ['exports'], function (expor
     assert.ok(true, 'services/user-settings.js should pass jshint.');
   });
 });
+define('dummy/tests/services/user.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - services');
+  test('services/user.js should pass jscs', function () {
+    ok(true, 'services/user.js should pass jscs.');
+  });
+});
+define('dummy/tests/services/user.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - services/user.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'services/user.js should pass jshint.');
+  });
+});
 define('dummy/tests/test-helper', ['exports', 'dummy/tests/helpers/resolver', 'ember-qunit'], function (exports, _dummyTestsHelpersResolver, _emberQunit) {
 
   (0, _emberQunit.setResolver)(_dummyTestsHelpersResolver['default']);
@@ -5122,6 +5139,35 @@ define('dummy/tests/unit/routes/fd-visual-edit-form-test.jshint', ['exports'], f
     assert.ok(true, 'unit/routes/fd-visual-edit-form-test.js should pass jshint.');
   });
 });
+define('dummy/tests/unit/routes/index-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('route:index', 'Unit | Route | index', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var route = this.subject();
+    assert.ok(route);
+  });
+});
+define('dummy/tests/unit/routes/index-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/routes');
+  test('unit/routes/index-test.js should pass jscs', function () {
+    ok(true, 'unit/routes/index-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/routes/index-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/routes/index-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/routes/index-test.js should pass jshint.');
+  });
+});
 define('dummy/tests/unit/serializers/fd-ad-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
   (0, _emberQunit.moduleForModel)('fd-ad', 'Unit | Serializer | fd-ad', {
@@ -7905,23 +7951,6 @@ define('dummy/tests/unit/utils/fd-view-path-functions-test.jshint', ['exports'],
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/utils/fd-view-path-functions-test.js should pass jshint.');
-  });
-});
-define('dummy/tests/views/application.jscs-test', ['exports'], function (exports) {
-  'use strict';
-
-  module('JSCS - views');
-  test('views/application.js should pass jscs', function () {
-    ok(true, 'views/application.js should pass jscs.');
-  });
-});
-define('dummy/tests/views/application.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - views/application.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'views/application.js should pass jshint.');
   });
 });
 /* jshint ignore:start */
