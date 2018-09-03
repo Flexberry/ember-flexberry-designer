@@ -42,6 +42,46 @@ export default FdUmlPrimitive.extend({
   description: Ember.computed.alias('primitive.Name.Text'),
 
   /**
+  The start multiplicity of a link.
+
+  @property startMultiplicity
+  @type String
+*/
+  startMultiplicity: Ember.computed.alias('primitive.StartMultTxt.Text'),
+
+  /**
+    The end multiplicity of a link.
+
+    @property endMultiplicity
+    @type String
+  */
+  endMultiplicity: Ember.computed.alias('primitive.EndMultTxt.Text'),
+
+  /**
+    End role text.
+
+    @property endRoleTxt
+    @type String
+  */
+  endRoleTxt: Ember.computed.alias('primitive.EndRoleTxt.Text'),
+
+  /**
+    Start role text.
+
+    @property startRoleTxt
+    @type String
+  */
+  startRoleTxt: Ember.computed.alias('primitive.StartRoleTxt.Text'),
+
+  /**
+    Link description.
+
+    @property description
+    @type String
+  */
+  description: Ember.computed.alias('primitive.Name.Text'),
+
+  /**
     An array containing all the labels.
 
     @property labels

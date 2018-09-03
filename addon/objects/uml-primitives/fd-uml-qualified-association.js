@@ -9,26 +9,10 @@ import { Link } from './fd-uml-link';
 /**
   An object that describes a link of the Qualified association type on the UML diagram.
 
-  @class FdUmlAssociation
+  @class FdUmlQualifiedAssociation
   @extends FdUmlLink
 */
 export default FdUmlBaseLink.extend({
-
-  /**
-    The start multiplicity of a link.
-
-    @property startMultiplicity
-    @type String
-  */
-  startMultiplicity: Ember.computed.alias('primitive.StartMultTxt.Text'),
-
-  /**
-    The end multiplicity of a link.
-
-    @property endMultiplicity
-    @type String
-  */
-  endMultiplicity: Ember.computed.alias('primitive.EndMultTxt.Text'),
 
   /**
     End role text.
@@ -47,21 +31,13 @@ export default FdUmlBaseLink.extend({
   startRoleTxt: Ember.computed.alias('primitive.LeftText.Text'),
 
   /**
-    Link description.
-
-    @property description
-    @type String
-  */
-  description: Ember.computed.alias('primitive.Name.Text'),
-
-  /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
     @method JointJS
   */
   JointJS() {
     let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
-    return new Association(properties);
+    return new QualifiedAssociation(properties);
   },
 });
 
@@ -74,7 +50,7 @@ export default FdUmlBaseLink.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let Association = Link.define('flexberry.uml.Qualified', {
+export let QualifiedAssociation = Link.define('flexberry.uml.QualifiedAssociation', {
   attrs: {
     '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 z', fill: 'white' },
     text: { 'text-decoration': 'underline', }

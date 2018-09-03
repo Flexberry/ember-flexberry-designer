@@ -9,7 +9,7 @@ import { Link } from './fd-uml-link';
 /**
   An object that describes a link of the association type on the UML diagram.
 
-  @class FdUmlNestedClassAssociation
+  @class FdUmlNestedAssociation
   @extends FdUmlBaseLink
 */
 export default FdUmlBaseLink.extend({
