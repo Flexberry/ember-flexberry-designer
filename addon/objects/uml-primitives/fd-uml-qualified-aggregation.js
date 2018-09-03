@@ -4,31 +4,16 @@
 
 import Ember from 'ember';
 
-import FdUmlLink from './fd-uml-baselink';
+import FdUmlBaseLink from './fd-uml-baselink';
 import { Link } from './fd-uml-link';
 
 /**
   An object that describes a link of the `Qualified aggregation` type on the UML diagram.
 
-  @class FdUmlQualifiedAssociation
-  @extends FdUmlLink
+  @class FdUmlQualifiedAggregation
+  @extends FdUmlBaseLink
 */
-export default FdUmlLink.extend({
-  /**
-    The start multiplicity of a link.
-
-    @property startMultiplicity
-    @type String
-  */
-  startMultiplicity: Ember.computed.alias('primitive.StartMultTxt.Text'),
-
-  /**
-    The end multiplicity of a link.
-
-    @property endMultiplicity
-    @type String
-  */
-  endMultiplicity: Ember.computed.alias('primitive.EndMultTxt.Text'),
+export default FdUmlBaseLink.extend({
 
   /**
     End role text.
@@ -36,7 +21,7 @@ export default FdUmlLink.extend({
     @property endRoleTxt
     @type String
   */
-  endRoleTxt: Ember.computed.alias('primitive.EndRoleTxt.Text'),
+  endRoleTxt: Ember.computed.alias('primitive.RightText.Text'),
 
   /**
     Start role text.
@@ -44,15 +29,7 @@ export default FdUmlLink.extend({
     @property startRoleTxt
     @type String
   */
-  startRoleTxt: Ember.computed.alias('primitive.StartRoleTxt.Text'),
-
-  /**
-    Link description.
-
-    @property description
-    @type String
-  */
-  description: Ember.computed.alias('primitive.Name.Text'),
+  startRoleTxt: Ember.computed.alias('primitive.LeftText.Text'),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.

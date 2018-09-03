@@ -25,20 +25,6 @@ export default FdUmlElement.extend({
   name: Ember.computed.alias('primitive.Name.Text'),
 
   /**
-    List of object's attributes.
-
-    @property attributes
-    @type Array
-  */
-  attributes: Ember.computed('primitive.AttributesTxt.Text', function() {
-    if (!Ember.isEmpty(this.get('primitive.Prop.Text'))) {
-      return this.get('primitive.Prop.Text').split('\n');
-    }
-
-    return [];
-  }),
-
-  /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
     @method JointJS

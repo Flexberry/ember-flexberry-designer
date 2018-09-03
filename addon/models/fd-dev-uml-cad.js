@@ -18,15 +18,15 @@ import FdUmlNoteConnector from '../objects/uml-primitives/fd-uml-note-connector'
 import FdUmlAssociation from '../objects/uml-primitives/fd-uml-association';
 import FdUmlComposition from '../objects/uml-primitives/fd-uml-composition';
 import FdUmlGeneralization from '../objects/uml-primitives/fd-uml-generalization';
-import FdUmlQAggregation from '../objects/uml-primitives/fd-uml-q-aggregation';
+import FdUmlQAggregation from '../objects/uml-primitives/fd-uml-qualified-aggregation';
 import FdUmlActiveObject from '../objects/uml-primitives/fd-uml-active-object';
 import FdUmlTemplateClass from '../objects/uml-primitives/fd-uml-template-class';
 import FdUmlPackage from '../objects/uml-primitives/fd-uml-package';
 import FdUmlNestedAssociation from '../objects/uml-primitives/fd-uml-nested-association';
 import FdUmlAggregation from '../objects/uml-primitives/fd-uml-aggregation';
 import FdUmlDependency from '../objects/uml-primitives/fd-uml-dependency';
-import FdUmlQAssociation from '../objects/uml-primitives/fd-uml-q-association';
-import FdUmlQComposition from '../objects/uml-primitives/fd-uml-q-composition';
+import FdUmlQAssociation from '../objects/uml-primitives/fd-uml-qualified-association';
+import FdUmlQComposition from '../objects/uml-primitives/fd-uml-qualified-composition';
 
 let Model = CADModel.extend(DevUMLCADMixin, {
   /**

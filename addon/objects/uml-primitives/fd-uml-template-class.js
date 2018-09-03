@@ -5,7 +5,7 @@
 import Ember from 'ember';
 
 import { Class } from './fd-uml-class';
-import FdUmlElement from './fd-uml-element';
+import FdUmlClass from './fd-uml-class';
 
 /**
   An object that describes a class on the UML diagram.
@@ -13,15 +13,7 @@ import FdUmlElement from './fd-uml-element';
   @class FdUmlTemplateClass
   @extends FdUmlElement
 */
-export default FdUmlElement.extend({
-  /**
-    The name of the class.
-
-    @property name
-    @type String
-  */
-  name: Ember.computed.alias('primitive.Name.Text'),
-
+export default FdUmlClass.extend({
   /**
     Params textbox.
 
@@ -31,32 +23,12 @@ export default FdUmlElement.extend({
   params: Ember.computed.alias('primitive.TemplateTxt.Text'),
 
   /**
-  List of class attributes.
-
-  @property attributes
-  @type Array
-*/
-  attributes: Ember.computed('primitive.AttributesTxt.Text', function () {
-    return this.get('primitive.AttributesTxt.Text').split('\n');
-  }),
-
-  /**
-    List of methods of the class.
-
-    @property methods
-    @type Array
-  */
-  methods: Ember.computed('primitive.MethodsTxt.Text', function () {
-    return this.get('primitive.MethodsTxt.Text').split('\n');
-  }),
-
-  /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'size', 'position', 'attributes', 'methods', 'params');
+    let properties = this.getProperties('id', 'name', 'size', 'position', 'attributes', 'methods', 'params', 'stereotype');
 
     return new TemplateClass(properties);
 
