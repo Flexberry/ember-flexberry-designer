@@ -34,19 +34,11 @@ export default FdUmlPrimitive.extend({
   }),
 
   /**
-    Link description.
-
-    @property description
-    @type String
-  */
-  description: Ember.computed.alias('primitive.Name.Text'),
-
-  /**
   The start multiplicity of a link.
 
   @property startMultiplicity
   @type String
-*/
+  */
   startMultiplicity: Ember.computed.alias('primitive.StartMultTxt.Text'),
 
   /**

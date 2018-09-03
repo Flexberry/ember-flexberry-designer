@@ -1,7 +1,6 @@
 /**
   @module ember-flexberry-designer
 */
-import Ember from 'ember';
 
 import FdUmlLink from './fd-uml-baselink';
 import { Link } from './fd-uml-link';
