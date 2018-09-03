@@ -54,7 +54,7 @@
               class="{{if (eq selectedColumn column) "fd-selected"}} {{unless column.propertyDefinition.visible "blackout"}}"
               title={{column.propertyDefinition.name}}
               {{action "selectColumn" column bubbles=false}}
-            >{{column.caption}}</th>
+            >{{or column.caption column.propertyDefinition.name}}</th>
           {{/each}}
         </tr>
       </thead>
