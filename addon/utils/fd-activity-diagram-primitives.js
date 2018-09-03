@@ -66,10 +66,6 @@ joint.shapes.flexberry.uml.ObjectFlow.define('flexberry.uml.Transition', {
   attrs: { '.connection': { 'stroke-dasharray': 0 } }
 });
 
-joint.shapes.basic.Rhombus.define('flexberry.uml.Decision', {
-  attrs: { text: { 'display': 'none' } }
-});
-
 joint.shapes.flexberry.uml.BaseObject.define('flexberry.uml.ObjectInState', {
   attrs: {
     'text tspan': { 'text-decoration': 'underline' },
@@ -84,17 +80,7 @@ joint.shapes.flexberry.uml.BaseObject.define('flexberry.uml.ObjectInState', {
   }
 });
 
-joint.shapes.flexberry.uml.BaseObject.define('flexberry.uml.ActiveState', {
-  attrs: {
-    '.flexberry-uml-header-rect': { rx:10, ry:10 },
-    'text': { 'font-weight': 'bold' }
-  }
-}, {
-  getObjName: function() {
-    let state = this.get('state').length > 0 ? '«' + this.get('state') + '»' : '';
-    return [this.get('name'), state];
-  }
-});
+
 
 joint.shapes.flexberry.uml.BaseObject.define('flexberry.uml.Partition', {
   attrs: { '.flexberry-uml-header-text': { 'font-weight':'bold', 'ref-y': 0, 'y-alignment': 'start' } },

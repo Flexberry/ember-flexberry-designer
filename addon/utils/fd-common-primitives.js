@@ -180,24 +180,7 @@ joint.shapes.uml.StartState.define('flexberry.uml.StartState', {
   }
 });
 
-joint.shapes.uml.EndState.define('flexberry.uml.EndState', {
-  attrs: {
-    'circle.inner': { fill: 'black' },
-    text: {
-      'ref':'circle.inner',
-      'ref-x': 20,
-      'ref-y': 0.5,
-      'text-anchor': 'strat',
-      'y-alignment': 'middle',
-      'fill': 'black',
-      'font-weight':'bold',
-      'font-size':'12',
-      'font-family':'Arial, helvetica, sans-serif'
-    }
-  }
-}, {
-  markup: '<g class="rotatable"><g class="scalable"><circle class="outer"/><circle class="inner"/></g><text/></g>'
-});
+
 
 joint.dia.Element.define('flexberry.uml.ComplexTransitionHorizon', {
   attrs: {

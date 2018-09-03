@@ -2,15 +2,14 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import joint from 'npm:jointjs';
 
-import { BaseObject } from './fd-uml-object';
 import FdUmlElement from './fd-uml-element';
 
 /**
-  An object that describes a n-ar associacion on the UML diagram.
+  An object that describes a Decision on an activity UML diagram.
 
-  @class FdUmlNAryAssociation
+  @class FdUmlDecision
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
@@ -24,33 +23,18 @@ export default FdUmlElement.extend({
     let properties = this.getProperties('id', 'size', 'position', 'attributes');
 
     return new Decision(properties);
-
   },
 });
 
 /**
-  Defines the JointJS object, which represents a 'NAryAssociation' object in the UML diagram.
+  Defines the JointJS object, which represents a `Decision` object in the UML diagram.
 
-  @for FdUmlNAryAssociation
-  @class NAryAssociation
-  @extends BaseObject
+  @for FdUmlDecision
+  @class Decision
+  @extends basic.Rhombus
   @namespace flexberry.uml
   @constructor
 */
-export let Decision = BaseObject.define('flexberry.uml.Decision', {
-  attrs: {
-    path: {
-      'd': 'M 0 20 L 50 0 100 20 50 40 Z',
-    }
-  },
-  heightPadding: 40,
-}, {
-    markup: [
-      '<g class="rotatable">',
-      '<g class="scalable">',
-      '<path class="flexberry-uml-header-rect"/>',
-      '</g>',
-      '<text class="flexberry-uml-header-text"/>',
-      '</g>'
-    ].join(''),
-  });
+export let Decision = joint.shapes.basic.Rhombus.define('flexberry.uml.Decision', {
+  attrs: { text: { 'display': 'none' } }
+});
