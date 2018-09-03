@@ -1,0 +1,46 @@
+<h3 class="ui header">
+  {{t 'forms.fd-class-edit-form.caption'}} {{className}}
+  {{#if readonly}}
+    ({{t 'forms.fd-edit-form.readonly-mode'}})
+  {{/if}}
+</h3>
+<form class="ui form flexberry-vertical-form" role="form">
+  {{flexberry-error error=error}}
+  <div class="field">
+    <div class="flexberry-edit-panel">
+    <button type="submit" class="ui button save-button" {{action 'save'}}>
+      {{t "forms.edit-form.save-button-text"}}
+    </button>
+      <button type="submit" class="ui button save-del-button" {{action 'delete'}}>
+        {{t "forms.edit-form.delete-button-text"}}
+      </button>
+      <button type="submit" class="ui button close-button" {{action 'close'}}>
+        {{t "forms.edit-form.close-button-text"}}
+      </button>
+    </div>
+  </div>
+  <div class="field">
+    {{flexberry-field
+      value=CSStrText
+      label=CSStrLabel
+    }}
+  </div>
+  <div class="field">
+    {{flexberry-field
+      value=SQLStrText
+      label=SQLStrLabel
+    }}
+  </div>
+  <div class="field">
+    {{flexberry-field
+      value=oracleStrText
+      label=oracleStrLabel
+    }}
+  </div>
+  <div class="field">
+    {{flexberry-field
+      value=postgreStrText
+      label=postgreStrLabel
+    }}
+  </div>
+</form>

@@ -1,6 +1,14 @@
 import Ember from 'ember';
+const { getOwner } = Ember;
 
 export default Ember.Controller.extend({
+  /**
+    Service for managing the state of the application.
+     @property appState
+    @type AppStateService
+  */
+  appState: Ember.inject.service(),
+
   /**
     Current store.
 
@@ -49,22 +57,21 @@ export default Ember.Controller.extend({
       @method actions.generate
      */
     generate() {
-      this.set('state', 'loading');
+      this.get('appState').loading();
       let _this = this;
       let stagePk = _this.get('currentProjectContext').getCurrentStage();
-      let host = _this.get('store').adapterFor('application').host;
-      Ember.$.ajax({
-        type: 'GET',
-        xhrFields: { withCredentials: true },
-        url: `${host}/Generate(project=${stagePk})`,
-        success(result) {
-          _this.set('generationService.lastGenerationToken', result);
-          _this.transitionToRoute('fd-generation-process-form', Ember.get(result, 'value'));
-        },
-        error() {
-          _this.set('state', '');
-          _this.set('error', new Error(_this.get('i18n').t('forms.fd-generation-process-form.connection-error-text')));
-        },
+      let adapter = getOwner(this).lookup('adapter:application');
+
+      adapter.callFunction('Generate', { project: stagePk.toString() }, null, { withCredentials: true },
+      (result) => {
+        _this.set('generationService.lastGenerationToken', result);
+        result = result || {};
+        _this.get('appState').reset();
+        _this.transitionToRoute(_this.get('editFormRoute'), Ember.get(result, 'value'));
+      },
+      () => {
+        _this.get('appState').reset();
+        _this.set('error', new Error(_this.get('i18n').t('forms.fd-generation-process-form.connection-error-text')));
       });
     }
   },

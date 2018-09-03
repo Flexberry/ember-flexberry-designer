@@ -25,6 +25,12 @@ import { controlsToDefinition, locateControlByPath } from '../utils/fd-view-path
 import FdDataTypes from '../utils/fd-datatypes';
 
 export default Ember.Controller.extend(FdWorkPanelToggler, {
+  /**
+    Service for managing the state of the application.
+     @property appState
+    @type AppStateService
+  */
+  appState: Ember.inject.service(),
   queryParams: ['classId'],
 
   /**
@@ -174,6 +180,22 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     @type Array
   */
   dataNotUsedAttributesTree: Ember.A(),
+
+  /**
+    View, edited in this exact constructor.
+
+    @property header
+    @type String
+  */
+  viewName: Ember.computed.readOnly('model.editform.name'),
+
+  /**
+    Class, edited by this form.
+
+    @property className
+    @type String
+  */
+  className: Ember.computed.alias('model.dataobject.name'),
 
   /**
     Update data in tree.
@@ -396,9 +418,9 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     @property typemap
     @type Ember.NativeArray
   */
-  typemap: Ember.computed('model.stage.typeMapCSStr', '_dataTypes', function() {
+  typemap: Ember.computed('model.stage.typeMapCS', '_dataTypes', function() {
     let dataTypes = this.get('_dataTypes');
-    let typemap = this.get('model.stage.typeMapCSStr').filter(t => dataTypes.fDTypeToFlexberry(t.name) === null);
+    let typemap = this.get('model.stage.typeMapCS').filter(t => dataTypes.fDTypeToFlexberry(t.name) === null);
     return this._buildTree(typemap, '«typemap»');
   }),
 
@@ -490,7 +512,9 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       });
 
       this._insertItem(control, this.get('selectedItem') || this.get('controlsTree'));
-      this.send('selectItem', control);
+      this.send('selectItem', control, true);
+      let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
+      Ember.$('.ui.menu', configPanelSidebar).find(`.item[data-tab="control-properties"]`).click();
       Ember.run.scheduleOnce('afterRender', this, this._scrollToSelected);
     },
 
@@ -510,7 +534,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       });
 
       this._insertItem(control, this.get('selectedItem') || this.get('controlsTree'));
-      this.send('selectItem', control);
+      this.send('selectItem', control, true);
       Ember.run.scheduleOnce('afterRender', this, this._scrollToSelected);
     },
 
@@ -587,8 +611,9 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
       @method actions.selectItem
       @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item
+      @param {Boolean} notTogglePanel
     */
-    selectItem(item) {
+    selectItem(item, notTogglePanel) {
       let selectedItem = this.get('selectedItem');
       if (this.get('_moveItem') && !Ember.isNone(item)) {
         if (this._findItemContainer(item, selectedItem) === null) {
@@ -607,8 +632,8 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
         let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
         let sidebarOpened = configPanelSidebar.hasClass('visible');
 
-        if ((item || sidebarOpened) && selectedItem !== item) {
-          this.send('toggleConfigPanel', 'control-properties', item);
+        if (!notTogglePanel && selectedItem !== item && (item || sidebarOpened)) {
+          this.send('toggleConfigPanel', { dataTab: 'control-properties' }, item);
         }
 
         this.set('selectedItem', item);
@@ -705,17 +730,17 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       @param {Boolean} close If `true`, the `close` action will be run.
     */
     save(close) {
-      this.set('state', 'loading');
+      this.get('appState').loading();
       try {
         this._saveMetadata(this.get('model'), this.get('controlsTree')).then(() => {
           this.set('model.originalDefinition', copyViewDefinition(this.get('model.editform.formViews.firstObject.view.definition')));
-          this.set('state', '');
+          this.get('appState').reset();
           if (close) {
             this.send('close');
           }
         });
       } catch (error) {
-        this.set('state', '');
+        this.get('appState').reset();
         this.set('error', error);
       }
     },
@@ -1062,7 +1087,8 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
   */
   _scrollToSelected() {
     let form = Ember.$('.full.height');
-    let scrollTop = Ember.$('.selected:first').offset().top + form.scrollTop() - (form.offset().top + 10);
+    let firstSelectedOffsetTop = Ember.$('.selected:first').length > 0 ? Ember.$('.selected:first').offset().top : 0;
+    let scrollTop = firstSelectedOffsetTop + form.scrollTop() - (form.offset().top + 10);
 
     form.animate({ scrollTop });
   },
@@ -1159,7 +1185,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
       let attribute = properties.attributes.findBy('name', propertyName);
       if (attribute) {
-        let typeInMap = this.get('model.stage.typeMapCSStr').findBy('name', attribute.get('type'));
+        let typeInMap = this.get('model.stage.typeMapCS').findBy('name', attribute.get('type'));
         if (typeInMap) {
           type = typeInMap.value || typeInMap.name;
         } else {

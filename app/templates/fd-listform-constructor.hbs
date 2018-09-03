@@ -1,4 +1,14 @@
-<h3 class="ui header">{{t "forms.fd-listform-constructor.caption"}}</h3>
+<h3 class="ui header">
+  {{t "forms.fd-listform-constructor.caption"}}
+  {{#if readonly}}
+    ({{t 'forms.fd-edit-form.readonly-mode'}})
+  {{/if}}
+  <div class="sub header">
+    {{t "forms.fd-listform-constructor.view"}}: {{viewName}}
+    <br>
+    {{t "forms.fd-listform-constructor.class"}}: {{className}}
+  </div>
+</h3>
 {{#if errorMessages}}
   {{#each errorMessages as |currentError|}}
     {{ui-message
@@ -10,7 +20,7 @@
     }}
   {{/each}}
 {{/if}}
-<form class="ui form flexberry-vertical-form list-form-constructor {{state}}" role="form">
+<form class="ui form flexberry-vertical-form list-form-constructor" role="form">
   {{flexberry-error error=error}}
   <div class="field">
     <div class="flexberry-edit-panel">
@@ -40,15 +50,15 @@
       <thead>
         <tr>
           {{#each columns as |column|}}
-            <th class={{if (eq selectedColumn column) "fd-selected"}} {{action "selectColumn" column bubbles=false}}>{{column.caption}}</th>
+            <th class="{{if (eq selectedColumn column) "fd-selected"}} {{unless column.propertyDefinition.visible "blackout"}}" {{action "selectColumn" column bubbles=false}}>{{column.caption}}</th>
           {{/each}}
         </tr>
       </thead>
       <tbody>
-        {{#each columns as |column|}}
+        {{#each rows as |row|}}
           <tr>
             {{#each columns as |column|}}
-              <td class={{if (eq selectedColumn column) "fd-selected"}} {{action "selectColumn" column bubbles=false}}>&nbsp;</td>
+              <td class="{{if (eq selectedColumn column) "fd-selected"}} {{unless column.propertyDefinition.visible "blackout"}}" {{action "selectColumn" column bubbles=false}}>&nbsp;</td>
             {{/each}}
           </tr>
         {{/each}}
@@ -79,7 +89,7 @@
     tabClick = (action "toggleConfigPanel")
     overflowedTabs=false
     inactiveTabs=true
-    activeTab="none"
+    activeTab=activeTab
     as |tab|
   }}
     <form class="ui form segment">

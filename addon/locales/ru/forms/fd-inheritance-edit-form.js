@@ -1,5 +1,5 @@
 export default {
-  caption: 'Наследование',
+  caption: 'Редактировать наследование',
   'name-caption': 'Название',
   'description-caption': 'Описание',
   'parent-caption': 'Предок',

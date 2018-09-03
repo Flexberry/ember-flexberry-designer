@@ -1,7 +1,9 @@
 <h3 class="ui header">{{t 'forms.fd-generation-process-form.caption'}}</h3>
-<form class="ui form flexberry-vertical-form {{state}}" role="form">
+<form class="ui form flexberry-vertical-form" role="form">
   {{flexberry-error error=error}}
-  <button type="submit" class="ui button" {{action 'generate'}}>{{t 'forms.fd-generation-process-form.generation-button-text'}}</button>
+  <button type="button" class="ui button" disabled={{model.isRunning}} {{action "generate"}}>
+    {{t "forms.fd-generation-process-form.generation-button-text"}}
+  </button>
 
   {{#if generationId}}
     <div class="ui teal progress generation-progress-bar" data-percent="0">

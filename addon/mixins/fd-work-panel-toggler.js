@@ -8,6 +8,15 @@ export default Ember.Mixin.create({
 
   configPanelTabsWidth: 58,
 
+  /**
+    Name of the active tab.
+
+    @property activeTab
+    @type String
+    @default 'none'
+   */
+  activeTab: 'none',
+
   actions: {
 
     toggleConfigPanel(currentTab, currentAttr = -1) {
@@ -18,17 +27,15 @@ export default Ember.Mixin.create({
         this.prevAttr = currentAttr;
 
         // Open the properties of the attribute in the edit panel.
-        Ember.$('.ui.menu', configPanelSidebar).find('.item').tab('change tab', currentTab);
+        this.set('activeTab', currentTab.dataTab);
+        Ember.$('.ui.menu', configPanelSidebar).find('.item').tab('change tab', currentTab.dataTab);
       }
 
       this.prevTab.setObjects([currentTab]);
       toggleconfigPanel = toggleconfigPanel || !configPanelSidebar.hasClass('visible');
 
       if (toggleconfigPanel) {
-        configPanelSidebar.sidebar({
-          closable: false,
-          dimPage: false
-        }).sidebar('toggle');
+        configPanelSidebar.sidebar('toggle');
         configPanelSidebar.removeClass('overlay');
         this.send('workPlaceConfig');
 
@@ -38,8 +45,10 @@ export default Ember.Mixin.create({
         }, 500);
       }
 
+      let _this = this;
       Ember.run.next(function() {
         if (!configPanelSidebar.hasClass('visible')) {
+          _this.set('activeTab', 'none');
           Ember.$('.ui.menu', configPanelSidebar).find('.item').removeClass('active');
           Ember.$('.ui.form', configPanelSidebar).find('.tab').removeClass('active');
         }

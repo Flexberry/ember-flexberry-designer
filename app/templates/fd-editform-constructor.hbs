@@ -1,6 +1,15 @@
-<h3 class="ui header">{{model.editform.caption}}</h3>
+<h3 class="ui header">{{t "forms.fd-editform-constructor.caption"}}
+  {{#if readonly}}
+    ({{t 'forms.fd-edit-form.readonly-mode'}})
+  {{/if}}
+  <div class="sub header">
+    {{t "forms.fd-editform-constructor.view"}}: {{viewName}}
+    <br>
+    {{t "forms.fd-editform-constructor.class"}}: {{className}}
+  </div>
+</h3>
 
-<form class="ui form flexberry-vertical-form {{state}}" role="form">
+<form class="ui form flexberry-vertical-form" role="form">
   {{flexberry-error error=error}}
   <div class="field">
     <div class="flexberry-edit-panel">
@@ -22,7 +31,7 @@
       </button>
     </div>
   </div>
-
+  <h3 class="ui header">{{model.editform.caption}}</h3>
   {{#each controlsTree as |row|}}
     {{fd-editform-row
       row=row
@@ -65,11 +74,11 @@
 {{/if}}
 
 {{#fd-config-panel}}
-  {{#fd-tabs 
+  {{#fd-tabs
     tabsMenuTheme="vertical tabular"
     class="ui segments horizontal right-tabs"
     tabClick = (action "toggleConfigPanel")
-    activeTab="none"
+    activeTab=activeTab
     overflowedTabs=false
     inactiveTabs=true
     as |tab|

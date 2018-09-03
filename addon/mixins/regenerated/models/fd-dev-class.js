@@ -473,14 +473,18 @@ export let Model = Ember.Mixin.create({
   getValidations: function () {
     let parentValidations = this._super();
     let thisValidations = {
+
       /* merged manually start */
-      caption: {
-        presence: {
-          // message: this.get('i18n').t('models.fd-dev-class.validations.caption')
-          message: 'Caption is required'
-        }
-      }
+
+      // caption: {
+      //   presence: {
+      //     // message: this.get('i18n').t('models.fd-dev-class.validations.caption')
+      //     message: 'Caption is required'
+      //   }
+      // }
+
       /* merged manually end */
+
     };
     return Ember.$.extend(true, {}, parentValidations, thisValidations);
   },
@@ -1147,6 +1151,7 @@ export let defineProjections = function (modelClass) {
   modelClass.defineProjection('FdEditClassForm', 'fd-dev-class', {
     caption: Projection.attr('Заголовок'),
     name: Projection.attr('Имя'),
+    nameStr: Projection.attr('', { hidden: true }),
     publishName: Projection.attr(''),
     stored: Projection.attr(''),
     storage: Projection.attr(''),

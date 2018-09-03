@@ -1,4 +1,18 @@
-<h3 class="ui header">{{model.tree.0.text}} ({{model.view.name}})</h3>
+<h3 class="ui header">
+  {{t "forms.fd-view-edit-form.caption"}}
+  {{#if readonly}}
+    ({{t 'forms.fd-edit-form.readonly-mode'}})
+  {{/if}}
+  <div class="sub header">
+    {{#if model.view.name}}
+      {{t "forms.fd-view-edit-form.view"}}: {{model.view.name}}<br>
+    {{/if}}
+    {{#if model.tree.0.text}}
+      {{t "forms.fd-view-edit-form.class"}}: {{model.tree.0.text}}
+    {{/if}}
+  </div>
+
+</h3>
 
 {{#if errorMessages}}
   {{#each errorMessages as |currentError|}}
@@ -11,7 +25,7 @@
     }}
   {{/each}}
 {{/if}}
-<form class="ui form flexberry-vertical-form {{state}}" role="form">
+<form class="ui form flexberry-vertical-form" role="form">
   {{flexberry-error error=error}}
   <div class="field">
     <div class="sixteen wide">
@@ -23,6 +37,9 @@
       {{#unless readonly}}
         <button type="button" class="ui button save-button" {{action 'saveView'}}>
           {{t "forms.edit-form.save-button-text"}}
+        </button>
+        <button type="submit" class="ui button save-close-button" {{action 'saveAndClose'}}>
+          {{t "forms.edit-form.saveAndClose-button-text"}}
         </button>
       {{/unless}}
       <button type="button" class="ui button close-button" {{action 'close'}}>
@@ -139,7 +156,7 @@
     tabClick = (action "toggleConfigPanel")
     overflowedTabs=false
     inactiveTabs=true
-    activeTab="none"
+    activeTab=activeTab
     as |tab|
   }}
     <form class="ui form segment">

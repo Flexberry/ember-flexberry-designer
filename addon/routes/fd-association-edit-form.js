@@ -34,7 +34,7 @@ export default EditFormRoute.extend(FdLoadingForTransitionMixin, {
       return item.get('stereotype') === '«implementation»' || item.get('stereotype') === null;
     });
 
-    let implementationsName = Ember.A(implementations).mapBy('name');
+    let implementationsName = Ember.A(implementations).map(i => i.get('name') || i.get('nameStr'));
     controller.set('implementationsName', implementationsName);
     controller.set('startClassName', model.get('startClass.name'));
     controller.set('endClassName', model.get('endClass.name'));
