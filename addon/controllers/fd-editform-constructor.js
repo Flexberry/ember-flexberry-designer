@@ -1006,7 +1006,7 @@ FdFormUnsavedData, {
   */
   _saveMetadata(model, controlsTree) {
     let view = model.editform.get('formViews.firstObject.view');
-    let viewDefinition = controlsToDefinition(controlsTree);
+    let viewDefinition = controlsToDefinition(controlsTree);  
 
     // Check viewDefinition on errors.
     let duplicateValues = Ember.A();
@@ -1270,6 +1270,9 @@ FdFormUnsavedData, {
     @method _getStringifyModel
   */
   _getStringifyModel() {
+    let tree = this.get('controlsTree');
+    let treeString = JSON.stringify(tree);
+
     let views = this.get('model.views');
     let viewsString = JSON.stringify(views);
 
@@ -1288,8 +1291,8 @@ FdFormUnsavedData, {
     let editform = this.get('model.editform');
     let editformString = JSON.stringify(editform);
 
-    let allDataString = viewsString + aggregationsString + associationsString + classesString + editformString + inheritancesString;
-  
+    let allDataString = treeString + viewsString + aggregationsString + associationsString + classesString + editformString + inheritancesString;
+
     return allDataString;
   },
 
