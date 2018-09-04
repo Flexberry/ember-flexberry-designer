@@ -35,14 +35,14 @@
   <div class="field">
     <div class="flexberry-edit-panel">
       {{#unless readonly}}
-        <button type="button" class="ui button save-button" {{action 'saveView'}}>
+        <button type="button" class="ui button save-button" {{action "saveView"}}>
           {{t "forms.edit-form.save-button-text"}}
         </button>
-        <button type="submit" class="ui button save-close-button" {{action 'saveAndClose'}}>
+        <button type="submit" class="ui button save-close-button" {{action "saveView" true}}>
           {{t "forms.edit-form.saveAndClose-button-text"}}
         </button>
       {{/unless}}
-      <button type="button" class="ui button close-button" {{action 'close'}}>
+      <button type="button" class="ui button close-button" {{action "close"}}>
         {{t "forms.edit-form.close-button-text"}}
       </button>
     </div>
