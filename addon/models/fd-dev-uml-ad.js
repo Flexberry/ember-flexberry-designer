@@ -12,6 +12,11 @@ import FdUmlActiveState from '../objects/uml-primitives/fd-uml-active-state';
 import FdUmlStartState from '../objects/uml-primitives/fd-uml-start-state';
 import FdUmlFinalState from '../objects/uml-primitives/fd-uml-final-state';
 import FdUmlComplexTransition from '../objects/uml-primitives/fd-uml-complex-transition';
+import FdUmlObjectInState from '../objects/uml-primitives/fd-uml-object-in-state';
+import FdUmlSignalReceipt from '../objects/uml-primitives/fd-uml-signal-receipt';
+import FdUmlSignalSend from '../objects/uml-primitives/fd-uml-signal-send';
+import FdUmlTransition from '../objects/uml-primitives/fd-uml-transition';
+import FdUmlObjectFlow from '../objects/uml-primitives/fd-uml-object-flow';
 
 let Model = ADModel.extend(DevUMLADMixin, {
   /**
@@ -46,8 +51,37 @@ let Model = ADModel.extend(DevUMLADMixin, {
         case 'STORMCASE.UML.ad.ComplexTransitionH, UMLAD':
           result.pushObject(FdUmlComplexTransition.create({ primitive }));
           break;
+
         case 'STORMCASE.UML.ad.ComplexTransitionV, UMLAD':
           result.pushObject(FdUmlComplexTransition.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.ad.ObjectInState, UMLAD':
+          result.pushObject(FdUmlObjectInState.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.ad.SignalReceiptLeft, UMLAD':
+          result.pushObject(FdUmlSignalReceipt.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.ad.SignalReceiptRight, UMLAD':
+          result.pushObject(FdUmlSignalReceipt.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.ad.SignalSendLeft, UMLAD':
+          result.pushObject(FdUmlSignalSend.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.ad.SignalSendRight, UMLAD':
+          result.pushObject(FdUmlSignalSend.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.ad.Transition, UMLAD':
+          result.pushObject(FdUmlTransition.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.ad.ObjectFlow, UMLAD':
+          result.pushObject(FdUmlObjectFlow.create({ primitive }));
           break;
 
         default:

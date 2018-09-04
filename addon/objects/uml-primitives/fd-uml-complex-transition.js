@@ -23,6 +23,12 @@ export default FdUmlElement.extend({
   */
   name: Ember.computed.alias('primitive.Name.Text'),
 
+  /**
+    Type of primitive.
+
+    @property type
+    @type String
+  */
   type: Ember.computed.alias('primitive.$type'),
 
   /**
@@ -61,7 +67,7 @@ export let ComplexTransitionH = joint.dia.Element.define('flexberry.uml.ComplexT
       'y-alignment': 'middle',
       'font-weight': 'bold'
     }
-  }
+  },
 }, {
     markup: [
       '<g class="rotatable">',
