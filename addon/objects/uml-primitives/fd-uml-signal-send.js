@@ -63,7 +63,7 @@ export let SignalSendRight = SignalReceiptRight.define('flexberry.uml.SignalSend
   }
 });
 
-  /**
+/**
   Defines the JointJS link, which represents a `SignalSendLeft` figure.
 
   @for FdUmlSignalSend

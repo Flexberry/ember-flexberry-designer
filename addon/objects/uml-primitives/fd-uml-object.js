@@ -110,6 +110,6 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
     attrs['.flexberry-uml-header-rect'].height = rectHeight;
     attrs['.flexberry-uml-header-rect'].width = rectWidth;
 
-    this.resize(rectWidth, rectHeight);
+    //this.resize(rectWidth, rectHeight);
   }
 });

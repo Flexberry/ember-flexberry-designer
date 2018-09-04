@@ -17,6 +17,9 @@ import FdUmlSignalReceipt from '../objects/uml-primitives/fd-uml-signal-receipt'
 import FdUmlSignalSend from '../objects/uml-primitives/fd-uml-signal-send';
 import FdUmlTransition from '../objects/uml-primitives/fd-uml-transition';
 import FdUmlObjectFlow from '../objects/uml-primitives/fd-uml-object-flow';
+import FdUmlPartition from '../objects/uml-primitives/fd-uml-partition';
+import FdUmlNoteConnector from '../objects/uml-primitives/fd-uml-note-connector';
+import FdUmlNote from '../objects/uml-primitives/fd-uml-note';
 
 let Model = ADModel.extend(DevUMLADMixin, {
   /**
@@ -82,6 +85,18 @@ let Model = ADModel.extend(DevUMLADMixin, {
 
         case 'STORMCASE.UML.ad.ObjectFlow, UMLAD':
           result.pushObject(FdUmlObjectFlow.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.ad.Partition, UMLAD':
+          result.pushObject(FdUmlPartition.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':
+          result.pushObject(FdUmlNoteConnector.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.Common.Note, UMLCommon':
+          result.pushObject(FdUmlNote.create({ primitive }));
           break;
 
         default:

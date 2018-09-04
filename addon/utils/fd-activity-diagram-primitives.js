@@ -81,7 +81,6 @@ joint.shapes.flexberry.uml.BaseObject.define('flexberry.uml.ObjectInState', {
 });
 
 
-
 joint.shapes.flexberry.uml.BaseObject.define('flexberry.uml.Partition', {
   attrs: { '.flexberry-uml-header-text': { 'font-weight':'bold', 'ref-y': 0, 'y-alignment': 'start' } },
   heightPadding: 60
