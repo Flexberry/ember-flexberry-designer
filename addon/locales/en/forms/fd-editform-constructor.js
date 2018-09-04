@@ -9,10 +9,6 @@ export default {
   'unknown-detail-view-error': 'Unknown view of detail',
   'unsupported-container-error': 'Unsupported container',
   'item-cast-error': 'The passed item can not be cast to a row',
-  'save-title': 'Form data was changed',
-  'save-message': 'Would you like to save your changes?',
-  'save-button': 'Save changes',
-  'rollback-button': 'Cancel changes',
   'form-config-panel': {
     'form-properties-header': 'Form properties',
     'form-name': 'Form name',

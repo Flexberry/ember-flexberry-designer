@@ -9,9 +9,5 @@ export default {
   'generateComPlusServer-caption': '',
   'generateHttpRemoteServer-caption': '',
   'publishToEBSD-caption': '',
-  'attributes-caption': 'Возможные значения',
-  'save-title': 'Данные формы бизнес-сервера были изменены',
-  'save-message': 'Желаете сохранить внесенные изменения?',
-  'save-button': 'Сохранить изменения',
-  'rollback-button': 'Отменить изменения',
+  'attributes-caption': 'Возможные значения'
 };

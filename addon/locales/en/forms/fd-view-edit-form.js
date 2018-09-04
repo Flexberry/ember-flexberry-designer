@@ -4,10 +4,6 @@ export default {
   'class': 'Class',
   'name-caption': 'Name view',
   'description-caption': 'Description view',
-  'save-title': 'Form data was changed',
-  'save-message': 'Would you like to save your changes?',
-  'save-button': 'Save changes',
-  'rollback-button': 'Cancel changes',
   'settings-view': {
     caption: 'Settings view',
     'name-caption': 'Caption ("~" - empty value)',

@@ -4,13 +4,6 @@ import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 
 export default Ember.Controller.extend(FdFormUnsavedData, {
   /**
-    @property formName
-    @type String
-    @default 'fd-typedef-edit-form'
-  */
-  formName: 'fd-typedef-edit-form',
-
-  /**
     Name of current <<typedef>> class.
     @property className
     @type String

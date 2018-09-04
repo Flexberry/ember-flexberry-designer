@@ -47,13 +47,6 @@ FdFormUnsavedData, {
   _showNotUsedAttributesTree: false,
 
   /**
-    @property formName
-    @type String
-    @default 'fd-listform-constructor'
-  */
-  formName: 'fd-listform-constructor',
-
-  /**
     Selected nodes in jsTree.
 
     @property selectedNodesNotUsedAttributesTree
@@ -457,8 +450,10 @@ FdFormUnsavedData, {
       @method actions.closeWithSaving
     */
     closeWithSaving() {
-      this.send('saveTree');
-      this.send('close');
+      promise = this.send('saveTree');
+      Ember.run.next(() => {
+        this.send('close');
+      });
     },
 
     /**

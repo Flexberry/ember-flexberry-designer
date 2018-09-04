@@ -6,13 +6,6 @@ export default EditFormController.extend(FdFormUnsavedData, {
   parentRoute: 'fd-inheritance-list-form',
 
   /**
-    @property formName
-    @type String
-    @default 'fd-inheritance-edit-form'
-  */
-  formName: 'fd-inheritance-edit-form',
-
-  /**
     Service that get current project contexts.
 
     @property currentProjectContext

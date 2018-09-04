@@ -16,13 +16,6 @@ export default Ember.Route.extend(FdFormCheckTransitionMixin, {
       @method actions.didTransition
     */
     didTransition() {
-      Ember.$('.full.height').on('click.fd-listform-constructor', (e) => {
-        let table = Ember.$('.ui.table.fd-listform')[0];
-        let path = Ember.get(e, 'originalEvent.path') || [];
-        if (path.indexOf(table) === -1) {
-          this.get('controller').send('selectColumn');
-        }
-      });
     },
   },
 

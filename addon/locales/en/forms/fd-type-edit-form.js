@@ -9,9 +9,5 @@ export default {
   'pBCustomAttributes-caption': 'pBCustomAttributes',
   'publishToEBSD-caption': 'publishToEBSD',
   'attributes-caption': 'attributes',
-  'methods-caption': 'methods',
-  'save-title': 'Form data was changed',
-  'save-message': 'Would you like to save your changes?',
-  'save-button': 'Save changes',
-  'rollback-button': 'Cancel changes'
+  'methods-caption': 'methods'
 };

@@ -19,13 +19,6 @@ FdFormUnsavedData, {
   _originalData: '',
 
   /**
-    @property formName
-    @type String
-    @default 'fd-appstruct-form'
-  */
-  formName: 'fd-appstruct-form',
-
-  /**
     @property store
     @type Service
   */
@@ -384,8 +377,10 @@ FdFormUnsavedData, {
       @method actions.closeWithSaving
     */
     closeWithSaving() {
-      this.send('saveTree');
-      this.send('close');
+      promise = this.send('saveTree');
+      Ember.run.next(() => {
+        this.send('close');
+      });
     },
 
     /**

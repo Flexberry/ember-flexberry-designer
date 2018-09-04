@@ -12,51 +12,32 @@ import Ember from 'ember';
 */
 export default Ember.Mixin.create({
   /**
-    @property formName
-    @type String
-    @default ''
-  */
-  formName: '',
-
-  /**
     @property saveTitleLocaleKey
     @type String
-    @default undefined
+    @default 'forms.fd-confirm-unsaved-form-modal.save-title'
   */
-  saveTitleLocaleKey: Ember.computed('formName', function () {
-    let mesageKey = 'forms.' + this.get('formName') + '.save-title';
-    return mesageKey;
-  }),
+  saveTitleLocaleKey: 'forms.fd-confirm-unsaved-form-modal.save-title',
 
   /**
     @property saveMessageLocaleKey
     @type String
-    @default undefined
+    @default 'forms.fd-confirm-unsaved-form-modal.save-message'
   */
-  saveMessageLocaleKey: Ember.computed('formName', function () {
-    let mesageKey = 'forms.' + this.get('formName') + '.save-message';
-    return mesageKey;
-  }),
+  saveMessageLocaleKey: 'forms.fd-confirm-unsaved-form-modal.save-message',
 
   /**
     @property saveButtonLocaleKey
     @type String
-    @default undefined
+    @default 'forms.fd-confirm-unsaved-form-modal.save-button'
   */
-  saveButtonLocaleKey: Ember.computed('formName', function () {
-    let mesageKey = 'forms.' + this.get('formName') + '.save-button';
-    return mesageKey;
-  }),
+  saveButtonLocaleKey: 'forms.fd-confirm-unsaved-form-modal.save-button',
 
   /**
     @property rollbackButtonLocaleKey
     @type String
-    @default undefined
+    @default 'forms.fd-confirm-unsaved-form-modal.rollback-button'
   */
-  rollbackButtonLocaleKey: Ember.computed('formName', function () {
-    let mesageKey = 'forms.' + this.get('formName') + '.rollback-button';
-    return mesageKey;
-  }),
+  rollbackButtonLocaleKey: 'forms.fd-confirm-unsaved-form-modal.rollback-button',
 
   /**
     Transition, aborted for some reason.

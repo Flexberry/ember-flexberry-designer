@@ -11,11 +11,6 @@ export default {
   'add-button-text': 'Добавить',
   'preview-mobile-variant': 'Предпросмотр мобильного варианта',
 
-  'save-title': 'Данные формы были изменены',
-  'save-message': 'Желаете сохранить внесенные изменения?',
-  'save-button': 'Сохранить изменения',
-  'rollback-button': 'Отменить изменения',
-
   'listform-forward': 'Вперед',
   'listform-back': 'Назад',
   'new-column-caption': 'Новый атрибут',

@@ -37,9 +37,5 @@ export default {
     'namespace-postfix': 'Namespace postfix',
     'pb-custom-attributes': 'Programmer brackets for arbitrary attributes',
     'disable-all-right-checks': 'Disable authorization check',
-  },
-  'save-title': 'Form data was changed',
-  'save-message': 'Would you like to save your changes?',
-  'save-button': 'Save changes',
-  'rollback-button': 'Cancel changes',
+  }
 };

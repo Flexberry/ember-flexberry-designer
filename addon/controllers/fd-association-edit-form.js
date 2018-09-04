@@ -6,13 +6,6 @@ export default EditFormController.extend(FdFormUnsavedData, {
   parentRoute: 'fd-association-list-form',
 
   /**
-    @property formName
-    @type String
-    @default 'fd-association-edit-form'
-  */
-  formName: 'fd-association-edit-form',
-
-  /**
     Array all classes.
 
     @property implementations

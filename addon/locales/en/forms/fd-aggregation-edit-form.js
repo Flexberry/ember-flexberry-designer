@@ -23,9 +23,5 @@ export default {
   'pb-detail-get-start-caption': 'Brackets of the programmer before the detail getter',
   'pb-detail-get-end-caption': 'Brackets of the programmer after the detail getter',
   'pb-detail-set-start-caption': 'Brackets of the programmer before the detail setter',
-  'pb-detail-set-end-caption': 'Brackets of the programmer after the detail setter',
-  'save-title': 'Aggregation form data was changed',
-  'save-message': 'Would you like to save your changes?',
-  'save-button': 'Save changes',
-  'rollback-button': 'Cancel changes',
+  'pb-detail-set-end-caption': 'Brackets of the programmer after the detail setter'
 };

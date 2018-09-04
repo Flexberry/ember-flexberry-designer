@@ -31,13 +31,6 @@ FdFormUnsavedData, {
    */
   objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
 
-  /**
-    @property formName
-    @type String
-    @default 'fd-view-edit-form'
-  */
-  formName: 'fd-view-edit-form',
-
   allAttrsHidedn: false,
 
   popupMessage: t(`forms.fd-view-edit-form.attributes-panel.close-panel-btn-caption`),
@@ -387,8 +380,13 @@ FdFormUnsavedData, {
       @method actions.closeWithSaving
     */
     closeWithSaving() {
-      this.send('saveView');
-      this.send('close');
+      Ember.run.next(() => {
+        let promise = Ember.RSVP.resolve();
+        promise = this.send('saveTree');
+        promise.then(() => {
+          this.send('close');
+        });
+      });
     },
   },
 

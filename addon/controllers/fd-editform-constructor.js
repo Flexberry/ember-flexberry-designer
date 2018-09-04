@@ -118,13 +118,6 @@ FdFormUnsavedData, {
   _originalData: '',
 
   /**
-    @property formName
-    @type String
-    @default 'fd-editform-constructor'
-  */
-  formName: 'fd-editform-constructor',
-
-  /**
     Selected nodes in jsTree.
     @property selectedNodesNotUsedAttributesTree
     @type Array
@@ -601,8 +594,10 @@ FdFormUnsavedData, {
       @method actions.closeWithSaving
     */
     closeWithSaving() {
-      this.send('save');
-      this.send('close');
+      promise = this.send('saveTree');
+      Ember.run.next(() => {
+        this.send('close');
+      });
     },
 
     /**
@@ -1006,7 +1001,7 @@ FdFormUnsavedData, {
   */
   _saveMetadata(model, controlsTree) {
     let view = model.editform.get('formViews.firstObject.view');
-    let viewDefinition = controlsToDefinition(controlsTree);  
+    let viewDefinition = controlsToDefinition(controlsTree);
 
     // Check viewDefinition on errors.
     let duplicateValues = Ember.A();

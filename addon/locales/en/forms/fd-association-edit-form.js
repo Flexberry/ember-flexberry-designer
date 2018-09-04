@@ -18,9 +18,5 @@ export default {
   'pb-master-get-start-caption': 'Brackets of the programmer before the getter of the master property',
   'pb-master-get-end-caption': 'Brackets of the programmer after the getter master property',
   'pb-master-set-start-caption': 'Brackets of the programmer before the masters setter',
-  'pb-master-set-end-caption': 'Brackets of the programmer after the master setter',
-  'save-title': 'Association form data was changed',
-  'save-message': 'Would you like to save your changes?',
-  'save-button': 'Save changes',
-  'rollback-button': 'Cancel changes',
+  'pb-master-set-end-caption': 'Brackets of the programmer after the master setter'
 };

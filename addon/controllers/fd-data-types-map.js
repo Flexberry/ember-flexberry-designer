@@ -16,13 +16,6 @@ import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 */
 export default Ember.Controller.extend(FdFormUnsavedData, {
   /**
-    @property formName
-    @type String
-    @default 'fd-data-types-map'
-  */
-  formName: 'fd-data-types-map',
-
-  /**
     Service for controlling the load indication.
 
     @property objectlistviewEvents

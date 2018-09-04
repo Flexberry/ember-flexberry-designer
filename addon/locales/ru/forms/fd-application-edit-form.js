@@ -12,9 +12,5 @@ export default {
   'auditWinServiceUrl-caption': 'Адрес сервиса аудита',
   'writeSessions-caption': 'Вести аудит сессий пользователей',
   'attributes-caption': 'Атрибуты',
-  'methods-caption': 'Методы',
-  'save-title': 'Данные формы были изменены',
-  'save-message': 'Желаете сохранить внесенные изменения?',
-  'save-button': 'Сохранить изменения',
-  'rollback-button': 'Отменить изменения',
+  'methods-caption': 'Методы'
 };
