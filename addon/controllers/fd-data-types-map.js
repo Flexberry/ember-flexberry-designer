@@ -199,9 +199,9 @@ export default Ember.Controller.extend(FdFormUnsavedData, {
   },
 
   /**
-    Serializes a combined type map, returns `true` if it has been changed.
+    Find unsaved data. Returns `true` if data has been changed, but not saved.
 
-    @method serializeTypeMap
+    @method findUnsavedFormData
     @return {Boolean} Changed or not a combined type map.
   */
   findUnsavedFormData() {
