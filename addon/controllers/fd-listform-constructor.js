@@ -411,6 +411,7 @@ FdFormUnsavedData, {
             this.get('formClass.formViews.firstObject').save().then(() => {
               this.set('class', undefined);
               this.set('form', this.get('formClass.id'));
+              this.saveDataToOriginal();
               if (close) {
                 this.send('close');
               } else {
@@ -436,8 +437,6 @@ FdFormUnsavedData, {
         this.set('state', '');
         this.set('error', error);
       });
-
-      this.saveDataToOriginal();
     },
 
     close() {
@@ -450,10 +449,7 @@ FdFormUnsavedData, {
       @method actions.closeWithSaving
     */
     closeWithSaving() {
-      promise = this.send('saveTree');
-      Ember.run.next(() => {
-        this.send('close');
-      });
+      this.send('save', true);
     },
 
     /**
@@ -526,6 +522,52 @@ FdFormUnsavedData, {
   },
 
   /**
+    This method run non ember data saved when model is loaded
+
+    @method saveOriginalData
+  */
+  originalDataInit: function () {
+    Ember.run.next(this, () => {
+      this.saveDataToOriginal();
+    });
+  },
+
+  /**
+    Save fields before changes
+
+    @method saveOriginalData
+  */
+  saveDataToOriginal: function () {
+    let originalDataString = this._getStringifyModel();
+    this.set('_originalData', originalDataString);
+  },
+
+  /**
+    Cancel form data changes
+
+    @method clearDirtyAttributes
+  */
+  clearDirtyAttributes: function () {
+    this.saveDataToOriginal();
+  },
+
+  /**
+    Check if fields changed, but unsaved
+
+    @method findUnsavedFormData
+  */
+  findUnsavedFormData: function () {
+    let checkResult = false;
+    let originalDataString = this.get('_originalData');
+    let currentDataString = this._getStringifyModel();
+    if (!Ember.isEqual(originalDataString, currentDataString)) {
+      checkResult = true;
+    }
+
+    return checkResult;
+  },
+
+  /**
     Scrolls the form to the selected control with jQuery.
 
     @private
@@ -574,52 +616,6 @@ FdFormUnsavedData, {
     let allDataString = attributesString + viewString;
 
     return allDataString;
-  },
-
-  /**
-    This method run non ember data saved when model is loaded
-
-    @method saveOriginalData
-  */
-  originalDataInit: function () {
-    Ember.run.next(this, () => {
-      this.saveDataToOriginal();
-    });
-  },
-
-  /**
-    Save fields before changes
-
-    @method saveOriginalData
-  */
-  saveDataToOriginal: function () {
-    let originalDataString = this._getStringifyModel();
-    this.set('_originalData', originalDataString);
-  },
-
-  /**
-    Cancel form data changes
-
-    @method clearDirtyAttributes
-  */
-  clearDirtyAttributes: function () {
-    this.saveDataToOriginal();
-  },
-
-  /**
-    Check if fields changed, but unsaved
-
-    @method findUnsavedFormData
-  */
-  findUnsavedFormData: function () {
-    let checkResult = false;
-    let originalDataString = this.get('_originalData');
-    let currentDataString = this._getStringifyModel();
-    if (!Ember.isEqual(originalDataString, currentDataString)) {
-      checkResult = true;
-    }
-
-    return checkResult;
   },
 
   /**

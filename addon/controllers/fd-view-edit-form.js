@@ -356,7 +356,7 @@ FdFormUnsavedData, {
 
       @method actions.saveView
     */
-    saveView() {
+    saveView(close) {
       let view = this.get('model.view');
       view.set('definition', Ember.A(view.get('definition').toArray()));
       let _this = this;
@@ -368,10 +368,12 @@ FdFormUnsavedData, {
           _this.transitionToRoute(routeName.slice(0, -4), view.get('id'));
         } else {
           _this.get('objectlistviewEventsService').setLoadingState('');
+          this.saveDataToOriginal();
+          if (close) {
+            this.send('close');
+          }
         }
       });
-
-      this.saveDataToOriginal();
     },
 
     /**
@@ -380,43 +382,8 @@ FdFormUnsavedData, {
       @method actions.closeWithSaving
     */
     closeWithSaving() {
-      Ember.run.next(() => {
-        let promise = Ember.RSVP.resolve();
-        promise = this.send('saveTree');
-        promise.then(() => {
-          this.send('close');
-        });
-      });
+      this.send('saveView', true);
     },
-  },
-
-  /**
-    Overridden action for jsTree 'openNode'.
-    @method _openNodeTree
-  */
-  _openNodeTree(e, data) {
-    let treeData = this.get('model.tree');
-    restorationNodeTree(treeData, data.node.original, Ember.A(['master', 'class']), false, (function(node) {
-      let dataForBuildTree = getDataForBuildTree(this.get('store'), node.get('idNode'));
-      let childrenAttributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes);
-      let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, node.get('id'));
-
-      return childrenNode;
-    }).bind(this));
-
-    this.get('jstreeActionReceiver').send('redraw');
-  },
-
-  /**
-    Get model data in string
-
-    @method _getStringifyModel
-  */
-  _getStringifyModel() {
-    let view = this.get('model.view');
-    let viewString = JSON.stringify(view);
-
-    return viewString;
   },
 
   /**
@@ -463,6 +430,35 @@ FdFormUnsavedData, {
     }
 
     return checkResult;
+  },
+
+  /**
+    Overridden action for jsTree 'openNode'.
+    @method _openNodeTree
+  */
+  _openNodeTree(e, data) {
+    let treeData = this.get('model.tree');
+    restorationNodeTree(treeData, data.node.original, Ember.A(['master', 'class']), false, (function(node) {
+      let dataForBuildTree = getDataForBuildTree(this.get('store'), node.get('idNode'));
+      let childrenAttributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes);
+      let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, node.get('id'));
+
+      return childrenNode;
+    }).bind(this));
+
+    this.get('jstreeActionReceiver').send('redraw');
+  },
+
+  /**
+    Get model data in string
+
+    @method _getStringifyModel
+  */
+  _getStringifyModel() {
+    let view = this.get('model.view');
+    let viewString = JSON.stringify(view);
+
+    return viewString;
   },
 
   willDestroy() {

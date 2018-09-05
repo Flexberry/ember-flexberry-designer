@@ -85,6 +85,7 @@ FdFormUnsavedData, {
 
   /**
     Indicates that the user has started moving control, and the next selected control will be the target of the move.
+
     @private
     @property _moveItem
     @type Boolean
@@ -94,6 +95,7 @@ FdFormUnsavedData, {
 
   /**
     The current dragged item.
+
     @private
     @property _draggedItem
     @type FdEditformRow|FdEditformControl
@@ -102,6 +104,7 @@ FdFormUnsavedData, {
 
   /**
     Flag: indicates whether show tree.
+
     @private
     @property _showNotUsedAttributesTree
     @type Boolean
@@ -119,6 +122,7 @@ FdFormUnsavedData, {
 
   /**
     Selected nodes in jsTree.
+
     @property selectedNodesNotUsedAttributesTree
     @type Array
     @default []
@@ -127,6 +131,7 @@ FdFormUnsavedData, {
 
   /**
     Included plugins for jsTree.
+
     @property pluginsTree
     @type String
     @default 'wholerow, types, search'
@@ -135,6 +140,7 @@ FdFormUnsavedData, {
 
   /**
     Type settings for jsTree.
+
     @property typesOptionsTree
     @type Object
   */
@@ -155,6 +161,7 @@ FdFormUnsavedData, {
 
   /**
     Data for search tree node.
+
     @property searchTermTree
     @type String
     @default ''
@@ -163,6 +170,7 @@ FdFormUnsavedData, {
 
   /**
     Search settings for jsTree.
+
     @property searchOptionsTree
     @type Object
   */
@@ -172,6 +180,7 @@ FdFormUnsavedData, {
 
   /**
     Data for jsTree.
+
     @property dataNotUsedAttributesTree
     @type Array
   */
@@ -179,6 +188,7 @@ FdFormUnsavedData, {
 
   /**
     View, edited in this exact constructor.
+
     @property header
     @type String
   */
@@ -186,6 +196,7 @@ FdFormUnsavedData, {
 
   /**
     Class, edited by this form.
+
     @property className
     @type String
   */
@@ -193,6 +204,7 @@ FdFormUnsavedData, {
 
   /**
     Update data in tree.
+
     @method dataNotUsedAttributesTreeObserver
   */
   dataNotUsedAttributesTreeObserver: Ember.observer('_showNotUsedAttributesTree', function() {
@@ -293,6 +305,7 @@ FdFormUnsavedData, {
 
   /**
     An array in the container of the selected item.
+
     @private
     @property _selectedItemStorage
     @readOnly
@@ -341,6 +354,7 @@ FdFormUnsavedData, {
 
   /**
     The selected item.
+
     @property selectedItem
     @type {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab}
   */
@@ -433,6 +447,7 @@ FdFormUnsavedData, {
 
   /**
     An object with all (including inherited) the attributes, associations and aggregations for the this form data object.
+
     @property dataObjectProperties
     @type Object
   */
@@ -447,6 +462,7 @@ FdFormUnsavedData, {
 
   /**
     The controls tree created from a view definition.
+
     @property controlsTree
     @readOnly
     @type Ember.NativeArray
@@ -471,6 +487,7 @@ FdFormUnsavedData, {
   actions: {
     /**
       Adds a new control to the form, if there is a selected item, the control will be added to it.
+
       @method actions.addControl
     */
     addControl() {
@@ -508,6 +525,7 @@ FdFormUnsavedData, {
 
     /**
       Adds a new empty control to the form, if there is a selected item, the empty control will be added to it.
+
       @method actions.addEmptyControl
     */
     addEmptyControl() {
@@ -527,6 +545,7 @@ FdFormUnsavedData, {
 
     /**
       Adds a new group to the form, if there is a selected item, the group will be added to it.
+
       @method actions.addGroup
     */
     addGroup() {
@@ -538,6 +557,7 @@ FdFormUnsavedData, {
 
     /**
       Adds a new tab to the form, if there is a selected item, the tab will be added to it.
+
       @method actions.addTab
     */
     addTab() {
@@ -549,6 +569,7 @@ FdFormUnsavedData, {
 
     /**
       Removes the selected item.
+
       @method actions.removeSelectedItem
       @param {Boolean} approve The user is sure.
     */
@@ -568,6 +589,7 @@ FdFormUnsavedData, {
 
     /**
       Sorts the selected item in its container.
+
       @method actions.sortSelectedItem
       @param {Number} step Step of moving the item.
     */
@@ -582,6 +604,7 @@ FdFormUnsavedData, {
 
     /**
       Close edit form constructor and go to application structure constructor.
+
       @method actions.close
     */
     close() {
@@ -594,14 +617,12 @@ FdFormUnsavedData, {
       @method actions.closeWithSaving
     */
     closeWithSaving() {
-      promise = this.send('saveTree');
-      Ember.run.next(() => {
-        this.send('close');
-      });
+      this.send('save', true);
     },
 
     /**
       Set the selected item.
+
       @method actions.selectItem
       @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item
       @param {Boolean} notTogglePanel
@@ -642,6 +663,7 @@ FdFormUnsavedData, {
 
     /**
       Set the current dragged item.
+
       @method actions.setDragItem
       @param {FdEditformRow|FdEditformControl} item New dragged item.
     */
@@ -651,6 +673,7 @@ FdFormUnsavedData, {
 
     /**
       Get the current dragged item.
+
       @method actions.getDragItem
       @return {FdEditformRow|FdEditformControl} The current dragged item or `undefined`.
     */
@@ -660,6 +683,7 @@ FdFormUnsavedData, {
 
     /**
       Returns an object with properties to render the component.
+
       @method actions.getComponentProperties
       @param {FdViewAttributesProperty|FdViewAttributesMaster|FdViewAttributesDetail} propertyDefinition Definition a property in a view.
       @return {Object} An object with properties for the component.
@@ -670,6 +694,7 @@ FdFormUnsavedData, {
 
     /**
       Shows the lookup form in modal dialog.
+
       @method actions.showLookup
       @param {String} caption Caption for the lookup form.
       @param {FdDevViewModel} view The view on which the table will be render in the lookup form.
@@ -684,6 +709,7 @@ FdFormUnsavedData, {
 
     /**
       Move the current dragged item above or below relative to the passed item.
+
       @method actions.moveDragItem
       @param {FdEditformRow|FdEditformControl} item The item above or below which will be moved the current dragged item.
       @param {String} direction The direction of the item move, allowed values: 'up' or 'down'.
@@ -713,6 +739,7 @@ FdFormUnsavedData, {
 
     /**
       Saves the form's metadata.
+
       @method actions.save
       @param {Boolean} close If `true`, the `close` action will be run.
     */
@@ -722,6 +749,7 @@ FdFormUnsavedData, {
         this._saveMetadata(this.get('model'), this.get('controlsTree')).then(() => {
           this.set('model.originalDefinition', copyViewDefinition(this.get('model.editform.formViews.firstObject.view.definition')));
           this.set('state', '');
+          this.saveDataToOriginal();
           if (close) {
             this.send('close');
           }
@@ -730,12 +758,11 @@ FdFormUnsavedData, {
         this.set('state', '');
         this.set('error', error);
       }
-
-      this.saveDataToOriginal();
     },
 
     /**
       Set attribute in control.
+
       @method actions.setAttributeInControl
     */
     setAttributeInControl() {
@@ -776,6 +803,7 @@ FdFormUnsavedData, {
 
     /**
       Don't set attribute in control.
+
       @method actions.deleteEmptyControl
     */
     deleteEmptyControl() {
@@ -786,6 +814,7 @@ FdFormUnsavedData, {
 
     /**
       Handles creating jsTree.
+
       @method actions.handleTreeDidBecomeReady
     */
     handleTreeDidBecomeReady() {
@@ -796,7 +825,54 @@ FdFormUnsavedData, {
   },
 
   /**
+    This method run non ember data saved when model is loaded
+
+    @method saveOriginalData
+  */
+  originalDataInit: function () {
+    Ember.run.next(this, () => {
+      this.saveDataToOriginal();
+    });
+  },
+
+  /**
+    Save fields before changes
+
+    @method saveOriginalData
+  */
+  saveDataToOriginal: function () {
+    let originalDataString = this._getStringifyModel();
+    this.set('_originalData', originalDataString);
+  },
+
+  /**
+    Cancel form data changes
+
+    @method clearDirtyAttributes
+  */
+  clearDirtyAttributes: function () {
+    this.saveDataToOriginal();
+  },
+
+  /**
+    Check if fields changed, but unsaved
+
+    @method findUnsavedFormData
+  */
+  findUnsavedFormData: function () {
+    let checkResult = false;
+    let originalDataString = this.get('_originalData');
+    let currentDataString = this._getStringifyModel();
+    if (!Ember.isEqual(originalDataString, currentDataString)) {
+      checkResult = true;
+    }
+
+    return checkResult;
+  },
+
+  /**
     Overridden action for jsTree 'openNode'.
+
     @method _openNodeTree
   */
   _openNodeTree(e, data) {
@@ -815,6 +891,7 @@ FdFormUnsavedData, {
 
   /**
     Inserts an `item` into `container`, if `container` is `FdEditformControl`, `item` is inserted into the parent row after `container`.
+
     @method _insertItem
     @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item
       The item that need to insert.
@@ -857,6 +934,7 @@ FdFormUnsavedData, {
 
   /**
     Removes the specified item from the form.
+
     @method _removeItem
     @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item The item that need to remove.
   */
@@ -884,6 +962,7 @@ FdFormUnsavedData, {
 
   /**
     Looks for a container that contains the item.
+
     @method _findItemContainer
     @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item
       The sought item.
@@ -917,6 +996,7 @@ FdFormUnsavedData, {
 
   /**
     Returns the item storage in the container.
+
     @private
     @method _getItemStorage
     @param {FdEditformRow|FdEditformGroup|FdEditformTabgroup|FdEditformTab} container Item container.
@@ -938,6 +1018,7 @@ FdFormUnsavedData, {
 
   /**
     Returns a row that can be added to the form.
+
     @private
     @method _getRow
     @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item The item to be converted.
@@ -962,6 +1043,7 @@ FdFormUnsavedData, {
 
   /**
     Returns the control that can be added to a row.
+
     @method _getControl
     @param {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab} item The item to be converted.
     @return {FdEditformControl|FdEditformGroup|FdEditformTabgroup} The control that can be added to a row.
@@ -983,6 +1065,7 @@ FdFormUnsavedData, {
 
   /**
     Checks whether the control is suitable for placement in a row.
+
     @private
     @method _isControl
     @param {Any} control The control to check.
@@ -994,6 +1077,7 @@ FdFormUnsavedData, {
 
   /**
     Save editform metadata: dataobject attributes, view, editform class.
+
     @method _saveMetadata
     @param {Object} model Complex model for processing and save.
     @param {Ember.NativeArray} controlsTree The controls tree.
@@ -1057,6 +1141,7 @@ FdFormUnsavedData, {
 
   /**
     Scrolls the form to the selected control with jQuery.
+
     @private
     @method _scrollToSelected
   */
@@ -1070,6 +1155,7 @@ FdFormUnsavedData, {
 
   /**
     Returns an object with all (including inherited) the attributes, associations and aggregations for the class.
+
     @private
     @method _getClassProperties
     @param {FdDevClassModel} clazz The class for which to get the properties.
@@ -1111,6 +1197,7 @@ FdFormUnsavedData, {
 
   /**
     Returns an object with properties to render the component.
+
     @private
     @method _getComponentProperties
     @param {FdViewAttributesProperty|FdViewAttributesMaster|FdViewAttributesDetail} propertyDefinition Definition a property in a view.
@@ -1182,6 +1269,7 @@ FdFormUnsavedData, {
 
   /**
     Returns an array of types used in the view.
+
     @private
     @method _getTypesForView
     @param {FdDevViewModel} view A view for which types are needed.
@@ -1207,6 +1295,7 @@ FdFormUnsavedData, {
 
   /**
     Create tree.
+
     @method _buildTree
     @param {Array} data Data for tree.
     @param {String} type Type for tree.
@@ -1243,6 +1332,7 @@ FdFormUnsavedData, {
 
   /**
     Looks for width in the path
+
     @method _getWidth
     @param {String} path Property path from view.
   */
@@ -1289,51 +1379,6 @@ FdFormUnsavedData, {
     let allDataString = treeString + viewsString + aggregationsString + associationsString + classesString + editformString + inheritancesString;
 
     return allDataString;
-  },
-
-  /**
-    This method run non ember data saved when model is loaded
-
-    @method saveOriginalData
-  */
-  originalDataInit: function () {
-    Ember.run.next(this, () => {
-      this.saveDataToOriginal();
-    });
-  },
-
-  /**
-    Save fields before changes
-
-    @method saveOriginalData
-  */
-  saveDataToOriginal: function () {
-    let originalDataString = this._getStringifyModel();
-    this.set('_originalData', originalDataString);
-  },
-
-  /**
-    Cancel form data changes
-
-    @method clearDirtyAttributes
-  */
-  clearDirtyAttributes: function () {
-    this.saveDataToOriginal();
-  },
-
-  /**
-    Check if fields changed, but unsaved
-    @method findUnsavedFormData
-  */
-  findUnsavedFormData: function () {
-    let checkResult = false;
-    let originalDataString = this.get('_originalData');
-    let currentDataString = this._getStringifyModel();
-    if (!Ember.isEqual(originalDataString, currentDataString)) {
-      checkResult = true;
-    }
-
-    return checkResult;
   },
 
   /**

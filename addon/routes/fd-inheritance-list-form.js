@@ -43,5 +43,5 @@ export default ListFormRoute.extend(LimitByStageMixin, {
     @type Object
     @default {}
   */
-  developerUserSettings: { FdInheritanceListForm: {} }
+  developerUserSettings: { FdInheritanceListForm: {} },
 });

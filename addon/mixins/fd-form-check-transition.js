@@ -22,19 +22,6 @@ import Ember from 'ember';
   @extends <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
 export default Ember.Mixin.create({
-  /**
-    A hook you can use to setup the controller for the current route.
-    [More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).
-
-    @method setupController
-    @param {Ember.Controller} controller
-    @param {Object} model
-  */
-  setupController(controller) {
-    this._super(...arguments);
-    controller.set('state', '');
-  },
-
   actions: {
     /**
       It sends message about transition to corresponding controller.
@@ -44,8 +31,9 @@ export default Ember.Mixin.create({
 
       @method actions.willTransition
       @param {Object} transition
-     */
+    */
     willTransition(transition) {
+      this._super(...arguments);
       let controller = this.get('controller');
       if (controller.findUnsavedFormData()) {
         this.send('showModalDialog', 'modal/save', { controller });

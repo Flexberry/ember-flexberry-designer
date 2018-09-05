@@ -377,10 +377,7 @@ FdFormUnsavedData, {
       @method actions.closeWithSaving
     */
     closeWithSaving() {
-      promise = this.send('saveTree');
-      Ember.run.next(() => {
-        this.send('close');
-      });
+      this.send('saveTree', true);      
     },
 
     /**
@@ -719,7 +716,7 @@ FdFormUnsavedData, {
 
       @method actions.saveTree
     */
-    saveTree() {
+    saveTree(close) {
       let dataTree = this.get('model.rightTreeNodes')[0];
       let dataForSave = dataTree.get('copyChildren');
 
@@ -734,10 +731,70 @@ FdFormUnsavedData, {
       this.get('objectlistviewEventsService').setLoadingState('loading');
       record.save().then(() => {
         _this.get('objectlistviewEventsService').setLoadingState('');
+        this.saveDataToOriginal();
+        if (close) {
+          this.send('close');
+        }
       });
-
-      this.saveDataToOriginal();
     },
+
+    /**
+    Save object.
+
+    @method save
+    @param {Boolean} close If `true`, then save and close.
+    @param {Boolean} skipTransition If `true`, then transition after save process will be skipped.
+    @return {Promise}
+  */
+  save(close, skipTransition) {
+    this.send('dismissErrorMessages');
+
+    this.onSaveActionStarted();
+    this.get('objectlistviewEventsService').setLoadingState('loading');
+
+    let _this = this;
+
+    let afterSaveModelFunction = () => {
+      this.get('objectlistviewEventsService').setLoadingState('success');
+      _this.onSaveActionFulfilled();
+      if (close) {
+        this.get('objectlistviewEventsService').setLoadingState('');
+        _this.close(skipTransition);
+      } else if (!skipTransition) {
+        let routeName = _this.get('routeName');
+        if (routeName.indexOf('.new') > 0) {
+          let qpars = {};
+          let queryParams = _this.get('queryParams');
+          queryParams.forEach(function(item, i, params) {
+            qpars[item] = this.get(item);
+          }, _this);
+          let transitionQuery = {};
+          transitionQuery.queryParams = qpars;
+          transitionQuery.queryParams.recordAdded = true;
+          _this.transitionToRoute(routeName.slice(0, -4), _this.get('model'), transitionQuery);
+        }
+      }
+    };
+
+    let savePromise = this.get('model').save().then((model) => {
+      let agragatorModel = getCurrentAgregator.call(this);
+      if (needSaveCurrentAgregator.call(this, agragatorModel)) {
+        return this._saveHasManyRelationships(model).then(() => {
+          return agragatorModel.save().then(afterSaveModelFunction);
+        });
+      } else {
+        return this._saveHasManyRelationships(model).then(afterSaveModelFunction);
+      }
+    }).catch((errorData) => {
+      this.get('objectlistviewEventsService').setLoadingState('error');
+      this.onSaveActionRejected(errorData);
+      return Ember.RSVP.reject(errorData);
+    }).finally((data) => {
+      this.onSaveActionAlways(data);
+    });
+
+    return savePromise;
+  },
 
     /**
       Handles open process editor form.
@@ -770,35 +827,6 @@ FdFormUnsavedData, {
 
       this.toggleProperty('allAttrsHidedn');
     }
-  },
-
-  /**
-    Method for update data in tree.
-    @method _updateTreeData
-    @private
-  */
-  _updateTreeData() {
-    let dataTree = this.get('model.rightTreeNodes');
-    restorationNodeTree(dataTree, {}, Ember.A(['folder', 'desk']), true);
-
-    this.get('jstreeActionReceiverRight').send('redraw');
-  },
-
-  /**
-    Get model data in string
-
-    @method _getStringifyModel
-  */
-  _getStringifyModel() {
-    let rightTreeNodes = this.get('model.rightTreeNodes')[0];
-    let rightTreeNodesString = JSON.stringify(rightTreeNodes);
-
-    let applications = this.get('model.applications')[0];
-    let applicationsString = JSON.stringify(applications);
-
-    let allDataString = rightTreeNodesString + applicationsString;
-
-    return allDataString;
   },
 
   /**
@@ -845,5 +873,34 @@ FdFormUnsavedData, {
     }
 
     return checkResult;
-  }
+  },
+
+  /**
+    Method for update data in tree.
+    @method _updateTreeData
+    @private
+  */
+  _updateTreeData() {
+    let dataTree = this.get('model.rightTreeNodes');
+    restorationNodeTree(dataTree, {}, Ember.A(['folder', 'desk']), true);
+
+    this.get('jstreeActionReceiverRight').send('redraw');
+  },
+
+  /**
+    Get model data in string
+
+    @method _getStringifyModel
+  */
+  _getStringifyModel() {
+    let rightTreeNodes = this.get('model.rightTreeNodes')[0];
+    let rightTreeNodesString = JSON.stringify(rightTreeNodes);
+
+    let applications = this.get('model.applications')[0];
+    let applicationsString = JSON.stringify(applications);
+
+    let allDataString = rightTreeNodesString + applicationsString;
+
+    return allDataString;
+  },
 });
