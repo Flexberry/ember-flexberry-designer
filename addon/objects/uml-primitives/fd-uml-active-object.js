@@ -5,13 +5,12 @@
 import Ember from 'ember';
 
 import { BaseObject } from './fd-uml-object';
-
 import FdUmlElement from './fd-uml-element';
 
 /**
-  An object that describes a class on the UML diagram.
+  An object that describes an Active Object element on the UML diagram.
 
-  @class FdUmlPropertyObject
+  @class FdUmlActiveObject
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
@@ -30,14 +29,14 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'size', 'position', 'attributes');
+    let properties = this.getProperties('id', 'name', 'size', 'position');
     return new ActiveObject(properties);
 
   },
 });
 
 /**
-  Defines the JointJS link, which represents a association in the UML diagram.
+  Defines the JointJS object, which represents an Active Object in the UML diagram.
 
   @for FdUmlActiveObject
   @class ActiveObject

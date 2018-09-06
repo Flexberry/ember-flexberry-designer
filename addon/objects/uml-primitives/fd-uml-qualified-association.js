@@ -4,15 +4,15 @@
 
 import Ember from 'ember';
 
-import FdUmlBaseLink from './fd-uml-baselink';
-import { Link } from './fd-uml-link';
+import FdUmlLink from './fd-uml-baselink';
+import { Link } from './fd-uml-baselink';
 /**
   An object that describes a link of the Qualified association type on the UML diagram.
 
   @class FdUmlQualifiedAssociation
   @extends FdUmlLink
 */
-export default FdUmlBaseLink.extend({
+export default FdUmlLink.extend({
 
   /**
     End role text.
@@ -42,10 +42,10 @@ export default FdUmlBaseLink.extend({
 });
 
 /**
-  Defines the JointJS link, which represents a association in the UML diagram.
+  Defines the JointJS link, which represents a Qualified Association in the UML diagram.
 
-  @for FdUmlAssociation
-  @class Association
+  @for FdUmlQualifiedAssiociation
+  @class QualifiedAssociation
   @extends Link
   @namespace flexberry.uml
   @constructor

@@ -5,18 +5,17 @@
 import Ember from 'ember';
 
 import { BaseObject } from './fd-uml-object';
-
 import FdUmlElement from './fd-uml-element';
 
 /**
-  An object that describes a class on the UML diagram.
+  An object that describes an instance on the UML diagram.
 
-  @class FdUmlPropertyObject
+  @class FdUmlInstance
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
   /**
-    The name of the class.
+    The name of the instance.
 
     @property name
     @type String

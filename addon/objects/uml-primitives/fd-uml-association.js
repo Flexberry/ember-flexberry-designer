@@ -2,16 +2,16 @@
   @module ember-flexberry-designer
 */
 
-import FdUmlBaseLink from './fd-uml-baselink';
-import { Link } from './fd-uml-link';
+import FdUmlLink from './fd-uml-baselink';
+import { Link } from './fd-uml-baselink';
 
 /**
   An object that describes an association link on the UML diagram.
 
   @class FdUmlAssociation
-  @extends FdUmlBaseLink
+  @extends FdUmlLink
 */
-export default FdUmlBaseLink.extend({
+export default FdUmlLink.extend({
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.

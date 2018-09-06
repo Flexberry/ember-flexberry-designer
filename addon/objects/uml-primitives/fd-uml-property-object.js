@@ -8,7 +8,7 @@ import { BaseClass } from './fd-uml-class';
 import FdUmlElement from './fd-uml-element';
 
 /**
-  An object that describes a class on the UML diagram.
+  An object that describes a PropertyObject on the UML diagram.
 
   @class FdUmlPropertyObject
   @extends FdUmlElement
@@ -16,7 +16,7 @@ import FdUmlElement from './fd-uml-element';
 export default FdUmlElement.extend({
 
   /**
-    The name of the class.
+    The name of the PropertyObject.
 
     @property name
     @type String
@@ -24,7 +24,7 @@ export default FdUmlElement.extend({
   name: Ember.computed.alias('primitive.Name.Text'),
 
   /**
-    List of class attributes.
+    List of PropertyObject's attributes.
 
     @property attributes
     @type Array
@@ -53,7 +53,7 @@ export default FdUmlElement.extend({
 /**
   Defines the JointJS object, which represents a PropertyObject on the UML diagram.
 
-  @for FdUmlBaseObject
+  @for FdUmlPropertyObject
   @class PropertyObject
   @extends BaseClass
   @namespace flexberry.uml

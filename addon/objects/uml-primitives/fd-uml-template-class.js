@@ -8,10 +8,10 @@ import { Class } from './fd-uml-class';
 import FdUmlClass from './fd-uml-class';
 
 /**
-  An object that describes a class on the UML diagram.
+  An object that describes a TemplateClass on the UML diagram.
 
   @class FdUmlTemplateClass
-  @extends FdUmlElement
+  @extends FdUmlClass
 */
 export default FdUmlClass.extend({
   /**
@@ -38,7 +38,7 @@ export default FdUmlClass.extend({
 /**
   Defines the JointJS object, which represents a TemplateClass on the UML diagram.
 
-  @for FdUmlBaseObject
+  @for FdUmlTemplateClass
   @class TemplateClass
   @extends Class
   @namespace flexberry.uml

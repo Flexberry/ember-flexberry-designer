@@ -3,7 +3,6 @@
 */
 
 import Ember from 'ember';
-import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-object';
@@ -53,7 +52,7 @@ export let MultiObject = BaseObject.define('flexberry.uml.MultiObject', {
   }
 }, {
   updateRectangles: function () {
-    joint.shapes.flexberry.uml.BaseObject.prototype.updateRectangles.apply(this, arguments);
+    BaseObject.prototype.updateRectangles.apply(this, arguments);
 
     let attrs = this.get('attrs');
     let backRectTransY = 6;
