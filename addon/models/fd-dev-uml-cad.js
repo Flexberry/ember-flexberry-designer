@@ -27,6 +27,7 @@ import FdUmlAggregation from '../objects/uml-primitives/fd-uml-aggregation';
 import FdUmlDependency from '../objects/uml-primitives/fd-uml-dependency';
 import FdUmlQAssociation from '../objects/uml-primitives/fd-uml-qualified-association';
 import FdUmlQComposition from '../objects/uml-primitives/fd-uml-qualified-composition';
+import FdUmlRealization from '../objects/uml-primitives/fd-uml-realization';
 
 let Model = CADModel.extend(DevUMLCADMixin, {
   /**
@@ -125,8 +126,13 @@ let Model = CADModel.extend(DevUMLCADMixin, {
         case 'STORMCASE.UML.cad.QualifiedLink, UMLCAD':
           result.pushObject(FdUmlQAssociation.create({ primitive }));
           break;
+
         case 'STORMCASE.UML.cad.QualifiedCompositionLink, UMLCAD':
           result.pushObject(FdUmlQComposition.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.cad.Realization, UMLCAD':
+          result.pushObject(FdUmlRealization.create({ primitive }));
           break;
 
         case 'STORMCASE.UML.cad.ObjectAssociation, UMLCAD':
@@ -134,8 +140,7 @@ let Model = CADModel.extend(DevUMLCADMixin, {
           break;
 
         default:
-          /* TODO: throw */ new Error(`Unknown primitive type: '${primitive.$type}'.`);
-          break;
+          throw new Error(`Unknown primitive type: '${primitive.$type}'.`);
       }
     }
 

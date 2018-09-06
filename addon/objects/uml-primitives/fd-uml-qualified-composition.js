@@ -3,11 +3,10 @@
 */
 
 import Ember from 'ember';
-
 import joint from 'npm:jointjs';
 
 import FdUmlLink from './fd-uml-baselink';
-import { Link } from './fd-uml-link';
+import { Link } from './fd-uml-baselink';
 
 /**
   An object that describes a link of the `Qualified Composition` type on the UML diagram.

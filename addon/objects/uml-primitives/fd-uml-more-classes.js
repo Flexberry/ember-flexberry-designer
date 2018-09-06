@@ -3,6 +3,7 @@
 */
 
 import joint from 'npm:jointjs';
+
 import FdUmlElement from './fd-uml-element';
 
 /**

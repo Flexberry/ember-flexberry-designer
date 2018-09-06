@@ -4,16 +4,16 @@
 
 import Ember from 'ember';
 
-import FdUmlBaseLink from './fd-uml-baselink';
-import { Link } from './fd-uml-link';
+import FdUmlLink from './fd-uml-baselink';
+import { Link } from './fd-uml-baselink';
 
 /**
   An object that describes a link of the `Qualified aggregation` type on the UML diagram.
 
   @class FdUmlQualifiedAggregation
-  @extends FdUmlBaseLink
+  @extends FdUmlLink
 */
-export default FdUmlBaseLink.extend({
+export default FdUmlLink.extend({
 
   /**
     End role text.

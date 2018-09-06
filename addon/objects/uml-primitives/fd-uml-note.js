@@ -3,7 +3,6 @@
 */
 
 import Ember from 'ember';
-import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-object';
@@ -17,7 +16,7 @@ import { BaseObject } from './fd-uml-object';
 export default FdUmlElement.extend({
 
   /**
-    The name of the note, the content is actually.
+    The name of the note, actually its content.
 
     @property name
     @type String
@@ -78,7 +77,7 @@ export let Note = BaseObject.define('flexberry.uml.Note', {
   ].join(''),
 
   updateRectangles() {
-    joint.shapes.flexberry.uml.BaseObject.prototype.updateRectangles.apply(this, arguments);
+    BaseObject.prototype.updateRectangles.apply(this, arguments);
 
     let attrs = this.get('attrs');
     let transX = this.size().width - 10;

@@ -8,7 +8,7 @@ import { BaseObject } from './fd-uml-object';
 import FdUmlElement from './fd-uml-element';
 
 /**
-  An object that describes a n-ar associacion on the UML diagram.
+  An object that describes a n-ar association on the UML diagram.
 
   @class FdUmlNAryAssociation
   @extends FdUmlElement
@@ -29,7 +29,7 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'size', 'position', 'attributes');
+    let properties = this.getProperties('id', 'name', 'size', 'position');
 
     return new NAryAssociation(properties);
 
