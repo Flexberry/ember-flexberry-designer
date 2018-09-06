@@ -514,9 +514,9 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     @method _scrollToSelected
   */
   _scrollToSelected() {
-    let $verticalForm = Ember.$('.form.flexberry-vertical-form');
-    let form = $verticalForm.children('.ui.segment');
-    let firstSelectedOffsetLeft = Ember.$('.positive:first').length > 0 ? Ember.$('.positive:first').offset().left : 0;
+    let form = Ember.$('.form.list-form-constructor .panel-wrapper');
+    let selectColumn = Ember.$('.fd-selected:first');
+    let firstSelectedOffsetLeft = selectColumn.length > 0 ? selectColumn.offset().left : 0;
     let scrollLeft = firstSelectedOffsetLeft + form.scrollLeft() - (form.offset().left + 10);
 
     form.animate({ scrollLeft });
