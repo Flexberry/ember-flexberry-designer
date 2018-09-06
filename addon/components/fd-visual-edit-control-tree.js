@@ -664,12 +664,18 @@ export default FlexberryBaseComponent.extend({
         default:
           attributesTree[0].copyChildren.pushObject(newNode);
 
-          // Create new attribute.
-          store.createRecord('fd-dev-attribute', {
-            class: dataobject,
-            name: this.get('propertyName'),
-            type: selectedNode.text,
-          });
+          let propertyName = this.get('propertyName');
+          let attribute = dataobject.get('attributes').findBy('name', propertyName);
+          if (attribute) {
+            attribute.set('type', selectedNode.text);
+          } else {
+            // Create new attribute, is it exactly necessary?
+            store.createRecord('fd-dev-attribute', {
+              class: dataobject,
+              name: propertyName,
+              type: selectedNode.text,
+            });
+          }
       }
 
       // Delete old attribute.
