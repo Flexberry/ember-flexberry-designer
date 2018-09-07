@@ -175,7 +175,7 @@ export default Ember.Controller.extend(FdFormUnsavedData, {
       Saves the changes made to the type map.
 
       @method actions.save
-      @param {Boolean} close Close or not form after saving.
+      @param {Boolean} close If `true`, the `close` action will be run after saving.
     */
     save(close) {
       this.get('objectlistviewEvents').setLoadingState('loading');
@@ -199,7 +199,7 @@ export default Ember.Controller.extend(FdFormUnsavedData, {
   },
 
   /**
-    Find unsaved data. Returns `true` if data has been changed, but not saved.
+    Find unsaved data. Returns true, if data has been changed, but not saved
 
     @method findUnsavedFormData
     @return {Boolean} Changed or not a combined type map.

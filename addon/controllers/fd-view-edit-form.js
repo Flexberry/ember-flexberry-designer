@@ -355,6 +355,7 @@ FdFormUnsavedData, {
       Handles form 'saveView' button click.
 
       @method actions.saveView
+      @param {Boolean} close If `true`, the `close` action will be run after saving.
     */
     saveView(close) {
       let view = this.get('model.view');
@@ -408,12 +409,12 @@ FdFormUnsavedData, {
   },
 
   /**
-    Cancel form data changes
+    Cancel form data changes for unsaved data check pass
 
     @method clearDirtyAttributes
   */
   clearDirtyAttributes: function () {
-    this.saveDataToOriginal();
+    this._applyDirtyAttributesAsOrigin();
   },
 
   /**
@@ -459,6 +460,16 @@ FdFormUnsavedData, {
     let viewString = JSON.stringify(view);
 
     return viewString;
+  },
+
+  /**
+    Save current dirty data as origin for next equal check origin and current data
+
+    @method _applyDirtyAttributesAsOrigin
+    @private
+  */
+  _applyDirtyAttributesAsOrigin() {
+    this.saveDataToOriginal();
   },
 
   willDestroy() {

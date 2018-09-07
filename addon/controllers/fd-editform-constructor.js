@@ -741,7 +741,7 @@ FdFormUnsavedData, {
       Saves the form's metadata.
 
       @method actions.save
-      @param {Boolean} close If `true`, the `close` action will be run.
+      @param {Boolean} close If `true`, the `close` action will be run after saving.
     */
     save(close) {
       this.set('state', 'loading');
@@ -846,12 +846,12 @@ FdFormUnsavedData, {
   },
 
   /**
-    Cancel form data changes
+    Cancel form data changes for unsaved data check pass
 
     @method clearDirtyAttributes
   */
   clearDirtyAttributes: function () {
-    this.saveDataToOriginal();
+    this._applyDirtyAttributesAsOrigin();
   },
 
   /**
@@ -1379,6 +1379,16 @@ FdFormUnsavedData, {
     let allDataString = treeString + viewsString + aggregationsString + associationsString + classesString + editformString + inheritancesString;
 
     return allDataString;
+  },
+
+  /**
+    Save current dirty data as origin for next equal check origin and current data
+
+    @method _applyDirtyAttributesAsOrigin
+    @private
+  */
+  _applyDirtyAttributesAsOrigin() {
+    this.saveDataToOriginal();
   },
 
   /**
