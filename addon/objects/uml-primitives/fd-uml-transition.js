@@ -6,9 +6,9 @@ import FdUmlBaseLink from './fd-uml-baselink';
 import { Dependency } from './fd-uml-dependency';
 
 /**
-  An object that defines any link on the UML diagram.
+  An object that defines Transition link on the UML diagram.
 
-  @class FdUmlLink
+  @class FdUmlTransition
   @extends FdUmlBaseLink
 */
 export default FdUmlBaseLink.extend({
@@ -25,11 +25,11 @@ export default FdUmlBaseLink.extend({
 });
 
 /**
-  Defines the JointJS link, which represents a Dependency in the UML diagram.
+  Defines the JointJS link, which represents a Transition in the UML diagram.
 
-  @for FdUmlLink
-  @class Link
-  @extends dia.Link
+  @for FdUmlTransition
+  @class FdUmlTransition
+  @extends Dependency
   @namespace flexberry.uml
   @constructor
 */

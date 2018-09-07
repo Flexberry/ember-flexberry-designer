@@ -9,15 +9,15 @@ import { BaseObject } from './fd-uml-object';
 import FdUmlElement from './fd-uml-element';
 
 /**
-  An object that describes a class on the UML diagram.
+  An object that describes an `Object in state` element on the UML diagram.
 
-  @class FdUmlPropertyObject
+  @class FdUmlObjectInState
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
 
   /**
-    The name of the ActiveObject.
+    The name of the object.
 
     @property name
     @type String
@@ -25,7 +25,7 @@ export default FdUmlElement.extend({
   name: Ember.computed.alias('primitive.Name.Text'),
 
   /**
-    The state of the ActiveObject.
+    The state of the ObjectInState.
 
     @property state
     @type String

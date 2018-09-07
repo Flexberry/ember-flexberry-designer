@@ -8,9 +8,9 @@ import { SignalReceiptRight } from './fd-uml-signal-receipt';
 import FdUmlElement from './fd-uml-element';
 
 /**
-  An object that describes a class on the UML diagram.
+  An object that describes a SignalSend elements on the UML diagram.
 
-  @class FdUmlPropertyObject
+  @class FdUmlSignalSend
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
@@ -37,7 +37,7 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'size', 'position', 'attributes', 'type');
+    let properties = this.getProperties('id', 'name', 'size', 'position', 'type');
     if (properties.type === 'STORMCASE.UML.ad.SignalSendLeft, UMLAD') {
       return new SignalSendLeft(properties);
     } else {
@@ -47,7 +47,7 @@ export default FdUmlElement.extend({
 });
 
 /**
-  Defines the JointJS link, which represents a `SignalSendRight` figure.
+  Defines the JointJS object, which represents a `SignalSendRight` figure.
 
   @for FdUmlSignalSend
   @class SignalSendRight
@@ -64,7 +64,7 @@ export let SignalSendRight = SignalReceiptRight.define('flexberry.uml.SignalSend
 });
 
 /**
-  Defines the JointJS link, which represents a `SignalSendLeft` figure.
+  Defines the JointJS object, which represents a `SignalSendLeft` figure.
 
   @for FdUmlSignalSend
   @class SignalSendLeft

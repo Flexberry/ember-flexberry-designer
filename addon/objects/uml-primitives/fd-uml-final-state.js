@@ -18,10 +18,12 @@ export default FdUmlElement.extend({
   /**
     End state name text.
 
-    @property name
+    @property attrs
     @type String
   */
-  name: Ember.computed.alias('primitive.Name.Text'),
+  attrs: Ember.computed('primitive.Name.Text', function () {
+    return { text: { text: this.get('primitive.Name.Text') } };
+  }),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -29,7 +31,7 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'size', 'name', 'position');
+    let properties = this.getProperties('id', 'size', 'attrs', 'position');
 
     return new FinalState(properties);
 
@@ -39,9 +41,9 @@ export default FdUmlElement.extend({
 /**
   Defines the JointJS object, which represents a 'FinalState' object in the UML diagram.
 
-  @for FdUmlStartState
-  @class StartState
-  @extends shapes.uml.
+  @for FdUmlFinalState
+  @class FinalState
+  @extends joint.shapes.uml.EndState
   @namespace flexberry.uml
   @constructor
 */

@@ -7,7 +7,7 @@ import joint from 'npm:jointjs';
 import { Dependency } from './fd-uml-dependency';
 
 /**
-  An object that defines any link on the UML diagram.
+  An object that defines ObjectFlow on the UML diagram.
 
   @class FdUmlLink
   @extends FdUmlBaseLink
@@ -30,7 +30,7 @@ export default FdUmlBaseLink.extend({
 
   @for FdUmlObjectFlow
   @class ObjectFlow
-  @extends Transtition
+  @extends Dependency
   @namespace flexberry.uml
   @constructor
 */

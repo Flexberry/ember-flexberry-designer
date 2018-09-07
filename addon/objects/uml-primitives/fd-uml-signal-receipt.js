@@ -5,19 +5,18 @@
 import Ember from 'ember';
 
 import { BaseObject } from './fd-uml-object';
-
 import FdUmlElement from './fd-uml-element';
 
 /**
-  An object that describes a class on the UML diagram.
+  An object that describes a Signal Reciept element on the UML diagram.
 
-  @class FdUmlPropertyObject
+  @class FdUmlSignalReceipt
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
 
   /**
-    The name of the ActiveObject.
+    Signal Receipt name (actually its text).
 
     @property name
     @type String
@@ -38,7 +37,7 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'size', 'position', 'attributes', 'type');
+    let properties = this.getProperties('id', 'name', 'size', 'position', 'type');
     if (properties.type === 'STORMCASE.UML.ad.SignalReceiptLeft, UMLAD') {
       return new SignalReceiptLeft(properties);
     } else {
@@ -48,7 +47,7 @@ export default FdUmlElement.extend({
 });
 
 /**
-  Defines the JointJS link, which represents a `SignalReceiptRight` figure.
+  Defines the JointJS object, which represents a `SignalReceiptRight` figure.
 
   @for FdUmlSignalReceipt
   @class SignalReceiptRight
@@ -77,8 +76,8 @@ export let SignalReceiptRight = BaseObject.define('flexberry.uml.SignalReceiptRi
     ].join('')
   });
 
-  /**
-  Defines the JointJS link, which represents a `SignalReceiptLeft` figure.
+/**
+  Defines the JointJS object, which represents a `SignalReceiptLeft` figure.
 
   @for FdUmlSignalReceipt
   @class SignalReceiptLeft

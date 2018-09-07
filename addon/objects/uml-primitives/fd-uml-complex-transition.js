@@ -8,20 +8,22 @@ import joint from 'npm:jointjs';
 import FdUmlElement from './fd-uml-element';
 
 /**
-  An object that describes a final state on an activity diagram
+  An object that describes a Complex Transitionon an activity diagram
 
-  @class FdUmlFinalState
+  @class FdUmlComplexTransition
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
 
   /**
-    End state name text.
+    Text to show.
 
-    @property name
+    @property attrs
     @type String
   */
-  name: Ember.computed.alias('primitive.Name.Text'),
+  attrs: Ember.computed('primitive.Name.Text', function() {
+    return { text: { text: this.get('primitive.Name.Text') } };
+  }),
 
   /**
     Type of primitive.
@@ -37,7 +39,7 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'size', 'name', 'position', 'type');
+    let properties = this.getProperties('id', 'size', 'attrs', 'position', 'type');
     if (properties.type === 'STORMCASE.UML.ad.ComplexTransitionV, UMLAD') {
       return new ComplexTransitionV(properties);
     } else {
@@ -48,11 +50,11 @@ export default FdUmlElement.extend({
 });
 
 /**
-  Defines the JointJS object, which represents a 'FinalState' object in the UML diagram.
+  Defines the JointJS object, which represents a horisontal 'ComplexTransition' object in the UML diagram.
 
   @for FdUmlStartState
-  @class StartState
-  @extends shapes.uml.
+  @class ComplexTransitionH
+  @extends joint.dia.Element
   @namespace flexberry.uml
   @constructor
 */
@@ -79,6 +81,15 @@ export let ComplexTransitionH = joint.dia.Element.define('flexberry.uml.ComplexT
     ].join('')
   });
 
+/**
+  Defines the JointJS object, which represents a vertical 'ComplexTransition' object in the UML diagram.
+
+  @for FdUmlStartState
+  @class ComplexTransitionV
+  @extends ComplexTransitionH
+  @namespace flexberry.uml
+  @constructor
+*/
 export let ComplexTransitionV = ComplexTransitionH.define('flexberry.uml.ComplexTransitionVertical', {
   attrs: {
     polyline: { refPoints: '0,0 0,10' },

@@ -18,10 +18,12 @@ export default FdUmlElement.extend({
   /**
     Start state name text.
 
-    @property name
+    @property attrs
     @type String
   */
-  name: Ember.computed.alias('primitive.Name.Text'),
+  attrs: Ember.computed('primitive.Name.Text', function() {
+    return { text: { text: this.get('primitive.Name.Text') } };
+  }),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -29,7 +31,7 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'size', 'name', 'position');
+    let properties = this.getProperties('id', 'size', 'attrs', 'position');
 
     return new StartState(properties);
 

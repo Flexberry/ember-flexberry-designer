@@ -1,11 +1,11 @@
 import Ember from 'ember';
 import joint from 'npm:jointjs';
 
+// import { SignalReceiptRight, SignalReceiptLeft } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-signal-receipt';
 import { Note } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note';
 import { NoteConnector } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector';
 import { Transition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-transition';
 import { ComplexTransitionH, ComplexTransitionV } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-complex-transition';
-// import { SignalReceiptRight, SignalReceiptLeft } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-signal-receipt';
 import { SignalSendLeft, SignalSendRight } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-signal-send';
 import { StartState } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-start-state';
 import { FinalState } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-final-state';
