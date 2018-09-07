@@ -5,7 +5,7 @@ import { translationMacro as t } from 'ember-i18n';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 import { restorationNodeTree, findFreeNodeTreeID, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
 import { getNewFormCaption, getNewFormDescription } from '../utils/fd-create-form-properties';
-import updateClassDiagram from '../utils/fd-update-class-diagram';
+import { updateClassOnDiagram } from '../utils/fd-update-class-diagram';
 
 export default EditFormController.extend(FdWorkPanelToggler, {
 
@@ -472,7 +472,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
               view: savedDevView,
               orderNum: 1
             }).save().then(() => {
-              updateClassDiagram.call(_this, store, savedDevClass);
+              updateClassOnDiagram.call(_this, store, savedDevClass);
               this.set('state', '');
               this.transitionToRoute('fd-editform-constructor', savedDevClass.get('id'));
             }, (error) => {

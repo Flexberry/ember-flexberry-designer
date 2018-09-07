@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
-
+import { updateInheritanceOnDiagram } from '../utils/fd-update-class-diagram';
 export default EditFormController.extend({
   parentRoute: 'fd-inheritance-list-form',
 
@@ -66,6 +66,16 @@ export default EditFormController.extend({
     @default true
    */
   readonlyDropdown: true,
+
+  /**
+    Overridden metod 'Save'.
+  */
+  save() {
+    let _this = this;
+    this._super(...arguments).then(() => {
+      updateInheritanceOnDiagram.call(_this, _this.get('store'), _this.get('model'));
+    });
+  },
 
   actions: {
 
