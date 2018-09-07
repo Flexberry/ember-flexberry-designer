@@ -51,13 +51,11 @@ export default EditFormController.extend(FdWorkPanelToggler, {
   addFolderNodeDisabled: 'disabled',
 
   /**
-   Service that triggers objectlistview events.
-
-   @property objectlistviewEventsService
-   @type {Class}
-   @default Ember.inject.service()
-   */
-  objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
+    Service for managing the state of the application.
+     @property appState
+    @type AppStateService
+  */
+  appState: Ember.inject.service(),
 
   allAttrsHidedn: false,
 
@@ -434,7 +432,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       @method actions.addLeftListForm
     */
     addLeftEditForm() {
-      this.set('state', 'loading');
+      this.get('appState').loading();
 
       let jstreeSelectedNodesLeft = this.get('jstreeSelectedNodesLeft');
       if (jstreeSelectedNodesLeft.length === 0) {
@@ -473,18 +471,18 @@ export default EditFormController.extend(FdWorkPanelToggler, {
               orderNum: 1
             }).save().then(() => {
               updateClassOnDiagram.call(_this, store, savedDevClass);
-              this.set('state', '');
+              this.get('appState').reset();
               this.transitionToRoute('fd-editform-constructor', savedDevClass.get('id'));
             }, (error) => {
-              this.set('state', '');
+              this.get('appState').reset();
               this.set('error', error);
             });
           }, (error) => {
-            this.set('state', '');
+            this.get('appState').reset();
             this.set('error', error);
           });
         }, (error) => {
-          this.set('state', '');
+          this.get('appState').reset();
           this.set('error', error);
         });
       });
@@ -713,9 +711,9 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       }
 
       let _this = this;
-      this.get('objectlistviewEventsService').setLoadingState('loading');
+      this.get('appState').loading();
       record.save().then(() => {
-        _this.get('objectlistviewEventsService').setLoadingState('');
+        _this.get('appState').reset();
       });
     },
 

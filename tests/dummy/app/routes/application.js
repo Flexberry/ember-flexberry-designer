@@ -12,13 +12,11 @@ const {
 export default Ember.Route.extend(ModalApplicationRouteMixin, {
 
   /**
-   Service that triggers objectlistview events.
-
-   @property objectlistviewEventsService
-   @type {Class}
-   @default Ember.inject.service()
-   */
-  objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
+    Service for managing the state of the application.
+    @property appState
+    @type AppStateService
+  */
+  appState: Ember.inject.service(),
 
   /**
     Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
@@ -42,7 +40,7 @@ export default Ember.Route.extend(ModalApplicationRouteMixin, {
       .select('id,name,configuration.id')
       .where(predicate);
 
-      this.get('objectlistviewEventsService').setLoadingState('loading');
+      this.get('appState').loading();
       store.query(modelName, builder.build()).then((result) => {
         if (result && result.get('length') !== undefined && result.get('length') === 1) {
           let stage = result.objectAt(0);
@@ -56,7 +54,7 @@ export default Ember.Route.extend(ModalApplicationRouteMixin, {
                 this.transitionTo('fd-appstruct-form');
               }
 
-              this.get('objectlistviewEventsService').setLoadingState('');
+              this.get('appState').reset();
             });
         }
       });

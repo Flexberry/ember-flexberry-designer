@@ -34,6 +34,7 @@ import FdListformConstructor from './forms/fd-listform-constructor';
 import FdGenerationProcessForm from './forms/fd-generation-process-form';
 import FdGenerationListForm from './forms/fd-generation-list-form';
 import FdDataTypesMapForm from './forms/fd-data-types-map';
+import FdEditForm from './forms/fd-edit-form';
 import FdAdModel from './models/fd-ad';
 import FdAggregationModel from './models/fd-aggregation';
 import FdAssociationModel from './models/fd-association';
@@ -214,6 +215,7 @@ Ember.$.extend(true, translations, {
     'fd-generation-process-form': FdGenerationProcessForm,
     'fd-generation-list-form': FdGenerationListForm,
     'fd-data-types-map': FdDataTypesMapForm,
+    'fd-edit-form': FdEditForm,
   },
 
   components: {

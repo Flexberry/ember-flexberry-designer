@@ -16,6 +16,14 @@ function getPromise(store, stagePk, modelName, projectionName) {
   return store.query(modelName, q);
 }
 
+/*
+ * Returns true if record is loaded to store and related to specified stage.
+ */
+function tryPeekRecord(store, modelName, recordId, stagePk) {
+  let record = store.peekRecord(modelName, recordId);
+  return record !== null && record.get('stage.id') === stagePk;
+}
+
 /**
   Returns promise to preload stage metadata specified by stagePk in the context of store.
   @param {DS.Store} store
@@ -53,6 +61,33 @@ export default function fdPreloadStageMetadata(store, stagePk) {
     promises.push(getPromise(store, stagePk, 'fd-dev-system', projectionName));
 
     // resolve, reject
-    Ember.RSVP.all(promises).then(resolve, reject);
+    Ember.RSVP.all(promises).then(() => {
+      let userService = Ember.getOwner(store).lookup('service:user');
+      let userName = userService.getCurrentUserName();
+      let lockModelName = 'new-platform-flexberry-services-lock';
+
+      let lockPredicate = new Query.SimplePredicate('userName', FilterOperator.Eq, userName);
+      let q = new Builder(store, lockModelName)
+        .selectByProjection('LockL')
+        .where(lockPredicate)
+        .build();
+
+      // delete locks for objects in current stage for current user.
+      store.query(lockModelName, q).then((lockObjects) => {
+        let deleteLocksPromises = [];
+        lockObjects.forEach((item) => {
+          let needToDeleteLock = tryPeekRecord(store, 'fd-dev-class', item.get('id'), stagePk) ||
+            tryPeekRecord(store, 'fd-dev-association', item.get('id'), stagePk) ||
+            tryPeekRecord(store, 'fd-dev-aggregation', item.get('id'), stagePk) ||
+            tryPeekRecord(store, 'fd-dev-inheritance', item.get('id'), stagePk);
+
+          if (needToDeleteLock) {
+            deleteLocksPromises.push(item.destroyRecord());
+          }
+        });
+
+        Ember.RSVP.all(deleteLocksPromises).then(resolve, reject);
+      }, reject);
+    }, reject);
   });
 }

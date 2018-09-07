@@ -19,6 +19,13 @@ import { updateClassOnDiagram } from '../utils/fd-update-class-diagram';
 
 export default Ember.Controller.extend(FdWorkPanelToggler, {
   /**
+    Service for managing the state of the application.
+     @property appState
+    @type AppStateService
+  */
+  appState: Ember.inject.service(),
+
+  /**
     @private
     @property _showModalDialog
     @type Boolean
@@ -352,7 +359,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       @param {Boolean} close If `true`, the `close` action will be run.
     */
     save(close) {
-      this.set('state', 'loading');
+      this.get('appState').loading();
       let view = Ember.A(this.get('view'));
       let viewDefinition = Ember.A();
       let columns = this.get('columns');
@@ -405,14 +412,14 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
               if (close) {
                 this.send('close');
               } else {
-                this.set('state', '');
+                this.get('appState').reset();
               }
             }, (error) => {
-              this.set('state', '');
+              this.get('appState').reset();
               this.set('error', error);
             });
           }, (error) => {
-            this.set('state', '');
+            this.get('appState').reset();
             this.set('error', error);
           });
           this.set('model.originalDefinition', copyViewDefinition(this.get('view.definition')));
@@ -420,11 +427,11 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
           changedAssociations.map(a => a.save());
           changedAggregation.map(a => a.save());
         }, (error) => {
-          this.set('state', '');
+          this.get('appState').reset();
           this.set('error', error);
         });
       }, (error) => {
-        this.set('state', '');
+        this.get('appState').reset();
         this.set('error', error);
       });
     },
@@ -509,9 +516,9 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     @method _scrollToSelected
   */
   _scrollToSelected() {
-    let $verticalForm = Ember.$('.form.flexberry-vertical-form');
-    let form = $verticalForm.children('.ui.segment');
-    let firstSelectedOffsetLeft = Ember.$('.positive:first').length > 0 ? Ember.$('.positive:first').offset().left : 0;
+    let form = Ember.$('.form.list-form-constructor .panel-wrapper');
+    let selectColumn = Ember.$('.fd-selected:first');
+    let firstSelectedOffsetLeft = selectColumn.length > 0 ? selectColumn.offset().left : 0;
     let scrollLeft = firstSelectedOffsetLeft + form.scrollLeft() - (form.offset().left + 10);
 
     form.animate({ scrollLeft });
