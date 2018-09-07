@@ -149,16 +149,4 @@ export let defineProjections = function (modelClass) {
 
     })
   });
-
-  modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-uml-cad', {
-    name: Projection.attr(''),
-    primitivesJsonString: Projection.attr(''),
-    primitivesStreamString: Projection.attr(''),
-    caseObjectsString: Projection.attr(''),
-    subsystem: Projection.belongsTo('fd-subsystem', '', {
-      stage: Projection.belongsTo('fd-stage', '', {
-
-      }),
-    }),
-  });
 };
