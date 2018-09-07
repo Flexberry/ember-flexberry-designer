@@ -72,14 +72,14 @@ export default EditFormController.extend({
     let attributes = model.get('attributes').toArray();
     let attributesStrArray = attributes.map(function(item) {
       let accessModifier = item.get('accessModifier') || '+';
-      return accessModifier + item.get('name') +':' + item.get('type');
+      return accessModifier + item.get('name') + ':' + item.get('type');
     });
     let attributesStr = attributesStrArray.join('\n');
     model.set('attributesStr', attributesStr);
 
     let methods = model.get('methods').toArray();
     let methodsStrArray = methods.map(function(item) {
-      return item.get('accessModifier') + item.get('name') +'():' + item.get('type');
+      return item.get('accessModifier') + item.get('name') + '():' + item.get('type');
     });
     let methodsStr = methodsStrArray.join('\n');
     model.set('methodsStr', methodsStr);

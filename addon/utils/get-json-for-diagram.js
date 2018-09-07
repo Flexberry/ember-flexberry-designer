@@ -997,7 +997,7 @@ let getJsonForAssociation = function(startClassObject, endClassObject, associati
     StopEvents: false
   };
 
-  if(startClassObject.Location.Y > 500 && startClassObject.Location.X === 400) {
+  if (startClassObject.Location.Y > 500 && startClassObject.Location.X === 400) {
     associationObject.Points.splice(1, 0, {
       $type: 'System.Drawing.Point, System.Drawing',
       IsEmpty: false,
@@ -1011,7 +1011,7 @@ let getJsonForAssociation = function(startClassObject, endClassObject, associati
     });
   }
 
-  if(startClassObject.Location.Y === 10 && startClassObject.Location.X === 400) {
+  if (startClassObject.Location.Y === 10 && startClassObject.Location.X === 400) {
     associationObject.Points.splice(1, 0, {
       $type: 'System.Drawing.Point, System.Drawing',
       IsEmpty: false,
@@ -1025,7 +1025,7 @@ let getJsonForAssociation = function(startClassObject, endClassObject, associati
     });
   }
 
-  if(startClassObject.$id === endClassObject.$id) {
+  if (startClassObject.$id === endClassObject.$id) {
     associationObject.Points.splice(1, 0, {
       $type: 'System.Drawing.Point, System.Drawing',
       IsEmpty: false,
@@ -1610,7 +1610,7 @@ let getJsonForAggregation = function(startClassObject, endClassObject, aggregati
     StopEvents: false
   };
 
-  if(endClassObject.Location.Y > 510 && endClassObject.Location.X === 400) {
+  if (endClassObject.Location.Y > 510 && endClassObject.Location.X === 400) {
     aggregationObject.Points.splice(1, 0, {
       $type: 'System.Drawing.Point, System.Drawing',
       IsEmpty: false,
@@ -1624,7 +1624,7 @@ let getJsonForAggregation = function(startClassObject, endClassObject, aggregati
     });
   }
 
-  if(endClassObject.Location.Y === 10 && endClassObject.Location.X === 400) {
+  if (endClassObject.Location.Y === 10 && endClassObject.Location.X === 400) {
     aggregationObject.Points.splice(1, 0, {
       $type: 'System.Drawing.Point, System.Drawing',
       IsEmpty: false,
@@ -1872,7 +1872,7 @@ let getJsonForInheritance = function(parentObject, childObject, inheritance, cou
     StopEvents: false
   };
 
-  if(childObject.Location.Y > 510 && childObject.Location.X === 400) {
+  if (childObject.Location.Y > 510 && childObject.Location.X === 400) {
     inheritanceObject.Points.splice(1, 0, {
       $type: 'System.Drawing.Point, System.Drawing',
       IsEmpty: false,
@@ -1888,7 +1888,6 @@ let getJsonForInheritance = function(parentObject, childObject, inheritance, cou
 
   return inheritanceObject;
 };
-
 
 export {
   getJsonForClass,
