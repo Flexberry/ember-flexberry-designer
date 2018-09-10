@@ -169,3 +169,10 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
     },
   });
 
+export let BaseLinkWithUnderline = Link.define('flexberry.uml.BaseLinkWithUnderline', {
+}, {
+    initialize: function() {
+      this.label(2, { attrs: { text: { 'text-decoration': 'underline', } } });
+      joint.dia.Link.prototype.initialize.apply(this, arguments);
+    },
+});
