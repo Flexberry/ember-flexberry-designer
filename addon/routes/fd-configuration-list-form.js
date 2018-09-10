@@ -78,7 +78,7 @@ export default ListFormRoute.extend(FdLoadingForTransitionMixin, {
     @method onModelLoadingAlways.
     @param {Object} data Data about completed load operation.
    */
-  onModelLoadingAlways(data) {
+  onModelLoadingAlways() {
     let loadCount = this.get('controller.loadCount') + 1;
     this.set('controller.loadCount', loadCount);
   },
