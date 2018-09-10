@@ -180,8 +180,6 @@ joint.shapes.uml.StartState.define('flexberry.uml.StartState', {
   }
 });
 
-
-
 joint.dia.Element.define('flexberry.uml.ComplexTransitionHorizon', {
   attrs: {
     polyline: { refPoints: '0,0 10,0', stroke: 'black', 'stroke-width': 2 },
