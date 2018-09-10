@@ -3,7 +3,6 @@
 */
 
 import FdUmlBaseLink from './fd-uml-baselink';
-import joint from 'npm:jointjs';
 import { Dependency } from './fd-uml-dependency';
 
 /**
@@ -38,7 +37,7 @@ export let ObjectFlow = Dependency.define('flexberry.uml.ObjectFlow', {
 }, {
   initialize: function () {
     this.updateLabel();
-    joint.shapes.flexberry.uml.Dependency.prototype.initialize.apply(this, arguments);
+    Dependency.prototype.initialize.apply(this, arguments);
   },
 
   updateLabel: function () {

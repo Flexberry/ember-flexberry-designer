@@ -35,4 +35,17 @@ export default FdUmlBaseLink.extend({
 */
 export let Transition = Dependency.define('flexberry.uml.Transition', {
   attrs: { '.connection': { 'stroke-dasharray': 0 } }
+},
+{
+  initialize: function () {
+    this.updateLabel();
+    Dependency.prototype.initialize.apply(this, arguments);
+  },
+  updateLabel: function () {
+    let labelsLen = this.attributes.labels.length;
+    if (labelsLen > 0) {
+      this.attributes.labels[2].attrs.text.text = '[' + this.attributes.labels[2].attrs.text.text;
+      this.attributes.labels[2].attrs.text.text = this.attributes.labels[2].attrs.text.text + ']';
+    }
+  },
 });
