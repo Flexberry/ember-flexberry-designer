@@ -24,13 +24,25 @@ export default FdUmlElement.extend({
   name: Ember.computed.alias('primitive.Name.Text'),
 
   /**
+    Type of primitive.
+
+    @property type
+    @type String
+  */
+  type: Ember.computed.alias('primitive.$type'),
+
+  /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
     @method JointJS
   */
   JointJS() {
     let properties = this.getProperties('id', 'name', 'size', 'position');
-    return new ActiveObject(properties);
+    if (this.get('type') === 'STORMCASE.UML.dpd.ActiveDeploymentObject, UMLDPD') {
+      return new DeploymentActiveObject(properties);
+    } else {
+      return new ActiveObject(properties);
+    }
 
   },
 });
@@ -50,5 +62,11 @@ export let ActiveObject = BaseObject.define('flexberry.uml.ActiveObject', {
       'text-decoration': 'underline',
       'font-weight': 'bold'
     }
+  }
+});
+
+export let DeploymentActiveObject = ActiveObject.define('flexberry.uml.deploymentDiagram_ActiveObject', {
+  attrs: {
+    '.flexberry-uml-header-rect': { 'stroke-width': 2 },
   }
 });

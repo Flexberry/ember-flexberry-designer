@@ -19,7 +19,7 @@ export default ListFormRoute.extend({
     @type String
     @default 'fd-dev-uml-cad'
   */
-  modelName: 'fd-dev-uml-cad',
+  modelName: 'fd-dev-uml-dpd',
 
   /**
     Defined user settings developer.
