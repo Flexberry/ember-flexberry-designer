@@ -1,9 +1,54 @@
-import { Model as DevUMLSDMixin, defineBaseModel  } from
-  '../mixins/regenerated/models/fd-dev-uml-sd';
+import Ember from 'ember';
+import {
+  Model as DevUMLSDMixin,
+  defineBaseModel,
+  defineProjections
+} from '../mixins/regenerated/models/fd-dev-uml-sd';
 import SDModel from './fd-sd';
 
-let Model = SDModel.extend(DevUMLSDMixin, {
 
+import FdUmlNote from '../objects/uml-primitives/fd-uml-note';
+import FdUmlNoteConnector from '../objects/uml-primitives/fd-uml-note-connector';
+import FdUmlSequenceActor from '../objects/uml-primitives/fd-uml-sequence-actor';
+
+let Model = SDModel.extend(DevUMLSDMixin, {
+  /**
+      The array of primitives of this diagram.
+
+      @property primitives
+      @type Ember.Array
+    */
+  primitives: Ember.computed('primitivesJsonString', function () {
+    let result = Ember.A();
+    let primitives = JSON.parse(this.get('primitivesJsonString'));
+
+    for (let i = 0; i < primitives.length; i++) {
+      let primitive = primitives[i];
+      switch (primitive.$type) {
+        case 'STORMCASE.UML.Common.Note, UMLCommon':
+          result.pushObject(FdUmlNote.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':
+          result.pushObject(FdUmlNoteConnector.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.sd.Actor, UMLSD':
+          result.pushObject(FdUmlSequenceActor.create({ primitive }));
+          break;
+
+        default:
+
+          //throw new Error(`Unknown primitive type: '${primitive.$type}'.`);
+          break;
+      }
+    }
+
+    return result;
+  }),
 });
 defineBaseModel(Model);
+
+defineProjections(Model);
+
 export default Model;
