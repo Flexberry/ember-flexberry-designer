@@ -714,6 +714,68 @@ export default FlexberryBaseComponent.extend({
   },
 
   /**
+    Selects an attribute in the attribute tree that corresponds to the selected control.
+
+    @method _selectedItemObserver
+  */
+  _selectedItemObserver: Ember.observer('selectedItem', 'treeObjectAttributesTree', function() {
+    let treeObjectAttributesTree = this.get('treeObjectAttributesTree');
+    let propertyDefinition = this.get('selectedItem.propertyDefinition');
+    if (treeObjectAttributesTree && propertyDefinition) {
+      let parentNodeId;
+      if (propertyDefinition instanceof FdViewAttributesDetail) {
+        parentNodeId = 'details';
+      } else if (propertyDefinition instanceof FdViewAttributesMaster || propertyDefinition.get('name').indexOf('.') > 0) {
+        parentNodeId = 'masters';
+      } else {
+        parentNodeId = 'attributes';
+      }
+
+      let jstree = treeObjectAttributesTree.jstree(true);
+      let node = this._findChildNode(jstree, jstree.get_node(parentNodeId), propertyDefinition.get('name'));
+      if (node) {
+        jstree.deselect_all(true);
+        jstree.select_node(node);
+      }
+    }
+  }),
+
+  /**
+    Find the child node by the attribute name.
+
+    @method _findChildNode
+    @param {Object} jstree Instance of jsTree.
+    @param {Object} parent Parent node.
+    @param {String} name Property name.
+    @return {Object|null} Node, if it was found.
+  */
+  _findChildNode(jstree, parent, name) {
+    let node = null;
+    let path = name.split('.');
+    let children = parent.children;
+    for (let i = 0; i < path.length; i++) {
+      if (i === 0) {
+        for (let j = 0; j < children.length; j++) {
+          node = jstree.get_node(children[j]);
+          if (node.original.get('name') === path[i]) {
+            if (jstree.is_closed(node)) {
+              jstree.open_node(node);
+            }
+
+            break;
+          } else {
+            node = null;
+          }
+        }
+      } else {
+        node = this._findChildNode(jstree, node, path.slice(i).join('.'));
+      }
+    }
+
+    return node;
+  },
+
+  /**
     Overridden action for jsTree 'openNode'.
 
     @method _openNodeTree
