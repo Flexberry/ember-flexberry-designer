@@ -20,6 +20,8 @@ import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 export default Ember.Controller.extend(
 FdWorkPanelToggler,
 FdFormUnsavedData, {
+  parentRoute: 'fd-class-list-form',
+
   /**
     @private
     @property _originalData
@@ -440,7 +442,12 @@ FdFormUnsavedData, {
     },
 
     close() {
-      history.back();
+      this.transitionToRoute(this.get('parentRoute'), {
+        queryParams: {
+          form: this.get('form'),
+          class: this.get('class')
+        }
+      });
     },
 
     /**

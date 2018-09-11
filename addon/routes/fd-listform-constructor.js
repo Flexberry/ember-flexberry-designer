@@ -27,8 +27,8 @@ export default Ember.Route.extend(FdFormCheckTransitionMixin, {
   },
 
   queryParams: {
-    form: { refreshModel: false },
-    class: { refreshModel: false },
+    form: { refreshModel: true},
+    class: { refreshModel: true},
   },
 
   model(params) {
