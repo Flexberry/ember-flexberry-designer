@@ -8,5 +8,13 @@ export default ListFormController.extend({
     @type String
     @default 'fd-configuration-edit-form'
    */
-  editFormRoute: 'fd-configuration-edit-form'
+  editFormRoute: 'fd-configuration-edit-form',
+
+  /**
+    Cout of list loading.
+
+    @property loadCount
+    @type Int
+  */
+  loadCount: 0,
 });
