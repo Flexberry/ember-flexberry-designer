@@ -124,6 +124,56 @@ export function openEditFormByFunction(openEditFormFunction) {
   });
 }
 
+/**
+  Function for waiting editform loading afther open editform by function at acceptance test.
+
+  @public
+  @method closeEditFormByFunction
+  @param {Function} closeEditFormFunction Method options.
+ */
+export function closeEditFormByFunction(closeEditFormFunction) {
+  return new Ember.RSVP.Promise((resolve, reject) => {
+    let checkIntervalId;
+    let checkIntervalSucceed = false;
+    let checkInterval = 500;
+    let timeout = 10000;
+
+    closeEditFormFunction();
+
+    Ember.run(() => {
+      checkIntervalId = window.setInterval(() => {
+        if (Ember.$('.ui.button.close-button').length !== 0) {
+
+          // Edit form isn't loaded yet.
+          return;
+        }
+
+        // Edit form is loaded, wait to render.
+        // Stop interval & resolve promise.
+        window.setTimeout(() => {
+          window.clearInterval(checkIntervalId);
+          checkIntervalSucceed = true;
+          resolve();
+        });
+      }, checkInterval);
+    });
+
+    // Set wait timeout.
+    Ember.run(() => {
+      window.setTimeout(() => {
+        if (checkIntervalSucceed) {
+          return;
+        }
+
+        // Time is out.
+        // Stop intervals & reject promise.
+        window.clearInterval(checkIntervalId);
+        reject('editForm load operation is timed out');
+      }, timeout);
+    });
+  });
+}
+
 // Create stage, configuration, project and repository. Open stage.
 export function createAndOpenStage(store, app) {
   return new Ember.RSVP.Promise((resolve) => {
