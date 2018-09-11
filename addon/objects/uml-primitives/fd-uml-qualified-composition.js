@@ -5,8 +5,8 @@
 import Ember from 'ember';
 import joint from 'npm:jointjs';
 
-import FdUmlLink from './fd-uml-baselink';
-import { Link } from './fd-uml-baselink';
+import FdUmlLink from './fd-uml-link';
+import { LinkWithUnderline } from './fd-uml-link';
 
 /**
   An object that describes a link of the `Qualified Composition` type on the UML diagram.
@@ -60,7 +60,7 @@ export default FdUmlLink.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let QualifiedComposition = Link.define('flexberry.uml.QualifiedComposition', {
+export let QualifiedComposition = LinkWithUnderline.define('flexberry.uml.QualifiedComposition', {
   attrs: {
     '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 L 26 10 M 52 10 L 39 17 L 26 10 L 39 3 z', fill: 'url(#solids)' }
   },
