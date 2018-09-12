@@ -204,11 +204,11 @@ export function createStage(store, app) {
   });
 }
 
-// It's option of create class.
-export function createClass(store, stage, name) {
+// It's example of create class.
+export function createClass(store, stage, name, stereotype = null) {
   return new Ember.RSVP.Promise((resolve) => {
     let newRecords = Ember.A();
-    let createdClass = newRecords.pushObject(store.createRecord('fd-dev-class', {name: name, stage: stage, stereotype: null}));
+    let createdClass = newRecords.pushObject(store.createRecord('fd-dev-class', {name: name, stage: stage, stereotype: stereotype}));
     //addDataForDestroy(createClass);
     createdClass.save().then(() => {
       resolve(createdClass);
@@ -216,7 +216,7 @@ export function createClass(store, stage, name) {
   });
 }
 
-// It's option of create attribute.
+// It's example of create attribute.
 export function createAttribute(store, currentClass, name) {
   return new Ember.RSVP.Promise((resolve) => {
     let newRecords = Ember.A();
@@ -224,6 +224,46 @@ export function createAttribute(store, currentClass, name) {
     //addDataForDestroy(createClass);
     attribute.save().then(() => {
       resolve(attribute);
+    });
+  });
+}
+
+// It's example of create view.
+export function createView(store, currentClass, name, stereotype) {
+  return new Ember.RSVP.Promise((resolve) => {
+    let viewName;
+    switch(stereotype) {
+      case '«listform»':
+        viewName = name + 'L';
+        break;
+
+      case '«editform»':
+        viewName = name + 'E';
+        break;
+
+      case undefined:
+          break;
+
+      default:
+        throw new Error(`Wrong value at stereotype.`);
+        break;
+    }
+
+    let newRecords = Ember.A();
+    let view = newRecords.pushObject(store.createRecord('fd-dev-view', {name: viewName, class: currentClass}));
+    //addDataForDestroy(view);
+    view.save().then(() => {
+      if(stereotype) {
+        createClass(store, currentClass.get('stage'), viewName, stereotype).then((createdClass) => {
+          let viewForm = newRecords.pushObject(store.createRecord('fd-dev-form-view', {name: viewName, class: createdClass, view: view }));
+          //addDataForDestroy(viewForm);
+          viewForm.save().then(() => {
+            resolve(view,createdClass,viewForm);
+          });
+        });
+      } else {
+          resolve(view);
+      }
     });
   });
 }
