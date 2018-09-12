@@ -2,7 +2,7 @@
   @module ember-flexberry-designer
 */
 
-import FdUmlLink, { BaseLinkWithUnderline } from './fd-uml-baselink';
+import FdUmlLink, { BaseLinkWithUnderline } from './fd-uml-link';
 
 /**
   An object that describes an association link on the UML diagram.

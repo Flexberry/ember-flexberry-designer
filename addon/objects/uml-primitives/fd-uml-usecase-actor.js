@@ -5,7 +5,7 @@
 import Ember from 'ember';
 
 import FdUmlElement from './fd-uml-element';
-import { BaseObject } from './fd-uml-object';
+import { BaseObject } from './fd-uml-baseobject';
 
 /**
   An object that describes a UsecaseActor on the UML diagram.

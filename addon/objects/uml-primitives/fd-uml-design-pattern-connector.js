@@ -2,7 +2,7 @@
   @module ember-flexberry-designer
 */
 
-import FdUmlLink, { Link } from './fd-uml-baselink';
+import FdUmlLink, { Link } from './fd-uml-link';
 
 /**
   An object that describes an DesignPatternConnector on the UML diagram.
