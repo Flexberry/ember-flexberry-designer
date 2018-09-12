@@ -18,7 +18,7 @@ export default FdUmlElement.extend({
   /**
     The name of the class.
 
-    @property name
+    @property attrs
     @type String
   */
   attrs: Ember.computed('primitive.Name.Text', function() {
