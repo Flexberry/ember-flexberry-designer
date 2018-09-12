@@ -24,16 +24,59 @@ export default FdUmlObject.extend({
   state: Ember.computed.alias('primitive.Text.Text'),
 
   /**
+    Type of primitive.
+
+    @property type
+    @type String
+  */
+  type: Ember.computed.alias('primitive.$type'),
+
+  /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
     @method JointJS
   */
   JointJS() {
     let properties = this.getProperties('id', 'size', 'name', 'position', 'state');
-
-    return new ActiveState(properties);
+    if (this.get('type') === 'STORMCASE.UML.std.State, UMLSTD') {
+      return new State(properties);
+    } else if (this.get('type') === 'STORMCASE.UML.std.Class, UMLSTD') {
+      return new StdClass(properties);
+    } else {
+      return new ActiveState(properties);
+    }
 
   },
+});
+
+/**
+  Defines the JointJS object, which represents a 'StdClass' object in the UML diagram.
+
+  @for FdUmlActiveState
+  @class StdClass
+  @extends BaseObject
+  @namespace flexberry.uml
+  @constructor
+*/
+export let StdClass = BaseObject.define('flexberry.uml.stdClass', {
+  attrs: {
+    'text': { 'font-weight': 'bold' }
+  }
+});
+
+/**
+  Defines the JointJS object, which represents a 'State' object in the UML diagram.
+
+  @for FdUmlActiveState
+  @class State
+  @extends StdClass
+  @namespace flexberry.uml
+  @constructor
+*/
+export let State = StdClass.define('flexberry.uml.State', {
+  attrs: {
+    '.flexberry-uml-header-rect': { rx:10, ry:10 },
+  }
 });
 
 /**
@@ -41,15 +84,11 @@ export default FdUmlObject.extend({
 
   @for FdUmlActiveState
   @class ActiveState
-  @extends BaseObject
+  @extends State
   @namespace flexberry.uml
   @constructor
 */
-export let ActiveState = BaseObject.define('flexberry.uml.ActiveState', {
-  attrs: {
-    '.flexberry-uml-header-rect': { rx:10, ry:10 },
-    'text': { 'font-weight': 'bold' }
-  }
+export let ActiveState = State.define('flexberry.uml.ActiveState', {
 }, {
   getObjName: function() {
     let state = this.get('state').length > 0 ? '«' + this.get('state') + '»' : '';

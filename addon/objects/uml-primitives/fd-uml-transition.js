@@ -20,21 +20,36 @@ export default FdUmlBaseLink.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'name', 'source', 'target', 'vertices', 'labels');
-    return new Transition(properties);
+    if (this.get('type') === 'STORMCASE.UML.ad.Transition, UMLAD') {
+      return new Transition(properties);
+    } else {
+      return new Connection(properties);
+    }
   }
+});
+
+/**
+  Defines the JointJS link, which represents a Connection in the UML diagram.
+  @for FdUmlTransition
+  @class Connection
+  @extends Dependency
+  @namespace flexberry.uml
+  @constructor
+*/
+export let Connection = Dependency.define('flexberry.uml.Connection', {
+  attrs: { '.connection': { 'stroke-dasharray': 0 } }
 });
 
 /**
   Defines the JointJS link, which represents a Transition in the UML diagram.
 
   @for FdUmlTransition
-  @class FdUmlTransition
-  @extends Dependency
+  @class Transition
+  @extends Connection
   @namespace flexberry.uml
   @constructor
 */
-export let Transition = Dependency.define('flexberry.uml.Transition', {
-  attrs: { '.connection': { 'stroke-dasharray': 0 } }
+export let Transition = Connection.define('flexberry.uml.Transition', {
 },
 {
   initialize: function () {

@@ -40,7 +40,8 @@ export default FdUmlElement.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'size', 'attrs', 'position', 'type');
-    if (properties.type === 'STORMCASE.UML.ad.ComplexTransitionV, UMLAD') {
+    if (this.get('type') === 'STORMCASE.UML.ad.ComplexTransitionV, UMLAD' ||
+     this.get('type') === 'STORMCASE.UML.std.ComplexTransitionV, UMLSTD') {
       return new ComplexTransitionV(properties);
     } else {
       return new ComplexTransitionH(properties);
