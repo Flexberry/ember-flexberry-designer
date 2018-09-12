@@ -16,7 +16,7 @@ import { CollMessageBase } from './fd-uml-base-coll-message';
 export default FdUmlElement.extend({
 
   /**
-    The name of the class.
+    The attrs of the class.
 
     @property attrs
     @type String
