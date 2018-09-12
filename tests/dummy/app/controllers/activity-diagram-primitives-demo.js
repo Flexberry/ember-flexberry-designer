@@ -41,7 +41,7 @@ export default Ember.Controller.extend({
         attrs: { path: { title:'Коннектор комментария (Note Connector)' } }
       });
 
-      var linkObjectFlow = new joint.shapes.flexberryUml.ObjectFlow({
+      var linkObjectFlow = new joint.shapes.flexberry.uml.ObjectFlow({
         source: { x:100, y:150 },
         target: { x:300, y:150 },
         labels:[{
@@ -52,7 +52,7 @@ export default Ember.Controller.extend({
         }
       });
 
-      var linkTransition = new joint.shapes.flexberryUml.Transition({
+      var linkTransition = new joint.shapes.flexberry.uml.Transition({
         source: { x:100, y:250 },
         target: { x:300, y:250 },
         labels:[{
@@ -61,7 +61,7 @@ export default Ember.Controller.extend({
         attrs: { path: { title:'Переход (Transition)' } }
       });
 
-      var сomplexTransitionHorizon = new joint.shapes.flexberryUml.ComplexTransitionHorizon({
+      var сomplexTransitionHorizon = new joint.shapes.flexberry.uml.ComplexTransitionHorizon({
         size: { width: 100 },
         position: { x: 100, y: 300 },
         attrs: {
@@ -69,7 +69,7 @@ export default Ember.Controller.extend({
           '.rotatable': { title:'Синхронизатор/разветвитель (Complex Transition)' } }
       });
 
-      var сomplexTransitionVertical = new joint.shapes.flexberryUml.ComplexTransitionVertical({
+      var сomplexTransitionVertical = new joint.shapes.flexberry.uml.ComplexTransitionVertical({
         size: { height: 100 },
         position: { x: 100, y: 350 },
         attrs: {
@@ -86,7 +86,7 @@ export default Ember.Controller.extend({
         attrs: { '.rotatable': { title:'Комментарий (Note)' } }
       });
 
-      let SignalReceiptRight = new joint.shapes.flexberryUml.SignalReceiptRight({
+      let SignalReceiptRight = new joint.shapes.flexberry.uml.SignalReceiptRight({
         position: { x: 450, y: 200 },
         name: ['Receipt1', 'text'],
         attrs: {
@@ -94,7 +94,7 @@ export default Ember.Controller.extend({
         }
       });
 
-      let SignalReceiptLeft = new joint.shapes.flexberryUml.SignalReceiptLeft({
+      let SignalReceiptLeft = new joint.shapes.flexberry.uml.SignalReceiptLeft({
         position: { x: 450, y: 300 },
         name: 'Receipt2',
         attrs: {
@@ -102,7 +102,7 @@ export default Ember.Controller.extend({
         }
       });
 
-      let SignalSendingRight = new joint.shapes.flexberryUml.SignalSendingRight({
+      let SignalSendingRight = new joint.shapes.flexberry.uml.SignalSendingRight({
         position: { x: 450, y: 400 },
         name: ['Sending1', 'text', 'moreText'],
         attrs: {
@@ -110,7 +110,7 @@ export default Ember.Controller.extend({
         }
       });
 
-      let SignalSendingLeft = new joint.shapes.flexberryUml.SignalSendingLeft({
+      let SignalSendingLeft = new joint.shapes.flexberry.uml.SignalSendingLeft({
         position: { x: 450, y: 500 },
         name: 'Sending2',
         attrs: {
@@ -118,21 +118,21 @@ export default Ember.Controller.extend({
         }
       });
 
-      let startState = new joint.shapes.flexberryUml.StartState({
+      let startState = new joint.shapes.flexberry.uml.StartState({
         position: { x: 100, y: 204 },
         attrs: {
           text: { text: 'Start State' }
         }
       });
 
-      let endState = new joint.shapes.flexberryUml.EndState({
+      let endState = new joint.shapes.flexberry.uml.EndState({
         position: { x: 150, y: 200 },
         attrs: {
           text: { text: 'End State' }
         }
       });
 
-      let decision = new joint.shapes.flexberryUml.Decision({
+      let decision = new joint.shapes.flexberry.uml.Decision({
         position: { x: 600, y: 100 },
         size: { width: 100, height: 50 },
         attrs: {
@@ -140,21 +140,21 @@ export default Ember.Controller.extend({
         }
       });
 
-      let objectInState = new joint.shapes.flexberryUml.ObjectInState({
+      let objectInState = new joint.shapes.flexberry.uml.ObjectInState({
         position: { x: 600, y: 200 },
         size: { width: 100, height: 50 },
         name: 'name',
         state: 'state'
       });
 
-      let activeState = new joint.shapes.flexberryUml.ActiveState({
+      let activeState = new joint.shapes.flexberry.uml.ActiveState({
         position: { x: 600, y: 300 },
         size: { width: 100, height: 50 },
         name: 'name',
         state: 'state'
       });
 
-      let partition = new joint.shapes.flexberryUml.Partition({
+      let partition = new joint.shapes.flexberry.uml.Partition({
         position: { x: 600, y: 350 },
         name: 'partition'
       });
