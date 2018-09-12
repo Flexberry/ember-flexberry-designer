@@ -11,7 +11,6 @@ import FdUmlActiveObject from '../objects/uml-primitives/fd-uml-active-object';
 import FdUmlInstance from '../objects/uml-primitives/fd-uml-instance';
 import FdUmlComponent from '../objects/uml-primitives/fd-uml-component';
 import FdUmlNode from '../objects/uml-primitives/fd-uml-node';
-import FdUmlInterface from '../objects/uml-primitives/fd-uml-interface';
 
 let Model = DPDModel.extend(DevUMLDPDMixin, {
   /**
@@ -61,8 +60,7 @@ let Model = DPDModel.extend(DevUMLDPDMixin, {
           result.pushObject(FdUmlNode.create({ primitive }));
           break;
 
-        case 'STORMCASE.UML.dpd.Interface, UMLDPD':
-          result.pushObject(FdUmlInterface.create({ primitive }));
+        case 'STORMCASE.UML.dpd.Interface, UMLDPD': //TODO 168001
           break;
 
         default:
