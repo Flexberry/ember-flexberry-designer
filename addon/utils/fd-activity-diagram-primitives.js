@@ -1,7 +1,7 @@
 import joint from 'npm:jointjs';
 import './fd-common-primitives';
 
-joint.shapes.flexberryUml.BaseObject.define('flexberryUml.SignalReceiptRight', {
+joint.shapes.flexberry.uml.BaseObject.define('flexberry.uml.SignalReceiptRight', {
   attrs: {
     text: {
       'ref': 'path',
@@ -22,7 +22,7 @@ joint.shapes.flexberryUml.BaseObject.define('flexberryUml.SignalReceiptRight', {
   ].join('')
 });
 
-joint.shapes.flexberryUml.SignalReceiptRight.define('flexberryUml.SignalReceiptLeft', {
+joint.shapes.flexberry.uml.SignalReceiptRight.define('flexberry.uml.SignalReceiptLeft', {
   attrs: {
     path: {
       'd': 'M 0 0 L 100 0 100 40 0 40 20 20 Z'
@@ -30,7 +30,7 @@ joint.shapes.flexberryUml.SignalReceiptRight.define('flexberryUml.SignalReceiptL
   }
 });
 
-joint.shapes.flexberryUml.SignalReceiptRight.define('flexberryUml.SignalSendingRight', {
+joint.shapes.flexberry.uml.SignalReceiptRight.define('flexberry.uml.SignalSendingRight', {
   attrs: {
     path: {
       'd': 'M 0 0 L 80 0 100 20 80 40 0 40 Z'
@@ -38,7 +38,7 @@ joint.shapes.flexberryUml.SignalReceiptRight.define('flexberryUml.SignalSendingR
   }
 });
 
-joint.shapes.flexberryUml.SignalReceiptRight.define('flexberryUml.SignalSendingLeft', {
+joint.shapes.flexberry.uml.SignalReceiptRight.define('flexberry.uml.SignalSendingLeft', {
   attrs: {
     path: {
       'd': 'M 20 0 L 100 0 100 40 20 40 0 20 Z'
@@ -46,11 +46,11 @@ joint.shapes.flexberryUml.SignalReceiptRight.define('flexberryUml.SignalSendingL
   }
 });
 
-joint.shapes.flexberryUml.Dependency.define('flexberryUml.ObjectFlow', {
+joint.shapes.flexberry.uml.Dependency.define('flexberry.uml.ObjectFlow', {
 }, {
   initialize: function() {
     this.updateLabel();
-    joint.shapes.flexberryUml.Dependency.prototype.initialize.apply(this, arguments);
+    joint.shapes.flexberry.uml.Dependency.prototype.initialize.apply(this, arguments);
   },
 
   updateLabel: function() {
@@ -62,15 +62,15 @@ joint.shapes.flexberryUml.Dependency.define('flexberryUml.ObjectFlow', {
   },
 });
 
-joint.shapes.flexberryUml.ObjectFlow.define('flexberryUml.Transition', {
+joint.shapes.flexberry.uml.ObjectFlow.define('flexberry.uml.Transition', {
   attrs: { '.connection': { 'stroke-dasharray': 0 } }
 });
 
-joint.shapes.basic.Rhombus.define('flexberryUml.Decision', {
+joint.shapes.basic.Rhombus.define('flexberry.uml.Decision', {
   attrs: { text: { 'display': 'none' } }
 });
 
-joint.shapes.flexberryUml.BaseObject.define('flexberryUml.ObjectInState', {
+joint.shapes.flexberry.uml.BaseObject.define('flexberry.uml.ObjectInState', {
   attrs: {
     'text tspan': { 'text-decoration': 'underline' },
     'text tspan[x]': { 'font-weight': 'bold', 'text-decoration': 'none' },
@@ -84,7 +84,7 @@ joint.shapes.flexberryUml.BaseObject.define('flexberryUml.ObjectInState', {
   }
 });
 
-joint.shapes.flexberryUml.BaseObject.define('flexberryUml.ActiveState', {
+joint.shapes.flexberry.uml.BaseObject.define('flexberry.uml.ActiveState', {
   attrs: {
     '.flexberry-uml-header-rect': { rx:10, ry:10 },
     'text': { 'font-weight': 'bold' }
@@ -96,7 +96,7 @@ joint.shapes.flexberryUml.BaseObject.define('flexberryUml.ActiveState', {
   }
 });
 
-joint.shapes.flexberryUml.BaseObject.define('flexberryUml.Partition', {
+joint.shapes.flexberry.uml.BaseObject.define('flexberry.uml.Partition', {
   attrs: { '.flexberry-uml-header-text': { 'font-weight':'bold', 'ref-y': 0, 'y-alignment': 'start' } },
   heightPadding: 60
 });

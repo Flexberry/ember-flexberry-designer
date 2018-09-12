@@ -1,7 +1,7 @@
 import joint from 'npm:jointjs';
 import './fd-common-primitives';
 
-joint.shapes.flexberryUml.BaseObject.define('flexberryUml.deploymentDiagram_Component', {
+joint.shapes.flexberry.uml.BaseObject.define('flexberry.uml.deploymentDiagram_Component', {
   attrs: {
     'text': { 'font-weight': 'bold' },
     '.firstRect': { 'y-alignment': 'middle', 'ref-y': 0.5, 'fill': 'white', 'stroke': 'black', 'stroke-width': 1 },
@@ -21,7 +21,7 @@ joint.shapes.flexberryUml.BaseObject.define('flexberryUml.deploymentDiagram_Comp
   ].join(''),
 
   updateRectangles: function() {
-    joint.shapes.flexberryUml.BaseObject.prototype.updateRectangles.apply(this, arguments);
+    joint.shapes.flexberry.uml.BaseObject.prototype.updateRectangles.apply(this, arguments);
 
     let attrs = this.get('attrs');
     attrs['.firstRect'].transform = 'translate(-5, -8)';
@@ -29,7 +29,7 @@ joint.shapes.flexberryUml.BaseObject.define('flexberryUml.deploymentDiagram_Comp
   }
 });
 
-joint.shapes.flexberryUml.BaseObject.define('flexberryUml.deploymentDiagram_Node', {
+joint.shapes.flexberry.uml.BaseObject.define('flexberry.uml.deploymentDiagram_Node', {
   attrs: {
     'text': { 'font-weight': 'bold' },
     '.back-path': { 'd': 'M 0 5 L 5 0 100 0 100 45 95 50 M 95 5 L 100 0', 'fill': 'white', 'stroke': 'black', 'stroke-width': 1 }
@@ -46,7 +46,7 @@ joint.shapes.flexberryUml.BaseObject.define('flexberryUml.deploymentDiagram_Node
   ].join(''),
 
   updateRectangles: function() {
-    joint.shapes.flexberryUml.BaseObject.prototype.updateRectangles.apply(this, arguments);
+    joint.shapes.flexberry.uml.BaseObject.prototype.updateRectangles.apply(this, arguments);
 
     let attrs = this.get('attrs');
     let offset = 5;
@@ -68,7 +68,7 @@ joint.shapes.flexberryUml.BaseObject.define('flexberryUml.deploymentDiagram_Node
   },
 });
 
-joint.shapes.basic.Generic.define('flexberryUml.deploymentDiagram_Interface', {
+joint.shapes.basic.Generic.define('flexberry.uml.deploymentDiagram_Interface', {
   attrs: {
     size: { 'width': 24, 'height': 47 },
     link: undefined,
@@ -174,19 +174,19 @@ joint.shapes.basic.Generic.define('flexberryUml.deploymentDiagram_Interface', {
   }
 });
 
-joint.shapes.flexberryUml.BaseObject.define('flexberryUml.deploymentDiagram_Object', {
+joint.shapes.flexberry.uml.BaseObject.define('flexberry.uml.deploymentDiagram_Object', {
   attrs: {
     text: { 'text-decoration': 'underline' }
   }
 });
 
-joint.shapes.flexberryUml.deploymentDiagram_Object.define('flexberryUml.deploymentDiagram_ActiveObject', {
+joint.shapes.flexberry.uml.deploymentDiagram_Object.define('flexberry.uml.deploymentDiagram_ActiveObject', {
   attrs: {
     '.flexberry-uml-header-rect': { 'stroke-width': 2 },
     text: { 'font-weight':'bold' }
   }
 });
 
-joint.shapes.flexberryUml.Dependency.define('flexberryUml.deploymentDiagram_Connection', {
+joint.shapes.flexberry.uml.Dependency.define('flexberry.uml.deploymentDiagram_Connection', {
   attrs: { '.connection': { 'stroke-dasharray': 0 } }
 });

@@ -30,38 +30,38 @@ export default Ember.Controller.extend({
           model: _this.graph,
         });
 
-        let instance = new joint.shapes.flexberryUml.Instance({
+        let instance = new joint.shapes.flexberry.uml.Instance({
           position: { x: 50, y: 10 },
           name: 'Instance',
         });
 
-        let multiObject = new joint.shapes.flexberryUml.MultiObject({
+        let multiObject = new joint.shapes.flexberry.uml.MultiObject({
           position: { x: 50, y: 60 },
           name: 'Multi Object',
         });
 
-        let activeObject = new joint.shapes.flexberryUml.ActiveObject({
+        let activeObject = new joint.shapes.flexberry.uml.ActiveObject({
           position: { x: 50, y: 120 },
           name: 'Active object',
         });
 
-        let nArrayAssociation = new joint.shapes.flexberryUml.NAryAssociation({
+        let nArrayAssociation = new joint.shapes.flexberry.uml.NAryAssociation({
           position: { x: 50, y: 170 },
           name: 'N-array association',
         });
 
-        let designPattern = new joint.shapes.flexberryUml.CollDesignPattern({
+        let designPattern = new joint.shapes.flexberry.uml.CollDesignPattern({
           position: { x: 50, y: 240 },
           name: 'Design Pattern',
         });
 
-        let nAssociationConnector = new joint.shapes.flexberryUml.NArrayAssociationConnect({
+        let nAssociationConnector = new joint.shapes.flexberry.uml.NArrayAssociationConnect({
           source: { x:400, y:10 },
           target: { x:700, y:10 },
           labels: [{ attrs: { text: { text:  'n-Association' } } }]
         });
 
-        let associationConnector = new joint.shapes.flexberryUml.CollaborationDiagramAssociation({
+        let associationConnector = new joint.shapes.flexberry.uml.CollaborationDiagramAssociation({
           source: { x:400, y:50 },
           target: { x:700, y:50 }
         });
@@ -69,7 +69,7 @@ export default Ember.Controller.extend({
         associationConnector.setLabelText('endRole', '2');
         associationConnector.setLabelText('description', 'Association');
 
-        let qualifiedConnector = new joint.shapes.flexberryUml.Qualified({
+        let qualifiedConnector = new joint.shapes.flexberry.uml.Qualified({
           source: { x:400, y:90 },
           target: { x:700, y:90 }
         });
@@ -77,7 +77,7 @@ export default Ember.Controller.extend({
         qualifiedConnector.setLabelText('endRole', '2');
         qualifiedConnector.setLabelText('description', 'Qualified');
 
-        let agregationConnector = new joint.shapes.flexberryUml.CollaborationDiagramAggregation({
+        let agregationConnector = new joint.shapes.flexberry.uml.CollaborationDiagramAggregation({
           source: { x:400, y:140 },
           target: { x:700, y:140 }
         });
@@ -85,7 +85,7 @@ export default Ember.Controller.extend({
         agregationConnector.setLabelText('endRole', '2');
         agregationConnector.setLabelText('description', 'Agregation');
 
-        let qAgregationConnector = new joint.shapes.flexberryUml.QualifiedAggregation({
+        let qAgregationConnector = new joint.shapes.flexberry.uml.QualifiedAggregation({
           source: { x:400, y:180 },
           target: { x:700, y:180 }
         });
@@ -93,7 +93,7 @@ export default Ember.Controller.extend({
         qAgregationConnector.setLabelText('endRole', '2');
         qAgregationConnector.setLabelText('description', 'Q-Agregation');
 
-        let compositionConnector = new joint.shapes.flexberryUml.CollaborationDiagramComposition({
+        let compositionConnector = new joint.shapes.flexberry.uml.CollaborationDiagramComposition({
           source: { x:400, y:210 },
           target: { x:700, y:210 }
         });
@@ -101,7 +101,7 @@ export default Ember.Controller.extend({
         compositionConnector.setLabelText('endRole', '2');
         compositionConnector.setLabelText('description', 'Composition');
 
-        let qCompositionConnector = new joint.shapes.flexberryUml.QualifiedComposition({
+        let qCompositionConnector = new joint.shapes.flexberry.uml.QualifiedComposition({
           source: { x:400, y:250 },
           target: { x:700, y:250 }
         });
@@ -109,39 +109,39 @@ export default Ember.Controller.extend({
         qCompositionConnector.setLabelText('endRole', '2');
         qCompositionConnector.setLabelText('description', 'Q-Composition');
 
-        let designPatternConnector = new joint.shapes.flexberryUml.CollPatternConnect({
+        let designPatternConnector = new joint.shapes.flexberry.uml.CollPatternConnect({
           source: { x:400, y:290 },
           target: { x:700, y:290 },
           labels: [{ attrs: { text: { text:  'Design Pattern' } } }]
         });
 
-        let inheritanceConnector = new joint.shapes.flexberryUml.CollInheritance({
+        let inheritanceConnector = new joint.shapes.flexberry.uml.CollInheritance({
           source: { x:400, y:320 },
           target: { x:700, y:320 },
           labels: [{ attrs: { text: { text:  'Inheritance' } } }]
         });
 
-        let asyncMsgForward = new joint.shapes.flexberryUml.CollAsyncMsgForward({
+        let asyncMsgForward = new joint.shapes.flexberry.uml.CollAsyncMsgForward({
           position: { x: 800, y: 50 }
         });
 
-        let asyncMsgBack = new joint.shapes.flexberryUml.CollAsyncMsgBack({
+        let asyncMsgBack = new joint.shapes.flexberry.uml.CollAsyncMsgBack({
           position: { x: 800, y: 100 }
         });
 
-        let flatMsgForward = new joint.shapes.flexberryUml.CollFlatMsgForward({
+        let flatMsgForward = new joint.shapes.flexberry.uml.CollFlatMsgForward({
           position: { x: 800, y: 140 }
         });
 
-        let flatMsgBack = new joint.shapes.flexberryUml.CollFlatMsgBack({
+        let flatMsgBack = new joint.shapes.flexberry.uml.CollFlatMsgBack({
           position: { x: 800, y: 180 }
         });
 
-        let nestedMsgForward = new joint.shapes.flexberryUml.CollNestedMsgForward({
+        let nestedMsgForward = new joint.shapes.flexberry.uml.CollNestedMsgForward({
           position: { x: 800, y: 220 }
         });
 
-        let nestedMsgBack = new joint.shapes.flexberryUml.CollNestedMsgBack({
+        let nestedMsgBack = new joint.shapes.flexberry.uml.CollNestedMsgBack({
           position: { x: 800, y: 260 }
         });
 

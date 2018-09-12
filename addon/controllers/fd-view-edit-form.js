@@ -342,20 +342,22 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       Handles form 'saveView' button click.
 
       @method actions.saveView
+      @param {Boolean} close If `true`, the action `close` will be sent.
     */
-    saveView() {
+    saveView(close) {
       let view = this.get('model.view');
       view.set('definition', Ember.A(view.get('definition').toArray()));
-      let _this = this;
 
       this.get('appState').loading();
       view.save().then(() => {
-        let routeName = _this.get('routeName');
-        if (routeName.indexOf('.new') > 0) {
-          _this.transitionToRoute(routeName.slice(0, -4), view.get('id'));
-        } else {
-          _this.get('appState').reset();
+        let routeName = this.get('routeName');
+        if (close) {
+          this.send('close');
+        } else if (routeName.indexOf('.new') > 0) {
+          this.transitionToRoute(routeName.slice(0, -4), view.get('id'));
         }
+      }).finally(() => {
+        this.get('appState').reset();
       });
     }
   },
