@@ -10,6 +10,13 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
   */
   currentContext: Ember.inject.service('fd-current-project-context'),
 
+  /**
+    Service for managing the state of the application.
+    @property appState
+    @type AppStateService
+  */
+  appState: Ember.inject.service(),
+
   sitemap: Ember.computed('i18n.locale', 'currentContext.context.configuration', 'currentContext.context.stage', function() {
     let i18n = this.get('i18n');
     let context = this.get('currentContext.context');
@@ -204,24 +211,22 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
   objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
 
   actions: {
+
+    /**
+      Call `updateWidthTrigger` for `objectlistviewEventsService`.
+      @method actions.updateWidth
+    */
+    updateWidth() {
+      this.get('objectlistviewEventsService').updateWidthTrigger();
+    },
+
+    /**
+      Toggles application sitemap's side bar.
+      @method actions.toggleSidebar
+    */
     toggleSidebar() {
       let sidebar = Ember.$('.ui.sidebar.main.menu');
-
-      let objectlistviewEventsService = this.get('objectlistviewEventsService');
-      sidebar.sidebar({
-        closable: false,
-        dimPage: false,
-        onHide: function() {
-          Ember.$('.sidebar.icon.text-menu-show').removeClass('hidden');
-          Ember.$('.sidebar.icon.text-menu-hide').addClass('hidden');
-        },
-        onHidden: function() {
-          objectlistviewEventsService.updateWidthTrigger();
-        },
-        onShow: function() {
-          objectlistviewEventsService.updateWidthTrigger();
-        }
-      }).sidebar('toggle');
+      sidebar.sidebar('toggle');
 
       if (Ember.$('.inverted.vertical.main.menu').hasClass('visible')) {
         Ember.$('.sidebar.icon.text-menu-show').removeClass('hidden');
@@ -241,21 +246,12 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       }, 500);
     },
 
+    /**
+      Toggles application sitemap's side bar in mobile view.
+      @method actions.toggleSidebarMobile
+    */
     toggleSidebarMobile() {
-      let sidebar = Ember.$('.ui.sidebar.main.menu');
-      let objectlistviewEventsService = this.get('objectlistviewEventsService');
-      sidebar.sidebar({
-        onHide: function() {
-          Ember.$('.sidebar.icon.text-menu-show').removeClass('hidden');
-          Ember.$('.sidebar.icon.text-menu-hide').addClass('hidden');
-        },
-        onHidden: function() {
-          objectlistviewEventsService.updateWidthTrigger();
-        },
-        onShow: function() {
-          objectlistviewEventsService.updateWidthTrigger();
-        }
-      }).sidebar('toggle');
+      Ember.$('.ui.sidebar.main.menu').sidebar('toggle');
 
       if (Ember.$('.inverted.vertical.main.menu').hasClass('visible')) {
         Ember.$('.sidebar.icon.text-menu-show').removeClass('hidden');

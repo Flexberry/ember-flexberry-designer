@@ -3,6 +3,7 @@
 */
 
 import Ember from 'ember';
+import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
 
 /**
   Route for the edit form of the type map.
@@ -10,7 +11,7 @@ import Ember from 'ember';
   @class FdDataTypesMapRoute
   @extends <a href="http://emberjs.com/api/classes/Ember.Route.html">Ember.Route</a>
 */
-export default Ember.Route.extend({
+export default Ember.Route.extend(FdLoadingForTransitionMixin, {
   /**
     Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
 
@@ -20,12 +21,11 @@ export default Ember.Route.extend({
   currentContext: Ember.inject.service('fd-current-project-context'),
 
   /**
-    Service for controlling the load indication.
-
-    @property objectlistviewEvents
-    @type ObjectlistviewEvents
+    Service for managing the state of the application.
+     @property appState
+    @type AppStateService
   */
-  objectlistviewEvents: Ember.inject.service('objectlistview-events'),
+  appState: Ember.inject.service(),
 
   actions: {
     /**
@@ -41,7 +41,7 @@ export default Ember.Route.extend({
         if (this.get('controller').serializeTypeMap()) {
           this.get('controller').send('save');
         } else {
-          this.get('objectlistviewEvents').setLoadingState('');
+          this.get('appState').reset();
         }
       });
     },
@@ -67,7 +67,7 @@ export default Ember.Route.extend({
     @method model
   */
   model() {
-    this.get('objectlistviewEvents').setLoadingState('loading');
+    this.get('appState').loading();
     return {
       stage: this.get('currentContext').getCurrentStageModel(),
       classes: this.get('store').peekAll('fd-dev-class'),

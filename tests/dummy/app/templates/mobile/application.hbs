@@ -2,7 +2,12 @@
   {{outlet}}
   {{outlet "modal"}}
 {{else}}
-{{#ui-sidebar class="mobile inverted vertical main menu"}}
+{{#ui-sidebar
+  class="mobile inverted vertical main menu"
+  ui_context=".ember-application > .ember-view"
+  onShow=(action "updateWidth")
+  onHidden=(action "updateWidth")
+}}
   <a class="item"
     href={{addonVersionHref}}
     target="_blank"
@@ -57,7 +62,7 @@
   </div>
 </div>
 <div id="example-mobile" class="pusher">
-  <div class="ui form {{objectlistviewEventsService.loadingState}}">
+  <div class="ui form {{appState.state}}">
     <div class="full height" style="min-height: 94.8vh!important;" >
       <div class="flexberry-content ui attached segment">
         <div class="ui main container">
