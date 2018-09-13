@@ -2,7 +2,7 @@
   @module ember-flexberry-designer
 */
 
-import FdUmlLink, { BaseLinkWithUnderline } from './fd-uml-link';
+import FdUmlLink, { LinkWithUnderline } from './fd-uml-link';
 
 /**
   An object that describes an aggregation link on the UML diagram.
@@ -28,10 +28,10 @@ export default FdUmlLink.extend({
 
   @for FdUmlAssociationLink
   @class AggregationLink
-  @extends flexberry.uml.BaseLinkWithUnderline
+  @extends flexberry.uml.LinkWithUnderline
   @namespace flexberry.uml
   @constructor
 */
-export let AggregationLink = BaseLinkWithUnderline.define('flexberry.uml.Aggregation', {
+export let AggregationLink = LinkWithUnderline.define('flexberry.uml.AggregationLink', {
   attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' } },
 });

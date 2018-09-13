@@ -8,9 +8,9 @@ import FdUmlElement from './fd-uml-element';
 import { CollMessageBase } from './fd-uml-base-coll-message';
 
 /**
-  An object that describes a CollFlatMsgBack on the UML diagram.
+  An object that describes a BackwardFlatMessage on the UML diagram.
 
-  @class FdUmlCollFlatMsgBack
+  @class FdUmlBackwardFlatMessage
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
@@ -31,20 +31,20 @@ export default FdUmlElement.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'attrs', 'size', 'position');
-    return new CollFlatMsgBack(properties);
+    return new BackwardFlatMessage(properties);
   },
 });
 
 /**
-  Defines the JointJS object, which represents a 'CollFlatMsgBack' object in the UML diagram.
+  Defines the JointJS object, which represents a 'BackwardFlatMessage' object in the UML diagram.
 
-  @for FdUmlCollFlatMsgBack
-  @class CollFlatMsgBack
+  @for FdUmlBackwardFlatMessage
+  @class BackwardFlatMessage
   @extends CollMessageBase
   @namespace flexberry.uml
   @constructor
 */
-export let CollFlatMsgBack = CollMessageBase.define('flexberry.uml.CollFlatMsgBack', {
+export let BackwardFlatMessage = CollMessageBase.define('flexberry.uml.BackwardFlatMessage', {
   attrs: {
     '.arrow': {
       'd': 'M -5 0 L 0 -5 L -5 0 L 0 5',

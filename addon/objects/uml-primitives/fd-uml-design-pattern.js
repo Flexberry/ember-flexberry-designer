@@ -42,7 +42,7 @@ export default FdUmlElement.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let DesignPattern = BaseObject.define('flexberry.uml.CollDesignPattern', {
+export let DesignPattern = BaseObject.define('flexberry.uml.DesignPattern', {
   attrs: {
     '.flexberry-uml-header-rect': { 'rx': '120', 'ry': '120', 'stroke': 'black', 'strokeDasharray': '10,2', 'strokeWidth': '1', 'fill': '#ffffff' }
   }

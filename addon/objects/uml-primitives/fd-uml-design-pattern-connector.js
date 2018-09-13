@@ -32,7 +32,7 @@ export default FdUmlLink.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let DesignPatternConnector = Link.define('flexberry.uml.CollPatternConnect', {
+export let DesignPatternConnector = Link.define('flexberry.uml.DesignPatternConnector', {
   attrs: {
     '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '3 2' },
     text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }

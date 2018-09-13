@@ -8,9 +8,9 @@ import FdUmlElement from './fd-uml-element';
 import { CollMessageBase } from './fd-uml-base-coll-message';
 
 /**
-  An object that describes a CollAsyncMsgBack on the UML diagram.
+  An object that describes a BackwardAsyncMessage on the UML diagram.
 
-  @class FdUmlCollAsyncMsgBack
+  @class FdUmlBackwardAsyncMessage
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
@@ -31,20 +31,20 @@ export default FdUmlElement.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'attrs', 'size', 'position');
-    return new CollAsyncMsgBack(properties);
+    return new BackwardAsyncMessage(properties);
   },
 });
 
 /**
-  Defines the JointJS object, which represents a 'CollAsyncMsgBack' object in the UML diagram.
+  Defines the JointJS object, which represents a 'BackwardAsyncMessage' object in the UML diagram.
 
-  @for FdUmlCollAsyncMsgBack
-  @class CollAsyncMsgBack
+  @for FdUmlBackwardAsyncMessage
+  @class BackwardAsyncMessage
   @extends CollMessageBase
   @namespace flexberry.uml
   @constructor
 */
-export let CollAsyncMsgBack = CollMessageBase.define('flexberry.uml.CollAsyncMsgBack', {
+export let BackwardAsyncMessage = CollMessageBase.define('flexberry.uml.BackwardAsyncMessage', {
   attrs: {
     '.arrow': {
       'd':'M 0 0 L 5 -5'

@@ -8,9 +8,9 @@ import FdUmlElement from './fd-uml-element';
 import { CollMessageBase } from './fd-uml-base-coll-message';
 
 /**
-  An object that describes a CollNestedMsgBack on the UML diagram.
+  An object that describes a BackwardNestedMessage on the UML diagram.
 
-  @class FdUmlCollNestedMsgBack
+  @class FdUmlBackwardNestedMessage
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
@@ -31,20 +31,20 @@ export default FdUmlElement.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'attrs', 'size', 'position');
-    return new CollNestedMsgBack(properties);
+    return new BackwardNestedMessage(properties);
   },
 });
 
 /**
-  Defines the JointJS object, which represents a 'CollNestedMsgBack' object in the UML diagram.
+  Defines the JointJS object, which represents a 'BackwardNestedMessage' object in the UML diagram.
 
-  @for FdUmlCollNestedMsgBack
-  @class CollNestedMsgBack
+  @for FdUmlBackwardNestedMessage
+  @class BackwardNestedMessage
   @extends CollMessageBase
   @namespace flexberry.uml
   @constructor
 */
-export let CollNestedMsgBack = CollMessageBase.define('flexberry.uml.CollNestedMsgBack', {
+export let BackwardNestedMessage = CollMessageBase.define('flexberry.uml.BackwardNestedMessage', {
   attrs: {
     '.arrow': {
       'd': 'M 15 0 L 0 5 L 15 10 z',

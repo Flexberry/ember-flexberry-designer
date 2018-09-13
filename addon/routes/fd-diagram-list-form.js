@@ -20,7 +20,7 @@ export default ListFormRoute.extend(FdLoadingForTransitionMixin, {
     @type String
     @default 'fd-dev-uml-cad'
   */
-  modelName: 'fd-dev-uml-cod',
+  modelName: 'fd-dev-uml-cad',
 
   /**
     Defined user settings developer.

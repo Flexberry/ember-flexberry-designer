@@ -20,12 +20,12 @@ import FdUmlCompositionLink from '../objects/uml-primitives/fd-uml-composition-l
 import FdUmlDesignPatternConnector from '../objects/uml-primitives/fd-uml-design-pattern-connector';
 import FdUmlDesignPattern from '../objects/uml-primitives/fd-uml-design-pattern';
 import FdUmlUsecaseActor from '../objects/uml-primitives/fd-uml-usecase-actor';
-import FdUmlCollFlatMsgForward from '../objects/uml-primitives/fd-uml-forward-flat-message';
-import FdUmlCollNestedMsgForward from '../objects/uml-primitives/fd-uml-forward-nested-message';
-import FdUmlCollAsyncMsgForward from '../objects/uml-primitives/fd-uml-forward-async-message';
-import FdUmlCollNestedMsgBack from '../objects/uml-primitives/fd-uml-backward-nested-message';
-import FdUmlCollFlatMsgBack from '../objects/uml-primitives/fd-uml-backward-flat-message';
-import FdUmlCollAsyncMsgBack from '../objects/uml-primitives/fd-uml-backward-async-message';
+import FdUmlForwardFlatMessage from '../objects/uml-primitives/fd-uml-forward-flat-message';
+import FdUmlForwardNestedMessage from '../objects/uml-primitives/fd-uml-forward-nested-message';
+import FdUmlForwardAsyncMessage from '../objects/uml-primitives/fd-uml-forward-async-message';
+import FdUmlBackwardNestedMessage from '../objects/uml-primitives/fd-uml-backward-nested-message';
+import FdUmlBackwardFlatMessage from '../objects/uml-primitives/fd-uml-backward-flat-message';
+import FdUmlBackwardAsyncMessage from '../objects/uml-primitives/fd-uml-backward-async-message';
 
 let Model = CODModel.extend(DevUMLCODMixin, {
 
@@ -111,27 +111,27 @@ let Model = CODModel.extend(DevUMLCODMixin, {
           break;
 
         case 'STORMCASE.UML.cod.ForwardFlatMessage, UMLCOD':
-          result.pushObject(FdUmlCollFlatMsgForward.create({ primitive }));
+          result.pushObject(FdUmlForwardFlatMessage.create({ primitive }));
           break;
 
         case 'STORMCASE.UML.cod.ForwardNestedMessage, UMLCOD':
-          result.pushObject(FdUmlCollNestedMsgForward.create({ primitive }));
+          result.pushObject(FdUmlForwardNestedMessage.create({ primitive }));
           break;
 
         case 'STORMCASE.UML.cod.ForwardAsyncMessage, UMLCOD':
-          result.pushObject(FdUmlCollAsyncMsgForward.create({ primitive }));
+          result.pushObject(FdUmlForwardAsyncMessage.create({ primitive }));
           break;
 
         case 'STORMCASE.UML.cod.BackwardNestedMessage, UMLCOD':
-          result.pushObject(FdUmlCollNestedMsgBack.create({ primitive }));
+          result.pushObject(FdUmlBackwardNestedMessage.create({ primitive }));
           break;
 
         case 'STORMCASE.UML.cod.BackwardFlatMessage, UMLCOD':
-          result.pushObject(FdUmlCollFlatMsgBack.create({ primitive }));
+          result.pushObject(FdUmlBackwardFlatMessage.create({ primitive }));
           break;
 
         case 'STORMCASE.UML.cod.BackwardAsyncMessage, UMLCOD':
-          result.pushObject(FdUmlCollAsyncMsgBack.create({ primitive }));
+          result.pushObject(FdUmlBackwardAsyncMessage.create({ primitive }));
           break;
 
         default:

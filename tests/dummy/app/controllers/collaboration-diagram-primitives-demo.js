@@ -15,12 +15,12 @@ import { AssociationLink } from 'ember-flexberry-designer/objects/uml-primitives
 import { CompositionLink } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-composition-link';
 import { DesignPattern } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-design-pattern';
 import { DesignPatternConnector } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-design-pattern-connector';
-import { CollFlatMsgForward } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-forward-flat-message';
-import { CollNestedMsgForward } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-forward-nested-message';
-import { CollAsyncMsgForward } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-forward-async-message';
-import { CollNestedMsgBack } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-backward-nested-message';
-import { CollFlatMsgBack } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-backward-flat-message';
-import { CollAsyncMsgBack } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-backward-async-message';
+import { ForwardFlatMessage } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-forward-flat-message';
+import { ForwardNestedMessage } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-forward-nested-message';
+import { ForwardAsyncMessage } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-forward-async-message';
+import { BackwardNestedMessage } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-backward-nested-message';
+import { BackwardFlatMessage } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-backward-flat-message';
+import { BackwardAsyncMessage } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-backward-async-message';
 
 export default Ember.Controller.extend({
   actions: {
@@ -147,27 +147,27 @@ export default Ember.Controller.extend({
           labels: [{ attrs: { text: { text:  'Inheritance' } } }]
         });
 
-        let asyncMsgForward = new CollAsyncMsgForward({
+        let asyncMsgForward = new ForwardAsyncMessage({
           position: { x: 800, y: 50 }
         });
 
-        let asyncMsgBack = new CollAsyncMsgBack({
+        let asyncMsgBack = new BackwardAsyncMessage({
           position: { x: 800, y: 100 }
         });
 
-        let flatMsgForward = new CollFlatMsgForward({
+        let flatMsgForward = new ForwardFlatMessage({
           position: { x: 800, y: 140 }
         });
 
-        let flatMsgBack = new CollFlatMsgBack({
+        let flatMsgBack = new BackwardFlatMessage({
           position: { x: 800, y: 180 }
         });
 
-        let nestedMsgForward = new CollNestedMsgForward({
+        let nestedMsgForward = new ForwardNestedMessage({
           position: { x: 800, y: 220 }
         });
 
-        let nestedMsgBack = new CollNestedMsgBack({
+        let nestedMsgBack = new BackwardNestedMessage({
           position: { x: 800, y: 260 }
         });
 

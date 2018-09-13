@@ -2,7 +2,7 @@
   @module ember-flexberry-designer
 */
 
-import FdUmlLink, { BaseLinkWithUnderline } from './fd-uml-link';
+import FdUmlLink, { LinkWithUnderline } from './fd-uml-link';
 
 /**
   An object that describes an association link on the UML diagram.
@@ -28,8 +28,8 @@ export default FdUmlLink.extend({
 
   @for FdUmlAssociationLink
   @class AssociationLink
-  @extends flexberry.uml.Link
+  @extends flexberry.uml.LinkWithUnderline
   @namespace flexberry.uml
   @constructor
 */
-export let AssociationLink = BaseLinkWithUnderline.define('flexberry.uml.Association', {});
+export let AssociationLink = LinkWithUnderline.define('flexberry.uml.AssociationLink', {});

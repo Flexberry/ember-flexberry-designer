@@ -8,9 +8,9 @@ import FdUmlElement from './fd-uml-element';
 import { CollMessageBase } from './fd-uml-base-coll-message';
 
 /**
-  An object that describes a CollNestedMsgForward on the UML diagram.
+  An object that describes a ForwardNestedMessage on the UML diagram.
 
-  @class FdUmlCollNestedMsgForward
+  @class FdUmlForwardNestedMessage
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
@@ -31,20 +31,20 @@ export default FdUmlElement.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'attrs', 'size', 'position');
-    return new CollNestedMsgForward(properties);
+    return new ForwardNestedMessage(properties);
   },
 });
 
 /**
-  Defines the JointJS object, which represents a 'CollNestedMsgForward' object in the UML diagram.
+  Defines the JointJS object, which represents a 'ForwardNestedMessage' object in the UML diagram.
 
-  @for FdUmlCollNestedMsgForward
-  @class CollNestedMsgForward
+  @for FdUmlForwardNestedMessage
+  @class ForwardNestedMessage
   @extends CollMessageBase
   @namespace flexberry.uml
   @constructor
 */
-export let CollNestedMsgForward = CollMessageBase.define('flexberry.uml.CollNestedMsgForward', {
+export let ForwardNestedMessage = CollMessageBase.define('flexberry.uml.ForwardNestedMessage', {
   attrs: {
     '.arrow': {
       'd': 'M -15 0 L 0 5 L -15 10 z',

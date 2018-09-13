@@ -2,7 +2,7 @@
   @module ember-flexberry-designer
 */
 
-import FdUmlLink, { BaseLinkWithUnderline } from './fd-uml-link';
+import FdUmlLink, { LinkWithUnderline } from './fd-uml-link';
 
 /**
   An object that describes a link of the composition type on the UML diagram.
@@ -28,10 +28,10 @@ export default FdUmlLink.extend({
 
   @for FdUmlCompositionLink
   @class CompositionLink
-  @extends flexberry.uml.Link
+  @extends flexberry.uml.LinkWithUnderline
   @namespace flexberry.uml
   @constructor
 */
-export let CompositionLink = BaseLinkWithUnderline.define('flexberry.uml.Composition', {
+export let CompositionLink = LinkWithUnderline.define('flexberry.uml.CompositionLink', {
   attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' } },
 });
