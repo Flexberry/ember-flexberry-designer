@@ -2,6 +2,7 @@ import Ember from 'ember';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
 import { Query } from 'ember-flexberry-data';
 import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
+const { getOwner } = Ember;
 
 export default EditFormController.extend({
 
@@ -62,38 +63,31 @@ export default EditFormController.extend({
   }),
 
   save() {
-    this._super(...arguments);
+    this._super(...arguments).then(() => {
+      let stagePk = this.get('model.id');
+      let moduleSetting = this.get('moduleSetting');
+      let moduleSettingTypes = Object.keys(moduleSetting);
 
-    let stagePk = this.get('model.id');
-    let moduleSetting = this.get('moduleSetting');
-    let moduleSettingTypes = Object.keys(moduleSetting);
-    let host = this.get('store').adapterFor('application').host;
+      let valueModuleSetting = Ember.A();
+      let moduleSettingData = Ember.A();
 
-    let valueModuleSetting = Ember.A();
-    let moduleSettingData = Ember.A();
+      for (let i = 0; i < moduleSettingTypes.length; i++) {
+        let valueModuleSettingData = {
+          'ValueXML': moduleSetting[moduleSettingTypes[i]]
+        };
 
-    for (let i = 0; i < moduleSettingTypes.length; i++) {
-      let valueModuleSettingData = {
-        'ValueXML': moduleSetting[moduleSettingTypes[i]]
-      };
+        let moduleSettingTypeData = {
+          'Name': moduleSettingTypes[i]
+        };
 
-      let moduleSettingTypeData = {
-        'Name': moduleSettingTypes[i]
-      };
+        valueModuleSetting.pushObject(valueModuleSettingData);
+        moduleSettingData.pushObject(moduleSettingTypeData);
+      }
 
-      valueModuleSetting.pushObject(valueModuleSettingData);
-      moduleSettingData.pushObject(moduleSettingTypeData);
-    }
+      let data = { 'project': stagePk.toString(), 'moduleSettingType': moduleSettingData, 'valueModuleSetting': valueModuleSetting };
+      let adapter = getOwner(this).lookup('adapter:application');
 
-    let data = { 'project': stagePk.toString(), 'moduleSettingType': moduleSettingData, 'valueModuleSetting': valueModuleSetting };
-
-    Ember.$.ajax({
-      type: 'POST',
-      xhrFields: { withCredentials: true },
-      url: `${host}/SaveCurrentModuleSetting`,
-      data: JSON.stringify(data),
-      contentType: 'application/json; charset=utf-8',
-      dataType: 'json',
+      adapter.callAction('SaveCurrentModuleSetting', data, null, { withCredentials: true });
     });
   }
 });

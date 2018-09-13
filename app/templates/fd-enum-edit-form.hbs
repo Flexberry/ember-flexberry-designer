@@ -1,10 +1,13 @@
 <h3 class="ui header">{{t 'forms.fd-enum-edit-form.caption'}}
+  {{#if readonly}}
+    ({{t 'forms.fd-edit-form.readonly-mode'}})
+  {{/if}}
   <div class="sub header">
     {{t 'forms.fd-enum-edit-form.enum'}}: {{header}}
   </div>
 </h3>
 
-<form class="ui form flexberry-vertical-form {{state}}" role="form">
+<form class="ui form flexberry-vertical-form" role="form">
   {{flexberry-error error=error}}
   <div class="field">
     <div class="sixteen wide">

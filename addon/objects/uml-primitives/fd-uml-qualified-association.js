@@ -4,8 +4,8 @@
 
 import Ember from 'ember';
 
-import FdUmlLink from './fd-uml-baselink';
-import { Link } from './fd-uml-baselink';
+import FdUmlLink from './fd-uml-link';
+import { LinkWithUnderline } from './fd-uml-link';
 /**
   An object that describes a link of the Qualified association type on the UML diagram.
 
@@ -50,7 +50,7 @@ export default FdUmlLink.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let QualifiedAssociation = Link.define('flexberry.uml.QualifiedAssociation', {
+export let QualifiedAssociation = LinkWithUnderline.define('flexberry.uml.QualifiedAssociation', {
   attrs: {
     '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 z', fill: 'white' },
     text: { 'text-decoration': 'underline', }

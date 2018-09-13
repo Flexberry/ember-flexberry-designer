@@ -118,7 +118,7 @@ export default FdUmlPrimitive.extend({
 });
 
 /**
-  Defines the JointJS link, which represents a Dependency in the UML diagram.
+  Defines the JointJS link, which represents a Link in the UML diagram.
 
   @for FdUmlLink
   @class Link
@@ -169,3 +169,19 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
     },
   });
 
+/**
+  Defines the JointJS link, which represents a Link with underline in the UML diagram.
+
+  @for FdUmlLink
+  @class LinkWithUnderline
+  @extends Link
+  @namespace flexberry.uml
+  @constructor
+*/
+export let LinkWithUnderline = Link.define('flexberry.uml.BaseLinkWithUnderline', {
+}, {
+    initialize: function () {
+      this.label(2, { attrs: { text: { 'text-decoration': 'underline', } } });
+      joint.dia.Link.prototype.initialize.apply(this, arguments);
+    },
+  });

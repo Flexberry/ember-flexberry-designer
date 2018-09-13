@@ -2,8 +2,8 @@
   @module ember-flexberry-designer
 */
 
-import FdUmlLink from './fd-uml-baselink';
-import { Link } from './fd-uml-baselink';
+import FdUmlLink from './fd-uml-link';
+import { Link } from './fd-uml-link';
 
 /**
   An object that describes an aggregation link on the UML diagram.

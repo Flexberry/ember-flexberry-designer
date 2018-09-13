@@ -1,7 +1,7 @@
 <div class="ui inverted simple dimmer"></div>
 <div class="drag-anchor" {{action set "draggable" true on="mouseEnter"}} {{action set "draggable" false on="mouseLeave"}}></div>
 {{#if _isControl}}
-  <label>{{control.caption}}</label>
+  <label>{{if (not-eq control.caption "~") control.caption}}</label>
   {{component _componentName
     items=_componentProperties.items
     types=_componentProperties.types
