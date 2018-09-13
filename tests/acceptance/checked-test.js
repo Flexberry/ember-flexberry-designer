@@ -1,8 +1,9 @@
 import Ember from 'ember';
-import { executeTest, addDataForDestroy } from './execute-test';
+import { executeTest } from './execute-test';
 
 executeTest('test checking', (store, assert, app) => {
   assert.expect(1);
+  let path = 'fd-configuration-list-form';
   let done = assert.async();
   Ember.run(() => {
     visit(path);
