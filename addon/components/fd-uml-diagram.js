@@ -85,7 +85,7 @@ export default Ember.Component.extend({
     });
     paper.options.connectionStrategy = joint.connectionStrategies.pinAbsolute;
 
-    graph.addCells(elements.map(e => e.JointJS()));
-    graph.addCells(links.map(l => l.JointJS()));
+    graph.addCells(elements.map(e => e.JointJS(graph)));
+    graph.addCells(links.map(l => l.JointJS(graph)));
   },
 });

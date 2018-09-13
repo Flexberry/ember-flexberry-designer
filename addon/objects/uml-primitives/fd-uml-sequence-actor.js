@@ -28,8 +28,9 @@ export default FdUmlElement.extend({
 
     @method JointJS
   */
-  JointJS() {
+  JointJS(graph) {
     let properties = this.getProperties('id', 'name', 'size', 'position');
+    properties.graph = graph;
     return new SequenceDiagramActor(properties);
 
   },
@@ -38,9 +39,9 @@ export default FdUmlElement.extend({
 /**
   Defines the JointJS object, which represents a Sequence Actor in the UML diagram.
 
-  @for FdUmlActiveObject
-  @class ActiveObject
-  @extends flexberry.uml.BaseObject
+  @for FdUmlSequenceActor
+  @class SequenceDiagramActor
+  @extends basic.Generic.
   @namespace flexberry.uml
   @constructor
 */
@@ -98,6 +99,15 @@ export let SequenceActor = joint.shapes.basic.Generic.define('flexberry.uml.Sequ
     }
   });
 
+/**
+  Defines the JointJS object, which represents a Sequence Actor in the UML diagram.
+
+  @for FdUmlSequenceActor
+  @class SequenceDiagramActor
+  @extends SequenceActor
+  @namespace flexberry.uml
+  @constructor
+*/
 export let SequenceDiagramActor = SequenceActor.define('flexberry.uml.SequenceDiagramActor', {
   attrs: {
     size: { 'width': 24, 'height': 47 },
