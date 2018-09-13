@@ -1,4 +1,9 @@
-<h3 class="ui header">{{model.name}}</h3>
+<h3 class="ui header">
+  {{model.name}}
+  {{#if readonly}}
+    ({{t 'forms.fd-edit-form.readonly-mode'}})
+  {{/if}}
+</h3>
 
 {{#if errorMessages}}
   {{#each errorMessages as |currentError|}}
@@ -11,7 +16,7 @@
     }}
   {{/each}}
 {{/if}}
-<form class="ui form flexberry-vertical-form {{state}}" role="form">
+<form class="ui form flexberry-vertical-form" role="form">
   {{flexberry-error error=error}}
   <div class="field">
     <div class="sixteen wide">

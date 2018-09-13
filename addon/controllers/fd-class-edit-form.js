@@ -55,6 +55,7 @@ export default EditFormController.extend({
       @method actions.save
     */
     save() {
+      this._setModelProperties();
       this._setDefaultBusinessServerEvents();
       this._super();
     },
@@ -65,6 +66,7 @@ export default EditFormController.extend({
       @param {Boolean} skipTransition If `true`, then transition during close form process will be skipped after save.
     */
     saveAndClose(skipTransition) {
+      this._setModelProperties();
       this._setDefaultBusinessServerEvents();
       this._super(skipTransition);
     },
@@ -82,11 +84,22 @@ export default EditFormController.extend({
   /**
     Sets 'businessServerEvents' model property value to default if business server is not present.
     @method _setDefaultBusinessServerEvents
+    @private
   */
   _setDefaultBusinessServerEvents() {
-    if (!this.model.get('businessServerClass') &&
-        this.model.get('businessServerEvents') !== BusinessDataObjectEvents.OnAllEvents) {
-      this.model.set('businessServerEvents', BusinessDataObjectEvents.OnAllEvents);
+    if (!this.get('model.businessServerClass') &&
+        this.get('model.businessServerEvents') !== BusinessDataObjectEvents.OnAllEvents) {
+      this.set('model.businessServerEvents', BusinessDataObjectEvents.OnAllEvents);
     }
+  },
+
+  /**
+    Sets properties of model that don't set explicitly on eidt form.
+    @method _setModelProperties
+    @private
+  */
+  _setModelProperties() {
+    let name = this.get('model.name');
+    this.set('model.nameStr', name);
   }
 });
