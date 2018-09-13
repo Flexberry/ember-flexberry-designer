@@ -24,14 +24,6 @@ FdFormUnsavedData, {
 
   /**
     @private
-    @property _originalData
-    @type string
-    @default ''
-  */
-  _originalData: '',
-
-  /**
-    @private
     @property _showModalDialog
     @type Boolean
     @default false
@@ -525,37 +517,18 @@ FdFormUnsavedData, {
       let treeObject = this.get('treeObjectNotUsedAttributesTree');
       treeObject.on('open_node.jstree', this._openNodeTree.bind(this));
       treeObject.on('after_close.jstree', afterCloseNodeTree.bind(this));
+    },
+
+    /**
+      Cancels the changes made to the type map, and send `close` action.
+
+      @method actions.rollback
+    */
+    rollback() {
+      this.clearFormData();
+      this.send('removeModalDialog');
+      this.send('closeUnsavedForm');
     }
-  },
-
-  /**
-    This method run non ember data saved when model is loaded
-
-    @method saveOriginalData
-  */
-  originalDataInit: function () {
-    Ember.run.next(this, () => {
-      this.saveDataToOriginal();
-    });
-  },
-
-  /**
-    Save fields before changes
-
-    @method saveOriginalData
-  */
-  saveDataToOriginal: function () {
-    let originalDataString = this._getStringifyModel();
-    this.set('_originalData', originalDataString);
-  },
-
-  /**
-    Cancel form data changes for unsaved data check pass  Cancel form data changes for unsaved data check pass
-
-    @method clearDirtyAttributes
-  */
-  clearDirtyAttributes: function () {
-    this._applyDirtyAttributesAsOrigin();
   },
 
   /**
@@ -565,13 +538,29 @@ FdFormUnsavedData, {
   */
   findUnsavedFormData: function () {
     let checkResult = false;
-    let originalDataString = this.get('_originalData');
-    let currentDataString = this._getStringifyModel();
-    if (!Ember.isEqual(originalDataString, currentDataString)) {
+
+    let definitionsIsChanged = this._chechDefinitionsOnChanges();
+    let modelIsChanged = this._chechEmberModelsOnDirty();
+
+    if (definitionsIsChanged || modelIsChanged) {
       checkResult = true;
     }
 
     return checkResult;
+  },
+
+  /**
+    Clear all changes in from
+
+    @method clearFormData
+  */
+  clearFormData: function () {
+    let store = this.get('store');
+    store.peekAll('fd-dev-class').forEach((item) => item.rollbackAll());
+    store.peekAll('fd-dev-stage').forEach((item) => item.rollbackAll());
+    store.peekAll('fd-dev-association').forEach((item) => item.rollbackAll());
+    store.peekAll('fd-dev-aggregation').forEach((item) => item.rollbackAll());
+    this.set('model.view.definition', Ember.A(this.get('model.originalDefinition')));
   },
 
   /**
@@ -609,30 +598,69 @@ FdFormUnsavedData, {
   },
 
   /**
-    Get model data in string
+    Check definitions models has changed attributes. Return true if it right
 
-    @method _getStringifyModel
+    @method _chechDefinitionsOnChanges
+    @private
   */
-  _getStringifyModel() {
-    let attributes = this.get('model.attributes');
-    let attributesString = JSON.stringify(attributes);
+  _chechDefinitionsOnChanges() {
+    let checkresult = false;
+    let originalDefinitions = this.get('model.originalDefinition');
+    let currentDefinitions = copyViewDefinition(this.get('view.definition'));
 
-    let view = this.get('model.view');
-    let viewString = JSON.stringify(view);
+    if (Ember.isEmpty(currentDefinitions) || Ember.isEmpty(originalDefinitions)) {
+      return false;
+    }
 
-    let allDataString = attributesString + viewString;
+    let originalDefinitionsLength = originalDefinitions.length;
+    let currentDefinitionsLength = currentDefinitions.length;
 
-    return allDataString;
+    if (originalDefinitionsLength !== currentDefinitionsLength) {
+      checkresult = true;
+    } else {
+      for (let i = 0; i < originalDefinitionsLength; i++) {
+        if (originalDefinitions[i].name !== currentDefinitions[i].name ||
+          originalDefinitions[i].caption !== currentDefinitions[i].caption ||
+          originalDefinitions[i].path !== currentDefinitions[i].path ||
+          originalDefinitions[i].visible !== currentDefinitions[i].visible) {
+          checkresult = true;
+        }
+      }
+    }
+
+    return checkresult;
   },
 
   /**
-    Save current dirty data as origin for next equal check origin and current data
+    Check if one of the ember models has dirty attributes. Return true if it right
 
-    @method _applyDirtyAttributesAsOrigin
+    @method _chechEmberModelsOnDirty
     @private
   */
-  _applyDirtyAttributesAsOrigin() {
-    this.saveDataToOriginal();
+  _chechEmberModelsOnDirty() {
+    let checkresult = false;
+
+    let listFormIsDirty = this.get('model.listform.hasDirtyAttributes');
+
+    let dataobject = this.get('model.dataobject');
+
+    let attributes = dataobject.get('attributes');
+    let changedAttributes = attributes.filterBy('hasDirtyAttributes');
+    let attributesIsDirty = changedAttributes.length > 0 ? true : false;
+
+    let association = this.get('store').peekAll('fd-dev-association');
+    let changedAssociations = association.filterBy('hasDirtyAttributes');
+    let associationIsDirty = changedAssociations.length > 0 ? true : false;
+
+    let aggregation = this.get('store').peekAll('fd-dev-aggregation');
+    let changedAggregation = aggregation.filterBy('hasDirtyAttributes');
+    let aggregationIsDirty = changedAggregation.length > 0 ? true : false;
+
+    if (listFormIsDirty || attributesIsDirty || associationIsDirty || aggregationIsDirty) {
+      checkresult = true;
+    }
+
+    return checkresult;
   },
 
   /**

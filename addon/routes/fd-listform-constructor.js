@@ -27,8 +27,8 @@ export default Ember.Route.extend(FdFormCheckTransitionMixin, {
   },
 
   queryParams: {
-    form: { refreshModel: true},
-    class: { refreshModel: true},
+    form: { refreshModel: true },
+    class: { refreshModel: true },
   },
 
   model(params) {
@@ -164,12 +164,7 @@ export default Ember.Route.extend(FdFormCheckTransitionMixin, {
       Ember.$('.full.height').off('click.fd-listform-constructor');
     }
 
-    let store = this.get('store');
-    store.peekAll('fd-dev-class').forEach((item) => item.rollbackAll());
-    store.peekAll('fd-dev-stage').forEach((item) => item.rollbackAll());
-    store.peekAll('fd-dev-association').forEach((item) => item.rollbackAll());
-    store.peekAll('fd-dev-aggregation').forEach((item) => item.rollbackAll());
-    controller.set('model.view.definition', Ember.A(controller.get('model.originalDefinition')));
+    controller.clearFormData();
   },
 
   /**
@@ -183,7 +178,6 @@ export default Ember.Route.extend(FdFormCheckTransitionMixin, {
   setupController(controller) {
     this._super(...arguments);
     controller.set('_showNotUsedAttributesTree', false);
-    controller.originalDataInit();
   },
 
   /**

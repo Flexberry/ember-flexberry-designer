@@ -88,7 +88,6 @@ export default Ember.Route.extend(FdFormCheckTransitionMixin, {
 
     controller.set('selectedItem', undefined);
     controller.set('_showNotUsedAttributesTree', false);
-    controller.originalDataInit();
   },
 
   /**
@@ -107,13 +106,6 @@ export default Ember.Route.extend(FdFormCheckTransitionMixin, {
       Ember.$('.full.height').off('click.fd-editform-constructor');
     }
 
-    let store = this.get('store');
-    store.peekAll('fd-dev-class').forEach((item) => item.rollbackAll());
-    store.peekAll('fd-dev-stage').forEach((item) => item.rollbackAll());
-    store.peekAll('fd-dev-association').forEach((item) => item.rollbackAll());
-    store.peekAll('fd-dev-aggregation').forEach((item) => item.rollbackAll());
-    let definition = controller.get('model.editform.formViews.firstObject.view.definition');
-    definition.clear();
-    definition.pushObjects(controller.get('model.originalDefinition'));
+    controller.clearFormData();
   },
 });
