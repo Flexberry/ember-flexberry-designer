@@ -29,7 +29,7 @@ export function executeTest(testName, callback) {
       userSettingsService.set('getCurrentPerPage', getCurrentPerPage);
     },
 
-    afterEach(assert) {
+    afterEach() {
       Ember.run(() => {
         if (dataForDestroy.length !== 0) {
           recursionDelete(0);

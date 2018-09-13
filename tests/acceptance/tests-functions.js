@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import { Query } from 'ember-flexberry-data';
 import { addDataForDestroy } from './execute-test';
 
 /**
@@ -253,7 +252,6 @@ export function createView(store, currentClass, name, stereotype) {
 
       default:
         throw new Error(`Wrong value at stereotype.`);
-        break;
     }
 
     let newRecords = Ember.A();

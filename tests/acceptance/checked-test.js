@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import { executeTest } from './execute-test';
 
-executeTest('test checking', (store, assert, app) => {
+executeTest('test checking', (store, assert) => {
   assert.expect(1);
   let path = 'fd-configuration-list-form';
   let done = assert.async();
