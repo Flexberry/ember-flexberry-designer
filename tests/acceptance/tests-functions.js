@@ -273,7 +273,7 @@ export function createView(store, currentClass, name, stereotype) {
 
           //addDataForDestroy(viewForm);
           viewForm.save().then(() => {
-            resolve(view, createdClass ,viewForm);
+            resolve(view, createdClass, viewForm);
           });
         });
       } else {
