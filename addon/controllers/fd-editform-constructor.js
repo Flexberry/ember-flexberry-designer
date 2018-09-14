@@ -25,6 +25,12 @@ import { controlsToDefinition, locateControlByPath } from '../utils/fd-view-path
 import FdDataTypes from '../utils/fd-datatypes';
 
 export default Ember.Controller.extend(FdWorkPanelToggler, {
+  /**
+    Service for managing the state of the application.
+     @property appState
+    @type AppStateService
+  */
+  appState: Ember.inject.service(),
   queryParams: ['classId'],
 
   /**
@@ -724,17 +730,17 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       @param {Boolean} close If `true`, the `close` action will be run.
     */
     save(close) {
-      this.set('state', 'loading');
+      this.get('appState').loading();
       try {
         this._saveMetadata(this.get('model'), this.get('controlsTree')).then(() => {
           this.set('model.originalDefinition', copyViewDefinition(this.get('model.editform.formViews.firstObject.view.definition')));
-          this.set('state', '');
+          this.get('appState').reset();
           if (close) {
             this.send('close');
           }
         });
       } catch (error) {
-        this.set('state', '');
+        this.get('appState').reset();
         this.set('error', error);
       }
     },

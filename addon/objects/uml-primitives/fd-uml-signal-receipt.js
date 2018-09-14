@@ -4,7 +4,7 @@
 
 import Ember from 'ember';
 
-import { BaseObject } from './fd-uml-object';
+import { BaseObject } from './fd-uml-baseobject';
 import FdUmlElement from './fd-uml-element';
 
 /**
@@ -37,8 +37,9 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'size', 'position', 'type');
-    if (properties.type === 'STORMCASE.UML.ad.SignalReceiptLeft, UMLAD') {
+    let properties = this.getProperties('id', 'name', 'size', 'position');
+    let type = this.get('type');
+    if (type === 'STORMCASE.UML.ad.SignalReceiptLeft, UMLAD') {
       return new SignalReceiptLeft(properties);
     } else {
       return new SignalReceiptRight(properties);
