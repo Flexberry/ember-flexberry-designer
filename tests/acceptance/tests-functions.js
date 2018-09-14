@@ -245,7 +245,7 @@ export function createAttribute(store, currentClass, name) {
 export function createView(store, currentClass, name, stereotype) {
   return new Ember.RSVP.Promise((resolve) => {
     let viewName;
-    switch(stereotype) {
+    switch (stereotype) {
 
       case '«listform»':
         viewName = name + 'L';
@@ -256,7 +256,7 @@ export function createView(store, currentClass, name, stereotype) {
         break;
 
       case undefined:
-          break;
+        break;
 
       default:
         throw new Error(`Wrong value at stereotype.`);
@@ -267,13 +267,13 @@ export function createView(store, currentClass, name, stereotype) {
 
     //addDataForDestroy(view);
     view.save().then(() => {
-      if(stereotype) {
+      if (stereotype) {
         createClass(store, currentClass.get('stage'), viewName, stereotype).then((createdClass) => {
           let viewForm = newRecords.pushObject(store.createRecord('fd-dev-form-view', { name: viewName, class: createdClass, view: view }));
 
           //addDataForDestroy(viewForm);
           viewForm.save().then(() => {
-            resolve(view,createdClass,viewForm);
+            resolve(view, createdClass ,viewForm);
           });
         });
       } else {
