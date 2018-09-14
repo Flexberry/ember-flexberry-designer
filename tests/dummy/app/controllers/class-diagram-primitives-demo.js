@@ -21,7 +21,6 @@ import { QualifiedAggregation } from 'ember-flexberry-designer/objects/uml-primi
 import { QualifiedComposition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-qualified-composition';
 import { NestedClassAssociation } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-nested-association';
 import { TemplateClass } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-template-class';
-import 'ember-flexberry-designer/utils/fd-diagram-primitives-views/fd-class-diagram-primitives-views';
 
 export default Ember.Controller.extend({
   actions: {
