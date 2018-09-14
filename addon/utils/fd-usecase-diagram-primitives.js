@@ -1,6 +1,6 @@
 import joint from 'npm:jointjs';
 
-joint.shapes.basic.Generic.define('flexberryUml.Usecase', {
+joint.shapes.basic.Generic.define('flexberry.uml.Usecase', {
   attrs: {
     rect: { 'width': 400 },
     '.uml-usecase-rect': { 'rx': '120', 'ry': '120', 'stroke': 'black', 'strokeWidth': '1', 'fill': '#ffffff' },
@@ -69,7 +69,7 @@ joint.shapes.basic.Generic.define('flexberryUml.Usecase', {
   }
 });
 
-joint.shapes.flexberryUml.Usecase.define('flexberryUml.UsecaseBoundary', {
+joint.shapes.flexberry.uml.Usecase.define('flexberry.uml.UsecaseBoundary', {
 
   attrs: {
     '.uml-usecase-rect': { 'rx': '0', 'ry': '0', 'stroke': 'black', 'strokeWidth': '1', 'fill': '#ffffff' },
@@ -123,7 +123,7 @@ joint.shapes.flexberryUml.Usecase.define('flexberryUml.UsecaseBoundary', {
   }
 });
 
-joint.shapes.flexberryUml.Usecase.define('flexberryUml.UsecaseActor', {
+joint.shapes.flexberry.uml.Usecase.define('flexberry.uml.UsecaseActor', {
   attrs: {
     image: {
       'xlink:href': 'assets/images/actor.svg',
@@ -155,11 +155,11 @@ joint.shapes.flexberryUml.Usecase.define('flexberryUml.UsecaseActor', {
   ].join('')
 });
 
-joint.dia.Link.define('flexberryUml.UseCaseUndirAssociation', {
+joint.dia.Link.define('flexberry.uml.UseCaseUndirAssociation', {
   labels: [{ textAnchor: 'middle', attrs: { text: { text:  '' } } }]
 });
 
-joint.dia.Link.define('flexberryUml.UseCaseDirAssociation', {
+joint.dia.Link.define('flexberry.uml.UseCaseDirAssociation', {
   attrs: {
     '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'black' }
   },
@@ -167,7 +167,7 @@ joint.dia.Link.define('flexberryUml.UseCaseDirAssociation', {
   labels: [{ textAnchor: 'middle', attrs: { text: { text:  '' } } }]
 });
 
-joint.dia.Link.define('flexberryUml.UseCaseGeneralization', {
+joint.dia.Link.define('flexberry.uml.UseCaseGeneralization', {
   attrs: {
     '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'white' }
   },

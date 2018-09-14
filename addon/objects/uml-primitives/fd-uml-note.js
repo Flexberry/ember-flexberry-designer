@@ -3,11 +3,9 @@
 */
 
 import Ember from 'ember';
-import joint from 'npm:jointjs';
-
-import '../../utils/fd-common-primitives';
 
 import FdUmlElement from './fd-uml-element';
+import { BaseObject } from './fd-uml-baseobject';
 
 /**
   An object that describes a note on the UML diagram.
@@ -16,8 +14,9 @@ import FdUmlElement from './fd-uml-element';
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
+
   /**
-    The name of the note, the content is actually.
+    The name of the note, actually its content.
 
     @property name
     @type String
@@ -40,11 +39,11 @@ export default FdUmlElement.extend({
 
   @for FdUmlNote
   @class Note
-  @extends flexberryUml.BaseObject
+  @extends BaseObject
   @namespace flexberry.uml
   @constructor
 */
-export let Note = joint.shapes.flexberryUml.BaseObject.define('flexberry.uml.Note', {
+export let Note = BaseObject.define('flexberry.uml.Note', {
   attrs: {
     '.flexberry-uml-header-text': {
       'font-weight': 'bold',
@@ -54,15 +53,15 @@ export let Note = joint.shapes.flexberryUml.BaseObject.define('flexberry.uml.Not
       'y-alignment': 'start',
     },
     '.corner-rect': {
-      'ref':'.flexberry-uml-header-rect',
+      'ref': '.flexberry-uml-header-rect',
       'stroke': 'white',
-      'stroke-width':'2'
+      'stroke-width': '2'
     },
     '.corner': {
-      'ref':'.flexberry-uml-header-rect',
+      'ref': '.flexberry-uml-header-rect',
       'stroke': 'black',
-      'stroke-width':'1',
-      'd':'M0,0 L0,10 L10,10 L0,0'
+      'stroke-width': '1',
+      'd': 'M0,0 L0,10 L10,10 L0,0'
     },
   },
 }, {
@@ -78,7 +77,7 @@ export let Note = joint.shapes.flexberryUml.BaseObject.define('flexberry.uml.Not
   ].join(''),
 
   updateRectangles() {
-    joint.shapes.flexberryUml.BaseObject.prototype.updateRectangles.apply(this, arguments);
+    BaseObject.prototype.updateRectangles.apply(this, arguments);
 
     let attrs = this.get('attrs');
     let transX = this.size().width - 10;

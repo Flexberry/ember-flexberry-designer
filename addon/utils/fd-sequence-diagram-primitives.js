@@ -1,6 +1,6 @@
 import joint from 'npm:jointjs';
 
-joint.shapes.basic.Generic.define('flexberryUml.sequenceActors', {
+joint.shapes.basic.Generic.define('flexberry.uml.sequenceActors', {
   attrs: {
     size: {  },
     rect: { },
@@ -54,26 +54,26 @@ joint.shapes.basic.Generic.define('flexberryUml.sequenceActors', {
   }
 });
 
-joint.shapes.flexberryUml.sequenceActors.define('flexberryUml.sequencediagramActor', {
+joint.shapes.flexberry.uml.sequenceActors.define('flexberry.uml.sequencediagramActor', {
   attrs: {
     size: { 'width': 24, 'height': 47 },
     image: { 'xlink:href': '/assets/images/actor.svg' }
   }
 });
 
-joint.shapes.flexberryUml.sequenceActors.define('flexberryUml.sequencediagramObject', {
+joint.shapes.flexberry.uml.sequenceActors.define('flexberry.uml.sequencediagramObject', {
   attrs: {
     size: { 'width': 40, 'height': 40 },
     rect: { width: 40, height: 40, fill: '#FFFFFF', stroke: 'black' },
   }
 });
 
-joint.shapes.flexberryUml.sequencediagramObject.define('flexberryUml.sequencediagramActiveObject', {
+joint.shapes.flexberry.uml.sequencediagramObject.define('flexberry.uml.sequencediagramActiveObject', {
   attrs: {
     rect: { 'stroke-width':2 } }
 });
 
-joint.shapes.basic.Path.define('flexberryUml.sequencediagramTerminator', {
+joint.shapes.basic.Path.define('flexberry.uml.sequencediagramTerminator', {
   attrs: {
     size: { 'width': 40, 'height': 40 },
     path: { 'stroke-width':2, d: 'M0,0 40,40 M0,40 40,0z' }
@@ -85,7 +85,7 @@ joint.shapes.basic.Path.define('flexberryUml.sequencediagramTerminator', {
   }
 });
 
-joint.dia.Link.define('flexberryUml.sequencediagramProcedureCall', {
+joint.dia.Link.define('flexberry.uml.sequencediagramProcedureCall', {
   attrs: {
     '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'black' }
   },
@@ -96,7 +96,7 @@ joint.dia.Link.define('flexberryUml.sequencediagramProcedureCall', {
   }
 });
 
-joint.dia.Link.define('flexberryUml.sequencediagramFlatMessage', {
+joint.dia.Link.define('flexberry.uml.sequencediagramFlatMessage', {
   attrs: {
     '.marker-target': { d: 'M 0 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' },
     '.connection': { stroke: 'black', 'stroke-width': 1 }

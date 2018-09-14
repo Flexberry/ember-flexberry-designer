@@ -35,10 +35,7 @@ export default Ember.Mixin.create({
       toggleconfigPanel = toggleconfigPanel || !configPanelSidebar.hasClass('visible');
 
       if (toggleconfigPanel) {
-        configPanelSidebar.sidebar({
-          closable: false,
-          dimPage: false
-        }).sidebar('toggle');
+        configPanelSidebar.sidebar('toggle');
         configPanelSidebar.removeClass('overlay');
         this.send('workPlaceConfig');
 

@@ -1,5 +1,8 @@
 <h3 class="ui header">
   {{t "forms.fd-listform-constructor.caption"}}
+  {{#if readonly}}
+    ({{t 'forms.fd-edit-form.readonly-mode'}})
+  {{/if}}
   <div class="sub header">
     {{t "forms.fd-listform-constructor.view"}}: {{viewName}}
     <br>
@@ -17,7 +20,7 @@
     }}
   {{/each}}
 {{/if}}
-<form class="ui form flexberry-vertical-form list-form-constructor {{state}}" role="form">
+<form class="ui form flexberry-vertical-form list-form-constructor" role="form">
   {{flexberry-error error=error}}
   <div class="field">
     <div class="flexberry-edit-panel">
@@ -47,7 +50,11 @@
       <thead>
         <tr>
           {{#each columns as |column|}}
-            <th class="{{if (eq selectedColumn column) "fd-selected"}} {{unless column.propertyDefinition.visible "blackout"}}" {{action "selectColumn" column bubbles=false}}>{{column.caption}}</th>
+            <th
+              class="{{if (eq selectedColumn column) "fd-selected"}} {{unless column.propertyDefinition.visible "blackout"}}"
+              title={{column.propertyDefinition.name}}
+              {{action "selectColumn" column bubbles=false}}
+            >{{or column.caption column.propertyDefinition.name}}</th>
           {{/each}}
         </tr>
       </thead>

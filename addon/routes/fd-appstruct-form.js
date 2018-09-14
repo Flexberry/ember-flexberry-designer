@@ -1,7 +1,14 @@
 import Ember from 'ember';
 import FdAppStructTree from '../objects/fd-appstruct-tree';
+<<<<<<< HEAD
 import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 export default Ember.Route.extend(FdFormCheckTransitionMixin, {
+=======
+import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
+
+const { getOwner } = Ember;
+export default Ember.Route.extend(FdLoadingForTransitionMixin, {
+>>>>>>> develop
 
   /**
    Service that get current project contexts.
@@ -129,14 +136,11 @@ export default Ember.Route.extend(FdFormCheckTransitionMixin, {
     controller.set('singleModeStage', context.singleStageMode);
 
     let stagePk = context.getCurrentStage();
-    let host = this.get('store').adapterFor('application').host;
-    Ember.$.ajax({
-      type: 'GET',
-      xhrFields: { withCredentials: true },
-      url: `${host}/GetCurrentProcessMethodology(project='${stagePk}')`,
-      success(result) {
-        controller.set('processMethodologyValue', result.value);
-      }
+    let adapter = getOwner(this).lookup('adapter:application');
+
+    adapter.callFunction('GetCurrentProcessMethodology', { project: stagePk.toString() }, null, { withCredentials: true },
+    (result) => {
+      controller.set('processMethodologyValue', result.value);
     });
     controller.originalDataInit();
   },

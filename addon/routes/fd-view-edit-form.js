@@ -6,13 +6,11 @@ import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggre
 export default Ember.Route.extend(FdFormCheckTransitionMixin, {
 
   /**
-   Service that triggers objectlistview events.
-
-   @property objectlistviewEventsService
-   @type {Class}
-   @default Ember.inject.service()
-   */
-  objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
+    Service for managing the state of the application.
+     @property appState
+    @type AppStateService
+  */
+  appState: Ember.inject.service(),
 
   model: function(arg) {
     let store = this.get('store');
@@ -56,7 +54,7 @@ export default Ember.Route.extend(FdFormCheckTransitionMixin, {
       })
     ]);
 
-    this.get('objectlistviewEventsService').setLoadingState('');
+    this.get('appState').reset();
 
     return {
       view: data,

@@ -60,13 +60,11 @@ FdFormUnsavedData, {
   addFolderNodeDisabled: 'disabled',
 
   /**
-   Service that triggers objectlistview events.
-
-   @property objectlistviewEventsService
-   @type {Class}
-   @default Ember.inject.service()
-   */
-  objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
+    Service for managing the state of the application.
+     @property appState
+    @type AppStateService
+  */
+  appState: Ember.inject.service(),
 
   allAttrsHidedn: false,
 
@@ -450,7 +448,7 @@ FdFormUnsavedData, {
       @method actions.addLeftListForm
     */
     addLeftEditForm() {
-      this.set('state', 'loading');
+      this.get('appState').loading();
 
       let jstreeSelectedNodesLeft = this.get('jstreeSelectedNodesLeft');
       if (jstreeSelectedNodesLeft.length === 0) {
@@ -488,18 +486,18 @@ FdFormUnsavedData, {
               view: savedDevView,
               orderNum: 1
             }).save().then(() => {
-              this.set('state', '');
+              this.get('appState').reset();
               this.transitionToRoute('fd-editform-constructor', savedDevClass.get('id'));
             }, (error) => {
-              this.set('state', '');
+              this.get('appState').reset();
               this.set('error', error);
             });
           }, (error) => {
-            this.set('state', '');
+            this.get('appState').reset();
             this.set('error', error);
           });
         }, (error) => {
-          this.set('state', '');
+          this.get('appState').reset();
           this.set('error', error);
         });
       });
@@ -729,7 +727,7 @@ FdFormUnsavedData, {
       }
 
       let _this = this;
-      this.get('objectlistviewEventsService').setLoadingState('loading');
+      this.get('appState').loading();
       record.save().then(() => {
         _this.get('objectlistviewEventsService').setLoadingState('');
         this.saveDataToOriginal();

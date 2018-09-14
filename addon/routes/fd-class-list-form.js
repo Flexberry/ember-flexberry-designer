@@ -1,7 +1,8 @@
 import ListFormRoute from 'ember-flexberry/routes/list-form';
 import FdLimitByStageMixin from '../mixins/fd-limit-by-stage';
+import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
 
-export default ListFormRoute.extend(FdLimitByStageMixin, {
+export default ListFormRoute.extend(FdLoadingForTransitionMixin, FdLimitByStageMixin, {
   /**
     Name of model projection to be used as record's properties limitation.
 

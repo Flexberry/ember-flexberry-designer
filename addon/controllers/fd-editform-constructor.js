@@ -736,17 +736,17 @@ FdFormUnsavedData, {
       @param {Boolean} close If `true`, the `close` action will be run after saving.
     */
     save(close) {
-      this.set('state', 'loading');
+      this.get('appState').loading();
       try {
         this._saveMetadata(this.get('model'), this.get('controlsTree')).then(() => {
           this.set('model.originalDefinition', copyViewDefinition(this.get('model.editform.formViews.firstObject.view.definition')));
-          this.set('state', '');
+          this.get('appState').reset();
           if (close) {
             this.send('close');
           }
         });
       } catch (error) {
-        this.set('state', '');
+        this.get('appState').reset();
         this.set('error', error);
       }
     },

@@ -1,8 +1,19 @@
 import Ember from 'ember';
 import joint from 'npm:jointjs';
 
+import { SignalReceiptRight, SignalReceiptLeft } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-signal-receipt';
 import { Note } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note';
 import { NoteConnector } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector';
+import { Transition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-transition';
+import { ComplexTransitionH, ComplexTransitionV } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-complex-transition';
+import { SignalSendLeft, SignalSendRight } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-signal-send';
+import { StartState } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-start-state';
+import { FinalState } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-final-state';
+import { Decision } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-decision';
+import { ObjectInState } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-object-in-state';
+import { ActiveState } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-active-state';
+import { Partition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-partition';
+import { ObjectFlow } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-object-flow';
 
 export default Ember.Controller.extend({
   actions: {
@@ -41,7 +52,7 @@ export default Ember.Controller.extend({
         attrs: { path: { title:'Коннектор комментария (Note Connector)' } }
       });
 
-      var linkObjectFlow = new joint.shapes.flexberryUml.ObjectFlow({
+      var linkObjectFlow = new ObjectFlow({
         source: { x:100, y:150 },
         target: { x:300, y:150 },
         labels:[{
@@ -52,7 +63,7 @@ export default Ember.Controller.extend({
         }
       });
 
-      var linkTransition = new joint.shapes.flexberryUml.Transition({
+      var linkTransition = new Transition({
         source: { x:100, y:250 },
         target: { x:300, y:250 },
         labels:[{
@@ -61,7 +72,7 @@ export default Ember.Controller.extend({
         attrs: { path: { title:'Переход (Transition)' } }
       });
 
-      var сomplexTransitionHorizon = new joint.shapes.flexberryUml.ComplexTransitionHorizon({
+      var сomplexTransitionHorizon = new ComplexTransitionH({
         size: { width: 100 },
         position: { x: 100, y: 300 },
         attrs: {
@@ -69,7 +80,7 @@ export default Ember.Controller.extend({
           '.rotatable': { title:'Синхронизатор/разветвитель (Complex Transition)' } }
       });
 
-      var сomplexTransitionVertical = new joint.shapes.flexberryUml.ComplexTransitionVertical({
+      var сomplexTransitionVertical = new ComplexTransitionV({
         size: { height: 100 },
         position: { x: 100, y: 350 },
         attrs: {
@@ -86,7 +97,7 @@ export default Ember.Controller.extend({
         attrs: { '.rotatable': { title:'Комментарий (Note)' } }
       });
 
-      let SignalReceiptRight = new joint.shapes.flexberryUml.SignalReceiptRight({
+      let signalReceiptRight = new SignalReceiptRight({
         position: { x: 450, y: 200 },
         name: ['Receipt1', 'text'],
         attrs: {
@@ -94,7 +105,7 @@ export default Ember.Controller.extend({
         }
       });
 
-      let SignalReceiptLeft = new joint.shapes.flexberryUml.SignalReceiptLeft({
+      let signalReceiptLeft = new SignalReceiptLeft({
         position: { x: 450, y: 300 },
         name: 'Receipt2',
         attrs: {
@@ -102,7 +113,7 @@ export default Ember.Controller.extend({
         }
       });
 
-      let SignalSendingRight = new joint.shapes.flexberryUml.SignalSendingRight({
+      let signalSendingRight = new SignalSendRight({
         position: { x: 450, y: 400 },
         name: ['Sending1', 'text', 'moreText'],
         attrs: {
@@ -110,7 +121,7 @@ export default Ember.Controller.extend({
         }
       });
 
-      let SignalSendingLeft = new joint.shapes.flexberryUml.SignalSendingLeft({
+      let signalSendingLeft = new SignalSendLeft({
         position: { x: 450, y: 500 },
         name: 'Sending2',
         attrs: {
@@ -118,21 +129,21 @@ export default Ember.Controller.extend({
         }
       });
 
-      let startState = new joint.shapes.flexberryUml.StartState({
+      let startState = new StartState({
         position: { x: 100, y: 204 },
         attrs: {
           text: { text: 'Start State' }
         }
       });
 
-      let endState = new joint.shapes.flexberryUml.EndState({
+      let endState = new FinalState({
         position: { x: 150, y: 200 },
         attrs: {
           text: { text: 'End State' }
         }
       });
 
-      let decision = new joint.shapes.flexberryUml.Decision({
+      let decision = new Decision({
         position: { x: 600, y: 100 },
         size: { width: 100, height: 50 },
         attrs: {
@@ -140,27 +151,38 @@ export default Ember.Controller.extend({
         }
       });
 
-      let objectInState = new joint.shapes.flexberryUml.ObjectInState({
+      let objectInState = new ObjectInState({
         position: { x: 600, y: 200 },
         size: { width: 100, height: 50 },
         name: 'name',
         state: 'state'
       });
 
-      let activeState = new joint.shapes.flexberryUml.ActiveState({
+      let activeState = new ActiveState({
         position: { x: 600, y: 300 },
         size: { width: 100, height: 50 },
         name: 'name',
         state: 'state'
       });
 
-      let partition = new joint.shapes.flexberryUml.Partition({
+      let partition = new Partition({
         position: { x: 600, y: 350 },
         name: 'partition'
       });
 
-      _this.graph.addCell([note, SignalReceiptRight, SignalReceiptLeft, SignalSendingRight,
-        SignalSendingLeft, startState, endState, decision, objectInState, activeState, partition]);
+      _this.graph.addCell([
+        note,
+
+        signalReceiptRight,
+        signalReceiptLeft,
+        signalSendingRight,
+        signalSendingLeft,
+        startState,
+        endState,
+        decision,
+        objectInState,
+        activeState,
+        partition]);
     }
   }
 });

@@ -122,7 +122,13 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     @type String
   */
   _componentName: Ember.computed('_componentProperties.type', function() {
-    return this.get('_componentsTypeMap')[this.get('_componentProperties.type')];
+    let type = this.get('_componentProperties.type');
+    let typeMap = this.get('_componentsTypeMap');
+    if (!typeMap.hasOwnProperty(type)) {
+      type = 'default';
+    }
+
+    return typeMap[type];
   }).readOnly(),
 
   /**

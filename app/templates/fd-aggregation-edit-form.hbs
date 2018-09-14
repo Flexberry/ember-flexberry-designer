@@ -1,5 +1,8 @@
 <h3 class="ui header">
   {{t 'forms.fd-aggregation-edit-form.caption'}}
+  {{#if readonly}}
+    ({{t 'forms.fd-edit-form.readonly-mode'}})
+  {{/if}}
   <div class="sub header">
     {{startClassName}} - {{endClassName}}
   </div>
@@ -16,7 +19,7 @@
     }}
   {{/each}}
 {{/if}}
-<form class="ui form flexberry-vertical-form {{state}}" role="form">
+<form class="ui form flexberry-vertical-form" role="form">
   {{flexberry-error error=error}}
   <div class="field">
     <div class="sixteen wide">

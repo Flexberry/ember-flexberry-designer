@@ -11,6 +11,7 @@ import Ember from 'ember';
   @extends <a href="http://emberjs.com/api/classes/Ember.Object.html">Ember.Object</a>
 */
 export default Ember.Object.extend({
+
   /**
     The object that describes the primitive.
 

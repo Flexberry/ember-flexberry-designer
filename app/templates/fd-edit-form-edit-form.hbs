@@ -1,6 +1,11 @@
-<h3 class="ui header">{{t 'forms.fd-edit-form-edit-form.caption'}}</h3>
+<h3 class="ui header">
+  {{t 'forms.fd-edit-form-edit-form.caption'}}
+  {{#if readonly}}
+    ({{t 'forms.fd-edit-form.readonly-mode'}})
+  {{/if}}
+</h3>
 
-<form class="ui form flexberry-vertical-form {{state}}" role="form">
+<form class="ui form flexberry-vertical-form" role="form">
   {{flexberry-error error=error}}
   <div class="field">
     <div class="sixteen wide">

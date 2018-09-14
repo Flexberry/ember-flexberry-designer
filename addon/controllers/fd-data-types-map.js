@@ -6,7 +6,11 @@ import Ember from 'ember';
 
 import FdDataType from '../objects/fd-data-type';
 import { deserialize } from '../utils/fd-type-map-functions';
+<<<<<<< HEAD
 import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
+=======
+import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
+>>>>>>> develop
 
 /**
   Controller for the edit form of the type map.
@@ -14,14 +18,45 @@ import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
   @class FdDataTypesMapController
   @extends <a href="http://emberjs.com/api/classes/Ember.Controller.html">Ember.Controller</a>
 */
+<<<<<<< HEAD
 export default Ember.Controller.extend(FdFormUnsavedData, {
+=======
+export default Ember.Controller.extend(FdWorkPanelToggler, {
   /**
-    Service for controlling the load indication.
-
-    @property objectlistviewEvents
-    @type ObjectlistviewEvents
+    @property saveTitleLocaleKey
+    @type String
+    @default 'forms.fd-data-types-map.save-title'
   */
-  objectlistviewEvents: Ember.inject.service('objectlistview-events'),
+  saveTitleLocaleKey: 'forms.fd-data-types-map.save-title',
+
+  /**
+    @property saveMessageLocaleKey
+    @type String
+    @default 'forms.fd-data-types-map.save-message'
+  */
+  saveMessageLocaleKey: 'forms.fd-data-types-map.save-message',
+
+  /**
+    @property saveButtonLocaleKey
+    @type String
+    @default ''
+  */
+  saveButtonLocaleKey: 'forms.fd-data-types-map.save-button',
+
+  /**
+    @property rollbackButtonLocaleKey
+    @type String
+    @default ''
+  */
+  rollbackButtonLocaleKey: 'forms.fd-data-types-map.rollback-button',
+
+>>>>>>> develop
+  /**
+    Service for managing the state of the application.
+     @property appState
+    @type AppStateService
+  */
+  appState: Ember.inject.service(),
 
   /**
     Transition, aborted for some reason.
@@ -178,7 +213,7 @@ export default Ember.Controller.extend(FdFormUnsavedData, {
       @param {Boolean} close If `true`, the `close` action will be run after saving.
     */
     save(close) {
-      this.get('objectlistviewEvents').setLoadingState('loading');
+      this.get('appState').loading();
       Ember.run.next(() => {
         let promise = Ember.RSVP.resolve();
         if (this.serializeTypeMap()) {
@@ -192,7 +227,7 @@ export default Ember.Controller.extend(FdFormUnsavedData, {
         }).catch((error) => {
           this.set('error', error);
         }).finally(() => {
-          this.get('objectlistviewEvents').setLoadingState('');
+          this.get('appState').reset();
         });
       });
     },

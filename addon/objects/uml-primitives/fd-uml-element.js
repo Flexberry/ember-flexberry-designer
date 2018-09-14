@@ -12,6 +12,7 @@ import FdUmlPrimitive from './fd-uml-primitive';
   @extends FdUmlPrimitive
 */
 export default FdUmlPrimitive.extend({
+
   /**
     The height of this element.
 

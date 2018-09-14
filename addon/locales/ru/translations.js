@@ -34,7 +34,11 @@ import FdListformConstructor from './forms/fd-listform-constructor';
 import FdGenerationProcessForm from './forms/fd-generation-process-form';
 import FdGenerationListForm from './forms/fd-generation-list-form';
 import FdDataTypesMapForm from './forms/fd-data-types-map';
+<<<<<<< HEAD
 import FdConfirmUnsavedFormModal from './forms/fd-confirm-unsaved-form-modal';
+=======
+import FdEditForm from './forms/fd-edit-form';
+>>>>>>> develop
 import FdAdModel from './models/fd-ad';
 import FdAggregationModel from './models/fd-aggregation';
 import FdAssociationModel from './models/fd-association';
@@ -215,7 +219,11 @@ Ember.$.extend(true, translations, {
     'fd-generation-process-form': FdGenerationProcessForm,
     'fd-generation-list-form': FdGenerationListForm,
     'fd-data-types-map': FdDataTypesMapForm,
+<<<<<<< HEAD
     'fd-confirm-unsaved-form-modal': FdConfirmUnsavedFormModal
+=======
+    'fd-edit-form': FdEditForm,
+>>>>>>> develop
   },
 
   components: {

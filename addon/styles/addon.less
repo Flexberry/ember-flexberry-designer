@@ -1,6 +1,6 @@
-@import 'addon/styles/components/fd-editform-row';
-@import 'addon/styles/components/fd-listform';
-@import 'addon/styles/components/fd-editform-control';
+@import 'components/fd-editform-row';
+@import 'components/fd-listform';
+@import 'components/fd-editform-control';
 @import 'node_modules/ember-flexberry/addon/styles/themes/blue-sky/globals/site.variables';
 @import 'node_modules/ember-flexberry/addon/styles/themes/blue-sky/elements/segment.variables';
 
@@ -11,6 +11,7 @@
   -moz-transition: transform 500ms ease, width 500ms ease;
   -o-transition: transform 500ms ease, width 500ms ease;
   transition: transform 500ms ease, width 500ms ease;
+  background-color: #fff;
 }
 
 // style for edit form config panel
@@ -89,7 +90,6 @@
 }
 
 .panel-wrapper{
-  height: -webkit-fill-available;
   max-height: calc(~'100vh - 250px');
   display: flex;
 
@@ -244,6 +244,7 @@
 }
 
 .list-form-constructor .panel-wrapper {
+  height: -webkit-fill-available;
   max-height: calc(~'100vh - 475px');
 }
 

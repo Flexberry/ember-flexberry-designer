@@ -32,34 +32,34 @@ export default Ember.Controller.extend({
         model: _this.graph,
       });
 
-      /*let actor = */new joint.shapes.flexberryUml.sequencediagramActor({
+      /*let actor = */new joint.shapes.flexberry.uml.sequencediagramActor({
         position: { x: 0, y: 0 },
         graph: _this.graph
       });
 
-      /*let object = */new joint.shapes.flexberryUml.sequencediagramObject({
+      /*let object = */new joint.shapes.flexberry.uml.sequencediagramObject({
         position: { x: 100, y: 0 },
         graph: _this.graph
       });
 
-      /*let activeObject = */new joint.shapes.flexberryUml.sequencediagramActiveObject({
+      /*let activeObject = */new joint.shapes.flexberry.uml.sequencediagramActiveObject({
         position: { x: 200, y: 0 },
         graph: _this.graph
       });
 
-      /*let terminator = */new joint.shapes.flexberryUml.sequencediagramTerminator({
+      /*let terminator = */new joint.shapes.flexberry.uml.sequencediagramTerminator({
         position: { x: 300, y: 0 },
         graph: _this.graph
       });
 
-      /*let sequencediagramProcedureCall = new joint.shapes.flexberryUml.sequencediagramProcedureCall({
+      /*let sequencediagramProcedureCall = new joint.shapes.flexberry.uml.sequencediagramProcedureCall({
         source: { x: 0, y: 200 },
         target: { x: 300, y: 200 },
         labels: [{ attrs: { text: { text:  'Procedure Call' } } }],
         graph: _this.graph
       });*/
 
-      /*let sequencediagramFlatMessage = new joint.shapes.flexberryUml.sequencediagramFlatMessage({
+      /*let sequencediagramFlatMessage = new joint.shapes.flexberry.uml.sequencediagramFlatMessage({
         source: { x: 0, y: 250 },
         target: { x: 300, y: 250 },
         labels: [{ attrs: { text: { text:  'Flat Message' } } }],
