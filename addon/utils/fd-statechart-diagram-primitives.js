@@ -2,23 +2,25 @@ import joint from 'npm:jointjs';
 import './fd-common-primitives';
 
 import { BaseClass, Class } from '../objects/uml-primitives/fd-uml-class';
+import { BaseObject } from '../objects/uml-primitives/fd-uml-baseobject';
+import { Dependency } from '../objects/uml-primitives/fd-uml-dependency';
 
-joint.shapes.flexberry.uml.statechartDiagram_EventMessage = joint.shapes.flexberry.uml.Dependency;
+joint.shapes.flexberry.uml.statechartDiagram_EventMessage = Dependency;
 
-joint.shapes.flexberry.uml.BaseObject.define('flexberry.uml.statechartDiagram_State', {
+BaseObject.define('flexberry.uml.statechartDiagram_State', {
   attrs: {
     '.flexberry-uml-header-rect': { rx:10, ry:10 },
     'text': { 'font-weight': 'bold' }
   }
 });
 
-joint.shapes.flexberry.uml.BaseObject.define('flexberry.uml.statechartDiagram_Class', {
+BaseObject.define('flexberry.uml.statechartDiagram_Class', {
   attrs: {
     'text': { 'font-weight': 'bold' }
   }
 });
 
-joint.shapes.flexberry.uml.Dependency.define('flexberry.uml.statechartDiagram_Transition', {
+Dependency.define('flexberry.uml.statechartDiagram_Transition', {
   attrs: { '.connection': { 'stroke-dasharray': 0 } }
 });
 
@@ -67,7 +69,7 @@ joint.shapes.flexberry.uml.statechartDiagram_StateEx.define('flexberry.uml.state
 });
 
 // Deployment diagram
-joint.shapes.flexberry.uml.BaseObject.define('flexberry.uml.deploymentDiagram_Component', {
+BaseObject.define('flexberry.uml.deploymentDiagram_Component', {
   attrs: {
     'text': { 'font-weight': 'bold' },
     '.firstRect': { 'y-alignment': 'middle', 'ref-y': 0.5, 'fill': 'white', 'stroke': 'black', 'stroke-width': 1 },
@@ -87,7 +89,7 @@ joint.shapes.flexberry.uml.BaseObject.define('flexberry.uml.deploymentDiagram_Co
   ].join(''),
 
   updateRectangles: function() {
-    joint.shapes.flexberry.uml.BaseObject.prototype.updateRectangles.apply(this, arguments);
+    BaseObject.prototype.updateRectangles.apply(this, arguments);
 
     let attrs = this.get('attrs');
     attrs['.firstRect'].transform = 'translate(-5, -8)';
