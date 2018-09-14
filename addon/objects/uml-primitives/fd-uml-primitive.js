@@ -29,6 +29,14 @@ export default Ember.Object.extend({
   id: Ember.computed.readOnly('primitive.$id'),
 
   /**
+    The unique identifier of the object.
+
+    @property repositoryObject
+    @type String
+  */
+  repositoryObject: Ember.computed.readOnly('primitive.RepositoryObject'),
+
+  /**
     Returns the string representation of the primitive.
 
     @method toString
