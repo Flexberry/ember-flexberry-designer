@@ -43,7 +43,7 @@ export default FdUmlElement.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let Component = BaseObject.define('flexberry.uml.deploymentDiagram_Component', {
+export let Component = BaseObject.define('flexberry.uml.Component', {
   attrs: {
     'text': { 'font-weight': 'bold' },
     '.firstRect': { 'y-alignment': 'middle', 'ref-y': 0.5, 'fill': 'white', 'stroke': 'black', 'stroke-width': 1 },

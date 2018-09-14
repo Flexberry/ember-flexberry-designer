@@ -45,7 +45,7 @@ export default FdUmlBaseLink.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let Connection = Dependency.define('flexberry.uml.deploymentDiagram_Connection', {
+export let Connection = Dependency.define('flexberry.uml.Connection', {
   attrs: { '.connection': { 'stroke-dasharray': 0 } }
 });
 

@@ -65,7 +65,7 @@ export let ActiveObject = BaseObject.define('flexberry.uml.ActiveObject', {
   }
 });
 
-export let DeploymentActiveObject = ActiveObject.define('flexberry.uml.deploymentDiagram_ActiveObject', {
+export let DeploymentActiveObject = ActiveObject.define('flexberry.uml.DeploymentActiveObject', {
   attrs: {
     '.flexberry-uml-header-rect': { 'stroke-width': 2 },
   }

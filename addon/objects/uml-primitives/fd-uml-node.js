@@ -43,7 +43,7 @@ export default FdUmlElement.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let BaseNode = BaseObject.define('flexberry.uml.deploymentDiagram_Node', {
+export let BaseNode = BaseObject.define('flexberry.uml.BaseNode', {
   attrs: {
     'text': { 'font-weight': 'bold' },
     '.back-path': { 'd': 'M 0 5 L 5 0 100 0 100 45 95 50 M 95 5 L 100 0', 'fill': 'white', 'stroke': 'black', 'stroke-width': 1 }
