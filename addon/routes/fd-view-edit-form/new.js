@@ -1,13 +1,14 @@
 import Ember from 'ember';
 import FdAttributesTree from '../../objects/fd-attributes-tree';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode, getDetailView } from '../../utils/fd-attributes-for-tree';
+import FdLoadingForTransitionMixin from '../../mixins/fd-loading-for-transition';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(FdLoadingForTransitionMixin, {
   modelProjection: 'EditFormView',
   modelName: 'fd-dev-view',
   templateName: 'fd-view-edit-form',
 
-  objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
+  appState: Ember.inject.service(),
 
   detailInteractionService: Ember.inject.service('detail-interaction'),
 
@@ -50,7 +51,7 @@ export default Ember.Route.extend({
       })
     ]);
 
-    this.get('objectlistviewEventsService').setLoadingState('');
+    this.get('appState').reset();
 
     return {
       view: data,

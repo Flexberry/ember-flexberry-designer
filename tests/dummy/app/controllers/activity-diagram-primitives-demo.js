@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import joint from 'npm:jointjs';
 
-// import { SignalReceiptRight, SignalReceiptLeft } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-signal-receipt';
+import { SignalReceiptRight, SignalReceiptLeft } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-signal-receipt';
 import { Note } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note';
 import { NoteConnector } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector';
 import { Transition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-transition';
@@ -97,23 +97,23 @@ export default Ember.Controller.extend({
         attrs: { '.rotatable': { title:'Комментарий (Note)' } }
       });
 
-      // let SignalReceiptRight = new SignalReceiptRight({
-      //   position: { x: 450, y: 200 },
-      //   name: ['Receipt1', 'text'],
-      //   attrs: {
-      //     '.rotatable': { title:'Получение сигнала (Signal Receipt)' }
-      //   }
-      // });
+      let signalReceiptRight = new SignalReceiptRight({
+        position: { x: 450, y: 200 },
+        name: ['Receipt1', 'text'],
+        attrs: {
+          '.rotatable': { title:'Получение сигнала (Signal Receipt)' }
+        }
+      });
 
-      // let SignalReceiptLeft = new SignalReceiptLeft({
-      //   position: { x: 450, y: 300 },
-      //   name: 'Receipt2',
-      //   attrs: {
-      //     '.rotatable': { title:'Получение сигнала (Signal Receipt)' }
-      //   }
-      // });
+      let signalReceiptLeft = new SignalReceiptLeft({
+        position: { x: 450, y: 300 },
+        name: 'Receipt2',
+        attrs: {
+          '.rotatable': { title:'Получение сигнала (Signal Receipt)' }
+        }
+      });
 
-      let SignalSendingRight = new SignalSendRight({
+      let signalSendingRight = new SignalSendRight({
         position: { x: 450, y: 400 },
         name: ['Sending1', 'text', 'moreText'],
         attrs: {
@@ -121,7 +121,7 @@ export default Ember.Controller.extend({
         }
       });
 
-      let SignalSendingLeft = new SignalSendLeft({
+      let signalSendingLeft = new SignalSendLeft({
         position: { x: 450, y: 500 },
         name: 'Sending2',
         attrs: {
@@ -173,10 +173,10 @@ export default Ember.Controller.extend({
       _this.graph.addCell([
         note,
 
-        // SignalReceiptRight,
-        // SignalReceiptLeft,
-        SignalSendingRight,
-        SignalSendingLeft,
+        signalReceiptRight,
+        signalReceiptLeft,
+        signalSendingRight,
+        signalSendingLeft,
         startState,
         endState,
         decision,

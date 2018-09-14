@@ -4,7 +4,7 @@
 
 import Ember from 'ember';
 
-import { BaseObject } from './fd-uml-object';
+import { BaseObject } from './fd-uml-baseobject';
 
 import FdUmlElement from './fd-uml-element';
 
@@ -38,7 +38,7 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'state', 'size', 'position', 'attributes');
+    let properties = this.getProperties('id', 'name', 'state', 'size', 'position');
     return new ObjectInState(properties);
 
   },

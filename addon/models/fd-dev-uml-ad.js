@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import {
   Model as DevUMLADMixin,
-  defineProjections,
   defineBaseModel
 } from
   '../mixins/regenerated/models/fd-dev-uml-ad';
@@ -111,7 +110,5 @@ let Model = ADModel.extend(DevUMLADMixin, {
 });
 
 defineBaseModel(Model);
-
-defineProjections(Model);
 
 export default Model;

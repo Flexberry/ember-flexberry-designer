@@ -20,7 +20,7 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'size', 'position', 'attributes');
+    let properties = this.getProperties('id', 'size', 'position');
 
     return new Decision(properties);
   },

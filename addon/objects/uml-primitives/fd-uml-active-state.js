@@ -4,8 +4,8 @@
 
 import Ember from 'ember';
 
-import { BaseObject } from './fd-uml-object';
-import FdUmlObject from './fd-uml-object';
+import { BaseObject } from './fd-uml-baseobject';
+import FdUmlObject from './fd-uml-baseobject';
 
 /**
   An object that describes an active state on an activity diagram

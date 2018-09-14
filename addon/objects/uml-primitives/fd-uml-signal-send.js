@@ -55,7 +55,7 @@ export default FdUmlElement.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let SignalSendRight = SignalReceiptRight.define('flexberry.uml.SignalSendingRight', {
+export let SignalSendRight = SignalReceiptRight.define('flexberry.uml.SignalSendRight', {
   attrs: {
     path: {
       'd': 'M 0 0 L 80 0 100 20 80 40 0 40 Z'
@@ -72,7 +72,7 @@ export let SignalSendRight = SignalReceiptRight.define('flexberry.uml.SignalSend
   @namespace flexberry.uml
   @constructor
 */
-export let SignalSendLeft = SignalReceiptRight.define('flexberry.uml.SignalSendingLeft', {
+export let SignalSendLeft = SignalReceiptRight.define('flexberry.uml.SignalSendLeft', {
   attrs: {
     path: {
       'd': 'M 20 0 L 100 0 100 40 20 40 0 20 Z'
