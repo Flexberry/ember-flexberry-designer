@@ -15,14 +15,6 @@ FdFormUnsavedData, {
   parentRoute: 'fd-view-list-form',
 
   /**
-    @private
-    @property _originalData
-    @type string
-    @default ''
-  */
-  _originalData: '',
-
-  /**
    Service that triggers objectlistview events.
 
    @property objectlistviewEventsService
@@ -388,33 +380,12 @@ FdFormUnsavedData, {
   },
 
   /**
-    This method run non ember data saved when model is loaded
-
-    @method saveOriginalData
-  */
-  originalDataInit: function () {
-    Ember.run.next(this, () => {
-      this.saveDataToOriginal();
-    });
-  },
-
-  /**
-    Save fields before changes
-
-    @method saveOriginalData
-  */
-  saveDataToOriginal: function () {
-    let originalDataString = this._getStringifyModel();
-    this.set('_originalData', originalDataString);
-  },
-
-  /**
-    Cancel form data changes for unsaved data check pass
+    Cancel form data changes
 
     @method clearDirtyAttributes
   */
   clearDirtyAttributes: function () {
-    this._applyDirtyAttributesAsOrigin();
+    this.get('model.view').rollbackAttributes();
   },
 
   /**
@@ -423,14 +394,8 @@ FdFormUnsavedData, {
     @method findUnsavedFormData
   */
   findUnsavedFormData: function () {
-    let checkResult = false;
-    let originalDataString = this.get('_originalData');
-    let currentDataString = this._getStringifyModel();
-    if (!Ember.isEqual(originalDataString, currentDataString)) {
-      checkResult = true;
-    }
-
-    return checkResult;
+    let isDirtyAttributes = this.get('model.view.hasDirtyAttributes');
+    return isDirtyAttributes;
   },
 
   /**
@@ -448,28 +413,6 @@ FdFormUnsavedData, {
     }).bind(this));
 
     this.get('jstreeActionReceiver').send('redraw');
-  },
-
-  /**
-    Get model data in string
-
-    @method _getStringifyModel
-  */
-  _getStringifyModel() {
-    let view = this.get('model.view');
-    let viewString = JSON.stringify(view);
-
-    return viewString;
-  },
-
-  /**
-    Save current dirty data as origin for next equal check origin and current data
-
-    @method _applyDirtyAttributesAsOrigin
-    @private
-  */
-  _applyDirtyAttributesAsOrigin() {
-    this.saveDataToOriginal();
   },
 
   willDestroy() {

@@ -20,8 +20,6 @@ import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 export default Ember.Controller.extend(
 FdWorkPanelToggler,
 FdFormUnsavedData, {
-  parentRoute: 'fd-class-list-form',
-
   /**
     @private
     @property _showModalDialog
@@ -433,8 +431,13 @@ FdFormUnsavedData, {
       });
     },
 
+    /**
+      Close listform form constructor and go to application structure constructor.
+
+      @method actions.close
+    */
     close() {
-      this.transitionToRoute(this.get('parentRoute'), {
+      this.transitionToRoute('fd-appstruct-form', {
         queryParams: {
           form: this.get('form'),
           class: this.get('class')
@@ -539,8 +542,8 @@ FdFormUnsavedData, {
   findUnsavedFormData: function () {
     let checkResult = false;
 
-    let definitionsIsChanged = this._chechDefinitionsOnChanges();
-    let modelIsChanged = this._chechEmberModelsOnDirty();
+    let definitionsIsChanged = this._checkDefinitionsOnChanges();
+    let modelIsChanged = this._checkEmberModelsOnDirty();
 
     if (definitionsIsChanged || modelIsChanged) {
       checkResult = true;
@@ -600,15 +603,15 @@ FdFormUnsavedData, {
   /**
     Check definitions models has changed attributes. Return true if it right
 
-    @method _chechDefinitionsOnChanges
+    @method _checkDefinitionsOnChanges
     @private
   */
-  _chechDefinitionsOnChanges() {
+  _checkDefinitionsOnChanges() {
     let checkresult = false;
     let originalDefinitions = this.get('model.originalDefinition');
     let currentDefinitions = copyViewDefinition(this.get('view.definition'));
 
-    if (Ember.isEmpty(currentDefinitions) || Ember.isEmpty(originalDefinitions)) {
+    if (Ember.isEmpty(currentDefinitions)) {
       return false;
     }
 
@@ -634,10 +637,10 @@ FdFormUnsavedData, {
   /**
     Check if one of the ember models has dirty attributes. Return true if it right
 
-    @method _chechEmberModelsOnDirty
+    @method _checkEmberModelsOnDirty
     @private
   */
-  _chechEmberModelsOnDirty() {
+  _checkEmberModelsOnDirty() {
     let checkresult = false;
 
     let listFormIsDirty = this.get('model.listform.hasDirtyAttributes');

@@ -834,8 +834,8 @@ FdFormUnsavedData, {
   findUnsavedFormData: function () {
     let checkResult = false;
 
-    let definitionsIsChanged = this._chechDefinitionsOnChanges();
-    let modelIsChanged = this._chechEmberModelsOnDirty();
+    let definitionsIsChanged = this._checkDefinitionsOnChanges();
+    let modelIsChanged = this._checkEmberModelsOnDirty();
 
     if (definitionsIsChanged || modelIsChanged) {
       checkResult = true;
@@ -1344,15 +1344,15 @@ FdFormUnsavedData, {
   /**
     Check definitions models has changed attributes. Return true if it right
 
-    @method _chechDefinitionsOnChanges
+    @method _checkDefinitionsOnChanges
     @private
   */
-  _chechDefinitionsOnChanges() {
+  _checkDefinitionsOnChanges() {
     let checkresult = false;
     let originalDefinitions = this.get('model.originalDefinition');
 
     let currentDefinitions = controlsToDefinition(this.get('controlsTree'));
-    if (Ember.isEmpty(currentDefinitions) || Ember.isEmpty(originalDefinitions)) {
+    if (Ember.isEmpty(currentDefinitions)) {
       return false;
     }
 
@@ -1378,10 +1378,10 @@ FdFormUnsavedData, {
   /**
     Check if one of the ember models has dirty attributes. Return true if it right
 
-    @method _chechEmberModelsOnDirty
+    @method _checkEmberModelsOnDirty
     @private
   */
-  _chechEmberModelsOnDirty() {
+  _checkEmberModelsOnDirty() {
     let checkresult = false;
 
     let editformIsDirty = this.get('model.editform.hasDirtyAttributes');

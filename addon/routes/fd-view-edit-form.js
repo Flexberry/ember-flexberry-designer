@@ -86,7 +86,6 @@ export default Ember.Route.extend(FdFormCheckTransitionMixin, {
     controller.set('routeName', this.get('routeName'));
     controller.set('parentRoute', this.get('router.url'));
     controller.set('searchTerm', '');
-    controller.originalDataInit();
   },
 
   actions: {
