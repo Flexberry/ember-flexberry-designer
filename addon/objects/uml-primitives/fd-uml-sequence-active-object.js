@@ -53,8 +53,8 @@ export let SequenceDiagramActiveObject = SequenceDiagramObject.define('flexberry
     rect: { 'stroke-width':2 },
     text: {
       'ref': 'rect',
-      'ref-y': 0,
-      'ref-x': 0,
+      'ref-y': 0.5,
+      'ref-x': 0.5,
       'text-anchor': 'middle',
       'y-alignment': 'middle',
     }

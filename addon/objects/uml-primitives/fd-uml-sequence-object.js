@@ -3,6 +3,7 @@
 */
 
 import Ember from 'ember';
+import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
 import { SequenceActor } from './fd-uml-sequence-actor';
@@ -49,5 +50,54 @@ export let SequenceDiagramObject = SequenceActor.define('flexberry.uml.sequenced
   attrs: {
     size: { 'width': 40, 'height': 40 },
     rect: { width: 40, height: 40, fill: '#FFFFFF', stroke: 'black' },
+    text: {
+      'ref': 'rect',
+      'ref-y': 0.5,
+      'ref-x': 0.5,
+      'text-anchor': 'middle',
+      'y-alignment': 'middle',
+    }
+  },
+  heightPadding: 20,
+}, {
+  initialize: function () {
+    joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
+    this.on('change', function () {
+      this.updateRectangles();
+      this.trigger('uml-update');
+    }, this);
+  },
+
+  getObjName: function () {
+    let ret = this.get('attrs').text.text;
+    if (Ember.isEmpty(ret)) {
+      return '';
+    } else {
+      return ret;
+    }
+  },
+
+  updateRectangles: function () {
+    let attrs = this.get('attrs');
+    let objName = this.getObjName();
+    let lines = Array.isArray(objName) ? objName : [objName];
+
+    let maxStringChars = 8;
+    lines.forEach(function (line) {
+      if (line.length > maxStringChars) {
+        maxStringChars = line.length;
+      }
+    });
+
+    let hightStep = attrs.text['font-size'];
+    let rectHeight = lines.length * hightStep + this.get('heightPadding');
+
+    let widthStep = attrs.text['font-size'] / 1.5;
+    let rectWidth = maxStringChars * widthStep + 10;
+
+    attrs.text.text = lines.join('\n');
+    attrs.rect.height = rectHeight;
+    attrs.rect.width = rectWidth;
+    this.resize(rectWidth, rectHeight);
   }
 });
