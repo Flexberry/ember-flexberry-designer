@@ -3,7 +3,7 @@ import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
 
 export default EditFormRoute.extend(FdLoadingForTransitionMixin, {
 
-  modelProjection: 'FdUmlDpd',
+  modelProjection: 'FdUmlCad',
 
-  modelName: 'fd-dev-uml-dpd',
+  modelName: 'fd-dev-uml-cad',
 });

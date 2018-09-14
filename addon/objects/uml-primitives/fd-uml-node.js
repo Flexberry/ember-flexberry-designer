@@ -5,7 +5,7 @@
 import Ember from 'ember';
 import joint from 'npm:jointjs';
 import FdUmlElement from './fd-uml-element';
-import { BaseObject } from './fd-uml-object';
+import { BaseObject } from './fd-uml-baseobject';
 
 /**
   An object that describes a Node on the UML diagram.

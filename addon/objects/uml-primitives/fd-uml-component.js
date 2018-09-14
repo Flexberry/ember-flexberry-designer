@@ -4,7 +4,7 @@
 
 import Ember from 'ember';
 import joint from 'npm:jointjs';
-import { BaseObject } from './fd-uml-object';
+import { BaseObject } from './fd-uml-baseobject';
 import FdUmlElement from './fd-uml-element';
 
 /**
