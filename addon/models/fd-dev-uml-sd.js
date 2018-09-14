@@ -6,7 +6,6 @@ import {
 } from '../mixins/regenerated/models/fd-dev-uml-sd';
 import SDModel from './fd-sd';
 
-
 import FdUmlNote from '../objects/uml-primitives/fd-uml-note';
 import FdUmlNoteConnector from '../objects/uml-primitives/fd-uml-note-connector';
 import FdUmlSequenceActor from '../objects/uml-primitives/fd-uml-sequence-actor';

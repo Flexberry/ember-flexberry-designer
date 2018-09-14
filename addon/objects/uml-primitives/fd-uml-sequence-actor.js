@@ -18,10 +18,12 @@ export default FdUmlElement.extend({
   /**
     The name of the SequenceActor.
 
-    @property name
+    @property attrs
     @type String
   */
-  name: Ember.computed.alias('primitive.Name.Text'),
+  attrs: Ember.computed('primitive.Name.Text', function() {
+    return { text: { text: this.get('primitive.Name.Text') } };
+  }),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -29,7 +31,7 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS(graph) {
-    let properties = this.getProperties('id', 'name', 'size', 'position');
+    let properties = this.getProperties('id', 'attrs', 'size', 'position');
     properties.graph = graph;
     return new SequenceDiagramActor(properties);
 
@@ -51,16 +53,28 @@ export let SequenceActor = joint.shapes.basic.Generic.define('flexberry.uml.Sequ
     rect: {},
     link: undefined,
     linklength: 20,
-    endLine: undefined
+    endLine: undefined,
+    text: {
+      'ref': 'image',
+      'ref-y': 50,
+      'ref-x': 0,
+      'text-anchor': 'start',
+      'y-alignment': 'end',
+      'font-weight': 'bold',
+      'fill': 'black',
+      'font-size': 12,
+      'font-family': 'Arial'
+    }
   }
 }, {
-    markup: '<g class="rotatable"><g class="scalable"><rect/></g><image/></g>',
+    markup: '<g class="rotatable"><g class="scalable"><rect/></g><image/><text/></g>',
     initialize: function () {
       let width = this.attributes.attrs.size.width;
       let height = this.attributes.attrs.size.height;
       this.resize(width, height);
       this.attributes.attrs.rect.width = width;
       this.attributes.attrs.rect.height = height;
+
       this.attributes.endLine = new joint.shapes.basic.Circle({
         size: {
           width: 10,

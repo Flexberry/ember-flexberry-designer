@@ -2,8 +2,6 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
-
 import joint from 'npm:jointjs';
 import FdUmlElement from './fd-uml-element';
 
