@@ -60,7 +60,7 @@ let Model = DPDModel.extend(DevUMLDPDMixin, {
           result.pushObject(FdUmlNode.create({ primitive }));
           break;
 
-        case 'STORMCASE.UML.dpd.Interface, UMLDPD': //TODO 168001
+        case 'STORMCASE.UML.dpd.Interface, UMLDPD': //TODO need fix primitive 'Interface' TFS 169736
           break;
 
         default:
