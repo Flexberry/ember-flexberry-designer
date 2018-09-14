@@ -67,10 +67,10 @@ let Model = STDModel.extend(DevUMLSTDMixin, {
           result.pushObject(FdUmlFinalState.create({ primitive }));
           break;
 
-        case 'STORMCASE.UML.std.EventMessage, UMLSTD': // TODO 168002
+        case 'STORMCASE.UML.std.EventMessage, UMLSTD': // TODO need fix primitive EventMessage 169738
           break;
 
-        case 'STORMCASE.UML.std.ConcurrentState, UMLSTD': // TODO 168002
+        case 'STORMCASE.UML.std.ConcurrentState, UMLSTD': // TODO need create primitive ConcurrentState 169738
           break;
 
         default:

@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+
 export let Model = Ember.Mixin.create({
   /**
     Non-stored property.
@@ -110,37 +110,7 @@ export let Model = Ember.Mixin.create({
   }
 });
 export let defineBaseModel = function (modelClass) {
-  modelClass.defineProjection('EditFormView', 'fd-dev-uml-std', {
-    name: Projection.attr('Name'),
-    description: Projection.attr('Description')
-  });
-  modelClass.defineProjection('ListFormView', 'fd-dev-uml-std', {
-    name: Projection.attr('Name'),
-    description: Projection.attr('Description'),
-    changeUser: Projection.attr('Change user'),
-    changeDate: Projection.attr('Change date'),
-    createUser: Projection.attr('Create user'),
-    createDate: Projection.attr('Create date'),
-    subsystem: Projection.belongsTo('fd-subsystem', '', {
-      stage: Projection.belongsTo('fd-stage', '', {
-      }, { hidden: true }),
-    }, { hidden: true }),
-  });
-  modelClass.defineProjection('SearchDiagram', 'fd-dev-uml-std', {
-    name: Projection.attr(''),
-    subsystem: Projection.belongsTo('fd-subsystem', '', {
-      stage: Projection.belongsTo('fd-stage', '', {
-
-      }),
-    }),
-  });
-  modelClass.defineProjection('FdUmlStd', 'fd-dev-uml-std', {
-    name: Projection.attr(''),
-    primitivesJsonString: Projection.attr(''),
-    primitivesStreamString: Projection.attr(''),
-    caseObjectsString: Projection.attr(''),
-    subsystem: Projection.belongsTo('fd-subsystem', '', {
-
-    })
+  modelClass.reopenClass({
+    _parentModelName: 'fd-std'
   });
 };
