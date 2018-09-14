@@ -39,8 +39,9 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'size', 'attrs', 'position', 'type');
-    if (properties.type === 'STORMCASE.UML.ad.ComplexTransitionV, UMLAD') {
+    let properties = this.getProperties('id', 'size', 'attrs', 'position');
+    let type = this.get('type');
+    if (type === 'STORMCASE.UML.ad.ComplexTransitionV, UMLAD') {
       return new ComplexTransitionV(properties);
     } else {
       return new ComplexTransitionH(properties);
@@ -58,7 +59,7 @@ export default FdUmlElement.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let ComplexTransitionH = joint.dia.Element.define('flexberry.uml.ComplexTransitionHorizon', {
+export let ComplexTransitionH = joint.dia.Element.define('flexberry.uml.ComplexTransitionH', {
   attrs: {
     polyline: { refPoints: '0,0 10,0', stroke: 'black', 'stroke-width': 2 },
     text: {
@@ -90,7 +91,7 @@ export let ComplexTransitionH = joint.dia.Element.define('flexberry.uml.ComplexT
   @namespace flexberry.uml
   @constructor
 */
-export let ComplexTransitionV = ComplexTransitionH.define('flexberry.uml.ComplexTransitionVertical', {
+export let ComplexTransitionV = ComplexTransitionH.define('flexberry.uml.ComplexTransitionV', {
   attrs: {
     polyline: { refPoints: '0,0 0,10' },
     text: {

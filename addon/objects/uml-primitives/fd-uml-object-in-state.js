@@ -38,7 +38,7 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'state', 'size', 'position', 'attributes');
+    let properties = this.getProperties('id', 'name', 'state', 'size', 'position');
     return new ObjectInState(properties);
 
   },
