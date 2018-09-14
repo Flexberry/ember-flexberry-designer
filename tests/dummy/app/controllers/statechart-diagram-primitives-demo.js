@@ -41,7 +41,7 @@ export default Ember.Controller.extend({
         attrs: { path: { title:'Коннектор комментария (Note Connector)' } }
       });
 
-      var linkEventMessage = new joint.shapes.flexberryUml.statechartDiagram_EventMessage({
+      var linkEventMessage = new joint.shapes.flexberry.uml.statechartDiagram_EventMessage({
         source: { x:100, y:150 },
         target: { x:300, y:150 },
         labels:[{
@@ -50,7 +50,7 @@ export default Ember.Controller.extend({
         attrs: { path: { title:'Сообщение (Event Message)' } }
       });
 
-      var linkTransition = new joint.shapes.flexberryUml.statechartDiagram_Transition({
+      var linkTransition = new joint.shapes.flexberry.uml.statechartDiagram_Transition({
         source: { x:100, y:250 },
         target: { x:300, y:250 },
         labels:[{
@@ -61,20 +61,20 @@ export default Ember.Controller.extend({
 
       _this.graph.addCell([linkNoteConnector, linkEventMessage, linkTransition]);
 
-      let state = new joint.shapes.flexberryUml.statechartDiagram_State({
+      let state = new joint.shapes.flexberry.uml.statechartDiagram_State({
         position: { x: 450, y: 100 },
         name: 'StateName',
         attrs: { '.rotatable': { title:'Состояние (State)' } }
       });
 
-      let stateEx = new joint.shapes.flexberryUml.statechartDiagram_StateEx({
+      let stateEx = new joint.shapes.flexberry.uml.statechartDiagram_StateEx({
         position: { x: 450, y: 150 },
         name: ['StateName', 'dsfsdg', 'dsfsdg'],
         attributes: ['attr1'],
         attrs: { '.rotatable': { title:'Состояние (StateEx)' } }
       });
 
-      let statechartClass = new joint.shapes.flexberryUml.statechartDiagram_Class({
+      let statechartClass = new joint.shapes.flexberry.uml.statechartDiagram_Class({
         position: { x: 450, y: 250 },
         name: 'ClassName',
         attrs: { '.rotatable': { title:'Класс (Class)' } }
@@ -85,21 +85,21 @@ export default Ember.Controller.extend({
         name: 'Comment'
       });
 
-      let startState = new joint.shapes.flexberryUml.StartState({
+      let startState = new joint.shapes.flexberry.uml.StartState({
         position: { x: 100, y: 204 },
         attrs: {
           text: { text: 'Start State' }
         }
       });
 
-      let endState = new joint.shapes.flexberryUml.EndState({
+      let endState = new joint.shapes.flexberry.uml.EndState({
         position: { x: 150, y: 200 },
         attrs: {
           text: { text: 'End State' }
         }
       });
 
-      var сomplexTransitionHorizon = new joint.shapes.flexberryUml.ComplexTransitionHorizon({
+      var сomplexTransitionHorizon = new joint.shapes.flexberry.uml.ComplexTransitionHorizon({
         size: { width: 200 },
         position: { x: 100, y: 300 },
         attrs: {
@@ -107,7 +107,7 @@ export default Ember.Controller.extend({
           '.rotatable': { title:'Синхронизатор/разветвитель (Complex Transition)' } }
       });
 
-      var сomplexTransitionVertical = new joint.shapes.flexberryUml.ComplexTransitionVertical({
+      var сomplexTransitionVertical = new joint.shapes.flexberry.uml.ComplexTransitionVertical({
         size: { height: 200 },
         position: { x: 100, y: 350 },
         attrs: {
@@ -115,15 +115,15 @@ export default Ember.Controller.extend({
           '.rotatable': { title:'Синхронизатор/разветвитель (Complex Transition)' } }
       });
 
-      var history = new joint.shapes.flexberryUml.statechartDiagram_History({
+      var history = new joint.shapes.flexberry.uml.statechartDiagram_History({
         position: { x: 250, y: 200 },
       });
 
-      var deepHistory = new joint.shapes.flexberryUml.statechartDiagram_DeepHistory({
+      var deepHistory = new joint.shapes.flexberry.uml.statechartDiagram_DeepHistory({
         position: { x: 280, y: 200 },
       });
 
-      var compositeState = new joint.shapes.flexberryUml.statechartDiagram_CompositeState({
+      var compositeState = new joint.shapes.flexberry.uml.statechartDiagram_CompositeState({
         position: { x: 450, y: 350 },
         name: ['StateName'],
         attributes: ['attr1'],

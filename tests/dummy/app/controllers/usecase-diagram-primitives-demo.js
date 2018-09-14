@@ -32,7 +32,7 @@ export default Ember.Controller.extend({
         model: _this.graph,
       });
 
-      let jUseCase = new joint.shapes.flexberryUml.Usecase({
+      let jUseCase = new joint.shapes.flexberry.uml.Usecase({
         position: { x: 50, y: 10 },
         size: { width: 100, height: 40 },
         name: 'UseCase \n primitive \n 1',
@@ -49,7 +49,7 @@ export default Ember.Controller.extend({
       });
       _this.graph.addCell(jUseCase);
 
-      let jUseCaseBoundary = new joint.shapes.flexberryUml.UsecaseBoundary({
+      let jUseCaseBoundary = new joint.shapes.flexberry.uml.UsecaseBoundary({
         position: { x: 50, y: 150 },
         size: { width: 70, height: 50 },
         name: 'Boundary \n Very long string uuuuuuuuuuuuuuuuuuuuu \n the end',
@@ -66,7 +66,7 @@ export default Ember.Controller.extend({
       });
       _this.graph.addCell(jUseCaseBoundary);
 
-      let jUseCaseActor = new joint.shapes.flexberryUml.UsecaseActor({
+      let jUseCaseActor = new joint.shapes.flexberry.uml.UsecaseActor({
         position: { x: 250, y: 50 },
         name: 'Actor',
         ports: {
@@ -82,21 +82,21 @@ export default Ember.Controller.extend({
       });
       _this.graph.addCell(jUseCaseActor);
 
-      let jUseCaseUndirAssociation = new joint.shapes.flexberryUml.UseCaseUndirAssociation({
+      let jUseCaseUndirAssociation = new joint.shapes.flexberry.uml.UseCaseUndirAssociation({
         source: { x:500, y:80 },
         target: { x:700, y:80 },
         labels: [{ attrs: { text: { text:  'Undir association' } } }]
       });
       _this.graph.addCell(jUseCaseUndirAssociation);
 
-      let jUseCaseDirAssociation = new joint.shapes.flexberryUml.UseCaseDirAssociation({
+      let jUseCaseDirAssociation = new joint.shapes.flexberry.uml.UseCaseDirAssociation({
         source: { x:500, y:150 },
         target: { x:700, y:150 },
         labels: [{ attrs: { text: { text:  'Directed association' } } }]
       });
       _this.graph.addCell(jUseCaseDirAssociation);
 
-      let jUseCaseGeneralization = new joint.shapes.flexberryUml.UseCaseGeneralization({
+      let jUseCaseGeneralization = new joint.shapes.flexberry.uml.UseCaseGeneralization({
         source: { x:500, y:200 },
         target: { x:700, y:200 },
         labels: [{ attrs: { text: { text:  'Generalization' } } }]
