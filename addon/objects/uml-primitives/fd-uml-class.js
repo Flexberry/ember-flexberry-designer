@@ -119,7 +119,7 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
     '<g class="scalable">',
     '<rect class="flexberry-uml-header-rect"/><rect class="flexberry-uml-body-rect"/><rect class="flexberry-uml-footer-rect"/>',
     '</g>',
-    '<text class="flexberry-uml-header-text"/><text class="flexberry-uml-body-text"/><text class="flexberry-uml-footer-text"/>',
+    '<text class="flexberry-uml-body-text"/><text class="flexberry-uml-footer-text"/>',
     '</g>'
   ].join(''),
 
@@ -140,21 +140,17 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
   },
 
   updateRectangles() {
-
-    var attrs = this.get('attrs');
-
-    var rects = [
-        { type: 'header', text: this.getClassName() },
-        { type: 'body', text: this.get('attributes') },
-        { type: 'footer', text: this.get('methods') }
+    let rects = [
+        { type: 'header', text: this.getClassName(), element: this },
+        { type: 'body', text: this.get('attributes'), element: this },
+        { type: 'footer', text: this.get('methods'), element: this }
     ];
 
     let offsetY = 0;
     let newHeight = 0;
     let newWidth = 0;
-    let _this = this;
     rects.forEach(function(rect) {
-      if (_this.markup.includes('flexberry-uml-' + rect.type + '-rect')) {
+      if (this.markup.includes('flexberry-uml-' + rect.type + '-rect')) {
 
         let lines = Array.isArray(rect.text) ? rect.text : [rect.text];
 
@@ -165,21 +161,21 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
           }
         });
 
-        let hightStep = attrs['.flexberry-uml-header-text'].fontSize;
+        let hightStep = rect.element.attr('.flexberry-uml-header-text/fontSize');
         let rectHeight = lines.length * hightStep + 10;
 
-        let widthStep = attrs['.flexberry-uml-header-text'].fontSize / 1.5;
+        let widthStep = rect.element.attr('.flexberry-uml-header-text/fontSize') / 1.5;
         let rectWidth = maxStringChars * widthStep  + 10;
 
         newHeight += rectHeight;
         newWidth = newWidth > rectWidth ? newWidth : rectWidth;
-        attrs['.flexberry-uml-' + rect.type + '-text'].text = lines.join('\n');
-        attrs['.flexberry-uml-' + rect.type + '-rect'].height = rectHeight;
-        attrs['.flexberry-uml-' + rect.type + '-rect'].transform = 'translate(0,' + offsetY + ')';
+        rect.element.attr('.flexberry-uml-' + rect.type + '-text/text', lines.join('\n'));
+        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
+        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/transform', 'translate(0,' + offsetY + ')');
 
         offsetY += rectHeight;
       }
-    });
+    }, this);
 
     newWidth = this.attributes.size.width > 1 ? this.attributes.size.width : newWidth;
     this.resize(newWidth, newHeight);
@@ -201,7 +197,7 @@ export let Class = BaseClass.define('flexberry.uml.Class', {
     '.flexberry-uml-header-text tspan[x]': { 'font-weight': 'normal' },
   },
 
-  stereotype: [],
+  stereotype: '',
 }, {
   getClassName() {
     return [this.get('name'), this.get('stereotype')];
