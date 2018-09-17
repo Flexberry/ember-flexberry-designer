@@ -6,8 +6,8 @@ import DPDModel from './fd-dpd';
 import FdUmlNote from '../objects/uml-primitives/fd-uml-note';
 import FdUmlNoteConnector from '../objects/uml-primitives/fd-uml-note-connector';
 import FdUmlDependency from '../objects/uml-primitives/fd-uml-dependency';
-import FdUmlTransition from '../objects/uml-primitives/fd-uml-transition';
-import FdUmlActiveObject from '../objects/uml-primitives/fd-uml-active-object';
+import FdUmlConnection from '../objects/uml-primitives/fd-uml-connection';
+import FdUmlDeploymentActiveObject from '../objects/uml-primitives/fd-uml-deployment-active-object';
 import FdUmlInstance from '../objects/uml-primitives/fd-uml-instance';
 import FdUmlComponent from '../objects/uml-primitives/fd-uml-component';
 import FdUmlNode from '../objects/uml-primitives/fd-uml-node';
@@ -39,11 +39,11 @@ let Model = DPDModel.extend(DevUMLDPDMixin, {
           break;
 
         case 'STORMCASE.UML.dpd.Connection, UMLDPD':
-          result.pushObject(FdUmlTransition.create({ primitive }));
+          result.pushObject(FdUmlConnection.create({ primitive }));
           break;
 
         case 'STORMCASE.UML.dpd.ActiveDeploymentObject, UMLDPD':
-          result.pushObject(FdUmlActiveObject.create({ primitive }));
+          result.pushObject(FdUmlDeploymentActiveObject.create({ primitive }));
           break;
 
         case 'STORMCASE.UML.dpd.DeploymentObject, UMLDPD':

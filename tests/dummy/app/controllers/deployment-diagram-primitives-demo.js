@@ -1,11 +1,11 @@
 import Ember from 'ember';
 import joint from 'npm:jointjs';
 import { Dependency } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-dependency';
-import { Connection } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-transition';
-import { DeploymentActiveObject } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-active-object';
+import { Connection } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-connection';
+import { DeploymentActiveObject } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-deployment-active-object';
 import { Instance } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-instance';
 import { Component } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-component';
-import { BaseNode } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-node';
+import { UmlNode } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-node';
 import { NoteConnector } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector';
 
 export default Ember.Controller.extend({
@@ -67,12 +67,14 @@ export default Ember.Controller.extend({
 
       var component = new Component({
         position: { x: 450, y: 100 },
+        size: { width: 80, height: 40 },
         name: ['StateName'],
         attrs: { '.rotatable': { title:'Компонент (Component)' } }
       });
 
-      var node = new BaseNode({
+      var node = new UmlNode({
         position: { x: 450, y: 150 },
+        size: { width: 80, height: 40 },
         name: ['NodeName', 'text', 'text'],
         attrs: { '.rotatable': { title:'Узел (Node)' } }
       });

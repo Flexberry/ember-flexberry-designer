@@ -3,7 +3,6 @@
 */
 
 import Ember from 'ember';
-import joint from 'npm:jointjs';
 import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-baseobject';
 
@@ -16,7 +15,7 @@ import { BaseObject } from './fd-uml-baseobject';
 export default FdUmlElement.extend({
 
   /**
-    The name of the BaseNode, actually its content.
+    The name of the Node, actually its content.
 
     @property name
     @type String
@@ -30,7 +29,7 @@ export default FdUmlElement.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'size', 'position', 'name');
-    return new BaseNode(properties);
+    return new UmlNode(properties);
   },
 });
 
@@ -38,12 +37,12 @@ export default FdUmlElement.extend({
   Defines the JointJS element, which represents the Node in the UML diagram.
 
   @for FdUmlNode
-  @class BaseNode
+  @class UmlNode
   @extends BaseObject
   @namespace flexberry.uml
   @constructor
 */
-export let BaseNode = BaseObject.define('flexberry.uml.BaseNode', {
+export let UmlNode = BaseObject.define('flexberry.uml.UmlNode', {
   attrs: {
     'text': { 'font-weight': 'bold' },
     '.back-path': { 'd': 'M 0 5 L 5 0 100 0 100 45 95 50 M 95 5 L 100 0', 'fill': 'white', 'stroke': 'black', 'stroke-width': 1 }
@@ -60,7 +59,7 @@ export let BaseNode = BaseObject.define('flexberry.uml.BaseNode', {
   ].join(''),
 
   updateRectangles: function() {
-    joint.shapes.flexberry.uml.BaseObject.prototype.updateRectangles.apply(this, arguments);
+    BaseObject.prototype.updateRectangles.apply(this, arguments);
 
     let attrs = this.get('attrs');
     let offset = 5;
