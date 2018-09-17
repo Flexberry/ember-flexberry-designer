@@ -40,7 +40,7 @@
   </div>
 
   <div class="sixteen wide">
-    {{fd-uml-diagram primitives=model.primitives}}
+    {{fd-uml-diagram primitives=model.primitives paper=paper}}
   </div>
 
 </form>
@@ -101,6 +101,12 @@
         <div class="ui small dividing header">
           {{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive-header"}}
         </div>
+        <button class="ui button" type='button' {{action "addClass"}}>
+          {{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-class"}}
+        </button>
+        <button class="ui button" type='button' {{action "addAssociation"}}>
+          {{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-association"}}
+        </button>
       {{/tab.pane}}
     </form>
   {{/fd-tabs}}

@@ -6,6 +6,10 @@ export default {
     caption: 'Diagram editor',
     'diagram-properties-header': 'Diagram properties',
     'primitive-properties-header': 'Primitive properties',
-    'add-primitive-header': 'Add primitive'
+    'add-primitive-header': 'Add primitive',
+    'add-primitive': {
+      'add-class': 'Add class',
+      'add-association': 'Add association'
+    }
   }
 };
