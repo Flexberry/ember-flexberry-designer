@@ -1,0 +1,39 @@
+.uml-class-inputs {
+    position: absolute;
+    pointer-events: none;
+    -webkit-user-select: none;
+    padding: 2px 7px;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+.uml-class-inputs input, .uml-class-inputs textarea {
+    /* Enable interacting with inputs only. */
+    pointer-events: auto;
+}
+.ui.form .uml-class-inputs input[type="text"],
+.ui.form .uml-class-inputs textarea {
+    border: none;
+    color: #333;
+    padding: 0px;
+    color: black;
+    font-size: 12px;
+    font-family: Arial;
+    min-width: 50px;
+    display: block;
+    margin: 0 auto;
+    &.class-name-input {
+        font-weight: bold;
+    }
+}
+
+.input-buffer{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    visibility: hidden;
+    font-size: 12px;
+    font-family: Arial;
+    font-weight: bold;
+    white-space: pre;
+}
