@@ -3,11 +3,7 @@
 */
 
 import Ember from 'ember';
-<<<<<<< HEAD
 import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
-=======
-import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
->>>>>>> develop
 
 /**
   Route for the edit form of the type map.
@@ -15,11 +11,7 @@ import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
   @class FdDataTypesMapRoute
   @extends <a href="http://emberjs.com/api/classes/Ember.Route.html">Ember.Route</a>
 */
-<<<<<<< HEAD
 export default Ember.Route.extend(FdFormCheckTransitionMixin, {
-=======
-export default Ember.Route.extend(FdLoadingForTransitionMixin, {
->>>>>>> develop
   /**
     Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
 

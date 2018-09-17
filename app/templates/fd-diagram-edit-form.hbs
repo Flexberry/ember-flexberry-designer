@@ -100,7 +100,13 @@
         <div class="ui small dividing header">
           {{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive-header"}}
         </div>
-      {{/tab.pane}}         
+        <button class="ui button" type='button' {{action "addClass"}}>
+          {{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-class"}}
+        </button>
+        <button class="ui button" type='button' {{action "addAssociation"}}>
+          {{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-association"}}
+        </button>
+      {{/tab.pane}}       
     </form>
   {{/fd-tabs}}
 

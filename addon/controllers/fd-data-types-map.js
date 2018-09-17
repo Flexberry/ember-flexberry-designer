@@ -6,11 +6,7 @@ import Ember from 'ember';
 
 import FdDataType from '../objects/fd-data-type';
 import { deserialize } from '../utils/fd-type-map-functions';
-<<<<<<< HEAD
 import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
-=======
-import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
->>>>>>> develop
 
 /**
   Controller for the edit form of the type map.
@@ -18,39 +14,7 @@ import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
   @class FdDataTypesMapController
   @extends <a href="http://emberjs.com/api/classes/Ember.Controller.html">Ember.Controller</a>
 */
-<<<<<<< HEAD
 export default Ember.Controller.extend(FdFormUnsavedData, {
-=======
-export default Ember.Controller.extend(FdWorkPanelToggler, {
-  /**
-    @property saveTitleLocaleKey
-    @type String
-    @default 'forms.fd-data-types-map.save-title'
-  */
-  saveTitleLocaleKey: 'forms.fd-data-types-map.save-title',
-
-  /**
-    @property saveMessageLocaleKey
-    @type String
-    @default 'forms.fd-data-types-map.save-message'
-  */
-  saveMessageLocaleKey: 'forms.fd-data-types-map.save-message',
-
-  /**
-    @property saveButtonLocaleKey
-    @type String
-    @default ''
-  */
-  saveButtonLocaleKey: 'forms.fd-data-types-map.save-button',
-
-  /**
-    @property rollbackButtonLocaleKey
-    @type String
-    @default ''
-  */
-  rollbackButtonLocaleKey: 'forms.fd-data-types-map.rollback-button',
-
->>>>>>> develop
   /**
     Service for managing the state of the application.
      @property appState

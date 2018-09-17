@@ -1,10 +1,9 @@
 import Ember from 'ember';
 import EditFormNewRoute from 'ember-flexberry/routes/edit-form-new';
-import FdLoadingForTransitionMixin from '../../mixins/fd-loading-for-transition';
 import { Query } from 'ember-flexberry-data';
 const { Builder, FilterOperator } = Query;
 
-export default EditFormNewRoute.extend(FdLoadingForTransitionMixin, {
+export default EditFormNewRoute.extend({
   modelProjection: 'EditFormView',
   modelName: 'fd-dev-stage',
   templateName: 'fd-stage-edit-form',

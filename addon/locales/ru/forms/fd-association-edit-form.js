@@ -18,9 +18,5 @@ export default {
   'pb-master-get-start-caption': 'Скобки программиста перед геттером мастерового свойства',
   'pb-master-get-end-caption': 'Скобки программиста после геттера мастерового свойства',
   'pb-master-set-start-caption': 'Скобки программиста перед сеттером мастера',
-<<<<<<< HEAD
-  'pb-master-set-end-caption': 'Скобки программиста после сеттером мастера'
-=======
   'pb-master-set-end-caption': 'Скобки программиста после сеттера мастера',
->>>>>>> develop
 };
