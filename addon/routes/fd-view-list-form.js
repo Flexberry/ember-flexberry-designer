@@ -1,9 +1,8 @@
 import Ember from 'ember';
 import { Query } from 'ember-flexberry-data';
 import ListFormRoute from 'ember-flexberry/routes/list-form';
-import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
 
-export default ListFormRoute.extend(FdLoadingForTransitionMixin, {
+export default ListFormRoute.extend({
   /**
     Query simple predicate.
 

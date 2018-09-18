@@ -1,7 +1,6 @@
 import FdGenerationProcessFormRoute from '../fd-generation-process-form';
-import FdLoadingForTransitionMixin from '../../mixins/fd-loading-for-transition';
 
-export default FdGenerationProcessFormRoute.extend(FdLoadingForTransitionMixin, {
+export default FdGenerationProcessFormRoute.extend({
   templateName: 'fd-generation-process-form',
 
   /**

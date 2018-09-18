@@ -1,12 +1,16 @@
 import Ember from 'ember';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
+import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 import FdCreatingDiagramElementsControllerMixin from '../mixins/fd-creating-diagram-elements-controller';
 import { Class } from '../objects/uml-primitives/fd-uml-class';
 import { Association } from '../objects/uml-primitives/fd-uml-association';
 import { findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
 
-export default EditFormController.extend(FdWorkPanelToggler, FdCreatingDiagramElementsControllerMixin, {
+export default EditFormController.extend(
+FdWorkPanelToggler,
+FdFormUnsavedData,
+FdCreatingDiagramElementsControllerMixin, {
   parentRoute: 'fd-diagram-list-form',
 
   /**

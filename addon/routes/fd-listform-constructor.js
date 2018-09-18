@@ -1,12 +1,12 @@
 import Ember from 'ember';
 import FdAttributesTree from '../objects/fd-attributes-tree';
 import FdDataTypes from '../utils/fd-datatypes';
-import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
+import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode } from '../utils/fd-attributes-for-tree';
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
 import { getNewFormCaption, getNewFormDescription } from '../utils/fd-create-form-properties';
 
-export default Ember.Route.extend(FdLoadingForTransitionMixin, {
+export default Ember.Route.extend(FdFormCheckTransitionMixin, {
   currentContext: Ember.inject.service('fd-current-project-context'),
 
   actions: {
@@ -164,12 +164,7 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
       Ember.$('.full.height').off('click.fd-listform-constructor');
     }
 
-    let store = this.get('store');
-    store.peekAll('fd-dev-class').forEach((item) => item.rollbackAll());
-    store.peekAll('fd-dev-stage').forEach((item) => item.rollbackAll());
-    store.peekAll('fd-dev-association').forEach((item) => item.rollbackAll());
-    store.peekAll('fd-dev-aggregation').forEach((item) => item.rollbackAll());
-    controller.set('model.view.definition', Ember.A(controller.get('model.originalDefinition')));
+    controller.clearFormData();
   },
 
   /**

@@ -1,9 +1,9 @@
 import Ember from 'ember';
 import FdAppStructTree from '../objects/fd-appstruct-tree';
-import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
-
+import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 const { getOwner } = Ember;
-export default Ember.Route.extend(FdLoadingForTransitionMixin, {
+
+export default Ember.Route.extend(FdFormCheckTransitionMixin, {
 
   /**
    Service that get current project contexts.
@@ -137,6 +137,7 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
     (result) => {
       controller.set('processMethodologyValue', result.value);
     });
+    controller.originalDataInit();
   },
 
   /**
@@ -167,7 +168,7 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
     });
   },
 
-  actions:{
+  actions: {
     didTransition() {
       Ember.$('#example .flexberry-content').css('padding-bottom', 0);
       Ember.$('.flexberry-content > .ui.main.container').css('margin-bottom', 0);

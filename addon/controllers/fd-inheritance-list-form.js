@@ -7,6 +7,6 @@ export default ListFormController.extend({
     @property editFormRoute
     @type String
     @default 'fd-inheritance-edit-form'
-   */
+  */
   editFormRoute: 'fd-inheritance-edit-form'
 });

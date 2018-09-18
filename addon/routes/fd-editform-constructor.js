@@ -1,8 +1,8 @@
 import Ember from 'ember';
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
-import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
+import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 
-export default Ember.Route.extend(FdLoadingForTransitionMixin, {
+export default Ember.Route.extend(FdFormCheckTransitionMixin, {
 
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
@@ -106,13 +106,6 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
       Ember.$('.full.height').off('click.fd-editform-constructor');
     }
 
-    let store = this.get('store');
-    store.peekAll('fd-dev-class').forEach((item) => item.rollbackAll());
-    store.peekAll('fd-dev-stage').forEach((item) => item.rollbackAll());
-    store.peekAll('fd-dev-association').forEach((item) => item.rollbackAll());
-    store.peekAll('fd-dev-aggregation').forEach((item) => item.rollbackAll());
-    let definition = controller.get('model.editform.formViews.firstObject.view.definition');
-    definition.clear();
-    definition.pushObjects(controller.get('model.originalDefinition'));
+    controller.clearFormData();
   },
 });

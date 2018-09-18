@@ -8,5 +8,6 @@ export default {
   'pBMembers-caption': '',
   'generateComPlusServer-caption': '',
   'generateHttpRemoteServer-caption': '',
-  'publishToEBSD-caption': ''
+  'publishToEBSD-caption': '',
+  'attributes-caption': 'Возможные значения'
 };
