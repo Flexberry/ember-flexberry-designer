@@ -3,7 +3,7 @@ import Ember from 'ember';
 /**
   Metods for creating joint js elements on diagrams.
 
-  @class FdCreatingDiagramElementsControllerMixin
+  @class FdCreatingDiagramElementsMixin
   @extends <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
 export default Ember.Mixin.create({
