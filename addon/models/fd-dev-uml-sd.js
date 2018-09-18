@@ -1,8 +1,7 @@
 import Ember from 'ember';
 import {
   Model as DevUMLSDMixin,
-  defineBaseModel,
-  defineProjections
+  defineBaseModel
 } from '../mixins/regenerated/models/fd-dev-uml-sd';
 import SDModel from './fd-sd';
 
@@ -82,7 +81,5 @@ let Model = SDModel.extend(DevUMLSDMixin, {
   }),
 });
 defineBaseModel(Model);
-
-defineProjections(Model);
 
 export default Model;

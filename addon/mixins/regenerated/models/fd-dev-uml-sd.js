@@ -1,8 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 
-import { Projection } from 'ember-flexberry-data';
-
 export let Model = Ember.Mixin.create({
   /**
     Non-stored property.
@@ -24,7 +22,7 @@ export let Model = Ember.Mixin.create({
       }))
       ```
   */
-  _nameCompute: function() {
+  _nameCompute: function () {
     let result = (this.nameCompute && typeof this.nameCompute === 'function') ? this.nameCompute() : null;
     this.set('name', result);
   },
@@ -48,7 +46,7 @@ export let Model = Ember.Mixin.create({
       }))
       ```
   */
-  _primitiveTypesCompute: function() {
+  _primitiveTypesCompute: function () {
     let result = (this.primitiveTypesCompute && typeof this.primitiveTypesCompute === 'function') ? this.primitiveTypesCompute() : null;
     this.set('primitiveTypes', result);
   },
@@ -72,7 +70,7 @@ export let Model = Ember.Mixin.create({
       }))
       ```
   */
-  _primitivesCompute: function() {
+  _primitivesCompute: function () {
     let result = (this.primitivesCompute && typeof this.primitivesCompute === 'function') ? this.primitivesCompute() : null;
     this.set('primitives', result);
   },
@@ -96,7 +94,7 @@ export let Model = Ember.Mixin.create({
       }))
       ```
   */
-  _helpKeywordCompute: function() {
+  _helpKeywordCompute: function () {
     let result = (this.helpKeywordCompute && typeof this.helpKeywordCompute === 'function') ? this.helpKeywordCompute() : null;
     this.set('helpKeyword', result);
   },
@@ -114,41 +112,5 @@ export let Model = Ember.Mixin.create({
 export let defineBaseModel = function (modelClass) {
   modelClass.reopenClass({
     _parentModelName: 'fd-sd'
-  });
-};
-
-export let defineProjections = function (modelClass) {
-  modelClass.defineProjection('EditFormView', 'fd-dev-uml-sd', {
-    name: Projection.attr('Name'),
-    description: Projection.attr('Description')
-  });
-  modelClass.defineProjection('ListFormView', 'fd-dev-uml-sd', {
-    name: Projection.attr('Name'),
-    description: Projection.attr('Description'),
-    changeUser: Projection.attr('Change user'),
-    changeDate: Projection.attr('Change date'),
-    createUser: Projection.attr('Create user'),
-    createDate: Projection.attr('Create date'),
-    subsystem: Projection.belongsTo('fd-subsystem', '', {
-      stage: Projection.belongsTo('fd-stage', '', {
-      }, { hidden: true }),
-    }, { hidden: true }),
-  });
-  modelClass.defineProjection('SearchDiagram', 'fd-dev-uml-sd', {
-    name: Projection.attr(''),
-    subsystem: Projection.belongsTo('fd-subsystem', '', {
-      stage: Projection.belongsTo('fd-stage', '', {
-
-      }),
-    }),
-  });
-  modelClass.defineProjection('FdUmlSd', 'fd-dev-uml-sd', {
-    name: Projection.attr(''),
-    primitivesJsonString: Projection.attr(''),
-    primitivesStreamString: Projection.attr(''),
-    caseObjectsString: Projection.attr(''),
-    subsystem: Projection.belongsTo('fd-subsystem', '', {
-
-    })
   });
 };
