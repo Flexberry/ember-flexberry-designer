@@ -4,9 +4,10 @@ import joint from 'npm:jointjs';
 import { Note } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note';
 import { NoteConnector } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector';
 import { StateEx, CompositeState } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-state-ex';
-import { StdClass, State } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-active-state';
+import { State } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-state';
+import { StdClass } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-std-class';
 import { ComplexTransitionH, ComplexTransitionV } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-complex-transition';
-import { Connection } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-transition';
+import { Connection } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-connection';
 import { History, DeepHistory } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-history';
 import { StartState } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-start-state';
 import { FinalState } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-final-state';
@@ -71,6 +72,7 @@ export default Ember.Controller.extend({
 
       let state = new State({
         position: { x: 450, y: 100 },
+        size: { width: 100, height: 40 },
         name: 'StateName',
         attrs: { '.rotatable': { title:'Состояние (State)' } }
       });
@@ -84,12 +86,14 @@ export default Ember.Controller.extend({
 
       let statechartClass = new StdClass({
         position: { x: 450, y: 250 },
+        size: { width: 100, height: 40 },
         name: 'ClassName',
         attrs: { '.rotatable': { title:'Класс (Class)' } }
       });
 
       let note = new Note({
         position: { x: 450, y: 300 },
+        size: { width: 100, height: 40 },
         name: 'Comment'
       });
 

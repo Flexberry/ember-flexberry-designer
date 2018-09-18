@@ -6,9 +6,10 @@ import STDModel from './fd-std';
 import FdUmlNote from '../objects/uml-primitives/fd-uml-note';
 import FdUmlNoteConnector from '../objects/uml-primitives/fd-uml-note-connector';
 import FdUmlStateEx from '../objects/uml-primitives/fd-uml-state-ex';
-import FdUmlActiveState from '../objects/uml-primitives/fd-uml-active-state';
+import FdUmlStdClass from '../objects/uml-primitives/fd-uml-std-class';
+import FdUmlState from '../objects/uml-primitives/fd-uml-state';
 import FdUmlComplexTransition from '../objects/uml-primitives/fd-uml-complex-transition';
-import FdUmlTransition from '../objects/uml-primitives/fd-uml-transition';
+import FdUmlConnection from '../objects/uml-primitives/fd-uml-connection';
 import FdUmlHistory from '../objects/uml-primitives/fd-uml-history';
 import FdUmlStartState from '../objects/uml-primitives/fd-uml-start-state';
 import FdUmlFinalState from '../objects/uml-primitives/fd-uml-final-state';
@@ -41,8 +42,11 @@ let Model = STDModel.extend(DevUMLSTDMixin, {
           break;
 
         case 'STORMCASE.UML.std.Class, UMLSTD':
+          result.pushObject(FdUmlStdClass.create({ primitive }));
+          break;
+
         case 'STORMCASE.UML.std.State, UMLSTD':
-          result.pushObject(FdUmlActiveState.create({ primitive }));
+          result.pushObject(FdUmlState.create({ primitive }));
           break;
 
         case 'STORMCASE.UML.std.ComplexTransitionV, UMLSTD':
@@ -51,7 +55,7 @@ let Model = STDModel.extend(DevUMLSTDMixin, {
           break;
 
         case 'STORMCASE.UML.std.Transition, UMLSTD':
-          result.pushObject(FdUmlTransition.create({ primitive }));
+          result.pushObject(FdUmlConnection.create({ primitive }));
           break;
 
         case 'STORMCASE.UML.std.DeepHistory, UMLSTD':
