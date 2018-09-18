@@ -32,7 +32,7 @@ export default FdUmlObject.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let StdClass = BaseObject.define('flexberry.uml.stdClass', {
+export let StdClass = BaseObject.define('flexberry.uml.StdClass', {
   attrs: {
     'text': { 'font-weight': 'bold' }
   }
