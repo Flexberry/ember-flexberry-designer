@@ -24,6 +24,14 @@ export default Ember.Component.extend({
   primitives: undefined,
 
   /**
+    Created 'Paper' from joint js.
+
+    @property paper
+    @type object
+  */
+  paper: undefined,
+
+  /**
     All elements of the UML diagram.
 
     @property elements
@@ -84,6 +92,7 @@ export default Ember.Component.extend({
       model: graph,
     });
     paper.options.connectionStrategy = joint.connectionStrategies.pinAbsolute;
+    this.set('paper', paper);
 
     graph.addCells(elements.map(e => e.JointJS(graph)));
     graph.addCells(links.map(l => l.JointJS(graph)));

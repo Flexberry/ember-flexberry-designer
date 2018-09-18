@@ -1,6 +1,11 @@
 import Ember from 'ember';
 import joint from 'npm:jointjs';
-
+import { Dependency } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-dependency';
+import { Connection } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-connection';
+import { DeploymentActiveObject } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-deployment-active-object';
+import { Instance } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-instance';
+import { Component } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-component';
+import { UmlNode } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-node';
 import { NoteConnector } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector';
 
 export default Ember.Controller.extend({
@@ -40,7 +45,7 @@ export default Ember.Controller.extend({
         attrs: { path: { title:'Коннектор комментария (Note Connector)' } }
       });
 
-      var linkDependency = new joint.shapes.flexberry.uml.Dependency({
+      var linkDependency = new Dependency({
         source: { x:100, y:150 },
         target: { x:300, y:150 },
         labels:[{
@@ -49,7 +54,7 @@ export default Ember.Controller.extend({
         attrs: { path: { title:'Переход (Dependency)' } }
       });
 
-      var linkConnection = new joint.shapes.flexberry.uml.deploymentDiagram_Connection({
+      var linkConnection = new Connection({
         source: { x:100, y:200 },
         target: { x:300, y:200 },
         labels:[{
@@ -60,21 +65,24 @@ export default Ember.Controller.extend({
 
       _this.graph.addCell([linkNoteConnector, linkDependency, linkConnection]);
 
-      var component = new joint.shapes.flexberry.uml.deploymentDiagram_Component({
+      var component = new Component({
         position: { x: 450, y: 100 },
+        size: { width: 80, height: 40 },
         name: ['StateName'],
         attrs: { '.rotatable': { title:'Компонент (Component)' } }
       });
 
-      var node = new joint.shapes.flexberry.uml.deploymentDiagram_Node({
+      var node = new UmlNode({
         position: { x: 450, y: 150 },
+        size: { width: 80, height: 40 },
         name: ['NodeName', 'text', 'text'],
         attrs: { '.rotatable': { title:'Узел (Node)' } }
       });
       node.addTo(_this.graph);
 
-      var obj = new joint.shapes.flexberry.uml.deploymentDiagram_Object({
+      var obj = new Instance({
         position: { x: 450, y: 220 },
+        size: { width: 100, height: 40 },
         name: ['ObjectName', 'text', 'text'],
         attrs: { '.rotatable': { title:'Объект (Object)' } },
       });
@@ -88,8 +96,9 @@ export default Ember.Controller.extend({
         graph: _this.graph
       });
 
-      var activeObj = new joint.shapes.flexberry.uml.deploymentDiagram_ActiveObject({
+      var activeObj = new DeploymentActiveObject({
         position: { x: 450, y: 320 },
+        size: { width: 100, height: 40 },
         name: ['ActiveObjectName', 'text'],
         attrs: { '.rotatable': { title:'Объект (Object)' } },
       });
