@@ -144,10 +144,10 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
 }, {
     setLabelText: function (label, text) {
       switch (label) {
-        case 'startMultiplicity':
+        case 'endMultiplicity':
           this.label(0, { attrs: { text: { text: text } } });
           break;
-        case 'startRole':
+        case 'startMultiplicity':
           this.label(1, { attrs: { text: { text: text } } });
           break;
         case 'description':
@@ -156,7 +156,7 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
         case 'endRole':
           this.label(3, { attrs: { text: { text: text } } });
           break;
-        case 'endMultiplicity':
+        case 'startRole':
           this.label(4, { attrs: { text: { text: text } } });
           break;
         default:

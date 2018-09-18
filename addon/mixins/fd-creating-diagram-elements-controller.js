@@ -16,15 +16,26 @@ export default Ember.Mixin.create({
   paper: undefined,
 
   /**
+    Сurrent pressed button.
+
+    @property currentTargetElement
+    @type jQuery
+  */
+  currentTargetElement: Ember.$('#pointer'),
+
+  /**
     Adding a listener on paper click for create object.
 
     @method createObjectEvents
     @param {function} callback function of creating a new object.
+    @param {jQuery.Event} e event.
   */
-  createObjectEvents(callback) {
+  createObjectEvents(callback, e) {
     let paper = this.get('paper');
+    this._offAllEvents(paper);
     paper.on('blank:pointerclick', this._createObject, [callback, this]);
     paper.on('blank:contextmenu', this._offObjectEvents, this);
+    this._changeCurrentTargetElement(e);
   },
 
   /**
@@ -46,6 +57,7 @@ export default Ember.Mixin.create({
     graph.addCell([newObject]);
     paper.off('blank:pointerclick', _this2._createObject);
     paper.off('blank:contextmenu', _this2._offObjectEvents);
+    _this2._resetCurrentTargetElement();
   },
 
   /**
@@ -58,6 +70,7 @@ export default Ember.Mixin.create({
     let paper = this.get('paper');
     paper.off('blank:pointerclick', this._createObject);
     paper.off('blank:contextmenu', this._offObjectEvents);
+    this._resetCurrentTargetElement();
   },
 
   /**
@@ -65,11 +78,13 @@ export default Ember.Mixin.create({
 
     @method createLinkEvents
     @param {function} callback function of creating a new link.
+    @param {jQuery.Event} e event.
     @param {Array} interactionElements array of object types with which the current link can interact.
     @private
   */
-  createLinkEvents(callback, interactionElements) {
+  createLinkEvents(callback, e, interactionElements) {
     let paper = this.get('paper');
+    this._offAllEvents(paper);
     let linkProperties = {
       source: undefined,
       target: undefined,
@@ -79,6 +94,7 @@ export default Ember.Mixin.create({
     };
     paper.on('element:pointerclick', this._createLinkStart, [callback, interactionElements, linkProperties, this]);
     paper.on('blank:contextmenu', this._offLinkEvents, [linkProperties, this]);
+    this._changeCurrentTargetElement(e);
   },
 
   /**
@@ -94,8 +110,10 @@ export default Ember.Mixin.create({
 
     let model = element.model.attributes;
     let type = model.type;
-    if (!Ember.isNone(interactionElements.includes(type))) {
-      linkProperties.source = model.id;
+    if (Ember.isNone(interactionElements) ||
+     (Ember.isArray(interactionElements) && interactionElements.includes(type)) ||
+     (Ember.isArray(interactionElements.start) && interactionElements.start.includes(type))) {
+      linkProperties.target = model.id;
       linkProperties.startClassRepObj = model.repositoryObject;
 
       let paper = _this2.get('paper');
@@ -118,8 +136,10 @@ export default Ember.Mixin.create({
 
     let model = element.model.attributes;
     let type = model.type;
-    if (!Ember.isNone(interactionElements.includes(type))) {
-      linkProperties.target = model.id;
+    if (Ember.isNone(interactionElements) ||
+     (Ember.isArray(interactionElements) && interactionElements.includes(type)) ||
+     (Ember.isArray(interactionElements.end) && interactionElements.end.includes(type))) {
+      linkProperties.source = model.id;
       linkProperties.endClassRepObj = model.repositoryObject;
 
       let paper = _this2.get('paper');
@@ -130,6 +150,7 @@ export default Ember.Mixin.create({
       paper.off('element:pointerclick', _this2._createLinkEnd);
       paper.off('blank:pointerclick', _this2._createLinkPounts);
       paper.off('blank:contextmenu', _this2._offLinkEvents);
+      _this2._resetCurrentTargetElement();
     }
   },
 
@@ -144,7 +165,7 @@ export default Ember.Mixin.create({
   */
   _createLinkPounts(e, x, y) {
     let linkProperties = this[0];
-    linkProperties.points.pushObject({ x: x, y: y });
+    linkProperties.points.insertAt(0, { x: x, y: y });
   },
 
   /**
@@ -162,9 +183,27 @@ export default Ember.Mixin.create({
       paper.off('blank:pointerclick', _this2._createLinkPounts);
       paper.off('element:pointerclick', _this2._createLinkEnd);
       paper.off('blank:contextmenu', _this2._offLinkEvents);
+      _this2._resetCurrentTargetElement();
     } else {
       linkProperties.points.popObject();
     }
+  },
+
+  /**
+    Deleting all listener.
+
+    @method _offAllEvents
+    @param {Object} paper joint js paper.
+    @private
+  */
+  _offAllEvents(paper) {
+    paper.off('blank:pointerclick', this._createObject);
+    paper.off('element:pointerclick', this._createLinkStart);
+    paper.off('blank:pointerclick', this._createLinkPounts);
+    paper.off('element:pointerclick', this._createLinkEnd);
+    paper.off('blank:contextmenu', this._offLinkEvents);
+    paper.off('blank:contextmenu', this._offObjectEvents);
+    this._resetCurrentTargetElement();
   },
 
   /**
@@ -189,5 +228,32 @@ export default Ember.Mixin.create({
     } else {
       return null;
     }
+  },
+
+  /**
+    Change 'CurrentTargetElement'.
+
+    @method _changeCurrentTargetElement
+    @param {jQuery.Event} e event.
+  */
+  _changeCurrentTargetElement(e) {
+    let currentTargetElement = this.get('currentTargetElement');
+    currentTargetElement.removeClass('active');
+    let newCurrentTargetElement = Ember.$(e.currentTarget);
+    newCurrentTargetElement.addClass('active');
+    this.set('currentTargetElement', newCurrentTargetElement);
+  },
+
+  /**
+    Reset 'CurrentTargetElement'.
+
+    @method _resetCurrentTargetElement
+  */
+  _resetCurrentTargetElement() {
+    let currentTargetElement = this.get('currentTargetElement');
+    currentTargetElement.removeClass('active');
+    let pointer = Ember.$('#pointer');
+    pointer.addClass('active');
+    this.set('currentTargetElement', pointer);
   }
 });
