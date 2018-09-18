@@ -62,11 +62,12 @@ export let SequenceDiagramActiveObject = SequenceDiagramObject.define('flexberry
   heightPadding: 20,
 }, {
   initialize: function() {
-    joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
+
     this.on('change', function () {
       this.updateRectangles();
       this.trigger('uml-update');
     }, this);
+    joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
   },
 
   getObjName: function() {

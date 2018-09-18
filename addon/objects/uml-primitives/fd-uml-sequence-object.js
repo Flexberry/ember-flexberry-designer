@@ -61,15 +61,15 @@ export let SequenceDiagramObject = SequenceActor.define('flexberry.uml.sequenced
   heightPadding: 20,
 }, {
   initialize: function () {
-    joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
     this.on('change', function () {
       this.updateRectangles();
       this.trigger('uml-update');
     }, this);
+    joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
   },
 
   getObjName: function () {
-    let ret = this.get('attrs').text.text;
+    let ret = this.get('name');
     if (Ember.isEmpty(ret)) {
       return '';
     } else {
