@@ -1946,7 +1946,7 @@ define('dummy/controllers/sitemap-node', ['exports', 'ember'], function (exports
     }
   });
 });
-define('dummy/controllers/statechart-diagram-primitives-demo', ['exports', 'ember', 'npm:jointjs', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector'], function (exports, _ember, _npmJointjs, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNote, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNoteConnector) {
+define('dummy/controllers/statechart-diagram-primitives-demo', ['exports', 'ember', 'npm:jointjs', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-state-ex', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-state', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-std-class', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-complex-transition', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-connection', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-history', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-start-state', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-final-state', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-dependency'], function (exports, _ember, _npmJointjs, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNote, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNoteConnector, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlStateEx, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlState, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlStdClass, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlComplexTransition, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlConnection, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlHistory, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlStartState, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlFinalState, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlDependency) {
   exports['default'] = _ember['default'].Controller.extend({
     actions: {
       printDiagram: function printDiagram() {
@@ -1984,7 +1984,7 @@ define('dummy/controllers/statechart-diagram-primitives-demo', ['exports', 'embe
           attrs: { path: { title: 'Коннектор комментария (Note Connector)' } }
         });
 
-        var linkEventMessage = new _npmJointjs['default'].shapes.flexberry.uml.statechartDiagram_EventMessage({
+        var linkEventMessage = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlDependency.Dependency({
           source: { x: 100, y: 150 },
           target: { x: 300, y: 150 },
           labels: [{
@@ -1993,7 +1993,7 @@ define('dummy/controllers/statechart-diagram-primitives-demo', ['exports', 'embe
           attrs: { path: { title: 'Сообщение (Event Message)' } }
         });
 
-        var linkTransition = new _npmJointjs['default'].shapes.flexberry.uml.statechartDiagram_Transition({
+        var linkTransition = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlConnection.Connection({
           source: { x: 100, y: 250 },
           target: { x: 300, y: 250 },
           labels: [{
@@ -2004,45 +2004,48 @@ define('dummy/controllers/statechart-diagram-primitives-demo', ['exports', 'embe
 
         _this.graph.addCell([linkNoteConnector, linkEventMessage, linkTransition]);
 
-        var state = new _npmJointjs['default'].shapes.flexberry.uml.statechartDiagram_State({
+        var state = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlState.State({
           position: { x: 450, y: 100 },
+          size: { width: 100, height: 40 },
           name: 'StateName',
           attrs: { '.rotatable': { title: 'Состояние (State)' } }
         });
 
-        var stateEx = new _npmJointjs['default'].shapes.flexberry.uml.statechartDiagram_StateEx({
+        var stateEx = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlStateEx.StateEx({
           position: { x: 450, y: 150 },
           name: ['StateName', 'dsfsdg', 'dsfsdg'],
           attributes: ['attr1'],
           attrs: { '.rotatable': { title: 'Состояние (StateEx)' } }
         });
 
-        var statechartClass = new _npmJointjs['default'].shapes.flexberry.uml.statechartDiagram_Class({
+        var statechartClass = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlStdClass.StdClass({
           position: { x: 450, y: 250 },
+          size: { width: 100, height: 40 },
           name: 'ClassName',
           attrs: { '.rotatable': { title: 'Класс (Class)' } }
         });
 
         var note = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNote.Note({
           position: { x: 450, y: 300 },
+          size: { width: 100, height: 40 },
           name: 'Comment'
         });
 
-        var startState = new _npmJointjs['default'].shapes.flexberry.uml.StartState({
+        var startState = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlStartState.StartState({
           position: { x: 100, y: 204 },
           attrs: {
             text: { text: 'Start State' }
           }
         });
 
-        var endState = new _npmJointjs['default'].shapes.flexberry.uml.EndState({
+        var endState = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlFinalState.FinalState({
           position: { x: 150, y: 200 },
           attrs: {
             text: { text: 'End State' }
           }
         });
 
-        var сomplexTransitionHorizon = new _npmJointjs['default'].shapes.flexberry.uml.ComplexTransitionHorizon({
+        var сomplexTransitionHorizon = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlComplexTransition.ComplexTransitionH({
           size: { width: 200 },
           position: { x: 100, y: 300 },
           attrs: {
@@ -2050,7 +2053,7 @@ define('dummy/controllers/statechart-diagram-primitives-demo', ['exports', 'embe
             '.rotatable': { title: 'Синхронизатор/разветвитель (Complex Transition)' } }
         });
 
-        var сomplexTransitionVertical = new _npmJointjs['default'].shapes.flexberry.uml.ComplexTransitionVertical({
+        var сomplexTransitionVertical = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlComplexTransition.ComplexTransitionV({
           size: { height: 200 },
           position: { x: 100, y: 350 },
           attrs: {
@@ -2058,15 +2061,15 @@ define('dummy/controllers/statechart-diagram-primitives-demo', ['exports', 'embe
             '.rotatable': { title: 'Синхронизатор/разветвитель (Complex Transition)' } }
         });
 
-        var history = new _npmJointjs['default'].shapes.flexberry.uml.statechartDiagram_History({
+        var history = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlHistory.History({
           position: { x: 250, y: 200 }
         });
 
-        var deepHistory = new _npmJointjs['default'].shapes.flexberry.uml.statechartDiagram_DeepHistory({
+        var deepHistory = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlHistory.DeepHistory({
           position: { x: 280, y: 200 }
         });
 
-        var compositeState = new _npmJointjs['default'].shapes.flexberry.uml.statechartDiagram_CompositeState({
+        var compositeState = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlStateEx.CompositeState({
           position: { x: 450, y: 350 },
           name: ['StateName'],
           attributes: ['attr1'],
@@ -3390,6 +3393,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-configuration-list-form.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-confirm-unsaved-form-modal.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/forms');
+  test('modules/ember-flexberry-designer/locales/en/forms/fd-confirm-unsaved-form-modal.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-confirm-unsaved-form-modal.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-confirm-unsaved-form-modal.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/forms/fd-confirm-unsaved-form-modal.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-confirm-unsaved-form-modal.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-data-types-map.jscs-test', ['exports'], function (exports) {
@@ -4783,6 +4799,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-configuration-list-form.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-confirm-unsaved-form-modal.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/forms');
+  test('modules/ember-flexberry-designer/locales/ru/forms/fd-confirm-unsaved-form-modal.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-confirm-unsaved-form-modal.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-confirm-unsaved-form-modal.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/forms/fd-confirm-unsaved-form-modal.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-confirm-unsaved-form-modal.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-data-types-map.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/locales/ru/forms');
   test('modules/ember-flexberry-designer/locales/ru/forms/fd-data-types-map.js should pass jscs', function () {
@@ -6005,6 +6034,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
     assert.ok(true, 'modules/ember-flexberry-designer/mixins/fd-draggable-control.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/fd-form-check-transition.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins');
+  test('modules/ember-flexberry-designer/mixins/fd-form-check-transition.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/fd-form-check-transition.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/fd-form-check-transition.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/fd-form-check-transition.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/fd-form-check-transition.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/fd-form-unsaved-data.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins');
+  test('modules/ember-flexberry-designer/mixins/fd-form-unsaved-data.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/fd-form-unsaved-data.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/fd-form-unsaved-data.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/fd-form-unsaved-data.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/fd-form-unsaved-data.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/fd-limit-by-stage.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/mixins');
   test('modules/ember-flexberry-designer/mixins/fd-limit-by-stage.js should pass jscs', function () {
@@ -6016,19 +6071,6 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/mixins/fd-limit-by-stage.js should pass jshint.');
-  });
-});
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/fd-loading-for-transition.jscs-test', ['exports'], function (exports) {
-  module('JSCS - modules/ember-flexberry-designer/mixins');
-  test('modules/ember-flexberry-designer/mixins/fd-loading-for-transition.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/mixins/fd-loading-for-transition.js should pass jscs.');
-  });
-});
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/fd-loading-for-transition.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/fd-loading-for-transition.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/mixins/fd-loading-for-transition.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/fd-work-panel-toggler.jscs-test', ['exports'], function (exports) {
@@ -10048,6 +10090,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ob
     assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-generalization.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-history.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives');
+  test('modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-history.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-history.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-history.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-history.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-history.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-instance.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives');
   test('modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-instance.js should pass jscs', function () {
@@ -10332,6 +10387,45 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ob
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-start-state.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-state-ex.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives');
+  test('modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-state-ex.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-state-ex.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-state-ex.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-state-ex.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-state-ex.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-state.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives');
+  test('modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-state.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-state.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-state.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-state.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-state.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-std-class.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives');
+  test('modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-std-class.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-std-class.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-std-class.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-std-class.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-std-class.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-template-class.jscs-test', ['exports'], function (exports) {
@@ -13142,19 +13236,6 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ut
     assert.ok(true, 'modules/ember-flexberry-designer/utils/fd-sequence-diagram-primitives.js should pass jshint.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-statechart-diagram-primitives.jscs-test', ['exports'], function (exports) {
-  module('JSCS - modules/ember-flexberry-designer/utils');
-  test('modules/ember-flexberry-designer/utils/fd-statechart-diagram-primitives.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/utils/fd-statechart-diagram-primitives.js should pass jscs.');
-  });
-});
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-statechart-diagram-primitives.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/utils/fd-statechart-diagram-primitives.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/utils/fd-statechart-diagram-primitives.js should pass jshint.');
-  });
-});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-type-map-functions.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/utils');
   test('modules/ember-flexberry-designer/utils/fd-type-map-functions.js should pass jscs', function () {
@@ -15899,7 +15980,7 @@ define('dummy/routes/new-platform-flexberry-services-lock-list', ['exports', 'em
     }
   });
 });
-define('dummy/routes/statechart-diagram-primitives-demo', ['exports', 'ember', 'ember-flexberry-designer/utils/fd-statechart-diagram-primitives'], function (exports, _ember, _emberFlexberryDesignerUtilsFdStatechartDiagramPrimitives) {
+define('dummy/routes/statechart-diagram-primitives-demo', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Route.extend({
     activate: function activate() {
       var _this = this;
@@ -31761,8 +31842,8 @@ define("dummy/templates/fd-aggregation-edit-form", ["exports"], function (export
             "column": 0
           },
           "end": {
-            "line": 220,
-            "column": 7
+            "line": 221,
+            "column": 0
           }
         },
         "moduleName": "dummy/templates/fd-aggregation-edit-form.hbs"
@@ -32279,6 +32360,8 @@ define("dummy/templates/fd-aggregation-edit-form", ["exports"], function (export
         var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
@@ -32625,7 +32708,7 @@ define("dummy/templates/fd-application-edit-form", ["exports"], function (export
             "column": 0
           },
           "end": {
-            "line": 188,
+            "line": 187,
             "column": 0
           }
         },
@@ -32920,7 +33003,7 @@ define("dummy/templates/fd-application-edit-form", ["exports"], function (export
         var el3 = dom.createTextNode("\n");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n");
+        var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
@@ -34628,7 +34711,7 @@ define("dummy/templates/fd-association-edit-form", ["exports"], function (export
           },
           "end": {
             "line": 187,
-            "column": 7
+            "column": 0
           }
         },
         "moduleName": "dummy/templates/fd-association-edit-form.hbs"
@@ -35057,8 +35140,10 @@ define("dummy/templates/fd-association-edit-form", ["exports"], function (export
         var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n");
+        var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
         return el0;
       },
@@ -35391,7 +35476,7 @@ define("dummy/templates/fd-business-server-edit-form", ["exports"], function (ex
             "column": 0
           },
           "end": {
-            "line": 121,
+            "line": 120,
             "column": 7
           }
         },
@@ -35616,7 +35701,7 @@ define("dummy/templates/fd-business-server-edit-form", ["exports"], function (ex
         var el3 = dom.createTextNode("\n");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n");
+        var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         return el0;
@@ -37702,11 +37787,11 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 65,
+                  "line": 64,
                   "column": 6
                 },
                 "end": {
-                  "line": 94,
+                  "line": 93,
                   "column": 6
                 }
               },
@@ -37781,7 +37866,7 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
               morphs[5] = dom.createMorphAt(element3, 3, 3);
               return morphs;
             },
-            statements: [["inline", "t", ["forms.fd-diagram-edit-form.form-config-panel.diagram-properties-header"], [], ["loc", [null, [67, 10], [67, 88]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [72, 24], [72, 68]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [73, 21], [73, 29]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [75, 18], [75, 28]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [76, 22], [76, 39]]]], "error", ""], [], ["loc", [null, [76, 18], [76, 51]]]], "label", ["subexpr", "t", ["forms.fd-diagram-edit-form.name-caption"], [], ["loc", [null, [77, 18], [77, 63]]]]], ["loc", [null, [70, 10], [78, 12]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [79, 46], [79, 63]]]]], [], []], "pointing", "pointing"], ["loc", [null, [79, 10], [79, 85]]]], ["inline", "t", ["forms.fd-diagram-edit-form.description-caption"], [], ["loc", [null, [82, 15], [82, 69]]]], ["inline", "flexberry-textarea", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [86, 24], [86, 68]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [87, 21], [87, 29]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [89, 18], [89, 35]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [90, 22], [90, 46]]]], "error", ""], [], ["loc", [null, [90, 18], [90, 58]]]]], ["loc", [null, [84, 10], [91, 12]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [92, 46], [92, 70]]]]], [], []], "pointing", "pointing"], ["loc", [null, [92, 10], [92, 92]]]]],
+            statements: [["inline", "t", ["forms.fd-diagram-edit-form.form-config-panel.diagram-properties-header"], [], ["loc", [null, [66, 10], [66, 88]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [71, 24], [71, 68]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [72, 21], [72, 29]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [74, 18], [74, 28]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [75, 22], [75, 39]]]], "error", ""], [], ["loc", [null, [75, 18], [75, 51]]]], "label", ["subexpr", "t", ["forms.fd-diagram-edit-form.name-caption"], [], ["loc", [null, [76, 18], [76, 63]]]]], ["loc", [null, [69, 10], [77, 12]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [78, 46], [78, 63]]]]], [], []], "pointing", "pointing"], ["loc", [null, [78, 10], [78, 85]]]], ["inline", "t", ["forms.fd-diagram-edit-form.description-caption"], [], ["loc", [null, [81, 15], [81, 69]]]], ["inline", "flexberry-textarea", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [85, 24], [85, 68]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [86, 21], [86, 29]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [88, 18], [88, 35]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [89, 22], [89, 46]]]], "error", ""], [], ["loc", [null, [89, 18], [89, 58]]]]], ["loc", [null, [83, 10], [90, 12]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [91, 46], [91, 70]]]]], [], []], "pointing", "pointing"], ["loc", [null, [91, 10], [91, 92]]]]],
             locals: [],
             templates: []
           };
@@ -37794,11 +37879,11 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 95,
+                  "line": 94,
                   "column": 6
                 },
                 "end": {
-                  "line": 99,
+                  "line": 98,
                   "column": 6
                 }
               },
@@ -37830,7 +37915,7 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
               morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
               return morphs;
             },
-            statements: [["inline", "t", ["forms.fd-diagram-edit-form.form-config-panel.primitive-properties-header"], [], ["loc", [null, [97, 10], [97, 90]]]]],
+            statements: [["inline", "t", ["forms.fd-diagram-edit-form.form-config-panel.primitive-properties-header"], [], ["loc", [null, [96, 10], [96, 90]]]]],
             locals: [],
             templates: []
           };
@@ -37843,11 +37928,11 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 100,
+                  "line": 99,
                   "column": 6
                 },
                 "end": {
-                  "line": 110,
+                  "line": 109,
                   "column": 6
                 }
               },
@@ -37909,7 +37994,7 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
               morphs[4] = dom.createMorphAt(element1, 1, 1);
               return morphs;
             },
-            statements: [["inline", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive-header"], [], ["loc", [null, [102, 10], [102, 83]]]], ["element", "action", ["addClass"], [], ["loc", [null, [104, 48], [104, 69]]]], ["inline", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-class"], [], ["loc", [null, [105, 10], [105, 86]]]], ["element", "action", ["addAssociation"], [], ["loc", [null, [107, 48], [107, 75]]]], ["inline", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-association"], [], ["loc", [null, [108, 10], [108, 92]]]]],
+            statements: [["inline", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive-header"], [], ["loc", [null, [101, 10], [101, 83]]]], ["element", "action", ["addClass"], [], ["loc", [null, [103, 48], [103, 69]]]], ["inline", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-class"], [], ["loc", [null, [104, 10], [104, 86]]]], ["element", "action", ["addAssociation"], [], ["loc", [null, [106, 48], [106, 75]]]], ["inline", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-association"], [], ["loc", [null, [107, 10], [107, 92]]]]],
             locals: [],
             templates: []
           };
@@ -37921,11 +38006,11 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 50,
+                "line": 49,
                 "column": 2
               },
               "end": {
-                "line": 112,
+                "line": 111,
                 "column": 2
               }
             },
@@ -37983,7 +38068,7 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
             morphs[3] = dom.createMorphAt(element4, 5, 5);
             return morphs;
           },
-          statements: [["inline", "t", ["forms.fd-diagram-edit-form.form-config-panel.caption"], [], ["loc", [null, [62, 10], [62, 70]]]], ["block", "tab.pane", [], ["dataTab", "first", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.diagram-properties-header"], [], ["loc", [null, [65, 40], [65, 116]]]], "theme", ""], 0, null, ["loc", [null, [65, 6], [94, 19]]]], ["block", "tab.pane", [], ["dataTab", "second", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.primitive-properties-header"], [], ["loc", [null, [95, 41], [95, 119]]]], "theme", ""], 1, null, ["loc", [null, [95, 6], [99, 19]]]], ["block", "tab.pane", [], ["dataTab", "active-tree-tab", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive-header"], [], ["loc", [null, [100, 50], [100, 121]]]], "theme", ""], 2, null, ["loc", [null, [100, 6], [110, 19]]]]],
+          statements: [["inline", "t", ["forms.fd-diagram-edit-form.form-config-panel.caption"], [], ["loc", [null, [61, 10], [61, 70]]]], ["block", "tab.pane", [], ["dataTab", "first", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.diagram-properties-header"], [], ["loc", [null, [64, 40], [64, 116]]]], "theme", ""], 0, null, ["loc", [null, [64, 6], [93, 19]]]], ["block", "tab.pane", [], ["dataTab", "second", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.primitive-properties-header"], [], ["loc", [null, [94, 41], [94, 119]]]], "theme", ""], 1, null, ["loc", [null, [94, 6], [98, 19]]]], ["block", "tab.pane", [], ["dataTab", "active-tree-tab", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive-header"], [], ["loc", [null, [99, 50], [99, 121]]]], "theme", ""], 2, null, ["loc", [null, [99, 6], [109, 19]]]]],
           locals: ["tab"],
           templates: [child0, child1, child2]
         };
@@ -37995,11 +38080,11 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 48,
+              "line": 47,
               "column": 0
             },
             "end": {
-              "line": 114,
+              "line": 113,
               "column": 0
             }
           },
@@ -38024,7 +38109,7 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
           morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           return morphs;
         },
-        statements: [["block", "fd-tabs", [], ["tabsMenuTheme", "vertical tabular", "class", "ui segments horizontal right-tabs", "tabClick", ["subexpr", "action", ["toggleConfigPanel"], [], ["loc", [null, [53, 15], [53, 43]]]], "activeTab", "none", "overflowedTabs", false, "inactiveTabs", true], 0, null, ["loc", [null, [50, 2], [112, 14]]]]],
+        statements: [["block", "fd-tabs", [], ["tabsMenuTheme", "vertical tabular", "class", "ui segments horizontal right-tabs", "tabClick", ["subexpr", "action", ["toggleConfigPanel"], [], ["loc", [null, [52, 15], [52, 43]]]], "activeTab", "none", "overflowedTabs", false, "inactiveTabs", true], 0, null, ["loc", [null, [49, 2], [111, 14]]]]],
         locals: [],
         templates: [child0]
       };
@@ -38043,7 +38128,7 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 115,
+            "line": 114,
             "column": 0
           }
         },
@@ -38134,7 +38219,7 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
         var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n");
+        var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n\n");
@@ -38161,7 +38246,7 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["content", "model.name", ["loc", [null, [2, 2], [2, 16]]]], ["block", "if", [["get", "readonly", ["loc", [null, [3, 8], [3, 16]]]]], [], 0, null, ["loc", [null, [3, 2], [5, 9]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [8, 6], [8, 19]]]]], [], 1, null, ["loc", [null, [8, 0], [18, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [20, 26], [20, 31]]]]], [], []]], ["loc", [null, [20, 2], [20, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [28, 16], [28, 24]]]]], [], 2, null, ["loc", [null, [28, 6], [35, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [36, 59], [36, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [37, 8], [37, 49]]]], ["inline", "fd-uml-diagram", [], ["primitives", ["subexpr", "@mut", [["get", "model.primitives", ["loc", [null, [43, 32], [43, 48]]]]], [], []], "paper", ["subexpr", "@mut", [["get", "paper", ["loc", [null, [43, 55], [43, 60]]]]], [], []]], ["loc", [null, [43, 4], [43, 62]]]], ["block", "fd-config-panel", [], [], 3, null, ["loc", [null, [48, 0], [114, 20]]]]],
+      statements: [["content", "model.name", ["loc", [null, [2, 2], [2, 16]]]], ["block", "if", [["get", "readonly", ["loc", [null, [3, 8], [3, 16]]]]], [], 0, null, ["loc", [null, [3, 2], [5, 9]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [8, 6], [8, 19]]]]], [], 1, null, ["loc", [null, [8, 0], [18, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [20, 26], [20, 31]]]]], [], []]], ["loc", [null, [20, 2], [20, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [28, 16], [28, 24]]]]], [], 2, null, ["loc", [null, [28, 6], [35, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [36, 59], [36, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [37, 8], [37, 49]]]], ["inline", "fd-uml-diagram", [], ["primitives", ["subexpr", "@mut", [["get", "model.primitives", ["loc", [null, [43, 32], [43, 48]]]]], [], []], "paper", ["subexpr", "@mut", [["get", "paper", ["loc", [null, [43, 55], [43, 60]]]]], [], []]], ["loc", [null, [43, 4], [43, 62]]]], ["block", "fd-config-panel", [], [], 3, null, ["loc", [null, [47, 0], [113, 20]]]]],
       locals: [],
       templates: [child0, child1, child2, child3]
     };
@@ -40168,7 +40253,7 @@ define("dummy/templates/fd-enum-edit-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 109,
+            "line": 108,
             "column": 7
           }
         },
@@ -40365,7 +40450,7 @@ define("dummy/templates/fd-enum-edit-form", ["exports"], function (exports) {
         var el3 = dom.createTextNode("\n");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n");
+        var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         return el0;
@@ -41538,8 +41623,8 @@ define("dummy/templates/fd-inheritance-edit-form", ["exports"], function (export
             "column": 0
           },
           "end": {
-            "line": 80,
-            "column": 7
+            "line": 81,
+            "column": 0
           }
         },
         "moduleName": "dummy/templates/fd-inheritance-edit-form.hbs"
@@ -41713,8 +41798,10 @@ define("dummy/templates/fd-inheritance-edit-form", ["exports"], function (export
         var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n");
+        var el2 = dom.createTextNode("  \n");
         dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
         return el0;
       },
@@ -42002,8 +42089,8 @@ define("dummy/templates/fd-interface-edit-form", ["exports"], function (exports)
             "column": 0
           },
           "end": {
-            "line": 157,
-            "column": 7
+            "line": 158,
+            "column": 0
           }
         },
         "moduleName": "dummy/templates/fd-interface-edit-form.hbs"
@@ -42262,6 +42349,8 @@ define("dummy/templates/fd-interface-edit-form", ["exports"], function (exports)
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n\n");
         dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
         return el0;
       },
@@ -45383,8 +45472,8 @@ define("dummy/templates/fd-system-edit-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 70,
-            "column": 7
+            "line": 69,
+            "column": 0
           }
         },
         "moduleName": "dummy/templates/fd-system-edit-form.hbs"
@@ -45486,34 +45575,36 @@ define("dummy/templates/fd-system-edit-form", ["exports"], function (exports) {
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
         dom.setAttribute(el2, "class", "field");
-        var el3 = dom.createTextNode("\n  ");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
         var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n  ");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createComment("");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n");
+        var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
         dom.setAttribute(el2, "class", "field");
-        var el3 = dom.createTextNode("\n  ");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
         var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
-        var el3 = dom.createComment("");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n");
-        dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n");
+        var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
         return el0;
       },
@@ -45542,7 +45633,7 @@ define("dummy/templates/fd-system-edit-form", ["exports"], function (exports) {
         morphs[13] = dom.createMorphAt(element8, 3, 3);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-system-edit-form.caption"], [], ["loc", [null, [2, 2], [2, 43]]]], ["block", "if", [["get", "readonly", ["loc", [null, [3, 8], [3, 16]]]]], [], 0, null, ["loc", [null, [3, 2], [5, 9]]]], ["inline", "t", ["forms.fd-system-edit-form.subsystem"], [], ["loc", [null, [7, 4], [7, 47]]]], ["content", "sybsystemName", ["loc", [null, [7, 49], [7, 66]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [11, 6], [11, 19]]]]], [], 1, null, ["loc", [null, [11, 0], [21, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [23, 26], [23, 31]]]]], [], []]], ["loc", [null, [23, 2], [23, 33]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [26, 43], [26, 55]]]]], [], []]], ["loc", [null, [26, 6], [26, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [31, 16], [31, 24]]]]], [], 2, null, ["loc", [null, [31, 6], [38, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [39, 59], [39, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [40, 8], [40, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [47, 16], [47, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [48, 13], [48, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [50, 10], [50, 20]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [51, 14], [51, 31]]]], "error", ""], [], ["loc", [null, [51, 10], [51, 43]]]], "label", ["subexpr", "t", ["forms.fd-system-edit-form.name-caption"], [], ["loc", [null, [52, 10], [52, 54]]]]], ["loc", [null, [45, 2], [53, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [54, 38], [54, 55]]]]], [], []], "pointing", "pointing"], ["loc", [null, [54, 2], [54, 77]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [60, 16], [60, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [61, 13], [61, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [63, 10], [63, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [64, 14], [64, 38]]]], "error", ""], [], ["loc", [null, [64, 10], [64, 50]]]], "label", ["subexpr", "t", ["forms.fd-system-edit-form.description-caption"], [], ["loc", [null, [65, 10], [65, 61]]]]], ["loc", [null, [58, 2], [66, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [67, 38], [67, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [67, 2], [67, 84]]]]],
+      statements: [["inline", "t", ["forms.fd-system-edit-form.caption"], [], ["loc", [null, [2, 2], [2, 43]]]], ["block", "if", [["get", "readonly", ["loc", [null, [3, 8], [3, 16]]]]], [], 0, null, ["loc", [null, [3, 2], [5, 9]]]], ["inline", "t", ["forms.fd-system-edit-form.subsystem"], [], ["loc", [null, [7, 4], [7, 47]]]], ["content", "sybsystemName", ["loc", [null, [7, 49], [7, 66]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [11, 6], [11, 19]]]]], [], 1, null, ["loc", [null, [11, 0], [21, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [23, 26], [23, 31]]]]], [], []]], ["loc", [null, [23, 2], [23, 33]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [26, 43], [26, 55]]]]], [], []]], ["loc", [null, [26, 6], [26, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [31, 16], [31, 24]]]]], [], 2, null, ["loc", [null, [31, 6], [38, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [39, 59], [39, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [40, 8], [40, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [47, 18], [47, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [48, 15], [48, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [50, 12], [50, 22]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [51, 16], [51, 33]]]], "error", ""], [], ["loc", [null, [51, 12], [51, 45]]]], "label", ["subexpr", "t", ["forms.fd-system-edit-form.name-caption"], [], ["loc", [null, [52, 12], [52, 56]]]]], ["loc", [null, [45, 4], [53, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [54, 40], [54, 57]]]]], [], []], "pointing", "pointing"], ["loc", [null, [54, 4], [54, 79]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [59, 18], [59, 62]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [60, 15], [60, 23]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [62, 12], [62, 29]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [63, 16], [63, 40]]]], "error", ""], [], ["loc", [null, [63, 12], [63, 52]]]], "label", ["subexpr", "t", ["forms.fd-system-edit-form.description-caption"], [], ["loc", [null, [64, 12], [64, 63]]]]], ["loc", [null, [57, 4], [65, 6]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [66, 40], [66, 64]]]]], [], []], "pointing", "pointing"], ["loc", [null, [66, 4], [66, 86]]]]],
       locals: [],
       templates: [child0, child1, child2]
     };
@@ -48202,7 +48293,7 @@ define("dummy/templates/fd-view-edit-form", ["exports"], function (exports) {
         var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n");
+        var el2 = dom.createTextNode("  \n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n\n");
@@ -53910,7 +54001,7 @@ define("dummy/templates/modal/save", ["exports"], function (exports) {
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["inline", "flexberry-dialog", [], ["caption", ["subexpr", "t", [["get", "saveTitleLocaleKey", ["loc", [null, [2, 13], [2, 31]]]]], [], ["loc", [null, [2, 10], [2, 32]]]], "content", ["subexpr", "t", [["get", "saveMessageLocaleKey", ["loc", [null, [3, 13], [3, 33]]]]], [], ["loc", [null, [3, 10], [3, 34]]]], "approve", ["subexpr", "action", ["save", true], [], ["loc", [null, [4, 10], [4, 30]]]], "deny", ["subexpr", "action", ["rollback"], [], ["loc", [null, [5, 7], [5, 26]]]], "hide", ["subexpr", "action", [["get", "send", ["loc", [null, [6, 15], [6, 19]]]], "removeModalDialog"], [], ["loc", [null, [6, 7], [6, 40]]]], "approveButtonCaption", ["subexpr", "t", [["get", "saveButtonLocaleKey", ["loc", [null, [7, 26], [7, 45]]]]], [], ["loc", [null, [7, 23], [7, 46]]]], "denyButtonCaption", ["subexpr", "t", [["get", "rollbackButtonLocaleKey", ["loc", [null, [8, 23], [8, 46]]]]], [], ["loc", [null, [8, 20], [8, 47]]]], "visible", true], ["loc", [null, [1, 0], [10, 2]]]]],
+      statements: [["inline", "flexberry-dialog", [], ["caption", ["subexpr", "t", [["get", "saveTitleLocaleKey", ["loc", [null, [2, 13], [2, 31]]]]], [], ["loc", [null, [2, 10], [2, 32]]]], "content", ["subexpr", "t", [["get", "saveMessageLocaleKey", ["loc", [null, [3, 13], [3, 33]]]]], [], ["loc", [null, [3, 10], [3, 34]]]], "approve", ["subexpr", "action", ["closeWithSaving"], [], ["loc", [null, [4, 10], [4, 36]]]], "deny", ["subexpr", "action", ["rollback"], [], ["loc", [null, [5, 7], [5, 26]]]], "hide", ["subexpr", "action", [["get", "send", ["loc", [null, [6, 15], [6, 19]]]], "removeModalDialog"], [], ["loc", [null, [6, 7], [6, 40]]]], "approveButtonCaption", ["subexpr", "t", [["get", "saveButtonLocaleKey", ["loc", [null, [7, 26], [7, 45]]]]], [], ["loc", [null, [7, 23], [7, 46]]]], "denyButtonCaption", ["subexpr", "t", [["get", "rollbackButtonLocaleKey", ["loc", [null, [8, 23], [8, 46]]]]], [], ["loc", [null, [8, 20], [8, 47]]]], "visible", true], ["loc", [null, [1, 0], [10, 2]]]]],
       locals: [],
       templates: []
     };
@@ -54770,7 +54861,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+fac645e3"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+c759e3c8"});
 }
 
 /* jshint ignore:end */
