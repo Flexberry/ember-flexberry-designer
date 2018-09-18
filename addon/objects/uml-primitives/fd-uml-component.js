@@ -3,7 +3,6 @@
 */
 
 import Ember from 'ember';
-import joint from 'npm:jointjs';
 import { BaseObject } from './fd-uml-baseobject';
 import FdUmlElement from './fd-uml-element';
 
@@ -63,7 +62,7 @@ export let Component = BaseObject.define('flexberry.uml.Component', {
   ].join(''),
 
   updateRectangles: function() {
-    joint.shapes.flexberry.uml.BaseObject.prototype.updateRectangles.apply(this, arguments);
+    BaseObject.prototype.updateRectangles.apply(this, arguments);
 
     let attrs = this.get('attrs');
     attrs['.firstRect'].transform = 'translate(-5, -8)';
