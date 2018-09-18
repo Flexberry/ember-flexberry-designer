@@ -1,8 +1,8 @@
 /**
   @module ember-flexberry-designer
 */
-
 import FdUmlBaseLink from './fd-uml-link';
+import { Connection } from './fd-uml-connection';
 import { Dependency } from './fd-uml-dependency';
 
 /**
@@ -31,27 +31,13 @@ export default FdUmlBaseLink.extend({
 /**
   Defines the JointJS link, which represents a Connection in the UML diagram.
   @for FdUmlTransition
-  @class Connection
-  @extends Dependency
-  @namespace flexberry.uml
-  @constructor
-*/
-export let Connection = Dependency.define('flexberry.uml.Connection', {
-  attrs: { '.connection': { 'stroke-dasharray': 0 } }
-});
-
-/**
-  Defines the JointJS link, which represents a Transition in the UML diagram.
-
-  @for FdUmlTransition
-  @class Transition
+  @class FdUmlTransition
   @extends Connection
   @namespace flexberry.uml
   @constructor
 */
 export let Transition = Connection.define('flexberry.uml.Transition', {
-},
-{
+}, {
   initialize: function () {
     this.updateLabel();
     Dependency.prototype.initialize.apply(this, arguments);
