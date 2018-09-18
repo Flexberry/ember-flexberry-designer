@@ -20,13 +20,16 @@ export default FdUmlBaseLink.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'name', 'source', 'target', 'vertices', 'labels');
-    return new Transition(properties);
+    if (this.get('type') === 'STORMCASE.UML.ad.Transition, UMLAD') {
+      return new Transition(properties);
+    } else {
+      return new Connection(properties);
+    }
   }
 });
 
 /**
-  Defines the JointJS link, which represents a Transition in the UML diagram.
-
+  Defines the JointJS link, which represents a Connection in the UML diagram.
   @for FdUmlTransition
   @class FdUmlTransition
   @extends Connection
