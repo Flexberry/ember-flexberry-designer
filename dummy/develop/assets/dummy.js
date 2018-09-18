@@ -1250,7 +1250,7 @@ define('dummy/controllers/collaboration-diagram-primitives-demo', ['exports', 'e
 define('dummy/controllers/colsconfig-dialog', ['exports', 'ember-flexberry/controllers/colsconfig-dialog'], function (exports, _emberFlexberryControllersColsconfigDialog) {
   exports['default'] = _emberFlexberryControllersColsconfigDialog['default'];
 });
-define('dummy/controllers/deployment-diagram-primitives-demo', ['exports', 'ember', 'npm:jointjs', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector'], function (exports, _ember, _npmJointjs, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNoteConnector) {
+define('dummy/controllers/deployment-diagram-primitives-demo', ['exports', 'ember', 'npm:jointjs', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-dependency', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-connection', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-deployment-active-object', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-instance', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-component', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-node', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector'], function (exports, _ember, _npmJointjs, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlDependency, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlConnection, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlDeploymentActiveObject, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlInstance, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlComponent, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNode, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNoteConnector) {
   exports['default'] = _ember['default'].Controller.extend({
     actions: {
       printDiagram: function printDiagram() {
@@ -1288,7 +1288,7 @@ define('dummy/controllers/deployment-diagram-primitives-demo', ['exports', 'embe
           attrs: { path: { title: 'Коннектор комментария (Note Connector)' } }
         });
 
-        var linkDependency = new _npmJointjs['default'].shapes.flexberry.uml.Dependency({
+        var linkDependency = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlDependency.Dependency({
           source: { x: 100, y: 150 },
           target: { x: 300, y: 150 },
           labels: [{
@@ -1297,7 +1297,7 @@ define('dummy/controllers/deployment-diagram-primitives-demo', ['exports', 'embe
           attrs: { path: { title: 'Переход (Dependency)' } }
         });
 
-        var linkConnection = new _npmJointjs['default'].shapes.flexberry.uml.deploymentDiagram_Connection({
+        var linkConnection = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlConnection.Connection({
           source: { x: 100, y: 200 },
           target: { x: 300, y: 200 },
           labels: [{
@@ -1308,21 +1308,24 @@ define('dummy/controllers/deployment-diagram-primitives-demo', ['exports', 'embe
 
         _this.graph.addCell([linkNoteConnector, linkDependency, linkConnection]);
 
-        var component = new _npmJointjs['default'].shapes.flexberry.uml.deploymentDiagram_Component({
+        var component = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlComponent.Component({
           position: { x: 450, y: 100 },
+          size: { width: 80, height: 40 },
           name: ['StateName'],
           attrs: { '.rotatable': { title: 'Компонент (Component)' } }
         });
 
-        var node = new _npmJointjs['default'].shapes.flexberry.uml.deploymentDiagram_Node({
+        var node = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNode.UmlNode({
           position: { x: 450, y: 150 },
+          size: { width: 80, height: 40 },
           name: ['NodeName', 'text', 'text'],
           attrs: { '.rotatable': { title: 'Узел (Node)' } }
         });
         node.addTo(_this.graph);
 
-        var obj = new _npmJointjs['default'].shapes.flexberry.uml.deploymentDiagram_Object({
+        var obj = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlInstance.Instance({
           position: { x: 450, y: 220 },
+          size: { width: 100, height: 40 },
           name: ['ObjectName', 'text', 'text'],
           attrs: { '.rotatable': { title: 'Объект (Object)' } }
         });
@@ -1336,8 +1339,9 @@ define('dummy/controllers/deployment-diagram-primitives-demo', ['exports', 'embe
           graph: _this.graph
         });
 
-        var activeObj = new _npmJointjs['default'].shapes.flexberry.uml.deploymentDiagram_ActiveObject({
+        var activeObj = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlDeploymentActiveObject.DeploymentActiveObject({
           position: { x: 450, y: 320 },
+          size: { width: 100, height: 40 },
           name: ['ActiveObjectName', 'text'],
           attrs: { '.rotatable': { title: 'Объект (Object)' } }
         });
@@ -9849,6 +9853,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ob
     assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-complex-transition.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-component.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives');
+  test('modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-component.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-component.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-component.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-component.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-component.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-composition-link.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives');
   test('modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-composition-link.js should pass jscs', function () {
@@ -9875,6 +9892,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ob
     assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-composition.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-connection.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives');
+  test('modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-connection.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-connection.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-connection.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-connection.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-connection.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-decision.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives');
   test('modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-decision.js should pass jscs', function () {
@@ -9899,6 +9929,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ob
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-dependency.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-deployment-active-object.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives');
+  test('modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-deployment-active-object.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-deployment-active-object.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-deployment-active-object.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-deployment-active-object.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-deployment-active-object.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-design-pattern-connector.jscs-test', ['exports'], function (exports) {
@@ -10081,6 +10124,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ob
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-nested-association.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-node.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives');
+  test('modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-node.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-node.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-node.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-node.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-node.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector.jscs-test', ['exports'], function (exports) {
@@ -54714,7 +54770,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+9ff4ddf5"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+fac645e3"});
 }
 
 /* jshint ignore:end */
