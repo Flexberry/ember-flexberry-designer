@@ -444,12 +444,8 @@ FdFormUnsavedData, {
       @method actions.close
     */
     close() {
-      this.transitionToRoute('fd-appstruct-form', {
-        queryParams: {
-          form: this.get('form'),
-          class: this.get('class')
-        }
-      });
+      // TODO: early used history.back(). But history.back() looping transition. Understand why
+      this.transitionToRoute('fd-appstruct-form');
     },
 
     /**

@@ -1,10 +1,10 @@
 import Ember from 'ember';
 
 /**
-  Add loading for transitions from edit form.
+  Add to form checking unsaved data when transition.
 
   @example
-  To enable the loading for transitions, you need to connect this mixin to the edit form:
+  To enable the check unsaved data for transition, you need to connect this mixin to form:
 
   ```javascript
   import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
