@@ -17,6 +17,7 @@ import { QualifiedComposition } from '../../objects/uml-primitives/fd-uml-qualif
 import { QualifiedAggregation } from '../../objects/uml-primitives/fd-uml-qualified-aggregation';
 import { MoreClasses } from '../../objects/uml-primitives/fd-uml-more-classes';
 import { Package } from '../../objects/uml-primitives/fd-uml-package';
+import { Dependency } from '../../objects/uml-primitives/fd-uml-dependency';
 import { findFreeNodeTreeNameIndex } from '../../utils/fd-metods-for-tree';
 /**
   Actions for creating joint js elements on cad diagrams.
@@ -472,6 +473,29 @@ export default Ember.Mixin.create({
 
         return newMoreClassesObject;
       }).bind(this), e);
+    },
+
+    /**
+      Handler for click on addDependency button.
+
+      @method actions.addDependency
+      @param {jQuery.Event} e event.
+     */
+    addDependency(e) {
+      this.createLinkData((function(linkProperties) {
+        let newDependencyObject = new Dependency({
+          source: {
+            id: linkProperties.source
+          },
+          target: {
+            id: linkProperties.target
+          },
+          vertices: linkProperties.points
+        });
+
+        return newDependencyObject;
+      }).bind(this), e, Ember.A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass', 'flexberry.uml.Instance',
+       'flexberry.uml.ActiveObject', 'flexberry.uml.PropertyObject', 'flexberry.uml.MultiObject', 'flexberry.uml.Package']));
     },
 
     /**

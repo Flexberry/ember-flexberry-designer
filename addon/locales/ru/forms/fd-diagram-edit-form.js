@@ -30,7 +30,14 @@ export default {
       'add-packege': 'Пакет',
       'add-note': 'Комментарий',
       'add-note-connector': 'Коннектор комментарий',
-      'add-object-association': 'Ассоциация между объектами'
+      'add-object-association': 'Ассоциация между объектами',
+      'add-component': 'Компонент',
+      'add-component-instance': 'Экземпляр компонента',
+      'add-interface': 'Интерфейс',
+      'add-node': 'Узел',
+      'add-node-instance': 'Экземпляр узла',
+      'add-object': 'Объект',
+      'add-connection': 'Связь'
     }
   }
 };

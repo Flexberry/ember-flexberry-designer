@@ -30,7 +30,14 @@ export default {
       'add-packege': 'Packege',
       'add-note': 'Note',
       'add-note-connector': 'Note connector',
-      'add-object-association': 'Object association'
+      'add-object-association': 'Object association',
+      'add-component': 'Component',
+      'add-component-instance': 'Component instance',
+      'add-interface': 'Interface',
+      'add-node': 'Node',
+      'add-node-instance': 'Node instance',
+      'add-object': 'Object',
+      'add-connection': 'Connection'
     }
   }
 };
