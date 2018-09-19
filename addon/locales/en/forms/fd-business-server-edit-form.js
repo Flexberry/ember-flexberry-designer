@@ -8,5 +8,7 @@ export default {
   'pBMembers-caption': 'pBMembers',
   'generateComPlusServer-caption': 'generateComPlusServer',
   'generateHttpRemoteServer-caption': 'generateHttpRemoteServer',
-  'publishToEBSD-caption': 'publishToEBSD'
+  'publishToEBSD-caption': 'publishToEBSD',
+  'remove-unsaved': 'Removed unsaved data',
+  'remove-approve': 'Are you sure?'
 };

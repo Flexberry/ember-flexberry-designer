@@ -38,6 +38,7 @@ export default {
     'close-panel-btn-caption':'Нажмите, чтобы скрыть все атрибуты',
     'show-panel-btn-caption':'Нажмите, чтобы показать все атрибуты',
   },
+
   'form-config-panel': {
     caption: 'Редактор представления',
     'view-properties-header': 'Свойства представления',

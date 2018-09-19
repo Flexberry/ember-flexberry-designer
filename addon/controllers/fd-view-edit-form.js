@@ -6,9 +6,12 @@ import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode } from '../utils/fd-attributes-for-tree';
 import { translationMacro as t } from 'ember-i18n';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
+import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 import { createPropertyName, restorationNodeTree, afterCloseNodeTree } from '../utils/fd-metods-for-tree';
 
-export default EditFormController.extend(FdWorkPanelToggler, {
+export default EditFormController.extend(
+FdWorkPanelToggler,
+FdFormUnsavedData, {
   parentRoute: 'fd-view-list-form',
 
   /**
@@ -342,7 +345,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       Handles form 'saveView' button click.
 
       @method actions.saveView
-      @param {Boolean} close If `true`, the action `close` will be sent.
+      @param {Boolean} close If `true`, the `close` action will be run after saving.
     */
     saveView(close) {
       let view = this.get('model.view');
@@ -352,6 +355,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       view.save().then(() => {
         let routeName = this.get('routeName');
         if (close) {
+          this.saveDataToOriginal();
           this.send('close');
         } else if (routeName.indexOf('.new') > 0) {
           this.transitionToRoute(routeName.slice(0, -4), view.get('id'));
@@ -359,7 +363,35 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       }).finally(() => {
         this.get('appState').reset();
       });
-    }
+    },
+
+    /**
+      Save changes and close form
+
+      @method actions.closeWithSaving
+    */
+    closeWithSaving() {
+      this.send('saveView', true);
+    },
+  },
+
+  /**
+    Cancel form data changes
+
+    @method clearDirtyAttributes
+  */
+  clearDirtyAttributes: function () {
+    this.get('model.view').rollbackAttributes();
+  },
+
+  /**
+    Check if fields changed, but unsaved
+
+    @method findUnsavedFormData
+  */
+  findUnsavedFormData: function () {
+    let isDirtyAttributes = this.get('model.view.hasDirtyAttributes');
+    return isDirtyAttributes;
   },
 
   /**

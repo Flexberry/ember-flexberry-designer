@@ -1,9 +1,9 @@
 import Ember from 'ember';
 import FdAttributesTree from '../objects/fd-attributes-tree';
-import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
+import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode, getDetailView } from '../utils/fd-attributes-for-tree';
 
-export default Ember.Route.extend(FdLoadingForTransitionMixin, {
+export default Ember.Route.extend(FdFormCheckTransitionMixin, {
 
   /**
     Service for managing the state of the application.
@@ -86,7 +86,7 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
     controller.set('searchTerm', '');
   },
 
-  actions:{
+  actions: {
     didTransition() {
       Ember.$('#example .flexberry-content').css('padding-bottom', 0);
       Ember.$('.flexberry-content > .ui.main.container').css('margin-bottom', 0);

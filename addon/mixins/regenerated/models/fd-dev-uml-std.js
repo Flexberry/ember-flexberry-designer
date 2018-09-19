@@ -114,4 +114,3 @@ export let defineBaseModel = function (modelClass) {
     _parentModelName: 'fd-std'
   });
 };
-
