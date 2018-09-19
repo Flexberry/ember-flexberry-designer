@@ -6008,17 +6008,30 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/translations.js should pass jshint.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/fd-creating-diagram-elements-controller.jscs-test', ['exports'], function (exports) {
-  module('JSCS - modules/ember-flexberry-designer/mixins');
-  test('modules/ember-flexberry-designer/mixins/fd-creating-diagram-elements-controller.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/mixins/fd-creating-diagram-elements-controller.js should pass jscs.');
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/actions-for-primitives/fd-actions-for-cad-primitives.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/actions-for-primitives');
+  test('modules/ember-flexberry-designer/mixins/actions-for-primitives/fd-actions-for-cad-primitives.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/actions-for-primitives/fd-actions-for-cad-primitives.js should pass jscs.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/fd-creating-diagram-elements-controller.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/fd-creating-diagram-elements-controller.js');
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/actions-for-primitives/fd-actions-for-cad-primitives.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/actions-for-primitives/fd-actions-for-cad-primitives.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/mixins/fd-creating-diagram-elements-controller.js should pass jshint.');
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/actions-for-primitives/fd-actions-for-cad-primitives.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/actions-for-primitives/fd-actions-for-common-primitives.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/actions-for-primitives');
+  test('modules/ember-flexberry-designer/mixins/actions-for-primitives/fd-actions-for-common-primitives.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/actions-for-primitives/fd-actions-for-common-primitives.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/actions-for-primitives/fd-actions-for-common-primitives.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/actions-for-primitives/fd-actions-for-common-primitives.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/actions-for-primitives/fd-actions-for-common-primitives.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/fd-draggable-control.jscs-test', ['exports'], function (exports) {
@@ -37763,13 +37776,13 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var element5 = dom.childAt(fragment, [1]);
-          var element6 = dom.childAt(fragment, [3]);
+          var element50 = dom.childAt(fragment, [1]);
+          var element51 = dom.childAt(fragment, [3]);
           var morphs = new Array(4);
-          morphs[0] = dom.createElementMorph(element5);
-          morphs[1] = dom.createMorphAt(element5, 1, 1);
-          morphs[2] = dom.createElementMorph(element6);
-          morphs[3] = dom.createMorphAt(element6, 1, 1);
+          morphs[0] = dom.createElementMorph(element50);
+          morphs[1] = dom.createMorphAt(element50, 1, 1);
+          morphs[2] = dom.createElementMorph(element51);
+          morphs[3] = dom.createMorphAt(element51, 1, 1);
           return morphs;
         },
         statements: [["element", "action", ["save"], [], ["loc", [null, [29, 60], [29, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [30, 10], [30, 50]]]], ["element", "action", ["saveAndClose"], [], ["loc", [null, [32, 66], [32, 91]]]], ["inline", "t", ["forms.edit-form.saveAndClose-button-text"], [], ["loc", [null, [33, 10], [33, 58]]]]],
@@ -37787,11 +37800,11 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 64,
+                  "line": 70,
                   "column": 6
                 },
                 "end": {
-                  "line": 93,
+                  "line": 99,
                   "column": 6
                 }
               },
@@ -37855,18 +37868,18 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
               return el0;
             },
             buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-              var element2 = dom.childAt(fragment, [3]);
-              var element3 = dom.childAt(fragment, [7]);
+              var element47 = dom.childAt(fragment, [3]);
+              var element48 = dom.childAt(fragment, [7]);
               var morphs = new Array(6);
               morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
-              morphs[1] = dom.createMorphAt(element2, 1, 1);
-              morphs[2] = dom.createMorphAt(element2, 3, 3);
+              morphs[1] = dom.createMorphAt(element47, 1, 1);
+              morphs[2] = dom.createMorphAt(element47, 3, 3);
               morphs[3] = dom.createMorphAt(dom.childAt(fragment, [5]), 0, 0);
-              morphs[4] = dom.createMorphAt(element3, 1, 1);
-              morphs[5] = dom.createMorphAt(element3, 3, 3);
+              morphs[4] = dom.createMorphAt(element48, 1, 1);
+              morphs[5] = dom.createMorphAt(element48, 3, 3);
               return morphs;
             },
-            statements: [["inline", "t", ["forms.fd-diagram-edit-form.form-config-panel.diagram-properties-header"], [], ["loc", [null, [66, 10], [66, 88]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [71, 24], [71, 68]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [72, 21], [72, 29]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [74, 18], [74, 28]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [75, 22], [75, 39]]]], "error", ""], [], ["loc", [null, [75, 18], [75, 51]]]], "label", ["subexpr", "t", ["forms.fd-diagram-edit-form.name-caption"], [], ["loc", [null, [76, 18], [76, 63]]]]], ["loc", [null, [69, 10], [77, 12]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [78, 46], [78, 63]]]]], [], []], "pointing", "pointing"], ["loc", [null, [78, 10], [78, 85]]]], ["inline", "t", ["forms.fd-diagram-edit-form.description-caption"], [], ["loc", [null, [81, 15], [81, 69]]]], ["inline", "flexberry-textarea", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [85, 24], [85, 68]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [86, 21], [86, 29]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [88, 18], [88, 35]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [89, 22], [89, 46]]]], "error", ""], [], ["loc", [null, [89, 18], [89, 58]]]]], ["loc", [null, [83, 10], [90, 12]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [91, 46], [91, 70]]]]], [], []], "pointing", "pointing"], ["loc", [null, [91, 10], [91, 92]]]]],
+            statements: [["inline", "t", ["forms.fd-diagram-edit-form.form-config-panel.diagram-properties-header"], [], ["loc", [null, [72, 10], [72, 88]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [77, 24], [77, 68]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [78, 21], [78, 29]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [80, 18], [80, 28]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [81, 22], [81, 39]]]], "error", ""], [], ["loc", [null, [81, 18], [81, 51]]]], "label", ["subexpr", "t", ["forms.fd-diagram-edit-form.name-caption"], [], ["loc", [null, [82, 18], [82, 63]]]]], ["loc", [null, [75, 10], [83, 12]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [84, 46], [84, 63]]]]], [], []], "pointing", "pointing"], ["loc", [null, [84, 10], [84, 85]]]], ["inline", "t", ["forms.fd-diagram-edit-form.description-caption"], [], ["loc", [null, [87, 15], [87, 69]]]], ["inline", "flexberry-textarea", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [91, 24], [91, 68]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [92, 21], [92, 29]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [94, 18], [94, 35]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [95, 22], [95, 46]]]], "error", ""], [], ["loc", [null, [95, 18], [95, 58]]]]], ["loc", [null, [89, 10], [96, 12]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [97, 46], [97, 70]]]]], [], []], "pointing", "pointing"], ["loc", [null, [97, 10], [97, 92]]]]],
             locals: [],
             templates: []
           };
@@ -37879,11 +37892,11 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 94,
+                  "line": 100,
                   "column": 6
                 },
                 "end": {
-                  "line": 98,
+                  "line": 104,
                   "column": 6
                 }
               },
@@ -37915,7 +37928,7 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
               morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
               return morphs;
             },
-            statements: [["inline", "t", ["forms.fd-diagram-edit-form.form-config-panel.primitive-properties-header"], [], ["loc", [null, [96, 10], [96, 90]]]]],
+            statements: [["inline", "t", ["forms.fd-diagram-edit-form.form-config-panel.primitive-properties-header"], [], ["loc", [null, [102, 10], [102, 90]]]]],
             locals: [],
             templates: []
           };
@@ -37928,11 +37941,11 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 99,
+                  "line": 105,
                   "column": 6
                 },
                 "end": {
-                  "line": 109,
+                  "line": 228,
                   "column": 6
                 }
               },
@@ -37958,11 +37971,15 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
               var el1 = dom.createTextNode("\n        ");
               dom.appendChild(el0, el1);
               var el1 = dom.createElement("button");
-              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "class", "ui button active");
+              dom.setAttribute(el1, "id", "pointer");
               dom.setAttribute(el1, "type", "button");
               var el2 = dom.createTextNode("\n          ");
               dom.appendChild(el1, el2);
-              var el2 = dom.createComment("");
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/common/Pointer.ico");
+              dom.setAttribute(el2, "alt", "");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
               dom.appendChild(el1, el2);
               var el2 = dom.createTextNode("\n        ");
               dom.appendChild(el1, el2);
@@ -37974,7 +37991,317 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
               dom.setAttribute(el1, "type", "button");
               var el2 = dom.createTextNode("\n          ");
               dom.appendChild(el1, el2);
-              var el2 = dom.createComment("");
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/cad/class.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "type", "button");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/cad/assoc.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "type", "button");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/cad/aggreg.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "type", "button");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/cad/composition.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "type", "button");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/cad/inherit.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "type", "button");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/cad/realization.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "type", "button");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/cad/nestedassoc.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "type", "button");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/cad/templateclass.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "type", "button");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/cad/instance.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "type", "button");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/cad/activeobject.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "type", "button");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/cad/multiobject.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "type", "button");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/cad/propobject.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "type", "button");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/cad/nlink.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "type", "button");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/cad/narylink.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "type", "button");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/cad/qlink.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "type", "button");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/cad/qcomposition.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "type", "button");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/cad/qaggregation.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "type", "button");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/cad/moreclasses.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "type", "button");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/common/dependency.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "type", "button");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/common/package.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "type", "button");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/common/comment.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "type", "button");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/common/noteconn.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n        ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n        ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1, "class", "ui button");
+              dom.setAttribute(el1, "type", "button");
+              var el2 = dom.createTextNode("\n          ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("img");
+              dom.setAttribute(el2, "src", "assets/images/diagrams/common/complextransitionh.ico");
+              dom.setAttribute(el2, "style", "vertical-align: middle");
               dom.appendChild(el1, el2);
               var el2 = dom.createTextNode("\n        ");
               dom.appendChild(el1, el2);
@@ -37986,15 +38313,126 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
             buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
               var element0 = dom.childAt(fragment, [3]);
               var element1 = dom.childAt(fragment, [5]);
-              var morphs = new Array(5);
+              var element2 = dom.childAt(element1, [1]);
+              var element3 = dom.childAt(fragment, [7]);
+              var element4 = dom.childAt(element3, [1]);
+              var element5 = dom.childAt(fragment, [9]);
+              var element6 = dom.childAt(element5, [1]);
+              var element7 = dom.childAt(fragment, [11]);
+              var element8 = dom.childAt(element7, [1]);
+              var element9 = dom.childAt(fragment, [13]);
+              var element10 = dom.childAt(element9, [1]);
+              var element11 = dom.childAt(fragment, [15]);
+              var element12 = dom.childAt(element11, [1]);
+              var element13 = dom.childAt(fragment, [17]);
+              var element14 = dom.childAt(element13, [1]);
+              var element15 = dom.childAt(fragment, [19]);
+              var element16 = dom.childAt(element15, [1]);
+              var element17 = dom.childAt(fragment, [21]);
+              var element18 = dom.childAt(element17, [1]);
+              var element19 = dom.childAt(fragment, [23]);
+              var element20 = dom.childAt(element19, [1]);
+              var element21 = dom.childAt(fragment, [25]);
+              var element22 = dom.childAt(element21, [1]);
+              var element23 = dom.childAt(fragment, [27]);
+              var element24 = dom.childAt(element23, [1]);
+              var element25 = dom.childAt(fragment, [29]);
+              var element26 = dom.childAt(element25, [1]);
+              var element27 = dom.childAt(fragment, [31]);
+              var element28 = dom.childAt(element27, [1]);
+              var element29 = dom.childAt(fragment, [33]);
+              var element30 = dom.childAt(element29, [1]);
+              var element31 = dom.childAt(fragment, [35]);
+              var element32 = dom.childAt(element31, [1]);
+              var element33 = dom.childAt(fragment, [37]);
+              var element34 = dom.childAt(element33, [1]);
+              var element35 = dom.childAt(fragment, [39]);
+              var element36 = dom.childAt(element35, [1]);
+              var element37 = dom.childAt(fragment, [41]);
+              var element38 = dom.childAt(element37, [1]);
+              var element39 = dom.childAt(fragment, [43]);
+              var element40 = dom.childAt(element39, [1]);
+              var element41 = dom.childAt(fragment, [45]);
+              var element42 = dom.childAt(element41, [1]);
+              var element43 = dom.childAt(fragment, [47]);
+              var element44 = dom.childAt(element43, [1]);
+              var element45 = dom.childAt(fragment, [49]);
+              var element46 = dom.childAt(element45, [1]);
+              var morphs = new Array(71);
               morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
-              morphs[1] = dom.createElementMorph(element0);
-              morphs[2] = dom.createMorphAt(element0, 1, 1);
-              morphs[3] = dom.createElementMorph(element1);
-              morphs[4] = dom.createMorphAt(element1, 1, 1);
+              morphs[1] = dom.createAttrMorph(element0, 'onclick');
+              morphs[2] = dom.createAttrMorph(element1, 'title');
+              morphs[3] = dom.createAttrMorph(element1, 'onclick');
+              morphs[4] = dom.createAttrMorph(element2, 'alt');
+              morphs[5] = dom.createAttrMorph(element3, 'title');
+              morphs[6] = dom.createAttrMorph(element3, 'onclick');
+              morphs[7] = dom.createAttrMorph(element4, 'alt');
+              morphs[8] = dom.createAttrMorph(element5, 'title');
+              morphs[9] = dom.createAttrMorph(element5, 'onclick');
+              morphs[10] = dom.createAttrMorph(element6, 'alt');
+              morphs[11] = dom.createAttrMorph(element7, 'title');
+              morphs[12] = dom.createAttrMorph(element7, 'onclick');
+              morphs[13] = dom.createAttrMorph(element8, 'alt');
+              morphs[14] = dom.createAttrMorph(element9, 'title');
+              morphs[15] = dom.createAttrMorph(element9, 'onclick');
+              morphs[16] = dom.createAttrMorph(element10, 'alt');
+              morphs[17] = dom.createAttrMorph(element11, 'title');
+              morphs[18] = dom.createAttrMorph(element11, 'onclick');
+              morphs[19] = dom.createAttrMorph(element12, 'alt');
+              morphs[20] = dom.createAttrMorph(element13, 'title');
+              morphs[21] = dom.createAttrMorph(element13, 'onclick');
+              morphs[22] = dom.createAttrMorph(element14, 'alt');
+              morphs[23] = dom.createAttrMorph(element15, 'title');
+              morphs[24] = dom.createAttrMorph(element15, 'onclick');
+              morphs[25] = dom.createAttrMorph(element16, 'alt');
+              morphs[26] = dom.createAttrMorph(element17, 'title');
+              morphs[27] = dom.createAttrMorph(element17, 'onclick');
+              morphs[28] = dom.createAttrMorph(element18, 'alt');
+              morphs[29] = dom.createAttrMorph(element19, 'title');
+              morphs[30] = dom.createAttrMorph(element19, 'onclick');
+              morphs[31] = dom.createAttrMorph(element20, 'alt');
+              morphs[32] = dom.createAttrMorph(element21, 'title');
+              morphs[33] = dom.createAttrMorph(element21, 'onclick');
+              morphs[34] = dom.createAttrMorph(element22, 'alt');
+              morphs[35] = dom.createAttrMorph(element23, 'title');
+              morphs[36] = dom.createAttrMorph(element23, 'onclick');
+              morphs[37] = dom.createAttrMorph(element24, 'alt');
+              morphs[38] = dom.createAttrMorph(element25, 'title');
+              morphs[39] = dom.createAttrMorph(element25, 'onclick');
+              morphs[40] = dom.createAttrMorph(element26, 'alt');
+              morphs[41] = dom.createAttrMorph(element27, 'title');
+              morphs[42] = dom.createAttrMorph(element27, 'onclick');
+              morphs[43] = dom.createAttrMorph(element28, 'alt');
+              morphs[44] = dom.createAttrMorph(element29, 'title');
+              morphs[45] = dom.createAttrMorph(element29, 'onclick');
+              morphs[46] = dom.createAttrMorph(element30, 'alt');
+              morphs[47] = dom.createAttrMorph(element31, 'title');
+              morphs[48] = dom.createAttrMorph(element31, 'onclick');
+              morphs[49] = dom.createAttrMorph(element32, 'alt');
+              morphs[50] = dom.createAttrMorph(element33, 'title');
+              morphs[51] = dom.createAttrMorph(element33, 'onclick');
+              morphs[52] = dom.createAttrMorph(element34, 'alt');
+              morphs[53] = dom.createAttrMorph(element35, 'title');
+              morphs[54] = dom.createAttrMorph(element35, 'onclick');
+              morphs[55] = dom.createAttrMorph(element36, 'alt');
+              morphs[56] = dom.createAttrMorph(element37, 'title');
+              morphs[57] = dom.createAttrMorph(element37, 'onclick');
+              morphs[58] = dom.createAttrMorph(element38, 'alt');
+              morphs[59] = dom.createAttrMorph(element39, 'title');
+              morphs[60] = dom.createAttrMorph(element39, 'onclick');
+              morphs[61] = dom.createAttrMorph(element40, 'alt');
+              morphs[62] = dom.createAttrMorph(element41, 'title');
+              morphs[63] = dom.createAttrMorph(element41, 'onclick');
+              morphs[64] = dom.createAttrMorph(element42, 'alt');
+              morphs[65] = dom.createAttrMorph(element43, 'title');
+              morphs[66] = dom.createAttrMorph(element43, 'onclick');
+              morphs[67] = dom.createAttrMorph(element44, 'alt');
+              morphs[68] = dom.createAttrMorph(element45, 'title');
+              morphs[69] = dom.createAttrMorph(element45, 'onclick');
+              morphs[70] = dom.createAttrMorph(element46, 'alt');
               return morphs;
             },
-            statements: [["inline", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive-header"], [], ["loc", [null, [101, 10], [101, 83]]]], ["element", "action", ["addClass"], [], ["loc", [null, [103, 48], [103, 69]]]], ["inline", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-class"], [], ["loc", [null, [104, 10], [104, 86]]]], ["element", "action", ["addAssociation"], [], ["loc", [null, [106, 48], [106, 75]]]], ["inline", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-association"], [], ["loc", [null, [107, 10], [107, 92]]]]],
+            statements: [["inline", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive-header"], [], ["loc", [null, [107, 10], [107, 83]]]], ["attribute", "onclick", ["subexpr", "action", ["pointerClick"], [], ["loc", [null, [109, 76], [109, 102]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-class"], [], ["loc", [null, [113, 40], [113, 116]]]]], ["attribute", "onclick", ["subexpr", "action", ["addClass"], [], ["loc", [null, [114, 32], [114, 54]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-class"], [], ["loc", [null, [115, 62], [115, 138]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-association"], [], ["loc", [null, [118, 40], [118, 122]]]]], ["attribute", "onclick", ["subexpr", "action", ["addAssociation"], [], ["loc", [null, [119, 32], [119, 59]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-association"], [], ["loc", [null, [120, 62], [120, 144]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-aggregation"], [], ["loc", [null, [123, 40], [123, 122]]]]], ["attribute", "onclick", ["subexpr", "action", ["addAggregation"], [], ["loc", [null, [124, 32], [124, 59]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-aggregation"], [], ["loc", [null, [125, 63], [125, 145]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-composition"], [], ["loc", [null, [128, 40], [128, 122]]]]], ["attribute", "onclick", ["subexpr", "action", ["addComposition"], [], ["loc", [null, [129, 32], [129, 59]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-composition"], [], ["loc", [null, [130, 68], [130, 150]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-inheritance"], [], ["loc", [null, [133, 40], [133, 122]]]]], ["attribute", "onclick", ["subexpr", "action", ["addInheritance"], [], ["loc", [null, [134, 32], [134, 59]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-inheritance"], [], ["loc", [null, [135, 64], [135, 146]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-realization"], [], ["loc", [null, [138, 40], [138, 122]]]]], ["attribute", "onclick", ["subexpr", "action", ["addRealization"], [], ["loc", [null, [139, 32], [139, 59]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-realization"], [], ["loc", [null, [140, 68], [140, 150]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-nested-class-association"], [], ["loc", [null, [143, 40], [143, 135]]]]], ["attribute", "onclick", ["subexpr", "action", ["addNestedClassAssociation"], [], ["loc", [null, [144, 32], [144, 70]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-nested-class-association"], [], ["loc", [null, [145, 68], [145, 163]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-template-class"], [], ["loc", [null, [148, 40], [148, 125]]]]], ["attribute", "onclick", ["subexpr", "action", ["addTemplateClass"], [], ["loc", [null, [149, 32], [149, 61]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-template-class"], [], ["loc", [null, [150, 70], [150, 155]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-instance"], [], ["loc", [null, [153, 40], [153, 119]]]]], ["attribute", "onclick", ["subexpr", "action", ["addInstance"], [], ["loc", [null, [154, 32], [154, 56]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-instance"], [], ["loc", [null, [155, 65], [155, 144]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-active-object"], [], ["loc", [null, [158, 40], [158, 124]]]]], ["attribute", "onclick", ["subexpr", "action", ["addActiveObject"], [], ["loc", [null, [159, 32], [159, 60]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-active-object"], [], ["loc", [null, [160, 69], [160, 153]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-multi-object"], [], ["loc", [null, [163, 40], [163, 123]]]]], ["attribute", "onclick", ["subexpr", "action", ["addMultiObject"], [], ["loc", [null, [164, 32], [164, 59]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-multi-object"], [], ["loc", [null, [165, 68], [165, 151]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-property-object"], [], ["loc", [null, [168, 40], [168, 126]]]]], ["attribute", "onclick", ["subexpr", "action", ["addPropertyObject"], [], ["loc", [null, [169, 32], [169, 62]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-property-object"], [], ["loc", [null, [170, 67], [170, 153]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-nary-association"], [], ["loc", [null, [173, 40], [173, 127]]]]], ["attribute", "onclick", ["subexpr", "action", ["addNaryAssociation"], [], ["loc", [null, [174, 32], [174, 63]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-nary-association"], [], ["loc", [null, [175, 62], [175, 149]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-nary-association-connector"], [], ["loc", [null, [178, 40], [178, 137]]]]], ["attribute", "onclick", ["subexpr", "action", ["addNaryAssociationConnector"], [], ["loc", [null, [179, 32], [179, 72]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-nary-association-connector"], [], ["loc", [null, [180, 65], [180, 162]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-qualified-link"], [], ["loc", [null, [183, 40], [183, 125]]]]], ["attribute", "onclick", ["subexpr", "action", ["addQualifiedLink"], [], ["loc", [null, [184, 32], [184, 61]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-qualified-link"], [], ["loc", [null, [185, 62], [185, 147]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-qualified-composition-link"], [], ["loc", [null, [188, 40], [188, 137]]]]], ["attribute", "onclick", ["subexpr", "action", ["addQualifiedCompositionLink"], [], ["loc", [null, [189, 32], [189, 72]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-qualified-composition-link"], [], ["loc", [null, [190, 69], [190, 166]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-qualified-aggregation-link"], [], ["loc", [null, [193, 40], [193, 137]]]]], ["attribute", "onclick", ["subexpr", "action", ["addQualifiedAggregationLink"], [], ["loc", [null, [194, 32], [194, 72]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-qualified-aggregation-link"], [], ["loc", [null, [195, 69], [195, 166]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-more-classes"], [], ["loc", [null, [198, 40], [198, 123]]]]], ["attribute", "onclick", ["subexpr", "action", ["addMoreClasses"], [], ["loc", [null, [199, 32], [199, 59]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-more-classes"], [], ["loc", [null, [200, 68], [200, 151]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-dependency"], [], ["loc", [null, [203, 40], [203, 121]]]]], ["attribute", "onclick", ["subexpr", "action", ["addDependency"], [], ["loc", [null, [204, 32], [204, 58]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-dependency"], [], ["loc", [null, [205, 70], [205, 151]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-packege"], [], ["loc", [null, [208, 40], [208, 118]]]]], ["attribute", "onclick", ["subexpr", "action", ["addPackege"], [], ["loc", [null, [209, 32], [209, 55]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-packege"], [], ["loc", [null, [210, 67], [210, 145]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-note"], [], ["loc", [null, [213, 40], [213, 115]]]]], ["attribute", "onclick", ["subexpr", "action", ["addNote"], [], ["loc", [null, [214, 32], [214, 52]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-note"], [], ["loc", [null, [215, 67], [215, 142]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-note-connector"], [], ["loc", [null, [218, 40], [218, 125]]]]], ["attribute", "onclick", ["subexpr", "action", ["addNoteConnector"], [], ["loc", [null, [219, 32], [219, 61]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-note-connector"], [], ["loc", [null, [220, 68], [220, 153]]]]], ["attribute", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-object-association"], [], ["loc", [null, [223, 40], [223, 129]]]]], ["attribute", "onclick", ["subexpr", "action", ["addObjectAssociation"], [], ["loc", [null, [224, 32], [224, 65]]]]], ["attribute", "alt", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-object-association"], [], ["loc", [null, [225, 78], [225, 167]]]]]],
             locals: [],
             templates: []
           };
@@ -38006,11 +38444,11 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 49,
+                "line": 55,
                 "column": 2
               },
               "end": {
-                "line": 111,
+                "line": 230,
                 "column": 2
               }
             },
@@ -38060,15 +38498,15 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
             return el0;
           },
           buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-            var element4 = dom.childAt(fragment, [1]);
+            var element49 = dom.childAt(fragment, [1]);
             var morphs = new Array(4);
-            morphs[0] = dom.createMorphAt(dom.childAt(element4, [1, 1]), 1, 1);
-            morphs[1] = dom.createMorphAt(element4, 3, 3);
-            morphs[2] = dom.createMorphAt(element4, 4, 4);
-            morphs[3] = dom.createMorphAt(element4, 5, 5);
+            morphs[0] = dom.createMorphAt(dom.childAt(element49, [1, 1]), 1, 1);
+            morphs[1] = dom.createMorphAt(element49, 3, 3);
+            morphs[2] = dom.createMorphAt(element49, 4, 4);
+            morphs[3] = dom.createMorphAt(element49, 5, 5);
             return morphs;
           },
-          statements: [["inline", "t", ["forms.fd-diagram-edit-form.form-config-panel.caption"], [], ["loc", [null, [61, 10], [61, 70]]]], ["block", "tab.pane", [], ["dataTab", "first", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.diagram-properties-header"], [], ["loc", [null, [64, 40], [64, 116]]]], "theme", ""], 0, null, ["loc", [null, [64, 6], [93, 19]]]], ["block", "tab.pane", [], ["dataTab", "second", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.primitive-properties-header"], [], ["loc", [null, [94, 41], [94, 119]]]], "theme", ""], 1, null, ["loc", [null, [94, 6], [98, 19]]]], ["block", "tab.pane", [], ["dataTab", "active-tree-tab", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive-header"], [], ["loc", [null, [99, 50], [99, 121]]]], "theme", ""], 2, null, ["loc", [null, [99, 6], [109, 19]]]]],
+          statements: [["inline", "t", ["forms.fd-diagram-edit-form.form-config-panel.caption"], [], ["loc", [null, [67, 10], [67, 70]]]], ["block", "tab.pane", [], ["dataTab", "first", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.diagram-properties-header"], [], ["loc", [null, [70, 40], [70, 116]]]], "theme", ""], 0, null, ["loc", [null, [70, 6], [99, 19]]]], ["block", "tab.pane", [], ["dataTab", "second", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.primitive-properties-header"], [], ["loc", [null, [100, 41], [100, 119]]]], "theme", ""], 1, null, ["loc", [null, [100, 6], [104, 19]]]], ["block", "tab.pane", [], ["dataTab", "active-tree-tab", "title", ["subexpr", "t", ["forms.fd-diagram-edit-form.form-config-panel.add-primitive-header"], [], ["loc", [null, [105, 50], [105, 121]]]], "theme", ""], 2, null, ["loc", [null, [105, 6], [228, 19]]]]],
           locals: ["tab"],
           templates: [child0, child1, child2]
         };
@@ -38080,11 +38518,11 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 47,
+              "line": 53,
               "column": 0
             },
             "end": {
-              "line": 113,
+              "line": 232,
               "column": 0
             }
           },
@@ -38109,7 +38547,7 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
           morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           return morphs;
         },
-        statements: [["block", "fd-tabs", [], ["tabsMenuTheme", "vertical tabular", "class", "ui segments horizontal right-tabs", "tabClick", ["subexpr", "action", ["toggleConfigPanel"], [], ["loc", [null, [52, 15], [52, 43]]]], "activeTab", "none", "overflowedTabs", false, "inactiveTabs", true], 0, null, ["loc", [null, [49, 2], [111, 14]]]]],
+        statements: [["block", "fd-tabs", [], ["tabsMenuTheme", "vertical tabular", "class", "ui segments horizontal right-tabs", "tabClick", ["subexpr", "action", ["toggleConfigPanel"], [], ["loc", [null, [58, 15], [58, 43]]]], "activeTab", "none", "overflowedTabs", false, "inactiveTabs", true], 0, null, ["loc", [null, [55, 2], [230, 14]]]]],
         locals: [],
         templates: [child0]
       };
@@ -38128,7 +38566,7 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 114,
+            "line": 233,
             "column": 0
           }
         },
@@ -38229,24 +38667,24 @@ define("dummy/templates/fd-diagram-edit-form", ["exports"], function (exports) {
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var element7 = dom.childAt(fragment, [0]);
-        var element8 = dom.childAt(fragment, [3]);
-        var element9 = dom.childAt(element8, [5, 1]);
-        var element10 = dom.childAt(element9, [3]);
+        var element52 = dom.childAt(fragment, [0]);
+        var element53 = dom.childAt(fragment, [3]);
+        var element54 = dom.childAt(element53, [5, 1]);
+        var element55 = dom.childAt(element54, [3]);
         var morphs = new Array(9);
-        morphs[0] = dom.createMorphAt(element7, 1, 1);
-        morphs[1] = dom.createMorphAt(element7, 3, 3);
+        morphs[0] = dom.createMorphAt(element52, 1, 1);
+        morphs[1] = dom.createMorphAt(element52, 3, 3);
         morphs[2] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        morphs[3] = dom.createMorphAt(element8, 1, 1);
-        morphs[4] = dom.createMorphAt(element9, 1, 1);
-        morphs[5] = dom.createElementMorph(element10);
-        morphs[6] = dom.createMorphAt(element10, 1, 1);
-        morphs[7] = dom.createMorphAt(dom.childAt(element8, [7]), 1, 1);
+        morphs[3] = dom.createMorphAt(element53, 1, 1);
+        morphs[4] = dom.createMorphAt(element54, 1, 1);
+        morphs[5] = dom.createElementMorph(element55);
+        morphs[6] = dom.createMorphAt(element55, 1, 1);
+        morphs[7] = dom.createMorphAt(dom.childAt(element53, [7]), 1, 1);
         morphs[8] = dom.createMorphAt(fragment, 5, 5, contextualElement);
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["content", "model.name", ["loc", [null, [2, 2], [2, 16]]]], ["block", "if", [["get", "readonly", ["loc", [null, [3, 8], [3, 16]]]]], [], 0, null, ["loc", [null, [3, 2], [5, 9]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [8, 6], [8, 19]]]]], [], 1, null, ["loc", [null, [8, 0], [18, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [20, 26], [20, 31]]]]], [], []]], ["loc", [null, [20, 2], [20, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [28, 16], [28, 24]]]]], [], 2, null, ["loc", [null, [28, 6], [35, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [36, 59], [36, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [37, 8], [37, 49]]]], ["inline", "fd-uml-diagram", [], ["primitives", ["subexpr", "@mut", [["get", "model.primitives", ["loc", [null, [43, 32], [43, 48]]]]], [], []], "paper", ["subexpr", "@mut", [["get", "paper", ["loc", [null, [43, 55], [43, 60]]]]], [], []]], ["loc", [null, [43, 4], [43, 62]]]], ["block", "fd-config-panel", [], [], 3, null, ["loc", [null, [47, 0], [113, 20]]]]],
+      statements: [["content", "model.name", ["loc", [null, [2, 2], [2, 16]]]], ["block", "if", [["get", "readonly", ["loc", [null, [3, 8], [3, 16]]]]], [], 0, null, ["loc", [null, [3, 2], [5, 9]]]], ["block", "if", [["get", "errorMessages", ["loc", [null, [8, 6], [8, 19]]]]], [], 1, null, ["loc", [null, [8, 0], [18, 7]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [20, 26], [20, 31]]]]], [], []]], ["loc", [null, [20, 2], [20, 33]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [28, 16], [28, 24]]]]], [], 2, null, ["loc", [null, [28, 6], [35, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [36, 59], [36, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [37, 8], [37, 49]]]], ["inline", "fd-uml-diagram", [], ["primitives", ["subexpr", "@mut", [["get", "model.primitives", ["loc", [null, [45, 17], [45, 33]]]]], [], []], "blankPointerClick", ["subexpr", "action", ["blankPointerClick"], [], ["loc", [null, [46, 24], [46, 52]]]], "elementPointerClick", ["subexpr", "action", ["elementPointerClick"], [], ["loc", [null, [47, 26], [47, 56]]]], "blankContextMenu", ["subexpr", "action", ["blankContextMenu"], [], ["loc", [null, [48, 23], [48, 50]]]]], ["loc", [null, [43, 4], [49, 6]]]], ["block", "fd-config-panel", [], [], 3, null, ["loc", [null, [53, 0], [232, 20]]]]],
       locals: [],
       templates: [child0, child1, child2, child3]
     };
@@ -54861,7 +55299,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+c759e3c8"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+b31d940d"});
 }
 
 /* jshint ignore:end */
