@@ -122,12 +122,16 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
     return this.get('name');
   },
 
-  updateRectangles() {
-    let rects = [
-        { type: 'header', text: this.getClassName(), element: this },
-        { type: 'body', text: this.get('attributes'), element: this },
-        { type: 'footer', text: this.get('methods'), element: this }
+  getRectangles() {
+    return [
+      { type: 'header', text: this.getClassName(), element: this },
+      { type: 'body', text: this.get('attributes'), element: this },
+      { type: 'footer', text: this.get('methods'), element: this }
     ];
+  },
+
+  updateRectangles() {
+    let rects = this.getRectangles();
 
     let offsetY = 0;
     let newHeight = 0;
@@ -178,11 +182,6 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
   @constructor
 */
 export let Class = BaseClass.define('flexberry.uml.Class', {
-  attrs: {
-    '.flexberry-uml-header-text': { 'font-weight': 'bold' },
-    '.flexberry-uml-header-text tspan[x]': { 'font-weight': 'normal' },
-  },
-
   stereotype: '',
 }, {
   getClassName() {
@@ -205,9 +204,14 @@ export let ClassCollapsed = Class.define('flexberry.uml.ClassCollapsed', {}, {
     '<g class="scalable">',
     '<rect class="flexberry-uml-header-rect"/>',
     '</g>',
-    '<text class="flexberry-uml-header-text"/>',
     '</g>'
-  ].join('')
+  ].join(''),
+
+  getRectangles() {
+    return [
+      { type: 'header', text: this.getClassName(), element: this }
+    ];
+  },
 });
 
 joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
@@ -260,6 +264,17 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       this.model.set('stereotype', stereotype.slice(1, -1));
     }.bind(this));
 
+    let classNameInput = this.$box.find('.class-name-input');
+    let classStereotypeInput = this.$box.find('.class-stereotype-input');
+    let attributesInput = this.$box.find('.attributes-input');
+    let methodsInput = this.$box.find('.methods-input');
+    classNameInput.val(this.model.get('name'));
+    classStereotypeInput.val(this.normalizeStereotype(this.model.get('stereotype')));
+    attributesInput.prop('rows', this.model.get('attributes').length || 1);
+    attributesInput.val(this.model.get('attributes').join('\n'));
+    methodsInput.prop('rows', this.model.get('methods').length || 1);
+    methodsInput.val(this.model.get('methods').join('\n'));
+
     // Update the box position whenever the underlying model changes.
     this.model.on('change', this.updateBox, this);
 
@@ -270,15 +285,6 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
   render: function() {
     joint.dia.ElementView.prototype.render.apply(this, arguments);
     this.paper.$el.prepend(this.$box);
-    let classNameInput = this.$box.find('.class-name-input');
-    let classStereotypeInput = this.$box.find('.class-stereotype-input');
-    let attributesInput = this.$box.find('.attributes-input');
-    let methodsInput = this.$box.find('.methods-input');
-    classNameInput.val(this.model.get('name'));
-    classStereotypeInput.val(this.normalizeStereotype(this.model.get('stereotype')));
-    attributesInput.prop('rows', this.model.get('attributes').length);
-    attributesInput.val(this.model.get('attributes').join('\n'));
-    methodsInput.val(this.model.get('methods').join('\n'));
     this.updateBox();
     this.model.updateRectangles();
     return this;
@@ -301,6 +307,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
   },
 
   normalizeStereotype(stereotype) {
+    stereotype = stereotype.replace(new RegExp(`${String.fromCharCode(171)}|${String.fromCharCode(187)}`, 'g'), '');
     if (stereotype.length > 0) {
       if (stereotype[0] !== String.fromCharCode(171)) {
         stereotype = String.fromCharCode(171) + stereotype;
@@ -313,5 +320,15 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
 
     return stereotype;
   }
+});
+
+joint.shapes.flexberry.uml.ClassCollapsedView = joint.shapes.flexberry.uml.ClassView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<input type="text" class="class-name-input header-input" value="" />',
+    '<input type="text" class="class-stereotype-input header-input" value="" />',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
 });
 
