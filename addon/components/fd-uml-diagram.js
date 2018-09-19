@@ -24,14 +24,6 @@ export default Ember.Component.extend({
   primitives: undefined,
 
   /**
-    Created 'Paper' from joint js.
-
-    @property paper
-    @type object
-  */
-  paper: undefined,
-
-  /**
     All elements of the UML diagram.
 
     @property elements
