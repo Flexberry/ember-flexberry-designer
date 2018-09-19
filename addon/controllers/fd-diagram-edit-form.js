@@ -105,20 +105,20 @@ FdAcrionsForCommonPrimitivesMixin, {
          (Ember.isArray(interactionElements) && interactionElements.includes(type)) ||
          (Ember.isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
 
-           linkProperties.target = model.id;
-           linkProperties.startClassRepObj = model.repositoryObject;
+          linkProperties.target = model.id;
+          linkProperties.startClassRepObj = model.repositoryObject;
 
         } else if (Ember.isNone(linkProperties.source) && (Ember.isNone(interactionElements) ||
          (Ember.isArray(interactionElements) && interactionElements.includes(type)) ||
          (Ember.isArray(interactionElements.end) && interactionElements.end.includes(type)))) {
 
-           linkProperties.source = model.id;
-           linkProperties.endClassRepObj = model.repositoryObject;
-           let callback = this.get('callback');
-           let newLink = callback(linkProperties);
-           this.clearData();
+          linkProperties.source = model.id;
+          linkProperties.endClassRepObj = model.repositoryObject;
+          let callback = this.get('callback');
+          let newLink = callback(linkProperties);
+          this.clearData();
 
-           return newLink;
+          return newLink;
         }
       }
     },
