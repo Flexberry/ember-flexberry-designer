@@ -16,8 +16,7 @@ export default Ember.Mixin.create({
       @method actions.pointerClick
      */
     pointerClick() {
-      let paper = this.get('paper');
-      this._offAllEvents(paper);
+      this.clearData();
     },
 
     /**
