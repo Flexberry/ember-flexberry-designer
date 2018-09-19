@@ -3,8 +3,7 @@
 */
 
 import Ember from 'ember';
-
-import { BaseObject } from './fd-uml-baseobject';
+import { State } from './fd-uml-state';
 import FdUmlObject from './fd-uml-baseobject';
 
 /**
@@ -30,10 +29,8 @@ export default FdUmlObject.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'size', 'name', 'position', 'state');
-
     return new ActiveState(properties);
-
-  },
+  }
 });
 
 /**
@@ -41,15 +38,11 @@ export default FdUmlObject.extend({
 
   @for FdUmlActiveState
   @class ActiveState
-  @extends BaseObject
+  @extends State
   @namespace flexberry.uml
   @constructor
 */
-export let ActiveState = BaseObject.define('flexberry.uml.ActiveState', {
-  attrs: {
-    '.flexberry-uml-header-rect': { rx:10, ry:10 },
-    'text': { 'font-weight': 'bold' }
-  }
+export let ActiveState = State.define('flexberry.uml.ActiveState', {
 }, {
   getObjName: function() {
     let state = this.get('state').length > 0 ? '«' + this.get('state') + '»' : '';

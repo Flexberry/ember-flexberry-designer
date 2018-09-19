@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
+import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 
-export default EditFormController.extend({
+export default EditFormController.extend(FdFormUnsavedData, {
   parentRoute: 'fd-aggregation-list-form',
 
   /**
@@ -59,7 +60,6 @@ export default EditFormController.extend({
   readonlyClass: true,
 
   actions: {
-
     /**
       Set 'startClass'.
 

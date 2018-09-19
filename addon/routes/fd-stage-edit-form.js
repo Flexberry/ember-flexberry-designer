@@ -1,9 +1,8 @@
 import Ember from 'ember';
 const { getOwner } = Ember;
 import EditFormRoute from 'ember-flexberry/routes/edit-form';
-import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
 
-export default EditFormRoute.extend(FdLoadingForTransitionMixin, {
+export default EditFormRoute.extend({
   modelProjection: 'EditFormView',
   modelName: 'fd-dev-stage',
 

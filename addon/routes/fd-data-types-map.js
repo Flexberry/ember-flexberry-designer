@@ -3,7 +3,7 @@
 */
 
 import Ember from 'ember';
-import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
+import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 
 /**
   Route for the edit form of the type map.
@@ -11,7 +11,7 @@ import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
   @class FdDataTypesMapRoute
   @extends <a href="http://emberjs.com/api/classes/Ember.Route.html">Ember.Route</a>
 */
-export default Ember.Route.extend(FdLoadingForTransitionMixin, {
+export default Ember.Route.extend(FdFormCheckTransitionMixin, {
   /**
     Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
 
@@ -38,27 +38,13 @@ export default Ember.Route.extend(FdLoadingForTransitionMixin, {
         this.set('controller.showTypeMap', true);
 
         // Save the type map if it has just been generated with default values.
-        if (this.get('controller').serializeTypeMap()) {
+        if (this.get('controller').findUnsavedFormData()) {
           this.get('controller').send('save');
         } else {
           this.get('appState').reset();
         }
       });
-    },
-
-    /**
-      See [EmberJS API](https://emberjs.com/).
-
-      @method actions.willTransition
-    */
-    willTransition(transition) {
-      let controller = this.get('controller');
-      if (controller.serializeTypeMap()) {
-        this.send('showModalDialog', 'modal/save', { controller });
-        controller.set('abortedTransition', transition);
-        transition.abort();
-      }
-    },
+    }
   },
 
   /**

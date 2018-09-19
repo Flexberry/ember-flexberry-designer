@@ -1,11 +1,10 @@
 import Ember from 'ember';
 import ListFormRoute from 'ember-flexberry/routes/list-form';
 import { Query } from 'ember-flexberry-data';
-import FdLoadingForTransitionMixin from '../mixins/fd-loading-for-transition';
 
 const { SimplePredicate, FilterOperator } = Query;
 
-export default ListFormRoute.extend(FdLoadingForTransitionMixin, {
+export default ListFormRoute.extend({
   /**
     Name of model projection to be used as record's properties limitation.
 

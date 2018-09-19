@@ -3,10 +3,20 @@ import FdAppStructTree from '../objects/fd-appstruct-tree';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
 import { translationMacro as t } from 'ember-i18n';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
+import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 import { restorationNodeTree, findFreeNodeTreeID, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
 import { getNewFormCaption, getNewFormDescription } from '../utils/fd-create-form-properties';
 
-export default EditFormController.extend(FdWorkPanelToggler, {
+export default EditFormController.extend(
+FdWorkPanelToggler,
+FdFormUnsavedData, {
+  /**
+    @private
+    @property _originalData
+    @type String
+    @default ''
+  */
+  _originalData: '',
 
   /**
     @property store
@@ -184,7 +194,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
    */
   singleModeStage: false,
 
-  _modelObserver: Ember.on('init', Ember.observer('model', function() {
+  _modelObserver: Ember.on('init', Ember.observer('model', function () {
     // Reset selection.
     this.set('jstreeSelectedNodesLeft', Ember.A());
     this.set('jstreeSelectedNodesRight', Ember.A());
@@ -350,15 +360,22 @@ export default EditFormController.extend(FdWorkPanelToggler, {
   }),
 
   actions: {
-
     /**
-      Close current form, go back
-      .
+      Close current form, go back.
 
       @method actions.close
     */
     close() {
       history.back();
+    },
+
+    /**
+      Save changes and close form
+
+      @method actions.closeWithSaving
+    */
+    closeWithSaving() {
+      this.send('saveTree', true);
     },
 
     /**
@@ -696,8 +713,9 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       Handles save in right tree.
 
       @method actions.saveTree
+      @param {Boolean} close If `true`, the `close` action will be run after saving.
     */
-    saveTree() {
+    saveTree(close) {
       let dataTree = this.get('model.rightTreeNodes')[0];
       let dataForSave = dataTree.get('copyChildren');
 
@@ -711,7 +729,11 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       let _this = this;
       this.get('appState').loading();
       record.save().then(() => {
-        _this.get('appState').reset();
+        _this.get('objectlistviewEventsService').setLoadingState('');
+        this.saveDataToOriginal();
+        if (close) {
+          this.send('close');
+        }
       });
     },
 
@@ -749,6 +771,52 @@ export default EditFormController.extend(FdWorkPanelToggler, {
   },
 
   /**
+    This method run non ember data saved when model is loaded
+
+    @method saveOriginalData
+  */
+  originalDataInit: function () {
+    Ember.run.next(this, () => {
+      this.saveDataToOriginal();
+    });
+  },
+
+  /**
+    Save fields before changes
+
+    @method saveOriginalData
+  */
+  saveDataToOriginal: function () {
+    let originalDataString = this._getStringifyModel();
+    this.set('_originalData', originalDataString);
+  },
+
+  /**
+    Cancel form data changes for unsaved data check pass
+
+    @method clearDirtyAttributes
+  */
+  clearDirtyAttributes: function () {
+    this._applyDirtyAttributesAsOrigin();
+  },
+
+  /**
+    Check if fields changed, but unsaved
+
+    @method findUnsavedFormData
+  */
+  findUnsavedFormData: function () {
+    let checkResult = false;
+    let originalDataString = this.get('_originalData');
+    let currentDataString = this._getStringifyModel();
+    if (!Ember.isEqual(originalDataString, currentDataString)) {
+      checkResult = true;
+    }
+
+    return checkResult;
+  },
+
+  /**
     Method for update data in tree.
     @method _updateTreeData
     @private
@@ -758,5 +826,32 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     restorationNodeTree(dataTree, {}, Ember.A(['folder', 'desk']), true);
 
     this.get('jstreeActionReceiverRight').send('redraw');
+  },
+
+  /**
+    Save current dirty data as origin for next equal check origin and current data
+
+    @method _applyDirtyAttributesAsOrigin
+    @private
+  */
+  _applyDirtyAttributesAsOrigin() {
+    this.saveDataToOriginal();
+  },
+
+  /**
+    Get model data in string
+
+    @method _getStringifyModel
+  */
+  _getStringifyModel() {
+    let rightTreeNodes = this.get('model.rightTreeNodes')[0];
+    let rightTreeNodesString = JSON.stringify(rightTreeNodes);
+
+    let applications = this.get('model.applications')[0];
+    let applicationsString = JSON.stringify(applications);
+
+    let allDataString = rightTreeNodesString + applicationsString;
+
+    return allDataString;
   },
 });

@@ -6,7 +6,7 @@ import Ember from 'ember';
 
 import FdDataType from '../objects/fd-data-type';
 import { deserialize } from '../utils/fd-type-map-functions';
-import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
+import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 
 /**
   Controller for the edit form of the type map.
@@ -14,35 +14,7 @@ import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
   @class FdDataTypesMapController
   @extends <a href="http://emberjs.com/api/classes/Ember.Controller.html">Ember.Controller</a>
 */
-export default Ember.Controller.extend(FdWorkPanelToggler, {
-  /**
-    @property saveTitleLocaleKey
-    @type String
-    @default 'forms.fd-data-types-map.save-title'
-  */
-  saveTitleLocaleKey: 'forms.fd-data-types-map.save-title',
-
-  /**
-    @property saveMessageLocaleKey
-    @type String
-    @default 'forms.fd-data-types-map.save-message'
-  */
-  saveMessageLocaleKey: 'forms.fd-data-types-map.save-message',
-
-  /**
-    @property saveButtonLocaleKey
-    @type String
-    @default ''
-  */
-  saveButtonLocaleKey: 'forms.fd-data-types-map.save-button',
-
-  /**
-    @property rollbackButtonLocaleKey
-    @type String
-    @default ''
-  */
-  rollbackButtonLocaleKey: 'forms.fd-data-types-map.rollback-button',
-
+export default Ember.Controller.extend(FdFormUnsavedData, {
   /**
     Service for managing the state of the application.
      @property appState
@@ -166,20 +138,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   actions: {
     /**
-      Repeats an attempt to perform a previously aborted transition, or transition to the application structure form.
-
-      @method actions.close
-    */
-    close() {
-      if (this.get('abortedTransition')) {
-        this.get('abortedTransition').retry();
-        this.set('abortedTransition', undefined);
-      } else {
-        this.transitionToRoute('fd-appstruct-form');
-      }
-    },
-
-    /**
       Cancels the changes made to the type map, and send `close` action.
 
       @method rollback
@@ -195,10 +153,28 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     },
 
     /**
+      Save changes and close form
+
+      @method actions.closeWithSaving
+    */
+    closeWithSaving() {
+      this.send('save', true);
+    },
+
+    /**
+      Save changes and close form
+
+      @method actions.closeWithSaving
+    */
+    close() {
+      history.back();
+    },
+
+    /**
       Saves the changes made to the type map.
 
       @method actions.save
-      @param {Boolean} close Close or not form after saving.
+      @param {Boolean} close If `true`, the `close` action will be run after saving.
     */
     save(close) {
       this.get('appState').loading();
@@ -222,12 +198,12 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
   },
 
   /**
-    Serializes a combined type map, returns `true` if it has been changed.
+    Find unsaved data. Returns true, if data has been changed, but not saved
 
-    @method serializeTypeMap
+    @method findUnsavedFormData
     @return {Boolean} Changed or not a combined type map.
   */
-  serializeTypeMap() {
+  findUnsavedFormData() {
     let typeMapCS = [];
     let typeMapSQL = [];
     let typeMapPostgre = [];
