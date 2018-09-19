@@ -40,7 +40,13 @@
   </div>
 
   <div class="sixteen wide">
-    {{fd-uml-diagram primitives=model.primitives paper=paper}}
+    {{
+      fd-uml-diagram
+      primitives=model.primitives
+      blankPointerClick=(action 'blankPointerClick')
+      elementPointerClick=(action 'elementPointerClick')
+      blankContextMenu=(action 'blankContextMenu')
+    }}
   </div>
 
 </form>

@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import FdCreatingDiagramElementsMixin from './fd-creating-diagram-elements';
 import { Class } from '../../objects/uml-primitives/fd-uml-class';
 import { Association } from '../../objects/uml-primitives/fd-uml-association';
 import { Aggregation } from '../../objects/uml-primitives/fd-uml-aggregation';
@@ -19,14 +18,13 @@ import { QualifiedAggregation } from '../../objects/uml-primitives/fd-uml-qualif
 import { MoreClasses } from '../../objects/uml-primitives/fd-uml-more-classes';
 import { Package } from '../../objects/uml-primitives/fd-uml-package';
 import { findFreeNodeTreeNameIndex } from '../../utils/fd-metods-for-tree';
-
 /**
   Actions for creating joint js elements on cad diagrams.
 
   @class FdAcrionsForCadPrimitivesMixin
   @extends <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
-export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
+export default Ember.Mixin.create({
   /**
    Service that get current project contexts.
 
@@ -44,7 +42,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addClass(e) {
-      this.createObjectEvents((function(x, y) {
+      this.createObjectData((function(x, y) {
         let store = this.get('store');
         let stage = this.get('currentProjectContext').getCurrentStageModel();
 
@@ -82,7 +80,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addAssociation(e) {
-      this.createLinkEvents((function(linkProperties) {
+      this.createLinkData((function(linkProperties) {
         let store = this.get('store');
         let stage = this.get('currentProjectContext').getCurrentStageModel();
 
@@ -121,7 +119,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addAggregation(e) {
-      this.createLinkEvents((function(linkProperties) {
+      this.createLinkData((function(linkProperties) {
         let newAggregationObject = new Aggregation({
           source: {
             id: linkProperties.source
@@ -145,7 +143,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addComposition(e) {
-      this.createLinkEvents((function(linkProperties) {
+      this.createLinkData((function(linkProperties) {
         let store = this.get('store');
         let stage = this.get('currentProjectContext').getCurrentStageModel();
 
@@ -184,7 +182,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addInheritance(e) {
-      this.createLinkEvents((function(linkProperties) {
+      this.createLinkData((function(linkProperties) {
         let store = this.get('store');
         let stage = this.get('currentProjectContext').getCurrentStageModel();
 
@@ -219,7 +217,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addRealization(e) {
-      this.createLinkEvents((function(linkProperties) {
+      this.createLinkData((function(linkProperties) {
         let newRealizationObject = new Realization({
           source: {
             id: linkProperties.source
@@ -244,7 +242,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addNestedClassAssociation(e) {
-      this.createLinkEvents((function(linkProperties) {
+      this.createLinkData((function(linkProperties) {
         let newNestedClassAssociationObject = new NestedClassAssociation({
           source: {
             id: linkProperties.source
@@ -266,7 +264,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addTemplateClass(e) {
-      this.createObjectEvents((function(x, y) {
+      this.createObjectData((function(x, y) {
         let newTemplateClassObject = new TemplateClass({
           position: { x: x, y: y },
           size: { width: 150, height: 40 },
@@ -286,7 +284,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addInstance(e) {
-      this.createObjectEvents((function(x, y) {
+      this.createObjectData((function(x, y) {
         let newInstanceObject = new Instance({
           position: { x: x, y: y },
           size: { width: 80, height: 30 },
@@ -304,7 +302,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addActiveObject(e) {
-      this.createObjectEvents((function(x, y) {
+      this.createObjectData((function(x, y) {
         let newActiveObject = new ActiveObject({
           position: { x: x, y: y },
           size: { width: 80, height: 30 },
@@ -322,7 +320,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addMultiObject(e) {
-      this.createObjectEvents((function(x, y) {
+      this.createObjectData((function(x, y) {
         let newMultiObject = new MultiObject({
           position: { x: x, y: y },
           size: { width: 80, height: 30 },
@@ -340,7 +338,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addPropertyObject(e) {
-      this.createObjectEvents((function(x, y) {
+      this.createObjectData((function(x, y) {
         let newPropertyObject = new PropertyObject({
           position: { x: x, y: y },
           size: { width: 80, height: 40 },
@@ -358,7 +356,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addNaryAssociation(e) {
-      this.createObjectEvents((function(x, y) {
+      this.createObjectData((function(x, y) {
         let newNAryAssociationObject = new NAryAssociation({
           position: { x: x, y: y },
           size: { width: 40, height: 40 },
@@ -376,7 +374,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addNaryAssociationConnector(e) {
-      this.createLinkEvents((function(linkProperties) {
+      this.createLinkData((function(linkProperties) {
         let newNaryAssociationConnectorObject = new Association({
           source: {
             id: linkProperties.source
@@ -401,7 +399,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addQualifiedLink(e) {
-      this.createLinkEvents((function(linkProperties) {
+      this.createLinkData((function(linkProperties) {
         let newQualifiedAssociationObject = new QualifiedAssociation({
           source: {
             id: linkProperties.source
@@ -423,7 +421,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addQualifiedCompositionLink(e) {
-      this.createLinkEvents((function(linkProperties) {
+      this.createLinkData((function(linkProperties) {
         let newQualifiedCompositionObject = new QualifiedComposition({
           source: {
             id: linkProperties.source
@@ -445,7 +443,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addQualifiedAggregationLink(e) {
-      this.createLinkEvents((function(linkProperties) {
+      this.createLinkData((function(linkProperties) {
         let newQualifiedAggregationObject = new QualifiedAggregation({
           source: {
             id: linkProperties.source
@@ -467,7 +465,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addMoreClasses(e) {
-      this.createObjectEvents((function(x, y) {
+      this.createObjectData((function(x, y) {
         let newMoreClassesObject = new MoreClasses({
           position: { x: x, y: y },
         });
@@ -483,7 +481,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addPackege(e) {
-      this.createObjectEvents((function(x, y) {
+      this.createObjectData((function(x, y) {
         let newPackageObject = new Package({
           position: { x: x, y: y },
           size: { width: 60, height: 40 },
@@ -502,7 +500,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addObjectAssociation(e) {
-      this.createLinkEvents((function(linkProperties) {
+      this.createLinkData((function(linkProperties) {
         let newDependencyObject = new Association({
           source: {
             id: linkProperties.source

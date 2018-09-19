@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import FdCreatingDiagramElementsMixin from './fd-creating-diagram-elements';
 import { Dependency } from '../../objects/uml-primitives/fd-uml-dependency';
 import { Note } from '../../objects/uml-primitives/fd-uml-note';
 import { NoteConnector } from '../../objects/uml-primitives/fd-uml-note-connector';
@@ -9,7 +8,7 @@ import { NoteConnector } from '../../objects/uml-primitives/fd-uml-note-connecto
   @class FdAcrionsForCommonPrimitivesMixin
   @extends <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
-export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
+export default Ember.Mixin.create({
   actions: {
     /**
       Handler for click on pointerClick button.
@@ -28,7 +27,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addDependency(e) {
-      this.createLinkEvents((function(linkProperties) {
+      this.createLinkData((function(linkProperties) {
         let newDependencyObject = new Dependency({
           source: {
             id: linkProperties.source
@@ -51,7 +50,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addNote(e) {
-      this.createObjectEvents((function(x, y) {
+      this.createObjectData((function(x, y) {
         let newNoteObject = new Note({
           position: { x: x, y: y },
           size: { width: 100, height: 40 },
@@ -69,7 +68,7 @@ export default Ember.Mixin.create(FdCreatingDiagramElementsMixin, {
       @param {jQuery.Event} e event.
      */
     addNoteConnector(e) {
-      this.createLinkEvents((function(linkProperties) {
+      this.createLinkData((function(linkProperties) {
         let newNoteConnectorObject = new NoteConnector({
           source: {
             id: linkProperties.source
