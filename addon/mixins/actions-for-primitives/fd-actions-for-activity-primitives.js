@@ -279,23 +279,6 @@ export default Ember.Mixin.create({
 
         return newPartitionObject;
       }).bind(this), e);
-    },
-
-    /**
-      Handler for click on addPartition button.
-
-      @method actions.addPartition
-      @param {jQuery.Event} e event.
-    */
-    addPartition(e) {
-      this.createObjectData((function(x, y) {
-        let newPartitionObject = new Partition({
-          position: { x: x, y: y },
-          size: { width: 100, height: 40 }
-        });
-
-        return newPartitionObject;
-      }).bind(this), e);
     }
   }
 });
