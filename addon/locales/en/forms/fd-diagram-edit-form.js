@@ -30,7 +30,18 @@ export default {
       'add-packege': 'Packege',
       'add-note': 'Note',
       'add-note-connector': 'Note connector',
-      'add-object-association': 'Object association'
+      'add-object-association': 'Object association',
+      'add-state': 'State',
+      'add-state-ex': 'State EX',
+      'add-composite-state': 'Composite state',
+      'add-concurrent-state': 'Concurrent state',
+      'add-history': 'History',
+      'add-deep-history': 'Deep history',
+      'add-start-state': 'Start state',
+      'add-final-state': 'Final state',
+      'add-complex-transition': 'Complex transition',
+      'add-transition': 'Transition',
+      'add-event-message': 'Event message'
     }
   }
 };

@@ -30,7 +30,18 @@ export default {
       'add-packege': 'Пакет',
       'add-note': 'Комментарий',
       'add-note-connector': 'Коннектор комментарий',
-      'add-object-association': 'Ассоциация между объектами'
+      'add-object-association': 'Ассоциация между объектами',
+      'add-state': 'Состояние',
+      'add-state-ex': 'Состояние EX',
+      'add-composite-state': 'Составное состояние',
+      'add-concurrent-state': 'Разделитель',
+      'add-history': 'История',
+      'add-deep-history': 'Глубокая история',
+      'add-start-state': 'Начальное состояние',
+      'add-final-state': 'Конечное состояние',
+      'add-complex-transition': 'Синхронизация/разветвление',
+      'add-transition': 'Переход',
+      'add-event-message': 'Сообщение'
     }
   }
 };
