@@ -28,7 +28,7 @@
       "polymorphic": false,
       "presence": true,
       "name": "agent",
-      "relatedTo": "new-platform-flexberry-web-designer-agent",
+      "relatedTo": "i-c-s-soft-s-t-o-r-m-n-e-t-security-agent",
       "inverse": null
     }
   ],
@@ -123,7 +123,7 @@
           "index": 0,
           "caption": "",
           "name": "agent",
-          "relatedTo": "new-platform-flexberry-web-designer-agent",
+          "relatedTo": "i-c-s-soft-s-t-o-r-m-n-e-t-security-agent",
           "inverse": null
         }
       ],
