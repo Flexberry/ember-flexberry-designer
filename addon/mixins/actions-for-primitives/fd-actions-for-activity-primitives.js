@@ -138,16 +138,16 @@ export default Ember.Mixin.create({
       @param {jQuery.Event} e event.
     */
     addObjectInState(e) {
-        this.createObjectData((function(x, y) {
-          let newObjectInStateObject = new ObjectInState({
-            position: { x: x, y: y },
-            size: { width: 100, height: 40 }
-          });
+      this.createObjectData((function(x, y) {
+        let newObjectInStateObject = new ObjectInState({
+          position: { x: x, y: y },
+          size: { width: 100, height: 40 }
+        });
 
-          return newObjectInStateObject;
-        }).bind(this), e);
-      },
-   
+        return newObjectInStateObject;
+      }).bind(this), e);
+    },
+
     /**
       Handler for click on addSignalReceiptL button.
 

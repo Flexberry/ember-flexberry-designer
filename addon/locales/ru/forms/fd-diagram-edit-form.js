@@ -33,16 +33,16 @@ export default {
       'add-object-association': 'Ассоциация между объектами',
       'add-decision': 'Принятие решения',
       'add-active-state': 'Активное состояние',
-      'add-start-state' : 'Начальное состояние',
-      'add-final-state' : 'Конечное состояние',
+      'add-start-state': 'Начальное состояние',
+      'add-final-state': 'Конечное состояние',
       'add-complex-transition': 'Синхронизатор/разветвитель',
-      'add-object-in-state' : 'Объект в состоянии',
-      'add-signal-receipt' : 'Получение сигнала',
-      'add-signal-sending' : 'Отправка сигнала',
-      'add-transition' : 'Переход',
-      'add-object-flow' : 'Изменение объекта',
-      'add-partition' : 'Раздел',
-      'add-swimlane-separator' : 'Разделитель плавающих дорожек'
+      'add-object-in-state': 'Объект в состоянии',
+      'add-signal-receipt': 'Получение сигнала',
+      'add-signal-sending': 'Отправка сигнала',
+      'add-transition': 'Переход',
+      'add-object-flow': 'Изменение объекта',
+      'add-partition': 'Раздел',
+      'add-swimlane-separator': 'Разделитель плавающих дорожек'
     }
   }
 };
