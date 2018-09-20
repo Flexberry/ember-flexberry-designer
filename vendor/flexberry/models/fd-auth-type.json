@@ -1,21 +1,13 @@
 ﻿{
-  "name": "FdCaseProperty",
-  "modelName": "fd-case-property",
-  "className": "CaseProperty",
+  "name": "FdAuthType",
+  "modelName": "fd-auth-type",
+  "className": "AuthType",
   "nameSpace": "",
   "parentModelName": null,
   "parentClassName": null,
   "attrs": [
     {
       "name": "name",
-      "type": "string",
-      "flexberryType": "string",
-      "notNull": false,
-      "defaultValue": "",
-      "stored": false
-    },
-    {
-      "name": "value",
       "type": "string",
       "flexberryType": "string",
       "notNull": false,

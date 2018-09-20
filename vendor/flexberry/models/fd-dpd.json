@@ -2,6 +2,7 @@
   "name": "FdDpd",
   "modelName": "fd-dpd",
   "className": "DPD",
+  "nameSpace": "",
   "parentModelName": "fd-diagram",
   "parentClassName": "Diagram",
   "attrs": [

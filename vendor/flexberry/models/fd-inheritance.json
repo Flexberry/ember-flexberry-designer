@@ -2,6 +2,7 @@
   "name": "FdInheritance",
   "modelName": "fd-inheritance",
   "className": "Inheritance",
+  "nameSpace": "",
   "parentModelName": "fd-repository-ref-data-object",
   "parentClassName": "RepositoryRefDataObject",
   "attrs": [],

@@ -2,6 +2,7 @@
   "name": "FdDiagramLink",
   "modelName": "fd-diagram-link",
   "className": "DiagramLink",
+  "nameSpace": "",
   "parentModelName": "fd-object-in-system",
   "parentClassName": "ObjectInSystem",
   "attrs": [

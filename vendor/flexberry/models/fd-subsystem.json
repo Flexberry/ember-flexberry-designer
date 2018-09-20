@@ -2,6 +2,7 @@
   "name": "FdSubsystem",
   "modelName": "fd-subsystem",
   "className": "Subsystem",
+  "nameSpace": "",
   "parentModelName": "fd-repository-browser-data-object",
   "parentClassName": "RepositoryBrowserDataObject",
   "attrs": [],
@@ -119,22 +120,22 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Stage",
+          "relationName": "FdStage",
           "belongsTo": [
             {
               "lookupValue": null,
               "lookupValueField": null,
-              "relationName": "Stage.Configuration",
+              "relationName": "FdStage.FdConfiguration",
               "belongsTo": [
                 {
                   "lookupValue": null,
                   "lookupValueField": null,
-                  "relationName": "Stage.Configuration.Project",
+                  "relationName": "FdStage.FdConfiguration.FdProject",
                   "belongsTo": [
                     {
                       "lookupValue": null,
                       "lookupValueField": null,
-                      "relationName": "Stage.Configuration.Project.Repository",
+                      "relationName": "FdStage.FdConfiguration.FdProject.FdRepository",
                       "belongsTo": [],
                       "hidden": false,
                       "attrs": [
@@ -217,7 +218,7 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Stage",
+          "relationName": "FdStage",
           "belongsTo": [],
           "hidden": false,
           "attrs": [

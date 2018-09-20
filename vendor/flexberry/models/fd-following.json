@@ -1,0 +1,30 @@
+﻿{
+  "name": "FdFollowing",
+  "modelName": "fd-following",
+  "className": "Following",
+  "nameSpace": "",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": false,
+      "name": "follow",
+      "relatedTo": "fd-user-auth-profile",
+      "inverse": null
+    },
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "follower",
+      "relatedTo": "fd-user-auth-profile",
+      "inverse": "following"
+    }
+  ],
+  "hasMany": [],
+  "projections": [],
+  "stored": true,
+  "offline": true,
+  "external": false
+}

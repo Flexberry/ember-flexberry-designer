@@ -2,6 +2,7 @@
   "name": "FdGenerationStepLog",
   "modelName": "fd-generation-step-log",
   "className": "GenerationStepLog",
+  "nameSpace": "",
   "parentModelName": null,
   "parentClassName": null,
   "attrs": [
@@ -22,7 +23,7 @@
       "stored": true
     },
     {
-      "name": "thisIsError",
+      "name": "isError",
       "type": "boolean",
       "flexberryType": "bool",
       "notNull": false,
@@ -60,7 +61,7 @@
           "index": 0
         },
         {
-          "name": "thisIsError",
+          "name": "isError",
           "caption": "",
           "hidden": false,
           "index": 1
@@ -83,5 +84,6 @@
     }
   ],
   "stored": true,
-  "offline": true
+  "offline": true,
+  "external": false
 }

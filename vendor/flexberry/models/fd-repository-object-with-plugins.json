@@ -2,6 +2,7 @@
   "name": "FdRepositoryObjectWithPlugins",
   "modelName": "fd-repository-object-with-plugins",
   "className": "RepositoryObjectWithPlugins",
+  "nameSpace": "",
   "parentModelName": "fd-repository-browser-data-object-with-a-c-l",
   "parentClassName": "RepositoryBrowserDataObjectWithACL",
   "attrs": [],

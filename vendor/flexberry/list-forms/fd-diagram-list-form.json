@@ -8,8 +8,8 @@
   "attrs": [],
   "projections": [
     {
-      "modelName": "fd-dev-uml-cad",
-      "modelProjection": "ListFormView"
+      "modelName": "fd-diagram",
+      "modelProjection": "FdDiagramL"
     }
   ]
 }

@@ -2,6 +2,7 @@
   "name": "FdDevUmlCad",
   "modelName": "fd-dev-uml-cad",
   "className": "DevUMLCAD",
+  "nameSpace": "",
   "parentModelName": "fd-cad",
   "parentClassName": "CAD",
   "attrs": [
@@ -42,67 +43,49 @@
   "hasMany": [],
   "projections": [
     {
-      "name": "EditFormView",
+      "name": "FdUmlCad",
       "modelName": "fd-dev-uml-cad",
       "attrs": [
         {
           "name": "name",
-          "caption": "Name",
+          "caption": "",
           "hidden": false,
           "index": 0
         },
         {
-          "name": "description",
-          "caption": "Description",
-          "hidden": false,
-          "index": 1
-        }
-      ],
-      "belongsTo": [],
-      "hasMany": []
-    },
-    {
-      "name": "ListFormView",
-      "modelName": "fd-dev-uml-cad",
-      "attrs": [
-        {
-          "name": "name",
-          "caption": "Name",
-          "hidden": false,
-          "index": 0
-        },
-        {
-          "name": "description",
-          "caption": "Description",
+          "name": "primitivesJsonString",
+          "caption": "",
           "hidden": false,
           "index": 1
         },
         {
-          "name": "changeUser",
-          "caption": "Change user",
+          "name": "caseObjectsString",
+          "caption": "",
           "hidden": false,
           "index": 2
         },
         {
-          "name": "changeDate",
-          "caption": "Change date",
+          "name": "primitivesStreamString",
+          "caption": "",
           "hidden": false,
           "index": 3
-        },
-        {
-          "name": "createUser",
-          "caption": "Create user",
-          "hidden": false,
-          "index": 4
-        },
-        {
-          "name": "createDate",
-          "caption": "Create date",
-          "hidden": false,
-          "index": 5
         }
       ],
-      "belongsTo": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "FdSubsystem",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [],
+          "index": 4,
+          "caption": "",
+          "name": "subsystem",
+          "relatedTo": "fd-subsystem",
+          "inverse": null
+        }
+      ],
       "hasMany": []
     },
     {
@@ -116,7 +99,35 @@
           "index": 0
         }
       ],
-      "belongsTo": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "FdSubsystem",
+          "belongsTo": [
+            {
+              "lookupValue": null,
+              "lookupValueField": null,
+              "relationName": "FdSubsystem.FdStage",
+              "belongsTo": [],
+              "hidden": false,
+              "attrs": [],
+              "index": 2,
+              "caption": "",
+              "name": "stage",
+              "relatedTo": "fd-stage",
+              "inverse": null
+            }
+          ],
+          "hidden": false,
+          "attrs": [],
+          "index": 1,
+          "caption": "",
+          "name": "subsystem",
+          "relatedTo": "fd-subsystem",
+          "inverse": null
+        }
+      ],
       "hasMany": []
     }
   ],

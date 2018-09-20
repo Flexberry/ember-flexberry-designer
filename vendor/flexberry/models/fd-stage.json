@@ -2,6 +2,7 @@
   "name": "FdStage",
   "modelName": "fd-stage",
   "className": "Stage",
+  "nameSpace": "",
   "parentModelName": "fd-repository-browser-data-object-with-a-c-l",
   "parentClassName": "RepositoryBrowserDataObjectWithACL",
   "attrs": [
@@ -149,17 +150,17 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Configuration",
+          "relationName": "FdConfiguration",
           "belongsTo": [
             {
               "lookupValue": null,
               "lookupValueField": null,
-              "relationName": "Configuration.Project",
+              "relationName": "FdConfiguration.FdProject",
               "belongsTo": [
                 {
                   "lookupValue": null,
                   "lookupValueField": null,
-                  "relationName": "Configuration.Project.Repository",
+                  "relationName": "FdConfiguration.FdProject.FdRepository",
                   "belongsTo": [],
                   "hidden": false,
                   "attrs": [

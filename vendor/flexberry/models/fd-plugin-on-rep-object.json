@@ -2,6 +2,7 @@
   "name": "FdPluginOnRepObject",
   "modelName": "fd-plugin-on-rep-object",
   "className": "PluginOnRepObject",
+  "nameSpace": "",
   "parentModelName": null,
   "parentClassName": null,
   "attrs": [

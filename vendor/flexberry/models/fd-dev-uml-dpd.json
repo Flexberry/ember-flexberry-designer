@@ -2,6 +2,7 @@
   "name": "FdDevUmlDpd",
   "modelName": "fd-dev-uml-dpd",
   "className": "DevUMLDPD",
+  "nameSpace": "",
   "parentModelName": "fd-dpd",
   "parentClassName": "DPD",
   "attrs": [

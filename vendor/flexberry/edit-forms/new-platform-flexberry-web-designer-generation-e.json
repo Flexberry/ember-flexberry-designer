@@ -4,20 +4,20 @@
       "master": null,
       "displayAttributeName": null,
       "required": false,
-      "relationName": "BusinessServerClass",
+      "relationName": "Stage",
       "projection": "ListFormView",
       "detailModelName": null
     }
   ],
   "external": false,
-  "caption": "Interface",
-  "name": "FdInterfaceEditForm",
-  "className": "InterfaceEditForm",
+  "caption": null,
+  "name": "NewPlatformFlexberryWebDesignerGenerationE",
+  "className": "GenerationE",
   "attrs": [],
   "projections": [
     {
-      "modelName": "fd-dev-class",
-      "modelProjection": "EditInterface"
+      "modelName": "fd-generation",
+      "modelProjection": "EditFormView"
     }
   ]
 }
