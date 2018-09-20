@@ -5,7 +5,7 @@ import { NoteConnector } from '../../objects/uml-primitives/fd-uml-note-connecto
 /**
   Actions for creating joint js elements on diagrams.
 
-  @class FdAcrionsForCommonPrimitivesMixin
+  @class FdActionsForCommonPrimitivesMixin
   @extends <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
 export default Ember.Mixin.create({

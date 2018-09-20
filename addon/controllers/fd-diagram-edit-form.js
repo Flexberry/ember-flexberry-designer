@@ -2,14 +2,16 @@ import Ember from 'ember';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
-import FdAcrionsForCadPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-cad-primitives';
-import FdAcrionsForCommonPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-common-primitives';
+import FdActionsForCadPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-cad-primitives';
+import FdActionsForActivityPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-activity-primitives';
+import FdActionsForCommonPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-common-primitives';
 
 export default EditFormController.extend(
 FdWorkPanelToggler,
 FdFormUnsavedData,
-FdAcrionsForCadPrimitivesMixin,
-FdAcrionsForCommonPrimitivesMixin, {
+FdActionsForCadPrimitivesMixin,
+FdActionsForActivityPrimitivesMixin,
+FdActionsForCommonPrimitivesMixin, {
   parentRoute: 'fd-diagram-list-form',
 
   /**

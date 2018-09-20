@@ -21,7 +21,7 @@ import { findFreeNodeTreeNameIndex } from '../../utils/fd-metods-for-tree';
 /**
   Actions for creating joint js elements on cad diagrams.
 
-  @class FdAcrionsForCadPrimitivesMixin
+  @class FdActionsForCadPrimitivesMixin
   @extends <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
 export default Ember.Mixin.create({
