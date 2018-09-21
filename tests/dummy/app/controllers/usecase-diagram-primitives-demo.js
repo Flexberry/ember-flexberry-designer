@@ -83,6 +83,8 @@ export default Ember.Controller.extend({
       _this.graph.addCell(jUseCaseActor);
 
       let jUseCaseUndirAssociation = new joint.shapes.flexberry.uml.UseCaseUndirAssociation({
+        startPoint:{ x:500, y:80 },
+        endPoint: { x:700, y:80 },
         source: { x:500, y:80 },
         target: { x:700, y:80 },
         labels: [{ attrs: { text: { text:  'Undir association' } } }]
@@ -90,6 +92,8 @@ export default Ember.Controller.extend({
       _this.graph.addCell(jUseCaseUndirAssociation);
 
       let jUseCaseDirAssociation = new joint.shapes.flexberry.uml.UseCaseDirAssociation({
+        startPoint:{ x:500, y:150 },
+        endPoint: { x:700, y:150 },
         source: { x:500, y:150 },
         target: { x:700, y:150 },
         labels: [{ attrs: { text: { text:  'Directed association' } } }]
@@ -97,6 +101,8 @@ export default Ember.Controller.extend({
       _this.graph.addCell(jUseCaseDirAssociation);
 
       let jUseCaseGeneralization = new joint.shapes.flexberry.uml.UseCaseGeneralization({
+        startPoint:{ x:500, y:200 },
+        endPoint: { x:700, y:200 },
         source: { x:500, y:200 },
         target: { x:700, y:200 },
         labels: [{ attrs: { text: { text:  'Generalization' } } }]
