@@ -8,9 +8,9 @@ import FdUmlElement from './fd-uml-element';
 import joint from 'npm:jointjs';
 
 /**
-  An object that describes a UsecaseActor on the UML diagram.
+  An object that describes a UseCase on the UML diagram.
 
-  @class FdUmlUsecaseActor
+  @class FdUmlUseCase
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
@@ -34,11 +34,11 @@ export default FdUmlElement.extend({
 });
 
 /**
-  Defines the JointJS object, which represents a 'UsecaseActor' object in the UML diagram.
+  Defines the JointJS object, which represents a 'UseCase' object in the UML diagram.
 
-  @for FdUmlUsecaseActor
-  @class UsecaseActor
-  @extends BaseObject
+  @for FdUmlUseCase
+  @class UseCase
+  @extends basic.Generic
   @namespace flexberry.uml
   @constructor
 */
