@@ -37,7 +37,8 @@ export default FdUmlLink.extend({
 */
 export let Association = Link.define('flexberry.uml.Association', {
   attrs: {
-    text: { visibility: 'hidden' }
+    text: { visibility: 'hidden' },
+    rect: { visibility: 'hidden' }
   },
 });
 
@@ -88,24 +89,48 @@ joint.shapes.flexberry.uml.AssociationView = joint.dia.LinkView.extend({
       evt.stopPropagation();
     });
 
-    this.$box.find('.start-multiplicity-input').on('input', function(evt) {
+    this.$box.find('.start-multiplicity-input').on('input', function() {
+      this.updateBox();
+    }.bind(this));
+
+    this.$box.find('.end-multiplicity-input').on('input', function() {
+      this.updateBox();
+    }.bind(this));
+
+    this.$box.find('.description-input').on('input', function() {
+      this.updateBox();
+    }.bind(this));
+
+    this.$box.find('.start-role-input').on('input', function() {
+      this.updateBox();
+    }.bind(this));
+
+    this.$box.find('.end-role-input').on('input', function() {
+      this.updateBox();
+    }.bind(this));
+
+    this.$box.find('.start-multiplicity-input').on('change', function(evt) {
       this.model.setLabelText('startMultiplicity', Ember.$(evt.target).val());
     }.bind(this));
 
-    this.$box.find('.end-multiplicity-input').on('input', function(evt) {
+    this.$box.find('.end-multiplicity-input').on('change', function(evt) {
       this.model.setLabelText('endMultiplicity', Ember.$(evt.target).val());
     }.bind(this));
 
-    this.$box.find('.description-input').on('input', function(evt) {
+    this.$box.find('.description-input').on('change', function(evt) {
       this.model.setLabelText('description', Ember.$(evt.target).val());
     }.bind(this));
 
-    this.$box.find('.start-role-input').on('input', function(evt) {
-      this.model.setLabelText('startRole', Ember.$(evt.target).val());
+    this.$box.find('.start-role-input').on('change', function(evt) {
+      let inputText = this.normalizeRoleText(Ember.$(evt.target).val());
+      Ember.$(evt.target).val(inputText);
+      this.model.setLabelText('startRole', inputText);
     }.bind(this));
 
-    this.$box.find('.end-role-input').on('input', function(evt) {
-      this.model.setLabelText('endRole', Ember.$(evt.target).val());
+    this.$box.find('.end-role-input').on('change', function(evt) {
+      let inputText = this.normalizeRoleText(Ember.$(evt.target).val());
+      Ember.$(evt.target).val(inputText);
+      this.model.setLabelText('endRole', inputText);
     }.bind(this));
 
     // Initialize inputs values.
@@ -167,6 +192,9 @@ joint.shapes.flexberry.uml.AssociationView = joint.dia.LinkView.extend({
   render: function() {
     joint.dia.LinkView.prototype.render.apply(this, arguments);
     this.paper.$el.prepend(this.$box);
+    this.paper.on('blank:pointerdown link:pointerdown element:pointerdown', function() {
+      this.$box.find('input').blur();
+    }, this);
     this.updateBox();
     return this;
   },
@@ -241,4 +269,10 @@ joint.shapes.flexberry.uml.AssociationView = joint.dia.LinkView.extend({
       $input.width($buffer.width() + 1);
     }, this);
   },
+
+  normalizeRoleText(text) {
+    let condition = text[0] === '+' || text[0] === '-' || text[0] === '#'
+
+    return condition ? text : '+' + text;
+  }
 });

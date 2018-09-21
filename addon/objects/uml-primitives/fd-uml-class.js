@@ -241,7 +241,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
-      this.model.set('attributes', rows);
+      this.model.updateRectangles();
     }.bind(this));
 
     this.$box.find('.methods-input').on('input', function(evt) {
@@ -249,17 +249,48 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
+      this.model.updateRectangles();
+    }.bind(this));
+
+    this.$box.find('.class-name-input').on('input', function() {
+      this.model.updateRectangles();
+    }.bind(this));
+
+    this.$box.find('.class-stereotype-input').on('input', function() {
+      this.model.updateRectangles();
+    }.bind(this));
+
+    this.$box.find('.attributes-input').on('change', function(evt) {
+      let $textarea = Ember.$(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      this.model.set('attributes', rows);
+    }.bind(this));
+
+    this.$box.find('.methods-input').on('change', function(evt) {
+      let $textarea = Ember.$(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
       this.model.set('methods', rows);
     }.bind(this));
 
-    this.$box.find('.class-name-input').on('input', function(evt) {
+    this.$box.find('.class-name-input').on('change', function(evt) {
       this.model.set('name', Ember.$(evt.target).val());
     }.bind(this));
 
-    this.$box.find('.class-stereotype-input').on('input', function(evt) {
+    this.$box.find('.class-stereotype-input').on('focus', function(evt) {
+      let stereotype = this.normalizeStereotype(Ember.$(evt.target).val());
+      this.$box.find('.class-stereotype-input').val(stereotype.slice(1, -1));
+      this.model.updateRectangles();
+    }.bind(this));
+
+    this.$box.find('.class-stereotype-input').on('blur', function(evt) {
       let stereotype = this.normalizeStereotype(Ember.$(evt.target).val());
       this.$box.find('.class-stereotype-input').val(stereotype);
       this.model.set('stereotype', stereotype.slice(1, -1));
+      this.model.updateRectangles();
     }.bind(this));
 
     let classNameInput = this.$box.find('.class-name-input');
@@ -283,6 +314,9 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
   render: function() {
     joint.dia.ElementView.prototype.render.apply(this, arguments);
     this.paper.$el.prepend(this.$box);
+    this.paper.on('blank:pointerdown link:pointerdown element:pointerdown', function() {
+      this.$box.find('input, textarea').blur();
+    }, this);
     this.updateBox();
     this.model.updateRectangles();
     return this;

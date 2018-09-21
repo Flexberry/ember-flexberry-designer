@@ -20,7 +20,6 @@
 .ui.form .uml-link-inputs input[type="text"],
 .ui.form .uml-class-inputs textarea {
     border: none;
-    color: #333;
     padding: 0px;
     color: black;
     font-size: 12px;
@@ -37,9 +36,13 @@
         margin: 4px 0 0 0;
         overflow: hidden;
     }
-    &.start-multiplicity-input, &.end-multiplicity-input, &.description-input,
+    &.start-multiplicity-input, &.end-multiplicity-input,
     &.start-role-input, &.end-role-input {
         min-width: 10px;
+    }
+    &.description-input {
+        background-color: white;
+        min-width: 0px;
     }
 }
 
