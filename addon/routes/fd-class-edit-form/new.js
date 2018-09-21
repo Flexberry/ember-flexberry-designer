@@ -26,5 +26,6 @@ export default EditFormNewRoute.extend({
     let stage = this.get('currentContext').getCurrentStageModel();
     model.set('stage', stage);
     this._super(...arguments);
+    controller.set('readonlyClass', false);
   }
 });

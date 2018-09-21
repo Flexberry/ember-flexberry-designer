@@ -3,7 +3,7 @@ import DS from 'ember-data';
 import { Projection } from 'ember-flexberry-data';
 export let Model = Ember.Mixin.create({
   stage: DS.belongsTo('fd-stage', { inverse: 'systems', async: false, polymorphic: true }),
-  diagrams: DS.hasMany('fd-diagram', { inverse: 'subsystem', async: false }),
+  diagrams: DS.hasMany('fd-diagram', { inverse: 'subsystem', async: false, polymorphic: true }),
   diagramLinks: DS.hasMany('fd-diagram-link', { inverse: 'subsystem', async: false }),
   filelinks: DS.hasMany('fd-filelink', { inverse: 'subsystem', async: false }),
   getValidations: function () {
