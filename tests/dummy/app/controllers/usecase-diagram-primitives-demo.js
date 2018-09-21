@@ -7,7 +7,6 @@ import { DirectedAssociation } from 'ember-flexberry-designer/objects/uml-primit
 import { UseCaseGeneralization } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-generalization';
 import { Partition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-partition';
 
-
 export default Ember.Controller.extend({
   actions: {
     printDiagram: function() {
