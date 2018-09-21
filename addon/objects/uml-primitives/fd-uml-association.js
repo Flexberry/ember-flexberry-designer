@@ -271,7 +271,7 @@ joint.shapes.flexberry.uml.AssociationView = joint.dia.LinkView.extend({
   },
 
   normalizeRoleText(text) {
-    let condition = text[0] === '+' || text[0] === '-' || text[0] === '#'
+    let condition = text[0] === '+' || text[0] === '-' || text[0] === '#';
 
     return condition ? text : '+' + text;
   }
