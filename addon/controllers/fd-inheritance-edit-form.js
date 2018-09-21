@@ -1,16 +1,18 @@
 import Ember from 'ember';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
+import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 import { updateInheritanceOnDiagram } from '../utils/fd-update-class-diagram';
-export default EditFormController.extend({
+
+export default EditFormController.extend(FdFormUnsavedData, {
   parentRoute: 'fd-inheritance-list-form',
 
   /**
-   Service that get current project contexts.
+    Service that get current project contexts.
 
-   @property currentProjectContext
-   @type {Class}
-   @default Ember.inject.service()
-   */
+    @property currentProjectContext
+    @type {Class}
+    @default Ember.inject.service()
+  */
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
   /**
@@ -19,43 +21,43 @@ export default EditFormController.extend({
     @property implementations
     @type Array
     @default []
-   */
+  */
   implementations: Ember.A(),
 
   /**
-      Array name parent classes.
+    Array name parent classes.
 
     @property parentNames
     @type Array
     @default []
-   */
+  */
   parentNames: Ember.A(),
 
   /**
-      Array name child classes.
+    Array name child classes.
 
     @property childNames
     @type Array
     @default []
-   */
+  */
   childNames: Ember.A(),
 
   /**
-      Name parent class.
+    Name parent class.
 
     @property parentName
     @type String
     @default ''
-   */
+  */
   parentName: '',
 
   /**
-      Name child class.
+    Name child class.
 
     @property childName
     @type String
     @default ''
-   */
+  */
   childName: '',
 
   /**
@@ -64,7 +66,7 @@ export default EditFormController.extend({
     @property readonlyDropdown
     @type Boolean
     @default true
-   */
+  */
   readonlyDropdown: true,
 
   /**
@@ -78,7 +80,6 @@ export default EditFormController.extend({
   },
 
   actions: {
-
     /**
       Set 'Parent'.
 

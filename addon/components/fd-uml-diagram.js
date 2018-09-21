@@ -84,8 +84,66 @@ export default Ember.Component.extend({
       model: graph,
     });
     paper.options.connectionStrategy = joint.connectionStrategies.pinAbsolute;
+    paper.on('blank:pointerclick', this._blankPointerClick, this);
+    paper.on('element:pointerclick', this._elementPointerClick, this);
+    paper.on('blank:contextmenu', this._blankContextMenu, this);
 
     graph.addCells(elements.map(e => e.JointJS()));
     graph.addCells(links.map(l => l.JointJS()));
   },
+
+  /**
+    Handler event 'blank:pointerclick'.
+
+    @method actions._blankPointerClick
+    @param {jQuery.Event} e event.
+    @param {Number} x coordinate x.
+    @param {Number} y coordinate y.
+   */
+  _blankPointerClick(e, x, y) {
+    let options = { e:e, x:x, y:y };
+    let newElement = this.get('blankPointerClick')(options);
+    this._addNewElement(newElement);
+  },
+
+  /**
+    Handler event 'element:pointerclick'.
+
+    @method actions._elementPointerClick
+    @param {Object} element selected joint js element.
+    @param {jQuery.Event} e event.
+    @param {Number} x coordinate x.
+    @param {Number} y coordinate y.
+   */
+  _elementPointerClick(element, e, x, y) {
+    let options = { element:element, e:e, x:x, y:y };
+    let newElement = this.get('elementPointerClick')(options);
+    this._addNewElement(newElement);
+  },
+
+  /**
+    Handler event 'blank:contextmenu'.
+
+    @method actions._blankContextMenu
+    @param {jQuery.Event} e event.
+    @param {Number} x coordinate x.
+    @param {Number} y coordinate y.
+   */
+  _blankContextMenu(e, x, y) {
+    let options = { e:e, x:x, y:y };
+    this.get('blankContextMenu')(options);
+  },
+
+  /**
+    Add new Element on graph.
+
+    @method actions._addNewElement
+    @param {Object} newElement joint js element.
+   */
+  _addNewElement(newElement) {
+    if (!Ember.isNone(newElement)) {
+      let graph = this.get('graph');
+      graph.addCell([newElement]);
+    }
+  }
 });

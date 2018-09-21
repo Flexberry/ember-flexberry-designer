@@ -23,5 +23,5 @@ export default {
   'pb-detail-get-start-caption': 'Скобки программиста перед геттером детейла',
   'pb-detail-get-end-caption': 'Скобки программиста после геттеа детейла',
   'pb-detail-set-start-caption': 'Скобки программиста перед сеттером детейла',
-  'pb-detail-set-end-caption': 'Скобки программиста после сеттера детейла',
+  'pb-detail-set-end-caption': 'Скобки программиста после сеттера детейла'
 };

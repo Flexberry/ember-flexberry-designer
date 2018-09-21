@@ -1,19 +1,16 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-
 export let Model = Ember.Mixin.create({
   /**
     Non-stored property.
-
-    @property name
+     @property name
   */
   name: DS.attr('string'),
   /**
     Method to set non-stored property.
     Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
     Please, implement 'nameCompute' method in model class (outside of this mixin) if you want to compute value of 'name' property.
-
-    @method _nameCompute
+     @method _nameCompute
     @private
     @example
       ```javascript
@@ -22,22 +19,20 @@ export let Model = Ember.Mixin.create({
       }))
       ```
   */
-  _nameCompute: function() {
+  _nameCompute: function () {
     let result = (this.nameCompute && typeof this.nameCompute === 'function') ? this.nameCompute() : null;
     this.set('name', result);
   },
   /**
     Non-stored property.
-
-    @property primitiveTypes
+     @property primitiveTypes
   */
   primitiveTypes: DS.attr('string'),
   /**
     Method to set non-stored property.
     Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
     Please, implement 'primitiveTypesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitiveTypes' property.
-
-    @method _primitiveTypesCompute
+     @method _primitiveTypesCompute
     @private
     @example
       ```javascript
@@ -46,22 +41,20 @@ export let Model = Ember.Mixin.create({
       }))
       ```
   */
-  _primitiveTypesCompute: function() {
+  _primitiveTypesCompute: function () {
     let result = (this.primitiveTypesCompute && typeof this.primitiveTypesCompute === 'function') ? this.primitiveTypesCompute() : null;
     this.set('primitiveTypes', result);
   },
   /**
     Non-stored property.
-
-    @property primitives
+     @property primitives
   */
   primitives: DS.attr('string'),
   /**
     Method to set non-stored property.
     Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
     Please, implement 'primitivesCompute' method in model class (outside of this mixin) if you want to compute value of 'primitives' property.
-
-    @method _primitivesCompute
+     @method _primitivesCompute
     @private
     @example
       ```javascript
@@ -70,22 +63,20 @@ export let Model = Ember.Mixin.create({
       }))
       ```
   */
-  _primitivesCompute: function() {
+  _primitivesCompute: function () {
     let result = (this.primitivesCompute && typeof this.primitivesCompute === 'function') ? this.primitivesCompute() : null;
     this.set('primitives', result);
   },
   /**
     Non-stored property.
-
-    @property helpKeyword
+     @property helpKeyword
   */
   helpKeyword: DS.attr('string'),
   /**
     Method to set non-stored property.
     Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
     Please, implement 'helpKeywordCompute' method in model class (outside of this mixin) if you want to compute value of 'helpKeyword' property.
-
-    @method _helpKeywordCompute
+     @method _helpKeywordCompute
     @private
     @example
       ```javascript
@@ -94,7 +85,7 @@ export let Model = Ember.Mixin.create({
       }))
       ```
   */
-  _helpKeywordCompute: function() {
+  _helpKeywordCompute: function () {
     let result = (this.helpKeywordCompute && typeof this.helpKeywordCompute === 'function') ? this.helpKeywordCompute() : null;
     this.set('helpKeyword', result);
   },
@@ -114,4 +105,3 @@ export let defineBaseModel = function (modelClass) {
     _parentModelName: 'fd-ad'
   });
 };
-

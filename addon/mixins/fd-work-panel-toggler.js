@@ -40,13 +40,13 @@ export default Ember.Mixin.create({
         this.send('workPlaceConfig');
 
         // For reinit overflowed tabs.
-        Ember.run.later(this, function() {
+        Ember.run.later(this, function () {
           Ember.$(window).trigger('resize');
         }, 500);
       }
 
       let _this = this;
-      Ember.run.next(function() {
+      Ember.run.next(function () {
         if (!configPanelSidebar.hasClass('visible')) {
           _this.set('activeTab', 'none');
           Ember.$('.ui.menu', configPanelSidebar).find('.item').removeClass('active');

@@ -21,16 +21,13 @@ import {
 import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
+import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 import { controlsToDefinition, locateControlByPath } from '../utils/fd-view-path-functions';
 import FdDataTypes from '../utils/fd-datatypes';
 
-export default Ember.Controller.extend(FdWorkPanelToggler, {
-  /**
-    Service for managing the state of the application.
-     @property appState
-    @type AppStateService
-  */
-  appState: Ember.inject.service(),
+export default Ember.Controller.extend(
+FdWorkPanelToggler,
+FdFormUnsavedData, {
   queryParams: ['classId'],
 
   /**
@@ -607,6 +604,15 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     },
 
     /**
+      Save changes and close form
+
+      @method actions.closeWithSaving
+    */
+    closeWithSaving() {
+      this.send('save', true);
+    },
+
+    /**
       Set the selected item.
 
       @method actions.selectItem
@@ -727,7 +733,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       Saves the form's metadata.
 
       @method actions.save
-      @param {Boolean} close If `true`, the `close` action will be run.
+      @param {Boolean} close If `true`, the `close` action will be run after saving.
     */
     save(close) {
       this.get('appState').loading();
@@ -807,6 +813,53 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       treeObject.on('open_node.jstree', this._openNodeTree.bind(this));
       treeObject.on('after_close.jstree', afterCloseNodeTree.bind(this));
     },
+
+    /**
+      Cancels the changes made to the type map, and send `close` action.
+
+      @method actions.rollback
+    */
+    rollback() {
+      this.clearFormData();
+      this.send('removeModalDialog');
+      this.send('closeUnsavedForm');
+    }
+  },
+
+  /**
+    Check if fields changed, but unsaved
+
+    @method findUnsavedFormData
+  */
+  findUnsavedFormData: function () {
+    let checkResult = false;
+
+    let definitionsIsChanged = this._checkDefinitionsOnChanges();
+    let modelIsChanged = this._checkEmberModelsOnDirty();
+
+    if (definitionsIsChanged || modelIsChanged) {
+      checkResult = true;
+    }
+
+    return checkResult;
+  },
+
+  /**
+    Clear all changes in from
+
+    @method clearFormData
+  */
+  clearFormData: function () {
+    let store = this.get('store');
+    store.peekAll('fd-dev-class').forEach((item) => item.rollbackAll());
+    store.peekAll('fd-dev-stage').forEach((item) => item.rollbackAll());
+    store.peekAll('fd-dev-association').forEach((item) => item.rollbackAll());
+    store.peekAll('fd-dev-aggregation').forEach((item) => item.rollbackAll());
+    let definition = this.get('model.editform.formViews.firstObject.view.definition');
+    definition.clear();
+    definition.pushObjects(this.get('model.originalDefinition'));
+    let controlsTree = this.get('controlsTree');
+    controlsTree.clear();
   },
 
   /**
@@ -1061,7 +1114,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
     let association = this.get('store').peekAll('fd-dev-association');
     let changedAssociations = association.filterBy('hasDirtyAttributes');
-
     let aggregation = this.get('store').peekAll('fd-dev-aggregation');
     let changedAggregation = aggregation.filterBy('hasDirtyAttributes');
 
@@ -1271,10 +1323,10 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
   },
 
   /**
-      Looks for width in the path
+    Looks for width in the path
 
-      @method _getWidth
-      @param {String} path Property path from view.
+    @method _getWidth
+    @param {String} path Property path from view.
   */
   _getWidth: function(path) {
     let partsPath = path.split('\\');
@@ -1287,6 +1339,72 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     }
 
     return width;
+  },
+
+  /**
+    Check definitions models has changed attributes. Return true if it right
+
+    @method _checkDefinitionsOnChanges
+    @private
+  */
+  _checkDefinitionsOnChanges() {
+    let checkresult = false;
+    let originalDefinitions = this.get('model.originalDefinition');
+
+    let currentDefinitions = controlsToDefinition(this.get('controlsTree'));
+    if (Ember.isEmpty(currentDefinitions)) {
+      return false;
+    }
+
+    let originalDefinitionsLength = originalDefinitions.length;
+    let currentDefinitionsLength = currentDefinitions.length;
+
+    if (originalDefinitionsLength !== currentDefinitionsLength) {
+      checkresult = true;
+    } else {
+      for (let i = 0; i < originalDefinitionsLength; i++) {
+        if (originalDefinitions[i].name !== currentDefinitions[i].name ||
+          originalDefinitions[i].caption !== currentDefinitions[i].caption ||
+          originalDefinitions[i].path !== currentDefinitions[i].path ||
+          originalDefinitions[i].visible !== currentDefinitions[i].visible) {
+          checkresult = true;
+        }
+      }
+    }
+
+    return checkresult;
+  },
+
+  /**
+    Check if one of the ember models has dirty attributes. Return true if it right
+
+    @method _checkEmberModelsOnDirty
+    @private
+  */
+  _checkEmberModelsOnDirty() {
+    let checkresult = false;
+
+    let editformIsDirty = this.get('model.editform.hasDirtyAttributes');
+
+    let dataobject = this.get('model.dataobject');
+
+    let attributes = dataobject.get('attributes');
+    let changedAttributes = attributes.filterBy('hasDirtyAttributes');
+    let attributesIsDirty = changedAttributes.length > 0 ? true : false;
+
+    let association = this.get('store').peekAll('fd-dev-association');
+    let changedAssociations = association.filterBy('hasDirtyAttributes');
+    let associationIsDirty = changedAssociations.length > 0 ? true : false;
+
+    let aggregation = this.get('store').peekAll('fd-dev-aggregation');
+    let changedAggregation = aggregation.filterBy('hasDirtyAttributes');
+    let aggregationIsDirty = changedAggregation.length > 0 ? true : false;
+
+    if (editformIsDirty || attributesIsDirty || associationIsDirty || aggregationIsDirty) {
+      checkresult = true;
+    }
+
+    return checkresult;
   },
 
   /**

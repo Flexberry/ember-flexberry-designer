@@ -11,6 +11,7 @@ import Ember from 'ember';
   @extends <a href="http://emberjs.com/api/classes/Ember.Object.html">Ember.Object</a>
 */
 export default Ember.Object.extend({
+
   /**
     The object that describes the primitive.
 
@@ -26,6 +27,14 @@ export default Ember.Object.extend({
     @type String
   */
   id: Ember.computed.readOnly('primitive.$id'),
+
+  /**
+    The unique identifier of the object.
+
+    @property repositoryObject
+    @type String
+  */
+  repositoryObject: Ember.computed.readOnly('primitive.RepositoryObject'),
 
   /**
     Returns the string representation of the primitive.

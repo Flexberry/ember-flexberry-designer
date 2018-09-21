@@ -15,9 +15,12 @@ import {
 import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
+import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 import { updateClassOnDiagram } from '../utils/fd-update-class-diagram';
 
-export default Ember.Controller.extend(FdWorkPanelToggler, {
+export default Ember.Controller.extend(
+FdWorkPanelToggler,
+FdFormUnsavedData, {
   /**
     Service for managing the state of the application.
      @property appState
@@ -356,7 +359,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       Saves the form's metadata.
 
       @method actions.save
-      @param {Boolean} close If `true`, the `close` action will be run.
+      @param {Boolean} close If `true`, the `close` action will be run after saving.
     */
     save(close) {
       this.get('appState').loading();
@@ -409,6 +412,7 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
             this.get('formClass.formViews.firstObject').save().then(() => {
               this.set('class', undefined);
               this.set('form', this.get('formClass.id'));
+              this.saveDataToOriginal();
               if (close) {
                 this.send('close');
               } else {
@@ -436,8 +440,23 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       });
     },
 
+    /**
+      Close listform form constructor and go to application structure constructor.
+
+      @method actions.close
+    */
     close() {
-      history.back();
+      // TODO: early used history.back(). But history.back() looping transition. Understand why
+      this.transitionToRoute('fd-appstruct-form');
+    },
+
+    /**
+      Save changes and close form
+
+      @method actions.closeWithSaving
+    */
+    closeWithSaving() {
+      this.send('save', true);
     },
 
     /**
@@ -507,6 +526,49 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
       treeObject.on('open_node.jstree', this._openNodeTree.bind(this));
       treeObject.on('after_close.jstree', afterCloseNodeTree.bind(this));
     },
+
+    /**
+      Cancels the changes made to the type map, and send `close` action.
+
+      @method actions.rollback
+    */
+    rollback() {
+      this.clearFormData();
+      this.send('removeModalDialog');
+      this.send('closeUnsavedForm');
+    }
+  },
+
+  /**
+    Check if fields changed, but unsaved
+
+    @method findUnsavedFormData
+  */
+  findUnsavedFormData: function () {
+    let checkResult = false;
+
+    let definitionsIsChanged = this._checkDefinitionsOnChanges();
+    let modelIsChanged = this._checkEmberModelsOnDirty();
+
+    if (definitionsIsChanged || modelIsChanged) {
+      checkResult = true;
+    }
+
+    return checkResult;
+  },
+
+  /**
+    Clear all changes in from
+
+    @method clearFormData
+  */
+  clearFormData: function () {
+    let store = this.get('store');
+    store.peekAll('fd-dev-class').forEach((item) => item.rollbackAll());
+    store.peekAll('fd-dev-stage').forEach((item) => item.rollbackAll());
+    store.peekAll('fd-dev-association').forEach((item) => item.rollbackAll());
+    store.peekAll('fd-dev-aggregation').forEach((item) => item.rollbackAll());
+    this.set('model.view.definition', Ember.A(this.get('model.originalDefinition')));
   },
 
   /**
@@ -541,6 +603,72 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     }).bind(this));
 
     this.get('actionReceiverNotUsedAttributesTree').send('redraw');
+  },
+
+  /**
+    Check definitions models has changed attributes. Return true if it right
+
+    @method _checkDefinitionsOnChanges
+    @private
+  */
+  _checkDefinitionsOnChanges() {
+    let checkresult = false;
+    let originalDefinitions = this.get('model.originalDefinition');
+    let currentDefinitions = copyViewDefinition(this.get('view.definition'));
+
+    if (Ember.isEmpty(currentDefinitions)) {
+      return false;
+    }
+
+    let originalDefinitionsLength = originalDefinitions.length;
+    let currentDefinitionsLength = currentDefinitions.length;
+
+    if (originalDefinitionsLength !== currentDefinitionsLength) {
+      checkresult = true;
+    } else {
+      for (let i = 0; i < originalDefinitionsLength; i++) {
+        if (originalDefinitions[i].name !== currentDefinitions[i].name ||
+          originalDefinitions[i].caption !== currentDefinitions[i].caption ||
+          originalDefinitions[i].path !== currentDefinitions[i].path ||
+          originalDefinitions[i].visible !== currentDefinitions[i].visible) {
+          checkresult = true;
+        }
+      }
+    }
+
+    return checkresult;
+  },
+
+  /**
+    Check if one of the ember models has dirty attributes. Return true if it right
+
+    @method _checkEmberModelsOnDirty
+    @private
+  */
+  _checkEmberModelsOnDirty() {
+    let checkresult = false;
+
+    let listFormIsDirty = this.get('model.listform.hasDirtyAttributes');
+
+    let dataobject = this.get('model.dataobject');
+
+    let attributes = dataobject.get('attributes');
+    let changedAttributes = attributes.filterBy('hasDirtyAttributes');
+    let attributesIsDirty = changedAttributes.length > 0 ? true : false;
+
+    let association = this.get('store').peekAll('fd-dev-association');
+    let changedAssociations = association.filterBy('hasDirtyAttributes');
+    let associationIsDirty = changedAssociations.length > 0 ? true : false;
+
+    let aggregation = this.get('store').peekAll('fd-dev-aggregation');
+    let changedAggregation = aggregation.filterBy('hasDirtyAttributes');
+    let aggregationIsDirty = changedAggregation.length > 0 ? true : false;
+
+    if (listFormIsDirty || attributesIsDirty || associationIsDirty || aggregationIsDirty) {
+      checkresult = true;
+    }
+
+    return checkresult;
   },
 
   /**

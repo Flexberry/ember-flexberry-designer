@@ -40,9 +40,14 @@
   </div>
 
   <div class="sixteen wide">
-    {{fd-uml-diagram primitives=model.primitives}}
+    {{
+      fd-uml-diagram
+      primitives=model.primitives
+      blankPointerClick=(action 'blankPointerClick')
+      elementPointerClick=(action 'elementPointerClick')
+      blankContextMenu=(action 'blankContextMenu')
+    }}
   </div>
-
 </form>
 
 {{#fd-config-panel}}
@@ -101,6 +106,125 @@
         <div class="ui small dividing header">
           {{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive-header"}}
         </div>
+        <button class="ui button active" id="pointer" type='button' onclick={{action "pointerClick" }}>
+          <img src="assets/images/diagrams/common/Pointer.ico" alt=""
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-class"}}
+          type='button' onclick={{action "addClass" }}>
+          <img src="assets/images/diagrams/cad/class.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-class"}}
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-association"}}
+          type='button' onclick={{action "addAssociation"}}>
+          <img src="assets/images/diagrams/cad/assoc.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-association"}}
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-aggregation"}}
+          type='button' onclick={{action "addAggregation"}}>
+          <img src="assets/images/diagrams/cad/aggreg.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-aggregation"}}
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-composition"}}
+          type='button' onclick={{action "addComposition"}}>
+          <img src="assets/images/diagrams/cad/composition.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-composition"}}
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-inheritance"}}
+          type='button' onclick={{action "addInheritance"}}>
+          <img src="assets/images/diagrams/cad/inherit.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-inheritance"}}
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-realization"}}
+          type='button' onclick={{action "addRealization"}}>
+          <img src="assets/images/diagrams/cad/realization.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-realization"}}
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-nested-class-association"}}
+          type='button' onclick={{action "addNestedClassAssociation"}}>
+          <img src="assets/images/diagrams/cad/nestedassoc.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-nested-class-association"}}
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-template-class"}}
+          type='button' onclick={{action "addTemplateClass"}}>
+          <img src="assets/images/diagrams/cad/templateclass.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-template-class"}}
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-instance"}}
+          type='button' onclick={{action "addInstance"}}>
+          <img src="assets/images/diagrams/cad/instance.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-instance"}}
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-active-object"}}
+          type='button' onclick={{action "addActiveObject"}}>
+          <img src="assets/images/diagrams/cad/activeobject.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-active-object"}}
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-multi-object"}}
+          type='button' onclick={{action "addMultiObject"}}>
+          <img src="assets/images/diagrams/cad/multiobject.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-multi-object"}}
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-property-object"}}
+          type='button' onclick={{action "addPropertyObject"}}>
+          <img src="assets/images/diagrams/cad/propobject.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-property-object"}}
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-nary-association"}}
+          type='button' onclick={{action "addNaryAssociation"}}>
+          <img src="assets/images/diagrams/cad/nlink.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-nary-association"}}
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-nary-association-connector"}}
+          type='button' onclick={{action "addNaryAssociationConnector"}}>
+          <img src="assets/images/diagrams/cad/narylink.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-nary-association-connector"}}
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-qualified-link"}}
+          type='button' onclick={{action "addQualifiedLink"}}>
+          <img src="assets/images/diagrams/cad/qlink.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-qualified-link"}}
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-qualified-composition-link"}}
+          type='button' onclick={{action "addQualifiedCompositionLink"}}>
+          <img src="assets/images/diagrams/cad/qcomposition.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-qualified-composition-link"}}
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-qualified-aggregation-link"}}
+          type='button' onclick={{action "addQualifiedAggregationLink"}}>
+          <img src="assets/images/diagrams/cad/qaggregation.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-qualified-aggregation-link"}}
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-more-classes"}}
+          type='button' onclick={{action "addMoreClasses"}}>
+          <img src="assets/images/diagrams/cad/moreclasses.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-more-classes"}}
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-dependency"}}
+          type='button' onclick={{action "addDependency"}}>
+          <img src="assets/images/diagrams/common/dependency.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-dependency"}}
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-packege"}}
+          type='button' onclick={{action "addPackege"}}>
+          <img src="assets/images/diagrams/common/package.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-packege"}}
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-note"}}
+          type='button' onclick={{action "addNote"}}>
+          <img src="assets/images/diagrams/common/comment.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-note"}}
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-note-connector"}}
+          type='button' onclick={{action "addNoteConnector"}}>
+          <img src="assets/images/diagrams/common/noteconn.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-note-connector"}}
+           style="vertical-align: middle">
+        </button>
+        <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-object-association"}}
+          type='button' onclick={{action "addObjectAssociation"}}>
+          <img src="assets/images/diagrams/common/complextransitionh.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-object-association"}}
+           style="vertical-align: middle">
+        </button>
       {{/tab.pane}}
     </form>
   {{/fd-tabs}}

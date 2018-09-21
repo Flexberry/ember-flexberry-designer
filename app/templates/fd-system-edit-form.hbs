@@ -42,29 +42,27 @@
     </div>
   </div>
   <div class="field">
-  {{
-    flexberry-field
-    placeholder=(t 'components.flexberry-field.placeholder')
-    readonly=readonly
-    required=true
-    value=model.name
-    class=(if model.errors.name 'error' '')
-    label=(t 'forms.fd-system-edit-form.name-caption')
-  }}
-  {{flexberry-validationmessage error=model.errors.name pointing="pointing"}}
-</div>
-
-<div class="field">
-  {{
-    flexberry-field
-    placeholder=(t 'components.flexberry-field.placeholder')
-    readonly=readonly
-    required=true
-    value=model.description
-    class=(if model.errors.description 'error' '')
-    label=(t 'forms.fd-system-edit-form.description-caption')
-  }}
-  {{flexberry-validationmessage error=model.errors.description pointing="pointing"}}
-</div>
-
+    {{
+      flexberry-field
+      placeholder=(t 'components.flexberry-field.placeholder')
+      readonly=readonly
+      required=true
+      value=model.name
+      class=(if model.errors.name 'error' '')
+      label=(t 'forms.fd-system-edit-form.name-caption')
+    }}
+    {{flexberry-validationmessage error=model.errors.name pointing="pointing"}}
+  </div>
+  <div class="field">
+    {{
+      flexberry-field
+      placeholder=(t 'components.flexberry-field.placeholder')
+      readonly=readonly
+      required=true
+      value=model.description
+      class=(if model.errors.description 'error' '')
+      label=(t 'forms.fd-system-edit-form.description-caption')
+    }}
+    {{flexberry-validationmessage error=model.errors.description pointing="pointing"}}
+  </div>
 </form>
