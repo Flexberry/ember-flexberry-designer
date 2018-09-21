@@ -23,7 +23,7 @@
       "stored": true
     },
     {
-      "name": "isError",
+      "name": "thisIsError",
       "type": "boolean",
       "flexberryType": "bool",
       "notNull": false,
@@ -61,7 +61,7 @@
           "index": 0
         },
         {
-          "name": "isError",
+          "name": "thisIsError",
           "caption": "",
           "hidden": false,
           "index": 1

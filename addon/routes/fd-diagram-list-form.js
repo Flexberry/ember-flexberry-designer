@@ -8,18 +8,18 @@ export default ListFormRoute.extend({
 
     @property modelProjection
     @type String
-    @default 'ListFormView'
+    @default 'FdDiagramL'
   */
-  modelProjection: 'ListFormView',
+  modelProjection: 'FdDiagramL',
 
   /**
     Name of model to be used as list's records types.
 
     @property modelName
     @type String
-    @default 'fd-dev-uml-cad'
+    @default 'fd-diagram'
   */
-  modelName: 'fd-dev-uml-cad',
+  modelName: 'fd-diagram',
 
   /**
     Defined user settings developer.

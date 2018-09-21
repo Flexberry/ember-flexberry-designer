@@ -1,11 +1,12 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 import { Projection } from 'ember-flexberry-data';
+import AccessModifierEnum from '../../../enums/s-t-o-r-m-c-a-s-e-repository-access-modifier';
 export let Model = Ember.Mixin.create({
-  endMultiplicity: DS.attr('string'),
-  endRole: DS.attr('string'),
-  endRoleAccessModifier: DS.attr('s-t-o-r-m-c-a-s-e-repository-access-modifier'),
-  endRoleStored: DS.attr('boolean'),
+  endMultiplicity: DS.attr('string', { defaultValue: 'Empty' }),
+  endRole: DS.attr('string', { defaultValue: 'Empty' }),
+  endRoleAccessModifier: DS.attr('s-t-o-r-m-c-a-s-e-repository-access-modifier', { defaultValue: AccessModifierEnum.Public }),
+  endRoleStored: DS.attr('boolean', { defaultValue: true }),
   /**
     Non-stored property.
 
@@ -54,10 +55,10 @@ export let Model = Ember.Mixin.create({
     let result = (this.notNullStartCompute && typeof this.notNullStartCompute === 'function') ? this.notNullStartCompute() : null;
     this.set('notNullStart', result);
   },
-  startMultiplicity: DS.attr('string'),
-  startRole: DS.attr('string'),
-  startRoleAccessModifier: DS.attr('s-t-o-r-m-c-a-s-e-repository-access-modifier'),
-  startRoleStored: DS.attr('boolean'),
+  startMultiplicity: DS.attr('string', { defaultValue: 'Empty' }),
+  startRole: DS.attr('string', { defaultValue: 'Empty' }),
+  startRoleAccessModifier: DS.attr('s-t-o-r-m-c-a-s-e-repository-access-modifier', { defaultValue: AccessModifierEnum.Public }),
+  startRoleStored: DS.attr('boolean', { defaultValue: true }),
   /**
     Non-stored property.
 
@@ -99,6 +100,7 @@ export let Model = Ember.Mixin.create({
     this._super.apply(this, arguments);
   }
 });
+
 export let defineBaseModel = function (modelClass) {
   modelClass.reopenClass({
     _parentModelName: 'fd-repository-ref-data-object'

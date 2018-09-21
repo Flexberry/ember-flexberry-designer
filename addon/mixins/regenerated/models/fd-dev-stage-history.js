@@ -3,7 +3,7 @@ import DS from 'ember-data';
 
 export let Model = Ember.Mixin.create({
   user: DS.attr('string'),
-  date: DS.attr('string'),
+  date: DS.attr('date'),
   stageName: DS.attr('string'),
   stage: DS.belongsTo('fd-dev-stage', { inverse: null, async: false }),
   getValidations: function () {
@@ -18,3 +18,4 @@ export let Model = Ember.Mixin.create({
     this._super.apply(this, arguments);
   }
 });
+

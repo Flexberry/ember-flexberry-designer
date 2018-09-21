@@ -103,7 +103,19 @@ export default {
         __caption__: ''
       },
       moduleSettings: {
-        __caption__: ''
+        __caption__: '',
+        valueXML: {
+          __caption__: ''
+        },
+        moduleSettingTypeName: {
+          __caption__: ''
+        },
+        moduleSettingType: {
+          __caption__: ''
+        },
+        stage: {
+          __caption__: ''
+        }
       }
     },
     Compiler: {
@@ -201,6 +213,9 @@ export default {
         valueXML: {
           __caption__: 'ValueXML'
         },
+        moduleSettingTypeName: {
+          __caption__: ''
+        },
         stage: {
           __caption__: 'Stage'
         }
@@ -284,6 +299,9 @@ export default {
         valueXML: {
           __caption__: 'ValueXML'
         },
+        moduleSettingTypeName: {
+          __caption__: ''
+        },
         stage: {
           __caption__: 'Stage'
         }
@@ -357,6 +375,9 @@ export default {
         valueXML: {
           __caption__: 'ValueXML'
         },
+        moduleSettingTypeName: {
+          __caption__: ''
+        },
         stage: {
           __caption__: 'Stage'
         }
@@ -407,6 +428,9 @@ export default {
         valueXML: {
           __caption__: 'ValueXML'
         },
+        moduleSettingTypeName: {
+          __caption__: ''
+        },
         stage: {
           __caption__: 'Stage'
         }
@@ -453,6 +477,9 @@ export default {
         },
         valueXML: {
           __caption__: 'ValueXML'
+        },
+        moduleSettingTypeName: {
+          __caption__: ''
         },
         stage: {
           __caption__: 'Stage'
@@ -510,6 +537,9 @@ export default {
         },
         valueXML: {
           __caption__: 'ValueXML'
+        },
+        moduleSettingTypeName: {
+          __caption__: ''
         },
         stage: {
           __caption__: 'Stage'
@@ -919,6 +949,9 @@ export default {
         valueXML: {
           __caption__: 'ValueXML'
         },
+        moduleSettingTypeName: {
+          __caption__: ''
+        },
         stage: {
           __caption__: 'Stage'
         }
@@ -1031,6 +1064,9 @@ export default {
         },
         valueXML: {
           __caption__: 'ValueXML'
+        },
+        moduleSettingTypeName: {
+          __caption__: ''
         },
         stage: {
           __caption__: 'Stage'

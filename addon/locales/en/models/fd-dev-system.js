@@ -64,6 +64,52 @@ export default {
         __caption__: 'description'
       }
     },
+    FdDevSystem: {
+      name: {
+        __caption__: 'name'
+      },
+      stage: {
+        __caption__: 'stage'
+      },
+      diagrams: {
+        __caption__: 'diagrams',
+        name: {
+          __caption__: 'name'
+        },
+        caseObjectsString: {
+          __caption__: 'caseObjectsString'
+        },
+        primitivesStreamString: {
+          __caption__: 'primitivesStreamString'
+        },
+        primitivesJsonString: {
+          __caption__: 'primitivesJsonString'
+        }
+      }
+    },
+    FdPreloadMetadata: {
+      name: {
+        __caption__: 'name'
+      },
+      stage: {
+        __caption__: 'stage'
+      },
+      diagrams: {
+        __caption__: 'diagrams',
+        primitivesJsonString: {
+          __caption__: 'primitivesJsonString'
+        },
+        primitivesStreamString: {
+          __caption__: 'primitivesStreamString'
+        },
+        caseObjectsString: {
+          __caption__: 'caseObjectsString'
+        },
+        name: {
+          __caption__: 'name'
+        }
+      }
+    },
     ListFormView: {
       name: {
         __caption__: 'name'
