@@ -241,7 +241,6 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
-      this.model.attr('.flexberry-uml-body-rect/height', $textarea.height() + 2);
       this.model.set('attributes', rows);
     }.bind(this));
 
@@ -250,7 +249,6 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
-      this.model.attr('.flexberry-uml-footer-rect/height', $textarea.height() + 2);
       this.model.set('methods', rows);
     }.bind(this));
 
@@ -308,7 +306,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
 
   normalizeStereotype(stereotype) {
     stereotype = stereotype.replace(new RegExp(`${String.fromCharCode(171)}|${String.fromCharCode(187)}`, 'g'), '');
-    if (stereotype.length > 0) {
+    if (!Ember.isBlank(stereotype)) {
       if (stereotype[0] !== String.fromCharCode(171)) {
         stereotype = String.fromCharCode(171) + stereotype;
       }
@@ -331,4 +329,3 @@ joint.shapes.flexberry.uml.ClassCollapsedView = joint.shapes.flexberry.uml.Class
     '</div>'
   ].join(''),
 });
-

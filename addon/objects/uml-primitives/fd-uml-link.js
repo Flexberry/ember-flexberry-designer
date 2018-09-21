@@ -21,8 +21,8 @@ export default FdUmlPrimitive.extend({
     @property source
     @type Object
   */
-  source: Ember.computed('primitive.EndPrimitive.$ref', function() {
-    return { id: this.get('primitive.EndPrimitive.$ref') };
+  source: Ember.computed('primitive.StartPrimitive.$ref', function() {
+    return { id: this.get('primitive.StartPrimitive.$ref') };
   }),
 
   /**
@@ -31,8 +31,8 @@ export default FdUmlPrimitive.extend({
     @property target
     @type Object
   */
-  target: Ember.computed('primitive.StartPrimitive.$ref', function() {
-    return { id: this.get('primitive.StartPrimitive.$ref') };
+  target: Ember.computed('primitive.EndPrimitive.$ref', function() {
+    return { id: this.get('primitive.EndPrimitive.$ref') };
   }),
 
   /**
@@ -76,6 +76,26 @@ export default FdUmlPrimitive.extend({
   description: Ember.computed.alias('primitive.Name.Text'),
 
   /**
+    Link's start point.
+
+    @property startPoint
+    @type Object
+  */
+  startPoint: Ember.computed('primitive.StartPoint.X', 'primitive.StartPoint.Y', function() {
+    return { x: this.get('primitive.StartPoint.X'), y: this.get('primitive.StartPoint.Y') };
+  }),
+
+  /**
+    Link's end point.
+
+    @property endPoint
+    @type Object
+  */
+  endPoint: Ember.computed('primitive.EndPoint.X', 'primitive.EndPoint.Y', function() {
+    return { x: this.get('primitive.EndPoint.X'), y: this.get('primitive.EndPoint.Y') };
+  }),
+
+  /**
     An array containing all the labels.
 
     @property labels
@@ -83,11 +103,11 @@ export default FdUmlPrimitive.extend({
   */
   labels: Ember.computed('startMultiplicity', 'endMultiplicity', 'startRoleTxt', 'endRoleTxt', function () {
     return [
-      { attrs: { text: { text: this.get('endMultiplicity') } } },
       { attrs: { text: { text: this.get('startMultiplicity') } } },
+      { attrs: { text: { text: this.get('endMultiplicity') } } },
       { attrs: { text: { text: this.get('description') } } },
-      { attrs: { text: { text: this.get('endRoleTxt') } } },
       { attrs: { text: { text: this.get('startRoleTxt') } } },
+      { attrs: { text: { text: this.get('endRoleTxt') } } },
     ];
   }),
 
@@ -112,7 +132,7 @@ export default FdUmlPrimitive.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'source', 'target', 'vertices', 'labels');
+    let properties = this.getProperties('id', 'name', 'source', 'target', 'vertices', 'labels', 'startPoint', 'endPoint');
     return new Link(properties);
   }
 });
@@ -131,33 +151,75 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
     text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }
   },
   labels: [{
-    position: { distance: 0.05, offset: -12 }, attrs: { text: { text: '' } } //endMultiplicity
+    position: { distance: 0.05, offset: 12 }, attrs: { text: { text: '' } } //startMultiplicity
   }, {
-    position: { distance: 0.95, offset: -12 }, attrs: { text: { text: '' } } //startMultiplicity
+    position: { distance: 0.95, offset: 12 }, attrs: { text: { text: '' } } //endMultiplicity
   }, {
-    textAnchor: 'middle', attrs: { text: { text: '' } } //description
+    position: { distance: 0.5, offset: 0 }, attrs: { text: { text: '' } } //description
   }, {
-    position: { distance: 0.05, offset: 12 }, attrs: { text: { text: '' } } //endRoleTxt
+    position: { distance: 0.05, offset: -12 }, attrs: { text: { text: '' } } //startRoleTxt
   }, {
-    position: { distance: 0.95, offset: 12 }, attrs: { text: { text: '' } } //startRoleTxt
+    position: { distance: 0.95, offset: -12 }, attrs: { text: { text: '' } } //endRoleTxt
   }]
 }, {
+    initialize: function () {
+      let vertices = this.get('vertices') || [];
+      let startPointA = this.get('startPoint');
+      let startPointB = vertices[0] || this.get('endPoint');
+      this.updateLabelsPositions(startPointA, startPointB, false);
+      let endPointA = vertices[vertices.lenght - 1] || this.get('startPoint');
+      let endPointB = this.get('endPoint');
+      this.updateLabelsPositions(endPointA, endPointB, true);
+      joint.dia.Link.prototype.initialize.apply(this, arguments);
+    },
+
+    /**
+      Updates labels positions.
+
+      @method updateLabelsPositions
+      @param {Object} pointA
+      @param {Object} pointB
+      @param {Boolean} isEnd True when pointB is an end of the link.
+    */
+    updateLabelsPositions(pointA, pointB, isEnd) {
+      let angle = 180 * Math.atan2(pointA.y - pointB.y, pointA.x - pointB.x) / Math.PI;
+      if (angle >= -135 && angle <= 45) {
+        if (isEnd) {
+          this.label(1, { position: { distance: 0.95, offset: 12 } });
+          this.label(4, { position: { distance: 0.95, offset: -12 } });
+        } else {
+          this.label(0, { position: { distance: 0.05, offset: 12 } });
+          this.label(3, { position: { distance: 0.05, offset: -12 } });
+        }
+      }
+
+      if (angle < -135 || angle > 45) {
+        if (isEnd) {
+          this.label(1, { position: { distance: 0.95, offset: -12 } });
+          this.label(4, { position: { distance: 0.95, offset: 12 } });
+        } else {
+          this.label(0, { position: { distance: 0.05, offset: -12 } });
+          this.label(3, { position: { distance: 0.05, offset: 12 } });
+        }
+      }
+    },
+
     setLabelText: function (label, text) {
       switch (label) {
-        case 'endMultiplicity':
-          this.label(0, { attrs: { text: { text: text } } });
-          break;
         case 'startMultiplicity':
-          this.label(1, { attrs: { text: { text: text } } });
+          this.label(0, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
+          break;
+        case 'endMultiplicity':
+          this.label(1, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
           break;
         case 'description':
-          this.label(2, { attrs: { text: { text: text } } });
-          break;
-        case 'endRole':
-          this.label(3, { attrs: { text: { text: text } } });
+          this.label(2, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
           break;
         case 'startRole':
-          this.label(4, { attrs: { text: { text: text } } });
+          this.label(3, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
+          break;
+        case 'endRole':
+          this.label(4, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
           break;
         default:
           console.log('ERROR - choose correct label name');
@@ -165,6 +227,31 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
       }
 
       return;
+    },
+
+    getLabelText: function (labelName) {
+      let label = {};
+      switch (labelName) {
+        case 'startMultiplicity':
+          label = this.label(0);
+          break;
+        case 'endMultiplicity':
+          label = this.label(1);
+          break;
+        case 'description':
+          label = this.label(2);
+          break;
+        case 'startRole':
+          label = this.label(3);
+          break;
+        case 'endRole':
+          label = this.label(4);
+          break;
+        default:
+          console.log('ERROR - choose correct label name');
+      }
+
+      return Ember.get(label, 'attrs.text.text');
     },
   });
 
