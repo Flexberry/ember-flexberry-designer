@@ -58,6 +58,14 @@ FdAcrionsForCommonPrimitivesMixin, {
   */
   currentTargetElement: undefined,
 
+  /**
+    Stores classes that are created, but not yet saved, in the diagram.
+
+    @property createdClasses
+    @type Ember.Array
+  */
+  createdClasses: Ember.A(),
+
   actions: {
 
     /**
@@ -140,6 +148,23 @@ FdAcrionsForCommonPrimitivesMixin, {
         }
       }
     }
+  },
+
+  /**
+    See [Flexberry Ember API](http://flexberry.github.io/ember-flexberry/autodoc/develop/).
+
+    @method save
+  */
+  save() {
+    let model = this.get('model');
+    model.set('primitivesJsonString', JSON.stringify(model.get('primitives')));
+
+    return this._super(...arguments).then(() => {
+      let createdClasses = this.get('createdClasses');
+      let promises = createdClasses.map(c => c.save());
+      createdClasses.clear();
+      return Ember.RSVP.all(promises);
+    });
   },
 
   /**
