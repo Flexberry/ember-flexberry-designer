@@ -11,10 +11,10 @@ let getJsonForClass = function(devClass, type, index, oldData) {
   let stereotype = devClass.get('stereotype');
   let pk = devClass.get('id');
 
-  let attributesStr = devClass.get('attributesStr');
+  let attributesStr = devClass.get('attributesStr') || '';
   let attributesStrArray = attributesStr ? attributesStr.split('\n') : [''];
 
-  let methodsStr = devClass.get('methodsStr');
+  let methodsStr = devClass.get('methodsStr') || '';
   let methodsStrArray = methodsStr ? methodsStr.split('\n') : [''];
 
   // Size class
