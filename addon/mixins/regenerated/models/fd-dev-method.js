@@ -281,4 +281,9 @@ export let defineProjections = function (modelClass) {
       nameStr: Projection.attr('NameStr', { hidden: true })
     })
   });
+  modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-method', {
+    accessModifier: Projection.attr(''),
+    type: Projection.attr(''),
+    name: Projection.attr(''),
+  });
 };

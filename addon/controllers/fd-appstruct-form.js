@@ -6,6 +6,7 @@ import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 import { restorationNodeTree, findFreeNodeTreeID, findFreeNodeTreeNameIndex } from '../utils/fd-metods-for-tree';
 import { getNewFormCaption, getNewFormDescription } from '../utils/fd-create-form-properties';
+import { updateClassOnDiagram } from '../utils/fd-update-class-diagram';
 
 export default EditFormController.extend(
 FdWorkPanelToggler,
@@ -486,6 +487,7 @@ FdFormUnsavedData, {
               view: savedDevView,
               orderNum: 1
             }).save().then(() => {
+              updateClassOnDiagram.call(_this, store, savedDevClass);
               this.get('appState').reset();
               this.transitionToRoute('fd-editform-constructor', savedDevClass.get('id'));
             }, (error) => {
