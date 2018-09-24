@@ -3,6 +3,7 @@
 */
 
 import Ember from 'ember';
+import joint from 'npm:jointjs';
 
 import { BaseObject } from './fd-uml-baseobject';
 import FdUmlElement from './fd-uml-element';
@@ -50,4 +51,13 @@ export let ActiveObject = BaseObject.define('flexberry.uml.ActiveObject', {
       'font-weight': 'bold'
     }
   }
+});
+
+joint.shapes.flexberry.uml.ActiveObjectView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<input type="text" class="active-object-input class-name-input header-input" value="" />',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
 });

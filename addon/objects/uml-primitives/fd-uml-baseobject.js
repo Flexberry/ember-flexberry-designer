@@ -62,6 +62,12 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
   },
   name: [],
   heightPadding: 10,
+
+  // Inputs padding by X.
+  widthPadding: 7,
+
+  // Inputs bottom padding by Y.
+  heightBottomPadding: 4,
 }, {
   markup: [
     '<g class="rotatable">',
@@ -183,8 +189,12 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.dia.ElementView.extend({
     let classNameInput = this.$box.find('.class-name-input');
     let attributesInput = this.$box.find('.attributes-input');
     classNameInput.val(this.model.get('name'));
-    attributesInput.prop('rows', this.model.get('attributes').length || 1);
-    attributesInput.val(this.model.get('attributes').join('\n'));
+    if (Ember.isPresent(this.model.get('attributes'))) {
+      attributesInput.prop('rows', this.model.get('attributes').length || 1);
+      attributesInput.val(this.model.get('attributes').join('\n'));
+    } else {
+      attributesInput.prop('rows', 1);
+    }
 
     // Update the box position whenever the underlying model changes.
     this.model.on('change', this.updateBox, this);

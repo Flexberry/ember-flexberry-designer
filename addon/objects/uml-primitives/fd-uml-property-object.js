@@ -76,5 +76,4 @@ export let PropertyObject = BaseClass.define('flexberry.uml.PropertyObject', {
     ].join('')
   });
 
-
 joint.shapes.flexberry.uml.PropertyObjectView = joint.shapes.flexberry.uml.BaseObjectView.extend();
