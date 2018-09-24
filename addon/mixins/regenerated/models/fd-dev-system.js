@@ -74,4 +74,17 @@ export let defineProjections = function (modelClass) {
       name: Projection.attr('')
     })
   });
+
+  modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-system', {
+    name: Projection.attr(''),
+    stage: Projection.belongsTo('fd-stage', '', {
+
+    }),
+    diagrams: Projection.hasMany('fd-diagram', '', {
+      primitivesJsonString: Projection.attr(''),
+      primitivesStreamString: Projection.attr(''),
+      caseObjectsString: Projection.attr(''),
+      name: Projection.attr('')
+    })
+  });
 };

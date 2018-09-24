@@ -16,6 +16,7 @@ import { createPropertyName, restorationNodeTree, afterCloseNodeTree, findFreeNo
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
+import { updateClassOnDiagram } from '../utils/fd-update-class-diagram';
 
 export default Ember.Controller.extend(
 FdWorkPanelToggler,
@@ -406,6 +407,7 @@ FdFormUnsavedData, {
 
       dataobject.save().then(() => {
         formClass.save().then(() => {
+          updateClassOnDiagram.call(this, this.get('store'), formClass);
           this.get('view').save().then(() => {
             this.get('formClass.formViews.firstObject').save().then(() => {
               this.set('class', undefined);

@@ -2,6 +2,7 @@ import Ember from 'ember';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
 import { Query } from 'ember-flexberry-data';
 import BusinessDataObjectEvents from 'ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events';
+import { updateClassOnDiagram } from '../utils/fd-update-class-diagram';
 
 const { SimplePredicate, FilterOperator, ComplexPredicate, Condition } = Query;
 
@@ -11,6 +12,15 @@ export default EditFormController.extend({
   header: Ember.computed.readOnly('model.name'),
 
   currentContext: Ember.inject.service('fd-current-project-context'),
+
+  /**
+    Flag: indicates whether to edit class name.
+
+    @property readonlyClass
+    @type Boolean
+    @default true
+   */
+  readonlyClass: true,
 
   getCellComponent(attr, bindingPath, model) {
     let cellComponent = this._super(...arguments);
@@ -48,6 +58,36 @@ export default EditFormController.extend({
     let stereotypePredicate = new SimplePredicate('stereotype', FilterOperator.Eq, '«businessserver»');
     return new ComplexPredicate(Condition.And, stagePredicate, stereotypePredicate);
   }),
+
+  /**
+    Overridden metod 'Save'.
+  */
+  save() {
+    let _this = this;
+    let model = this.get('model');
+    if (Ember.isNone(model.get('nameStr'))) {
+      model.set('nameStr', model.get('name'));
+    }
+
+    let attributes = model.get('attributes').toArray();
+    let attributesStrArray = attributes.map(function(item) {
+      let accessModifier = item.get('accessModifier') || '+';
+      return accessModifier + item.get('name') + ':' + item.get('type');
+    });
+    let attributesStr = attributesStrArray.join('\n');
+    model.set('attributesStr', attributesStr);
+
+    let methods = model.get('methods').toArray();
+    let methodsStrArray = methods.map(function(item) {
+      return item.get('accessModifier') + item.get('name') + '():' + item.get('type');
+    });
+    let methodsStr = methodsStrArray.join('\n');
+    model.set('methodsStr', methodsStr);
+
+    this._super(...arguments).then(() => {
+      updateClassOnDiagram.call(_this, _this.get('store'), _this.get('model'));
+    });
+  },
 
   actions: {
     /**
