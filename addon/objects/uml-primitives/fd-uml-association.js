@@ -219,16 +219,16 @@ joint.shapes.flexberry.uml.AssociationView = joint.dia.LinkView.extend({
 
     // Update inputs positions.
     let startMultiplicityPosition = this.getLabelCoordinates(this.model.label(0).position);
-    let startMultiplicityWidth = this.$box.find('.start-multiplicity-input').width();
+    let startMultiplicityDelta = this.model.label(0).inverseTextDirection ? this.$box.find('.start-multiplicity-input').width() : 0;
     Ember.$(this.$box[1]).css({
-      left: startMultiplicityPosition.x - 7 - startMultiplicityWidth / 2,
+      left: startMultiplicityPosition.x - 7 - startMultiplicityDelta,
       top: startMultiplicityPosition.y - 10,
       transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
     });
     let endMultiplicityPosition = this.getLabelCoordinates(this.model.label(1).position);
-    let endMultiplicityWidth = this.$box.find('.end-multiplicity-input').width();
+    let endMultiplicityDelta = this.model.label(1).inverseTextDirection ? this.$box.find('.end-multiplicity-input').width() : 0;
     Ember.$(this.$box[2]).css({
-      left: endMultiplicityPosition.x - 7 - endMultiplicityWidth / 2,
+      left: endMultiplicityPosition.x - 7 - endMultiplicityDelta,
       top: endMultiplicityPosition.y - 10,
       transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
     });
@@ -240,16 +240,16 @@ joint.shapes.flexberry.uml.AssociationView = joint.dia.LinkView.extend({
       transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
     });
     let startRolePosition = this.getLabelCoordinates(this.model.get('labels')[3].position);
-    let startRoleWidth = this.$box.find('.start-role-input').width();
+    let startRoleDelta = this.model.label(3).inverseTextDirection ? this.$box.find('.start-role-input').width() : 0;
     Ember.$(this.$box[4]).css({
-      left: startRolePosition.x - 7 - startRoleWidth / 2,
+      left: startRolePosition.x - 7 - startRoleDelta,
       top: startRolePosition.y - 10,
       transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
     });
     let endRolePosition = this.getLabelCoordinates(this.model.get('labels')[4].position);
-    let endRoleWidth = this.$box.find('.end-role-input').width();
+    let endRoleDelta = this.model.label(4).inverseTextDirection ? this.$box.find('.end-role-input').width() : 0;
     Ember.$(this.$box[5]).css({
-      left: endRolePosition.x - 7 - endRoleWidth / 2,
+      left: endRolePosition.x - 7 - endRoleDelta,
       top: endRolePosition.y - 10,
       transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
     });
