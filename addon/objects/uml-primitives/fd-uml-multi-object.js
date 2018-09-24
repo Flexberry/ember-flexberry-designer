@@ -3,6 +3,7 @@
 */
 
 import Ember from 'ember';
+import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-baseobject';
@@ -44,10 +45,6 @@ export default FdUmlElement.extend({
 */
 export let MultiObject = BaseObject.define('flexberry.uml.MultiObject', {
   attrs: {
-    text: {
-      'text-decoration': 'underline',
-      'font-size': '12'
-    },
     '.back-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff' }
   }
 }, {
@@ -70,7 +67,15 @@ export let MultiObject = BaseObject.define('flexberry.uml.MultiObject', {
     '<g class="scalable">',
     '<rect class="back-rect"/><rect class="flexberry-uml-header-rect"/>',
     '</g>',
-    '<text class="flexberry-uml-header-text"/>',
     '</g>'
   ].join('')
+});
+
+joint.shapes.flexberry.uml.MultiObjectView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<input type="text" class="instance-input class-name-input header-input" value="" />',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
 });
