@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
 import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
+import { updateAggregationOnDiagram } from '../utils/fd-update-class-diagram';
 
 export default EditFormController.extend(FdFormUnsavedData, {
   parentRoute: 'fd-aggregation-list-form',
@@ -59,6 +60,16 @@ export default EditFormController.extend(FdFormUnsavedData, {
    */
   readonlyClass: true,
 
+  /**
+    Overridden metod 'Save'.
+  */
+  save() {
+    let _this = this;
+    this._super(...arguments).then(() => {
+      updateAggregationOnDiagram.call(_this, _this.get('store'), _this.get('model'));
+    });
+  },
+
   actions: {
     /**
       Set 'startClass'.
@@ -71,6 +82,9 @@ export default EditFormController.extend(FdFormUnsavedData, {
         let model = this.get('model');
         Ember.set(model, 'startClass', startClass);
         Ember.set(this, 'startClassName', startClass.get('name'));
+        if (Ember.isNone(model.get('startRole')) || model.get('startRole') === '') {
+          Ember.set(model, 'startRole', startClass.get('name'));
+        }
       }
     },
 
@@ -85,6 +99,9 @@ export default EditFormController.extend(FdFormUnsavedData, {
         let model = this.get('model');
         Ember.set(model, 'endClass', endClass);
         Ember.set(this, 'endClassName', endClass.get('name'));
+        if (Ember.isNone(model.get('endRole')) || model.get('endRole') === '') {
+          Ember.set(model, 'endRole', endClass.get('name'));
+        }
       }
     },
   }
