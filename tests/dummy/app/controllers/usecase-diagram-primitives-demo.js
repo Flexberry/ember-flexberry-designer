@@ -1,5 +1,11 @@
 import Ember from 'ember';
 import joint from 'npm:jointjs';
+import { UseCase } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-use-case';
+import { UsecaseActor } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-actor';
+import { Association } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-association';
+import { DirectedAssociation } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-directed-association';
+import { UseCaseGeneralization } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-generalization';
+import { Partition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-partition';
 
 export default Ember.Controller.extend({
   actions: {
@@ -32,7 +38,7 @@ export default Ember.Controller.extend({
         model: _this.graph,
       });
 
-      let jUseCase = new joint.shapes.flexberry.uml.Usecase({
+      let jUseCase = new UseCase({
         position: { x: 50, y: 10 },
         size: { width: 100, height: 40 },
         name: 'UseCase \n primitive \n 1',
@@ -49,7 +55,7 @@ export default Ember.Controller.extend({
       });
       _this.graph.addCell(jUseCase);
 
-      let jUseCaseBoundary = new joint.shapes.flexberry.uml.UsecaseBoundary({
+      let jUseCaseBoundary = new Partition({
         position: { x: 50, y: 150 },
         size: { width: 70, height: 50 },
         name: 'Boundary \n Very long string uuuuuuuuuuuuuuuuuuuuu \n the end',
@@ -66,7 +72,7 @@ export default Ember.Controller.extend({
       });
       _this.graph.addCell(jUseCaseBoundary);
 
-      let jUseCaseActor = new joint.shapes.flexberry.uml.UsecaseActor({
+      let jUseCaseActor = new UsecaseActor({
         position: { x: 250, y: 50 },
         name: 'Actor',
         ports: {
@@ -82,27 +88,21 @@ export default Ember.Controller.extend({
       });
       _this.graph.addCell(jUseCaseActor);
 
-      let jUseCaseUndirAssociation = new joint.shapes.flexberry.uml.UseCaseUndirAssociation({
-        startPoint:{ x:500, y:80 },
-        endPoint: { x:700, y:80 },
+      let jUseCaseUndirAssociation = new Association({
         source: { x:500, y:80 },
         target: { x:700, y:80 },
         labels: [{ attrs: { text: { text:  'Undir association' } } }]
       });
       _this.graph.addCell(jUseCaseUndirAssociation);
 
-      let jUseCaseDirAssociation = new joint.shapes.flexberry.uml.UseCaseDirAssociation({
-        startPoint:{ x:500, y:150 },
-        endPoint: { x:700, y:150 },
+      let jUseCaseDirAssociation = new DirectedAssociation({
         source: { x:500, y:150 },
         target: { x:700, y:150 },
         labels: [{ attrs: { text: { text:  'Directed association' } } }]
       });
       _this.graph.addCell(jUseCaseDirAssociation);
 
-      let jUseCaseGeneralization = new joint.shapes.flexberry.uml.UseCaseGeneralization({
-        startPoint:{ x:500, y:200 },
-        endPoint: { x:700, y:200 },
+      let jUseCaseGeneralization = new UseCaseGeneralization({
         source: { x:500, y:200 },
         target: { x:700, y:200 },
         labels: [{ attrs: { text: { text:  'Generalization' } } }]
