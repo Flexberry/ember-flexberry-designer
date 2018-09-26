@@ -2136,7 +2136,7 @@ define('dummy/controllers/statechart-diagram-primitives-demo', ['exports', 'embe
     }
   });
 });
-define('dummy/controllers/usecase-diagram-primitives-demo', ['exports', 'ember', 'npm:jointjs'], function (exports, _ember, _npmJointjs) {
+define('dummy/controllers/usecase-diagram-primitives-demo', ['exports', 'ember', 'npm:jointjs', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-use-case', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-actor', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-association', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-directed-association', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-generalization', 'ember-flexberry-designer/objects/uml-primitives/fd-uml-partition'], function (exports, _ember, _npmJointjs, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlUseCase, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlUsecaseActor, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlAssociation, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlUsecaseDirectedAssociation, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlUsecaseGeneralization, _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlPartition) {
   exports['default'] = _ember['default'].Controller.extend({
     actions: {
       printDiagram: function printDiagram() {
@@ -2168,7 +2168,7 @@ define('dummy/controllers/usecase-diagram-primitives-demo', ['exports', 'ember',
           model: _this.graph
         });
 
-        var jUseCase = new _npmJointjs['default'].shapes.flexberry.uml.Usecase({
+        var jUseCase = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlUseCase.UseCase({
           position: { x: 50, y: 10 },
           size: { width: 100, height: 40 },
           name: 'UseCase \n primitive \n 1',
@@ -2185,7 +2185,7 @@ define('dummy/controllers/usecase-diagram-primitives-demo', ['exports', 'ember',
         });
         _this.graph.addCell(jUseCase);
 
-        var jUseCaseBoundary = new _npmJointjs['default'].shapes.flexberry.uml.UsecaseBoundary({
+        var jUseCaseBoundary = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlPartition.Partition({
           position: { x: 50, y: 150 },
           size: { width: 70, height: 50 },
           name: 'Boundary \n Very long string uuuuuuuuuuuuuuuuuuuuu \n the end',
@@ -2202,7 +2202,7 @@ define('dummy/controllers/usecase-diagram-primitives-demo', ['exports', 'ember',
         });
         _this.graph.addCell(jUseCaseBoundary);
 
-        var jUseCaseActor = new _npmJointjs['default'].shapes.flexberry.uml.UsecaseActor({
+        var jUseCaseActor = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlUsecaseActor.UsecaseActor({
           position: { x: 250, y: 50 },
           name: 'Actor',
           ports: {
@@ -2218,27 +2218,21 @@ define('dummy/controllers/usecase-diagram-primitives-demo', ['exports', 'ember',
         });
         _this.graph.addCell(jUseCaseActor);
 
-        var jUseCaseUndirAssociation = new _npmJointjs['default'].shapes.flexberry.uml.UseCaseUndirAssociation({
-          startPoint: { x: 500, y: 80 },
-          endPoint: { x: 700, y: 80 },
+        var jUseCaseUndirAssociation = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlAssociation.Association({
           source: { x: 500, y: 80 },
           target: { x: 700, y: 80 },
           labels: [{ attrs: { text: { text: 'Undir association' } } }]
         });
         _this.graph.addCell(jUseCaseUndirAssociation);
 
-        var jUseCaseDirAssociation = new _npmJointjs['default'].shapes.flexberry.uml.UseCaseDirAssociation({
-          startPoint: { x: 500, y: 150 },
-          endPoint: { x: 700, y: 150 },
+        var jUseCaseDirAssociation = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlUsecaseDirectedAssociation.DirectedAssociation({
           source: { x: 500, y: 150 },
           target: { x: 700, y: 150 },
           labels: [{ attrs: { text: { text: 'Directed association' } } }]
         });
         _this.graph.addCell(jUseCaseDirAssociation);
 
-        var jUseCaseGeneralization = new _npmJointjs['default'].shapes.flexberry.uml.UseCaseGeneralization({
-          startPoint: { x: 500, y: 200 },
-          endPoint: { x: 700, y: 200 },
+        var jUseCaseGeneralization = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlUsecaseGeneralization.UseCaseGeneralization({
           source: { x: 500, y: 200 },
           target: { x: 700, y: 200 },
           labels: [{ attrs: { text: { text: 'Generalization' } } }]
@@ -10529,6 +10523,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ob
     assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-transition.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-use-case.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives');
+  test('modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-use-case.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-use-case.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-use-case.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-use-case.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-use-case.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-actor.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives');
   test('modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-actor.js should pass jscs', function () {
@@ -10540,6 +10547,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ob
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-actor.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-directed-association.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives');
+  test('modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-directed-association.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-directed-association.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-directed-association.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-directed-association.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-directed-association.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-generalization.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives');
+  test('modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-generalization.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-generalization.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-generalization.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-generalization.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-generalization.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-aggregation-edit-form.jscs-test', ['exports'], function (exports) {
@@ -13337,19 +13370,6 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ut
     assert.ok(true, 'modules/ember-flexberry-designer/utils/fd-update-class-diagram.js should pass jshint.');
   });
 });
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-usecase-diagram-primitives.jscs-test', ['exports'], function (exports) {
-  module('JSCS - modules/ember-flexberry-designer/utils');
-  test('modules/ember-flexberry-designer/utils/fd-usecase-diagram-primitives.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/utils/fd-usecase-diagram-primitives.js should pass jscs.');
-  });
-});
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-usecase-diagram-primitives.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/utils/fd-usecase-diagram-primitives.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/utils/fd-usecase-diagram-primitives.js should pass jshint.');
-  });
-});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/utils/fd-view-path-functions.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/utils');
   test('modules/ember-flexberry-designer/utils/fd-view-path-functions.js should pass jscs', function () {
@@ -16091,7 +16111,7 @@ define('dummy/routes/statechart-diagram-primitives-demo', ['exports', 'ember'], 
     }
   });
 });
-define('dummy/routes/usecase-diagram-primitives-demo', ['exports', 'ember', 'ember-flexberry-designer/utils/fd-usecase-diagram-primitives'], function (exports, _ember, _emberFlexberryDesignerUtilsFdUsecaseDiagramPrimitives) {
+define('dummy/routes/usecase-diagram-primitives-demo', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Route.extend({
     activate: function activate() {
       var _this = this;
@@ -55405,7 +55425,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+3d07bdd9"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+fcd28060"});
 }
 
 /* jshint ignore:end */
