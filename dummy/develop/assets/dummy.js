@@ -535,12 +535,16 @@ define('dummy/controllers/activity-diagram-primitives-demo', ['exports', 'ember'
         });
 
         var linkNoteConnector = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNoteConnector.NoteConnector({
+          startPoint: { x: 100, y: 100 },
+          endPoint: { x: 300, y: 100 },
           source: { x: 100, y: 100 },
           target: { x: 300, y: 100 },
           attrs: { path: { title: 'Коннектор комментария (Note Connector)' } }
         });
 
         var linkObjectFlow = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlObjectFlow.ObjectFlow({
+          startPoint: { x: 100, y: 150 },
+          endPoint: { x: 300, y: 150 },
           source: { x: 100, y: 150 },
           target: { x: 300, y: 150 },
           labels: [{
@@ -552,6 +556,8 @@ define('dummy/controllers/activity-diagram-primitives-demo', ['exports', 'ember'
         });
 
         var linkTransition = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlTransition.Transition({
+          startPoint: { x: 100, y: 250 },
+          endPoint: { x: 300, y: 250 },
           source: { x: 100, y: 250 },
           target: { x: 300, y: 250 },
           labels: [{
@@ -939,6 +945,8 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
         });
 
         var linkAggregation = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlAggregation.Aggregation({
+          startPoint: { x: 100, y: 30 },
+          endPoint: { x: 300, y: 30 },
           source: { x: 100, y: 30 },
           target: { x: 300, y: 30 }
         });
@@ -947,6 +955,8 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
         linkAggregation.setLabelText('description', 'Agregation');
 
         var linkAssociation = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlAssociation.Association({
+          startPoint: { x: 100, y: 80 },
+          endPoint: { x: 300, y: 80 },
           source: { x: 100, y: 80 },
           target: { x: 300, y: 80 }
         });
@@ -955,6 +965,8 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
         linkAssociation.setLabelText('description', 'Association');
 
         var linkComposition = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlComposition.Composition({
+          startPoint: { x: 100, y: 120 },
+          endPoint: { x: 300, y: 120 },
           source: { x: 100, y: 120 },
           target: { x: 300, y: 120 }
         });
@@ -963,16 +975,22 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
         linkComposition.setLabelText('description', 'Composition');
 
         var linkDependency = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlDependency.Dependency({
+          startPoint: { x: 100, y: 170 },
+          endPoint: { x: 300, y: 170 },
           source: { x: 100, y: 170 },
           target: { x: 300, y: 170 }
         });
 
         var linkGeneralization = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlGeneralization.Generalization({
+          startPoint: { x: 100, y: 270 },
+          endPoint: { x: 300, y: 270 },
           source: { x: 100, y: 270 },
           target: { x: 300, y: 270 }
         });
 
         var linkQualified = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlQualifiedAssociation.QualifiedAssociation({
+          startPoint: { x: 100, y: 320 },
+          endPoint: { x: 300, y: 320 },
           source: { x: 100, y: 320 },
           target: { x: 300, y: 320 }
         });
@@ -981,6 +999,8 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
         linkQualified.setLabelText('description', 'Qualified');
 
         var linkQualifiedAggregation = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlQualifiedAggregation.QualifiedAggregation({
+          startPoint: { x: 100, y: 370 },
+          endPoint: { x: 300, y: 370 },
           source: { x: 100, y: 370 },
           target: { x: 300, y: 370 }
         });
@@ -989,6 +1009,8 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
         linkQualifiedAggregation.setLabelText('description', 'Q-Agregation');
 
         var linkQualifiedComposition = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlQualifiedComposition.QualifiedComposition({
+          startPoint: { x: 100, y: 420 },
+          endPoint: { x: 300, y: 420 },
           source: { x: 100, y: 420 },
           target: { x: 300, y: 420 }
         });
@@ -997,11 +1019,15 @@ define('dummy/controllers/class-diagram-primitives-demo', ['exports', 'ember', '
         linkQualifiedComposition.setLabelText('description', 'Q-Composition');
 
         var linkNestedClassAssociation = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNestedAssociation.NestedClassAssociation({
+          startPoint: { x: 100, y: 470 },
+          endPoint: { x: 300, y: 470 },
           source: { x: 100, y: 470 },
           target: { x: 300, y: 470 }
         });
 
         var linkNoteConnector = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNoteConnector.NoteConnector({
+          startPoint: { x: 100, y: 520 },
+          endPoint: { x: 300, y: 520 },
           source: { x: 100, y: 520 },
           target: { x: 300, y: 520 }
         });
@@ -1152,12 +1178,16 @@ define('dummy/controllers/collaboration-diagram-primitives-demo', ['exports', 'e
           });
 
           var nAssociationConnector = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlAssociation.Association({
+            startPoint: { x: 400, y: 10 },
+            endPoint: { x: 700, y: 10 },
             source: { x: 400, y: 10 },
             target: { x: 700, y: 10 },
             labels: [{ attrs: { text: { text: 'n-Association' } } }]
           });
 
           var associationConnector = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlAssociationLink.AssociationLink({
+            startPoint: { x: 400, y: 50 },
+            endPoint: { x: 700, y: 50 },
             source: { x: 400, y: 50 },
             target: { x: 700, y: 50 }
           });
@@ -1166,6 +1196,8 @@ define('dummy/controllers/collaboration-diagram-primitives-demo', ['exports', 'e
           associationConnector.setLabelText('description', 'Association');
 
           var qualifiedConnector = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlQualifiedAssociation.QualifiedAssociation({
+            startPoint: { x: 400, y: 90 },
+            endPoint: { x: 700, y: 90 },
             source: { x: 400, y: 90 },
             target: { x: 700, y: 90 }
           });
@@ -1174,6 +1206,8 @@ define('dummy/controllers/collaboration-diagram-primitives-demo', ['exports', 'e
           qualifiedConnector.setLabelText('description', 'Qualified');
 
           var agregationConnector = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlAggregationLink.AggregationLink({
+            startPoint: { x: 400, y: 140 },
+            endPoint: { x: 700, y: 140 },
             source: { x: 400, y: 140 },
             target: { x: 700, y: 140 }
           });
@@ -1182,6 +1216,8 @@ define('dummy/controllers/collaboration-diagram-primitives-demo', ['exports', 'e
           agregationConnector.setLabelText('description', 'Agregation');
 
           var qAgregationConnector = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlQualifiedAggregation.QualifiedAggregation({
+            startPoint: { x: 400, y: 180 },
+            endPoint: { x: 700, y: 180 },
             source: { x: 400, y: 180 },
             target: { x: 700, y: 180 }
           });
@@ -1190,6 +1226,8 @@ define('dummy/controllers/collaboration-diagram-primitives-demo', ['exports', 'e
           qAgregationConnector.setLabelText('description', 'Q-Agregation');
 
           var compositionConnector = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlCompositionLink.CompositionLink({
+            startPoint: { x: 400, y: 210 },
+            endPoint: { x: 700, y: 210 },
             source: { x: 400, y: 210 },
             target: { x: 700, y: 210 }
           });
@@ -1198,6 +1236,8 @@ define('dummy/controllers/collaboration-diagram-primitives-demo', ['exports', 'e
           compositionConnector.setLabelText('description', 'Composition');
 
           var qCompositionConnector = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlQualifiedComposition.QualifiedComposition({
+            startPoint: { x: 400, y: 250 },
+            endPoint: { x: 700, y: 250 },
             source: { x: 400, y: 250 },
             target: { x: 700, y: 250 }
           });
@@ -1206,12 +1246,16 @@ define('dummy/controllers/collaboration-diagram-primitives-demo', ['exports', 'e
           qCompositionConnector.setLabelText('description', 'Q-Composition');
 
           var designPatternConnector = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlDesignPatternConnector.DesignPatternConnector({
+            startPoint: { x: 400, y: 290 },
+            endPoint: { x: 700, y: 290 },
             source: { x: 400, y: 290 },
             target: { x: 700, y: 290 },
             labels: [{ attrs: { text: { text: 'Design Pattern' } } }]
           });
 
           var inheritanceConnector = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlGeneralization.Generalization({
+            startPoint: { x: 400, y: 320 },
+            endPoint: { x: 700, y: 320 },
             source: { x: 400, y: 320 },
             target: { x: 700, y: 320 },
             labels: [{ attrs: { text: { text: 'Inheritance' } } }]
@@ -1283,12 +1327,16 @@ define('dummy/controllers/deployment-diagram-primitives-demo', ['exports', 'embe
         });
 
         var linkNoteConnector = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNoteConnector.NoteConnector({
+          startPoint: { x: 100, y: 100 },
+          endPoint: { x: 300, y: 100 },
           source: { x: 100, y: 100 },
           target: { x: 300, y: 100 },
           attrs: { path: { title: 'Коннектор комментария (Note Connector)' } }
         });
 
         var linkDependency = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlDependency.Dependency({
+          startPoint: { x: 100, y: 150 },
+          endPoint: { x: 300, y: 150 },
           source: { x: 100, y: 150 },
           target: { x: 300, y: 150 },
           labels: [{
@@ -1298,6 +1346,8 @@ define('dummy/controllers/deployment-diagram-primitives-demo', ['exports', 'embe
         });
 
         var linkConnection = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlConnection.Connection({
+          startPoint: { x: 100, y: 200 },
+          endPoint: { x: 300, y: 200 },
           source: { x: 100, y: 200 },
           target: { x: 300, y: 200 },
           labels: [{
@@ -1979,12 +2029,16 @@ define('dummy/controllers/statechart-diagram-primitives-demo', ['exports', 'embe
         });
 
         var linkNoteConnector = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlNoteConnector.NoteConnector({
+          startPoint: { x: 100, y: 100 },
+          endPoint: { x: 300, y: 100 },
           source: { x: 100, y: 100 },
           target: { x: 300, y: 100 },
           attrs: { path: { title: 'Коннектор комментария (Note Connector)' } }
         });
 
         var linkEventMessage = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlDependency.Dependency({
+          startPoint: { x: 100, y: 150 },
+          endPoint: { x: 300, y: 150 },
           source: { x: 100, y: 150 },
           target: { x: 300, y: 150 },
           labels: [{
@@ -1994,6 +2048,8 @@ define('dummy/controllers/statechart-diagram-primitives-demo', ['exports', 'embe
         });
 
         var linkTransition = new _emberFlexberryDesignerObjectsUmlPrimitivesFdUmlConnection.Connection({
+          startPoint: { x: 100, y: 250 },
+          endPoint: { x: 300, y: 250 },
           source: { x: 100, y: 250 },
           target: { x: 300, y: 250 },
           labels: [{
@@ -2163,6 +2219,8 @@ define('dummy/controllers/usecase-diagram-primitives-demo', ['exports', 'ember',
         _this.graph.addCell(jUseCaseActor);
 
         var jUseCaseUndirAssociation = new _npmJointjs['default'].shapes.flexberry.uml.UseCaseUndirAssociation({
+          startPoint: { x: 500, y: 80 },
+          endPoint: { x: 700, y: 80 },
           source: { x: 500, y: 80 },
           target: { x: 700, y: 80 },
           labels: [{ attrs: { text: { text: 'Undir association' } } }]
@@ -2170,6 +2228,8 @@ define('dummy/controllers/usecase-diagram-primitives-demo', ['exports', 'ember',
         _this.graph.addCell(jUseCaseUndirAssociation);
 
         var jUseCaseDirAssociation = new _npmJointjs['default'].shapes.flexberry.uml.UseCaseDirAssociation({
+          startPoint: { x: 500, y: 150 },
+          endPoint: { x: 700, y: 150 },
           source: { x: 500, y: 150 },
           target: { x: 700, y: 150 },
           labels: [{ attrs: { text: { text: 'Directed association' } } }]
@@ -2177,6 +2237,8 @@ define('dummy/controllers/usecase-diagram-primitives-demo', ['exports', 'ember',
         _this.graph.addCell(jUseCaseDirAssociation);
 
         var jUseCaseGeneralization = new _npmJointjs['default'].shapes.flexberry.uml.UseCaseGeneralization({
+          startPoint: { x: 500, y: 200 },
+          endPoint: { x: 700, y: 200 },
           source: { x: 500, y: 200 },
           target: { x: 700, y: 200 },
           labels: [{ attrs: { text: { text: 'Generalization' } } }]
@@ -55343,7 +55405,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+6ee9c53d"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+56d86161"});
 }
 
 /* jshint ignore:end */
