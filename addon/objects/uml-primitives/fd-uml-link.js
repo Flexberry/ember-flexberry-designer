@@ -151,15 +151,15 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
     text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }
   },
   labels: [{
-    position: { distance: 0.05, offset: 12 }, attrs: { text: { text: '' } } //startMultiplicity
+    position: { distance: 5, offset: 12 }, attrs: { text: { text: '' } } //startMultiplicity
   }, {
-    position: { distance: 0.95, offset: 12 }, attrs: { text: { text: '' } } //endMultiplicity
+    position: { distance: -5, offset: 12 }, attrs: { text: { text: '' } } //endMultiplicity
   }, {
     position: { distance: 0.5, offset: 0 }, attrs: { text: { text: '' } } //description
   }, {
-    position: { distance: 0.05, offset: -12 }, attrs: { text: { text: '' } } //startRoleTxt
+    position: { distance: 5, offset: -12 }, attrs: { text: { text: '' } } //startRoleTxt
   }, {
-    position: { distance: 0.95, offset: -12 }, attrs: { text: { text: '' } } //endRoleTxt
+    position: { distance: -5, offset: -12 }, attrs: { text: { text: '' } } //endRoleTxt
   }]
 }, {
     initialize: function () {
@@ -182,24 +182,48 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
       @param {Boolean} isEnd True when pointB is an end of the link.
     */
     updateLabelsPositions(pointA, pointB, isEnd) {
+      if (Ember.isNone(pointA) || Ember.isNone(pointB)) {
+        return;
+      }
+
       let angle = 180 * Math.atan2(pointA.y - pointB.y, pointA.x - pointB.x) / Math.PI;
-      if (angle >= -135 && angle <= 45) {
+      if (angle >= -45 && angle <= 45) {
         if (isEnd) {
-          this.label(1, { position: { distance: 0.95, offset: 12 } });
-          this.label(4, { position: { distance: 0.95, offset: -12 } });
+          this.label(1, { position: { distance: this.getLabelDistance('endMultiplicity'), offset: 12 }, inverseTextDirection: false });
+          this.label(4, { position: { distance: this.getLabelDistance('endRole'), offset: -12 }, inverseTextDirection: false });
         } else {
-          this.label(0, { position: { distance: 0.05, offset: 12 } });
-          this.label(3, { position: { distance: 0.05, offset: -12 } });
+          this.label(0, { position: { distance: this.getLabelDistance('startMultiplicity'), offset: 12 }, inverseTextDirection: true });
+          this.label(3, { position: { distance: this.getLabelDistance('startRole'), offset: -12 }, inverseTextDirection: true });
         }
       }
 
-      if (angle < -135 || angle > 45) {
+      if (angle >= -135 && angle < -45) {
         if (isEnd) {
-          this.label(1, { position: { distance: 0.95, offset: -12 } });
-          this.label(4, { position: { distance: 0.95, offset: 12 } });
+          this.label(1, { position: { distance: this.getLabelDistance('endMultiplicity', true), offset: 6 }, inverseTextDirection: true });
+          this.label(4, { position: { distance: this.getLabelDistance('endRole', true), offset: -6 }, inverseTextDirection: false });
         } else {
-          this.label(0, { position: { distance: 0.05, offset: -12 } });
-          this.label(3, { position: { distance: 0.05, offset: 12 } });
+          this.label(0, { position: { distance: this.getLabelDistance('startMultiplicity', true), offset: 6 }, inverseTextDirection: true });
+          this.label(3, { position: { distance: this.getLabelDistance('startRole', true), offset: -6 }, inverseTextDirection: false });
+        }
+      }
+
+      if (angle > 45 && angle <= 135) {
+        if (isEnd) {
+          this.label(1, { position: { distance: this.getLabelDistance('endMultiplicity', true), offset: -6 }, inverseTextDirection: true });
+          this.label(4, { position: { distance: this.getLabelDistance('endRole', true), offset: 6 }, inverseTextDirection: false });
+        } else {
+          this.label(0, { position: { distance: this.getLabelDistance('startMultiplicity', true), offset: -6 }, inverseTextDirection: true });
+          this.label(3, { position: { distance: this.getLabelDistance('startRole', true), offset: 6 }, inverseTextDirection: false });
+        }
+      }
+
+      if (angle < -135 || angle > 135) {
+        if (isEnd) {
+          this.label(1, { position: { distance: this.getLabelDistance('endMultiplicity'), offset: -12 }, inverseTextDirection: true });
+          this.label(4, { position: { distance: this.getLabelDistance('endRole'), offset: 12 }, inverseTextDirection: true });
+        } else {
+          this.label(0, { position: { distance: this.getLabelDistance('startMultiplicity'), offset: -12 }, inverseTextDirection: false });
+          this.label(3, { position: { distance: this.getLabelDistance('startRole'), offset: 12 }, inverseTextDirection: false });
         }
       }
     },
@@ -252,6 +276,21 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
       }
 
       return Ember.get(label, 'attrs.text.text');
+    },
+
+    getLabelDistance: function (labelName, isVertical) {
+      switch (labelName) {
+        case 'startMultiplicity':
+        case 'startRole':
+          return isVertical ? 10 : 5;
+        case 'endMultiplicity':
+        case 'endRole':
+          return isVertical ? -10 : -5;
+        case 'description':
+          return 0.5;
+        default:
+          console.log('ERROR - choose correct label name');
+      }
     },
   });
 
