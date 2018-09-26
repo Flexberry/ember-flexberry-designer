@@ -39,5 +39,18 @@ export default EditFormRoute.extend({
       this.transitionTo(target, model.get('id'));
 
     }
+  },
+
+  /**
+    A hook you can use to setup the controller for the current route.
+    [More info](http://emberjs.com/api/classes/Ember.Route.html#method_setupController).
+
+    @method setupController
+    @param {Ember.Controller} controller
+    @param {Object} model
+   */
+  setupController: function(controller) {
+    this._super(...arguments);
+    controller.set('readonlyClass', true);
   }
 });

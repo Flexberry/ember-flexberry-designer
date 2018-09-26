@@ -57,6 +57,9 @@ export default function fdPreloadStageMetadata(store, stagePk) {
     // inheritances promise
     promises.push(getPromise(store, stagePk, 'fd-dev-inheritance', projectionName));
 
+    // system and diagrams promise
+    promises.push(getPromise(store, stagePk, 'fd-dev-system', projectionName));
+
     // resolve, reject
     Ember.RSVP.all(promises).then(() => {
       let userService = Ember.getOwner(store).lookup('service:user');

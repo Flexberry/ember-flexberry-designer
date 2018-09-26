@@ -95,6 +95,7 @@ export default Ember.Controller.extend({
       });
       _this.graph.addCell(jUseCaseUndirAssociation);
 
+
       let jUseCaseDirAssociation = new DirectedAssociation({
         source: { x:500, y:150 },
         target: { x:700, y:150 },
