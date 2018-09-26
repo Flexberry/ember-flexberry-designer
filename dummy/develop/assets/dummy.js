@@ -1959,11 +1959,51 @@ define('dummy/controllers/new-platform-flexberry-services-lock-list', ['exports'
     }
   });
 });
+define('dummy/controllers/new-platform-flexberry-web-designer-generation-e', ['exports', 'ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-generation-e'], function (exports, _emberFlexberryDesignerControllersNewPlatformFlexberryWebDesignerGenerationE) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersNewPlatformFlexberryWebDesignerGenerationE['default'];
+    }
+  });
+});
 define('dummy/controllers/new-platform-flexberry-web-designer-generation-e/new', ['exports', 'ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-generation-e/new'], function (exports, _emberFlexberryDesignerControllersNewPlatformFlexberryWebDesignerGenerationENew) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerControllersNewPlatformFlexberryWebDesignerGenerationENew['default'];
+    }
+  });
+});
+define('dummy/controllers/new-platform-flexberry-web-designer-generation-l', ['exports', 'ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-generation-l'], function (exports, _emberFlexberryDesignerControllersNewPlatformFlexberryWebDesignerGenerationL) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersNewPlatformFlexberryWebDesignerGenerationL['default'];
+    }
+  });
+});
+define('dummy/controllers/new-platform-flexberry-web-designer-storage-type-e', ['exports', 'ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-storage-type-e'], function (exports, _emberFlexberryDesignerControllersNewPlatformFlexberryWebDesignerStorageTypeE) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersNewPlatformFlexberryWebDesignerStorageTypeE['default'];
+    }
+  });
+});
+define('dummy/controllers/new-platform-flexberry-web-designer-storage-type-e/new', ['exports', 'ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-storage-type-e/new'], function (exports, _emberFlexberryDesignerControllersNewPlatformFlexberryWebDesignerStorageTypeENew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersNewPlatformFlexberryWebDesignerStorageTypeENew['default'];
+    }
+  });
+});
+define('dummy/controllers/new-platform-flexberry-web-designer-storage-type-l', ['exports', 'ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-storage-type-l'], function (exports, _emberFlexberryDesignerControllersNewPlatformFlexberryWebDesignerStorageTypeL) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersNewPlatformFlexberryWebDesignerStorageTypeL['default'];
     }
   });
 });
@@ -3178,6 +3218,84 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
     assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-visual-edit-form.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-generation-e.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers');
+  test('modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-generation-e.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-generation-e.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-generation-e.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-generation-e.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-generation-e.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-generation-e/new.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-generation-e');
+  test('modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-generation-e/new.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-generation-e/new.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-generation-e/new.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-generation-e/new.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-generation-e/new.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-generation-l.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers');
+  test('modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-generation-l.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-generation-l.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-generation-l.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-generation-l.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-generation-l.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-storage-type-e.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers');
+  test('modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-storage-type-e.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-storage-type-e.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-storage-type-e.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-storage-type-e.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-storage-type-e.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-storage-type-e/new.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-storage-type-e');
+  test('modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-storage-type-e/new.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-storage-type-e/new.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-storage-type-e/new.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-storage-type-e/new.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-storage-type-e/new.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-storage-type-l.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers');
+  test('modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-storage-type-l.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-storage-type-l.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-storage-type-l.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-storage-type-l.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/new-platform-flexberry-web-designer-storage-type-l.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/fd-generation-state.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/enums');
   test('modules/ember-flexberry-designer/enums/fd-generation-state.js should pass jscs', function () {
@@ -3228,6 +3346,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/en
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-access-mode.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/enums');
+  test('modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-access-mode.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-access-mode.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-access-mode.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-access-mode.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-access-mode.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-generation-state.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/enums');
+  test('modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-generation-state.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-generation-state.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-generation-state.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-generation-state.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/enums/new-platform-flexberry-web-designer-generation-state.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/enums/s-t-o-r-m-c-a-s-e-repository-access-modifier.jscs-test', ['exports'], function (exports) {
@@ -3789,6 +3933,58 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-visual-edit-form.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-generation-e.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/forms');
+  test('modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-generation-e.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-generation-e.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-generation-e.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-generation-e.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-generation-e.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-generation-l.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/forms');
+  test('modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-generation-l.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-generation-l.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-generation-l.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-generation-l.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-generation-l.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-storage-type-e.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/forms');
+  test('modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-storage-type-e.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-storage-type-e.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-storage-type-e.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-storage-type-e.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-storage-type-e.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-storage-type-l.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/forms');
+  test('modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-storage-type-l.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-storage-type-l.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-storage-type-l.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-storage-type-l.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/new-platform-flexberry-web-designer-storage-type-l.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-ad.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/locales/en/models');
   test('modules/ember-flexberry-designer/locales/en/models/fd-ad.js should pass jscs', function () {
@@ -3815,6 +4011,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-aggregation.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-application-user.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/models');
+  test('modules/ember-flexberry-designer/locales/en/models/fd-application-user.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-application-user.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-application-user.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/models/fd-application-user.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-application-user.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-association.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/locales/en/models');
   test('modules/ember-flexberry-designer/locales/en/models/fd-association.js should pass jscs', function () {
@@ -3826,6 +4035,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-association.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-auth-type.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/models');
+  test('modules/ember-flexberry-designer/locales/en/models/fd-auth-type.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-auth-type.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-auth-type.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/models/fd-auth-type.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-auth-type.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-base-association.jscs-test', ['exports'], function (exports) {
@@ -4361,6 +4583,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-filelink.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-following.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/models');
+  test('modules/ember-flexberry-designer/locales/en/models/fd-following.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-following.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-following.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/models/fd-following.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-following.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-form-control.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/locales/en/models');
   test('modules/ember-flexberry-designer/locales/en/models/fd-form-control.js should pass jscs', function () {
@@ -4632,6 +4867,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-ucd.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-user-auth-profile.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/models');
+  test('modules/ember-flexberry-designer/locales/en/models/fd-user-auth-profile.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-user-auth-profile.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-user-auth-profile.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/models/fd-user-auth-profile.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-user-auth-profile.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-user-in-stage.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/models');
+  test('modules/ember-flexberry-designer/locales/en/models/fd-user-in-stage.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-user-in-stage.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-user-in-stage.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/models/fd-user-in-stage.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/models/fd-user-in-stage.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/models/fd-view.jscs-test', ['exports'], function (exports) {
@@ -5180,6 +5441,58 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-visual-edit-form.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-generation-e.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/forms');
+  test('modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-generation-e.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-generation-e.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-generation-e.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-generation-e.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-generation-e.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-generation-l.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/forms');
+  test('modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-generation-l.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-generation-l.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-generation-l.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-generation-l.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-generation-l.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-storage-type-e.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/forms');
+  test('modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-storage-type-e.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-storage-type-e.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-storage-type-e.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-storage-type-e.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-storage-type-e.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-storage-type-l.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/forms');
+  test('modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-storage-type-l.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-storage-type-l.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-storage-type-l.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-storage-type-l.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/new-platform-flexberry-web-designer-storage-type-l.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-ad.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/locales/ru/models');
   test('modules/ember-flexberry-designer/locales/ru/models/fd-ad.js should pass jscs', function () {
@@ -5206,6 +5519,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-aggregation.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-application-user.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/models');
+  test('modules/ember-flexberry-designer/locales/ru/models/fd-application-user.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-application-user.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-application-user.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/models/fd-application-user.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-application-user.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-association.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/locales/ru/models');
   test('modules/ember-flexberry-designer/locales/ru/models/fd-association.js should pass jscs', function () {
@@ -5217,6 +5543,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-association.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-auth-type.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/models');
+  test('modules/ember-flexberry-designer/locales/ru/models/fd-auth-type.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-auth-type.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-auth-type.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/models/fd-auth-type.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-auth-type.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-base-association.jscs-test', ['exports'], function (exports) {
@@ -5752,6 +6091,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-filelink.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-following.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/models');
+  test('modules/ember-flexberry-designer/locales/ru/models/fd-following.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-following.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-following.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/models/fd-following.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-following.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-form-control.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/locales/ru/models');
   test('modules/ember-flexberry-designer/locales/ru/models/fd-form-control.js should pass jscs', function () {
@@ -6025,6 +6377,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-ucd.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-user-auth-profile.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/models');
+  test('modules/ember-flexberry-designer/locales/ru/models/fd-user-auth-profile.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-user-auth-profile.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-user-auth-profile.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/models/fd-user-auth-profile.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-user-auth-profile.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-user-in-stage.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/models');
+  test('modules/ember-flexberry-designer/locales/ru/models/fd-user-in-stage.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-user-in-stage.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-user-in-stage.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/models/fd-user-in-stage.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/models/fd-user-in-stage.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/models/fd-view.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/locales/ru/models');
   test('modules/ember-flexberry-designer/locales/ru/models/fd-view.js should pass jscs', function () {
@@ -6181,6 +6559,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
     assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-aggregation.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-application-user.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/models');
+  test('modules/ember-flexberry-designer/mixins/regenerated/models/fd-application-user.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-application-user.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-application-user.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/models/fd-application-user.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-application-user.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-association.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/models');
   test('modules/ember-flexberry-designer/mixins/regenerated/models/fd-association.js should pass jscs', function () {
@@ -6192,6 +6583,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-association.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-auth-type.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/models');
+  test('modules/ember-flexberry-designer/mixins/regenerated/models/fd-auth-type.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-auth-type.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-auth-type.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/models/fd-auth-type.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-auth-type.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-base-association.jscs-test', ['exports'], function (exports) {
@@ -6727,6 +7131,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
     assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-filelink.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-following.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/models');
+  test('modules/ember-flexberry-designer/mixins/regenerated/models/fd-following.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-following.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-following.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/models/fd-following.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-following.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-form-control.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/models');
   test('modules/ember-flexberry-designer/mixins/regenerated/models/fd-form-control.js should pass jscs', function () {
@@ -7000,6 +7417,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
     assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-ucd.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-user-auth-profile.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/models');
+  test('modules/ember-flexberry-designer/mixins/regenerated/models/fd-user-auth-profile.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-user-auth-profile.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-user-auth-profile.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/models/fd-user-auth-profile.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-user-auth-profile.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-user-in-stage.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/models');
+  test('modules/ember-flexberry-designer/mixins/regenerated/models/fd-user-in-stage.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-user-in-stage.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-user-in-stage.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/models/fd-user-in-stage.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/models/fd-user-in-stage.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/models/fd-view.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/models');
   test('modules/ember-flexberry-designer/mixins/regenerated/models/fd-view.js should pass jscs', function () {
@@ -7078,6 +7521,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
     assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-aggregation.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-application-user-offline.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
+  test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-application-user-offline.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-application-user-offline.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-application-user-offline.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-application-user-offline.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-application-user-offline.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-application-user.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
+  test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-application-user.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-application-user.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-application-user.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-application-user.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-application-user.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-association-offline.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
   test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-association-offline.js should pass jscs', function () {
@@ -7102,6 +7571,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-association.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-auth-type-offline.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
+  test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-auth-type-offline.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-auth-type-offline.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-auth-type-offline.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-auth-type-offline.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-auth-type-offline.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-auth-type.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
+  test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-auth-type.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-auth-type.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-auth-type.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-auth-type.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-auth-type.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-base-association-offline.jscs-test', ['exports'], function (exports) {
@@ -8170,6 +8665,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
     assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-filelink.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-following-offline.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
+  test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-following-offline.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-following-offline.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-following-offline.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-following-offline.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-following-offline.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-following.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
+  test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-following.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-following.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-following.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-following.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-following.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-form-control-offline.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
   test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-form-control-offline.js should pass jscs', function () {
@@ -8716,6 +9237,58 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
     assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-ucd.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-auth-profile-offline.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
+  test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-auth-profile-offline.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-auth-profile-offline.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-auth-profile-offline.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-auth-profile-offline.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-auth-profile-offline.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-auth-profile.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
+  test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-auth-profile.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-auth-profile.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-auth-profile.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-auth-profile.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-auth-profile.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-in-stage-offline.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
+  test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-in-stage-offline.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-in-stage-offline.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-in-stage-offline.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-in-stage-offline.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-in-stage-offline.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-in-stage.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
+  test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-in-stage.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-in-stage.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-in-stage.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-in-stage.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-user-in-stage.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-view-offline.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/mixins/regenerated/serializers');
   test('modules/ember-flexberry-designer/mixins/regenerated/serializers/fd-view-offline.js should pass jscs', function () {
@@ -8768,6 +9341,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mo
     assert.ok(true, 'modules/ember-flexberry-designer/models/fd-aggregation.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-application-user.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/models');
+  test('modules/ember-flexberry-designer/models/fd-application-user.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/models/fd-application-user.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-application-user.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/models/fd-application-user.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/models/fd-application-user.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-association.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/models');
   test('modules/ember-flexberry-designer/models/fd-association.js should pass jscs', function () {
@@ -8779,6 +9365,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/models/fd-association.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-auth-type.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/models');
+  test('modules/ember-flexberry-designer/models/fd-auth-type.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/models/fd-auth-type.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-auth-type.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/models/fd-auth-type.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/models/fd-auth-type.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-base-association.jscs-test', ['exports'], function (exports) {
@@ -9314,6 +9913,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mo
     assert.ok(true, 'modules/ember-flexberry-designer/models/fd-filelink.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-following.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/models');
+  test('modules/ember-flexberry-designer/models/fd-following.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/models/fd-following.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-following.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/models/fd-following.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/models/fd-following.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-form-control.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/models');
   test('modules/ember-flexberry-designer/models/fd-form-control.js should pass jscs', function () {
@@ -9585,6 +10197,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/models/fd-ucd.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-user-auth-profile.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/models');
+  test('modules/ember-flexberry-designer/models/fd-user-auth-profile.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/models/fd-user-auth-profile.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-user-auth-profile.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/models/fd-user-auth-profile.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/models/fd-user-auth-profile.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-user-in-stage.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/models');
+  test('modules/ember-flexberry-designer/models/fd-user-in-stage.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/models/fd-user-in-stage.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-user-in-stage.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/models/fd-user-in-stage.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/models/fd-user-in-stage.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/models/fd-view.jscs-test', ['exports'], function (exports) {
@@ -10926,6 +11564,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ro
     assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-enum-edit-form.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-enum-edit-form/new.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes/fd-enum-edit-form');
+  test('modules/ember-flexberry-designer/routes/fd-enum-edit-form/new.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/fd-enum-edit-form/new.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-enum-edit-form/new.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-enum-edit-form/new.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-enum-edit-form/new.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-external-edit-form.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/routes');
   test('modules/ember-flexberry-designer/routes/fd-external-edit-form.js should pass jscs', function () {
@@ -11329,6 +11980,84 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ro
     assert.ok(true, 'modules/ember-flexberry-designer/routes/index.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-generation-e.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes');
+  test('modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-generation-e.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-generation-e.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-generation-e.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-generation-e.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-generation-e.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-generation-e/new.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-generation-e');
+  test('modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-generation-e/new.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-generation-e/new.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-generation-e/new.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-generation-e/new.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-generation-e/new.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-generation-l.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes');
+  test('modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-generation-l.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-generation-l.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-generation-l.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-generation-l.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-generation-l.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-storage-type-e.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes');
+  test('modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-storage-type-e.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-storage-type-e.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-storage-type-e.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-storage-type-e.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-storage-type-e.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-storage-type-e/new.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-storage-type-e');
+  test('modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-storage-type-e/new.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-storage-type-e/new.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-storage-type-e/new.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-storage-type-e/new.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-storage-type-e/new.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-storage-type-l.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes');
+  test('modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-storage-type-l.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-storage-type-l.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-storage-type-l.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-storage-type-l.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/new-platform-flexberry-web-designer-storage-type-l.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/application-offline.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/serializers');
   test('modules/ember-flexberry-designer/serializers/application-offline.js should pass jscs', function () {
@@ -11407,6 +12136,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/se
     assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-aggregation.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-application-user-offline.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/serializers');
+  test('modules/ember-flexberry-designer/serializers/fd-application-user-offline.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/serializers/fd-application-user-offline.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-application-user-offline.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/serializers/fd-application-user-offline.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-application-user-offline.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-application-user.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/serializers');
+  test('modules/ember-flexberry-designer/serializers/fd-application-user.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/serializers/fd-application-user.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-application-user.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/serializers/fd-application-user.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-application-user.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-association-offline.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/serializers');
   test('modules/ember-flexberry-designer/serializers/fd-association-offline.js should pass jscs', function () {
@@ -11431,6 +12186,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/se
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-association.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-auth-type-offline.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/serializers');
+  test('modules/ember-flexberry-designer/serializers/fd-auth-type-offline.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/serializers/fd-auth-type-offline.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-auth-type-offline.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/serializers/fd-auth-type-offline.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-auth-type-offline.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-auth-type.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/serializers');
+  test('modules/ember-flexberry-designer/serializers/fd-auth-type.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/serializers/fd-auth-type.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-auth-type.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/serializers/fd-auth-type.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-auth-type.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-base-association-offline.jscs-test', ['exports'], function (exports) {
@@ -12499,6 +13280,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/se
     assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-filelink.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-following-offline.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/serializers');
+  test('modules/ember-flexberry-designer/serializers/fd-following-offline.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/serializers/fd-following-offline.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-following-offline.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/serializers/fd-following-offline.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-following-offline.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-following.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/serializers');
+  test('modules/ember-flexberry-designer/serializers/fd-following.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/serializers/fd-following.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-following.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/serializers/fd-following.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-following.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-form-control-offline.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/serializers');
   test('modules/ember-flexberry-designer/serializers/fd-form-control-offline.js should pass jscs', function () {
@@ -13045,6 +13852,58 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/se
     assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-ucd.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-user-auth-profile-offline.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/serializers');
+  test('modules/ember-flexberry-designer/serializers/fd-user-auth-profile-offline.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/serializers/fd-user-auth-profile-offline.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-user-auth-profile-offline.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/serializers/fd-user-auth-profile-offline.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-user-auth-profile-offline.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-user-auth-profile.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/serializers');
+  test('modules/ember-flexberry-designer/serializers/fd-user-auth-profile.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/serializers/fd-user-auth-profile.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-user-auth-profile.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/serializers/fd-user-auth-profile.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-user-auth-profile.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-user-in-stage-offline.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/serializers');
+  test('modules/ember-flexberry-designer/serializers/fd-user-in-stage-offline.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/serializers/fd-user-in-stage-offline.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-user-in-stage-offline.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/serializers/fd-user-in-stage-offline.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-user-in-stage-offline.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-user-in-stage.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/serializers');
+  test('modules/ember-flexberry-designer/serializers/fd-user-in-stage.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/serializers/fd-user-in-stage.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-user-in-stage.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/serializers/fd-user-in-stage.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/serializers/fd-user-in-stage.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/serializers/fd-view-offline.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/serializers');
   test('modules/ember-flexberry-designer/serializers/fd-view-offline.js should pass jscs', function () {
@@ -13188,6 +14047,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/tr
     assert.ok(true, 'modules/ember-flexberry-designer/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-access-mode.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/transforms');
+  test('modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-access-mode.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-access-mode.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-access-mode.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-access-mode.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-access-mode.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-business-server-class.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/transforms');
   test('modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-business-server-class.js should pass jscs', function () {
@@ -13199,6 +14071,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/tr
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-business-server-class.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-generation-state.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/transforms');
+  test('modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-generation-state.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-generation-state.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-generation-state.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-generation-state.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-generation-state.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/s-t-o-r-m-c-a-s-e-repository-access-modifier.jscs-test', ['exports'], function (exports) {
@@ -13441,6 +14326,22 @@ define('dummy/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-even
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerEnumsICSSoftSTORMNETBusinessDataServiceObjectEvents['default'];
+    }
+  });
+});
+define('dummy/enums/new-platform-flexberry-web-designer-access-mode', ['exports', 'ember-flexberry-designer/enums/new-platform-flexberry-web-designer-access-mode'], function (exports, _emberFlexberryDesignerEnumsNewPlatformFlexberryWebDesignerAccessMode) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerEnumsNewPlatformFlexberryWebDesignerAccessMode['default'];
+    }
+  });
+});
+define('dummy/enums/new-platform-flexberry-web-designer-generation-state', ['exports', 'ember-flexberry-designer/enums/new-platform-flexberry-web-designer-generation-state'], function (exports, _emberFlexberryDesignerEnumsNewPlatformFlexberryWebDesignerGenerationState) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerEnumsNewPlatformFlexberryWebDesignerGenerationState['default'];
     }
   });
 });
@@ -14730,38 +15631,42 @@ define('dummy/models/custom-inflector-rules', ['exports', 'ember-inflector'], fu
   inflector.irregular('association', 'Associations');
   inflector.irregular('aggregation', 'Aggregations');
   inflector.irregular('inheritance', 'Inheritances');
-  inflector.irregular('definition', 'Definitions');
   inflector.irregular('generation', 'Generations');
+  inflector.irregular('definition', 'Definitions');
   inflector.irregular('repository', 'Repositorys');
   inflector.irregular('subsystem', 'Subsystems');
-  inflector.irregular('parameter', 'Parameters');
   inflector.irregular('attribute', 'Attributes');
+  inflector.irregular('following', 'Followings');
+  inflector.irregular('parameter', 'Parameters');
   inflector.irregular('filelink', 'Filelinks');
   inflector.irregular('property', 'Propertys');
-  inflector.irregular('history', 'Historys');
+  inflector.irregular('profile', 'Profiles');
   inflector.irregular('setting', 'Settings');
+  inflector.irregular('project', 'Projects');
+  inflector.irregular('plugins', 'Pluginss');
+  inflector.irregular('history', 'Historys');
   inflector.irregular('diagram', 'Diagrams');
   inflector.irregular('control', 'Controls');
-  inflector.irregular('plugins', 'Pluginss');
-  inflector.irregular('project', 'Projects');
   inflector.irregular('object', 'Objects');
-  inflector.irregular('system', 'Systems');
-  inflector.irregular('method', 'Methods');
   inflector.irregular('status', 'Statuss');
+  inflector.irregular('method', 'Methods');
+  inflector.irregular('system', 'Systems');
   inflector.irregular('stage', 'Stages');
   inflector.irregular('class', 'Classs');
-  inflector.irregular('view', 'Views');
   inflector.irregular('link', 'Links');
-  inflector.irregular('type', 'Types');
+  inflector.irregular('view', 'Views');
   inflector.irregular('task', 'Tasks');
+  inflector.irregular('user', 'Users');
+  inflector.irregular('type', 'Types');
   inflector.irregular('dpd', 'Dpds');
   inflector.irregular('ucd', 'Ucds');
-  inflector.irregular('std', 'Stds');
   inflector.irregular('cad', 'Cads');
+  inflector.irregular('std', 'Stds');
+  inflector.irregular('log', 'Logs');
   inflector.irregular('cod', 'Cods');
   inflector.irregular('sd', 'Sds');
-  inflector.irregular('ad', 'Ads');
   inflector.irregular('in', 'Ins');
+  inflector.irregular('ad', 'Ads');
   inflector.irregular('l', 'Ls');
 
   exports['default'] = {};
@@ -14782,11 +15687,27 @@ define('dummy/models/fd-aggregation', ['exports', 'ember-flexberry-designer/mode
     }
   });
 });
+define('dummy/models/fd-application-user', ['exports', 'ember-flexberry-designer/models/fd-application-user'], function (exports, _emberFlexberryDesignerModelsFdApplicationUser) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerModelsFdApplicationUser['default'];
+    }
+  });
+});
 define('dummy/models/fd-association', ['exports', 'ember-flexberry-designer/models/fd-association'], function (exports, _emberFlexberryDesignerModelsFdAssociation) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerModelsFdAssociation['default'];
+    }
+  });
+});
+define('dummy/models/fd-auth-type', ['exports', 'ember-flexberry-designer/models/fd-auth-type'], function (exports, _emberFlexberryDesignerModelsFdAuthType) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerModelsFdAuthType['default'];
     }
   });
 });
@@ -15118,6 +16039,14 @@ define('dummy/models/fd-filelink', ['exports', 'ember-flexberry-designer/models/
     }
   });
 });
+define('dummy/models/fd-following', ['exports', 'ember-flexberry-designer/models/fd-following'], function (exports, _emberFlexberryDesignerModelsFdFollowing) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerModelsFdFollowing['default'];
+    }
+  });
+});
 define('dummy/models/fd-form-control', ['exports', 'ember-flexberry-designer/models/fd-form-control'], function (exports, _emberFlexberryDesignerModelsFdFormControl) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -15283,6 +16212,22 @@ define('dummy/models/fd-ucd', ['exports', 'ember-flexberry-designer/models/fd-uc
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerModelsFdUcd['default'];
+    }
+  });
+});
+define('dummy/models/fd-user-auth-profile', ['exports', 'ember-flexberry-designer/models/fd-user-auth-profile'], function (exports, _emberFlexberryDesignerModelsFdUserAuthProfile) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerModelsFdUserAuthProfile['default'];
+    }
+  });
+});
+define('dummy/models/fd-user-in-stage', ['exports', 'ember-flexberry-designer/models/fd-user-in-stage'], function (exports, _emberFlexberryDesignerModelsFdUserInStage) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerModelsFdUserInStage['default'];
     }
   });
 });
@@ -16101,6 +17046,54 @@ define('dummy/routes/new-platform-flexberry-services-lock-list', ['exports', 'em
     }
   });
 });
+define('dummy/routes/new-platform-flexberry-web-designer-generation-e', ['exports', 'ember-flexberry-designer/routes/new-platform-flexberry-web-designer-generation-e'], function (exports, _emberFlexberryDesignerRoutesNewPlatformFlexberryWebDesignerGenerationE) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesNewPlatformFlexberryWebDesignerGenerationE['default'];
+    }
+  });
+});
+define('dummy/routes/new-platform-flexberry-web-designer-generation-e/new', ['exports', 'ember-flexberry-designer/routes/new-platform-flexberry-web-designer-generation-e/new'], function (exports, _emberFlexberryDesignerRoutesNewPlatformFlexberryWebDesignerGenerationENew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesNewPlatformFlexberryWebDesignerGenerationENew['default'];
+    }
+  });
+});
+define('dummy/routes/new-platform-flexberry-web-designer-generation-l', ['exports', 'ember-flexberry-designer/routes/new-platform-flexberry-web-designer-generation-l'], function (exports, _emberFlexberryDesignerRoutesNewPlatformFlexberryWebDesignerGenerationL) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesNewPlatformFlexberryWebDesignerGenerationL['default'];
+    }
+  });
+});
+define('dummy/routes/new-platform-flexberry-web-designer-storage-type-e', ['exports', 'ember-flexberry-designer/routes/new-platform-flexberry-web-designer-storage-type-e'], function (exports, _emberFlexberryDesignerRoutesNewPlatformFlexberryWebDesignerStorageTypeE) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesNewPlatformFlexberryWebDesignerStorageTypeE['default'];
+    }
+  });
+});
+define('dummy/routes/new-platform-flexberry-web-designer-storage-type-e/new', ['exports', 'ember-flexberry-designer/routes/new-platform-flexberry-web-designer-storage-type-e/new'], function (exports, _emberFlexberryDesignerRoutesNewPlatformFlexberryWebDesignerStorageTypeENew) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesNewPlatformFlexberryWebDesignerStorageTypeENew['default'];
+    }
+  });
+});
+define('dummy/routes/new-platform-flexberry-web-designer-storage-type-l', ['exports', 'ember-flexberry-designer/routes/new-platform-flexberry-web-designer-storage-type-l'], function (exports, _emberFlexberryDesignerRoutesNewPlatformFlexberryWebDesignerStorageTypeL) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesNewPlatformFlexberryWebDesignerStorageTypeL['default'];
+    }
+  });
+});
 define('dummy/routes/statechart-diagram-primitives-demo', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Route.extend({
     activate: function activate() {
@@ -16145,11 +17138,27 @@ define('dummy/serializers/fd-aggregation', ['exports', 'ember-flexberry-designer
     }
   });
 });
+define('dummy/serializers/fd-application-user', ['exports', 'ember-flexberry-designer/serializers/fd-application-user'], function (exports, _emberFlexberryDesignerSerializersFdApplicationUser) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerSerializersFdApplicationUser['default'];
+    }
+  });
+});
 define('dummy/serializers/fd-association', ['exports', 'ember-flexberry-designer/serializers/fd-association'], function (exports, _emberFlexberryDesignerSerializersFdAssociation) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerSerializersFdAssociation['default'];
+    }
+  });
+});
+define('dummy/serializers/fd-auth-type', ['exports', 'ember-flexberry-designer/serializers/fd-auth-type'], function (exports, _emberFlexberryDesignerSerializersFdAuthType) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerSerializersFdAuthType['default'];
     }
   });
 });
@@ -16481,6 +17490,14 @@ define('dummy/serializers/fd-filelink', ['exports', 'ember-flexberry-designer/se
     }
   });
 });
+define('dummy/serializers/fd-following', ['exports', 'ember-flexberry-designer/serializers/fd-following'], function (exports, _emberFlexberryDesignerSerializersFdFollowing) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerSerializersFdFollowing['default'];
+    }
+  });
+});
 define('dummy/serializers/fd-form-control', ['exports', 'ember-flexberry-designer/serializers/fd-form-control'], function (exports, _emberFlexberryDesignerSerializersFdFormControl) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -16646,6 +17663,22 @@ define('dummy/serializers/fd-ucd', ['exports', 'ember-flexberry-designer/seriali
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerSerializersFdUcd['default'];
+    }
+  });
+});
+define('dummy/serializers/fd-user-auth-profile', ['exports', 'ember-flexberry-designer/serializers/fd-user-auth-profile'], function (exports, _emberFlexberryDesignerSerializersFdUserAuthProfile) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerSerializersFdUserAuthProfile['default'];
+    }
+  });
+});
+define('dummy/serializers/fd-user-in-stage', ['exports', 'ember-flexberry-designer/serializers/fd-user-in-stage'], function (exports, _emberFlexberryDesignerSerializersFdUserInStage) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerSerializersFdUserInStage['default'];
     }
   });
 });
@@ -31478,6 +32511,48 @@ define("dummy/templates/deployment-diagram-primitives-demo", ["exports"], functi
 define("dummy/templates/error", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     var child0 = (function () {
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 3,
+              "column": 2
+            },
+            "end": {
+              "line": 5,
+              "column": 2
+            }
+          },
+          "moduleName": "dummy/templates/error.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode(":\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+          return morphs;
+        },
+        statements: [["inline", "t", [["get", "model.nameLocaleKey", ["loc", [null, [4, 8], [4, 27]]]]], [], ["loc", [null, [4, 4], [4, 29]]]]],
+        locals: [],
+        templates: []
+      };
+    })();
+    var child1 = (function () {
       var child0 = (function () {
         return {
           meta: {
@@ -31486,11 +32561,217 @@ define("dummy/templates/error", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 7,
+                "line": 5,
                 "column": 2
               },
               "end": {
-                "line": 11,
+                "line": 7,
+                "column": 2
+              }
+            },
+            "moduleName": "dummy/templates/error.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("    ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode(":\n  ");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["content", "model.name", ["loc", [null, [6, 4], [6, 18]]]]],
+          locals: [],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 5,
+              "column": 2
+            },
+            "end": {
+              "line": 7,
+              "column": 2
+            }
+          },
+          "moduleName": "dummy/templates/error.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [["block", "if", [["get", "model.name", ["loc", [null, [5, 12], [5, 22]]]]], [], 0, null, ["loc", [null, [5, 2], [7, 2]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child2 = (function () {
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 8,
+              "column": 2
+            },
+            "end": {
+              "line": 10,
+              "column": 2
+            }
+          },
+          "moduleName": "dummy/templates/error.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+          return morphs;
+        },
+        statements: [["inline", "t", [["get", "model.messageLocaleKey", ["loc", [null, [9, 8], [9, 30]]]]], [], ["loc", [null, [9, 4], [9, 32]]]]],
+        locals: [],
+        templates: []
+      };
+    })();
+    var child3 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 10,
+                "column": 2
+              },
+              "end": {
+                "line": 12,
+                "column": 2
+              }
+            },
+            "moduleName": "dummy/templates/error.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("    ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n  ");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["content", "model.message", ["loc", [null, [11, 4], [11, 21]]]]],
+          locals: [],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 10,
+              "column": 2
+            },
+            "end": {
+              "line": 12,
+              "column": 2
+            }
+          },
+          "moduleName": "dummy/templates/error.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [["block", "if", [["get", "model.message", ["loc", [null, [10, 12], [10, 25]]]]], [], 0, null, ["loc", [null, [10, 2], [12, 2]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child4 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 15,
+                "column": 2
+              },
+              "end": {
+                "line": 19,
                 "column": 2
               }
             },
@@ -31517,7 +32798,7 @@ define("dummy/templates/error", ["exports"], function (exports) {
             morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 0, 0);
             return morphs;
           },
-          statements: [["content", "model.stack", ["loc", [null, [10, 9], [10, 24]]]]],
+          statements: [["content", "model.stack", ["loc", [null, [18, 9], [18, 24]]]]],
           locals: [],
           templates: []
         };
@@ -31529,11 +32810,11 @@ define("dummy/templates/error", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 6,
+              "line": 14,
               "column": 0
             },
             "end": {
-              "line": 12,
+              "line": 20,
               "column": 0
             }
           },
@@ -31556,12 +32837,12 @@ define("dummy/templates/error", ["exports"], function (exports) {
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [["block", "flexberry-toggler", [], ["caption", ["subexpr", "t", ["forms.error-form.show-more"], [], ["loc", [null, [8, 12], [8, 44]]]]], 0, null, ["loc", [null, [7, 2], [11, 24]]]]],
+        statements: [["block", "flexberry-toggler", [], ["caption", ["subexpr", "t", ["forms.error-form.show-more"], [], ["loc", [null, [16, 12], [16, 44]]]]], 0, null, ["loc", [null, [15, 2], [19, 24]]]]],
         locals: [],
         templates: [child0]
       };
     })();
-    var child1 = (function () {
+    var child5 = (function () {
       var child0 = (function () {
         return {
           meta: {
@@ -31570,11 +32851,11 @@ define("dummy/templates/error", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 14,
+                "line": 22,
                 "column": 2
               },
               "end": {
-                "line": 20,
+                "line": 28,
                 "column": 2
               }
             },
@@ -31599,7 +32880,7 @@ define("dummy/templates/error", ["exports"], function (exports) {
             morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
             return morphs;
           },
-          statements: [["inline", "link-to", [["subexpr", "t", ["forms.error-form.retry"], [], ["loc", [null, [15, 14], [15, 42]]]], ["get", "model.retryRoute", ["loc", [null, [15, 43], [15, 59]]]], ["get", "model.id", ["loc", [null, [15, 60], [15, 68]]]]], ["tagName", "button", "activeClass", "", "class", "ui button"], ["loc", [null, [15, 4], [19, 6]]]]],
+          statements: [["inline", "link-to", [["subexpr", "t", ["forms.error-form.retry"], [], ["loc", [null, [23, 14], [23, 42]]]], ["get", "model.retryRoute", ["loc", [null, [23, 43], [23, 59]]]], ["get", "model.id", ["loc", [null, [23, 60], [23, 68]]]]], ["tagName", "button", "activeClass", "", "class", "ui button"], ["loc", [null, [23, 4], [27, 6]]]]],
           locals: [],
           templates: []
         };
@@ -31612,11 +32893,11 @@ define("dummy/templates/error", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 20,
+                "line": 28,
                 "column": 2
               },
               "end": {
-                "line": 26,
+                "line": 34,
                 "column": 2
               }
             },
@@ -31641,7 +32922,7 @@ define("dummy/templates/error", ["exports"], function (exports) {
             morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
             return morphs;
           },
-          statements: [["inline", "link-to", [["subexpr", "t", ["forms.error-form.retry"], [], ["loc", [null, [21, 14], [21, 42]]]], ["get", "model.retryRoute", ["loc", [null, [21, 43], [21, 59]]]]], ["tagName", "button", "activeClass", "", "class", "ui button"], ["loc", [null, [21, 4], [25, 6]]]]],
+          statements: [["inline", "link-to", [["subexpr", "t", ["forms.error-form.retry"], [], ["loc", [null, [29, 14], [29, 42]]]], ["get", "model.retryRoute", ["loc", [null, [29, 43], [29, 59]]]]], ["tagName", "button", "activeClass", "", "class", "ui button"], ["loc", [null, [29, 4], [33, 6]]]]],
           locals: [],
           templates: []
         };
@@ -31653,11 +32934,11 @@ define("dummy/templates/error", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 13,
+              "line": 21,
               "column": 0
             },
             "end": {
-              "line": 27,
+              "line": 35,
               "column": 0
             }
           },
@@ -31680,7 +32961,7 @@ define("dummy/templates/error", ["exports"], function (exports) {
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [["block", "if", [["get", "model.id", ["loc", [null, [14, 8], [14, 16]]]]], [], 0, 1, ["loc", [null, [14, 2], [26, 9]]]]],
+        statements: [["block", "if", [["get", "model.id", ["loc", [null, [22, 8], [22, 16]]]]], [], 0, 1, ["loc", [null, [22, 2], [34, 9]]]]],
         locals: [],
         templates: [child0, child1]
       };
@@ -31699,8 +32980,8 @@ define("dummy/templates/error", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 28,
-            "column": 0
+            "line": 35,
+            "column": 7
           }
         },
         "moduleName": "dummy/templates/error.hbs"
@@ -31720,15 +33001,11 @@ define("dummy/templates/error", ["exports"], function (exports) {
         dom.appendChild(el0, el1);
         var el1 = dom.createElement("h2");
         dom.setAttribute(el1, "class", "ui header");
-        var el2 = dom.createTextNode("\n  ");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createComment("");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n  ");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createComment("");
-        dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
@@ -31744,15 +33021,15 @@ define("dummy/templates/error", ["exports"], function (exports) {
         var morphs = new Array(5);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
         morphs[1] = dom.createMorphAt(element0, 1, 1);
-        morphs[2] = dom.createMorphAt(element0, 3, 3);
+        morphs[2] = dom.createMorphAt(element0, 2, 2);
         morphs[3] = dom.createMorphAt(fragment, 4, 4, contextualElement);
         morphs[4] = dom.createMorphAt(fragment, 5, 5, contextualElement);
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.error-form.caption"], [], ["loc", [null, [1, 22], [1, 54]]]], ["inline", "if", [["get", "model.name", ["loc", [null, [3, 7], [3, 17]]]], ["subexpr", "concat", [["get", "model.name", ["loc", [null, [3, 26], [3, 36]]]], ": "], [], ["loc", [null, [3, 18], [3, 42]]]]], [], ["loc", [null, [3, 2], [3, 44]]]], ["inline", "if", [["get", "model.message", ["loc", [null, [4, 7], [4, 20]]]], ["get", "model.message", ["loc", [null, [4, 21], [4, 34]]]]], [], ["loc", [null, [4, 2], [4, 36]]]], ["block", "if", [["get", "model.stack", ["loc", [null, [6, 6], [6, 17]]]]], [], 0, null, ["loc", [null, [6, 0], [12, 7]]]], ["block", "if", [["get", "model.retryRoute", ["loc", [null, [13, 6], [13, 22]]]]], [], 1, null, ["loc", [null, [13, 0], [27, 7]]]]],
+      statements: [["inline", "t", ["forms.error-form.caption"], [], ["loc", [null, [1, 22], [1, 54]]]], ["block", "if", [["get", "model.nameLocaleKey", ["loc", [null, [3, 8], [3, 27]]]]], [], 0, 1, ["loc", [null, [3, 2], [7, 9]]]], ["block", "if", [["get", "model.messageLocaleKey", ["loc", [null, [8, 8], [8, 30]]]]], [], 2, 3, ["loc", [null, [8, 2], [12, 9]]]], ["block", "if", [["get", "model.stack", ["loc", [null, [14, 6], [14, 17]]]]], [], 4, null, ["loc", [null, [14, 0], [20, 7]]]], ["block", "if", [["get", "model.retryRoute", ["loc", [null, [21, 6], [21, 22]]]]], [], 5, null, ["loc", [null, [21, 0], [35, 7]]]]],
       locals: [],
-      templates: [child0, child1]
+      templates: [child0, child1, child2, child3, child4, child5]
     };
   })());
 });
@@ -35368,8 +36645,8 @@ define("dummy/templates/fd-association-list-form", ["exports"], function (export
             "column": 0
           },
           "end": {
-            "line": 35,
-            "column": 6
+            "line": 37,
+            "column": 0
           }
         },
         "moduleName": "dummy/templates/fd-association-list-form.hbs"
@@ -35399,6 +36676,8 @@ define("dummy/templates/fd-association-list-form", ["exports"], function (export
         var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
@@ -35409,7 +36688,7 @@ define("dummy/templates/fd-association-list-form", ["exports"], function (export
         dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-association-list-form.caption"], [], ["loc", [null, [2, 4], [2, 50]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-association", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "deleteButton", true, "showCheckBoxInRow", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [13, 12], [13, 27]]]]], [], []], "orderable", true, "enableFilters", true, "filters", ["subexpr", "@mut", [["get", "filters", ["loc", [null, [16, 12], [16, 19]]]]], [], []], "disableHierarchicalMode", true, "applyFilters", ["subexpr", "action", ["applyFilters"], [], ["loc", [null, [18, 17], [18, 40]]]], "resetFilters", ["subexpr", "action", ["resetFilters"], [], ["loc", [null, [19, 17], [19, 40]]]], "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [20, 17], [20, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [21, 23], [21, 52]]]], "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [24, 10], [24, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [25, 17], [25, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [26, 18], [26, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [27, 22], [27, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [28, 20], [28, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [29, 16], [29, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [30, 17], [30, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [31, 13], [31, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [32, 13], [32, 32]]]], "componentName", "FdAssociationListForm"], ["loc", [null, [4, 2], [34, 4]]]]],
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-association-list-form.caption"], [], ["loc", [null, [2, 4], [2, 50]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-association", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "deleteButton", true, "showCheckBoxInRow", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [13, 12], [13, 27]]]]], [], []], "orderable", true, "enableFilters", true, "filters", ["subexpr", "@mut", [["get", "filters", ["loc", [null, [16, 12], [16, 19]]]]], [], []], "disableHierarchicalMode", true, "applyFilters", ["subexpr", "action", ["applyFilters"], [], ["loc", [null, [18, 17], [18, 40]]]], "resetFilters", ["subexpr", "action", ["resetFilters"], [], ["loc", [null, [19, 17], [19, 40]]]], "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [20, 17], [20, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [21, 23], [21, 52]]]], "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "beforeDeleteAllRecords", ["subexpr", "action", ["beforeDeleteAllRecords"], [], ["loc", [null, [24, 27], [24, 60]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [25, 10], [25, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [26, 17], [26, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [27, 18], [27, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [28, 22], [28, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [29, 20], [29, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [30, 16], [30, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [31, 17], [31, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [32, 13], [32, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [33, 13], [33, 32]]]], "componentName", "FdAssociationListForm"], ["loc", [null, [4, 2], [35, 4]]]]],
       locals: [],
       templates: []
     };
@@ -36571,8 +37850,8 @@ define("dummy/templates/fd-class-list-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 37,
-            "column": 6
+            "line": 39,
+            "column": 0
           }
         },
         "moduleName": "dummy/templates/fd-class-list-form.hbs"
@@ -36602,6 +37881,8 @@ define("dummy/templates/fd-class-list-form", ["exports"], function (exports) {
         var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
@@ -36612,7 +37893,7 @@ define("dummy/templates/fd-class-list-form", ["exports"], function (exports) {
         dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-class-list-form.caption"], [], ["loc", [null, [2, 4], [2, 44]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-class", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "deleteButton", true, "showCheckBoxInRow", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [15, 12], [15, 27]]]]], [], []], "enableFilters", true, "filters", ["subexpr", "@mut", [["get", "filters", ["loc", [null, [17, 12], [17, 19]]]]], [], []], "orderable", true, "rowClickable", true, "disableHierarchicalMode", true, "action", "onRowClick", "applyFilters", ["subexpr", "action", ["applyFilters"], [], ["loc", [null, [22, 17], [22, 40]]]], "resetFilters", ["subexpr", "action", ["resetFilters"], [], ["loc", [null, [23, 17], [23, 40]]]], "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [24, 17], [24, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [25, 23], [25, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [26, 10], [26, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [27, 17], [27, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [28, 18], [28, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [29, 22], [29, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [30, 20], [30, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [31, 16], [31, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [32, 17], [32, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [33, 13], [33, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [34, 13], [34, 32]]]], "componentName", "FdClassListForm"], ["loc", [null, [4, 2], [36, 4]]]]],
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-class-list-form.caption"], [], ["loc", [null, [2, 4], [2, 44]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-class", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "deleteButton", true, "showCheckBoxInRow", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [15, 12], [15, 27]]]]], [], []], "enableFilters", true, "filters", ["subexpr", "@mut", [["get", "filters", ["loc", [null, [17, 12], [17, 19]]]]], [], []], "orderable", true, "rowClickable", true, "disableHierarchicalMode", true, "action", "onRowClick", "applyFilters", ["subexpr", "action", ["applyFilters"], [], ["loc", [null, [22, 17], [22, 40]]]], "resetFilters", ["subexpr", "action", ["resetFilters"], [], ["loc", [null, [23, 17], [23, 40]]]], "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [24, 17], [24, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [25, 23], [25, 52]]]], "beforeDeleteAllRecords", ["subexpr", "action", ["beforeDeleteAllRecords"], [], ["loc", [null, [26, 27], [26, 60]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [27, 10], [27, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [28, 17], [28, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [29, 18], [29, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [30, 22], [30, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [31, 20], [31, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [32, 16], [32, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [33, 17], [33, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [34, 13], [34, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [35, 13], [35, 32]]]], "componentName", "FdClassListForm"], ["loc", [null, [4, 2], [37, 4]]]]],
       locals: [],
       templates: []
     };
@@ -37043,8 +38324,8 @@ define("dummy/templates/fd-configuration-list-form", ["exports"], function (expo
             "column": 0
           },
           "end": {
-            "line": 28,
-            "column": 6
+            "line": 30,
+            "column": 0
           }
         },
         "moduleName": "dummy/templates/fd-configuration-list-form.hbs"
@@ -37074,6 +38355,8 @@ define("dummy/templates/fd-configuration-list-form", ["exports"], function (expo
         var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
@@ -37084,7 +38367,7 @@ define("dummy/templates/fd-configuration-list-form", ["exports"], function (expo
         dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-configuration-list-form.caption"], [], ["loc", [null, [2, 4], [2, 52]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-configuration", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [13, 12], [13, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [15, 17], [15, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [16, 23], [16, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [17, 10], [17, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [18, 17], [18, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [19, 18], [19, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [20, 22], [20, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [21, 20], [21, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [22, 16], [22, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [23, 17], [23, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [24, 13], [24, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [25, 13], [25, 32]]]], "componentName", "FdConfigurationListForm"], ["loc", [null, [4, 2], [27, 4]]]]],
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-configuration-list-form.caption"], [], ["loc", [null, [2, 4], [2, 52]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-configuration", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [13, 12], [13, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [15, 17], [15, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [16, 23], [16, 52]]]], "beforeDeleteAllRecords", ["subexpr", "action", ["beforeDeleteAllRecords"], [], ["loc", [null, [17, 27], [17, 60]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [18, 10], [18, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [19, 17], [19, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [20, 18], [20, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [21, 22], [21, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [22, 20], [22, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [23, 16], [23, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [24, 17], [24, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [25, 13], [25, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [26, 13], [26, 32]]]], "componentName", "FdConfigurationListForm"], ["loc", [null, [4, 2], [28, 4]]]]],
       locals: [],
       templates: []
     };
@@ -38816,7 +40099,7 @@ define("dummy/templates/fd-diagram-list-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 35,
+            "line": 36,
             "column": 0
           }
         },
@@ -38859,7 +40142,7 @@ define("dummy/templates/fd-diagram-list-form", ["exports"], function (exports) {
         dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-diagram-list-form.caption"], [], ["loc", [null, [2, 4], [2, 46]]]], ["inline", "flexberry-objectlistview", [], ["modelName", ["subexpr", "@mut", [["get", "modelName", ["loc", [null, [5, 14], [5, 23]]]]], [], []], "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "deleteButton", true, "showDeleteMenuItemInRow", true, "showCheckBoxInRow", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [14, 12], [14, 27]]]]], [], []], "orderable", true, "enableFilters", true, "filters", ["subexpr", "@mut", [["get", "filters", ["loc", [null, [17, 12], [17, 19]]]]], [], []], "disableHierarchicalMode", true, "applyFilters", ["subexpr", "action", ["applyFilters"], [], ["loc", [null, [19, 17], [19, 40]]]], "resetFilters", ["subexpr", "action", ["resetFilters"], [], ["loc", [null, [20, 17], [20, 40]]]], "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [21, 17], [21, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [22, 23], [22, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [23, 10], [23, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [24, 17], [24, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [25, 18], [25, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [26, 22], [26, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [27, 20], [27, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [28, 16], [28, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [29, 17], [29, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [30, 13], [30, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [31, 13], [31, 32]]]], "componentName", "FdDiagramListForm"], ["loc", [null, [4, 2], [33, 4]]]]],
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-diagram-list-form.caption"], [], ["loc", [null, [2, 4], [2, 46]]]], ["inline", "flexberry-objectlistview", [], ["modelName", ["subexpr", "@mut", [["get", "modelName", ["loc", [null, [5, 14], [5, 23]]]]], [], []], "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "deleteButton", true, "showDeleteMenuItemInRow", true, "showCheckBoxInRow", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [14, 12], [14, 27]]]]], [], []], "orderable", true, "enableFilters", true, "filters", ["subexpr", "@mut", [["get", "filters", ["loc", [null, [17, 12], [17, 19]]]]], [], []], "disableHierarchicalMode", true, "applyFilters", ["subexpr", "action", ["applyFilters"], [], ["loc", [null, [19, 17], [19, 40]]]], "resetFilters", ["subexpr", "action", ["resetFilters"], [], ["loc", [null, [20, 17], [20, 40]]]], "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [21, 17], [21, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [22, 23], [22, 52]]]], "beforeDeleteAllRecords", ["subexpr", "action", ["beforeDeleteAllRecords"], [], ["loc", [null, [23, 27], [23, 60]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [24, 10], [24, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [25, 17], [25, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [26, 18], [26, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [27, 22], [27, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [28, 20], [28, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [29, 16], [29, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [30, 17], [30, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [31, 13], [31, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [32, 13], [32, 32]]]], "componentName", "FdDiagramListForm"], ["loc", [null, [4, 2], [34, 4]]]]],
       locals: [],
       templates: []
     };
@@ -42408,8 +43691,8 @@ define("dummy/templates/fd-inheritance-list-form", ["exports"], function (export
             "column": 0
           },
           "end": {
-            "line": 35,
-            "column": 6
+            "line": 37,
+            "column": 0
           }
         },
         "moduleName": "dummy/templates/fd-inheritance-list-form.hbs"
@@ -42439,6 +43722,8 @@ define("dummy/templates/fd-inheritance-list-form", ["exports"], function (export
         var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
@@ -42449,7 +43734,7 @@ define("dummy/templates/fd-inheritance-list-form", ["exports"], function (export
         dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-inheritance-list-form.caption"], [], ["loc", [null, [2, 4], [2, 50]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-inheritance", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [11, 12], [11, 27]]]]], [], []], "orderable", true, "enableFilters", true, "filters", ["subexpr", "@mut", [["get", "filters", ["loc", [null, [14, 12], [14, 19]]]]], [], []], "disableHierarchicalMode", true, "applyFilters", ["subexpr", "action", ["applyFilters"], [], ["loc", [null, [16, 17], [16, 40]]]], "resetFilters", ["subexpr", "action", ["resetFilters"], [], ["loc", [null, [17, 17], [17, 40]]]], "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [18, 17], [18, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [19, 23], [19, 52]]]], "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "deleteButton", true, "showCheckBoxInRow", true, "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [24, 10], [24, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [25, 17], [25, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [26, 18], [26, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [27, 22], [27, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [28, 20], [28, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [29, 16], [29, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [30, 17], [30, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [31, 13], [31, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [32, 13], [32, 32]]]], "componentName", "FdInheritanceListForm"], ["loc", [null, [4, 2], [34, 4]]]]],
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-inheritance-list-form.caption"], [], ["loc", [null, [2, 4], [2, 50]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-inheritance", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [11, 12], [11, 27]]]]], [], []], "orderable", true, "enableFilters", true, "filters", ["subexpr", "@mut", [["get", "filters", ["loc", [null, [14, 12], [14, 19]]]]], [], []], "disableHierarchicalMode", true, "applyFilters", ["subexpr", "action", ["applyFilters"], [], ["loc", [null, [16, 17], [16, 40]]]], "resetFilters", ["subexpr", "action", ["resetFilters"], [], ["loc", [null, [17, 17], [17, 40]]]], "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [18, 17], [18, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [19, 23], [19, 52]]]], "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "deleteButton", true, "showCheckBoxInRow", true, "beforeDeleteAllRecords", ["subexpr", "action", ["beforeDeleteAllRecords"], [], ["loc", [null, [24, 27], [24, 60]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [25, 10], [25, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [26, 17], [26, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [27, 18], [27, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [28, 22], [28, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [29, 20], [29, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [30, 16], [30, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [31, 17], [31, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [32, 13], [32, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [33, 13], [33, 32]]]], "componentName", "FdInheritanceListForm"], ["loc", [null, [4, 2], [35, 4]]]]],
       locals: [],
       templates: []
     };
@@ -45709,8 +46994,8 @@ define("dummy/templates/fd-stage-list-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 28,
-            "column": 6
+            "line": 30,
+            "column": 0
           }
         },
         "moduleName": "dummy/templates/fd-stage-list-form.hbs"
@@ -45740,6 +47025,8 @@ define("dummy/templates/fd-stage-list-form", ["exports"], function (exports) {
         var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
@@ -45750,7 +47037,7 @@ define("dummy/templates/fd-stage-list-form", ["exports"], function (exports) {
         dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-stage-list-form.caption"], [], ["loc", [null, [2, 4], [2, 44]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-stage", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [13, 12], [13, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [15, 17], [15, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [16, 23], [16, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [17, 10], [17, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [18, 17], [18, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [19, 18], [19, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [20, 22], [20, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [21, 20], [21, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [22, 16], [22, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [23, 17], [23, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [24, 13], [24, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [25, 13], [25, 32]]]], "componentName", "FdStageListForm"], ["loc", [null, [4, 2], [27, 4]]]]],
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-stage-list-form.caption"], [], ["loc", [null, [2, 4], [2, 44]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-stage", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [13, 12], [13, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [15, 17], [15, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [16, 23], [16, 52]]]], "beforeDeleteAllRecords", ["subexpr", "action", ["beforeDeleteAllRecords"], [], ["loc", [null, [17, 27], [17, 60]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [18, 10], [18, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [19, 17], [19, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [20, 18], [20, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [21, 22], [21, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [22, 20], [22, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [23, 16], [23, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [24, 17], [24, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [25, 13], [25, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [26, 13], [26, 32]]]], "componentName", "FdStageListForm"], ["loc", [null, [4, 2], [28, 4]]]]],
       locals: [],
       templates: []
     };
@@ -46203,8 +47490,8 @@ define("dummy/templates/fd-system-list-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 34,
-            "column": 6
+            "line": 36,
+            "column": 0
           }
         },
         "moduleName": "dummy/templates/fd-system-list-form.hbs"
@@ -46234,6 +47521,8 @@ define("dummy/templates/fd-system-list-form", ["exports"], function (exports) {
         var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
@@ -46244,7 +47533,7 @@ define("dummy/templates/fd-system-list-form", ["exports"], function (exports) {
         dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-system-list-form.caption"], [], ["loc", [null, [2, 4], [2, 45]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-system", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [11, 12], [11, 27]]]]], [], []], "orderable", true, "enableFilters", true, "filters", ["subexpr", "@mut", [["get", "filters", ["loc", [null, [14, 12], [14, 19]]]]], [], []], "disableHierarchicalMode", true, "applyFilters", ["subexpr", "action", ["applyFilters"], [], ["loc", [null, [16, 17], [16, 40]]]], "resetFilters", ["subexpr", "action", ["resetFilters"], [], ["loc", [null, [17, 17], [17, 40]]]], "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [18, 17], [18, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [19, 23], [19, 52]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [20, 10], [20, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [21, 17], [21, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [22, 18], [22, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [23, 22], [23, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [24, 20], [24, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [25, 16], [25, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [26, 17], [26, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [27, 13], [27, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [28, 13], [28, 32]]]], "componentName", "FdSystemListForm", "deleteButton", true, "showDeleteMenuItemInRow", true, "showCheckBoxInRow", true], ["loc", [null, [4, 2], [33, 4]]]]],
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-system-list-form.caption"], [], ["loc", [null, [2, 4], [2, 45]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-system", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [11, 12], [11, 27]]]]], [], []], "orderable", true, "enableFilters", true, "filters", ["subexpr", "@mut", [["get", "filters", ["loc", [null, [14, 12], [14, 19]]]]], [], []], "disableHierarchicalMode", true, "applyFilters", ["subexpr", "action", ["applyFilters"], [], ["loc", [null, [16, 17], [16, 40]]]], "resetFilters", ["subexpr", "action", ["resetFilters"], [], ["loc", [null, [17, 17], [17, 40]]]], "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [18, 17], [18, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [19, 23], [19, 52]]]], "beforeDeleteAllRecords", ["subexpr", "action", ["beforeDeleteAllRecords"], [], ["loc", [null, [20, 27], [20, 60]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [21, 10], [21, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [22, 17], [22, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [23, 18], [23, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [24, 22], [24, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [25, 20], [25, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [26, 16], [26, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [27, 17], [27, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [28, 13], [28, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [29, 13], [29, 32]]]], "componentName", "FdSystemListForm", "deleteButton", true, "showDeleteMenuItemInRow", true, "showCheckBoxInRow", true], ["loc", [null, [4, 2], [34, 4]]]]],
       locals: [],
       templates: []
     };
@@ -48919,8 +50208,8 @@ define("dummy/templates/fd-view-list-form", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 34,
-            "column": 6
+            "line": 36,
+            "column": 0
           }
         },
         "moduleName": "dummy/templates/fd-view-list-form.hbs"
@@ -48950,6 +50239,8 @@ define("dummy/templates/fd-view-list-form", ["exports"], function (exports) {
         var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
@@ -48960,7 +50251,7 @@ define("dummy/templates/fd-view-list-form", ["exports"], function (exports) {
         dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-view-list-form.caption"], [], ["loc", [null, [2, 4], [2, 43]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-view", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [10, 12], [10, 27]]]]], [], []], "deleteButton", true, "showCheckBoxInRow", true, "orderable", true, "enableFilters", true, "filters", ["subexpr", "@mut", [["get", "filters", ["loc", [null, [15, 12], [15, 19]]]]], [], []], "disableHierarchicalMode", true, "applyFilters", ["subexpr", "action", ["applyFilters"], [], ["loc", [null, [17, 17], [17, 40]]]], "resetFilters", ["subexpr", "action", ["resetFilters"], [], ["loc", [null, [18, 17], [18, 40]]]], "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [19, 17], [19, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [20, 23], [20, 52]]]], "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [23, 10], [23, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [24, 17], [24, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [25, 18], [25, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [26, 22], [26, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [27, 20], [27, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [28, 16], [28, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [29, 17], [29, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [30, 13], [30, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [31, 13], [31, 32]]]], "componentName", "FdViewListForm"], ["loc", [null, [4, 2], [33, 4]]]]],
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.fd-view-list-form.caption"], [], ["loc", [null, [2, 4], [2, 43]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-dev-view", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [10, 12], [10, 27]]]]], [], []], "deleteButton", true, "showCheckBoxInRow", true, "orderable", true, "enableFilters", true, "filters", ["subexpr", "@mut", [["get", "filters", ["loc", [null, [15, 12], [15, 19]]]]], [], []], "disableHierarchicalMode", true, "applyFilters", ["subexpr", "action", ["applyFilters"], [], ["loc", [null, [17, 17], [17, 40]]]], "resetFilters", ["subexpr", "action", ["resetFilters"], [], ["loc", [null, [18, 17], [18, 40]]]], "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [19, 17], [19, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [20, 23], [20, 52]]]], "showEditMenuItemInRow", true, "showDeleteMenuItemInRow", true, "beforeDeleteAllRecords", ["subexpr", "action", ["beforeDeleteAllRecords"], [], ["loc", [null, [23, 27], [23, 60]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [24, 10], [24, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [25, 17], [25, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [26, 18], [26, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [27, 22], [27, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [28, 20], [28, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [29, 16], [29, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [30, 17], [30, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [31, 13], [31, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [32, 13], [32, 32]]]], "componentName", "FdViewListForm"], ["loc", [null, [4, 2], [34, 4]]]]],
       locals: [],
       templates: []
     };
@@ -50870,6 +52161,63 @@ define("dummy/templates/i-i-s-caseberry-logging-objects-application-log-l/loadin
     };
   })());
 });
+define("dummy/templates/loading", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "triple-curlies"
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 7,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/loading.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "class", "loading-pane");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "loading-message");
+        var el3 = dom.createTextNode("\n    Loading ...\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "spinner");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes() {
+        return [];
+      },
+      statements: [],
+      locals: [],
+      templates: []
+    };
+  })());
+});
 define("dummy/templates/lookup-dialog-content", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     return {
@@ -51110,159 +52458,15 @@ define("dummy/templates/mobile/application", ["exports"], function (exports) {
             return el0;
           },
           buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-            var element2 = dom.childAt(fragment, [1]);
+            var element0 = dom.childAt(fragment, [1]);
             var morphs = new Array(4);
-            morphs[0] = dom.createAttrMorph(element2, 'href');
-            morphs[1] = dom.createAttrMorph(element2, 'title');
-            morphs[2] = dom.createMorphAt(element2, 1, 1);
+            morphs[0] = dom.createAttrMorph(element0, 'href');
+            morphs[1] = dom.createAttrMorph(element0, 'title');
+            morphs[2] = dom.createMorphAt(element0, 1, 1);
             morphs[3] = dom.createMorphAt(fragment, 3, 3, contextualElement);
             return morphs;
           },
           statements: [["attribute", "href", ["get", "addonVersionHref", ["loc", [null, [12, 11], [12, 27]]]]], ["attribute", "title", ["subexpr", "t", ["forms.application.sitemap.application-version.title"], [], ["loc", [null, [14, 10], [14, 69]]]]], ["inline", "t", ["forms.application.sitemap.application-version.caption"], ["version", ["subexpr", "@mut", [["get", "addonVersion", ["loc", [null, [15, 72], [15, 84]]]]], [], []]], ["loc", [null, [15, 4], [15, 86]]]], ["inline", "render", ["sitemap", ["get", "sitemap", ["loc", [null, [17, 21], [17, 28]]]]], [], ["loc", [null, [17, 2], [17, 30]]]]],
-          locals: [],
-          templates: []
-        };
-      })();
-      var child1 = (function () {
-        var child0 = (function () {
-          return {
-            meta: {
-              "fragmentReason": false,
-              "revision": "Ember@2.4.6",
-              "loc": {
-                "source": null,
-                "start": {
-                  "line": 45,
-                  "column": 14
-                },
-                "end": {
-                  "line": 49,
-                  "column": 14
-                }
-              },
-              "moduleName": "dummy/templates/mobile/application.hbs"
-            },
-            isEmpty: false,
-            arity: 1,
-            cachedFragment: null,
-            hasRendered: false,
-            buildFragment: function buildFragment(dom) {
-              var el0 = dom.createDocumentFragment();
-              var el1 = dom.createTextNode("                ");
-              dom.appendChild(el0, el1);
-              var el1 = dom.createElement("option");
-              var el2 = dom.createTextNode("\n                  ");
-              dom.appendChild(el1, el2);
-              var el2 = dom.createComment("");
-              dom.appendChild(el1, el2);
-              var el2 = dom.createTextNode("\n                ");
-              dom.appendChild(el1, el2);
-              dom.appendChild(el0, el1);
-              var el1 = dom.createTextNode("\n");
-              dom.appendChild(el0, el1);
-              return el0;
-            },
-            buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-              var element0 = dom.childAt(fragment, [1]);
-              var morphs = new Array(3);
-              morphs[0] = dom.createAttrMorph(element0, 'value');
-              morphs[1] = dom.createAttrMorph(element0, 'selected');
-              morphs[2] = dom.createMorphAt(element0, 1, 1);
-              return morphs;
-            },
-            statements: [["attribute", "value", ["get", "locale", ["loc", [null, [46, 32], [46, 38]]]]], ["attribute", "selected", ["subexpr", "eq", [["subexpr", "get", [["get", "i18n", ["loc", [null, [46, 60], [46, 64]]]], "locale"], [], ["loc", [null, [46, 55], [46, 74]]]], ["get", "locale", ["loc", [null, [46, 75], [46, 81]]]]], [], ["loc", [null, [46, 50], [46, 83]]]]], ["content", "locale", ["loc", [null, [47, 18], [47, 28]]]]],
-            locals: ["locale"],
-            templates: []
-          };
-        })();
-        return {
-          meta: {
-            "fragmentReason": false,
-            "revision": "Ember@2.4.6",
-            "loc": {
-              "source": null,
-              "start": {
-                "line": 43,
-                "column": 10
-              },
-              "end": {
-                "line": 51,
-                "column": 10
-              }
-            },
-            "moduleName": "dummy/templates/mobile/application.hbs"
-          },
-          isEmpty: false,
-          arity: 0,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode("            ");
-            dom.appendChild(el0, el1);
-            var el1 = dom.createElement("select");
-            dom.setAttribute(el1, "class", "ui dropdown");
-            var el2 = dom.createTextNode("\n");
-            dom.appendChild(el1, el2);
-            var el2 = dom.createComment("");
-            dom.appendChild(el1, el2);
-            var el2 = dom.createTextNode("            ");
-            dom.appendChild(el1, el2);
-            dom.appendChild(el0, el1);
-            var el1 = dom.createTextNode("\n");
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-            var element1 = dom.childAt(fragment, [1]);
-            var morphs = new Array(2);
-            morphs[0] = dom.createAttrMorph(element1, 'onchange');
-            morphs[1] = dom.createMorphAt(element1, 1, 1);
-            return morphs;
-          },
-          statements: [["attribute", "onchange", ["subexpr", "action", [["subexpr", "mut", [["subexpr", "get", [["get", "i18n", ["loc", [null, [44, 68], [44, 72]]]], "locale"], [], ["loc", [null, [44, 63], [44, 82]]]]], [], ["loc", [null, [44, 58], [44, 83]]]]], ["value", "target.value"], ["loc", [null, [44, 49], [44, 106]]]]], ["block", "each", [["get", "locales", ["loc", [null, [45, 22], [45, 29]]]]], [], 0, null, ["loc", [null, [45, 14], [49, 23]]]]],
-          locals: [],
-          templates: [child0]
-        };
-      })();
-      var child2 = (function () {
-        return {
-          meta: {
-            "fragmentReason": false,
-            "revision": "Ember@2.4.6",
-            "loc": {
-              "source": null,
-              "start": {
-                "line": 51,
-                "column": 10
-              },
-              "end": {
-                "line": 58,
-                "column": 10
-              }
-            },
-            "moduleName": "dummy/templates/mobile/application.hbs"
-          },
-          isEmpty: false,
-          arity: 0,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode("            ");
-            dom.appendChild(el0, el1);
-            var el1 = dom.createComment("");
-            dom.appendChild(el0, el1);
-            var el1 = dom.createTextNode("\n");
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-            var morphs = new Array(1);
-            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
-            return morphs;
-          },
-          statements: [["inline", "flexberry-dropdown", [], ["class", "compact", "items", ["subexpr", "@mut", [["get", "locales", ["loc", [null, [54, 20], [54, 27]]]]], [], []], "value", ["subexpr", "@mut", [["get", "i18n.locale", ["loc", [null, [55, 20], [55, 31]]]]], [], []], "placeholder", ["subexpr", "t", ["forms.application.header.menu.language-dropdown.placeholder"], [], ["loc", [null, [56, 26], [56, 91]]]]], ["loc", [null, [52, 12], [57, 14]]]]],
           locals: [],
           templates: []
         };
@@ -51278,7 +52482,7 @@ define("dummy/templates/mobile/application", ["exports"], function (exports) {
               "column": 0
             },
             "end": {
-              "line": 97,
+              "line": 86,
               "column": 0
             }
           },
@@ -51293,7 +52497,7 @@ define("dummy/templates/mobile/application", ["exports"], function (exports) {
           var el1 = dom.createComment("");
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("div");
-          dom.setAttribute(el1, "class", "bgw-fix");
+          dom.setAttribute(el1, "class", "bgw-fix mobile");
           var el2 = dom.createTextNode("\n  ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("div");
@@ -51360,11 +52564,11 @@ define("dummy/templates/mobile/application", ["exports"], function (exports) {
           var el7 = dom.createTextNode("\n          ");
           dom.appendChild(el6, el7);
           dom.appendChild(el5, el6);
-          var el6 = dom.createTextNode("\n");
+          var el6 = dom.createTextNode("\n          ");
           dom.appendChild(el5, el6);
           var el6 = dom.createComment("");
           dom.appendChild(el5, el6);
-          var el6 = dom.createTextNode("        ");
+          var el6 = dom.createTextNode("\n        ");
           dom.appendChild(el5, el6);
           dom.appendChild(el4, el5);
           var el5 = dom.createTextNode("\n      ");
@@ -51383,7 +52587,7 @@ define("dummy/templates/mobile/application", ["exports"], function (exports) {
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("div");
           dom.setAttribute(el1, "id", "example-mobile");
-          dom.setAttribute(el1, "class", "pusher");
+          dom.setAttribute(el1, "class", "pusher mobile");
           var el2 = dom.createTextNode("\n  ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("div");
@@ -51494,34 +52698,34 @@ define("dummy/templates/mobile/application", ["exports"], function (exports) {
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var element3 = dom.childAt(fragment, [1, 1, 1, 1]);
-          var element4 = dom.childAt(element3, [1]);
-          var element5 = dom.childAt(element3, [3]);
-          var element6 = dom.childAt(element3, [5]);
-          var element7 = dom.childAt(fragment, [3, 1]);
-          var element8 = dom.childAt(fragment, [7, 1, 1]);
-          var element9 = dom.childAt(element8, [3, 1]);
+          var element1 = dom.childAt(fragment, [1, 1, 1, 1]);
+          var element2 = dom.childAt(element1, [1]);
+          var element3 = dom.childAt(element1, [3]);
+          var element4 = dom.childAt(element1, [5]);
+          var element5 = dom.childAt(fragment, [3, 1]);
+          var element6 = dom.childAt(fragment, [7, 1, 1]);
+          var element7 = dom.childAt(element6, [3, 1]);
           var morphs = new Array(14);
           morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-          morphs[1] = dom.createAttrMorph(element4, 'title');
-          morphs[2] = dom.createElementMorph(element4);
-          morphs[3] = dom.createMorphAt(dom.childAt(element5, [1]), 1, 1);
-          morphs[4] = dom.createMorphAt(element5, 3, 3);
-          morphs[5] = dom.createMorphAt(dom.childAt(element6, [1]), 1, 1);
-          morphs[6] = dom.createMorphAt(element6, 3, 3);
-          morphs[7] = dom.createAttrMorph(element7, 'class');
-          morphs[8] = dom.createMorphAt(dom.childAt(element7, [1, 1, 1, 1]), 1, 1);
+          morphs[1] = dom.createAttrMorph(element2, 'title');
+          morphs[2] = dom.createElementMorph(element2);
+          morphs[3] = dom.createMorphAt(dom.childAt(element3, [1]), 1, 1);
+          morphs[4] = dom.createMorphAt(element3, 3, 3);
+          morphs[5] = dom.createMorphAt(dom.childAt(element4, [1]), 1, 1);
+          morphs[6] = dom.createMorphAt(element4, 3, 3);
+          morphs[7] = dom.createAttrMorph(element5, 'class');
+          morphs[8] = dom.createMorphAt(dom.childAt(element5, [1, 1, 1, 1]), 1, 1);
           morphs[9] = dom.createMorphAt(dom.childAt(fragment, [5]), 1, 1);
-          morphs[10] = dom.createMorphAt(dom.childAt(element8, [1]), 1, 1);
-          morphs[11] = dom.createAttrMorph(element9, 'href');
-          morphs[12] = dom.createAttrMorph(element9, 'title');
-          morphs[13] = dom.createMorphAt(element9, 1, 1);
+          morphs[10] = dom.createMorphAt(dom.childAt(element6, [1]), 1, 1);
+          morphs[11] = dom.createAttrMorph(element7, 'href');
+          morphs[12] = dom.createAttrMorph(element7, 'title');
+          morphs[13] = dom.createMorphAt(element7, 1, 1);
           dom.insertBoundary(fragment, 0);
           return morphs;
         },
-        statements: [["block", "ui-sidebar", [], ["class", "mobile inverted vertical main menu", "ui_context", ".ember-application > .ember-view", "onShow", ["subexpr", "action", ["updateWidth"], [], ["loc", [null, [8, 9], [8, 31]]]], "onHidden", ["subexpr", "action", ["updateWidth"], [], ["loc", [null, [9, 11], [9, 33]]]]], 0, null, ["loc", [null, [5, 0], [18, 15]]]], ["attribute", "title", ["subexpr", "t", ["forms.application.header.menu.sitemap-button.title"], [], ["loc", [null, [25, 16], [25, 74]]]]], ["element", "action", ["toggleSidebarMobile"], [], ["loc", [null, [23, 11], [23, 43]]]], ["inline", "t", ["forms.application.header.menu.user-settings-service-checkbox.caption"], [], ["loc", [null, [31, 12], [31, 88]]]], ["inline", "flexberry-checkbox", [], ["class", "toggle", "value", ["subexpr", "@mut", [["get", "userSettingsService.isUserSettingsServiceEnabled", ["loc", [null, [35, 18], [35, 66]]]]], [], []]], ["loc", [null, [33, 10], [36, 12]]]], ["inline", "t", ["forms.application.header.menu.language-dropdown.caption"], [], ["loc", [null, [40, 12], [40, 75]]]], ["block", "if", [["get", "browserIsInternetExplorer", ["loc", [null, [43, 16], [43, 41]]]]], [], 1, 2, ["loc", [null, [43, 10], [58, 17]]]], ["attribute", "class", ["concat", ["ui form ", ["get", "appState.state", ["loc", [null, [65, 24], [65, 38]]]]]]], ["content", "outlet", ["loc", [null, [70, 12], [70, 22]]]], ["inline", "outlet", ["modal"], [], ["loc", [null, [78, 2], [78, 20]]]], ["inline", "t", ["forms.application.footer.application-name"], [], ["loc", [null, [84, 8], [84, 57]]]], ["attribute", "href", ["get", "addonVersionHref", ["loc", [null, [88, 17], [88, 33]]]]], ["attribute", "title", ["subexpr", "t", ["forms.application.footer.application-version.title"], [], ["loc", [null, [90, 16], [90, 74]]]]], ["inline", "t", ["forms.application.footer.application-version.caption"], ["version", ["subexpr", "@mut", [["get", "addonVersion", ["loc", [null, [91, 79], [91, 91]]]]], [], []]], ["loc", [null, [91, 12], [91, 93]]]]],
+        statements: [["block", "ui-sidebar", [], ["class", "mobile inverted vertical main menu", "ui_context", ".ember-application > .ember-view", "onShow", ["subexpr", "action", ["updateWidth"], [], ["loc", [null, [8, 9], [8, 31]]]], "onHidden", ["subexpr", "action", ["updateWidth"], [], ["loc", [null, [9, 11], [9, 33]]]]], 0, null, ["loc", [null, [5, 0], [18, 15]]]], ["attribute", "title", ["subexpr", "t", ["forms.application.header.menu.sitemap-button.title"], [], ["loc", [null, [25, 16], [25, 74]]]]], ["element", "action", ["toggleSidebarMobile"], [], ["loc", [null, [23, 11], [23, 43]]]], ["inline", "t", ["forms.application.header.menu.user-settings-service-checkbox.caption"], [], ["loc", [null, [31, 12], [31, 88]]]], ["inline", "flexberry-checkbox", [], ["class", "toggle", "value", ["subexpr", "@mut", [["get", "userSettingsService.isUserSettingsServiceEnabled", ["loc", [null, [35, 18], [35, 66]]]]], [], []]], ["loc", [null, [33, 10], [36, 12]]]], ["inline", "t", ["forms.application.header.menu.language-dropdown.caption"], [], ["loc", [null, [40, 12], [40, 75]]]], ["inline", "flexberry-dropdown", [], ["class", "compact", "items", ["subexpr", "@mut", [["get", "locales", ["loc", [null, [44, 18], [44, 25]]]]], [], []], "value", ["subexpr", "@mut", [["get", "i18n.locale", ["loc", [null, [45, 18], [45, 29]]]]], [], []], "placeholder", ["subexpr", "t", ["forms.application.header.menu.language-dropdown.placeholder"], [], ["loc", [null, [46, 24], [46, 89]]]]], ["loc", [null, [42, 10], [47, 12]]]], ["attribute", "class", ["concat", ["ui form ", ["get", "appState.state", ["loc", [null, [54, 24], [54, 38]]]]]]], ["content", "outlet", ["loc", [null, [59, 12], [59, 22]]]], ["inline", "outlet", ["modal"], [], ["loc", [null, [67, 2], [67, 20]]]], ["inline", "t", ["forms.application.footer.application-name"], [], ["loc", [null, [73, 8], [73, 57]]]], ["attribute", "href", ["get", "addonVersionHref", ["loc", [null, [77, 17], [77, 33]]]]], ["attribute", "title", ["subexpr", "t", ["forms.application.footer.application-version.title"], [], ["loc", [null, [79, 16], [79, 74]]]]], ["inline", "t", ["forms.application.footer.application-version.caption"], ["version", ["subexpr", "@mut", [["get", "addonVersion", ["loc", [null, [80, 79], [80, 91]]]]], [], []]], ["loc", [null, [80, 12], [80, 93]]]]],
         locals: [],
-        templates: [child0, child1, child2]
+        templates: [child0]
       };
     })();
     return {
@@ -51538,7 +52742,7 @@ define("dummy/templates/mobile/application", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 98,
+            "line": 87,
             "column": 0
           }
         },
@@ -51561,7 +52765,7 @@ define("dummy/templates/mobile/application", ["exports"], function (exports) {
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["block", "if", [["get", "isInAcceptanceTestMode", ["loc", [null, [1, 6], [1, 28]]]]], [], 0, 1, ["loc", [null, [1, 0], [97, 7]]]]],
+      statements: [["block", "if", [["get", "isInAcceptanceTestMode", ["loc", [null, [1, 6], [1, 28]]]]], [], 0, 1, ["loc", [null, [1, 0], [86, 7]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -54620,6 +55824,748 @@ define("dummy/templates/new-platform-flexberry-services-lock-list", ["exports"],
     };
   })());
 });
+define("dummy/templates/new-platform-flexberry-web-designer-generation-e", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    var child0 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 16,
+                "column": 8
+              },
+              "end": {
+                "line": 20,
+                "column": 8
+              }
+            },
+            "moduleName": "dummy/templates/new-platform-flexberry-web-designer-generation-e.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("          ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("button");
+            dom.setAttribute(el1, "type", "submit");
+            dom.setAttribute(el1, "class", "ui button save-del-button");
+            var el2 = dom.createTextNode("\n            ");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n          ");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var element0 = dom.childAt(fragment, [1]);
+            var morphs = new Array(2);
+            morphs[0] = dom.createElementMorph(element0);
+            morphs[1] = dom.createMorphAt(element0, 1, 1);
+            return morphs;
+          },
+          statements: [["element", "action", ["delete"], [], ["loc", [null, [17, 66], [17, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [18, 12], [18, 54]]]]],
+          locals: [],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 12,
+              "column": 6
+            },
+            "end": {
+              "line": 21,
+              "column": 6
+            }
+          },
+          "moduleName": "dummy/templates/new-platform-flexberry-web-designer-generation-e.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("        ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("button");
+          dom.setAttribute(el1, "type", "submit");
+          dom.setAttribute(el1, "class", "ui button save-button");
+          var el2 = dom.createTextNode("\n          ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n        ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element1 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createElementMorph(element1);
+          morphs[1] = dom.createMorphAt(element1, 1, 1);
+          morphs[2] = dom.createMorphAt(fragment, 3, 3, contextualElement);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [["element", "action", ["save"], [], ["loc", [null, [13, 60], [13, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [14, 10], [14, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [16, 18], [16, 29]]]]], [], 0, null, ["loc", [null, [16, 8], [20, 19]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["multiple-nodes"]
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 43,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/new-platform-flexberry-web-designer-generation-e.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("h3");
+        dom.setAttribute(el1, "class", "ui header");
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("form");
+        dom.setAttribute(el1, "class", "ui form flexberry-vertical-form");
+        dom.setAttribute(el1, "role", "form");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "field");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "sixteen wide");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "field");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "flexberry-edit-panel");
+        var el4 = dom.createTextNode("\n");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("button");
+        dom.setAttribute(el4, "type", "submit");
+        dom.setAttribute(el4, "class", "ui button close-button");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "field");
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("label");
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var element2 = dom.childAt(fragment, [2]);
+        var element3 = dom.childAt(element2, [5, 1]);
+        var element4 = dom.childAt(element3, [3]);
+        var element5 = dom.childAt(element2, [7]);
+        var morphs = new Array(9);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
+        morphs[1] = dom.createMorphAt(element2, 1, 1);
+        morphs[2] = dom.createMorphAt(dom.childAt(element2, [3, 1]), 1, 1);
+        morphs[3] = dom.createMorphAt(element3, 1, 1);
+        morphs[4] = dom.createElementMorph(element4);
+        morphs[5] = dom.createMorphAt(element4, 1, 1);
+        morphs[6] = dom.createMorphAt(dom.childAt(element5, [1]), 0, 0);
+        morphs[7] = dom.createMorphAt(element5, 3, 3);
+        morphs[8] = dom.createMorphAt(element5, 5, 5);
+        return morphs;
+      },
+      statements: [["inline", "t", ["forms.new-platform-flexberry-web-designer-generation-e.caption"], [], ["loc", [null, [1, 22], [1, 92]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [4, 26], [4, 31]]]]], [], []]], ["loc", [null, [4, 2], [4, 33]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [7, 43], [7, 55]]]]], [], []]], ["loc", [null, [7, 6], [7, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [12, 16], [12, 24]]]]], [], 0, null, ["loc", [null, [12, 6], [21, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [22, 59], [22, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [23, 8], [23, 49]]]], ["inline", "t", ["forms.new-platform-flexberry-web-designer-generation-e.stepLogs-caption"], [], ["loc", [null, [28, 9], [28, 88]]]], ["inline", "flexberry-groupedit", [], ["componentName", "stepLogsGroupEdit", "mainModelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [32, 24], [32, 39]]]]], [], []], "modelProjection", ["subexpr", "@mut", [["get", "modelProjection.attributes.stepLogs", ["loc", [null, [33, 20], [33, 55]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model.stepLogs", ["loc", [null, [34, 12], [34, 26]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [35, 13], [35, 21]]]]], [], []], "orderable", false, "class", ["subexpr", "if", [["get", "model.errors.stepLogs", ["loc", [null, [37, 14], [37, 35]]]], "error", ""], [], ["loc", [null, [37, 10], [37, 47]]]]], ["loc", [null, [29, 2], [38, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.stepLogs", ["loc", [null, [39, 38], [39, 59]]]]], [], []], "pointing", "pointing"], ["loc", [null, [39, 2], [39, 81]]]]],
+      locals: [],
+      templates: [child0]
+    };
+  })());
+});
+define("dummy/templates/new-platform-flexberry-web-designer-generation-l", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["wrong-type", "multiple-nodes"]
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 28,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/new-platform-flexberry-web-designer-generation-l.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("h3");
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "class", "row");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(3);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 0, 0);
+        morphs[2] = dom.createMorphAt(dom.childAt(fragment, [4]), 1, 1);
+        dom.insertBoundary(fragment, 0);
+        return morphs;
+      },
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.new-platform-flexberry-web-designer-generation-l.caption"], [], ["loc", [null, [2, 4], [2, 74]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-generation", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [11, 12], [11, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [13, 17], [13, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [14, 23], [14, 52]]]], "beforeDeleteAllRecords", ["subexpr", "action", ["beforeDeleteAllRecords"], [], ["loc", [null, [15, 27], [15, 60]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [16, 10], [16, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [17, 17], [17, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [18, 18], [18, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [19, 22], [19, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [20, 20], [20, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [21, 16], [21, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [22, 17], [22, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [23, 13], [23, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [24, 13], [24, 32]]]], "componentName", "NewPlatformFlexberryWebDesignerGenerationL"], ["loc", [null, [4, 2], [26, 4]]]]],
+      locals: [],
+      templates: []
+    };
+  })());
+});
+define("dummy/templates/new-platform-flexberry-web-designer-generation-l/loading", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "triple-curlies"
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 7,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/new-platform-flexberry-web-designer-generation-l/loading.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "class", "loading-pane");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "loading-message");
+        var el3 = dom.createTextNode("\n    Loading ...\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "spinner");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes() {
+        return [];
+      },
+      statements: [],
+      locals: [],
+      templates: []
+    };
+  })());
+});
+define("dummy/templates/new-platform-flexberry-web-designer-storage-type-e", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    var child0 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 16,
+                "column": 8
+              },
+              "end": {
+                "line": 20,
+                "column": 8
+              }
+            },
+            "moduleName": "dummy/templates/new-platform-flexberry-web-designer-storage-type-e.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("          ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("button");
+            dom.setAttribute(el1, "type", "submit");
+            dom.setAttribute(el1, "class", "ui button save-del-button");
+            var el2 = dom.createTextNode("\n            ");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n          ");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var element0 = dom.childAt(fragment, [1]);
+            var morphs = new Array(2);
+            morphs[0] = dom.createElementMorph(element0);
+            morphs[1] = dom.createMorphAt(element0, 1, 1);
+            return morphs;
+          },
+          statements: [["element", "action", ["delete"], [], ["loc", [null, [17, 66], [17, 85]]]], ["inline", "t", ["forms.edit-form.delete-button-text"], [], ["loc", [null, [18, 12], [18, 54]]]]],
+          locals: [],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 12,
+              "column": 6
+            },
+            "end": {
+              "line": 21,
+              "column": 6
+            }
+          },
+          "moduleName": "dummy/templates/new-platform-flexberry-web-designer-storage-type-e.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("        ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("button");
+          dom.setAttribute(el1, "type", "submit");
+          dom.setAttribute(el1, "class", "ui button save-button");
+          var el2 = dom.createTextNode("\n          ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n        ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element1 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createElementMorph(element1);
+          morphs[1] = dom.createMorphAt(element1, 1, 1);
+          morphs[2] = dom.createMorphAt(fragment, 3, 3, contextualElement);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [["element", "action", ["save"], [], ["loc", [null, [13, 60], [13, 77]]]], ["inline", "t", ["forms.edit-form.save-button-text"], [], ["loc", [null, [14, 10], [14, 50]]]], ["block", "unless", [["get", "model.isNew", ["loc", [null, [16, 18], [16, 29]]]]], [], 0, null, ["loc", [null, [16, 8], [20, 19]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["multiple-nodes"]
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 44,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/new-platform-flexberry-web-designer-storage-type-e.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("h3");
+        dom.setAttribute(el1, "class", "ui header");
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("form");
+        dom.setAttribute(el1, "class", "ui form flexberry-vertical-form");
+        dom.setAttribute(el1, "role", "form");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "field");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "sixteen wide");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "field");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "flexberry-edit-panel");
+        var el4 = dom.createTextNode("\n");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("button");
+        dom.setAttribute(el4, "type", "submit");
+        dom.setAttribute(el4, "class", "ui button close-button");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "field");
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("label");
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var element2 = dom.childAt(fragment, [2]);
+        var element3 = dom.childAt(element2, [5, 1]);
+        var element4 = dom.childAt(element3, [3]);
+        var element5 = dom.childAt(element2, [7]);
+        var morphs = new Array(9);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
+        morphs[1] = dom.createMorphAt(element2, 1, 1);
+        morphs[2] = dom.createMorphAt(dom.childAt(element2, [3, 1]), 1, 1);
+        morphs[3] = dom.createMorphAt(element3, 1, 1);
+        morphs[4] = dom.createElementMorph(element4);
+        morphs[5] = dom.createMorphAt(element4, 1, 1);
+        morphs[6] = dom.createMorphAt(dom.childAt(element5, [1]), 0, 0);
+        morphs[7] = dom.createMorphAt(element5, 3, 3);
+        morphs[8] = dom.createMorphAt(element5, 5, 5);
+        return morphs;
+      },
+      statements: [["inline", "t", ["forms.new-platform-flexberry-web-designer-storage-type-e.caption"], [], ["loc", [null, [1, 22], [1, 94]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [4, 26], [4, 31]]]]], [], []]], ["loc", [null, [4, 2], [4, 33]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [7, 43], [7, 55]]]]], [], []]], ["loc", [null, [7, 6], [7, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [12, 16], [12, 24]]]]], [], 0, null, ["loc", [null, [12, 6], [21, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [22, 59], [22, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [23, 8], [23, 49]]]], ["inline", "t", ["forms.new-platform-flexberry-web-designer-storage-type-e.stage-caption"], [], ["loc", [null, [28, 9], [28, 87]]]], ["inline", "flexberry-lookup", [], ["choose", "showLookupDialog", "remove", "removeLookupValue", "value", ["subexpr", "@mut", [["get", "model.stage", ["loc", [null, [33, 10], [33, 21]]]]], [], []], "relationName", "stage", "projection", "ListFormView", "title", ["subexpr", "t", ["forms.new-platform-flexberry-web-designer-storage-type-e.stage-caption"], [], ["loc", [null, [37, 10], [37, 86]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [38, 13], [38, 21]]]]], [], []]], ["loc", [null, [29, 2], [39, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.stage", ["loc", [null, [40, 38], [40, 56]]]]], [], []], "pointing", "pointing"], ["loc", [null, [40, 2], [40, 78]]]]],
+      locals: [],
+      templates: [child0]
+    };
+  })());
+});
+define("dummy/templates/new-platform-flexberry-web-designer-storage-type-l", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["wrong-type", "multiple-nodes"]
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 28,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/new-platform-flexberry-web-designer-storage-type-l.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("h3");
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "class", "row");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(3);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 0, 0);
+        morphs[2] = dom.createMorphAt(dom.childAt(fragment, [4]), 1, 1);
+        dom.insertBoundary(fragment, 0);
+        return morphs;
+      },
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["inline", "t", ["forms.new-platform-flexberry-web-designer-storage-type-l.caption"], [], ["loc", [null, [2, 4], [2, 76]]]], ["inline", "flexberry-objectlistview", [], ["modelName", "fd-storage-type", "modelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [6, 20], [6, 35]]]]], [], []], "editFormRoute", ["subexpr", "@mut", [["get", "editFormRoute", ["loc", [null, [7, 18], [7, 31]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [8, 12], [8, 17]]]]], [], []], "createNewButton", true, "refreshButton", true, "sorting", ["subexpr", "@mut", [["get", "computedSorting", ["loc", [null, [11, 12], [11, 27]]]]], [], []], "orderable", true, "sortByColumn", ["subexpr", "action", ["sortByColumn"], [], ["loc", [null, [13, 17], [13, 40]]]], "addColumnToSorting", ["subexpr", "action", ["addColumnToSorting"], [], ["loc", [null, [14, 23], [14, 52]]]], "beforeDeleteAllRecords", ["subexpr", "action", ["beforeDeleteAllRecords"], [], ["loc", [null, [15, 27], [15, 60]]]], "pages", ["subexpr", "@mut", [["get", "pages", ["loc", [null, [16, 10], [16, 15]]]]], [], []], "perPageValue", ["subexpr", "@mut", [["get", "perPageValue", ["loc", [null, [17, 17], [17, 29]]]]], [], []], "perPageValues", ["subexpr", "@mut", [["get", "perPageValues", ["loc", [null, [18, 18], [18, 31]]]]], [], []], "recordsTotalCount", ["subexpr", "@mut", [["get", "recordsTotalCount", ["loc", [null, [19, 22], [19, 39]]]]], [], []], "hasPreviousPage", ["subexpr", "@mut", [["get", "hasPreviousPage", ["loc", [null, [20, 20], [20, 35]]]]], [], []], "hasNextPage", ["subexpr", "@mut", [["get", "hasNextPage", ["loc", [null, [21, 16], [21, 27]]]]], [], []], "previousPage", ["subexpr", "action", ["previousPage"], [], ["loc", [null, [22, 17], [22, 40]]]], "gotoPage", ["subexpr", "action", ["gotoPage"], [], ["loc", [null, [23, 13], [23, 32]]]], "nextPage", ["subexpr", "action", ["nextPage"], [], ["loc", [null, [24, 13], [24, 32]]]], "componentName", "NewPlatformFlexberryWebDesignerStorageTypeL"], ["loc", [null, [4, 2], [26, 4]]]]],
+      locals: [],
+      templates: []
+    };
+  })());
+});
+define("dummy/templates/new-platform-flexberry-web-designer-storage-type-l/loading", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "triple-curlies"
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 7,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/new-platform-flexberry-web-designer-storage-type-l/loading.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "class", "loading-pane");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "loading-message");
+        var el3 = dom.createTextNode("\n    Loading ...\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "spinner");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes() {
+        return [];
+      },
+      statements: [],
+      locals: [],
+      templates: []
+    };
+  })());
+});
 define("dummy/templates/sitemap-node-content", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     var child0 = (function () {
@@ -55230,11 +57176,27 @@ define('dummy/transforms/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object
     }
   });
 });
+define('dummy/transforms/new-platform-flexberry-web-designer-access-mode', ['exports', 'ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-access-mode'], function (exports, _emberFlexberryDesignerTransformsNewPlatformFlexberryWebDesignerAccessMode) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerTransformsNewPlatformFlexberryWebDesignerAccessMode['default'];
+    }
+  });
+});
 define('dummy/transforms/new-platform-flexberry-web-designer-business-server-class', ['exports', 'ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-business-server-class'], function (exports, _emberFlexberryDesignerTransformsNewPlatformFlexberryWebDesignerBusinessServerClass) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerTransformsNewPlatformFlexberryWebDesignerBusinessServerClass['default'];
+    }
+  });
+});
+define('dummy/transforms/new-platform-flexberry-web-designer-generation-state', ['exports', 'ember-flexberry-designer/transforms/new-platform-flexberry-web-designer-generation-state'], function (exports, _emberFlexberryDesignerTransformsNewPlatformFlexberryWebDesignerGenerationState) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerTransformsNewPlatformFlexberryWebDesignerGenerationState['default'];
     }
   });
 });
@@ -55425,7 +57387,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+fcd28060"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+044c43db"});
 }
 
 /* jshint ignore:end */
