@@ -9,13 +9,14 @@
       "detailModelName": null
     }
   ],
+  "external": false,
   "caption": null,
-  "name": "FdGenerationE",
-  "className": "GenerationE",
+  "name": "NewPlatformFlexberryWebDesignerStorageTypeE",
+  "className": "StorageTypeE",
   "attrs": [],
   "projections": [
     {
-      "modelName": "fd-generation",
+      "modelName": "fd-storage-type",
       "modelProjection": "EditFormView"
     }
   ]

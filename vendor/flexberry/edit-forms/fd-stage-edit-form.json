@@ -4,7 +4,7 @@
       "master": null,
       "displayAttributeName": null,
       "required": false,
-      "relationName": "Configuration",
+      "relationName": "FdConfiguration",
       "projection": "ListFormView",
       "detailModelName": null
     },
@@ -12,7 +12,7 @@
       "master": null,
       "displayAttributeName": null,
       "required": false,
-      "relationName": "Configuration.Project",
+      "relationName": "FdConfiguration.FdProject",
       "projection": "",
       "detailModelName": null
     },
@@ -20,7 +20,7 @@
       "master": null,
       "displayAttributeName": null,
       "required": false,
-      "relationName": "Configuration.Project.Repository",
+      "relationName": "FdConfiguration.FdProject.FdRepository",
       "projection": "",
       "detailModelName": null
     }

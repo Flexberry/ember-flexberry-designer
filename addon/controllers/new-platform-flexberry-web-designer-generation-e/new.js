@@ -1,0 +1,4 @@
+import NewPlatformFlexberryWebDesignerGenerationEController from '../new-platform-flexberry-web-designer-generation-e';
+
+var NewPlatformFlexberryWebDesignerGenerationENewController = NewPlatformFlexberryWebDesignerGenerationEController;
+export default NewPlatformFlexberryWebDesignerGenerationENewController;

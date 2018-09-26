@@ -1661,6 +1661,9 @@ export default {
       businessServerEvents: {
         __caption__: 'Business server events'
       },
+      nameStr: {
+        __caption__: 'nameStr'
+      },
       stage: {
         __caption__: 'Stage'
       },
@@ -1943,6 +1946,39 @@ export default {
               __caption__: 'name'
             }
           }
+        }
+      },
+      attributes: {
+        __caption__: 'attributes',
+        name: {
+          __caption__: 'name'
+        },
+        type: {
+          __caption__: 'type'
+        },
+        notNull: {
+          __caption__: 'notNull'
+        },
+        defaultValue: {
+          __caption__: 'defaultValue'
+        },
+        description: {
+          __caption__: 'description'
+        },
+        accessModifier: {
+          __caption__: 'accessModifier'
+        }
+      },
+      methods: {
+        __caption__: 'methods',
+        accessModifier: {
+          __caption__: 'accessModifier'
+        },
+        type: {
+          __caption__: 'type'
+        },
+        name: {
+          __caption__: 'name'
         }
       }
     },
@@ -2465,9 +2501,6 @@ export default {
       }
     },
     ListFormView: {
-      referenceCount: {
-        __caption__: 'referenceCount'
-      },
       stereotype: {
         __caption__: 'stereotype'
       },
@@ -2485,6 +2518,9 @@ export default {
       },
       stage: {
         __caption__: 'stage'
+      },
+      referenceCount: {
+        __caption__: 'referenceCount'
       }
     },
     LoadNameView: {

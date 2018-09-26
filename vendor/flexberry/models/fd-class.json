@@ -2,6 +2,7 @@
   "name": "FdClass",
   "modelName": "fd-class",
   "className": "Class",
+  "nameSpace": "",
   "parentModelName": "fd-repository-ref-data-object",
   "parentClassName": "RepositoryRefDataObject",
   "attrs": [
@@ -144,7 +145,7 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Stage",
+          "relationName": "FdStage",
           "belongsTo": [],
           "hidden": false,
           "attrs": [],

@@ -12,7 +12,15 @@
       "master": null,
       "displayAttributeName": null,
       "required": false,
-      "relationName": "Attributes.Attributes",
+      "relationName": "FdStage",
+      "projection": "",
+      "detailModelName": null
+    },
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "Attributes.Class",
       "projection": "ListFormView",
       "detailModelName": null
     },
@@ -20,7 +28,7 @@
       "master": null,
       "displayAttributeName": null,
       "required": false,
-      "relationName": "Views.Views",
+      "relationName": "Views.Class",
       "projection": "ListFormView",
       "detailModelName": null
     },
@@ -28,7 +36,7 @@
       "master": null,
       "displayAttributeName": null,
       "required": false,
-      "relationName": "ClassStorageTypes.ClassStorageTypes",
+      "relationName": "ClassStorageTypes.Class",
       "projection": "ListFormView",
       "detailModelName": null
     },

@@ -2,6 +2,7 @@
   "name": "FdClassStorageType",
   "modelName": "fd-class-storage-type",
   "className": "ClassStorageType",
+  "nameSpace": "",
   "parentModelName": null,
   "parentClassName": null,
   "attrs": [
@@ -95,7 +96,7 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "ClassStorageTypes",
+          "relationName": "Class",
           "belongsTo": [],
           "hidden": true,
           "attrs": [],

@@ -2,6 +2,7 @@
   "name": "FdDevAggregation",
   "modelName": "fd-dev-aggregation",
   "className": "DevAggregation",
+  "nameSpace": "",
   "parentModelName": "fd-dev-base-association",
   "parentClassName": "DevBaseAssociation",
   "attrs": [
@@ -530,7 +531,7 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Associations",
+          "relationName": "FdStage",
           "belongsTo": [],
           "hidden": false,
           "attrs": [
@@ -1005,6 +1006,73 @@
           "index": 43,
           "caption": "StartClass",
           "name": "startClass",
+          "relatedTo": "fd-class",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "ListFormView",
+      "modelName": "fd-dev-aggregation",
+      "attrs": [
+        {
+          "name": "startRole",
+          "caption": "Start role",
+          "hidden": false,
+          "index": 4
+        },
+        {
+          "name": "endRole",
+          "caption": "End role",
+          "hidden": false,
+          "index": 5
+        },
+        {
+          "name": "storage",
+          "caption": "Storage",
+          "hidden": false,
+          "index": 6
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "StartClass",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "Start class",
+              "hidden": false,
+              "index": 1
+            }
+          ],
+          "index": 0,
+          "caption": "",
+          "name": "startClass",
+          "relatedTo": "fd-class",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "EndClass",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "End class",
+              "hidden": false,
+              "index": 3
+            }
+          ],
+          "index": 2,
+          "caption": "",
+          "name": "endClass",
           "relatedTo": "fd-class",
           "inverse": null
         }

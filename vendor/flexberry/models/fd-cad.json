@@ -2,6 +2,7 @@
   "name": "FdCad",
   "modelName": "fd-cad",
   "className": "CAD",
+  "nameSpace": "",
   "parentModelName": "fd-diagram",
   "parentClassName": "Diagram",
   "attrs": [

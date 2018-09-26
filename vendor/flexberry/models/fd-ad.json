@@ -2,6 +2,7 @@
   "name": "FdAd",
   "modelName": "fd-ad",
   "className": "AD",
+  "nameSpace": "",
   "parentModelName": "fd-diagram",
   "parentClassName": "Diagram",
   "attrs": [

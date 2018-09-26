@@ -2,6 +2,7 @@
   "name": "FdDevFilelink",
   "modelName": "fd-dev-filelink",
   "className": "DevFilelink",
+  "nameSpace": "",
   "parentModelName": "fd-filelink",
   "parentClassName": "Filelink",
   "attrs": [],

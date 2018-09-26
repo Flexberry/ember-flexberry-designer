@@ -2,6 +2,7 @@
   "name": "FdDevUmlStd",
   "modelName": "fd-dev-uml-std",
   "className": "DevUMLSTD",
+  "nameSpace": "",
   "parentModelName": "fd-std",
   "parentClassName": "STD",
   "attrs": [

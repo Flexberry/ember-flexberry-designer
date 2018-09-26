@@ -2,6 +2,7 @@
   "name": "FdDevStageHistory",
   "modelName": "fd-dev-stage-history",
   "className": "StageHistory",
+  "nameSpace": "",
   "parentModelName": null,
   "parentClassName": null,
   "attrs": [
@@ -15,8 +16,8 @@
     },
     {
       "name": "date",
-      "type": "string",
-      "flexberryType": "DateTine",
+      "type": "date",
+      "flexberryType": "DateTime",
       "notNull": false,
       "defaultValue": "",
       "stored": true

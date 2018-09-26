@@ -2,6 +2,7 @@
   "name": "FdDevStage",
   "modelName": "fd-dev-stage",
   "className": "DevStage",
+  "nameSpace": "",
   "parentModelName": "fd-stage",
   "parentClassName": "Stage",
   "attrs": [
@@ -416,6 +417,11 @@
     {
       "name": "controlTypes",
       "relatedTo": "fd-dev-control-type",
+      "inverse": "stage"
+    },
+    {
+      "name": "users",
+      "relatedTo": "fd-user-in-stage",
       "inverse": "stage"
     },
     {
@@ -1025,17 +1031,17 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Configuration",
+          "relationName": "FdConfiguration",
           "belongsTo": [
             {
               "lookupValue": null,
               "lookupValueField": null,
-              "relationName": "Configuration.Project",
+              "relationName": "FdConfiguration.FdProject",
               "belongsTo": [
                 {
                   "lookupValue": null,
                   "lookupValueField": null,
-                  "relationName": "Configuration.Project.Repository",
+                  "relationName": "FdConfiguration.FdProject.FdRepository",
                   "belongsTo": [],
                   "hidden": true,
                   "attrs": [],
@@ -1774,7 +1780,7 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Stages",
+          "relationName": "FdConfiguration",
           "belongsTo": [],
           "hidden": false,
           "attrs": [
@@ -1821,17 +1827,17 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Configuration",
+          "relationName": "FdConfiguration",
           "belongsTo": [
             {
               "lookupValue": null,
               "lookupValueField": null,
-              "relationName": "Configuration.Project",
+              "relationName": "FdConfiguration.FdProject",
               "belongsTo": [
                 {
                   "lookupValue": null,
                   "lookupValueField": null,
-                  "relationName": "Configuration.Project.Repository",
+                  "relationName": "FdConfiguration.FdProject.FdRepository",
                   "belongsTo": [],
                   "hidden": true,
                   "attrs": [],
@@ -1889,17 +1895,17 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Configuration",
+          "relationName": "FdConfiguration",
           "belongsTo": [
             {
               "lookupValue": null,
               "lookupValueField": null,
-              "relationName": "Configuration.Project",
+              "relationName": "FdConfiguration.FdProject",
               "belongsTo": [
                 {
                   "lookupValue": null,
                   "lookupValueField": null,
-                  "relationName": "Configuration.Project.Repository",
+                  "relationName": "FdConfiguration.FdProject.FdRepository",
                   "belongsTo": [],
                   "hidden": true,
                   "attrs": [],
@@ -2251,17 +2257,17 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Configuration",
+          "relationName": "FdConfiguration",
           "belongsTo": [
             {
               "lookupValue": null,
               "lookupValueField": null,
-              "relationName": "Configuration.Project",
+              "relationName": "FdConfiguration.FdProject",
               "belongsTo": [
                 {
                   "lookupValue": null,
                   "lookupValueField": null,
-                  "relationName": "Configuration.Project.Repository",
+                  "relationName": "FdConfiguration.FdProject.FdRepository",
                   "belongsTo": [],
                   "hidden": false,
                   "attrs": [
@@ -2352,17 +2358,17 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Configuration",
+          "relationName": "FdConfiguration",
           "belongsTo": [
             {
               "lookupValue": null,
               "lookupValueField": null,
-              "relationName": "Configuration.Project",
+              "relationName": "FdConfiguration.FdProject",
               "belongsTo": [
                 {
                   "lookupValue": null,
                   "lookupValueField": null,
-                  "relationName": "Configuration.Project.Repository",
+                  "relationName": "FdConfiguration.FdProject.FdRepository",
                   "belongsTo": [],
                   "hidden": false,
                   "attrs": [
@@ -2500,7 +2506,7 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Configuration",
+          "relationName": "FdConfiguration",
           "belongsTo": [],
           "hidden": true,
           "attrs": [],

@@ -1,5 +1,33 @@
 export default {
   projections: {
+    FdUmlCad: {
+      name: {
+        __caption__: ''
+      },
+      primitivesJsonString: {
+        __caption__: ''
+      },
+      caseObjectsString: {
+        __caption__: ''
+      },
+      primitivesStreamString: {
+        __caption__: ''
+      },
+      subsystem: {
+        __caption__: ''
+      }
+    },
+    SearchDiagram: {
+      name: {
+        __caption__: ''
+      },
+      subsystem: {
+        __caption__: '',
+        stage: {
+          __caption__: ''
+        }
+      }
+    },
     EditFormView: {
       name: {
         __caption__: 'Name'
@@ -26,11 +54,6 @@ export default {
       },
       createDate: {
         __caption__: 'Create date'
-      }
-    },
-    SearchDiagram: {
-      name: {
-        __caption__: ''
       }
     }
   }
