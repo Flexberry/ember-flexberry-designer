@@ -2,8 +2,10 @@
   @module ember-flexberry-designer
 */
 
+import Ember from 'ember';
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
+import joint from 'npm:jointjs';
 
 /**
   An object that describes an association link on the UML diagram.
@@ -19,7 +21,7 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'repositoryObject', 'source', 'target', 'vertices', 'labels');
+    let properties = this.getProperties('id', 'repositoryObject', 'source', 'target', 'vertices', 'labels', 'startPoint', 'endPoint');
     return new Association(properties);
   },
 });
@@ -33,4 +35,244 @@ export default FdUmlLink.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let Association = Link.define('flexberry.uml.Association', {});
+export let Association = Link.define('flexberry.uml.Association', {
+  attrs: {
+    text: { visibility: 'hidden' },
+    rect: { visibility: 'hidden' }
+  },
+});
+
+joint.shapes.flexberry.uml.AssociationView = joint.dia.LinkView.extend({
+  template: [
+    '<div class="input-buffer"></div>',
+    '<div class="uml-link-inputs">',
+    '<input type="text" class="start-multiplicity-input" value="" />',
+    '</div>',
+    '<div class="uml-link-inputs">',
+    '<input type="text" class="end-multiplicity-input" value="" />',
+    '</div>',
+    '<div class="uml-link-inputs">',
+    '<input type="text" class="description-input" value="" />',
+    '</div>',
+    '<div class="uml-link-inputs">',
+    '<input type="text" class="start-role-input" value="" />',
+    '</div>',
+    '<div class="uml-link-inputs">',
+    '<input type="text" class="end-role-input" value="" />',
+    '</div>'
+  ].join(''),
+
+  /**
+    Link's source element.
+
+    @property sourceElement
+    @type Object
+  */
+  sourceElement: undefined,
+
+  /**
+    Link's target element.
+
+    @property targetElement
+    @type Object
+  */
+  targetElement: undefined,
+
+  initialize: function() {
+    joint.dia.LinkView.prototype.initialize.apply(this, arguments);
+
+    this.$box = Ember.$(this.template);
+    this.model.inputElements = this.$box;
+
+    // Prevent paper from handling pointerdown.
+    this.$box.find('input').on('mousedown click', function(evt) {
+      evt.stopPropagation();
+    });
+
+    this.$box.find('.start-multiplicity-input').on('input', function() {
+      this.updateBox();
+    }.bind(this));
+
+    this.$box.find('.end-multiplicity-input').on('input', function() {
+      this.updateBox();
+    }.bind(this));
+
+    this.$box.find('.description-input').on('input', function() {
+      this.updateBox();
+    }.bind(this));
+
+    this.$box.find('.start-role-input').on('input', function() {
+      this.updateBox();
+    }.bind(this));
+
+    this.$box.find('.end-role-input').on('input', function() {
+      this.updateBox();
+    }.bind(this));
+
+    this.$box.find('.start-multiplicity-input').on('change', function(evt) {
+      this.model.setLabelText('startMultiplicity', Ember.$(evt.target).val());
+    }.bind(this));
+
+    this.$box.find('.end-multiplicity-input').on('change', function(evt) {
+      this.model.setLabelText('endMultiplicity', Ember.$(evt.target).val());
+    }.bind(this));
+
+    this.$box.find('.description-input').on('change', function(evt) {
+      this.model.setLabelText('description', Ember.$(evt.target).val());
+    }.bind(this));
+
+    this.$box.find('.start-role-input').on('change', function(evt) {
+      let inputText = this.normalizeRoleText(Ember.$(evt.target).val());
+      Ember.$(evt.target).val(inputText);
+      this.model.setLabelText('startRole', inputText);
+    }.bind(this));
+
+    this.$box.find('.end-role-input').on('change', function(evt) {
+      let inputText = this.normalizeRoleText(Ember.$(evt.target).val());
+      Ember.$(evt.target).val(inputText);
+      this.model.setLabelText('endRole', inputText);
+    }.bind(this));
+
+    // Initialize inputs values.
+    let startMultiplicityInput = this.$box.find('.start-multiplicity-input');
+    let endMultiplicityInput = this.$box.find('.end-multiplicity-input');
+    let descriptionInput = this.$box.find('.description-input');
+    let startRoleInput = this.$box.find('.start-role-input');
+    let endRoleInput = this.$box.find('.end-role-input');
+    startMultiplicityInput.val(this.model.getLabelText('startMultiplicity'));
+    endMultiplicityInput.val(this.model.getLabelText('endMultiplicity'));
+    descriptionInput.val(this.model.getLabelText('description'));
+    startRoleInput.val(this.model.getLabelText('startRole'));
+    endRoleInput.val(this.model.getLabelText('endRole'));
+
+    this.model.on('change', this.updateBox, this);
+    this.model.on('remove', this.removeBox, this);
+
+    this.model.on('change:source', function() {
+      let sourceElement = this.model.getSourceElement();
+      if (sourceElement !== this.sourceElement) {
+        if (!Ember.isNone(this.sourceElement)) {
+          this.sourceElement.off('change:position change:size', this.updateBox, this);
+        }
+
+        if (!Ember.isNone(sourceElement)) {
+          sourceElement.on('change:position change:size', this.updateBox, this);
+        }
+
+        this.sourceElement = sourceElement;
+      }
+    }, this);
+
+    this.model.on('change:target', function() {
+      let targetElement = this.model.getTargetElement();
+      if (targetElement !== this.targetElement) {
+        if (!Ember.isNone(this.targetElement)) {
+          this.targetElement.off('change:position change:size', this.updateBox, this);
+        }
+
+        if (!Ember.isNone(targetElement)) {
+          targetElement.on('change:position change:size', this.updateBox, this);
+        }
+
+        this.targetElement = targetElement;
+      }
+    }, this);
+
+    this.sourceElement = this.model.getSourceElement();
+    if (!Ember.isNone(this.sourceElement)) {
+      this.sourceElement.on('change:position change:size', this.updateBox, this);
+    }
+
+    this.targetElement = this.model.getTargetElement();
+    if (!Ember.isNone(this.targetElement)) {
+      this.targetElement.on('change:position change:size', this.updateBox, this);
+    }
+  },
+
+  render: function() {
+    joint.dia.LinkView.prototype.render.apply(this, arguments);
+    this.paper.$el.prepend(this.$box);
+    this.paper.on('blank:pointerdown link:pointerdown element:pointerdown', function() {
+      this.$box.find('input').blur();
+    }, this);
+    this.updateBox();
+    return this;
+  },
+
+  updateBox: function() {
+    this.updateInputsWidth([
+      '.start-multiplicity-input',
+      '.end-multiplicity-input',
+      '.description-input',
+      '.start-role-input',
+      '.end-role-input'
+    ]);
+
+    // Update labels offset.
+    let vertices = this.model.get('vertices') || [];
+    let startPointA = this.getLabelCoordinates({ distance: 0, offset: 0 });
+    let endPointB = this.getLabelCoordinates({ distance: 1, offset: 0 });
+    let startPointB = vertices[0] || endPointB;
+    let endPointA = vertices[vertices.length - 1] || startPointA;
+    this.model.updateLabelsPositions(startPointA, startPointB, false);
+    this.model.updateLabelsPositions(endPointA, endPointB, true);
+
+    // Update inputs positions.
+    let startMultiplicityPosition = this.getLabelCoordinates(this.model.label(0).position);
+    let startMultiplicityDelta = this.model.label(0).inverseTextDirection ? this.$box.find('.start-multiplicity-input').width() : 0;
+    Ember.$(this.$box[1]).css({
+      left: startMultiplicityPosition.x - 7 - startMultiplicityDelta,
+      top: startMultiplicityPosition.y - 10,
+      transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
+    });
+    let endMultiplicityPosition = this.getLabelCoordinates(this.model.label(1).position);
+    let endMultiplicityDelta = this.model.label(1).inverseTextDirection ? this.$box.find('.end-multiplicity-input').width() : 0;
+    Ember.$(this.$box[2]).css({
+      left: endMultiplicityPosition.x - 7 - endMultiplicityDelta,
+      top: endMultiplicityPosition.y - 10,
+      transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
+    });
+    let descriptionPosition = this.getLabelCoordinates(this.model.get('labels')[2].position);
+    let descriptionWidth = this.$box.find('.description-input').width();
+    Ember.$(this.$box[3]).css({
+      left: descriptionPosition.x - 7 - descriptionWidth / 2,
+      top: descriptionPosition.y - 10,
+      transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
+    });
+    let startRolePosition = this.getLabelCoordinates(this.model.get('labels')[3].position);
+    let startRoleDelta = this.model.label(3).inverseTextDirection ? this.$box.find('.start-role-input').width() : 0;
+    Ember.$(this.$box[4]).css({
+      left: startRolePosition.x - 7 - startRoleDelta,
+      top: startRolePosition.y - 10,
+      transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
+    });
+    let endRolePosition = this.getLabelCoordinates(this.model.get('labels')[4].position);
+    let endRoleDelta = this.model.label(4).inverseTextDirection ? this.$box.find('.end-role-input').width() : 0;
+    Ember.$(this.$box[5]).css({
+      left: endRolePosition.x - 7 - endRoleDelta,
+      top: endRolePosition.y - 10,
+      transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
+    });
+  },
+
+  removeBox: function() {
+    this.$box.remove();
+  },
+
+  updateInputsWidth(inputSelectors) {
+    let selectors = Ember.isArray(inputSelectors) ? inputSelectors : [inputSelectors];
+    let $buffer = Ember.$(this.$box[0]);
+    selectors.forEach((selector) => {
+      let $input = this.$box.find(selector);
+      $buffer.css('font-weight', $input.css('font-weight'));
+      $buffer.text($input.val());
+      $input.width($buffer.width() + 1);
+    }, this);
+  },
+
+  normalizeRoleText(text) {
+    let condition = text[0] === '+' || text[0] === '-' || text[0] === '#';
+
+    return condition ? text : '+' + text;
+  }
+});

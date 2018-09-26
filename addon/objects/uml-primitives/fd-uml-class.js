@@ -91,48 +91,29 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
     '.flexberry-uml-header-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff' },
     '.flexberry-uml-body-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff' },
     '.flexberry-uml-footer-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff' },
-
-    '.flexberry-uml-header-text': {
-      'ref': '.flexberry-uml-header-rect',
-      'ref-y': 0.5,
-      'ref-x': 0.5,
-      'text-anchor': 'middle',
-      'y-alignment': 'middle',
-      'fill': 'black',
-      'fontSize': 12,
-      'font-family': 'Arial'
-    },
-    '.flexberry-uml-body-text': {
-      'ref': '.flexberry-uml-body-rect', 'ref-y': 5, 'ref-x': 5,
-      'fill': 'black', 'font-size': 12, 'font-family': 'Arial'
-    },
-    '.flexberry-uml-footer-text': {
-      'ref': '.flexberry-uml-footer-rect', 'ref-y': 5, 'ref-x': 5,
-      'fill': 'black', 'font-size': 12, 'font-family': 'Arial'
-    }
   },
 
-  name: [],
+  name: '',
   attributes: [],
   methods: [],
+
+  // Inputs padding by X.
+  widthPadding: 7,
+
+  // Inputs bottom padding by Y.
+  heightBottomPadding: 4,
 }, {
   markup: [
     '<g class="rotatable">',
-    '<g class="scalable">',
     '<rect class="flexberry-uml-header-rect"/><rect class="flexberry-uml-body-rect"/><rect class="flexberry-uml-footer-rect"/>',
-    '</g>',
-    '<text class="flexberry-uml-body-text"/><text class="flexberry-uml-footer-text"/>',
     '</g>'
   ].join(''),
 
   initialize() {
-
-    this.on('change:name change:attributes change:methods', function() {
+    this.on('change:name change:stereotype change:attributes change:methods', function() {
       this.updateRectangles();
       this.trigger('uml-update');
     }, this);
-
-    this.updateRectangles();
 
     joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
   },
@@ -141,45 +122,52 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
     return this.get('name');
   },
 
-  updateRectangles() {
-    let rects = [
-        { type: 'header', text: this.getClassName(), element: this },
-        { type: 'body', text: this.get('attributes'), element: this },
-        { type: 'footer', text: this.get('methods'), element: this }
+  getRectangles() {
+    return [
+      { type: 'header', text: this.getClassName(), element: this },
+      { type: 'body', text: this.get('attributes'), element: this },
+      { type: 'footer', text: this.get('methods'), element: this }
     ];
+  },
+
+  updateRectangles() {
+    let rects = this.getRectangles();
 
     let offsetY = 0;
     let newHeight = 0;
     let newWidth = 0;
     rects.forEach(function(rect) {
-      if (this.markup.includes('flexberry-uml-' + rect.type + '-rect')) {
-
-        let lines = Array.isArray(rect.text) ? rect.text : [rect.text];
-
-        let maxStringChars = 0;
-        lines.forEach(function(line) {
-          if (line.length > maxStringChars) {
-            maxStringChars = line.length;
+      if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
+        let $buffer = rect.element.inputElements.find('.input-buffer');
+        let rectHeight = 0;
+        let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
+        inputs.each(function() {
+          let $input = Ember.$(this);
+          $buffer.css('font-weight', $input.css('font-weight'));
+          $buffer.text($input.val());
+          $input.width($buffer.width() + 1);
+          if ($input.width() > newWidth) {
+            newWidth = $input.width();
           }
+
+          rectHeight += $input.height();
         });
 
-        let hightStep = rect.element.attr('.flexberry-uml-header-text/fontSize');
-        let rectHeight = lines.length * hightStep + 10;
-
-        let widthStep = rect.element.attr('.flexberry-uml-header-text/fontSize') / 1.5;
-        let rectWidth = maxStringChars * widthStep  + 10;
-
+        rectHeight += rect.element.get('heightBottomPadding') || 0;
         newHeight += rectHeight;
-        newWidth = newWidth > rectWidth ? newWidth : rectWidth;
-        rect.element.attr('.flexberry-uml-' + rect.type + '-text/text', lines.join('\n'));
         rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
+
         rect.element.attr('.flexberry-uml-' + rect.type + '-rect/transform', 'translate(0,' + offsetY + ')');
 
         offsetY += rectHeight;
       }
     }, this);
 
-    newWidth = this.attributes.size.width > 1 ? this.attributes.size.width : newWidth;
+    newWidth += (this.get('widthPadding') || 0) * 2;
+    rects.forEach(function(rect) {
+      rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
+    });
+
     this.resize(newWidth, newHeight);
   }
 });
@@ -194,11 +182,6 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
   @constructor
 */
 export let Class = BaseClass.define('flexberry.uml.Class', {
-  attrs: {
-    '.flexberry-uml-header-text': { 'font-weight': 'bold' },
-    '.flexberry-uml-header-text tspan[x]': { 'font-weight': 'normal' },
-  },
-
   stereotype: '',
 }, {
   getClassName() {
@@ -221,68 +204,125 @@ export let ClassCollapsed = Class.define('flexberry.uml.ClassCollapsed', {}, {
     '<g class="scalable">',
     '<rect class="flexberry-uml-header-rect"/>',
     '</g>',
-    '<text class="flexberry-uml-header-text"/>',
     '</g>'
-  ].join('')
+  ].join(''),
+
+  getRectangles() {
+    return [
+      { type: 'header', text: this.getClassName(), element: this }
+    ];
+  },
 });
 
 joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
   template: [
     '<div class="uml-class-inputs">',
-    '<input type="text" class="class-name-input" value="" />',
-    '<input type="text" class="class-stereotype-input" value="" />',
-    '<textarea class="attributes-input" value="" rows="2"></textarea>',
+    '<input type="text" class="class-name-input header-input" value="" />',
+    '<input type="text" class="class-stereotype-input header-input" value="" />',
+    '<textarea class="attributes-input body-input" value="" rows="1" wrap="off"></textarea>',
+    '<textarea class="methods-input footer-input" value="" rows="1" wrap="off"></textarea>',
     '<div class="input-buffer"></div>',
     '</div>'
   ].join(''),
-
-  inputSelectors: ['.class-name-input', '.class-stereotype-input', '.attributes-input'],
 
   initialize: function() {
     joint.dia.ElementView.prototype.initialize.apply(this, arguments);
 
     this.$box = Ember.$(this.template);
+    this.model.inputElements = this.$box;
 
     // Prevent paper from handling pointerdown.
     this.$box.find('input, textarea').on('mousedown click', function(evt) {
       evt.stopPropagation();
     });
 
-    this.$box.find('input, textarea').on('input', function() {
-      this.updateInputWidth();
+    this.$box.find('.attributes-input').on('input', function(evt) {
+      let $textarea = Ember.$(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      this.model.updateRectangles();
+    }.bind(this));
+
+    this.$box.find('.methods-input').on('input', function(evt) {
+      let $textarea = Ember.$(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      this.model.updateRectangles();
+    }.bind(this));
+
+    this.$box.find('.class-name-input').on('input', function() {
+      this.model.updateRectangles();
+    }.bind(this));
+
+    this.$box.find('.class-stereotype-input').on('input', function() {
+      this.model.updateRectangles();
+    }.bind(this));
+
+    this.$box.find('.attributes-input').on('change', function(evt) {
+      let $textarea = Ember.$(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      this.model.set('attributes', rows);
+    }.bind(this));
+
+    this.$box.find('.methods-input').on('change', function(evt) {
+      let $textarea = Ember.$(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      this.model.set('methods', rows);
     }.bind(this));
 
     this.$box.find('.class-name-input').on('change', function(evt) {
       this.model.set('name', Ember.$(evt.target).val());
     }.bind(this));
 
-    this.$box.find('.class-stereotype-input').on('change', function(evt) {
+    this.$box.find('.class-stereotype-input').on('focus', function(evt) {
+      let stereotype = this.normalizeStereotype(Ember.$(evt.target).val());
+      this.$box.find('.class-stereotype-input').val(stereotype.slice(1, -1));
+      this.model.updateRectangles();
+    }.bind(this));
+
+    this.$box.find('.class-stereotype-input').on('blur', function(evt) {
       let stereotype = this.normalizeStereotype(Ember.$(evt.target).val());
       this.$box.find('.class-stereotype-input').val(stereotype);
       this.model.set('stereotype', stereotype.slice(1, -1));
+      this.model.updateRectangles();
     }.bind(this));
 
-    this.$box.find('.class-name-input').val(this.model.get('name'));
-    this.$box.find('.class-stereotype-input').val(this.normalizeStereotype(this.model.get('stereotype')));
+    let classNameInput = this.$box.find('.class-name-input');
+    let classStereotypeInput = this.$box.find('.class-stereotype-input');
+    let attributesInput = this.$box.find('.attributes-input');
+    let methodsInput = this.$box.find('.methods-input');
+    classNameInput.val(this.model.get('name'));
+    classStereotypeInput.val(this.normalizeStereotype(this.model.get('stereotype')));
+    attributesInput.prop('rows', this.model.get('attributes').length || 1);
+    attributesInput.val(this.model.get('attributes').join('\n'));
+    methodsInput.prop('rows', this.model.get('methods').length || 1);
+    methodsInput.val(this.model.get('methods').join('\n'));
 
     // Update the box position whenever the underlying model changes.
     this.model.on('change', this.updateBox, this);
 
     // Remove the box when the model gets removed from the graph.
     this.model.on('remove', this.removeBox, this);
-
-    this.updateBox();
   },
+
   render: function() {
     joint.dia.ElementView.prototype.render.apply(this, arguments);
     this.paper.$el.prepend(this.$box);
+    this.paper.on('blank:pointerdown link:pointerdown element:pointerdown', function() {
+      this.$box.find('input, textarea').blur();
+    }, this);
     this.updateBox();
+    this.model.updateRectangles();
     return this;
   },
 
   updateBox: function() {
-    this.updateInputWidth();
-
     // Set the position and dimension of the box so that it covers the JointJS element.
     let bbox = this.model.getBBox();
     this.$box.css({
@@ -298,25 +338,9 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
     this.$box.remove();
   },
 
-  updateInputWidth: function() {
-    let $buffer = this.$box.find('.input-buffer');
-    let maxWidth = 0;
-    this.inputSelectors.forEach((selector) => {
-      let $input = this.$box.find(selector);
-      $buffer.css('font-weight', $input.css('font-weight'));
-      $buffer.text($input.val());
-      $input.width($buffer.width() + 5);
-      if ($input.width() > maxWidth) {
-        maxWidth = $input.width();
-      }
-    }, this);
-
-    let oldSize = this.model.get('size');
-    this.model.set('size', { height: oldSize.height, width: maxWidth + 14 });
-  },
-
   normalizeStereotype(stereotype) {
-    if (stereotype.length > 0) {
+    stereotype = stereotype.replace(new RegExp(`${String.fromCharCode(171)}|${String.fromCharCode(187)}`, 'g'), '');
+    if (!Ember.isBlank(stereotype)) {
       if (stereotype[0] !== String.fromCharCode(171)) {
         stereotype = String.fromCharCode(171) + stereotype;
       }
@@ -330,3 +354,12 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
   }
 });
 
+joint.shapes.flexberry.uml.ClassCollapsedView = joint.shapes.flexberry.uml.ClassView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<input type="text" class="class-name-input header-input" value="" />',
+    '<input type="text" class="class-stereotype-input header-input" value="" />',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
+});
