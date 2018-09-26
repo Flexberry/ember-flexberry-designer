@@ -3,8 +3,10 @@
 */
 
 import Ember from 'ember';
+import joint from 'npm:jointjs';
 
 import { Class } from './fd-uml-class';
+
 import FdUmlClass from './fd-uml-class';
 
 /**
@@ -73,39 +75,66 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
     '<rect class="flexberry-uml-header-rect"/><rect class="flexberry-uml-params-rect"/>',
     '<rect class="flexberry-uml-body-rect"/><rect class="flexberry-uml-footer-rect"/>',
     '</g>',
-    '<text class="flexberry-uml-header-text"/><text class="flexberry-uml-params-text"/>',
-    '<text class="flexberry-uml-body-text"/><text class="flexberry-uml-footer-text"/>',
     '</g>'
   ].join(''),
+
+  getRectangles() {
+    return [
+      { type: 'params', text: this.get('params'), element: this },
+      { type: 'header', text: this.getClassName(), element: this },
+      { type: 'body', text: this.get('attributes'), element: this },
+      { type: 'footer', text: this.get('methods'), element: this }
+    ];
+  },
 
   updateRectangles: function() {
     Class.prototype.updateRectangles.apply(this, arguments);
 
-    var attrs = this.get('attrs');
+    // var attrs = this.get('attrs');
 
-    let params = this.get('params');
-    let lines = Array.isArray(params) ? params : [params];
+    // let params = this.get('params');
+    // let lines = Array.isArray(params) ? params : [params];
 
-    let maxStringChars = 0;
-    lines.forEach(function(line) {
-      if (line.length > maxStringChars) {
-        maxStringChars = line.length;
-      }
-    });
+    // let maxStringChars = 0;
+    // lines.forEach(function(line) {
+    //   if (line.length > maxStringChars) {
+    //     maxStringChars = line.length;
+    //   }
+    // });
 
-    let rectHeight = lines.length * 12 + 10;
-    let rectWidth = maxStringChars * 8 + 10;
+    // let rectHeight = lines.length * 12 + 10;
+    // let rectWidth = maxStringChars * 8 + 10;
 
-    attrs['.flexberry-uml-params-text'].text = lines.join('\n');
-    attrs['.flexberry-uml-params-rect'].height = rectHeight;
-    attrs['.flexberry-uml-params-rect'].width = rectWidth;
+    // attrs['.flexberry-uml-params-text'].text = lines.join('\n');
+    // attrs['.flexberry-uml-params-rect'].height = rectHeight;
+    // attrs['.flexberry-uml-params-rect'].width = rectWidth;
 
-    let topTranslate = -rectHeight + 5;
-    attrs['.flexberry-uml-params-rect'].transform = 'translate(160, ' + topTranslate + ' )';
+    // let topTranslate = -rectHeight + 5;
+    // attrs['.flexberry-uml-params-rect'].transform = 'translate(160, ' + topTranslate + ' )';
 
-    let newHeight = this.size().height + attrs['.flexberry-uml-params-rect'].height;
-    let newWidth = this.size().width + attrs['.flexberry-uml-params-rect'].width;
+    // let newHeight = this.size().height + attrs['.flexberry-uml-params-rect'].height;
+    // let newWidth = this.size().width + attrs['.flexberry-uml-params-rect'].width;
 
-    this.resize(newWidth, newHeight);
+    // this.resize(newWidth, newHeight);
+  }
+});
+
+joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<input type="text" class="params-input" value="" />',
+    '<input type="text" class="class-name-input header-input class-t" value="" />',
+    '<input type="text" class="class-stereotype-input header-input" value="" />',
+    '<textarea class="attributes-input body-input" value="" rows="1" wrap="off"></textarea>',
+    '<textarea class="methods-input footer-input" value="" rows="1" wrap="off"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
+
+  initialize: function() {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.initialize.apply(this, arguments);
+    this.$box.find('.params-input').on('input', function () {
+      this.model.updateRectangles();
+    }.bind(this));
   }
 });
