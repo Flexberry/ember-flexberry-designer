@@ -2,6 +2,7 @@
   "name": "FdFilelink",
   "modelName": "fd-filelink",
   "className": "Filelink",
+  "nameSpace": "",
   "parentModelName": "fd-object-in-system",
   "parentClassName": "ObjectInSystem",
   "attrs": [

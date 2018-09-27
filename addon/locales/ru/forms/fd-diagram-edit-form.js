@@ -42,6 +42,15 @@ export default {
       'add-complex-transition': 'Синхронизация/разветвление',
       'add-transition': 'Переход',
       'add-event-message': 'Сообщение'
+      'add-actor': 'Участник',
+      'add-design-pattern': 'Шаблон',
+      'add-design-pattern-connector': 'Коннектор шаблона',
+      'add-backward-nested-message': 'Обратное вложенное сообщение',
+      'add-forward-nested-message': 'Прямое вложенное сообщение',
+      'add-backward-flat-message': 'Обратное сообщение',
+      'add-forward-flat-message': 'Прямое сообщение',
+      'add-backward-async-message': 'Обратное асинхронное сообщение',
+      'add-forward-async-message': 'Прямое асинхронное сообщение',
     }
   }
 };

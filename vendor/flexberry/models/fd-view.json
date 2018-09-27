@@ -2,6 +2,7 @@
   "name": "FdView",
   "modelName": "fd-view",
   "className": "View",
+  "nameSpace": "",
   "parentModelName": null,
   "parentClassName": null,
   "attrs": [

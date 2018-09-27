@@ -68,6 +68,7 @@ export let Model = Ember.Mixin.create({
     this._super.apply(this, arguments);
   }
 });
+
 export let defineBaseModel = function (modelClass) {
   modelClass.reopenClass({
     _parentModelName: 'fd-dev-base-association'
@@ -214,18 +215,4 @@ export let defineProjections = function (modelClass) {
     endRole: Projection.attr('End role'),
     storage: Projection.attr('Storage')
   });
-
-  /* merged manually start */
-  modelClass.defineProjection('FormConstructor', 'fd-dev-association', {
-    startRole: Projection.attr(''),
-    assocType: Projection.attr(''),
-    startClass: Projection.belongsTo('fd-class', '', {
-      name: Projection.attr(''),
-    }),
-    endClass: Projection.belongsTo('fd-class', '', {
-      name: Projection.attr(''),
-    }),
-    stage: Projection.belongsTo('fd-stage', '', {}),
-  });
-  /* merged manually end */
 };

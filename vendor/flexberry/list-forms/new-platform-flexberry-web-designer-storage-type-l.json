@@ -1,0 +1,15 @@
+﻿{
+  "newForm": null,
+  "editForm": null,
+  "external": false,
+  "caption": null,
+  "name": "NewPlatformFlexberryWebDesignerStorageTypeL",
+  "className": "StorageTypeL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-storage-type",
+      "modelProjection": "ListFormView"
+    }
+  ]
+}

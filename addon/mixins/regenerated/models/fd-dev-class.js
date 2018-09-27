@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 import { Projection } from 'ember-flexberry-data';
+import DataServiceObjectEventsEnum from '../../../enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events';
 export let Model = Ember.Mixin.create({
   accessType: DS.attr('i-c-s-soft-s-t-o-r-m-n-e-t-access-type'),
   addAuditFields: DS.attr('boolean'),
@@ -81,7 +82,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.bSEventsCompute && typeof this.bSEventsCompute === 'function') ? this.bSEventsCompute() : null;
     this.set('bSEvents', result);
   },
-  businessServerEvents: DS.attr('i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events', { defaultValue: 'OnAllEvents' }),
+  businessServerEvents: DS.attr('i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events', { defaultValue: DataServiceObjectEventsEnum.OnAllEvents }),
   caption: DS.attr('string'),
   /**
     Non-stored property.
@@ -132,9 +133,7 @@ export let Model = Ember.Mixin.create({
     let result = (this.containersCompute && typeof this.containersCompute === 'function') ? this.containersCompute() : null;
     this.set('containers', result);
   },
-  /* merged manually start */
   containersStr: DS.attr('containers-tree'),
-  /* merged manually end */
   /**
     Non-stored property.
 
@@ -473,18 +472,6 @@ export let Model = Ember.Mixin.create({
   getValidations: function () {
     let parentValidations = this._super();
     let thisValidations = {
-
-      /* merged manually start */
-
-      // caption: {
-      //   presence: {
-      //     // message: this.get('i18n').t('models.fd-dev-class.validations.caption')
-      //     message: 'Caption is required'
-      //   }
-      // }
-
-      /* merged manually end */
-
     };
     return Ember.$.extend(true, {}, parentValidations, thisValidations);
   },
@@ -493,6 +480,7 @@ export let Model = Ember.Mixin.create({
     this._super.apply(this, arguments);
   }
 });
+
 export let defineBaseModel = function (modelClass) {
   modelClass.reopenClass({
     _parentModelName: 'fd-class'
@@ -1151,7 +1139,6 @@ export let defineProjections = function (modelClass) {
   modelClass.defineProjection('FdEditClassForm', 'fd-dev-class', {
     caption: Projection.attr('Заголовок'),
     name: Projection.attr('Имя'),
-    nameStr: Projection.attr('', { hidden: true }),
     publishName: Projection.attr(''),
     stored: Projection.attr(''),
     storage: Projection.attr(''),
@@ -1161,6 +1148,7 @@ export let defineProjections = function (modelClass) {
       name: Projection.attr('', { hidden: true })
     }, { displayMemberPath: 'name' }),
     businessServerEvents: Projection.attr('События бизнес-сервера'),
+    nameStr: Projection.attr('', { hidden: true }),
     stage: Projection.belongsTo('fd-stage', '', {
 
     }, { hidden: true }),
@@ -1282,8 +1270,14 @@ export let defineProjections = function (modelClass) {
       type: Projection.attr(''),
       notNull: Projection.attr(''),
       defaultValue: Projection.attr(''),
-      description: Projection.attr('')
+      description: Projection.attr(''),
+      accessModifier: Projection.attr('')
     }),
+    methods: Projection.hasMany('fd-dev-method', '', {
+      accessModifier: Projection.attr(''),
+      type: Projection.attr(''),
+      name: Projection.attr('')
+    })
   });
   modelClass.defineProjection('Generator', 'fd-dev-class', {
     referenceCount: Projection.attr(''),
@@ -1592,46 +1586,4 @@ export let defineProjections = function (modelClass) {
       name: Projection.attr('')
     })
   });
-
-  /* merged manually start */
-  modelClass.defineProjection('FormConstructor', 'fd-dev-class', {
-    name: Projection.attr(''),
-    caption: Projection.attr(''),
-    stage: Projection.belongsTo('fd-stage', '', {}),
-    formViews: Projection.hasMany('fd-dev-form-view', '', {
-      view: Projection.belongsTo('fd-dev-view', '', {
-        name: Projection.attr(''),
-        definition: Projection.attr(''),
-        class: Projection.belongsTo('fd-dev-class', '', {
-          name: Projection.attr(''),
-          caption: Projection.attr(''),
-          stage: Projection.belongsTo('fd-stage', '', {}),
-          attributes: Projection.hasMany('fd-dev-attribute', '', {
-            name: Projection.attr(''),
-            caption: Projection.attr(''),
-            type: Projection.attr(''),
-            notNull: Projection.attr(''),
-            defaultValue: Projection.attr(''),
-            class: Projection.belongsTo('fd-dev-class', '', {}),
-          }),
-        })
-      }),
-    }),
-  });
-
-  modelClass.defineProjection('DataObjects', 'fd-dev-class', {
-    name: Projection.attr(''),
-    caption: Projection.attr(''),
-    stereotype: Projection.attr(''),
-    stage: Projection.belongsTo('fd-stage', '', {}),
-    attributes: Projection.hasMany('fd-dev-attribute', '', {
-      name: Projection.attr(''),
-      caption: Projection.attr(''),
-      type: Projection.attr(''),
-      notNull: Projection.attr(''),
-      defaultValue: Projection.attr(''),
-      class: Projection.belongsTo('fd-dev-class', '', {}),
-    }),
-  });
-  /* merged manually end */
 };

@@ -2,6 +2,7 @@
   "name": "FdObjectInSystem",
   "modelName": "fd-object-in-system",
   "className": "ObjectInSystem",
+  "nameSpace": "",
   "parentModelName": "fd-repository-browser-data-object",
   "parentClassName": "RepositoryBrowserDataObject",
   "attrs": [],

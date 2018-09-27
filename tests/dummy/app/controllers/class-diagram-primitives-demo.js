@@ -54,6 +54,8 @@ export default Ember.Controller.extend({
       });
 
       var linkAggregation = new Aggregation({
+        startPoint:{ x:100, y:30 },
+        endPoint: { x:300, y:30 },
         source: { x:100, y:30 },
         target: { x:300, y:30 }
       });
@@ -62,6 +64,8 @@ export default Ember.Controller.extend({
       linkAggregation.setLabelText('description', 'Agregation');
 
       var linkAssociation = new Association({
+        startPoint:{ x:100, y:80 },
+        endPoint: { x:300, y:80 },
         source: { x:100, y:80 },
         target: { x:300, y:80 }
       });
@@ -70,6 +74,8 @@ export default Ember.Controller.extend({
       linkAssociation.setLabelText('description', 'Association');
 
       var linkComposition = new Composition({
+        startPoint:{ x:100, y:120 },
+        endPoint: { x:300, y:120 },
         source: { x:100, y:120 },
         target: { x: 300, y: 120 }
       });
@@ -78,16 +84,22 @@ export default Ember.Controller.extend({
       linkComposition.setLabelText('description', 'Composition');
 
       var linkDependency = new Dependency({
+        startPoint:{ x:100, y:170 },
+        endPoint: { x:300, y:170 },
         source: { x:100, y:170 },
         target: { x:300, y:170 },
       });
 
       var linkGeneralization = new Generalization({
+        startPoint:{ x:100, y:270 },
+        endPoint: { x:300, y:270 },
         source: { x:100, y:270 },
         target: { x:300, y:270 },
       });
 
       var linkQualified = new QualifiedAssociation({
+        startPoint:{ x:100, y:320 },
+        endPoint: { x:300, y:320 },
         source: { x:100, y:320 },
         target: { x: 300, y: 320 }
       });
@@ -96,6 +108,8 @@ export default Ember.Controller.extend({
       linkQualified.setLabelText('description', 'Qualified');
 
       var linkQualifiedAggregation = new QualifiedAggregation({
+        startPoint:{ x:100, y:370 },
+        endPoint: { x:300, y:370 },
         source: { x:100, y:370 },
         target: { x:300, y:370 }
       });
@@ -104,6 +118,8 @@ export default Ember.Controller.extend({
       linkQualifiedAggregation.setLabelText('description', 'Q-Agregation');
 
       var linkQualifiedComposition = new QualifiedComposition({
+        startPoint:{ x:100, y:420 },
+        endPoint: { x:300, y:420 },
         source: { x:100, y:420 },
         target: { x: 300, y: 420 }
       });
@@ -112,11 +128,15 @@ export default Ember.Controller.extend({
       linkQualifiedComposition.setLabelText('description', 'Q-Composition');
 
       var linkNestedClassAssociation = new NestedClassAssociation({
+        startPoint:{ x:100, y:470 },
+        endPoint: { x:300, y:470 },
         source: { x:100, y:470 },
         target: { x: 300, y: 470 },
       });
 
       var linkNoteConnector = new NoteConnector({
+        startPoint:{ x:100, y:520 },
+        endPoint: { x:300, y:520 },
         source: { x:100, y:520 },
         target: { x:300, y:520 },
       });

@@ -1,0 +1,61 @@
+﻿{
+  "name": "FdUserAuthProfile",
+  "modelName": "fd-user-auth-profile",
+  "className": "UserAuthProfile",
+  "nameSpace": "",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [
+    {
+      "name": "authId",
+      "type": "string",
+      "flexberryType": "StringMax",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "flexberryType": "StringMax",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "approved",
+      "type": "boolean",
+      "flexberryType": "bool",
+      "notNull": false,
+      "defaultValue": "false",
+      "stored": true
+    }
+  ],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "authType",
+      "relatedTo": "fd-auth-type",
+      "inverse": null
+    },
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "applicationUser",
+      "relatedTo": "fd-application-user",
+      "inverse": "userAuthProfiles"
+    }
+  ],
+  "hasMany": [
+    {
+      "name": "following",
+      "relatedTo": "fd-following",
+      "inverse": "follower"
+    }
+  ],
+  "projections": [],
+  "stored": true,
+  "offline": true,
+  "external": false
+}

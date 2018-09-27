@@ -2,7 +2,7 @@
 
 module.exports = function (environment) {
   var backendUrl = 'https://ember-flexberry-designer-dummy.azurewebsites.net';
-
+  
   if (environment === 'development-loc') {
     // Use `ember s -e development-loc` command for local backend usage.
     backendUrl = 'http://localhost:8600';

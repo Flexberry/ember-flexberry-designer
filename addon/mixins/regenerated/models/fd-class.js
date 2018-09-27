@@ -7,7 +7,7 @@ export let Model = Ember.Mixin.create({
 
     @property nameStr
   */
-  nameStr: DS.attr('string'),
+  nameStr: DS.attr('string', { defaultValue: 'Empty' }),
   /**
     Method to set non-stored property.
     Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
@@ -26,9 +26,9 @@ export let Model = Ember.Mixin.create({
     let result = (this.nameStrCompute && typeof this.nameStrCompute === 'function') ? this.nameStrCompute() : null;
     this.set('nameStr', result);
   },
-  attributesStr: DS.attr('string'),
-  methodsStr: DS.attr('string'),
-  stored: DS.attr('boolean'),
+  attributesStr: DS.attr('string', { defaultValue: 'Empty' }),
+  methodsStr: DS.attr('string', { defaultValue: 'Empty' }),
+  stored: DS.attr('boolean', { defaultValue: true }),
   stereotype: DS.attr('string'),
   stage: DS.belongsTo('fd-stage', { inverse: 'classes', async: false, polymorphic: true }),
   getValidations: function () {
@@ -43,6 +43,7 @@ export let Model = Ember.Mixin.create({
     this._super.apply(this, arguments);
   }
 });
+
 export let defineBaseModel = function (modelClass) {
   modelClass.reopenClass({
     _parentModelName: 'fd-repository-ref-data-object'

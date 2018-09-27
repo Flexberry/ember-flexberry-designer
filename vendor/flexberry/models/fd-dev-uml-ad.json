@@ -2,6 +2,7 @@
   "name": "FdDevUmlAd",
   "modelName": "fd-dev-uml-ad",
   "className": "DevUMLAD",
+  "nameSpace": "",
   "parentModelName": "fd-ad",
   "parentClassName": "AD",
   "attrs": [

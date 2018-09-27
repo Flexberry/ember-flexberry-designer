@@ -379,6 +379,7 @@ export let Model = Ember.Mixin.create({
   version: DS.attr('string'),
   typeDefinitions: DS.hasMany('fd-dev-type-definition', { inverse: 'stage', async: false }),
   controlTypes: DS.hasMany('fd-dev-control-type', { inverse: 'stage', async: false }),
+  users: DS.hasMany('fd-user-in-stage', { inverse: 'stage', async: false }),
   moduleSettings: DS.hasMany('fd-dev-module-setting', { inverse: 'stage', async: false }),
   generations: DS.hasMany('fd-generation', { inverse: 'stage', async: false }),
   getValidations: function () {
@@ -392,6 +393,7 @@ export let Model = Ember.Mixin.create({
     this._super.apply(this, arguments);
   }
 });
+
 export let defineBaseModel = function (modelClass) {
   modelClass.reopenClass({
     _parentModelName: 'fd-stage'
@@ -436,7 +438,14 @@ export let defineProjections = function (modelClass) {
     isReportDatabaseLocal: Projection.attr(''),
     defaultWriteMode: Projection.attr(''),
     moduleSettings: Projection.hasMany('fd-dev-module-setting', '', {
+      valueXML: Projection.attr(''),
+      moduleSettingTypeName: Projection.attr(''),
+      moduleSettingType: Projection.belongsTo('fd-dev-module-setting-type', '', {
 
+      }, { hidden: true }),
+      stage: Projection.belongsTo('fd-dev-stage', '', {
+
+      }, { hidden: true })
     })
   });
   modelClass.defineProjection('Compiler', 'fd-dev-stage', {
@@ -474,6 +483,7 @@ export let defineProjections = function (modelClass) {
         name: Projection.attr('Name ModuleSettingType')
       }, { hidden: true }),
       valueXML: Projection.attr('ValueXML'),
+      moduleSettingTypeName: Projection.attr(''),
       stage: Projection.belongsTo('fd-dev-stage', 'Stage', {
 
       }, { hidden: true })
@@ -507,6 +517,7 @@ export let defineProjections = function (modelClass) {
         name: Projection.attr('Name ModuleSettingType')
       }, { hidden: true }),
       valueXML: Projection.attr('ValueXML'),
+      moduleSettingTypeName: Projection.attr(''),
       stage: Projection.belongsTo('fd-dev-stage', 'Stage', {
 
       }, { hidden: true })
@@ -542,6 +553,7 @@ export let defineProjections = function (modelClass) {
         name: Projection.attr('Name ModuleSettingType')
       }, { hidden: true }),
       valueXML: Projection.attr('ValueXML'),
+      moduleSettingTypeName: Projection.attr(''),
       stage: Projection.belongsTo('fd-dev-stage', 'Stage', {
 
       }, { hidden: true })
@@ -564,6 +576,7 @@ export let defineProjections = function (modelClass) {
         name: Projection.attr('Name ModuleSettingType')
       }, { hidden: true }),
       valueXML: Projection.attr('ValueXML'),
+      moduleSettingTypeName: Projection.attr(''),
       stage: Projection.belongsTo('fd-dev-stage', 'Stage', {
 
       }, { hidden: true })
@@ -585,6 +598,7 @@ export let defineProjections = function (modelClass) {
         name: Projection.attr('Name ModuleSettingType')
       }, { hidden: true }),
       valueXML: Projection.attr('ValueXML'),
+      moduleSettingTypeName: Projection.attr(''),
       stage: Projection.belongsTo('fd-dev-stage', 'Stage', {
 
       }, { hidden: true })
@@ -613,6 +627,7 @@ export let defineProjections = function (modelClass) {
         name: Projection.attr('Name ModuleSettingType')
       }, { hidden: true }),
       valueXML: Projection.attr('ValueXML'),
+      moduleSettingTypeName: Projection.attr(''),
       stage: Projection.belongsTo('fd-dev-stage', 'Stage', {
 
       }, { hidden: true })
@@ -718,7 +733,7 @@ export let defineProjections = function (modelClass) {
       endTime: Projection.attr('Время окончания'),
       stage: Projection.belongsTo('fd-dev-stage', 'Имя стадии', {
         name: Projection.attr('Имя стадии')
-      }, { hidden: true }),
+      }),
       generationReason: Projection.attr('Действие')
     })
   });
@@ -775,6 +790,7 @@ export let defineProjections = function (modelClass) {
         name: Projection.attr('Name ModuleSettingType')
       }, { hidden: true }),
       valueXML: Projection.attr('ValueXML'),
+      moduleSettingTypeName: Projection.attr(''),
       stage: Projection.belongsTo('fd-dev-stage', 'Stage', {
 
       }, { hidden: true })
@@ -828,13 +844,13 @@ export let defineProjections = function (modelClass) {
         name: Projection.attr('Name ModuleSettingType')
       }, { hidden: true }),
       valueXML: Projection.attr('ValueXML'),
+      moduleSettingTypeName: Projection.attr(''),
       stage: Projection.belongsTo('fd-dev-stage', 'Stage', {
 
       }, { hidden: true })
     })
   });
   modelClass.defineProjection('ListDataObjectTypes', 'fd-dev-stage', {
-
   });
   modelClass.defineProjection('ListFormView', 'fd-dev-stage', {
     name: Projection.attr('Name'),
@@ -848,12 +864,10 @@ export let defineProjections = function (modelClass) {
     }, { hidden: true })
   });
   modelClass.defineProjection('Prototyping', 'fd-dev-stage', {
-
   });
   modelClass.defineProjection('SearchRepObjView', 'fd-dev-stage', {
     name: Projection.attr('')
   });
   modelClass.defineProjection('ViewPeeker', 'fd-dev-stage', {
-
   });
 };

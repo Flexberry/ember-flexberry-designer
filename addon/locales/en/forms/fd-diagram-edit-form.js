@@ -42,6 +42,15 @@ export default {
       'add-complex-transition': 'Complex transition',
       'add-transition': 'Transition',
       'add-event-message': 'Event message'
+      'add-actor': 'Actor',
+      'add-design-pattern': 'Design pattern',
+      'add-design-pattern-connector': 'Design pattern connector',
+      'add-backward-nested-message': 'Backward nested message',
+      'add-forward-nested-message': 'Forward nested message',
+      'add-backward-flat-message': 'Backward flat message',
+      'add-forward-flat-message': 'Forward flat message',
+      'add-backward-async-message': 'Backward async message',
+      'add-forward-async-message': 'Forward async message',
     }
   }
 };

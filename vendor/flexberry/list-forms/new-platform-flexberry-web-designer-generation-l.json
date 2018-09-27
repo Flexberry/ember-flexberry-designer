@@ -1,9 +1,10 @@
 ﻿{
-  "newForm": "fd-generation-process-form",
-  "editForm": "fd-generation-process-form",
+  "newForm": null,
+  "editForm": null,
+  "external": false,
   "caption": "Менеджер запусков генераций",
-  "name": "FdGenerationListForm",
-  "className": "GenerationListForm",
+  "name": "NewPlatformFlexberryWebDesignerGenerationL",
+  "className": "GenerationL",
   "attrs": [],
   "projections": [
     {
