@@ -221,6 +221,55 @@
           </button>
         {{/if}}
 
+        {{!-- Dpd action  --}}
+        {{#if (eq model.constructor.modelName 'fd-dev-uml-dpd')}}
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-component"}}
+            type='button' onclick={{action "addComponent"}}>
+            <img src="assets/images/diagrams/dpd/component.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-component"}}
+             style="vertical-align: middle">
+          </button>
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-component-instance"}}
+            type='button' onclick={{action "addComponent"}}>
+            <img src="assets/images/diagrams/dpd/componentinstance.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-component-instance"}}
+             style="vertical-align: middle">
+          </button>
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-interface"}}
+            type='button' onclick={{action "addInterface"}}>
+            <img src="assets/images/diagrams/dpd/interface.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-interface"}}
+             style="vertical-align: middle">
+          </button>
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-node"}}
+            type='button' onclick={{action "addUmlNode"}}>
+            <img src="assets/images/diagrams/dpd/node.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-node"}}
+             style="vertical-align: middle">
+          </button>
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-node-instance"}}
+            type='button' onclick={{action "addUmlNode"}}>
+            <img src="assets/images/diagrams/dpd/nodeinstance.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-node-instance"}}
+             style="vertical-align: middle">
+          </button>
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-object"}}
+            type='button' onclick={{action "addInstance"}}>
+            <img src="assets/images/diagrams/dpd/object.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-object"}}
+             style="vertical-align: middle">
+          </button>
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-active-object"}}
+            type='button' onclick={{action "addDeploymentActiveObject"}}>
+            <img src="assets/images/diagrams/dpd/activeobject.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-active-object"}}
+             style="vertical-align: middle">
+          </button>
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-dependency"}}
+            type='button' onclick={{action "addOnDpdDependency"}}>
+            <img src="assets/images/diagrams/dpd/dependency.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-dependency"}}
+             style="vertical-align: middle">
+          </button>
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-connection"}}
+            type='button' onclick={{action "addConnection"}}>
+            <img src="assets/images/diagrams/dpd/connection.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-connection"}}
+            style="vertical-align: middle">
+          </button>
+        {{/if}}
+
         {{!-- Std action  --}}
         {{#if (eq model.constructor.modelName 'fd-dev-uml-std')}}
           <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-class"}}
