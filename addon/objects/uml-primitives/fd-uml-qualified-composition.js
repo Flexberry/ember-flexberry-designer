@@ -6,6 +6,7 @@ import Ember from 'ember';
 import joint from 'npm:jointjs';
 
 import FdUmlLink from './fd-uml-link';
+import { QualifiedView } from './links-view/fd-qualified-view';
 import { LinkWithUnderline } from './fd-uml-link';
 
 /**
@@ -46,7 +47,7 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels', 'startPoint', 'endPoint');
     return new QualifiedComposition(properties);
   },
 });
@@ -62,7 +63,9 @@ export default FdUmlLink.extend({
 */
 export let QualifiedComposition = LinkWithUnderline.define('flexberry.uml.QualifiedComposition', {
   attrs: {
-    '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 L 26 10 M 52 10 L 39 17 L 26 10 L 39 3 z', fill: 'url(#solids)' }
+    '.marker-source': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 L 26 10 M 52 10 L 39 17 L 26 10 L 39 3 z', fill: 'url(#solids)' },
+    text: { visibility: 'hidden' },
+    rect: { visibility: 'hidden' }
   },
 }, {
 
@@ -86,3 +89,5 @@ export let QualifiedComposition = LinkWithUnderline.define('flexberry.uml.Qualif
     this.set('markup', markup);
   }
 });
+
+joint.shapes.flexberry.uml.QualifiedCompositionView = QualifiedView;

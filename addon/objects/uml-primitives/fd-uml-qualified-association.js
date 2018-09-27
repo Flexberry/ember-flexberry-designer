@@ -3,9 +3,10 @@
 */
 
 import Ember from 'ember';
-
+import joint from 'npm:jointjs';
 import FdUmlLink from './fd-uml-link';
 import { LinkWithUnderline } from './fd-uml-link';
+import { QualifiedView } from './links-view/fd-qualified-view';
 /**
   An object that describes a link of the Qualified association type on the UML diagram.
 
@@ -36,7 +37,7 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels', 'startPoint', 'endPoint');
     return new QualifiedAssociation(properties);
   },
 });
@@ -52,7 +53,10 @@ export default FdUmlLink.extend({
 */
 export let QualifiedAssociation = LinkWithUnderline.define('flexberry.uml.QualifiedAssociation', {
   attrs: {
-    '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 z', fill: 'white' },
-    text: { 'text-decoration': 'underline', }
+    '.marker-source': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 z', fill: 'white' },
+    text: { 'text-decoration': 'underline', visibility: 'hidden' },
+    rect: { visibility: 'hidden' }
   }
 });
+
+joint.shapes.flexberry.uml.QualifiedAssociationView = QualifiedView;

@@ -3,9 +3,10 @@
 */
 
 import Ember from 'ember';
-
+import joint from 'npm:jointjs';
 import FdUmlLink from './fd-uml-link';
 import { LinkWithUnderline } from './fd-uml-link';
+import { QualifiedView } from './links-view/fd-qualified-view';
 
 /**
   An object that describes a link of the `Qualified aggregation` type on the UML diagram.
@@ -37,7 +38,7 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels', 'startPoint', 'endPoint');
     return new QualifiedAggregation(properties);
   },
 });
@@ -52,5 +53,11 @@ export default FdUmlLink.extend({
   @constructor
 */
 export let QualifiedAggregation = LinkWithUnderline.define('flexberry.uml.QualifiedAggregation', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 L 26 10 M 52 10 L 39 17 L 26 10 L 39 3 z', fill: 'white' } },
+  attrs: {
+    '.marker-source': { d: 'M 26 10 L 26 3 L 0 3 L 0 17 L 26 17 L 26 10 M 52 10 L 39 17 L 26 10 L 39 3 z', fill: 'white' },
+    text: { visibility: 'hidden' },
+    rect: { visibility: 'hidden' }
+  }
 });
+
+joint.shapes.flexberry.uml.QualifiedAggregationView = QualifiedView;

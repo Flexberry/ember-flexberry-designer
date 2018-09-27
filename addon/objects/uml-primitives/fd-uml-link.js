@@ -76,6 +76,14 @@ export default FdUmlPrimitive.extend({
   description: Ember.computed.alias('primitive.Name.Text'),
 
   /**
+    Link qualified.
+
+    @property qualified
+    @type String
+  */
+  qualified: Ember.computed.alias('primitive.QualifiedText.Text'),
+
+  /**
     Link's start point.
 
     @property startPoint
@@ -108,6 +116,7 @@ export default FdUmlPrimitive.extend({
       { attrs: { text: { text: this.get('description') } } },
       { attrs: { text: { text: this.get('startRoleTxt') } } },
       { attrs: { text: { text: this.get('endRoleTxt') } } },
+      { attrs: { text: { text: this.get('qualified') } } },
     ];
   }),
 
@@ -160,6 +169,8 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
     position: { distance: 5, offset: -12 }, attrs: { text: { text: '' } } //startRoleTxt
   }, {
     position: { distance: -5, offset: -12 }, attrs: { text: { text: '' } } //endRoleTxt
+  }, {
+    position: { distance: 5, offset: 0 }, attrs: { text: { text: '' } } //QualifiedText
   }]
 }, {
     initialize: function () {
@@ -245,6 +256,9 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
         case 'endRole':
           this.label(4, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
           break;
+        case 'qualified':
+          this.label(5, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
+          break;
         default:
           console.log('ERROR - choose correct label name');
           break;
@@ -271,6 +285,9 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
         case 'endRole':
           label = this.label(4);
           break;
+        case 'qualified':
+          label = this.label(5);
+          break;
         default:
           console.log('ERROR - choose correct label name');
       }
@@ -288,6 +305,8 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
           return isVertical ? -10 : -5;
         case 'description':
           return 0.5;
+        case 'qualified':
+          return 0;
         default:
           console.log('ERROR - choose correct label name');
       }
