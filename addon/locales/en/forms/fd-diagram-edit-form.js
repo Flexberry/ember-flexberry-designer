@@ -30,7 +30,16 @@ export default {
       'add-packege': 'Packege',
       'add-note': 'Note',
       'add-note-connector': 'Note connector',
-      'add-object-association': 'Object association'
+      'add-object-association': 'Object association',
+      'add-actor': 'Actor',
+      'add-design-pattern': 'Design pattern',
+      'add-design-pattern-connector': 'Design pattern connector',
+      'add-backward-nested-message': 'Backward nested message',
+      'add-forward-nested-message': 'Forward nested message',
+      'add-backward-flat-message': 'Backward flat message',
+      'add-forward-flat-message': 'Forward flat message',
+      'add-backward-async-message': 'Backward async message',
+      'add-forward-async-message': 'Forward async message',
     }
   }
 };

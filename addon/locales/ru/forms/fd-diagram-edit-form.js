@@ -30,7 +30,16 @@ export default {
       'add-packege': 'Пакет',
       'add-note': 'Комментарий',
       'add-note-connector': 'Коннектор комментарий',
-      'add-object-association': 'Ассоциация между объектами'
+      'add-object-association': 'Ассоциация между объектами',
+      'add-actor': 'Участник',
+      'add-design-pattern': 'Шаблон',
+      'add-design-pattern-connector': 'Коннектор шаблона',
+      'add-backward-nested-message': 'Обратное вложенное сообщение',
+      'add-forward-nested-message': 'Прямое вложенное сообщение',
+      'add-backward-flat-message': 'Обратное сообщение',
+      'add-forward-flat-message': 'Прямое сообщение',
+      'add-backward-async-message': 'Обратное асинхронное сообщение',
+      'add-forward-async-message': 'Прямое асинхронное сообщение',
     }
   }
 };
