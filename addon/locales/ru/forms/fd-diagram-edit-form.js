@@ -41,7 +41,7 @@ export default {
       'add-final-state': 'Конечное состояние',
       'add-complex-transition': 'Синхронизация/разветвление',
       'add-transition': 'Переход',
-      'add-event-message': 'Сообщение'
+      'add-event-message': 'Сообщение',
       'add-actor': 'Участник',
       'add-design-pattern': 'Шаблон',
       'add-design-pattern-connector': 'Коннектор шаблона',

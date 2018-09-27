@@ -41,7 +41,7 @@ export default {
       'add-final-state': 'Final state',
       'add-complex-transition': 'Complex transition',
       'add-transition': 'Transition',
-      'add-event-message': 'Event message'
+      'add-event-message': 'Event message',
       'add-actor': 'Actor',
       'add-design-pattern': 'Design pattern',
       'add-design-pattern-connector': 'Design pattern connector',
