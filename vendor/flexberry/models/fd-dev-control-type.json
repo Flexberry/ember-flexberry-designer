@@ -2,6 +2,7 @@
   "name": "FdDevControlType",
   "modelName": "fd-dev-control-type",
   "className": "DevControlType",
+  "nameSpace": "",
   "parentModelName": null,
   "parentClassName": null,
   "attrs": [

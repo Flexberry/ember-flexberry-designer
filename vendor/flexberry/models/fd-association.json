@@ -2,6 +2,7 @@
   "name": "FdAssociation",
   "modelName": "fd-association",
   "className": "Association",
+  "nameSpace": "",
   "parentModelName": "fd-base-association",
   "parentClassName": "BaseAssociation",
   "attrs": [],

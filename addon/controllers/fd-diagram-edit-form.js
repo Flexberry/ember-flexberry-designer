@@ -4,6 +4,8 @@ import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 import FdAcrionsForCadPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-cad-primitives';
 import FdAcrionsForDpdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-dpd-primitives';
+import FdAcrionsForStdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-std-primitives';
+import FdAcrionsForCodPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-cod-primitives';
 import FdAcrionsForCommonPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-common-primitives';
 
 export default EditFormController.extend(
@@ -11,6 +13,8 @@ FdWorkPanelToggler,
 FdFormUnsavedData,
 FdAcrionsForCadPrimitivesMixin,
 FdAcrionsForDpdPrimitivesMixin,
+FdAcrionsForStdPrimitivesMixin,
+FdAcrionsForCodPrimitivesMixin,
 FdAcrionsForCommonPrimitivesMixin, {
   parentRoute: 'fd-diagram-list-form',
 
@@ -59,6 +63,14 @@ FdAcrionsForCommonPrimitivesMixin, {
     @type jQuery
   */
   currentTargetElement: undefined,
+
+  /**
+    Stores classes that are created, but not yet saved, in the diagram.
+
+    @property createdClasses
+    @type Ember.Array
+  */
+  createdClasses: Ember.A(),
 
   actions: {
 
@@ -142,6 +154,23 @@ FdAcrionsForCommonPrimitivesMixin, {
         }
       }
     }
+  },
+
+  /**
+    See [Flexberry Ember API](http://flexberry.github.io/ember-flexberry/autodoc/develop/).
+
+    @method save
+  */
+  save() {
+    let model = this.get('model');
+    model.set('primitivesJsonString', JSON.stringify(model.get('primitives')));
+
+    return this._super(...arguments).then(() => {
+      let createdClasses = this.get('createdClasses');
+      let promises = createdClasses.map(c => c.save());
+      createdClasses.clear();
+      return Ember.RSVP.all(promises);
+    });
   },
 
   /**

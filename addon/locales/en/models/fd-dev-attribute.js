@@ -328,6 +328,26 @@ export default {
         __caption__: 'class'
       }
     },
+    FdPreloadMetadata: {
+      name: {
+        __caption__: 'name'
+      },
+      type: {
+        __caption__: 'type'
+      },
+      notNull: {
+        __caption__: 'notNull'
+      },
+      defaultValue: {
+        __caption__: 'defaultValue'
+      },
+      description: {
+        __caption__: 'description'
+      },
+      accessModifier: {
+        __caption__: 'accessModifier'
+      }
+    },
     FormDesigner: {
       name: {
         __caption__: 'name'

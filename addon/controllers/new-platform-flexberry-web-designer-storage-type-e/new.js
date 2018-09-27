@@ -1,0 +1,4 @@
+import NewPlatformFlexberryWebDesignerStorageTypeEController from '../new-platform-flexberry-web-designer-storage-type-e';
+
+var NewPlatformFlexberryWebDesignerStorageTypeENewController = NewPlatformFlexberryWebDesignerStorageTypeEController;
+export default NewPlatformFlexberryWebDesignerStorageTypeENewController;

@@ -40,12 +40,16 @@ export default Ember.Controller.extend({
       });
 
       var linkNoteConnector = new NoteConnector({
+        startPoint:{ x:100, y:100 },
+        endPoint: { x:300, y:100 },
         source: { x:100, y:100 },
         target: { x:300, y:100 },
         attrs: { path: { title:'Коннектор комментария (Note Connector)' } }
       });
 
       var linkDependency = new Dependency({
+        startPoint:{ x:100, y:150 },
+        endPoint: { x:300, y:150 },
         source: { x:100, y:150 },
         target: { x:300, y:150 },
         labels:[{
@@ -55,6 +59,8 @@ export default Ember.Controller.extend({
       });
 
       var linkConnection = new Connection({
+        startPoint:{ x:100, y:200 },
+        endPoint: { x:300, y:200 },
         source: { x:100, y:200 },
         target: { x:300, y:200 },
         labels:[{

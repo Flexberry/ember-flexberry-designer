@@ -1,7 +1,6 @@
 export default {
   caption: 'Редактировать метаданные класса',
   'caption-caption': 'Заголовок',
-  'class': 'Класс',
   'name-caption': 'Имя',
   'publishName-caption': 'Алиас',
   'stored-caption': 'Хранимый',
@@ -9,10 +8,13 @@ export default {
   'packet-caption': 'Пакет',
   'namespacePostfix-caption': 'Постфикс пространства имен',
   'businessServerEvents-caption': 'События бизнес-сервера',
+  'nameStr-caption': '',
   'businessServerClass-caption': 'Бизнес-сервер',
+  'stage-caption': '',
   'attributes-caption': 'Атрибуты',
   'views-caption': 'Представления',
   'classStorageTypes-caption': 'Типы хранилищ',
+  class: 'Класс',
   'toggler-caption': 'Дополнительные свойства',
   'go-to-view': 'Форма представления'
 };

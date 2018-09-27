@@ -37,7 +37,27 @@ export default {
       'add-node': 'Node',
       'add-node-instance': 'Node instance',
       'add-object': 'Object',
-      'add-connection': 'Connection'
+      'add-connection': 'Connection',
+      'add-state': 'State',
+      'add-state-ex': 'State EX',
+      'add-composite-state': 'Composite state',
+      'add-concurrent-state': 'Concurrent state',
+      'add-history': 'History',
+      'add-deep-history': 'Deep history',
+      'add-start-state': 'Start state',
+      'add-final-state': 'Final state',
+      'add-complex-transition': 'Complex transition',
+      'add-transition': 'Transition',
+      'add-event-message': 'Event message',
+      'add-actor': 'Actor',
+      'add-design-pattern': 'Design pattern',
+      'add-design-pattern-connector': 'Design pattern connector',
+      'add-backward-nested-message': 'Backward nested message',
+      'add-forward-nested-message': 'Forward nested message',
+      'add-backward-flat-message': 'Backward flat message',
+      'add-forward-flat-message': 'Forward flat message',
+      'add-backward-async-message': 'Backward async message',
+      'add-forward-async-message': 'Forward async message',
     }
   }
 };

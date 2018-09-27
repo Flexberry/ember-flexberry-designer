@@ -37,7 +37,27 @@ export default {
       'add-node': 'Узел',
       'add-node-instance': 'Экземпляр узла',
       'add-object': 'Объект',
-      'add-connection': 'Связь'
+      'add-connection': 'Связь',
+      'add-state': 'Состояние',
+      'add-state-ex': 'Состояние EX',
+      'add-composite-state': 'Составное состояние',
+      'add-concurrent-state': 'Разделитель',
+      'add-history': 'История',
+      'add-deep-history': 'Глубокая история',
+      'add-start-state': 'Начальное состояние',
+      'add-final-state': 'Конечное состояние',
+      'add-complex-transition': 'Синхронизация/разветвление',
+      'add-transition': 'Переход',
+      'add-event-message': 'Сообщение',
+      'add-actor': 'Участник',
+      'add-design-pattern': 'Шаблон',
+      'add-design-pattern-connector': 'Коннектор шаблона',
+      'add-backward-nested-message': 'Обратное вложенное сообщение',
+      'add-forward-nested-message': 'Прямое вложенное сообщение',
+      'add-backward-flat-message': 'Обратное сообщение',
+      'add-forward-flat-message': 'Прямое сообщение',
+      'add-backward-async-message': 'Обратное асинхронное сообщение',
+      'add-forward-async-message': 'Прямое асинхронное сообщение',
     }
   }
 };

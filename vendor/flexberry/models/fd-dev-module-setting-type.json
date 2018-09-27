@@ -2,6 +2,7 @@
   "name": "FdDevModuleSettingType",
   "modelName": "fd-dev-module-setting-type",
   "className": "DevModuleSettingType",
+  "nameSpace": "",
   "parentModelName": null,
   "parentClassName": null,
   "attrs": [

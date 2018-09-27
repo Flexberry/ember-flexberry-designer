@@ -4,6 +4,7 @@
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
+import joint from 'npm:jointjs';
 
 /**
   An object that describes an aggregation link on the UML diagram.
@@ -19,7 +20,7 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels', 'startPoint', 'endPoint');
     return new Aggregation(properties);
   },
 });
@@ -34,5 +35,26 @@ export default FdUmlLink.extend({
   @constructor
 */
 export let Aggregation = Link.define('flexberry.uml.Aggregation', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' } },
+  attrs: {
+    '.marker-source': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' },
+    text: { visibility: 'hidden' },
+    rect: { visibility: 'hidden' }
+  }
+}, {
+  getLabelDistance: function (labelName, isVertical) {
+    switch (labelName) {
+      case 'startMultiplicity':
+      case 'startRole':
+        return 30;
+      case 'endMultiplicity':
+      case 'endRole':
+        return isVertical ? -10 : -5;
+      case 'description':
+        return 0.5;
+      default:
+        console.log('ERROR - choose correct label name');
+    }
+  },
 });
+
+joint.shapes.flexberry.uml.AggregationView = joint.shapes.flexberry.uml.AssociationView.extend({});

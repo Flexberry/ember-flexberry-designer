@@ -2,6 +2,7 @@
   "name": "FdUcd",
   "modelName": "fd-ucd",
   "className": "UCD",
+  "nameSpace": "",
   "parentModelName": "fd-diagram",
   "parentClassName": "Diagram",
   "attrs": [

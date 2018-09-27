@@ -1,0 +1,136 @@
+﻿{
+  "name": "FdStorageType",
+  "modelName": "fd-storage-type",
+  "className": "StorageType",
+  "nameSpace": "",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [
+    {
+      "name": "shortName",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "dataServiceFullTypeName",
+      "type": "string",
+      "flexberryType": "StringMax",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "actual",
+      "type": "boolean",
+      "flexberryType": "bool",
+      "notNull": false,
+      "defaultValue": "true",
+      "stored": true
+    }
+  ],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": false,
+      "name": "stage",
+      "relatedTo": "fd-dev-stage",
+      "inverse": null
+    }
+  ],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "EditFormView",
+      "modelName": "fd-storage-type",
+      "attrs": [
+        {
+          "name": "shortName",
+          "caption": "ShortName",
+          "hidden": true,
+          "index": 1
+        },
+        {
+          "name": "dataServiceFullTypeName",
+          "caption": "DataServiceFullTypeName",
+          "hidden": true,
+          "index": 2
+        },
+        {
+          "name": "actual",
+          "caption": "Actual",
+          "hidden": true,
+          "index": 3
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Stage",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [],
+          "index": 0,
+          "caption": "",
+          "name": "stage",
+          "relatedTo": "fd-dev-stage",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "ListFormView",
+      "modelName": "fd-storage-type",
+      "attrs": [
+        {
+          "name": "shortName",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "dataServiceFullTypeName",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "actual",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Stage",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "",
+              "hidden": false,
+              "index": 3
+            }
+          ],
+          "index": -1,
+          "caption": "",
+          "name": "stage",
+          "relatedTo": "fd-dev-stage",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true,
+  "external": false
+}
