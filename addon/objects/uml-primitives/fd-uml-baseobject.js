@@ -191,7 +191,11 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.dia.ElementView.extend({
     classNameInput.val(this.model.get('name'));
     if (Ember.isPresent(this.model.get('attributes'))) {
       attributesInput.prop('rows', this.model.get('attributes').length || 1);
-      attributesInput.val(this.model.get('attributes').join('\n'));
+      if (this.model.get('attributes') instanceof Array) {
+        attributesInput.val(this.model.get('attributes').join('\n'));
+      } else {
+        attributesInput.val(this.model.get('attributes'));
+      }
     } else {
       attributesInput.prop('rows', 1);
     }
