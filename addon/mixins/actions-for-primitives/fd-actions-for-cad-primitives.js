@@ -17,6 +17,8 @@ import { QualifiedComposition } from '../../objects/uml-primitives/fd-uml-qualif
 import { QualifiedAggregation } from '../../objects/uml-primitives/fd-uml-qualified-aggregation';
 import { MoreClasses } from '../../objects/uml-primitives/fd-uml-more-classes';
 import { Package } from '../../objects/uml-primitives/fd-uml-package';
+import { ObjectAssociation } from '../../objects/uml-primitives/fd-uml-object-association';
+import { NAryAssociationConnector } from '../../objects/uml-primitives/fd-uml-naryassociation-connector';
 import { findFreeNodeTreeNameIndex } from '../../utils/fd-metods-for-tree';
 /**
   Actions for creating joint js elements on cad diagrams.
@@ -97,10 +99,10 @@ export default Ember.Mixin.create({
 
         let newAssociationObject = new Association({
           source: {
-            id: linkProperties.target
+            id: linkProperties.source
           },
           target: {
-            id: linkProperties.source
+            id: linkProperties.target
           },
           vertices: linkProperties.points.reverseObjects(),
           repositoryObject: newAssociation
@@ -375,7 +377,7 @@ export default Ember.Mixin.create({
      */
     addNaryAssociationConnector(e) {
       this.createLinkData((function(linkProperties) {
-        let newNaryAssociationConnectorObject = new Association({
+        let newNaryAssociationConnectorObject = new NAryAssociationConnector({
           source: {
             id: linkProperties.source
           },
@@ -501,7 +503,7 @@ export default Ember.Mixin.create({
      */
     addObjectAssociation(e) {
       this.createLinkData((function(linkProperties) {
-        let newDependencyObject = new Association({
+        let newObjectAssociationObject = new ObjectAssociation({
           source: {
             id: linkProperties.source
           },
@@ -511,7 +513,7 @@ export default Ember.Mixin.create({
           vertices: linkProperties.points
         });
 
-        return newDependencyObject;
+        return newObjectAssociationObject;
       }).bind(this), e, Ember.A(['flexberry.uml.Instance', 'flexberry.uml.PropertyObject']));
     }
   }

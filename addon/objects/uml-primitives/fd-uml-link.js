@@ -109,7 +109,7 @@ export default FdUmlPrimitive.extend({
     @property labels
     @type Array
   */
-  labels: Ember.computed('startMultiplicity', 'endMultiplicity', 'startRoleTxt', 'endRoleTxt', function () {
+  labels: Ember.computed('startMultiplicity', 'endMultiplicity', 'startRoleTxt', 'endRoleTxt', 'description', 'qualified', function () {
     return [
       { attrs: { text: { text: this.get('startMultiplicity') } } },
       { attrs: { text: { text: this.get('endMultiplicity') } } },
@@ -197,6 +197,7 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
         return;
       }
 
+      this.label(2, { position: { distance: this.getLabelDistance('description') } });
       let angle = 180 * Math.atan2(pointA.y - pointB.y, pointA.x - pointB.x) / Math.PI;
       if (angle >= -45 && angle <= 45) {
         if (isEnd) {
@@ -205,6 +206,7 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
         } else {
           this.label(0, { position: { distance: this.getLabelDistance('startMultiplicity'), offset: 12 }, inverseTextDirection: true });
           this.label(3, { position: { distance: this.getLabelDistance('startRole'), offset: -12 }, inverseTextDirection: true });
+          this.label(5, { position: { distance: this.getLabelDistance('qualified'), offset: 12 }, inverseTextDirection: true });
         }
       }
 
@@ -215,6 +217,7 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
         } else {
           this.label(0, { position: { distance: this.getLabelDistance('startMultiplicity', true), offset: 6 }, inverseTextDirection: true });
           this.label(3, { position: { distance: this.getLabelDistance('startRole', true), offset: -6 }, inverseTextDirection: false });
+          this.label(5, { position: { distance: this.getLabelDistance('qualified', true), offset: -6 }, inverseTextDirection: true });
         }
       }
 
@@ -225,6 +228,7 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
         } else {
           this.label(0, { position: { distance: this.getLabelDistance('startMultiplicity', true), offset: -6 }, inverseTextDirection: true });
           this.label(3, { position: { distance: this.getLabelDistance('startRole', true), offset: 6 }, inverseTextDirection: false });
+          this.label(5, { position: { distance: this.getLabelDistance('qualified', true), offset: -6 }, inverseTextDirection: true });
         }
       }
 
@@ -235,6 +239,7 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
         } else {
           this.label(0, { position: { distance: this.getLabelDistance('startMultiplicity'), offset: -12 }, inverseTextDirection: false });
           this.label(3, { position: { distance: this.getLabelDistance('startRole'), offset: 12 }, inverseTextDirection: false });
+          this.label(5, { position: { distance: this.getLabelDistance('qualified'), offset: -12 }, inverseTextDirection: false });
         }
       }
     },

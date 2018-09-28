@@ -47,9 +47,9 @@ export let QualifiedView = RoleView.extend({
 
     // Update inputs positions.
     let qualifiedPosition = this.getLabelCoordinates(this.model.label(5).position);
-    //let qualifiedDelta = this.model.label(5).inverseTextDirection ? this.$box.find('.qualified-input').width() : 0;
+    let qualifiedDelta = this.model.label(5).inverseTextDirection ? this.$box.find('.qualified-input').width() : 0;
     Ember.$(this.$box[4]).css({
-      left: qualifiedPosition.x - 7, // - qualifiedDelta,
+      left: qualifiedPosition.x - 7 - qualifiedDelta,
       top: qualifiedPosition.y - 10,
       transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
     });
