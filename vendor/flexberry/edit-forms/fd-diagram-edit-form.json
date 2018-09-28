@@ -7,8 +7,8 @@
   "attrs": [],
   "projections": [
     {
-      "modelName": "fd-dev-uml-cad",
-      "modelProjection": "EditFormView"
+      "modelName": "fd-diagram",
+      "modelProjection": "FdDiagramE"
     }
   ]
 }

@@ -3,7 +3,7 @@ import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 
 export default EditFormRoute.extend(FdFormCheckTransitionMixin, {
 
-  modelProjection: 'FdUmlCad',
+  modelProjection: 'FdDiagram',
 
-  modelName: 'fd-dev-uml-cad'
+  modelName: 'fd-diagram'
 });

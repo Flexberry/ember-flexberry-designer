@@ -2,6 +2,7 @@
   "name": "FdAggregation",
   "modelName": "fd-aggregation",
   "className": "Aggregation",
+  "nameSpace": "",
   "parentModelName": "fd-base-association",
   "parentClassName": "BaseAssociation",
   "attrs": [],

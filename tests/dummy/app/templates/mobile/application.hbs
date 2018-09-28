@@ -16,7 +16,7 @@
   </a>
   {{render "sitemap" sitemap}}
 {{/ui-sidebar}}
-<div class="bgw-fix">
+<div class="bgw-fix mobile">
   <div class="background-logo mobile">
     <div class="ui attached menu mobile">
       <div class="ui container flex-container">
@@ -39,29 +39,18 @@
           <label style="margin-right: 5px;">
             {{t "forms.application.header.menu.language-dropdown.caption"}}
           </label>
-          {{!-- ui-dropdown component used in flexberry-dropdown has some unfixed problems with IE, so we use <select> instead --}}
-          {{#if browserIsInternetExplorer}}
-            <select class="ui dropdown" onchange={{action (mut (get i18n "locale")) value="target.value"}}>
-              {{#each locales as |locale|}}
-                <option value={{locale}} selected={{eq (get i18n "locale") locale}}>
-                  {{locale}}
-                </option>
-              {{/each}}
-            </select>
-          {{else}}
-            {{flexberry-dropdown
-              class="compact"
-              items=locales
-              value=i18n.locale
-              placeholder=(t "forms.application.header.menu.language-dropdown.placeholder")
-            }}
-          {{/if}}
+          {{flexberry-dropdown
+            class="compact"
+            items=locales
+            value=i18n.locale
+            placeholder=(t "forms.application.header.menu.language-dropdown.placeholder")
+          }}
         </div>
       </div>
     </div>
   </div>
 </div>
-<div id="example-mobile" class="pusher">
+<div id="example-mobile" class="pusher mobile">
   <div class="ui form {{appState.state}}">
     <div class="full height" style="min-height: 94.8vh!important;" >
       <div class="flexberry-content ui attached segment">

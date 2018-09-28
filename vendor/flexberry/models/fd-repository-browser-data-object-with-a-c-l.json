@@ -2,6 +2,7 @@
   "name": "FdRepositoryBrowserDataObjectWithACL",
   "modelName": "fd-repository-browser-data-object-with-a-c-l",
   "className": "RepositoryBrowserDataObjectWithACL",
+  "nameSpace": "",
   "parentModelName": "fd-repository-browser-data-object",
   "parentClassName": "RepositoryBrowserDataObject",
   "attrs": [

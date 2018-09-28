@@ -1,5 +1,7 @@
 import Ember from 'ember';
-import { Class } from '../../objects/uml-primitives/fd-uml-class';
+import uuid from 'npm:node-uuid';
+
+import FdUmlClass from '../../objects/uml-primitives/fd-uml-class';
 import { Association } from '../../objects/uml-primitives/fd-uml-association';
 import { Aggregation } from '../../objects/uml-primitives/fd-uml-aggregation';
 import { Composition } from '../../objects/uml-primitives/fd-uml-composition';
@@ -19,7 +21,10 @@ import { MoreClasses } from '../../objects/uml-primitives/fd-uml-more-classes';
 import { Package } from '../../objects/uml-primitives/fd-uml-package';
 import { ObjectAssociation } from '../../objects/uml-primitives/fd-uml-object-association';
 import { NAryAssociationConnector } from '../../objects/uml-primitives/fd-uml-naryassociation-connector';
+import { Dependency } from '../../objects/uml-primitives/fd-uml-dependency';
 import { findFreeNodeTreeNameIndex } from '../../utils/fd-metods-for-tree';
+import { getJsonForClass } from '../../utils/get-json-for-diagram';
+
 /**
   Actions for creating joint js elements on cad diagrams.
 
@@ -44,7 +49,7 @@ export default Ember.Mixin.create({
       @param {jQuery.Event} e event.
      */
     addClass(e) {
-      this.createObjectData((function(x, y) {
+      this.createObjectData((function(X, Y) {
         let store = this.get('store');
         let stage = this.get('currentProjectContext').getCurrentStageModel();
 
@@ -54,24 +59,21 @@ export default Ember.Mixin.create({
         let index = findFreeNodeTreeNameIndex('NewClass', 1, classesCurrentStage, 'name');
         let freeName = 'NewClass' + index;
 
+        let id = uuid.v4();
         let newClass = store.createRecord('fd-dev-class', {
+          id: id,
           stage: stage,
           caption: freeName,
           description: freeName,
           name: freeName,
           nameStr: freeName,
         });
+        let umlClass = FdUmlClass.create({ primitive: getJsonForClass(newClass, null, 0, { location: { X, Y } }) });
 
-        let newClassObject = new Class({
-          position: { x: x, y: y },
-          size: { width: 100, height: 40 },
-          name: freeName,
-          attributes: '',
-          methods: '',
-          repositoryObject: newClass
-        });
+        this.get('createdClasses').pushObject(newClass);
+        this.get('model.primitives').pushObject(umlClass);
 
-        return newClassObject;
+        return umlClass.JointJS();
       }).bind(this), e);
     },
 
@@ -474,6 +476,29 @@ export default Ember.Mixin.create({
 
         return newMoreClassesObject;
       }).bind(this), e);
+    },
+
+    /**
+      Handler for click on addDependency button.
+
+      @method actions.addDependency
+      @param {jQuery.Event} e event.
+     */
+    addDependency(e) {
+      this.createLinkData((function(linkProperties) {
+        let newDependencyObject = new Dependency({
+          source: {
+            id: linkProperties.source
+          },
+          target: {
+            id: linkProperties.target
+          },
+          vertices: linkProperties.points
+        });
+
+        return newDependencyObject;
+      }).bind(this), e, Ember.A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass', 'flexberry.uml.Instance',
+       'flexberry.uml.ActiveObject', 'flexberry.uml.PropertyObject', 'flexberry.uml.MultiObject', 'flexberry.uml.Package']));
     },
 
     /**

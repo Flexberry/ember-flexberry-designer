@@ -1,0 +1,9 @@
+﻿{
+  "nameSpace": "NewPlatform.Flexberry.WebDesigner",
+  "className": "AccessMode",
+  "enumObjects": {
+    "Read": null,
+    "Write": null,
+    "Admin": null
+  }
+}

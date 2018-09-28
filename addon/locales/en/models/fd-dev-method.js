@@ -389,6 +389,17 @@ export default {
         }
       }
     },
+    FdPreloadMetadata: {
+      accessModifier: {
+        __caption__: 'accessModifier'
+      },
+      type: {
+        __caption__: 'type'
+      },
+      name: {
+        __caption__: 'name'
+      }
+    },
     Generator: {
       accessModifier: {
         __caption__: 'accessModifier'

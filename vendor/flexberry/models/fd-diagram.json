@@ -2,6 +2,7 @@
   "name": "FdDiagram",
   "modelName": "fd-diagram",
   "className": "Diagram",
+  "nameSpace": "",
   "parentModelName": "fd-object-in-system",
   "parentClassName": "ObjectInSystem",
   "attrs": [
@@ -28,6 +29,14 @@
       "notNull": false,
       "defaultValue": "Empty",
       "stored": true
+    },
+    {
+      "name": "primitivesJsonString",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "Empty",
+      "stored": false
     },
     {
       "name": "elements",
@@ -146,7 +155,35 @@
           "index": 6
         }
       ],
-      "belongsTo": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "FdSubsystem",
+          "belongsTo": [
+            {
+              "lookupValue": null,
+              "lookupValueField": null,
+              "relationName": "FdSubsystem.FdStage",
+              "belongsTo": [],
+              "hidden": false,
+              "attrs": [],
+              "index": 7,
+              "caption": "",
+              "name": "stage",
+              "relatedTo": "fd-stage",
+              "inverse": null
+            }
+          ],
+          "hidden": false,
+          "attrs": [],
+          "index": -1,
+          "caption": "",
+          "name": "subsystem",
+          "relatedTo": "fd-subsystem",
+          "inverse": null
+        }
+      ],
       "hasMany": []
     },
     {
@@ -196,7 +233,21 @@
           "index": 6
         }
       ],
-      "belongsTo": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "FdSubsystem",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [],
+          "index": 7,
+          "caption": "",
+          "name": "subsystem",
+          "relatedTo": "fd-subsystem",
+          "inverse": null
+        }
+      ],
       "hasMany": []
     },
     {
@@ -214,6 +265,162 @@
           "caption": "",
           "hidden": false,
           "index": 1
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "FdDiagram",
+      "modelName": "fd-diagram",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "caseObjectsString",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "primitivesStreamString",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "primitivesJsonString",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "FdDiagramE",
+      "modelName": "fd-diagram",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "Name",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "description",
+          "caption": "Description",
+          "hidden": false,
+          "index": 1
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "FdDiagramL",
+      "modelName": "fd-diagram",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "Name",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "description",
+          "caption": "Description",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "changeUser",
+          "caption": "Change user",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "changeDate",
+          "caption": "Change date",
+          "hidden": false,
+          "index": 3
+        },
+        {
+          "name": "createUser",
+          "caption": "Create user",
+          "hidden": false,
+          "index": 4
+        },
+        {
+          "name": "createDate",
+          "caption": "Create date",
+          "hidden": false,
+          "index": 5
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "FdSubsystem",
+          "belongsTo": [
+            {
+              "lookupValue": null,
+              "lookupValueField": null,
+              "relationName": "FdSubsystem.FdStage",
+              "belongsTo": [],
+              "hidden": true,
+              "attrs": [],
+              "index": 6,
+              "caption": "",
+              "name": "stage",
+              "relatedTo": "fd-stage",
+              "inverse": null
+            }
+          ],
+          "hidden": true,
+          "attrs": [],
+          "index": -1,
+          "caption": "",
+          "name": "subsystem",
+          "relatedTo": "fd-subsystem",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "FdPreloadMetadata",
+      "modelName": "fd-diagram",
+      "attrs": [
+        {
+          "name": "primitivesJsonString",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "primitivesStreamString",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "caseObjectsString",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        },
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 3
         }
       ],
       "belongsTo": [],

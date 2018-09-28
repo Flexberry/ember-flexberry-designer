@@ -2,6 +2,7 @@
   "name": "FdDevMethod",
   "modelName": "fd-dev-method",
   "className": "DevMethod",
+  "nameSpace": "",
   "parentModelName": "fd-repository-data-object",
   "parentClassName": "RepositoryDataObject",
   "attrs": [
@@ -730,6 +731,32 @@
           "inverse": null
         }
       ]
+    },
+    {
+      "name": "FdPreloadMetadata",
+      "modelName": "fd-dev-method",
+      "attrs": [
+        {
+          "name": "accessModifier",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "type",
+          "caption": "",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 2
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
     },
     {
       "name": "Generator",

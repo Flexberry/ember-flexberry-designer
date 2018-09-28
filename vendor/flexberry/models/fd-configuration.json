@@ -2,6 +2,7 @@
   "name": "FdConfiguration",
   "modelName": "fd-configuration",
   "className": "Configuration",
+  "nameSpace": "",
   "parentModelName": "fd-repository-object-with-plugins",
   "parentClassName": "RepositoryObjectWithPlugins",
   "attrs": [],
@@ -43,12 +44,12 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Project",
+          "relationName": "FdProject",
           "belongsTo": [
             {
               "lookupValue": null,
               "lookupValueField": null,
-              "relationName": "Project.Repository",
+              "relationName": "FdProject.FdRepository",
               "belongsTo": [],
               "hidden": true,
               "attrs": [],
@@ -123,12 +124,12 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Project",
+          "relationName": "FdProject",
           "belongsTo": [
             {
               "lookupValue": null,
               "lookupValueField": null,
-              "relationName": "Project.Repository",
+              "relationName": "FdProject.FdRepository",
               "belongsTo": [],
               "hidden": false,
               "attrs": [],

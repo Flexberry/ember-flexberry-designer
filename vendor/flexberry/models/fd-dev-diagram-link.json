@@ -2,6 +2,7 @@
   "name": "FdDevDiagramLink",
   "modelName": "fd-dev-diagram-link",
   "className": "DevDiagramLink",
+  "nameSpace": "",
   "parentModelName": "fd-diagram-link",
   "parentClassName": "DiagramLink",
   "attrs": [],
