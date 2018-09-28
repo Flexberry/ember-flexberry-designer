@@ -6,6 +6,7 @@ import FdAcrionsForCadPrimitivesMixin from '../mixins/actions-for-primitives/fd-
 import FdAcrionsForDpdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-dpd-primitives';
 import FdAcrionsForStdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-std-primitives';
 import FdAcrionsForCodPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-cod-primitives';
+import FdAcrionsForSdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-sd-primitives';
 import FdAcrionsForCommonPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-common-primitives';
 
 export default EditFormController.extend(
@@ -15,6 +16,7 @@ FdAcrionsForCadPrimitivesMixin,
 FdAcrionsForDpdPrimitivesMixin,
 FdAcrionsForStdPrimitivesMixin,
 FdAcrionsForCodPrimitivesMixin,
+FdAcrionsForSdPrimitivesMixin,
 FdAcrionsForCommonPrimitivesMixin, {
   parentRoute: 'fd-diagram-list-form',
 

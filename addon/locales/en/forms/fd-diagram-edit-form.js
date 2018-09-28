@@ -58,6 +58,13 @@ export default {
       'add-forward-flat-message': 'Forward flat message',
       'add-backward-async-message': 'Backward async message',
       'add-forward-async-message': 'Forward async message',
+      'add-terminator': 'Terminator',
+      'add-procedure-call': 'Procedure call',
+      'add-flat-message': 'Flat message',
+      'add-async-message': 'Async message',
+      'add-return-message': 'Return message',
+      'add-in-scope': 'In scope',
+      'add-time-constraint': 'Time constraint',
     }
   }
 };

@@ -29,9 +29,8 @@ export default FdUmlElement.extend({
 
     @method JointJS
   */
-  JointJS(graph) {
+  JointJS() {
     let properties = this.getProperties('id', 'name', 'size', 'position');
-    properties.graph = graph;
     return new SequenceDiagramObject(properties);
 
   },

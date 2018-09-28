@@ -58,6 +58,13 @@ export default {
       'add-forward-flat-message': 'Прямое сообщение',
       'add-backward-async-message': 'Обратное асинхронное сообщение',
       'add-forward-async-message': 'Прямое асинхронное сообщение',
+      'add-terminator': 'Терминатор',
+      'add-procedure-call': 'Вызов процедуры',
+      'add-flat-message': 'Сообщение',
+      'add-async-message': 'Aсинхронное сообщение',
+      'add-return-message': 'Сообщение с результатом',
+      'add-in-scope': 'Временной интервал',
+      'add-time-constraint': 'Временное ограничение',
     }
   }
 };
