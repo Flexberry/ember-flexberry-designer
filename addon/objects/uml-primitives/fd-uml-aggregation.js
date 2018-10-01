@@ -4,6 +4,7 @@
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
+import { MultiplicityView } from './links-view/fd-multiplicity-view';
 import joint from 'npm:jointjs';
 
 /**
@@ -57,4 +58,4 @@ export let Aggregation = Link.define('flexberry.uml.Aggregation', {
   },
 });
 
-joint.shapes.flexberry.uml.AggregationView = joint.shapes.flexberry.uml.AssociationView.extend({});
+joint.shapes.flexberry.uml.AggregationView = MultiplicityView;
