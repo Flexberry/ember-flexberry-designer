@@ -10927,6 +10927,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ob
     assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-multi-object.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-naryassociation-connector.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives');
+  test('modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-naryassociation-connector.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-naryassociation-connector.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-naryassociation-connector.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-naryassociation-connector.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-naryassociation-connector.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-naryassociation.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives');
   test('modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-naryassociation.js should pass jscs', function () {
@@ -10990,6 +11003,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ob
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-note.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-object-association.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives');
+  test('modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-object-association.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-object-association.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-object-association.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-object-association.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-object-association.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-object-flow.jscs-test', ['exports'], function (exports) {
@@ -11354,6 +11380,58 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ob
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-generalization.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-description-view.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives/links-view');
+  test('modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-description-view.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-description-view.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-description-view.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-description-view.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-description-view.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-multiplicity-view.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives/links-view');
+  test('modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-multiplicity-view.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-multiplicity-view.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-multiplicity-view.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-multiplicity-view.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-multiplicity-view.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-qualified-view.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives/links-view');
+  test('modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-qualified-view.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-qualified-view.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-qualified-view.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-qualified-view.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-qualified-view.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-role-view.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/objects/uml-primitives/links-view');
+  test('modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-role-view.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-role-view.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-role-view.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-role-view.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/objects/uml-primitives/links-view/fd-role-view.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-aggregation-edit-form.jscs-test', ['exports'], function (exports) {
@@ -56450,7 +56528,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+db3e5323"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+56d81aa5"});
 }
 
 /* jshint ignore:end */

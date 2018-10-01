@@ -39435,6 +39435,11 @@ table.fd-listform tr:last-child > td.fd-selected {
   background-color: white;
   min-width: 0px;
 }
+.ui.form .uml-class-inputs input[type="text"].underline-text,
+.ui.form .uml-link-inputs input[type="text"].underline-text,
+.ui.form .uml-class-inputs textarea.underline-text {
+  text-decoration: underline;
+}
 .ui.form .input-buffer {
   position: absolute;
   top: 0px;
