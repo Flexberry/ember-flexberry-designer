@@ -121,7 +121,7 @@ export let Package = BaseClass.define('flexberry.uml.Package', {
 joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectView.extend({
   template: [
     '<div class="uml-class-inputs">',
-    '<input type="text" class="instance-input header-input" value="" />',
+    '<input type="text" class="package-header-input header-input" value="" />',
     '<textarea class="attributes-input body-input" value="" rows="1" wrap="off"></textarea>',
     '<div class="input-buffer"></div>',
     '</div>'
@@ -136,10 +136,10 @@ joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectVi
 
   initialize: function () {
     joint.shapes.flexberry.uml.BaseObjectView.prototype.initialize.apply(this, arguments);
-    this.$box.find('.instance-input').on('change', function (evt) {
+    this.$box.find('.package-header-input').on('change', function (evt) {
       this.model.set('name', Ember.$(evt.target).val());
     }.bind(this));
-    this.$box.find('.instance-input').on('input', function () {
+    this.$box.find('.package-header-input').on('input', function () {
       this.model.updateRectangles();
     }.bind(this));
 
@@ -159,7 +159,7 @@ joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectVi
       this.model.set('attributes', rows);
     }.bind(this));
 
-    let upperInput = this.$box.find('.instance-input');
+    let upperInput = this.$box.find('.package-header-input');
     upperInput.val(this.model.get('name'));
   }
 });
