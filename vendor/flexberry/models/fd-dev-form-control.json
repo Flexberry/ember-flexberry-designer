@@ -2,6 +2,7 @@
   "name": "FdDevFormControl",
   "modelName": "fd-dev-form-control",
   "className": "DevFormControl",
+  "nameSpace": "",
   "parentModelName": null,
   "parentClassName": null,
   "attrs": [

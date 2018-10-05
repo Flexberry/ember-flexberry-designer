@@ -82,12 +82,16 @@ export default Ember.Controller.extend({
         });
 
         let nAssociationConnector = new Association({
+          startPoint:{ x:400, y:10 },
+          endPoint: { x:700, y:10 },
           source: { x:400, y:10 },
           target: { x:700, y:10 },
           labels: [{ attrs: { text: { text:  'n-Association' } } }]
         });
 
         let associationConnector = new AssociationLink({
+          startPoint:{ x:400, y:50 },
+          endPoint: { x:700, y:50 },
           source: { x:400, y:50 },
           target: { x:700, y:50 }
         });
@@ -96,6 +100,8 @@ export default Ember.Controller.extend({
         associationConnector.setLabelText('description', 'Association');
 
         let qualifiedConnector = new QualifiedAssociation({
+          startPoint:{ x:400, y:90 },
+          endPoint: { x:700, y:90 },
           source: { x:400, y:90 },
           target: { x:700, y:90 }
         });
@@ -104,6 +110,8 @@ export default Ember.Controller.extend({
         qualifiedConnector.setLabelText('description', 'Qualified');
 
         let agregationConnector = new AggregationLink({
+          startPoint:{ x:400, y:140 },
+          endPoint: { x:700, y:140 },
           source: { x:400, y:140 },
           target: { x:700, y:140 }
         });
@@ -112,6 +120,8 @@ export default Ember.Controller.extend({
         agregationConnector.setLabelText('description', 'Agregation');
 
         let qAgregationConnector = new QualifiedAggregation({
+          startPoint:{ x:400, y:180 },
+          endPoint: { x:700, y:180 },
           source: { x:400, y:180 },
           target: { x:700, y:180 }
         });
@@ -120,6 +130,8 @@ export default Ember.Controller.extend({
         qAgregationConnector.setLabelText('description', 'Q-Agregation');
 
         let compositionConnector = new CompositionLink({
+          startPoint:{ x:400, y:210 },
+          endPoint: { x:700, y:210 },
           source: { x:400, y:210 },
           target: { x:700, y:210 }
         });
@@ -128,6 +140,8 @@ export default Ember.Controller.extend({
         compositionConnector.setLabelText('description', 'Composition');
 
         let qCompositionConnector = new QualifiedComposition({
+          startPoint:{ x:400, y:250 },
+          endPoint: { x:700, y:250 },
           source: { x:400, y:250 },
           target: { x:700, y:250 }
         });
@@ -136,12 +150,16 @@ export default Ember.Controller.extend({
         qCompositionConnector.setLabelText('description', 'Q-Composition');
 
         let designPatternConnector = new DesignPatternConnector({
+          startPoint:{ x:400, y:290 },
+          endPoint: { x:700, y:290 },
           source: { x:400, y:290 },
           target: { x:700, y:290 },
           labels: [{ attrs: { text: { text:  'Design Pattern' } } }]
         });
 
         let inheritanceConnector = new Generalization({
+          startPoint:{ x:400, y:320 },
+          endPoint: { x:700, y:320 },
           source: { x:400, y:320 },
           target: { x:700, y:320 },
           labels: [{ attrs: { text: { text:  'Inheritance' } } }]

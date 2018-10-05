@@ -2,6 +2,7 @@
   "name": "FdRepository",
   "modelName": "fd-repository",
   "className": "Repository",
+  "nameSpace": "",
   "parentModelName": "fd-repository-object-with-plugins",
   "parentClassName": "RepositoryObjectWithPlugins",
   "attrs": [],

@@ -388,6 +388,29 @@ export default {
       startClass: {
         __caption__: 'startClass'
       }
+    },
+    ListFormView: {
+      startClass: {
+        __caption__: 'startClass',
+        name: {
+          __caption__: 'name'
+        }
+      },
+      endClass: {
+        __caption__: 'endClass',
+        name: {
+          __caption__: 'name'
+        }
+      },
+      startRole: {
+        __caption__: 'startRole'
+      },
+      endRole: {
+        __caption__: 'endRole'
+      },
+      storage: {
+        __caption__: 'storage'
+      }
     }
   }
 };

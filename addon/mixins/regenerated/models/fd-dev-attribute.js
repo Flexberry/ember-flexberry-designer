@@ -107,6 +107,7 @@ export let Model = Ember.Mixin.create({
     this._super.apply(this, arguments);
   }
 });
+
 export let defineBaseModel = function (modelClass) {
   modelClass.reopenClass({
     _parentModelName: 'fd-repository-data-object'
@@ -240,6 +241,14 @@ export let defineProjections = function (modelClass) {
 
     }, { hidden: true })
   });
+  modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-attribute', {
+    name: Projection.attr(''),
+    type: Projection.attr(''),
+    notNull: Projection.attr(''),
+    defaultValue: Projection.attr(''),
+    description: Projection.attr(''),
+    accessModifier: Projection.attr('')
+  });
   modelClass.defineProjection('FormDesigner', 'fd-dev-attribute', {
     name: Projection.attr(''),
     type: Projection.attr(''),
@@ -282,12 +291,5 @@ export let defineProjections = function (modelClass) {
     class: Projection.belongsTo('fd-dev-class', '', {
 
     })
-  });
-  modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-attribute', {
-    name: Projection.attr(''),
-    type: Projection.attr(''),
-    notNull: Projection.attr(''),
-    defaultValue: Projection.attr(''),
-    description: Projection.attr('')
   });
 };

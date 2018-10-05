@@ -2,16 +2,20 @@ import Ember from 'ember';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
-import FdActionsForCadPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-cad-primitives';
-import FdActionsForActivityPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-activity-primitives';
-import FdActionsForCommonPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-common-primitives';
+import FdAcrionsForCadPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-cad-primitives';
+import FdAcrionsForDpdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-dpd-primitives';
+import FdAcrionsForStdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-std-primitives';
+import FdAcrionsForCodPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-cod-primitives';
+import FdAcrionsForCommonPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-common-primitives';
 
 export default EditFormController.extend(
 FdWorkPanelToggler,
 FdFormUnsavedData,
-FdActionsForCadPrimitivesMixin,
-FdActionsForActivityPrimitivesMixin,
-FdActionsForCommonPrimitivesMixin, {
+FdAcrionsForCadPrimitivesMixin,
+FdAcrionsForDpdPrimitivesMixin,
+FdAcrionsForStdPrimitivesMixin,
+FdAcrionsForCodPrimitivesMixin,
+FdAcrionsForCommonPrimitivesMixin, {
   parentRoute: 'fd-diagram-list-form',
 
   /**
@@ -60,6 +64,14 @@ FdActionsForCommonPrimitivesMixin, {
   */
   currentTargetElement: undefined,
 
+  /**
+    Stores classes that are created, but not yet saved, in the diagram.
+
+    @property createdClasses
+    @type Ember.Array
+  */
+  createdClasses: Ember.A(),
+
   actions: {
 
     /**
@@ -103,18 +115,18 @@ FdActionsForCommonPrimitivesMixin, {
         let linkProperties = this.get('linkProperties');
         let interactionElements = this.get('interactionElements');
 
-        if (Ember.isNone(linkProperties.target) && (Ember.isNone(interactionElements) ||
+        if (Ember.isNone(linkProperties.source) && (Ember.isNone(interactionElements) ||
          (Ember.isArray(interactionElements) && interactionElements.includes(type)) ||
          (Ember.isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
 
-          linkProperties.target = model.id;
+          linkProperties.source = model.id;
           linkProperties.startClassRepObj = model.repositoryObject;
 
-        } else if (Ember.isNone(linkProperties.source) && (Ember.isNone(interactionElements) ||
+        } else if (Ember.isNone(linkProperties.target) && (Ember.isNone(interactionElements) ||
          (Ember.isArray(interactionElements) && interactionElements.includes(type)) ||
          (Ember.isArray(interactionElements.end) && interactionElements.end.includes(type)))) {
 
-          linkProperties.source = model.id;
+          linkProperties.target = model.id;
           linkProperties.endClassRepObj = model.repositoryObject;
           let callback = this.get('callback');
           let newLink = callback(linkProperties);
@@ -142,6 +154,23 @@ FdActionsForCommonPrimitivesMixin, {
         }
       }
     }
+  },
+
+  /**
+    See [Flexberry Ember API](http://flexberry.github.io/ember-flexberry/autodoc/develop/).
+
+    @method save
+  */
+  save() {
+    let model = this.get('model');
+    model.set('primitivesJsonString', JSON.stringify(model.get('primitives')));
+
+    return this._super(...arguments).then(() => {
+      let createdClasses = this.get('createdClasses');
+      let promises = createdClasses.map(c => c.save());
+      createdClasses.clear();
+      return Ember.RSVP.all(promises);
+    });
   },
 
   /**

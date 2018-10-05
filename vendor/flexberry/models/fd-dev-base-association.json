@@ -2,6 +2,7 @@
   "name": "FdDevBaseAssociation",
   "modelName": "fd-dev-base-association",
   "className": "DevBaseAssociation",
+  "nameSpace": "",
   "parentModelName": "fd-base-association",
   "parentClassName": "BaseAssociation",
   "attrs": [
@@ -144,7 +145,7 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Stage",
+          "relationName": "FdStage",
           "belongsTo": [],
           "hidden": true,
           "attrs": [

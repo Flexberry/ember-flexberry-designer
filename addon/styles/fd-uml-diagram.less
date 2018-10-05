@@ -1,20 +1,25 @@
-.uml-class-inputs {
-    position: absolute;
-    pointer-events: none;
-    -webkit-user-select: none;
-    padding: 2px 7px;
-    box-sizing: border-box;
-    z-index: 2;
+.ui.form {
+    .uml-class-inputs, .uml-link-inputs {
+        position: absolute;
+        pointer-events: none;
+        -webkit-user-select: none;
+        padding: 2px 7px;
+        box-sizing: border-box;
+        z-index: 2;
+    }
 }
 
-.uml-class-inputs input, .uml-class-inputs textarea {
-    /* Enable interacting with inputs only. */
-    pointer-events: auto;
+.ui.form .uml-class-inputs, .ui.form .uml-link-inputs {
+    input, textarea {
+        /* Enable interacting with inputs only. */
+        pointer-events: auto;
+    }
 }
+
 .ui.form .uml-class-inputs input[type="text"],
+.ui.form .uml-link-inputs input[type="text"],
 .ui.form .uml-class-inputs textarea {
     border: none;
-    color: #333;
     padding: 0px;
     color: black;
     font-size: 12px;
@@ -25,9 +30,26 @@
     &.class-name-input {
         font-weight: bold;
     }
+    &.attributes-input, &.methods-input {
+        resize: none;
+        line-height: 1.1;
+        margin: 4px 0 0 0;
+        overflow: hidden;
+    }
+    &.start-multiplicity-input, &.end-multiplicity-input,
+    &.start-role-input, &.end-role-input {
+        min-width: 10px;
+    }
+    &.description-input {
+        background-color: white;
+        min-width: 0px;
+    }
+    &.underline-text {
+      text-decoration: underline;
+    }
 }
 
-.input-buffer{
+.ui.form .input-buffer{
     position: absolute;
     top: 0px;
     left: 0px;

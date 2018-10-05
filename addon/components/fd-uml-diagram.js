@@ -88,8 +88,8 @@ export default Ember.Component.extend({
     paper.on('element:pointerclick', this._elementPointerClick, this);
     paper.on('blank:contextmenu', this._blankContextMenu, this);
 
-    graph.addCells(elements.map(e => e.JointJS()));
-    graph.addCells(links.map(l => l.JointJS()));
+    graph.addCells(elements.map(e => e.JointJS(graph)));
+    graph.addCells(links.map(l => l.JointJS(graph)));
   },
 
   /**

@@ -4,6 +4,8 @@
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
+import { MultiplicityView } from './links-view/fd-multiplicity-view';
+import joint from 'npm:jointjs';
 
 /**
   An object that describes an association link on the UML diagram.
@@ -19,7 +21,7 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'repositoryObject', 'source', 'target', 'vertices', 'labels');
+    let properties = this.getProperties('id', 'repositoryObject', 'source', 'target', 'vertices', 'labels', 'startPoint', 'endPoint');
     return new Association(properties);
   },
 });
@@ -33,4 +35,11 @@ export default FdUmlLink.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let Association = Link.define('flexberry.uml.Association', {});
+export let Association = Link.define('flexberry.uml.Association', {
+  attrs: {
+    text: { visibility: 'hidden' },
+    rect: { visibility: 'hidden' }
+  },
+});
+
+joint.shapes.flexberry.uml.AssociationView = MultiplicityView;

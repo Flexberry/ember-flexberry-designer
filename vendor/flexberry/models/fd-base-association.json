@@ -2,6 +2,7 @@
   "name": "FdBaseAssociation",
   "modelName": "fd-base-association",
   "className": "BaseAssociation",
+  "nameSpace": "",
   "parentModelName": "fd-repository-ref-data-object",
   "parentClassName": "RepositoryRefDataObject",
   "attrs": [

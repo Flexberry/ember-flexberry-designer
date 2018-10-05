@@ -96,6 +96,7 @@ export let Model = Ember.Mixin.create({
     this._super.apply(this, arguments);
   }
 });
+
 export let defineBaseModel = function (modelClass) {
   modelClass.reopenClass({
     _parentModelName: 'fd-repository-data-object'
@@ -255,6 +256,11 @@ export let defineProjections = function (modelClass) {
       description: Projection.attr('')
     })
   });
+  modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-method', {
+    accessModifier: Projection.attr(''),
+    type: Projection.attr(''),
+    name: Projection.attr('')
+  });
   modelClass.defineProjection('Generator', 'fd-dev-method', {
     accessModifier: Projection.attr('AccessModifier', { hidden: true }),
     accessType: Projection.attr('AccessType', { hidden: true }),
@@ -280,5 +286,10 @@ export let defineProjections = function (modelClass) {
       description: Projection.attr('Description', { hidden: true }),
       nameStr: Projection.attr('NameStr', { hidden: true })
     })
+  });
+  modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-method', {
+    accessModifier: Projection.attr(''),
+    type: Projection.attr(''),
+    name: Projection.attr(''),
   });
 };

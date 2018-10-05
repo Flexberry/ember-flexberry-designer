@@ -2,6 +2,7 @@
   "name": "FdDevAssociatedDetailView",
   "modelName": "fd-dev-associated-detail-view",
   "className": "DevAssociatedDetailView",
+  "nameSpace": "",
   "parentModelName": null,
   "parentClassName": null,
   "attrs": [

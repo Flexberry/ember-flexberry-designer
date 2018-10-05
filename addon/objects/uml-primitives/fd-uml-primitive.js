@@ -47,6 +47,16 @@ export default Ember.Object.extend({
   },
 
   /**
+    Returns the object to convert to the JSON.
+
+    @method toJSON
+    @return {Object} A object to convert to the JSON.
+  */
+  toJSON() {
+    return this.get('primitive');
+  },
+
+  /**
     Returns an object for the JointJS diagram model.
 
     @method JointJS

@@ -2,11 +2,20 @@
   "name": "FdDevModuleSetting",
   "modelName": "fd-dev-module-setting",
   "className": "DevModuleSetting",
+  "nameSpace": "",
   "parentModelName": null,
   "parentClassName": null,
   "attrs": [
     {
       "name": "valueXML",
+      "type": "string",
+      "flexberryType": "StringMax",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "moduleSettingTypeName",
       "type": "string",
       "flexberryType": "string",
       "notNull": false,
@@ -33,6 +42,53 @@
   "hasMany": [],
   "projections": [
     {
+      "name": "Backup",
+      "modelName": "fd-dev-module-setting",
+      "attrs": [
+        {
+          "name": "valueXML",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "moduleSettingTypeName",
+          "caption": "",
+          "hidden": false,
+          "index": 3
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "ModuleSettingType",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [],
+          "index": 1,
+          "caption": "",
+          "name": "moduleSettingType",
+          "relatedTo": "fd-dev-module-setting-type",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Stage",
+          "belongsTo": [],
+          "hidden": true,
+          "attrs": [],
+          "index": 2,
+          "caption": "",
+          "name": "stage",
+          "relatedTo": "fd-dev-stage",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
       "name": "ModuleSettingE",
       "modelName": "fd-dev-module-setting",
       "attrs": [
@@ -41,6 +97,12 @@
           "caption": "ValueXML",
           "hidden": false,
           "index": 2
+        },
+        {
+          "name": "moduleSettingTypeName",
+          "caption": "",
+          "hidden": false,
+          "index": 4
         }
       ],
       "belongsTo": [
@@ -89,6 +151,12 @@
           "caption": "ValueXML",
           "hidden": false,
           "index": 2
+        },
+        {
+          "name": "moduleSettingTypeName",
+          "caption": "",
+          "hidden": false,
+          "index": 4
         }
       ],
       "belongsTo": [

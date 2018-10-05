@@ -2,6 +2,7 @@
   "name": "FdDevAssociation",
   "modelName": "fd-dev-association",
   "className": "DevAssociation",
+  "nameSpace": "",
   "parentModelName": "fd-dev-base-association",
   "parentClassName": "DevBaseAssociation",
   "attrs": [
@@ -406,7 +407,7 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Associations",
+          "relationName": "FdStage",
           "belongsTo": [],
           "hidden": false,
           "attrs": [
@@ -493,7 +494,7 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Stage",
+          "relationName": "FdStage",
           "belongsTo": [],
           "hidden": false,
           "attrs": [],
@@ -821,34 +822,22 @@
       "modelName": "fd-dev-association",
       "attrs": [
         {
-          "name": "referenceCount",
-          "caption": "Reference count",
-          "hidden": false,
-          "index": 0
-        },
-        {
-          "name": "assocType",
-          "caption": "Association type",
-          "hidden": false,
-          "index": 1
-        },
-        {
           "name": "startRole",
           "caption": "Start role",
           "hidden": false,
-          "index": 6
+          "index": 4
         },
         {
           "name": "endRole",
           "caption": "End role",
           "hidden": false,
-          "index": 7
+          "index": 5
         },
         {
           "name": "storage",
           "caption": "Storage",
           "hidden": false,
-          "index": 8
+          "index": 6
         }
       ],
       "belongsTo": [
@@ -863,10 +852,10 @@
               "name": "name",
               "caption": "Start class",
               "hidden": false,
-              "index": 3
+              "index": 1
             }
           ],
-          "index": 2,
+          "index": 0,
           "caption": "",
           "name": "startClass",
           "relatedTo": "fd-class",
@@ -883,10 +872,10 @@
               "name": "name",
               "caption": "End class",
               "hidden": false,
-              "index": 5
+              "index": 3
             }
           ],
-          "index": 4,
+          "index": 2,
           "caption": "",
           "name": "endClass",
           "relatedTo": "fd-class",
