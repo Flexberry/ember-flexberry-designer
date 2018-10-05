@@ -107,6 +107,8 @@ export default Ember.Component.extend({
       width: width,
       model: graph,
     });
+
+    this.set('paper', paper);    
     paper.options.connectionStrategy = joint.connectionStrategies.pinAbsolute;
     paper.on('blank:pointerclick', this._blankPointerClick, this);
     paper.on('element:pointerclick', this._elementPointerClick, this);
@@ -169,7 +171,7 @@ export default Ember.Component.extend({
       let linkView = this.get('draggedLinkView');
       linkView.model.remove();
       $(document).off('mousemove.example');
-      let newElement = this.get('startDragLink')(options);
+      let newElement = this.get('endDragLink')(options);
       this._addNewElement(newElement);
       this.set('draggedLink', undefined);
     }

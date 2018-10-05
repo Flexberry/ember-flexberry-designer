@@ -6,6 +6,7 @@ import FdAcrionsForCadPrimitivesMixin from '../mixins/actions-for-primitives/fd-
 import FdAcrionsForDpdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-dpd-primitives';
 import FdAcrionsForStdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-std-primitives';
 import FdAcrionsForCodPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-cod-primitives';
+import FdActionsForActivityPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-activity-primitives';
 import FdAcrionsForCommonPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-common-primitives';
 
 export default EditFormController.extend(
@@ -15,6 +16,7 @@ FdAcrionsForCadPrimitivesMixin,
 FdAcrionsForDpdPrimitivesMixin,
 FdAcrionsForStdPrimitivesMixin,
 FdAcrionsForCodPrimitivesMixin,
+FdActionsForActivityPrimitivesMixin,
 FdAcrionsForCommonPrimitivesMixin, {
   parentRoute: 'fd-diagram-list-form',
 
@@ -116,7 +118,7 @@ FdAcrionsForCommonPrimitivesMixin, {
         let interactionElements = this.get('interactionElements');
 
         if ((Ember.isNone(interactionElements) || (Ember.isArray(interactionElements) && interactionElements.includes(type)) ||
-        (Ember.isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
+         (Ember.isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
           linkProperties.source = model.id;
           linkProperties.startClassRepObj = model.repositoryObject;
           let callback = this.get('callback');
@@ -135,7 +137,6 @@ FdAcrionsForCommonPrimitivesMixin, {
     endDragLink(options) {
       let type = this.get('type');
       if (type === 'Link') {
-        console.log(options);
         let element = options.element;
         let model = element.model.attributes;
         let type = model.type;
