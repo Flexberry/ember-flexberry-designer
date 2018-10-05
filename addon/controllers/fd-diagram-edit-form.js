@@ -101,12 +101,12 @@ FdAcrionsForCommonPrimitivesMixin, {
     },
 
     /**
-      Handler event elementPointerClick
+      Handler event startDragLink
 
-      @method elementPointerClick
+      @method startDragLink
       @param {Object} options options event 'element:pointerclick'.
     */
-    elementPointerClick(options) {
+    startDragLink(options) {
       let type = this.get('type');
       if (type === 'Link') {
         let element = options.element;
@@ -115,17 +115,35 @@ FdAcrionsForCommonPrimitivesMixin, {
         let linkProperties = this.get('linkProperties');
         let interactionElements = this.get('interactionElements');
 
-        if (Ember.isNone(linkProperties.source) && (Ember.isNone(interactionElements) ||
-         (Ember.isArray(interactionElements) && interactionElements.includes(type)) ||
-         (Ember.isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
-
+        if ((Ember.isNone(interactionElements) || (Ember.isArray(interactionElements) && interactionElements.includes(type)) ||
+        (Ember.isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
           linkProperties.source = model.id;
           linkProperties.startClassRepObj = model.repositoryObject;
+          let callback = this.get('callback');
+          let newLink = callback(linkProperties);
+          return newLink;
+        }
+      }
+    },
 
-        } else if (Ember.isNone(linkProperties.target) && (Ember.isNone(interactionElements) ||
-         (Ember.isArray(interactionElements) && interactionElements.includes(type)) ||
-         (Ember.isArray(interactionElements.end) && interactionElements.end.includes(type)))) {
+    /**
+      Handler event endDragLink
 
+      @method endDragLink
+      @param {Object} options options event 'element:pointerclick'.
+    */
+    endDragLink(options) {
+      let type = this.get('type');
+      if (type === 'Link') {
+        console.log(options);
+        let element = options.element;
+        let model = element.model.attributes;
+        let type = model.type;
+        let linkProperties = this.get('linkProperties');
+        let interactionElements = this.get('interactionElements');
+
+        if ((Ember.isNone(interactionElements) || (Ember.isArray(interactionElements) && interactionElements.includes(type)) ||
+         (Ember.isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
           linkProperties.target = model.id;
           linkProperties.endClassRepObj = model.repositoryObject;
           let callback = this.get('callback');

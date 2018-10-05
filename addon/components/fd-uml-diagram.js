@@ -16,6 +16,30 @@ import FdUmlLink from '../objects/uml-primitives/fd-uml-link';
 */
 export default Ember.Component.extend({
   /**
+    Current paper
+
+    @property paper
+    @default undefined
+  */
+  paper : undefined,
+
+  /**
+    Created clean Link object to begin drag 
+
+    @property draggedLink
+    @default undefined
+  */
+  draggedLink: undefined,
+
+  /**
+    View of dragged link
+
+    @property draggedLinkView
+    @default undefined
+  */
+  draggedLinkView: undefined,
+
+  /**
     All primitives of the UML diagram.
 
     @property primitives
@@ -114,11 +138,55 @@ export default Ember.Component.extend({
     @param {jQuery.Event} e event.
     @param {Number} x coordinate x.
     @param {Number} y coordinate y.
-   */
+  */
   _elementPointerClick(element, e, x, y) {
     let options = { element:element, e:e, x:x, y:y };
-    let newElement = this.get('elementPointerClick')(options);
-    this._addNewElement(newElement);
+    if (Ember.isNone(this.get('draggedLink'))) {
+      let newElement = this.get('startDragLink')(options);
+      if (!Ember.isNone(newElement)) {
+        this.set('draggedLink', newElement);
+        let graph = this.get('graph');
+        let paper = this.get('paper');
+        let linkView = newElement
+            .set({
+                'source': { x: x, y: y },
+                'target': { x: x, y: y },
+            })
+            .addTo(graph).findView(paper);
+
+        linkView.startArrowheadMove('target');
+
+        $(document).on({
+          'mousemove.example': this._onDrag.bind(this)
+        }, {
+            view: linkView,
+            paper: paper
+        });
+
+        this.set('draggedLinkView', linkView);
+      }
+    } else {
+      let linkView = this.get('draggedLinkView');
+      linkView.model.remove();
+      $(document).off('mousemove.example');
+      let newElement = this.get('startDragLink')(options);
+      this._addNewElement(newElement);
+      this.set('draggedLink', undefined);
+    }
+  },
+
+  /**
+    Handler event 'blank:contextmenu'.
+
+    @method actions._blankContextMenu
+    @param {jQuery.Event} e event.
+  */
+  _onDrag(evt) {
+    var p = evt.data.paper.snapToGrid({
+        x: evt.clientX,
+        y: evt.clientY
+    });
+    evt.data.view.pointermove(evt, p.x, p.y);
   },
 
   /**
@@ -128,7 +196,7 @@ export default Ember.Component.extend({
     @param {jQuery.Event} e event.
     @param {Number} x coordinate x.
     @param {Number} y coordinate y.
-   */
+  */
   _blankContextMenu(e, x, y) {
     let options = { e:e, x:x, y:y };
     this.get('blankContextMenu')(options);
