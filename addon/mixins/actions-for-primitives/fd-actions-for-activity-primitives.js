@@ -38,7 +38,7 @@ export default Ember.Mixin.create({
       this.createObjectData((function(x, y) {
         let newDecisionObject = new Decision({
           position: { x: x, y: y },
-          size: { width: 100, height: 40 },
+          size: { width: 70, height: 40 },
           name: ''
         });
 
@@ -56,7 +56,7 @@ export default Ember.Mixin.create({
       this.createObjectData((function(x, y) {
         let newActiveStateObject = new ActiveState({
           position: { x: x, y: y },
-          size: { width: 100, height: 40 }
+          size: { width: 90, height: 50 }
         });
 
         return newActiveStateObject;
@@ -73,7 +73,7 @@ export default Ember.Mixin.create({
       this.createObjectData((function(x, y) {
         let newStartStateObject = new StartState({
           position: { x: x, y: y },
-          size: { width: 40, height: 40 }
+          size: { width: 20, height: 20 }
         });
 
         return newStartStateObject;
@@ -90,7 +90,7 @@ export default Ember.Mixin.create({
       this.createObjectData((function(x, y) {
         let newFinalStateObject = new FinalState({
           position: { x: x, y: y },
-          size: { width: 40, height: 40 }
+          size: { width: 20, height: 20 }
         });
 
         return newFinalStateObject;
@@ -107,7 +107,7 @@ export default Ember.Mixin.create({
       this.createObjectData((function(x, y) {
         let newComplexTransitionHObject = new ComplexTransitionH({
           position: { x: x, y: y },
-          size: { width: 100, height: 40 }
+          size: { width: 60, height: 20 }
         });
 
         return newComplexTransitionHObject;
@@ -124,7 +124,7 @@ export default Ember.Mixin.create({
       this.createObjectData((function(x, y) {
         let newComplexTransitionVObject = new ComplexTransitionV({
           position: { x: x, y: y },
-          size: { width: 100, height: 40 }
+          size: { width: 20, height: 30 }
         });
 
         return newComplexTransitionVObject;
@@ -141,7 +141,7 @@ export default Ember.Mixin.create({
       this.createObjectData((function(x, y) {
         let newObjectInStateObject = new ObjectInState({
           position: { x: x, y: y },
-          size: { width: 100, height: 40 }
+          size: { width: 100, height: 60 }
         });
 
         return newObjectInStateObject;
@@ -158,7 +158,7 @@ export default Ember.Mixin.create({
       this.createObjectData((function(x, y) {
         let newSignalSendLeftObject = new SignalReceiptLeft({
           position: { x: x, y: y },
-          size: { width: 100, height: 40 }
+          size: { width: 100, height: 30 }
         });
 
         return newSignalSendLeftObject;
@@ -175,7 +175,7 @@ export default Ember.Mixin.create({
       this.createObjectData((function(x, y) {
         let newSignalSendRightObject = new SignalReceiptRight({
           position: { x: x, y: y },
-          size: { width: 100, height: 40 }
+          size: { width: 100, height: 30 }
         });
 
         return newSignalSendRightObject;
@@ -183,16 +183,16 @@ export default Ember.Mixin.create({
     },
 
     /**
-      Handler for click on addSignalSignalSendingL button.
+      Handler for click on addSignalSendingL button.
 
-      @method actions.addSignalSignalSendingL
+      @method actions.addSignalSendingL
       @param {jQuery.Event} e event.
     */
-    addSignalSignalSendingL(e) {
+    addSignalSendingL(e) {
       this.createObjectData((function(x, y) {
         let newSignalSendLeftObject = new SignalSendLeft({
           position: { x: x, y: y },
-          size: { width: 100, height: 40 }
+          size: { width: 100, height: 30 }
         });
 
         return newSignalSendLeftObject;
@@ -200,16 +200,16 @@ export default Ember.Mixin.create({
     },
 
     /**
-      Handler for click on addSignalSignalSendingR button.
+      Handler for click on addSignalSendingR button.
 
-      @method actions.addSignalSignalSendingR
+      @method actions.addSignalSendingR
       @param {jQuery.Event} e event.
     */
-    addSignalSignalSendingR(e) {
+    addSignalSendingR(e) {
       this.createObjectData((function(x, y) {
         let newSignalSendRightObject = new SignalSendRight({
           position: { x: x, y: y },
-          size: { width: 100, height: 40 }
+          size: { width: 100, height: 30 }
         });
 
         return newSignalSendRightObject;
@@ -274,7 +274,7 @@ export default Ember.Mixin.create({
       this.createObjectData((function(x, y) {
         let newPartitionObject = new Partition({
           position: { x: x, y: y },
-          size: { width: 100, height: 40 }
+          size: { width: 150, height: 110 }
         });
 
         return newPartitionObject;

@@ -45,7 +45,8 @@ export default FdUmlObject.extend({
 export let ActiveState = State.define('flexberry.uml.ActiveState', {
 }, {
   getObjName: function() {
-    let state = this.get('state').length > 0 ? '«' + this.get('state') + '»' : '';
-    return [this.get('name'), state];
+    let state = this.get('state') || '';
+    state = state.length > 0 ? '«' + state + '»' : '';
+    return [this.get('name') || '', state];
   }
 });
