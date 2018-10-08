@@ -21,10 +21,10 @@ export default Ember.Component.extend({
     @property paper
     @default undefined
   */
-  paper : undefined,
+  paper: undefined,
 
   /**
-    Created clean Link object to begin drag 
+    Created clean Link object to begin drag
 
     @property draggedLink
     @default undefined
@@ -108,7 +108,7 @@ export default Ember.Component.extend({
       model: graph,
     });
 
-    this.set('paper', paper);    
+    this.set('paper', paper);
     paper.options.connectionStrategy = joint.connectionStrategies.pinAbsolute;
     paper.on('blank:pointerclick', this._blankPointerClick, this);
     paper.on('element:pointerclick', this._elementPointerClick, this);
@@ -150,19 +150,19 @@ export default Ember.Component.extend({
         let graph = this.get('graph');
         let paper = this.get('paper');
         let linkView = newElement
-            .set({
-                'source': { x: x, y: y },
-                'target': { x: x, y: y },
-            })
-            .addTo(graph).findView(paper);
+          .set({
+            'source': { x: x, y: y },
+            'target': { x: x, y: y },
+          })
+          .addTo(graph).findView(paper);
 
         linkView.startArrowheadMove('target');
 
-        $(document).on({
+        Ember.$(document).on({
           'mousemove.example': this._onDrag.bind(this)
         }, {
-            view: linkView,
-            paper: paper
+          view: linkView,
+          paper: paper
         });
 
         this.set('draggedLinkView', linkView);
@@ -170,7 +170,7 @@ export default Ember.Component.extend({
     } else {
       let linkView = this.get('draggedLinkView');
       linkView.model.remove();
-      $(document).off('mousemove.example');
+      Ember.$(document).off('mousemove.example');
       let newElement = this.get('endDragLink')(options);
       this._addNewElement(newElement);
       this.set('draggedLink', undefined);
@@ -185,8 +185,8 @@ export default Ember.Component.extend({
   */
   _onDrag(evt) {
     var p = evt.data.paper.snapToGrid({
-        x: evt.clientX,
-        y: evt.clientY
+      x: evt.clientX,
+      y: evt.clientY
     });
     evt.data.view.pointermove(evt, p.x, p.y);
   },
