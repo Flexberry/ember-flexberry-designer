@@ -78,11 +78,10 @@ export let Note = BaseObject.define('flexberry.uml.Note', {
 
   updateRectangles() {
     BaseObject.prototype.updateRectangles.apply(this, arguments);
+    let transX = this.size().width - 8;
 
-    let attrs = this.get('attrs');
-    let transX = this.size().width - 10;
-    attrs['.corner-rect'].transform = 'translate(' + transX + ', 0)';
-    attrs['.corner'].transform = 'translate(' + transX + ', 0)';
+    this.attr('.corner-rect/transform', `translate(${transX}, 0)`);
+    this.attr('.corner/transform', `translate(${transX}, 0)`);
   },
 });
 

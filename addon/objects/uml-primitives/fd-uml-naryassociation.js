@@ -62,7 +62,7 @@ export let NAryAssociation = BaseObject.define('flexberry.uml.NAryAssociation', 
   widthPadding: 15,
 
   // Inputs bottom padding by Y.
-  heightBottomPadding: 25,
+  heightBottomPadding: 50,
 },
 {
   markup: [
@@ -126,7 +126,7 @@ export let NAryAssociation = BaseObject.define('flexberry.uml.NAryAssociation', 
     });
 
     if (newHeight === 0) {
-      newHeight = 30;
+      newHeight = 50;
     }
 
     this.resize(newWidth, newHeight);
@@ -136,8 +136,8 @@ export let NAryAssociation = BaseObject.define('flexberry.uml.NAryAssociation', 
 joint.shapes.flexberry.uml.NAryAssociationView = joint.dia.ElementView.extend({
   template: [
     '<div class="uml-class-inputs">',
-      '<div class="input-buffer"></div>',
-    '<input type="text" class="class-name-input instance-input header-input" value="" />',
+      '<div class="input-buffer nary-buffer"></div>',
+    '<input type="text" class="class-name-input nary-assoc-name header-input" value="" />',
     '</div>'
   ].join(''),
 
@@ -152,15 +152,15 @@ joint.shapes.flexberry.uml.NAryAssociationView = joint.dia.ElementView.extend({
       evt.stopPropagation();
     });
 
-    this.$box.find('.instance-input').on('input', function() {
+    this.$box.find('.nary-assoc-name').on('input', function() {
       this.model.updateRectangles();
     }.bind(this));
 
-    this.$box.find('.instance-input').on('change', function(evt) {
+    this.$box.find('.nary-assoc-name').on('change', function(evt) {
       this.model.set('name', Ember.$(evt.target).val());
     }.bind(this));
 
-    let instanceInput = this.$box.find('.instance-input');
+    let instanceInput = this.$box.find('.nary-assoc-name');
     instanceInput.val(this.model.get('name'));
 
     // Update the box position whenever the underlying model changes.
