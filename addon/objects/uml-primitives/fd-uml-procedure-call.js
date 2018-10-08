@@ -36,9 +36,8 @@ export default FdUmlLink.extend({
 
     @method JointJS
   */
-  JointJS(graph) {
+  JointJS() {
     let properties = this.getProperties('id', 'source', 'target', 'labels');
-    properties.graph = graph;
     return new ProcedureCall(properties);
   },
 });
@@ -92,8 +91,5 @@ export let ProcedureCall = Link.define('flexberry.uml.sequencediagramProcedureCa
     }
 
     return;
-  },
-  initialize: function () {
-    this.addTo(this.attributes.graph);
   }
 });

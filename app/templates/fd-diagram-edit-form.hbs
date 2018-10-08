@@ -449,6 +449,60 @@
           </button>
         {{/if}}
 
+        {{!-- Sd action  --}}
+        {{#if (eq model.constructor.modelName 'fd-dev-uml-sd')}}
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-actor"}}
+            type='button' onclick={{action "addSequenceDiagramActor"}}>
+            <img src="assets/images/diagrams/sd/actor.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-actor"}}
+             style="vertical-align: middle">
+          </button>
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-object"}}
+            type='button' onclick={{action "addSequenceDiagramObject"}}>
+            <img src="assets/images/diagrams/sd/object.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-object"}}
+             style="vertical-align: middle">
+          </button>
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-active-object"}}
+            type='button' onclick={{action "addSequenceDiagramActiveObject"}}>
+            <img src="assets/images/diagrams/sd/activeobject.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-active-object"}}
+             style="vertical-align: middle">
+          </button>
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-terminator"}}
+            type='button' onclick={{action "addTerminator"}}>
+            <img src="assets/images/diagrams/sd/terminator.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-terminator"}}
+             style="vertical-align: middle">
+          </button>
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-procedure-call"}}
+            type='button' onclick={{action "addProcedureCall"}}>
+            <img src="assets/images/diagrams/sd/procedurecall.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-procedure-call"}}
+             style="vertical-align: middle">
+          </button>
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-flat-message"}}
+            type='button' onclick={{action "addFlatMessage"}}>
+            <img src="assets/images/diagrams/sd/flatmessage.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-flat-message"}}
+             style="vertical-align: middle">
+          </button>
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-async-message"}}
+            type='button' onclick={{action "addAsyncMessage"}}>
+            <img src="assets/images/diagrams/sd/asyncmessage.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-async-message"}}
+             style="vertical-align: middle">
+          </button>
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-return-message"}}
+            type='button' onclick={{action "addReturnMessage"}}>
+            <img src="assets/images/diagrams/sd/returnmessage.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-return-message"}}
+             style="vertical-align: middle">
+          </button>
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-in-scope"}}
+            type='button' onclick={{action "addInScope"}}>
+            <img src="assets/images/diagrams/sd/inscope.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-in-scope"}}
+             style="vertical-align: middle">
+          </button>
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-time-constraint"}}
+            type='button' onclick={{action "addTimeConstraint"}}>
+            <img src="assets/images/diagrams/sd/timeconstraint.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-time-constraint"}}
+             style="vertical-align: middle">
+          </button>
+        {{/if}}
+
         <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-note"}}
           type='button' onclick={{action "addNote"}}>
           <img src="assets/images/diagrams/common/comment.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-note"}}

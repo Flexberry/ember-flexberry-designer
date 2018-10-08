@@ -18,9 +18,8 @@ export default FdUmlElement.extend({
 
     @method JointJS
   */
-  JointJS(graph) {
+  JointJS() {
     let properties = this.getProperties('id', 'size', 'position');
-    properties.graph = graph;
     return new Terminator(properties);
   },
 });
@@ -38,10 +37,5 @@ export let Terminator = joint.shapes.basic.Path.define('flexberry.uml.sequencedi
   attrs: {
     size: { 'width': 40, 'height': 40 },
     path: { 'stroke-width':2, d: 'M0,0 40,40 M0,40 40,0z' }
-  }
-}, {
-  initialize: function () {
-    joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
-    this.addTo(this.attributes.graph);
   }
 });

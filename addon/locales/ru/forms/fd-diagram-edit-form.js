@@ -66,6 +66,13 @@ export default {
       'add-object-flow': 'Изменение объекта',
       'add-partition': 'Раздел',
       'add-swimlane-separator': 'Разделитель плавающих дорожек'
+      'add-terminator': 'Терминатор',
+      'add-procedure-call': 'Вызов процедуры',
+      'add-flat-message': 'Сообщение',
+      'add-async-message': 'Aсинхронное сообщение',
+      'add-return-message': 'Сообщение с результатом',
+      'add-in-scope': 'Временной интервал',
+      'add-time-constraint': 'Временное ограничение',
     }
   }
 };

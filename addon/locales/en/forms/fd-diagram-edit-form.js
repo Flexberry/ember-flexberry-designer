@@ -66,6 +66,13 @@ export default {
       'add-object-flow': 'Object flow',
       'add-partition': 'Partition',
       'add-swimlane-separator': 'Swimlane separator'
+      'add-terminator': 'Terminator',
+      'add-procedure-call': 'Procedure call',
+      'add-flat-message': 'Flat message',
+      'add-async-message': 'Async message',
+      'add-return-message': 'Return message',
+      'add-in-scope': 'In scope',
+      'add-time-constraint': 'Time constraint',
     }
   }
 };
