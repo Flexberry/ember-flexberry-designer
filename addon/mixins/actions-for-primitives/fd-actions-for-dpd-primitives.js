@@ -92,7 +92,7 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points
+          vertices: linkProperties.points || Ember.A()
         });
 
         return newDependencyObject;
@@ -114,7 +114,7 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points
+          vertices: linkProperties.points || Ember.A()
         });
 
         return newConnectionObject;

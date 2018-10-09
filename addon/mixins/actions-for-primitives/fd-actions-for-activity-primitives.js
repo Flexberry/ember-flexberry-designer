@@ -231,7 +231,7 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points
+          vertices: linkProperties.points || Ember.A()
         });
 
         return newTransitionObject;
@@ -255,7 +255,7 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points
+          vertices: linkProperties.points || Ember.A()
         });
 
         return newObjectFlowObject;

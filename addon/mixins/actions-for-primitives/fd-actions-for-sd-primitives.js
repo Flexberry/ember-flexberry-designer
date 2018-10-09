@@ -95,7 +95,7 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points
+          vertices: linkProperties.points || Ember.A()
         });
 
         return newProcedureCallObject;
@@ -117,7 +117,7 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points
+          vertices: linkProperties.points || Ember.A()
         });
 
         return newFlatMessageObject;
@@ -139,7 +139,7 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points
+          vertices: linkProperties.points || Ember.A()
         });
 
         return newAsyncMessageObject;
@@ -161,7 +161,7 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points
+          vertices: linkProperties.points || Ember.A()
         });
 
         return newReturnMessageObject;

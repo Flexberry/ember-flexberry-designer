@@ -33,10 +33,18 @@ FdAcrionsForCommonPrimitivesMixin, {
   /**
     Function for create element.
 
-    @property callback
+    @property jointjsCallback
     @type Function
   */
-  callback: undefined,
+  jointjsCallback: undefined,
+
+  /**
+    Function for create element in store.
+
+    @property storeCallback
+    @type Function
+  */
+  storeCallback: undefined,
 
   /**
     Type create object.
@@ -47,18 +55,20 @@ FdAcrionsForCommonPrimitivesMixin, {
   type: undefined,
 
   /**
-    Data for create link.
+    New created link.
 
-    @property linkProperties
+    @property newLink
     @type Object
   */
-  linkProperties: {
-    source: undefined,
-    target: undefined,
-    startClassRepObj: undefined,
-    endClassRepObj: undefined,
-    points: Ember.A()
-  },
+  newLink: undefined,
+
+  /**
+    True when link adding in process.
+
+    @property isLinkAdding
+    @type Boolean
+  */
+  isLinkAdding: false,
 
   /**
     Сurrent pressed button.
@@ -90,15 +100,15 @@ FdAcrionsForCommonPrimitivesMixin, {
         let x = options.x;
         let y = options.y;
         if (type === 'Object') {
-          let callback = this.get('callback');
-          let newObject = callback(x, y);
+          let jointjsCallback = this.get('jointjsCallback');
+          let newObject = jointjsCallback(x, y);
           this.clearData();
 
           return newObject;
         } else {
-          let linkProperties = this.get('linkProperties');
-          if (type === 'Link' && !Ember.isNone(linkProperties.target)) {
-            linkProperties.points.insertAt(0, { x: x, y: y });
+          let newLink = this.get('newLink');
+          if (type === 'Link' && newLink && !Ember.isNone(newLink.getSourceElement())) {
+            newLink.insertVertex(-1, { x: x, y: y });
           }
         }
       }
@@ -116,15 +126,13 @@ FdAcrionsForCommonPrimitivesMixin, {
         let element = options.element;
         let model = element.model.attributes;
         let type = model.type;
-        let linkProperties = this.get('linkProperties');
         let interactionElements = this.get('interactionElements');
 
         if ((Ember.isNone(interactionElements) || (Ember.isArray(interactionElements) && interactionElements.includes(type)) ||
          (Ember.isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
-          linkProperties.source = model.id;
-          linkProperties.startClassRepObj = model.repositoryObject;
-          let callback = this.get('callback');
-          let newLink = callback(linkProperties);
+          let jointjsCallback = this.get('jointjsCallback');
+          let newLink = jointjsCallback({ source: model.id, startClassRepObj: model.repositoryObject });
+          this.set('newLink', newLink);
           return newLink;
         }
       }
@@ -142,20 +150,24 @@ FdAcrionsForCommonPrimitivesMixin, {
         let element = options.element;
         let model = element.model.attributes;
         let type = model.type;
-        let linkProperties = this.get('linkProperties');
         let interactionElements = this.get('interactionElements');
 
         if ((Ember.isNone(interactionElements) || (Ember.isArray(interactionElements) && interactionElements.includes(type)) ||
          (Ember.isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
-          linkProperties.target = model.id;
-          linkProperties.endClassRepObj = model.repositoryObject;
-          let callback = this.get('callback');
-          let newLink = callback(linkProperties);
-          this.clearData();
+          let newLink = this.get('newLink');
+          newLink.set({ 'target': { id: model.id }, 'endClassRepObj': { id: model.repositoryObject } });
+          let storeCallback = this.get('storeCallback');
+          if (storeCallback) {
+            let linkRecord = storeCallback({ startClassRepObj: newLink.get('startClassRepObj'), endClassRepObj: newLink.get('endClassRepObj') });
+            newLink.set({ 'repositoryObject': linkRecord });
+          }
 
-          return newLink;
+          this.clearData();
+          return true;
         }
       }
+
+      return false;
     },
 
     /**
@@ -167,12 +179,27 @@ FdAcrionsForCommonPrimitivesMixin, {
     blankContextMenu() {
       let type = this.get('type');
       if (!Ember.isNone(type)) {
-        let linkProperties = this.get('linkProperties');
-        if (linkProperties.points.length === 0) {
+        let newLink = this.get('newLink');
+        if (newLink.vertices().length === 0) {
           this.clearData();
+          return true;
         } else {
-          linkProperties.points.popObject();
+          let newLink = this.get('newLink');
+          newLink.removeVertex(-1);
         }
+      }
+
+      return false;
+    },
+
+    /**
+      Handler for click on pointerClick button.
+
+      @method actions.pointerClick
+     */
+    pointerClick() {
+      if (!this.get('isLinkAdding')) {
+        this.clearData();
       }
     }
   },
@@ -198,30 +225,36 @@ FdAcrionsForCommonPrimitivesMixin, {
     Fills properties for create object.
 
     @method createObjectData
-    @param {function} callback function of creating a new object.
+    @param {function} jointjsCallback function of creating a new object.
     @param {jQuery.Event} e event.
   */
-  createObjectData(callback, e) {
-    this._claerProperties();
-    this.set('callback', callback);
-    this.set('type', 'Object');
-    this._changeCurrentTargetElement(e);
+  createObjectData(jointjsCallback, e) {
+    if (!this.get('isLinkAdding')) {
+      this._clearProperties();
+      this.set('jointjsCallback', jointjsCallback);
+      this.set('type', 'Object');
+      this._changeCurrentTargetElement(e);
+    }
   },
 
   /**
     Fills properties for create link.
 
     @method createLinkData
-    @param {function} callback function of creating a new link.
+    @param {function} jointjsCallback function of creating a new link.
     @param {jQuery.Event} e event.
     @param {Array} interactionElements array of object types with which the current link can interact.
+    @param {function} storeCallback function for creating a new link in store.
   */
-  createLinkData(callback, e, interactionElements) {
-    this._claerProperties();
-    this.set('callback', callback);
-    this.set('type', 'Link');
-    this.set('interactionElements', interactionElements);
-    this._changeCurrentTargetElement(e);
+  createLinkData(jointjsCallback, e, interactionElements, storeCallback) {
+    if (!this.get('isLinkAdding')) {
+      this._clearProperties();
+      this.set('jointjsCallback', jointjsCallback);
+      this.set('storeCallback', storeCallback);
+      this.set('type', 'Link');
+      this.set('interactionElements', interactionElements);
+      this._changeCurrentTargetElement(e);
+    }
   },
 
   /**
@@ -230,27 +263,22 @@ FdAcrionsForCommonPrimitivesMixin, {
     @method clearData
   */
   clearData() {
-    this._claerProperties();
+    this._clearProperties();
     this._resetCurrentTargetElement();
   },
 
   /**
     Clear all properties for create elements.
 
-    @method _claerProperties
+    @method _clearProperties
     @private
   */
-  _claerProperties() {
-    this.set('callback', undefined);
+  _clearProperties() {
+    this.set('jointjsCallback', undefined);
+    this.set('storeCallback', undefined);
     this.set('type', undefined);
     this.set('interactionElements', Ember.A());
-    this.set('linkProperties', {
-      source: undefined,
-      target: undefined,
-      startClassRepObj: undefined,
-      endClassRepObj: undefined,
-      points: Ember.A()
-    });
+    this.set('newLink', undefined);
   },
 
   /**

@@ -48,6 +48,14 @@ export default Ember.Component.extend({
   primitives: undefined,
 
   /**
+    True when link adding in process.
+
+    @property isLinkAdding
+    @type Boolean
+  */
+  isLinkAdding: false,
+
+  /**
     All elements of the UML diagram.
 
     @property elements
@@ -108,6 +116,7 @@ export default Ember.Component.extend({
       model: graph,
     });
 
+    this.set('isLinkAdding', false);
     this.set('paper', paper);
     paper.options.connectionStrategy = joint.connectionStrategies.pinAbsolute;
     paper.on('blank:pointerclick', this._blankPointerClick, this);
@@ -127,7 +136,7 @@ export default Ember.Component.extend({
     @param {Number} y coordinate y.
    */
   _blankPointerClick(e, x, y) {
-    let options = { e:e, x:x, y:y };
+    let options = { e: e, x: x, y: y };
     let newElement = this.get('blankPointerClick')(options);
     this._addNewElement(newElement);
   },
@@ -142,38 +151,39 @@ export default Ember.Component.extend({
     @param {Number} y coordinate y.
   */
   _elementPointerClick(element, e, x, y) {
-    let options = { element:element, e:e, x:x, y:y };
+    let options = { element: element, e: e, x: x, y: y };
     if (Ember.isNone(this.get('draggedLink'))) {
       let newElement = this.get('startDragLink')(options);
       if (!Ember.isNone(newElement)) {
         this.set('draggedLink', newElement);
         let graph = this.get('graph');
         let paper = this.get('paper');
+
         let linkView = newElement
-          .set({
-            'source': { x: x, y: y },
-            'target': { x: x, y: y },
-          })
+          .set({ 'target': { x: x, y: y } })
           .addTo(graph).findView(paper);
 
-        linkView.startArrowheadMove('target');
+        this.set('isLinkAdding', true);
+
+        graph.getLinks().map(link => {
+          link.findView(paper).$el.addClass('edit-disabled');
+        }, this);
+
+        Ember.$(paper.el).find('input,textarea').addClass('click-disabled');
 
         Ember.$(document).on({
           'mousemove.example': this._onDrag.bind(this)
         }, {
-          view: linkView,
-          paper: paper
+          paper: paper,
+          element: newElement
         });
 
         this.set('draggedLinkView', linkView);
       }
     } else {
-      let linkView = this.get('draggedLinkView');
-      linkView.model.remove();
-      Ember.$(document).off('mousemove.example');
-      let newElement = this.get('endDragLink')(options);
-      this._addNewElement(newElement);
-      this.set('draggedLink', undefined);
+      if (this.get('endDragLink')(options)) {
+        this._clearLinksData();
+      }
     }
   },
 
@@ -184,11 +194,13 @@ export default Ember.Component.extend({
     @param {jQuery.Event} e event.
   */
   _onDrag(evt) {
-    var p = evt.data.paper.snapToGrid({
+    evt.data.paper.snapToGrid({
       x: evt.clientX,
       y: evt.clientY
     });
-    evt.data.view.pointermove(evt, p.x, p.y);
+    evt.data.element.set({
+      'target': { x: evt.offsetX, y: evt.offsetY },
+    });
   },
 
   /**
@@ -200,8 +212,10 @@ export default Ember.Component.extend({
     @param {Number} y coordinate y.
   */
   _blankContextMenu(e, x, y) {
-    let options = { e:e, x:x, y:y };
-    this.get('blankContextMenu')(options);
+    let options = { e: e, x: x, y: y };
+    if (this.get('blankContextMenu')(options)) {
+      this._clearLinksData(true);
+    }
   },
 
   /**
@@ -215,5 +229,29 @@ export default Ember.Component.extend({
       let graph = this.get('graph');
       graph.addCell([newElement]);
     }
+  },
+
+  /**
+    Clear created link.
+
+    @method _clearLinksData
+    @param {Boolean} removeFromGraph If true, removes created link from graph.
+   */
+  _clearLinksData(removeFromGraph) {
+    Ember.$(document).off('mousemove.example');
+    let graph = this.get('graph');
+    let paper = this.get('paper');
+    graph.getLinks().map(link => {
+      link.findView(paper).$el.removeClass('edit-disabled');
+    }, this);
+
+    Ember.$(paper.el).find('input,textarea').removeClass('click-disabled');
+    if (removeFromGraph) {
+      this.get('draggedLink').remove();
+    }
+
+    this.set('draggedLink', undefined);
+    this.set('draggedLinkView', undefined);
+    this.set('isLinkAdding', false);
   }
 });

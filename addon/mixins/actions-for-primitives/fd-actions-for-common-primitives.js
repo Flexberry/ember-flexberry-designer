@@ -10,15 +10,6 @@ import { NoteConnector } from '../../objects/uml-primitives/fd-uml-note-connecto
 export default Ember.Mixin.create({
   actions: {
     /**
-      Handler for click on pointerClick button.
-
-      @method actions.pointerClick
-     */
-    pointerClick() {
-      this.clearData();
-    },
-
-    /**
       Handler for click on addNote button.
 
       @method actions.addNote
@@ -51,7 +42,7 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points
+          vertices: linkProperties.points || Ember.A()
         });
 
         return newNoteConnectorObject;
