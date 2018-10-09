@@ -2,6 +2,7 @@
   "name": "FdGeneration",
   "modelName": "fd-generation",
   "className": "Generation",
+  "nameSpace": "",
   "parentModelName": null,
   "parentClassName": null,
   "attrs": [
@@ -23,7 +24,7 @@
     },
     {
       "name": "state",
-      "type": "fd-generation-state",
+      "type": "new-platform-flexberry-web-designer-generation-state",
       "flexberryType": "GenerationState",
       "notNull": false,
       "defaultValue": "Running",
@@ -184,7 +185,7 @@
           "lookupValueField": null,
           "relationName": "Stage",
           "belongsTo": [],
-          "hidden": true,
+          "hidden": false,
           "attrs": [
             {
               "name": "name",
@@ -204,5 +205,6 @@
     }
   ],
   "stored": true,
-  "offline": true
+  "offline": true,
+  "external": false
 }

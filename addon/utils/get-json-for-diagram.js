@@ -11,10 +11,10 @@ let getJsonForClass = function(devClass, type, index, oldData) {
   let stereotype = devClass.get('stereotype');
   let pk = devClass.get('id');
 
-  let attributesStr = devClass.get('attributesStr');
+  let attributesStr = devClass.get('attributesStr') || '';
   let attributesStrArray = attributesStr ? attributesStr.split('\n') : [''];
 
-  let methodsStr = devClass.get('methodsStr');
+  let methodsStr = devClass.get('methodsStr') || '';
   let methodsStrArray = methodsStr ? methodsStr.split('\n') : [''];
 
   // Size class
@@ -71,10 +71,10 @@ let getJsonForClass = function(devClass, type, index, oldData) {
 
   // Old data.
   if (oldData) {
-    uuid1 = oldData.uuid;
-    valueX = oldData.location.X;
-    valueY = oldData.location.Y;
-    folded = oldData.folded;
+    uuid1 = oldData.uuid || uuid1;
+    valueX = oldData.location.X || valueX;
+    valueY = oldData.location.Y || valueY;
+    folded = oldData.folded || folded;
   }
 
   // Class JSON.

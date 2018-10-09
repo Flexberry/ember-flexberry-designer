@@ -2,6 +2,7 @@
   "name": "FdStd",
   "modelName": "fd-std",
   "className": "STD",
+  "nameSpace": "",
   "parentModelName": "fd-diagram",
   "parentClassName": "Diagram",
   "attrs": [

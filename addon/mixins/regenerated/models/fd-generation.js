@@ -1,13 +1,14 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 import { Projection } from 'ember-flexberry-data';
+import GenerationStateEnum from '../../../enums/new-platform-flexberry-web-designer-generation-state';
 export let Model = Ember.Mixin.create({
-  startTime: DS.attr('date'),
-  endTime: DS.attr('date'),
-  state: DS.attr('fd-generation-state'),
+  startTime: DS.attr('date', { defaultValue() { return new Date(); } }),
+  endTime: DS.attr('date', { defaultValue() { return new Date(); } }),
+  state: DS.attr('new-platform-flexberry-web-designer-generation-state', { defaultValue: GenerationStateEnum.Running }),
   generationReason: DS.attr('string'),
   userName: DS.attr('string'),
-  isRunning: DS.attr('boolean'),
+  isRunning: DS.attr('boolean', { defaultValue: true }),
   percentComplete: DS.attr('number'),
   stage: DS.belongsTo('fd-dev-stage', { inverse: 'generations', async: false }),
   stepLogs: DS.hasMany('fd-generation-step-log', { inverse: 'generation', async: false }),
@@ -23,6 +24,7 @@ export let Model = Ember.Mixin.create({
     this._super.apply(this, arguments);
   }
 });
+
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('EditFormView', 'fd-generation', {
     startTime: Projection.attr('StartTime', { hidden: true }),
@@ -47,7 +49,7 @@ export let defineProjections = function (modelClass) {
     endTime: Projection.attr('Время окончания'),
     stage: Projection.belongsTo('fd-dev-stage', 'Имя стадии', {
       name: Projection.attr('Имя стадии')
-    }, { hidden: true }),
+    }),
     generationReason: Projection.attr('Действие')
   });
 };

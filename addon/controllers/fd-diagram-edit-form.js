@@ -3,12 +3,22 @@ import EditFormController from 'ember-flexberry/controllers/edit-form';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 import FdAcrionsForCadPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-cad-primitives';
+import FdAcrionsForDpdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-dpd-primitives';
+import FdAcrionsForStdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-std-primitives';
+import FdAcrionsForCodPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-cod-primitives';
+import FdActionsForActivityPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-activity-primitives';
+import FdAcrionsForSdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-sd-primitives';
 import FdAcrionsForCommonPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-common-primitives';
 
 export default EditFormController.extend(
 FdWorkPanelToggler,
 FdFormUnsavedData,
 FdAcrionsForCadPrimitivesMixin,
+FdAcrionsForDpdPrimitivesMixin,
+FdAcrionsForStdPrimitivesMixin,
+FdAcrionsForCodPrimitivesMixin,
+FdActionsForActivityPrimitivesMixin,
+FdAcrionsForSdPrimitivesMixin,
 FdAcrionsForCommonPrimitivesMixin, {
   parentRoute: 'fd-diagram-list-form',
 
@@ -23,10 +33,18 @@ FdAcrionsForCommonPrimitivesMixin, {
   /**
     Function for create element.
 
-    @property callback
+    @property jointjsCallback
     @type Function
   */
-  callback: undefined,
+  jointjsCallback: undefined,
+
+  /**
+    Function for create element in store.
+
+    @property storeCallback
+    @type Function
+  */
+  storeCallback: undefined,
 
   /**
     Type create object.
@@ -37,18 +55,20 @@ FdAcrionsForCommonPrimitivesMixin, {
   type: undefined,
 
   /**
-    Data for create link.
+    New created link.
 
-    @property linkProperties
+    @property newLink
     @type Object
   */
-  linkProperties: {
-    source: undefined,
-    target: undefined,
-    startClassRepObj: undefined,
-    endClassRepObj: undefined,
-    points: Ember.A()
-  },
+  newLink: undefined,
+
+  /**
+    True when link adding in process.
+
+    @property isLinkAdding
+    @type Boolean
+  */
+  isLinkAdding: false,
 
   /**
     Сurrent pressed button.
@@ -57,6 +77,14 @@ FdAcrionsForCommonPrimitivesMixin, {
     @type jQuery
   */
   currentTargetElement: undefined,
+
+  /**
+    Stores classes that are created, but not yet saved, in the diagram.
+
+    @property createdClasses
+    @type Ember.Array
+  */
+  createdClasses: Ember.A(),
 
   actions: {
 
@@ -72,55 +100,74 @@ FdAcrionsForCommonPrimitivesMixin, {
         let x = options.x;
         let y = options.y;
         if (type === 'Object') {
-          let callback = this.get('callback');
-          let newObject = callback(x, y);
+          let jointjsCallback = this.get('jointjsCallback');
+          let newObject = jointjsCallback(x, y);
           this.clearData();
 
           return newObject;
         } else {
-          let linkProperties = this.get('linkProperties');
-          if (type === 'Link' && !Ember.isNone(linkProperties.target)) {
-            linkProperties.points.insertAt(0, { x: x, y: y });
+          let newLink = this.get('newLink');
+          if (type === 'Link' && newLink && !Ember.isNone(newLink.getSourceElement())) {
+            newLink.insertVertex(-1, { x: x, y: y });
           }
         }
       }
     },
 
     /**
-      Handler event elementPointerClick
+      Handler event startDragLink
 
-      @method elementPointerClick
+      @method startDragLink
       @param {Object} options options event 'element:pointerclick'.
     */
-    elementPointerClick(options) {
+    startDragLink(options) {
       let type = this.get('type');
       if (type === 'Link') {
         let element = options.element;
         let model = element.model.attributes;
         let type = model.type;
-        let linkProperties = this.get('linkProperties');
         let interactionElements = this.get('interactionElements');
 
-        if (Ember.isNone(linkProperties.target) && (Ember.isNone(interactionElements) ||
-         (Ember.isArray(interactionElements) && interactionElements.includes(type)) ||
+        if ((Ember.isNone(interactionElements) || (Ember.isArray(interactionElements) && interactionElements.includes(type)) ||
          (Ember.isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
-
-          linkProperties.target = model.id;
-          linkProperties.startClassRepObj = model.repositoryObject;
-
-        } else if (Ember.isNone(linkProperties.source) && (Ember.isNone(interactionElements) ||
-         (Ember.isArray(interactionElements) && interactionElements.includes(type)) ||
-         (Ember.isArray(interactionElements.end) && interactionElements.end.includes(type)))) {
-
-          linkProperties.source = model.id;
-          linkProperties.endClassRepObj = model.repositoryObject;
-          let callback = this.get('callback');
-          let newLink = callback(linkProperties);
-          this.clearData();
-
+          let jointjsCallback = this.get('jointjsCallback');
+          let newLink = jointjsCallback({ source: model.id, startClassRepObj: model.repositoryObject });
+          this.set('newLink', newLink);
           return newLink;
         }
       }
+    },
+
+    /**
+      Handler event endDragLink
+
+      @method endDragLink
+      @param {Object} options options event 'element:pointerclick'.
+    */
+    endDragLink(options) {
+      let type = this.get('type');
+      if (type === 'Link') {
+        let element = options.element;
+        let model = element.model.attributes;
+        let type = model.type;
+        let interactionElements = this.get('interactionElements');
+
+        if ((Ember.isNone(interactionElements) || (Ember.isArray(interactionElements) && interactionElements.includes(type)) ||
+         (Ember.isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
+          let newLink = this.get('newLink');
+          newLink.set({ 'target': { id: model.id }, 'endClassRepObj': { id: model.repositoryObject } });
+          let storeCallback = this.get('storeCallback');
+          if (storeCallback) {
+            let linkRecord = storeCallback({ startClassRepObj: newLink.get('startClassRepObj'), endClassRepObj: newLink.get('endClassRepObj') });
+            newLink.set({ 'repositoryObject': linkRecord });
+          }
+
+          this.clearData();
+          return true;
+        }
+      }
+
+      return false;
     },
 
     /**
@@ -132,44 +179,82 @@ FdAcrionsForCommonPrimitivesMixin, {
     blankContextMenu() {
       let type = this.get('type');
       if (!Ember.isNone(type)) {
-        let linkProperties = this.get('linkProperties');
-        if (linkProperties.points.length === 0) {
+        let newLink = this.get('newLink');
+        if (newLink.vertices().length === 0) {
           this.clearData();
+          return true;
         } else {
-          linkProperties.points.popObject();
+          let newLink = this.get('newLink');
+          newLink.removeVertex(-1);
         }
       }
+
+      return false;
+    },
+
+    /**
+      Handler for click on pointerClick button.
+
+      @method actions.pointerClick
+     */
+    pointerClick() {
+      if (!this.get('isLinkAdding')) {
+        this.clearData();
+      }
     }
+  },
+
+  /**
+    See [Flexberry Ember API](http://flexberry.github.io/ember-flexberry/autodoc/develop/).
+
+    @method save
+  */
+  save() {
+    let model = this.get('model');
+    model.set('primitivesJsonString', JSON.stringify(model.get('primitives')));
+
+    return this._super(...arguments).then(() => {
+      let createdClasses = this.get('createdClasses');
+      let promises = createdClasses.map(c => c.save());
+      createdClasses.clear();
+      return Ember.RSVP.all(promises);
+    });
   },
 
   /**
     Fills properties for create object.
 
     @method createObjectData
-    @param {function} callback function of creating a new object.
+    @param {function} jointjsCallback function of creating a new object.
     @param {jQuery.Event} e event.
   */
-  createObjectData(callback, e) {
-    this._claerProperties();
-    this.set('callback', callback);
-    this.set('type', 'Object');
-    this._changeCurrentTargetElement(e);
+  createObjectData(jointjsCallback, e) {
+    if (!this.get('isLinkAdding')) {
+      this._clearProperties();
+      this.set('jointjsCallback', jointjsCallback);
+      this.set('type', 'Object');
+      this._changeCurrentTargetElement(e);
+    }
   },
 
   /**
     Fills properties for create link.
 
     @method createLinkData
-    @param {function} callback function of creating a new link.
+    @param {function} jointjsCallback function of creating a new link.
     @param {jQuery.Event} e event.
     @param {Array} interactionElements array of object types with which the current link can interact.
+    @param {function} storeCallback function for creating a new link in store.
   */
-  createLinkData(callback, e, interactionElements) {
-    this._claerProperties();
-    this.set('callback', callback);
-    this.set('type', 'Link');
-    this.set('interactionElements', interactionElements);
-    this._changeCurrentTargetElement(e);
+  createLinkData(jointjsCallback, e, interactionElements, storeCallback) {
+    if (!this.get('isLinkAdding')) {
+      this._clearProperties();
+      this.set('jointjsCallback', jointjsCallback);
+      this.set('storeCallback', storeCallback);
+      this.set('type', 'Link');
+      this.set('interactionElements', interactionElements);
+      this._changeCurrentTargetElement(e);
+    }
   },
 
   /**
@@ -178,27 +263,22 @@ FdAcrionsForCommonPrimitivesMixin, {
     @method clearData
   */
   clearData() {
-    this._claerProperties();
+    this._clearProperties();
     this._resetCurrentTargetElement();
   },
 
   /**
     Clear all properties for create elements.
 
-    @method _claerProperties
+    @method _clearProperties
     @private
   */
-  _claerProperties() {
-    this.set('callback', undefined);
+  _clearProperties() {
+    this.set('jointjsCallback', undefined);
+    this.set('storeCallback', undefined);
     this.set('type', undefined);
     this.set('interactionElements', Ember.A());
-    this.set('linkProperties', {
-      source: undefined,
-      target: undefined,
-      startClassRepObj: undefined,
-      endClassRepObj: undefined,
-      points: Ember.A()
-    });
+    this.set('newLink', undefined);
   },
 
   /**

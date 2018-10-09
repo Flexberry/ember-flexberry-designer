@@ -2,6 +2,7 @@
   "name": "FdDevProcessStatus",
   "modelName": "fd-dev-process-status",
   "className": "DevProcessStatus",
+  "nameSpace": "",
   "parentModelName": null,
   "parentClassName": null,
   "attrs": [

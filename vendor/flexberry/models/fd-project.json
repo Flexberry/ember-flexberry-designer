@@ -2,6 +2,7 @@
   "name": "FdProject",
   "modelName": "fd-project",
   "className": "Project",
+  "nameSpace": "",
   "parentModelName": "fd-repository-object-with-plugins",
   "parentClassName": "RepositoryObjectWithPlugins",
   "attrs": [],
@@ -37,7 +38,7 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Repository",
+          "relationName": "FdRepository",
           "belongsTo": [],
           "hidden": false,
           "attrs": [

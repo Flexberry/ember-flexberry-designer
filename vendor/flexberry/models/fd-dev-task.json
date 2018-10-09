@@ -2,6 +2,7 @@
   "name": "FdDevTask",
   "modelName": "fd-dev-task",
   "className": "DevTask",
+  "nameSpace": "",
   "parentModelName": null,
   "parentClassName": null,
   "attrs": [

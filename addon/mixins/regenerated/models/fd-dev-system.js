@@ -12,6 +12,7 @@ export let Model = Ember.Mixin.create({
     this._super.apply(this, arguments);
   }
 });
+
 export let defineBaseModel = function (modelClass) {
   modelClass.reopenClass({
     _parentModelName: 'fd-subsystem'
@@ -45,6 +46,30 @@ export let defineProjections = function (modelClass) {
     name: Projection.attr('Name'),
     description: Projection.attr('Description')
   });
+  modelClass.defineProjection('FdDevSystem', 'fd-dev-system', {
+    name: Projection.attr(''),
+    stage: Projection.belongsTo('fd-stage', '', {
+
+    }),
+    diagrams: Projection.hasMany('fd-diagram', '', {
+      name: Projection.attr(''),
+      caseObjectsString: Projection.attr(''),
+      primitivesStreamString: Projection.attr(''),
+      primitivesJsonString: Projection.attr('')
+    })
+  });
+  modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-system', {
+    name: Projection.attr(''),
+    stage: Projection.belongsTo('fd-stage', '', {
+
+    }),
+    diagrams: Projection.hasMany('fd-diagram', '', {
+      primitivesJsonString: Projection.attr(''),
+      primitivesStreamString: Projection.attr(''),
+      caseObjectsString: Projection.attr(''),
+      name: Projection.attr('')
+    })
+  });
   modelClass.defineProjection('ListFormView', 'fd-dev-system', {
     name: Projection.attr('Name'),
     description: Projection.attr('Description'),
@@ -59,31 +84,6 @@ export let defineProjections = function (modelClass) {
       name: Projection.attr('')
     }),
     diagrams: Projection.hasMany('fd-diagram', '', {
-      name: Projection.attr('')
-    })
-  });
-  modelClass.defineProjection('FdDevSystem', 'fd-dev-system', {
-    name: Projection.attr(''),
-    stage: Projection.belongsTo('fd-stage', '', {
-
-    }),
-    diagrams: Projection.hasMany('fd-diagram', '', {
-      primitivesJsonString: Projection.attr(''),
-      primitivesStreamString: Projection.attr(''),
-      caseObjectsString: Projection.attr(''),
-      name: Projection.attr('')
-    })
-  });
-
-  modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-system', {
-    name: Projection.attr(''),
-    stage: Projection.belongsTo('fd-stage', '', {
-
-    }),
-    diagrams: Projection.hasMany('fd-diagram', '', {
-      primitivesJsonString: Projection.attr(''),
-      primitivesStreamString: Projection.attr(''),
-      caseObjectsString: Projection.attr(''),
       name: Projection.attr('')
     })
   });

@@ -2,6 +2,7 @@
   "name": "FdDevView",
   "modelName": "fd-dev-view",
   "className": "DevView",
+  "nameSpace": "",
   "parentModelName": "fd-repository-data-object",
   "parentClassName": "RepositoryDataObject",
   "attrs": [
@@ -99,7 +100,7 @@
             {
               "lookupValue": null,
               "lookupValueField": null,
-              "relationName": "Class.Stage",
+              "relationName": "Class.FdStage",
               "belongsTo": [],
               "hidden": false,
               "attrs": [],
@@ -229,7 +230,7 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Views",
+          "relationName": "Class",
           "belongsTo": [],
           "hidden": false,
           "attrs": [],
@@ -263,7 +264,7 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Views",
+          "relationName": "Class",
           "belongsTo": [],
           "hidden": true,
           "attrs": [],
@@ -309,7 +310,7 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Views",
+          "relationName": "Class",
           "belongsTo": [],
           "hidden": false,
           "attrs": [
@@ -484,7 +485,7 @@
             {
               "lookupValue": null,
               "lookupValueField": null,
-              "relationName": "Class.Stage",
+              "relationName": "Class.FdStage",
               "belongsTo": [],
               "hidden": true,
               "attrs": [],

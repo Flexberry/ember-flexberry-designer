@@ -44,6 +44,12 @@ export default {
       },
       changeUser: {
         __caption__: ''
+      },
+      subsystem: {
+        __caption__: '',
+        stage: {
+          __caption__: ''
+        }
       }
     },
     DiagramWithSystem: {
@@ -67,6 +73,9 @@ export default {
       },
       changeUser: {
         __caption__: ''
+      },
+      subsystem: {
+        __caption__: ''
       }
     },
     ExportToWmf: {
@@ -74,6 +83,68 @@ export default {
         __caption__: ''
       },
       description: {
+        __caption__: ''
+      }
+    },
+    FdDiagram: {
+      name: {
+        __caption__: ''
+      },
+      caseObjectsString: {
+        __caption__: ''
+      },
+      primitivesStreamString: {
+        __caption__: ''
+      },
+      primitivesJsonString: {
+        __caption__: ''
+      }
+    },
+    FdDiagramE: {
+      name: {
+        __caption__: 'Name'
+      },
+      description: {
+        __caption__: 'Description'
+      }
+    },
+    FdDiagramL: {
+      name: {
+        __caption__: 'Name'
+      },
+      description: {
+        __caption__: 'Description'
+      },
+      changeUser: {
+        __caption__: 'Change user'
+      },
+      changeDate: {
+        __caption__: 'Change date'
+      },
+      createUser: {
+        __caption__: 'Create user'
+      },
+      createDate: {
+        __caption__: 'Create date'
+      },
+      subsystem: {
+        __caption__: '',
+        stage: {
+          __caption__: ''
+        }
+      }
+    },
+    FdPreloadMetadata: {
+      primitivesJsonString: {
+        __caption__: ''
+      },
+      primitivesStreamString: {
+        __caption__: ''
+      },
+      caseObjectsString: {
+        __caption__: ''
+      },
+      name: {
         __caption__: ''
       }
     },

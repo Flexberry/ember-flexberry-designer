@@ -28,6 +28,8 @@ import FdUmlDependency from '../objects/uml-primitives/fd-uml-dependency';
 import FdUmlQAssociation from '../objects/uml-primitives/fd-uml-qualified-association';
 import FdUmlQComposition from '../objects/uml-primitives/fd-uml-qualified-composition';
 import FdUmlRealization from '../objects/uml-primitives/fd-uml-realization';
+import FdUmlObjectAssociation from '../objects/uml-primitives/fd-uml-object-association';
+import FdUmlNAryAssociationConnector from '../objects/uml-primitives/fd-uml-naryassociation-connector';
 
 let Model = CADModel.extend(DevUMLCADMixin, {
   /**
@@ -60,11 +62,11 @@ let Model = CADModel.extend(DevUMLCADMixin, {
           break;
 
         case 'STORMCASE.UML.cad.ObjectAssociation, UMLCAD':
-          result.pushObject(FdUmlAssociation.create({ primitive }));
+          result.pushObject(FdUmlObjectAssociation.create({ primitive }));
           break;
 
         case 'STORMCASE.UML.cad.NaryLink, UMLCAD':
-          result.pushObject(FdUmlAssociation.create({ primitive }));
+          result.pushObject(FdUmlNAryAssociationConnector.create({ primitive }));
           break;
 
         case 'STORMCASE.UML.cad.QualifiedAggregationLink, UMLCAD':
@@ -133,10 +135,6 @@ let Model = CADModel.extend(DevUMLCADMixin, {
 
         case 'STORMCASE.UML.cad.Realization, UMLCAD':
           result.pushObject(FdUmlRealization.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.ObjectAssociation, UMLCAD':
-          result.pushObject(FdUmlAssociation.create({ primitive }));
           break;
 
         default:

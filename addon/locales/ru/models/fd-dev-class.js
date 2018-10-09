@@ -1655,6 +1655,9 @@ export default {
       businessServerEvents: {
         __caption__: 'События бизнес-сервера'
       },
+      nameStr: {
+        __caption__: ''
+      },
       stage: {
         __caption__: 'Стадия'
       },
@@ -1937,6 +1940,39 @@ export default {
               __caption__: ''
             }
           }
+        }
+      },
+      attributes: {
+        __caption__: '',
+        name: {
+          __caption__: ''
+        },
+        type: {
+          __caption__: ''
+        },
+        notNull: {
+          __caption__: ''
+        },
+        defaultValue: {
+          __caption__: ''
+        },
+        description: {
+          __caption__: ''
+        },
+        accessModifier: {
+          __caption__: ''
+        }
+      },
+      methods: {
+        __caption__: '',
+        accessModifier: {
+          __caption__: ''
+        },
+        type: {
+          __caption__: ''
+        },
+        name: {
+          __caption__: ''
         }
       }
     },
@@ -2459,9 +2495,6 @@ export default {
       }
     },
     ListFormView: {
-      referenceCount: {
-        __caption__: 'Reference count'
-      },
       stereotype: {
         __caption__: 'Stereotype'
       },
@@ -2479,6 +2512,9 @@ export default {
       },
       stage: {
         __caption__: ''
+      },
+      referenceCount: {
+        __caption__: 'Reference count'
       }
     },
     LoadNameView: {

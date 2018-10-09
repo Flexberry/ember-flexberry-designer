@@ -16,12 +16,44 @@ import FdUmlLink from '../objects/uml-primitives/fd-uml-link';
 */
 export default Ember.Component.extend({
   /**
+    Current paper
+
+    @property paper
+    @default undefined
+  */
+  paper: undefined,
+
+  /**
+    Created clean Link object to begin drag
+
+    @property draggedLink
+    @default undefined
+  */
+  draggedLink: undefined,
+
+  /**
+    View of dragged link
+
+    @property draggedLinkView
+    @default undefined
+  */
+  draggedLinkView: undefined,
+
+  /**
     All primitives of the UML diagram.
 
     @property primitives
     @type Ember.Array
   */
   primitives: undefined,
+
+  /**
+    True when link adding in process.
+
+    @property isLinkAdding
+    @type Boolean
+  */
+  isLinkAdding: false,
 
   /**
     All elements of the UML diagram.
@@ -83,13 +115,16 @@ export default Ember.Component.extend({
       width: width,
       model: graph,
     });
+
+    this.set('isLinkAdding', false);
+    this.set('paper', paper);
     paper.options.connectionStrategy = joint.connectionStrategies.pinAbsolute;
     paper.on('blank:pointerclick', this._blankPointerClick, this);
     paper.on('element:pointerclick', this._elementPointerClick, this);
     paper.on('blank:contextmenu', this._blankContextMenu, this);
 
-    graph.addCells(elements.map(e => e.JointJS()));
-    graph.addCells(links.map(l => l.JointJS()));
+    graph.addCells(elements.map(e => e.JointJS(graph)));
+    graph.addCells(links.map(l => l.JointJS(graph)));
   },
 
   /**
@@ -101,7 +136,7 @@ export default Ember.Component.extend({
     @param {Number} y coordinate y.
    */
   _blankPointerClick(e, x, y) {
-    let options = { e:e, x:x, y:y };
+    let options = { e: e, x: x, y: y };
     let newElement = this.get('blankPointerClick')(options);
     this._addNewElement(newElement);
   },
@@ -114,11 +149,58 @@ export default Ember.Component.extend({
     @param {jQuery.Event} e event.
     @param {Number} x coordinate x.
     @param {Number} y coordinate y.
-   */
+  */
   _elementPointerClick(element, e, x, y) {
-    let options = { element:element, e:e, x:x, y:y };
-    let newElement = this.get('elementPointerClick')(options);
-    this._addNewElement(newElement);
+    let options = { element: element, e: e, x: x, y: y };
+    if (Ember.isNone(this.get('draggedLink'))) {
+      let newElement = this.get('startDragLink')(options);
+      if (!Ember.isNone(newElement)) {
+        this.set('draggedLink', newElement);
+        let graph = this.get('graph');
+        let paper = this.get('paper');
+
+        let linkView = newElement
+          .set({ 'target': { x: x, y: y } })
+          .addTo(graph).findView(paper);
+
+        this.set('isLinkAdding', true);
+
+        graph.getLinks().map(link => {
+          link.findView(paper).$el.addClass('edit-disabled');
+        }, this);
+
+        Ember.$(paper.el).find('input,textarea').addClass('click-disabled');
+
+        Ember.$(document).on({
+          'mousemove.example': this._onDrag.bind(this)
+        }, {
+          paper: paper,
+          element: newElement
+        });
+
+        this.set('draggedLinkView', linkView);
+      }
+    } else {
+      if (this.get('endDragLink')(options)) {
+        this._clearLinksData();
+      }
+    }
+  },
+
+  /**
+    Handler event 'blank:contextmenu'.
+
+    @method actions._blankContextMenu
+    @param {jQuery.Event} e event.
+  */
+  _onDrag(evt) {
+    evt.data.paper.snapToGrid({
+      x: evt.clientX,
+      y: evt.clientY
+    });
+    evt.data.element.set({
+      'target': { x: evt.offsetX, y: evt.offsetY },
+    });
   },
 
   /**
@@ -128,10 +210,12 @@ export default Ember.Component.extend({
     @param {jQuery.Event} e event.
     @param {Number} x coordinate x.
     @param {Number} y coordinate y.
-   */
+  */
   _blankContextMenu(e, x, y) {
-    let options = { e:e, x:x, y:y };
-    this.get('blankContextMenu')(options);
+    let options = { e: e, x: x, y: y };
+    if (this.get('blankContextMenu')(options)) {
+      this._clearLinksData(true);
+    }
   },
 
   /**
@@ -145,5 +229,29 @@ export default Ember.Component.extend({
       let graph = this.get('graph');
       graph.addCell([newElement]);
     }
+  },
+
+  /**
+    Clear created link.
+
+    @method _clearLinksData
+    @param {Boolean} removeFromGraph If true, removes created link from graph.
+   */
+  _clearLinksData(removeFromGraph) {
+    Ember.$(document).off('mousemove.example');
+    let graph = this.get('graph');
+    let paper = this.get('paper');
+    graph.getLinks().map(link => {
+      link.findView(paper).$el.removeClass('edit-disabled');
+    }, this);
+
+    Ember.$(paper.el).find('input,textarea').removeClass('click-disabled');
+    if (removeFromGraph) {
+      this.get('draggedLink').remove();
+    }
+
+    this.set('draggedLink', undefined);
+    this.set('draggedLinkView', undefined);
+    this.set('isLinkAdding', false);
   }
 });

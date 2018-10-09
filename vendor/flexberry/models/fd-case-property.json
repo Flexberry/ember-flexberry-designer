@@ -2,6 +2,7 @@
   "name": "FdCaseProperty",
   "modelName": "fd-case-property",
   "className": "CaseProperty",
+  "nameSpace": "",
   "parentModelName": null,
   "parentClassName": null,
   "attrs": [

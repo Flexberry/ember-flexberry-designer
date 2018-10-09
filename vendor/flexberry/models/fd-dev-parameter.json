@@ -2,6 +2,7 @@
   "name": "FdDevParameter",
   "modelName": "fd-dev-parameter",
   "className": "DevParameter",
+  "nameSpace": "",
   "parentModelName": "fd-repository-data-object",
   "parentClassName": "RepositoryDataObject",
   "attrs": [

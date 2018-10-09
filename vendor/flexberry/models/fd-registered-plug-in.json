@@ -2,6 +2,7 @@
   "name": "FdRegisteredPlugIn",
   "modelName": "fd-registered-plug-in",
   "className": "RegisteredPlugIn",
+  "nameSpace": "",
   "parentModelName": null,
   "parentClassName": null,
   "attrs": [

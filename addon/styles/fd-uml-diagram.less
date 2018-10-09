@@ -13,6 +13,10 @@
     input, textarea {
         /* Enable interacting with inputs only. */
         pointer-events: auto;
+
+        &.click-disabled {
+            pointer-events: none;
+        }
     }
 }
 
@@ -66,9 +70,12 @@
         background-color: white;
         min-width: 0px;
     }
+    &.underline-text {
+      text-decoration: underline;
+    }
 }
 
-.ui.form .input-buffer{
+.ui.form .input-buffer {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -79,5 +86,12 @@
     white-space: pre;
     &.nary-buffer {
       margin-top: 13px;
+    }
+}
+
+.edit-disabled {
+    pointer-events: none;
+    .connection-wrap, .marker-arrowhead, .link-tools, .marker-vertices {
+        display: none;
     }
 }

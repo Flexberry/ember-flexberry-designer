@@ -12,11 +12,13 @@ import FdStageListFormForm from './forms/fd-stage-list-form';
 import FdSystemListFormForm from './forms/fd-system-list-form';
 import FdViewListFormForm from './forms/fd-view-list-form';
 import FdAggregationEditFormForm from './forms/fd-aggregation-edit-form';
+import NewPlatformFlexberryWebDesignerGenerationLForm from './forms/new-platform-flexberry-web-designer-generation-l';
+import NewPlatformFlexberryWebDesignerStorageTypeLForm from './forms/new-platform-flexberry-web-designer-storage-type-l';
+import FdApplicationEditFormForm from './forms/fd-application-edit-form';
 import FdAssociationEditFormForm from './forms/fd-association-edit-form';
+import FdBusinessServerEditFormForm from './forms/fd-business-server-edit-form';
 import FdClassEditFormForm from './forms/fd-class-edit-form';
 import FdConfigurationEditFormForm from './forms/fd-configuration-edit-form';
-import FdApplicationEditFormForm from './forms/fd-application-edit-form';
-import FdBusinessServerEditFormForm from './forms/fd-business-server-edit-form';
 import FdDiagramEditFormForm from './forms/fd-diagram-edit-form';
 import FdEditFormEditFormForm from './forms/fd-edit-form-edit-form';
 import FdEnumEditFormForm from './forms/fd-enum-edit-form';
@@ -36,9 +38,13 @@ import FdGenerationListForm from './forms/fd-generation-list-form';
 import FdDataTypesMapForm from './forms/fd-data-types-map';
 import FdConfirmUnsavedFormModal from './forms/fd-confirm-unsaved-form-modal';
 import FdEditForm from './forms/fd-edit-form';
+import NewPlatformFlexberryWebDesignerGenerationEForm from './forms/new-platform-flexberry-web-designer-generation-e';
+import NewPlatformFlexberryWebDesignerStorageTypeEForm from './forms/new-platform-flexberry-web-designer-storage-type-e';
 import FdAdModel from './models/fd-ad';
 import FdAggregationModel from './models/fd-aggregation';
+import FdApplicationUserModel from './models/fd-application-user';
 import FdAssociationModel from './models/fd-association';
+import FdAuthTypeModel from './models/fd-auth-type';
 import FdBaseAssociationModel from './models/fd-base-association';
 import FdCadModel from './models/fd-cad';
 import FdCasePropertyModel from './models/fd-case-property';
@@ -80,10 +86,11 @@ import FdDiagramLinkModel from './models/fd-diagram-link';
 import FdDiagramModel from './models/fd-diagram';
 import FdDpdModel from './models/fd-dpd';
 import FdFilelinkModel from './models/fd-filelink';
+import FdFollowingModel from './models/fd-following';
 import FdFormControlModel from './models/fd-form-control';
 import FdFormViewModel from './models/fd-form-view';
-import FdGenerationModel from './models/fd-generation';
 import FdGenerationStepLogModel from './models/fd-generation-step-log';
+import FdGenerationModel from './models/fd-generation';
 import FdInheritanceModel from './models/fd-inheritance';
 import FdObjectInSystemModel from './models/fd-object-in-system';
 import FdPluginOnRepObjectModel from './models/fd-plugin-on-rep-object';
@@ -101,6 +108,8 @@ import FdStdModel from './models/fd-std';
 import FdStorageTypeModel from './models/fd-storage-type';
 import FdSubsystemModel from './models/fd-subsystem';
 import FdUcdModel from './models/fd-ucd';
+import FdUserAuthProfileModel from './models/fd-user-auth-profile';
+import FdUserInStageModel from './models/fd-user-in-stage';
 import FdViewModel from './models/fd-view';
 import FdVisualControlModel from './models/fd-visual-control';
 import FdVisualControlComponent from './components/fd-visual-control';
@@ -114,7 +123,9 @@ Ember.$.extend(true, translations, {
   models: {
     'fd-ad': FdAdModel,
     'fd-aggregation': FdAggregationModel,
+    'fd-application-user': FdApplicationUserModel,
     'fd-association': FdAssociationModel,
+    'fd-auth-type': FdAuthTypeModel,
     'fd-base-association': FdBaseAssociationModel,
     'fd-cad': FdCadModel,
     'fd-case-property': FdCasePropertyModel,
@@ -156,10 +167,11 @@ Ember.$.extend(true, translations, {
     'fd-diagram': FdDiagramModel,
     'fd-dpd': FdDpdModel,
     'fd-filelink': FdFilelinkModel,
+    'fd-following': FdFollowingModel,
     'fd-form-control': FdFormControlModel,
     'fd-form-view': FdFormViewModel,
-    'fd-generation': FdGenerationModel,
     'fd-generation-step-log': FdGenerationStepLogModel,
+    'fd-generation': FdGenerationModel,
     'fd-inheritance': FdInheritanceModel,
     'fd-object-in-system': FdObjectInSystemModel,
     'fd-plugin-on-rep-object': FdPluginOnRepObjectModel,
@@ -177,16 +189,126 @@ Ember.$.extend(true, translations, {
     'fd-storage-type': FdStorageTypeModel,
     'fd-subsystem': FdSubsystemModel,
     'fd-ucd': FdUcdModel,
+    'fd-user-auth-profile': FdUserAuthProfileModel,
+    'fd-user-in-stage': FdUserInStageModel,
     'fd-view': FdViewModel,
     'fd-visual-control': FdVisualControlModel,
   },
 
+  'application-name': '',
+
   forms: {
+    loading: {
+      'spinner-caption': 'Данные загружаются, пожалуйста подождите...'
+    },
+    index: {
+      greeting: 'Добро пожаловать на тестовый стенд ember-flexberry!'
+    },
+
+    application: {
+      header: {
+        menu: {
+          'sitemap-button': {
+            caption: '',
+            title: 'Меню'
+          },
+          'user-settings-service-checkbox': {
+            caption: 'Использовать сервис сохранения пользовательских настроек'
+          },
+          'show-menu': {
+            caption: 'Показать меню'
+          },
+          'hide-menu': {
+            caption: 'Скрыть меню'
+          },
+          'language-dropdown': {
+            caption: 'Язык приложения',
+            placeholder: 'Выберите язык'
+          }
+        },
+        login: {
+          caption: 'Вход'
+        },
+        logout: {
+          caption: 'Выход'
+        }
+      },
+
+      footer: {
+        'application-name': '',
+        'application-version': {
+          caption: 'Версия аддона {{version}}',
+          title: 'Это версия аддона ember-flexberry, которая сейчас используется в этом тестовом приложении ' +
+          '(версия npm-пакета + хэш коммита). ' +
+          'Кликните, чтобы перейти на GitHub.'
+        }
+      },
+
+      sitemap: {
+        'application-name': {
+          caption: '',
+          title: ''
+        },
+        'application-version': {
+          caption: 'Версия аддона {{version}}',
+          title: 'Это версия аддона ember-flexberry, которая сейчас используется в этом тестовом приложении ' +
+          '(версия npm-пакета + хэш коммита). ' +
+          'Кликните, чтобы перейти на GitHub.'
+        },
+        index: {
+          caption: 'Главная',
+          title: ''
+        },
+        root: {
+          caption: 'Root',
+          title: 'Root',
+          'fd-configuration-list-form': {
+            caption: 'Configurations',
+            title: ''
+          },
+          'fd-stage-list-form': {
+            caption: 'Stages',
+            title: ''
+          },
+          'fd-system-list-form': {
+            caption: 'Systems',
+            title: ''
+          },
+          'fd-diagram-list-form': {
+            caption: 'Diagrams',
+            title: ''
+          },
+          'fd-class-list-form': {
+            caption: 'Classes',
+            title: ''
+          },
+          'fd-association-list-form': {
+            caption: 'Associations',
+            title: ''
+          },
+          'fd-inheritance-list-form': {
+            caption: 'Inheritance',
+            title: ''
+          },
+          'fd-view-list-form': {
+            caption: 'Views',
+            title: ''
+          }
+        },
+      }
+    },
+
+    'edit-form': {
+      'save-success-message-caption': 'Сохранение завершилось успешно',
+      'save-success-message': 'Объект сохранен',
+      'save-error-message-caption': 'Ошибка сохранения',
+      'delete-success-message-caption': 'Удаление завершилось успешно',
+      'delete-success-message': 'Объект удален',
+      'delete-error-message-caption': 'Ошибка удаления'
+    },
     'fd-appstruct-form': FdAppstructListFormForm,
-    'fd-application-edit-form': FdApplicationEditFormForm,
     'fd-aggregation-list-form': FdAggregationListFormForm,
     'fd-association-list-form': FdAssociationListFormForm,
-    'fd-business-server-edit-form': FdBusinessServerEditFormForm,
     'fd-class-list-form': FdClassListFormForm,
     'fd-configuration-list-form': FdConfigurationListFormForm,
     'fd-diagram-list-form': FdDiagramListFormForm,
@@ -196,7 +318,11 @@ Ember.$.extend(true, translations, {
     'fd-system-list-form': FdSystemListFormForm,
     'fd-view-list-form': FdViewListFormForm,
     'fd-aggregation-edit-form': FdAggregationEditFormForm,
+    'new-platform-flexberry-web-designer-generation-l': NewPlatformFlexberryWebDesignerGenerationLForm,
+    'new-platform-flexberry-web-designer-storage-type-l': NewPlatformFlexberryWebDesignerStorageTypeLForm,
+    'fd-application-edit-form': FdApplicationEditFormForm,
     'fd-association-edit-form': FdAssociationEditFormForm,
+    'fd-business-server-edit-form': FdBusinessServerEditFormForm,
     'fd-class-edit-form': FdClassEditFormForm,
     'fd-configuration-edit-form': FdConfigurationEditFormForm,
     'fd-diagram-edit-form': FdDiagramEditFormForm,
@@ -218,6 +344,8 @@ Ember.$.extend(true, translations, {
     'fd-data-types-map': FdDataTypesMapForm,
     'fd-confirm-unsaved-form-modal': FdConfirmUnsavedFormModal,
     'fd-edit-form': FdEditForm,
+    'new-platform-flexberry-web-designer-generation-e': NewPlatformFlexberryWebDesignerGenerationEForm,
+    'new-platform-flexberry-web-designer-storage-type-e': NewPlatformFlexberryWebDesignerStorageTypeEForm,
   },
 
   components: {

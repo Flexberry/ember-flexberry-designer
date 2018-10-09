@@ -2,6 +2,7 @@
   "name": "FdCod",
   "modelName": "fd-cod",
   "className": "COD",
+  "nameSpace": "",
   "parentModelName": "fd-diagram",
   "parentClassName": "Diagram",
   "attrs": [

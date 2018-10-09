@@ -8,25 +8,23 @@ moduleForModel('fd-dev-class', 'Unit | Serializer | fd-dev-class', {
     'transform:decimal',
     'transform:guid',
 
-    /* merged manually start */
     'transform:containers-tree',
     'transform:fd-propertylookupstr',
-    /* merged manually end */
-    'transform:fd-generation-state',
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-access-type',
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode',
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events',
+    'transform:new-platform-flexberry-web-designer-access-mode',
+    'transform:new-platform-flexberry-web-designer-generation-state',
     'transform:s-t-o-r-m-c-a-s-e-repository-access-modifier',
     'transform:s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier',
 
     'transform:new-platform-flexberry-web-designer-business-server-class',
-    /* merged manually start */
-    'service:i18n',
-    /* merged manually end */
 
     'model:fd-ad',
     'model:fd-aggregation',
+    'model:fd-application-user',
     'model:fd-association',
+    'model:fd-auth-type',
     'model:fd-base-association',
     'model:fd-cad',
     'model:fd-case-property',
@@ -68,6 +66,7 @@ moduleForModel('fd-dev-class', 'Unit | Serializer | fd-dev-class', {
     'model:fd-diagram',
     'model:fd-dpd',
     'model:fd-filelink',
+    'model:fd-following',
     'model:fd-form-control',
     'model:fd-form-view',
     'model:fd-generation-step-log',
@@ -86,9 +85,13 @@ moduleForModel('fd-dev-class', 'Unit | Serializer | fd-dev-class', {
     'model:fd-sd',
     'model:fd-stage',
     'model:fd-std',
+    'model:fd-storage-type',
     'model:fd-subsystem',
     'model:fd-ucd',
-    'model:fd-view'
+    'model:fd-user-auth-profile',
+    'model:fd-user-in-stage',
+    'model:fd-view',
+    'model:i-c-s-soft-s-t-o-r-m-n-e-t-security-agent'
   ]
 });
 

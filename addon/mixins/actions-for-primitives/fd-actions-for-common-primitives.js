@@ -1,47 +1,14 @@
 import Ember from 'ember';
-import { Dependency } from '../../objects/uml-primitives/fd-uml-dependency';
 import { Note } from '../../objects/uml-primitives/fd-uml-note';
 import { NoteConnector } from '../../objects/uml-primitives/fd-uml-note-connector';
 /**
   Actions for creating joint js elements on diagrams.
 
-  @class FdAcrionsForCommonPrimitivesMixin
+  @class FdActionsForCommonPrimitivesMixin
   @extends <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
 export default Ember.Mixin.create({
   actions: {
-    /**
-      Handler for click on pointerClick button.
-
-      @method actions.pointerClick
-     */
-    pointerClick() {
-      this.clearData();
-    },
-
-    /**
-      Handler for click on addDependency button.
-
-      @method actions.addDependency
-      @param {jQuery.Event} e event.
-     */
-    addDependency(e) {
-      this.createLinkData((function(linkProperties) {
-        let newDependencyObject = new Dependency({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points
-        });
-
-        return newDependencyObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass', 'flexberry.uml.Instance',
-       'flexberry.uml.ActiveObject', 'flexberry.uml.PropertyObject', 'flexberry.uml.MultiObject', 'flexberry.uml.Package']));
-    },
-
     /**
       Handler for click on addNote button.
 
@@ -75,7 +42,7 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points
+          vertices: linkProperties.points || Ember.A()
         });
 
         return newNoteConnectorObject;

@@ -1,0 +1,39 @@
+﻿{
+  "name": "FdUserInStage",
+  "modelName": "fd-user-in-stage",
+  "className": "UserInStage",
+  "nameSpace": "",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [
+    {
+      "name": "access",
+      "type": "new-platform-flexberry-web-designer-access-mode",
+      "flexberryType": "AccessMode",
+      "notNull": false,
+      "defaultValue": "Read",
+      "stored": true
+    }
+  ],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "applicationUser",
+      "relatedTo": "fd-application-user",
+      "inverse": null
+    },
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "stage",
+      "relatedTo": "fd-dev-stage",
+      "inverse": "users"
+    }
+  ],
+  "hasMany": [],
+  "projections": [],
+  "stored": true,
+  "offline": true,
+  "external": false
+}

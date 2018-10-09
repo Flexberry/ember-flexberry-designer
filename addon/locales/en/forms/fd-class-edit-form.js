@@ -1,6 +1,5 @@
 export default {
   caption: 'Edit class metadata',
-  'class': 'Class',
   'caption-caption': 'Caption',
   'name-caption': 'Name',
   'publishName-caption': 'Alias',
@@ -9,10 +8,13 @@ export default {
   'packet-caption': 'Packet',
   'namespacePostfix-caption': 'Namespace postfix',
   'businessServerEvents-caption': 'Business server events',
+  'nameStr-caption': 'nameStr',
   'businessServerClass-caption': 'Business server class',
+  'stage-caption': 'stage',
   'attributes-caption': 'Attributes',
   'views-caption': 'Views',
   'classStorageTypes-caption': 'Storage types',
+  class: 'Class',
   'toggler-caption': 'Additional properties',
   'go-to-view': 'View form'
 };

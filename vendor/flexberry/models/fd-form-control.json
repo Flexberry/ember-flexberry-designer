@@ -2,6 +2,7 @@
   "name": "FdFormControl",
   "modelName": "fd-form-control",
   "className": "FormControl",
+  "nameSpace": "",
   "parentModelName": null,
   "parentClassName": null,
   "attrs": [
