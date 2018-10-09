@@ -39387,6 +39387,12 @@ table.fd-listform tr:last-child > td.fd-selected {
   /* Enable interacting with inputs only. */
   pointer-events: auto;
 }
+.ui.form .uml-class-inputs input.click-disabled,
+.ui.form .uml-link-inputs input.click-disabled,
+.ui.form .uml-class-inputs textarea.click-disabled,
+.ui.form .uml-link-inputs textarea.click-disabled {
+  pointer-events: none;
+}
 .ui.form .uml-class-inputs input[type="text"],
 .ui.form .uml-link-inputs input[type="text"],
 .ui.form .uml-class-inputs textarea {
@@ -39449,6 +39455,15 @@ table.fd-listform tr:last-child > td.fd-selected {
   font-family: Arial;
   font-weight: bold;
   white-space: pre;
+}
+.edit-disabled {
+  pointer-events: none;
+}
+.edit-disabled .connection-wrap,
+.edit-disabled .marker-arrowhead,
+.edit-disabled .link-tools,
+.edit-disabled .marker-vertices {
+  display: none;
 }
 /*******************************
          Site Settings
