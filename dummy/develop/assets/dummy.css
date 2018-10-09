@@ -39409,6 +39409,37 @@ table.fd-listform tr:last-child > td.fd-selected {
 .ui.form .uml-link-inputs input[type="text"].class-name-input,
 .ui.form .uml-class-inputs textarea.class-name-input {
   font-weight: bold;
+  text-align: center;
+}
+.ui.form .uml-class-inputs input[type="text"].class-name-input.active-object-input,
+.ui.form .uml-link-inputs input[type="text"].class-name-input.active-object-input,
+.ui.form .uml-class-inputs textarea.class-name-input.active-object-input {
+  text-decoration: underline;
+}
+.ui.form .uml-class-inputs input[type="text"].class-name-input.instance-input,
+.ui.form .uml-link-inputs input[type="text"].class-name-input.instance-input,
+.ui.form .uml-class-inputs textarea.class-name-input.instance-input {
+  font-weight: normal;
+  text-decoration: underline;
+}
+.ui.form .uml-class-inputs input[type="text"].class-name-input.package-header-input,
+.ui.form .uml-link-inputs input[type="text"].class-name-input.package-header-input,
+.ui.form .uml-class-inputs textarea.class-name-input.package-header-input {
+  font-weight: normal;
+  text-decoration: underline;
+  text-align: left;
+}
+.ui.form .uml-class-inputs input[type="text"].class-name-input.nary-assoc-name,
+.ui.form .uml-link-inputs input[type="text"].class-name-input.nary-assoc-name,
+.ui.form .uml-class-inputs textarea.class-name-input.nary-assoc-name {
+  font-weight: normal;
+  text-decoration: underline;
+  margin-top: 13px;
+}
+.ui.form .uml-class-inputs input[type="text"].params-input,
+.ui.form .uml-link-inputs input[type="text"].params-input,
+.ui.form .uml-class-inputs textarea.params-input {
+  resize: none;
 }
 .ui.form .uml-class-inputs input[type="text"].attributes-input,
 .ui.form .uml-link-inputs input[type="text"].attributes-input,
@@ -39455,6 +39486,9 @@ table.fd-listform tr:last-child > td.fd-selected {
   font-family: Arial;
   font-weight: bold;
   white-space: pre;
+}
+.ui.form .input-buffer.nary-buffer {
+  margin-top: 13px;
 }
 .edit-disabled {
   pointer-events: none;
