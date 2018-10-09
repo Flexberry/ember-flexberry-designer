@@ -44,7 +44,7 @@ export default FdUmlElement.extend({
 */
 export let Component = BaseObject.define('flexberry.uml.Component', {
   attrs: {
-    'text': { 'font-weight': 'bold' },
+    'text': { 'font-weight': 'bold', 'visibility': 'visible' },
     '.firstRect': { 'y-alignment': 'middle', 'ref-y': 0.5, 'fill': 'white', 'stroke': 'black', 'stroke-width': 1 },
     '.secondRect': { 'y-alignment': 'middle', 'ref-y': 0.5, 'fill': 'white', 'stroke': 'black', 'stroke-width': 1 }
   },
@@ -62,7 +62,7 @@ export let Component = BaseObject.define('flexberry.uml.Component', {
   ].join(''),
 
   updateRectangles: function() {
-    BaseObject.prototype.updateRectangles.apply(this, arguments);
+    this.updateRectanglesOld();
 
     let attrs = this.get('attrs');
     attrs['.firstRect'].transform = 'translate(-5, -8)';

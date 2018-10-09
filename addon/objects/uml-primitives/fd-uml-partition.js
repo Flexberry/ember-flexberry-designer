@@ -45,6 +45,9 @@ export default FdUmlElement.extend({
 */
 export let Partition = BaseObject.define('flexberry.uml.Partition', {
   attrs: {
+    text: {
+      'visibility': 'visible'
+    },
     '.flexberry-uml-header-text':
     {
       'font-weight': 'bold',
@@ -75,4 +78,8 @@ export let Partition = BaseObject.define('flexberry.uml.Partition', {
       this.toBack({ deep: true });
     });
   },
+
+  updateRectangles: function () {
+    this.updateRectanglesOld();
+  }
 });

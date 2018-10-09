@@ -34,6 +34,10 @@ export default FdUmlObject.extend({
 */
 export let StdClass = BaseObject.define('flexberry.uml.StdClass', {
   attrs: {
-    'text': { 'font-weight': 'bold' }
+    'text': { 'font-weight': 'bold', 'visibility': 'visible' }
+  },
+}, {
+  updateRectangles: function () {
+    this.updateRectanglesOld();
   }
 });

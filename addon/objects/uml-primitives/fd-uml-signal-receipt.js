@@ -60,7 +60,8 @@ export let SignalReceiptRight = BaseObject.define('flexberry.uml.SignalReceiptRi
   attrs: {
     text: {
       'ref': 'path',
-      'font-weight': 'bold'
+      'font-weight': 'bold',
+      'visibility': 'visible'
     },
     path: {
       'd': 'M 0 0 L 100 0 80 20 100 40 0 40 Z',
@@ -74,7 +75,11 @@ export let SignalReceiptRight = BaseObject.define('flexberry.uml.SignalReceiptRi
       '</g>',
       '<text class="flexberry-uml-header-text"/>',
       '</g>'
-    ].join('')
+    ].join(''),
+
+    updateRectangles: function () {
+      this.updateRectanglesOld();
+    }
   });
 
 /**

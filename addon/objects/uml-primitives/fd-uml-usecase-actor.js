@@ -53,6 +53,10 @@ export let UsecaseActor = BaseObject.define('flexberry.uml.UsecaseActor', {
       height: 50
     },
 
+    text: {
+      'visibility': 'visible'
+    },
+
     '.flexberry-uml-header-text': {
       'ref': '',
       'textAnchor': 'middle',
@@ -71,5 +75,9 @@ export let UsecaseActor = BaseObject.define('flexberry.uml.UsecaseActor', {
     '<image/>',
     '<text class="flexberry-uml-header-text"/>',
     '</g>'
-  ].join('')
+  ].join(''),
+
+  updateRectangles: function () {
+    this.updateRectanglesOld();
+  }
 });

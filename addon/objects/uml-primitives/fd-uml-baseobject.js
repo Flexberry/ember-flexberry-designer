@@ -45,7 +45,7 @@ export default FdUmlElement.extend({
 */
 export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObject', {
   attrs: {
-    // rect: { 'width': 100 },
+    text: { 'visibility': 'hidden' },
 
     '.flexberry-uml-header-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff' },
 
@@ -74,6 +74,7 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
     '<g class="scalable">',
     '<rect class="flexberry-uml-header-rect"/>',
     '</g>',
+    '<text class="flexberry-uml-header-text"/>',
     '</g>'
   ].join(''),
 
@@ -98,6 +99,27 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
       { type: 'header', text: this.getObjName(), element: this },
       { type: 'body', text: this.get('attributes'), element: this },
     ];
+  },
+
+  // Delete this after inserting inputs in all objects.
+  updateRectanglesOld: function () {
+    let attrs = this.get('attrs');
+    let objName = this.getObjName();
+    let lines = Array.isArray(objName) ? objName : [objName];
+    let maxStringChars = 0;
+    lines.forEach(function (line) {
+      if (line.length > maxStringChars) {
+        maxStringChars = line.length;
+      }
+    });
+
+    let hightStep = attrs['.flexberry-uml-header-text'].fontSize;
+    let rectHeight = lines.length * hightStep + this.get('heightPadding');
+    let widthStep = attrs['.flexberry-uml-header-text'].fontSize / 1.5;
+    let rectWidth = maxStringChars * widthStep + 10;
+    attrs['.flexberry-uml-header-text'].text = lines.join('\n');
+    attrs['.flexberry-uml-header-rect'].height = rectHeight;
+    attrs['.flexberry-uml-header-rect'].width = rectWidth;
   },
 
   updateRectangles: function () {

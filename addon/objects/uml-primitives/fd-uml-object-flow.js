@@ -34,6 +34,10 @@ export default FdUmlBaseLink.extend({
   @constructor
 */
 export let ObjectFlow = Dependency.define('flexberry.uml.ObjectFlow', {
+  attrs: {
+    text: { 'visibility': 'visible' },
+    rect: { 'visibility': 'visible' },
+  }
 }, {
   initialize: function () {
     this.updateLabel();
