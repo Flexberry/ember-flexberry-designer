@@ -176,6 +176,8 @@ export default Ember.Mixin.create({
           startMultiplicity: '1',
           endMultiplicity: '*'
         });
+
+        return newComposition;
       }.bind(this));
     },
 
@@ -210,6 +212,8 @@ export default Ember.Mixin.create({
           parent: parentClass,
           stage: stage,
         });
+
+        return newInheritance;
       }.bind(this));
     },
 
