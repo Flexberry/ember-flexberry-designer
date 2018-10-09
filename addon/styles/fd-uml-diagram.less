@@ -13,6 +13,10 @@
     input, textarea {
         /* Enable interacting with inputs only. */
         pointer-events: auto;
+
+        &.click-disabled {
+            pointer-events: none;
+        }
     }
 }
 
@@ -49,7 +53,7 @@
     }
 }
 
-.ui.form .input-buffer{
+.ui.form .input-buffer {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -58,4 +62,11 @@
     font-family: Arial;
     font-weight: bold;
     white-space: pre;
+}
+
+.edit-disabled {
+    pointer-events: none;
+    .connection-wrap, .marker-arrowhead, .link-tools, .marker-vertices {
+        display: none;
+    }
 }

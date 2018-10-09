@@ -58,13 +58,21 @@ export default {
       'add-forward-flat-message': 'Forward flat message',
       'add-backward-async-message': 'Backward async message',
       'add-forward-async-message': 'Forward async message',
+      'add-decision': 'Decision',
+      'add-active-state': 'Active state',
+      'add-object-in-state': 'Object in state',
+      'add-signal-receipt': 'Signal receipt',
+      'add-signal-sending': 'Signal sending',
+      'add-object-flow': 'Object flow',
+      'add-partition': 'Partition',
+      'add-swimlane-separator': 'Swimlane separator',
       'add-terminator': 'Terminator',
       'add-procedure-call': 'Procedure call',
       'add-flat-message': 'Flat message',
       'add-async-message': 'Async message',
       'add-return-message': 'Return message',
       'add-in-scope': 'In scope',
-      'add-time-constraint': 'Time constraint',
+      'add-time-constraint': 'Time constraint'
     }
   }
 };
