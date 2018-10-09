@@ -44,7 +44,7 @@ export default FdUmlElement.extend({
 */
 export let UmlNode = BaseObject.define('flexberry.uml.UmlNode', {
   attrs: {
-    'text': { 'font-weight': 'bold' },
+    'text': { 'font-weight': 'bold', 'visibility': 'visible' },
     '.back-path': { 'd': 'M 0 5 L 5 0 100 0 100 45 95 50 M 95 5 L 100 0', 'fill': 'white', 'stroke': 'black', 'stroke-width': 1 }
   },
   heightPadding: 20
@@ -59,7 +59,7 @@ export let UmlNode = BaseObject.define('flexberry.uml.UmlNode', {
   ].join(''),
 
   updateRectangles: function() {
-    BaseObject.prototype.updateRectangles.apply(this, arguments);
+    this.updateRectanglesOld();
 
     let attrs = this.get('attrs');
     let offset = 5;

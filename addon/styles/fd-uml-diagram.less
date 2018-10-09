@@ -33,6 +33,28 @@
     margin: 0 auto;
     &.class-name-input {
         font-weight: bold;
+        text-align: center;
+        &.active-object-input {
+          text-decoration: underline;
+        }
+        &.instance-input {
+          font-weight: normal;
+          text-decoration: underline;
+        }
+        &.package-header-input {
+          font-weight: normal;
+          text-decoration: underline;
+          text-align: left;
+        }
+        &.nary-assoc-name {
+          font-weight: normal;
+          text-decoration: underline;
+          margin-top: 13px;
+        }
+
+    }
+    &.params-input {
+      resize: none;
     }
     &.attributes-input, &.methods-input {
         resize: none;
@@ -62,6 +84,9 @@
     font-family: Arial;
     font-weight: bold;
     white-space: pre;
+    &.nary-buffer {
+      margin-top: 13px;
+    }
 }
 
 .edit-disabled {

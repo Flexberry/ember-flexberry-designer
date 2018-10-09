@@ -45,6 +45,13 @@ export default FdUmlElement.extend({
 */
 export let DeploymentActiveObject = ActiveObject.define('flexberry.uml.DeploymentActiveObject', {
   attrs: {
+    text: {
+      'visibility': 'visible',
+    },
     '.flexberry-uml-header-rect': { 'stroke-width': 2 },
+  }
+}, {
+  updateRectangles: function() {
+    this.updateRectanglesOld();
   }
 });

@@ -3,6 +3,7 @@
 */
 
 import Ember from 'ember';
+import joint from 'npm:jointjs';
 
 import { BaseClass } from './fd-uml-class';
 import FdUmlElement from './fd-uml-element';
@@ -72,7 +73,93 @@ export let Package = BaseClass.define('flexberry.uml.Package', {
     '<g class="scalable">',
     '<g transform="scale(0.8,1)"><rect class="flexberry-uml-header-rect" /></g><rect class="flexberry-uml-body-rect"/>',
     '</g>',
-    '<text class="flexberry-uml-header-text"/><text class="flexberry-uml-body-text"/>',
     '</g>'
   ].join(''),
+
+  updateRectangles: function () {
+    let rects = this.getRectangles();
+
+    let offsetY = 0;
+    let newHeight = 0;
+    let newWidth = 0;
+    rects.forEach(function (rect) {
+      if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
+        let $buffer = rect.element.inputElements.find('.input-buffer');
+        let rectHeight = 0;
+        let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
+        inputs.each(function () {
+          let $input = Ember.$(this);
+          $buffer.css('font-weight', $input.css('font-weight'));
+          $buffer.text($input.val());
+          $input.width($buffer.width() + 1);
+          if ($input.width() > newWidth) {
+            newWidth = $input.width();
+          }
+
+          rectHeight += $input.height();
+        });
+
+        rectHeight += rect.element.get('heightBottomPadding') || 0;
+        newHeight += rectHeight;
+        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
+
+        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/transform', 'translate(0,' + offsetY + ')');
+
+        offsetY += rectHeight;
+      }
+    }, this);
+
+    newWidth += (this.get('widthPadding') || 0) * 2;
+    rects.forEach(function (rect) {
+      rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
+    });
+
+    this.resize(newWidth, newHeight);
+  }
+});
+
+joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<input type="text" class="package-header-input header-input" value="" />',
+    '<textarea class="attributes-input body-input" value="" rows="1" wrap="off"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
+
+  getRectangles() {
+    return [
+      { type: 'header', text: this.getObjName(), element: this },
+      { type: 'body', text: this.get('attributes'), element: this },
+    ];
+  },
+
+  initialize: function () {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.initialize.apply(this, arguments);
+    this.$box.find('.package-header-input').on('change', function (evt) {
+      this.model.set('name', Ember.$(evt.target).val());
+    }.bind(this));
+    this.$box.find('.package-header-input').on('input', function () {
+      this.model.updateRectangles();
+    }.bind(this));
+
+    this.$box.find('.attributes-input').on('input', function (evt) {
+      let $textarea = Ember.$(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      this.model.updateRectangles();
+    }.bind(this));
+
+    this.$box.find('.attributes-input').on('change', function (evt) {
+      let $textarea = Ember.$(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      this.model.set('attributes', rows);
+    }.bind(this));
+
+    let upperInput = this.$box.find('.package-header-input');
+    upperInput.val(this.model.get('name'));
+  }
 });

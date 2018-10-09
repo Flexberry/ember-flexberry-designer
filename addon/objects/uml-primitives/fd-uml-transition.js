@@ -37,6 +37,10 @@ export default FdUmlBaseLink.extend({
   @constructor
 */
 export let Transition = Connection.define('flexberry.uml.Transition', {
+  attrs: {
+    text: { 'visibility': 'visible' },
+    rect: { 'visibility': 'visible' },
+  }
 }, {
   initialize: function () {
     this.updateLabel();

@@ -57,6 +57,7 @@ export let ObjectInState = BaseObject.define('flexberry.uml.ObjectInState', {
   attrs: {
     'text tspan': { 'text-decoration': 'underline' },
     'text tspan[x]': { 'font-weight': 'bold', 'text-decoration': 'none' },
+    'text': { 'visibility': 'visible' },
   },
   state: [],
 
@@ -64,5 +65,9 @@ export let ObjectInState = BaseObject.define('flexberry.uml.ObjectInState', {
     getObjName: function () {
       let state = this.get('state').length > 0 ? '[' + this.get('state') + ']' : '';
       return [this.get('name'), state];
+    },
+
+    updateRectangles: function () {
+      this.updateRectanglesOld();
     }
   });

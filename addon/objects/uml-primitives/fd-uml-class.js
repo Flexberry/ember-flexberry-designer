@@ -98,7 +98,7 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
   methods: [],
 
   // Inputs padding by X.
-  widthPadding: 7,
+  widthPadding: 15,
 
   // Inputs bottom padding by Y.
   heightBottomPadding: 4,

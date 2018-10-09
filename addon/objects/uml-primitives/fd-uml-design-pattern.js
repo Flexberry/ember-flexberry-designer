@@ -44,6 +44,14 @@ export default FdUmlElement.extend({
 */
 export let DesignPattern = BaseObject.define('flexberry.uml.DesignPattern', {
   attrs: {
+    text: {
+      'visibility': 'visible'
+    },
+
     '.flexberry-uml-header-rect': { 'rx': '120', 'ry': '120', 'stroke': 'black', 'strokeDasharray': '10,2', 'strokeWidth': '1', 'fill': '#ffffff' }
+  }
+}, {
+  updateRectangles: function () {
+    this.updateRectanglesOld();
   }
 });

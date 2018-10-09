@@ -3,6 +3,7 @@
 */
 
 import Ember from 'ember';
+import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-baseobject';
@@ -70,7 +71,6 @@ export let Note = BaseObject.define('flexberry.uml.Note', {
     '<g class="scalable">',
     '<rect class="flexberry-uml-header-rect"/>',
     '</g>',
-    '<text class="flexberry-uml-header-text"/>',
     '<rect class="corner-rect" width="10" height="10"/>',
     '<path class="corner"/>',
     '</g>'
@@ -78,10 +78,11 @@ export let Note = BaseObject.define('flexberry.uml.Note', {
 
   updateRectangles() {
     BaseObject.prototype.updateRectangles.apply(this, arguments);
+    let transX = this.size().width - 8;
 
-    let attrs = this.get('attrs');
-    let transX = this.size().width - 10;
-    attrs['.corner-rect'].transform = 'translate(' + transX + ', 0)';
-    attrs['.corner'].transform = 'translate(' + transX + ', 0)';
+    this.attr('.corner-rect/transform', `translate(${transX}, 0)`);
+    this.attr('.corner/transform', `translate(${transX}, 0)`);
   },
 });
+
+joint.shapes.flexberry.uml.NoteView = joint.shapes.flexberry.uml.BaseObjectView.extend({});

@@ -5,6 +5,7 @@
 import Ember from 'ember';
 
 import { BaseClass } from './fd-uml-class';
+import joint from 'npm:jointjs';
 import FdUmlElement from './fd-uml-element';
 
 /**
@@ -71,7 +72,8 @@ export let PropertyObject = BaseClass.define('flexberry.uml.PropertyObject', {
       '<g class="scalable">',
       '<rect class="flexberry-uml-header-rect"/><rect class="flexberry-uml-body-rect"/>',
       '</g>',
-      '<text class="flexberry-uml-header-text"/><text class="flexberry-uml-body-text"/>',
       '</g>'
     ].join('')
   });
+
+joint.shapes.flexberry.uml.PropertyObjectView = joint.shapes.flexberry.uml.BaseObjectView.extend();
