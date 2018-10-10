@@ -93,8 +93,9 @@ export default Ember.Route.extend(FdFormCheckTransitionMixin, {
 
       Ember.$('.full.height').on('click.fd-view-editform-constructor', (e) => {
         let table = Ember.$('.ui.table.fd-view-properties-table')[0];
+        let buttons = Ember.$('.text-center > .ui.buttons')[0];
         let path = Ember.get(e, 'originalEvent.path') || [];
-        if (path.indexOf(table) === -1) {
+        if (path.indexOf(table) === -1 && path.indexOf(buttons) === -1) {
           this.get('controller').send('onAttributesClick');
         }
       });

@@ -98,7 +98,7 @@ export default Ember.Mixin.create({
         newAssociationObject.setLabelText('endMultiplicity', '*');
 
         return newAssociationObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']), function(linkProperties) {
+      }).bind(this), e, Ember.A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass', 'flexberry.uml.ClassCollapsed']), function(linkProperties) {
         let store = this.get('store');
         let stage = this.get('currentProjectContext').getCurrentStageModel();
 
