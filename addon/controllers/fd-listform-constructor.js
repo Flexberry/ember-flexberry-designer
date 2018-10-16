@@ -407,17 +407,19 @@ FdFormUnsavedData, {
 
       dataobject.save().then(() => {
         formClass.save().then(() => {
-          updateClassOnDiagram.call(this, this.get('store'), formClass);
-          this.get('view').save().then(() => {
-            this.get('formClass.formViews.firstObject').save().then(() => {
-              this.set('class', undefined);
-              this.set('form', this.get('formClass.id'));
-              this.saveDataToOriginal();
-              if (close) {
-                this.send('close');
-              } else {
+          updateClassOnDiagram.call(this, this.get('store'), formClass).then(() => {
+            this.get('view').save().then(() => {
+              this.get('formClass.formViews.firstObject').save().then(() => {
+                this.set('class', undefined);
+                this.set('form', this.get('formClass.id'));
                 this.get('appState').reset();
-              }
+                if (close) {
+                  this.send('close');
+                }
+              }, (error) => {
+                this.get('appState').reset();
+                this.set('error', error);
+              });
             }, (error) => {
               this.get('appState').reset();
               this.set('error', error);
