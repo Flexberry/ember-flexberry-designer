@@ -28,6 +28,14 @@ import FdDataTypes from '../utils/fd-datatypes';
 export default Ember.Controller.extend(
 FdWorkPanelToggler,
 FdFormUnsavedData, {
+  /**
+    Service for managing the state of the application.
+
+    @property appState
+    @type AppStateService
+  */
+  appState: Ember.inject.service(),
+
   queryParams: ['classId'],
 
   /**
