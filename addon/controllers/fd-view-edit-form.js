@@ -355,7 +355,6 @@ FdFormUnsavedData, {
       view.save().then(() => {
         let routeName = this.get('routeName');
         if (close) {
-          this.saveDataToOriginal();
           this.send('close');
         } else if (routeName.indexOf('.new') > 0) {
           this.transitionToRoute(routeName.slice(0, -4), view.get('id'));
