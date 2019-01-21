@@ -1,3 +1,24 @@
+/*-------------------
+       Fonts
+--------------------*/
+
+@fontName          : 'Roboto';
+
+/*-------------------
+      Base Sizes
+--------------------*/
+
+/* This is the single variable that controls them all */
+@emSize   : 16px;
+
+/* The size of page text  */
+@fontSize : 16px;
+
+/*-------------------
+        Page
+--------------------*/
+@textColor           : rgba(0, 0, 0, 0.75);
+
 @headerHeight : 0px;
 @footerHeight : 40px;
 @headerHeightMobile : 50px;

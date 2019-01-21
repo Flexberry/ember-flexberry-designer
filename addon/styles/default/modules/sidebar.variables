@@ -1,1 +1,3 @@
 @width:300px;
+
+@horizontalBoxShadow: none;

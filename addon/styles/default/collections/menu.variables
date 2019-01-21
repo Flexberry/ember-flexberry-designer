@@ -1,0 +1,16 @@
+/* Menu */
+@border:none;
+
+/* Menu Item */
+@itemVerticalPadding: @relativeMini;
+@itemHorizontalPadding: @relativeLarge;
+
+/* Divider */
+@dividerSize: 0px ! important;
+
+/*--------------
+     Types
+---------------*/
+
+/* Vertical */
+@verticalBackground: @strongTransparentBlack;
