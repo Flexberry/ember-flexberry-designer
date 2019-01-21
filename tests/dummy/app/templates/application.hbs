@@ -3,7 +3,7 @@
   {{outlet "modal"}}
 {{else}}
 {{#ui-sidebar
-  class="inverted vertical main menu"
+  class="inverted vertical main menu visible uncover"
   ui_context=".ember-application > .ember-view"
   closable=false
   dimPage=false
@@ -13,39 +13,12 @@
   {{render "sitemap" sitemap}}
 {{/ui-sidebar}}
 {{outlet 'right-sidebar'}}
-<div class="bgw-fix">
-  <div class="background-logo">
-    <div class="ui top attached">
-      <div class="ui attached menu">
-        <div class="ui container flex-container">
-          <a {{action 'toggleSidebar'}}
-            class="launch icon item"
-            title={{t "forms.application.header.menu.sitemap-button.title"}}>
-            {{t "forms.application.header.menu.sitemap-button.caption"}}
-            <i class="sidebar icon text-menu-show"><span class="text_menu ">{{t "forms.application.header.menu.show-menu.caption"}}</span><span class="text_menu hidden text-menu-hide">{{t "forms.application.header.menu.hide-menu.caption"}}</span></i>
-            <i class="sidebar icon hidden text-menu-hide hidden-text"><span class="text_menu hidden-text">{{t "forms.application.header.menu.hide-menu.caption"}}</span></i>
-          </a>
-        </div>
-      </div>
-    </div>
-    <a class="item logo"
-      href="https://github.com/flexberry"
-      target="_blank"
-      title={{t "forms.application.sitemap.application-name.title"}}>
-      <img class="ui centered image" src="assets/images/flexberry-logo.png" />
-    </a>
-    <div class="page-header-caption"><a href="https://github.com/flexberry">{{t "application-name"}}</a></div>
-    <div class="page-header-userbar">
-      <span id="fio" class="hidden">ICS_HOME\login</span>
-      <a id="ExitButton" class="exit-btn" href="javascript:void(0)">{{t "forms.application.header.logout.caption"}}</a>
-    </div>
-  </div>
-</div>
+
 <div id="example" class="pusher">
   <div class="ui form {{appState.state}}">
     <div class="full height">
-      <div class="flexberry-content ui attached segment">
-        <div class="ui main container">
+      <div class="flexberry-content">
+         <div class="ui main container">
           <div class="stackable grid container">
             {{outlet}}
           </div>

@@ -1,0 +1,4 @@
+@headerHeight : 0px;
+@footerHeight : 40px;
+@headerHeightMobile : 50px;
+@footerHeightMobile : 40px;

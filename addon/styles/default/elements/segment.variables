@@ -1,0 +1,13 @@
+/*******************************
+            Segment
+*******************************/
+
+/* Custom components colors */
+@footerBackground: #eee;
+
+/*******************************
+            States
+*******************************/
+
+/* Loading Dimmer */
+@loaderDimmerColor: @primaryColor;

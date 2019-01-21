@@ -2,21 +2,28 @@
         Import Directives
 *******************************/
 
-@theme : @@element;
+/*------------------
+       Theme
+-------------------*/
+
+@theme: @@element;
 
 
 /*--------------------
    Site Variables
 ---------------------*/
 
-/* Default */
+/* Default site.variables */
 @import "@{themesFolder}/default/globals/site.variables";
 
 /* Packaged Theme */
 @import (optional) "@{themesFolder}/@{site}/globals/site.variables";
 
-/* Site Theme */
-@import (optional) "@{siteFolder}/globals/site.variables";
+/* Component's site.variables */
+@import (optional) "@{themesFolder}/@{theme}/globals/site.variables";
+
+/* Site theme site.variables */
+@import (optional) "@{addonFolder}/globals/site.variables";
 
 
 /*-------------------
@@ -27,10 +34,10 @@
 @import "@{themesFolder}/default/@{type}s/@{element}.variables";
 
 /* Packaged Theme */
-@import "@{themesFolder}/@{theme}/@{type}s/@{element}.variables";
+@import (optional) "@{themesFolder}/@{theme}/@{type}s/@{element}.variables";
 
 /* Site Theme */
-@import (optional) "@{siteFolder}/@{type}s/@{element}.variables";
+@import (optional) "@{addonFolder}/@{type}s/@{element}.variables";
 
 
 /*******************************
@@ -51,5 +58,5 @@
 
 .loadUIOverrides() {
   @import (optional) "@{themesFolder}/@{theme}/@{type}s/@{element}.overrides";
-  @import (optional) "@{siteFolder}/@{type}s/@{element}.overrides";
+  @import (optional) "@{addonFolder}/@{type}s/@{element}.overrides";
 }
