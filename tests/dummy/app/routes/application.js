@@ -59,7 +59,7 @@ export default Ember.Route.extend(ModalApplicationRouteMixin, {
         }
       });
     } else {
-      this.transitionTo('fd-configuration-list-form');
+      this.transitionTo('index');
     }
   }
 });
