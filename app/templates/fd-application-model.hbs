@@ -1,6 +1,16 @@
 <div  onclick={{action 'openRightPanel'}}>
   Оpen right panel
 </div>
-<div>
+
+<div class="baseSideModalWindow sheetID">
+  <div class="ui {{if loadingState "active"}} inverted dimmer">
+    <div class="ui text loader"></div>
+  </div>
+
+  <i class="close icon" onclick={{action 'close'}}></i>
+
+  <div class="content">
+      some content
+  </div>
 
 </div>

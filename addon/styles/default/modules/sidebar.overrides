@@ -9,3 +9,7 @@
 .ui.left.visible.sidebar {
   padding: @relativeMini 0;
 }
+
+.pushable > .pusher {
+  background: none;
+}
