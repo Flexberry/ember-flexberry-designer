@@ -1,16 +1,5 @@
 import Ember from 'ember';
+import fdSheetMixin from '../mixins/fd-sheet-mixin';
 
-export default Ember.Controller.extend({
-
-  actions:{
-    openRightPanel() {
-      Ember.$('.sheetID').addClass('visible');
-      Ember.$('.pushable').addClass('fade');
-    },
-
-    close(){
-      Ember.$('.sheetID').removeClass('visible');
-      Ember.$('.pushable').removeClass('fade');
-    }
-  }
+export default Ember.Controller.extend(fdSheetMixin, {
 });

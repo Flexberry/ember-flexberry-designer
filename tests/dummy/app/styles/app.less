@@ -1,30 +1,4 @@
 @import "src/semantic";
 @import 'addon/styles/addon';
 
-.pushable {
-  transition: background-color 1s;
-  &.fade {
-    background: rgba(0,0,0,.15);
-  }
-}
 
-.baseSideModalWindow {
-  margin: 0;
-  background: #fff;
-  width: calc(~'50% + 300px'); //+ sidebar width
-  position: absolute; // fixed
-  top: 0;
-  right: 0;
-  height: 100vh;
-  transition: transform 1s ease;
-  transform: translate3d(960px, 0, 0);
-  padding: 30px;
-
-  &.visible {
-    transform: translate3d(0, 0, 0);
-  }
-
-  &.open {
-
-  }
-}

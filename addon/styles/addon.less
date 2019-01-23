@@ -1,0 +1,32 @@
+@import 'src/themes/default/globals/site.variables';
+@import 'default/globals/site.variables';
+
+.pushable {
+  transition: background-color 1s;
+  &.fade {
+    background: @veryStrongTransparentBlack;
+  }
+}
+
+@fdSheetWdth: calc(~'50% + @{sitebarWdth}');
+
+.fd-sheet {
+  margin: 0;
+  background: @fdSheetBg;
+  width: @fdSheetWdth; //+ sidebar width
+  position: absolute; // fixed
+  top: 0;
+  right: 0;
+  height: 100vh;
+  transition: transform 1s ease;
+  transform: translate3d(@fdSheetWdth, 0, 0);
+  padding: 30px;
+
+  &.visible {
+    transform: translate3d(0, 0, 0);
+  }
+
+  &.expand {
+    width: 100%;
+  }
+}
