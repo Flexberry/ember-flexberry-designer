@@ -119,7 +119,7 @@ Router.map(function () {
   this.route('deployment-diagram-primitives-demo');
   this.route('statechart-diagram-primitives-demo');
   this.route('collaboration-diagram-primitives-demo');
-  
+
   // new route
   this.route('fd-application-model');
   this.route('fd-diagrams');

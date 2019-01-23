@@ -19,7 +19,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   sitemap: Ember.computed('i18n.locale', 'currentContext.context.configuration', 'currentContext.context.stage', function() {
     let i18n = this.get('i18n');
-    let context = this.get('currentContext.context');
     let singleStageMode = this.get('currentContext.singleStageMode');
 
     let sitemap = {
