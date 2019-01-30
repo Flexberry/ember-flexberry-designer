@@ -13,4 +13,4 @@
 ---------------*/
 
 /* Vertical */
-@verticalBackground: @strongTransparentBlack;
+@verticalBackground: @sidebarBg;

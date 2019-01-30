@@ -4,29 +4,89 @@
 .pushable {
   transition: background-color 1s;
   &.fade {
-    background: @veryStrongTransparentBlack;
+    background: @overlayColor;
   }
 }
 
-@fdSheetWdth: calc(~'50% + @{sitebarWdth}');
+@fdSheetWdth: calc(~'50% - @{sitebarWdth}');
+@fdSheetPadding: 30px;
 
 .fd-sheet {
   margin: 0;
   background: @fdSheetBg;
-  width: @fdSheetWdth; //+ sidebar width
+  width: 100%;
   position: absolute; // fixed
   top: 0;
   right: 0;
-  height: 100vh;
+  height: 100%;
   transition: transform 1s ease;
-  transform: translate3d(@fdSheetWdth, 0, 0);
-  padding: 30px;
+  transform: translate3d(100%, 0, 0);
+
+  .fd-sheet-toolbar {
+    padding: @fdSheetPadding;
+  }
+
+  .content,
+  .content-mini{
+    position: absolute;
+    transition: opacity 1s ease-in-out;
+    padding: 0 @fdSheetPadding @fdSheetPadding;
+    overflow: auto;
+    height: calc(~'100% - 95px'); //95 - toolbar height
+  }
+
+  .content{
+    width: calc(~'100% - @{sitebarWdth}');
+  }
+
+  .content-mini {
+    width: 50%;
+  }
 
   &.visible {
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(@fdSheetWdth, 0, 0);
+
+    .content-mini {
+      opacity: 1;
+    }
+
+    .content {
+      opacity: 0;
+    }
   }
 
   &.expand {
-    width: 100%;
+    transform: translate3d(0, 0, 0);
+
+    .content-mini {
+      opacity: 0;
+    }
+
+    .content {
+      opacity: 1;
+    }
   }
+}
+
+.fd-list {
+  .row {
+    border-bottom: 1px solid @sidebarBg;
+    .column > {
+      div:not(:first-child) {
+        margin: 1rem 0;
+      }
+    }
+    .light-text div{
+      color: @lightTextColor;
+    }
+  }
+}
+
+h2 {
+  margin-bottom: 3rem;
+  font-weight: normal;
+}
+
+.ui.main.container.fluid {
+  padding: 3rem;
 }

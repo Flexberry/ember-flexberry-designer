@@ -30,17 +30,33 @@
 @textColor           : rgba(0, 0, 0, 0.75);
 @lightTextColor      : rgba(0, 0, 0, 0.25);
 
+/* Цвет иконок сайдбара */
+@iconColor: rgba(0, 0, 0, 0.50);
+
 @headerHeight : 0px;
 @footerHeight : 40px;
 @headerHeightMobile : 50px;
 @footerHeightMobile : 40px;
 
+/* Ширина сайдбара */
+@sitebarWdth:300px;
+
 /*--------------------------------------
     ember flexberry designer colors
 ---------------------------------------*/
-@fdSheetBg: @white;
-@toolbarBtnBg: rgba(0, 0, 0, 0.25);
+/* Фон основной*/
+@fdSheetBg: @pageBackground;
+
+/* Текст кнопок тулбара */
 @toolbarBtnClr: @white;
+
+/* Фон сайдбара */
 @sidebarBg: @strongTransparentBlack;
 
-@sitebarWdth:300px;
+/* Фон затемнение */
+@overlayColor: @veryStrongTransparentBlack;
+
+@footerBackground: #eee;
+
+/* Фон кнопок тулбара */
+@toolbarBtnBg: @lightTextColor;
