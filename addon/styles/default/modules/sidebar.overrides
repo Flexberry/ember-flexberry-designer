@@ -13,3 +13,8 @@
 .pushable > .pusher {
   background: none;
 }
+
+.ui.sidebar {
+  height: calc(~"100vh - @{headerHeight} - @{footerHeight}") !important;
+  top: @headerHeight;
+}

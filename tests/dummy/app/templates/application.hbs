@@ -11,6 +11,10 @@
   onHidden=(action "updateWidth")
 }}
   {{render "sitemap" sitemap}}
+
+  <div class="sitemap-bottom">
+    {{render "sitemap" sitemapBottom}}
+  </div>
 {{/ui-sidebar}}
 {{outlet 'right-sidebar'}}
 

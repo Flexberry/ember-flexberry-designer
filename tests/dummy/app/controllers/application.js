@@ -62,6 +62,41 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     return sitemap;
   }),
 
+  sitemapBottom: Ember.computed('i18n.locale', 'currentContext.context.configuration', 'currentContext.context.stage', function() {
+    let i18n = this.get('i18n');
+    let singleStageMode = this.get('currentContext.singleStageMode');
+
+    let sitemap = {
+      nodes: [
+      ]
+    };
+
+    if (!singleStageMode) {
+      sitemap.nodes.push({
+        link: 'fd-all-projects',
+        caption: i18n.t('forms.application.sitemap.root.fd-all-projects.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-all-projects.title'),
+      },
+      {
+        link: '',
+        caption: i18n.t('forms.application.sitemap.root.fd-requests.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-requests.title'),
+      },
+      {
+        link: '',
+        caption: i18n.t('forms.application.sitemap.root.fd-docs.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-docs.title'),
+      },
+      {
+        link: '',
+        caption: i18n.t('forms.application.sitemap.root.fd-chat.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-chat.title'),
+      });
+    }
+
+    return sitemap;
+  }),
+
   /**
     Locales supported by application.
 
