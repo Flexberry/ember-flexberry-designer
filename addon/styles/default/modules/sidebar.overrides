@@ -13,3 +13,29 @@
 .pushable > .pusher {
   background: none;
 }
+
+.vertical.main.menu.visible.uncover.ember-view.ui.sidebar.left {
+  box-sizing: border-box;
+  .item {
+    padding: 0.6em 0.7em;
+    margin: 0.2em 1em; 
+    &.active,
+    &:hover {
+      transition: background-color 1s;
+      border-radius: 0.5rem !important;
+      background-color: @fdSheetBg;
+    }
+  }
+}
+
+.fade {
+  .vertical.main.menu.visible.uncover.ember-view.ui.sidebar.left {
+    .item {
+      &.active,
+      &:hover {
+        transition: background-color 1s;
+        background-color: @sidebarLightGrey;
+      }
+    }
+  }
+}
