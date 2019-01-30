@@ -1,5 +1,56 @@
-<div  onclick={{action 'openSheet'}}>
-  Оpen right panel
+
+<h2 >
+  Модель приложения
+</h2>
+
+
+<div class="ui stackable grid fd-list">
+  <div class="row">
+    <div class="two wide column light-text">
+      <div>Тип ▾</div>
+    </div>
+    <div class="fourteen wide column">
+      <div  onclick={{action 'openSheet'}}>
+        tПол
+      </div>
+      <div  onclick={{action 'openSheet'}}>
+        tЖилье
+      </div>
+      <div  onclick={{action 'openSheet'}}>
+        tОбразование
+      </div>
+      <button class="ui basic button">
+        Перечисление
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="two wide column light-text">
+      <div>
+        Сущность
+      </div>
+      <div>
+        Редактор
+      </div>
+      <div>
+      Список
+      </div>
+    </div>
+    <div class="fourteen wide column">
+      <div  onclick={{action 'openSheet'}}>
+        tПол
+      </div>
+      <div  onclick={{action 'openSheet'}}>
+        tЖилье
+      </div>
+      <div  onclick={{action 'openSheet'}}>
+        tОбразование
+      </div>
+      <button class="ui basic button">
+        Перечисление
+      </button>
+    </div>
+  </div>
 </div>
 
 {{#fd-sheet}}
