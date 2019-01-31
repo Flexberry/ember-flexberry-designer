@@ -1,58 +1,180 @@
-
-<h2 >
-  Модель приложения
+<h2>
+  {{t "forms.fd-application-model.caption"}}
 </h2>
 
+<form class="ui form flexberry-vertical-form">
 
-<div class="ui stackable grid fd-list">
-  <div class="row">
-    <div class="two wide column light-text">
-      <div>Тип ▾</div>
+  <div class="ui stackable grid fd-list">
+    <div class="row">
+      <div class="two wide column light-text">
+        <div>{{t "forms.fd-application-model.type-caption"}}</div>
+      </div>
+      <div class="fourteen wide column">
+        {{fd-list-item
+          caption='tПол'
+        }}
+        {{fd-list-item
+          caption='tЖилье'
+        }}
+        {{fd-list-item
+          caption='tОбразование'
+        }}
+        <button class="fd-list-action-item" class="ui basic button">
+          {{t "forms.fd-application-model.enum-caption"}}
+        </button>
+      </div>
     </div>
-    <div class="fourteen wide column">
-      <div  onclick={{action 'openSheet'}}>
-        tПол
+    <div class="row">
+      <div class="two wide column light-text">
+        <div>
+          {{t "forms.fd-application-model.entity-caption"}}
+        </div>
+        <div>
+          {{t "forms.fd-application-model.editor-caption"}}
+        </div>
+        <div>
+          {{t "forms.fd-application-model.list-caption"}}
+        </div>
       </div>
-      <div  onclick={{action 'openSheet'}}>
-        tЖилье
+      <div class="fourteen wide column">
+        <div  >
+          tПол
+        </div>
+        <div  >
+          tЖилье
+        </div>
+        <div >
+          tОбразование
+        </div>
+        <button class="ui basic button">
+          {{t "forms.fd-application-model.editor-caption"}}
+        </button>
+        <button class="ui basic button">
+          {{t "forms.fd-application-model.list-caption"}}
+        </button>
       </div>
-      <div  onclick={{action 'openSheet'}}>
-        tОбразование
-      </div>
-      <button class="ui basic button">
-        Перечисление
-      </button>
     </div>
   </div>
-  <div class="row">
-    <div class="two wide column light-text">
-      <div>
-        Сущность
-      </div>
-      <div>
-        Редактор
-      </div>
-      <div>
-      Список
-      </div>
-    </div>
-    <div class="fourteen wide column">
-      <div  onclick={{action 'openSheet'}}>
-        tПол
-      </div>
-      <div  onclick={{action 'openSheet'}}>
-        tЖилье
-      </div>
-      <div  onclick={{action 'openSheet'}}>
-        tОбразование
-      </div>
-      <button class="ui basic button">
-        Перечисление
-      </button>
-    </div>
-  </div>
-</div>
-
+</form>
 {{#fd-sheet}}
-  some content
+  <table class="ui striped right aligned table">
+      <thead>
+        <tr><th class="left aligned">Person</th>
+        <th>Calories</th>
+        <th>Fat</th>
+        <th>Protein</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td class="left aligned">Rosaline</td>
+          <td>5</td>
+          <td>35g</td>
+          <td>6g</td>
+        </tr>
+        <tr>
+          <td class="left aligned">Barrie</td>
+          <td>27</td>
+          <td>23g</td>
+          <td>28g</td>
+        </tr>
+        <tr>
+          <td class="left aligned">Trinidad</td>
+          <td>14</td>
+          <td>50g</td>
+          <td>7g</td>
+        </tr>
+        <tr>
+          <td class="left aligned">Jaqueline</td>
+          <td>31</td>
+          <td>30g</td>
+          <td>50g</td>
+        </tr>
+        <tr>
+          <td class="left aligned">Tamala</td>
+          <td>18</td>
+          <td>6g</td>
+          <td>13g</td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="ui striped right aligned table">
+      <thead>
+        <tr><th class="left aligned">Person</th>
+        <th>Calories</th>
+        <th>Fat</th>
+        <th>Protein</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td class="left aligned">Rosaline</td>
+          <td>5</td>
+          <td>35g</td>
+          <td>6g</td>
+        </tr>
+        <tr>
+          <td class="left aligned">Barrie</td>
+          <td>27</td>
+          <td>23g</td>
+          <td>28g</td>
+        </tr>
+        <tr>
+          <td class="left aligned">Trinidad</td>
+          <td>14</td>
+          <td>50g</td>
+          <td>7g</td>
+        </tr>
+        <tr>
+          <td class="left aligned">Jaqueline</td>
+          <td>31</td>
+          <td>30g</td>
+          <td>50g</td>
+        </tr>
+        <tr>
+          <td class="left aligned">Tamala</td>
+          <td>18</td>
+          <td>6g</td>
+          <td>13g</td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="ui striped right aligned table">
+      <thead>
+        <tr><th class="left aligned">Person</th>
+        <th>Calories</th>
+        <th>Fat</th>
+        <th>Protein</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td class="left aligned">Rosaline</td>
+          <td>5</td>
+          <td>35g</td>
+          <td>6g</td>
+        </tr>
+        <tr>
+          <td class="left aligned">Barrie</td>
+          <td>27</td>
+          <td>23g</td>
+          <td>28g</td>
+        </tr>
+        <tr>
+          <td class="left aligned">Trinidad</td>
+          <td>14</td>
+          <td>50g</td>
+          <td>7g</td>
+        </tr>
+        <tr>
+          <td class="left aligned">Jaqueline</td>
+          <td>31</td>
+          <td>30g</td>
+          <td>50g</td>
+        </tr>
+        <tr>
+          <td class="left aligned">Tamala</td>
+          <td>18</td>
+          <td>6g</td>
+          <td>13g</td>
+        </tr>
+      </tbody>
+    </table>
 {{/fd-sheet}}

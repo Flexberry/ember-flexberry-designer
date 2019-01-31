@@ -29,7 +29,7 @@
   .content,
   .content-mini{
     position: absolute;
-    transition: opacity 1s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
     padding: 0 @fdSheetPadding @fdSheetPadding;
     overflow: auto;
     height: calc(~'100% - 95px'); //95 - toolbar height
@@ -58,10 +58,6 @@
   &.expand {
     transform: translate3d(0, 0, 0);
 
-    .content-mini {
-      opacity: 0;
-    }
-
     .content {
       opacity: 1;
     }
@@ -71,6 +67,12 @@
 .fd-list {
   .row {
     border-bottom: 1px solid @sidebarBg;
+    margin-left: 1rem;
+
+    .column:first-child {
+      padding-left: 0;
+    }
+
     .column > {
       div:not(:first-child) {
         margin: 1rem 0;
@@ -80,6 +82,18 @@
       color: @lightTextColor;
     }
   }
+
+  .fd-list-item span{
+    padding: 7px 35px;
+    &:hover {
+      cursor: pointer;
+    }
+    &.active {
+      background: #fff;
+      border-radius: 5px;
+    }
+  }
+  
 }
 
 h2 {
