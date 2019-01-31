@@ -19,9 +19,8 @@ export default Ember.Component.extend(fdSheetMixin, {
     expand() {
       let contentWidth = this.expand ? '50%' : 'calc(100% - 300px)';
       Ember.$('.content-mini').css({ opacity: 0.2 });
-      var self = this;
-      Ember.run.schedule('afterRender', () => {
-        self.toggleProperty('expand');
+      Ember.run.schedule('afterRender', this, () => {
+        this.toggleProperty('expand');
       });
 
       Ember.run.later(function() {
