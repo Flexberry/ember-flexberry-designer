@@ -37,20 +37,20 @@
         </div>
       </div>
       <div class="fourteen wide column">
-        <div  >
-          tПол
-        </div>
-        <div  >
-          tЖилье
-        </div>
-        <div >
-          tОбразование
-        </div>
+        {{fd-list-item
+          caption='Пациент'
+        }}
+        {{fd-list-item
+          caption='ПациентE'
+        }}
+        {{fd-list-item
+          caption='ПациентL'
+        }}
         <button class="ui basic button">
-          {{t "forms.fd-application-model.editor-caption"}}
+          <i class="icon icon-fd-plus-thin" aria-hidden="true"></i>{{t "forms.fd-application-model.editor-caption"}}
         </button>
         <button class="ui basic button">
-          {{t "forms.fd-application-model.list-caption"}}
+          <i class="icon icon-fd-plus-thin" aria-hidden="true"></i>{{t "forms.fd-application-model.list-caption"}}
         </button>
       </div>
     </div>
