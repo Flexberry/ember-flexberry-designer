@@ -30,7 +30,7 @@
 @lightTextColor      : rgba(0, 0, 0, 0.25);
 
 /* Цвет иконок сайдбара */
-@iconColor: rgba(0, 0, 0, 0.50);
+@sidebarIconColor: rgba(0, 0, 0, 0.50);
 
 @headerHeight : 0px;
 @footerHeight : 40px;

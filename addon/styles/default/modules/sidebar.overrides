@@ -18,3 +18,9 @@
   height: calc(~"100vh - @{headerHeight} - @{footerHeight}") !important;
   top: @headerHeight;
 }
+
+.ui.sidebar.main.menu {
+  .icon {
+    color: @sidebarIconColor;
+  }
+}
