@@ -28,6 +28,7 @@ module.exports = function(defaults) {
     behave. You most likely want to be modifying `./index.js` or app's build file
   */
   app.import('vendor/font-icon.css');
+  app.import('vendor/fd-icons.css');
   app.import('vendor/joint.core.css');
 
   app.import('vendor/fonts/icons.eot', { destDir: 'themes/default/assets/fonts' });
@@ -36,6 +37,11 @@ module.exports = function(defaults) {
   app.import('vendor/fonts/icons.ttf', { destDir: 'themes/default/assets/fonts' });
   app.import('vendor/fonts/icons.woff', { destDir: 'themes/default/assets/fonts' });
   app.import('vendor/fonts/icons.woff2', { destDir: 'themes/default/assets/fonts' });
+
+  app.import('vendor/fonts/fd-icons.eot', { destDir: 'assets/fonts' });
+  app.import('vendor/fonts/fd-icons.ttf', { destDir: 'assets/fonts' });
+  app.import('vendor/fonts/fd-icons.woff', { destDir: 'assets/fonts' });
+  app.import('vendor/fonts/fd-icons.woff2', { destDir: 'assets/fonts' });
 
   return app.toTree();
 };
