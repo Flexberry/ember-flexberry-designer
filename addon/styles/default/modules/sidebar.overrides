@@ -14,7 +14,7 @@
   background: none;
 }
 
-.vertical.main.menu.visible.uncover.ember-view.ui.sidebar.left {
+.vertical.main.menu.uncover.ember-view.ui.sidebar.left {
   .item {
     padding: 0.6em 0.7em;
     margin: 0.2em 1em; 
@@ -24,7 +24,7 @@
 }
 
 .fade {
-  .vertical.main.menu.visible.uncover.ember-view.ui.sidebar.left {
+  .vertical.main.menu.uncover.ember-view.ui.sidebar.left {
     .item { 
       &.active,
       &:hover {

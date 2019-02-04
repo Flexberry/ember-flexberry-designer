@@ -17,3 +17,4 @@
 @activeItemBackground: @fdSheetBg;
 @activeHoverItemBackground: @fdSheetBg;
 @hoverItemBackground: @fdSheetBg;
+@pressedItemBackground: @fdSheetBg;
