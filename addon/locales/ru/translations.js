@@ -115,6 +115,7 @@ import FdVisualControlModel from './models/fd-visual-control';
 import FdVisualControlComponent from './components/fd-visual-control';
 import FdVisualEditControlTreeComponent from './components/fd-visual-edit-control-tree';
 import FdTabs from './components/fd-tabs';
+import FdApplicationModelForm from './forms/fd-application-model';
 
 const translations = {};
 Ember.$.extend(true, translations, EmberFlexberryTranslations);
@@ -293,6 +294,46 @@ Ember.$.extend(true, translations, {
           'fd-view-list-form': {
             caption: 'Views',
             title: ''
+          },
+          'fd-application-model': {
+            caption: 'Модель приложения',
+            title: '',
+          },
+          'fd-diagrams': {
+            caption: 'Диаграммы',
+            title: '',
+          },
+          'fd-navigation': {
+            caption: 'Навигация',
+            title: '',
+          },
+          'fd-generation': {
+            caption: 'Генерация',
+            title: '',
+          },
+          'fd-setting': {
+            caption: 'Настройка',
+            title: '',
+          },
+          'fd-architecture': {
+            caption: 'Архитектура',
+            title: '',
+          },
+          'fd-all-projects': {
+            caption: 'Все проекты',
+            title: '',
+          },
+          'fd-requests': {
+            caption: 'Запросы и обращения',
+            title: '',
+          },
+          'fd-docs': {
+            caption: 'Документация',
+            title: '',
+          },
+          'fd-chat': {
+            caption: 'Чат',
+            title: '',
           }
         },
       }
@@ -346,6 +387,7 @@ Ember.$.extend(true, translations, {
     'fd-edit-form': FdEditForm,
     'new-platform-flexberry-web-designer-generation-e': NewPlatformFlexberryWebDesignerGenerationEForm,
     'new-platform-flexberry-web-designer-storage-type-e': NewPlatformFlexberryWebDesignerStorageTypeEForm,
+    'fd-application-model': FdApplicationModelForm,
   },
 
   components: {

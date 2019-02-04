@@ -10,7 +10,13 @@
   onShow=(action "updateWidth")
   onHidden=(action "updateWidth")
 }}
+
+  <div class="item project-name-placeholder">Название проекта</div>
   {{render "sitemap" sitemap}}
+
+  <div class="sitemap-bottom">
+    {{render "sitemap" sitemapBottom}}
+  </div>
 {{/ui-sidebar}}
 {{outlet 'right-sidebar'}}
 

@@ -181,30 +181,6 @@ Ember.$.extend(true, translations, {
           'fd-data-types-map': {
             caption: 'Карта типов данных',
             title: '',
-          },
-          'fd-application-model': {
-            caption: 'Модель приложения',
-            title: '',
-          },
-          'fd-diagrams': {
-            caption: 'Диаграммы',
-            title: '',
-          },
-          'fd-navigation': {
-            caption: 'Навигация',
-            title: '',
-          },
-          'fd-generation': {
-            caption: 'Генерация',
-            title: '',
-          },
-          'fd-setting': {
-            caption: 'Настройка',
-            title: '',
-          },
-          'fd-architecture': {
-            caption: 'Архитектура',
-            title: '',
           }
         },
       }

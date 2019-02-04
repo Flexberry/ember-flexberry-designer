@@ -7,7 +7,7 @@
 }
 
 .ui.left.visible.sidebar {
-  padding: @relativeMini 0;
+  padding: 3rem 0;
 }
 
 .pushable > .pusher {
@@ -41,5 +41,19 @@
         }
       }
     }
+.ui.sidebar {
+  height: calc(~"100vh - @{headerHeight} - @{footerHeight}") !important;
+  top: @headerHeight;
+}
+
+.ui.sidebar.main.menu {
+  .icon {
+    color: @sidebarIconColor;
+    margin: 0em 0.5rem 0em 0em;
+  }
+  .project-name-placeholder {
+    padding-left: 3rem;
+    font-weight: bold;
+    color: @lightTextColor;
   }
 }
