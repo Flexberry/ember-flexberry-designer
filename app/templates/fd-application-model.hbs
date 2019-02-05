@@ -19,9 +19,9 @@
         {{fd-list-item
           caption='tОбразование'
         }}
-        <button class="fd-list-action-item" class="ui basic button">
-          <i class="icon icon-fd-plus-thin" aria-hidden="true"></i>{{t "forms.fd-application-model.enum-caption"}}
-        </button>
+        {{fd-button
+          caption=(t "forms.fd-application-model.enum-caption")
+        }}
       </div>
     </div>
     <div class="row">
@@ -46,12 +46,12 @@
         {{fd-list-item
           caption='ПациентL'
         }}
-        <button class="ui basic button">
-          <i class="icon icon-fd-plus-thin" aria-hidden="true"></i>{{t "forms.fd-application-model.editor-caption"}}
-        </button>
-        <button class="ui basic button">
-          <i class="icon icon-fd-plus-thin" aria-hidden="true"></i>{{t "forms.fd-application-model.list-caption"}}
-        </button>
+        {{fd-button
+          caption=(t "forms.fd-application-model.editor-caption")
+        }}
+        {{fd-button
+          caption=(t "forms.fd-application-model.list-caption")
+        }}
       </div>
     </div>
   </div>
