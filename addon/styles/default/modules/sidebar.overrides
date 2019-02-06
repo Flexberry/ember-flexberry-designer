@@ -7,7 +7,7 @@
 }
 
 .ui.left.visible.sidebar {
-  padding: 1rem 0;
+  padding: 3rem 0;
 }
 
 .pushable > .pusher {
@@ -20,24 +20,31 @@
     margin: 0.2em 1em; 
     border-radius: @borderRadius !important;
     transition: @itemTransition;
+    &.active,
+    &:hover{
+      &:after {
+        content: '';
+        background-color: @overlayColor;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        border-radius: @borderRadius;
+        top: 0;
+        right: 0;
+        transition: opacity 1s;
+        opacity: 0;
+      }
+    }
   }
 }
 
 .fade {
   .vertical.main.menu.uncover.ember-view.ui.sidebar.left {
-    .item { 
+    a.item { 
       &.active,
       &:hover {
         &:after {
-          content: '';
-          background-color: @overlayColor;
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          border-radius: @borderRadius;
-          top: 0;
-          right: 0;
-          transition: @itemTransition;
+          opacity: 1;
         }
       }
     }
