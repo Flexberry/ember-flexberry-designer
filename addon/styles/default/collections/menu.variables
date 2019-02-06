@@ -14,3 +14,7 @@
 
 /* Vertical */
 @verticalBackground: @sidebarBg;
+@activeItemBackground: @fdSheetBg;
+@activeHoverItemBackground: @fdSheetBg;
+@hoverItemBackground: @fdSheetBg;
+@pressedItemBackground: @fdSheetBg;

@@ -18,10 +18,10 @@
      Alpha Colors
 --------------------*/
 
-// @subtleTransparentBlack     : rgba(0, 0, 0, 0.03);
-// @transparentBlack           : rgba(0, 0, 0, 0.05);
-// @strongTransparentBlack     : rgba(0, 0, 0, 0.10);
-// @veryStrongTransparentBlack : rgba(0, 0, 0, 0.15);
+@subtleTransparentBlack     : rgba(0, 0, 0, 0.03);
+@transparentBlack           : rgba(0, 0, 0, 0.05);
+@strongTransparentBlack     : rgba(0, 0, 0, 0.10);
+@veryStrongTransparentBlack : rgba(0, 0, 0, 0.15);
 
 /*-------------------
         Page
@@ -41,7 +41,7 @@
 @sitebarWdth:300px;
 
 /*--------------------------------------
-    ember flrxberry designer colors
+    ember flexberry designer colors
 ---------------------------------------*/
 /* Фон основной*/
 @fdSheetBg: @pageBackground;
