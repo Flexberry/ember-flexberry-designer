@@ -11,7 +11,6 @@
   onHidden=(action "updateWidth")
 }}
 
-  <div class="item project-name-placeholder">Название проекта</div>
   {{render "sitemap" sitemap}}
 
   <div class="sitemap-bottom">
@@ -25,6 +24,9 @@
     <div class="full height">
       <div class="flexberry-content">
          <div class="ui main container fluid">
+            <button {{action 'toggleSidebar'}} class="ui toggle-sidebar icon button">
+              <i class="caret right icon"></i>
+            </button>
             {{outlet}}
         </div>
       </div>

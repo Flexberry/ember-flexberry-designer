@@ -1,69 +1,94 @@
+@sidebarMiniWidth: 60px;
+
 .pushable {
   overflow: hidden;
+
+  > .pusher {
+    background: @pageBackground;
+  }
 }
 
 .full.height {
   width: calc(~'100vw -  @{width}');
 }
 
-.ui.left.visible.sidebar {
-  padding: 3rem 0;
-}
-
-.pushable > .pusher {
-  background: none;
-}
-
-.vertical.main.menu.uncover.ember-view.ui.sidebar.left {
-  .item {
-    padding: 0.6em 0.7em;
-    margin: 0.2em 1em; 
-    border-radius: @borderRadius !important;
-    transition: @itemTransition;
-    &.active,
-    &:hover{
-      &:after {
-        content: '';
-        background-color: @overlayColor;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        border-radius: @borderRadius;
-        top: 0;
-        right: 0;
-        transition: opacity 1s;
-        opacity: 0;
-      }
+.ui.sidebar.main.menu .item{
+  &.active,
+  &:hover{
+    &::after {
+      content: '';
+      background-color: @overlayColor;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      border-radius: @itemActiveBorderRadius;
+      top: 0;
+      right: 0;
+      transition: opacity 1s;
+      opacity: 0;
     }
   }
 }
 
-.fade {
-  .vertical.main.menu.uncover.ember-view.ui.sidebar.left {
-    a.item { 
-      &.active,
-      &:hover {
-        &:after {
-          opacity: 1;
-        }
-      }
+.fade .ui.sidebar.main.menu a.item {
+  &.active,
+  &:hover {
+    &::after {
+      opacity: 1;
     }
   }
-}
-
-.ui.sidebar {
-  height: calc(~"100vh - @{headerHeight} - @{footerHeight}") !important;
-  top: @headerHeight;
 }
 
 .ui.sidebar.main.menu {
+  height: calc(~"100vh - @{headerHeight} - @{footerHeight}") !important;
+  padding: 3rem 0;
+  top: @headerHeight;
+
+  transform: translate3d(0, 0, 0);
+  visibility: visible;
+  z-index: -1;
+
   .icon {
     color: @sidebarIconColor;
+    font-size: 1rem;
     margin: 0em 0.5rem 0em 0em;
+    min-height: 1.125em;
   }
-  .project-name-placeholder {
-    padding-left: 3rem;
-    font-weight: bold;
-    color: @lightTextColor;
+
+  .item {
+    border-radius: @itemActiveBorderRadius !important;
+    margin: 0.2rem .6rem;
+    padding: 0.6875rem 0.75rem;
+    transition: @itemTransition;
+    white-space: nowrap;
   }
+
+  &.sidebar-mini {
+    width: @sidebarMiniWidth;
+
+    .item {
+      font-size: 0;
+    }
+  }
+
+  &.visible {
+    width: @sidebarWdth;
+  
+    .item {
+      font-size: 1rem;
+    }
+  }
+}
+
+// Костыль для семантика
+.ui.visible.left.sidebar ~ .pusher {
+  -webkit-transform: translate3d(@sidebarWdth, 0, 0) !important;
+  transform: translate3d(@sidebarWdth, 0, 0) !important;
+}
+
+// Маленький сайдбар в 60px
+.ui.left.sidebar ~ .fixed,
+.ui.left.sidebar ~ .pusher {
+  -webkit-transform: translate3d(@sidebarMiniWidth, 0, 0);
+  transform: translate3d(@sidebarMiniWidth, 0, 0);
 }

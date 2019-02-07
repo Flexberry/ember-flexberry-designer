@@ -1,5 +1,4 @@
-@width:@sitebarWdth;
+@width: @sidebarWdth;
 
 @horizontalBoxShadow: none;
-@borderRadius: 0.25rem;
 @itemTransition: none;

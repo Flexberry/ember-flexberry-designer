@@ -1,66 +1,42 @@
 @import 'src/themes/default/globals/site.variables';
 @import 'default/globals/site.variables';
 
-.pushable {
+.pushable, .full.height{
   transition: background-color 1s;
-  &.fade {
-    background: @overlayColor;
-  }
 }
 
-@fdSheetWdth: calc(~'50% - @{sitebarWdth}');
+.pushable.fade, 
+.pushable.fade .full.height{
+  background: @overlayColor;
+}
+
 @fdSheetPadding: 30px;
 
 .fd-sheet {
-  margin: 0;
   background: @fdSheetBg;
-  width: 100%;
-  position: absolute; // fixed
-  top: 0;
-  right: 0;
   height: 100%;
-  transition: transform 1s ease;
+  margin: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
   transform: translate3d(100%, 0, 0);
+  transition: transform 1s ease;
+  width: 100%;
 
-  .fd-sheet-toolbar {
-    padding: @fdSheetPadding;
+  &.expand {
+    transform: translate3d(0, 0, 0) !important;
   }
 
-  .content,
   .content-mini{
-    position: absolute;
-    transition: opacity 0.5s ease-in-out;
-    padding: 0 @fdSheetPadding @fdSheetPadding;
-    overflow: auto;
     height: calc(~'100% - 95px'); //95 - toolbar height
-  }
-
-  .content{
-    width: calc(~'100% - @{sitebarWdth}');
-  }
-
-  .content-mini {
+    overflow: auto;
+    padding: 0 @fdSheetPadding @fdSheetPadding;
+    transition: opacity 0.5s ease-in-out;
     width: 50%;
   }
 
-  &.visible {
-    transform: translate3d(@fdSheetWdth, 0, 0);
-
-    .content-mini {
-      opacity: 1;
-    }
-
-    .content {
-      opacity: 0;
-    }
-  }
-
-  &.expand {
-    transform: translate3d(0, 0, 0);
-
-    .content {
-      opacity: 1;
-    }
+  .fd-sheet-toolbar {
+    padding: @fdSheetPadding;
   }
 }
 
@@ -89,8 +65,8 @@
       cursor: pointer;
     }
     &.active {
-      background: #fff;
-      border-radius: 5px;
+      background: @fdSheetBg;
+      border-radius: @itemActiveBorderRadius;
     }
   }
   
@@ -109,4 +85,17 @@ h2 {
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+
+.ui.toggle-sidebar.button {
+  position: absolute;
+  background: @sidebarBg;
+  left: -10px;
+  border-radius: 0.7rem;
+  padding: 10px 5px;
+  z-index: 2;
+}
+
+.flexberry-vertical-form {
+  transition: opacity 250ms;
 }
