@@ -1,2 +1,4 @@
 @backgroundColor: @toolbarBtnBg;
 @borderRadius: 2rem;
+@textColor: @lightTextColor;
+@basicHoverBackground: transparent;
