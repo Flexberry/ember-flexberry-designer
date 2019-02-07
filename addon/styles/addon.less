@@ -10,7 +10,7 @@
   background: @overlayColor;
 }
 
-@fdSheetPadding: 30px;
+@fdSheetPadding: 3rem;
 
 .fd-sheet {
   background: @fdSheetBg;
@@ -28,7 +28,7 @@
   }
 
   .content-mini{
-    height: calc(~'100% - 95px'); //95 - toolbar height
+    height: 100%;
     overflow: auto;
     padding: 0 @fdSheetPadding @fdSheetPadding;
     transition: opacity 0.5s ease-in-out;
@@ -36,7 +36,9 @@
   }
 
   .fd-sheet-toolbar {
-    padding: @fdSheetPadding;
+    text-align: right;
+    height: 4rem;
+    line-height: 4rem;
   }
 }
 
@@ -53,8 +55,13 @@
       div:not(:first-child) {
         margin: 1rem 0;
       }
+
+      div:last-child {
+        margin-bottom: 0;
+      }
     }
-    .light-text div{
+
+    .light-text{
       color: @lightTextColor;
     }
   }
@@ -72,13 +79,14 @@
   
 }
 
-h2 {
+h2.form-header {
   margin-bottom: 3rem;
   font-weight: normal;
+  margin-top: 0;
 }
 
 .ui.main.container.fluid {
-  padding: 3rem;
+  padding: 5rem 3rem 3rem;
 }
 
 .sitemap-bottom{
@@ -90,10 +98,31 @@ h2 {
 .ui.toggle-sidebar.button {
   position: absolute;
   background: @sidebarBg;
-  left: -10px;
-  border-radius: 0.7rem;
+  left: 60px;
+  border-radius: @itemActiveBorderRadius;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
   padding: 10px 5px;
+  padding-left: 0;
   z-index: 2;
+  top: 1rem;
+  z-index: 10;
+  transition: opacity 500ms step-end;
+}
+
+.ui.button.toggle-sidebar-visible {
+  border-radius: @itemActiveBorderRadius;
+  position: absolute;
+  background: #fff;
+  padding: 10px 5px;
+  top: 1rem;
+  right: 0;
+  left: auto;
+  margin: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  padding-right: 0;
+  opacity: 0;
 }
 
 .flexberry-vertical-form {

@@ -11,12 +11,18 @@
   onHidden=(action "updateWidth")
 }}
 
+  <button {{action 'toggleSidebar'}} class="ui toggle-sidebar-visible icon button">
+    <i class="caret left icon"></i>
+  </button>
   {{render "sitemap" sitemap}}
 
   <div class="sitemap-bottom">
     {{render "sitemap" sitemapBottom}}
   </div>
 {{/ui-sidebar}}
+<button {{action 'toggleSidebar'}} class="ui toggle-sidebar icon button">
+  <i class="caret right icon"></i>
+</button>
 {{outlet 'right-sidebar'}}
 
 <div id="example" class="pusher">
@@ -24,9 +30,6 @@
     <div class="full height">
       <div class="flexberry-content">
          <div class="ui main container fluid">
-            <button {{action 'toggleSidebar'}} class="ui toggle-sidebar icon button">
-              <i class="caret right icon"></i>
-            </button>
             {{outlet}}
         </div>
       </div>

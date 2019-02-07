@@ -30,6 +30,10 @@ export default Ember.Component.extend(fdSheetMixin, {
       currentSheet.css({ 'transform': sheetTranslate });
 
       let contentWidth = this.expand ? '50%' : `calc(100% - ${sidebarWidth}px)`;
+
+      // Затемняем кнопку сайдбара.
+      Ember.$('.toggle-sidebar').toggleClass('expanded');
+
       Ember.run.schedule('afterRender', this, () => {
         this.toggleProperty('expand');
       });

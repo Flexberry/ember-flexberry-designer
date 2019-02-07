@@ -183,6 +183,11 @@ export default Ember.Controller.extend(fdSheetMixin, {
       let sidebarVisible = sidebar.hasClass('visible');
       let currentSidebarWidth = sidebarVisible ? this.sidebarMiniWidth : this.sidebarWidth;
       let contentWidth = `calc(100% - ${currentSidebarWidth})`;
+      if (!sidebarVisible) {
+        Ember.$('.toggle-sidebar').css({transition: 'opacity 500ms step-start'});
+      } else {
+        Ember.$('.toggle-sidebar').css({transition: ''});
+      }
 
       // Sheet content is animated only if it is expanded.
       if (Ember.$('.fd-sheet.visible').hasClass('expand')) {
