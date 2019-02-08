@@ -17,6 +17,9 @@ export default Ember.Component.extend(fdSheetMixin, {
       Ember.$('.pushable').removeClass('fade');
       currentSheet.css({ 'transform': '' });
 
+      // Сбрасываем стиль с кнопки сайдбара.
+      Ember.$('.toggle-sidebar').removeClass('expanded');
+
       Ember.run.later(function() {
         Ember.$('.content-mini', currentSheet).css({ width: '' });
       }, 1000);
