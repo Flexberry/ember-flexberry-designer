@@ -1,0 +1,4 @@
+
+.ui.basic.button {
+  padding: 0.5rem @horizontalPadding;
+}
