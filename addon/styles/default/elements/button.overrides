@@ -2,3 +2,14 @@
 .ui.basic.button {
   padding: 0.5rem @horizontalPadding;
 }
+
+.fd-sheet-toolbar {
+  .ui.button {
+    color: @toolbarBtnClr;
+  }
+  .ui.buttons {
+    .ui.button:first-child {
+    margin-right: @toolbarBtnsmargin;
+    }
+  }
+}

@@ -2,3 +2,7 @@
 @borderRadius: 2rem;
 @textColor: @lightTextColor;
 @basicHoverBackground: transparent;
+
+/* Кнопки тулбара */
+@hoverBackgroundColor: @hoverToolbarBtnBg;
+@hoverColor: @white;
