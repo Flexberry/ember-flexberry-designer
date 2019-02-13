@@ -5,4 +5,4 @@
 
 /* Кнопки тулбара */
 @hoverBackgroundColor: @hoverToolbarBtnBg;
-@hoverColor: @white;
+
