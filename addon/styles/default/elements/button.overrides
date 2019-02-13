@@ -1,6 +1,6 @@
 
 .ui.basic.button {
-  padding: 0.5rem @horizontalPadding;
+  padding: 0.5em 1.2em;
 }
 
 .fd-sheet-toolbar {
