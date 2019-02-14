@@ -8,8 +8,11 @@
     color: @toolbarBtnClr;
   }
   .ui.buttons {
-    .ui.button:first-child {
+    .ui.button {
     margin-right: @toolbarBtnsmargin;
     }
+  }
+  i.icon {
+    width: 1em;
   }
 }

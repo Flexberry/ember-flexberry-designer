@@ -9,3 +9,6 @@
 
 /* Кнопки тулбара */
 @hoverBackgroundColor: @hoverToolbarBtnBg;
+@fontWeight: normal;
+@verticalPadding: 0.5rem;
+@downBackgroundColor: @activeToolbarBtnBg;

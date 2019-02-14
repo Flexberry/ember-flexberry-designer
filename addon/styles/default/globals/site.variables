@@ -54,5 +54,5 @@
 /* Фон кнопок тулбара */
 @toolbarBtnBg: @lightTextColor;
 @hoverToolbarBtnBg: rgba(0, 0, 0, 0.35);
-
+@activeToolbarBtnBg: rgba(0, 0, 0, 0.45);
 @itemActiveBorderRadius: 0.5rem;
