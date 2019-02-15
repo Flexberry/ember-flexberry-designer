@@ -15,15 +15,6 @@
 @fontSize : 16px;
 
 /*-------------------
-     Alpha Colors
---------------------*/
-
-@subtleTransparentBlack     : rgba(0, 0, 0, 0.03);
-@transparentBlack           : rgba(0, 0, 0, 0.05);
-@strongTransparentBlack     : rgba(0, 0, 0, 0.10);
-@veryStrongTransparentBlack : rgba(0, 0, 0, 0.15);
-
-/*-------------------
         Page
 --------------------*/
 @textColor           : rgba(0, 0, 0, 0.75);
@@ -38,7 +29,7 @@
 @footerHeightMobile : 40px;
 
 /* Ширина сайдбара */
-@sitebarWdth:300px;
+@sidebarWdth:300px;
 
 /*--------------------------------------
     ember flexberry designer colors
@@ -64,3 +55,6 @@
 @basicBtn: @strongTransparentBlack;
 @hoverBasicBtn: rgba(0, 0, 0, 0.20);
 @activeBasicBtn: rgba(0, 0, 0, 0.30);
+
+
+@itemActiveBorderRadius: 0.5rem;

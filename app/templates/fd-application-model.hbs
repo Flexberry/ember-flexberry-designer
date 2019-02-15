@@ -1,4 +1,4 @@
-<h2>
+<h2 class='form-header'>
   {{t "forms.fd-application-model.caption"}}
 </h2>
 
@@ -56,125 +56,29 @@
     </div>
   </div>
 </form>
-{{#fd-sheet}}
-  <table class="ui striped right aligned table">
-      <thead>
-        <tr><th class="left aligned">Person</th>
-        <th>Calories</th>
-        <th>Fat</th>
-        <th>Protein</th>
-      </tr></thead>
-      <tbody>
-        <tr>
-          <td class="left aligned">Rosaline</td>
-          <td>5</td>
-          <td>35g</td>
-          <td>6g</td>
-        </tr>
-        <tr>
-          <td class="left aligned">Barrie</td>
-          <td>27</td>
-          <td>23g</td>
-          <td>28g</td>
-        </tr>
-        <tr>
-          <td class="left aligned">Trinidad</td>
-          <td>14</td>
-          <td>50g</td>
-          <td>7g</td>
-        </tr>
-        <tr>
-          <td class="left aligned">Jaqueline</td>
-          <td>31</td>
-          <td>30g</td>
-          <td>50g</td>
-        </tr>
-        <tr>
-          <td class="left aligned">Tamala</td>
-          <td>18</td>
-          <td>6g</td>
-          <td>13g</td>
-        </tr>
-      </tbody>
-    </table>
-    <table class="ui striped right aligned table">
-      <thead>
-        <tr><th class="left aligned">Person</th>
-        <th>Calories</th>
-        <th>Fat</th>
-        <th>Protein</th>
-      </tr></thead>
-      <tbody>
-        <tr>
-          <td class="left aligned">Rosaline</td>
-          <td>5</td>
-          <td>35g</td>
-          <td>6g</td>
-        </tr>
-        <tr>
-          <td class="left aligned">Barrie</td>
-          <td>27</td>
-          <td>23g</td>
-          <td>28g</td>
-        </tr>
-        <tr>
-          <td class="left aligned">Trinidad</td>
-          <td>14</td>
-          <td>50g</td>
-          <td>7g</td>
-        </tr>
-        <tr>
-          <td class="left aligned">Jaqueline</td>
-          <td>31</td>
-          <td>30g</td>
-          <td>50g</td>
-        </tr>
-        <tr>
-          <td class="left aligned">Tamala</td>
-          <td>18</td>
-          <td>6g</td>
-          <td>13g</td>
-        </tr>
-      </tbody>
-    </table>
-    <table class="ui striped right aligned table">
-      <thead>
-        <tr><th class="left aligned">Person</th>
-        <th>Calories</th>
-        <th>Fat</th>
-        <th>Protein</th>
-      </tr></thead>
-      <tbody>
-        <tr>
-          <td class="left aligned">Rosaline</td>
-          <td>5</td>
-          <td>35g</td>
-          <td>6g</td>
-        </tr>
-        <tr>
-          <td class="left aligned">Barrie</td>
-          <td>27</td>
-          <td>23g</td>
-          <td>28g</td>
-        </tr>
-        <tr>
-          <td class="left aligned">Trinidad</td>
-          <td>14</td>
-          <td>50g</td>
-          <td>7g</td>
-        </tr>
-        <tr>
-          <td class="left aligned">Jaqueline</td>
-          <td>31</td>
-          <td>30g</td>
-          <td>50g</td>
-        </tr>
-        <tr>
-          <td class="left aligned">Tamala</td>
-          <td>18</td>
-          <td>6g</td>
-          <td>13g</td>
-        </tr>
-      </tbody>
-    </table>
+{{#fd-sheet
+  title = 'Пациент'
+}}
+  <div class="ui stackable grid fd-list">
+    <div class="row">
+      <div class="three wide column">
+        Заголовок
+      </div>
+      <div class="thirteen wide column light-text">
+        Заголовок сущности
+      </div>
+    </div>
+    <div class="row">
+      <div class="three wide column">
+        <div>Хранилище</div>
+        <div>Хранимый</div>
+        <div>Бизнес-сервер</div>
+      </div>
+      <div class="thirteen wide column light-text">
+        <div>Наименование хранилища</div>
+        <div>Наименование хранилища</div>
+        <div>Нет значения</div>
+      </div>
+    </div>
+  </div>
 {{/fd-sheet}}

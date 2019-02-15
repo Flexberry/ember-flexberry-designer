@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import FdWorkPanelToggler from 'ember-flexberry-designer/mixins/fd-work-panel-toggler';
+import fdSheetMixin from 'ember-flexberry-designer/mixins/fd-sheet-mixin';
 
-export default Ember.Controller.extend(FdWorkPanelToggler, {
+export default Ember.Controller.extend(fdSheetMixin, {
   /**
     Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
 
@@ -159,6 +159,10 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
   */
   objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
 
+  sidebarWidth: '300px',
+
+  sidebarMiniWidth: '60px',
+
   actions: {
 
     /**
@@ -176,21 +180,36 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     toggleSidebar() {
       let sidebar = Ember.$('.ui.sidebar.main.menu');
       sidebar.sidebar('toggle');
-
-      if (Ember.$('.inverted.vertical.main.menu').hasClass('visible')) {
-        Ember.$('.sidebar.icon.text-menu-show').removeClass('hidden');
-        Ember.$('.sidebar.icon.text-menu-hide').addClass('hidden');
+      let sidebarVisible = sidebar.hasClass('visible');
+      let currentSidebarWidth = sidebarVisible ? this.sidebarMiniWidth : this.sidebarWidth;
+      let contentWidth = `calc(100% - ${currentSidebarWidth})`;
+      if (!sidebarVisible) {
+        Ember.$('.toggle-sidebar').css({ transition: 'opacity 500ms step-start' });
       } else {
-        Ember.$('.sidebar.icon.text-menu-show').addClass('hidden');
-        Ember.$('.sidebar.icon.text-menu-hide').removeClass('hidden');
+        Ember.$('.toggle-sidebar').css({ transition: '' });
       }
 
-      Ember.$('.inverted.vertical.main.menu').removeClass('overlay');
+      // Sheet content is animated only if it is expanded.
+      if (Ember.$('.fd-sheet.visible').hasClass('expand')) {
+        this.send('animatingSheetContent', contentWidth, 250);
+      } else {
 
-      this.send('workPlaceConfig', true);
+        // That the sheet remained in its place and did not go along with the content.
+        let sheetTranslate = `translate3d(calc(50% - ${currentSidebarWidth}), 0, 0)`;
+        Ember.$('.fd-sheet.visible').css({ 'transform': sheetTranslate });
+      }
 
-      // For reinit overflowed tabs.
+      // Animated increases the width of the page content.
+      Ember.$('.full.height .flexberry-vertical-form').css({ opacity: 0.2 });
+      Ember.run.later(function() {
+        Ember.$('.full.height .flexberry-vertical-form').css({ opacity: '' });
+        Ember.$('.full.height').css({ width: contentWidth });
+      }, 250);
+
       Ember.run.later(this, function() {
+        sidebar.toggleClass('sidebar-mini');
+
+        // For reinit overflowed tabs.
         Ember.$(window).trigger('resize');
       }, 500);
     },

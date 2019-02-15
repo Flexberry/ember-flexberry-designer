@@ -13,23 +13,35 @@ export default Ember.Component.extend(fdSheetMixin, {
     closeSheet() {
       this.set('commonVisible.visible', '');
       this.set('expand', false);
+      let currentSheet = Ember.$('.fd-sheet', this.element);
       Ember.$('.pushable').removeClass('fade');
+      currentSheet.css({ 'transform': '' });
+
+      // Сбрасываем стиль с кнопки сайдбара.
+      Ember.$('.toggle-sidebar').removeClass('expanded');
+
       Ember.run.later(function() {
-        Ember.$('.content-mini').css({ width: '' });
+        Ember.$('.content-mini', currentSheet).css({ width: '' });
       }, 1000);
     },
 
     expand() {
       let sidebarWidth = Ember.$('.ui.sidebar.main.menu').width();
-      let contentWidth = this.expand ? '50%' : 'calc(100% - ' + sidebarWidth + 'px)';
-      Ember.$('.content-mini').css({ opacity: 0.2 });
+
+      let currentSheet = Ember.$('.fd-sheet', this.element);
+      let sheetTranslate =  `translate3d(calc(50% - ${sidebarWidth}px), 0, 0)`;
+      currentSheet.css({ 'transform': sheetTranslate });
+
+      let contentWidth = this.expand ? '50%' : `calc(100% - ${sidebarWidth}px)`;
+
+      // Затемняем кнопку сайдбара.
+      Ember.$('.toggle-sidebar').toggleClass('expanded');
+
       Ember.run.schedule('afterRender', this, () => {
         this.toggleProperty('expand');
       });
 
-      Ember.run.later(function() {
-        Ember.$('.content-mini').css({ opacity: '', width: contentWidth });
-      }, 600);
+      this.send('animatingSheetContent', contentWidth, 600);
     },
 
     save() {
