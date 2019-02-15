@@ -59,3 +59,8 @@
 
 /* Фон кнопок тулбара */
 @toolbarBtnBg: @lightTextColor;
+
+/* Цвет основных кнопок */
+@basicBtn: @strongTransparentBlack;
+@hoverBasicBtn: rgba(0, 0, 0, 0.20);
+@activeBasicBtn: rgba(0, 0, 0, 0.30);
