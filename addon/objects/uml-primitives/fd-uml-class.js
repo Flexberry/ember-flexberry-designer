@@ -217,8 +217,8 @@ export let ClassCollapsed = Class.define('flexberry.uml.ClassCollapsed', {}, {
 joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
   template: [
     '<div class="uml-class-inputs">',
-    '<input type="text" class="class-name-input header-input" value="" />',
-    '<input type="text" class="class-stereotype-input header-input" value="" />',
+    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<textarea class="class-stereotype-input header-input" value="" rows="1" wrap="off"></textarea>',
     '<textarea class="attributes-input body-input" value="" rows="1" wrap="off"></textarea>',
     '<textarea class="methods-input footer-input" value="" rows="1" wrap="off"></textarea>',
     '<div class="input-buffer"></div>',
@@ -252,11 +252,19 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       this.model.updateRectangles();
     }.bind(this));
 
-    this.$box.find('.class-name-input').on('input', function() {
+    this.$box.find('.class-name-input').on('input', function(evt) {
+      let $textarea = Ember.$(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
       this.model.updateRectangles();
     }.bind(this));
 
-    this.$box.find('.class-stereotype-input').on('input', function() {
+    this.$box.find('.class-stereotype-input').on('input', function(evt) {
+      let $textarea = Ember.$(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
       this.model.updateRectangles();
     }.bind(this));
 
@@ -277,7 +285,11 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
     }.bind(this));
 
     this.$box.find('.class-name-input').on('change', function(evt) {
-      this.model.set('name', Ember.$(evt.target).val());
+      let $textarea = Ember.$(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      this.model.set('name', textareaText);
     }.bind(this));
 
     this.$box.find('.class-stereotype-input').on('focus', function(evt) {
@@ -287,8 +299,12 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
     }.bind(this));
 
     this.$box.find('.class-stereotype-input').on('blur', function(evt) {
-      let stereotype = this.normalizeStereotype(Ember.$(evt.target).val());
-      this.$box.find('.class-stereotype-input').val(stereotype);
+      let stereotypeText = Ember.$(evt.target).val();
+      let stereotype = this.normalizeStereotype(stereotypeText);
+      let rows = stereotypeText.split(/[\n\r|\r|\n]/);
+      let $stereotypeInput = this.$box.find('.class-stereotype-input');
+      $stereotypeInput.val(stereotype);
+      $stereotypeInput.prop('rows', rows.length);
       this.model.set('stereotype', stereotype.slice(1, -1));
       this.model.updateRectangles();
     }.bind(this));
@@ -297,8 +313,11 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
     let classStereotypeInput = this.$box.find('.class-stereotype-input');
     let attributesInput = this.$box.find('.attributes-input');
     let methodsInput = this.$box.find('.methods-input');
+    classNameInput.prop('rows', this.model.get('name').split(/[\n\r|\r|\n]/).length || 1);
     classNameInput.val(this.model.get('name'));
-    classStereotypeInput.val(this.normalizeStereotype(this.model.get('stereotype')));
+    classStereotypeInput.prop('rows', this.model.get('stereotype').split(/[\n\r|\r|\n]/).length || 1);
+    classStereotypeInput.val(this.model.get('stereotype'));
+
     attributesInput.prop('rows', this.model.get('attributes').length || 1);
     attributesInput.val(this.model.get('attributes').join('\n'));
     methodsInput.prop('rows', this.model.get('methods').length || 1);
@@ -357,8 +376,8 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
 joint.shapes.flexberry.uml.ClassCollapsedView = joint.shapes.flexberry.uml.ClassView.extend({
   template: [
     '<div class="uml-class-inputs">',
-    '<input type="text" class="class-name-input header-input" value="" />',
-    '<input type="text" class="class-stereotype-input header-input" value="" />',
+    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<textarea class="class-stereotype-input header-input" value="" rows="1" wrap="off"></textarea>',
     '<div class="input-buffer"></div>',
     '</div>'
   ].join(''),
