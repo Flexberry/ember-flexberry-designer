@@ -137,7 +137,7 @@ joint.shapes.flexberry.uml.NAryAssociationView = joint.dia.ElementView.extend({
   template: [
     '<div class="uml-class-inputs">',
       '<div class="input-buffer nary-buffer"></div>',
-    '<input type="text" class="class-name-input nary-assoc-name header-input" value="" />',
+      '<textarea type="text" class="class-name-input nary-assoc-name header-input" value="" rows="1" wrap="off"></textarea>',
     '</div>'
   ].join(''),
 
@@ -152,15 +152,24 @@ joint.shapes.flexberry.uml.NAryAssociationView = joint.dia.ElementView.extend({
       evt.stopPropagation();
     });
 
-    this.$box.find('.nary-assoc-name').on('input', function() {
+    this.$box.find('.nary-assoc-name').on('input', function(evt) {
+      let $textarea = Ember.$(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
       this.model.updateRectangles();
     }.bind(this));
 
     this.$box.find('.nary-assoc-name').on('change', function(evt) {
-      this.model.set('name', Ember.$(evt.target).val());
+      let $textarea = Ember.$(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      this.model.set('name', textareaText);
     }.bind(this));
 
     let instanceInput = this.$box.find('.nary-assoc-name');
+    instanceInput.prop('rows', this.model.get('name').split(/[\n\r|\r|\n]/).length || 1);
     instanceInput.val(this.model.get('name'));
 
     // Update the box position whenever the underlying model changes.

@@ -74,7 +74,7 @@ export let MultiObject = BaseObject.define('flexberry.uml.MultiObject', {
 joint.shapes.flexberry.uml.MultiObjectView = joint.shapes.flexberry.uml.BaseObjectView.extend({
   template: [
     '<div class="uml-class-inputs">',
-    '<input type="text" class="instance-input class-name-input header-input" value="" />',
+    '<textarea type="text" class="instance-input class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
     '<div class="input-buffer"></div>',
     '</div>'
   ].join(''),

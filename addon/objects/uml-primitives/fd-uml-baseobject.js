@@ -167,7 +167,7 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
 joint.shapes.flexberry.uml.BaseObjectView = joint.dia.ElementView.extend({
   template: [
     '<div class="uml-class-inputs">',
-    '<input type="text" class="class-name-input header-input" value="" />',
+    '<textarea type="text" class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
     '<textarea class="attributes-input body-input" value="" rows="1" wrap="off"></textarea>',
     '<div class="input-buffer"></div>',
     '</div>'
@@ -192,7 +192,11 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.dia.ElementView.extend({
       this.model.updateRectangles();
     }.bind(this));
 
-    this.$box.find('.class-name-input').on('input', function () {
+    this.$box.find('.class-name-input').on('input', function (evt) {
+      let $textarea = Ember.$(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
       this.model.updateRectangles();
     }.bind(this));
 
@@ -205,12 +209,18 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.dia.ElementView.extend({
     }.bind(this));
 
     this.$box.find('.class-name-input').on('change', function (evt) {
-      this.model.set('name', Ember.$(evt.target).val());
+      let $textarea = Ember.$(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      this.model.set('name', textareaText);
     }.bind(this));
 
     let classNameInput = this.$box.find('.class-name-input');
     let attributesInput = this.$box.find('.attributes-input');
+    classNameInput.prop('rows', this.model.get('name').split(/[\n\r|\r|\n]/).length || 1);
     classNameInput.val(this.model.get('name'));
+
     if (Ember.isPresent(this.model.get('attributes'))) {
       attributesInput.prop('rows', this.model.get('attributes').length || 1);
       if (this.model.get('attributes') instanceof Array) {
