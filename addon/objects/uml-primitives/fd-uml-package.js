@@ -30,7 +30,9 @@ export default FdUmlElement.extend({
     @property attributes
     @type String
   */
-  attributes: Ember.computed.alias('primitive.Prop.Text'),
+  attributes: Ember.computed('primitive.Prop.Text', function() {
+    return this.get('primitive.Prop.Text').split('\n');
+  }),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -92,6 +94,10 @@ export let Package = BaseClass.define('flexberry.uml.Package', {
           $buffer.css('font-weight', $input.css('font-weight'));
           $buffer.text($input.val());
           $input.width($buffer.width() + 1);
+          if (rect.type === 'header') {
+            newWidth = $input.width() / 0.8;
+          }
+
           if ($input.width() > newWidth) {
             newWidth = $input.width();
           }
@@ -150,22 +156,6 @@ joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectVi
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
       this.model.updateRectangles();
-    }.bind(this));
-
-    this.$box.find('.attributes-input').on('input', function (evt) {
-      let $textarea = Ember.$(evt.currentTarget);
-      let textareaText = $textarea.val();
-      let rows = textareaText.split(/[\n\r|\r|\n]/);
-      $textarea.prop('rows', rows.length);
-      this.model.updateRectangles();
-    }.bind(this));
-
-    this.$box.find('.attributes-input').on('change', function (evt) {
-      let $textarea = Ember.$(evt.currentTarget);
-      let textareaText = $textarea.val();
-      let rows = textareaText.split(/[\n\r|\r|\n]/);
-      $textarea.prop('rows', rows.length);
-      this.model.set('attributes', rows);
     }.bind(this));
 
     let upperInput = this.$box.find('.package-header-input');
