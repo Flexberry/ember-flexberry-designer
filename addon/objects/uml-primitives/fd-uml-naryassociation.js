@@ -109,6 +109,8 @@ export let NAryAssociation = BaseObject.define('flexberry.uml.NAryAssociation', 
           if ($input.width() > newWidth) {
             newWidth = $input.width();
           }
+
+          rectHeight += $input.height();
         });
 
         rectHeight += rect.element.get('heightBottomPadding') || 0;
