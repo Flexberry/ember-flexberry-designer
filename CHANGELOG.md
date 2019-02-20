@@ -30,6 +30,7 @@ All notable changes to this project will be documented in this file.
 * Clicking on class with stereotype `listform` or `edit form` will open form constructor.
 * Unified headings for edit-forms.
 * Update ember-flexberry to 2.0.0-beta.2.
+* Inputs replaced by textarea in elements cad diagram.
 
 ### Fixed
 * The view edit form:

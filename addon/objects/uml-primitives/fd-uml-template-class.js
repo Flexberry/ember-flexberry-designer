@@ -94,8 +94,8 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
   template: [
     '<div class="uml-class-inputs">',
     '<textarea type="text" class="params-input" value="" rows="1" wrap="off"> </textarea>',
-    '<input type="text" class="class-name-input header-input class-t" value="" />',
-    '<input type="text" class="class-stereotype-input header-input" value="" />',
+    '<textarea class="class-name-input header-input class-t" value="" rows="1" wrap="off"></textarea>',
+    '<textarea class="class-stereotype-input header-input" value="" rows="1" wrap="off"></textarea>',
     '<textarea class="attributes-input body-input" value="" rows="1" wrap="off"></textarea>',
     '<textarea class="methods-input footer-input" value="" rows="1" wrap="off"></textarea>',
     '<div class="input-buffer"></div>',
@@ -104,15 +104,24 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
 
   initialize: function() {
     joint.shapes.flexberry.uml.ClassView.prototype.initialize.apply(this, arguments);
-    this.$box.find('.params-input').on('input', function () {
+    this.$box.find('.params-input').on('input', function (evt) {
+      let $textarea = Ember.$(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
       this.model.updateRectangles();
     }.bind(this));
 
     this.$box.find('.params-input').on('change', function (evt) {
-      this.model.set('params', Ember.$(evt.target).val());
+      let $textarea = Ember.$(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      this.model.set('params', textareaText);
     }.bind(this));
 
     let paramsInput = this.$box.find('.params-input');
+    paramsInput.prop('rows', this.model.get('params').split(/[\n\r|\r|\n]/).length || 1);
     paramsInput.val(this.model.get('params'));
   }
 });

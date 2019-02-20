@@ -34,6 +34,9 @@
     &.class-name-input {
         font-weight: bold;
         text-align: center;
+        resize: none;
+        line-height: 1.1;
+        overflow: hidden;
         &.active-object-input {
           text-decoration: underline;
         }
@@ -54,6 +57,17 @@
 
     }
     &.params-input {
+      resize: none;
+    }
+    &.class-stereotype-input {
+      resize: none;
+      line-height: 1.1;
+      overflow: hidden;
+    }
+    &.package-header-input {
+      font-weight: normal;
+      text-decoration: underline;
+      text-align: left;
       resize: none;
     }
     &.attributes-input, &.methods-input {

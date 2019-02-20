@@ -121,7 +121,7 @@ export let Package = BaseClass.define('flexberry.uml.Package', {
 joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectView.extend({
   template: [
     '<div class="uml-class-inputs">',
-    '<input type="text" class="package-header-input header-input" value="" />',
+    '<textarea class="package-header-input header-input" value="" rows="1" wrap="off"></textarea>',
     '<textarea class="attributes-input body-input" value="" rows="1" wrap="off"></textarea>',
     '<div class="input-buffer"></div>',
     '</div>'
@@ -137,9 +137,18 @@ joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectVi
   initialize: function () {
     joint.shapes.flexberry.uml.BaseObjectView.prototype.initialize.apply(this, arguments);
     this.$box.find('.package-header-input').on('change', function (evt) {
-      this.model.set('name', Ember.$(evt.target).val());
+      let $textarea = Ember.$(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      this.model.set('name', textareaText);
     }.bind(this));
-    this.$box.find('.package-header-input').on('input', function () {
+
+    this.$box.find('.package-header-input').on('input', function (evt) {
+      let $textarea = Ember.$(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
       this.model.updateRectangles();
     }.bind(this));
 
@@ -160,6 +169,7 @@ joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectVi
     }.bind(this));
 
     let upperInput = this.$box.find('.package-header-input');
+    upperInput.prop('rows', this.model.get('name').split(/[\n\r|\r|\n]/).length || 1);
     upperInput.val(this.model.get('name'));
   }
 });
