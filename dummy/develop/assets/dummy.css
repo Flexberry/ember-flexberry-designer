@@ -39410,6 +39410,9 @@ table.fd-listform tr:last-child > td.fd-selected {
 .ui.form .uml-class-inputs textarea.class-name-input {
   font-weight: bold;
   text-align: center;
+  resize: none;
+  line-height: 1.1;
+  overflow: hidden;
 }
 .ui.form .uml-class-inputs input[type="text"].class-name-input.active-object-input,
 .ui.form .uml-link-inputs input[type="text"].class-name-input.active-object-input,
@@ -39439,6 +39442,21 @@ table.fd-listform tr:last-child > td.fd-selected {
 .ui.form .uml-class-inputs input[type="text"].params-input,
 .ui.form .uml-link-inputs input[type="text"].params-input,
 .ui.form .uml-class-inputs textarea.params-input {
+  resize: none;
+}
+.ui.form .uml-class-inputs input[type="text"].class-stereotype-input,
+.ui.form .uml-link-inputs input[type="text"].class-stereotype-input,
+.ui.form .uml-class-inputs textarea.class-stereotype-input {
+  resize: none;
+  line-height: 1.1;
+  overflow: hidden;
+}
+.ui.form .uml-class-inputs input[type="text"].package-header-input,
+.ui.form .uml-link-inputs input[type="text"].package-header-input,
+.ui.form .uml-class-inputs textarea.package-header-input {
+  font-weight: normal;
+  text-decoration: underline;
+  text-align: left;
   resize: none;
 }
 .ui.form .uml-class-inputs input[type="text"].attributes-input,
