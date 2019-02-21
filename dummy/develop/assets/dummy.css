@@ -39458,6 +39458,9 @@ table.fd-listform tr:last-child > td.fd-selected {
   text-decoration: underline;
   text-align: left;
   resize: none;
+  margin: 0;
+  line-height: 1.1;
+  overflow: hidden;
 }
 .ui.form .uml-class-inputs input[type="text"].attributes-input,
 .ui.form .uml-link-inputs input[type="text"].attributes-input,
