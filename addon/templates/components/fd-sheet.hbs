@@ -1,0 +1,21 @@
+<div class="fd-sheet {{if expand "expand"}} {{commonVisible.visible}}" id="sheetID">
+  <div class="content-mini">
+    <div class="ui {{if loadingState "active"}} inverted dimmer">
+      <div class="ui text loader"></div>
+    </div>
+
+    <div class="fd-sheet-toolbar">
+      <button class="ui small button" {{action 'save'}}>
+        Сохранить
+      </button>
+      <button class="ui small icon button" {{action 'expand'}}>
+        <i class="icon-fd-resize icon" ></i>
+      </button>
+      <button class="ui small icon button" {{action 'closeSheet'}}>
+        <i class="icon-fd-x-mark icon" ></i>
+      </button>
+    </div>
+    <h2 class='form-header'>{{title}}</h2>
+    {{yield}}
+  </div>
+</div>
