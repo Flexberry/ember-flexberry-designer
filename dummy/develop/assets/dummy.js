@@ -92,6 +92,14 @@ define('dummy/components/colsconfig-dialog-content', ['exports', 'ember-flexberr
 define('dummy/components/ember-jstree', ['exports', 'ember-cli-jstree/components/ember-jstree'], function (exports, _emberCliJstreeComponentsEmberJstree) {
   exports['default'] = _emberCliJstreeComponentsEmberJstree['default'];
 });
+define('dummy/components/fd-button', ['exports', 'ember-flexberry-designer/components/fd-button'], function (exports, _emberFlexberryDesignerComponentsFdButton) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdButton['default'];
+    }
+  });
+});
 define('dummy/components/fd-config-panel', ['exports', 'ember-flexberry-designer/components/fd-config-panel'], function (exports, _emberFlexberryDesignerComponentsFdConfigPanel) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -132,6 +140,14 @@ define('dummy/components/fd-groupedit', ['exports', 'ember-flexberry-designer/co
     }
   });
 });
+define('dummy/components/fd-list-item', ['exports', 'ember-flexberry-designer/components/fd-list-item'], function (exports, _emberFlexberryDesignerComponentsFdListItem) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdListItem['default'];
+    }
+  });
+});
 define('dummy/components/fd-lookup', ['exports', 'ember-flexberry-designer/components/fd-lookup'], function (exports, _emberFlexberryDesignerComponentsFdLookup) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -153,6 +169,14 @@ define('dummy/components/fd-objectlistview', ['exports', 'ember-flexberry-design
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerComponentsFdObjectlistview['default'];
+    }
+  });
+});
+define('dummy/components/fd-sheet', ['exports', 'ember-flexberry-designer/components/fd-sheet'], function (exports, _emberFlexberryDesignerComponentsFdSheet) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdSheet['default'];
     }
   });
 });
@@ -669,8 +693,8 @@ define('dummy/controllers/activity-diagram-primitives-demo', ['exports', 'ember'
     }
   });
 });
-define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-designer/mixins/fd-work-panel-toggler'], function (exports, _ember, _emberFlexberryDesignerMixinsFdWorkPanelToggler) {
-  exports['default'] = _ember['default'].Controller.extend(_emberFlexberryDesignerMixinsFdWorkPanelToggler['default'], {
+define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-designer/mixins/fd-sheet-mixin'], function (exports, _ember, _emberFlexberryDesignerMixinsFdSheetMixin) {
+  exports['default'] = _ember['default'].Controller.extend(_emberFlexberryDesignerMixinsFdSheetMixin['default'], {
     /**
       Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
        @property currentContext
@@ -687,7 +711,6 @@ define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-de
 
     sitemap: _ember['default'].computed('i18n.locale', 'currentContext.context.configuration', 'currentContext.context.stage', function () {
       var i18n = this.get('i18n');
-      var context = this.get('currentContext.context');
       var singleStageMode = this.get('currentContext.singleStageMode');
 
       var sitemap = {
@@ -696,111 +719,70 @@ define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-de
 
       if (!singleStageMode) {
         sitemap.nodes.push({
-          link: 'index',
-          caption: i18n.t('forms.application.sitemap.index.caption'),
-          title: i18n.t('forms.application.sitemap.index.title')
-        });
-        sitemap.nodes.push({
-          link: 'fd-configuration-list-form',
-          caption: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.caption'),
-          title: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.title')
-        });
-        sitemap.nodes.push({
-          link: null,
-          caption: i18n.t('forms.application.sitemap.root.fd-uml-primitives.caption'),
-          title: i18n.t('forms.application.sitemap.root.fd-uml-primitives.title'),
-          children: [{
-            link: 'class-diagram-primitives-demo',
-            caption: i18n.t('forms.application.sitemap.root.class-diagram-primitives-demo.caption'),
-            title: i18n.t('forms.application.sitemap.root.class-diagram-primitives-demo.title')
-          }, {
-            link: 'activity-diagram-primitives-demo',
-            caption: i18n.t('forms.application.sitemap.root.activity-diagram-primitives-demo.caption'),
-            title: i18n.t('forms.application.sitemap.root.activity-diagram-primitives-demo.title')
-          }, {
-            link: 'deployment-diagram-primitives-demo',
-            caption: i18n.t('forms.application.sitemap.root.deployment-diagram-primitives-demo.caption'),
-            title: i18n.t('forms.application.sitemap.root.deployment-diagram-primitives-demo.title')
-          }, {
-            link: 'statechart-diagram-primitives-demo',
-            caption: i18n.t('forms.application.sitemap.root.statechart-diagram-primitives-demo.caption'),
-            title: i18n.t('forms.application.sitemap.root.statechart-diagram-primitives-demo.title')
-          }, {
-            link: 'usecase-diagram-primitives-demo',
-            caption: i18n.t('forms.application.sitemap.root.usecase-diagram-primitives-demo.caption'),
-            title: i18n.t('forms.application.sitemap.root.usecase-diagram-primitives-demo.title')
-          }, {
-            link: 'fd-sequence-diagram-primitives-demo',
-            caption: i18n.t('forms.application.sitemap.root.sequence-diagram-primitives-demo.caption'),
-            title: i18n.t('forms.application.sitemap.root.sequence-diagram-primitives-demo.title')
-          }, {
-            link: 'collaboration-diagram-primitives-demo',
-            caption: i18n.t('forms.application.sitemap.root.collaboration-diagram-primitives-demo.caption'),
-            title: i18n.t('forms.application.sitemap.root.collaboration-diagram-primitives-demo.title')
-          }]
+          link: 'fd-application-model',
+          caption: i18n.t('forms.application.sitemap.root.fd-application-model.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-application-model.title'),
+          icon: 'icon-fd-menu'
+        }, {
+          link: 'fd-diagrams',
+          caption: i18n.t('forms.application.sitemap.root.fd-diagrams.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-diagrams.title'),
+          icon: 'icon-fd-diagram'
+        }, {
+          link: 'fd-navigation',
+          caption: i18n.t('forms.application.sitemap.root.fd-navigation.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-navigation.title'),
+          icon: 'icon-fd-sitemap'
+        }, {
+          link: 'fd-generation',
+          caption: i18n.t('forms.application.sitemap.root.fd-generation.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-generation.title'),
+          icon: 'icon-fd-shipping-box'
+        }, {
+          link: 'fd-setting',
+          caption: i18n.t('forms.application.sitemap.root.fd-setting.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-setting.title'),
+          icon: 'icon-fd-gear'
+        }, {
+          link: 'fd-architecture',
+          caption: i18n.t('forms.application.sitemap.root.fd-architecture.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-architecture.title'),
+          icon: 'icon-fd-diagram'
         });
       }
 
-      if (context.configuration && !singleStageMode) {
-        sitemap.nodes.push({
-          link: 'fd-stage-list-form',
-          caption: i18n.t('forms.application.sitemap.root.fd-stage-list-form.caption'),
-          title: i18n.t('forms.application.sitemap.root.fd-stage-list-form.title')
-        });
-      }
+      return sitemap;
+    }),
 
-      if (context.stage) {
+    sitemapBottom: _ember['default'].computed('i18n.locale', 'currentContext.context.configuration', 'currentContext.context.stage', function () {
+      var i18n = this.get('i18n');
+      var singleStageMode = this.get('currentContext.singleStageMode');
+
+      var sitemap = {
+        nodes: []
+      };
+
+      if (!singleStageMode) {
         sitemap.nodes.push({
-          link: 'fd-appstruct-form',
-          caption: i18n.t('forms.application.sitemap.root.fd-appstruct-form.caption'),
-          title: i18n.t('forms.application.sitemap.root.fd-appstruct-form.title')
-        });
-        sitemap.nodes.push({
-          link: 'fd-generation-process-form.new',
-          caption: i18n.t('forms.application.sitemap.root.fd-generation-process-form.caption'),
-          title: i18n.t('forms.application.sitemap.root.fd-generation-process-form.title')
-        });
-        sitemap.nodes.push({
-          link: null,
-          caption: i18n.t('forms.application.sitemap.root.additional.caption'),
-          title: i18n.t('forms.application.sitemap.root.additional.title'),
-          children: [{
-            link: 'fd-generation-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-generation-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-generation-list-form.title')
-          }, {
-            link: 'fd-system-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-system-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-system-list-form.title')
-          }, {
-            link: 'fd-diagram-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.title')
-          }, {
-            link: 'fd-class-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-class-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-class-list-form.title')
-          }, {
-            link: 'fd-association-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-association-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-association-list-form.title')
-          }, {
-            link: 'fd-aggregation-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-aggregation-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-aggregation-list-form.title')
-          }, {
-            link: 'fd-inheritance-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.title')
-          }, {
-            link: 'fd-view-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-view-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-view-list-form.title')
-          }, {
-            link: 'fd-data-types-map',
-            caption: i18n.t('forms.application.sitemap.root.fd-data-types-map.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-data-types-map.title')
-          }]
+          link: 'fd-all-projects',
+          caption: i18n.t('forms.application.sitemap.root.fd-all-projects.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-all-projects.title'),
+          icon: 'icon-fd-view'
+        }, {
+          link: '',
+          caption: i18n.t('forms.application.sitemap.root.fd-requests.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-requests.title'),
+          icon: 'icon-fd-email'
+        }, {
+          link: '',
+          caption: i18n.t('forms.application.sitemap.root.fd-docs.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-docs.title'),
+          icon: 'icon-fd-book'
+        }, {
+          link: '',
+          caption: i18n.t('forms.application.sitemap.root.fd-chat.caption'),
+          title: i18n.t('forms.application.sitemap.root.fd-chat.title'),
+          icon: 'icon-fd-speech-bubble'
         });
       }
 
@@ -856,6 +838,10 @@ define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-de
     */
     objectlistviewEventsService: _ember['default'].inject.service('objectlistview-events'),
 
+    sidebarWidth: '300px',
+
+    sidebarMiniWidth: '60px',
+
     actions: {
 
       /**
@@ -873,21 +859,36 @@ define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-de
       toggleSidebar: function toggleSidebar() {
         var sidebar = _ember['default'].$('.ui.sidebar.main.menu');
         sidebar.sidebar('toggle');
-
-        if (_ember['default'].$('.inverted.vertical.main.menu').hasClass('visible')) {
-          _ember['default'].$('.sidebar.icon.text-menu-show').removeClass('hidden');
-          _ember['default'].$('.sidebar.icon.text-menu-hide').addClass('hidden');
+        var sidebarVisible = sidebar.hasClass('visible');
+        var currentSidebarWidth = sidebarVisible ? this.sidebarMiniWidth : this.sidebarWidth;
+        var contentWidth = 'calc(100% - ' + currentSidebarWidth + ')';
+        if (!sidebarVisible) {
+          _ember['default'].$('.toggle-sidebar').css({ transition: 'opacity 500ms step-start' });
         } else {
-          _ember['default'].$('.sidebar.icon.text-menu-show').addClass('hidden');
-          _ember['default'].$('.sidebar.icon.text-menu-hide').removeClass('hidden');
+          _ember['default'].$('.toggle-sidebar').css({ transition: '' });
         }
 
-        _ember['default'].$('.inverted.vertical.main.menu').removeClass('overlay');
+        // Sheet content is animated only if it is expanded.
+        if (_ember['default'].$('.fd-sheet.visible').hasClass('expand')) {
+          this.send('animatingSheetContent', contentWidth, 250);
+        } else {
 
-        this.send('workPlaceConfig', true);
+          // That the sheet remained in its place and did not go along with the content.
+          var sheetTranslate = 'translate3d(calc(50% - ' + currentSidebarWidth + '), 0, 0)';
+          _ember['default'].$('.fd-sheet.visible').css({ 'transform': sheetTranslate });
+        }
 
-        // For reinit overflowed tabs.
+        // Animated increases the width of the page content.
+        _ember['default'].$('.full.height .flexberry-vertical-form').css({ opacity: 0.2 });
+        _ember['default'].run.later(function () {
+          _ember['default'].$('.full.height .flexberry-vertical-form').css({ opacity: '' });
+          _ember['default'].$('.full.height').css({ width: contentWidth });
+        }, 250);
+
         _ember['default'].run.later(this, function () {
+          sidebar.toggleClass('sidebar-mini');
+
+          // For reinit overflowed tabs.
           _ember['default'].$(window).trigger('resize');
         }, 500);
       },
@@ -1441,6 +1442,14 @@ define('dummy/controllers/fd-aggregation-list-form', ['exports', 'ember-flexberr
     }
   });
 });
+define('dummy/controllers/fd-all-projects', ['exports', 'ember-flexberry-designer/controllers/fd-all-projects'], function (exports, _emberFlexberryDesignerControllersFdAllProjects) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdAllProjects['default'];
+    }
+  });
+});
 define('dummy/controllers/fd-application-edit-form', ['exports', 'ember-flexberry-designer/controllers/fd-application-edit-form'], function (exports, _emberFlexberryDesignerControllersFdApplicationEditForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -1457,11 +1466,27 @@ define('dummy/controllers/fd-application-edit-form/new', ['exports', 'ember-flex
     }
   });
 });
+define('dummy/controllers/fd-application-model', ['exports', 'ember-flexberry-designer/controllers/fd-application-model'], function (exports, _emberFlexberryDesignerControllersFdApplicationModel) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdApplicationModel['default'];
+    }
+  });
+});
 define('dummy/controllers/fd-appstruct-form', ['exports', 'ember-flexberry-designer/controllers/fd-appstruct-form'], function (exports, _emberFlexberryDesignerControllersFdAppstructForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerControllersFdAppstructForm['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-architecture', ['exports', 'ember-flexberry-designer/controllers/fd-architecture'], function (exports, _emberFlexberryDesignerControllersFdArchitecture) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdArchitecture['default'];
     }
   });
 });
@@ -1585,6 +1610,14 @@ define('dummy/controllers/fd-diagram-list-form', ['exports', 'ember-flexberry-de
     }
   });
 });
+define('dummy/controllers/fd-diagrams', ['exports', 'ember-flexberry-designer/controllers/fd-diagrams'], function (exports, _emberFlexberryDesignerControllersFdDiagrams) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdDiagrams['default'];
+    }
+  });
+});
 define('dummy/controllers/fd-edit-form-edit-form', ['exports', 'ember-flexberry-designer/controllers/fd-edit-form-edit-form'], function (exports, _emberFlexberryDesignerControllersFdEditFormEditForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -1665,6 +1698,14 @@ define('dummy/controllers/fd-generation-process-form/new', ['exports', 'ember-fl
     }
   });
 });
+define('dummy/controllers/fd-generation', ['exports', 'ember-flexberry-designer/controllers/fd-generation'], function (exports, _emberFlexberryDesignerControllersFdGeneration) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdGeneration['default'];
+    }
+  });
+});
 define('dummy/controllers/fd-inheritance-edit-form', ['exports', 'ember-flexberry-designer/controllers/fd-inheritance-edit-form'], function (exports, _emberFlexberryDesignerControllersFdInheritanceEditForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -1726,6 +1767,14 @@ define('dummy/controllers/fd-listform-constructor', ['exports', 'ember-flexberry
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerControllersFdListformConstructor['default'];
+    }
+  });
+});
+define('dummy/controllers/fd-navigation', ['exports', 'ember-flexberry-designer/controllers/fd-navigation'], function (exports, _emberFlexberryDesignerControllersFdNavigation) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdNavigation['default'];
     }
   });
 });
@@ -1795,6 +1844,14 @@ define('dummy/controllers/fd-sequence-diagram-primitives-demo', ['exports', 'emb
           graph: _this.graph
         });*/
       }
+    }
+  });
+});
+define('dummy/controllers/fd-setting', ['exports', 'ember-flexberry-designer/controllers/fd-setting'], function (exports, _emberFlexberryDesignerControllersFdSetting) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerControllersFdSetting['default'];
     }
   });
 });
@@ -2282,6 +2339,19 @@ define('dummy/controllers/usecase-diagram-primitives-demo', ['exports', 'ember',
     }
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-button.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components');
+  test('modules/ember-flexberry-designer/components/fd-button.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-button.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-button.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-button.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-button.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-config-panel.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/components');
   test('modules/ember-flexberry-designer/components/fd-config-panel.js should pass jscs', function () {
@@ -2347,6 +2417,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
     assert.ok(true, 'modules/ember-flexberry-designer/components/fd-groupedit.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-list-item.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components');
+  test('modules/ember-flexberry-designer/components/fd-list-item.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-list-item.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-list-item.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-list-item.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-list-item.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-lookup.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/components');
   test('modules/ember-flexberry-designer/components/fd-lookup.js should pass jscs', function () {
@@ -2384,6 +2467,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/components/fd-objectlistview.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-sheet.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components');
+  test('modules/ember-flexberry-designer/components/fd-sheet.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-sheet.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-sheet.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-sheet.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-sheet.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-tab-dropdown.jscs-test', ['exports'], function (exports) {
@@ -2542,6 +2638,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
     assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-aggregation-list-form.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-all-projects.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers');
+  test('modules/ember-flexberry-designer/controllers/fd-all-projects.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/fd-all-projects.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-all-projects.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/fd-all-projects.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-all-projects.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-application-edit-form.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/controllers');
   test('modules/ember-flexberry-designer/controllers/fd-application-edit-form.js should pass jscs', function () {
@@ -2568,6 +2677,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
     assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-application-edit-form/new.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-application-model.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers');
+  test('modules/ember-flexberry-designer/controllers/fd-application-model.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/fd-application-model.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-application-model.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/fd-application-model.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-application-model.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-appstruct-form.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/controllers');
   test('modules/ember-flexberry-designer/controllers/fd-appstruct-form.js should pass jscs', function () {
@@ -2579,6 +2701,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-appstruct-form.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-architecture.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers');
+  test('modules/ember-flexberry-designer/controllers/fd-architecture.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/fd-architecture.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-architecture.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/fd-architecture.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-architecture.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-association-edit-form.jscs-test', ['exports'], function (exports) {
@@ -2776,6 +2911,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
     assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-diagram-list-form.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-diagrams.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers');
+  test('modules/ember-flexberry-designer/controllers/fd-diagrams.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/fd-diagrams.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-diagrams.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/fd-diagrams.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-diagrams.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-edit-form-edit-form.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/controllers');
   test('modules/ember-flexberry-designer/controllers/fd-edit-form-edit-form.js should pass jscs', function () {
@@ -2919,6 +3067,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
     assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-generation-process-form/new.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-generation.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers');
+  test('modules/ember-flexberry-designer/controllers/fd-generation.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/fd-generation.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-generation.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/fd-generation.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-generation.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-inheritance-edit-form.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/controllers');
   test('modules/ember-flexberry-designer/controllers/fd-inheritance-edit-form.js should pass jscs', function () {
@@ -3021,6 +3182,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-listform-constructor.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-navigation.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers');
+  test('modules/ember-flexberry-designer/controllers/fd-navigation.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/fd-navigation.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-navigation.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/fd-navigation.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-navigation.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-setting.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/controllers');
+  test('modules/ember-flexberry-designer/controllers/fd-setting.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/controllers/fd-setting.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-setting.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/controllers/fd-setting.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/controllers/fd-setting.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/controllers/fd-stage-edit-form.jscs-test', ['exports'], function (exports) {
@@ -5012,6 +5199,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-application-edit-form.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-application-model.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/forms');
+  test('modules/ember-flexberry-designer/locales/ru/forms/fd-application-model.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-application-model.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-application-model.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/forms/fd-application-model.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-application-model.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-appstruct-form.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/locales/ru/forms');
   test('modules/ember-flexberry-designer/locales/ru/forms/fd-appstruct-form.js should pass jscs', function () {
@@ -6583,6 +6783,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/mixins/fd-limit-by-stage.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/fd-sheet-mixin.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/mixins');
+  test('modules/ember-flexberry-designer/mixins/fd-sheet-mixin.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/mixins/fd-sheet-mixin.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/fd-sheet-mixin.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/fd-sheet-mixin.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/mixins/fd-sheet-mixin.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/fd-work-panel-toggler.jscs-test', ['exports'], function (exports) {
@@ -11499,6 +11712,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ro
     assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-aggregation-list-form.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-all-projects.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes');
+  test('modules/ember-flexberry-designer/routes/fd-all-projects.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/fd-all-projects.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-all-projects.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-all-projects.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-all-projects.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-application-edit-form.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/routes');
   test('modules/ember-flexberry-designer/routes/fd-application-edit-form.js should pass jscs', function () {
@@ -11525,6 +11751,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ro
     assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-application-edit-form/new.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-application-model.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes');
+  test('modules/ember-flexberry-designer/routes/fd-application-model.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/fd-application-model.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-application-model.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-application-model.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-application-model.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-appstruct-form.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/routes');
   test('modules/ember-flexberry-designer/routes/fd-appstruct-form.js should pass jscs', function () {
@@ -11536,6 +11775,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ro
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-appstruct-form.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-architecture.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes');
+  test('modules/ember-flexberry-designer/routes/fd-architecture.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/fd-architecture.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-architecture.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-architecture.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-architecture.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-association-edit-form.jscs-test', ['exports'], function (exports) {
@@ -11733,6 +11985,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ro
     assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-diagram-list-form.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-diagrams.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes');
+  test('modules/ember-flexberry-designer/routes/fd-diagrams.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/fd-diagrams.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-diagrams.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-diagrams.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-diagrams.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-edit-enum-form/new.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/routes/fd-edit-enum-form');
   test('modules/ember-flexberry-designer/routes/fd-edit-enum-form/new.js should pass jscs', function () {
@@ -11889,6 +12154,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ro
     assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-generation-process-form/new.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-generation.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes');
+  test('modules/ember-flexberry-designer/routes/fd-generation.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/fd-generation.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-generation.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-generation.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-generation.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-inheritance-edit-form.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/routes');
   test('modules/ember-flexberry-designer/routes/fd-inheritance-edit-form.js should pass jscs', function () {
@@ -11991,6 +12269,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/ro
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-listform-constructor.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-navigation.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes');
+  test('modules/ember-flexberry-designer/routes/fd-navigation.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/fd-navigation.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-navigation.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-navigation.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-navigation.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-setting.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/routes');
+  test('modules/ember-flexberry-designer/routes/fd-setting.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/routes/fd-setting.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-setting.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/routes/fd-setting.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/routes/fd-setting.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/routes/fd-stage-edit-form.jscs-test', ['exports'], function (exports) {
@@ -16611,6 +16915,7 @@ define('dummy/router', ['exports', 'ember', 'ember-flexberry-designer/utils/fd-s
   });
 
   Router.map(function () {
+    // old route
     this.route('fd-appstruct-form');
 
     this.route('fd-application-edit-form', { path: 'fd-application-edit-form/:id' });
@@ -16680,6 +16985,15 @@ define('dummy/router', ['exports', 'ember', 'ember-flexberry-designer/utils/fd-s
     this.route('deployment-diagram-primitives-demo');
     this.route('statechart-diagram-primitives-demo');
     this.route('collaboration-diagram-primitives-demo');
+
+    // new route
+    this.route('fd-application-model');
+    this.route('fd-diagrams');
+    this.route('fd-navigation');
+    this.route('fd-generation');
+    this.route('fd-setting');
+    this.route('fd-architecture');
+    this.route('fd-all-projects');
   });
 
   exports['default'] = Router;
@@ -16749,7 +17063,7 @@ define('dummy/routes/application', ['exports', 'ember', 'ember-flexberry/mixins/
           });
         })();
       } else {
-        this.transitionTo('fd-configuration-list-form');
+        this.transitionTo('index');
       }
     }
   });
@@ -16819,6 +17133,14 @@ define('dummy/routes/fd-aggregation-list-form', ['exports', 'ember-flexberry-des
     }
   });
 });
+define('dummy/routes/fd-all-projects', ['exports', 'ember-flexberry-designer/routes/fd-all-projects'], function (exports, _emberFlexberryDesignerRoutesFdAllProjects) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdAllProjects['default'];
+    }
+  });
+});
 define('dummy/routes/fd-application-edit-form', ['exports', 'ember-flexberry-designer/routes/fd-application-edit-form'], function (exports, _emberFlexberryDesignerRoutesFdApplicationEditForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -16835,11 +17157,27 @@ define('dummy/routes/fd-application-edit-form/new', ['exports', 'ember-flexberry
     }
   });
 });
+define('dummy/routes/fd-application-model', ['exports', 'ember-flexberry-designer/routes/fd-application-model'], function (exports, _emberFlexberryDesignerRoutesFdApplicationModel) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdApplicationModel['default'];
+    }
+  });
+});
 define('dummy/routes/fd-appstruct-form', ['exports', 'ember-flexberry-designer/routes/fd-appstruct-form'], function (exports, _emberFlexberryDesignerRoutesFdAppstructForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerRoutesFdAppstructForm['default'];
+    }
+  });
+});
+define('dummy/routes/fd-architecture', ['exports', 'ember-flexberry-designer/routes/fd-architecture'], function (exports, _emberFlexberryDesignerRoutesFdArchitecture) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdArchitecture['default'];
     }
   });
 });
@@ -16963,6 +17301,14 @@ define('dummy/routes/fd-diagram-list-form', ['exports', 'ember-flexberry-designe
     }
   });
 });
+define('dummy/routes/fd-diagrams', ['exports', 'ember-flexberry-designer/routes/fd-diagrams'], function (exports, _emberFlexberryDesignerRoutesFdDiagrams) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdDiagrams['default'];
+    }
+  });
+});
 define('dummy/routes/fd-edit-form-edit-form', ['exports', 'ember-flexberry-designer/routes/fd-edit-form-edit-form'], function (exports, _emberFlexberryDesignerRoutesFdEditFormEditForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -17051,6 +17397,14 @@ define('dummy/routes/fd-generation-process-form/new', ['exports', 'ember-flexber
     }
   });
 });
+define('dummy/routes/fd-generation', ['exports', 'ember-flexberry-designer/routes/fd-generation'], function (exports, _emberFlexberryDesignerRoutesFdGeneration) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdGeneration['default'];
+    }
+  });
+});
 define('dummy/routes/fd-inheritance-edit-form', ['exports', 'ember-flexberry-designer/routes/fd-inheritance-edit-form'], function (exports, _emberFlexberryDesignerRoutesFdInheritanceEditForm) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -17115,6 +17469,14 @@ define('dummy/routes/fd-listform-constructor', ['exports', 'ember-flexberry-desi
     }
   });
 });
+define('dummy/routes/fd-navigation', ['exports', 'ember-flexberry-designer/routes/fd-navigation'], function (exports, _emberFlexberryDesignerRoutesFdNavigation) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdNavigation['default'];
+    }
+  });
+});
 define('dummy/routes/fd-sequence-diagram-primitives-demo', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Route.extend({
     activate: function activate() {
@@ -17122,6 +17484,14 @@ define('dummy/routes/fd-sequence-diagram-primitives-demo', ['exports', 'ember'],
       _ember['default'].run.schedule('afterRender', this, function () {
         _this.controller.send('printDiagram');
       });
+    }
+  });
+});
+define('dummy/routes/fd-setting', ['exports', 'ember-flexberry-designer/routes/fd-setting'], function (exports, _emberFlexberryDesignerRoutesFdSetting) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerRoutesFdSetting['default'];
     }
   });
 });
@@ -18594,7 +18964,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
                 "column": 0
               },
               "end": {
-                "line": 14,
+                "line": 22,
                 "column": 0
               }
             },
@@ -18606,20 +18976,46 @@ define("dummy/templates/application", ["exports"], function (exports) {
           hasRendered: false,
           buildFragment: function buildFragment(dom) {
             var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode("  ");
+            var el1 = dom.createTextNode("\n  ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("button");
+            dom.setAttribute(el1, "class", "ui toggle-sidebar-visible icon button");
+            var el2 = dom.createTextNode("\n    ");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("i");
+            dom.setAttribute(el2, "class", "caret left icon");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n  ");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n  ");
             dom.appendChild(el0, el1);
             var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n\n  ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("div");
+            dom.setAttribute(el1, "class", "sitemap-bottom");
+            var el2 = dom.createTextNode("\n    ");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n  ");
+            dom.appendChild(el1, el2);
             dom.appendChild(el0, el1);
             var el1 = dom.createTextNode("\n");
             dom.appendChild(el0, el1);
             return el0;
           },
           buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-            var morphs = new Array(1);
-            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            var element0 = dom.childAt(fragment, [1]);
+            var morphs = new Array(3);
+            morphs[0] = dom.createElementMorph(element0);
+            morphs[1] = dom.createMorphAt(fragment, 3, 3, contextualElement);
+            morphs[2] = dom.createMorphAt(dom.childAt(fragment, [5]), 1, 1);
             return morphs;
           },
-          statements: [["inline", "render", ["sitemap", ["get", "sitemap", ["loc", [null, [13, 21], [13, 28]]]]], [], ["loc", [null, [13, 2], [13, 30]]]]],
+          statements: [["element", "action", ["toggleSidebar"], [], ["loc", [null, [14, 10], [14, 36]]]], ["inline", "render", ["sitemap", ["get", "sitemap", ["loc", [null, [17, 21], [17, 28]]]]], [], ["loc", [null, [17, 2], [17, 30]]]], ["inline", "render", ["sitemap", ["get", "sitemapBottom", ["loc", [null, [20, 23], [20, 36]]]]], [], ["loc", [null, [20, 4], [20, 38]]]]],
           locals: [],
           templates: []
         };
@@ -18635,7 +19031,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
               "column": 0
             },
             "end": {
-              "line": 78,
+              "line": 60,
               "column": 0
             }
           },
@@ -18649,129 +19045,21 @@ define("dummy/templates/application", ["exports"], function (exports) {
           var el0 = dom.createDocumentFragment();
           var el1 = dom.createComment("");
           dom.appendChild(el0, el1);
-          var el1 = dom.createComment("");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("\n");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createElement("div");
-          dom.setAttribute(el1, "class", "bgw-fix");
+          var el1 = dom.createElement("button");
+          dom.setAttribute(el1, "class", "ui toggle-sidebar icon button");
           var el2 = dom.createTextNode("\n  ");
           dom.appendChild(el1, el2);
-          var el2 = dom.createElement("div");
-          dom.setAttribute(el2, "class", "background-logo");
-          var el3 = dom.createTextNode("\n    ");
-          dom.appendChild(el2, el3);
-          var el3 = dom.createElement("div");
-          dom.setAttribute(el3, "class", "ui top attached");
-          var el4 = dom.createTextNode("\n      ");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createElement("div");
-          dom.setAttribute(el4, "class", "ui attached menu");
-          var el5 = dom.createTextNode("\n        ");
-          dom.appendChild(el4, el5);
-          var el5 = dom.createElement("div");
-          dom.setAttribute(el5, "class", "ui container flex-container");
-          var el6 = dom.createTextNode("\n          ");
-          dom.appendChild(el5, el6);
-          var el6 = dom.createElement("a");
-          dom.setAttribute(el6, "class", "launch icon item");
-          var el7 = dom.createTextNode("\n            ");
-          dom.appendChild(el6, el7);
-          var el7 = dom.createComment("");
-          dom.appendChild(el6, el7);
-          var el7 = dom.createTextNode("\n            ");
-          dom.appendChild(el6, el7);
-          var el7 = dom.createElement("i");
-          dom.setAttribute(el7, "class", "sidebar icon text-menu-show");
-          var el8 = dom.createElement("span");
-          dom.setAttribute(el8, "class", "text_menu ");
-          var el9 = dom.createComment("");
-          dom.appendChild(el8, el9);
-          dom.appendChild(el7, el8);
-          var el8 = dom.createElement("span");
-          dom.setAttribute(el8, "class", "text_menu hidden text-menu-hide");
-          var el9 = dom.createComment("");
-          dom.appendChild(el8, el9);
-          dom.appendChild(el7, el8);
-          dom.appendChild(el6, el7);
-          var el7 = dom.createTextNode("\n            ");
-          dom.appendChild(el6, el7);
-          var el7 = dom.createElement("i");
-          dom.setAttribute(el7, "class", "sidebar icon hidden text-menu-hide hidden-text");
-          var el8 = dom.createElement("span");
-          dom.setAttribute(el8, "class", "text_menu hidden-text");
-          var el9 = dom.createComment("");
-          dom.appendChild(el8, el9);
-          dom.appendChild(el7, el8);
-          dom.appendChild(el6, el7);
-          var el7 = dom.createTextNode("\n          ");
-          dom.appendChild(el6, el7);
-          dom.appendChild(el5, el6);
-          var el6 = dom.createTextNode("\n        ");
-          dom.appendChild(el5, el6);
-          dom.appendChild(el4, el5);
-          var el5 = dom.createTextNode("\n      ");
-          dom.appendChild(el4, el5);
-          dom.appendChild(el3, el4);
-          var el4 = dom.createTextNode("\n    ");
-          dom.appendChild(el3, el4);
-          dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n    ");
-          dom.appendChild(el2, el3);
-          var el3 = dom.createElement("a");
-          dom.setAttribute(el3, "class", "item logo");
-          dom.setAttribute(el3, "href", "https://github.com/flexberry");
-          dom.setAttribute(el3, "target", "_blank");
-          var el4 = dom.createTextNode("\n      ");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createElement("img");
-          dom.setAttribute(el4, "class", "ui centered image");
-          dom.setAttribute(el4, "src", "assets/images/flexberry-logo.png");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createTextNode("\n    ");
-          dom.appendChild(el3, el4);
-          dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n    ");
-          dom.appendChild(el2, el3);
-          var el3 = dom.createElement("div");
-          dom.setAttribute(el3, "class", "page-header-caption");
-          var el4 = dom.createElement("a");
-          dom.setAttribute(el4, "href", "https://github.com/flexberry");
-          var el5 = dom.createComment("");
-          dom.appendChild(el4, el5);
-          dom.appendChild(el3, el4);
-          dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n    ");
-          dom.appendChild(el2, el3);
-          var el3 = dom.createElement("div");
-          dom.setAttribute(el3, "class", "page-header-userbar");
-          var el4 = dom.createTextNode("\n      ");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createElement("span");
-          dom.setAttribute(el4, "id", "fio");
-          dom.setAttribute(el4, "class", "hidden");
-          var el5 = dom.createTextNode("ICS_HOME\\login");
-          dom.appendChild(el4, el5);
-          dom.appendChild(el3, el4);
-          var el4 = dom.createTextNode("\n      ");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createElement("a");
-          dom.setAttribute(el4, "id", "ExitButton");
-          dom.setAttribute(el4, "class", "exit-btn");
-          dom.setAttribute(el4, "href", "javascript:void(0)");
-          var el5 = dom.createComment("");
-          dom.appendChild(el4, el5);
-          dom.appendChild(el3, el4);
-          var el4 = dom.createTextNode("\n    ");
-          dom.appendChild(el3, el4);
-          dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n  ");
-          dom.appendChild(el2, el3);
+          var el2 = dom.createElement("i");
+          dom.setAttribute(el2, "class", "caret right icon");
           dom.appendChild(el1, el2);
           var el2 = dom.createTextNode("\n");
           dom.appendChild(el1, el2);
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n\n");
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("div");
           dom.setAttribute(el1, "id", "example");
@@ -18786,21 +19074,14 @@ define("dummy/templates/application", ["exports"], function (exports) {
           var el4 = dom.createTextNode("\n      ");
           dom.appendChild(el3, el4);
           var el4 = dom.createElement("div");
-          dom.setAttribute(el4, "class", "flexberry-content ui attached segment");
-          var el5 = dom.createTextNode("\n        ");
+          dom.setAttribute(el4, "class", "flexberry-content");
+          var el5 = dom.createTextNode("\n         ");
           dom.appendChild(el4, el5);
           var el5 = dom.createElement("div");
-          dom.setAttribute(el5, "class", "ui main container");
-          var el6 = dom.createTextNode("\n          ");
+          dom.setAttribute(el5, "class", "ui main container fluid");
+          var el6 = dom.createTextNode("\n            ");
           dom.appendChild(el5, el6);
-          var el6 = dom.createElement("div");
-          dom.setAttribute(el6, "class", "stackable grid container");
-          var el7 = dom.createTextNode("\n            ");
-          dom.appendChild(el6, el7);
-          var el7 = dom.createComment("");
-          dom.appendChild(el6, el7);
-          var el7 = dom.createTextNode("\n          ");
-          dom.appendChild(el6, el7);
+          var el6 = dom.createComment("");
           dom.appendChild(el5, el6);
           var el6 = dom.createTextNode("\n        ");
           dom.appendChild(el5, el6);
@@ -18877,33 +19158,22 @@ define("dummy/templates/application", ["exports"], function (exports) {
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var element0 = dom.childAt(fragment, [3, 1]);
-          var element1 = dom.childAt(element0, [1, 1, 1, 1]);
-          var element2 = dom.childAt(element1, [3]);
-          var element3 = dom.childAt(element0, [3]);
-          var element4 = dom.childAt(fragment, [5, 1]);
-          var element5 = dom.childAt(fragment, [9, 1, 1]);
-          var morphs = new Array(16);
+          var element1 = dom.childAt(fragment, [1]);
+          var element2 = dom.childAt(fragment, [5, 1]);
+          var element3 = dom.childAt(fragment, [9, 1, 1]);
+          var morphs = new Array(8);
           morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-          morphs[1] = dom.createMorphAt(fragment, 1, 1, contextualElement);
-          morphs[2] = dom.createAttrMorph(element1, 'title');
-          morphs[3] = dom.createElementMorph(element1);
-          morphs[4] = dom.createMorphAt(element1, 1, 1);
-          morphs[5] = dom.createMorphAt(dom.childAt(element2, [0]), 0, 0);
-          morphs[6] = dom.createMorphAt(dom.childAt(element2, [1]), 0, 0);
-          morphs[7] = dom.createMorphAt(dom.childAt(element1, [5, 0]), 0, 0);
-          morphs[8] = dom.createAttrMorph(element3, 'title');
-          morphs[9] = dom.createMorphAt(dom.childAt(element0, [5, 0]), 0, 0);
-          morphs[10] = dom.createMorphAt(dom.childAt(element0, [7, 3]), 0, 0);
-          morphs[11] = dom.createAttrMorph(element4, 'class');
-          morphs[12] = dom.createMorphAt(dom.childAt(element4, [1, 1, 1, 1]), 1, 1);
-          morphs[13] = dom.createMorphAt(dom.childAt(fragment, [7]), 1, 1);
-          morphs[14] = dom.createMorphAt(dom.childAt(element5, [1]), 1, 1);
-          morphs[15] = dom.createMorphAt(dom.childAt(element5, [3]), 1, 1);
+          morphs[1] = dom.createElementMorph(element1);
+          morphs[2] = dom.createMorphAt(fragment, 3, 3, contextualElement);
+          morphs[3] = dom.createAttrMorph(element2, 'class');
+          morphs[4] = dom.createMorphAt(dom.childAt(element2, [1, 1, 1]), 1, 1);
+          morphs[5] = dom.createMorphAt(dom.childAt(fragment, [7]), 1, 1);
+          morphs[6] = dom.createMorphAt(dom.childAt(element3, [1]), 1, 1);
+          morphs[7] = dom.createMorphAt(dom.childAt(element3, [3]), 1, 1);
           dom.insertBoundary(fragment, 0);
           return morphs;
         },
-        statements: [["block", "ui-sidebar", [], ["class", "inverted vertical main menu", "ui_context", ".ember-application > .ember-view", "closable", false, "dimPage", false, "onShow", ["subexpr", "action", ["updateWidth"], [], ["loc", [null, [10, 9], [10, 31]]]], "onHidden", ["subexpr", "action", ["updateWidth"], [], ["loc", [null, [11, 11], [11, 33]]]]], 0, null, ["loc", [null, [5, 0], [14, 15]]]], ["inline", "outlet", ["right-sidebar"], [], ["loc", [null, [15, 0], [15, 26]]]], ["attribute", "title", ["subexpr", "t", ["forms.application.header.menu.sitemap-button.title"], [], ["loc", [null, [23, 18], [23, 76]]]]], ["element", "action", ["toggleSidebar"], [], ["loc", [null, [21, 13], [21, 39]]]], ["inline", "t", ["forms.application.header.menu.sitemap-button.caption"], [], ["loc", [null, [24, 12], [24, 72]]]], ["inline", "t", ["forms.application.header.menu.show-menu.caption"], [], ["loc", [null, [25, 76], [25, 131]]]], ["inline", "t", ["forms.application.header.menu.hide-menu.caption"], [], ["loc", [null, [25, 184], [25, 239]]]], ["inline", "t", ["forms.application.header.menu.hide-menu.caption"], [], ["loc", [null, [26, 106], [26, 161]]]], ["attribute", "title", ["subexpr", "t", ["forms.application.sitemap.application-name.title"], [], ["loc", [null, [34, 12], [34, 68]]]]], ["inline", "t", ["application-name"], [], ["loc", [null, [37, 76], [37, 100]]]], ["inline", "t", ["forms.application.header.logout.caption"], [], ["loc", [null, [40, 68], [40, 115]]]], ["attribute", "class", ["concat", ["ui form ", ["get", "appState.state", ["loc", [null, [45, 24], [45, 38]]]]]]], ["content", "outlet", ["loc", [null, [50, 12], [50, 22]]]], ["inline", "outlet", ["modal"], [], ["loc", [null, [58, 2], [58, 20]]]], ["inline", "t", ["forms.application.footer.application-name"], [], ["loc", [null, [64, 8], [64, 57]]]], ["inline", "flexberry-dropdown", [], ["class", "compact", "items", ["subexpr", "@mut", [["get", "locales", ["loc", [null, [69, 16], [69, 23]]]]], [], []], "value", ["subexpr", "@mut", [["get", "i18n.locale", ["loc", [null, [70, 16], [70, 27]]]]], [], []], "placeholder", ["subexpr", "t", ["forms.application.header.menu.language-dropdown.placeholder"], [], ["loc", [null, [71, 22], [71, 87]]]], "direction", "upward"], ["loc", [null, [67, 8], [73, 10]]]]],
+        statements: [["block", "ui-sidebar", [], ["class", "vertical main menu visible uncover", "ui_context", ".ember-application > .ember-view", "closable", false, "dimPage", false, "onShow", ["subexpr", "action", ["updateWidth"], [], ["loc", [null, [10, 9], [10, 31]]]], "onHidden", ["subexpr", "action", ["updateWidth"], [], ["loc", [null, [11, 11], [11, 33]]]]], 0, null, ["loc", [null, [5, 0], [22, 15]]]], ["element", "action", ["toggleSidebar"], [], ["loc", [null, [23, 8], [23, 34]]]], ["inline", "outlet", ["right-sidebar"], [], ["loc", [null, [26, 0], [26, 26]]]], ["attribute", "class", ["concat", ["ui form ", ["get", "appState.state", ["loc", [null, [29, 24], [29, 38]]]]]]], ["content", "outlet", ["loc", [null, [33, 12], [33, 22]]]], ["inline", "outlet", ["modal"], [], ["loc", [null, [40, 2], [40, 20]]]], ["inline", "t", ["forms.application.footer.application-name"], [], ["loc", [null, [46, 8], [46, 57]]]], ["inline", "flexberry-dropdown", [], ["class", "compact", "items", ["subexpr", "@mut", [["get", "locales", ["loc", [null, [51, 16], [51, 23]]]]], [], []], "value", ["subexpr", "@mut", [["get", "i18n.locale", ["loc", [null, [52, 16], [52, 27]]]]], [], []], "placeholder", ["subexpr", "t", ["forms.application.header.menu.language-dropdown.placeholder"], [], ["loc", [null, [53, 22], [53, 87]]]], "direction", "upward"], ["loc", [null, [49, 8], [55, 10]]]]],
         locals: [],
         templates: [child0]
       };
@@ -18922,7 +19192,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 79,
+            "line": 61,
             "column": 0
           }
         },
@@ -18945,7 +19215,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["block", "if", [["get", "isInAcceptanceTestMode", ["loc", [null, [1, 6], [1, 28]]]]], [], 0, 1, ["loc", [null, [1, 0], [78, 7]]]]],
+      statements: [["block", "if", [["get", "isInAcceptanceTestMode", ["loc", [null, [1, 6], [1, 28]]]]], [], 0, 1, ["loc", [null, [1, 0], [60, 7]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -35066,6 +35336,52 @@ define("dummy/templates/fd-aggregation-list-form/loading", ["exports"], function
     };
   })());
 });
+define("dummy/templates/fd-all-projects", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["wrong-type"]
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 2,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/fd-all-projects.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        dom.insertBoundary(fragment, 0);
+        return morphs;
+      },
+      statements: [["content", "outlet", ["loc", [null, [1, 0], [1, 10]]]]],
+      locals: [],
+      templates: []
+    };
+  })());
+});
 define("dummy/templates/fd-application-edit-form", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     var child0 = (function () {
@@ -35552,6 +35868,330 @@ define("dummy/templates/fd-application-edit-form", ["exports"], function (export
       statements: [["inline", "t", ["forms.fd-application-edit-form.caption"], [], ["loc", [null, [2, 2], [2, 48]]]], ["block", "if", [["get", "readonly", ["loc", [null, [3, 8], [3, 16]]]]], [], 0, null, ["loc", [null, [3, 2], [5, 9]]]], ["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [9, 26], [9, 31]]]]], [], []]], ["loc", [null, [9, 2], [9, 33]]]], ["inline", "flexberry-validationsummary", [], ["errors", ["subexpr", "@mut", [["get", "model.errors", ["loc", [null, [12, 43], [12, 55]]]]], [], []]], ["loc", [null, [12, 6], [12, 57]]]], ["block", "unless", [["get", "readonly", ["loc", [null, [17, 16], [17, 24]]]]], [], 1, null, ["loc", [null, [17, 6], [24, 17]]]], ["element", "action", ["close"], [], ["loc", [null, [25, 59], [25, 77]]]], ["inline", "t", ["forms.edit-form.close-button-text"], [], ["loc", [null, [26, 8], [26, 49]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [33, 16], [33, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [34, 13], [34, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.name", ["loc", [null, [36, 10], [36, 20]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.name", ["loc", [null, [37, 14], [37, 31]]]], "error", ""], [], ["loc", [null, [37, 10], [37, 43]]]], "label", ["subexpr", "t", ["forms.fd-application-edit-form.name-caption"], [], ["loc", [null, [38, 10], [38, 59]]]]], ["loc", [null, [31, 2], [39, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.name", ["loc", [null, [40, 38], [40, 55]]]]], [], []], "pointing", "pointing"], ["loc", [null, [40, 2], [40, 77]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [46, 16], [46, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [47, 13], [47, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.description", ["loc", [null, [49, 10], [49, 27]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.description", ["loc", [null, [50, 14], [50, 38]]]], "error", ""], [], ["loc", [null, [50, 10], [50, 50]]]], "label", ["subexpr", "t", ["forms.fd-application-edit-form.description-caption"], [], ["loc", [null, [51, 10], [51, 66]]]]], ["loc", [null, [44, 2], [52, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.description", ["loc", [null, [53, 38], [53, 62]]]]], [], []], "pointing", "pointing"], ["loc", [null, [53, 2], [53, 84]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [59, 16], [59, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [60, 13], [60, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.caption", ["loc", [null, [62, 10], [62, 23]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.caption", ["loc", [null, [63, 14], [63, 34]]]], "error", ""], [], ["loc", [null, [63, 10], [63, 46]]]], "label", ["subexpr", "t", ["forms.fd-application-edit-form.caption-caption"], [], ["loc", [null, [64, 10], [64, 62]]]]], ["loc", [null, [57, 2], [65, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.caption", ["loc", [null, [66, 38], [66, 58]]]]], [], []], "pointing", "pointing"], ["loc", [null, [66, 2], [66, 80]]]], ["inline", "t", ["forms.fd-application-edit-form.standartDesktop-caption"], [], ["loc", [null, [70, 9], [70, 71]]]], ["inline", "flexberry-checkbox", [], ["readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [73, 13], [73, 21]]]]], [], []], "value", ["subexpr", "@mut", [["get", "model.standartDesktop", ["loc", [null, [74, 10], [74, 31]]]]], [], []]], ["loc", [null, [71, 2], [75, 4]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [81, 16], [81, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [82, 13], [82, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.namespacePostfix", ["loc", [null, [84, 10], [84, 32]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.namespacePostfix", ["loc", [null, [85, 14], [85, 43]]]], "error", ""], [], ["loc", [null, [85, 10], [85, 55]]]], "label", ["subexpr", "t", ["forms.fd-application-edit-form.namespacePostfix-caption"], [], ["loc", [null, [86, 10], [86, 71]]]]], ["loc", [null, [79, 2], [87, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.namespacePostfix", ["loc", [null, [88, 38], [88, 67]]]]], [], []], "pointing", "pointing"], ["loc", [null, [88, 2], [88, 89]]]], ["inline", "t", ["forms.fd-application-edit-form.pBCustomAttributes-caption"], [], ["loc", [null, [92, 9], [92, 74]]]], ["inline", "flexberry-checkbox", [], ["readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [95, 13], [95, 21]]]]], [], []], "value", ["subexpr", "@mut", [["get", "model.pBCustomAttributes", ["loc", [null, [96, 10], [96, 34]]]]], [], []]], ["loc", [null, [93, 2], [97, 4]]]], ["inline", "t", ["forms.fd-application-edit-form.disableAllRightChecks-caption"], [], ["loc", [null, [101, 9], [101, 77]]]], ["inline", "flexberry-checkbox", [], ["readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [104, 13], [104, 21]]]]], [], []], "value", ["subexpr", "@mut", [["get", "model.disableAllRightChecks", ["loc", [null, [105, 10], [105, 37]]]]], [], []]], ["loc", [null, [102, 2], [106, 4]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [112, 16], [112, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [113, 13], [113, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.containersStr", ["loc", [null, [115, 10], [115, 29]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.containersStr", ["loc", [null, [116, 14], [116, 40]]]], "error", ""], [], ["loc", [null, [116, 10], [116, 52]]]], "label", ["subexpr", "t", ["forms.fd-application-edit-form.containersStr-caption"], [], ["loc", [null, [117, 10], [117, 68]]]]], ["loc", [null, [110, 2], [118, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.containersStr", ["loc", [null, [119, 38], [119, 64]]]]], [], []], "pointing", "pointing"], ["loc", [null, [119, 2], [119, 86]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [125, 16], [125, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [126, 13], [126, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.auditConnectionStringName", ["loc", [null, [128, 10], [128, 41]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.auditConnectionStringName", ["loc", [null, [129, 14], [129, 52]]]], "error", ""], [], ["loc", [null, [129, 10], [129, 64]]]], "label", ["subexpr", "t", ["forms.fd-application-edit-form.auditConnectionStringName-caption"], [], ["loc", [null, [130, 10], [130, 80]]]]], ["loc", [null, [123, 2], [131, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.auditConnectionStringName", ["loc", [null, [132, 38], [132, 76]]]]], [], []], "pointing", "pointing"], ["loc", [null, [132, 2], [132, 98]]]], ["inline", "flexberry-field", [], ["placeholder", ["subexpr", "t", ["components.flexberry-field.placeholder"], [], ["loc", [null, [138, 16], [138, 60]]]], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [139, 13], [139, 21]]]]], [], []], "required", true, "value", ["subexpr", "@mut", [["get", "model.auditWinServiceUrl", ["loc", [null, [141, 10], [141, 34]]]]], [], []], "class", ["subexpr", "if", [["get", "model.errors.auditWinServiceUrl", ["loc", [null, [142, 14], [142, 45]]]], "error", ""], [], ["loc", [null, [142, 10], [142, 57]]]], "label", ["subexpr", "t", ["forms.fd-application-edit-form.auditWinServiceUrl-caption"], [], ["loc", [null, [143, 10], [143, 73]]]]], ["loc", [null, [136, 2], [144, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.auditWinServiceUrl", ["loc", [null, [145, 38], [145, 69]]]]], [], []], "pointing", "pointing"], ["loc", [null, [145, 2], [145, 91]]]], ["inline", "t", ["forms.fd-application-edit-form.writeSessions-caption"], [], ["loc", [null, [149, 9], [149, 69]]]], ["inline", "flexberry-checkbox", [], ["readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [152, 13], [152, 21]]]]], [], []], "value", ["subexpr", "@mut", [["get", "model.writeSessions", ["loc", [null, [153, 10], [153, 29]]]]], [], []]], ["loc", [null, [150, 2], [154, 4]]]], ["inline", "t", ["forms.fd-application-edit-form.attributes-caption"], [], ["loc", [null, [158, 9], [158, 66]]]], ["inline", "flexberry-groupedit", [], ["componentName", "attributesGroupEdit", "mainModelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [162, 24], [162, 39]]]]], [], []], "modelProjection", ["subexpr", "@mut", [["get", "modelProjection.attributes.attributes", ["loc", [null, [163, 20], [163, 57]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model.attributes", ["loc", [null, [164, 12], [164, 28]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [165, 13], [165, 21]]]]], [], []], "orderable", false, "class", ["subexpr", "if", [["get", "model.errors.attributes", ["loc", [null, [167, 14], [167, 37]]]], "error", ""], [], ["loc", [null, [167, 10], [167, 49]]]]], ["loc", [null, [159, 2], [168, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.attributes", ["loc", [null, [169, 38], [169, 61]]]]], [], []], "pointing", "pointing"], ["loc", [null, [169, 2], [169, 83]]]], ["inline", "t", ["forms.fd-application-edit-form.methods-caption"], [], ["loc", [null, [173, 9], [173, 63]]]], ["inline", "flexberry-groupedit", [], ["componentName", "methodsGroupEdit", "mainModelProjection", ["subexpr", "@mut", [["get", "modelProjection", ["loc", [null, [177, 24], [177, 39]]]]], [], []], "modelProjection", ["subexpr", "@mut", [["get", "modelProjection.attributes.methods", ["loc", [null, [178, 20], [178, 54]]]]], [], []], "content", ["subexpr", "@mut", [["get", "model.methods", ["loc", [null, [179, 12], [179, 25]]]]], [], []], "readonly", ["subexpr", "@mut", [["get", "readonly", ["loc", [null, [180, 13], [180, 21]]]]], [], []], "orderable", false, "class", ["subexpr", "if", [["get", "model.errors.methods", ["loc", [null, [182, 14], [182, 34]]]], "error", ""], [], ["loc", [null, [182, 10], [182, 46]]]]], ["loc", [null, [174, 2], [183, 4]]]], ["inline", "flexberry-validationmessage", [], ["error", ["subexpr", "@mut", [["get", "model.errors.methods", ["loc", [null, [184, 38], [184, 58]]]]], [], []], "pointing", "pointing"], ["loc", [null, [184, 2], [184, 80]]]]],
       locals: [],
       templates: [child0, child1]
+    };
+  })());
+});
+define("dummy/templates/fd-application-model", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    var child0 = (function () {
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 59,
+              "column": 0
+            },
+            "end": {
+              "line": 84,
+              "column": 0
+            }
+          },
+          "moduleName": "dummy/templates/fd-application-model.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("  ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "ui stackable grid fd-list");
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "row");
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "three wide column");
+          var el4 = dom.createTextNode("\n        Заголовок\n      ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "thirteen wide column light-text");
+          var el4 = dom.createTextNode("\n        Заголовок сущности\n      ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n    ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "row");
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "three wide column");
+          var el4 = dom.createTextNode("\n        ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("div");
+          var el5 = dom.createTextNode("Хранилище");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n        ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("div");
+          var el5 = dom.createTextNode("Хранимый");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n        ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("div");
+          var el5 = dom.createTextNode("Бизнес-сервер");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "thirteen wide column light-text");
+          var el4 = dom.createTextNode("\n        ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("div");
+          var el5 = dom.createTextNode("Наименование хранилища");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n        ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("div");
+          var el5 = dom.createTextNode("Наименование хранилища");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n        ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("div");
+          var el5 = dom.createTextNode("Нет значения");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n    ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n  ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes() {
+          return [];
+        },
+        statements: [],
+        locals: [],
+        templates: []
+      };
+    })();
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["multiple-nodes", "wrong-type"]
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 85,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/fd-application-model.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("h2");
+        dom.setAttribute(el1, "class", "form-header");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("form");
+        dom.setAttribute(el1, "class", "ui form flexberry-vertical-form");
+        var el2 = dom.createTextNode("\n\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "ui stackable grid fd-list");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "row");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("div");
+        dom.setAttribute(el4, "class", "two wide column light-text");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("div");
+        var el6 = dom.createComment("");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("div");
+        dom.setAttribute(el4, "class", "fourteen wide column");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "row");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("div");
+        dom.setAttribute(el4, "class", "two wide column light-text");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("div");
+        var el6 = dom.createTextNode("\n          ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createComment("");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n        ");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("div");
+        var el6 = dom.createTextNode("\n          ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createComment("");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n        ");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("div");
+        var el6 = dom.createTextNode("\n          ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createComment("");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n        ");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("div");
+        dom.setAttribute(el4, "class", "fourteen wide column");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var element0 = dom.childAt(fragment, [2, 1]);
+        var element1 = dom.childAt(element0, [1]);
+        var element2 = dom.childAt(element1, [3]);
+        var element3 = dom.childAt(element0, [3]);
+        var element4 = dom.childAt(element3, [1]);
+        var element5 = dom.childAt(element3, [3]);
+        var morphs = new Array(15);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 1, 1);
+        morphs[1] = dom.createMorphAt(dom.childAt(element1, [1, 1]), 0, 0);
+        morphs[2] = dom.createMorphAt(element2, 1, 1);
+        morphs[3] = dom.createMorphAt(element2, 3, 3);
+        morphs[4] = dom.createMorphAt(element2, 5, 5);
+        morphs[5] = dom.createMorphAt(element2, 7, 7);
+        morphs[6] = dom.createMorphAt(dom.childAt(element4, [1]), 1, 1);
+        morphs[7] = dom.createMorphAt(dom.childAt(element4, [3]), 1, 1);
+        morphs[8] = dom.createMorphAt(dom.childAt(element4, [5]), 1, 1);
+        morphs[9] = dom.createMorphAt(element5, 1, 1);
+        morphs[10] = dom.createMorphAt(element5, 3, 3);
+        morphs[11] = dom.createMorphAt(element5, 5, 5);
+        morphs[12] = dom.createMorphAt(element5, 7, 7);
+        morphs[13] = dom.createMorphAt(element5, 9, 9);
+        morphs[14] = dom.createMorphAt(fragment, 4, 4, contextualElement);
+        dom.insertBoundary(fragment, null);
+        return morphs;
+      },
+      statements: [["inline", "t", ["forms.fd-application-model.caption"], [], ["loc", [null, [2, 2], [2, 44]]]], ["inline", "t", ["forms.fd-application-model.type-caption"], [], ["loc", [null, [10, 13], [10, 60]]]], ["inline", "fd-list-item", [], ["caption", "tПол"], ["loc", [null, [13, 8], [15, 10]]]], ["inline", "fd-list-item", [], ["caption", "tЖилье"], ["loc", [null, [16, 8], [18, 10]]]], ["inline", "fd-list-item", [], ["caption", "tОбразование"], ["loc", [null, [19, 8], [21, 10]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-application-model.enum-caption"], [], ["loc", [null, [23, 18], [23, 63]]]]], ["loc", [null, [22, 8], [24, 10]]]], ["inline", "t", ["forms.fd-application-model.entity-caption"], [], ["loc", [null, [30, 10], [30, 59]]]], ["inline", "t", ["forms.fd-application-model.editor-caption"], [], ["loc", [null, [33, 10], [33, 59]]]], ["inline", "t", ["forms.fd-application-model.list-caption"], [], ["loc", [null, [36, 10], [36, 57]]]], ["inline", "fd-list-item", [], ["caption", "Пациент"], ["loc", [null, [40, 8], [42, 10]]]], ["inline", "fd-list-item", [], ["caption", "ПациентE"], ["loc", [null, [43, 8], [45, 10]]]], ["inline", "fd-list-item", [], ["caption", "ПациентL"], ["loc", [null, [46, 8], [48, 10]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-application-model.editor-caption"], [], ["loc", [null, [50, 18], [50, 65]]]]], ["loc", [null, [49, 8], [51, 10]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-application-model.list-caption"], [], ["loc", [null, [53, 18], [53, 63]]]]], ["loc", [null, [52, 8], [54, 10]]]], ["block", "fd-sheet", [], ["title", "Пациент"], 0, null, ["loc", [null, [59, 0], [84, 13]]]]],
+      locals: [],
+      templates: [child0]
     };
   })());
 });
@@ -36983,6 +37623,52 @@ define("dummy/templates/fd-appstruct-form", ["exports"], function (exports) {
       statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [2, 26], [2, 31]]]]], [], []]], ["loc", [null, [2, 2], [2, 33]]]], ["inline", "t", ["forms.fd-appstruct-form.caption"], [], ["loc", [null, [3, 6], [3, 45]]]], ["attribute", "class", ["concat", ["ui button ", ["subexpr", "if", [["subexpr", "not", [["get", "processMethodologyValue", ["loc", [null, [6, 41], [6, 64]]]]], [], ["loc", [null, [6, 36], [6, 65]]]], " disabled"], [], ["loc", [null, [6, 31], [6, 79]]]]]]], ["element", "action", ["openProcessEditorForm"], [], ["loc", [null, [6, 95], [6, 129]]]], ["inline", "t", ["forms.fd-appstruct-form.button-precess-editor"], [], ["loc", [null, [6, 158], [6, 211]]]], ["element", "action", ["openGenerationForm"], [], ["loc", [null, [7, 47], [7, 78]]]], ["inline", "t", ["forms.fd-appstruct-form.button-generation"], [], ["loc", [null, [7, 108], [7, 157]]]], ["block", "if", [["subexpr", "not", [["get", "singleModeStage", ["loc", [null, [8, 17], [8, 32]]]]], [], ["loc", [null, [8, 12], [8, 33]]]]], [], 0, null, ["loc", [null, [8, 6], [12, 13]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "removeLeftNodeDisabled", ["loc", [null, [19, 40], [19, 62]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.remove-text"], [], ["loc", [null, [19, 87], [19, 130]]]]]]], ["element", "action", ["removeLeftNode"], ["on", "click"], ["loc", [null, [19, 132], [19, 171]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.add-class-text"], [], ["loc", [null, [22, 69], [22, 115]]]]]]], ["element", "action", ["addLeftClass"], [], ["loc", [null, [22, 117], [22, 142]]]], ["attribute", "class", ["concat", ["ui button create-button ", ["get", "addLeftNodeDisabled", ["loc", [null, [25, 49], [25, 68]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.add-editform-text"], [], ["loc", [null, [25, 93], [25, 142]]]]]]], ["element", "action", ["addLeftEditForm"], [], ["loc", [null, [25, 144], [25, 172]]]], ["attribute", "class", ["concat", ["ui button create-button ", ["get", "addLeftNodeDisabled", ["loc", [null, [28, 49], [28, 68]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.add-listform-text"], [], ["loc", [null, [28, 93], [28, 142]]]]]]], ["element", "action", ["addLeftListForm"], [], ["loc", [null, [28, 144], [28, 172]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "editLeftNodeDisabled", ["loc", [null, [31, 40], [31, 60]]]]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.edit-text"], [], ["loc", [null, [31, 85], [31, 126]]]]]]], ["element", "action", ["editLeftNode"], ["on", "click"], ["loc", [null, [31, 128], [31, 165]]]], ["attribute", "title", ["concat", [["subexpr", "t", ["forms.fd-appstruct-form.list-classes-text"], [], ["loc", [null, [34, 60], [34, 109]]]]]]], ["element", "action", ["listLeft"], ["on", "click"], ["loc", [null, [34, 111], [34, 144]]]], ["inline", "t", ["forms.fd-appstruct-form.all-forms-panel-caption"], [], ["loc", [null, [40, 10], [40, 65]]]], ["inline", "flexberry-textbox", [], ["placeholder", ["subexpr", "t", ["forms.fd-appstruct-form.search"], [], ["loc", [null, [45, 24], [45, 60]]]], "value", ["subexpr", "@mut", [["get", "searchTermLeft", ["loc", [null, [46, 18], [46, 32]]]]], [], []]], ["loc", [null, [43, 10], [47, 12]]]], ["inline", "ember-jstree", [], ["actionReceiver", ["subexpr", "@mut", [["get", "jstreeActionReceiverLeft", ["loc", [null, [51, 27], [51, 51]]]]], [], []], "selectedNodes", ["subexpr", "@mut", [["get", "jstreeSelectedNodesLeft", ["loc", [null, [52, 26], [52, 49]]]]], [], []], "data", ["subexpr", "@mut", [["get", "model.leftTreeNodes", ["loc", [null, [53, 17], [53, 36]]]]], [], []], "plugins", ["subexpr", "@mut", [["get", "pluginsLeft", ["loc", [null, [54, 20], [54, 31]]]]], [], []], "searchTerm", ["subexpr", "@mut", [["get", "searchTermLeft", ["loc", [null, [55, 23], [55, 37]]]]], [], []], "searchOptions", ["subexpr", "@mut", [["get", "searchOptions", ["loc", [null, [56, 26], [56, 39]]]]], [], []], "typesOptions", ["subexpr", "@mut", [["get", "typesOptions", ["loc", [null, [57, 25], [57, 37]]]]], [], []]], ["loc", [null, [50, 10], [58, 12]]]], ["block", "ui-popup", [], ["content", ["subexpr", "@mut", [["get", "popupMessage", ["loc", [null, [64, 26], [64, 38]]]]], [], []]], 1, null, ["loc", [null, [64, 6], [68, 19]]]], ["attribute", "class", ["concat", ["ui button icon flexberry-button move ", ["get", "moveRightDisabled", ["loc", [null, [69, 60], [69, 77]]]]]]], ["element", "action", ["moveRightHighlighted"], ["on", "click"], ["loc", [null, [69, 95], [69, 140]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "addRightNodeDisabled", ["loc", [null, [76, 40], [76, 60]]]]]]], ["element", "action", ["addUrlNode"], ["on", "click"], ["loc", [null, [76, 78], [76, 113]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "editRightNodeDisabled", ["loc", [null, [79, 40], [79, 61]]]]]]], ["element", "action", ["editRightNode"], ["on", "click"], ["loc", [null, [79, 79], [79, 117]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "removeRightNodeDisabled", ["loc", [null, [82, 40], [82, 63]]]]]]], ["element", "action", ["removeRightNode"], ["on", "click"], ["loc", [null, [82, 81], [82, 121]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "addFolderNodeDisabled", ["loc", [null, [85, 40], [85, 61]]]]]]], ["element", "action", ["addFolderNode"], ["on", "click"], ["loc", [null, [85, 79], [85, 117]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "indexSelectedRight.upRightNodeDisabled", ["loc", [null, [88, 40], [88, 78]]]]]]], ["element", "action", ["upRightNode"], ["on", "click"], ["loc", [null, [88, 96], [88, 132]]]], ["attribute", "class", ["concat", ["ui button icon ", ["get", "indexSelectedRight.downRightNodeDisabled", ["loc", [null, [91, 40], [91, 80]]]]]]], ["element", "action", ["downRightNode"], ["on", "click"], ["loc", [null, [91, 98], [91, 136]]]], ["element", "action", ["saveTree"], ["on", "click"], ["loc", [null, [94, 53], [94, 86]]]], ["inline", "t", ["forms.fd-appstruct-form.app-forms-panel-caption"], [], ["loc", [null, [100, 10], [100, 65]]]], ["inline", "flexberry-textbox", [], ["placeholder", ["subexpr", "t", ["forms.fd-appstruct-form.search"], [], ["loc", [null, [105, 24], [105, 60]]]], "value", ["subexpr", "@mut", [["get", "searchTermRight", ["loc", [null, [106, 18], [106, 33]]]]], [], []]], ["loc", [null, [103, 10], [107, 12]]]], ["inline", "ember-jstree", [], ["actionReceiver", ["subexpr", "@mut", [["get", "jstreeActionReceiverRight", ["loc", [null, [111, 27], [111, 52]]]]], [], []], "selectedNodes", ["subexpr", "@mut", [["get", "jstreeSelectedNodesRight", ["loc", [null, [112, 26], [112, 50]]]]], [], []], "data", ["subexpr", "@mut", [["get", "model.rightTreeNodes", ["loc", [null, [113, 17], [113, 37]]]]], [], []], "plugins", ["subexpr", "@mut", [["get", "pluginsRight", ["loc", [null, [114, 20], [114, 32]]]]], [], []], "searchTerm", ["subexpr", "@mut", [["get", "searchTermRight", ["loc", [null, [115, 23], [115, 38]]]]], [], []], "searchOptions", ["subexpr", "@mut", [["get", "searchOptions", ["loc", [null, [116, 26], [116, 39]]]]], [], []], "typesOptions", ["subexpr", "@mut", [["get", "typesOptions", ["loc", [null, [117, 25], [117, 37]]]]], [], []], "treeObject", ["subexpr", "@mut", [["get", "jstreeObjectRight", ["loc", [null, [118, 23], [118, 40]]]]], [], []]], ["loc", [null, [110, 10], [119, 12]]]], ["block", "if", [["get", "_showModalDialog", ["loc", [null, [126, 6], [126, 22]]]]], [], 2, null, ["loc", [null, [126, 0], [137, 7]]]], ["block", "fd-config-panel", [], [], 3, null, ["loc", [null, [139, 0], [275, 20]]]]],
       locals: [],
       templates: [child0, child1, child2, child3]
+    };
+  })());
+});
+define("dummy/templates/fd-architecture", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["wrong-type"]
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 2,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/fd-architecture.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        dom.insertBoundary(fragment, 0);
+        return morphs;
+      },
+      statements: [["content", "outlet", ["loc", [null, [1, 0], [1, 10]]]]],
+      locals: [],
+      templates: []
     };
   })());
 });
@@ -40210,6 +40896,52 @@ define("dummy/templates/fd-diagram-list-form/loading", ["exports"], function (ex
     };
   })());
 });
+define("dummy/templates/fd-diagrams", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["wrong-type"]
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 2,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/fd-diagrams.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        dom.insertBoundary(fragment, 0);
+        return morphs;
+      },
+      statements: [["content", "outlet", ["loc", [null, [1, 0], [1, 10]]]]],
+      locals: [],
+      templates: []
+    };
+  })());
+});
 define("dummy/templates/fd-edit-form-edit-form", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     var child0 = (function () {
@@ -43252,6 +43984,52 @@ define("dummy/templates/fd-generation-process-form", ["exports"], function (expo
     };
   })());
 });
+define("dummy/templates/fd-generation", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["wrong-type"]
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 2,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/fd-generation.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        dom.insertBoundary(fragment, 0);
+        return morphs;
+      },
+      statements: [["content", "outlet", ["loc", [null, [1, 0], [1, 10]]]]],
+      locals: [],
+      templates: []
+    };
+  })());
+});
 define("dummy/templates/fd-inheritance-edit-form", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     var child0 = (function () {
@@ -46018,6 +46796,52 @@ define("dummy/templates/fd-listform-constructor", ["exports"], function (exports
     };
   })());
 });
+define("dummy/templates/fd-navigation", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["wrong-type"]
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 2,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/fd-navigation.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        dom.insertBoundary(fragment, 0);
+        return morphs;
+      },
+      statements: [["content", "outlet", ["loc", [null, [1, 0], [1, 10]]]]],
+      locals: [],
+      templates: []
+    };
+  })());
+});
 define("dummy/templates/fd-sequence-diagram-primitives-demo", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     return {
@@ -46058,6 +46882,52 @@ define("dummy/templates/fd-sequence-diagram-primitives-demo", ["exports"], funct
         return [];
       },
       statements: [],
+      locals: [],
+      templates: []
+    };
+  })());
+});
+define("dummy/templates/fd-setting", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["wrong-type"]
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 2,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/fd-setting.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        dom.insertBoundary(fragment, 0);
+        return morphs;
+      },
+      statements: [["content", "outlet", ["loc", [null, [1, 0], [1, 10]]]]],
       locals: [],
       templates: []
     };
@@ -56582,11 +57452,11 @@ define("dummy/templates/sitemap-node-content", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 4,
+                "line": 7,
                 "column": 4
               },
               "end": {
-                "line": 6,
+                "line": 9,
                 "column": 4
               }
             },
@@ -56611,7 +57481,7 @@ define("dummy/templates/sitemap-node-content", ["exports"], function (exports) {
             morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
             return morphs;
           },
-          statements: [["inline", "render", ["sitemap-node", ["get", "child", ["loc", [null, [5, 30], [5, 35]]]]], [], ["loc", [null, [5, 6], [5, 37]]]]],
+          statements: [["inline", "render", ["sitemap-node", ["get", "child", ["loc", [null, [8, 30], [8, 35]]]]], [], ["loc", [null, [8, 6], [8, 37]]]]],
           locals: ["child"],
           templates: []
         };
@@ -56623,11 +57493,11 @@ define("dummy/templates/sitemap-node-content", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 2,
+              "line": 5,
               "column": 0
             },
             "end": {
-              "line": 8,
+              "line": 11,
               "column": 0
             }
           },
@@ -56659,7 +57529,7 @@ define("dummy/templates/sitemap-node-content", ["exports"], function (exports) {
           morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
           return morphs;
         },
-        statements: [["block", "each", [["get", "model.children", ["loc", [null, [4, 12], [4, 26]]]]], [], 0, null, ["loc", [null, [4, 4], [6, 13]]]]],
+        statements: [["block", "each", [["get", "model.children", ["loc", [null, [7, 12], [7, 26]]]]], [], 0, null, ["loc", [null, [7, 4], [9, 13]]]]],
         locals: [],
         templates: [child0]
       };
@@ -56678,7 +57548,7 @@ define("dummy/templates/sitemap-node-content", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 8,
+            "line": 11,
             "column": 7
           }
         },
@@ -56692,7 +57562,15 @@ define("dummy/templates/sitemap-node-content", ["exports"], function (exports) {
         var el0 = dom.createDocumentFragment();
         var el1 = dom.createElement("div");
         dom.setAttribute(el1, "class", "title-item-menu");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("i");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
         var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
@@ -56703,14 +57581,16 @@ define("dummy/templates/sitemap-node-content", ["exports"], function (exports) {
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element0 = dom.childAt(fragment, [0]);
-        var morphs = new Array(3);
+        var element1 = dom.childAt(element0, [1]);
+        var morphs = new Array(4);
         morphs[0] = dom.createAttrMorph(element0, 'onclick');
-        morphs[1] = dom.createMorphAt(element0, 0, 0);
-        morphs[2] = dom.createMorphAt(fragment, 2, 2, contextualElement);
+        morphs[1] = dom.createAttrMorph(element1, 'class');
+        morphs[2] = dom.createMorphAt(element0, 3, 3);
+        morphs[3] = dom.createMorphAt(fragment, 2, 2, contextualElement);
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["attribute", "onclick", ["subexpr", "action", ["subMenuEl"], ["bubbles", false], ["loc", [null, [1, 36], [1, 72]]]]], ["content", "model.caption", ["loc", [null, [1, 73], [1, 90]]]], ["block", "if", [["get", "model.children.length", ["loc", [null, [2, 6], [2, 27]]]]], [], 0, null, ["loc", [null, [2, 0], [8, 7]]]]],
+      statements: [["attribute", "onclick", ["subexpr", "action", ["subMenuEl"], ["bubbles", false], ["loc", [null, [1, 37], [1, 73]]]]], ["attribute", "class", ["concat", ["icon ", ["get", "model.icon", ["loc", [null, [2, 19], [2, 29]]]]]]], ["content", "model.caption", ["loc", [null, [3, 2], [3, 19]]]], ["block", "if", [["get", "model.children.length", ["loc", [null, [5, 6], [5, 27]]]]], [], 0, null, ["loc", [null, [5, 0], [11, 7]]]]],
       locals: [],
       templates: [child0]
     };
@@ -57392,7 +58272,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+7e16bdf4"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+1d2913e8"});
 }
 
 /* jshint ignore:end */
