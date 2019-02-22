@@ -276,8 +276,9 @@ export default Ember.Mixin.create({
           position: { x: x, y: y },
           size: { width: 150, height: 40 },
           name: '',
-          attributes: '',
-          methods: '',
+          attributes: [],
+          methods: [],
+          params: ''
         });
 
         return newTemplateClassObject;
