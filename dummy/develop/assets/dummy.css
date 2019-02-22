@@ -39443,6 +39443,9 @@ table.fd-listform tr:last-child > td.fd-selected {
 .ui.form .uml-link-inputs input[type="text"].params-input,
 .ui.form .uml-class-inputs textarea.params-input {
   resize: none;
+  overflow: hidden;
+  min-width: 10px;
+  line-height: 1.1;
 }
 .ui.form .uml-class-inputs input[type="text"].class-stereotype-input,
 .ui.form .uml-link-inputs input[type="text"].class-stereotype-input,
