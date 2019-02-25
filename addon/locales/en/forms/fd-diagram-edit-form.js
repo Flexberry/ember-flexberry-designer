@@ -72,7 +72,12 @@ export default {
       'add-async-message': 'Async message',
       'add-return-message': 'Return message',
       'add-in-scope': 'In scope',
-      'add-time-constraint': 'Time constraint'
+      'add-time-constraint': 'Time constraint',
+      'add-usecase': 'Usecase',
+      'add-boundary': 'Boundary',
+      'add-undir-association': 'Undirected association',
+      'add-dir-association': 'Directed association',
+      'add-generalization': 'Generalization'
     }
   }
 };

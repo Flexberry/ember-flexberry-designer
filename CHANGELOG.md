@@ -23,6 +23,8 @@ All notable changes to this project will be documented in this file.
   * Retracting controls if nothing is selected.
   * Add sidebar opening when view's property is select.
 * Edit form for classes with `typemap` stereotype.
+* Buttons for adding ucd diagram primitives.
+
 ### Changed
 * The edit form constructor:
   * The addition of controls takes place depending on the selected item.
