@@ -56615,6 +56615,158 @@ html.ios body {
     transform: scale3d(1, 1, 1);
   }
 }
+.ui.form .uml-class-inputs,
+.ui.form .uml-link-inputs {
+  position: absolute;
+  pointer-events: none;
+  -webkit-user-select: none;
+  padding: 2px 7px;
+  box-sizing: border-box;
+  z-index: 2;
+}
+.ui.form .uml-class-inputs input,
+.ui.form .uml-link-inputs input,
+.ui.form .uml-class-inputs textarea,
+.ui.form .uml-link-inputs textarea {
+  /* Enable interacting with inputs only. */
+  pointer-events: auto;
+}
+.ui.form .uml-class-inputs input.click-disabled,
+.ui.form .uml-link-inputs input.click-disabled,
+.ui.form .uml-class-inputs textarea.click-disabled,
+.ui.form .uml-link-inputs textarea.click-disabled {
+  pointer-events: none;
+}
+.ui.form .uml-class-inputs input[type="text"],
+.ui.form .uml-link-inputs input[type="text"],
+.ui.form .uml-class-inputs textarea {
+  border: none;
+  padding: 0px;
+  color: black;
+  font-size: 12px;
+  font-family: Arial;
+  min-width: 50px;
+  display: block;
+  margin: 0 auto;
+}
+.ui.form .uml-class-inputs input[type="text"].class-name-input,
+.ui.form .uml-link-inputs input[type="text"].class-name-input,
+.ui.form .uml-class-inputs textarea.class-name-input {
+  font-weight: bold;
+  text-align: center;
+  resize: none;
+  line-height: 1.1;
+  overflow: hidden;
+}
+.ui.form .uml-class-inputs input[type="text"].class-name-input.active-object-input,
+.ui.form .uml-link-inputs input[type="text"].class-name-input.active-object-input,
+.ui.form .uml-class-inputs textarea.class-name-input.active-object-input {
+  text-decoration: underline;
+}
+.ui.form .uml-class-inputs input[type="text"].class-name-input.instance-input,
+.ui.form .uml-link-inputs input[type="text"].class-name-input.instance-input,
+.ui.form .uml-class-inputs textarea.class-name-input.instance-input {
+  font-weight: normal;
+  text-decoration: underline;
+}
+.ui.form .uml-class-inputs input[type="text"].class-name-input.package-header-input,
+.ui.form .uml-link-inputs input[type="text"].class-name-input.package-header-input,
+.ui.form .uml-class-inputs textarea.class-name-input.package-header-input {
+  font-weight: normal;
+  text-decoration: underline;
+  text-align: left;
+}
+.ui.form .uml-class-inputs input[type="text"].class-name-input.nary-assoc-name,
+.ui.form .uml-link-inputs input[type="text"].class-name-input.nary-assoc-name,
+.ui.form .uml-class-inputs textarea.class-name-input.nary-assoc-name {
+  font-weight: normal;
+  text-decoration: underline;
+  margin-top: 13px;
+}
+.ui.form .uml-class-inputs input[type="text"].params-input,
+.ui.form .uml-link-inputs input[type="text"].params-input,
+.ui.form .uml-class-inputs textarea.params-input {
+  resize: none;
+  overflow: hidden;
+  min-width: 10px;
+  line-height: 1.1;
+}
+.ui.form .uml-class-inputs input[type="text"].class-stereotype-input,
+.ui.form .uml-link-inputs input[type="text"].class-stereotype-input,
+.ui.form .uml-class-inputs textarea.class-stereotype-input {
+  resize: none;
+  line-height: 1.1;
+  overflow: hidden;
+}
+.ui.form .uml-class-inputs input[type="text"].package-header-input,
+.ui.form .uml-link-inputs input[type="text"].package-header-input,
+.ui.form .uml-class-inputs textarea.package-header-input {
+  font-weight: normal;
+  text-decoration: underline;
+  text-align: left;
+  resize: none;
+  margin: 0;
+  line-height: 1.1;
+  overflow: hidden;
+}
+.ui.form .uml-class-inputs input[type="text"].attributes-input,
+.ui.form .uml-link-inputs input[type="text"].attributes-input,
+.ui.form .uml-class-inputs textarea.attributes-input,
+.ui.form .uml-class-inputs input[type="text"].methods-input,
+.ui.form .uml-link-inputs input[type="text"].methods-input,
+.ui.form .uml-class-inputs textarea.methods-input {
+  resize: none;
+  line-height: 1.1;
+  margin: 4px 0 0 0;
+  overflow: hidden;
+}
+.ui.form .uml-class-inputs input[type="text"].start-multiplicity-input,
+.ui.form .uml-link-inputs input[type="text"].start-multiplicity-input,
+.ui.form .uml-class-inputs textarea.start-multiplicity-input,
+.ui.form .uml-class-inputs input[type="text"].end-multiplicity-input,
+.ui.form .uml-link-inputs input[type="text"].end-multiplicity-input,
+.ui.form .uml-class-inputs textarea.end-multiplicity-input,
+.ui.form .uml-class-inputs input[type="text"].start-role-input,
+.ui.form .uml-link-inputs input[type="text"].start-role-input,
+.ui.form .uml-class-inputs textarea.start-role-input,
+.ui.form .uml-class-inputs input[type="text"].end-role-input,
+.ui.form .uml-link-inputs input[type="text"].end-role-input,
+.ui.form .uml-class-inputs textarea.end-role-input {
+  min-width: 10px;
+}
+.ui.form .uml-class-inputs input[type="text"].description-input,
+.ui.form .uml-link-inputs input[type="text"].description-input,
+.ui.form .uml-class-inputs textarea.description-input {
+  background-color: white;
+  min-width: 0px;
+}
+.ui.form .uml-class-inputs input[type="text"].underline-text,
+.ui.form .uml-link-inputs input[type="text"].underline-text,
+.ui.form .uml-class-inputs textarea.underline-text {
+  text-decoration: underline;
+}
+.ui.form .input-buffer {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  visibility: hidden;
+  font-size: 12px;
+  font-family: Arial;
+  font-weight: bold;
+  white-space: pre;
+}
+.ui.form .input-buffer.nary-buffer {
+  margin-top: 13px;
+}
+.edit-disabled {
+  pointer-events: none;
+}
+.edit-disabled .connection-wrap,
+.edit-disabled .marker-arrowhead,
+.edit-disabled .link-tools,
+.edit-disabled .marker-vertices {
+  display: none;
+}
 /*******************************
          Site Settings
 *******************************/
