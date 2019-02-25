@@ -72,7 +72,12 @@ export default {
       'add-async-message': 'Aсинхронное сообщение',
       'add-return-message': 'Сообщение с результатом',
       'add-in-scope': 'Временной интервал',
-      'add-time-constraint': 'Временное ограничение'
+      'add-time-constraint': 'Временное ограничение',
+      'add-usecase': 'Вариант',
+      'add-boundary': 'Граница',
+      'add-undir-association' : 'Ненаправленная ассоциация',
+      'add-dir-association': 'Направленная ассоциация',
+      'add-generalization': 'Обобщение'
     }
   }
 };

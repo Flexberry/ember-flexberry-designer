@@ -9,6 +9,7 @@ import FdAcrionsForCodPrimitivesMixin from '../mixins/actions-for-primitives/fd-
 import FdActionsForActivityPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-activity-primitives';
 import FdAcrionsForSdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-sd-primitives';
 import FdAcrionsForCommonPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-common-primitives';
+import FdActionsForUCDPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-ucd-primitives';
 
 export default EditFormController.extend(
 FdWorkPanelToggler,
@@ -19,7 +20,8 @@ FdAcrionsForStdPrimitivesMixin,
 FdAcrionsForCodPrimitivesMixin,
 FdActionsForActivityPrimitivesMixin,
 FdAcrionsForSdPrimitivesMixin,
-FdAcrionsForCommonPrimitivesMixin, {
+FdAcrionsForCommonPrimitivesMixin,
+FdActionsForUCDPrimitivesMixin, {
   parentRoute: 'fd-diagram-list-form',
 
   /**
