@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import { UseCase } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-use-case';
 import { Association } from '../../objects/uml-primitives/fd-uml-association';
-import { UsecaseActor } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-actor';
+import { UseCaseActor } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-actor';
 import { Partition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-partition';
 import { DirectedAssociation } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-directed-association';
 import { UseCaseGeneralization } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-generalization';
@@ -39,12 +39,12 @@ export default Ember.Mixin.create({
     */
     addActor(e) {
       this.createObjectData((function(x, y) {
-        let newUsecaseActorObject = new UsecaseActor({
+        let newUseCaseActorObject = new UseCaseActor({
           position: { x: x, y: y },
           name: ''
         });
 
-        return newUsecaseActorObject;
+        return newUseCaseActorObject;
       }).bind(this), e);
     },
 
