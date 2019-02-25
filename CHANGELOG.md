@@ -27,6 +27,7 @@ All notable changes to this project will be documented in this file.
 * The edit form constructor:
   * The addition of controls takes place depending on the selected item.
   * The type of the displayed component for the control depends on the type of property.
+  * When the single control in the row is selected, you can move the row.
 * Clicking on class with stereotype `listform` or `edit form` will open form constructor.
 * Unified headings for edit-forms.
 * Update ember-flexberry to 2.0.0-beta.2.
