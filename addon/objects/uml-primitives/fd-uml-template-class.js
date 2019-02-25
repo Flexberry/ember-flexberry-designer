@@ -52,6 +52,7 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
       'stroke': 'black', 'stroke-width': 1,
       'stroke-dasharray': '7 2',
       'fill': 'white',
+      'fill-opacity': 0
     },
 
     '.flexberry-uml-params-text': {
