@@ -181,7 +181,7 @@ Ember.$.extend(true, translations, {
           'fd-data-types-map': {
             caption: 'Карта типов данных',
             title: '',
-          },
+          }
         },
       }
     },

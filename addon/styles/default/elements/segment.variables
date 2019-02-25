@@ -1,0 +1,6 @@
+/*******************************
+            States
+*******************************/
+
+/* Loading Dimmer */
+@loaderDimmerColor: @primaryColor;

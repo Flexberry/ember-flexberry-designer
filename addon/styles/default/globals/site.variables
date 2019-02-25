@@ -1,0 +1,54 @@
+/*-------------------
+       Fonts
+--------------------*/
+
+@fontName          : 'Roboto';
+
+/*-------------------
+      Base Sizes
+--------------------*/
+
+/* This is the single variable that controls them all */
+@emSize   : 16px;
+
+/* The size of page text  */
+@fontSize : 16px;
+
+/*-------------------
+        Page
+--------------------*/
+@textColor           : rgba(0, 0, 0, 0.75);
+@lightTextColor      : rgba(0, 0, 0, 0.25);
+
+/* Цвет иконок сайдбара */
+@sidebarIconColor: rgba(0, 0, 0, 0.50);
+
+@headerHeight : 0px;
+@footerHeight : 40px;
+@headerHeightMobile : 50px;
+@footerHeightMobile : 40px;
+
+/* Ширина сайдбара */
+@sidebarWdth:300px;
+
+/*--------------------------------------
+    ember flexberry designer colors
+---------------------------------------*/
+/* Фон основной*/
+@fdSheetBg: @pageBackground;
+
+/* Текст кнопок тулбара */
+@toolbarBtnClr: @white;
+
+/* Фон сайдбара */
+@sidebarBg: @strongTransparentBlack;
+
+/* Фон затемнение */
+@overlayColor: @veryStrongTransparentBlack;
+
+@footerBackground: #eee;
+
+/* Фон кнопок тулбара */
+@toolbarBtnBg: @lightTextColor;
+
+@itemActiveBorderRadius: 0.5rem;

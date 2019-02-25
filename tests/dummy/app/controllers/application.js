@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import FdWorkPanelToggler from 'ember-flexberry-designer/mixins/fd-work-panel-toggler';
+import fdSheetMixin from 'ember-flexberry-designer/mixins/fd-sheet-mixin';
 
-export default Ember.Controller.extend(FdWorkPanelToggler, {
+export default Ember.Controller.extend(fdSheetMixin, {
   /**
     Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
 
@@ -19,7 +19,6 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
   sitemap: Ember.computed('i18n.locale', 'currentContext.context.configuration', 'currentContext.context.stage', function() {
     let i18n = this.get('i18n');
-    let context = this.get('currentContext.context');
     let singleStageMode = this.get('currentContext.singleStageMode');
 
     let sitemap = {
@@ -29,129 +28,79 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
 
     if (!singleStageMode) {
       sitemap.nodes.push({
-        link: 'index',
-        caption: i18n.t('forms.application.sitemap.index.caption'),
-        title: i18n.t('forms.application.sitemap.index.title'),
-      });
-      sitemap.nodes.push({
-        link: 'fd-configuration-list-form',
-        caption: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.caption'),
-        title: i18n.t('forms.application.sitemap.root.fd-configuration-list-form.title'),
-      });
-      sitemap.nodes.push({
-        link: null,
-        caption: i18n.t('forms.application.sitemap.root.fd-uml-primitives.caption'),
-        title: i18n.t('forms.application.sitemap.root.fd-uml-primitives.title'),
-        children: [
-          {
-            link: 'class-diagram-primitives-demo',
-            caption: i18n.t('forms.application.sitemap.root.class-diagram-primitives-demo.caption'),
-            title: i18n.t('forms.application.sitemap.root.class-diagram-primitives-demo.title'),
-          },
-          {
-            link: 'activity-diagram-primitives-demo',
-            caption: i18n.t('forms.application.sitemap.root.activity-diagram-primitives-demo.caption'),
-            title: i18n.t('forms.application.sitemap.root.activity-diagram-primitives-demo.title'),
-          },
-          {
-            link: 'deployment-diagram-primitives-demo',
-            caption: i18n.t('forms.application.sitemap.root.deployment-diagram-primitives-demo.caption'),
-            title: i18n.t('forms.application.sitemap.root.deployment-diagram-primitives-demo.title'),
-          },
-          {
-            link: 'statechart-diagram-primitives-demo',
-            caption: i18n.t('forms.application.sitemap.root.statechart-diagram-primitives-demo.caption'),
-            title: i18n.t('forms.application.sitemap.root.statechart-diagram-primitives-demo.title'),
-          },
-          {
-            link: 'usecase-diagram-primitives-demo',
-            caption: i18n.t('forms.application.sitemap.root.usecase-diagram-primitives-demo.caption'),
-            title: i18n.t('forms.application.sitemap.root.usecase-diagram-primitives-demo.title'),
-          },
-          {
-            link: 'fd-sequence-diagram-primitives-demo',
-            caption: i18n.t('forms.application.sitemap.root.sequence-diagram-primitives-demo.caption'),
-            title: i18n.t('forms.application.sitemap.root.sequence-diagram-primitives-demo.title'),
-          },
-          {
-            link: 'collaboration-diagram-primitives-demo',
-            caption: i18n.t('forms.application.sitemap.root.collaboration-diagram-primitives-demo.caption'),
-            title: i18n.t('forms.application.sitemap.root.collaboration-diagram-primitives-demo.title'),
-          }
-        ]
+        link: 'fd-application-model',
+        caption: i18n.t('forms.application.sitemap.root.fd-application-model.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-application-model.title'),
+        icon: 'icon-fd-menu'
+      },
+      {
+        link: 'fd-diagrams',
+        caption: i18n.t('forms.application.sitemap.root.fd-diagrams.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-diagrams.title'),
+        icon: 'icon-fd-diagram'
+      },
+      {
+        link: 'fd-navigation',
+        caption: i18n.t('forms.application.sitemap.root.fd-navigation.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-navigation.title'),
+        icon: 'icon-fd-sitemap'
+      },
+      {
+        link: 'fd-generation',
+        caption: i18n.t('forms.application.sitemap.root.fd-generation.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-generation.title'),
+        icon: 'icon-fd-shipping-box'
+      },
+      {
+        link: 'fd-setting',
+        caption: i18n.t('forms.application.sitemap.root.fd-setting.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-setting.title'),
+        icon: 'icon-fd-gear'
+      },
+      {
+        link: 'fd-architecture',
+        caption: i18n.t('forms.application.sitemap.root.fd-architecture.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-architecture.title'),
+        icon: 'icon-fd-diagram'
       });
     }
 
-    if (context.configuration && !singleStageMode) {
-      sitemap.nodes.push({
-        link: 'fd-stage-list-form',
-        caption: i18n.t('forms.application.sitemap.root.fd-stage-list-form.caption'),
-        title: i18n.t('forms.application.sitemap.root.fd-stage-list-form.title'),
-      });
-    }
+    return sitemap;
+  }),
 
-    if (context.stage) {
+  sitemapBottom: Ember.computed('i18n.locale', 'currentContext.context.configuration', 'currentContext.context.stage', function() {
+    let i18n = this.get('i18n');
+    let singleStageMode = this.get('currentContext.singleStageMode');
+
+    let sitemap = {
+      nodes: [
+      ]
+    };
+
+    if (!singleStageMode) {
       sitemap.nodes.push({
-        link: 'fd-appstruct-form',
-        caption: i18n.t('forms.application.sitemap.root.fd-appstruct-form.caption'),
-        title: i18n.t('forms.application.sitemap.root.fd-appstruct-form.title'),
-      });
-      sitemap.nodes.push({
-        link: 'fd-generation-process-form.new',
-        caption: i18n.t('forms.application.sitemap.root.fd-generation-process-form.caption'),
-        title: i18n.t('forms.application.sitemap.root.fd-generation-process-form.title'),
-      });
-      sitemap.nodes.push({
-        link: null,
-        caption: i18n.t('forms.application.sitemap.root.additional.caption'),
-        title: i18n.t('forms.application.sitemap.root.additional.title'),
-        children: [
-          {
-            link: 'fd-generation-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-generation-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-generation-list-form.title'),
-          },
-          {
-            link: 'fd-system-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-system-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-system-list-form.title'),
-          },
-          {
-            link: 'fd-diagram-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-diagram-list-form.title'),
-          },
-          {
-            link: 'fd-class-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-class-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-class-list-form.title'),
-          },
-          {
-            link: 'fd-association-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-association-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-association-list-form.title'),
-          },
-          {
-            link: 'fd-aggregation-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-aggregation-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-aggregation-list-form.title'),
-          },
-          {
-            link: 'fd-inheritance-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-inheritance-list-form.title'),
-          },
-          {
-            link: 'fd-view-list-form',
-            caption: i18n.t('forms.application.sitemap.root.fd-view-list-form.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-view-list-form.title'),
-          },
-          {
-            link: 'fd-data-types-map',
-            caption: i18n.t('forms.application.sitemap.root.fd-data-types-map.caption'),
-            title: i18n.t('forms.application.sitemap.root.fd-data-types-map.title'),
-          },
-        ]
+        link: 'fd-all-projects',
+        caption: i18n.t('forms.application.sitemap.root.fd-all-projects.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-all-projects.title'),
+        icon: 'icon-fd-view'
+      },
+      {
+        link: '',
+        caption: i18n.t('forms.application.sitemap.root.fd-requests.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-requests.title'),
+        icon: 'icon-fd-email'
+      },
+      {
+        link: '',
+        caption: i18n.t('forms.application.sitemap.root.fd-docs.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-docs.title'),
+        icon: 'icon-fd-book'
+      },
+      {
+        link: '',
+        caption: i18n.t('forms.application.sitemap.root.fd-chat.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-chat.title'),
+        icon: 'icon-fd-speech-bubble'
       });
     }
 
@@ -210,6 +159,10 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
   */
   objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
 
+  sidebarWidth: '300px',
+
+  sidebarMiniWidth: '60px',
+
   actions: {
 
     /**
@@ -227,21 +180,36 @@ export default Ember.Controller.extend(FdWorkPanelToggler, {
     toggleSidebar() {
       let sidebar = Ember.$('.ui.sidebar.main.menu');
       sidebar.sidebar('toggle');
-
-      if (Ember.$('.inverted.vertical.main.menu').hasClass('visible')) {
-        Ember.$('.sidebar.icon.text-menu-show').removeClass('hidden');
-        Ember.$('.sidebar.icon.text-menu-hide').addClass('hidden');
+      let sidebarVisible = sidebar.hasClass('visible');
+      let currentSidebarWidth = sidebarVisible ? this.sidebarMiniWidth : this.sidebarWidth;
+      let contentWidth = `calc(100% - ${currentSidebarWidth})`;
+      if (!sidebarVisible) {
+        Ember.$('.toggle-sidebar').css({ transition: 'opacity 500ms step-start' });
       } else {
-        Ember.$('.sidebar.icon.text-menu-show').addClass('hidden');
-        Ember.$('.sidebar.icon.text-menu-hide').removeClass('hidden');
+        Ember.$('.toggle-sidebar').css({ transition: '' });
       }
 
-      Ember.$('.inverted.vertical.main.menu').removeClass('overlay');
+      // Sheet content is animated only if it is expanded.
+      if (Ember.$('.fd-sheet.visible').hasClass('expand')) {
+        this.send('animatingSheetContent', contentWidth, 250);
+      } else {
 
-      this.send('workPlaceConfig', true);
+        // That the sheet remained in its place and did not go along with the content.
+        let sheetTranslate = `translate3d(calc(50% - ${currentSidebarWidth}), 0, 0)`;
+        Ember.$('.fd-sheet.visible').css({ 'transform': sheetTranslate });
+      }
 
-      // For reinit overflowed tabs.
+      // Animated increases the width of the page content.
+      Ember.$('.full.height .flexberry-vertical-form').css({ opacity: 0.2 });
+      Ember.run.later(function() {
+        Ember.$('.full.height .flexberry-vertical-form').css({ opacity: '' });
+        Ember.$('.full.height').css({ width: contentWidth });
+      }, 250);
+
       Ember.run.later(this, function() {
+        sidebar.toggleClass('sidebar-mini');
+
+        // For reinit overflowed tabs.
         Ember.$(window).trigger('resize');
       }, 500);
     },
