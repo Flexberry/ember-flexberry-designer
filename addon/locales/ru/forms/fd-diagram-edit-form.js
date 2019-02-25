@@ -75,7 +75,7 @@ export default {
       'add-time-constraint': 'Временное ограничение',
       'add-usecase': 'Вариант',
       'add-boundary': 'Граница',
-      'add-undir-association' : 'Ненаправленная ассоциация',
+      'add-undir-association': 'Ненаправленная ассоциация',
       'add-dir-association': 'Направленная ассоциация',
       'add-generalization': 'Обобщение'
     }
