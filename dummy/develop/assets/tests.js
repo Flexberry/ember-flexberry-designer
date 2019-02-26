@@ -2185,7 +2185,7 @@ define('dummy/tests/unit/controllers/fd-edit-form-edit-form-test.jshint', ['expo
 });
 define('dummy/tests/unit/controllers/fd-editform-constructor-test', ['exports', 'ember', 'ember-qunit', 'ember-flexberry-designer/objects/fd-editform-row', 'ember-flexberry-designer/objects/fd-editform-control', 'ember-flexberry-designer/objects/fd-editform-group', 'ember-flexberry-designer/objects/fd-editform-tabgroup', 'ember-flexberry-designer/objects/fd-editform-tab'], function (exports, _ember, _emberQunit, _emberFlexberryDesignerObjectsFdEditformRow, _emberFlexberryDesignerObjectsFdEditformControl, _emberFlexberryDesignerObjectsFdEditformGroup, _emberFlexberryDesignerObjectsFdEditformTabgroup, _emberFlexberryDesignerObjectsFdEditformTab) {
 
-  (0, _emberQunit.moduleFor)('controller:fd-editform-constructor', 'Unit | Controller | fd editform constructor', {
+  (0, _emberQunit.moduleFor)('controller:fd-editform-constructor', 'Unit | Controller | fd-editform-constructor', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
   });
@@ -2295,6 +2295,37 @@ define('dummy/tests/unit/controllers/fd-editform-constructor-test', ['exports', 
     }].forEach(function (set) {
       assert.ok(controller._findItemContainer(set.item, set.startContainer) === set.container, set.message);
     });
+  });
+
+  (0, _emberQunit.test)('properties to move controls', function (assert) {
+    var controller = this.subject();
+    var control1 = _emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control #1' });
+    var control2 = _emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control #2' });
+    var control3 = _emberFlexberryDesignerObjectsFdEditformControl['default'].create({ caption: 'Control #3' });
+    var row1 = _emberFlexberryDesignerObjectsFdEditformRow['default'].create({ controls: _ember['default'].A([control1]) });
+    var row2 = _emberFlexberryDesignerObjectsFdEditformRow['default'].create({ controls: _ember['default'].A([control2, control3]) });
+    controller.controlsTree = _ember['default'].A([row1, row2]);
+
+    controller.set('selectedItem', control1);
+    assert.ok(controller.get('_itemToMove') === row1, 'The row with one control.');
+    assert.ok(controller.get('_itemToMoveStorage') === controller.get('controlsTree'));
+    assert.ok(controller.get('_itemToMoveIsRow'));
+    assert.ok(controller.get('_itemToMoveIsFirst'));
+    assert.notOk(controller.get('_itemToMoveIsLast'));
+
+    controller.set('selectedItem', control2);
+    assert.ok(controller.get('_itemToMove') === control2, 'Control #2.');
+    assert.ok(controller.get('_itemToMoveStorage') === row2.get('controls'));
+    assert.notOk(controller.get('_itemToMoveIsRow'));
+    assert.ok(controller.get('_itemToMoveIsFirst'));
+    assert.notOk(controller.get('_itemToMoveIsLast'));
+
+    controller.set('selectedItem', control3);
+    assert.ok(controller.get('_itemToMove') === control3, 'Control #3.');
+    assert.ok(controller.get('_itemToMoveStorage') === row2.get('controls'));
+    assert.notOk(controller.get('_itemToMoveIsRow'));
+    assert.notOk(controller.get('_itemToMoveIsFirst'));
+    assert.ok(controller.get('_itemToMoveIsLast'));
   });
 });
 define('dummy/tests/unit/controllers/fd-editform-constructor-test.jscs-test', ['exports'], function (exports) {
