@@ -42,6 +42,7 @@ All notable changes to this project will be documented in this file.
   * Editing the title and description of view in the panel.
 * Pressing 'Close' button in form constructors will open previous page.
 * Fix autoresize of uml package object.
+* Fix size of new diagram paper.
 
 ## [0.2.0] - 2018-06-26
 ### Added
