@@ -43,14 +43,10 @@
   }
 }
 
-.fd-list {
+.ui.grid.fd-list {
   .row {
     border-bottom: 1px solid @sidebarBg;
     margin: 0 1rem;
-
-    .column:first-child {
-      padding-left: 0;
-    }
 
     .column > {
       div:not(:first-child) {
@@ -78,6 +74,9 @@
     }
   }
 
+  > .row > .column {
+    padding: 0.5rem 0;
+  }
 }
 
 h2.form-header {
@@ -129,4 +128,10 @@ h2.form-header {
 
 .flexberry-vertical-form {
   transition: opacity 250ms;
+}
+
+@media (max-width: 1200px) { 
+  html {
+    font-size: 14px;
+  }
 }
