@@ -172,6 +172,14 @@ define('dummy/components/fd-objectlistview', ['exports', 'ember-flexberry-design
     }
   });
 });
+define('dummy/components/fd-search-input', ['exports', 'ember-flexberry-designer/components/fd-search-input'], function (exports, _emberFlexberryDesignerComponentsFdSearchInput) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdSearchInput['default'];
+    }
+  });
+});
 define('dummy/components/fd-sheet', ['exports', 'ember-flexberry-designer/components/fd-sheet'], function (exports, _emberFlexberryDesignerComponentsFdSheet) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -2469,6 +2477,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
     assert.ok(true, 'modules/ember-flexberry-designer/components/fd-objectlistview.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-search-input.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components');
+  test('modules/ember-flexberry-designer/components/fd-search-input.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-search-input.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-search-input.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-search-input.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-search-input.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-sheet.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/components');
   test('modules/ember-flexberry-designer/components/fd-sheet.js should pass jscs', function () {
@@ -3676,6 +3697,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-application-edit-form.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-application-model.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/forms');
+  test('modules/ember-flexberry-designer/locales/en/forms/fd-application-model.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-application-model.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-application-model.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/forms/fd-application-model.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-application-model.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-appstruct-form.jscs-test', ['exports'], function (exports) {
@@ -35894,11 +35928,11 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 59,
+              "line": 71,
               "column": 0
             },
             "end": {
-              "line": 84,
+              "line": 113,
               "column": 0
             }
           },
@@ -35922,14 +35956,22 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
           dom.appendChild(el2, el3);
           var el3 = dom.createElement("div");
           dom.setAttribute(el3, "class", "three wide column");
-          var el4 = dom.createTextNode("\n        Заголовок\n      ");
+          var el4 = dom.createTextNode("\n        ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
           dom.appendChild(el3, el4);
           dom.appendChild(el2, el3);
           var el3 = dom.createTextNode("\n      ");
           dom.appendChild(el2, el3);
           var el3 = dom.createElement("div");
           dom.setAttribute(el3, "class", "thirteen wide column light-text");
-          var el4 = dom.createTextNode("\n        Заголовок сущности\n      ");
+          var el4 = dom.createTextNode("\n        ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
           dom.appendChild(el3, el4);
           dom.appendChild(el2, el3);
           var el3 = dom.createTextNode("\n    ");
@@ -35946,19 +35988,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
           var el4 = dom.createTextNode("\n        ");
           dom.appendChild(el3, el4);
           var el4 = dom.createElement("div");
-          var el5 = dom.createTextNode("Хранилище");
-          dom.appendChild(el4, el5);
-          dom.appendChild(el3, el4);
-          var el4 = dom.createTextNode("\n        ");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createElement("div");
-          var el5 = dom.createTextNode("Хранимый");
-          dom.appendChild(el4, el5);
-          dom.appendChild(el3, el4);
-          var el4 = dom.createTextNode("\n        ");
-          dom.appendChild(el3, el4);
-          var el4 = dom.createElement("div");
-          var el5 = dom.createTextNode("Бизнес-сервер");
+          var el5 = dom.createComment("");
           dom.appendChild(el4, el5);
           dom.appendChild(el3, el4);
           var el4 = dom.createTextNode("\n      ");
@@ -35970,16 +36000,52 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
           dom.setAttribute(el3, "class", "thirteen wide column light-text");
           var el4 = dom.createTextNode("\n        ");
           dom.appendChild(el3, el4);
-          var el4 = dom.createElement("div");
-          var el5 = dom.createTextNode("Наименование хранилища");
-          dom.appendChild(el4, el5);
+          var el4 = dom.createComment("");
           dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "three wide column");
           var el4 = dom.createTextNode("\n        ");
           dom.appendChild(el3, el4);
           var el4 = dom.createElement("div");
-          var el5 = dom.createTextNode("Наименование хранилища");
+          var el5 = dom.createComment("");
           dom.appendChild(el4, el5);
           dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "thirteen wide column light-text");
+          var el4 = dom.createTextNode("\n        ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "three wide column");
+          var el4 = dom.createTextNode("\n        ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("div");
+          var el5 = dom.createComment("");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "thirteen wide column light-text");
           var el4 = dom.createTextNode("\n        ");
           dom.appendChild(el3, el4);
           var el4 = dom.createElement("div");
@@ -35999,10 +36065,21 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
           dom.appendChild(el0, el1);
           return el0;
         },
-        buildRenderNodes: function buildRenderNodes() {
-          return [];
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element0 = dom.childAt(fragment, [1]);
+          var element1 = dom.childAt(element0, [1]);
+          var element2 = dom.childAt(element0, [3]);
+          var morphs = new Array(7);
+          morphs[0] = dom.createMorphAt(dom.childAt(element1, [1]), 1, 1);
+          morphs[1] = dom.createMorphAt(dom.childAt(element1, [3]), 1, 1);
+          morphs[2] = dom.createMorphAt(dom.childAt(element2, [1, 1]), 0, 0);
+          morphs[3] = dom.createMorphAt(dom.childAt(element2, [3]), 1, 1);
+          morphs[4] = dom.createMorphAt(dom.childAt(element2, [5, 1]), 0, 0);
+          morphs[5] = dom.createMorphAt(dom.childAt(element2, [7]), 1, 1);
+          morphs[6] = dom.createMorphAt(dom.childAt(element2, [9, 1]), 0, 0);
+          return morphs;
         },
-        statements: [],
+        statements: [["inline", "t", ["forms.fd-application-model.value-caption"], [], ["loc", [null, [77, 8], [77, 56]]]], ["inline", "flexberry-textbox", [], ["class", "fluid input", "placeholder", ["subexpr", "t", ["forms.fd-application-model.entity-header-placeholder"], [], ["loc", [null, [82, 22], [82, 80]]]]], ["loc", [null, [80, 8], [83, 10]]]], ["inline", "t", ["forms.fd-application-model.storage-caption"], [], ["loc", [null, [88, 13], [88, 63]]]], ["inline", "flexberry-textbox", [], ["class", "fluid input", "placeholder", ["subexpr", "t", ["forms.fd-application-model.storage-name-placeholder"], [], ["loc", [null, [93, 22], [93, 79]]]]], ["loc", [null, [91, 8], [94, 10]]]], ["inline", "t", ["forms.fd-application-model.stored-caption"], [], ["loc", [null, [97, 13], [97, 62]]]], ["inline", "flexberry-textbox", [], ["class", "fluid input", "placeholder", ["subexpr", "t", ["forms.fd-application-model.storage-name-placeholder"], [], ["loc", [null, [102, 22], [102, 79]]]]], ["loc", [null, [100, 8], [103, 10]]]], ["inline", "t", ["forms.fd-application-model.bs-caption"], [], ["loc", [null, [106, 13], [106, 58]]]]],
         locals: [],
         templates: []
       };
@@ -36021,7 +36098,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 85,
+            "line": 114,
             "column": 0
           }
         },
@@ -36060,9 +36137,36 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
         dom.setAttribute(el4, "class", "two wide column light-text");
         var el5 = dom.createTextNode("\n        ");
         dom.appendChild(el4, el5);
-        var el5 = dom.createElement("div");
-        var el6 = dom.createComment("");
-        dom.appendChild(el5, el6);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("div");
+        dom.setAttribute(el4, "class", "fourteen wide column");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "row");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("div");
+        dom.setAttribute(el4, "class", "two wide column light-text");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
         dom.appendChild(el4, el5);
         var el5 = dom.createTextNode("\n      ");
         dom.appendChild(el4, el5);
@@ -36103,33 +36207,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
         dom.setAttribute(el4, "class", "two wide column light-text");
         var el5 = dom.createTextNode("\n        ");
         dom.appendChild(el4, el5);
-        var el5 = dom.createElement("div");
-        var el6 = dom.createTextNode("\n          ");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createComment("");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createTextNode("\n        ");
-        dom.appendChild(el5, el6);
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createElement("div");
-        var el6 = dom.createTextNode("\n          ");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createComment("");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createTextNode("\n        ");
-        dom.appendChild(el5, el6);
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createElement("div");
-        var el6 = dom.createTextNode("\n          ");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createComment("");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createTextNode("\n        ");
-        dom.appendChild(el5, el6);
+        var el5 = dom.createComment("");
         dom.appendChild(el4, el5);
         var el5 = dom.createTextNode("\n      ");
         dom.appendChild(el4, el5);
@@ -36142,14 +36220,57 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
         dom.appendChild(el4, el5);
         var el5 = dom.createComment("");
         dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("div");
+        dom.setAttribute(el4, "class", "two wide column light-text");
         var el5 = dom.createTextNode("\n        ");
         dom.appendChild(el4, el5);
         var el5 = dom.createComment("");
         dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("div");
+        dom.setAttribute(el4, "class", "fourteen wide column");
         var el5 = dom.createTextNode("\n        ");
         dom.appendChild(el4, el5);
         var el5 = dom.createComment("");
         dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("div");
+        dom.setAttribute(el4, "class", "two wide column light-text");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("div");
+        dom.setAttribute(el4, "class", "fourteen wide column");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("div");
+        dom.setAttribute(el4, "class", "right floated fourteen wide column");
         var el5 = dom.createTextNode("\n        ");
         dom.appendChild(el4, el5);
         var el5 = dom.createComment("");
@@ -36177,32 +36298,34 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var element0 = dom.childAt(fragment, [2, 1]);
-        var element1 = dom.childAt(element0, [1]);
-        var element2 = dom.childAt(element1, [3]);
-        var element3 = dom.childAt(element0, [3]);
+        var element3 = dom.childAt(fragment, [2, 1]);
         var element4 = dom.childAt(element3, [1]);
         var element5 = dom.childAt(element3, [3]);
-        var morphs = new Array(15);
+        var element6 = dom.childAt(element5, [3]);
+        var element7 = dom.childAt(element3, [5]);
+        var element8 = dom.childAt(element7, [13]);
+        var morphs = new Array(17);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 1, 1);
-        morphs[1] = dom.createMorphAt(dom.childAt(element1, [1, 1]), 0, 0);
-        morphs[2] = dom.createMorphAt(element2, 1, 1);
-        morphs[3] = dom.createMorphAt(element2, 3, 3);
-        morphs[4] = dom.createMorphAt(element2, 5, 5);
-        morphs[5] = dom.createMorphAt(element2, 7, 7);
-        morphs[6] = dom.createMorphAt(dom.childAt(element4, [1]), 1, 1);
-        morphs[7] = dom.createMorphAt(dom.childAt(element4, [3]), 1, 1);
-        morphs[8] = dom.createMorphAt(dom.childAt(element4, [5]), 1, 1);
-        morphs[9] = dom.createMorphAt(element5, 1, 1);
-        morphs[10] = dom.createMorphAt(element5, 3, 3);
-        morphs[11] = dom.createMorphAt(element5, 5, 5);
-        morphs[12] = dom.createMorphAt(element5, 7, 7);
-        morphs[13] = dom.createMorphAt(element5, 9, 9);
-        morphs[14] = dom.createMorphAt(fragment, 4, 4, contextualElement);
+        morphs[1] = dom.createMorphAt(dom.childAt(element4, [1]), 1, 1);
+        morphs[2] = dom.createMorphAt(dom.childAt(element4, [3]), 1, 1);
+        morphs[3] = dom.createMorphAt(dom.childAt(element5, [1]), 1, 1);
+        morphs[4] = dom.createMorphAt(element6, 1, 1);
+        morphs[5] = dom.createMorphAt(element6, 3, 3);
+        morphs[6] = dom.createMorphAt(element6, 5, 5);
+        morphs[7] = dom.createMorphAt(element6, 7, 7);
+        morphs[8] = dom.createMorphAt(dom.childAt(element7, [1]), 1, 1);
+        morphs[9] = dom.createMorphAt(dom.childAt(element7, [3]), 1, 1);
+        morphs[10] = dom.createMorphAt(dom.childAt(element7, [5]), 1, 1);
+        morphs[11] = dom.createMorphAt(dom.childAt(element7, [7]), 1, 1);
+        morphs[12] = dom.createMorphAt(dom.childAt(element7, [9]), 1, 1);
+        morphs[13] = dom.createMorphAt(dom.childAt(element7, [11]), 1, 1);
+        morphs[14] = dom.createMorphAt(element8, 1, 1);
+        morphs[15] = dom.createMorphAt(element8, 3, 3);
+        morphs[16] = dom.createMorphAt(fragment, 4, 4, contextualElement);
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-application-model.caption"], [], ["loc", [null, [2, 2], [2, 44]]]], ["inline", "t", ["forms.fd-application-model.type-caption"], [], ["loc", [null, [10, 13], [10, 60]]]], ["inline", "fd-list-item", [], ["caption", "tПол"], ["loc", [null, [13, 8], [15, 10]]]], ["inline", "fd-list-item", [], ["caption", "tЖилье"], ["loc", [null, [16, 8], [18, 10]]]], ["inline", "fd-list-item", [], ["caption", "tОбразование"], ["loc", [null, [19, 8], [21, 10]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-application-model.enum-caption"], [], ["loc", [null, [23, 18], [23, 63]]]]], ["loc", [null, [22, 8], [24, 10]]]], ["inline", "t", ["forms.fd-application-model.entity-caption"], [], ["loc", [null, [30, 10], [30, 59]]]], ["inline", "t", ["forms.fd-application-model.editor-caption"], [], ["loc", [null, [33, 10], [33, 59]]]], ["inline", "t", ["forms.fd-application-model.list-caption"], [], ["loc", [null, [36, 10], [36, 57]]]], ["inline", "fd-list-item", [], ["caption", "Пациент"], ["loc", [null, [40, 8], [42, 10]]]], ["inline", "fd-list-item", [], ["caption", "ПациентE"], ["loc", [null, [43, 8], [45, 10]]]], ["inline", "fd-list-item", [], ["caption", "ПациентL"], ["loc", [null, [46, 8], [48, 10]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-application-model.editor-caption"], [], ["loc", [null, [50, 18], [50, 65]]]]], ["loc", [null, [49, 8], [51, 10]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-application-model.list-caption"], [], ["loc", [null, [53, 18], [53, 63]]]]], ["loc", [null, [52, 8], [54, 10]]]], ["block", "fd-sheet", [], ["title", "Пациент"], 0, null, ["loc", [null, [59, 0], [84, 13]]]]],
+      statements: [["inline", "t", ["forms.fd-application-model.caption"], [], ["loc", [null, [2, 2], [2, 44]]]], ["inline", "t", ["forms.fd-application-model.type-caption"], [], ["loc", [null, [10, 8], [10, 55]]]], ["content", "fd-search-input", ["loc", [null, [13, 8], [13, 27]]]], ["inline", "t", ["forms.fd-application-model.enum-caption"], [], ["loc", [null, [18, 8], [18, 55]]]], ["inline", "fd-list-item", [], ["caption", "tПол"], ["loc", [null, [21, 8], [23, 10]]]], ["inline", "fd-list-item", [], ["caption", "tЖилье"], ["loc", [null, [24, 8], [26, 10]]]], ["inline", "fd-list-item", [], ["caption", "tОбразование"], ["loc", [null, [27, 8], [29, 10]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-application-model.enum-caption"], [], ["loc", [null, [31, 18], [31, 63]]]]], ["loc", [null, [30, 8], [32, 10]]]], ["inline", "t", ["forms.fd-application-model.entity-caption"], [], ["loc", [null, [37, 8], [37, 57]]]], ["inline", "fd-list-item", [], ["caption", "Пациент"], ["loc", [null, [40, 8], [42, 10]]]], ["inline", "t", ["forms.fd-application-model.editor-caption"], [], ["loc", [null, [45, 8], [45, 57]]]], ["inline", "fd-list-item", [], ["caption", "ПациентE"], ["loc", [null, [48, 8], [50, 10]]]], ["inline", "t", ["forms.fd-application-model.list-caption"], [], ["loc", [null, [53, 8], [53, 55]]]], ["inline", "fd-list-item", [], ["caption", "ПациентL"], ["loc", [null, [56, 8], [58, 10]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-application-model.editor-caption"], [], ["loc", [null, [62, 18], [62, 65]]]]], ["loc", [null, [61, 8], [63, 10]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-application-model.list-caption"], [], ["loc", [null, [65, 18], [65, 63]]]]], ["loc", [null, [64, 8], [66, 10]]]], ["block", "fd-sheet", [], ["title", "Пациент"], 0, null, ["loc", [null, [71, 0], [113, 13]]]]],
       locals: [],
       templates: [child0]
     };
@@ -58288,7 +58411,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+327ba345"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+4724b082"});
 }
 
 /* jshint ignore:end */
