@@ -56648,6 +56648,7 @@ html.ios body {
   min-width: 50px;
   display: block;
   margin: 0 auto;
+  background-color: transparent;
 }
 .ui.form .uml-class-inputs input[type="text"].class-name-input,
 .ui.form .uml-link-inputs input[type="text"].class-name-input,
@@ -56737,8 +56738,7 @@ html.ios body {
 .ui.form .uml-class-inputs input[type="text"].description-input,
 .ui.form .uml-link-inputs input[type="text"].description-input,
 .ui.form .uml-class-inputs textarea.description-input {
-  background-color: white;
-  min-width: 0px;
+  min-width: 5px;
 }
 .ui.form .uml-class-inputs input[type="text"].underline-text,
 .ui.form .uml-link-inputs input[type="text"].underline-text,
