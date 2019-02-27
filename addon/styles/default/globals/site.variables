@@ -52,9 +52,9 @@
 @toolbarBtnBg: @lightTextColor;
 
 /* Цвет основных кнопок */
-@basicBtn: @strongTransparentBlack;
-@hoverBasicBtn: rgba(0, 0, 0, 0.20);
-@activeBasicBtn: rgba(0, 0, 0, 0.30);
+@basicBtn: @lightTextColor;
+@hoverBasicBtn: rgba(0, 0, 0, 0.35);
+@activeBasicBtn: rgba(0, 0, 0, 0.45);
 
 
 @itemActiveBorderRadius: 0.5rem;

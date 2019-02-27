@@ -1,6 +1,8 @@
 @backgroundColor: @toolbarBtnBg;
 @borderRadius: 2rem;
 @basicTextColor: @lightTextColor;
+@basicHoverTextColor: @hoverBasicBtn;
+@basicDownTextColor: @activeBasicBtn;
 @basicHoverBackground: transparent;
 @basicDownBackground: transparent;
 @basicBoxShadow: 0px 0px 0px 1px @basicBtn;
