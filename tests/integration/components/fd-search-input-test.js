@@ -15,10 +15,9 @@ test('it renders', function(assert) {
 
   // Template block usage:
   this.render(hbs`
-    {{#fd-search-input}}
-      template block text
-    {{/fd-search-input}}
+    {{fd-search-input
+      value='template block text'}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$().find('input').val().trim(), 'template block text');
 });
