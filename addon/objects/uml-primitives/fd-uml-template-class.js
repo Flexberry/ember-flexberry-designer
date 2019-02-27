@@ -50,10 +50,12 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
   attrs: {
     rect: { 'width': 200 },
 
+    '.flexberry-uml-header-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0, 'mask': 'url(#custom-mask)' },
     '.flexberry-uml-params-rect': {
       'stroke': 'black', 'stroke-width': 1,
       'stroke-dasharray': '7 2',
       'fill': '#ffffff',
+      'fill-opacity': 0
     },
 
     '.flexberry-uml-params-text': {
@@ -67,12 +69,21 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
       'font-size': 12,
       'font-family': 'Arial'
     },
+
+    '.view-rect': { 'x': -1, 'y': -1, 'fill': 'white' },
+    '.not-view-rect': { 'x': -1, 'y': -1, 'fill': 'black' }
   },
 
   params: [],
 }, {
   markup: [
     '<g class="rotatable">',
+    '<defs>',
+    '<mask id="custom-mask">',
+    '<rect class="view-rect"/>',
+    '<rect class="not-view-rect"/>',
+    '</mask>',
+    '</defs>',
     '<rect class="flexberry-uml-header-rect"/>',
     '<rect class="flexberry-uml-params-rect"/>',
     '<rect class="flexberry-uml-body-rect"/>',
@@ -96,6 +107,7 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
     let offsetY = 0;
     let newHeight = 0;
     let newWidth = 0;
+    let paramHeight = 0;
     rects.forEach(function(rect) {
       if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
         let $buffer = rect.element.inputElements.find('.input-buffer');
@@ -107,7 +119,10 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
           $buffer.text($input.val());
           $input.width($buffer.width() + 1);
           if (rect.type === 'params') {
-            rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', $input.width() + 20);
+            paramHeight = $input.height() + 4;
+            rect.element.attr('.flexberry-uml-params-rect/width', $input.width() + 20);
+            rect.element.attr('.not-view-rect/width', $input.width() + 20);
+            rect.element.attr('.not-view-rect/height', paramHeight);
           } else if ($input.width() > newWidth) {
             newWidth = $input.width();
           }
@@ -128,10 +143,14 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
     rects.forEach(function(rect) {
       if (rect.type === 'params') {
         rect.element.attr('.flexberry-uml-params-rect/transform', 'translate(' + (newWidth - 10) + ',15)');
+        rect.element.attr('.not-view-rect/transform', 'translate(' + (newWidth - 10) + ',' + (15 - paramHeight) + ')');
       } else {
         rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
       }
     });
+
+    this.attr('.view-rect/width', newWidth + 2);
+    this.attr('.view-rect/height', newHeight + 2);
 
     this.resize(newWidth, newHeight);
   }
@@ -189,5 +208,19 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
       top: 15 - paramsBox.height(),
       position: 'absolute'
     });
+  },
+
+  render: function() {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.render.apply(this, arguments);
+
+    let mask = document.getElementById('custom-mask');
+    let viewMaskId = Ember.$(mask).children('.view-rect').attr('id');
+    let maskId = 'mask_tc_' + viewMaskId;
+    mask.setAttribute('id', maskId);
+    let attrs = this.model.get('attrs');
+    attrs['.flexberry-uml-header-rect'].mask = 'url(#' + maskId + ')';
+    this.model.updateRectangles();
+
+    return this;
   },
 });
