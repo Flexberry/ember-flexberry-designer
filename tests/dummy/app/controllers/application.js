@@ -17,6 +17,26 @@ export default Ember.Controller.extend(fdSheetMixin, {
   */
   appState: Ember.inject.service(),
 
+  sitemapTop: Ember.computed('i18n.locale', 'currentContext.context.stage', function() {
+    let i18n = this.get('i18n');
+    let currentProjectStageModel = this.get('currentContext.context.stageModel');
+
+    let sitemap = {
+      nodes: [
+      ]
+    };
+
+    if (currentProjectStageModel) {
+      let name = currentProjectStageModel.get('name');
+      sitemap.nodes.push({
+        caption: name,
+        title: i18n.t('forms.application.sitemap.root.fd-current-project.title')
+      });
+    }
+
+    return sitemap;
+  }),
+
   sitemap: Ember.computed('i18n.locale', 'currentContext.context.configuration', 'currentContext.context.stage', function() {
     let i18n = this.get('i18n');
     let singleStageMode = this.get('currentContext.singleStageMode');

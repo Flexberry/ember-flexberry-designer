@@ -334,6 +334,10 @@ Ember.$.extend(true, translations, {
           'fd-chat': {
             caption: 'Чат',
             title: '',
+          },
+          'fd-current-project': {
+            caption: '',
+            title: 'Проект',
           }
         },
       }
