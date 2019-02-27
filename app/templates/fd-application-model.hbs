@@ -7,7 +7,15 @@
   <div class="ui stackable grid fd-list">
     <div class="row">
       <div class="two wide column light-text">
-        <div>{{t "forms.fd-application-model.type-caption"}}</div>
+        {{t "forms.fd-application-model.type-caption"}}
+      </div>
+      <div class="fourteen wide column">
+        {{fd-search-input}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="two wide column light-text">
+        {{t "forms.fd-application-model.enum-caption"}}
       </div>
       <div class="fourteen wide column">
         {{fd-list-item
@@ -26,26 +34,30 @@
     </div>
     <div class="row">
       <div class="two wide column light-text">
-        <div>
-          {{t "forms.fd-application-model.entity-caption"}}
-        </div>
-        <div>
-          {{t "forms.fd-application-model.editor-caption"}}
-        </div>
-        <div>
-          {{t "forms.fd-application-model.list-caption"}}
-        </div>
+        {{t "forms.fd-application-model.entity-caption"}}
       </div>
       <div class="fourteen wide column">
         {{fd-list-item
           caption='Пациент'
         }}
+      </div>
+      <div class="two wide column light-text">
+        {{t "forms.fd-application-model.editor-caption"}}
+      </div>
+      <div class="fourteen wide column">
         {{fd-list-item
           caption='ПациентE'
         }}
+      </div>
+      <div class="two wide column light-text">
+        {{t "forms.fd-application-model.list-caption"}}
+      </div>
+      <div class="fourteen wide column">
         {{fd-list-item
           caption='ПациентL'
         }}
+      </div>
+      <div class="right floated fourteen wide column">
         {{fd-button
           caption=(t "forms.fd-application-model.editor-caption")
         }}
@@ -62,21 +74,38 @@
   <div class="ui stackable grid fd-list">
     <div class="row">
       <div class="three wide column">
-        Заголовок
+        {{t "forms.fd-application-model.value-caption"}}
       </div>
       <div class="thirteen wide column light-text">
-        Заголовок сущности
+        {{flexberry-textbox
+          class='fluid input'
+          placeholder=(t "forms.fd-application-model.entity-header-placeholder")
+        }}
       </div>
     </div>
     <div class="row">
       <div class="three wide column">
-        <div>Хранилище</div>
-        <div>Хранимый</div>
-        <div>Бизнес-сервер</div>
+        <div>{{t "forms.fd-application-model.storage-caption"}}</div>
       </div>
       <div class="thirteen wide column light-text">
-        <div>Наименование хранилища</div>
-        <div>Наименование хранилища</div>
+        {{flexberry-textbox
+          class='fluid input'
+          placeholder=(t "forms.fd-application-model.storage-name-placeholder")
+        }}
+      </div>
+      <div class="three wide column">
+        <div>{{t "forms.fd-application-model.stored-caption"}}</div>
+      </div>
+      <div class="thirteen wide column light-text">
+        {{flexberry-textbox
+          class='fluid input'
+          placeholder=(t "forms.fd-application-model.storage-name-placeholder")
+        }}
+      </div>
+      <div class="three wide column">
+        <div>{{t "forms.fd-application-model.bs-caption"}}</div>
+      </div>
+      <div class="thirteen wide column light-text">
         <div>Нет значения</div>
       </div>
     </div>
