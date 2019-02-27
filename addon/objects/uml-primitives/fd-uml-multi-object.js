@@ -72,7 +72,6 @@ export let MultiObject = BaseObject.define('flexberry.uml.MultiObject', {
 
   markup: [
     '<g class="rotatable">',
-    '<g class="scalable">',
     '<defs>',
     '<mask id="custom-mask">',
     '<rect class="view-rect"/>',
@@ -80,7 +79,6 @@ export let MultiObject = BaseObject.define('flexberry.uml.MultiObject', {
     '</mask>',
     '</defs>',
     '<rect class="back-rect"/><rect class="flexberry-uml-header-rect"/>',
-    '</g>',
     '</g>'
   ].join('')
 });
@@ -98,7 +96,7 @@ joint.shapes.flexberry.uml.MultiObjectView = joint.shapes.flexberry.uml.BaseObje
 
     let mask = document.getElementById('custom-mask');
     let viewMaskId = Ember.$(mask).children('.view-rect').attr('id');
-    let maskId = 'mask_' + viewMaskId;
+    let maskId = 'mask_mo_' + viewMaskId;
     mask.setAttribute('id', maskId);
     let attrs = this.model.get('attrs');
     attrs['.back-rect'].mask = 'url(#' + maskId + ')';
