@@ -1,1 +1,2 @@
 @placeholderFocusColor: transparent;
+@placeholderColor: rgba(0, 0, 0, 0.4);

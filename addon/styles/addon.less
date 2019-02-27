@@ -11,7 +11,8 @@
   background: @overlayColor;
 }
 
-@fdSheetPadding: 3rem;
+@fdSheetPadding: 3em;
+@fdSearchInputPadding: 0.7em 2.5em;
 
 .fd-sheet {
   background: @fdSheetBg;
@@ -64,7 +65,7 @@
   }
 
   .fd-list-item span{
-    padding: 0.5rem 2.5rem;
+    padding: 0.5em 2.5em;
     &:hover {
       cursor: pointer;
     }
@@ -75,19 +76,19 @@
   }
 
   > .row > .column {
-    padding: 0.5rem 0;
+    padding: 0.5em 0;
   }
 }
 
 h2.form-header {
-  margin-bottom: 3rem;
+  margin-bottom: 2em;
   font-weight: normal;
   margin-top: 0;
-  font-size: 1.5rem;
+  font-size: 1.5em;
 }
 
 .ui.main.container.fluid {
-  padding: 5rem 3rem 3rem;
+  padding: 5em 3em 3em;
 }
 
 .sitemap-bottom{
@@ -128,6 +129,12 @@ h2.form-header {
 
 .flexberry-vertical-form {
   transition: opacity 250ms;
+}
+
+.ui.form .fd-search-input input[type="text"] {
+  padding: @fdSearchInputPadding;
+  background: @sidebarBg;
+  border-radius: @itemActiveBorderRadius;
 }
 
 @media (max-width: 1200px) { 
