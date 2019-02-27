@@ -4,6 +4,7 @@
   background-color: @footerBackground;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .ui.vertical.footer.segment > .flex-container {

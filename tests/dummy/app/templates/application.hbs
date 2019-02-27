@@ -42,10 +42,33 @@
 <div class="ui vertical footer segment">
   <div class="ui container flex-container">
     <div class="ui text menu">
-      <a class="brand item" href="#">
-        {{t "forms.application.footer.application-name"}}
-      </a>
-      <div class="right menu">
+      <div class="social-icons">
+        <a target="_blank" class="brand item btn-social" href="http://vk.com/flexberry">
+          {{partial "svg_icons/social_icons/vk"}}
+        </a>
+        <a target="_blank" class="brand item btn-social" href="https://www.facebook.com/groups/Flexberry/">
+          {{partial "svg-icons/social-icons/facebook"}}
+        </a>
+        <a target="_blank" class="brand item btn-social" href="https://twitter.com/Flexberry">
+          {{partial "svg-icons/social-icons/twitter"}}
+        </a>
+        <a target="_blank" class="brand item btn-social" href="https://github.com/Flexberry">
+          {{partial "svg-icons/social-icons/github"}}
+        </a>
+        <a target="_blank" class="brand item btn-social" href="http://www.youtube.com/user/FlexberryPLATFORM">
+          {{partial "svg-icons/social-icons/youtube"}}
+        </a>
+        <a target="_blank" class="brand item btn-social" href="https://gitter.im/Flexberry">
+          {{partial "svg-icons/social-icons/gitter"}}
+        </a>
+      </div>
+
+      {{t "forms.application.footer.application-name"}}
+
+      <div class="copyright-text">
+        {{t "forms.application.footer.copyright"}} 
+      </div>
+      <div class="menu">
         {{flexberry-dropdown
           class="compact"
           items=locales
@@ -54,6 +77,7 @@
           direction="upward"
         }}
       </div>
+
     </div>
   </div>
 </div>

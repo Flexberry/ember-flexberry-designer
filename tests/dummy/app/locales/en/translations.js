@@ -52,7 +52,11 @@ Ember.$.extend(true, translations, {
           title: 'It is version of ember-flexberry addon, which uses in this dummy application ' +
           '(npm version + commit sha). ' +
           'Click to open commit on GitHub.'
-        }
+        },
+        'copyright': 'Copyright © New platform Ltd. 2018',
+        'copyright-version': {
+          title: 'Copyright © New platform Ltd. 2018'
+        },
       },
 
       sitemap: {
