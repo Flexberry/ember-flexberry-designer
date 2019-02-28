@@ -127,7 +127,9 @@ Router.map(function () {
   this.route('fd-generation');
   this.route('fd-setting');
   this.route('fd-architecture');
-  this.route('fd-all-projects');
+  this.route('fd-all-projects', { path: 'all-projects' }, function() {
+    this.route('index', { path: '' });
+  });
 });
 
 export default Router;
