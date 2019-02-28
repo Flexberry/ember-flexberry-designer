@@ -17,14 +17,13 @@ export default Ember.Controller.extend(fdSheetMixin, {
   */
   appState: Ember.inject.service(),
 
-  currentProjectName: Ember.computed('i18n.locale', 'currentContext.context.stage', function() {
-    let i18n = this.get('i18n');
+  currentProjectName: Ember.computed('currentContext.context.stageModel.name', function() {
+    let context = this.get('currentContext');
+    let stageModel = this.get('currentContext.context.stageModel');
     let projectName = '';
-    let currentContext = this.get('currentContext');
 
-    if (currentContext.context.stage) {
-      let currentProjectStageModel = currentContext.getCurrentStageModel();
-      projectName = currentProjectStageModel.get('name');
+    if (stageModel) {
+      projectName = stageModel.get('name');
     }
 
     return projectName;

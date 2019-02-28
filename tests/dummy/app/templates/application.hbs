@@ -11,8 +11,12 @@
   onHidden=(action "updateWidth")
 }}
   {{#if currentProjectName}}
-    <div>{{t 'forms.application.sitemap.root.fd-current-project.title'}}</div>
-    <div>{{currentProjectName}}</div>
+    <div class = 'current-project-name-title'>
+      {{t 'forms.application.sitemap.root.fd-current-project.title'}}
+    </div>
+    <div class = 'current-project-name-caption'>
+      {{currentProjectName}}
+    </div>
   {{/if}}
 
   <button {{action 'toggleSidebar'}} class="ui toggle-sidebar-visible icon button">
