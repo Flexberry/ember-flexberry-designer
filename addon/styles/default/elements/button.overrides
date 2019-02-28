@@ -14,5 +14,8 @@
   }
   i.icon {
     width: 1em;
+    &::before {
+      font-size: 0.9rem;
+    }
   }
 }
