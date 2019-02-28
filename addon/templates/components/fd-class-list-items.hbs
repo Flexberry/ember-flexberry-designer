@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="two wide column light-text">
+    {{t "forms.fd-application-model.entity-caption"}}
+  </div>
+  <div class="fourteen wide column">
+    {{
+      fd-list-item
+      caption=entity.settings.name
+    }}
+  </div>
+  {{#each entity.forms as |form|}}
+    <div class="two wide column light-text">
+      {{#if (eq form.stereotype '«editform»')}}
+        {{t "forms.fd-application-model.editor-caption"}}
+      {{else}}
+        {{t "forms.fd-application-model.list-caption"}}
+      {{/if}}
+    </div>
+    <div class="fourteen wide column">
+      {{
+        fd-list-item
+        caption=form.name
+      }}
+    </div>
+  {{/each}}
+  <div class="right floated fourteen wide column">
+    {{
+      fd-button
+      caption=(t "forms.fd-application-model.editor-caption")
+    }}
+    {{
+      fd-button
+      caption=(t "forms.fd-application-model.list-caption")
+    }}
+  </div>
+</div>

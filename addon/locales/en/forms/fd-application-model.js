@@ -10,5 +10,7 @@ export default {
   'stored-caption': 'Stored',
   'bs-caption': 'Business server',
   'entity-header-placeholder': 'Entity caption',
-  'storage-name-placeholder':'Storage name'
+  'storage-name-placeholder':'Storage name',
+  'type-content-caption': 'Type',
+  'typedef-caption': 'Typedef'
 };

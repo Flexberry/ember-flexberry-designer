@@ -10,5 +10,7 @@ export default {
   'stored-caption': 'Хранимый',
   'bs-caption': 'Бизнес-сервер',
   'entity-header-placeholder': 'Заголовок сущности',
-  'storage-name-placeholder':'Наименование хранилища'
+  'storage-name-placeholder':'Наименование хранилища',
+  'type-content-caption': 'Тип',
+  'typedef-caption': 'Typedef'
 };

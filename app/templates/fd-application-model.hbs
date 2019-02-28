@@ -3,69 +3,97 @@
 </h2>
 
 <form class="ui form flexberry-vertical-form">
-
   <div class="ui stackable grid fd-list">
     <div class="row">
       <div class="two wide column light-text">
         {{t "forms.fd-application-model.type-caption"}}
       </div>
       <div class="fourteen wide column">
-        {{fd-search-input}}
+        {{
+          fd-search-input
+          model=model
+          value=value
+        }}
       </div>
     </div>
+
+    {{!-- Enums --}}
+    {{#if (not-eq model.enums.length 0)}}
     <div class="row">
       <div class="two wide column light-text">
         {{t "forms.fd-application-model.enum-caption"}}
       </div>
       <div class="fourteen wide column">
-        {{fd-list-item
-          caption='tПол'
-        }}
-        {{fd-list-item
-          caption='tЖилье'
-        }}
-        {{fd-list-item
-          caption='tОбразование'
-        }}
-        {{fd-button
+        {{#each model.enums as |enum|}}
+          {{
+            fd-list-item
+            caption=enum.name
+          }}
+        {{/each}}
+      </div>
+      <div class="right floated fourteen wide column">
+        {{
+          fd-button
           caption=(t "forms.fd-application-model.enum-caption")
         }}
       </div>
     </div>
+    {{/if}}
+
+    {{!-- Classes --}}
+    {{#each model.classes as |class|}}
+      {{
+        fd-class-list-items
+        entity=class
+      }}
+    {{/each}}
+
+    {{!-- Type --}}
+    {{#if (not-eq model.types.length 0)}}
     <div class="row">
       <div class="two wide column light-text">
-        {{t "forms.fd-application-model.entity-caption"}}
+        {{t "forms.fd-application-model.type-content-caption"}}
       </div>
       <div class="fourteen wide column">
-        {{fd-list-item
-          caption='Пациент'
-        }}
-      </div>
-      <div class="two wide column light-text">
-        {{t "forms.fd-application-model.editor-caption"}}
-      </div>
-      <div class="fourteen wide column">
-        {{fd-list-item
-          caption='ПациентE'
-        }}
-      </div>
-      <div class="two wide column light-text">
-        {{t "forms.fd-application-model.list-caption"}}
-      </div>
-      <div class="fourteen wide column">
-        {{fd-list-item
-          caption='ПациентL'
-        }}
+        {{#each model.types as |type|}}
+          {{
+            fd-list-item
+            caption=type.name
+          }}
+        {{/each}}
       </div>
       <div class="right floated fourteen wide column">
-        {{fd-button
-          caption=(t "forms.fd-application-model.editor-caption")
-        }}
-        {{fd-button
-          caption=(t "forms.fd-application-model.list-caption")
+        {{
+          fd-button
+          caption=(t "forms.fd-application-model.type-content-caption")
         }}
       </div>
     </div>
+    {{/if}}
+
+    {{!-- Typedef --}}
+    {{#if (not-eq model.typedefs.length 0)}}
+    <div class="row">
+      <div class="two wide column light-text">
+        {{t "forms.fd-application-model.typedef-caption"}}
+      </div>
+      <div class="fourteen wide column">
+        {{#each model.typedefs as |typedef|}}
+          {{
+            fd-list-item
+            caption=typedef.name
+          }}
+        {{/each}}
+      </div>
+      <div class="right floated fourteen wide column">
+        {{
+          fd-button
+          caption=(t "forms.fd-application-model.typedef-caption")
+        }}
+      </div>
+    </div>
+    {{/if}}
+
   </div>
 </form>
 {{#fd-sheet
