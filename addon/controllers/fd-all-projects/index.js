@@ -12,6 +12,15 @@ import Ember from 'ember';
 */
 export default Ember.Controller.extend({
   /**
+    Set by the {{#crosslink "FdAllProjectsIndexRoute"}}route{{/crosslink}}, indicates that this controller is now active.
+
+    @property active
+    @type Boolean
+    @default false
+  */
+  active: false,
+
+  /**
     Request to search for projects.
 
     @property search

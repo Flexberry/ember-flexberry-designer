@@ -1,6 +1,9 @@
 {{flexberry-error error=error}}
-<h3>{{t "forms.fd-all-projects.caption"}}</h3>
 
-{{fd-search-input value=indexController.search}}
+{{#if showHeader}}
+  <h3>{{t "forms.fd-all-projects.caption"}}</h3>
+
+  {{fd-search-input value=indexController.search}}
+{{/if}}
 
 {{outlet}}

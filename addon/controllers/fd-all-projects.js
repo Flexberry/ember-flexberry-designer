@@ -20,4 +20,13 @@ export default Ember.Controller.extend({
     @default 'fd-all-projects.index'
   */
   indexController: Ember.inject.controller('fd-all-projects.index'),
+
+  /**
+    Indicates whether to show a header with a title, a search field and a project creation button.
+
+    @property showHeader
+    @type Boolean
+    @readOnly
+  */
+  showHeader: Ember.computed.readOnly('indexController.active'),
 });

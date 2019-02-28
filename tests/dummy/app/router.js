@@ -129,6 +129,7 @@ Router.map(function () {
   this.route('fd-architecture');
   this.route('fd-all-projects', { path: 'all-projects' }, function() {
     this.route('index', { path: '' });
+    this.route('empty');
   });
 });
 
