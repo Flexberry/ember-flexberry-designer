@@ -10,11 +10,15 @@
   onShow=(action "updateWidth")
   onHidden=(action "updateWidth")
 }}
-  {{render "sitemap" sitemapTop}}
+  {{#if currentProjectName}}
+    <div>{{t 'forms.application.sitemap.root.fd-current-project.title'}}</div>
+    <div>{{currentProjectName}}</div>
+  {{/if}}
 
   <button {{action 'toggleSidebar'}} class="ui toggle-sidebar-visible icon button">
     <i class="caret left icon"></i>
   </button>
+  
   {{render "sitemap" sitemap}}
 
   <div class="sitemap-bottom">
