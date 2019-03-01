@@ -20,23 +20,9 @@ export default Ember.Controller.extend({
     let searchStr = this.get('searchValue').trim().toLocaleLowerCase();
     let model = this.get('model');
 
-    if (searchStr === '') {
+    if (Ember.isBlank(searchStr)) {
       return model;
     }
-
-    let newModel = {
-      classes: undefined,
-      typedefs: undefined,
-      enums: undefined,
-      types: undefined,
-      applications: undefined,
-      bs: undefined,
-      externals: undefined,
-      extinterfaces: undefined,
-      interfaces: undefined,
-      userforms: undefined,
-      userstereotypes: undefined
-    };
 
     let filterFunction = function(item) {
       let name = item.get('name');
@@ -61,7 +47,9 @@ export default Ember.Controller.extend({
       }
     });
 
-    newModel.classes = Ember.A(newClasses);
+    let newModel = {
+      classes: Ember.A(newClasses)
+    };
 
     for (let prop in model) {
       if (prop !== 'classes') {
