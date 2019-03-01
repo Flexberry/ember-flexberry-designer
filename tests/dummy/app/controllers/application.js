@@ -3,6 +3,16 @@ import fdSheetMixin from 'ember-flexberry-designer/mixins/fd-sheet-mixin';
 
 export default Ember.Controller.extend(fdSheetMixin, {
   /**
+    Flag indicates sidebar visible
+
+    @private
+    @property _sidebarVisible
+    @type Boolean
+    @default true
+  */
+  _sidebarVisible: true,
+
+  /**
     Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
 
     @property currentContext
@@ -16,6 +26,16 @@ export default Ember.Controller.extend(fdSheetMixin, {
     @type AppStateService
   */
   appState: Ember.inject.service(),
+
+  /**
+    Current project name from stageModel
+
+    @property currentProjectName
+    @type String
+  */
+  currentProjectName: Ember.computed('currentContext.context.stageModel.name', function() {
+    return this.get('currentContext.context.stageModel.name');
+  }),
 
   sitemap: Ember.computed('i18n.locale', 'currentContext.context.configuration', 'currentContext.context.stage', function() {
     let i18n = this.get('i18n');
@@ -181,6 +201,7 @@ export default Ember.Controller.extend(fdSheetMixin, {
       let sidebar = Ember.$('.ui.sidebar.main.menu');
       sidebar.sidebar('toggle');
       let sidebarVisible = sidebar.hasClass('visible');
+      this.set('_sidebarVisible', !sidebarVisible);
       let currentSidebarWidth = sidebarVisible ? this.sidebarMiniWidth : this.sidebarWidth;
       let contentWidth = `calc(100% - ${currentSidebarWidth})`;
       if (!sidebarVisible) {
@@ -220,8 +241,9 @@ export default Ember.Controller.extend(fdSheetMixin, {
     */
     toggleSidebarMobile() {
       Ember.$('.ui.sidebar.main.menu').sidebar('toggle');
-
-      if (Ember.$('.inverted.vertical.main.menu').hasClass('visible')) {
+      let sidebarVisible = Ember.$('.inverted.vertical.main.menu').hasClass('visible');
+      this.set('_sidebarVisible', !sidebarVisible);
+      if (sidebarVisible) {
         Ember.$('.sidebar.icon.text-menu-show').removeClass('hidden');
         Ember.$('.sidebar.icon.text-menu-hide').addClass('hidden');
         Ember.$('.bgw-opacity').addClass('hidden');
