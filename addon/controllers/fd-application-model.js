@@ -32,7 +32,14 @@ export default Ember.Controller.extend({
       classes: undefined,
       typedefs: undefined,
       enums: undefined,
-      types: undefined
+      types: undefined,
+      applications: undefined,
+      bs: undefined,
+      externals: undefined,
+      extinterfaces: undefined,
+      interfaces: undefined,
+      userforms: undefined,
+      userstereotypes: undefined
     };
 
     if (searchStr !== '') {
@@ -48,8 +55,12 @@ export default Ember.Controller.extend({
         if (!Ember.isNone(name) && name.toLocaleLowerCase().indexOf(searchStr) !== -1) {
           return clazz;
         } else {
-          let forms = clazz.forms.filter(filterFunction);
-          if (forms.length !== 0) {
+          let editForms = clazz.editForms.filter(filterFunction);
+          let listForms = clazz.listForms.filter(filterFunction);
+          let parents = clazz.parents.filter(filterFunction);
+          let bs = !Ember.isNone(clazz.bs) ? filterFunction(clazz.bs) : null;
+
+          if (editForms.length !== 0 || listForms.length !== 0 || parents.length !== 0 || !Ember.isNone(bs)) {
             return clazz;
           }
         }
@@ -58,11 +69,25 @@ export default Ember.Controller.extend({
       let newTypedefs = originalModel.typedefs.filter(filterFunction);
       let newEnums = originalModel.enums.filter(filterFunction);
       let newTypes = originalModel.types.filter(filterFunction);
+      let newApplications = originalModel.applications.filter(filterFunction);
+      let newBS = originalModel.bs.filter(filterFunction);
+      let newExternals = originalModel.externals.filter(filterFunction);
+      let newExtInterfaces = originalModel.extinterfaces.filter(filterFunction);
+      let newInterfaces = originalModel.interfaces.filter(filterFunction);
+      let newUserForms = originalModel.userforms.filter(filterFunction);
+      let newUserStereotypes = originalModel.userstereotypes.filter(filterFunction);
 
       newModel.classes = Ember.A(newClasses);
       newModel.typedefs = Ember.A(newTypedefs);
       newModel.enums = Ember.A(newEnums);
       newModel.types = Ember.A(newTypes);
+      newModel.applications = Ember.A(newApplications);
+      newModel.bs = Ember.A(newBS);
+      newModel.externals = Ember.A(newExternals);
+      newModel.extinterfaces = Ember.A(newExtInterfaces);
+      newModel.interfaces = Ember.A(newInterfaces);
+      newModel.userforms = Ember.A(newUserForms);
+      newModel.userstereotypes = Ember.A(newUserStereotypes);
     } else {
       newModel = originalModel;
     }

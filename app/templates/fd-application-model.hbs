@@ -17,6 +17,14 @@
       </div>
     </div>
 
+    {{!-- Classes --}}
+    {{#each model.classes as |class|}}
+      {{
+        fd-class-list-items
+        entity=class
+      }}
+    {{/each}}
+
     {{!-- Enums --}}
     {{#if (not-eq model.enums.length 0)}}
     <div class="row">
@@ -39,14 +47,6 @@
       </div>
     </div>
     {{/if}}
-
-    {{!-- Classes --}}
-    {{#each model.classes as |class|}}
-      {{
-        fd-class-list-items
-        entity=class
-      }}
-    {{/each}}
 
     {{!-- Type --}}
     {{#if (not-eq model.types.length 0)}}
@@ -89,6 +89,167 @@
         {{
           fd-button
           caption=(t "forms.fd-application-model.typedef-caption")
+        }}
+      </div>
+    </div>
+    {{/if}}
+
+    {{!-- BS --}}
+    {{#if (not-eq model.bs.length 0)}}
+    <div class="row">
+      <div class="two wide column light-text">
+        {{t "forms.fd-application-model.bs-caption"}}
+      </div>
+      <div class="fourteen wide column">
+        {{#each model.bs as |bs|}}
+          {{
+            fd-list-item
+            caption=bs.name
+          }}
+        {{/each}}
+      </div>
+      <div class="right floated fourteen wide column">
+        {{
+          fd-button
+          caption=(t "forms.fd-application-model.bs-caption")
+        }}
+      </div>
+    </div>
+    {{/if}}
+
+    {{!-- Interface --}}
+    {{#if (not-eq model.interfaces.length 0)}}
+    <div class="row">
+      <div class="two wide column light-text">
+        {{t "forms.fd-application-model.interface-caption"}}
+      </div>
+      <div class="fourteen wide column">
+        {{#each model.interfaces as |interface|}}
+          {{
+            fd-list-item
+            caption=interface.name
+          }}
+        {{/each}}
+      </div>
+      <div class="right floated fourteen wide column">
+        {{
+          fd-button
+          caption=(t "forms.fd-application-model.interface-caption")
+        }}
+      </div>
+    </div>
+    {{/if}}
+
+    {{!-- External --}}
+    {{#if (not-eq model.externals.length 0)}}
+    <div class="row">
+      <div class="two wide column light-text">
+        {{t "forms.fd-application-model.external-caption"}}
+      </div>
+      <div class="fourteen wide column">
+        {{#each model.externals as |external|}}
+          {{
+            fd-list-item
+            caption=external.name
+          }}
+        {{/each}}
+      </div>
+      <div class="right floated fourteen wide column">
+        {{
+          fd-button
+          caption=(t "forms.fd-application-model.external-caption")
+        }}
+      </div>
+    </div>
+    {{/if}}
+
+    {{!-- Extinterface --}}
+    {{#if (not-eq model.extinterfaces.length 0)}}
+    <div class="row">
+      <div class="two wide column light-text">
+        {{t "forms.fd-application-model.extinterface-caption"}}
+      </div>
+      <div class="fourteen wide column">
+        {{#each model.extinterfaces as |extinterface|}}
+          {{
+            fd-list-item
+            caption=extinterface.name
+          }}
+        {{/each}}
+      </div>
+      <div class="right floated fourteen wide column">
+        {{
+          fd-button
+          caption=(t "forms.fd-application-model.extinterface-caption")
+        }}
+      </div>
+    </div>
+    {{/if}}
+
+    {{!-- Applications --}}
+    {{#if (not-eq model.applications.length 0)}}
+    <div class="row">
+      <div class="two wide column light-text">
+        {{t "forms.fd-application-model.application-caption"}}
+      </div>
+      <div class="fourteen wide column">
+        {{#each model.applications as |application|}}
+          {{
+            fd-list-item
+            caption=application.name
+          }}
+        {{/each}}
+      </div>
+      <div class="right floated fourteen wide column">
+        {{
+          fd-button
+          caption=(t "forms.fd-application-model.application-caption")
+        }}
+      </div>
+    </div>
+    {{/if}}
+
+    {{!-- Userforms --}}
+    {{#if (not-eq model.userforms.length 0)}}
+    <div class="row">
+      <div class="two wide column light-text">
+        {{t "forms.fd-application-model.userform-caption"}}
+      </div>
+      <div class="fourteen wide column">
+        {{#each model.userforms as |userform|}}
+          {{
+            fd-list-item
+            caption=userform.name
+          }}
+        {{/each}}
+      </div>
+      <div class="right floated fourteen wide column">
+        {{
+          fd-button
+          caption=(t "forms.fd-application-model.userform-caption")
+        }}
+      </div>
+    </div>
+    {{/if}}
+
+    {{!-- Userstereotypes --}}
+    {{#if (not-eq model.userstereotypes.length 0)}}
+    <div class="row">
+      <div class="two wide column light-text">
+        {{t "forms.fd-application-model.userstereotype-caption"}}
+      </div>
+      <div class="fourteen wide column">
+        {{#each model.userstereotypes as |userstereotype|}}
+          {{
+            fd-list-item
+            caption=userstereotype.name
+          }}
+        {{/each}}
+      </div>
+      <div class="right floated fourteen wide column">
+        {{
+          fd-button
+          caption=(t "forms.fd-application-model.userstereotype-caption")
         }}
       </div>
     </div>

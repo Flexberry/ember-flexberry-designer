@@ -8,21 +8,65 @@
       caption=entity.settings.name
     }}
   </div>
-  {{#each entity.forms as |form|}}
+
+  {{!-- EForm --}}
+  {{#if (not-eq entity.editForms.length 0)}}
     <div class="two wide column light-text">
-      {{#if (eq form.stereotype '«editform»')}}
-        {{t "forms.fd-application-model.editor-caption"}}
-      {{else}}
-        {{t "forms.fd-application-model.list-caption"}}
-      {{/if}}
+      {{t "forms.fd-application-model.editor-caption"}}
+    </div>
+    <div class="fourteen wide column">
+      {{#each entity.editForms as |editForm|}}
+        {{
+          fd-list-item
+          caption=editForm.name
+        }}
+      {{/each}}
+    </div>
+  {{/if}}
+
+  {{!-- LForm --}}
+  {{#if (not-eq entity.listForms.length 0)}}
+    <div class="two wide column light-text">
+      {{t "forms.fd-application-model.list-caption"}}
+    </div>
+    <div class="fourteen wide column">
+      {{#each entity.listForms as |listForm|}}
+        {{
+          fd-list-item
+          caption=listForm.name
+        }}
+      {{/each}}
+    </div>
+  {{/if}}
+
+  {{!-- BS --}}
+  {{#if (not-eq entity.bs null)}}
+    <div class="two wide column light-text">
+      {{t "forms.fd-application-model.bs-caption"}}
     </div>
     <div class="fourteen wide column">
       {{
         fd-list-item
-        caption=form.name
+        caption=entity.bs.name
       }}
     </div>
-  {{/each}}
+  {{/if}}
+
+  {{!-- Parents --}}
+  {{#if (not-eq entity.parents.length 0)}}
+    <div class="two wide column light-text">
+      {{t "forms.fd-application-model.parent-caption"}}
+    </div>
+    <div class="fourteen wide column">
+      {{#each entity.parents as |parent|}}
+        {{
+          fd-list-item
+          caption=parent.name
+        }}
+      {{/each}}
+    </div>
+  {{/if}}
+
   <div class="right floated fourteen wide column">
     {{
       fd-button

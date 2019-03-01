@@ -12,5 +12,12 @@ export default {
   'entity-header-placeholder': 'Заголовок сущности',
   'storage-name-placeholder':'Наименование хранилища',
   'type-content-caption': 'Тип',
-  'typedef-caption': 'Typedef'
+  'typedef-caption': 'Typedef',
+  'interface-caption': 'Интерфейс',
+  'external-caption': 'Внешняя сущность',
+  'extinterface-caption': 'Внешний интерфейс',
+  'application-caption': 'Приложение',
+  'userform-caption': 'Пользовательская форма',
+  'userstereotype-caption': 'Сущность с пользовательским стереотипом',
+  'parent-caption': 'Предки первого уровня'
 };
