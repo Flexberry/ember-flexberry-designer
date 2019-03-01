@@ -3,31 +3,22 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
   /**
-    Original value model.
-
-    @property originalModel
-    @type Object
-    @default undefined
-  */
-  originalModel: undefined,
-
-  /**
     Value search input.
 
-    @property value
+    @property searchValue
     @type String
     @default ''
   */
-  value: '',
+  searchValue: '',
 
   /**
     Update model for search
 
-    @method _valueObserver
+    @method filteredModel
   */
-  _valueObserver: Ember.observer('value', function() {
-    let searchStr = this.get('value').trim().toLocaleLowerCase();
-    let originalModel = this.get('originalModel');
+  filteredModel: Ember.computed('searchValue', function() {
+    let searchStr = this.get('searchValue').trim().toLocaleLowerCase();
+    let model = this.get('model');
     let newModel = {
       classes: undefined,
       typedefs: undefined,
@@ -50,7 +41,7 @@ export default Ember.Controller.extend({
         }
       };
 
-      let newClasses = originalModel.classes.filter(function(clazz) {
+      let newClasses = model.classes.filter(function(clazz) {
         let name = clazz.settings.get('name');
         if (!Ember.isNone(name) && name.toLocaleLowerCase().indexOf(searchStr) !== -1) {
           return clazz;
@@ -66,16 +57,16 @@ export default Ember.Controller.extend({
         }
       });
 
-      let newTypedefs = originalModel.typedefs.filter(filterFunction);
-      let newEnums = originalModel.enums.filter(filterFunction);
-      let newTypes = originalModel.types.filter(filterFunction);
-      let newApplications = originalModel.applications.filter(filterFunction);
-      let newBS = originalModel.bs.filter(filterFunction);
-      let newExternals = originalModel.externals.filter(filterFunction);
-      let newExtInterfaces = originalModel.extinterfaces.filter(filterFunction);
-      let newInterfaces = originalModel.interfaces.filter(filterFunction);
-      let newUserForms = originalModel.userforms.filter(filterFunction);
-      let newUserStereotypes = originalModel.userstereotypes.filter(filterFunction);
+      let newTypedefs = model.typedefs.filter(filterFunction);
+      let newEnums = model.enums.filter(filterFunction);
+      let newTypes = model.types.filter(filterFunction);
+      let newApplications = model.applications.filter(filterFunction);
+      let newBS = model.bs.filter(filterFunction);
+      let newExternals = model.externals.filter(filterFunction);
+      let newExtInterfaces = model.extinterfaces.filter(filterFunction);
+      let newInterfaces = model.interfaces.filter(filterFunction);
+      let newUserForms = model.userforms.filter(filterFunction);
+      let newUserStereotypes = model.userstereotypes.filter(filterFunction);
 
       newModel.classes = Ember.A(newClasses);
       newModel.typedefs = Ember.A(newTypedefs);
@@ -89,9 +80,9 @@ export default Ember.Controller.extend({
       newModel.userforms = Ember.A(newUserForms);
       newModel.userstereotypes = Ember.A(newUserStereotypes);
     } else {
-      newModel = originalModel;
+      newModel = model;
     }
 
-    this.set('model', newModel);
+    return newModel;
   })
 });
