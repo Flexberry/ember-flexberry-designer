@@ -10,7 +10,7 @@
   onShow=(action "updateWidth")
   onHidden=(action "updateWidth")
 }}
-  {{#if (and currentProjectName (not _sidebarVisible))}}
+  {{#if (and currentProjectName _sidebarVisible)}}
     <div class = 'current-project-name-header'>
       {{t 'forms.application.sitemap.root.fd-current-project-name-header.caption'}}
     </div>

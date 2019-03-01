@@ -8,9 +8,9 @@ export default Ember.Controller.extend(fdSheetMixin, {
     @private
     @property _sidebarVisible
     @type Boolean
-    @default false
+    @default true
   */
-  _sidebarVisible: false,
+  _sidebarVisible: true,
 
   /**
     Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
@@ -27,6 +27,12 @@ export default Ember.Controller.extend(fdSheetMixin, {
   */
   appState: Ember.inject.service(),
 
+  /**
+    Current project name from stageModel
+
+    @property currentProjectName
+    @type String
+  */
   currentProjectName: Ember.computed('currentContext.context.stageModel.name', function() {
     return this.get('currentContext.context.stageModel.name');
   }),
@@ -195,7 +201,7 @@ export default Ember.Controller.extend(fdSheetMixin, {
       let sidebar = Ember.$('.ui.sidebar.main.menu');
       sidebar.sidebar('toggle');
       let sidebarVisible = sidebar.hasClass('visible');
-      this.set('_sidebarVisible', sidebarVisible);
+      this.set('_sidebarVisible', !sidebarVisible);
       let currentSidebarWidth = sidebarVisible ? this.sidebarMiniWidth : this.sidebarWidth;
       let contentWidth = `calc(100% - ${currentSidebarWidth})`;
       if (!sidebarVisible) {
@@ -236,7 +242,7 @@ export default Ember.Controller.extend(fdSheetMixin, {
     toggleSidebarMobile() {
       Ember.$('.ui.sidebar.main.menu').sidebar('toggle');
       let sidebarVisible = Ember.$('.inverted.vertical.main.menu').hasClass('visible');
-      this.set('_sidebarVisible', sidebarVisible);
+      this.set('_sidebarVisible', !sidebarVisible);
       if (sidebarVisible) {
         Ember.$('.sidebar.icon.text-menu-show').removeClass('hidden');
         Ember.$('.sidebar.icon.text-menu-hide').addClass('hidden');
