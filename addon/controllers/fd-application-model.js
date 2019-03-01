@@ -19,6 +19,11 @@ export default Ember.Controller.extend({
   filteredModel: Ember.computed('searchValue', function() {
     let searchStr = this.get('searchValue').trim().toLocaleLowerCase();
     let model = this.get('model');
+
+    if (searchStr === '') {
+      return model;
+    }
+
     let newModel = {
       classes: undefined,
       typedefs: undefined,
@@ -33,54 +38,36 @@ export default Ember.Controller.extend({
       userstereotypes: undefined
     };
 
-    if (searchStr !== '') {
-      let filterFunction = function(item) {
-        let name = item.get('name');
-        if (!Ember.isNone(name) && name.toLocaleLowerCase().indexOf(searchStr) !== -1) {
-          return item;
-        }
-      };
+    let filterFunction = function(item) {
+      let name = item.get('name');
+      if (!Ember.isNone(name) && name.toLocaleLowerCase().indexOf(searchStr) !== -1) {
+        return item;
+      }
+    };
 
-      let newClasses = model.classes.filter(function(clazz) {
-        let name = clazz.settings.get('name');
-        if (!Ember.isNone(name) && name.toLocaleLowerCase().indexOf(searchStr) !== -1) {
-          return clazz;
-        } else {
-          let editForms = clazz.editForms.filter(filterFunction);
-          let listForms = clazz.listForms.filter(filterFunction);
-          let parents = clazz.parents.filter(filterFunction);
-          let bs = !Ember.isNone(clazz.bs) ? filterFunction(clazz.bs) : null;
+    let newClasses = model.classes.filter(function(clazz) {
+      let classes = filterFunction(clazz.settings);
+      if (!Ember.isNone(classes)) {
+        return clazz;
+      }
 
-          if (editForms.length !== 0 || listForms.length !== 0 || parents.length !== 0 || !Ember.isNone(bs)) {
-            return clazz;
-          }
-        }
-      });
+      let editForms = clazz.editForms.some(filterFunction);
+      let listForms = clazz.listForms.some(filterFunction);
+      let parents = clazz.parents.some(filterFunction);
+      let bs = !Ember.isNone(clazz.bs) ? filterFunction(clazz.bs) : null;
 
-      let newTypedefs = model.typedefs.filter(filterFunction);
-      let newEnums = model.enums.filter(filterFunction);
-      let newTypes = model.types.filter(filterFunction);
-      let newApplications = model.applications.filter(filterFunction);
-      let newBS = model.bs.filter(filterFunction);
-      let newExternals = model.externals.filter(filterFunction);
-      let newExtInterfaces = model.extinterfaces.filter(filterFunction);
-      let newInterfaces = model.interfaces.filter(filterFunction);
-      let newUserForms = model.userforms.filter(filterFunction);
-      let newUserStereotypes = model.userstereotypes.filter(filterFunction);
+      if (editForms || listForms || parents || !Ember.isNone(bs)) {
+        return clazz;
+      }
+    });
 
-      newModel.classes = Ember.A(newClasses);
-      newModel.typedefs = Ember.A(newTypedefs);
-      newModel.enums = Ember.A(newEnums);
-      newModel.types = Ember.A(newTypes);
-      newModel.applications = Ember.A(newApplications);
-      newModel.bs = Ember.A(newBS);
-      newModel.externals = Ember.A(newExternals);
-      newModel.extinterfaces = Ember.A(newExtInterfaces);
-      newModel.interfaces = Ember.A(newInterfaces);
-      newModel.userforms = Ember.A(newUserForms);
-      newModel.userstereotypes = Ember.A(newUserStereotypes);
-    } else {
-      newModel = model;
+    newModel.classes = Ember.A(newClasses);
+
+    for (let prop in model) {
+      if (prop !== 'classes') {
+        let newdata = model[prop].filter(filterFunction);
+        newModel[prop] = Ember.A(newdata);
+      }
     }
 
     return newModel;
