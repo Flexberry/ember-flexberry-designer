@@ -704,6 +704,15 @@ define('dummy/controllers/activity-diagram-primitives-demo', ['exports', 'ember'
 define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-designer/mixins/fd-sheet-mixin'], function (exports, _ember, _emberFlexberryDesignerMixinsFdSheetMixin) {
   exports['default'] = _ember['default'].Controller.extend(_emberFlexberryDesignerMixinsFdSheetMixin['default'], {
     /**
+      Flag indicates sidebar visible
+       @private
+      @property _sidebarVisible
+      @type Boolean
+      @default true
+    */
+    _sidebarVisible: true,
+
+    /**
       Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
        @property currentContext
       @type FdCurrentProjectContextService
@@ -716,6 +725,15 @@ define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-de
       @type AppStateService
     */
     appState: _ember['default'].inject.service(),
+
+    /**
+      Current project name from stageModel
+       @property currentProjectName
+      @type String
+    */
+    currentProjectName: _ember['default'].computed('currentContext.context.stageModel.name', function () {
+      return this.get('currentContext.context.stageModel.name');
+    }),
 
     sitemap: _ember['default'].computed('i18n.locale', 'currentContext.context.configuration', 'currentContext.context.stage', function () {
       var i18n = this.get('i18n');
@@ -868,6 +886,7 @@ define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-de
         var sidebar = _ember['default'].$('.ui.sidebar.main.menu');
         sidebar.sidebar('toggle');
         var sidebarVisible = sidebar.hasClass('visible');
+        this.set('_sidebarVisible', !sidebarVisible);
         var currentSidebarWidth = sidebarVisible ? this.sidebarMiniWidth : this.sidebarWidth;
         var contentWidth = 'calc(100% - ' + currentSidebarWidth + ')';
         if (!sidebarVisible) {
@@ -907,8 +926,9 @@ define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-de
       */
       toggleSidebarMobile: function toggleSidebarMobile() {
         _ember['default'].$('.ui.sidebar.main.menu').sidebar('toggle');
-
-        if (_ember['default'].$('.inverted.vertical.main.menu').hasClass('visible')) {
+        var sidebarVisible = _ember['default'].$('.inverted.vertical.main.menu').hasClass('visible');
+        this.set('_sidebarVisible', !sidebarVisible);
+        if (sidebarVisible) {
           _ember['default'].$('.sidebar.icon.text-menu-show').removeClass('hidden');
           _ember['default'].$('.sidebar.icon.text-menu-hide').addClass('hidden');
           _ember['default'].$('.bgw-opacity').addClass('hidden');
@@ -19000,6 +19020,67 @@ define("dummy/templates/application", ["exports"], function (exports) {
     })();
     var child1 = (function () {
       var child0 = (function () {
+        var child0 = (function () {
+          return {
+            meta: {
+              "fragmentReason": false,
+              "revision": "Ember@2.4.6",
+              "loc": {
+                "source": null,
+                "start": {
+                  "line": 13,
+                  "column": 2
+                },
+                "end": {
+                  "line": 20,
+                  "column": 2
+                }
+              },
+              "moduleName": "dummy/templates/application.hbs"
+            },
+            isEmpty: false,
+            arity: 0,
+            cachedFragment: null,
+            hasRendered: false,
+            buildFragment: function buildFragment(dom) {
+              var el0 = dom.createDocumentFragment();
+              var el1 = dom.createTextNode("    ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("div");
+              dom.setAttribute(el1, "class", "current-project-name-header");
+              var el2 = dom.createTextNode("\n      ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createComment("");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n    ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n    ");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("div");
+              dom.setAttribute(el1, "class", "current-project-name");
+              var el2 = dom.createTextNode("\n      ");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createComment("");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode("\n    ");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n");
+              dom.appendChild(el0, el1);
+              return el0;
+            },
+            buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+              var morphs = new Array(2);
+              morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
+              morphs[1] = dom.createMorphAt(dom.childAt(fragment, [3]), 1, 1);
+              return morphs;
+            },
+            statements: [["inline", "t", ["forms.application.sitemap.root.fd-current-project-name-header.caption"], [], ["loc", [null, [15, 6], [15, 83]]]], ["content", "currentProjectName", ["loc", [null, [18, 6], [18, 28]]]]],
+            locals: [],
+            templates: []
+          };
+        })();
         return {
           meta: {
             "fragmentReason": false,
@@ -19011,7 +19092,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
                 "column": 0
               },
               "end": {
-                "line": 22,
+                "line": 31,
                 "column": 0
               }
             },
@@ -19023,6 +19104,8 @@ define("dummy/templates/application", ["exports"], function (exports) {
           hasRendered: false,
           buildFragment: function buildFragment(dom) {
             var el0 = dom.createDocumentFragment();
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
             var el1 = dom.createTextNode("\n  ");
             dom.appendChild(el0, el1);
             var el1 = dom.createElement("button");
@@ -19035,7 +19118,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
             var el2 = dom.createTextNode("\n  ");
             dom.appendChild(el1, el2);
             dom.appendChild(el0, el1);
-            var el1 = dom.createTextNode("\n  ");
+            var el1 = dom.createTextNode("\n  \n  ");
             dom.appendChild(el0, el1);
             var el1 = dom.createComment("");
             dom.appendChild(el0, el1);
@@ -19055,16 +19138,18 @@ define("dummy/templates/application", ["exports"], function (exports) {
             return el0;
           },
           buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-            var element0 = dom.childAt(fragment, [1]);
-            var morphs = new Array(3);
-            morphs[0] = dom.createElementMorph(element0);
-            morphs[1] = dom.createMorphAt(fragment, 3, 3, contextualElement);
-            morphs[2] = dom.createMorphAt(dom.childAt(fragment, [5]), 1, 1);
+            var element0 = dom.childAt(fragment, [2]);
+            var morphs = new Array(4);
+            morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+            morphs[1] = dom.createElementMorph(element0);
+            morphs[2] = dom.createMorphAt(fragment, 4, 4, contextualElement);
+            morphs[3] = dom.createMorphAt(dom.childAt(fragment, [6]), 1, 1);
+            dom.insertBoundary(fragment, 0);
             return morphs;
           },
-          statements: [["element", "action", ["toggleSidebar"], [], ["loc", [null, [14, 10], [14, 36]]]], ["inline", "render", ["sitemap", ["get", "sitemap", ["loc", [null, [17, 21], [17, 28]]]]], [], ["loc", [null, [17, 2], [17, 30]]]], ["inline", "render", ["sitemap", ["get", "sitemapBottom", ["loc", [null, [20, 23], [20, 36]]]]], [], ["loc", [null, [20, 4], [20, 38]]]]],
+          statements: [["block", "if", [["subexpr", "and", [["get", "currentProjectName", ["loc", [null, [13, 13], [13, 31]]]], ["get", "_sidebarVisible", ["loc", [null, [13, 32], [13, 47]]]]], [], ["loc", [null, [13, 8], [13, 48]]]]], [], 0, null, ["loc", [null, [13, 2], [20, 9]]]], ["element", "action", ["toggleSidebar"], [], ["loc", [null, [22, 10], [22, 36]]]], ["inline", "render", ["sitemap", ["get", "sitemap", ["loc", [null, [26, 21], [26, 28]]]]], [], ["loc", [null, [26, 2], [26, 30]]]], ["inline", "render", ["sitemap", ["get", "sitemapBottom", ["loc", [null, [29, 23], [29, 36]]]]], [], ["loc", [null, [29, 4], [29, 38]]]]],
           locals: [],
-          templates: []
+          templates: [child0]
         };
       })();
       return {
@@ -19078,7 +19163,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
               "column": 0
             },
             "end": {
-              "line": 60,
+              "line": 69,
               "column": 0
             }
           },
@@ -19220,7 +19305,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
           dom.insertBoundary(fragment, 0);
           return morphs;
         },
-        statements: [["block", "ui-sidebar", [], ["class", "vertical main menu visible uncover", "ui_context", ".ember-application > .ember-view", "closable", false, "dimPage", false, "onShow", ["subexpr", "action", ["updateWidth"], [], ["loc", [null, [10, 9], [10, 31]]]], "onHidden", ["subexpr", "action", ["updateWidth"], [], ["loc", [null, [11, 11], [11, 33]]]]], 0, null, ["loc", [null, [5, 0], [22, 15]]]], ["element", "action", ["toggleSidebar"], [], ["loc", [null, [23, 8], [23, 34]]]], ["inline", "outlet", ["right-sidebar"], [], ["loc", [null, [26, 0], [26, 26]]]], ["attribute", "class", ["concat", ["ui form ", ["get", "appState.state", ["loc", [null, [29, 24], [29, 38]]]]]]], ["content", "outlet", ["loc", [null, [33, 12], [33, 22]]]], ["inline", "outlet", ["modal"], [], ["loc", [null, [40, 2], [40, 20]]]], ["inline", "t", ["forms.application.footer.application-name"], [], ["loc", [null, [46, 8], [46, 57]]]], ["inline", "flexberry-dropdown", [], ["class", "compact", "items", ["subexpr", "@mut", [["get", "locales", ["loc", [null, [51, 16], [51, 23]]]]], [], []], "value", ["subexpr", "@mut", [["get", "i18n.locale", ["loc", [null, [52, 16], [52, 27]]]]], [], []], "placeholder", ["subexpr", "t", ["forms.application.header.menu.language-dropdown.placeholder"], [], ["loc", [null, [53, 22], [53, 87]]]], "direction", "upward"], ["loc", [null, [49, 8], [55, 10]]]]],
+        statements: [["block", "ui-sidebar", [], ["class", "vertical main menu visible uncover", "ui_context", ".ember-application > .ember-view", "closable", false, "dimPage", false, "onShow", ["subexpr", "action", ["updateWidth"], [], ["loc", [null, [10, 9], [10, 31]]]], "onHidden", ["subexpr", "action", ["updateWidth"], [], ["loc", [null, [11, 11], [11, 33]]]]], 0, null, ["loc", [null, [5, 0], [31, 15]]]], ["element", "action", ["toggleSidebar"], [], ["loc", [null, [32, 8], [32, 34]]]], ["inline", "outlet", ["right-sidebar"], [], ["loc", [null, [35, 0], [35, 26]]]], ["attribute", "class", ["concat", ["ui form ", ["get", "appState.state", ["loc", [null, [38, 24], [38, 38]]]]]]], ["content", "outlet", ["loc", [null, [42, 12], [42, 22]]]], ["inline", "outlet", ["modal"], [], ["loc", [null, [49, 2], [49, 20]]]], ["inline", "t", ["forms.application.footer.application-name"], [], ["loc", [null, [55, 8], [55, 57]]]], ["inline", "flexberry-dropdown", [], ["class", "compact", "items", ["subexpr", "@mut", [["get", "locales", ["loc", [null, [60, 16], [60, 23]]]]], [], []], "value", ["subexpr", "@mut", [["get", "i18n.locale", ["loc", [null, [61, 16], [61, 27]]]]], [], []], "placeholder", ["subexpr", "t", ["forms.application.header.menu.language-dropdown.placeholder"], [], ["loc", [null, [62, 22], [62, 87]]]], "direction", "upward"], ["loc", [null, [58, 8], [64, 10]]]]],
         locals: [],
         templates: [child0]
       };
@@ -19239,7 +19324,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 61,
+            "line": 70,
             "column": 0
           }
         },
@@ -19262,7 +19347,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["block", "if", [["get", "isInAcceptanceTestMode", ["loc", [null, [1, 6], [1, 28]]]]], [], 0, 1, ["loc", [null, [1, 0], [60, 7]]]]],
+      statements: [["block", "if", [["get", "isInAcceptanceTestMode", ["loc", [null, [1, 6], [1, 28]]]]], [], 0, 1, ["loc", [null, [1, 0], [69, 7]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -58411,7 +58496,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+789a8542"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+3bcc2305"});
 }
 
 /* jshint ignore:end */
