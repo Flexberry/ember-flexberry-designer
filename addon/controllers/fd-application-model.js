@@ -17,13 +17,14 @@ export default Ember.Controller.extend({
     @method filteredModel
   */
   filteredModel: Ember.computed('searchValue', function() {
-    let searchStr = this.get('searchValue').trim().toLocaleLowerCase();
+    let searchStr = this.get('searchValue');
     let model = this.get('model');
 
     if (Ember.isBlank(searchStr)) {
       return model;
     }
 
+    searchStr = searchStr.trim().toLocaleLowerCase();
     let filterFunction = function(item) {
       let name = item.get('name');
       if (!Ember.isNone(name) && name.toLocaleLowerCase().indexOf(searchStr) !== -1) {
