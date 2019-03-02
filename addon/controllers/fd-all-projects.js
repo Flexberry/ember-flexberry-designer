@@ -29,4 +29,12 @@ export default Ember.Controller.extend({
     @readOnly
   */
   showHeader: Ember.computed.readOnly('indexController.active'),
+
+  /**
+    Alias for {{#crosslink "FdAllProjectsIndexController/search:property"}}{{/crosslink}}.
+
+    @property search
+    @type String
+  */
+  search: Ember.computed.alias('indexController.search'),
 });
