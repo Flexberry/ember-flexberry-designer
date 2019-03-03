@@ -24,6 +24,7 @@ All notable changes to this project will be documented in this file.
   * Add sidebar opening when view's property is select.
 * Edit form for classes with `typemap` stereotype.
 * Buttons for adding ucd diagram primitives.
+* Forms of projects for new design.
 
 ### Changed
 * The edit form constructor:
