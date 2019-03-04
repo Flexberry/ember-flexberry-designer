@@ -1,0 +1,20 @@
+.ui.checkbox input ~ .box:before,
+.ui.checkbox input ~ label:before {
+  content: '\e902';
+  font-family: 'fd-icons' !important;
+  font-size: 1.2rem;
+  opacity: 0.5;
+}
+
+.ui.checkbox input:checked ~ .box:before,
+.ui.checkbox input:checked ~ label:before {
+  content: '\e901';
+  font-size: 1.2rem;
+  font-family: 'fd-icons' !important;
+  opacity: 0.5;
+}
+
+.ui.checkbox input:checked ~ .box:after,
+.ui.checkbox input:checked ~ label:after {
+  content: '';
+}
