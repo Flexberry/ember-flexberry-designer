@@ -100,6 +100,14 @@ define('dummy/components/fd-button', ['exports', 'ember-flexberry-designer/compo
     }
   });
 });
+define('dummy/components/fd-class-list-items', ['exports', 'ember-flexberry-designer/components/fd-class-list-items'], function (exports, _emberFlexberryDesignerComponentsFdClassListItems) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdClassListItems['default'];
+    }
+  });
+});
 define('dummy/components/fd-config-panel', ['exports', 'ember-flexberry-designer/components/fd-config-panel'], function (exports, _emberFlexberryDesignerComponentsFdConfigPanel) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -2394,6 +2402,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/components/fd-button.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-class-list-items.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components');
+  test('modules/ember-flexberry-designer/components/fd-class-list-items.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-class-list-items.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-class-list-items.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-class-list-items.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-class-list-items.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-config-panel.jscs-test', ['exports'], function (exports) {
@@ -36747,11 +36768,1283 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
+              "line": 20,
+              "column": 4
+            },
+            "end": {
+              "line": 25,
+              "column": 4
+            }
+          },
+          "moduleName": "dummy/templates/fd-application-model.hbs"
+        },
+        isEmpty: false,
+        arity: 1,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("      ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+          return morphs;
+        },
+        statements: [["inline", "fd-class-list-items", [], ["entity", ["subexpr", "@mut", [["get", "class", ["loc", [null, [23, 15], [23, 20]]]]], [], []]], ["loc", [null, [21, 6], [24, 8]]]]],
+        locals: ["class"],
+        templates: []
+      };
+    })();
+    var child1 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 34,
+                "column": 8
+              },
+              "end": {
+                "line": 39,
+                "column": 8
+              }
+            },
+            "moduleName": "dummy/templates/fd-application-model.hbs"
+          },
+          isEmpty: false,
+          arity: 1,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("          ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "fd-list-item", [], ["caption", ["subexpr", "@mut", [["get", "enum.name", ["loc", [null, [37, 20], [37, 29]]]]], [], []]], ["loc", [null, [35, 10], [38, 12]]]]],
+          locals: ["enum"],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 28,
+              "column": 4
+            },
+            "end": {
+              "line": 48,
+              "column": 4
+            }
+          },
+          "moduleName": "dummy/templates/fd-application-model.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "row");
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "two wide column light-text");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "fourteen wide column");
+          var el3 = dom.createTextNode("\n");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "right floated fourteen wide column");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element12 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createMorphAt(dom.childAt(element12, [1]), 1, 1);
+          morphs[1] = dom.createMorphAt(dom.childAt(element12, [3]), 1, 1);
+          morphs[2] = dom.createMorphAt(dom.childAt(element12, [5]), 1, 1);
+          return morphs;
+        },
+        statements: [["inline", "t", ["forms.fd-application-model.enum-caption"], [], ["loc", [null, [31, 8], [31, 55]]]], ["block", "each", [["get", "filteredModel.enums", ["loc", [null, [34, 16], [34, 35]]]]], [], 0, null, ["loc", [null, [34, 8], [39, 17]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-application-model.enum-caption"], [], ["loc", [null, [44, 18], [44, 63]]]]], ["loc", [null, [42, 8], [45, 10]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child2 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 57,
+                "column": 8
+              },
+              "end": {
+                "line": 62,
+                "column": 8
+              }
+            },
+            "moduleName": "dummy/templates/fd-application-model.hbs"
+          },
+          isEmpty: false,
+          arity: 1,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("          ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "fd-list-item", [], ["caption", ["subexpr", "@mut", [["get", "type.name", ["loc", [null, [60, 20], [60, 29]]]]], [], []]], ["loc", [null, [58, 10], [61, 12]]]]],
+          locals: ["type"],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 51,
+              "column": 4
+            },
+            "end": {
               "line": 71,
+              "column": 4
+            }
+          },
+          "moduleName": "dummy/templates/fd-application-model.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "row");
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "two wide column light-text");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "fourteen wide column");
+          var el3 = dom.createTextNode("\n");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "right floated fourteen wide column");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element11 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createMorphAt(dom.childAt(element11, [1]), 1, 1);
+          morphs[1] = dom.createMorphAt(dom.childAt(element11, [3]), 1, 1);
+          morphs[2] = dom.createMorphAt(dom.childAt(element11, [5]), 1, 1);
+          return morphs;
+        },
+        statements: [["inline", "t", ["forms.fd-application-model.type-content-caption"], [], ["loc", [null, [54, 8], [54, 63]]]], ["block", "each", [["get", "filteredModel.types", ["loc", [null, [57, 16], [57, 35]]]]], [], 0, null, ["loc", [null, [57, 8], [62, 17]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-application-model.type-content-caption"], [], ["loc", [null, [67, 18], [67, 71]]]]], ["loc", [null, [65, 8], [68, 10]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child3 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 80,
+                "column": 8
+              },
+              "end": {
+                "line": 85,
+                "column": 8
+              }
+            },
+            "moduleName": "dummy/templates/fd-application-model.hbs"
+          },
+          isEmpty: false,
+          arity: 1,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("          ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "fd-list-item", [], ["caption", ["subexpr", "@mut", [["get", "typedef.name", ["loc", [null, [83, 20], [83, 32]]]]], [], []]], ["loc", [null, [81, 10], [84, 12]]]]],
+          locals: ["typedef"],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 74,
+              "column": 4
+            },
+            "end": {
+              "line": 94,
+              "column": 4
+            }
+          },
+          "moduleName": "dummy/templates/fd-application-model.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "row");
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "two wide column light-text");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "fourteen wide column");
+          var el3 = dom.createTextNode("\n");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "right floated fourteen wide column");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element10 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createMorphAt(dom.childAt(element10, [1]), 1, 1);
+          morphs[1] = dom.createMorphAt(dom.childAt(element10, [3]), 1, 1);
+          morphs[2] = dom.createMorphAt(dom.childAt(element10, [5]), 1, 1);
+          return morphs;
+        },
+        statements: [["inline", "t", ["forms.fd-application-model.typedef-caption"], [], ["loc", [null, [77, 8], [77, 58]]]], ["block", "each", [["get", "filteredModel.typedefs", ["loc", [null, [80, 16], [80, 38]]]]], [], 0, null, ["loc", [null, [80, 8], [85, 17]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-application-model.typedef-caption"], [], ["loc", [null, [90, 18], [90, 66]]]]], ["loc", [null, [88, 8], [91, 10]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child4 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 103,
+                "column": 8
+              },
+              "end": {
+                "line": 108,
+                "column": 8
+              }
+            },
+            "moduleName": "dummy/templates/fd-application-model.hbs"
+          },
+          isEmpty: false,
+          arity: 1,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("          ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "fd-list-item", [], ["caption", ["subexpr", "@mut", [["get", "bs.name", ["loc", [null, [106, 20], [106, 27]]]]], [], []]], ["loc", [null, [104, 10], [107, 12]]]]],
+          locals: ["bs"],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 97,
+              "column": 4
+            },
+            "end": {
+              "line": 117,
+              "column": 4
+            }
+          },
+          "moduleName": "dummy/templates/fd-application-model.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "row");
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "two wide column light-text");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "fourteen wide column");
+          var el3 = dom.createTextNode("\n");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "right floated fourteen wide column");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element9 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createMorphAt(dom.childAt(element9, [1]), 1, 1);
+          morphs[1] = dom.createMorphAt(dom.childAt(element9, [3]), 1, 1);
+          morphs[2] = dom.createMorphAt(dom.childAt(element9, [5]), 1, 1);
+          return morphs;
+        },
+        statements: [["inline", "t", ["forms.fd-application-model.bs-caption"], [], ["loc", [null, [100, 8], [100, 53]]]], ["block", "each", [["get", "filteredModel.bs", ["loc", [null, [103, 16], [103, 32]]]]], [], 0, null, ["loc", [null, [103, 8], [108, 17]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-application-model.bs-caption"], [], ["loc", [null, [113, 18], [113, 61]]]]], ["loc", [null, [111, 8], [114, 10]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child5 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 126,
+                "column": 8
+              },
+              "end": {
+                "line": 131,
+                "column": 8
+              }
+            },
+            "moduleName": "dummy/templates/fd-application-model.hbs"
+          },
+          isEmpty: false,
+          arity: 1,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("          ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "fd-list-item", [], ["caption", ["subexpr", "@mut", [["get", "interface.name", ["loc", [null, [129, 20], [129, 34]]]]], [], []]], ["loc", [null, [127, 10], [130, 12]]]]],
+          locals: ["interface"],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 120,
+              "column": 4
+            },
+            "end": {
+              "line": 140,
+              "column": 4
+            }
+          },
+          "moduleName": "dummy/templates/fd-application-model.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "row");
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "two wide column light-text");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "fourteen wide column");
+          var el3 = dom.createTextNode("\n");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "right floated fourteen wide column");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element8 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createMorphAt(dom.childAt(element8, [1]), 1, 1);
+          morphs[1] = dom.createMorphAt(dom.childAt(element8, [3]), 1, 1);
+          morphs[2] = dom.createMorphAt(dom.childAt(element8, [5]), 1, 1);
+          return morphs;
+        },
+        statements: [["inline", "t", ["forms.fd-application-model.interface-caption"], [], ["loc", [null, [123, 8], [123, 60]]]], ["block", "each", [["get", "filteredModel.interfaces", ["loc", [null, [126, 16], [126, 40]]]]], [], 0, null, ["loc", [null, [126, 8], [131, 17]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-application-model.interface-caption"], [], ["loc", [null, [136, 18], [136, 68]]]]], ["loc", [null, [134, 8], [137, 10]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child6 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 149,
+                "column": 8
+              },
+              "end": {
+                "line": 154,
+                "column": 8
+              }
+            },
+            "moduleName": "dummy/templates/fd-application-model.hbs"
+          },
+          isEmpty: false,
+          arity: 1,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("          ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "fd-list-item", [], ["caption", ["subexpr", "@mut", [["get", "external.name", ["loc", [null, [152, 20], [152, 33]]]]], [], []]], ["loc", [null, [150, 10], [153, 12]]]]],
+          locals: ["external"],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 143,
+              "column": 4
+            },
+            "end": {
+              "line": 163,
+              "column": 4
+            }
+          },
+          "moduleName": "dummy/templates/fd-application-model.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "row");
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "two wide column light-text");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "fourteen wide column");
+          var el3 = dom.createTextNode("\n");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "right floated fourteen wide column");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element7 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createMorphAt(dom.childAt(element7, [1]), 1, 1);
+          morphs[1] = dom.createMorphAt(dom.childAt(element7, [3]), 1, 1);
+          morphs[2] = dom.createMorphAt(dom.childAt(element7, [5]), 1, 1);
+          return morphs;
+        },
+        statements: [["inline", "t", ["forms.fd-application-model.external-caption"], [], ["loc", [null, [146, 8], [146, 59]]]], ["block", "each", [["get", "filteredModel.externals", ["loc", [null, [149, 16], [149, 39]]]]], [], 0, null, ["loc", [null, [149, 8], [154, 17]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-application-model.external-caption"], [], ["loc", [null, [159, 18], [159, 67]]]]], ["loc", [null, [157, 8], [160, 10]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child7 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 172,
+                "column": 8
+              },
+              "end": {
+                "line": 177,
+                "column": 8
+              }
+            },
+            "moduleName": "dummy/templates/fd-application-model.hbs"
+          },
+          isEmpty: false,
+          arity: 1,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("          ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "fd-list-item", [], ["caption", ["subexpr", "@mut", [["get", "extinterface.name", ["loc", [null, [175, 20], [175, 37]]]]], [], []]], ["loc", [null, [173, 10], [176, 12]]]]],
+          locals: ["extinterface"],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 166,
+              "column": 4
+            },
+            "end": {
+              "line": 186,
+              "column": 4
+            }
+          },
+          "moduleName": "dummy/templates/fd-application-model.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "row");
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "two wide column light-text");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "fourteen wide column");
+          var el3 = dom.createTextNode("\n");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "right floated fourteen wide column");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element6 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createMorphAt(dom.childAt(element6, [1]), 1, 1);
+          morphs[1] = dom.createMorphAt(dom.childAt(element6, [3]), 1, 1);
+          morphs[2] = dom.createMorphAt(dom.childAt(element6, [5]), 1, 1);
+          return morphs;
+        },
+        statements: [["inline", "t", ["forms.fd-application-model.extinterface-caption"], [], ["loc", [null, [169, 8], [169, 63]]]], ["block", "each", [["get", "filteredModel.extinterfaces", ["loc", [null, [172, 16], [172, 43]]]]], [], 0, null, ["loc", [null, [172, 8], [177, 17]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-application-model.extinterface-caption"], [], ["loc", [null, [182, 18], [182, 71]]]]], ["loc", [null, [180, 8], [183, 10]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child8 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 195,
+                "column": 8
+              },
+              "end": {
+                "line": 200,
+                "column": 8
+              }
+            },
+            "moduleName": "dummy/templates/fd-application-model.hbs"
+          },
+          isEmpty: false,
+          arity: 1,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("          ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "fd-list-item", [], ["caption", ["subexpr", "@mut", [["get", "application.name", ["loc", [null, [198, 20], [198, 36]]]]], [], []]], ["loc", [null, [196, 10], [199, 12]]]]],
+          locals: ["application"],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 189,
+              "column": 4
+            },
+            "end": {
+              "line": 209,
+              "column": 4
+            }
+          },
+          "moduleName": "dummy/templates/fd-application-model.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "row");
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "two wide column light-text");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "fourteen wide column");
+          var el3 = dom.createTextNode("\n");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "right floated fourteen wide column");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element5 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createMorphAt(dom.childAt(element5, [1]), 1, 1);
+          morphs[1] = dom.createMorphAt(dom.childAt(element5, [3]), 1, 1);
+          morphs[2] = dom.createMorphAt(dom.childAt(element5, [5]), 1, 1);
+          return morphs;
+        },
+        statements: [["inline", "t", ["forms.fd-application-model.application-caption"], [], ["loc", [null, [192, 8], [192, 62]]]], ["block", "each", [["get", "filteredModel.applications", ["loc", [null, [195, 16], [195, 42]]]]], [], 0, null, ["loc", [null, [195, 8], [200, 17]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-application-model.application-caption"], [], ["loc", [null, [205, 18], [205, 70]]]]], ["loc", [null, [203, 8], [206, 10]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child9 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 218,
+                "column": 8
+              },
+              "end": {
+                "line": 223,
+                "column": 8
+              }
+            },
+            "moduleName": "dummy/templates/fd-application-model.hbs"
+          },
+          isEmpty: false,
+          arity: 1,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("          ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "fd-list-item", [], ["caption", ["subexpr", "@mut", [["get", "userform.name", ["loc", [null, [221, 20], [221, 33]]]]], [], []]], ["loc", [null, [219, 10], [222, 12]]]]],
+          locals: ["userform"],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 212,
+              "column": 4
+            },
+            "end": {
+              "line": 232,
+              "column": 4
+            }
+          },
+          "moduleName": "dummy/templates/fd-application-model.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "row");
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "two wide column light-text");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "fourteen wide column");
+          var el3 = dom.createTextNode("\n");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "right floated fourteen wide column");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element4 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createMorphAt(dom.childAt(element4, [1]), 1, 1);
+          morphs[1] = dom.createMorphAt(dom.childAt(element4, [3]), 1, 1);
+          morphs[2] = dom.createMorphAt(dom.childAt(element4, [5]), 1, 1);
+          return morphs;
+        },
+        statements: [["inline", "t", ["forms.fd-application-model.userform-caption"], [], ["loc", [null, [215, 8], [215, 59]]]], ["block", "each", [["get", "filteredModel.userforms", ["loc", [null, [218, 16], [218, 39]]]]], [], 0, null, ["loc", [null, [218, 8], [223, 17]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-application-model.userform-caption"], [], ["loc", [null, [228, 18], [228, 67]]]]], ["loc", [null, [226, 8], [229, 10]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child10 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 241,
+                "column": 8
+              },
+              "end": {
+                "line": 246,
+                "column": 8
+              }
+            },
+            "moduleName": "dummy/templates/fd-application-model.hbs"
+          },
+          isEmpty: false,
+          arity: 1,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("          ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "fd-list-item", [], ["caption", ["subexpr", "@mut", [["get", "userstereotype.name", ["loc", [null, [244, 20], [244, 39]]]]], [], []]], ["loc", [null, [242, 10], [245, 12]]]]],
+          locals: ["userstereotype"],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 235,
+              "column": 4
+            },
+            "end": {
+              "line": 255,
+              "column": 4
+            }
+          },
+          "moduleName": "dummy/templates/fd-application-model.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "row");
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "two wide column light-text");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "fourteen wide column");
+          var el3 = dom.createTextNode("\n");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "right floated fourteen wide column");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element3 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createMorphAt(dom.childAt(element3, [1]), 1, 1);
+          morphs[1] = dom.createMorphAt(dom.childAt(element3, [3]), 1, 1);
+          morphs[2] = dom.createMorphAt(dom.childAt(element3, [5]), 1, 1);
+          return morphs;
+        },
+        statements: [["inline", "t", ["forms.fd-application-model.userstereotype-caption"], [], ["loc", [null, [238, 8], [238, 65]]]], ["block", "each", [["get", "filteredModel.userstereotypes", ["loc", [null, [241, 16], [241, 45]]]]], [], 0, null, ["loc", [null, [241, 8], [246, 17]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-application-model.userstereotype-caption"], [], ["loc", [null, [251, 18], [251, 73]]]]], ["loc", [null, [249, 8], [252, 10]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child11 = (function () {
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 259,
               "column": 0
             },
             "end": {
-              "line": 113,
+              "line": 301,
               "column": 0
             }
           },
@@ -36898,7 +38191,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
           morphs[6] = dom.createMorphAt(dom.childAt(element2, [9, 1]), 0, 0);
           return morphs;
         },
-        statements: [["inline", "t", ["forms.fd-application-model.value-caption"], [], ["loc", [null, [77, 8], [77, 56]]]], ["inline", "flexberry-textbox", [], ["class", "fluid input", "placeholder", ["subexpr", "t", ["forms.fd-application-model.entity-header-placeholder"], [], ["loc", [null, [82, 22], [82, 80]]]]], ["loc", [null, [80, 8], [83, 10]]]], ["inline", "t", ["forms.fd-application-model.storage-caption"], [], ["loc", [null, [88, 13], [88, 63]]]], ["inline", "flexberry-textbox", [], ["class", "fluid input", "placeholder", ["subexpr", "t", ["forms.fd-application-model.storage-name-placeholder"], [], ["loc", [null, [93, 22], [93, 79]]]]], ["loc", [null, [91, 8], [94, 10]]]], ["inline", "t", ["forms.fd-application-model.stored-caption"], [], ["loc", [null, [97, 13], [97, 62]]]], ["inline", "flexberry-textbox", [], ["class", "fluid input", "placeholder", ["subexpr", "t", ["forms.fd-application-model.storage-name-placeholder"], [], ["loc", [null, [102, 22], [102, 79]]]]], ["loc", [null, [100, 8], [103, 10]]]], ["inline", "t", ["forms.fd-application-model.bs-caption"], [], ["loc", [null, [106, 13], [106, 58]]]]],
+        statements: [["inline", "t", ["forms.fd-application-model.value-caption"], [], ["loc", [null, [265, 8], [265, 56]]]], ["inline", "flexberry-textbox", [], ["class", "fluid input", "placeholder", ["subexpr", "t", ["forms.fd-application-model.entity-header-placeholder"], [], ["loc", [null, [270, 22], [270, 80]]]]], ["loc", [null, [268, 8], [271, 10]]]], ["inline", "t", ["forms.fd-application-model.storage-caption"], [], ["loc", [null, [276, 13], [276, 63]]]], ["inline", "flexberry-textbox", [], ["class", "fluid input", "placeholder", ["subexpr", "t", ["forms.fd-application-model.storage-name-placeholder"], [], ["loc", [null, [281, 22], [281, 79]]]]], ["loc", [null, [279, 8], [282, 10]]]], ["inline", "t", ["forms.fd-application-model.stored-caption"], [], ["loc", [null, [285, 13], [285, 62]]]], ["inline", "flexberry-textbox", [], ["class", "fluid input", "placeholder", ["subexpr", "t", ["forms.fd-application-model.storage-name-placeholder"], [], ["loc", [null, [290, 22], [290, 79]]]]], ["loc", [null, [288, 8], [291, 10]]]], ["inline", "t", ["forms.fd-application-model.bs-caption"], [], ["loc", [null, [294, 13], [294, 58]]]]],
         locals: [],
         templates: []
       };
@@ -36917,7 +38210,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 114,
+            "line": 302,
             "column": 0
           }
         },
@@ -36942,7 +38235,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
         dom.appendChild(el0, el1);
         var el1 = dom.createElement("form");
         dom.setAttribute(el1, "class", "ui form flexberry-vertical-form");
-        var el2 = dom.createTextNode("\n\n  ");
+        var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
         dom.setAttribute(el2, "class", "ui stackable grid fd-list");
@@ -36975,134 +38268,49 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
         var el4 = dom.createTextNode("\n    ");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n    ");
+        var el3 = dom.createTextNode("\n\n");
         dom.appendChild(el2, el3);
-        var el3 = dom.createElement("div");
-        dom.setAttribute(el3, "class", "row");
-        var el4 = dom.createTextNode("\n      ");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("div");
-        dom.setAttribute(el4, "class", "two wide column light-text");
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n      ");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n      ");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("div");
-        dom.setAttribute(el4, "class", "fourteen wide column");
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n      ");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n    ");
-        dom.appendChild(el3, el4);
+        var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n    ");
+        var el3 = dom.createTextNode("\n");
         dom.appendChild(el2, el3);
-        var el3 = dom.createElement("div");
-        dom.setAttribute(el3, "class", "row");
-        var el4 = dom.createTextNode("\n      ");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("div");
-        dom.setAttribute(el4, "class", "two wide column light-text");
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n      ");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n      ");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("div");
-        dom.setAttribute(el4, "class", "fourteen wide column");
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n      ");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n      ");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("div");
-        dom.setAttribute(el4, "class", "two wide column light-text");
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n      ");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n      ");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("div");
-        dom.setAttribute(el4, "class", "fourteen wide column");
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n      ");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n      ");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("div");
-        dom.setAttribute(el4, "class", "two wide column light-text");
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n      ");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n      ");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("div");
-        dom.setAttribute(el4, "class", "fourteen wide column");
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n      ");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n      ");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("div");
-        dom.setAttribute(el4, "class", "right floated fourteen wide column");
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n      ");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n    ");
-        dom.appendChild(el3, el4);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
@@ -37117,36 +38325,30 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var element3 = dom.childAt(fragment, [2, 1]);
-        var element4 = dom.childAt(element3, [1]);
-        var element5 = dom.childAt(element3, [3]);
-        var element6 = dom.childAt(element5, [3]);
-        var element7 = dom.childAt(element3, [5]);
-        var element8 = dom.childAt(element7, [13]);
-        var morphs = new Array(17);
+        var element13 = dom.childAt(fragment, [2, 1]);
+        var element14 = dom.childAt(element13, [1]);
+        var morphs = new Array(15);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 1, 1);
-        morphs[1] = dom.createMorphAt(dom.childAt(element4, [1]), 1, 1);
-        morphs[2] = dom.createMorphAt(dom.childAt(element4, [3]), 1, 1);
-        morphs[3] = dom.createMorphAt(dom.childAt(element5, [1]), 1, 1);
-        morphs[4] = dom.createMorphAt(element6, 1, 1);
-        morphs[5] = dom.createMorphAt(element6, 3, 3);
-        morphs[6] = dom.createMorphAt(element6, 5, 5);
-        morphs[7] = dom.createMorphAt(element6, 7, 7);
-        morphs[8] = dom.createMorphAt(dom.childAt(element7, [1]), 1, 1);
-        morphs[9] = dom.createMorphAt(dom.childAt(element7, [3]), 1, 1);
-        morphs[10] = dom.createMorphAt(dom.childAt(element7, [5]), 1, 1);
-        morphs[11] = dom.createMorphAt(dom.childAt(element7, [7]), 1, 1);
-        morphs[12] = dom.createMorphAt(dom.childAt(element7, [9]), 1, 1);
-        morphs[13] = dom.createMorphAt(dom.childAt(element7, [11]), 1, 1);
-        morphs[14] = dom.createMorphAt(element8, 1, 1);
-        morphs[15] = dom.createMorphAt(element8, 3, 3);
-        morphs[16] = dom.createMorphAt(fragment, 4, 4, contextualElement);
+        morphs[1] = dom.createMorphAt(dom.childAt(element14, [1]), 1, 1);
+        morphs[2] = dom.createMorphAt(dom.childAt(element14, [3]), 1, 1);
+        morphs[3] = dom.createMorphAt(element13, 3, 3);
+        morphs[4] = dom.createMorphAt(element13, 5, 5);
+        morphs[5] = dom.createMorphAt(element13, 7, 7);
+        morphs[6] = dom.createMorphAt(element13, 9, 9);
+        morphs[7] = dom.createMorphAt(element13, 11, 11);
+        morphs[8] = dom.createMorphAt(element13, 13, 13);
+        morphs[9] = dom.createMorphAt(element13, 15, 15);
+        morphs[10] = dom.createMorphAt(element13, 17, 17);
+        morphs[11] = dom.createMorphAt(element13, 19, 19);
+        morphs[12] = dom.createMorphAt(element13, 21, 21);
+        morphs[13] = dom.createMorphAt(element13, 23, 23);
+        morphs[14] = dom.createMorphAt(fragment, 4, 4, contextualElement);
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-application-model.caption"], [], ["loc", [null, [2, 2], [2, 44]]]], ["inline", "t", ["forms.fd-application-model.type-caption"], [], ["loc", [null, [10, 8], [10, 55]]]], ["content", "fd-search-input", ["loc", [null, [13, 8], [13, 27]]]], ["inline", "t", ["forms.fd-application-model.enum-caption"], [], ["loc", [null, [18, 8], [18, 55]]]], ["inline", "fd-list-item", [], ["caption", "tПол"], ["loc", [null, [21, 8], [23, 10]]]], ["inline", "fd-list-item", [], ["caption", "tЖилье"], ["loc", [null, [24, 8], [26, 10]]]], ["inline", "fd-list-item", [], ["caption", "tОбразование"], ["loc", [null, [27, 8], [29, 10]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-application-model.enum-caption"], [], ["loc", [null, [31, 18], [31, 63]]]]], ["loc", [null, [30, 8], [32, 10]]]], ["inline", "t", ["forms.fd-application-model.entity-caption"], [], ["loc", [null, [37, 8], [37, 57]]]], ["inline", "fd-list-item", [], ["caption", "Пациент"], ["loc", [null, [40, 8], [42, 10]]]], ["inline", "t", ["forms.fd-application-model.editor-caption"], [], ["loc", [null, [45, 8], [45, 57]]]], ["inline", "fd-list-item", [], ["caption", "ПациентE"], ["loc", [null, [48, 8], [50, 10]]]], ["inline", "t", ["forms.fd-application-model.list-caption"], [], ["loc", [null, [53, 8], [53, 55]]]], ["inline", "fd-list-item", [], ["caption", "ПациентL"], ["loc", [null, [56, 8], [58, 10]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-application-model.editor-caption"], [], ["loc", [null, [62, 18], [62, 65]]]]], ["loc", [null, [61, 8], [63, 10]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-application-model.list-caption"], [], ["loc", [null, [65, 18], [65, 63]]]]], ["loc", [null, [64, 8], [66, 10]]]], ["block", "fd-sheet", [], ["title", "Пациент"], 0, null, ["loc", [null, [71, 0], [113, 13]]]]],
+      statements: [["inline", "t", ["forms.fd-application-model.caption"], [], ["loc", [null, [2, 2], [2, 44]]]], ["inline", "t", ["forms.fd-application-model.type-caption"], [], ["loc", [null, [9, 8], [9, 55]]]], ["inline", "fd-search-input", [], ["value", ["subexpr", "@mut", [["get", "searchValue", ["loc", [null, [14, 16], [14, 27]]]]], [], []]], ["loc", [null, [12, 8], [15, 10]]]], ["block", "each", [["get", "filteredModel.classes", ["loc", [null, [20, 12], [20, 33]]]]], [], 0, null, ["loc", [null, [20, 4], [25, 13]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.enums.length", ["loc", [null, [28, 18], [28, 44]]]], 0], [], ["loc", [null, [28, 10], [28, 47]]]]], [], 1, null, ["loc", [null, [28, 4], [48, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.types.length", ["loc", [null, [51, 18], [51, 44]]]], 0], [], ["loc", [null, [51, 10], [51, 47]]]]], [], 2, null, ["loc", [null, [51, 4], [71, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.typedefs.length", ["loc", [null, [74, 18], [74, 47]]]], 0], [], ["loc", [null, [74, 10], [74, 50]]]]], [], 3, null, ["loc", [null, [74, 4], [94, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.bs.length", ["loc", [null, [97, 18], [97, 41]]]], 0], [], ["loc", [null, [97, 10], [97, 44]]]]], [], 4, null, ["loc", [null, [97, 4], [117, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.interfaces.length", ["loc", [null, [120, 18], [120, 49]]]], 0], [], ["loc", [null, [120, 10], [120, 52]]]]], [], 5, null, ["loc", [null, [120, 4], [140, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.externals.length", ["loc", [null, [143, 18], [143, 48]]]], 0], [], ["loc", [null, [143, 10], [143, 51]]]]], [], 6, null, ["loc", [null, [143, 4], [163, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.extinterfaces.length", ["loc", [null, [166, 18], [166, 52]]]], 0], [], ["loc", [null, [166, 10], [166, 55]]]]], [], 7, null, ["loc", [null, [166, 4], [186, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.applications.length", ["loc", [null, [189, 18], [189, 51]]]], 0], [], ["loc", [null, [189, 10], [189, 54]]]]], [], 8, null, ["loc", [null, [189, 4], [209, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.userforms.length", ["loc", [null, [212, 18], [212, 48]]]], 0], [], ["loc", [null, [212, 10], [212, 51]]]]], [], 9, null, ["loc", [null, [212, 4], [232, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.userstereotypes.length", ["loc", [null, [235, 18], [235, 54]]]], 0], [], ["loc", [null, [235, 10], [235, 57]]]]], [], 10, null, ["loc", [null, [235, 4], [255, 11]]]], ["block", "fd-sheet", [], ["title", "Пациент"], 11, null, ["loc", [null, [259, 0], [301, 13]]]]],
       locals: [],
-      templates: [child0]
+      templates: [child0, child1, child2, child3, child4, child5, child6, child7, child8, child9, child10, child11]
     };
   })());
 });
@@ -59230,7 +60432,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+c325327c"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+a8320528"});
 }
 
 /* jshint ignore:end */
