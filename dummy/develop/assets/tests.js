@@ -1914,6 +1914,66 @@ define('dummy/tests/test-helper.jshint', ['exports'], function (exports) {
     assert.ok(true, 'test-helper.js should pass jshint.');
   });
 });
+define('dummy/tests/unit/controllers/fd-all-projects/index-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('controller:fd-all-projects/index', 'Unit | Controller | fd all projects/index', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  // Replace this with your real tests.
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var controller = this.subject();
+    assert.ok(controller);
+  });
+});
+define('dummy/tests/unit/controllers/fd-all-projects/index-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/controllers/fd-all-projects');
+  test('unit/controllers/fd-all-projects/index-test.js should pass jscs', function () {
+    ok(true, 'unit/controllers/fd-all-projects/index-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/controllers/fd-all-projects/index-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/controllers/fd-all-projects/index-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/controllers/fd-all-projects/index-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/unit/controllers/fd-all-projects/new-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('controller:fd-all-projects/new', 'Unit | Controller | fd all projects/new', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  // Replace this with your real tests.
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var controller = this.subject();
+    assert.ok(controller);
+  });
+});
+define('dummy/tests/unit/controllers/fd-all-projects/new-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/controllers/fd-all-projects');
+  test('unit/controllers/fd-all-projects/new-test.js should pass jscs', function () {
+    ok(true, 'unit/controllers/fd-all-projects/new-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/controllers/fd-all-projects/new-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/controllers/fd-all-projects/new-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/controllers/fd-all-projects/new-test.js should pass jshint.');
+  });
+});
 define('dummy/tests/unit/controllers/fd-application-edit-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
   (0, _emberQunit.moduleFor)('controller:fd-application-edit-form', 'Unit | Controller | fd application edit form', {
@@ -5410,6 +5470,64 @@ define('dummy/tests/unit/models/fd-visual-edit-form-test.jshint', ['exports'], f
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/models/fd-visual-edit-form-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/unit/routes/fd-all-projects/index-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('route:fd-all-projects/index', 'Unit | Route | fd all projects/index', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var route = this.subject();
+    assert.ok(route);
+  });
+});
+define('dummy/tests/unit/routes/fd-all-projects/index-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/routes/fd-all-projects');
+  test('unit/routes/fd-all-projects/index-test.js should pass jscs', function () {
+    ok(true, 'unit/routes/fd-all-projects/index-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/routes/fd-all-projects/index-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/routes/fd-all-projects/index-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/routes/fd-all-projects/index-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/unit/routes/fd-all-projects/new-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('route:fd-all-projects/new', 'Unit | Route | fd all projects/new', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var route = this.subject();
+    assert.ok(route);
+  });
+});
+define('dummy/tests/unit/routes/fd-all-projects/new-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/routes/fd-all-projects');
+  test('unit/routes/fd-all-projects/new-test.js should pass jscs', function () {
+    ok(true, 'unit/routes/fd-all-projects/new-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/routes/fd-all-projects/new-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/routes/fd-all-projects/new-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/routes/fd-all-projects/new-test.js should pass jshint.');
   });
 });
 define('dummy/tests/unit/routes/fd-application-edit-form-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
