@@ -1,13 +1,13 @@
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import model from 'ember-flexberry-data/models/model';
 
 /**
   Model to work with visual edit controller.
 
   @class NewPlatformFlexberryFlexberryDesignerVisualEditControl
-  @extends Projection.Model
+  @extends model
 */
-let Model = Projection.Model.extend({
+let Model = model.extend({
   isSelected: DS.attr('boolean'),
   prototypeBy: DS.attr('string'),
   name: DS.attr('string'),

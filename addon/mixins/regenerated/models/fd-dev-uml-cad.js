@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   /**
     Non-stored property.
@@ -118,18 +118,18 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('FdUmlCad', 'fd-dev-uml-cad', {
-    name: Projection.attr(''),
-    primitivesJsonString: Projection.attr(''),
-    caseObjectsString: Projection.attr(''),
-    primitivesStreamString: Projection.attr(''),
-    subsystem: Projection.belongsTo('fd-subsystem', '', {
+    name: attr(''),
+    primitivesJsonString: attr(''),
+    caseObjectsString: attr(''),
+    primitivesStreamString: attr(''),
+    subsystem: belongsTo('fd-subsystem', '', {
 
     })
   });
   modelClass.defineProjection('SearchDiagram', 'fd-dev-uml-cad', {
-    name: Projection.attr(''),
-    subsystem: Projection.belongsTo('fd-subsystem', '', {
-      stage: Projection.belongsTo('fd-stage', '', {
+    name: attr(''),
+    subsystem: belongsTo('fd-subsystem', '', {
+      stage: belongsTo('fd-stage', '', {
 
       })
     })

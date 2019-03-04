@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   connectionName: DS.attr('string'),
   connectionString: DS.attr('string'),
@@ -21,19 +21,19 @@ export let Model = Ember.Mixin.create({
 });
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('EditView', 'fd-class-storage-type', {
-    connectionName: Projection.attr(''),
-    connectionString: Projection.attr(''),
-    storageType: Projection.belongsTo('fd-storage-type', '', {
+    connectionName: attr(''),
+    connectionString: attr(''),
+    storageType: belongsTo('fd-storage-type', '', {
 
     }, { displayMemberPath: 'shortName' })
   });
   modelClass.defineProjection('FdEditClassForm', 'fd-class-storage-type', {
-    connectionName: Projection.attr('Имя соединения'),
-    connectionString: Projection.attr('Строка соединения'),
-    class: Projection.belongsTo('fd-dev-class', '', {
+    connectionName: attr('Имя соединения'),
+    connectionString: attr('Строка соединения'),
+    class: belongsTo('fd-dev-class', '', {
 
     }, { hidden: true }),
-    storageType: Projection.belongsTo('fd-storage-type', 'Тип хранилища', {
+    storageType: belongsTo('fd-storage-type', 'Тип хранилища', {
 
     }, { displayMemberPath: 'shortName' })
   });

@@ -3,16 +3,10 @@
 */
 
 import Ember from 'ember';
-
-import { Query } from 'ember-flexberry-data';
-
-const {
-  Builder,
-  Condition,
-  FilterOperator,
-  SimplePredicate,
-  ComplexPredicate
-} = Query;
+import { SimplePredicate, ComplexPredicate } from 'ember-flexberry-data/query/predicate';
+import Builder from 'ember-flexberry-data/query/builder';
+import Condition from 'ember-flexberry-data/query/condition';
+import FilterOperator from 'ember-flexberry-data/query/filter-operator';
 
 /**
   Service allows to save current application context.

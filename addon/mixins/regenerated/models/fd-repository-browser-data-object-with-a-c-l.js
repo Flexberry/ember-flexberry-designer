@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   aCL: DS.attr('string'),
   getValidations: function () {
@@ -22,8 +22,8 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('Properties', 'fd-repository-browser-data-object-with-a-c-l', {
-    name: Projection.attr('Название'),
-    description: Projection.attr('Описание'),
-    aCL: Projection.attr('Доступ')
+    name: attr('Название'),
+    description: attr('Описание'),
+    aCL: attr('Доступ')
   });
 };

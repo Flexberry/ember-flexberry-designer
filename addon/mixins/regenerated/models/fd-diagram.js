@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   caseObjectsString: DS.attr('string', { defaultValue: 'Empty' }),
   /**
@@ -75,80 +75,80 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('Diagram', 'fd-diagram', {
-    primitivesStreamString: Projection.attr(''),
-    caseObjectsString: Projection.attr(''),
-    name: Projection.attr(''),
-    createDate: Projection.attr(''),
-    createUser: Projection.attr(''),
-    changeDate: Projection.attr(''),
-    changeUser: Projection.attr('')
+    primitivesStreamString: attr(''),
+    caseObjectsString: attr(''),
+    name: attr(''),
+    createDate: attr(''),
+    createUser: attr(''),
+    changeDate: attr(''),
+    changeUser: attr('')
   });
   modelClass.defineProjection('DiagramWithStage', 'fd-diagram', {
-    primitivesStreamString: Projection.attr(''),
-    caseObjectsString: Projection.attr(''),
-    name: Projection.attr(''),
-    createDate: Projection.attr(''),
-    createUser: Projection.attr(''),
-    changeDate: Projection.attr(''),
-    changeUser: Projection.attr(''),
-    subsystem: Projection.belongsTo('fd-subsystem', '', {
-      stage: Projection.belongsTo('fd-stage', '', {
+    primitivesStreamString: attr(''),
+    caseObjectsString: attr(''),
+    name: attr(''),
+    createDate: attr(''),
+    createUser: attr(''),
+    changeDate: attr(''),
+    changeUser: attr(''),
+    subsystem: belongsTo('fd-subsystem', '', {
+      stage: belongsTo('fd-stage', '', {
 
       })
     }, { hidden: true })
   });
   modelClass.defineProjection('DiagramWithSystem', 'fd-diagram', {
-    primitivesStreamString: Projection.attr(''),
-    caseObjectsString: Projection.attr(''),
-    name: Projection.attr(''),
-    createDate: Projection.attr(''),
-    createUser: Projection.attr(''),
-    changeDate: Projection.attr(''),
-    changeUser: Projection.attr(''),
-    subsystem: Projection.belongsTo('fd-subsystem', '', {
+    primitivesStreamString: attr(''),
+    caseObjectsString: attr(''),
+    name: attr(''),
+    createDate: attr(''),
+    createUser: attr(''),
+    changeDate: attr(''),
+    changeUser: attr(''),
+    subsystem: belongsTo('fd-subsystem', '', {
 
     })
   });
   modelClass.defineProjection('ExportToWmf', 'fd-diagram', {
-    name: Projection.attr(''),
-    description: Projection.attr('')
+    name: attr(''),
+    description: attr('')
   });
   modelClass.defineProjection('FdDiagram', 'fd-diagram', {
-    name: Projection.attr(''),
-    caseObjectsString: Projection.attr(''),
-    primitivesStreamString: Projection.attr(''),
-    primitivesJsonString: Projection.attr('')
+    name: attr(''),
+    caseObjectsString: attr(''),
+    primitivesStreamString: attr(''),
+    primitivesJsonString: attr('')
   });
   modelClass.defineProjection('FdDiagramE', 'fd-diagram', {
-    name: Projection.attr('Name'),
-    description: Projection.attr('Description')
+    name: attr('Name'),
+    description: attr('Description')
   });
   modelClass.defineProjection('FdDiagramL', 'fd-diagram', {
-    name: Projection.attr('Name'),
-    description: Projection.attr('Description'),
-    changeUser: Projection.attr('Change user'),
-    changeDate: Projection.attr('Change date'),
-    createUser: Projection.attr('Create user'),
-    createDate: Projection.attr('Create date'),
-    subsystem: Projection.belongsTo('fd-subsystem', '', {
-      stage: Projection.belongsTo('fd-stage', '', {
+    name: attr('Name'),
+    description: attr('Description'),
+    changeUser: attr('Change user'),
+    changeDate: attr('Change date'),
+    createUser: attr('Create user'),
+    createDate: attr('Create date'),
+    subsystem: belongsTo('fd-subsystem', '', {
+      stage: belongsTo('fd-stage', '', {
 
       }, { hidden: true })
     }, { hidden: true })
   });
   modelClass.defineProjection('FdPreloadMetadata', 'fd-diagram', {
-    primitivesJsonString: Projection.attr(''),
-    primitivesStreamString: Projection.attr(''),
-    caseObjectsString: Projection.attr(''),
-    name: Projection.attr('')
+    primitivesJsonString: attr(''),
+    primitivesStreamString: attr(''),
+    caseObjectsString: attr(''),
+    name: attr('')
   });
   modelClass.defineProjection('SearchSystem', 'fd-diagram', {
-    name: Projection.attr('')
+    name: attr('')
   });
   modelClass.defineProjection('FdPreloadMetadata', 'fd-diagram', {
-    name: Projection.attr(''),
-    primitivesJsonString: Projection.attr(''),
-    primitivesStreamString: Projection.attr(''),
-    caseObjectsString: Projection.attr(''),
+    name: attr(''),
+    primitivesJsonString: attr(''),
+    primitivesStreamString: attr(''),
+    caseObjectsString: attr(''),
   });
 };

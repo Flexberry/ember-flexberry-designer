@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { Query } from 'ember-flexberry-data';
+import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
 import ListFormRoute from 'ember-flexberry/routes/list-form';
 
 export default ListFormRoute.extend({
@@ -67,7 +67,7 @@ export default ListFormRoute.extend({
   beforeModel: function(transition) {
     let classId = transition.queryParams.classId;
     if (!Ember.isNone(classId)) {
-      let queryPredicate = new Query.SimplePredicate('class', '==', classId);
+      let queryPredicate = new SimplePredicate('class', '==', classId);
       this.set('_queryPredicate', queryPredicate);
     }
   },

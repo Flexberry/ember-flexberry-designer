@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { Projection } from 'ember-flexberry-data';
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
 
 export let Model = Ember.Mixin.create({
   getValidations: function () {
@@ -21,73 +21,73 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('Edit', 'fd-dev-inheritance', {
-    name: Projection.attr('')
+    name: attr('')
   });
   modelClass.defineProjection('EditFormView', 'fd-dev-inheritance', {
-    name: Projection.attr('Name'),
-    description: Projection.attr('Description')
+    name: attr('Name'),
+    description: attr('Description')
   });
   modelClass.defineProjection('EditPropertyLookups', 'fd-dev-inheritance', {
-    parent: Projection.belongsTo('fd-class', '', {
-      name: Projection.attr('')
+    parent: belongsTo('fd-class', '', {
+      name: attr('')
     }, { hidden: true }),
-    child: Projection.belongsTo('fd-class', '', {
-      name: Projection.attr('')
+    child: belongsTo('fd-class', '', {
+      name: attr('')
     }, { hidden: true })
   });
   modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-inheritance', {
-    referenceCount: Projection.attr(''),
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    nameStr: Projection.attr(''),
-    stage: Projection.belongsTo('fd-stage', '', {
-      name: Projection.attr('')
+    referenceCount: attr(''),
+    name: attr(''),
+    description: attr(''),
+    nameStr: attr(''),
+    stage: belongsTo('fd-stage', '', {
+      name: attr('')
     }),
-    child: Projection.belongsTo('fd-class', '', {
-      name: Projection.attr('')
+    child: belongsTo('fd-class', '', {
+      name: attr('')
     }),
-    parent: Projection.belongsTo('fd-class', '', {
-      name: Projection.attr('')
+    parent: belongsTo('fd-class', '', {
+      name: attr('')
     })
   });
   modelClass.defineProjection('Generator', 'fd-dev-inheritance', {
-    referenceCount: Projection.attr('ReferenceCount', { hidden: true }),
-    name: Projection.attr('Name', { hidden: true }),
-    description: Projection.attr('Description', { hidden: true }),
-    nameStr: Projection.attr('NameStr', { hidden: true }),
-    child: Projection.belongsTo('fd-class', 'Child', {
+    referenceCount: attr('ReferenceCount', { hidden: true }),
+    name: attr('Name', { hidden: true }),
+    description: attr('Description', { hidden: true }),
+    nameStr: attr('NameStr', { hidden: true }),
+    child: belongsTo('fd-class', 'Child', {
 
     }, { hidden: true }),
-    parent: Projection.belongsTo('fd-class', 'Parent', {
+    parent: belongsTo('fd-class', 'Parent', {
 
     }, { hidden: true })
   });
   modelClass.defineProjection('InhList', 'fd-dev-inheritance', {
-    referenceCount: Projection.attr('Количество упоминаний'),
-    parent: Projection.belongsTo('fd-class', 'Предок', {
-      nameStr: Projection.attr('Предок')
+    referenceCount: attr('Количество упоминаний'),
+    parent: belongsTo('fd-class', 'Предок', {
+      nameStr: attr('Предок')
     }, { hidden: true }),
-    child: Projection.belongsTo('fd-class', 'Наследник', {
-      nameStr: Projection.attr('Наследник')
+    child: belongsTo('fd-class', 'Наследник', {
+      nameStr: attr('Наследник')
     }, { hidden: true }),
-    stage: Projection.belongsTo('fd-stage', '', {
-      name: Projection.attr('', { hidden: true })
+    stage: belongsTo('fd-stage', '', {
+      name: attr('', { hidden: true })
     }, { hidden: true })
   });
   modelClass.defineProjection('ListDataObjectTypes', 'fd-dev-inheritance', {
-    parent: Projection.belongsTo('fd-class', '', {
-      name: Projection.attr('')
+    parent: belongsTo('fd-class', '', {
+      name: attr('')
     }, { hidden: true }),
-    child: Projection.belongsTo('fd-class', '', {
-      name: Projection.attr('')
+    child: belongsTo('fd-class', '', {
+      name: attr('')
     }, { hidden: true })
   });
   modelClass.defineProjection('ListFormView', 'fd-dev-inheritance', {
-    parent: Projection.belongsTo('fd-class', '', {
-      name: Projection.attr('Parent')
+    parent: belongsTo('fd-class', '', {
+      name: attr('Parent')
     }, { hidden: true }),
-    child: Projection.belongsTo('fd-class', '', {
-      name: Projection.attr('Child')
+    child: belongsTo('fd-class', '', {
+      name: attr('Child')
     }, { hidden: true })
   });
 };

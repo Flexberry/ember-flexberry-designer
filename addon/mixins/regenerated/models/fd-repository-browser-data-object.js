@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   createUser: DS.attr('string'),
   createDate: DS.attr('date'),
@@ -25,11 +25,11 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('Browser', 'fd-repository-browser-data-object', {
-    name: Projection.attr('Название'),
-    description: Projection.attr('Описание'),
-    changeUser: Projection.attr('Изменил'),
-    changeDate: Projection.attr('Изменено'),
-    createUser: Projection.attr('Создал'),
-    createDate: Projection.attr('Создано')
+    name: attr('Название'),
+    description: attr('Описание'),
+    changeUser: attr('Изменил'),
+    changeDate: attr('Изменено'),
+    createUser: attr('Создал'),
+    createDate: attr('Создано')
   });
 };

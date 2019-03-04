@@ -1,10 +1,10 @@
 import Ember from 'ember';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
-import { Query } from 'ember-flexberry-data';
+import { SimplePredicate, ComplexPredicate } from 'ember-flexberry-data/query/predicate';
+import Condition from 'ember-flexberry-data/query/condition';
+import FilterOperator from 'ember-flexberry-data/query/filter-operator';
 import BusinessDataObjectEvents from 'ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events';
 import { updateClassOnDiagram } from '../utils/fd-update-class-diagram';
-
-const { SimplePredicate, FilterOperator, ComplexPredicate, Condition } = Query;
 
 export default EditFormController.extend({
   parentRoute: 'fd-class-list-form',

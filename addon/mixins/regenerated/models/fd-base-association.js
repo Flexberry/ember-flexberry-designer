@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
 import AccessModifierEnum from '../../../enums/s-t-o-r-m-c-a-s-e-repository-access-modifier';
 export let Model = Ember.Mixin.create({
   endMultiplicity: DS.attr('string', { defaultValue: 'Empty' }),
@@ -109,27 +109,27 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('Import', 'fd-base-association', {
-    startRole: Projection.attr(''),
-    endRole: Projection.attr(''),
-    referenceCount: Projection.attr(''),
-    startClass: Projection.belongsTo('fd-class', '', {
+    startRole: attr(''),
+    endRole: attr(''),
+    referenceCount: attr(''),
+    startClass: belongsTo('fd-class', '', {
 
     }),
-    endClass: Projection.belongsTo('fd-class', '', {
+    endClass: belongsTo('fd-class', '', {
 
     })
   });
   modelClass.defineProjection('PropertySearch', 'fd-base-association', {
-    startRole: Projection.attr(''),
-    endRole: Projection.attr(''),
-    startClass: Projection.belongsTo('fd-class', '', {
-      nameStr: Projection.attr('')
+    startRole: attr(''),
+    endRole: attr(''),
+    startClass: belongsTo('fd-class', '', {
+      nameStr: attr('')
     }),
-    endClass: Projection.belongsTo('fd-class', '', {
+    endClass: belongsTo('fd-class', '', {
 
     })
   });
   modelClass.defineProjection('References', 'fd-base-association', {
-    referenceCount: Projection.attr('')
+    referenceCount: attr('')
   });
 };

@@ -1,6 +1,5 @@
 import Ember from 'ember';
-import { Query } from 'ember-flexberry-data';
-const { Builder } = Query;
+import Builder from 'ember-flexberry-data/query/builder';
 
 export default Ember.Route.extend({
 

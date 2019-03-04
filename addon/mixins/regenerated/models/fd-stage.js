@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr, belongsTo, hasMany } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   /**
     Non-stored property.
@@ -51,103 +51,103 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('Convert', 'fd-stage', {
-    systems: Projection.hasMany('fd-subsystem', '', {
-      createUser: Projection.attr('CreateUser'),
-      createDate: Projection.attr('CreateDate'),
-      changeUser: Projection.attr('ChangeUser'),
-      changeDate: Projection.attr('ChangeDate'),
-      name: Projection.attr('Name'),
-      description: Projection.attr('Description'),
-      nameStr: Projection.attr('NameStr'),
-      diagramLinks: Projection.hasMany('fd-diagram-link', '', {
-        name: Projection.attr('Название'),
-        description: Projection.attr('Описание')
+    systems: hasMany('fd-subsystem', '', {
+      createUser: attr('CreateUser'),
+      createDate: attr('CreateDate'),
+      changeUser: attr('ChangeUser'),
+      changeDate: attr('ChangeDate'),
+      name: attr('Name'),
+      description: attr('Description'),
+      nameStr: attr('NameStr'),
+      diagramLinks: hasMany('fd-diagram-link', '', {
+        name: attr('Название'),
+        description: attr('Описание')
       }),
-      diagrams: Projection.hasMany('fd-diagram', '', {
-        primitivesStreamString: Projection.attr(''),
-        caseObjectsString: Projection.attr(''),
-        name: Projection.attr(''),
-        createDate: Projection.attr(''),
-        createUser: Projection.attr(''),
-        changeDate: Projection.attr(''),
-        changeUser: Projection.attr('')
+      diagrams: hasMany('fd-diagram', '', {
+        primitivesStreamString: attr(''),
+        caseObjectsString: attr(''),
+        name: attr(''),
+        createDate: attr(''),
+        createUser: attr(''),
+        changeDate: attr(''),
+        changeUser: attr('')
       }),
-      filelinks: Projection.hasMany('fd-filelink', '', {
-        name: Projection.attr('Название'),
-        description: Projection.attr('Описание')
+      filelinks: hasMany('fd-filelink', '', {
+        name: attr('Название'),
+        description: attr('Описание')
       })
     })
   });
   modelClass.defineProjection('DependensiesSearchView', 'fd-stage', {
-    classes: Projection.hasMany('fd-class', '', {
-      name: Projection.attr(''),
-      stereotype: Projection.attr(''),
-      nameStr: Projection.attr('')
+    classes: hasMany('fd-class', '', {
+      name: attr(''),
+      stereotype: attr(''),
+      nameStr: attr('')
     })
   });
   modelClass.defineProjection('Import', 'fd-stage', {
-    associations: Projection.hasMany('fd-base-association', '', {
-      startRole: Projection.attr(''),
-      endRole: Projection.attr(''),
-      referenceCount: Projection.attr(''),
-      startClass: Projection.belongsTo('fd-class', '', {
+    associations: hasMany('fd-base-association', '', {
+      startRole: attr(''),
+      endRole: attr(''),
+      referenceCount: attr(''),
+      startClass: belongsTo('fd-class', '', {
 
       }),
-      endClass: Projection.belongsTo('fd-class', '', {
+      endClass: belongsTo('fd-class', '', {
 
       })
     }),
-    classes: Projection.hasMany('fd-class', '', {
-      referenceCount: Projection.attr(''),
-      nameStr: Projection.attr('')
+    classes: hasMany('fd-class', '', {
+      referenceCount: attr(''),
+      nameStr: attr('')
     }),
-    inheritances: Projection.hasMany('fd-inheritance', '', {
-      referenceCount: Projection.attr(''),
-      name: Projection.attr(''),
-      parent: Projection.belongsTo('fd-class', '', {
+    inheritances: hasMany('fd-inheritance', '', {
+      referenceCount: attr(''),
+      name: attr(''),
+      parent: belongsTo('fd-class', '', {
 
       }),
-      child: Projection.belongsTo('fd-class', '', {
+      child: belongsTo('fd-class', '', {
 
       })
     })
   });
   modelClass.defineProjection('InheritanceCyclesCheckView', 'fd-stage', {
-    inheritances: Projection.hasMany('fd-inheritance', '', {
-      referenceCount: Projection.attr(''),
-      name: Projection.attr(''),
-      parent: Projection.belongsTo('fd-class', '', {
+    inheritances: hasMany('fd-inheritance', '', {
+      referenceCount: attr(''),
+      name: attr(''),
+      parent: belongsTo('fd-class', '', {
 
       }),
-      child: Projection.belongsTo('fd-class', '', {
+      child: belongsTo('fd-class', '', {
 
       })
     })
   });
   modelClass.defineProjection('NameOnly', 'fd-stage', {
-    name: Projection.attr('')
+    name: attr('')
   });
   modelClass.defineProjection('PathSearchView', 'fd-stage', {
-    name: Projection.attr(''),
-    configuration: Projection.belongsTo('fd-configuration', '', {
-      name: Projection.attr(''),
-      project: Projection.belongsTo('fd-project', '', {
-        name: Projection.attr(''),
-        repository: Projection.belongsTo('fd-repository', '', {
-          name: Projection.attr('')
+    name: attr(''),
+    configuration: belongsTo('fd-configuration', '', {
+      name: attr(''),
+      project: belongsTo('fd-project', '', {
+        name: attr(''),
+        repository: belongsTo('fd-repository', '', {
+          name: attr('')
         })
       })
     })
   });
   modelClass.defineProjection('References', 'fd-stage', {
-    associations: Projection.hasMany('fd-base-association', '', {
-      referenceCount: Projection.attr('')
+    associations: hasMany('fd-base-association', '', {
+      referenceCount: attr('')
     }),
-    classes: Projection.hasMany('fd-class', '', {
-      referenceCount: Projection.attr('')
+    classes: hasMany('fd-class', '', {
+      referenceCount: attr('')
     }),
-    inheritances: Projection.hasMany('fd-inheritance', '', {
-      referenceCount: Projection.attr('')
+    inheritances: hasMany('fd-inheritance', '', {
+      referenceCount: attr('')
     })
   });
 };

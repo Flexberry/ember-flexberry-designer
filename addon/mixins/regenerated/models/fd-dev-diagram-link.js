@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { Projection } from 'ember-flexberry-data';
+import { attr } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   getValidations: function () {
     let parentValidations = this._super();
@@ -20,7 +20,7 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('DiagramLink', 'fd-dev-diagram-link', {
-    name: Projection.attr('Название'),
-    description: Projection.attr('Описание')
+    name: attr('Название'),
+    description: attr('Описание')
   });
 };

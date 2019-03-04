@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr, belongsTo, hasMany } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   plugins: DS.hasMany('fd-plugin-on-rep-object', { inverse: 'plugOutObject', async: false }),
   getValidations: function () {
@@ -22,22 +22,22 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('Edit', 'fd-repository-object-with-plugins', {
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    aCL: Projection.attr(''),
-    plugins: Projection.hasMany('fd-plugin-on-rep-object', '', {
-      plugin: Projection.belongsTo('fd-registered-plug-in', 'Модуль', {
-        storedType: Projection.attr('Тип')
+    name: attr(''),
+    description: attr(''),
+    aCL: attr(''),
+    plugins: hasMany('fd-plugin-on-rep-object', '', {
+      plugin: belongsTo('fd-registered-plug-in', 'Модуль', {
+        storedType: attr('Тип')
       }, { displayMemberPath: 'name' }),
-      settings: Projection.attr('', { hidden: true })
+      settings: attr('', { hidden: true })
     })
   });
   modelClass.defineProjection('PluginsOnly', 'fd-repository-object-with-plugins', {
-    plugins: Projection.hasMany('fd-plugin-on-rep-object', '', {
-      plugin: Projection.belongsTo('fd-registered-plug-in', 'Модуль', {
-        storedType: Projection.attr('Тип')
+    plugins: hasMany('fd-plugin-on-rep-object', '', {
+      plugin: belongsTo('fd-registered-plug-in', 'Модуль', {
+        storedType: attr('Тип')
       }, { displayMemberPath: 'name' }),
-      settings: Projection.attr('', { hidden: true })
+      settings: attr('', { hidden: true })
     })
   });
 };

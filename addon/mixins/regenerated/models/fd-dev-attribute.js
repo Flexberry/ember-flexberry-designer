@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   accessModifier: DS.attr('s-t-o-r-m-c-a-s-e-repository-access-modifier'),
   autoincrement: DS.attr('boolean'),
@@ -116,179 +116,179 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('AuditPrototyping', 'fd-dev-attribute', {
-    accessModifier: Projection.attr(''),
-    stored: Projection.attr(''),
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    type: Projection.attr(''),
-    defaultValue: Projection.attr(''),
-    notNull: Projection.attr(''),
-    dataServiceExpressionXML: Projection.attr('DataService Expression'),
-    order: Projection.attr(''),
-    storage: Projection.attr(''),
-    trim: Projection.attr('')
+    accessModifier: attr(''),
+    stored: attr(''),
+    name: attr(''),
+    description: attr(''),
+    type: attr(''),
+    defaultValue: attr(''),
+    notNull: attr(''),
+    dataServiceExpressionXML: attr('DataService Expression'),
+    order: attr(''),
+    storage: attr(''),
+    trim: attr('')
   });
   modelClass.defineProjection('EditApplication', 'fd-dev-attribute', {
-    accessModifier: Projection.attr(''),
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    type: Projection.attr(''),
-    defaultValue: Projection.attr(''),
-    pBCustomAttributes: Projection.attr(''),
-    pBGetEnd: Projection.attr(''),
-    pBGetStart: Projection.attr(''),
-    pBSetEnd: Projection.attr(''),
-    pBSetStart: Projection.attr('')
+    accessModifier: attr(''),
+    name: attr(''),
+    description: attr(''),
+    type: attr(''),
+    defaultValue: attr(''),
+    pBCustomAttributes: attr(''),
+    pBGetEnd: attr(''),
+    pBGetStart: attr(''),
+    pBSetEnd: attr(''),
+    pBSetStart: attr('')
   });
   modelClass.defineProjection('EditDataObjectClass', 'fd-dev-attribute', {
-    accessModifier: Projection.attr(''),
-    stored: Projection.attr(''),
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    type: Projection.attr(''),
-    defaultValue: Projection.attr(''),
-    notNull: Projection.attr(''),
-    dataServiceExpressionXML: Projection.attr('DataService Expression'),
-    storage: Projection.attr(''),
-    publishName: Projection.attr(''),
-    hint: Projection.attr(''),
-    order: Projection.attr(''),
-    trim: Projection.attr(''),
-    pBCustomAttributes: Projection.attr(''),
-    pBGetEnd: Projection.attr(''),
-    pBGetStart: Projection.attr(''),
-    pBSetEnd: Projection.attr(''),
-    pBSetStart: Projection.attr(''),
-    autoincrement: Projection.attr('')
+    accessModifier: attr(''),
+    stored: attr(''),
+    name: attr(''),
+    description: attr(''),
+    type: attr(''),
+    defaultValue: attr(''),
+    notNull: attr(''),
+    dataServiceExpressionXML: attr('DataService Expression'),
+    storage: attr(''),
+    publishName: attr(''),
+    hint: attr(''),
+    order: attr(''),
+    trim: attr(''),
+    pBCustomAttributes: attr(''),
+    pBGetEnd: attr(''),
+    pBGetStart: attr(''),
+    pBSetEnd: attr(''),
+    pBSetStart: attr(''),
+    autoincrement: attr('')
   });
   modelClass.defineProjection('EditEditForm', 'fd-dev-attribute', {
-    accessModifier: Projection.attr(''),
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    type: Projection.attr(''),
-    defaultValue: Projection.attr(''),
-    pBCustomAttributes: Projection.attr(''),
-    pBGetEnd: Projection.attr(''),
-    pBGetStart: Projection.attr(''),
-    pBSetEnd: Projection.attr(''),
-    pBSetStart: Projection.attr('')
+    accessModifier: attr(''),
+    name: attr(''),
+    description: attr(''),
+    type: attr(''),
+    defaultValue: attr(''),
+    pBCustomAttributes: attr(''),
+    pBGetEnd: attr(''),
+    pBGetStart: attr(''),
+    pBSetEnd: attr(''),
+    pBSetStart: attr('')
   });
   modelClass.defineProjection('EditEnum', 'fd-dev-attribute', {
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    defaultValue: Projection.attr(''),
-    caption: Projection.attr('')
+    name: attr(''),
+    description: attr(''),
+    defaultValue: attr(''),
+    caption: attr('')
   });
   modelClass.defineProjection('EditInterface', 'fd-dev-attribute', {
-    name: Projection.attr(''),
-    type: Projection.attr(''),
-    description: Projection.attr('')
+    name: attr(''),
+    type: attr(''),
+    description: attr('')
   });
   modelClass.defineProjection('EditListForm', 'fd-dev-attribute', {
-    accessModifier: Projection.attr(''),
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    type: Projection.attr(''),
-    defaultValue: Projection.attr(''),
-    pBCustomAttributes: Projection.attr(''),
-    pBGetEnd: Projection.attr(''),
-    pBGetStart: Projection.attr(''),
-    pBSetEnd: Projection.attr(''),
-    pBSetStart: Projection.attr('')
+    accessModifier: attr(''),
+    name: attr(''),
+    description: attr(''),
+    type: attr(''),
+    defaultValue: attr(''),
+    pBCustomAttributes: attr(''),
+    pBGetEnd: attr(''),
+    pBGetStart: attr(''),
+    pBSetEnd: attr(''),
+    pBSetStart: attr('')
   });
   modelClass.defineProjection('EditPrintForm', 'fd-dev-attribute', {
-    accessModifier: Projection.attr(''),
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    type: Projection.attr(''),
-    defaultValue: Projection.attr(''),
-    pBCustomAttributes: Projection.attr(''),
-    pBGetEnd: Projection.attr(''),
-    pBGetStart: Projection.attr(''),
-    pBSetEnd: Projection.attr(''),
-    pBSetStart: Projection.attr('')
+    accessModifier: attr(''),
+    name: attr(''),
+    description: attr(''),
+    type: attr(''),
+    defaultValue: attr(''),
+    pBCustomAttributes: attr(''),
+    pBGetEnd: attr(''),
+    pBGetStart: attr(''),
+    pBSetEnd: attr(''),
+    pBSetStart: attr('')
   });
   modelClass.defineProjection('EditType', 'fd-dev-attribute', {
-    accessModifier: Projection.attr(''),
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    type: Projection.attr(''),
-    defaultValue: Projection.attr(''),
-    pBCustomAttributes: Projection.attr(''),
-    pBGetEnd: Projection.attr(''),
-    pBGetStart: Projection.attr(''),
-    pBSetEnd: Projection.attr(''),
-    pBSetStart: Projection.attr('')
+    accessModifier: attr(''),
+    name: attr(''),
+    description: attr(''),
+    type: attr(''),
+    defaultValue: attr(''),
+    pBCustomAttributes: attr(''),
+    pBGetEnd: attr(''),
+    pBGetStart: attr(''),
+    pBSetEnd: attr(''),
+    pBSetStart: attr('')
   });
   modelClass.defineProjection('EditUserForm', 'fd-dev-attribute', {
-    accessModifier: Projection.attr(''),
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    type: Projection.attr(''),
-    defaultValue: Projection.attr(''),
-    pBCustomAttributes: Projection.attr(''),
-    pBGetEnd: Projection.attr(''),
-    pBGetStart: Projection.attr(''),
-    pBSetEnd: Projection.attr(''),
-    pBSetStart: Projection.attr('')
+    accessModifier: attr(''),
+    name: attr(''),
+    description: attr(''),
+    type: attr(''),
+    defaultValue: attr(''),
+    pBCustomAttributes: attr(''),
+    pBGetEnd: attr(''),
+    pBGetStart: attr(''),
+    pBSetEnd: attr(''),
+    pBSetStart: attr('')
   });
   modelClass.defineProjection('FdClassEditForm', 'fd-dev-attribute', {
-    name: Projection.attr('Имя'),
-    caption: Projection.attr('Заголовок'),
-    type: Projection.attr('Тип'),
-    description: Projection.attr('Описание'),
-    class: Projection.belongsTo('fd-dev-class', '', {
+    name: attr('Имя'),
+    caption: attr('Заголовок'),
+    type: attr('Тип'),
+    description: attr('Описание'),
+    class: belongsTo('fd-dev-class', '', {
 
     }, { hidden: true })
   });
   modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-attribute', {
-    name: Projection.attr(''),
-    type: Projection.attr(''),
-    notNull: Projection.attr(''),
-    defaultValue: Projection.attr(''),
-    description: Projection.attr(''),
-    accessModifier: Projection.attr('')
+    name: attr(''),
+    type: attr(''),
+    notNull: attr(''),
+    defaultValue: attr(''),
+    description: attr(''),
+    accessModifier: attr('')
   });
   modelClass.defineProjection('FormDesigner', 'fd-dev-attribute', {
-    name: Projection.attr(''),
-    type: Projection.attr(''),
-    caption: Projection.attr(''),
-    description: Projection.attr(''),
-    class: Projection.belongsTo('fd-dev-class', '', {
+    name: attr(''),
+    type: attr(''),
+    caption: attr(''),
+    description: attr(''),
+    class: belongsTo('fd-dev-class', '', {
 
     })
   });
   modelClass.defineProjection('Generator', 'fd-dev-attribute', {
-    accessModifier: Projection.attr('AccessModifier', { hidden: true }),
-    autoincrement: Projection.attr('Autoincrement', { hidden: true }),
-    caption: Projection.attr('Caption', { hidden: true }),
-    dataServiceExpression: Projection.attr('DataServiceExpression', { hidden: true }),
-    dataServiceExpressionXML: Projection.attr('DataServiceExpressionXML', { hidden: true }),
-    defaultValue: Projection.attr('DefaultValue', { hidden: true }),
-    hint: Projection.attr('Hint', { hidden: true }),
-    notNull: Projection.attr('NotNull', { hidden: true }),
-    order: Projection.attr('Order', { hidden: true }),
-    orderNum: Projection.attr('OrderNum', { hidden: true }),
-    pBCustomAttributes: Projection.attr('PBCustomAttributes', { hidden: true }),
-    pBGetEnd: Projection.attr('PBGetEnd', { hidden: true }),
-    pBSetEnd: Projection.attr('PBSetEnd', { hidden: true }),
-    pBGetStart: Projection.attr('PBGetStart', { hidden: true }),
-    pBSetStart: Projection.attr('PBSetStart', { hidden: true }),
-    realCaption: Projection.attr('RealCaption', { hidden: true }),
-    realStorage: Projection.attr('RealStorage', { hidden: true }),
-    storage: Projection.attr('Storage', { hidden: true }),
-    publishName: Projection.attr('PublishName', { hidden: true }),
-    stored: Projection.attr('Stored', { hidden: true }),
-    trim: Projection.attr('Trim', { hidden: true }),
-    type: Projection.attr('Type', { hidden: true }),
-    name: Projection.attr('Name', { hidden: true }),
-    description: Projection.attr('Description', { hidden: true }),
-    nameStr: Projection.attr('NameStr', { hidden: true })
+    accessModifier: attr('AccessModifier', { hidden: true }),
+    autoincrement: attr('Autoincrement', { hidden: true }),
+    caption: attr('Caption', { hidden: true }),
+    dataServiceExpression: attr('DataServiceExpression', { hidden: true }),
+    dataServiceExpressionXML: attr('DataServiceExpressionXML', { hidden: true }),
+    defaultValue: attr('DefaultValue', { hidden: true }),
+    hint: attr('Hint', { hidden: true }),
+    notNull: attr('NotNull', { hidden: true }),
+    order: attr('Order', { hidden: true }),
+    orderNum: attr('OrderNum', { hidden: true }),
+    pBCustomAttributes: attr('PBCustomAttributes', { hidden: true }),
+    pBGetEnd: attr('PBGetEnd', { hidden: true }),
+    pBSetEnd: attr('PBSetEnd', { hidden: true }),
+    pBGetStart: attr('PBGetStart', { hidden: true }),
+    pBSetStart: attr('PBSetStart', { hidden: true }),
+    realCaption: attr('RealCaption', { hidden: true }),
+    realStorage: attr('RealStorage', { hidden: true }),
+    storage: attr('Storage', { hidden: true }),
+    publishName: attr('PublishName', { hidden: true }),
+    stored: attr('Stored', { hidden: true }),
+    trim: attr('Trim', { hidden: true }),
+    type: attr('Type', { hidden: true }),
+    name: attr('Name', { hidden: true }),
+    description: attr('Description', { hidden: true }),
+    nameStr: attr('NameStr', { hidden: true })
   });
   modelClass.defineProjection('SearchAttribute', 'fd-dev-attribute', {
-    name: Projection.attr(''),
-    type: Projection.attr(''),
-    class: Projection.belongsTo('fd-dev-class', '', {
+    name: attr(''),
+    type: attr(''),
+    class: belongsTo('fd-dev-class', '', {
 
     })
   });

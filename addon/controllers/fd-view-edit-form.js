@@ -23,7 +23,7 @@ FdFormUnsavedData, {
 
   allAttrsHidedn: false,
 
-  popupMessage: t(`forms.fd-view-edit-form.attributes-panel.close-panel-btn-caption`),
+  closeRightPanelBtnMessage: t(`forms.fd-view-edit-form.attributes-panel.close-panel-btn-caption`),
 
   /**
     Index of the selected attribute for editing.
@@ -154,6 +154,8 @@ FdFormUnsavedData, {
 
     return null;
   }),
+
+  closeRightPanelBtnSelector: 'div.text-center > div > button.close-panel-btn',
 
   actions: {
 
@@ -327,14 +329,14 @@ FdFormUnsavedData, {
       this.set('selectedRowIndex', next);
     },
 
-    closeRightpanel() {
+    closeRightPanel() {
       Ember.$('.closable.panel-left').toggle(500);
 
       if (this.allAttrsHidedn) {
-        this.set('popupMessage', t('forms.fd-view-edit-form.attributes-panel.close-panel-btn-caption'));
+        this.set('closeRightPanelBtnMessage', t('forms.fd-view-edit-form.attributes-panel.close-panel-btn-caption'));
         Ember.$('.panel-wrapper .panel-right.view-attributes').css('width', '50%');
       } else {
-        this.set('popupMessage', t('forms.fd-view-edit-form.attributes-panel.show-panel-btn-caption'));
+        this.set('closeRightPanelBtnMessage', t('forms.fd-view-edit-form.attributes-panel.show-panel-btn-caption'));
         Ember.$('.panel-wrapper .panel-right.view-attributes').css('width', '100%');
       }
 

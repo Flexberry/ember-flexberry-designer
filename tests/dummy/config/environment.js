@@ -1,18 +1,19 @@
-/* jshint node: true */
+'use strict';
 
 module.exports = function (environment) {
-  var backendUrl = 'https://ember-flexberry-designer-dummy.azurewebsites.net';
-  
+  //var backendUrl = 'https://ember-flexberry-designer-dummy.azurewebsites.net';
+  var backendUrl = 'http://rtc-web.ics.perm.ru:2018';
+
   if (environment === 'development-loc') {
     // Use `ember s -e development-loc` command for local backend usage.
     backendUrl = 'http://localhost:8600';
   }
 
-  var ENV = {
+  let ENV = {
     repositoryName: 'ember-flexberry-designer/dummy',
     modulePrefix: 'dummy',
-    environment: environment,
-    baseURL: '/',
+    environment,
+    rootURL: '/',
     locationType: 'hash',
     EmberENV: {
       LOG_STACKTRACE_ON_DEPRECATION: false,
@@ -20,10 +21,95 @@ module.exports = function (environment) {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
+      },
+      EXTEND_PROTOTYPES: {
+        // Prevent Ember Data from overriding Date.parse.
+        Date: false
       }
     },
 
     APP: {
+      // Application name. Used in `user-settings` service.
+      name: 'ember-app',
+
+      backendUrl: backendUrl,
+
+      // It's a custom property, used to prevent duplicate backend urls in sources.
+      backendUrls: {
+        root: backendUrl,
+        api: backendUrl + '/odata'
+      },
+
+      // Log service settings.
+      log: {
+        // Flag: indicates whether log service is enabled or not.
+        enabled: true,
+
+        // Flag: indicates whether to store error messages or not.
+        storeErrorMessages: true,
+        storeWarnMessages: false,
+        storeLogMessages: true,
+        storeInfoMessages: false,
+        storeDebugMessages: false,
+        storeDeprecationMessages: false,
+        storePromiseErrors: true,
+        showPromiseErrors: true,
+      },
+
+      // Options for Perforator service that can be used to calculate performance of components rendering.
+      perf: {
+        enabled: false,
+      },
+
+      // Lock settings.
+     lock: {
+        enabled: true,
+        openReadOnly: true,
+        unlockObject: true,
+      },
+
+      // Flag: indicates whether to use user settings service or not.
+      useUserSettingsService: true,
+
+      // Custom property with offline mode settings.
+      offline: {
+        dbName: 'ember-app',
+
+        // Flag that indicates whether offline mode in application is enabled or not.
+        offlineEnabled: true,
+
+        // Flag that indicates whether to switch to offline mode when got online connection errors or not.
+        modeSwitchOnErrorsEnabled: false,
+
+        // Flag that indicates whether to sync down all work with records when online or not.
+        // This let user to continue work without online connection.
+        syncDownWhenOnlineEnabled: false,
+      },
+
+      // Custom property with components settings.
+      components: {
+        // Settings for `flexberry-file` component.
+        flexberryFile: {
+          // URL of file upload controller.
+          uploadUrl: backendUrl + '/api/File',
+
+          // Max file size in bytes for uploading files.
+          maxUploadFileSize: null,
+
+          // Flag: indicates whether to upload file on controllers modelPreSave event.
+          uploadOnModelPreSave: true,
+
+          // Flag: indicates whether to show upload button or not.
+          showUploadButton: true,
+
+          // Flag: indicates whether to show modal dialog on upload errors or not.
+          showModalDialogOnUploadError: true,
+
+          // Flag: indicates whether to show modal dialog on download errors or not.
+          showModalDialogOnDownloadError: true,
+        }
+      },
+
       // Application name. Used in `user-settings` service.
       name: 'flexberry-designer',
 
@@ -142,8 +228,8 @@ module.exports = function (environment) {
   }
 
   if (environment === 'test') {
+    ENV.rootURL = '/';
     // Testem prefers this...
-    ENV.baseURL = '/';
     ENV.locationType = 'none';
 
     // keep test console output quieter
@@ -151,10 +237,11 @@ module.exports = function (environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+    ENV.APP.autoboot = false;
   }
 
   if (environment === 'production') {
-
+    // here you can enable a production-specific feature
   }
 
   // Change paths to application assets if build has been started with the following parameters:
@@ -170,8 +257,8 @@ module.exports = function (environment) {
       }
     });
 
-    // Change base URL to force paths to application assets be relative.
-    ENV.baseURL = '/' + ENV.repositoryName + '/' + branch + '/';
+    // Change root URL to force paths to application assets be relative.
+    ENV.rootURL = '/' + ENV.repositoryName + '/' + branch + '/';
     ENV.locationType = 'hash';
   }
 

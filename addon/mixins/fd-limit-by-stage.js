@@ -3,7 +3,7 @@
 */
 
 import Ember from 'ember';
-import { Query } from 'ember-flexberry-data';
+import SimplePredicate from 'ember-flexberry-data/query/predicate';
 
 /**
   Simple way of inject {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}} and limit list objects by stage.
@@ -28,6 +28,6 @@ export default Ember.Mixin.create({
   */
   objectListViewLimitPredicate() {
     let stage = this.get('currentContext').getCurrentStage();
-    return new Query.SimplePredicate('stage', '==', stage);
+    return new SimplePredicate('stage', '==', stage);
   },
 });

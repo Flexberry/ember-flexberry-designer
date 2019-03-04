@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   name: DS.attr('string'),
   description: DS.attr('string'),
@@ -41,11 +41,11 @@ export let Model = Ember.Mixin.create({
 });
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('Properties', 'fd-repository-data-object', {
-    name: Projection.attr('Имя'),
-    description: Projection.attr('Описание')
+    name: attr('Имя'),
+    description: attr('Описание')
   });
   modelClass.defineProjection('UpdateApiView', 'fd-repository-data-object', {
-    name: Projection.attr(''),
-    description: Projection.attr('')
+    name: attr(''),
+    description: attr('')
   });
 };

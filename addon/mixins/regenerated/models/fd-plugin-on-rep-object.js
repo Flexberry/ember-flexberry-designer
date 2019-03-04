@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   settings: DS.attr('string'),
   plugin: DS.belongsTo('fd-registered-plug-in', { inverse: null, async: false }),
@@ -20,9 +20,9 @@ export let Model = Ember.Mixin.create({
 });
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('DetailEditView', 'fd-plugin-on-rep-object', {
-    plugin: Projection.belongsTo('fd-registered-plug-in', 'Модуль', {
-      storedType: Projection.attr('Тип')
+    plugin: belongsTo('fd-registered-plug-in', 'Модуль', {
+      storedType: attr('Тип')
     }, { displayMemberPath: 'name' }),
-    settings: Projection.attr('', { hidden: true })
+    settings: attr('', { hidden: true })
   });
 };

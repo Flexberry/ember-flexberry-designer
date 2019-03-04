@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   child: DS.belongsTo('fd-class', { inverse: null, async: false, polymorphic: true }),
   parent: DS.belongsTo('fd-class', { inverse: null, async: false, polymorphic: true }),
@@ -27,16 +27,16 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('Import', 'fd-inheritance', {
-    referenceCount: Projection.attr(''),
-    name: Projection.attr(''),
-    parent: Projection.belongsTo('fd-class', '', {
+    referenceCount: attr(''),
+    name: attr(''),
+    parent: belongsTo('fd-class', '', {
 
     }),
-    child: Projection.belongsTo('fd-class', '', {
+    child: belongsTo('fd-class', '', {
 
     })
   });
   modelClass.defineProjection('References', 'fd-inheritance', {
-    referenceCount: Projection.attr('')
+    referenceCount: attr('')
   });
 };

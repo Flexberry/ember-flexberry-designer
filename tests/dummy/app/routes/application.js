@@ -1,13 +1,9 @@
 import Ember from 'ember';
 import ModalApplicationRouteMixin from 'ember-flexberry/mixins/modal-application-route';
 import FdPreloadStageMetadata from 'ember-flexberry-designer/utils/fd-preload-stage-metadata';
-import { Query } from 'ember-flexberry-data';
-
-const {
-  Builder,
-  FilterOperator,
-  SimplePredicate,
-} = Query;
+import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
+import Builder from 'ember-flexberry-data/query/builder';
+import FilterOperator from 'ember-flexberry-data/query/filter-operator';
 
 export default Ember.Route.extend(ModalApplicationRouteMixin, {
 

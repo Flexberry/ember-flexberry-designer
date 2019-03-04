@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   valueXML: DS.attr('string'),
   moduleSettingTypeName: DS.attr('string'),
@@ -22,32 +22,32 @@ export let Model = Ember.Mixin.create({
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('Backup', 'fd-dev-module-setting', {
-    valueXML: Projection.attr(''),
-    moduleSettingTypeName: Projection.attr(''),
-    moduleSettingType: Projection.belongsTo('fd-dev-module-setting-type', '', {
+    valueXML: attr(''),
+    moduleSettingTypeName: attr(''),
+    moduleSettingType: belongsTo('fd-dev-module-setting-type', '', {
 
     }, { hidden: true }),
-    stage: Projection.belongsTo('fd-dev-stage', '', {
+    stage: belongsTo('fd-dev-stage', '', {
 
     }, { hidden: true })
   });
   modelClass.defineProjection('ModuleSettingE', 'fd-dev-module-setting', {
-    moduleSettingType: Projection.belongsTo('fd-dev-module-setting-type', 'ModuleSettingTyp', {
-      name: Projection.attr('Name ModuleSettingType')
+    moduleSettingType: belongsTo('fd-dev-module-setting-type', 'ModuleSettingTyp', {
+      name: attr('Name ModuleSettingType')
     }, { hidden: true }),
-    valueXML: Projection.attr('ValueXML'),
-    moduleSettingTypeName: Projection.attr(''),
-    stage: Projection.belongsTo('fd-dev-stage', 'Stage', {
+    valueXML: attr('ValueXML'),
+    moduleSettingTypeName: attr(''),
+    stage: belongsTo('fd-dev-stage', 'Stage', {
 
     }, { hidden: true })
   });
   modelClass.defineProjection('ModuleSettingL', 'fd-dev-module-setting', {
-    moduleSettingType: Projection.belongsTo('fd-dev-module-setting-type', 'ModuleSettingType', {
-      name: Projection.attr('Name ModuleSettingType')
+    moduleSettingType: belongsTo('fd-dev-module-setting-type', 'ModuleSettingType', {
+      name: attr('Name ModuleSettingType')
     }, { hidden: true }),
-    valueXML: Projection.attr('ValueXML'),
-    moduleSettingTypeName: Projection.attr(''),
-    stage: Projection.belongsTo('fd-dev-stage', 'Stage', {
+    valueXML: attr('ValueXML'),
+    moduleSettingTypeName: attr(''),
+    stage: belongsTo('fd-dev-stage', 'Stage', {
 
     }, { hidden: true })
   });

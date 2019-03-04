@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { Projection } from 'ember-flexberry-data';
+import { attr, belongsTo, hasMany } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   getValidations: function () {
     let parentValidations = this._super();
@@ -21,70 +21,70 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('Backup', 'fd-dev-system', {
-    createUser: Projection.attr('CreateUser', { hidden: true }),
-    createDate: Projection.attr('CreateDate', { hidden: true }),
-    changeUser: Projection.attr('ChangeUser', { hidden: true }),
-    changeDate: Projection.attr('ChangeDate', { hidden: true }),
-    name: Projection.attr('Name', { hidden: true }),
-    description: Projection.attr('Description', { hidden: true }),
-    nameStr: Projection.attr('NameStr', { hidden: true }),
-    diagrams: Projection.hasMany('fd-diagram', '', {
-      primitivesStreamString: Projection.attr(''),
-      caseObjectsString: Projection.attr(''),
-      name: Projection.attr(''),
-      createDate: Projection.attr(''),
-      createUser: Projection.attr(''),
-      changeDate: Projection.attr(''),
-      changeUser: Projection.attr('')
+    createUser: attr('CreateUser', { hidden: true }),
+    createDate: attr('CreateDate', { hidden: true }),
+    changeUser: attr('ChangeUser', { hidden: true }),
+    changeDate: attr('ChangeDate', { hidden: true }),
+    name: attr('Name', { hidden: true }),
+    description: attr('Description', { hidden: true }),
+    nameStr: attr('NameStr', { hidden: true }),
+    diagrams: hasMany('fd-diagram', '', {
+      primitivesStreamString: attr(''),
+      caseObjectsString: attr(''),
+      name: attr(''),
+      createDate: attr(''),
+      createUser: attr(''),
+      changeDate: attr(''),
+      changeUser: attr('')
     }),
-    filelinks: Projection.hasMany('fd-filelink', '', {
-      name: Projection.attr('Название'),
-      description: Projection.attr('Описание')
+    filelinks: hasMany('fd-filelink', '', {
+      name: attr('Название'),
+      description: attr('Описание')
     })
   });
   modelClass.defineProjection('EditFormView', 'fd-dev-system', {
-    name: Projection.attr('Name'),
-    description: Projection.attr('Description')
+    name: attr('Name'),
+    description: attr('Description')
   });
   modelClass.defineProjection('FdDevSystem', 'fd-dev-system', {
-    name: Projection.attr(''),
-    stage: Projection.belongsTo('fd-stage', '', {
+    name: attr(''),
+    stage: belongsTo('fd-stage', '', {
 
     }),
-    diagrams: Projection.hasMany('fd-diagram', '', {
-      name: Projection.attr(''),
-      caseObjectsString: Projection.attr(''),
-      primitivesStreamString: Projection.attr(''),
-      primitivesJsonString: Projection.attr('')
+    diagrams: hasMany('fd-diagram', '', {
+      name: attr(''),
+      caseObjectsString: attr(''),
+      primitivesStreamString: attr(''),
+      primitivesJsonString: attr('')
     })
   });
   modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-system', {
-    name: Projection.attr(''),
-    stage: Projection.belongsTo('fd-stage', '', {
+    name: attr(''),
+    stage: belongsTo('fd-stage', '', {
 
     }),
-    diagrams: Projection.hasMany('fd-diagram', '', {
-      primitivesJsonString: Projection.attr(''),
-      primitivesStreamString: Projection.attr(''),
-      caseObjectsString: Projection.attr(''),
-      name: Projection.attr('')
+    diagrams: hasMany('fd-diagram', '', {
+      primitivesJsonString: attr(''),
+      primitivesStreamString: attr(''),
+      caseObjectsString: attr(''),
+      name: attr('')
     })
   });
   modelClass.defineProjection('ListFormView', 'fd-dev-system', {
-    name: Projection.attr('Name'),
-    description: Projection.attr('Description'),
-    changeUser: Projection.attr('Change user'),
-    changeDate: Projection.attr('Change date'),
-    createUser: Projection.attr('Create user'),
-    createDate: Projection.attr('Create date')
+    name: attr('Name'),
+    description: attr('Description'),
+    changeUser: attr('Change user'),
+    changeDate: attr('Change date'),
+    createUser: attr('Create user'),
+    createDate: attr('Create date')
   });
   modelClass.defineProjection('SearchSystem', 'fd-dev-system', {
-    name: Projection.attr(''),
-    stage: Projection.belongsTo('fd-stage', '', {
-      name: Projection.attr('')
+    name: attr(''),
+    stage: belongsTo('fd-stage', '', {
+      name: attr('')
     }),
-    diagrams: Projection.hasMany('fd-diagram', '', {
-      name: Projection.attr('')
+    diagrams: hasMany('fd-diagram', '', {
+      name: attr('')
     })
   });
 };

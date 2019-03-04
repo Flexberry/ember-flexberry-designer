@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
-import { Query } from 'ember-flexberry-data';
 import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
+import Builder from 'ember-flexberry-data/query/builder';
 const { getOwner } = Ember;
 
 export default EditFormController.extend({
@@ -51,7 +51,7 @@ export default EditFormController.extend({
 
     let store = this.get('store');
 
-    let builder = new Query.Builder(store)
+    let builder = new Builder(store)
       .from('fd-storage-type')
       .selectByProjection('EditFormView')
       .where(condition);

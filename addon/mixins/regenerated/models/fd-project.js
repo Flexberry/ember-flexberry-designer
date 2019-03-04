@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   repository: DS.belongsTo('fd-repository', { inverse: 'projects', async: false }),
   configurations: DS.hasMany('fd-configuration', { inverse: 'project', async: false }),
@@ -24,12 +24,12 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('PathSearchView', 'fd-project', {
-    name: Projection.attr(''),
-    repository: Projection.belongsTo('fd-repository', '', {
-      name: Projection.attr('')
+    name: attr(''),
+    repository: belongsTo('fd-repository', '', {
+      name: attr('')
     })
   });
   modelClass.defineProjection('SearchRepObjView', 'fd-project', {
-    name: Projection.attr('')
+    name: attr('')
   });
 };

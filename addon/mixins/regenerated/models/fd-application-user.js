@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   administrator: DS.attr('boolean', { defaultValue: false }),
   emailApproved: DS.attr('boolean', { defaultValue: false }),
@@ -21,18 +21,18 @@ export let Model = Ember.Mixin.create({
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('ViewEdit', 'fd-application-user', {
-    emailApproved: Projection.attr(''),
-    administrator: Projection.attr(''),
-    agent: Projection.belongsTo('i-c-s-soft-s-t-o-r-m-n-e-t-security-agent', '', {
-      name: Projection.attr(''),
-      login: Projection.attr(''),
-      pwd: Projection.attr(''),
-      isUser: Projection.attr(''),
-      isGroup: Projection.attr(''),
-      isRole: Projection.attr(''),
-      connString: Projection.attr(''),
-      enabled: Projection.attr(''),
-      email: Projection.attr('')
+    emailApproved: attr(''),
+    administrator: attr(''),
+    agent: belongsTo('i-c-s-soft-s-t-o-r-m-n-e-t-security-agent', '', {
+      name: attr(''),
+      login: attr(''),
+      pwd: attr(''),
+      isUser: attr(''),
+      isGroup: attr(''),
+      isRole: attr(''),
+      connString: attr(''),
+      enabled: attr(''),
+      email: attr('')
     })
   });
 };

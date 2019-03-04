@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   name: DS.attr('string'),
   getValidations: function () {
@@ -16,9 +16,9 @@ export let Model = Ember.Mixin.create({
 });
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('ModuleSettingTypeE', 'fd-dev-module-setting-type', {
-    name: Projection.attr('Name')
+    name: attr('Name')
   });
   modelClass.defineProjection('ModuleSettingTypeL', 'fd-dev-module-setting-type', {
-    name: Projection.attr('')
+    name: attr('')
   });
 };

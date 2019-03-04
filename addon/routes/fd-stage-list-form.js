@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { Query } from 'ember-flexberry-data';
+import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
 import FdPreloadStageMetadata from 'ember-flexberry-designer/utils/fd-preload-stage-metadata';
 import ListFormRoute from 'ember-flexberry/routes/list-form';
 
@@ -86,6 +86,6 @@ export default ListFormRoute.extend({
 
   objectListViewLimitPredicate() {
     let configuration = this.get('currentContext').getCurrentConfiguration();
-    return new Query.SimplePredicate('configuration', '==', configuration);
+    return new SimplePredicate('configuration', '==', configuration);
   },
 });

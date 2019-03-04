@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   detailLoadOnLoadAgregator: DS.attr('boolean'),
   detailName: DS.attr('string'),
@@ -20,15 +20,15 @@ export let Model = Ember.Mixin.create({
 });
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('Edit', 'fd-dev-associated-detail-view', {
-    detailLoadOnLoadAgregator: Projection.attr(''),
-    detailName: Projection.attr(''),
-    detailViewName: Projection.attr('')
+    detailLoadOnLoadAgregator: attr(''),
+    detailName: attr(''),
+    detailViewName: attr('')
   });
   modelClass.defineProjection('Generator', 'fd-dev-associated-detail-view', {
     detailLoadOnLoadAgregator: Projection.attr(''),
-    detailName: Projection.attr(''),
-    detailViewName: Projection.attr(''),
-    view: Projection.belongsTo('fd-view', '', {
+    detailName: attr(''),
+    detailViewName: attr(''),
+    view: belongsTo('fd-view', '', {
 
     })
   });

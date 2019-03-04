@@ -360,6 +360,16 @@ FdFormUnsavedData, {
     };
   }),
 
+  closeRightPanelBtnSelector: 'div.panel-toolbar > div > button.close-panel-btn',
+
+  setCloseRightPanelBtnMessage() {
+    if (this.allAttrsHidedn) {
+      this.set('closeRightPanelBtnMessage', t('forms.fd-appstruct-form.show-panel-btn-caption'));
+    } else {
+      this.set('closeRightPanelBtnMessage', t('forms.fd-appstruct-form.close-panel-btn-caption'));
+    }
+  },
+
   actions: {
     /**
       Close current form, go back.
@@ -757,18 +767,18 @@ FdFormUnsavedData, {
       this.transitionToRoute('fd-generation-process-form.new');
     },
 
-    closeRightpanel() {
+    closeRightPanel() {
       Ember.$('.closable.panel-left').toggle(500);
 
-      if (this.allAttrsHidedn) {
-        this.set('popupMessage', t('forms.fd-appstruct-form.close-panel-btn-caption'));
-        Ember.$('.panel-wrapper .panel-right').css('width', '50%');
-      } else {
-        this.set('popupMessage', t('forms.fd-appstruct-form.show-panel-btn-caption'));
-        Ember.$('.panel-wrapper .panel-right').css('width', '100%');
-      }
-
       this.toggleProperty('allAttrsHidedn');
+
+      this.setCloseRightPanelBtnMessage();
+
+      if (this.allAttrsHidedn) {
+        Ember.$('.panel-wrapper .panel-right').css('width', '100%');
+      } else {
+        Ember.$('.panel-wrapper .panel-right').css('width', '50%');
+      }
     }
   },
 

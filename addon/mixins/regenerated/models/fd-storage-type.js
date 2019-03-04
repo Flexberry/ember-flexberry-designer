@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   shortName: DS.attr('string'),
   dataServiceFullTypeName: DS.attr('string'),
@@ -20,19 +20,19 @@ export let Model = Ember.Mixin.create({
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('EditFormView', 'fd-storage-type', {
-    shortName: Projection.attr('ShortName', { hidden: true }),
-    dataServiceFullTypeName: Projection.attr('DataServiceFullTypeName', { hidden: true }),
-    actual: Projection.attr('Actual', { hidden: true }),
-    stage: Projection.belongsTo('fd-dev-stage', '', {
+    shortName: attr('ShortName', { hidden: true }),
+    dataServiceFullTypeName: attr('DataServiceFullTypeName', { hidden: true }),
+    actual: attr('Actual', { hidden: true }),
+    stage: belongsTo('fd-dev-stage', '', {
 
     })
   });
   modelClass.defineProjection('ListFormView', 'fd-storage-type', {
-    shortName: Projection.attr(''),
-    dataServiceFullTypeName: Projection.attr(''),
-    actual: Projection.attr(''),
-    stage: Projection.belongsTo('fd-dev-stage', '', {
-      name: Projection.attr('')
+    shortName: attr(''),
+    dataServiceFullTypeName: attr(''),
+    actual: attr(''),
+    stage: belongsTo('fd-dev-stage', '', {
+      name: attr('')
     }, { hidden: true })
   });
 };

@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import EditFormNewRoute from 'ember-flexberry/routes/edit-form-new';
-import { Query } from 'ember-flexberry-data';
-const { Builder } = Query;
+import Builder from 'ember-flexberry-data/query/builder';
 
 export default EditFormNewRoute.extend({
   modelProjection: 'EditFormView',

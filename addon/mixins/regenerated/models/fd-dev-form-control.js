@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   name: DS.attr('string'),
   order: DS.attr('number'),
@@ -26,42 +26,42 @@ export let Model = Ember.Mixin.create({
 });
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('FormControlE', 'fd-dev-form-control', {
-    name: Projection.attr('Имя'),
-    propertyPath: Projection.attr('Свойство'),
-    settingsXml: Projection.attr('Настройки'),
-    controlType: Projection.belongsTo('fd-dev-control-type', 'Тип элемента управления', {
-      name: Projection.attr('', { hidden: true })
+    name: attr('Имя'),
+    propertyPath: attr('Свойство'),
+    settingsXml: attr('Настройки'),
+    controlType: belongsTo('fd-dev-control-type', 'Тип элемента управления', {
+      name: attr('', { hidden: true })
     }),
-    order: Projection.attr('', { hidden: true }),
-    propertyType: Projection.belongsTo('fd-dev-type-definition', 'Тип свойства', {
-      name: Projection.attr('', { hidden: true })
+    order: attr('', { hidden: true }),
+    propertyType: belongsTo('fd-dev-type-definition', 'Тип свойства', {
+      name: attr('', { hidden: true })
     })
   });
   modelClass.defineProjection('FormControlFullGet', 'fd-dev-form-control', {
-    name: Projection.attr(''),
-    propertyPath: Projection.attr(''),
-    settingsXml: Projection.attr(''),
-    order: Projection.attr(''),
-    controlType: Projection.belongsTo('fd-dev-control-type', '', {
-      name: Projection.attr('')
+    name: attr(''),
+    propertyPath: attr(''),
+    settingsXml: attr(''),
+    order: attr(''),
+    controlType: belongsTo('fd-dev-control-type', '', {
+      name: attr('')
     }),
-    propertyType: Projection.belongsTo('fd-dev-type-definition', '', {
-      name: Projection.attr('')
+    propertyType: belongsTo('fd-dev-type-definition', '', {
+      name: attr('')
     }),
-    formView: Projection.belongsTo('fd-dev-form-view', '', {
-      view: Projection.belongsTo('fd-dev-view', '', {
+    formView: belongsTo('fd-dev-form-view', '', {
+      view: belongsTo('fd-dev-view', '', {
 
       })
     })
   });
   modelClass.defineProjection('FormControlL', 'fd-dev-form-control', {
-    name: Projection.attr('Имя'),
-    controlType: Projection.belongsTo('fd-dev-control-type', '', {
-      name: Projection.attr('Тип эдемента управления')
+    name: attr('Имя'),
+    controlType: belongsTo('fd-dev-control-type', '', {
+      name: attr('Тип эдемента управления')
     }, { hidden: true }),
-    order: Projection.attr('', { hidden: true }),
-    propertyType: Projection.belongsTo('fd-dev-type-definition', '', {
-      name: Projection.attr('Тип свойства')
+    order: attr('', { hidden: true }),
+    propertyType: belongsTo('fd-dev-type-definition', '', {
+      name: attr('Тип свойства')
     }, { hidden: true })
   });
 };

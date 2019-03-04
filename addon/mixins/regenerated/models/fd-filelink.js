@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   /**
     Non-stored property.
@@ -47,7 +47,7 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('FileLink', 'fd-filelink', {
-    name: Projection.attr('Название'),
-    description: Projection.attr('Описание')
+    name: attr('Название'),
+    description: attr('Описание')
   });
 };

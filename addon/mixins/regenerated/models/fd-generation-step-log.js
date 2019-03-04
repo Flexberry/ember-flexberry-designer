@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   time: DS.attr('date', { defaultValue() { return new Date(); } }),
   text: DS.attr('string'),
@@ -22,9 +22,9 @@ export let Model = Ember.Mixin.create({
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('ListFormView', 'fd-generation-step-log', {
-    time: Projection.attr(''),
-    thisIsError: Projection.attr(''),
-    isWarn: Projection.attr(''),
-    text: Projection.attr('')
+    time: attr(''),
+    thisIsError: attr(''),
+    isWarn: attr(''),
+    text: attr('')
   });
 };

@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr, hasMany } from 'ember-flexberry-data/utils/attributes';
 export let Model = Ember.Mixin.create({
   accessModifier: DS.attr('s-t-o-r-m-c-a-s-e-repository-access-modifier'),
   accessType: DS.attr('i-c-s-soft-s-t-o-r-m-n-e-t-access-type'),
@@ -105,191 +105,191 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('AddOperations', 'fd-dev-method', {
-    name: Projection.attr(''),
-    parametersStr: Projection.attr(''),
-    accessType: Projection.attr('')
+    name: attr(''),
+    parametersStr: attr(''),
+    accessType: attr('')
   });
   modelClass.defineProjection('EditApplication', 'fd-dev-method', {
-    accessModifier: Projection.attr(''),
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    type: Projection.attr(''),
-    parametersStr: Projection.attr('', { hidden: true }),
-    pBCustomAttributes: Projection.attr(''),
-    isEvent: Projection.attr(''),
-    accessType: Projection.attr(''),
-    parameters: Projection.hasMany('fd-dev-parameter', '', {
-      name: Projection.attr(''),
-      modifier: Projection.attr(''),
-      type: Projection.attr(''),
-      description: Projection.attr('')
+    accessModifier: attr(''),
+    name: attr(''),
+    description: attr(''),
+    type: attr(''),
+    parametersStr: attr('', { hidden: true }),
+    pBCustomAttributes: attr(''),
+    isEvent: attr(''),
+    accessType: attr(''),
+    parameters: hasMany('fd-dev-parameter', '', {
+      name: attr(''),
+      modifier: attr(''),
+      type: attr(''),
+      description: attr('')
     })
   });
   modelClass.defineProjection('EditBusinessServer', 'fd-dev-method', {
-    accessModifier: Projection.attr(''),
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    type: Projection.attr(''),
-    parametersStr: Projection.attr('', { hidden: true }),
-    isEvent: Projection.attr(''),
-    accessType: Projection.attr(''),
-    pBCustomAttributes: Projection.attr(''),
-    parameters: Projection.hasMany('fd-dev-parameter', '', {
-      name: Projection.attr(''),
-      modifier: Projection.attr(''),
-      type: Projection.attr(''),
-      description: Projection.attr('')
+    accessModifier: attr(''),
+    name: attr(''),
+    description: attr(''),
+    type: attr(''),
+    parametersStr: attr('', { hidden: true }),
+    isEvent: attr(''),
+    accessType: attr(''),
+    pBCustomAttributes: attr(''),
+    parameters: hasMany('fd-dev-parameter', '', {
+      name: attr(''),
+      modifier: attr(''),
+      type: attr(''),
+      description: attr('')
     })
   });
   modelClass.defineProjection('EditDataObjectClass', 'fd-dev-method', {
-    accessModifier: Projection.attr(''),
-    type: Projection.attr(''),
-    parametersStr: Projection.attr('', { hidden: true }),
-    isEvent: Projection.attr(''),
-    pBCustomAttributes: Projection.attr(''),
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    parameters: Projection.hasMany('fd-dev-parameter', '', {
-      name: Projection.attr(''),
-      modifier: Projection.attr(''),
-      type: Projection.attr(''),
-      description: Projection.attr('')
+    accessModifier: attr(''),
+    type: attr(''),
+    parametersStr: attr('', { hidden: true }),
+    isEvent: attr(''),
+    pBCustomAttributes: attr(''),
+    name: attr(''),
+    description: attr(''),
+    parameters: hasMany('fd-dev-parameter', '', {
+      name: attr(''),
+      modifier: attr(''),
+      type: attr(''),
+      description: attr('')
     })
   });
   modelClass.defineProjection('EditEditForm', 'fd-dev-method', {
-    accessModifier: Projection.attr(''),
-    name: Projection.attr(''),
-    caption: Projection.attr(''),
-    description: Projection.attr(''),
-    type: Projection.attr(''),
-    parametersStr: Projection.attr('', { hidden: true }),
-    pBCustomAttributes: Projection.attr(''),
-    publishToUser: Projection.attr(''),
-    isEvent: Projection.attr(''),
-    accessType: Projection.attr(''),
-    parameters: Projection.hasMany('fd-dev-parameter', '', {
-      name: Projection.attr(''),
-      modifier: Projection.attr(''),
-      type: Projection.attr(''),
-      description: Projection.attr('')
+    accessModifier: attr(''),
+    name: attr(''),
+    caption: attr(''),
+    description: attr(''),
+    type: attr(''),
+    parametersStr: attr('', { hidden: true }),
+    pBCustomAttributes: attr(''),
+    publishToUser: attr(''),
+    isEvent: attr(''),
+    accessType: attr(''),
+    parameters: hasMany('fd-dev-parameter', '', {
+      name: attr(''),
+      modifier: attr(''),
+      type: attr(''),
+      description: attr('')
     })
   });
   modelClass.defineProjection('EditInterface', 'fd-dev-method', {
-    accessModifier: Projection.attr(''),
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    type: Projection.attr(''),
-    parametersStr: Projection.attr('', { hidden: true }),
-    isEvent: Projection.attr(''),
-    pBCustomAttributes: Projection.attr(''),
-    parameters: Projection.hasMany('fd-dev-parameter', '', {
-      name: Projection.attr(''),
-      modifier: Projection.attr(''),
-      type: Projection.attr(''),
-      description: Projection.attr('')
+    accessModifier: attr(''),
+    name: attr(''),
+    description: attr(''),
+    type: attr(''),
+    parametersStr: attr('', { hidden: true }),
+    isEvent: attr(''),
+    pBCustomAttributes: attr(''),
+    parameters: hasMany('fd-dev-parameter', '', {
+      name: attr(''),
+      modifier: attr(''),
+      type: attr(''),
+      description: attr('')
     })
   });
   modelClass.defineProjection('EditListForm', 'fd-dev-method', {
-    accessModifier: Projection.attr(''),
-    name: Projection.attr(''),
-    caption: Projection.attr(''),
-    description: Projection.attr(''),
-    type: Projection.attr(''),
-    parametersStr: Projection.attr('', { hidden: true }),
-    pBCustomAttributes: Projection.attr(''),
-    publishToUser: Projection.attr(''),
-    isEvent: Projection.attr(''),
-    accessType: Projection.attr(''),
-    parameters: Projection.hasMany('fd-dev-parameter', '', {
-      name: Projection.attr(''),
-      modifier: Projection.attr(''),
-      type: Projection.attr(''),
-      description: Projection.attr('')
+    accessModifier: attr(''),
+    name: attr(''),
+    caption: attr(''),
+    description: attr(''),
+    type: attr(''),
+    parametersStr: attr('', { hidden: true }),
+    pBCustomAttributes: attr(''),
+    publishToUser: attr(''),
+    isEvent: attr(''),
+    accessType: attr(''),
+    parameters: hasMany('fd-dev-parameter', '', {
+      name: attr(''),
+      modifier: attr(''),
+      type: attr(''),
+      description: attr('')
     })
   });
   modelClass.defineProjection('EditPrintForm', 'fd-dev-method', {
-    accessModifier: Projection.attr(''),
-    name: Projection.attr(''),
-    caption: Projection.attr(''),
-    description: Projection.attr(''),
-    type: Projection.attr(''),
-    parametersStr: Projection.attr('', { hidden: true }),
-    pBCustomAttributes: Projection.attr(''),
-    isEvent: Projection.attr(''),
-    parameters: Projection.hasMany('fd-dev-parameter', '', {
-      name: Projection.attr(''),
-      modifier: Projection.attr(''),
-      type: Projection.attr(''),
-      description: Projection.attr('')
+    accessModifier: attr(''),
+    name: attr(''),
+    caption: attr(''),
+    description: attr(''),
+    type: attr(''),
+    parametersStr: attr('', { hidden: true }),
+    pBCustomAttributes: attr(''),
+    isEvent: attr(''),
+    parameters: hasMany('fd-dev-parameter', '', {
+      name: attr(''),
+      modifier: attr(''),
+      type: attr(''),
+      description: attr('')
     })
   });
   modelClass.defineProjection('EditType', 'fd-dev-method', {
-    accessModifier: Projection.attr(''),
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    type: Projection.attr(''),
-    parametersStr: Projection.attr('', { hidden: true }),
-    isEvent: Projection.attr(''),
-    pBCustomAttributes: Projection.attr(''),
-    parameters: Projection.hasMany('fd-dev-parameter', '', {
-      name: Projection.attr(''),
-      modifier: Projection.attr(''),
-      type: Projection.attr(''),
-      description: Projection.attr('')
+    accessModifier: attr(''),
+    name: attr(''),
+    description: attr(''),
+    type: attr(''),
+    parametersStr: attr('', { hidden: true }),
+    isEvent: attr(''),
+    pBCustomAttributes: attr(''),
+    parameters: hasMany('fd-dev-parameter', '', {
+      name: attr(''),
+      modifier: attr(''),
+      type: attr(''),
+      description: attr('')
     })
   });
   modelClass.defineProjection('EditUserForm', 'fd-dev-method', {
-    accessModifier: Projection.attr(''),
-    name: Projection.attr(''),
-    caption: Projection.attr(''),
-    description: Projection.attr(''),
-    type: Projection.attr(''),
-    parametersStr: Projection.attr('', { hidden: true }),
-    pBCustomAttributes: Projection.attr(''),
-    publishToUser: Projection.attr(''),
-    isEvent: Projection.attr(''),
-    accessType: Projection.attr(''),
-    parameters: Projection.hasMany('fd-dev-parameter', '', {
-      name: Projection.attr(''),
-      modifier: Projection.attr(''),
-      type: Projection.attr(''),
-      description: Projection.attr('')
+    accessModifier: attr(''),
+    name: attr(''),
+    caption: attr(''),
+    description: attr(''),
+    type: attr(''),
+    parametersStr: attr('', { hidden: true }),
+    pBCustomAttributes: attr(''),
+    publishToUser: attr(''),
+    isEvent: attr(''),
+    accessType: attr(''),
+    parameters: hasMany('fd-dev-parameter', '', {
+      name: attr(''),
+      modifier: attr(''),
+      type: attr(''),
+      description: attr('')
     })
   });
   modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-method', {
-    accessModifier: Projection.attr(''),
-    type: Projection.attr(''),
-    name: Projection.attr('')
+    accessModifier: attr(''),
+    type: attr(''),
+    name: attr('')
   });
   modelClass.defineProjection('Generator', 'fd-dev-method', {
-    accessModifier: Projection.attr('AccessModifier', { hidden: true }),
-    accessType: Projection.attr('AccessType', { hidden: true }),
-    caption: Projection.attr('Caption', { hidden: true }),
-    isEvent: Projection.attr('IsEvent', { hidden: true }),
-    orderNum: Projection.attr('OrderNum', { hidden: true }),
-    parametersStr: Projection.attr('ParametersStr', { hidden: true }),
-    pBCustomAttributes: Projection.attr('PBCustomAttributes', { hidden: true }),
-    publishToUser: Projection.attr('PublishToUser', { hidden: true }),
-    realCaption: Projection.attr('RealCaption', { hidden: true }),
-    type: Projection.attr('Type', { hidden: true }),
-    typeParametersStr: Projection.attr('TypeParametersStr', { hidden: true }),
-    name: Projection.attr('Name', { hidden: true }),
-    description: Projection.attr('Description', { hidden: true }),
-    nameStr: Projection.attr('NameStr', { hidden: true }),
-    parameters: Projection.hasMany('fd-dev-parameter', '', {
-      caption: Projection.attr('Caption', { hidden: true }),
-      modifier: Projection.attr('Modifier', { hidden: true }),
-      orderNum: Projection.attr('OrderNum', { hidden: true }),
-      realCaption: Projection.attr('RealCaption', { hidden: true }),
-      type: Projection.attr('Type', { hidden: true }),
-      name: Projection.attr('Name', { hidden: true }),
-      description: Projection.attr('Description', { hidden: true }),
-      nameStr: Projection.attr('NameStr', { hidden: true })
+    accessModifier: attr('AccessModifier', { hidden: true }),
+    accessType: attr('AccessType', { hidden: true }),
+    caption: attr('Caption', { hidden: true }),
+    isEvent: attr('IsEvent', { hidden: true }),
+    orderNum: attr('OrderNum', { hidden: true }),
+    parametersStr: attr('ParametersStr', { hidden: true }),
+    pBCustomAttributes: attr('PBCustomAttributes', { hidden: true }),
+    publishToUser: attr('PublishToUser', { hidden: true }),
+    realCaption: attr('RealCaption', { hidden: true }),
+    type: attr('Type', { hidden: true }),
+    typeParametersStr: attr('TypeParametersStr', { hidden: true }),
+    name: attr('Name', { hidden: true }),
+    description: attr('Description', { hidden: true }),
+    nameStr: attr('NameStr', { hidden: true }),
+    parameters: hasMany('fd-dev-parameter', '', {
+      caption: attr('Caption', { hidden: true }),
+      modifier: attr('Modifier', { hidden: true }),
+      orderNum: attr('OrderNum', { hidden: true }),
+      realCaption: attr('RealCaption', { hidden: true }),
+      type: attr('Type', { hidden: true }),
+      name: attr('Name', { hidden: true }),
+      description: attr('Description', { hidden: true }),
+      nameStr: attr('NameStr', { hidden: true })
     })
   });
   modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-method', {
-    accessModifier: Projection.attr(''),
-    type: Projection.attr(''),
-    name: Projection.attr(''),
+    accessModifier: attr(''),
+    type: attr(''),
+    name: attr(''),
   });
 };
