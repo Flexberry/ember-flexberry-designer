@@ -16,7 +16,7 @@ export default Ember.Controller.extend({
 
     @method filteredModel
   */
-  filteredModel: Ember.computed('searchValue', function() {
+  filteredModel: Ember.computed('model', 'searchValue', function() {
     let searchStr = this.get('searchValue');
     let model = this.get('model');
 
