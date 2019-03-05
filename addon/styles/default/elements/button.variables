@@ -1,10 +1,13 @@
 @backgroundColor: @toolbarBtnBg;
 @borderRadius: 2rem;
-@basicTextColor: @lightTextColor;
-@basicHoverTextColor: @hoverBasicBtn;
-@basicDownTextColor: @activeBasicBtn;
+
+@basicTextColor: @basicBtn;
+@basicHoverTextColor: @basicBtn + rgba(0, 0, 0, 0.10);
+@basicDownTextColor: @basicBtn + rgba(0, 0, 0, 0.20);
+
 @basicHoverBackground: transparent;
 @basicDownBackground: transparent;
-@basicBoxShadow: 0px 0px 0px 1px @basicBtn;
-@basicHoverBoxShadow: 0px 0px 0px 1px @hoverBasicBtn;
-@basicDownBoxShadow: 0px 0px 0px 1px @activeBasicBtn;
+
+@basicBoxShadow: 0px 0px 0px 1px @strongTransparentBlack;
+@basicHoverBoxShadow: 0px 0px 0px 1px @strongTransparentBlack + rgba(0, 0, 0, 0.10);
+@basicDownBoxShadow: 0px 0px 0px 1px @strongTransparentBlack + rgba(0, 0, 0, 0.20);
