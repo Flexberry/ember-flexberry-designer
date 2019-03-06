@@ -7,7 +7,7 @@ import FdEditformGroup from 'ember-flexberry-designer/objects/fd-editform-group'
 import FdEditformTabgroup from 'ember-flexberry-designer/objects/fd-editform-tabgroup';
 import FdEditformTab from 'ember-flexberry-designer/objects/fd-editform-tab';
 
-moduleFor('controller:fd-editform-constructor', 'Unit | Controller | fd editform constructor', {
+moduleFor('controller:fd-editform-constructor', 'Unit | Controller | fd-editform-constructor', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });
@@ -156,4 +156,35 @@ test(`'_findItemContainer' function`, function(assert) {
   ].forEach((set) => {
     assert.ok(controller._findItemContainer(set.item, set.startContainer) === set.container, set.message);
   });
+});
+
+test('properties to move controls', function(assert) {
+  let controller = this.subject();
+  let control1 = FdEditformControl.create({ caption: 'Control #1' });
+  let control2 = FdEditformControl.create({ caption: 'Control #2' });
+  let control3 = FdEditformControl.create({ caption: 'Control #3' });
+  let row1 = FdEditformRow.create({ controls: Ember.A([control1]) });
+  let row2 = FdEditformRow.create({ controls: Ember.A([control2, control3]) });
+  controller.controlsTree = Ember.A([row1, row2]);
+
+  controller.set('selectedItem', control1);
+  assert.ok(controller.get('_itemToMove') === row1, 'The row with one control.');
+  assert.ok(controller.get('_itemToMoveStorage') === controller.get('controlsTree'));
+  assert.ok(controller.get('_itemToMoveIsRow'));
+  assert.ok(controller.get('_itemToMoveIsFirst'));
+  assert.notOk(controller.get('_itemToMoveIsLast'));
+
+  controller.set('selectedItem', control2);
+  assert.ok(controller.get('_itemToMove') === control2, 'Control #2.');
+  assert.ok(controller.get('_itemToMoveStorage') === row2.get('controls'));
+  assert.notOk(controller.get('_itemToMoveIsRow'));
+  assert.ok(controller.get('_itemToMoveIsFirst'));
+  assert.notOk(controller.get('_itemToMoveIsLast'));
+
+  controller.set('selectedItem', control3);
+  assert.ok(controller.get('_itemToMove') === control3, 'Control #3.');
+  assert.ok(controller.get('_itemToMoveStorage') === row2.get('controls'));
+  assert.notOk(controller.get('_itemToMoveIsRow'));
+  assert.notOk(controller.get('_itemToMoveIsFirst'));
+  assert.ok(controller.get('_itemToMoveIsLast'));
 });

@@ -264,92 +264,80 @@ FdFormUnsavedData, {
   }),
 
   /**
+    If the `selectedItem` is the only control in the row, it will be the row.
+
     @private
-    @property _selectedIsRow
+    @property _itemToMove
     @readOnly
-    @type Boolean
+    @type {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab}
   */
-  _selectedIsRow: Ember.computed('selectedItem', function() {
-    return this.get('selectedItem') instanceof FdEditformRow;
+  _itemToMove: Ember.computed('selectedItem', function() {
+    let selectedItem = this.get('selectedItem');
+    if (this._isControl(selectedItem)) {
+      let itemContainer = this._findItemContainer(selectedItem);
+      if (this._getItemStorage(itemContainer).get('length') === 1) {
+        return itemContainer;
+      }
+    }
+
+    return selectedItem;
   }).readOnly(),
 
   /**
-    @private
-    @property _selectedIsControl
-    @readOnly
-    @type Boolean
-  */
-  _selectedIsControl: Ember.computed('selectedItem', function() {
-    return this.get('selectedItem') instanceof FdEditformControl;
-  }).readOnly(),
-
-  /**
-    @private
-    @property _selectedIsGroup
-    @readOnly
-    @type Boolean
-  */
-  _selectedIsGroup: Ember.computed('selectedItem', function() {
-    return this.get('selectedItem') instanceof FdEditformGroup;
-  }).readOnly(),
-
-  /**
-    @private
-    @property _selectedIsTab
-    @readOnly
-    @type Boolean
-  */
-  _selectedIsTab: Ember.computed('selectedItem', function() {
-    return this.get('selectedItem') instanceof FdEditformTab;
-  }).readOnly(),
-
-  /**
-    An array in the container of the selected item.
+    An array that contains `_itemToMove`.
 
     @private
-    @property _selectedItemStorage
+    @property _itemToMoveStorage
     @readOnly
     @type Ember.NativeArray
   */
-  _selectedItemStorage: Ember.computed('selectedItem', function() {
-    let selectedItem = this.get('selectedItem');
-    if (selectedItem) {
-      return this._getItemStorage(this._findItemContainer(selectedItem));
+  _itemToMoveStorage: Ember.computed('_itemToMove', function() {
+    let itemToMove = this.get('_itemToMove');
+    if (itemToMove) {
+      return this._getItemStorage(this._findItemContainer(itemToMove));
     }
   }).readOnly(),
 
   /**
     @private
-    @property _selectedIsFirst
+    @property _itemToMoveIsRow
     @readOnly
     @type Boolean
   */
-  _selectedIsFirst: Ember.computed('_selectedItemStorage.[]', function() {
-    let result = false;
-    let selectedItem = this.get('selectedItem');
-    let selectedItemStorage = this.get('_selectedItemStorage');
-    if (selectedItem && selectedItemStorage) {
-      result = selectedItemStorage.get('firstObject') === selectedItem;
-    }
-
-    return result;
+  _itemToMoveIsRow: Ember.computed('_itemToMove', function() {
+    return this.get('_itemToMove') instanceof FdEditformRow;
   }).readOnly(),
 
   /**
     @private
-    @property _selectedIsLast
+    @property _itemToMoveIsFirst
     @readOnly
     @type Boolean
   */
-  _selectedIsLast: Ember.computed('_selectedItemStorage.[]', function() {
-    let result = false;
-    let selectedItem = this.get('selectedItem');
-    let selectedItemStorage = this.get('_selectedItemStorage');
-    if (selectedItem && selectedItemStorage) {
-      result = selectedItemStorage.get('lastObject') === selectedItem;
+  _itemToMoveIsFirst: Ember.computed('_itemToMoveStorage.[]', function() {
+    let itemToMove = this.get('_itemToMove');
+    let itemToMoveStorage = this.get('_itemToMoveStorage');
+    if (itemToMove && itemToMoveStorage) {
+      return itemToMoveStorage.get('firstObject') === itemToMove;
     }
 
-    return result;
+    return false;
+  }).readOnly(),
+
+  /**
+    @private
+    @property _itemToMoveIsLast
+    @readOnly
+    @type Boolean
+  */
+  _itemToMoveIsLast: Ember.computed('_itemToMoveStorage.[]', function() {
+    let itemToMove = this.get('_itemToMove');
+    let itemToMoveStorage = this.get('_itemToMoveStorage');
+    if (itemToMove && itemToMoveStorage) {
+      return itemToMoveStorage.get('lastObject') === itemToMove;
+    }
+
+    return false;
   }).readOnly(),
 
   /**
@@ -594,12 +582,12 @@ FdFormUnsavedData, {
       @param {Number} step Step of moving the item.
     */
     sortSelectedItem(step) {
-      let selectedItem = this.get('selectedItem');
-      let selectedItemStorage = this.get('_selectedItemStorage');
-      let index = selectedItemStorage.indexOf(selectedItem) + step;
+      let itemToMove = this.get('_itemToMove');
+      let itemToMoveStorage = this.get('_itemToMoveStorage');
+      let index = itemToMoveStorage.indexOf(itemToMove) + step;
 
-      selectedItemStorage.removeObject(selectedItem);
-      selectedItemStorage.insertAt(index, selectedItem);
+      itemToMoveStorage.removeObject(itemToMove);
+      itemToMoveStorage.insertAt(index, itemToMove);
     },
 
     /**
@@ -635,7 +623,7 @@ FdFormUnsavedData, {
           try {
             this._removeItem(selectedItem);
             this._insertItem(selectedItem, item);
-            this.notifyPropertyChange('_selectedItemStorage');
+            this.notifyPropertyChange('_itemToMove');
             this.set('_moveItem', false);
           } catch (error) {
             this._insertItem(selectedItem, selectedItemContainer);

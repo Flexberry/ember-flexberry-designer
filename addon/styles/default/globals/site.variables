@@ -31,6 +31,9 @@
 /* Ширина сайдбара */
 @sidebarWdth:300px;
 
+/* Кнопки тулбара */
+@toolbarBtnsmargin: 0.2rem;
+
 /*--------------------------------------
     ember flexberry designer colors
 ---------------------------------------*/
@@ -52,6 +55,9 @@
 @toolbarBtnBg: @lightTextColor;
 
 /* Цвет основных кнопок */
-@basicBtn           : @lightTextColor;
+@basicBtn: @lightTextColor;
 
+@itemActiveBorderRadius: 0.5rem;
+@hoverToolbarBtnBg: rgba(0, 0, 0, 0.35);
+@activeToolbarBtnBg: rgba(0, 0, 0, 0.45);
 @itemActiveBorderRadius: 0.5rem;

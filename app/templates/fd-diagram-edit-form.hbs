@@ -591,6 +591,51 @@
           </button>
         {{/if}}
 
+        {{!-- Ucd action  --}}
+        {{#if (eq model.constructor.modelName 'fd-dev-uml-ucd')}}
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-usecase"}}
+            type='button' onclick={{action "addUseCase"}}>
+            <img src="assets/images/diagrams/ucd/usecase.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-usecase"}}
+             style="vertical-align: middle">
+          </button>
+
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-actor"}}
+            type='button' onclick={{action "addActor"}}>
+            <img src="assets/images/diagrams/ucd/actor.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-actor"}}
+             style="vertical-align: middle">
+          </button>
+
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-boundary"}}
+            type='button' onclick={{action "addBoundary"}}>
+            <img src="assets/images/diagrams/ucd/boundary.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-boundary"}}
+             style="vertical-align: middle">
+          </button>
+
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-undir-association"}}
+            type='button' onclick={{action "addUndirAssociation"}}>
+            <img src="assets/images/diagrams/ucd/undirAssociation.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-undir-association"}}
+             style="vertical-align: middle">
+          </button>
+
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-dir-association"}}
+            type='button' onclick={{action "addDirAssociation"}}>
+            <img src="assets/images/diagrams/ucd/dirAssociation.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-dir-association"}}
+             style="vertical-align: middle">
+          </button>
+
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-generalization"}}
+            type='button' onclick={{action "addGeneralization"}}>
+            <img src="assets/images/diagrams/ucd/generalization.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-generalization"}}
+             style="vertical-align: middle">
+          </button>
+
+          <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-dependency"}}
+            type='button' onclick={{action "addDependency"}}>
+            <img src="assets/images/diagrams/common/dependency.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-dependency"}}
+             style="vertical-align: middle">
+          </button>
+        {{/if}}
+
         <button class="ui button" title={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-note"}}
           type='button' onclick={{action "addNote"}}>
           <img src="assets/images/diagrams/common/comment.ico" alt={{t "forms.fd-diagram-edit-form.form-config-panel.add-primitive.add-note"}}

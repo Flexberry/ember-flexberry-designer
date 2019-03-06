@@ -56,7 +56,7 @@ export let ActiveObject = BaseObject.define('flexberry.uml.ActiveObject', {
 joint.shapes.flexberry.uml.ActiveObjectView = joint.shapes.flexberry.uml.BaseObjectView.extend({
   template: [
     '<div class="uml-class-inputs">',
-    '<input type="text" class="active-object-input class-name-input header-input" value="" />',
+    '<textarea type="text" class="active-object-input class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
     '<div class="input-buffer"></div>',
     '</div>'
   ].join(''),
