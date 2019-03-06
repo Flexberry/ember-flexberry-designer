@@ -1,9 +1,11 @@
 .ui.vertical.footer.segment > .flex-container > .ui.text.menu {
   margin: 0px;
   padding: 0px 30px;
-  background-color: @footerBackground;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  overflow: hidden;
 }
 
 .ui.vertical.footer.segment > .flex-container {
@@ -13,4 +15,6 @@
   height: @footerHeight;
   width: 100% !important;
   margin: 0px !important;
+  display: flex;
+  background-color: @footerBackground;
 }
