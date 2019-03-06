@@ -2,6 +2,7 @@ import Ember from 'ember';
 import EmberFlexberryTranslations from 'ember-flexberry/locales/en/translations';
 import FdAppstructListFormForm from './forms/fd-appstruct-form';
 import FdAggregationListFormForm from './forms/fd-aggregation-list-form';
+import FdAllProjects from './forms/fd-all-projects';
 import FdAssociationListFormForm from './forms/fd-association-list-form';
 import FdClassListFormForm from './forms/fd-class-list-form';
 import FdConfigurationListFormForm from './forms/fd-configuration-list-form';
@@ -115,6 +116,7 @@ import FdVisualControlModel from './models/fd-visual-control';
 import FdVisualControlComponent from './components/fd-visual-control';
 import FdVisualEditControlTreeComponent from './components/fd-visual-edit-control-tree';
 import FdTabs from './components/fd-tabs';
+import FdApplicationModelForm from './forms/fd-application-model';
 
 const translations = {};
 Ember.$.extend(true, translations, EmberFlexberryTranslations);
@@ -293,6 +295,46 @@ Ember.$.extend(true, translations, {
           'fd-view-list-form': {
             caption: 'fd-view-list-form',
             title: 'fd-view-list-form'
+          },
+          'fd-application-model': {
+            caption: 'Application model',
+            title: '',
+          },
+          'fd-diagrams': {
+            caption: 'Diagrams',
+            title: '',
+          },
+          'fd-navigation': {
+            caption: 'Navigation',
+            title: '',
+          },
+          'fd-generation': {
+            caption: 'Generation',
+            title: '',
+          },
+          'fd-setting': {
+            caption: 'Customization',
+            title: '',
+          },
+          'fd-architecture': {
+            caption: 'Architecture',
+            title: '',
+          },
+          'fd-all-projects': {
+            caption: 'All projects',
+            title: '',
+          },
+          'fd-requests': {
+            caption: 'Requests',
+            title: '',
+          },
+          'fd-docs': {
+            caption: 'Documentation',
+            title: '',
+          },
+          'fd-chat': {
+            caption: 'Chat',
+            title: '',
           }
         },
       }
@@ -308,6 +350,7 @@ Ember.$.extend(true, translations, {
     },
     'fd-appstruct-form': FdAppstructListFormForm,
     'fd-aggregation-list-form': FdAggregationListFormForm,
+    'fd-all-projects': FdAllProjects,
     'fd-association-list-form': FdAssociationListFormForm,
     'fd-class-list-form': FdClassListFormForm,
     'fd-configuration-list-form': FdConfigurationListFormForm,
@@ -346,6 +389,7 @@ Ember.$.extend(true, translations, {
     'fd-edit-form': FdEditForm,
     'new-platform-flexberry-web-designer-generation-e': NewPlatformFlexberryWebDesignerGenerationEForm,
     'new-platform-flexberry-web-designer-storage-type-e': NewPlatformFlexberryWebDesignerStorageTypeEForm,
+    'fd-application-model': FdApplicationModelForm
   },
 
   components: {

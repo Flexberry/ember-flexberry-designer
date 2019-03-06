@@ -1,0 +1,56 @@
+<h3>{{t "forms.fd-all-projects.creating-new"}}</h3>
+<div class="ui stackable grid fd-list">
+  <div class="row">
+    <div class="three wide column">
+      {{t "forms.fd-all-projects.name"}}
+    </div>
+    <div class="thirteen wide column light-text">
+      {{flexberry-textbox
+        class="fluid input"
+        value=projectName
+        placeholder=(t "forms.fd-all-projects.name-placeholder")
+      }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="sixteen wide column">
+      {{t "forms.fd-all-projects.name-example"}},
+      <button class="ui small basic button" {{action set "projectName" (t nameExample)}}>
+        {{t nameExample}}
+      </button>
+      <button class="ui small basic icon button" {{action notifyPropertyChange "nameExample"}}>
+        <i class="recycle icon"></i>
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="three wide column">
+      <div>{{t "forms.fd-all-projects.access"}}</div>
+    </div>
+    <div class="thirteen wide column light-text">
+      {{flexberry-checkbox label=(t "forms.fd-all-projects.access-private")}}
+      {{flexberry-checkbox label=(t "forms.fd-all-projects.access-public")}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="three wide column">
+      <div>{{t "forms.fd-all-projects.description"}}</div>
+    </div>
+    <div class="thirteen wide column light-text">
+      {{flexberry-textbox
+        class="fluid input"
+        placeholder=(t "forms.fd-all-projects.description-placeholder")
+      }}
+    </div>
+  </div>
+  <div class="two column row">
+    <div class="column">
+      {{#link-to "fd-all-projects"}}
+        {{t "forms.fd-all-projects.cancel"}}
+      {{/link-to}}
+    </div>
+    <div class="column">
+      {{fd-button caption=(t "forms.fd-all-projects.create-project")}}
+    </div>
+  </div>
+</div>

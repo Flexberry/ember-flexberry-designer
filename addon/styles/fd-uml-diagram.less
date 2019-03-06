@@ -31,9 +31,13 @@
     min-width: 50px;
     display: block;
     margin: 0 auto;
+    background-color: transparent;
     &.class-name-input {
         font-weight: bold;
         text-align: center;
+        resize: none;
+        line-height: 1.1;
+        overflow: hidden;
         &.active-object-input {
           text-decoration: underline;
         }
@@ -55,6 +59,23 @@
     }
     &.params-input {
       resize: none;
+      overflow: hidden;
+      min-width: 10px;
+      line-height: 1.1;
+    }
+    &.class-stereotype-input {
+      resize: none;
+      line-height: 1.1;
+      overflow: hidden;
+    }
+    &.package-header-input {
+      font-weight: normal;
+      text-decoration: underline;
+      text-align: left;
+      resize: none;
+      margin: 0;
+      line-height: 1.1;
+      overflow: hidden;
     }
     &.attributes-input, &.methods-input {
         resize: none;
@@ -67,8 +88,7 @@
         min-width: 10px;
     }
     &.description-input {
-        background-color: white;
-        min-width: 0px;
+        min-width: 5px;
     }
     &.underline-text {
       text-decoration: underline;
@@ -94,4 +114,9 @@
     .connection-wrap, .marker-arrowhead, .link-tools, .marker-vertices {
         display: none;
     }
+}
+
+.joint-paper {
+    min-width: 500px;
+    min-height: 500px;
 }

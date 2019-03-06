@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import joint from 'npm:jointjs';
 import { UseCase } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-use-case';
-import { UsecaseActor } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-actor';
+import { UseCaseActor } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-actor';
 import { Association } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-association';
 import { DirectedAssociation } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-directed-association';
 import { UseCaseGeneralization } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-generalization';
@@ -72,7 +72,7 @@ export default Ember.Controller.extend({
       });
       _this.graph.addCell(jUseCaseBoundary);
 
-      let jUseCaseActor = new UsecaseActor({
+      let jUseCaseActor = new UseCaseActor({
         position: { x: 250, y: 50 },
         name: 'Actor',
         ports: {

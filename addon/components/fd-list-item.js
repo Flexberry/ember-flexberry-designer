@@ -9,6 +9,7 @@ export default Ember.Component.extend(fdSheetMixin, {
 
   actions: {
     openSheet() {
+      this.deactivateListItem();
       this._super(...arguments);
       this.set('fdListItemActive', 'active');
     }

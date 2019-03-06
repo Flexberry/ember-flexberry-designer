@@ -2,12 +2,41 @@ import Ember from 'ember';
 
 export default Ember.Mixin.create({
 
+  /**
+    Array active list items.
+
+    @property activeItemsArray
+    @type undefined
+  */
+  activeItemsArray: undefined,
+
   commonVisible: {
     'visible': ''
   },
 
+  /**
+    Deactivate items from activeItemsArray and cleans array.
+
+    @method deactivateListItem
+  */
+  deactivateListItem() {
+    let activeItemsArray = this.get('activeItemsArray');
+    if (activeItemsArray.lenght !== 0) {
+      activeItemsArray.forEach((activeItem) => {
+        activeItem.set('fdListItemActive', undefined);
+      });
+
+      activeItemsArray.clear();
+    }
+  },
+
   actions: {
-    openSheet() {
+    openSheet(currentItem) {
+      if (!Ember.isNone(currentItem)) {
+        let activeItemsArray = this.get('activeItemsArray');
+        activeItemsArray.pushObject(currentItem);
+      }
+
       this.set('commonVisible.visible', 'visible');
       Ember.$('.pushable').addClass('fade');
 
@@ -24,5 +53,10 @@ export default Ember.Mixin.create({
         Ember.$('.fd-sheet .content-mini').css({ opacity: '', width: contentWidth });
       }, speed);
     }
+  },
+
+  init() {
+    this._super(...arguments);
+    this.set('activeItemsArray', Ember.A());
   }
 });

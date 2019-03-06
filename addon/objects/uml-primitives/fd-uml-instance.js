@@ -50,7 +50,7 @@ export let Instance = BaseObject.define('flexberry.uml.Instance', {
 joint.shapes.flexberry.uml.InstanceView = joint.shapes.flexberry.uml.BaseObjectView.extend({
   template: [
     '<div class="uml-class-inputs">',
-    '<input type="text" class="instance-input class-name-input header-input" value="" />',
+    '<textarea class="instance-input class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
     '<div class="input-buffer"></div>',
     '</div>'
   ].join(''),
