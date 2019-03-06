@@ -15994,6 +15994,10 @@ define('dummy/locales/en/translations', ['exports', 'ember', 'ember-flexberry-de
           'application-version': {
             caption: 'Addon version {{version}}',
             title: 'It is version of ember-flexberry addon, which uses in this dummy application ' + '(npm version + commit sha). ' + 'Click to open commit on GitHub.'
+          },
+          'copyright': 'Copyright © New platform Ltd. 2018',
+          'copyright-version': {
+            title: 'Copyright © New platform Ltd. 2018'
           }
         },
 
@@ -16189,6 +16193,10 @@ define('dummy/locales/ru/translations', ['exports', 'ember', 'ember-flexberry-de
           'application-version': {
             caption: 'Версия аддона {{version}}',
             title: 'Это версия аддона ember-flexberry, которая сейчас используется в этом тестовом приложении ' + '(версия npm-пакета + хэш коммита). ' + 'Кликните, чтобы перейти на GitHub.'
+          },
+          'copyright': 'Copyright © New platform Ltd. 2018 Создано при поддержке Фонда содействия ' + 'развитию малых форм предприятий в научно-технической сфере (программа СТАРТ-2013).',
+          'copyright-version': {
+            title: 'Copyright © New platform Ltd. 2018 Создано при поддержке Фонда содействия ' + 'развитию малых форм предприятий в научно-технической сфере (программа СТАРТ-2013).'
           }
         },
 
@@ -19277,7 +19285,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
               "column": 0
             },
             "end": {
-              "line": 69,
+              "line": 91,
               "column": 0
             }
           },
@@ -19366,17 +19374,105 @@ define("dummy/templates/application", ["exports"], function (exports) {
           var el3 = dom.createTextNode("\n    ");
           dom.appendChild(el2, el3);
           var el3 = dom.createElement("div");
-          dom.setAttribute(el3, "class", "ui text menu");
+          dom.setAttribute(el3, "class", "social-icons");
           var el4 = dom.createTextNode("\n      ");
           dom.appendChild(el3, el4);
           var el4 = dom.createElement("a");
-          dom.setAttribute(el4, "class", "brand item");
-          dom.setAttribute(el4, "href", "#");
+          dom.setAttribute(el4, "target", "_blank");
+          dom.setAttribute(el4, "class", "brand item btn-social");
+          dom.setAttribute(el4, "href", "http://vk.com/flexberry");
+          var el5 = dom.createTextNode("\n        ");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createComment("");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("\n        ");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("a");
+          dom.setAttribute(el4, "target", "_blank");
+          dom.setAttribute(el4, "class", "brand item btn-social");
+          dom.setAttribute(el4, "href", "https://www.facebook.com/groups/Flexberry/");
           var el5 = dom.createTextNode("\n        ");
           dom.appendChild(el4, el5);
           var el5 = dom.createComment("");
           dom.appendChild(el4, el5);
           var el5 = dom.createTextNode("\n      ");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("a");
+          dom.setAttribute(el4, "target", "_blank");
+          dom.setAttribute(el4, "class", "brand item btn-social");
+          dom.setAttribute(el4, "href", "https://twitter.com/Flexberry");
+          var el5 = dom.createTextNode("\n        ");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createComment("");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("\n      ");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("a");
+          dom.setAttribute(el4, "target", "_blank");
+          dom.setAttribute(el4, "class", "brand item btn-social");
+          dom.setAttribute(el4, "href", "https://github.com/Flexberry");
+          var el5 = dom.createTextNode("\n        ");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createComment("");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("\n      ");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("a");
+          dom.setAttribute(el4, "target", "_blank");
+          dom.setAttribute(el4, "class", "brand item btn-social");
+          dom.setAttribute(el4, "href", "http://www.youtube.com/user/FlexberryPLATFORM");
+          var el5 = dom.createTextNode("\n        ");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createComment("");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("\n      ");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("a");
+          dom.setAttribute(el4, "target", "_blank");
+          dom.setAttribute(el4, "class", "brand item btn-social");
+          dom.setAttribute(el4, "href", "https://gitter.im/Flexberry");
+          var el5 = dom.createTextNode("\n        ");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createComment("");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("\n      ");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n    ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n    ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "ui text menu");
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("div");
+          dom.setAttribute(el4, "class", "copyright-text");
+          var el5 = dom.createTextNode("\n        ");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createComment("");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode(" \n      ");
           dom.appendChild(el4, el5);
           dom.appendChild(el3, el4);
           var el4 = dom.createTextNode("\n      ");
@@ -19390,7 +19486,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
           var el5 = dom.createTextNode("\n      ");
           dom.appendChild(el4, el5);
           dom.appendChild(el3, el4);
-          var el4 = dom.createTextNode("\n    ");
+          var el4 = dom.createTextNode("\n\n    ");
           dom.appendChild(el3, el4);
           dom.appendChild(el2, el3);
           var el3 = dom.createTextNode("\n  ");
@@ -19406,20 +19502,29 @@ define("dummy/templates/application", ["exports"], function (exports) {
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
           var element1 = dom.childAt(fragment, [1]);
           var element2 = dom.childAt(fragment, [5, 1]);
-          var element3 = dom.childAt(fragment, [9, 1, 1]);
-          var morphs = new Array(8);
+          var element3 = dom.childAt(fragment, [9, 1]);
+          var element4 = dom.childAt(element3, [1]);
+          var element5 = dom.childAt(element3, [3]);
+          var morphs = new Array(15);
           morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
           morphs[1] = dom.createElementMorph(element1);
           morphs[2] = dom.createMorphAt(fragment, 3, 3, contextualElement);
           morphs[3] = dom.createAttrMorph(element2, 'class');
           morphs[4] = dom.createMorphAt(dom.childAt(element2, [1, 1, 1]), 1, 1);
           morphs[5] = dom.createMorphAt(dom.childAt(fragment, [7]), 1, 1);
-          morphs[6] = dom.createMorphAt(dom.childAt(element3, [1]), 1, 1);
-          morphs[7] = dom.createMorphAt(dom.childAt(element3, [3]), 1, 1);
+          morphs[6] = dom.createMorphAt(dom.childAt(element4, [1]), 1, 1);
+          morphs[7] = dom.createMorphAt(dom.childAt(element4, [3]), 1, 1);
+          morphs[8] = dom.createMorphAt(dom.childAt(element4, [5]), 1, 1);
+          morphs[9] = dom.createMorphAt(dom.childAt(element4, [7]), 1, 1);
+          morphs[10] = dom.createMorphAt(dom.childAt(element4, [9]), 1, 1);
+          morphs[11] = dom.createMorphAt(dom.childAt(element4, [11]), 1, 1);
+          morphs[12] = dom.createMorphAt(element5, 1, 1);
+          morphs[13] = dom.createMorphAt(dom.childAt(element5, [3]), 1, 1);
+          morphs[14] = dom.createMorphAt(dom.childAt(element5, [5]), 1, 1);
           dom.insertBoundary(fragment, 0);
           return morphs;
         },
-        statements: [["block", "ui-sidebar", [], ["class", "vertical main menu visible uncover", "ui_context", ".ember-application > .ember-view", "closable", false, "dimPage", false, "onShow", ["subexpr", "action", ["updateWidth"], [], ["loc", [null, [10, 9], [10, 31]]]], "onHidden", ["subexpr", "action", ["updateWidth"], [], ["loc", [null, [11, 11], [11, 33]]]]], 0, null, ["loc", [null, [5, 0], [31, 15]]]], ["element", "action", ["toggleSidebar"], [], ["loc", [null, [32, 8], [32, 34]]]], ["inline", "outlet", ["right-sidebar"], [], ["loc", [null, [35, 0], [35, 26]]]], ["attribute", "class", ["concat", ["ui form ", ["get", "appState.state", ["loc", [null, [38, 24], [38, 38]]]]]]], ["content", "outlet", ["loc", [null, [42, 12], [42, 22]]]], ["inline", "outlet", ["modal"], [], ["loc", [null, [49, 2], [49, 20]]]], ["inline", "t", ["forms.application.footer.application-name"], [], ["loc", [null, [55, 8], [55, 57]]]], ["inline", "flexberry-dropdown", [], ["class", "compact", "items", ["subexpr", "@mut", [["get", "locales", ["loc", [null, [60, 16], [60, 23]]]]], [], []], "value", ["subexpr", "@mut", [["get", "i18n.locale", ["loc", [null, [61, 16], [61, 27]]]]], [], []], "placeholder", ["subexpr", "t", ["forms.application.header.menu.language-dropdown.placeholder"], [], ["loc", [null, [62, 22], [62, 87]]]], "direction", "upward"], ["loc", [null, [58, 8], [64, 10]]]]],
+        statements: [["block", "ui-sidebar", [], ["class", "vertical main menu visible uncover", "ui_context", ".ember-application > .ember-view", "closable", false, "dimPage", false, "onShow", ["subexpr", "action", ["updateWidth"], [], ["loc", [null, [10, 9], [10, 31]]]], "onHidden", ["subexpr", "action", ["updateWidth"], [], ["loc", [null, [11, 11], [11, 33]]]]], 0, null, ["loc", [null, [5, 0], [31, 15]]]], ["element", "action", ["toggleSidebar"], [], ["loc", [null, [32, 8], [32, 34]]]], ["inline", "outlet", ["right-sidebar"], [], ["loc", [null, [35, 0], [35, 26]]]], ["attribute", "class", ["concat", ["ui form ", ["get", "appState.state", ["loc", [null, [38, 24], [38, 38]]]]]]], ["content", "outlet", ["loc", [null, [42, 12], [42, 22]]]], ["inline", "outlet", ["modal"], [], ["loc", [null, [49, 2], [49, 20]]]], ["inline", "partial", ["svg-icons/social-icons/vk"], [], ["loc", [null, [55, 8], [55, 47]]]], ["inline", "partial", ["svg-icons/social-icons/facebook"], [], ["loc", [null, [58, 8], [58, 53]]]], ["inline", "partial", ["svg-icons/social-icons/twitter"], [], ["loc", [null, [61, 8], [61, 52]]]], ["inline", "partial", ["svg-icons/social-icons/github"], [], ["loc", [null, [64, 8], [64, 51]]]], ["inline", "partial", ["svg-icons/social-icons/youtube"], [], ["loc", [null, [67, 8], [67, 52]]]], ["inline", "partial", ["svg-icons/social-icons/gitter"], [], ["loc", [null, [70, 8], [70, 51]]]], ["inline", "t", ["forms.application.footer.application-name"], [], ["loc", [null, [74, 6], [74, 55]]]], ["inline", "t", ["forms.application.footer.copyright"], [], ["loc", [null, [76, 8], [76, 50]]]], ["inline", "flexberry-dropdown", [], ["class", "compact", "items", ["subexpr", "@mut", [["get", "locales", ["loc", [null, [81, 16], [81, 23]]]]], [], []], "value", ["subexpr", "@mut", [["get", "i18n.locale", ["loc", [null, [82, 16], [82, 27]]]]], [], []], "placeholder", ["subexpr", "t", ["forms.application.header.menu.language-dropdown.placeholder"], [], ["loc", [null, [83, 22], [83, 87]]]], "direction", "upward"], ["loc", [null, [79, 8], [85, 10]]]]],
         locals: [],
         templates: [child0]
       };
@@ -19438,7 +19543,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 70,
+            "line": 92,
             "column": 0
           }
         },
@@ -19461,7 +19566,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["block", "if", [["get", "isInAcceptanceTestMode", ["loc", [null, [1, 6], [1, 28]]]]], [], 0, 1, ["loc", [null, [1, 0], [69, 7]]]]],
+      statements: [["block", "if", [["get", "isInAcceptanceTestMode", ["loc", [null, [1, 6], [1, 28]]]]], [], 0, 1, ["loc", [null, [1, 0], [91, 7]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -60081,6 +60186,639 @@ define("dummy/templates/statechart-diagram-primitives-demo", ["exports"], functi
     };
   })());
 });
+define("dummy/templates/svg-icons/social-icons/facebook", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "triple-curlies"
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 14,
+            "column": 6
+          }
+        },
+        "moduleName": "dummy/templates/svg-icons/social-icons/facebook.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        dom.setNamespace("http://www.w3.org/2000/svg");
+        var el1 = dom.createElement("svg");
+        dom.setAttribute(el1, "xmlns", "http://www.w3.org/2000/svg");
+        dom.setAttribute(el1, "xmlns:xlink", "http://www.w3.org/1999/xlink");
+        dom.setAttribute(el1, "viewBox", "0 0 9.33 19.98");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("defs");
+        var el3 = dom.createElement("style");
+        var el4 = dom.createTextNode("#soc-fb-icon{fill:url(#linear-gradient-fb);}");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("linearGradient");
+        dom.setAttribute(el3, "id", "linear-gradient-fb");
+        dom.setAttribute(el3, "x1", "0.43");
+        dom.setAttribute(el3, "y1", "-0.29");
+        dom.setAttribute(el3, "x2", "11.77");
+        dom.setAttribute(el3, "y2", "21.04");
+        dom.setAttribute(el3, "gradientUnits", "userSpaceOnUse");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("stop");
+        dom.setAttribute(el4, "offset", "0");
+        dom.setAttribute(el4, "stop-color", "#e63480");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("stop");
+        dom.setAttribute(el4, "offset", "1");
+        dom.setAttribute(el4, "stop-color", "#8518af");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("title");
+        var el3 = dom.createTextNode("Facebook");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("g");
+        dom.setAttribute(el2, "id", "Layer_2");
+        dom.setAttribute(el2, "data-name", "Layer 2");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("g");
+        dom.setAttribute(el3, "id", "Layer_1-2");
+        dom.setAttribute(el3, "data-name", "Layer 1");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("path");
+        dom.setAttribute(el4, "id", "soc-fb-icon");
+        dom.setAttribute(el4, "d", "M9.29,0V3.36a.16.16,0,0,1-.16.16h-2a1.77,1.77,0,0,0-.45.08.78.78,0,0,0-.46.73c0,.74,0,1.47,0,2.21,0,.13.08.1.15.1H9.22c.1,0,.12,0,.11.13L9,10c0,.12-.09.09-.15.09H6.44a.16.16,0,0,0-.17.15h0V20H2.5V10.12a.18.18,0,0,0-.18-.18H.16A.16.16,0,0,1,0,9.78V6.64a.16.16,0,0,1,.16-.16H2.35a.16.16,0,0,0,.16-.15V3.51A4.92,4.92,0,0,1,3,1.57,2.74,2.74,0,0,1,4.6.33,5,5,0,0,1,5.69.09.21.21,0,0,0,5.86,0Z");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes() {
+        return [];
+      },
+      statements: [],
+      locals: [],
+      templates: []
+    };
+  })());
+});
+define("dummy/templates/svg-icons/social-icons/github", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "triple-curlies"
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 14,
+            "column": 6
+          }
+        },
+        "moduleName": "dummy/templates/svg-icons/social-icons/github.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        dom.setNamespace("http://www.w3.org/2000/svg");
+        var el1 = dom.createElement("svg");
+        dom.setAttribute(el1, "xmlns", "http://www.w3.org/2000/svg");
+        dom.setAttribute(el1, "xmlns:xlink", "http://www.w3.org/1999/xlink");
+        dom.setAttribute(el1, "viewBox", "0 0 16.66 16.11");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("defs");
+        var el3 = dom.createElement("style");
+        var el4 = dom.createTextNode("#soc-git-icon{fill:url(#linear-gradient-git);}");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("linearGradient");
+        dom.setAttribute(el3, "id", "linear-gradient-git");
+        dom.setAttribute(el3, "x1", "1.74");
+        dom.setAttribute(el3, "y1", "3.57");
+        dom.setAttribute(el3, "x2", "15.08");
+        dom.setAttribute(el3, "y2", "13.07");
+        dom.setAttribute(el3, "gradientUnits", "userSpaceOnUse");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("stop");
+        dom.setAttribute(el4, "offset", "0");
+        dom.setAttribute(el4, "stop-color", "#e63480");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("stop");
+        dom.setAttribute(el4, "offset", "1");
+        dom.setAttribute(el4, "stop-color", "#8518af");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("title");
+        var el3 = dom.createTextNode("GitHub");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("g");
+        dom.setAttribute(el2, "id", "Layer_2");
+        dom.setAttribute(el2, "data-name", "Layer 2");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("g");
+        dom.setAttribute(el3, "id", "Layer_1-2");
+        dom.setAttribute(el3, "data-name", "Layer 1");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("path");
+        dom.setAttribute(el4, "id", "soc-git-icon");
+        dom.setAttribute(el4, "d", "M9.86,11.92c.36-.07.7-.12,1-.21A3.21,3.21,0,0,0,13.18,10a4.54,4.54,0,0,0,.31-3.16,2.77,2.77,0,0,0-.61-1.12.26.26,0,0,1-.06-.28,2.91,2.91,0,0,0-.1-1.92.26.26,0,0,0-.2-.13,2.42,2.42,0,0,0-1.12.29c-.31.15-.6.33-.9.49a.36.36,0,0,1-.23,0,8.17,8.17,0,0,0-3.92,0,.39.39,0,0,1-.27-.06,4.91,4.91,0,0,0-1.73-.75H4.31c-.33,0-.37,0-.46.29a3,3,0,0,0,0,1.81.21.21,0,0,1,0,.17,3.48,3.48,0,0,0-.73,3,5.26,5.26,0,0,0,.29,1.13,3.2,3.2,0,0,0,2.38,1.95c.34.09.68.14,1,.21a2,2,0,0,0-.49,1s-.07.09-.12.11a1.73,1.73,0,0,1-2.3-.71,1.68,1.68,0,0,0-1.12-.84,1,1,0,0,0-.39,0c-.18,0-.2.13-.08.26a.86.86,0,0,0,.19.17,2.27,2.27,0,0,1,.93,1.15,1.81,1.81,0,0,0,1.67,1.16,10.54,10.54,0,0,0,1.18,0c0,.51,0,1,0,1.57,0,.27-.3.4-.61.29a7.5,7.5,0,0,1-2-1A8,8,0,0,1,0,7.83,8.22,8.22,0,0,1,6.74.15,8.26,8.26,0,0,1,11,16.07c-.41.14-.65,0-.65-.47q0-1,0-2.08A2.18,2.18,0,0,0,9.86,11.92Z");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes() {
+        return [];
+      },
+      statements: [],
+      locals: [],
+      templates: []
+    };
+  })());
+});
+define("dummy/templates/svg-icons/social-icons/gitter", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "triple-curlies"
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 10,
+            "column": 6
+          }
+        },
+        "moduleName": "dummy/templates/svg-icons/social-icons/gitter.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        dom.setNamespace("http://www.w3.org/2000/svg");
+        var el1 = dom.createElement("svg");
+        dom.setAttribute(el1, "aria-labelledby", "simpleicons-gitter-icon");
+        dom.setAttribute(el1, "role", "img");
+        dom.setAttribute(el1, "viewBox", "0 0 24 24");
+        dom.setAttribute(el1, "xmlns", "http://www.w3.org/2000/svg");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("defs");
+        var el3 = dom.createElement("style");
+        var el4 = dom.createTextNode("#soc-gt-icon{fill:url(#linear-gradient-gt);}");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("linearGradient");
+        dom.setAttribute(el3, "id", "linear-gradient-gt");
+        dom.setAttribute(el3, "x1", "0.43");
+        dom.setAttribute(el3, "y1", "-0.29");
+        dom.setAttribute(el3, "x2", "12");
+        dom.setAttribute(el3, "y2", "24");
+        dom.setAttribute(el3, "gradientUnits", "userSpaceOnUse");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("stop");
+        dom.setAttribute(el4, "offset", "0");
+        dom.setAttribute(el4, "stop-color", "#e63480");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("stop");
+        dom.setAttribute(el4, "offset", "1");
+        dom.setAttribute(el4, "stop-color", "#8518af");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("title");
+        dom.setAttribute(el2, "id", "simpleicons-gitter-icon");
+        var el3 = dom.createTextNode("Gitter");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n    ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("path");
+        dom.setAttribute(el2, "id", "soc-gt-icon");
+        dom.setAttribute(el2, "d", "M8.501 4.001H10.5V24H8.501V4.001zm6.999 0V24h-2V4.001h2zM3.5 0h2.001v15H3.5V0zm15 4.001h2V15h-2V4.001z");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes() {
+        return [];
+      },
+      statements: [],
+      locals: [],
+      templates: []
+    };
+  })());
+});
+define("dummy/templates/svg-icons/social-icons/twitter", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "triple-curlies"
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 14,
+            "column": 6
+          }
+        },
+        "moduleName": "dummy/templates/svg-icons/social-icons/twitter.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        dom.setNamespace("http://www.w3.org/2000/svg");
+        var el1 = dom.createElement("svg");
+        dom.setAttribute(el1, "xmlns", "http://www.w3.org/2000/svg");
+        dom.setAttribute(el1, "xmlns:xlink", "http://www.w3.org/1999/xlink");
+        dom.setAttribute(el1, "viewBox", "0 0 16.54 13.48");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("defs");
+        var el3 = dom.createElement("style");
+        var el4 = dom.createTextNode("#soc-tw-icon{fill:url(#linear-gradient-tw);}");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("linearGradient");
+        dom.setAttribute(el3, "id", "linear-gradient-tw");
+        dom.setAttribute(el3, "y1", "6.74");
+        dom.setAttribute(el3, "x2", "16.54");
+        dom.setAttribute(el3, "y2", "6.74");
+        dom.setAttribute(el3, "gradientUnits", "userSpaceOnUse");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("stop");
+        dom.setAttribute(el4, "offset", "0");
+        dom.setAttribute(el4, "stop-color", "#e63480");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("stop");
+        dom.setAttribute(el4, "offset", "1");
+        dom.setAttribute(el4, "stop-color", "#8518af");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("title");
+        var el3 = dom.createTextNode("Twitter");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n    ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("g");
+        dom.setAttribute(el2, "id", "Layer_2");
+        dom.setAttribute(el2, "data-name", "Layer 2");
+        var el3 = dom.createTextNode("\n      ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("g");
+        dom.setAttribute(el3, "id", "Layer_1-2");
+        dom.setAttribute(el3, "data-name", "Layer 1");
+        var el4 = dom.createTextNode("\n        ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("path");
+        dom.setAttribute(el4, "id", "soc-tw-icon");
+        dom.setAttribute(el4, "d", "M0,12a6.91,6.91,0,0,0,5-1.42A3.46,3.46,0,0,1,1.83,8.21l.77,0a2.56,2.56,0,0,0,.75-.12,3.43,3.43,0,0,1-2-1.2A3.35,3.35,0,0,1,.64,4.75a3.35,3.35,0,0,0,1.52.41A3.42,3.42,0,0,1,.75,3.1,3.37,3.37,0,0,1,1.11.63a9.75,9.75,0,0,0,7,3.56c0-.1,0-.18,0-.26a3.32,3.32,0,0,1,.53-2.41A3.26,3.26,0,0,1,10.76.07,3.33,3.33,0,0,1,13.89,1a.13.13,0,0,0,.13,0,6.86,6.86,0,0,0,2-.77l0,0h0a3.35,3.35,0,0,1-.57,1.05,3.7,3.7,0,0,1-.89.79,6.93,6.93,0,0,0,1.91-.5l0,.06A6.85,6.85,0,0,1,14.93,3.3a.15.15,0,0,0-.07.14c0,.32,0,.65,0,1a9.32,9.32,0,0,1-.31,1.85,10,10,0,0,1-2,3.86,9.1,9.1,0,0,1-4.53,3,9.77,9.77,0,0,1-1.52.31,10.19,10.19,0,0,1-1.69.07A9.6,9.6,0,0,1,0,12Z");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes() {
+        return [];
+      },
+      statements: [],
+      locals: [],
+      templates: []
+    };
+  })());
+});
+define("dummy/templates/svg-icons/social-icons/vk", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "triple-curlies"
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 14,
+            "column": 6
+          }
+        },
+        "moduleName": "dummy/templates/svg-icons/social-icons/vk.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        dom.setNamespace("http://www.w3.org/2000/svg");
+        var el1 = dom.createElement("svg");
+        dom.setAttribute(el1, "xmlns", "http://www.w3.org/2000/svg");
+        dom.setAttribute(el1, "xmlns:xlink", "http://www.w3.org/1999/xlink");
+        dom.setAttribute(el1, "viewBox", "0 0 18.99 11.16");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("defs");
+        var el3 = dom.createElement("style");
+        var el4 = dom.createTextNode("#soc-vk-icon{fill:url(#linear-gradient-vk);}");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("linearGradient");
+        dom.setAttribute(el3, "id", "linear-gradient-vk");
+        dom.setAttribute(el3, "x1", "2.55");
+        dom.setAttribute(el3, "y1", "-0.69");
+        dom.setAttribute(el3, "x2", "19.22");
+        dom.setAttribute(el3, "y2", "9.31");
+        dom.setAttribute(el3, "gradientUnits", "userSpaceOnUse");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("stop");
+        dom.setAttribute(el4, "offset", "0");
+        dom.setAttribute(el4, "stop-color", "#e63480");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("stop");
+        dom.setAttribute(el4, "offset", "1");
+        dom.setAttribute(el4, "stop-color", "#8518af");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("title");
+        var el3 = dom.createTextNode("Vkontakte");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("g");
+        dom.setAttribute(el2, "id", "Layer_2");
+        dom.setAttribute(el2, "data-name", "Layer 2");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("g");
+        dom.setAttribute(el3, "id", "Layer_1-2");
+        dom.setAttribute(el3, "data-name", "Layer 1");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("path");
+        dom.setAttribute(el4, "id", "soc-vk-icon");
+        dom.setAttribute(el4, "d", "M15.77,5.43S18.27,1.9,18.52.74c.08-.41-.1-.65-.53-.65H15.82A.79.79,0,0,0,15,.62a19.66,19.66,0,0,1-2.6,4.08c-.46.51-.69.66-.94.66s-.3-.17-.3-.63v-4c0-.56-.07-.73-.53-.73H7.14a.38.38,0,0,0-.43.33v0c0,.53.81.65.81,2.09v3c0,.6,0,.83-.31.83C6.46,6.28,4.69,3.71,3.7.8,3.5.2,3.29,0,2.7,0H.55A.52.52,0,0,0,0,.53s0,0,0,0c0,.58.68,3.26,3.35,6.86,1.79,2.42,4.14,3.73,6.26,3.73,1.29,0,1.61-.22,1.61-.76V8.48c0-.46.18-.66.45-.66s.82.1,2,1.31c1.46,1.39,1.56,2,2.35,2h2.44c.25,0,.48-.12.48-.53a6.61,6.61,0,0,0-1.81-2.68c-.45-.6-1.18-1.24-1.41-1.54a.69.69,0,0,1,0-.91Z");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes() {
+        return [];
+      },
+      statements: [],
+      locals: [],
+      templates: []
+    };
+  })());
+});
+define("dummy/templates/svg-icons/social-icons/youtube", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "triple-curlies"
+        },
+        "revision": "Ember@2.4.6",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 14,
+            "column": 6
+          }
+        },
+        "moduleName": "dummy/templates/svg-icons/social-icons/youtube.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        dom.setNamespace("http://www.w3.org/2000/svg");
+        var el1 = dom.createElement("svg");
+        dom.setAttribute(el1, "xmlns", "http://www.w3.org/2000/svg");
+        dom.setAttribute(el1, "xmlns:xlink", "http://www.w3.org/1999/xlink");
+        dom.setAttribute(el1, "viewBox", "0 0 20.08 14.13");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("defs");
+        var el3 = dom.createElement("style");
+        var el4 = dom.createTextNode("#soc-yt-icon{fill:url(#linear-gradient-yt);}");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("linearGradient");
+        dom.setAttribute(el3, "id", "linear-gradient-yt");
+        dom.setAttribute(el3, "x1", "2.54");
+        dom.setAttribute(el3, "y1", "3.21");
+        dom.setAttribute(el3, "x2", "18.37");
+        dom.setAttribute(el3, "y2", "11.37");
+        dom.setAttribute(el3, "gradientUnits", "userSpaceOnUse");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("stop");
+        dom.setAttribute(el4, "offset", "0");
+        dom.setAttribute(el4, "stop-color", "#e63480");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("stop");
+        dom.setAttribute(el4, "offset", "1");
+        dom.setAttribute(el4, "stop-color", "#8518af");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("title");
+        var el3 = dom.createTextNode("Youtube");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("g");
+        dom.setAttribute(el2, "id", "Layer_2");
+        dom.setAttribute(el2, "data-name", "Layer 2");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("g");
+        dom.setAttribute(el3, "id", "Layer_1-2");
+        dom.setAttribute(el3, "data-name", "Layer 1");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("path");
+        dom.setAttribute(el4, "id", "soc-yt-icon");
+        dom.setAttribute(el4, "d", "M20.08,5.54V8.62s0,0,0,0v.39c0,.13,0,.43,0,.64s0,.59-.07.87a5.92,5.92,0,0,1-.3,1.53,2.49,2.49,0,0,1-2.22,1.78c-.69.09-1.39.1-2.08.14-1.11.05-2.22.08-3.32.09H10.9s-.08,0-.09,0H9.63c0-.05,0,0-.07,0H9l-1.87,0C6.06,14.07,5,14,3.87,14a9.71,9.71,0,0,1-1.51-.15,2.37,2.37,0,0,1-1.9-1.65,6.59,6.59,0,0,1-.31-1.5C.09,10,0,9.24,0,8.53c0-1.34,0-2.68.05-4,0-.47.07-.93.12-1.4a5.19,5.19,0,0,1,.4-1.34A2.41,2.41,0,0,1,2.2.35a4.93,4.93,0,0,1,1-.13c.31,0,.59,0,.92-.06L5,.12C5.88.08,6.73.06,7.6,0h.65s0,0,0,0h3.44c0,.07.06,0,.09,0l1.92,0c.49,0,1,0,1.47.06a4,4,0,0,0,.65,0h0a3.44,3.44,0,0,1,.55,0c.18,0,.31,0,.46,0l.46,0a3,3,0,0,1,.51.1,2.52,2.52,0,0,1,.9.47,2.27,2.27,0,0,1,.4.4,3.1,3.1,0,0,1,.45.94,6,6,0,0,1,.21.8c0,.25.06.51.08.76s0,.59.07.86,0,.59,0,.87C20,5.49,20,5.53,20.08,5.54ZM13.37,6.88,8,4.06V9.67Z");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes() {
+        return [];
+      },
+      statements: [],
+      locals: [],
+      templates: []
+    };
+  })());
+});
 define("dummy/templates/usecase-diagram-primitives-demo", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     return {
@@ -60432,7 +61170,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+0c98cfe0"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+bdbdeb97"});
 }
 
 /* jshint ignore:end */

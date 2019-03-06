@@ -22848,9 +22848,11 @@ ol.ui.horizontal.list li:before,
 .ui.vertical.footer.segment > .flex-container > .ui.text.menu {
   margin: 0px;
   padding: 0px 30px;
-  background-color: #eee;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  overflow: hidden;
 }
 .ui.vertical.footer.segment > .flex-container {
   position: fixed;
@@ -22859,6 +22861,8 @@ ol.ui.horizontal.list li:before,
   height: 40px;
   width: 100% !important;
   margin: 0px !important;
+  display: flex;
+  background-color: #eee;
 }
 /*!
  * # Semantic UI - Step
@@ -57149,6 +57153,23 @@ h2.form-header {
 }
 .flexberry-vertical-form {
   transition: opacity 250ms;
+}
+.social-icons {
+  display: flex;
+  min-width: 300px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.social-icons .btn-social svg {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+.copyright-text {
+  text-align: center;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .ui.form .fd-search-input input[type="text"] {
   padding: 0.7em 2.5em;
