@@ -1,0 +1,4 @@
+@width: @sidebarWdth;
+
+@horizontalBoxShadow: none;
+@itemTransition: none;

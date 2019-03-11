@@ -8,6 +8,9 @@ module.exports = function(defaults) {
       paths: [
         'bower_components/semantic-ui'
       ]
+    },
+    SemanticUI: {
+      css: false
     }
 
     // Add options here
@@ -20,6 +23,7 @@ module.exports = function(defaults) {
     behave. You most likely want to be modifying `./index.js` or app's build file
   */
   app.import('vendor/font-icon.css');
+  app.import('vendor/fd-icons.css');
   app.import('vendor/joint.core.css');
 
   app.import('vendor/fonts/icons.eot', { destDir: 'assets/fonts' });
@@ -28,24 +32,11 @@ module.exports = function(defaults) {
   app.import('vendor/fonts/icons.ttf', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/icons.woff', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/icons.woff2', { destDir: 'assets/fonts' });
-  app.import('vendor/fonts/crim.eot', { destDir: 'assets/fonts' });
-  app.import('vendor/fonts/crim.svg', { destDir: 'assets/fonts' });
-  app.import('vendor/fonts/crim.ttf', { destDir: 'assets/fonts' });
-  app.import('vendor/fonts/crim.woff', { destDir: 'assets/fonts' });
-  app.import('vendor/fonts/crim.woff2', { destDir: 'assets/fonts' });
-  app.import('vendor/fonts/outline-icons.eot', { destDir: 'assets/fonts' });
-  app.import('vendor/fonts/outline-icons.svg', { destDir: 'assets/fonts' });
-  app.import('vendor/fonts/outline-icons.ttf', { destDir: 'assets/fonts' });
-  app.import('vendor/fonts/outline-icons.woff', { destDir: 'assets/fonts' });
-  app.import('vendor/fonts/outline-icons.woff2', { destDir: 'assets/fonts' });
-  app.import('vendor/serviceImages/close.png', { destDir: 'assets/themes/blue-sky/assets/images' });
-  app.import('vendor/serviceImages/close-hover.png', { destDir: 'assets/themes/blue-sky/assets/images' });
 
-  app.import('vendor/serviceImages/plus.png', { destDir: 'assets/themes/blue-sky/assets/images' });
-  app.import('vendor/serviceImages/minus.png', { destDir: 'assets/themes/blue-sky/assets/images' });
-
-  app.import('vendor/serviceImages/header-bgw.png', { destDir: 'assets/themes/orange/assets/images' });
-  app.import('vendor/serviceImages/bgw-head-calendar.png', { destDir: 'assets/themes/orange/assets/images' });
+  app.import('vendor/fonts/fd-icons.eot', { destDir: 'assets/fonts' });
+  app.import('vendor/fonts/fd-icons.ttf', { destDir: 'assets/fonts' });
+  app.import('vendor/fonts/fd-icons.woff', { destDir: 'assets/fonts' });
+  app.import('vendor/fonts/fd-icons.woff2', { destDir: 'assets/fonts' });
 
   return app.toTree();
 };

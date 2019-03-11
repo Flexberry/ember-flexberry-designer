@@ -1,0 +1,21 @@
+
+.ui.basic.button {
+  padding: 0.5em 1.2em;
+}
+
+.fd-sheet-toolbar {
+  .ui.button {
+    color: @toolbarBtnClr;
+  }
+  .ui.buttons {
+    .ui.button {
+    margin-right: @toolbarBtnsmargin;
+    }
+  }
+  i.icon {
+    width: 1em;
+    &::before {
+      font-size: 0.9rem;
+    }
+  }
+}

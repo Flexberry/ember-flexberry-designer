@@ -1,0 +1,12 @@
+{{flexberry-error error=error}}
+
+{{#if showHeader}}
+  <h3>{{t "forms.fd-all-projects.caption"}}</h3>
+
+  {{fd-search-input value=search}}
+  {{#link-to "fd-all-projects.new" (query-params nameFromSearch=search)}}
+    {{t "forms.fd-all-projects.create-project"}}
+  {{/link-to}}
+{{/if}}
+
+{{outlet}}

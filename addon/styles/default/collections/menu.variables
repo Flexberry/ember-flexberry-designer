@@ -1,0 +1,20 @@
+/* Menu */
+@border:none;
+
+/* Menu Item */
+@itemVerticalPadding: @relativeMini;
+@itemHorizontalPadding: @relativeLarge;
+
+/* Divider */
+@dividerSize: 0px ! important;
+
+/*--------------
+     Types
+---------------*/
+
+/* Vertical */
+@verticalBackground: @sidebarBg;
+@activeItemBackground: @fdSheetBg;
+@activeHoverItemBackground: @fdSheetBg;
+@hoverItemBackground: @fdSheetBg;
+@pressedItemBackground: @fdSheetBg;
