@@ -8,7 +8,7 @@ export default Ember.Mixin.create({
     @property activeItemsArray
     @type undefined
   */
-  activeItemsArray: undefined,
+  activeItemsArray: Ember.A(),
 
   commonVisible: {
     'visible': ''
@@ -53,10 +53,5 @@ export default Ember.Mixin.create({
         Ember.$('.fd-sheet .content-mini').css({ opacity: '', width: contentWidth });
       }, speed);
     }
-  },
-
-  init() {
-    this._super(...arguments);
-    this.set('activeItemsArray', Ember.A());
   }
 });
