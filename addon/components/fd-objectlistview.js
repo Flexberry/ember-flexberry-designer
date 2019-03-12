@@ -3,6 +3,7 @@
 */
 
 import Ember from 'ember';
+import { A } from '@ember/array';
 import FdDataTypes from '../utils/fd-datatypes';
 
 /**
@@ -36,7 +37,7 @@ export default Ember.Component.extend({
     @type Ember.NativeArray
   */
   _cells: Ember.computed('_headers.length', function() {
-    let cells = Ember.A();
+    let cells = A();
     let types = this.get('types');
     let dataTypes = this.get('_dataTypes');
     let length = this.get('_headers.length');
@@ -56,7 +57,7 @@ export default Ember.Component.extend({
     @type Ember.NativeArray
   */
   _rows: Ember.computed('rowsCount', function() {
-    let rows = Ember.A();
+    let rows = A();
     let rowsCount = this.get('rowsCount');
     for (let i = 0; i < rowsCount; i++) {
       rows.pushObject(this.get('_cells'));
@@ -86,7 +87,7 @@ export default Ember.Component.extend({
     @type Ember.NativeArray
   */
   _pages: Ember.computed('rowsCount', 'perPage', function() {
-    let pages = Ember.A();
+    let pages = A();
     let count = Math.ceil(this.get('rowsCount') / this.get('perPage'));
     for (let i = 1; i <= count; i++) {
       pages.pushObject(i);

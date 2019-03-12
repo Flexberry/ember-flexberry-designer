@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { schedule } from '@ember/runloop';
 import layout from '../templates/components/fd-sheet';
 import fdSheetMixin from '../mixins/fd-sheet-mixin';
 
@@ -38,7 +39,7 @@ export default Ember.Component.extend(fdSheetMixin, {
       // Затемняем кнопку сайдбара.
       Ember.$('.toggle-sidebar').toggleClass('expanded');
 
-      Ember.run.schedule('afterRender', this, () => {
+      schedule('afterRender', this, () => {
         this.toggleProperty('expand');
       });
 

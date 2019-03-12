@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { A } from '@ember/array';
 import FlexberryBaseComponent from 'ember-flexberry/components/flexberry-base-component';
 import layout from '../templates/components/fd-visual-edit-control-tree';
 
@@ -135,7 +136,7 @@ export default FlexberryBaseComponent.extend({
     @type Array
     @default []
    */
-  selectedNodesAttributesTree: Ember.A(),
+  selectedNodesAttributesTree: A(),
 
   /**
     Selected nodes in jsTree.
@@ -144,7 +145,7 @@ export default FlexberryBaseComponent.extend({
     @type Array
     @default []
    */
-  selectedNodesTypeTree: Ember.A(),
+  selectedNodesTypeTree: A(),
 
   /**
     Included plugins for jsTree.
@@ -271,7 +272,7 @@ export default FlexberryBaseComponent.extend({
     }
 
     let attributesTree = this.get('dataAttributesTree');
-    restorationNodeTree(attributesTree, {}, Ember.A(['master', 'class']), false);
+    restorationNodeTree(attributesTree, {}, A(['master', 'class']), false);
 
     let attribute;
     let namesPropertyDefinition = propertyDefinition.name.split('.');
@@ -365,7 +366,7 @@ export default FlexberryBaseComponent.extend({
         return item.get('formViews.firstObject.view.class.id') === attribute.get('startClass.id') &&
          item.get('stereotype') === '«listform»';
       });
-      dropdownItems = Ember.A(listForms).mapBy('name');
+      dropdownItems = A(listForms).mapBy('name');
       let realStartRole = attribute.get('realStartRole') || attribute.get('startRole');
       let propertyLookupStrArray = this.get('model.editform.propertyLookupStr');
       dropdownValue = propertyLookupStrArray.findBy('property', realStartRole);
@@ -534,7 +535,7 @@ export default FlexberryBaseComponent.extend({
       this.set('propertyName', '');
 
       let typeTree = this.get('dataTypeTree');
-      restorationNodeTree(typeTree, {}, Ember.A(['master', 'class']), false);
+      restorationNodeTree(typeTree, {}, A(['master', 'class']), false);
     },
 
     /**
@@ -550,7 +551,7 @@ export default FlexberryBaseComponent.extend({
       this.set('propertyName', selectedNodes[0].original.name);
 
       let typeTree = this.get('dataTypeTree');
-      restorationNodeTree(typeTree, {}, Ember.A(['master', 'class']), false);
+      restorationNodeTree(typeTree, {}, A(['master', 'class']), false);
     },
 
     /**
@@ -570,7 +571,7 @@ export default FlexberryBaseComponent.extend({
 
       this._deleteAttribute(selectedNode);
       this.get('actionReceiverAttributesTree').send('deleteNode', selectedNode);
-      this.set('selectedNodesAttributesTree', Ember.A());
+      this.set('selectedNodesAttributesTree', A());
     },
 
     /**
@@ -698,11 +699,11 @@ export default FlexberryBaseComponent.extend({
         this._deleteAttribute(selectedNodesAttributesTree);
       }
 
-      restorationNodeTree(attributesTree, {}, Ember.A(['master', 'class']), false);
+      restorationNodeTree(attributesTree, {}, A(['master', 'class']), false);
       this.set('oldPropertyName', undefined);
       this.set('treeViewMode', true);
-      this.set('selectedNodesAttributesTree', Ember.A());
-      this.set('selectedNodesTypeTree', Ember.A());
+      this.set('selectedNodesAttributesTree', A());
+      this.set('selectedNodesTypeTree', A());
     },
 
     /**
@@ -712,10 +713,10 @@ export default FlexberryBaseComponent.extend({
     */
     cancelСlick() {
       let attributesTree = this.get('dataAttributesTree');
-      restorationNodeTree(attributesTree, {}, Ember.A(['master', 'class']), false);
+      restorationNodeTree(attributesTree, {}, A(['master', 'class']), false);
       this.set('treeViewMode', true);
-      this.set('selectedNodesAttributesTree', Ember.A());
-      this.set('selectedNodesTypeTree', Ember.A());
+      this.set('selectedNodesAttributesTree', A());
+      this.set('selectedNodesTypeTree', A());
     }
   },
 
@@ -788,9 +789,9 @@ export default FlexberryBaseComponent.extend({
   */
   _openNodeTree(e, data) {
     let treeData = this.get('dataAttributesTree');
-    restorationNodeTree(treeData, data.node.original, Ember.A(['master', 'class']), false, (function(node) {
+    restorationNodeTree(treeData, data.node.original, A(['master', 'class']), false, (function(node) {
       let dataForBuildTree = getDataForBuildTree(this.get('store'), node.get('idNode'));
-      let childrenAttributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes, null, 'type');
+      let childrenAttributes = getClassTreeNode(A(), dataForBuildTree.classes, null, 'type');
       let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, node.get('id'), null, 'name');
 
       return childrenNode;
@@ -826,13 +827,13 @@ export default FlexberryBaseComponent.extend({
         let associationCurrentClass = association.filterBy('endClass.id',  dataobject.id);
         associationCurrentClass.pushObjects(aggregation.filterBy('endClass.id',  dataobject.id));
 
-        let deleteAssociation = Ember.A(associationCurrentClass).findBy('startClass.id', selectedNode.original.idNode);
+        let deleteAssociation = A(associationCurrentClass).findBy('startClass.id', selectedNode.original.idNode);
         deleteAssociation.deleteRecord();
         break;
       case 'detail':
         let devAggregation = this.get('store').peekAll('fd-dev-aggregation');
         let aggregationCurrentClass = devAggregation.filterBy('startClass.id', dataobject.id);
-        let deleteAggregation = Ember.A(aggregationCurrentClass).findBy('endClass.id', selectedNode.original.idNode);
+        let deleteAggregation = A(aggregationCurrentClass).findBy('endClass.id', selectedNode.original.idNode);
         deleteAggregation.deleteRecord();
         let typeTree = this.get('dataTypeTree')[5];
         let nodeId = findFreeNodeTreeNameIndex('detail', 0, typeTree.copyChildren, 'id');
@@ -857,7 +858,7 @@ export default FlexberryBaseComponent.extend({
   */
   _findControlByAttribute(attributeName) {
     let items = this.get('items');
-    let searchResults = Ember.A();
+    let searchResults = A();
     if (this.get('typeForm') === 'editform') {
       for (let i = 0; i < items.length; i++) {
         this._controlsRound(items.objectAt(i), attributeName, searchResults);
@@ -945,7 +946,7 @@ export default FlexberryBaseComponent.extend({
     @method _createAttributesTree
   */
   _createAttributesTree() {
-    let attributesTree = Ember.A();
+    let attributesTree = A();
     attributesTree.pushObjects([
       FdAttributesTree.create({
         text: this.get('i18n').t('components.fd-visual-edit-control-tree.tree.property').toString(),
@@ -982,7 +983,7 @@ export default FlexberryBaseComponent.extend({
     @method _createTypeTree
   */
   _createTypeTree() {
-    let typeTree = Ember.A();
+    let typeTree = A();
 
     typeTree.pushObjects([
       FdAttributesTree.create({

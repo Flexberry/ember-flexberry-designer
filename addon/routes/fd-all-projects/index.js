@@ -3,6 +3,7 @@
 */
 
 import Ember from 'ember';
+import Route from '@ember/routing/route';
 import { StringPredicate, ComplexPredicate } from 'ember-flexberry-data/query/predicate';
 import Builder from 'ember-flexberry-data/query/builder';
 import Condition from 'ember-flexberry-data/query/condition';
@@ -11,9 +12,9 @@ import Condition from 'ember-flexberry-data/query/condition';
   The route for the form with a list of all projects.
 
   @class FdAllProjectsIndexRoute
-  @extends Ember.Route
+  @extends Route
 */
-export default Ember.Route.extend({
+export default Route.extend({
   /**
     See [EmberJS API](https://emberjs.com/api/).
 

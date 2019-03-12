@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route'
+import { schedule } from '@ember/runloop';
 
-export default Ember.Route.extend({
+export default Route.extend({
   activate: function() {
     let _this = this;
-    Ember.run.schedule('afterRender', this, function() {
+    schedule('afterRender', this, function() {
       _this.controller.send('printDiagram');
     });
   },

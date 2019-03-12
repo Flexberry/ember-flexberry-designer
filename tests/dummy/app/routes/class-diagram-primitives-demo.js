@@ -1,11 +1,13 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { schedule } from '@ember/runloop';
+import { inject } from '@ember/service';
 
-export default Ember.Route.extend({
-  appState: Ember.inject.service(),
+export default Route.extend({
+  appState: inject.service(),
 
   activate: function() {
     let _this = this;
-    Ember.run.schedule('afterRender', this, function() {
+    schedule('afterRender', this, function() {
       _this.get('appState').reset();
       _this.controller.send('printDiagram');
     });

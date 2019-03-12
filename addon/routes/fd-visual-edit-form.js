@@ -1,7 +1,8 @@
 import Ember from 'ember';
+import Route from '@ember/routing/route';
 import Builder from 'ember-flexberry-data/query/builder';
 
-export default Ember.Route.extend({
+export default Route.extend({
 
   formId: null,
 

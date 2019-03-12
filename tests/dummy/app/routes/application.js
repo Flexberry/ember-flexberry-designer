@@ -1,11 +1,12 @@
 import Ember from 'ember';
+import Route from '@ember/routing/route';
 import ModalApplicationRouteMixin from 'ember-flexberry/mixins/modal-application-route';
 import FdPreloadStageMetadata from 'ember-flexberry-designer/utils/fd-preload-stage-metadata';
 import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
 import Builder from 'ember-flexberry-data/query/builder';
 import FilterOperator from 'ember-flexberry-data/query/filter-operator';
 
-export default Ember.Route.extend(ModalApplicationRouteMixin, {
+export default Route.extend(ModalApplicationRouteMixin, {
 
   /**
     Service for managing the state of the application.

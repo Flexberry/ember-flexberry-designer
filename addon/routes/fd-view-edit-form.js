@@ -1,9 +1,10 @@
 import Ember from 'ember';
+import Route from '@ember/routing/route';
 import FdAttributesTree from '../objects/fd-attributes-tree';
 import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode, getDetailView } from '../utils/fd-attributes-for-tree';
 
-export default Ember.Route.extend(FdFormCheckTransitionMixin, {
+export default Route.extend(FdFormCheckTransitionMixin, {
 
   /**
     Service for managing the state of the application.

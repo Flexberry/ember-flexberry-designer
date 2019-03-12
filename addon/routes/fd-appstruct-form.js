@@ -1,9 +1,10 @@
 import Ember from 'ember';
+import Route from '@ember/routing/route';
 import FdAppStructTree from '../objects/fd-appstruct-tree';
 import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 const { getOwner } = Ember;
 
-export default Ember.Route.extend(FdFormCheckTransitionMixin, {
+export default Route.extend(FdFormCheckTransitionMixin, {
 
   /**
    Service that get current project contexts.

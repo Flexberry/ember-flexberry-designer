@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import joint from 'npm:jointjs';
+import { schedule } from '@ember/runloop';
 
 import { ActiveObject } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-active-object';
 import { NAryAssociation } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-naryassociation';
@@ -26,7 +27,7 @@ export default Ember.Controller.extend({
   actions: {
     printDiagram: function() {
       let _this = this;
-      Ember.run.schedule('afterRender',	function() {
+      schedule('afterRender',	function() {
         _this.graph = new joint.dia.Graph();
 
         let paper = document.getElementById('paper');

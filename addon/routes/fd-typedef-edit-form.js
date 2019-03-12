@@ -1,7 +1,8 @@
 import Ember from 'ember';
+import Route from '@ember/routing/route';
 import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 
-export default Ember.Route.extend(FdFormCheckTransitionMixin, {
+export default Route.extend(FdFormCheckTransitionMixin, {
   modelProjection: 'TypeDefinitionE',
   modelName: 'fd-dev-type-definition',
   currentProjectContext: Ember.inject.service('fd-current-project-context'),

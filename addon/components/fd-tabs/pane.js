@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { schedule } from '@ember/runloop';
 import layout from 'ember-flexberry-designer/templates/components/ui-tab-menu';
 import ComponentParent from 'ember-flexberry-designer/components/fd-tabs';
 /**
@@ -159,7 +160,7 @@ export default Ember.Component.extend({
 
   init() {
     this._super(...arguments);
-    Ember.run.schedule('afterRender', this, function() {
+    schedule('afterRender', this, function() {
       // isActive comes from parent component, so only available after render...
       this.set('active', this.get('isActive'));
       this.set('selected', this.get('isSelected'));

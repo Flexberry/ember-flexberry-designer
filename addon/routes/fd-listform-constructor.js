@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Route from '@ember/routing/route';
 import FdAttributesTree from '../objects/fd-attributes-tree';
 import FdDataTypes from '../utils/fd-datatypes';
 import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
@@ -6,7 +7,7 @@ import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggre
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
 import { getNewFormCaption, getNewFormDescription } from '../utils/fd-create-form-properties';
 
-export default Ember.Route.extend(FdFormCheckTransitionMixin, {
+export default Route.extend(FdFormCheckTransitionMixin, {
   currentContext: Ember.inject.service('fd-current-project-context'),
 
   actions: {

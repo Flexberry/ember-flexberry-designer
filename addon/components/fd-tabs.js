@@ -1,4 +1,6 @@
 import Ember from 'ember';
+import { schedule } from '@ember/runloop';
+import { A } from '@ember/array';
 import layout from '../templates/components/fd-tabs';
 import TabPane from '../components/fd-tabs/pane';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
@@ -99,7 +101,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
    * @private
    */
   tabs: Ember.computed('childPanes.@each.{tab,title,dataTab}', function() {
-    let items = Ember.A();
+    let items = A();
     this.get('childPanes').forEach((pane) => {
       let item = pane.getProperties('tab', 'title', 'dataTab');
       items.push(item);
@@ -137,7 +139,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
 
     for (let i = 0; i < hideTabs; i++) {
       let _currentTabs = this.get('_showedTabs');
-      let lastTab = Ember.A(_currentTabs).get('lastObject');
+      let lastTab = A(_currentTabs).get('lastObject');
 
       this.get('_hideTabs').pushObject(lastTab);
       _currentTabs.popObject();
@@ -149,11 +151,11 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
 
   init() {
     this._super(...arguments);
-    this.set('children', Ember.A());
-    this.set('_hideTabs', Ember.A());
+    this.set('children', A());
+    this.set('_hideTabs', A());
 
     if (this.overflowedTabs) {
-      Ember.run.schedule('afterRender', this, function() {
+      schedule('afterRender', this, function() {
         let _this = this;
         Ember.$(window).resize(function() {
           if (!(_this.get('isDestroyed') || _this.get('isDestroyed'))) {
@@ -166,14 +168,14 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
   },
 
   reinitTabs() {
-    Ember.run.schedule('afterRender', this, function() {
+    schedule('afterRender', this, function() {
       this.set('overflowButtonShow', false);
       let _showedTabs =  this.dynamicTabs ? this.get('tabs').slice() : this.get('_showedTabs').slice().concat(this.get('_hideTabs'));
 
       this.set('_showedTabs', _showedTabs);
-      this.set('_hideTabs', Ember.A());
+      this.set('_hideTabs', A());
 
-      Ember.run.schedule('afterRender', this,	function() {
+      schedule('afterRender', this,	function() {
         this._calculateWidths();
 
         this.set('overflowButtonShow', this.get('hideTabsCount') > 0);
@@ -208,7 +210,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
    * @public
    */
   registerChild(child) {
-    Ember.run.schedule('actions', this, function() {
+    schedule('actions', this, function() {
       this.get('children').addObject(child);
     });
   },
@@ -221,7 +223,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
    * @public
    */
   removeChild(child) {
-    Ember.run.schedule('actions', this, function() {
+    schedule('actions', this, function() {
       this.get('children').removeObject(child);
     });
   },
