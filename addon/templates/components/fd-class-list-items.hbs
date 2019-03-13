@@ -5,7 +5,9 @@
   <div class="fourteen wide column">
     {{
       fd-list-item
+      model=entity.settings
       caption=entity.settings.name
+      openSheetController=openSheetController
     }}
   </div>
 
@@ -18,7 +20,9 @@
       {{#each entity.editForms as |editForm|}}
         {{
           fd-list-item
+          model=editForm
           caption=editForm.name
+          openSheetController=openSheetController
         }}
       {{/each}}
     </div>
@@ -33,7 +37,9 @@
       {{#each entity.listForms as |listForm|}}
         {{
           fd-list-item
+          model=listForm
           caption=listForm.name
+          openSheetController=openSheetController
         }}
       {{/each}}
     </div>
@@ -47,7 +53,9 @@
     <div class="fourteen wide column">
       {{
         fd-list-item
+        model=entity.bs
         caption=entity.bs.name
+        openSheetController=openSheetController
       }}
     </div>
   {{/if}}
@@ -61,7 +69,9 @@
       {{#each entity.parents as |parent|}}
         {{
           fd-list-item
+          model=parent
           caption=parent.name
+          openSheetController=openSheetController
         }}
       {{/each}}
     </div>

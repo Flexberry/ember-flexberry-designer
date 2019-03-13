@@ -1,0 +1,18 @@
+export default {
+  'caption-caption': 'Заголовок',
+  'caption-placeholder': 'Заголовок сущности',
+  'publish-name-caption': 'Имя публикации',
+  'publish-name-placeholder': 'Имя публикации сущности',
+  'stored-caption': 'Хранимый',
+  'storage-caption': 'Хранилище',
+  'storage-placeholder': 'Наименование хранилища',
+  'packet-caption': 'Пакет',
+  'packet-placeholder': 'Наименование пакета',
+  'namespace-postfix-caption': 'Постфикс пространства имен',
+  'namespace-postfix-placeholder': 'Наименование постфикса',
+  'bs-caption': 'Бизнес-сервер',
+  'bs-events-caption': 'События бизнес-сервера',
+  'attributes-caption': 'Атрибуты',
+  'views-caption': 'Представления',
+  'class-storage-types-caption': 'Типы хранилищ',
+};

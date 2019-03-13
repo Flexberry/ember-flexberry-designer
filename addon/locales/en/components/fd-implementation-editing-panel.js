@@ -1,0 +1,18 @@
+export default {
+  'caption-caption': 'Caption',
+  'caption-placeholder': 'Entity caption',
+  'publish-name-caption': 'Publish name',
+  'publish-name-placeholder': 'Entity publish name',
+  'stored-caption': 'Stored',
+  'storage-caption': 'Storage',
+  'storage-placeholder': 'Storage name',
+  'packet-caption': 'Packet',
+  'packet-placeholder': 'Packet name',
+  'namespace-postfix-caption': 'Namespace postfix',
+  'namespace-postfix-placeholder': 'Postfix name',
+  'bs-caption': 'Business server class',
+  'bs-events-caption': 'Business server events',
+  'attributes-caption': 'Attributes',
+  'views-caption': 'Views',
+  'class-storage-types-caption': 'Storage types',
+};

@@ -11,6 +11,7 @@ export default Ember.Component.extend(fdSheetMixin, {
 
   actions: {
     closeSheet() {
+      this.sendAction('closeSheetController');
       this.set('commonVisible.visible', '');
       this.set('expand', false);
       let currentSheet = Ember.$('.fd-sheet', this.element);
@@ -19,7 +20,6 @@ export default Ember.Component.extend(fdSheetMixin, {
 
       // Сбрасываем стиль с кнопки сайдбара.
       Ember.$('.toggle-sidebar').removeClass('expanded');
-      this.deactivateListItem();
 
       Ember.run.later(function() {
         Ember.$('.content-mini', currentSheet).css({ width: '' });
@@ -46,6 +46,7 @@ export default Ember.Component.extend(fdSheetMixin, {
     },
 
     save() {
+      this.sendAction('saveController');
     }
   }
 });
