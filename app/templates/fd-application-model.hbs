@@ -283,7 +283,7 @@
   saveController=(action 'save')
 }}
   {{#if (known-for-type (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel"))}}
-    {{component (concat "fd-editing-panels/fd-" pathComponentName "-editing-panel")
+    {{component (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel")
       model=selectedElement.model
     }}
   {{else}}
