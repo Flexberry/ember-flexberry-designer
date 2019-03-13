@@ -116,6 +116,7 @@ import FdVisualControlModel from './models/fd-visual-control';
 import FdVisualControlComponent from './components/fd-visual-control';
 import FdVisualEditControlTreeComponent from './components/fd-visual-edit-control-tree';
 import FdTabs from './components/fd-tabs';
+import FdClassEditingPanel from './components/fd-class-editing-panel';
 import FdApplicationModelForm from './forms/fd-application-model';
 
 const translations = {};
@@ -395,7 +396,8 @@ Ember.$.extend(true, translations, {
   components: {
     'fd-visual-control': FdVisualControlComponent,
     'fd-visual-edit-control-tree': FdVisualEditControlTreeComponent,
-    'fd-tabs': FdTabs
+    'fd-tabs': FdTabs,
+    'fd-class-editing-panel': FdClassEditingPanel
   }
 
 });

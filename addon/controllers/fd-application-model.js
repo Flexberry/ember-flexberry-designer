@@ -3,6 +3,23 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
   /**
+    Service for managing the state of the application.
+
+    @property appState
+    @type AppStateService
+  */
+  appState: Ember.inject.service(),
+
+  /**
+    Value selected entity.
+
+    @property selectedElement
+    @type Object
+    @default undefined
+  */
+  selectedElement: undefined,
+
+  /**
     Value search input.
 
     @property searchValue
@@ -60,5 +77,61 @@ export default Ember.Controller.extend({
     }
 
     return newModel;
-  })
+  }),
+
+  /**
+    Deactivate item from selectedElement.
+
+     @method deactivateListItem
+  */
+  deactivateListItem() {
+    let selectedElement = this.get('selectedElement');
+    if (!Ember.isNone(selectedElement)) {
+      let model = selectedElement.get('model');
+      model.rollbackAll();
+      selectedElement.set('fdListItemActive', undefined);
+    }
+  },
+
+  actions: {
+
+    /**
+      Opening sheet.
+
+       @method actions.openSheet
+    */
+    openSheet(currentItem) {
+      this.deactivateListItem();
+      this.set('selectedElement', currentItem);
+    },
+
+    /**
+      Closing sheet.
+
+       @method actions.closeSheet
+    */
+    closeSheet() {
+      this.deactivateListItem();
+      this.set('selectedElement', undefined);
+    },
+
+    /**
+      Save 'selectedElement'.
+
+       @method actions.save
+    */
+    save() {
+      let model = this.get('selectedElement.model');
+      this.get('appState').loading();
+      model.save()
+      .catch((error) => {
+        this.get('appState').reset();
+        this.set('error', error);
+      })
+      .finally(() => {
+        this.get('appState').reset();
+      });
+      this._super();
+    }
+  }
 });
