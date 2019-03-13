@@ -94,8 +94,8 @@ export default Ember.Component.extend({
         Ember.set(model, 'businessServerClass', null);
       } else {
         let bsItems = this.get('bsItems');
-        let bsObject = bsItems.objects.filterBy('name', value);
-        Ember.set(model, 'businessServerClass', bsObject[0]);
+        let bsObject = bsItems.objects.findBy('name', value);
+        Ember.set(model, 'businessServerClass', bsObject);
       }
     }
   }
