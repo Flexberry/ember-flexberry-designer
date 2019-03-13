@@ -31,13 +31,13 @@ export default Ember.Controller.extend({
   /**
     Removes quotes from class stereotype.
 
-    @method pathComponentName
+    @method componentNamePart
   */
-  pathComponentName: Ember.computed('selectedElement', function() {
+  componentNamePart: Ember.computed('selectedElement', function() {
     let selectedElement = this.get('selectedElement');
     if (!Ember.isNone(selectedElement)) {
       let stereotype = selectedElement.get('model.stereotype');
-      if (stereotype === null) {
+      if (Ember.isNone(null)) {
         return 'implementation';
       }
 

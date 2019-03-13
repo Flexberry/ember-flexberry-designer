@@ -282,7 +282,7 @@
   closeSheetController=(action 'closeSheet')
   saveController=(action 'save')
 }}
-  {{#if (known-for-type (concat "fd-editing-panels/fd-" pathComponentName "-editing-panel"))}}
+  {{#if (known-for-type (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel"))}}
     {{component (concat "fd-editing-panels/fd-" pathComponentName "-editing-panel")
       model=selectedElement.model
     }}
