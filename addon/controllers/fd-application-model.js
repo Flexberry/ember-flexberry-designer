@@ -37,7 +37,7 @@ export default Ember.Controller.extend({
     let selectedElement = this.get('selectedElement');
     if (!Ember.isNone(selectedElement)) {
       let stereotype = selectedElement.get('model.stereotype');
-      if (Ember.isNone(null)) {
+      if (Ember.isNone(stereotype)) {
         return 'implementation';
       }
 
