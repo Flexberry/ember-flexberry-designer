@@ -93,6 +93,20 @@ export default Ember.Controller.extend({
     }
   },
 
+  /**
+    Update bs value in model.
+
+     @method updateClassModel
+  */
+  updateClassModel(modelSelectedElement) {
+    let stereotype = modelSelectedElement.get('stereotype');
+    if (stereotype === '«implementation»' || stereotype === null) {
+      let model = this.get('model');
+      let classObj = model.classes.findBy('settings.id', modelSelectedElement.id);
+      Ember.set(classObj, 'bs', modelSelectedElement.get('businessServerClass'));
+    }
+  },
+
   actions: {
 
     /**
@@ -131,6 +145,7 @@ export default Ember.Controller.extend({
       .finally(() => {
         this.get('appState').reset();
       });
+      this.updateClassModel(model);
       this._super();
     }
   }
