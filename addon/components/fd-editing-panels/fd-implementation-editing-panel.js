@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import layout from '../../templates/components/fd-editing-panels/fd-class-editing-panel';
+import layout from '../../templates/components/fd-editing-panels/fd-implementation-editing-panel';
 
 export default Ember.Component.extend({
   layout,
@@ -65,14 +65,13 @@ export default Ember.Component.extend({
 
     // Get current classes.
     let allClasses = store.peekAll('fd-dev-class');
-    let classesCurrentStage = allClasses.filterBy('stage.id', stagePk);
-    let bs = classesCurrentStage.filter(function(item) {
-      return item.get('stereotype') === '«businessserver»' && !Ember.isBlank(item.get('name'));
+    let bs = allClasses.filter(function(item) {
+      return item.get('stereotype') === '«businessserver»' && !Ember.isBlank(item.get('name')) && item.get('stage.id') === stagePk;
     });
 
     let bsEmberA = Ember.A(bs);
     let bsNames = bsEmberA.mapBy('name');
-    bsNames.push('');
+    bsNames.unshift('');
 
     this.set('bsItems', {
       names: bsNames,

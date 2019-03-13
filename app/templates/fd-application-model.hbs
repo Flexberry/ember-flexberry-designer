@@ -282,11 +282,12 @@
   closeSheetController=(action 'closeSheet')
   saveController=(action 'save')
 }}
-  {{#if (or (eq selectedElement.model.stereotype null) (eq selectedElement.model.stereotype '«implementation»'))}}
-    {{
-      fd-editing-panels/fd-class-editing-panel
+  {{#if (known-for-type (concat "fd-editing-panels/fd-" pathComponentName "-editing-panel"))}}
+    {{component (concat "fd-editing-panels/fd-" pathComponentName "-editing-panel")
       model=selectedElement.model
     }}
+  {{else}}
+
   {{/if}}
 
 {{/fd-sheet}}

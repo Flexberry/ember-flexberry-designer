@@ -29,6 +29,23 @@ export default Ember.Controller.extend({
   searchValue: '',
 
   /**
+    Removes quotes from class stereotype.
+
+    @method pathComponentName
+  */
+  pathComponentName: Ember.computed('selectedElement', function() {
+    let selectedElement = this.get('selectedElement');
+    if (!Ember.isNone(selectedElement)) {
+      let stereotype = selectedElement.get('model.stereotype');
+      if (stereotype === null) {
+        return 'implementation';
+      }
+
+      return stereotype.substring(1, stereotype.length - 1);
+    }
+  }),
+
+  /**
     Update model for search
 
     @method filteredModel
@@ -139,14 +156,12 @@ export default Ember.Controller.extend({
       this.get('appState').loading();
       model.save()
       .catch((error) => {
-        this.get('appState').reset();
         this.set('error', error);
       })
       .finally(() => {
         this.get('appState').reset();
       });
       this.updateClassModel(model);
-      this._super();
     }
   }
 });
