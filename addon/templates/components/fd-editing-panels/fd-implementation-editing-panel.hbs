@@ -108,6 +108,25 @@
   {{/if}}
 
   <div class="row">
+    {{#flexberry-toggler
+        caption=(t 'components.fd-implementation-editing-panel.toggler-caption')
+        expanded=false
+    }}
+    <div class="row" />
+      <div class="three wide column">
+        {{t "components.fd-implementation-editing-panel.description-caption"}}
+      </div>
+      <div class="thirteen wide column light-text">
+        {{flexberry-textarea
+          value=model.description
+          class='fluid input'
+          placeholder=(t "components.fd-implementation-editing-panel.description-placeholder")
+        }}
+      </div>
+    {{/flexberry-toggler}}
+  </div>
+
+  <div class="row">
     <div class="three wide column">
       <div>{{t "components.fd-implementation-editing-panel.attributes-caption"}}</div>
     </div>

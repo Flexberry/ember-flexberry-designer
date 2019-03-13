@@ -1,4 +1,7 @@
 export default {
+  'toggler-caption': 'Additional properties',
+  'description-caption': 'Description',
+  'description-placeholder': 'Entity description',
   'caption-caption': 'Caption',
   'caption-placeholder': 'Entity caption',
   'publish-name-caption': 'Publish name',
