@@ -29,6 +29,17 @@ export default Ember.Controller.extend({
   searchValue: '',
 
   /**
+    Ember.observer, watching property `searchValue` and send action from 'fd-sheet' component.
+
+    @method searchValueObserver
+  */
+  searchValueObserver: Ember.observer('searchValue', function() {
+    let sheet = Ember.getOwner(this).lookup(`component:fd-sheet`);
+    this.send('closeSheet');
+    sheet.send('closeSheet');
+  }),
+
+  /**
     Removes quotes from class stereotype.
 
     @method componentNamePart

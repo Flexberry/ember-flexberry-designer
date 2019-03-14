@@ -1,7 +1,6 @@
 import Ember from 'ember';
-import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 
-export default Ember.Route.extend(FdFormCheckTransitionMixin, {
+export default Ember.Route.extend({
 
   /**
    Service that get current project contexts.
@@ -137,5 +136,23 @@ export default Ember.Route.extend(FdFormCheckTransitionMixin, {
     modelHash.userstereotypes = Ember.A(userstereotypes);
 
     return modelHash;
+  },
+
+  actions: {
+    /**
+      It sends message about transition to corresponding controller.
+
+      The willTransition action is fired at the beginning of any attempted transition with a Transition object as the sole argument.
+      [More info](http://emberjs.com/api/classes/Ember.Route.html#event_willTransition).
+
+      @method actions.willTransition
+    */
+    willTransition() {
+      let sheet = Ember.getOwner(this).lookup(`component:fd-sheet`);
+      this.controller.send('closeSheet');
+      sheet.send('closeSheet');
+
+      this._super(...arguments);
+    }
   }
 });
