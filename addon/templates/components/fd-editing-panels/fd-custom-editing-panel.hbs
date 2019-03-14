@@ -1,0 +1,14 @@
+<div class="ui stackable grid fd-list">
+  <div class="row">
+    <div class="three wide column">
+      {{t "components.fd-custom-editing-panel.description-caption"}}
+    </div>
+    <div class="thirteen wide column light-text">
+      {{flexberry-textarea
+        value=model.description
+        class='fluid input'
+        placeholder=(t "components.fd-custom-editing-panel.description-placeholder")
+      }}
+    </div>
+  </div>
+</div>

@@ -117,6 +117,10 @@ import FdVisualControlComponent from './components/fd-visual-control';
 import FdVisualEditControlTreeComponent from './components/fd-visual-edit-control-tree';
 import FdTabs from './components/fd-tabs';
 import FdClassEditingPanel from './components/fd-implementation-editing-panel';
+import FdUserformEditingPanel from './components/fd-userform-editing-panel';
+import FdTypeEditingPanel from './components/fd-type-editing-panel';
+import FdExternalEditingPanel from './components/fd-external-editing-panel';
+import FdCustomEditingPanel from './components/fd-custom-editing-panel';
 import FdApplicationModelForm from './forms/fd-application-model';
 
 const translations = {};
@@ -401,7 +405,11 @@ Ember.$.extend(true, translations, {
     'fd-visual-control': FdVisualControlComponent,
     'fd-visual-edit-control-tree': FdVisualEditControlTreeComponent,
     'fd-tabs': FdTabs,
-    'fd-implementation-editing-panel': FdClassEditingPanel
+    'fd-implementation-editing-panel': FdClassEditingPanel,
+    'fd-userform-editing-panel': FdUserformEditingPanel,
+    'fd-type-editing-panel': FdTypeEditingPanel,
+    'fd-external-editing-panel': FdExternalEditingPanel,
+    'fd-custom-editing-panel': FdCustomEditingPanel
   }
 
 });
