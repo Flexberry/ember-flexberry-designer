@@ -11,6 +11,14 @@ export default Ember.Controller.extend({
   appState: Ember.inject.service(),
 
   /**
+    Service for managing the state of the sheet component.
+
+    @property fdSheetService
+    @type FdSheetService
+  */
+  fdSheetService: Ember.inject.service(),
+
+  /**
     Value selected entity.
 
     @property selectedElement
@@ -29,14 +37,25 @@ export default Ember.Controller.extend({
   searchValue: '',
 
   /**
+    Sheet component name.
+
+    @property sheetComponentName
+    @type String
+    @default ''
+  */
+  sheetComponentName: '',
+
+  /**
     Ember.observer, watching property `searchValue` and send action from 'fd-sheet' component.
 
     @method searchValueObserver
   */
   searchValueObserver: Ember.observer('searchValue', function() {
-    let sheet = Ember.getOwner(this).lookup(`component:fd-sheet`);
-    this.send('closeSheet');
-    sheet.send('closeSheet');
+    let sheetComponentName = this.get('sheetComponentName');
+    let fdSheetService = this.get('fdSheetService');
+    if (fdSheetService.isVisible(sheetComponentName)) {
+      fdSheetService.closeSheet(sheetComponentName);
+    }
   }),
 
   /**
@@ -107,6 +126,13 @@ export default Ember.Controller.extend({
     return newModel;
   }),
 
+  init() {
+    this._super(...arguments);
+
+    this.get('fdSheetService').on('openSheetTriggered', this, this.openSheet);
+    this.get('fdSheetService').on('closeSheetTriggered', this, this.closeSheet);
+  },
+
   /**
     Deactivate item from selectedElement.
 
@@ -117,7 +143,7 @@ export default Ember.Controller.extend({
     if (!Ember.isNone(selectedElement)) {
       let model = selectedElement.get('model');
       model.rollbackAll();
-      selectedElement.set('fdListItemActive', undefined);
+      selectedElement.set('fdListItemActive', false);
     }
   },
 
@@ -135,28 +161,36 @@ export default Ember.Controller.extend({
     }
   },
 
-  actions: {
+  /**
+    Opening sheet.
 
-    /**
-      Opening sheet.
-
-       @method actions.openSheet
-    */
-    openSheet(currentItem) {
+     @method openSheet
+     @param {String} sheetName Sheet's dbName
+     @param {Object} currentItem Current list item
+  */
+  openSheet(sheetName, currentItem) {
+    let sheetComponentName = this.get('sheetComponentName');
+    if (sheetComponentName === sheetName) {
       this.deactivateListItem();
       this.set('selectedElement', currentItem);
-    },
+    }
+  },
 
-    /**
-      Closing sheet.
+  /**
+    Closing sheet.
 
-       @method actions.closeSheet
-    */
-    closeSheet() {
+     @method closeSheet
+     @param {String} sheetName Sheet's dbName
+  */
+  closeSheet(sheetName) {
+    let sheetComponentName = this.get('sheetComponentName');
+    if (sheetComponentName === sheetName) {
       this.deactivateListItem();
       this.set('selectedElement', undefined);
-    },
+    }
+  },
 
+  actions: {
     /**
       Save 'selectedElement'.
 

@@ -12,6 +12,23 @@ export default Ember.Route.extend({
   currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
   /**
+    Service for managing the state of the sheet component.
+
+    @property fdSheetService
+    @type FdSheetService
+  */
+  fdSheetService: Ember.inject.service(),
+
+  /**
+    Sheet component name.
+
+    @property sheetComponentName
+    @type String
+    @default 'application-model-sheet'
+  */
+  sheetComponentName: 'application-model-sheet',
+
+  /**
     A hook you can implement to convert the URL into the model for this route.
     [More info](http://emberjs.com/api/classes/Ember.Route.html#method_model).
 
@@ -138,6 +155,19 @@ export default Ember.Route.extend({
     return modelHash;
   },
 
+  /**
+    A hook you can use to setup the controller for the current route.
+    [More info](https://www.emberjs.com/api/ember/release/classes/Route/methods/setupController?anchor=setupController).
+
+    @method setupController
+    @param {<a href="https://emberjs.com/api/ember/release/classes/Controller">Controller</a>} controller
+  */
+  setupController(controller) {
+    this._super(...arguments);
+
+    controller.set('sheetComponentName', this.get('sheetComponentName'));
+  },
+
   actions: {
     /**
       It sends message about transition to corresponding controller.
@@ -148,9 +178,7 @@ export default Ember.Route.extend({
       @method actions.willTransition
     */
     willTransition() {
-      let sheet = Ember.getOwner(this).lookup(`component:fd-sheet`);
-      this.controller.send('closeSheet');
-      sheet.send('closeSheet');
+      this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
 
       this._super(...arguments);
     }
