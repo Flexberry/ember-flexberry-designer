@@ -20,24 +20,19 @@
   }
 }
 
-.ui.stackable.grid.fd-list {
-  .row {
-    .column.buttons-row {
-      left: -1.2em;
-      .table-btn {
-        border-radius: @itemActiveBorderRadius;
-        white-space: nowrap;
-        min-height: 34px;
-        box-shadow: none;
-        border: 1px dashed @sidebarBg;
-        &:hover {
-          border: 1px dashed @sidebarBg + rgba(0, 0, 0, 0.10);
-        }
-        &:active {
-          border: 1px dashed @sidebarBg + rgba(0, 0, 0, 0.20);
-        }
-      }
+.buttons-row {
+  left: -1.2em;
+  .basic.button.table-btn {
+    border-radius: @itemActiveBorderRadius;
+    white-space: nowrap;
+    min-height: 34px;
+    box-shadow: none;
+    border: 1px dashed @sidebarBg;
+    &:hover {
+      border: 1px dashed @sidebarBg + rgba(0, 0, 0, 0.10);
+    }
+    &:active {
+      border: 1px dashed @sidebarBg + rgba(0, 0, 0, 0.20);
     }
   }
 }
-

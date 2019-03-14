@@ -1,58 +1,65 @@
 
-  <div class="four wide column">
-    <div class="light-text"> Имя атрибута</div>
+  <div class="four wide column light-text">
+    {{t "components.fd-attribute-table.attribute-name"}}
   </div>
-  <div class="four wide column"> 
-    <div class="light-text"> Заголовок</div>
+  <div class="four wide column light-text"> 
+    {{t "components.fd-attribute-table.attribute-caption"}}
   </div>
-  <div class="four wide column">
-    <div class="light-text">Тип</div>
+  <div class="four wide column light-text">
+    {{t "components.fd-attribute-table.attribute-type"}}
   </div>
-  <div class="four wide column"> 
-    <div class="light-text"> Описание</div>
+  <div class="four wide column light-text"> 
+    {{t "components.fd-attribute-table.attribute-description"}}
   </div>
+
   <div class="four wide column">
     <div class="ui checkbox">
       <input type="checkbox">
-      <label>Дата</label>
+      <label>{{t "components.fd-attribute-table.attribute-date"}}</label>
     </div>
   </div>
   <div class="four wide column light-text"> 
-    <div class="fluid input ember-view flexberry-textbox ui input"> 
-      <input placeholder="Заголовок" type="text" class="ember-view ember-text-field">
-    </div>
+    {{flexberry-textbox
+      class='fluid input'
+      placeholder=(t "components.fd-attribute-table.attribute-caption")
+    }}
   </div>
   <div class="four wide column">
     <div class="">DateTime</div>
   </div>
   <div class="four wide column light-text"> 
-    <div class="fluid input ember-view flexberry-textbox ui input"> 
-      <input placeholder="Описание" type="text" class="ember-view ember-text-field">
-    </div>
+    {{flexberry-textbox
+      class='fluid input'
+      placeholder=(t "components.fd-attribute-table.attribute-description")
+    }}
   </div>
   <div class="four wide column">
     <div class="ui checkbox">
       <input type="checkbox">
-      <label>ФИО</label>
+      <label>{{t "components.fd-attribute-table.attribute-full-name"}}</label>
     </div>
   </div>
   <div class="four wide column light-text"> 
-    <div class="fluid input ember-view flexberry-textbox ui input"> 
-      <input placeholder="Заголовок" type="text" class="ember-view ember-text-field">
-    </div>
+    {{flexberry-textbox
+      class='fluid input'
+      placeholder=(t "components.fd-attribute-table.attribute-caption")
+    }}
   </div>
   <div class="four wide column">
     <div class="">String</div>
   </div>
   <div class="four wide column light-text"> 
-    <div class="fluid input ember-view flexberry-textbox ui input"> 
-      <input placeholder="Описание" type="text" class="ember-view ember-text-field">
-    </div>
+    {{flexberry-textbox
+      class='fluid input'
+      placeholder=(t "components.fd-attribute-table.attribute-description")
+    }}
   </div>
   <div class="sixteen wide column buttons-row">
-    <button class="ui basic button table-btn">Создать атрибут</button>
+    <button class="ui basic button table-btn">
+      {{t "components.fd-attribute-table.attribute-createBtn"}}
+    </button>
     <button class="ui basic button table-btn"> 
       <i class="icon icon-fd-checkbox-checked"></i>
-      Удалить выбранные
+      {{t "components.fd-attribute-table.attribute-deleteBtn"}}
     </button>
   </div>
