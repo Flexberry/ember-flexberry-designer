@@ -132,6 +132,14 @@ define('dummy/components/fd-editform-row', ['exports', 'ember-flexberry-designer
     }
   });
 });
+define('dummy/components/fd-editing-panels/fd-enumeration-editing-panel', ['exports', 'ember-flexberry-designer/components/fd-editing-panels/fd-enumeration-editing-panel'], function (exports, _emberFlexberryDesignerComponentsFdEditingPanelsFdEnumerationEditingPanel) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdEditingPanelsFdEnumerationEditingPanel['default'];
+    }
+  });
+});
 define('dummy/components/fd-editing-panels/fd-implementation-editing-panel', ['exports', 'ember-flexberry-designer/components/fd-editing-panels/fd-implementation-editing-panel'], function (exports, _emberFlexberryDesignerComponentsFdEditingPanelsFdImplementationEditingPanel) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -717,8 +725,8 @@ define('dummy/controllers/activity-diagram-primitives-demo', ['exports', 'ember'
     }
   });
 });
-define('dummy/controllers/application', ['exports', 'ember', 'ember-flexberry-designer/mixins/fd-sheet-mixin'], function (exports, _ember, _emberFlexberryDesignerMixinsFdSheetMixin) {
-  exports['default'] = _ember['default'].Controller.extend(_emberFlexberryDesignerMixinsFdSheetMixin['default'], {
+define('dummy/controllers/application', ['exports', 'ember'], function (exports, _ember) {
+  exports['default'] = _ember['default'].Controller.extend({
     /**
       Flag indicates sidebar visible
        @private
@@ -2464,6 +2472,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
     assert.ok(true, 'modules/ember-flexberry-designer/components/fd-editform-row.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editing-panels/fd-enumeration-editing-panel.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components/fd-editing-panels');
+  test('modules/ember-flexberry-designer/components/fd-editing-panels/fd-enumeration-editing-panel.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-editing-panels/fd-enumeration-editing-panel.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editing-panels/fd-enumeration-editing-panel.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-editing-panels/fd-enumeration-editing-panel.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-editing-panels/fd-enumeration-editing-panel.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editing-panels/fd-implementation-editing-panel.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/components/fd-editing-panels');
   test('modules/ember-flexberry-designer/components/fd-editing-panels/fd-implementation-editing-panel.js should pass jscs', function () {
@@ -3736,6 +3757,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/he
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/helpers/known-for-type.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-enumeration-editing-panel.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/components');
+  test('modules/ember-flexberry-designer/locales/en/components/fd-enumeration-editing-panel.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/components/fd-enumeration-editing-panel.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-enumeration-editing-panel.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/components/fd-enumeration-editing-panel.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/components/fd-enumeration-editing-panel.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-implementation-editing-panel.jscs-test', ['exports'], function (exports) {
@@ -5296,6 +5330,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/translations.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/components/fd-enumeration-editing-panel.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/components');
+  test('modules/ember-flexberry-designer/locales/ru/components/fd-enumeration-editing-panel.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/components/fd-enumeration-editing-panel.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/components/fd-enumeration-editing-panel.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/components/fd-enumeration-editing-panel.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/components/fd-enumeration-editing-panel.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/components/fd-implementation-editing-panel.jscs-test', ['exports'], function (exports) {
@@ -6999,19 +7046,6 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mi
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/mixins/fd-limit-by-stage.js should pass jshint.');
-  });
-});
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/fd-sheet-mixin.jscs-test', ['exports'], function (exports) {
-  module('JSCS - modules/ember-flexberry-designer/mixins');
-  test('modules/ember-flexberry-designer/mixins/fd-sheet-mixin.js should pass jscs', function () {
-    ok(true, 'modules/ember-flexberry-designer/mixins/fd-sheet-mixin.js should pass jscs.');
-  });
-});
-define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/fd-sheet-mixin.jshint', ['exports'], function (exports) {
-  QUnit.module('JSHint - modules/ember-flexberry-designer/mixins/fd-sheet-mixin.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'modules/ember-flexberry-designer/mixins/fd-sheet-mixin.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/mixins/fd-work-panel-toggler.jscs-test', ['exports'], function (exports) {
@@ -14736,6 +14770,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/se
     assert.ok(true, 'modules/ember-flexberry-designer/services/fd-generation.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/services/fd-sheet-service.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/services');
+  test('modules/ember-flexberry-designer/services/fd-sheet-service.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/services/fd-sheet-service.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/services/fd-sheet-service.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/services/fd-sheet-service.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/services/fd-sheet-service.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/transforms/containers-tree.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/transforms');
   test('modules/ember-flexberry-designer/transforms/containers-tree.js should pass jscs', function () {
@@ -18753,6 +18800,14 @@ define('dummy/services/fd-generation', ['exports', 'ember-flexberry-designer/ser
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerServicesFdGeneration['default'];
+    }
+  });
+});
+define('dummy/services/fd-sheet-service', ['exports', 'ember-flexberry-designer/services/fd-sheet-service'], function (exports, _emberFlexberryDesignerServicesFdSheetService) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerServicesFdSheetService['default'];
     }
   });
 });
@@ -36976,7 +37031,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
           morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           return morphs;
         },
-        statements: [["inline", "fd-class-list-items", [], ["entity", ["subexpr", "@mut", [["get", "class", ["loc", [null, [23, 15], [23, 20]]]]], [], []], "openSheetController", ["subexpr", "action", ["openSheet"], [], ["loc", [null, [24, 28], [24, 48]]]]], ["loc", [null, [21, 6], [25, 8]]]]],
+        statements: [["inline", "fd-class-list-items", [], ["entity", ["subexpr", "@mut", [["get", "class", ["loc", [null, [23, 15], [23, 20]]]]], [], []], "sheetComponentName", ["subexpr", "@mut", [["get", "sheetComponentName", ["loc", [null, [24, 27], [24, 45]]]]], [], []]], ["loc", [null, [21, 6], [25, 8]]]]],
         locals: ["class"],
         templates: []
       };
@@ -37019,7 +37074,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
             morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
             return morphs;
           },
-          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "enum", ["loc", [null, [38, 18], [38, 22]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "enum.name", ["loc", [null, [39, 20], [39, 29]]]]], [], []], "openSheetController", ["subexpr", "action", ["openSheet"], [], ["loc", [null, [40, 32], [40, 52]]]]], ["loc", [null, [36, 10], [41, 12]]]]],
+          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "enum", ["loc", [null, [38, 18], [38, 22]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "enum.name", ["loc", [null, [39, 20], [39, 29]]]]], [], []], "sheetComponentName", ["subexpr", "@mut", [["get", "sheetComponentName", ["loc", [null, [40, 31], [40, 49]]]]], [], []]], ["loc", [null, [36, 10], [41, 12]]]]],
           locals: ["enum"],
           templates: []
         };
@@ -37142,7 +37197,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
             morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
             return morphs;
           },
-          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "type", ["loc", [null, [63, 18], [63, 22]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "type.name", ["loc", [null, [64, 20], [64, 29]]]]], [], []], "openSheetController", ["subexpr", "action", ["openSheet"], [], ["loc", [null, [65, 32], [65, 52]]]]], ["loc", [null, [61, 10], [66, 12]]]]],
+          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "type", ["loc", [null, [63, 18], [63, 22]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "type.name", ["loc", [null, [64, 20], [64, 29]]]]], [], []], "sheetComponentName", ["subexpr", "@mut", [["get", "sheetComponentName", ["loc", [null, [65, 31], [65, 49]]]]], [], []]], ["loc", [null, [61, 10], [66, 12]]]]],
           locals: ["type"],
           templates: []
         };
@@ -37265,7 +37320,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
             morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
             return morphs;
           },
-          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "typedef", ["loc", [null, [88, 18], [88, 25]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "typedef.name", ["loc", [null, [89, 20], [89, 32]]]]], [], []], "openSheetController", ["subexpr", "action", ["openSheet"], [], ["loc", [null, [90, 32], [90, 52]]]]], ["loc", [null, [86, 10], [91, 12]]]]],
+          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "typedef", ["loc", [null, [88, 18], [88, 25]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "typedef.name", ["loc", [null, [89, 20], [89, 32]]]]], [], []], "sheetComponentName", ["subexpr", "@mut", [["get", "sheetComponentName", ["loc", [null, [90, 31], [90, 49]]]]], [], []]], ["loc", [null, [86, 10], [91, 12]]]]],
           locals: ["typedef"],
           templates: []
         };
@@ -37388,7 +37443,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
             morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
             return morphs;
           },
-          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "bs", ["loc", [null, [113, 18], [113, 20]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "bs.name", ["loc", [null, [114, 20], [114, 27]]]]], [], []], "openSheetController", ["subexpr", "action", ["openSheet"], [], ["loc", [null, [115, 32], [115, 52]]]]], ["loc", [null, [111, 10], [116, 12]]]]],
+          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "bs", ["loc", [null, [113, 18], [113, 20]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "bs.name", ["loc", [null, [114, 20], [114, 27]]]]], [], []], "sheetComponentName", ["subexpr", "@mut", [["get", "sheetComponentName", ["loc", [null, [115, 31], [115, 49]]]]], [], []]], ["loc", [null, [111, 10], [116, 12]]]]],
           locals: ["bs"],
           templates: []
         };
@@ -37511,7 +37566,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
             morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
             return morphs;
           },
-          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "interface", ["loc", [null, [138, 18], [138, 27]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "interface.name", ["loc", [null, [139, 20], [139, 34]]]]], [], []], "openSheetController", ["subexpr", "action", ["openSheet"], [], ["loc", [null, [140, 32], [140, 52]]]]], ["loc", [null, [136, 10], [141, 12]]]]],
+          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "interface", ["loc", [null, [138, 18], [138, 27]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "interface.name", ["loc", [null, [139, 20], [139, 34]]]]], [], []], "sheetComponentName", ["subexpr", "@mut", [["get", "sheetComponentName", ["loc", [null, [140, 31], [140, 49]]]]], [], []]], ["loc", [null, [136, 10], [141, 12]]]]],
           locals: ["interface"],
           templates: []
         };
@@ -37634,7 +37689,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
             morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
             return morphs;
           },
-          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "external", ["loc", [null, [163, 18], [163, 26]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "external.name", ["loc", [null, [164, 20], [164, 33]]]]], [], []], "openSheetController", ["subexpr", "action", ["openSheet"], [], ["loc", [null, [165, 32], [165, 52]]]]], ["loc", [null, [161, 10], [166, 12]]]]],
+          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "external", ["loc", [null, [163, 18], [163, 26]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "external.name", ["loc", [null, [164, 20], [164, 33]]]]], [], []], "sheetComponentName", ["subexpr", "@mut", [["get", "sheetComponentName", ["loc", [null, [165, 31], [165, 49]]]]], [], []]], ["loc", [null, [161, 10], [166, 12]]]]],
           locals: ["external"],
           templates: []
         };
@@ -37757,7 +37812,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
             morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
             return morphs;
           },
-          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "extinterface", ["loc", [null, [188, 18], [188, 30]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "extinterface.name", ["loc", [null, [189, 20], [189, 37]]]]], [], []], "openSheetController", ["subexpr", "action", ["openSheet"], [], ["loc", [null, [190, 32], [190, 52]]]]], ["loc", [null, [186, 10], [191, 12]]]]],
+          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "extinterface", ["loc", [null, [188, 18], [188, 30]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "extinterface.name", ["loc", [null, [189, 20], [189, 37]]]]], [], []], "sheetComponentName", ["subexpr", "@mut", [["get", "sheetComponentName", ["loc", [null, [190, 31], [190, 49]]]]], [], []]], ["loc", [null, [186, 10], [191, 12]]]]],
           locals: ["extinterface"],
           templates: []
         };
@@ -37880,7 +37935,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
             morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
             return morphs;
           },
-          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "application", ["loc", [null, [213, 18], [213, 29]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "application.name", ["loc", [null, [214, 20], [214, 36]]]]], [], []], "openSheetController", ["subexpr", "action", ["openSheet"], [], ["loc", [null, [215, 32], [215, 52]]]]], ["loc", [null, [211, 10], [216, 12]]]]],
+          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "application", ["loc", [null, [213, 18], [213, 29]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "application.name", ["loc", [null, [214, 20], [214, 36]]]]], [], []], "sheetComponentName", ["subexpr", "@mut", [["get", "sheetComponentName", ["loc", [null, [215, 31], [215, 49]]]]], [], []]], ["loc", [null, [211, 10], [216, 12]]]]],
           locals: ["application"],
           templates: []
         };
@@ -38003,7 +38058,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
             morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
             return morphs;
           },
-          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "userform", ["loc", [null, [238, 18], [238, 26]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "userform.name", ["loc", [null, [239, 20], [239, 33]]]]], [], []], "openSheetController", ["subexpr", "action", ["openSheet"], [], ["loc", [null, [240, 32], [240, 52]]]]], ["loc", [null, [236, 10], [241, 12]]]]],
+          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "userform", ["loc", [null, [238, 18], [238, 26]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "userform.name", ["loc", [null, [239, 20], [239, 33]]]]], [], []], "sheetComponentName", ["subexpr", "@mut", [["get", "sheetComponentName", ["loc", [null, [240, 31], [240, 49]]]]], [], []]], ["loc", [null, [236, 10], [241, 12]]]]],
           locals: ["userform"],
           templates: []
         };
@@ -38126,7 +38181,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
             morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
             return morphs;
           },
-          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "userstereotype", ["loc", [null, [263, 18], [263, 32]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "userstereotype.name", ["loc", [null, [264, 20], [264, 39]]]]], [], []], "openSheetController", ["subexpr", "action", ["openSheet"], [], ["loc", [null, [265, 32], [265, 52]]]]], ["loc", [null, [261, 10], [266, 12]]]]],
+          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "userstereotype", ["loc", [null, [263, 18], [263, 32]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "userstereotype.name", ["loc", [null, [264, 20], [264, 39]]]]], [], []], "sheetComponentName", ["subexpr", "@mut", [["get", "sheetComponentName", ["loc", [null, [265, 31], [265, 49]]]]], [], []]], ["loc", [null, [261, 10], [266, 12]]]]],
           locals: ["userstereotype"],
           templates: []
         };
@@ -38480,7 +38535,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-application-model.caption"], [], ["loc", [null, [2, 2], [2, 44]]]], ["inline", "t", ["forms.fd-application-model.type-caption"], [], ["loc", [null, [9, 8], [9, 55]]]], ["inline", "fd-search-input", [], ["value", ["subexpr", "@mut", [["get", "searchValue", ["loc", [null, [14, 16], [14, 27]]]]], [], []]], ["loc", [null, [12, 8], [15, 10]]]], ["block", "each", [["get", "filteredModel.classes", ["loc", [null, [20, 12], [20, 33]]]]], [], 0, null, ["loc", [null, [20, 4], [26, 13]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.enums.length", ["loc", [null, [29, 18], [29, 44]]]], 0], [], ["loc", [null, [29, 10], [29, 47]]]]], [], 1, null, ["loc", [null, [29, 4], [51, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.types.length", ["loc", [null, [54, 18], [54, 44]]]], 0], [], ["loc", [null, [54, 10], [54, 47]]]]], [], 2, null, ["loc", [null, [54, 4], [76, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.typedefs.length", ["loc", [null, [79, 18], [79, 47]]]], 0], [], ["loc", [null, [79, 10], [79, 50]]]]], [], 3, null, ["loc", [null, [79, 4], [101, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.bs.length", ["loc", [null, [104, 18], [104, 41]]]], 0], [], ["loc", [null, [104, 10], [104, 44]]]]], [], 4, null, ["loc", [null, [104, 4], [126, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.interfaces.length", ["loc", [null, [129, 18], [129, 49]]]], 0], [], ["loc", [null, [129, 10], [129, 52]]]]], [], 5, null, ["loc", [null, [129, 4], [151, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.externals.length", ["loc", [null, [154, 18], [154, 48]]]], 0], [], ["loc", [null, [154, 10], [154, 51]]]]], [], 6, null, ["loc", [null, [154, 4], [176, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.extinterfaces.length", ["loc", [null, [179, 18], [179, 52]]]], 0], [], ["loc", [null, [179, 10], [179, 55]]]]], [], 7, null, ["loc", [null, [179, 4], [201, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.applications.length", ["loc", [null, [204, 18], [204, 51]]]], 0], [], ["loc", [null, [204, 10], [204, 54]]]]], [], 8, null, ["loc", [null, [204, 4], [226, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.userforms.length", ["loc", [null, [229, 18], [229, 48]]]], 0], [], ["loc", [null, [229, 10], [229, 51]]]]], [], 9, null, ["loc", [null, [229, 4], [251, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.userstereotypes.length", ["loc", [null, [254, 18], [254, 54]]]], 0], [], ["loc", [null, [254, 10], [254, 57]]]]], [], 10, null, ["loc", [null, [254, 4], [276, 11]]]], ["block", "fd-sheet", [], ["title", ["subexpr", "@mut", [["get", "selectedElement.model.name", ["loc", [null, [281, 8], [281, 34]]]]], [], []], "closeSheetController", ["subexpr", "action", ["closeSheet"], [], ["loc", [null, [282, 23], [282, 44]]]], "saveController", ["subexpr", "action", ["save"], [], ["loc", [null, [283, 17], [283, 32]]]]], 11, null, ["loc", [null, [280, 0], [293, 13]]]]],
+      statements: [["inline", "t", ["forms.fd-application-model.caption"], [], ["loc", [null, [2, 2], [2, 44]]]], ["inline", "t", ["forms.fd-application-model.type-caption"], [], ["loc", [null, [9, 8], [9, 55]]]], ["inline", "fd-search-input", [], ["value", ["subexpr", "@mut", [["get", "searchValue", ["loc", [null, [14, 16], [14, 27]]]]], [], []]], ["loc", [null, [12, 8], [15, 10]]]], ["block", "each", [["get", "filteredModel.classes", ["loc", [null, [20, 12], [20, 33]]]]], [], 0, null, ["loc", [null, [20, 4], [26, 13]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.enums.length", ["loc", [null, [29, 18], [29, 44]]]], 0], [], ["loc", [null, [29, 10], [29, 47]]]]], [], 1, null, ["loc", [null, [29, 4], [51, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.types.length", ["loc", [null, [54, 18], [54, 44]]]], 0], [], ["loc", [null, [54, 10], [54, 47]]]]], [], 2, null, ["loc", [null, [54, 4], [76, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.typedefs.length", ["loc", [null, [79, 18], [79, 47]]]], 0], [], ["loc", [null, [79, 10], [79, 50]]]]], [], 3, null, ["loc", [null, [79, 4], [101, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.bs.length", ["loc", [null, [104, 18], [104, 41]]]], 0], [], ["loc", [null, [104, 10], [104, 44]]]]], [], 4, null, ["loc", [null, [104, 4], [126, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.interfaces.length", ["loc", [null, [129, 18], [129, 49]]]], 0], [], ["loc", [null, [129, 10], [129, 52]]]]], [], 5, null, ["loc", [null, [129, 4], [151, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.externals.length", ["loc", [null, [154, 18], [154, 48]]]], 0], [], ["loc", [null, [154, 10], [154, 51]]]]], [], 6, null, ["loc", [null, [154, 4], [176, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.extinterfaces.length", ["loc", [null, [179, 18], [179, 52]]]], 0], [], ["loc", [null, [179, 10], [179, 55]]]]], [], 7, null, ["loc", [null, [179, 4], [201, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.applications.length", ["loc", [null, [204, 18], [204, 51]]]], 0], [], ["loc", [null, [204, 10], [204, 54]]]]], [], 8, null, ["loc", [null, [204, 4], [226, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.userforms.length", ["loc", [null, [229, 18], [229, 48]]]], 0], [], ["loc", [null, [229, 10], [229, 51]]]]], [], 9, null, ["loc", [null, [229, 4], [251, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.userstereotypes.length", ["loc", [null, [254, 18], [254, 54]]]], 0], [], ["loc", [null, [254, 10], [254, 57]]]]], [], 10, null, ["loc", [null, [254, 4], [276, 11]]]], ["block", "fd-sheet", [], ["title", ["subexpr", "@mut", [["get", "selectedElement.model.name", ["loc", [null, [281, 8], [281, 34]]]]], [], []], "saveController", ["subexpr", "action", ["save"], [], ["loc", [null, [282, 17], [282, 32]]]], "sheetComponentName", ["subexpr", "@mut", [["get", "sheetComponentName", ["loc", [null, [283, 21], [283, 39]]]]], [], []]], 11, null, ["loc", [null, [280, 0], [293, 13]]]]],
       locals: [],
       templates: [child0, child1, child2, child3, child4, child5, child6, child7, child8, child9, child10, child11]
     };
@@ -60432,7 +60487,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+5ec13b24"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+fe00a174"});
 }
 
 /* jshint ignore:end */

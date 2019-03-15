@@ -9203,6 +9203,36 @@ define('dummy/tests/unit/services/fd-generation-test.jshint', ['exports'], funct
     assert.ok(true, 'unit/services/fd-generation-test.js should pass jshint.');
   });
 });
+define('dummy/tests/unit/services/fd-sheet-service-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('service:fd-sheet-service', 'Unit | Service | fd sheet service', {
+    // Specify the other units that are required for this test.
+    // needs: ['service:foo']
+  });
+
+  // Replace this with your real tests.
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var service = this.subject();
+    assert.ok(service);
+  });
+});
+define('dummy/tests/unit/services/fd-sheet-service-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - unit/services');
+  test('unit/services/fd-sheet-service-test.js should pass jscs', function () {
+    ok(true, 'unit/services/fd-sheet-service-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/unit/services/fd-sheet-service-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/services/fd-sheet-service-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/services/fd-sheet-service-test.js should pass jshint.');
+  });
+});
 define('dummy/tests/unit/transforms/containers-tree-test', ['exports', 'ember', 'ember-qunit', 'ember-flexberry-designer/objects/fd-appstruct-tree'], function (exports, _ember, _emberQunit, _emberFlexberryDesignerObjectsFdAppstructTree) {
 
   (0, _emberQunit.moduleFor)('transform:containers-tree', 'Unit | Transform | containers tree');
