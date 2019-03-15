@@ -1,9 +1,10 @@
-import Ember from 'ember';
-import { schedule } from '@ember/runloop';
+import Component from '@ember/component';
+import $ from 'jquery';
+import { run } from '@ember/runloop';
 import layout from '../templates/components/fd-sheet';
 import fdSheetMixin from '../mixins/fd-sheet-mixin';
 
-export default Ember.Component.extend(fdSheetMixin, {
+export default Component.extend(fdSheetMixin, {
   layout,
 
   title: '',
@@ -14,32 +15,32 @@ export default Ember.Component.extend(fdSheetMixin, {
     closeSheet() {
       this.set('commonVisible.visible', '');
       this.set('expand', false);
-      let currentSheet = Ember.$('.fd-sheet', this.element);
-      Ember.$('.pushable').removeClass('fade');
+      let currentSheet = $('.fd-sheet', this.element);
+      $('.pushable').removeClass('fade');
       currentSheet.css({ 'transform': '' });
 
       // Сбрасываем стиль с кнопки сайдбара.
-      Ember.$('.toggle-sidebar').removeClass('expanded');
+      $('.toggle-sidebar').removeClass('expanded');
       this.deactivateListItem();
 
-      Ember.run.later(function() {
-        Ember.$('.content-mini', currentSheet).css({ width: '' });
+      run.later(function() {
+        $('.content-mini', currentSheet).css({ width: '' });
       }, 1000);
     },
 
     expand() {
-      let sidebarWidth = Ember.$('.ui.sidebar.main.menu').width();
+      let sidebarWidth = $('.ui.sidebar.main.menu').width();
 
-      let currentSheet = Ember.$('.fd-sheet', this.element);
+      let currentSheet = $('.fd-sheet', this.element);
       let sheetTranslate =  `translate3d(calc(50% - ${sidebarWidth}px), 0, 0)`;
       currentSheet.css({ 'transform': sheetTranslate });
 
       let contentWidth = this.expand ? '50%' : `calc(100% - ${sidebarWidth}px)`;
 
       // Затемняем кнопку сайдбара.
-      Ember.$('.toggle-sidebar').toggleClass('expanded');
+      $('.toggle-sidebar').toggleClass('expanded');
 
-      schedule('afterRender', this, () => {
+      run.schedule('afterRender', this, () => {
         this.toggleProperty('expand');
       });
 

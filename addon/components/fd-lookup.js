@@ -2,7 +2,7 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import Component from '@ember/component';
 
 /**
   This component mimics the `flexberry-lookup` component in the edit form constructor.
@@ -10,7 +10,7 @@ import Ember from 'ember';
   @class FdLookupComponent
   @extends <a href="http://emberjs.com/api/classes/Ember.Component.html">Ember.Component</a>
 */
-export default Ember.Component.extend({
+export default Component.extend({
   /**
     Caption for the lookup form.
 

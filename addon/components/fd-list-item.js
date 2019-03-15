@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import layout from '../templates/components/fd-list-item';
 import fdSheetMixin from '../mixins/fd-sheet-mixin';
 
-export default Ember.Component.extend(fdSheetMixin, {
+export default Component.extend(fdSheetMixin, {
   layout,
   caption: '',
   fdListItemActive: undefined,

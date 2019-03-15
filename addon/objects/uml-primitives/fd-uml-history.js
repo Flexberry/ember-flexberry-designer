@@ -2,7 +2,7 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import { computed } from '@ember/object';
 import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
@@ -21,7 +21,7 @@ export default FdUmlElement.extend({
     @property type
     @type String
   */
-  type: Ember.computed.alias('primitive.$type'),
+  type: computed.alias('primitive.$type'),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.

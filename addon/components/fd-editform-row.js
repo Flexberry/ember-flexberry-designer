@@ -2,7 +2,8 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import FdDraggableControlMixin from '../mixins/fd-draggable-control';
 
 /**
@@ -12,7 +13,7 @@ import FdDraggableControlMixin from '../mixins/fd-draggable-control';
   @extends <a href="http://emberjs.com/api/classes/Ember.Component.html">Ember.Component</a>
   @uses FdDraggableControlMixin
 */
-export default Ember.Component.extend(FdDraggableControlMixin, {
+export default Component.extend(FdDraggableControlMixin, {
   /**
     Indicates that the row contains only one control.
 
@@ -20,7 +21,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     @property _singleColumn
     @type Boolean
   */
-  _singleColumn: Ember.computed.equal('row.controls.length', 1),
+  _singleColumn: computed.equal('row.controls.length', 1),
 
   /**
     Used in class name bindings to overlap the content of the row.
@@ -29,7 +30,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     @property _dimmed
     @type Boolean
   */
-  _dimmed: Ember.computed.reads('draggable'),
+  _dimmed: computed.reads('draggable'),
 
   /**
     Used in class name bindings to add a class when this row is selected.
@@ -39,7 +40,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     @readOnly
     @type Boolean
   */
-  _isSelected: Ember.computed('row', 'selectedItem', function() {
+  _isSelected: computed('row', 'selectedItem', function() {
     return this.get('row') === this.get('selectedItem');
   }).readOnly(),
 

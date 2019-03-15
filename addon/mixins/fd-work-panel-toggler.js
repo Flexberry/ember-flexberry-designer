@@ -1,8 +1,11 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import { run } from '@ember/runloop';
+import { A } from '@ember/array';
+import $ from 'jquery';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
 
-  prevTab: Ember.A(),
+  prevTab: A(),
 
   prevAttr: -1,
 
@@ -20,7 +23,7 @@ export default Ember.Mixin.create({
   actions: {
 
     toggleConfigPanel(currentTab, currentAttr = -1) {
-      let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
+      let configPanelSidebar = $('.ui.sidebar.config-panel');
       let toggleconfigPanel = this.prevTab[0] ? this.prevTab[0].dataTab === currentTab.dataTab : false;
       if (currentAttr !== -1) {
         toggleconfigPanel = this.prevAttr === currentAttr && toggleconfigPanel;
@@ -28,7 +31,7 @@ export default Ember.Mixin.create({
 
         // Open the properties of the attribute in the edit panel.
         this.set('activeTab', currentTab.dataTab);
-        Ember.$('.ui.menu', configPanelSidebar).find('.item').tab('change tab', currentTab.dataTab);
+        $('.ui.menu', configPanelSidebar).find('.item').tab('change tab', currentTab.dataTab);
       }
 
       this.prevTab.setObjects([currentTab]);
@@ -40,24 +43,24 @@ export default Ember.Mixin.create({
         this.send('workPlaceConfig');
 
         // For reinit overflowed tabs.
-        Ember.run.later(this, function () {
-          Ember.$(window).trigger('resize');
+        run.later(this, function () {
+          $(window).trigger('resize');
         }, 500);
       }
 
       let _this = this;
-      Ember.run.next(function () {
+      run.next(function () {
         if (!configPanelSidebar.hasClass('visible')) {
           _this.set('activeTab', 'none');
-          Ember.$('.ui.menu', configPanelSidebar).find('.item').removeClass('active');
-          Ember.$('.ui.form', configPanelSidebar).find('.tab').removeClass('active');
+          $('.ui.menu', configPanelSidebar).find('.item').removeClass('active');
+          $('.ui.form', configPanelSidebar).find('.tab').removeClass('active');
         }
       });
     },
 
     workPlaceConfig(isMainSidebar = false) {
-      let sidebar = Ember.$('.ui.sidebar.main.menu');
-      let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
+      let sidebar = $('.ui.sidebar.main.menu');
+      let configPanelSidebar = $('.ui.sidebar.config-panel');
       let sidebarVisible = sidebar.hasClass('visible');
       let configPanelSidebarVisible = configPanelSidebar.hasClass('visible');
       let configPanelTabsWidth = this.configPanelTabsWidth;
@@ -72,16 +75,16 @@ export default Ember.Mixin.create({
 
       if (!sidebarVisible) {
         if (configPanelSidebarVisible) {
-          Ember.$('.pusher').css({ width: 'calc(100% - ' + configPanelTabsWidth + 'px)', transform: 'translate3d(0, 0, 0)' });
+          $('.pusher').css({ width: 'calc(100% - ' + configPanelTabsWidth + 'px)', transform: 'translate3d(0, 0, 0)' });
         } else {
-          Ember.$('.pusher').css({ width: 'calc(100% - ' + configPanelSidebar.width() + 'px)', transform: 'translate3d(0, 0, 0)' });
+          $('.pusher').css({ width: 'calc(100% - ' + configPanelSidebar.width() + 'px)', transform: 'translate3d(0, 0, 0)' });
         }
       } else if (configPanelSidebarVisible) {
         let workPanel = sidebar.width() + configPanelTabsWidth;
-        Ember.$('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)', transform: 'translate3d(' + sidebar.width() + 'px, 0, 0)' });
+        $('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)', transform: 'translate3d(' + sidebar.width() + 'px, 0, 0)' });
       } else {
         let workPanel = sidebar.width() + configPanelSidebar.width();
-        Ember.$('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)', transform: 'translate3d(' + sidebar.width() + 'px, 0, 0)' });
+        $('.pusher').css({ width: 'calc(100% - ' + workPanel + 'px)', transform: 'translate3d(' + sidebar.width() + 'px, 0, 0)' });
       }
     }
   }

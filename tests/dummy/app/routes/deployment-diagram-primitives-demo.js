@@ -1,11 +1,11 @@
 import Route from '@ember/routing/route';
-import { schedule } from '@ember/runloop';
+import { run } from '@ember/runloop';
 import 'ember-flexberry-designer/utils/fd-deployment-diagram-primitives';
 
 export default Route.extend({
   activate: function() {
     let _this = this;
-    schedule('afterRender', this, function() {
+    run.schedule('afterRender', this, function() {
       _this.controller.send('printDiagram');
     });
   },

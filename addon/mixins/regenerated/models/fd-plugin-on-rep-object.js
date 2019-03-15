@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
 import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
-export let Model = Ember.Mixin.create({
+
+export let Model = Mixin.create({
   settings: DS.attr('string'),
   plugin: DS.belongsTo('fd-registered-plug-in', { inverse: null, async: false }),
   plugOutObject: DS.belongsTo('fd-repository-object-with-plugins', { inverse: 'plugins', async: false, polymorphic: true }),
@@ -11,11 +13,11 @@ export let Model = Ember.Mixin.create({
       plugin: { presence: true },
       plugOutObject: { presence: true }
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 export let defineProjections = function (modelClass) {

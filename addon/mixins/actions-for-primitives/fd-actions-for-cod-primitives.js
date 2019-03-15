@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import { A } from '@ember/array';
+
 import { UsecaseActor } from '../../objects/uml-primitives/fd-uml-usecase-actor';
 import { DesignPattern } from '../../objects/uml-primitives/fd-uml-design-pattern';
 import { AssociationLink } from '../../objects/uml-primitives/fd-uml-association-link';
@@ -22,7 +24,7 @@ import { QualifiedAggregation } from '../../objects/uml-primitives/fd-uml-qualif
    @class FdAcrionsForCodPrimitivesMixin
   @extends <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
-export default Ember.Mixin.create({
+export default Mixin.create({
   actions: {
     /**
       Handler for click on addActor button.
@@ -71,13 +73,13 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newNaryAssociationConnectorObject;
       }).bind(this), e, {
-        start: Ember.A(['flexberry.uml.NAryAssociation']),
-        end: Ember.A(['flexberry.uml.NAryAssociation', 'flexberry.uml.Instance', 'flexberry.uml.ActiveObject',
+        start: A(['flexberry.uml.NAryAssociation']),
+        end: A(['flexberry.uml.NAryAssociation', 'flexberry.uml.Instance', 'flexberry.uml.ActiveObject',
          'flexberry.uml.MultiObject', 'flexberry.uml.DesignPattern'])
       });
     },
@@ -96,11 +98,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newAssociationLinkObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Instance', 'flexberry.uml.ActiveObject', 'flexberry.uml.MultiObject',
+      }).bind(this), e, A(['flexberry.uml.Instance', 'flexberry.uml.ActiveObject', 'flexberry.uml.MultiObject',
        'flexberry.uml.UsecaseActor', 'flexberry.uml.DesignPattern', 'flexberry.uml.ForwardAsyncMessage', 'flexberry.uml.ForwardFlatMessage',
        'flexberry.uml.ForwardNestedMessage', 'flexberry.uml.ForwardAsyncMessage', 'flexberry.uml.ForwardFlatMessage', 'flexberry.uml.ForwardNestedMessage']));
     },
@@ -119,11 +121,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newQualifiedAssociationObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Instance', 'flexberry.uml.MultiObject']));
+      }).bind(this), e, A(['flexberry.uml.Instance', 'flexberry.uml.MultiObject']));
     },
 
     /**
@@ -140,11 +142,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newAggregationLinkObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Instance', 'flexberry.uml.MultiObject']));
+      }).bind(this), e, A(['flexberry.uml.Instance', 'flexberry.uml.MultiObject']));
     },
 
     /**
@@ -161,11 +163,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newQualifiedAggregationObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Instance', 'flexberry.uml.MultiObject']));
+      }).bind(this), e, A(['flexberry.uml.Instance', 'flexberry.uml.MultiObject']));
     },
 
     /**
@@ -182,11 +184,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newCompositionLinkObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Instance', 'flexberry.uml.MultiObject']));
+      }).bind(this), e, A(['flexberry.uml.Instance', 'flexberry.uml.MultiObject']));
     },
 
     /**
@@ -203,11 +205,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newQualifiedCompositionObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Instance', 'flexberry.uml.MultiObject']));
+      }).bind(this), e, A(['flexberry.uml.Instance', 'flexberry.uml.MultiObject']));
     },
 
     /**
@@ -224,13 +226,13 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newDesignPatternConnectorObject;
       }).bind(this), e, {
-        start: Ember.A(['flexberry.uml.Instance', 'flexberry.uml.MultiObject', 'flexberry.uml.UsecaseActor']),
-        end: Ember.A(['flexberry.uml.DesignPattern'])
+        start: A(['flexberry.uml.Instance', 'flexberry.uml.MultiObject', 'flexberry.uml.UsecaseActor']),
+        end: A(['flexberry.uml.DesignPattern'])
       });
     },
 
@@ -248,13 +250,13 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newInheritanceLinkObject;
       }).bind(this), e, {
-        start: Ember.A(['flexberry.uml.Instance', 'flexberry.uml.MultiObject', 'flexberry.uml.DesignPattern']),
-        end: Ember.A(['flexberry.uml.Instance', 'flexberry.uml.MultiObject'])
+        start: A(['flexberry.uml.Instance', 'flexberry.uml.MultiObject', 'flexberry.uml.DesignPattern']),
+        end: A(['flexberry.uml.Instance', 'flexberry.uml.MultiObject'])
       });
     },
 

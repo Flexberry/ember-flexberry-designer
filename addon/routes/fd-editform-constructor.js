@@ -1,11 +1,14 @@
-import Ember from 'ember';
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+import $ from 'jquery';
+import { get } from '@ember/object';
+import { isNone } from '@ember/utils';
 import { copyViewDefinition } from '../utils/fd-copy-view-definition';
 import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 
 export default Route.extend(FdFormCheckTransitionMixin, {
 
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
 
   actions: {
     /**
@@ -14,10 +17,10 @@ export default Route.extend(FdFormCheckTransitionMixin, {
       @method actions.didTransition
     */
     didTransition() {
-      Ember.$('.full.height').on('click.fd-editform-constructor', (e) => {
-        let path = Ember.get(e, 'originalEvent.path') || [];
-        let editRow = path.find((element) => Ember.$(element).hasClass('fd-editform-row'));
-        if (Ember.isNone(editRow)) {
+      $('.full.height').on('click.fd-editform-constructor', (e) => {
+        let path = get(e, 'originalEvent.path') || [];
+        let editRow = path.find((element) => $(element).hasClass('fd-editform-row'));
+        if (isNone(editRow)) {
           this.get('controller').send('selectItem');
         }
       });
@@ -53,7 +56,7 @@ export default Route.extend(FdFormCheckTransitionMixin, {
 
     modelHash.classes = allClassesInStore.filterBy('stage.id', modelHash.stage.get('id'));
     modelHash.views = allViewsInStore.filter(function(item) {
-      return !Ember.isNone(modelHash.classes.findBy('id', item.get('class.id')));
+      return !isNone(modelHash.classes.findBy('id', item.get('class.id')));
     });
     modelHash.inheritances = allInheritancesInStore.filterBy('stage.id', modelHash.stage.get('id'));
     modelHash.associations = allAssociationsInStore.filterBy('stage.id', modelHash.stage.get('id'));
@@ -104,7 +107,7 @@ export default Route.extend(FdFormCheckTransitionMixin, {
     this._super(...arguments);
 
     if (isExiting) {
-      Ember.$('.full.height').off('click.fd-editform-constructor');
+      $('.full.height').off('click.fd-editform-constructor');
     }
 
     controller.clearFormData();

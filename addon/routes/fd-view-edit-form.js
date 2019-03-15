@@ -1,5 +1,8 @@
-import Ember from 'ember';
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
+import $ from 'jquery';
+import { get } from '@ember/object';
 import FdAttributesTree from '../objects/fd-attributes-tree';
 import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode, getDetailView } from '../utils/fd-attributes-for-tree';
@@ -11,7 +14,7 @@ export default Route.extend(FdFormCheckTransitionMixin, {
      @property appState
     @type AppStateService
   */
-  appState: Ember.inject.service(),
+  appState: service(),
 
   model: function(arg) {
     let store = this.get('store');
@@ -28,7 +31,7 @@ export default Route.extend(FdFormCheckTransitionMixin, {
     let dataForBuildTree = getDataForBuildTree(store, idDevClass);
 
     // Set attributes tree.
-    let treeEmpty = Ember.A([
+    let treeEmpty = A([
 
       // Attribute - choose all.
       FdAttributesTree.create({
@@ -41,7 +44,7 @@ export default Route.extend(FdFormCheckTransitionMixin, {
     let treeMasters = getAssociationTreeNode(treeAttributes, dataForBuildTree.associations, 'node_');
     let treeDetails = getAggregationTreeNode(treeMasters, dataForBuildTree.aggregations);
     let detailView = getDetailView(dataForBuildTree.aggregations);
-    let tree = Ember.A([
+    let tree = A([
       FdAttributesTree.create({
         text: devClass.get('name'),
         type: 'class',
@@ -76,7 +79,7 @@ export default Route.extend(FdFormCheckTransitionMixin, {
     this._super(...arguments);
 
     if (isExiting) {
-      Ember.$('.full.height').off('click.fd-view-editform-constructor');
+      $('.full.height').off('click.fd-view-editform-constructor');
     }
   },
 
@@ -89,13 +92,13 @@ export default Route.extend(FdFormCheckTransitionMixin, {
 
   actions: {
     didTransition() {
-      Ember.$('#example .flexberry-content').css('padding-bottom', 0);
-      Ember.$('.flexberry-content > .ui.main.container').css('margin-bottom', 0);
+      $('#example .flexberry-content').css('padding-bottom', 0);
+      $('.flexberry-content > .ui.main.container').css('margin-bottom', 0);
 
-      Ember.$('.full.height').on('click.fd-view-editform-constructor', (e) => {
-        let table = Ember.$('.ui.table.fd-view-properties-table')[0];
-        let buttons = Ember.$('.text-center > .ui.buttons')[0];
-        let path = Ember.get(e, 'originalEvent.path') || [];
+      $('.full.height').on('click.fd-view-editform-constructor', (e) => {
+        let table = $('.ui.table.fd-view-properties-table')[0];
+        let buttons = $('.text-center > .ui.buttons')[0];
+        let path = get(e, 'originalEvent.path') || [];
         if (path.indexOf(table) === -1 && path.indexOf(buttons) === -1) {
           this.get('controller').send('onAttributesClick');
         }

@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -11,10 +11,10 @@ test('it renders and works', function(assert) {
 
   assert.equal(this.$().text().trim(), '');
 
-  this.set('headers', Ember.A(['Column #1', 'Column #2']));
-  this.set('rows', Ember.A([
-    Ember.A(['Cell #1', 'Cell #2']),
-    Ember.A(['Cell #3', 'Cell #4']),
+  this.set('headers', A(['Column #1', 'Column #2']));
+  this.set('rows', A([
+    A(['Cell #1', 'Cell #2']),
+    A(['Cell #3', 'Cell #4']),
   ]));
 
   assert.equal(this.$('thead tr').length, 1, 'The table has a header.');

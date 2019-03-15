@@ -2,7 +2,8 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import { A } from '@ember/array';
+import { isArray } from '@ember/array';
 
 import FdEditformRow from '../objects/fd-editform-row';
 import FdEditformControl from '../objects/fd-editform-control';
@@ -18,7 +19,7 @@ import FdEditformTab from '../objects/fd-editform-tab';
   @return {Ember.NativeArray} An array of view items.
 */
 export function controlsToDefinition(controlsTree) {
-  let definition = Ember.A();
+  let definition = A();
   let length = controlsTree.get('length');
   for (let i = 0; i < length; i++) {
     extractControlPath(definition, controlsTree.objectAt(i));
@@ -38,7 +39,7 @@ export function controlsToDefinition(controlsTree) {
 export function locateControlByPath(controlsTree, control, path) {
   if (!path) {
     let rows = getRows(controlsTree);
-    rows.pushObject(FdEditformRow.create({ controls: Ember.A([control]) }));
+    rows.pushObject(FdEditformRow.create({ controls: A([control]) }));
   } else {
     switch (path.charAt(0)) {
       case '|':
@@ -138,12 +139,12 @@ function locateInTabs(controlsTree, control, path) {
   }
 
   if (!tabGroup) {
-    tabGroup = FdEditformTabgroup.create({ tabs: Ember.A() });
-    rows.pushObject(FdEditformRow.create({ controls: Ember.A([tabGroup]) }));
+    tabGroup = FdEditformTabgroup.create({ tabs: A() });
+    rows.pushObject(FdEditformRow.create({ controls: A([tabGroup]) }));
   }
 
   if (!tab) {
-    tab = FdEditformTab.create({ rows: Ember.A(), caption });
+    tab = FdEditformTab.create({ rows: A(), caption });
     tabGroup.get('tabs').pushObject(tab);
   }
 
@@ -178,8 +179,8 @@ function locateInGroup(controlsTree, control, path) {
   }
 
   if (!group) {
-    group = FdEditformGroup.create({ rows: Ember.A(), caption });
-    rows.pushObject(FdEditformRow.create({ controls: Ember.A([group]) }));
+    group = FdEditformGroup.create({ rows: A(), caption });
+    rows.pushObject(FdEditformRow.create({ controls: A([group]) }));
   }
 
   locateControlByPath(group, control, path.slice(splitterIndex + 1));
@@ -201,7 +202,7 @@ function locateInColumn(controlsTree, control, path) {
   let rows = getRows(controlsTree);
   let row = rows.get('lastObject');
   if (!row || row.get('columnsCount') + 1 !== columnIndex) {
-    row = rows.pushObject(FdEditformRow.create({ controls: Ember.A() }));
+    row = rows.pushObject(FdEditformRow.create({ controls: A() }));
   }
 
   row.get('controls').pushObject(control);
@@ -218,7 +219,7 @@ function locateInColumn(controlsTree, control, path) {
 function getRows(controlsTree) {
   if (controlsTree instanceof FdEditformGroup || controlsTree instanceof FdEditformTab) {
     return controlsTree.get('rows');
-  } else if (Ember.isArray(controlsTree)) {
+  } else if (isArray(controlsTree)) {
     return controlsTree;
   } else {
     throw new Error('Invalid controls tree.');

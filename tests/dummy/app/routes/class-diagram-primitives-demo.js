@@ -1,13 +1,13 @@
 import Route from '@ember/routing/route';
-import { schedule } from '@ember/runloop';
-import { inject } from '@ember/service';
+import { run } from '@ember/runloop';
+import { inject as service } from '@ember/service';
 
 export default Route.extend({
-  appState: inject.service(),
+  appState: service(),
 
   activate: function() {
     let _this = this;
-    schedule('afterRender', this, function() {
+    run.schedule('afterRender', this, function() {
       _this.get('appState').reset();
       _this.controller.send('printDiagram');
     });

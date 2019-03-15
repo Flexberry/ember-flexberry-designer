@@ -2,15 +2,17 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { computed } from '@ember/object';
+import { inject as controller } from '@ember/service';
 
 /**
   The controller for the form with the projects.
 
   @class FdAllProjectsController
-  @extends Ember.Controller
+  @extends Controller
 */
-export default Ember.Controller.extend({
+export default Controller.extend({
   /**
     Link to nested controller `index`.
     More info on the [EmberJS API](https://emberjs.com/api/).
@@ -19,7 +21,7 @@ export default Ember.Controller.extend({
     @type Ember.InjectedProperty
     @default 'fd-all-projects.index'
   */
-  indexController: Ember.inject.controller('fd-all-projects.index'),
+  indexController: controller('fd-all-projects.index'),
 
   /**
     Indicates whether to show a header with a title, a search field and a project creation button.
@@ -28,7 +30,7 @@ export default Ember.Controller.extend({
     @type Boolean
     @readOnly
   */
-  showHeader: Ember.computed.readOnly('indexController.active'),
+  showHeader: computed.readOnly('indexController.active'),
 
   /**
     Alias for {{#crosslink "FdAllProjectsIndexController/search:property"}}{{/crosslink}}.
@@ -36,5 +38,5 @@ export default Ember.Controller.extend({
     @property search
     @type String
   */
-  search: Ember.computed.alias('indexController.search'),
+  search: computed.alias('indexController.search'),
 });

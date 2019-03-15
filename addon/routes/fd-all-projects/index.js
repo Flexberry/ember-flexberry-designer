@@ -2,8 +2,8 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
 import Route from '@ember/routing/route';
+import { hash } from 'rsvp';
 import { StringPredicate, ComplexPredicate } from 'ember-flexberry-data/query/predicate';
 import Builder from 'ember-flexberry-data/query/builder';
 import Condition from 'ember-flexberry-data/query/condition';
@@ -47,7 +47,7 @@ export default Route.extend({
       builder.where(predicate);
     }
 
-    return Ember.RSVP.hash({
+    return hash({
       projects: store.query(modelName, builder.build()),
     });
   },

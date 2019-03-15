@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
 import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
-export let Model = Ember.Mixin.create({
+
+export let Model = Mixin.create({
   valueXML: DS.attr('string'),
   moduleSettingTypeName: DS.attr('string'),
   moduleSettingType: DS.belongsTo('fd-dev-module-setting-type', { inverse: null, async: false }),
@@ -12,11 +14,11 @@ export let Model = Ember.Mixin.create({
       moduleSettingType: { presence: true },
       stage: { presence: true }
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 
