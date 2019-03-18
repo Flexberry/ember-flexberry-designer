@@ -132,6 +132,14 @@ define('dummy/components/fd-editform-row', ['exports', 'ember-flexberry-designer
     }
   });
 });
+define('dummy/components/fd-editing-panels/fd-application-editing-panel', ['exports', 'ember-flexberry-designer/components/fd-editing-panels/fd-application-editing-panel'], function (exports, _emberFlexberryDesignerComponentsFdEditingPanelsFdApplicationEditingPanel) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdEditingPanelsFdApplicationEditingPanel['default'];
+    }
+  });
+});
 define('dummy/components/fd-editing-panels/fd-businessserver-editing-panel', ['exports', 'ember-flexberry-designer/components/fd-editing-panels/fd-businessserver-editing-panel'], function (exports, _emberFlexberryDesignerComponentsFdEditingPanelsFdBusinessserverEditingPanel) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -140,11 +148,27 @@ define('dummy/components/fd-editing-panels/fd-businessserver-editing-panel', ['e
     }
   });
 });
+define('dummy/components/fd-editing-panels/fd-custom-editing-panel', ['exports', 'ember-flexberry-designer/components/fd-editing-panels/fd-custom-editing-panel'], function (exports, _emberFlexberryDesignerComponentsFdEditingPanelsFdCustomEditingPanel) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdEditingPanelsFdCustomEditingPanel['default'];
+    }
+  });
+});
 define('dummy/components/fd-editing-panels/fd-enumeration-editing-panel', ['exports', 'ember-flexberry-designer/components/fd-editing-panels/fd-enumeration-editing-panel'], function (exports, _emberFlexberryDesignerComponentsFdEditingPanelsFdEnumerationEditingPanel) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerComponentsFdEditingPanelsFdEnumerationEditingPanel['default'];
+    }
+  });
+});
+define('dummy/components/fd-editing-panels/fd-external-editing-panel', ['exports', 'ember-flexberry-designer/components/fd-editing-panels/fd-external-editing-panel'], function (exports, _emberFlexberryDesignerComponentsFdEditingPanelsFdExternalEditingPanel) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdEditingPanelsFdExternalEditingPanel['default'];
     }
   });
 });
@@ -161,6 +185,22 @@ define('dummy/components/fd-editing-panels/fd-interface-editing-panel', ['export
     enumerable: true,
     get: function get() {
       return _emberFlexberryDesignerComponentsFdEditingPanelsFdInterfaceEditingPanel['default'];
+    }
+  });
+});
+define('dummy/components/fd-editing-panels/fd-type-editing-panel', ['exports', 'ember-flexberry-designer/components/fd-editing-panels/fd-type-editing-panel'], function (exports, _emberFlexberryDesignerComponentsFdEditingPanelsFdTypeEditingPanel) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdEditingPanelsFdTypeEditingPanel['default'];
+    }
+  });
+});
+define('dummy/components/fd-editing-panels/fd-userform-editing-panel', ['exports', 'ember-flexberry-designer/components/fd-editing-panels/fd-userform-editing-panel'], function (exports, _emberFlexberryDesignerComponentsFdEditingPanelsFdUserformEditingPanel) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdEditingPanelsFdUserformEditingPanel['default'];
     }
   });
 });
@@ -2488,6 +2528,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
     assert.ok(true, 'modules/ember-flexberry-designer/components/fd-editform-row.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editing-panels/fd-application-editing-panel.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components/fd-editing-panels');
+  test('modules/ember-flexberry-designer/components/fd-editing-panels/fd-application-editing-panel.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-editing-panels/fd-application-editing-panel.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editing-panels/fd-application-editing-panel.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-editing-panels/fd-application-editing-panel.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-editing-panels/fd-application-editing-panel.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editing-panels/fd-businessserver-editing-panel.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/components/fd-editing-panels');
   test('modules/ember-flexberry-designer/components/fd-editing-panels/fd-businessserver-editing-panel.js should pass jscs', function () {
@@ -2501,6 +2554,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
     assert.ok(true, 'modules/ember-flexberry-designer/components/fd-editing-panels/fd-businessserver-editing-panel.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editing-panels/fd-custom-editing-panel.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components/fd-editing-panels');
+  test('modules/ember-flexberry-designer/components/fd-editing-panels/fd-custom-editing-panel.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-editing-panels/fd-custom-editing-panel.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editing-panels/fd-custom-editing-panel.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-editing-panels/fd-custom-editing-panel.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-editing-panels/fd-custom-editing-panel.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editing-panels/fd-enumeration-editing-panel.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/components/fd-editing-panels');
   test('modules/ember-flexberry-designer/components/fd-editing-panels/fd-enumeration-editing-panel.js should pass jscs', function () {
@@ -2512,6 +2578,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/components/fd-editing-panels/fd-enumeration-editing-panel.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editing-panels/fd-external-editing-panel.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components/fd-editing-panels');
+  test('modules/ember-flexberry-designer/components/fd-editing-panels/fd-external-editing-panel.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-editing-panels/fd-external-editing-panel.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editing-panels/fd-external-editing-panel.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-editing-panels/fd-external-editing-panel.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-editing-panels/fd-external-editing-panel.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editing-panels/fd-implementation-editing-panel.jscs-test', ['exports'], function (exports) {
@@ -2538,6 +2617,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/components/fd-editing-panels/fd-interface-editing-panel.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editing-panels/fd-type-editing-panel.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components/fd-editing-panels');
+  test('modules/ember-flexberry-designer/components/fd-editing-panels/fd-type-editing-panel.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-editing-panels/fd-type-editing-panel.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editing-panels/fd-type-editing-panel.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-editing-panels/fd-type-editing-panel.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-editing-panels/fd-type-editing-panel.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editing-panels/fd-userform-editing-panel.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components/fd-editing-panels');
+  test('modules/ember-flexberry-designer/components/fd-editing-panels/fd-userform-editing-panel.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-editing-panels/fd-userform-editing-panel.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editing-panels/fd-userform-editing-panel.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-editing-panels/fd-userform-editing-panel.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-editing-panels/fd-userform-editing-panel.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-file.jscs-test', ['exports'], function (exports) {
@@ -3801,6 +3906,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/he
     assert.ok(true, 'modules/ember-flexberry-designer/helpers/known-for-type.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-application-editing-panel.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/components');
+  test('modules/ember-flexberry-designer/locales/en/components/fd-application-editing-panel.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/components/fd-application-editing-panel.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-application-editing-panel.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/components/fd-application-editing-panel.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/components/fd-application-editing-panel.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-businessserver-editing-panel.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/locales/en/components');
   test('modules/ember-flexberry-designer/locales/en/components/fd-businessserver-editing-panel.js should pass jscs', function () {
@@ -3814,6 +3932,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/components/fd-businessserver-editing-panel.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-custom-editing-panel.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/components');
+  test('modules/ember-flexberry-designer/locales/en/components/fd-custom-editing-panel.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/components/fd-custom-editing-panel.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-custom-editing-panel.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/components/fd-custom-editing-panel.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/components/fd-custom-editing-panel.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-enumeration-editing-panel.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/locales/en/components');
   test('modules/ember-flexberry-designer/locales/en/components/fd-enumeration-editing-panel.js should pass jscs', function () {
@@ -3825,6 +3956,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/components/fd-enumeration-editing-panel.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-external-editing-panel.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/components');
+  test('modules/ember-flexberry-designer/locales/en/components/fd-external-editing-panel.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/components/fd-external-editing-panel.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-external-editing-panel.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/components/fd-external-editing-panel.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/components/fd-external-editing-panel.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-implementation-editing-panel.jscs-test', ['exports'], function (exports) {
@@ -3864,6 +4008,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/components/fd-tabs.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-type-editing-panel.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/components');
+  test('modules/ember-flexberry-designer/locales/en/components/fd-type-editing-panel.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/components/fd-type-editing-panel.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-type-editing-panel.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/components/fd-type-editing-panel.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/components/fd-type-editing-panel.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-userform-editing-panel.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/components');
+  test('modules/ember-flexberry-designer/locales/en/components/fd-userform-editing-panel.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/components/fd-userform-editing-panel.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-userform-editing-panel.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/components/fd-userform-editing-panel.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/components/fd-userform-editing-panel.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-visual-control.jscs-test', ['exports'], function (exports) {
@@ -5400,6 +5570,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/translations.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/components/fd-application-editing-panel.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/components');
+  test('modules/ember-flexberry-designer/locales/ru/components/fd-application-editing-panel.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/components/fd-application-editing-panel.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/components/fd-application-editing-panel.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/components/fd-application-editing-panel.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/components/fd-application-editing-panel.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/components/fd-businessserver-editing-panel.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/locales/ru/components');
   test('modules/ember-flexberry-designer/locales/ru/components/fd-businessserver-editing-panel.js should pass jscs', function () {
@@ -5413,6 +5596,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/components/fd-businessserver-editing-panel.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/components/fd-custom-editing-panel.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/components');
+  test('modules/ember-flexberry-designer/locales/ru/components/fd-custom-editing-panel.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/components/fd-custom-editing-panel.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/components/fd-custom-editing-panel.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/components/fd-custom-editing-panel.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/components/fd-custom-editing-panel.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/components/fd-enumeration-editing-panel.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/locales/ru/components');
   test('modules/ember-flexberry-designer/locales/ru/components/fd-enumeration-editing-panel.js should pass jscs', function () {
@@ -5424,6 +5620,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/components/fd-enumeration-editing-panel.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/components/fd-external-editing-panel.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/components');
+  test('modules/ember-flexberry-designer/locales/ru/components/fd-external-editing-panel.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/components/fd-external-editing-panel.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/components/fd-external-editing-panel.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/components/fd-external-editing-panel.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/components/fd-external-editing-panel.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/components/fd-implementation-editing-panel.jscs-test', ['exports'], function (exports) {
@@ -5463,6 +5672,32 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/components/fd-tabs.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/components/fd-type-editing-panel.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/components');
+  test('modules/ember-flexberry-designer/locales/ru/components/fd-type-editing-panel.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/components/fd-type-editing-panel.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/components/fd-type-editing-panel.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/components/fd-type-editing-panel.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/components/fd-type-editing-panel.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/components/fd-userform-editing-panel.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/components');
+  test('modules/ember-flexberry-designer/locales/ru/components/fd-userform-editing-panel.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/components/fd-userform-editing-panel.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/components/fd-userform-editing-panel.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/components/fd-userform-editing-panel.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/components/fd-userform-editing-panel.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/components/fd-visual-control.jscs-test', ['exports'], function (exports) {
@@ -38428,7 +38663,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
                 "column": 2
               },
               "end": {
-                "line": 291,
+                "line": 293,
                 "column": 2
               }
             },
@@ -38440,14 +38675,20 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
           hasRendered: false,
           buildFragment: function buildFragment(dom) {
             var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("    ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
             var el1 = dom.createTextNode("\n");
             dom.appendChild(el0, el1);
             return el0;
           },
-          buildRenderNodes: function buildRenderNodes() {
-            return [];
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
           },
-          statements: [],
+          statements: [["inline", "fd-editing-panels/fd-custom-editing-panel", [], ["model", ["subexpr", "@mut", [["get", "selectedElement.model", ["loc", [null, [291, 12], [291, 33]]]]], [], []]], ["loc", [null, [290, 4], [292, 6]]]]],
           locals: [],
           templates: []
         };
@@ -38463,7 +38704,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
               "column": 0
             },
             "end": {
-              "line": 293,
+              "line": 295,
               "column": 0
             }
           },
@@ -38487,7 +38728,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
           dom.insertBoundary(fragment, 0);
           return morphs;
         },
-        statements: [["block", "if", [["subexpr", "known-for-type", [["subexpr", "concat", ["fd-editing-panels/fd-", ["get", "componentNamePart", ["loc", [null, [285, 56], [285, 73]]]], "-editing-panel"], [], ["loc", [null, [285, 24], [285, 91]]]]], [], ["loc", [null, [285, 8], [285, 92]]]]], [], 0, 1, ["loc", [null, [285, 2], [291, 9]]]]],
+        statements: [["block", "if", [["subexpr", "known-for-type", [["subexpr", "concat", ["fd-editing-panels/fd-", ["get", "componentNamePart", ["loc", [null, [285, 56], [285, 73]]]], "-editing-panel"], [], ["loc", [null, [285, 24], [285, 91]]]]], [], ["loc", [null, [285, 8], [285, 92]]]]], [], 0, 1, ["loc", [null, [285, 2], [293, 9]]]]],
         locals: [],
         templates: [child0, child1]
       };
@@ -38506,7 +38747,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 294,
+            "line": 296,
             "column": 0
           }
         },
@@ -38642,7 +38883,7 @@ define("dummy/templates/fd-application-model", ["exports"], function (exports) {
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["inline", "t", ["forms.fd-application-model.caption"], [], ["loc", [null, [2, 2], [2, 44]]]], ["inline", "t", ["forms.fd-application-model.type-caption"], [], ["loc", [null, [9, 8], [9, 55]]]], ["inline", "fd-search-input", [], ["value", ["subexpr", "@mut", [["get", "searchValue", ["loc", [null, [14, 16], [14, 27]]]]], [], []]], ["loc", [null, [12, 8], [15, 10]]]], ["block", "each", [["get", "filteredModel.classes", ["loc", [null, [20, 12], [20, 33]]]]], [], 0, null, ["loc", [null, [20, 4], [26, 13]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.enums.length", ["loc", [null, [29, 18], [29, 44]]]], 0], [], ["loc", [null, [29, 10], [29, 47]]]]], [], 1, null, ["loc", [null, [29, 4], [51, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.types.length", ["loc", [null, [54, 18], [54, 44]]]], 0], [], ["loc", [null, [54, 10], [54, 47]]]]], [], 2, null, ["loc", [null, [54, 4], [76, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.typedefs.length", ["loc", [null, [79, 18], [79, 47]]]], 0], [], ["loc", [null, [79, 10], [79, 50]]]]], [], 3, null, ["loc", [null, [79, 4], [101, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.bs.length", ["loc", [null, [104, 18], [104, 41]]]], 0], [], ["loc", [null, [104, 10], [104, 44]]]]], [], 4, null, ["loc", [null, [104, 4], [126, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.interfaces.length", ["loc", [null, [129, 18], [129, 49]]]], 0], [], ["loc", [null, [129, 10], [129, 52]]]]], [], 5, null, ["loc", [null, [129, 4], [151, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.externals.length", ["loc", [null, [154, 18], [154, 48]]]], 0], [], ["loc", [null, [154, 10], [154, 51]]]]], [], 6, null, ["loc", [null, [154, 4], [176, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.extinterfaces.length", ["loc", [null, [179, 18], [179, 52]]]], 0], [], ["loc", [null, [179, 10], [179, 55]]]]], [], 7, null, ["loc", [null, [179, 4], [201, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.applications.length", ["loc", [null, [204, 18], [204, 51]]]], 0], [], ["loc", [null, [204, 10], [204, 54]]]]], [], 8, null, ["loc", [null, [204, 4], [226, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.userforms.length", ["loc", [null, [229, 18], [229, 48]]]], 0], [], ["loc", [null, [229, 10], [229, 51]]]]], [], 9, null, ["loc", [null, [229, 4], [251, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.userstereotypes.length", ["loc", [null, [254, 18], [254, 54]]]], 0], [], ["loc", [null, [254, 10], [254, 57]]]]], [], 10, null, ["loc", [null, [254, 4], [276, 11]]]], ["block", "fd-sheet", [], ["title", ["subexpr", "@mut", [["get", "selectedElement.model.name", ["loc", [null, [281, 8], [281, 34]]]]], [], []], "saveController", ["subexpr", "action", ["save"], [], ["loc", [null, [282, 17], [282, 32]]]], "sheetComponentName", ["subexpr", "@mut", [["get", "sheetComponentName", ["loc", [null, [283, 21], [283, 39]]]]], [], []]], 11, null, ["loc", [null, [280, 0], [293, 13]]]]],
+      statements: [["inline", "t", ["forms.fd-application-model.caption"], [], ["loc", [null, [2, 2], [2, 44]]]], ["inline", "t", ["forms.fd-application-model.type-caption"], [], ["loc", [null, [9, 8], [9, 55]]]], ["inline", "fd-search-input", [], ["value", ["subexpr", "@mut", [["get", "searchValue", ["loc", [null, [14, 16], [14, 27]]]]], [], []]], ["loc", [null, [12, 8], [15, 10]]]], ["block", "each", [["get", "filteredModel.classes", ["loc", [null, [20, 12], [20, 33]]]]], [], 0, null, ["loc", [null, [20, 4], [26, 13]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.enums.length", ["loc", [null, [29, 18], [29, 44]]]], 0], [], ["loc", [null, [29, 10], [29, 47]]]]], [], 1, null, ["loc", [null, [29, 4], [51, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.types.length", ["loc", [null, [54, 18], [54, 44]]]], 0], [], ["loc", [null, [54, 10], [54, 47]]]]], [], 2, null, ["loc", [null, [54, 4], [76, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.typedefs.length", ["loc", [null, [79, 18], [79, 47]]]], 0], [], ["loc", [null, [79, 10], [79, 50]]]]], [], 3, null, ["loc", [null, [79, 4], [101, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.bs.length", ["loc", [null, [104, 18], [104, 41]]]], 0], [], ["loc", [null, [104, 10], [104, 44]]]]], [], 4, null, ["loc", [null, [104, 4], [126, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.interfaces.length", ["loc", [null, [129, 18], [129, 49]]]], 0], [], ["loc", [null, [129, 10], [129, 52]]]]], [], 5, null, ["loc", [null, [129, 4], [151, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.externals.length", ["loc", [null, [154, 18], [154, 48]]]], 0], [], ["loc", [null, [154, 10], [154, 51]]]]], [], 6, null, ["loc", [null, [154, 4], [176, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.extinterfaces.length", ["loc", [null, [179, 18], [179, 52]]]], 0], [], ["loc", [null, [179, 10], [179, 55]]]]], [], 7, null, ["loc", [null, [179, 4], [201, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.applications.length", ["loc", [null, [204, 18], [204, 51]]]], 0], [], ["loc", [null, [204, 10], [204, 54]]]]], [], 8, null, ["loc", [null, [204, 4], [226, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.userforms.length", ["loc", [null, [229, 18], [229, 48]]]], 0], [], ["loc", [null, [229, 10], [229, 51]]]]], [], 9, null, ["loc", [null, [229, 4], [251, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.userstereotypes.length", ["loc", [null, [254, 18], [254, 54]]]], 0], [], ["loc", [null, [254, 10], [254, 57]]]]], [], 10, null, ["loc", [null, [254, 4], [276, 11]]]], ["block", "fd-sheet", [], ["title", ["subexpr", "@mut", [["get", "selectedElement.model.name", ["loc", [null, [281, 8], [281, 34]]]]], [], []], "saveController", ["subexpr", "action", ["save"], [], ["loc", [null, [282, 17], [282, 32]]]], "sheetComponentName", ["subexpr", "@mut", [["get", "sheetComponentName", ["loc", [null, [283, 21], [283, 39]]]]], [], []]], 11, null, ["loc", [null, [280, 0], [295, 13]]]]],
       locals: [],
       templates: [child0, child1, child2, child3, child4, child5, child6, child7, child8, child9, child10, child11]
     };
@@ -60594,7 +60835,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+f74847de"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+3c2a09b7"});
 }
 
 /* jshint ignore:end */
