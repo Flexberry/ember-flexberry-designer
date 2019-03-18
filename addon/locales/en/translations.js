@@ -1,4 +1,6 @@
-import Ember from 'ember';
+
+import $ from 'jquery';
+
 import EmberFlexberryTranslations from 'ember-flexberry/locales/en/translations';
 import FdAppstructListFormForm from './forms/fd-appstruct-form';
 import FdAggregationListFormForm from './forms/fd-aggregation-list-form';
@@ -119,9 +121,9 @@ import FdTabs from './components/fd-tabs';
 import FdApplicationModelForm from './forms/fd-application-model';
 
 const translations = {};
-Ember.$.extend(true, translations, EmberFlexberryTranslations);
+$.extend(true, translations, EmberFlexberryTranslations);
 
-Ember.$.extend(true, translations, {
+$.extend(true, translations, {
   models: {
     'fd-ad': FdAdModel,
     'fd-aggregation': FdAggregationModel,

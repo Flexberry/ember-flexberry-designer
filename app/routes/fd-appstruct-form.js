@@ -5,6 +5,7 @@ import Route from 'ember-flexberry-designer/routes/fd-appstruct-form';
 import { schedule } from '@ember/runloop';
 
 export default Route.extend({
+  // eslint-disable-next-line no-unused-vars
   setupController(controller, model) {
     this._super(...arguments);
 

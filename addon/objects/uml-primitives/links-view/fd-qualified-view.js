@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import $ from 'jquery';
+
 import { RoleView } from './fd-role-view';
 
 export let QualifiedView = RoleView.extend({
@@ -18,12 +20,12 @@ export let QualifiedView = RoleView.extend({
     '</div>'
   ].join(''),
 
-  updateInputsArray: [
+  updateInputsArray: computed(() => [
     '.description-input',
     '.start-role-input',
     '.end-role-input',
     '.qualified-input'
-  ],
+  ]).readOnly(),
 
   initialize: function() {
     RoleView.prototype.initialize.apply(this, arguments);
@@ -34,7 +36,7 @@ export let QualifiedView = RoleView.extend({
     }.bind(this));
 
     this.$box.find('.qualified-input').on('change', function(evt) {
-      this.model.setLabelText('qualified', Ember.$(evt.target).val());
+      this.model.setLabelText('qualified', $(evt.target).val());
     }.bind(this));
 
     // Initialize inputs values.
@@ -48,7 +50,7 @@ export let QualifiedView = RoleView.extend({
     // Update inputs positions.
     let qualifiedPosition = this.getLabelCoordinates(this.model.label(5).position);
     let qualifiedDelta = this.model.label(5).inverseTextDirection ? this.$box.find('.qualified-input').width() : 0;
-    Ember.$(this.$box[4]).css({
+    $(this.$box[4]).css({
       left: qualifiedPosition.x - 7 - qualifiedDelta,
       top: qualifiedPosition.y - 10,
       transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'

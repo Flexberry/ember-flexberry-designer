@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { isNone } from '@ember/utils';
+
 import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
 import ListFormRoute from 'ember-flexberry/routes/list-form';
 
@@ -54,7 +55,7 @@ export default ListFormRoute.extend({
     @type Object
     @default {}
   */
-  developerUserSettings: { FdViewListForm: {} },
+  developerUserSettings: undefined,
 
   /**
    This hook is the first of the route entry validation hooks called when an attempt is made to transition into a route or one of its children.
@@ -66,7 +67,7 @@ export default ListFormRoute.extend({
  */
   beforeModel: function(transition) {
     let classId = transition.queryParams.classId;
-    if (!Ember.isNone(classId)) {
+    if (!isNone(classId)) {
       let queryPredicate = new SimplePredicate('class', '==', classId);
       this.set('_queryPredicate', queryPredicate);
     }
@@ -76,4 +77,12 @@ export default ListFormRoute.extend({
     let queryPredicate = this.get('_queryPredicate');
     return queryPredicate;
   },
+
+  init() {
+    this._super(...arguments);
+
+    this.set('', {
+      FdViewListForm: {}
+    });
+  }
 });

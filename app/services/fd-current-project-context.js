@@ -1,13 +1,21 @@
-import Ember from 'ember';
+import { get } from '@ember/object';
+
 import FdCurrentProjectContext from 'ember-flexberry-designer/services/fd-current-project-context';
 import config from '../config/environment';
 
-let singleModeStageId = Ember.get(config, 'APP.fdCurrentProjectContext.singleModeStageId');
+let singleModeStageId = get(config, 'APP.fdCurrentProjectContext.singleModeStageId');
 FdCurrentProjectContext.reopen({
-  context: {
-    stage: singleModeStageId
-  },
-  singleStageMode: singleModeStageId !== undefined
+  context: undefined,
+
+  singleStageMode: singleModeStageId !== undefined,
+
+  init() {
+    this._super(...arguments);
+
+    this.set('context', {
+      stage: singleModeStageId
+    });
+  }
 });
 
 export default FdCurrentProjectContext;

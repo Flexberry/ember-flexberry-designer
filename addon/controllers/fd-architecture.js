@@ -1,13 +1,15 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { computed } from '@ember/object';
+import { inject } from '@ember/service';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   /**
     Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
 
     @property currentContext
     @type FdCurrentProjectContextService
   */
-  currentContext: Ember.inject.service('fd-current-project-context'),
+  currentContext: inject('fd-current-project-context'),
 
   /**
     Previous version of the application structure.
@@ -15,7 +17,7 @@ export default Ember.Controller.extend({
     @property sitemap
     @type Object
   */
-  sitemap: Ember.computed('i18n.locale', 'currentContext.context.configuration', 'currentContext.context.stage', function() {
+  sitemap: computed('i18n.locale', 'currentContext.context.{configuration,stage}', function() {
     let i18n = this.get('i18n');
     let context = this.get('currentContext.context');
 

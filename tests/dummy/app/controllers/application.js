@@ -1,7 +1,14 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { computed, observer } from '@ember/object';
+import { inject } from '@ember/service';
+import { A } from '@ember/array';
+import { isNone } from '@ember/utils';
+import { later } from '@ember/runloop';
+import $ from 'jquery';
+
 import fdSheetMixin from 'ember-flexberry-designer/mixins/fd-sheet-mixin';
 
-export default Ember.Controller.extend(fdSheetMixin, {
+export default Controller.extend(fdSheetMixin, {
   /**
     Flag indicates sidebar visible
 
@@ -18,14 +25,14 @@ export default Ember.Controller.extend(fdSheetMixin, {
     @property currentContext
     @type FdCurrentProjectContextService
   */
-  currentContext: Ember.inject.service('fd-current-project-context'),
+  currentContext: inject('fd-current-project-context'),
 
   /**
     Service for managing the state of the application.
     @property appState
     @type AppStateService
   */
-  appState: Ember.inject.service(),
+  appState: inject(),
 
   /**
     Current project name from stageModel
@@ -33,11 +40,11 @@ export default Ember.Controller.extend(fdSheetMixin, {
     @property currentProjectName
     @type String
   */
-  currentProjectName: Ember.computed('currentContext.context.stageModel.name', function() {
+  currentProjectName: computed('currentContext.context.stageModel.name', function() {
     return this.get('currentContext.context.stageModel.name');
   }),
 
-  sitemap: Ember.computed('i18n.locale', 'currentContext.context.configuration', 'currentContext.context.stage', function() {
+  sitemap: computed('i18n.locale', 'currentContext.context.{configuration,stage}', function() {
     let i18n = this.get('i18n');
     let singleStageMode = this.get('currentContext.singleStageMode');
 
@@ -88,7 +95,7 @@ export default Ember.Controller.extend(fdSheetMixin, {
     return sitemap;
   }),
 
-  sitemapBottom: Ember.computed('i18n.locale', 'currentContext.context.configuration', 'currentContext.context.stage', function() {
+  sitemapBottom: computed('i18n.locale', 'currentContext.context.{configuration,stage}', function() {
     let i18n = this.get('i18n');
     let singleStageMode = this.get('currentContext.singleStageMode');
 
@@ -134,7 +141,7 @@ export default Ember.Controller.extend(fdSheetMixin, {
     @type String[]
     @default ['ru', 'en']
   */
-  locales: ['ru', 'en'],
+  locales: undefined,
 
   /**
     Handles changes in userSettingsService.isUserSettingsServiceEnabled.
@@ -142,7 +149,7 @@ export default Ember.Controller.extend(fdSheetMixin, {
     @method _userSettingsServiceChanged
     @private
   */
-  _userSettingsServiceChanged: Ember.observer('userSettingsService.isUserSettingsServiceEnabled', function() {
+  _userSettingsServiceChanged: observer('userSettingsService.isUserSettingsServiceEnabled', function() {
     this.get('target.router').refresh();
   }),
 
@@ -152,14 +159,16 @@ export default Ember.Controller.extend(fdSheetMixin, {
   init() {
     this._super(...arguments);
 
+    this.set('locales', ['ru', 'en']);
+
     let i18n = this.get('i18n');
-    if (Ember.isNone(i18n)) {
+    if (isNone(i18n)) {
       return;
     }
 
     // If i18n.locale is long value like 'ru-RU', 'en-GB', ... this code will return short variant 'ru', 'en', etc.
     let shortCurrentLocale = this.get('i18n.locale').split('-')[0];
-    let availableLocales = Ember.A(this.get('locales'));
+    let availableLocales = A(this.get('locales'));
 
     // Force current locale to be one of available,
     // if browser's current language is not supported by dummy application,
@@ -177,7 +186,7 @@ export default Ember.Controller.extend(fdSheetMixin, {
     @property objectlistviewEventsService
     @type Service
   */
-  objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
+  objectlistviewEventsService: inject('objectlistview-events'),
 
   sidebarWidth: '300px',
 
@@ -198,40 +207,40 @@ export default Ember.Controller.extend(fdSheetMixin, {
       @method actions.toggleSidebar
     */
     toggleSidebar() {
-      let sidebar = Ember.$('.ui.sidebar.main.menu');
+      let sidebar = $('.ui.sidebar.main.menu');
       sidebar.sidebar('toggle');
       let sidebarVisible = sidebar.hasClass('visible');
       this.set('_sidebarVisible', !sidebarVisible);
       let currentSidebarWidth = sidebarVisible ? this.sidebarMiniWidth : this.sidebarWidth;
       let contentWidth = `calc(100% - ${currentSidebarWidth})`;
       if (!sidebarVisible) {
-        Ember.$('.toggle-sidebar').css({ transition: 'opacity 500ms step-start' });
+        $('.toggle-sidebar').css({ transition: 'opacity 500ms step-start' });
       } else {
-        Ember.$('.toggle-sidebar').css({ transition: '' });
+        $('.toggle-sidebar').css({ transition: '' });
       }
 
       // Sheet content is animated only if it is expanded.
-      if (Ember.$('.fd-sheet.visible').hasClass('expand')) {
+      if ($('.fd-sheet.visible').hasClass('expand')) {
         this.send('animatingSheetContent', contentWidth, 250);
       } else {
 
         // That the sheet remained in its place and did not go along with the content.
         let sheetTranslate = `translate3d(calc(50% - ${currentSidebarWidth}), 0, 0)`;
-        Ember.$('.fd-sheet.visible').css({ 'transform': sheetTranslate });
+        $('.fd-sheet.visible').css({ 'transform': sheetTranslate });
       }
 
       // Animated increases the width of the page content.
-      Ember.$('.full.height .flexberry-vertical-form').css({ opacity: 0.2 });
-      Ember.run.later(function() {
-        Ember.$('.full.height .flexberry-vertical-form').css({ opacity: '' });
-        Ember.$('.full.height').css({ width: contentWidth });
+      $('.full.height .flexberry-vertical-form').css({ opacity: 0.2 });
+      later(function() {
+        $('.full.height .flexberry-vertical-form').css({ opacity: '' });
+        $('.full.height').css({ width: contentWidth });
       }, 250);
 
-      Ember.run.later(this, function() {
+      later(this, function() {
         sidebar.toggleClass('sidebar-mini');
 
         // For reinit overflowed tabs.
-        Ember.$(window).trigger('resize');
+        $(window).trigger('resize');
       }, 500);
     },
 
@@ -240,17 +249,17 @@ export default Ember.Controller.extend(fdSheetMixin, {
       @method actions.toggleSidebarMobile
     */
     toggleSidebarMobile() {
-      Ember.$('.ui.sidebar.main.menu').sidebar('toggle');
-      let sidebarVisible = Ember.$('.inverted.vertical.main.menu').hasClass('visible');
+      $('.ui.sidebar.main.menu').sidebar('toggle');
+      let sidebarVisible = $('.inverted.vertical.main.menu').hasClass('visible');
       this.set('_sidebarVisible', !sidebarVisible);
       if (sidebarVisible) {
-        Ember.$('.sidebar.icon.text-menu-show').removeClass('hidden');
-        Ember.$('.sidebar.icon.text-menu-hide').addClass('hidden');
-        Ember.$('.bgw-opacity').addClass('hidden');
+        $('.sidebar.icon.text-menu-show').removeClass('hidden');
+        $('.sidebar.icon.text-menu-hide').addClass('hidden');
+        $('.bgw-opacity').addClass('hidden');
       } else {
-        Ember.$('.sidebar.icon.text-menu-show').addClass('hidden');
-        Ember.$('.sidebar.icon.text-menu-hide').removeClass('hidden');
-        Ember.$('.bgw-opacity').removeClass('hidden');
+        $('.sidebar.icon.text-menu-show').addClass('hidden');
+        $('.sidebar.icon.text-menu-hide').removeClass('hidden');
+        $('.bgw-opacity').removeClass('hidden');
       }
     }
   }

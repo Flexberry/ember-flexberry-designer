@@ -3,7 +3,7 @@ import { schedule } from '@ember/runloop';
 import { inject } from '@ember/service';
 
 export default Route.extend({
-  appState: inject.service(),
+  appState: inject(),
 
   activate: function() {
     let _this = this;

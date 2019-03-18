@@ -2,7 +2,6 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
 import Route from '@ember/routing/route';
 
 /**

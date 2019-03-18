@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import { A } from '@ember/array';
 import { module, test } from 'qunit';
 

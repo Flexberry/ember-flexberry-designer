@@ -1,7 +1,7 @@
 /**
   @module ember-flexberry-designer
 */
-import Ember from 'ember';
+import { computed } from '@ember/object';
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
@@ -21,7 +21,7 @@ export default FdUmlLink.extend({
     @type String
   */
 
-  endRoleTxt: Ember.computed.alias('primitive.RightText.Text'),
+  endRoleTxt: computed.alias('primitive.RightText.Text'),
 
   /**
     Start role text.
@@ -29,7 +29,7 @@ export default FdUmlLink.extend({
     @property startRoleTxt
     @type String
   */
-  startRoleTxt: Ember.computed.alias('primitive.LeftText.Text'),
+  startRoleTxt: computed.alias('primitive.LeftText.Text'),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -68,6 +68,7 @@ export let ProcedureCall = Link.define('flexberry.uml.sequencediagramProcedureCa
   }]
 }, {
   setLabelText: function (label, text) {
+    // eslint-disable-next-line no-console
     console.log(`label: ${label}; text: ${text}`);
     switch (label) {
       case 'startMultiplicity':
@@ -86,6 +87,7 @@ export let ProcedureCall = Link.define('flexberry.uml.sequencediagramProcedureCa
         this.label(4, { attrs: { text: { text: text } } });
         break;
       default:
+        // eslint-disable-next-line no-console
         console.log('ERROR - choose correct label name');
         break;
     }
