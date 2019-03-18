@@ -132,6 +132,14 @@ define('dummy/components/fd-editform-row', ['exports', 'ember-flexberry-designer
     }
   });
 });
+define('dummy/components/fd-editing-panels/fd-businessserver-editing-panel', ['exports', 'ember-flexberry-designer/components/fd-editing-panels/fd-businessserver-editing-panel'], function (exports, _emberFlexberryDesignerComponentsFdEditingPanelsFdBusinessserverEditingPanel) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdEditingPanelsFdBusinessserverEditingPanel['default'];
+    }
+  });
+});
 define('dummy/components/fd-editing-panels/fd-enumeration-editing-panel', ['exports', 'ember-flexberry-designer/components/fd-editing-panels/fd-enumeration-editing-panel'], function (exports, _emberFlexberryDesignerComponentsFdEditingPanelsFdEnumerationEditingPanel) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -2472,6 +2480,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
     assert.ok(true, 'modules/ember-flexberry-designer/components/fd-editform-row.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editing-panels/fd-businessserver-editing-panel.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components/fd-editing-panels');
+  test('modules/ember-flexberry-designer/components/fd-editing-panels/fd-businessserver-editing-panel.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-editing-panels/fd-businessserver-editing-panel.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editing-panels/fd-businessserver-editing-panel.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-editing-panels/fd-businessserver-editing-panel.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-editing-panels/fd-businessserver-editing-panel.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-editing-panels/fd-enumeration-editing-panel.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/components/fd-editing-panels');
   test('modules/ember-flexberry-designer/components/fd-editing-panels/fd-enumeration-editing-panel.js should pass jscs', function () {
@@ -3757,6 +3778,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/he
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/helpers/known-for-type.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-businessserver-editing-panel.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/components');
+  test('modules/ember-flexberry-designer/locales/en/components/fd-businessserver-editing-panel.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/components/fd-businessserver-editing-panel.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-businessserver-editing-panel.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/components/fd-businessserver-editing-panel.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/components/fd-businessserver-editing-panel.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/components/fd-enumeration-editing-panel.jscs-test', ['exports'], function (exports) {
@@ -5330,6 +5364,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/translations.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/components/fd-businessserver-editing-panel.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/components');
+  test('modules/ember-flexberry-designer/locales/ru/components/fd-businessserver-editing-panel.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/components/fd-businessserver-editing-panel.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/components/fd-businessserver-editing-panel.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/components/fd-businessserver-editing-panel.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/components/fd-businessserver-editing-panel.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/components/fd-enumeration-editing-panel.jscs-test', ['exports'], function (exports) {
@@ -60487,7 +60534,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+fe00a174"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+b0f81c2e"});
 }
 
 /* jshint ignore:end */
