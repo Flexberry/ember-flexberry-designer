@@ -117,6 +117,7 @@ import FdVisualControlComponent from './components/fd-visual-control';
 import FdVisualEditControlTreeComponent from './components/fd-visual-edit-control-tree';
 import FdTabs from './components/fd-tabs';
 import FdClassEditingPanel from './components/fd-implementation-editing-panel';
+import FdBsEditingPanel from './components/fd-businessserver-editing-panel';
 import FdEnumEditingPanel from './components/fd-enumeration-editing-panel';
 import FdApplicationModelForm from './forms/fd-application-model';
 
@@ -399,6 +400,7 @@ Ember.$.extend(true, translations, {
     'fd-visual-edit-control-tree': FdVisualEditControlTreeComponent,
     'fd-tabs': FdTabs,
     'fd-implementation-editing-panel': FdClassEditingPanel,
+    'fd-businessserver-editing-panel': FdBsEditingPanel,
     'fd-enumeration-editing-panel': FdEnumEditingPanel
   }
 
