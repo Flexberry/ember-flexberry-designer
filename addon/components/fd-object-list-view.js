@@ -2,7 +2,7 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import Component from '@ember/component';
 
 /**
   This component render table from passed headers and rows.
@@ -10,7 +10,7 @@ import Ember from 'ember';
   @class FdObjectListViewComponent
   @extends <a href="http://emberjs.com/api/classes/Ember.Component.html">Ember.Component</a>
 */
-export default Ember.Component.extend({
+export default Component.extend({
   /**
     An array of header for rendering.
 

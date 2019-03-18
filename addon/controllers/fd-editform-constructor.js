@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import EmberObject from '@ember/object';
 import { computed, observer } from '@ember/object';
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 import { A, isArray } from '@ember/array';
 import { isEmpty, isNone } from '@ember/utils';
 import { scheduleOnce } from '@ember/runloop';
@@ -42,7 +42,7 @@ FdFormUnsavedData, {
     @property appState
     @type AppStateService
   */
-  appState: inject(),
+  appState: service(),
 
   queryParams: ['classId'],
 

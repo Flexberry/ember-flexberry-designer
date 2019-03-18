@@ -1,4 +1,4 @@
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 import { merge } from '@ember/polyfills';
 import { isNone } from '@ember/utils'
 
@@ -50,7 +50,7 @@ export default ListFormRoute.extend({
   */
   developerUserSettings: undefined,
 
-  currentProjectContext: inject('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
 
   /**
     It overrides base method and forms the limit predicate for loaded data.

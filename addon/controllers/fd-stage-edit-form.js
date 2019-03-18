@@ -1,5 +1,5 @@
 import { computed, observer } from '@ember/object';
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 import { getOwner } from '@ember/application';
 import { A } from '@ember/array';
 
@@ -11,7 +11,7 @@ export default EditFormController.extend({
 
   parentRoute: 'fd-stage-list-form',
 
-  store: inject('store'),
+  store: service('store'),
 
   moduleSetting: undefined,
 

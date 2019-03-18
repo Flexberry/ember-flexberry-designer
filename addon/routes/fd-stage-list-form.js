@@ -1,4 +1,4 @@
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 
 import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
 import FdPreloadStageMetadata from 'ember-flexberry-designer/utils/fd-preload-stage-metadata';
@@ -28,7 +28,7 @@ export default ListFormRoute.extend({
      @property appState
     @type AppStateService
   */
-  appState: inject(),
+  appState: service(),
 
   /**
     Defined user settings developer.
@@ -61,7 +61,7 @@ export default ListFormRoute.extend({
     @property currentContext
     @type FdCurrentProjectContextService
   */
-  currentContext: inject('fd-current-project-context'),
+  currentContext: service('fd-current-project-context'),
 
   actions: {
     objectListViewRowClick(stage, options) {

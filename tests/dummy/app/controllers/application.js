@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { computed, observer } from '@ember/object';
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 import { isNone } from '@ember/utils';
 import { later } from '@ember/runloop';
@@ -25,14 +25,14 @@ export default Controller.extend(fdSheetMixin, {
     @property currentContext
     @type FdCurrentProjectContextService
   */
-  currentContext: inject('fd-current-project-context'),
+  currentContext: service('fd-current-project-context'),
 
   /**
     Service for managing the state of the application.
     @property appState
     @type AppStateService
   */
-  appState: inject(),
+  appState: service(),
 
   /**
     Current project name from stageModel
@@ -186,7 +186,7 @@ export default Controller.extend(fdSheetMixin, {
     @property objectlistviewEventsService
     @type Service
   */
-  objectlistviewEventsService: inject('objectlistview-events'),
+  objectlistviewEventsService: service('objectlistview-events'),
 
   sidebarWidth: '300px',
 

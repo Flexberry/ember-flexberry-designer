@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
 import { attr, belongsTo, hasMany } from 'ember-flexberry-data/utils/attributes';
-export let Model = Ember.Mixin.create({
+
+export let Model = Mixin.create({
   /**
     Non-stored property.
 
@@ -112,11 +114,11 @@ export let Model = Ember.Mixin.create({
       view: { presence: true },
       class: { presence: true }
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 export let defineBaseModel = function (modelClass) {

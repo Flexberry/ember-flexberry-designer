@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import { assert } from '@ember/debug';
+import { A } from '@ember/array';
+import { inject as service } from '@ember/service';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -15,9 +17,9 @@ moduleForComponent('fd-editform-control', 'Integration | Component | fd-editform
 
   beforeEach() {
     if (FlexberryTextboxComponent.proto().i18n) {
-      Ember.assert(`Please, delete 'beforeEach' and 'afterEach' hooks.`);
+      assert(`Please, delete 'beforeEach' and 'afterEach' hooks.`);
     } else {
-      FlexberryTextboxComponent.reopen({ i18n: Ember.inject.service() });
+      FlexberryTextboxComponent.reopen({ i18n: service() });
     }
   },
 
@@ -42,9 +44,9 @@ test('it renders and works', function(assert) {
 
   this.set('control', FdEditformGroup.create({
     caption: 'Group #1',
-    rows: Ember.A([
+    rows: A([
       FdEditformRow.create({
-        controls: Ember.A([
+        controls: A([
           FdEditformControl.create({ caption: 'Attribute #1' }),
         ]),
       }),
@@ -61,12 +63,12 @@ test('it renders and works', function(assert) {
   assert.ok(this.$('.fd-editform-control').hasClass('selected'), 'Group control highlighted.');
 
   this.set('control', FdEditformTabgroup.create({
-    tabs: Ember.A([
+    tabs: A([
       FdEditformTab.create({
         caption: 'Tab #1',
-        rows: Ember.A([
+        rows: A([
           FdEditformRow.create({
-            controls: Ember.A([
+            controls: A([
               FdEditformControl.create({ caption: 'Attribute #1' }),
             ]),
           }),

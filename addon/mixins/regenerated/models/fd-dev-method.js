@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
 import { attr, hasMany } from 'ember-flexberry-data/utils/attributes';
-export let Model = Ember.Mixin.create({
+
+export let Model = Mixin.create({
   accessModifier: DS.attr('s-t-o-r-m-c-a-s-e-repository-access-modifier'),
   accessType: DS.attr('i-c-s-soft-s-t-o-r-m-n-e-t-access-type'),
   caption: DS.attr('string'),
@@ -89,11 +91,11 @@ export let Model = Ember.Mixin.create({
     let thisValidations = {
       class: { presence: true }
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 

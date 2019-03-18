@@ -1,5 +1,5 @@
-import Ember from 'ember';
 import Route from '@ember/routing/route';
+import { Promise } from 'rsvp';
 import Builder from 'ember-flexberry-data/query/builder';
 
 export default Route.extend({
@@ -16,7 +16,7 @@ export default Route.extend({
   model() {
     let store = this.get('store');
 
-    let promise = new Ember.RSVP.Promise((resolve, reject) => {
+    let promise = new Promise((resolve, reject) => {
       let fdControlModel = store.createRecord('fd-visual-edit-control',
       {
         isSelected: true,

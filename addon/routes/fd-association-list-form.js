@@ -1,4 +1,4 @@
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 
 import ListFormRoute from 'ember-flexberry/routes/list-form';
 import LimitByStageMixin from '../mixins/fd-limit-by-stage';
@@ -12,7 +12,7 @@ export default ListFormRoute.extend(LimitByStageMixin, {
    @type {Class}
    @default Ember.inject.service()
    */
-  currentProjectContext: inject('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
 
   /**
     Name of model projection to be used as record's properties limitation.

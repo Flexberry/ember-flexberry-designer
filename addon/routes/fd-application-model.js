@@ -1,5 +1,6 @@
-import Ember from 'ember';
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
 import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 
 export default Route.extend(FdFormCheckTransitionMixin, {
@@ -9,9 +10,9 @@ export default Route.extend(FdFormCheckTransitionMixin, {
 
    @property currentProjectContext
    @type {Class}
-   @default Ember.inject.service()
+   @default service()
    */
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
 
   /**
     A hook you can implement to convert the URL into the model for this route.
@@ -21,7 +22,7 @@ export default Route.extend(FdFormCheckTransitionMixin, {
    */
   model: function() {
     let modelHash = {
-      classes: Ember.A(),
+      classes: A(),
       typedefs: undefined,
       enums: undefined,
       types: undefined,
@@ -64,60 +65,60 @@ export default Route.extend(FdFormCheckTransitionMixin, {
         }
       });
 
-      let classFormsArray = Ember.A(classForms);
+      let classFormsArray = A(classForms);
       let editForms = classFormsArray.filterBy('stereotype', '«editform»');
       let listForms = classFormsArray.filterBy('stereotype', '«listform»');
 
       let inheritanceData = inheritanceCurrentStage.filterBy('child.id', implementation.get('id'));
-      let parents = Ember.A(inheritanceData).mapBy('parent');
+      let parents = A(inheritanceData).mapBy('parent');
 
       modelHash.classes.pushObject({
         settings: implementation,
-        editForms: Ember.A(editForms),
-        listForms: Ember.A(listForms),
-        parents: Ember.A(parents),
+        editForms: A(editForms),
+        listForms: A(listForms),
+        parents: A(parents),
         bs: implementation.get('businessServerClass')
       });
     });
 
     // Typedef.
     let typedefs = classesCurrentStage.filterBy('stereotype', '«typedef»');
-    modelHash.typedefs = Ember.A(typedefs);
+    modelHash.typedefs = A(typedefs);
 
     // Enums.
     let enums = classesCurrentStage.filterBy('stereotype', '«enumeration»');
-    modelHash.enums = Ember.A(enums);
+    modelHash.enums = A(enums);
 
     // Types.
     let types = classesCurrentStage.filterBy('stereotype', '«type»');
-    modelHash.types = Ember.A(types);
+    modelHash.types = A(types);
 
     // Applications.
     let applications = classesCurrentStage.filterBy('stereotype', '«application»');
-    modelHash.applications = Ember.A(applications);
+    modelHash.applications = A(applications);
 
     // BS.
     let bs = classesCurrentStage.filterBy('stereotype', '«businessserver»');
-    modelHash.bs = Ember.A(bs);
+    modelHash.bs = A(bs);
 
     // External.
     let externals = classesCurrentStage.filterBy('stereotype', '«external»');
-    modelHash.externals = Ember.A(externals);
+    modelHash.externals = A(externals);
 
     // Extinterface.
     let extinterfaces = classesCurrentStage.filterBy('stereotype', '«externalinterface»');
-    modelHash.extinterfaces = Ember.A(extinterfaces);
+    modelHash.extinterfaces = A(extinterfaces);
 
     // Interface.
     let interfaces = classesCurrentStage.filterBy('stereotype', '«interface»');
-    modelHash.interfaces = Ember.A(interfaces);
+    modelHash.interfaces = A(interfaces);
 
     // Userforms.
     let userforms = classesCurrentStage.filterBy('stereotype', '«userform»');
-    modelHash.userforms = Ember.A(userforms);
+    modelHash.userforms = A(userforms);
 
     // Userstereotypes.
-    let designerStereotypes = Ember.A([
+    let designerStereotypes = A([
       null,
       '«implementation»',
       '«listform»',
@@ -135,7 +136,7 @@ export default Route.extend(FdFormCheckTransitionMixin, {
     let userstereotypes = classesCurrentStage.filter(function(item) {
       return !designerStereotypes.includes(item.get('stereotype'));
     });
-    modelHash.userstereotypes = Ember.A(userstereotypes);
+    modelHash.userstereotypes = A(userstereotypes);
 
     return modelHash;
   }

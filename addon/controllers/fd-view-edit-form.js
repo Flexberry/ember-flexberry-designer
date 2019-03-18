@@ -1,6 +1,6 @@
 import { computed, set } from '@ember/object';
 import { A } from '@ember/array';
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 import { isNone } from '@ember/utils';
 import $ from 'jquery';
 
@@ -24,7 +24,7 @@ FdFormUnsavedData, {
      @property appState
     @type AppStateService
   */
-  appState: inject(),
+  appState: service(),
 
   allAttrsHidedn: false,
 

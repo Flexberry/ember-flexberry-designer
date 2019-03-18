@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 import { ObjectMix as BusinessServerClassMixin } from
   '../mixins/regenerated/objects/NewPlatformFlexberryWebDesignerBusinessServerClass';
 
-let EmberObject = Ember.Object.extend(BusinessServerClassMixin, {
+let EmberObjectExtend = EmberObject.extend(BusinessServerClassMixin, {
 
 });
 
-export default EmberObject;
+export default EmberObjectExtend;

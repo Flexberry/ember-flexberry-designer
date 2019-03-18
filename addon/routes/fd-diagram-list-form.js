@@ -1,4 +1,4 @@
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 
 import { SimplePredicate, ComplexPredicate, IsOfPredicate } from 'ember-flexberry-data/query/predicate';
@@ -55,7 +55,7 @@ export default ListFormRoute.extend({
     @property currentContext
     @type FdCurrentProjectContextService
   */
-  currentContext: inject('fd-current-project-context'),
+  currentContext: service('fd-current-project-context'),
 
   /**
     Return `SimplePredicate` for limit list objects by stage.

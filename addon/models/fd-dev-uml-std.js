@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { A } from '@ember/array';
 import { Model as DevUMLSTDMixin, defineBaseModel  } from
   '../mixins/regenerated/models/fd-dev-uml-std';
 import STDModel from './fd-std';
@@ -21,8 +22,8 @@ let Model = STDModel.extend(DevUMLSTDMixin, {
     @property primitives
     @type Ember.Array
   */
-  primitives: Ember.computed('primitivesJsonString', function() {
-    let result = Ember.A();
+  primitives: computed('primitivesJsonString', function() {
+    let result = A();
     let primitives = JSON.parse(this.get('primitivesJsonString'));
 
     for (let i = 0; i < primitives.length; i++) {

@@ -2,8 +2,9 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+import { run } from '@ember/runloop';
 import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 
 /**
@@ -19,14 +20,14 @@ export default Route.extend(FdFormCheckTransitionMixin, {
     @property currentContext
     @type FdCurrentProjectContextService
   */
-  currentContext: Ember.inject.service('fd-current-project-context'),
+  currentContext: service('fd-current-project-context'),
 
   /**
     Service for managing the state of the application.
      @property appState
     @type AppStateService
   */
-  appState: Ember.inject.service(),
+  appState: service(),
 
   actions: {
     /**
@@ -35,7 +36,7 @@ export default Route.extend(FdFormCheckTransitionMixin, {
       @method actions.didTransition
     */
     didTransition() {
-      Ember.run.next(() => {
+      run.next(() => {
         this.set('controller.showTypeMap', true);
 
         // Save the type map if it has just been generated with default values.

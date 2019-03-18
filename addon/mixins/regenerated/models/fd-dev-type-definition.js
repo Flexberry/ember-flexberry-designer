@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
 import { attr } from 'ember-flexberry-data/utils/attributes';
-export let Model = Ember.Mixin.create({
+
+export let Model = Mixin.create({
   caption: DS.attr('string'),
   formatAttribute: DS.attr('string'),
   mapTypeAssemblyName: DS.attr('string'),
@@ -14,11 +16,11 @@ export let Model = Ember.Mixin.create({
       name: { presence: true },
       stage: { presence: true }
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 export let defineProjections = function (modelClass) {

@@ -2,7 +2,8 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import { assert } from '@ember/debug';
+import { getProperties } from '@ember/object';
 
 /**
   Returns an array of types contained in the type map.
@@ -29,7 +30,7 @@ export function deserialize(serialized) {
       deserialized.push({ name, value, assemblyDll });
     }
 
-    Ember.assert('The type map must contain one definition.', typeMaps.length === 1);
+    assert('The type map must contain one definition.', typeMaps.length === 1);
   }
 
   return deserialized;
@@ -50,7 +51,7 @@ export function deserialize(serialized) {
 export function serialize(deserialized) {
   let serialized = [];
   for (let i = 0; i < deserialized.length; i++) {
-    let type = Ember.getProperties(deserialized[i], 'name', 'value', 'assemblyDll');
+    let type = getProperties(deserialized[i], 'name', 'value', 'assemblyDll');
     serialized.push(`<${type.name} value="${type.value}" assemblydll="${type.assemblyDll || ''}" />`);
   }
 

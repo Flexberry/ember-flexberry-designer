@@ -1,4 +1,4 @@
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 
 import ListFormRoute from 'ember-flexberry/routes/list-form';
 
@@ -52,7 +52,7 @@ export default ListFormRoute.extend({
     @property currentContext
     @type FdCurrentProjectContextService
   */
-  currentContext: inject('fd-current-project-context'),
+  currentContext: service('fd-current-project-context'),
 
   actions: {
     objectListViewRowClick(configuration, options) {

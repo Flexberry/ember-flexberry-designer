@@ -1,5 +1,9 @@
-import Ember from 'ember';
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
+import $ from 'jquery';
+import { isNone } from '@ember/utils';
+import { get } from '@ember/object';
 import FdAttributesTree from '../objects/fd-attributes-tree';
 import FdDataTypes from '../utils/fd-datatypes';
 import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
@@ -8,7 +12,7 @@ import { copyViewDefinition } from '../utils/fd-copy-view-definition';
 import { getNewFormCaption, getNewFormDescription } from '../utils/fd-create-form-properties';
 
 export default Route.extend(FdFormCheckTransitionMixin, {
-  currentContext: Ember.inject.service('fd-current-project-context'),
+  currentContext: service('fd-current-project-context'),
 
   actions: {
     /**
@@ -17,9 +21,9 @@ export default Route.extend(FdFormCheckTransitionMixin, {
       @method actions.didTransition
     */
     didTransition() {
-      Ember.$('.full.height').on('click.fd-listform-constructor', (e) => {
-        let table = Ember.$('.ui.table.fd-listform')[0];
-        let path = Ember.get(e, 'originalEvent.path') || [];
+      $('.full.height').on('click.fd-listform-constructor', (e) => {
+        let table = $('.ui.table.fd-listform')[0];
+        let path = get(e, 'originalEvent.path') || [];
         if (path.indexOf(table) === -1) {
           this.get('controller').send('selectColumn');
         }
@@ -86,7 +90,7 @@ export default Route.extend(FdFormCheckTransitionMixin, {
       modelHash.view = store.createRecord('fd-dev-view', {
         class: modelHash.dataobject,
         name: newCaption,
-        definition: Ember.A()
+        definition: A()
       });
 
       let formView = store.createRecord('fd-dev-form-view', {
@@ -105,9 +109,9 @@ export default Route.extend(FdFormCheckTransitionMixin, {
 
     // Attributes.
     let dataForBuildTree = getDataForBuildTree(store, dataobjectId);
-    modelHash.attributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes, dataobjectId, 'type');
-    modelHash.masters = getAssociationTreeNode(Ember.A(), dataForBuildTree.associations, 'node_', dataobjectId, 'name');
-    modelHash.details = getAggregationTreeNode(Ember.A(), dataForBuildTree.aggregations, dataobjectId, 'name');
+    modelHash.attributes = getClassTreeNode(A(), dataForBuildTree.classes, dataobjectId, 'type');
+    modelHash.masters = getAssociationTreeNode(A(), dataForBuildTree.associations, 'node_', dataobjectId, 'name');
+    modelHash.details = getAggregationTreeNode(A(), dataForBuildTree.aggregations, dataobjectId, 'name');
 
     // simpleTypes.
     let fdDataTypes = FdDataTypes.create();
@@ -162,7 +166,7 @@ export default Route.extend(FdFormCheckTransitionMixin, {
     this._super(...arguments);
 
     if (isExiting) {
-      Ember.$('.full.height').off('click.fd-listform-constructor');
+      $('.full.height').off('click.fd-listform-constructor');
     }
 
     controller.clearFormData();
@@ -191,7 +195,7 @@ export default Route.extend(FdFormCheckTransitionMixin, {
       @return {Object} Object data for tree.
   */
   _buildTree: function(data, type, nodeId) {
-    let treeData = Ember.A();
+    let treeData = A();
     data.forEach((item, index)=> {
       let text;
       if (type === '«typemap»') {
@@ -208,7 +212,7 @@ export default Route.extend(FdFormCheckTransitionMixin, {
         id: type + index
       });
 
-      if (!Ember.isNone(nodeId)) {
+      if (!isNone(nodeId)) {
         newNode.set('idNode', item.get('id'));
       }
 

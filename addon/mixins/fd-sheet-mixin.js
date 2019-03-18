@@ -1,6 +1,10 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import { isNone } from '@ember/utils';
+import $ from 'jquery';
+import { run } from '@ember/runloop';
+import { A } from '@ember/array';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
 
   /**
     Array active list items.
@@ -32,31 +36,31 @@ export default Ember.Mixin.create({
 
   actions: {
     openSheet(currentItem) {
-      if (!Ember.isNone(currentItem)) {
+      if (!isNone(currentItem)) {
         let activeItemsArray = this.get('activeItemsArray');
         activeItemsArray.pushObject(currentItem);
       }
 
       this.set('commonVisible.visible', 'visible');
-      Ember.$('.pushable').addClass('fade');
+      $('.pushable').addClass('fade');
 
-      let sidebarWidth = Ember.$('.ui.sidebar.main.menu').width();
+      let sidebarWidth = $('.ui.sidebar.main.menu').width();
 
       let sheetTranslate = `translate3d(calc(50% - ${sidebarWidth}px), 0, 0)`;
-      Ember.$('.fd-sheet').css({ 'transform': sheetTranslate });
+      $('.fd-sheet').css({ 'transform': sheetTranslate });
     },
 
     animatingSheetContent(contentWidth, speed) {
-      Ember.$('.fd-sheet .content-mini').css({ opacity: 0.2 });
+      $('.fd-sheet .content-mini').css({ opacity: 0.2 });
 
-      Ember.run.later(function() {
-        Ember.$('.fd-sheet .content-mini').css({ opacity: '', width: contentWidth });
+      run.later(function() {
+        $('.fd-sheet .content-mini').css({ opacity: '', width: contentWidth });
       }, speed);
     }
   },
 
   init() {
     this._super(...arguments);
-    this.set('activeItemsArray', Ember.A());
+    this.set('activeItemsArray', A());
   }
 });

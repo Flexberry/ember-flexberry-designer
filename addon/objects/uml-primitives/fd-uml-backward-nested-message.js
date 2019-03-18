@@ -2,7 +2,7 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import { computed } from '@ember/object';
 
 import FdUmlElement from './fd-uml-element';
 import { CollMessageBase } from './fd-uml-base-coll-message';
@@ -21,7 +21,7 @@ export default FdUmlElement.extend({
     @property attrs
     @type String
   */
-  attrs: Ember.computed('primitive.Name.Text', function() {
+  attrs: computed('primitive.Name.Text', function() {
     return { '.uml-base-text': { 'text': this.get('primitive.Name.Text') } };
   }),
 

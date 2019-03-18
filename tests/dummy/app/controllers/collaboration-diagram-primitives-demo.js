@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
 import joint from 'npm:jointjs';
-import { schedule } from '@ember/runloop';
+import { run } from '@ember/runloop';
 
 import { ActiveObject } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-active-object';
 import { NAryAssociation } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-naryassociation';
@@ -23,11 +23,11 @@ import { BackwardNestedMessage } from 'ember-flexberry-designer/objects/uml-prim
 import { BackwardFlatMessage } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-backward-flat-message';
 import { BackwardAsyncMessage } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-backward-async-message';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   actions: {
     printDiagram: function() {
       let _this = this;
-      schedule('afterRender',	function() {
+      run.schedule('afterRender',	function() {
         _this.graph = new joint.dia.Graph();
 
         let paper = document.getElementById('paper');

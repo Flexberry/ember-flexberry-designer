@@ -3,7 +3,7 @@
 */
 
 import Service from '@ember/service';
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 import { assert } from '@ember/debug';
 import { Promise } from 'rsvp';
 
@@ -43,7 +43,7 @@ export default Service.extend({
     @property store
     @type DS.Store or subclass
   */
-  store: inject('store'),
+  store: service('store'),
 
   /**
     Set current configuration.

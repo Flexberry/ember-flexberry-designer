@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
 import { attr, belongsTo, hasMany } from 'ember-flexberry-data/utils/attributes';
 import GenerationStateEnum from '../../../enums/new-platform-flexberry-web-designer-generation-state';
-export let Model = Ember.Mixin.create({
+
+export let Model = Mixin.create({
   startTime: DS.attr('date', { defaultValue() { return new Date(); } }),
   endTime: DS.attr('date', { defaultValue() { return new Date(); } }),
   state: DS.attr('new-platform-flexberry-web-designer-generation-state', { defaultValue: GenerationStateEnum.Running }),
@@ -17,11 +19,11 @@ export let Model = Ember.Mixin.create({
     let thisValidations = {
       stage: { presence: true }
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 

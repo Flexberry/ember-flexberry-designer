@@ -1,5 +1,5 @@
 import { computed, observer } from '@ember/object';
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 import { isNone } from '@ember/utils';
 import { A } from '@ember/array';
 
@@ -108,7 +108,7 @@ export default FlexberryBaseComponent.extend({
     @property store
     @type Service
   */
-  store: inject(),
+  store: service(),
 
   /**
    Service that get current project contexts.
@@ -117,7 +117,7 @@ export default FlexberryBaseComponent.extend({
    @type {Class}
    @default Ember.inject.service()
    */
-  currentProjectContext: inject('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
   /**
     Data for jsTree.
 

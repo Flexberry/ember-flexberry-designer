@@ -1,11 +1,13 @@
-import Ember from 'ember';
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+import { isEmpty } from '@ember/utils';
+import { A } from '@ember/array';
 import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 
 export default Route.extend(FdFormCheckTransitionMixin, {
   modelProjection: 'TypeDefinitionE',
   modelName: 'fd-dev-type-definition',
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
 
   /**
     Name of current <<typedef>> class.
@@ -56,32 +58,32 @@ export default Route.extend(FdFormCheckTransitionMixin, {
 
     let stage = allStages.findBy('id', stageId);
 
-    if (!Ember.isEmpty(stage.get('typeMapCSStr'))) {
-      if (!Ember.isEmpty(this.fromXML(stage.get('typeMapCSStr')).findBy('name', this.get('className')))) {
+    if (!isEmpty(stage.get('typeMapCSStr'))) {
+      if (!isEmpty(this.fromXML(stage.get('typeMapCSStr')).findBy('name', this.get('className')))) {
         this.set('typeMapCSStr', this.fromXML(stage.get('typeMapCSStr')).findBy('name', this.get('className')).value);
       }  else {
         this.set('typeMapCSStr', undefined);
       }
     }
 
-    if (!Ember.isEmpty(stage.get('typeMapSQLStr'))) {
-      if (!Ember.isEmpty(this.fromXML(stage.get('typeMapSQLStr')).findBy('name', this.get('className')))) {
+    if (!isEmpty(stage.get('typeMapSQLStr'))) {
+      if (!isEmpty(this.fromXML(stage.get('typeMapSQLStr')).findBy('name', this.get('className')))) {
         this.set('typeMapSQLStr', this.fromXML(stage.get('typeMapSQLStr')).findBy('name', this.get('className')).value);
       } else {
         this.set('typeMapSQLStr', undefined);
       }
     }
 
-    if (!Ember.isEmpty(stage.get('typeMapOracleStr'))) {
-      if (!Ember.isEmpty(this.fromXML(stage.get('typeMapOracleStr')).findBy('name', this.get('className')))) {
+    if (!isEmpty(stage.get('typeMapOracleStr'))) {
+      if (!isEmpty(this.fromXML(stage.get('typeMapOracleStr')).findBy('name', this.get('className')))) {
         this.set('typeMapOracleStr', this.fromXML(stage.get('typeMapOracleStr')).findBy('name', this.get('className')).value);
       } else {
         this.set('typeMapOracleStr', undefined);
       }
     }
 
-    if (!Ember.isEmpty(stage.get('typeMapPostgreStr'))) {
-      if (!Ember.isEmpty(this.fromXML(stage.get('typeMapPostgreStr')).findBy('name', this.get('className'))))
+    if (!isEmpty(stage.get('typeMapPostgreStr'))) {
+      if (!isEmpty(this.fromXML(stage.get('typeMapPostgreStr')).findBy('name', this.get('className'))))
       {
         this.set('typeMapPostgreStr', this.fromXML(stage.get('typeMapPostgreStr')).findBy('name', this.get('className')).value);
       } else {
@@ -114,7 +116,7 @@ export default Route.extend(FdFormCheckTransitionMixin, {
       return serialized;
     }
 
-    let ret = Ember.A();
+    let ret = A();
     let parser = new DOMParser();
     let xmlDoc = parser.parseFromString(serialized, 'text/xml');
 

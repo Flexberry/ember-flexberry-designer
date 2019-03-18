@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend({
   /**
@@ -9,7 +9,7 @@ export default Controller.extend({
     @property currentContext
     @type FdCurrentProjectContextService
   */
-  currentContext: inject('fd-current-project-context'),
+  currentContext: service('fd-current-project-context'),
 
   /**
     Previous version of the application structure.

@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import { Promise } from 'rsvp';
+import { all } from 'rsvp';
+import { getOwner } from '@ember/application';
 import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
 import Builder from 'ember-flexberry-data/query/builder';
 import FilterOperator from 'ember-flexberry-data/query/filter-operator';
@@ -27,10 +29,10 @@ function tryPeekRecord(store, modelName, recordId, stagePk) {
   Returns promise to preload stage metadata specified by stagePk in the context of store.
   @param {DS.Store} store
   @param {String} stagePk
-  @return {Ember.RSVP.Promise} promise
+  @return {Promise} promise
  */
 export default function fdPreloadStageMetadata(store, stagePk) {
-  return new Ember.RSVP.Promise(function(resolve, reject) {
+  return new Promise(function(resolve, reject) {
     let promises = [];
 
     const projectionName = 'FdPreloadMetadata';
@@ -59,8 +61,8 @@ export default function fdPreloadStageMetadata(store, stagePk) {
     promises.push(getPromise(store, stagePk, 'fd-dev-system', projectionName));
 
     // resolve, reject
-    Ember.RSVP.all(promises).then(() => {
-      let userService = Ember.getOwner(store).lookup('service:user');
+    all(promises).then(() => {
+      let userService = getOwner(store).lookup('service:user');
       let userName = userService.getCurrentUserName();
       let lockModelName = 'new-platform-flexberry-services-lock';
 
@@ -84,7 +86,7 @@ export default function fdPreloadStageMetadata(store, stagePk) {
           }
         });
 
-        Ember.RSVP.all(deleteLocksPromises).then(resolve, reject);
+        all(deleteLocksPromises).then(resolve, reject);
       }, reject);
     }, reject);
   });

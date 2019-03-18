@@ -1,5 +1,7 @@
-import Ember from 'ember';
-import { schedule } from '@ember/runloop';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { run } from '@ember/runloop';
+import { observer } from '@ember/object';
 import layout from 'ember-flexberry-designer/templates/components/ui-tab-menu';
 import ComponentParent from 'ember-flexberry-designer/components/fd-tabs';
 /**
@@ -10,7 +12,7 @@ import ComponentParent from 'ember-flexberry-designer/components/fd-tabs';
  @uses Mixins.ComponentChild
  @public
  */
-export default Ember.Component.extend({
+export default Component.extend({
   layout: layout,
   classNameBindings: ['_uiClass', 'theme', '_theme', '_componentClass', 'active', 'selected'],
   _uiClass: 'ui',
@@ -68,7 +70,7 @@ export default Ember.Component.extend({
    * @property _parent
    * @private
    */
-  _parent: Ember.computed(function() {
+  _parent: computed(function() {
     return this.nearestOfType(ComponentParent);
   }),
 
@@ -134,15 +136,15 @@ export default Ember.Component.extend({
    * @readonly
    * @private
    */
-  isActive: Ember.computed('activeTab', 'dataTab', function() {
+  isActive: computed('activeTab', 'dataTab', function() {
     return this.get('activeTab') === this.get('dataTab');
   }).readOnly(),
 
-  _showHide: Ember.observer('isActive', function() {
+  _showHide: observer('isActive', function() {
     this.set('active', this.get('isActive'));
   }),
 
-  _toggleSelect: Ember.observer('isSelected', function() {
+  _toggleSelect: observer('isSelected', function() {
     this.set('selected', this.get('isSelected'));
   }),
 
@@ -154,13 +156,13 @@ export default Ember.Component.extend({
    * @readonly
    * @private
    */
-  isSelected: Ember.computed('selectedTab', 'dataTab', function() {
+  isSelected: computed('selectedTab', 'dataTab', function() {
     return this.get('selectedTab') === this.get('dataTab');
   }).readOnly(),
 
   init() {
     this._super(...arguments);
-    schedule('afterRender', this, function() {
+    run.schedule('afterRender', this, function() {
       // isActive comes from parent component, so only available after render...
       this.set('active', this.get('isActive'));
       this.set('selected', this.get('isSelected'));
