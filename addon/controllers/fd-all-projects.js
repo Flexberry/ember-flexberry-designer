@@ -4,7 +4,7 @@
 
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
-import { inject as controller } from '@ember/service';
+import { inject as controller } from '@ember/controller';
 
 /**
   The controller for the form with the projects.
