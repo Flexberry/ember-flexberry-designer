@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-side-effects */
 import { computed, observer } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { isNone } from '@ember/utils';

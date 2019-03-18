@@ -1,3 +1,4 @@
+/* eslint-disable ember/closure-actions */
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
 import { isNone } from '@ember/utils';

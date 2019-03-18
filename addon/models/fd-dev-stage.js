@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-side-effects */
 /**
   @module ember-flexberry-designer
 */

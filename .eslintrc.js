@@ -52,6 +52,17 @@ module.exports = {
       env: {
         embertest: true
       }
+    },
+
+    // translations.js files
+    {
+      files: [
+        'addon/**/locales/**/translations.js',  // addon/** implements 'addon/' duplicate handling
+        'tests/dummy/app/locales/**/translations.js',
+      ],
+      rules: {
+        'ember/avoid-leaking-state-in-ember-objects': 'off'
+      }
     }
   ]
 };

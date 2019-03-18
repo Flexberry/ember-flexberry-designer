@@ -1,3 +1,4 @@
+/* eslint-disable ember/closure-actions */
 import Component from '@ember/component';
 import { computed } from '@ember/computed';
 
