@@ -2,7 +2,7 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import { computed } from '@ember/object';
 import joint from 'npm:jointjs';
 
 import FdUmlLink, { Link } from './fd-uml-link';
@@ -22,7 +22,7 @@ export default FdUmlLink.extend({
     @property endRoleTxt
     @type String
   */
-  endRoleTxt: Ember.computed.alias('primitive.RightText.Text'),
+  endRoleTxt: computed.alias('primitive.RightText.Text'),
 
   /**
     Start role text.
@@ -30,7 +30,7 @@ export default FdUmlLink.extend({
     @property startRoleTxt
     @type String
   */
-  startRoleTxt: Ember.computed.alias('primitive.LeftText.Text'),
+  startRoleTxt: computed.alias('primitive.LeftText.Text'),
 
   /**
     Link description.
@@ -38,7 +38,7 @@ export default FdUmlLink.extend({
     @property description
     @type String
   */
-  description: Ember.computed.alias('primitive.Name.Text'),
+  description: computed.alias('primitive.Name.Text'),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -98,6 +98,7 @@ export let QualifiedComposition = Link.define('flexberry.uml.QualifiedCompositio
       case 'description':
         return 0.5;
       default:
+        // eslint-disable-next-line no-console
         console.log('ERROR - choose correct label name');
     }
   }

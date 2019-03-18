@@ -1,18 +1,19 @@
-import Ember from 'ember';
-import layout from '../templates/components/fd-visual-listform-form';
+import Component from '@ember/component';
+import { computed } from '@ember/computed';
 
+import layout from '../templates/components/fd-visual-listform-form';
 import FdDataTypes from '../utils/fd-datatypes';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
 
   _dataTypes: FdDataTypes.create(),
 
-  indexLastAttribute: Ember.computed('attributes.length', function() {
+  indexLastAttribute: computed('attributes.length', function() {
     return this.get('attributes.length') - 1;
   }),
 
-  fakeData: Ember.computed('attributes.@each.type', function() {
+  fakeData: computed('attributes.@each.type', function() {
     let fakeData = [];
     let dataTypes = this.get('_dataTypes');
     let attributes = this.get('attributes');
