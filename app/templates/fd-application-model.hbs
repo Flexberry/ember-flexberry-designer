@@ -21,7 +21,7 @@
       {{
         fd-class-list-items
         entity=class
-        openSheetController=(action 'openSheet')
+        sheetComponentName=sheetComponentName
       }}
     {{/each}}
 
@@ -37,7 +37,7 @@
             fd-list-item
             model=enum
             caption=enum.name
-            openSheetController=(action 'openSheet')
+            sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
@@ -62,7 +62,7 @@
             fd-list-item
             model=type
             caption=type.name
-            openSheetController=(action 'openSheet')
+            sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
@@ -87,7 +87,7 @@
             fd-list-item
             model=typedef
             caption=typedef.name
-            openSheetController=(action 'openSheet')
+            sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
@@ -112,7 +112,7 @@
             fd-list-item
             model=bs
             caption=bs.name
-            openSheetController=(action 'openSheet')
+            sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
@@ -137,7 +137,7 @@
             fd-list-item
             model=interface
             caption=interface.name
-            openSheetController=(action 'openSheet')
+            sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
@@ -162,7 +162,7 @@
             fd-list-item
             model=external
             caption=external.name
-            openSheetController=(action 'openSheet')
+            sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
@@ -187,7 +187,7 @@
             fd-list-item
             model=extinterface
             caption=extinterface.name
-            openSheetController=(action 'openSheet')
+            sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
@@ -212,7 +212,7 @@
             fd-list-item
             model=application
             caption=application.name
-            openSheetController=(action 'openSheet')
+            sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
@@ -237,7 +237,7 @@
             fd-list-item
             model=userform
             caption=userform.name
-            openSheetController=(action 'openSheet')
+            sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
@@ -262,7 +262,7 @@
             fd-list-item
             model=userstereotype
             caption=userstereotype.name
-            openSheetController=(action 'openSheet')
+            sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
@@ -279,8 +279,8 @@
 </form>
 {{#fd-sheet
   title=selectedElement.model.name
-  closeSheetController=(action 'closeSheet')
   saveController=(action 'save')
+  sheetComponentName=sheetComponentName
 }}
   {{#if (known-for-type (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel"))}}
     {{component (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel")

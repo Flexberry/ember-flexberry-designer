@@ -1,4 +1,7 @@
 export default {
+  'toggler-caption': 'Дополнительные свойства',
+  'description-caption': 'Описание',
+  'description-placeholder': 'Описание сущности',
   'caption-caption': 'Заголовок',
   'caption-placeholder': 'Заголовок сущности',
   'publish-name-caption': 'Имя публикации',

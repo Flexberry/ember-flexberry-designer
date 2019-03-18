@@ -122,6 +122,9 @@ import FdTypeEditingPanel from './components/fd-type-editing-panel';
 import FdExternalEditingPanel from './components/fd-external-editing-panel';
 import FdCustomEditingPanel from './components/fd-custom-editing-panel';
 import FdApplicationEditingPanel from './components/fd-application-editing-panel';
+import FdInterfaceEditingPanel from './components/fd-interface-editing-panel';
+import FdBsEditingPanel from './components/fd-businessserver-editing-panel';
+import FdEnumEditingPanel from './components/fd-enumeration-editing-panel';
 import FdApplicationModelForm from './forms/fd-application-model';
 
 const translations = {};
@@ -411,7 +414,10 @@ Ember.$.extend(true, translations, {
     'fd-type-editing-panel': FdTypeEditingPanel,
     'fd-external-editing-panel': FdExternalEditingPanel,
     'fd-custom-editing-panel': FdCustomEditingPanel,
-    'fd-application-editing-panel': FdApplicationEditingPanel
+    'fd-application-editing-panel': FdApplicationEditingPanel,
+    'fd-interface-editing-panel': FdInterfaceEditingPanel,
+    'fd-businessserver-editing-panel': FdBsEditingPanel,
+    'fd-enumeration-editing-panel': FdEnumEditingPanel
   }
 
 });
