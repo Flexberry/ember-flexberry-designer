@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import FdUpdateBsValueMixin from '../../mixins/fd-editing-panels/fd-update-bs-value';
-import layout from '../../templates/components/fd-editing-panels/fd-implementation-editing-panel';
+import layout from '../../templates/components/fd-editing-panels/fd-interface-editing-panel';
 
 export default Ember.Component.extend(FdUpdateBsValueMixin, {
   layout,
