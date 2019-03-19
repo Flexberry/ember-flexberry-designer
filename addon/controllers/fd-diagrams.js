@@ -45,6 +45,14 @@ export default Ember.Controller.extend({
   sheetComponentName: '',
 
   /**
+    Stores classes that was created, but not yet saved, in the diagram.
+
+    @property createdClasses
+    @type Ember.Array
+  */
+  createdClasses: Ember.A(),
+
+  /**
     Ember.observer, watching property `searchValue` and send action from 'fd-sheet' component.
 
     @method searchValueObserver
@@ -142,6 +150,22 @@ export default Ember.Controller.extend({
     }
   },
 
+  /**
+    Save changes in primitives.
+
+    @method savePrimitives
+  */
+  savePrimitives() {
+    let model = this.get('selectedElement.model');
+    model.set('primitivesJsonString', JSON.stringify(model.get('primitives')));
+
+    let createdClasses = this.get('createdClasses');
+    let promises = createdClasses.map(c => c.save());
+    createdClasses.clear();
+
+    return Ember.RSVP.all(promises);
+  },
+
   actions: {
     /**
       Save 'selectedElement'.
@@ -151,11 +175,16 @@ export default Ember.Controller.extend({
     save() {
       let model = this.get('selectedElement.model');
       this.get('appState').loading();
-      model.save()
-      .catch((error) => {
+      this.savePrimitives().then(() => {
+        model.save()
+        .catch((error) => {
+          this.set('error', error);
+        })
+        .finally(() => {
+          this.get('appState').reset();
+        });
+      }).catch((error) => {
         this.set('error', error);
-      })
-      .finally(() => {
         this.get('appState').reset();
       });
     }

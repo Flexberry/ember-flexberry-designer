@@ -1,13 +1,13 @@
 import Ember from 'ember';
-import layout from '../../templates/components/fd-uml-diagram-editor';
-import FdAcrionsForCadPrimitivesMixin from '../../mixins/actions-for-primitives/fd-actions-for-cad-primitives';
-import FdAcrionsForDpdPrimitivesMixin from '../../mixins/actions-for-primitives/fd-actions-for-dpd-primitives';
-import FdAcrionsForStdPrimitivesMixin from '../../mixins/actions-for-primitives/fd-actions-for-std-primitives';
-import FdAcrionsForCodPrimitivesMixin from '../../mixins/actions-for-primitives/fd-actions-for-cod-primitives';
-import FdActionsForActivityPrimitivesMixin from '../../mixins/actions-for-primitives/fd-actions-for-activity-primitives';
-import FdAcrionsForSdPrimitivesMixin from '../../mixins/actions-for-primitives/fd-actions-for-sd-primitives';
-import FdAcrionsForCommonPrimitivesMixin from '../../mixins/actions-for-primitives/fd-actions-for-common-primitives';
-import FdActionsForUcdPrimitivesMixin from '../../mixins/actions-for-primitives/fd-actions-for-ucd-primitives';
+import layout from '../templates/components/fd-uml-diagram-editor';
+import FdAcrionsForCadPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-cad-primitives';
+import FdAcrionsForDpdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-dpd-primitives';
+import FdAcrionsForStdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-std-primitives';
+import FdAcrionsForCodPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-cod-primitives';
+import FdActionsForActivityPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-activity-primitives';
+import FdAcrionsForSdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-sd-primitives';
+import FdAcrionsForCommonPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-common-primitives';
+import FdActionsForUcdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-ucd-primitives';
 
 export default Ember.Component.extend(
 FdAcrionsForCadPrimitivesMixin,
@@ -20,6 +20,8 @@ FdAcrionsForCommonPrimitivesMixin,
 FdActionsForUcdPrimitivesMixin, {
 
   layout,
+
+  store: Ember.inject.service(),
 
   /**
     Array elements to interact.
@@ -78,12 +80,23 @@ FdActionsForUcdPrimitivesMixin, {
   currentTargetElement: undefined,
 
   /**
-    Stores classes that are created, but not yet saved, in the diagram.
+    Stores classes that was created, but not yet saved, in the diagram.
 
     @property createdClasses
     @type Ember.Array
   */
   createdClasses: Ember.A(),
+
+  classNames: ['fd-uml-diagram-editor'],
+
+  diagramType: Ember.computed('model.constructor.modelName', function() {
+    let type = this.get('model.constructor.modelName');
+    if (Ember.isNone(type)) {
+      return undefined;
+    }
+
+    return type.split('-').pop();
+  }),
 
   actions: {
 
@@ -200,24 +213,19 @@ FdActionsForUcdPrimitivesMixin, {
       if (!this.get('isLinkAdding')) {
         this.clearData();
       }
+    },
+
+    /**
+      Handler for click on toolbar buttons.
+
+      @method actions.toolbarButtonClicked
+      @param {String} buttonName clicked button name.
+     */
+    toolbarButtonClicked(buttonName, e) {
+      if (!Ember.isBlank(buttonName)) {
+        this.send(buttonName, e);
+      }
     }
-  },
-
-  /**
-    See [Flexberry Ember API](http://flexberry.github.io/ember-flexberry/autodoc/develop/).
-
-    @method save
-  */
-  save() {
-    let model = this.get('model');
-    model.set('primitivesJsonString', JSON.stringify(model.get('primitives')));
-
-    return this._super(...arguments).then(() => {
-      let createdClasses = this.get('createdClasses');
-      let promises = createdClasses.map(c => c.save());
-      createdClasses.clear();
-      return Ember.RSVP.all(promises);
-    });
   },
 
   /**
@@ -288,7 +296,7 @@ FdActionsForUcdPrimitivesMixin, {
     @private
   */
   _changeCurrentTargetElement(e) {
-    let currentTargetElement = this.get('currentTargetElement') || Ember.$('#pointer');
+    let currentTargetElement = this.get('currentTargetElement') || this.$('.pointer-button');
     currentTargetElement.removeClass('active');
     let newCurrentTargetElement = Ember.$(e.currentTarget);
     newCurrentTargetElement.addClass('active');
@@ -302,9 +310,9 @@ FdActionsForUcdPrimitivesMixin, {
     @private
   */
   _resetCurrentTargetElement() {
-    let currentTargetElement = this.get('currentTargetElement') || Ember.$('#pointer');
+    let currentTargetElement = this.get('currentTargetElement') || this.$('.pointer-button');
     currentTargetElement.removeClass('active');
-    let pointer = Ember.$('#pointer');
+    let pointer = this.$('.pointer-button');
     pointer.addClass('active');
     this.set('currentTargetElement', pointer);
   },

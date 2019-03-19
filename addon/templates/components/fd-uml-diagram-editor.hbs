@@ -7,3 +7,9 @@
   startDragLink=(action "startDragLink")
   endDragLink=(action "endDragLink")
 }}
+
+{{#if (known-for-type (concat "fd-uml-diagram-toolbars/fd-" diagramType "-toolbar"))}}
+  {{component (concat "fd-uml-diagram-toolbars/fd-" diagramType "-toolbar")
+    toolbarButtonClicked=(action "toolbarButtonClicked")
+  }}
+{{/if}}
