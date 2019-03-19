@@ -200,14 +200,11 @@
   saveController=(action 'save')
   sheetComponentName=sheetComponentName
 }}
+{{#if isDiagramVisible}}
   {{
-    fd-uml-diagram
-    primitives=selectedElement.model.primitives
-    isLinkAdding=isLinkAdding
-    blankPointerClick=blankPointerClick
-    blankContextMenu=blankContextMenu
-    startDragLink=startDragLink
-    endDragLink=endDragLink
+    fd-uml-diagram-editor
+    model=selectedElement.model
   }}
+{{/if}}
 
 {{/fd-sheet}}

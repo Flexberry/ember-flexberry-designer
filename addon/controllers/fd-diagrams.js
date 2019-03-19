@@ -105,6 +105,7 @@ export default Ember.Controller.extend({
     if (!Ember.isNone(selectedElement)) {
       let model = selectedElement.get('model');
       model.rollbackAll();
+      this.set('isDiagramVisible', false);
       selectedElement.set('fdListItemActive', false);
     }
   },
@@ -121,6 +122,9 @@ export default Ember.Controller.extend({
     if (sheetComponentName === sheetName) {
       this.deactivateListItem();
       this.set('selectedElement', currentItem);
+      Ember.run.schedule('afterRender', this, function() {
+        this.set('isDiagramVisible', true);
+      });
     }
   },
 
