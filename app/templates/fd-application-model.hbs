@@ -293,3 +293,14 @@
   {{/if}}
 
 {{/fd-sheet}}
+
+{{#fd-sheet
+  title=selectedElement.model.name
+  saveController=(action 'save')
+  sheetComponentName='view-sheet'
+}}
+  {{fd-editing-panels/fd-create-view
+    model=selectedElement.model
+  }}
+
+{{/fd-sheet}}

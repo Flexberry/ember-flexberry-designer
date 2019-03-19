@@ -1,0 +1,97 @@
+<div class="ui stackable grid fd-list">
+
+  <div class="panel-wrapper">
+    <div class="closable panel-left">
+      <div class="ui segments">
+        <div class="ui segment">
+          {{t "forms.fd-view-edit-form.attributes-tree.caption"}}
+        </div>
+        <div class="field">
+          {{
+            flexberry-textbox
+            placeholder=(t 'forms.fd-view-edit-form.attributes-tree.search')
+            value=searchTerm
+          }}
+        </div>
+        <div class="ui segment overflow-panel">
+          {{fd-ember-jstree
+            actionReceiver=jstreeActionReceiver
+            data=model.tree
+            searchTerm=searchTerm
+            typesOptions=typesOptions
+            treeObject=jstreeObject
+          }}
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center">
+      {{#ui-popup content=popupMessage}}
+        <button class='ui inverted button icon close-panel-btn' type='button' {{action "closeRightpanel" on="click" }} >
+          <i class="{{if allAttrsHidedn 'chevron right' 'chevron left'}} icon"></i>
+        </button>
+      {{/ui-popup}}
+
+      <div class="ui vertical basic buttons">
+        <button class='ui flexberry-button basic button icon' type='button' {{action "moveRightHighlighted" on="click" }} title="{{t "forms.fd-view-edit-form.attributes-panel.move-right-btn-title"}}">
+          <i class="right long arrow icon"></i>
+        </button>
+
+        <button class='ui flexberry-button basic button icon' type='button' {{action "moveLeftHighlighted" on="click" }} title="{{t "forms.fd-view-edit-form.attributes-panel.move-left-btn-title"}}">
+          <i class="left long arrow icon"></i>
+        </button>
+
+        <button class='ui flexberry-button basic button icon' type='button' {{action "moveUpHighlighted" on="click" }} title="{{t "forms.fd-view-edit-form.attributes-panel.move-up-btn-title"}}">
+          <i class="up long arrow icon"></i>
+        </button>
+
+        <button class='ui flexberry-button basic button icon' type='button' {{action "moveDownHighlighted" on="click" }} title="{{t "forms.fd-view-edit-form.attributes-panel.move-down-btn-title"}}">
+          <i class="down long arrow icon"></i>
+        </button>
+
+      </div>
+    </div>
+    <div class="panel-right view-attributes">
+      <div class="ui segments">
+        <div class="ui segment overflow-panel">
+          <table class="ui very basic collapsing celled table fd-view-properties-table">
+            <thead>
+              <tr>
+                <th>{{t "forms.fd-view-edit-form.table-column.type"}}</th>
+                <th>{{t "forms.fd-view-edit-form.table-column.view-attributes"}}</th>
+                <th>{{t "forms.fd-view-edit-form.table-column.visibility"}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each model.view.definition as |property index|}}
+              <tr class={{if (eq selectedRowIndex index) "active" ""}} onclick={{action "onAttributesClick" index}}>
+                <td>
+                  {{#if (or property.detailViewName (eq property.detailViewName ''))}}
+                    <img src="assets/images/datail.png">
+                  {{else}}
+                    {{#if property.lookupType}}
+                      <img src="assets/images/master.bmp">
+                    {{else}}
+                      <img src="assets/images/attribute.bmp">
+                    {{/if}}
+                  {{/if}}
+                </td>
+                <td>
+                  {{property.name}}
+                </td>
+                <td>
+                  {{
+                    flexberry-checkbox
+                    value=property.visible
+                    readonly=true
+                  }}
+                </td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
