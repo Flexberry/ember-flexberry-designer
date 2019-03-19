@@ -10,7 +10,7 @@ test('it renders', function(assert) {
   // Handle any actions with this.on('myAction', function(val) { ... });
   this.set('actions.toolbarButtonClicked', function() { });
 
-  this.render(hbs`{{fd-uml-diagram-toolbars/fd-ucd-toolbar}}`);
+  this.render(hbs`{{fd-uml-diagram-toolbars/fd-ucd-toolbar toolbarButtonClicked=(action "toolbarButtonClicked")}}`);
 
   assert.equal(this.$().text().trim(), '');
 });
