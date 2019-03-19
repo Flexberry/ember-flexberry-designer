@@ -58,7 +58,7 @@ export default Ember.Component.extend({
     @type String
     @default ''
    */
-  searchTerm: undefined,
+  searchTerm: '',
 
   /**
     Search settings for jsTree.
@@ -86,7 +86,7 @@ export default Ember.Component.extend({
       @method actions.handleTreeDidBecomeReady
     */
     handleTreeDidBecomeReady() {
-      let treeObject = this.get('jstreeObject');
+      let treeObject = this.get('treeObject');
       treeObject.on('open_node.jstree', this._openNodeTree.bind(this));
       treeObject.on('after_close.jstree', this._afterCloseNodeTree.bind(this));
     },
@@ -123,7 +123,6 @@ export default Ember.Component.extend({
   init() {
     this._super(...arguments);
     this.set('selectedNodes', Ember.A());
-    this.set('searchTerm', '');
   },
 
   willDestroy() {

@@ -17,40 +17,11 @@
           {{fd-ember-jstree
             actionReceiver=jstreeActionReceiver
             data=model.tree
-            searchTerm=searchTerm
-            typesOptions=typesOptions
-            treeObject=jstreeObject
           }}
         </div>
       </div>
     </div>
 
-    <div class="text-center">
-      {{#ui-popup content=popupMessage}}
-        <button class='ui inverted button icon close-panel-btn' type='button' {{action "closeRightpanel" on="click" }} >
-          <i class="{{if allAttrsHidedn 'chevron right' 'chevron left'}} icon"></i>
-        </button>
-      {{/ui-popup}}
-
-      <div class="ui vertical basic buttons">
-        <button class='ui flexberry-button basic button icon' type='button' {{action "moveRightHighlighted" on="click" }} title="{{t "forms.fd-view-edit-form.attributes-panel.move-right-btn-title"}}">
-          <i class="right long arrow icon"></i>
-        </button>
-
-        <button class='ui flexberry-button basic button icon' type='button' {{action "moveLeftHighlighted" on="click" }} title="{{t "forms.fd-view-edit-form.attributes-panel.move-left-btn-title"}}">
-          <i class="left long arrow icon"></i>
-        </button>
-
-        <button class='ui flexberry-button basic button icon' type='button' {{action "moveUpHighlighted" on="click" }} title="{{t "forms.fd-view-edit-form.attributes-panel.move-up-btn-title"}}">
-          <i class="up long arrow icon"></i>
-        </button>
-
-        <button class='ui flexberry-button basic button icon' type='button' {{action "moveDownHighlighted" on="click" }} title="{{t "forms.fd-view-edit-form.attributes-panel.move-down-btn-title"}}">
-          <i class="down long arrow icon"></i>
-        </button>
-
-      </div>
-    </div>
     <div class="panel-right view-attributes">
       <div class="ui segments">
         <div class="ui segment overflow-panel">
