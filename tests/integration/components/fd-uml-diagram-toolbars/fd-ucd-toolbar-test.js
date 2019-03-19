@@ -8,6 +8,7 @@ moduleForComponent('fd-uml-diagram-toolbars/fd-ucd-toolbar', 'Integration | Comp
 test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
+  this.set('actions.toolbarButtonClicked', function() { });
 
   this.render(hbs`{{fd-uml-diagram-toolbars/fd-ucd-toolbar}}`);
 

@@ -8,8 +8,9 @@ moduleForComponent('fd-uml-diagram-toolbars/fd-std-toolbar', 'Integration | Comp
 test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
+  this.set('actions.toolbarButtonClicked', function() { });
 
-  this.render(hbs`{{fd-uml-diagram-toolbars/fd-std-toolbar}}`);
+  this.render(hbs`{{fd-uml-diagram-toolbars/fd-std-toolbar toolbarButtonClicked=(action "toolbarButtonClicked")}}`);
 
   assert.equal(this.$().text().trim(), '');
 });
