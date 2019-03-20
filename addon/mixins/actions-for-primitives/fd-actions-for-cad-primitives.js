@@ -71,7 +71,6 @@ export default Ember.Mixin.create({
         let umlClass = FdUmlClass.create({ primitive: getJsonForClass(newClass, null, 0, { location: { X, Y } }) });
 
         this.get('createdClasses').pushObject(newClass);
-        this.get('model.primitives').pushObject(umlClass);
 
         return umlClass.JointJS();
       }).bind(this), e);

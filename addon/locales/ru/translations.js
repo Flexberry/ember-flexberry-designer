@@ -41,6 +41,7 @@ import FdConfirmUnsavedFormModal from './forms/fd-confirm-unsaved-form-modal';
 import FdEditForm from './forms/fd-edit-form';
 import NewPlatformFlexberryWebDesignerGenerationEForm from './forms/new-platform-flexberry-web-designer-generation-e';
 import NewPlatformFlexberryWebDesignerStorageTypeEForm from './forms/new-platform-flexberry-web-designer-storage-type-e';
+import FdDiagramForm from './forms/fd-diagrams';
 import FdAdModel from './models/fd-ad';
 import FdAggregationModel from './models/fd-aggregation';
 import FdApplicationUserModel from './models/fd-application-user';
@@ -404,6 +405,7 @@ Ember.$.extend(true, translations, {
     'new-platform-flexberry-web-designer-generation-e': NewPlatformFlexberryWebDesignerGenerationEForm,
     'new-platform-flexberry-web-designer-storage-type-e': NewPlatformFlexberryWebDesignerStorageTypeEForm,
     'fd-application-model': FdApplicationModelForm,
+    'fd-diagrams': FdDiagramForm,
   },
 
   components: {
