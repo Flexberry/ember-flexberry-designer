@@ -57222,6 +57222,9 @@ h2.form-header,
   background: rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
 }
+.fd-uml-diagram-editor .ui.button img {
+  vertical-align: middle;
+}
 @media (max-width: 1200px) {
   html {
     font-size: 14px;

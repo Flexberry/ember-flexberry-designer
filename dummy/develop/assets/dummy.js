@@ -292,6 +292,70 @@ define('dummy/components/fd-tabs/pane', ['exports', 'ember-flexberry-designer/co
     }
   });
 });
+define('dummy/components/fd-uml-diagram-editor', ['exports', 'ember-flexberry-designer/components/fd-uml-diagram-editor'], function (exports, _emberFlexberryDesignerComponentsFdUmlDiagramEditor) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdUmlDiagramEditor['default'];
+    }
+  });
+});
+define('dummy/components/fd-uml-diagram-toolbars/fd-ad-toolbar', ['exports', 'ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-ad-toolbar'], function (exports, _emberFlexberryDesignerComponentsFdUmlDiagramToolbarsFdAdToolbar) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdUmlDiagramToolbarsFdAdToolbar['default'];
+    }
+  });
+});
+define('dummy/components/fd-uml-diagram-toolbars/fd-cad-toolbar', ['exports', 'ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-cad-toolbar'], function (exports, _emberFlexberryDesignerComponentsFdUmlDiagramToolbarsFdCadToolbar) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdUmlDiagramToolbarsFdCadToolbar['default'];
+    }
+  });
+});
+define('dummy/components/fd-uml-diagram-toolbars/fd-cod-toolbar', ['exports', 'ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-cod-toolbar'], function (exports, _emberFlexberryDesignerComponentsFdUmlDiagramToolbarsFdCodToolbar) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdUmlDiagramToolbarsFdCodToolbar['default'];
+    }
+  });
+});
+define('dummy/components/fd-uml-diagram-toolbars/fd-dpd-toolbar', ['exports', 'ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-dpd-toolbar'], function (exports, _emberFlexberryDesignerComponentsFdUmlDiagramToolbarsFdDpdToolbar) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdUmlDiagramToolbarsFdDpdToolbar['default'];
+    }
+  });
+});
+define('dummy/components/fd-uml-diagram-toolbars/fd-sd-toolbar', ['exports', 'ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-sd-toolbar'], function (exports, _emberFlexberryDesignerComponentsFdUmlDiagramToolbarsFdSdToolbar) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdUmlDiagramToolbarsFdSdToolbar['default'];
+    }
+  });
+});
+define('dummy/components/fd-uml-diagram-toolbars/fd-std-toolbar', ['exports', 'ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-std-toolbar'], function (exports, _emberFlexberryDesignerComponentsFdUmlDiagramToolbarsFdStdToolbar) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdUmlDiagramToolbarsFdStdToolbar['default'];
+    }
+  });
+});
+define('dummy/components/fd-uml-diagram-toolbars/fd-ucd-toolbar', ['exports', 'ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-ucd-toolbar'], function (exports, _emberFlexberryDesignerComponentsFdUmlDiagramToolbarsFdUcdToolbar) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberFlexberryDesignerComponentsFdUmlDiagramToolbarsFdUcdToolbar['default'];
+    }
+  });
+});
 define('dummy/components/fd-uml-diagram', ['exports', 'ember-flexberry-designer/components/fd-uml-diagram'], function (exports, _emberFlexberryDesignerComponentsFdUmlDiagram) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -2788,6 +2852,110 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/co
     assert.ok(true, 'modules/ember-flexberry-designer/components/fd-tabs/pane.js should pass jshint.');
   });
 });
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-uml-diagram-editor.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components');
+  test('modules/ember-flexberry-designer/components/fd-uml-diagram-editor.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-uml-diagram-editor.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-uml-diagram-editor.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-uml-diagram-editor.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-uml-diagram-editor.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-ad-toolbar.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars');
+  test('modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-ad-toolbar.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-ad-toolbar.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-ad-toolbar.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-ad-toolbar.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-ad-toolbar.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-cad-toolbar.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars');
+  test('modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-cad-toolbar.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-cad-toolbar.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-cad-toolbar.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-cad-toolbar.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-cad-toolbar.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-cod-toolbar.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars');
+  test('modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-cod-toolbar.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-cod-toolbar.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-cod-toolbar.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-cod-toolbar.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-cod-toolbar.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-dpd-toolbar.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars');
+  test('modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-dpd-toolbar.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-dpd-toolbar.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-dpd-toolbar.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-dpd-toolbar.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-dpd-toolbar.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-sd-toolbar.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars');
+  test('modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-sd-toolbar.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-sd-toolbar.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-sd-toolbar.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-sd-toolbar.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-sd-toolbar.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-std-toolbar.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars');
+  test('modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-std-toolbar.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-std-toolbar.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-std-toolbar.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-std-toolbar.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-std-toolbar.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-ucd-toolbar.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars');
+  test('modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-ucd-toolbar.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-ucd-toolbar.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-ucd-toolbar.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-ucd-toolbar.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/components/fd-uml-diagram-toolbars/fd-ucd-toolbar.js should pass jshint.');
+  });
+});
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/components/fd-uml-diagram.jscs-test', ['exports'], function (exports) {
   module('JSCS - modules/ember-flexberry-designer/components');
   test('modules/ember-flexberry-designer/components/fd-uml-diagram.js should pass jscs', function () {
@@ -4294,6 +4462,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-diagram-list-form.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-diagrams.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/en/forms');
+  test('modules/ember-flexberry-designer/locales/en/forms/fd-diagrams.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-diagrams.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-diagrams.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/en/forms/fd-diagrams.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/en/forms/fd-diagrams.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/en/forms/fd-edit-form-edit-form.jscs-test', ['exports'], function (exports) {
@@ -5971,6 +6152,19 @@ define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/lo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-diagram-list-form.js should pass jshint.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-diagrams.jscs-test', ['exports'], function (exports) {
+  module('JSCS - modules/ember-flexberry-designer/locales/ru/forms');
+  test('modules/ember-flexberry-designer/locales/ru/forms/fd-diagrams.js should pass jscs', function () {
+    ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-diagrams.js should pass jscs.');
+  });
+});
+define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-diagrams.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint - modules/ember-flexberry-designer/locales/ru/forms/fd-diagrams.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'modules/ember-flexberry-designer/locales/ru/forms/fd-diagrams.js should pass jshint.');
   });
 });
 define('dummy/ember-flexberry-designer/tests/modules/ember-flexberry-designer/locales/ru/forms/fd-edit-form-edit-form.jscs-test', ['exports'], function (exports) {
@@ -42854,11 +43048,955 @@ define("dummy/templates/fd-diagram-list-form/loading", ["exports"], function (ex
 });
 define("dummy/templates/fd-diagrams", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
+    var child0 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 26,
+                "column": 8
+              },
+              "end": {
+                "line": 33,
+                "column": 8
+              }
+            },
+            "moduleName": "dummy/templates/fd-diagrams.hbs"
+          },
+          isEmpty: false,
+          arity: 1,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("          ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "ad", ["loc", [null, [29, 18], [29, 20]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "ad.name", ["loc", [null, [30, 20], [30, 27]]]]], [], []], "sheetComponentName", ["subexpr", "@mut", [["get", "sheetComponentName", ["loc", [null, [31, 31], [31, 49]]]]], [], []]], ["loc", [null, [27, 10], [32, 12]]]]],
+          locals: ["ad"],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 20,
+              "column": 4
+            },
+            "end": {
+              "line": 42,
+              "column": 4
+            }
+          },
+          "moduleName": "dummy/templates/fd-diagrams.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "row");
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "two wide column light-text");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "fourteen wide column");
+          var el3 = dom.createTextNode("\n");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "right floated fourteen wide column");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element6 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createMorphAt(dom.childAt(element6, [1]), 1, 1);
+          morphs[1] = dom.createMorphAt(dom.childAt(element6, [3]), 1, 1);
+          morphs[2] = dom.createMorphAt(dom.childAt(element6, [5]), 1, 1);
+          return morphs;
+        },
+        statements: [["inline", "t", ["forms.fd-diagrams.ad"], [], ["loc", [null, [23, 8], [23, 36]]]], ["block", "each", [["get", "filteredModel.ad", ["loc", [null, [26, 16], [26, 32]]]]], [], 0, null, ["loc", [null, [26, 8], [33, 17]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-diagrams.ad"], [], ["loc", [null, [38, 18], [38, 44]]]]], ["loc", [null, [36, 8], [39, 10]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child1 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 51,
+                "column": 8
+              },
+              "end": {
+                "line": 58,
+                "column": 8
+              }
+            },
+            "moduleName": "dummy/templates/fd-diagrams.hbs"
+          },
+          isEmpty: false,
+          arity: 1,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("          ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "cad", ["loc", [null, [54, 18], [54, 21]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "cad.name", ["loc", [null, [55, 20], [55, 28]]]]], [], []], "sheetComponentName", ["subexpr", "@mut", [["get", "sheetComponentName", ["loc", [null, [56, 31], [56, 49]]]]], [], []]], ["loc", [null, [52, 10], [57, 12]]]]],
+          locals: ["cad"],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 45,
+              "column": 4
+            },
+            "end": {
+              "line": 67,
+              "column": 4
+            }
+          },
+          "moduleName": "dummy/templates/fd-diagrams.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "row");
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "two wide column light-text");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "fourteen wide column");
+          var el3 = dom.createTextNode("\n");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "right floated fourteen wide column");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element5 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createMorphAt(dom.childAt(element5, [1]), 1, 1);
+          morphs[1] = dom.createMorphAt(dom.childAt(element5, [3]), 1, 1);
+          morphs[2] = dom.createMorphAt(dom.childAt(element5, [5]), 1, 1);
+          return morphs;
+        },
+        statements: [["inline", "t", ["forms.fd-diagrams.cad"], [], ["loc", [null, [48, 8], [48, 37]]]], ["block", "each", [["get", "filteredModel.cad", ["loc", [null, [51, 16], [51, 33]]]]], [], 0, null, ["loc", [null, [51, 8], [58, 17]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-diagrams.cad"], [], ["loc", [null, [63, 18], [63, 45]]]]], ["loc", [null, [61, 8], [64, 10]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child2 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 76,
+                "column": 8
+              },
+              "end": {
+                "line": 83,
+                "column": 8
+              }
+            },
+            "moduleName": "dummy/templates/fd-diagrams.hbs"
+          },
+          isEmpty: false,
+          arity: 1,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("          ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "cod", ["loc", [null, [79, 18], [79, 21]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "cod.name", ["loc", [null, [80, 20], [80, 28]]]]], [], []], "sheetComponentName", ["subexpr", "@mut", [["get", "sheetComponentName", ["loc", [null, [81, 31], [81, 49]]]]], [], []]], ["loc", [null, [77, 10], [82, 12]]]]],
+          locals: ["cod"],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 70,
+              "column": 4
+            },
+            "end": {
+              "line": 92,
+              "column": 4
+            }
+          },
+          "moduleName": "dummy/templates/fd-diagrams.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "row");
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "two wide column light-text");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "fourteen wide column");
+          var el3 = dom.createTextNode("\n");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "right floated fourteen wide column");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element4 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createMorphAt(dom.childAt(element4, [1]), 1, 1);
+          morphs[1] = dom.createMorphAt(dom.childAt(element4, [3]), 1, 1);
+          morphs[2] = dom.createMorphAt(dom.childAt(element4, [5]), 1, 1);
+          return morphs;
+        },
+        statements: [["inline", "t", ["forms.fd-diagrams.cod"], [], ["loc", [null, [73, 8], [73, 37]]]], ["block", "each", [["get", "filteredModel.cod", ["loc", [null, [76, 16], [76, 33]]]]], [], 0, null, ["loc", [null, [76, 8], [83, 17]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-diagrams.cod"], [], ["loc", [null, [88, 18], [88, 45]]]]], ["loc", [null, [86, 8], [89, 10]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child3 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 101,
+                "column": 8
+              },
+              "end": {
+                "line": 108,
+                "column": 8
+              }
+            },
+            "moduleName": "dummy/templates/fd-diagrams.hbs"
+          },
+          isEmpty: false,
+          arity: 1,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("          ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "dpd", ["loc", [null, [104, 18], [104, 21]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "dpd.name", ["loc", [null, [105, 20], [105, 28]]]]], [], []], "sheetComponentName", ["subexpr", "@mut", [["get", "sheetComponentName", ["loc", [null, [106, 31], [106, 49]]]]], [], []]], ["loc", [null, [102, 10], [107, 12]]]]],
+          locals: ["dpd"],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 95,
+              "column": 4
+            },
+            "end": {
+              "line": 117,
+              "column": 4
+            }
+          },
+          "moduleName": "dummy/templates/fd-diagrams.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "row");
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "two wide column light-text");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "fourteen wide column");
+          var el3 = dom.createTextNode("\n");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "right floated fourteen wide column");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element3 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createMorphAt(dom.childAt(element3, [1]), 1, 1);
+          morphs[1] = dom.createMorphAt(dom.childAt(element3, [3]), 1, 1);
+          morphs[2] = dom.createMorphAt(dom.childAt(element3, [5]), 1, 1);
+          return morphs;
+        },
+        statements: [["inline", "t", ["forms.fd-diagrams.dpd"], [], ["loc", [null, [98, 8], [98, 37]]]], ["block", "each", [["get", "filteredModel.dpd", ["loc", [null, [101, 16], [101, 33]]]]], [], 0, null, ["loc", [null, [101, 8], [108, 17]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-diagrams.dpd"], [], ["loc", [null, [113, 18], [113, 45]]]]], ["loc", [null, [111, 8], [114, 10]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child4 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 126,
+                "column": 8
+              },
+              "end": {
+                "line": 133,
+                "column": 8
+              }
+            },
+            "moduleName": "dummy/templates/fd-diagrams.hbs"
+          },
+          isEmpty: false,
+          arity: 1,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("          ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "sd", ["loc", [null, [129, 18], [129, 20]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "sd.name", ["loc", [null, [130, 20], [130, 27]]]]], [], []], "sheetComponentName", ["subexpr", "@mut", [["get", "sheetComponentName", ["loc", [null, [131, 31], [131, 49]]]]], [], []]], ["loc", [null, [127, 10], [132, 12]]]]],
+          locals: ["sd"],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 120,
+              "column": 4
+            },
+            "end": {
+              "line": 142,
+              "column": 4
+            }
+          },
+          "moduleName": "dummy/templates/fd-diagrams.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "row");
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "two wide column light-text");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "fourteen wide column");
+          var el3 = dom.createTextNode("\n");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "right floated fourteen wide column");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element2 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createMorphAt(dom.childAt(element2, [1]), 1, 1);
+          morphs[1] = dom.createMorphAt(dom.childAt(element2, [3]), 1, 1);
+          morphs[2] = dom.createMorphAt(dom.childAt(element2, [5]), 1, 1);
+          return morphs;
+        },
+        statements: [["inline", "t", ["forms.fd-diagrams.sd"], [], ["loc", [null, [123, 8], [123, 36]]]], ["block", "each", [["get", "filteredModel.sd", ["loc", [null, [126, 16], [126, 32]]]]], [], 0, null, ["loc", [null, [126, 8], [133, 17]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-diagrams.sd"], [], ["loc", [null, [138, 18], [138, 44]]]]], ["loc", [null, [136, 8], [139, 10]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child5 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 151,
+                "column": 8
+              },
+              "end": {
+                "line": 158,
+                "column": 8
+              }
+            },
+            "moduleName": "dummy/templates/fd-diagrams.hbs"
+          },
+          isEmpty: false,
+          arity: 1,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("          ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "std", ["loc", [null, [154, 18], [154, 21]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "std.name", ["loc", [null, [155, 20], [155, 28]]]]], [], []], "sheetComponentName", ["subexpr", "@mut", [["get", "sheetComponentName", ["loc", [null, [156, 31], [156, 49]]]]], [], []]], ["loc", [null, [152, 10], [157, 12]]]]],
+          locals: ["std"],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 145,
+              "column": 4
+            },
+            "end": {
+              "line": 167,
+              "column": 4
+            }
+          },
+          "moduleName": "dummy/templates/fd-diagrams.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "row");
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "two wide column light-text");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "fourteen wide column");
+          var el3 = dom.createTextNode("\n");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "right floated fourteen wide column");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element1 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createMorphAt(dom.childAt(element1, [1]), 1, 1);
+          morphs[1] = dom.createMorphAt(dom.childAt(element1, [3]), 1, 1);
+          morphs[2] = dom.createMorphAt(dom.childAt(element1, [5]), 1, 1);
+          return morphs;
+        },
+        statements: [["inline", "t", ["forms.fd-diagrams.std"], [], ["loc", [null, [148, 8], [148, 37]]]], ["block", "each", [["get", "filteredModel.std", ["loc", [null, [151, 16], [151, 33]]]]], [], 0, null, ["loc", [null, [151, 8], [158, 17]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-diagrams.std"], [], ["loc", [null, [163, 18], [163, 45]]]]], ["loc", [null, [161, 8], [164, 10]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child6 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 176,
+                "column": 8
+              },
+              "end": {
+                "line": 183,
+                "column": 8
+              }
+            },
+            "moduleName": "dummy/templates/fd-diagrams.hbs"
+          },
+          isEmpty: false,
+          arity: 1,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("          ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "fd-list-item", [], ["model", ["subexpr", "@mut", [["get", "ucd", ["loc", [null, [179, 18], [179, 21]]]]], [], []], "caption", ["subexpr", "@mut", [["get", "ucd.name", ["loc", [null, [180, 20], [180, 28]]]]], [], []], "sheetComponentName", ["subexpr", "@mut", [["get", "sheetComponentName", ["loc", [null, [181, 31], [181, 49]]]]], [], []]], ["loc", [null, [177, 10], [182, 12]]]]],
+          locals: ["ucd"],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 170,
+              "column": 4
+            },
+            "end": {
+              "line": 192,
+              "column": 4
+            }
+          },
+          "moduleName": "dummy/templates/fd-diagrams.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "row");
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "two wide column light-text");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "fourteen wide column");
+          var el3 = dom.createTextNode("\n");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "right floated fourteen wide column");
+          var el3 = dom.createTextNode("\n        ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element0 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createMorphAt(dom.childAt(element0, [1]), 1, 1);
+          morphs[1] = dom.createMorphAt(dom.childAt(element0, [3]), 1, 1);
+          morphs[2] = dom.createMorphAt(dom.childAt(element0, [5]), 1, 1);
+          return morphs;
+        },
+        statements: [["inline", "t", ["forms.fd-diagrams.ucd"], [], ["loc", [null, [173, 8], [173, 37]]]], ["block", "each", [["get", "filteredModel.ucd", ["loc", [null, [176, 16], [176, 33]]]]], [], 0, null, ["loc", [null, [176, 8], [183, 17]]]], ["inline", "fd-button", [], ["caption", ["subexpr", "t", ["forms.fd-diagrams.ucd"], [], ["loc", [null, [188, 18], [188, 45]]]]], ["loc", [null, [186, 8], [189, 10]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child7 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.6",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 203,
+                "column": 0
+              },
+              "end": {
+                "line": 209,
+                "column": 0
+              }
+            },
+            "moduleName": "dummy/templates/fd-diagrams.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("  ");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "fd-uml-diagram-editor", [], ["model", ["subexpr", "@mut", [["get", "selectedElement.model", ["loc", [null, [206, 10], [206, 31]]]]], [], []], "createdClasses", ["subexpr", "@mut", [["get", "createdClasses", ["loc", [null, [207, 19], [207, 33]]]]], [], []]], ["loc", [null, [204, 2], [208, 4]]]]],
+          locals: [],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.6",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 198,
+              "column": 0
+            },
+            "end": {
+              "line": 211,
+              "column": 0
+            }
+          },
+          "moduleName": "dummy/templates/fd-diagrams.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          return morphs;
+        },
+        statements: [["block", "if", [["get", "isDiagramVisible", ["loc", [null, [203, 6], [203, 22]]]]], [], 0, null, ["loc", [null, [203, 0], [209, 7]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
     return {
       meta: {
         "fragmentReason": {
           "name": "missing-wrapper",
-          "problems": ["wrong-type"]
+          "problems": ["multiple-nodes", "wrong-type"]
         },
         "revision": "Ember@2.4.6",
         "loc": {
@@ -42868,7 +44006,7 @@ define("dummy/templates/fd-diagrams", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 2,
+            "line": 212,
             "column": 0
           }
         },
@@ -42880,21 +44018,113 @@ define("dummy/templates/fd-diagrams", ["exports"], function (exports) {
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
-        var el1 = dom.createComment("");
+        var el1 = dom.createElement("h2");
+        dom.setAttribute(el1, "class", "form-header");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
+        var el1 = dom.createTextNode("\n\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("form");
+        dom.setAttribute(el1, "class", "ui form flexberry-vertical-form");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "ui stackable grid fd-list");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "row");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("div");
+        dom.setAttribute(el4, "class", "two wide column light-text");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("div");
+        dom.setAttribute(el4, "class", "fourteen wide column");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n\n");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n\n\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-        dom.insertBoundary(fragment, 0);
+        var element7 = dom.childAt(fragment, [2, 1]);
+        var element8 = dom.childAt(element7, [1]);
+        var morphs = new Array(11);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 1, 1);
+        morphs[1] = dom.createMorphAt(dom.childAt(element8, [1]), 1, 1);
+        morphs[2] = dom.createMorphAt(dom.childAt(element8, [3]), 1, 1);
+        morphs[3] = dom.createMorphAt(element7, 3, 3);
+        morphs[4] = dom.createMorphAt(element7, 5, 5);
+        morphs[5] = dom.createMorphAt(element7, 7, 7);
+        morphs[6] = dom.createMorphAt(element7, 9, 9);
+        morphs[7] = dom.createMorphAt(element7, 11, 11);
+        morphs[8] = dom.createMorphAt(element7, 13, 13);
+        morphs[9] = dom.createMorphAt(element7, 15, 15);
+        morphs[10] = dom.createMorphAt(fragment, 4, 4, contextualElement);
+        dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["content", "outlet", ["loc", [null, [1, 0], [1, 10]]]]],
+      statements: [["inline", "t", ["forms.fd-diagrams.caption"], [], ["loc", [null, [2, 2], [2, 35]]]], ["inline", "t", ["forms.fd-diagrams.type-caption"], [], ["loc", [null, [9, 8], [9, 46]]]], ["inline", "fd-search-input", [], ["value", ["subexpr", "@mut", [["get", "searchValue", ["loc", [null, [14, 16], [14, 27]]]]], [], []]], ["loc", [null, [12, 8], [15, 10]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.ad.length", ["loc", [null, [20, 18], [20, 41]]]], 0], [], ["loc", [null, [20, 10], [20, 44]]]]], [], 0, null, ["loc", [null, [20, 4], [42, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.cad.length", ["loc", [null, [45, 18], [45, 42]]]], 0], [], ["loc", [null, [45, 10], [45, 45]]]]], [], 1, null, ["loc", [null, [45, 4], [67, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.cod.length", ["loc", [null, [70, 18], [70, 42]]]], 0], [], ["loc", [null, [70, 10], [70, 45]]]]], [], 2, null, ["loc", [null, [70, 4], [92, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.dpd.length", ["loc", [null, [95, 18], [95, 42]]]], 0], [], ["loc", [null, [95, 10], [95, 45]]]]], [], 3, null, ["loc", [null, [95, 4], [117, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.sd.length", ["loc", [null, [120, 18], [120, 41]]]], 0], [], ["loc", [null, [120, 10], [120, 44]]]]], [], 4, null, ["loc", [null, [120, 4], [142, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.std.length", ["loc", [null, [145, 18], [145, 42]]]], 0], [], ["loc", [null, [145, 10], [145, 45]]]]], [], 5, null, ["loc", [null, [145, 4], [167, 11]]]], ["block", "if", [["subexpr", "not-eq", [["get", "filteredModel.ucd.length", ["loc", [null, [170, 18], [170, 42]]]], 0], [], ["loc", [null, [170, 10], [170, 45]]]]], [], 6, null, ["loc", [null, [170, 4], [192, 11]]]], ["block", "fd-sheet", [], ["title", ["subexpr", "@mut", [["get", "selectedElement.model.name", ["loc", [null, [199, 8], [199, 34]]]]], [], []], "saveController", ["subexpr", "action", ["save"], [], ["loc", [null, [200, 17], [200, 32]]]], "sheetComponentName", ["subexpr", "@mut", [["get", "sheetComponentName", ["loc", [null, [201, 21], [201, 39]]]]], [], []]], 7, null, ["loc", [null, [198, 0], [211, 13]]]]],
       locals: [],
-      templates: []
+      templates: [child0, child1, child2, child3, child4, child5, child6, child7]
     };
   })());
 });
@@ -60861,7 +62091,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+e90fefef"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+fabdc5ff"});
 }
 
 /* jshint ignore:end */

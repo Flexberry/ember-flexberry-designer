@@ -1386,6 +1386,79 @@ define('dummy/tests/integration/components/fd-tab-dropdown-test.jshint', ['expor
     assert.ok(true, 'integration/components/fd-tab-dropdown-test.js should pass jshint.');
   });
 });
+define('dummy/tests/integration/components/fd-uml-diagram-editor-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleForComponent)('fd-uml-diagram-editor', 'Integration | Component | fd uml diagram editor', {
+    integration: true
+  });
+
+  (0, _emberQunit.test)('it renders', function (assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
+
+    this.render(Ember.HTMLBars.template((function () {
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.4.6',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 1,
+              'column': 25
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [['content', 'fd-uml-diagram-editor', ['loc', [null, [1, 0], [1, 25]]]]],
+        locals: [],
+        templates: []
+      };
+    })()));
+
+    assert.equal(this.$().text().trim(), '');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-editor-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - integration/components');
+  test('integration/components/fd-uml-diagram-editor-test.js should pass jscs', function () {
+    ok(true, 'integration/components/fd-uml-diagram-editor-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-editor-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/fd-uml-diagram-editor-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/fd-uml-diagram-editor-test.js should pass jshint.');
+  });
+});
 define('dummy/tests/integration/components/fd-uml-diagram-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
   (0, _emberQunit.moduleForComponent)('fd-uml-diagram', 'Integration | Component | fd-uml-diagram', {
@@ -1457,6 +1530,524 @@ define('dummy/tests/integration/components/fd-uml-diagram-test.jshint', ['export
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'integration/components/fd-uml-diagram-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-toolbars/fd-ad-toolbar-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleForComponent)('fd-uml-diagram-toolbars/fd-ad-toolbar', 'Integration | Component | fd uml diagram toolbars/fd ad toolbar', {
+    integration: true
+  });
+
+  (0, _emberQunit.test)('it renders', function (assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
+    this.set('actions.toolbarButtonClicked', function () {});
+
+    this.render(Ember.HTMLBars.template((function () {
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.4.6',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 1,
+              'column': 94
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [['inline', 'fd-uml-diagram-toolbars/fd-ad-toolbar', [], ['toolbarButtonClicked', ['subexpr', 'action', ['toolbarButtonClicked'], [], ['loc', [null, [1, 61], [1, 92]]]]], ['loc', [null, [1, 0], [1, 94]]]]],
+        locals: [],
+        templates: []
+      };
+    })()));
+
+    assert.equal(this.$().text().trim(), '');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-toolbars/fd-ad-toolbar-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - integration/components/fd-uml-diagram-toolbars');
+  test('integration/components/fd-uml-diagram-toolbars/fd-ad-toolbar-test.js should pass jscs', function () {
+    ok(true, 'integration/components/fd-uml-diagram-toolbars/fd-ad-toolbar-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-toolbars/fd-ad-toolbar-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/fd-uml-diagram-toolbars/fd-ad-toolbar-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/fd-uml-diagram-toolbars/fd-ad-toolbar-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-toolbars/fd-cad-toolbar-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleForComponent)('fd-uml-diagram-toolbars/fd-cad-toolbar', 'Integration | Component | fd uml diagram toolbars/fd cad toolbar', {
+    integration: true
+  });
+
+  (0, _emberQunit.test)('it renders', function (assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
+    this.set('actions.toolbarButtonClicked', function () {});
+
+    this.render(Ember.HTMLBars.template((function () {
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.4.6',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 1,
+              'column': 95
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [['inline', 'fd-uml-diagram-toolbars/fd-cad-toolbar', [], ['toolbarButtonClicked', ['subexpr', 'action', ['toolbarButtonClicked'], [], ['loc', [null, [1, 62], [1, 93]]]]], ['loc', [null, [1, 0], [1, 95]]]]],
+        locals: [],
+        templates: []
+      };
+    })()));
+
+    assert.equal(this.$().text().trim(), '');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-toolbars/fd-cad-toolbar-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - integration/components/fd-uml-diagram-toolbars');
+  test('integration/components/fd-uml-diagram-toolbars/fd-cad-toolbar-test.js should pass jscs', function () {
+    ok(true, 'integration/components/fd-uml-diagram-toolbars/fd-cad-toolbar-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-toolbars/fd-cad-toolbar-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/fd-uml-diagram-toolbars/fd-cad-toolbar-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/fd-uml-diagram-toolbars/fd-cad-toolbar-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-toolbars/fd-cod-toolbar-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleForComponent)('fd-uml-diagram-toolbars/fd-cod-toolbar', 'Integration | Component | fd uml diagram toolbars/fd cod toolbar', {
+    integration: true
+  });
+
+  (0, _emberQunit.test)('it renders', function (assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
+    this.set('actions.toolbarButtonClicked', function () {});
+
+    this.render(Ember.HTMLBars.template((function () {
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.4.6',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 1,
+              'column': 95
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [['inline', 'fd-uml-diagram-toolbars/fd-cod-toolbar', [], ['toolbarButtonClicked', ['subexpr', 'action', ['toolbarButtonClicked'], [], ['loc', [null, [1, 62], [1, 93]]]]], ['loc', [null, [1, 0], [1, 95]]]]],
+        locals: [],
+        templates: []
+      };
+    })()));
+
+    assert.equal(this.$().text().trim(), '');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-toolbars/fd-cod-toolbar-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - integration/components/fd-uml-diagram-toolbars');
+  test('integration/components/fd-uml-diagram-toolbars/fd-cod-toolbar-test.js should pass jscs', function () {
+    ok(true, 'integration/components/fd-uml-diagram-toolbars/fd-cod-toolbar-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-toolbars/fd-cod-toolbar-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/fd-uml-diagram-toolbars/fd-cod-toolbar-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/fd-uml-diagram-toolbars/fd-cod-toolbar-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-toolbars/fd-dpd-toolbar-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleForComponent)('fd-uml-diagram-toolbars/fd-dpd-toolbar', 'Integration | Component | fd uml diagram toolbars/fd dpd toolbar', {
+    integration: true
+  });
+
+  (0, _emberQunit.test)('it renders', function (assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
+    this.set('actions.toolbarButtonClicked', function () {});
+
+    this.render(Ember.HTMLBars.template((function () {
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.4.6',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 1,
+              'column': 95
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [['inline', 'fd-uml-diagram-toolbars/fd-dpd-toolbar', [], ['toolbarButtonClicked', ['subexpr', 'action', ['toolbarButtonClicked'], [], ['loc', [null, [1, 62], [1, 93]]]]], ['loc', [null, [1, 0], [1, 95]]]]],
+        locals: [],
+        templates: []
+      };
+    })()));
+
+    assert.equal(this.$().text().trim(), '');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-toolbars/fd-dpd-toolbar-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - integration/components/fd-uml-diagram-toolbars');
+  test('integration/components/fd-uml-diagram-toolbars/fd-dpd-toolbar-test.js should pass jscs', function () {
+    ok(true, 'integration/components/fd-uml-diagram-toolbars/fd-dpd-toolbar-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-toolbars/fd-dpd-toolbar-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/fd-uml-diagram-toolbars/fd-dpd-toolbar-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/fd-uml-diagram-toolbars/fd-dpd-toolbar-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-toolbars/fd-sd-toolbar-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleForComponent)('fd-uml-diagram-toolbars/fd-sd-toolbar', 'Integration | Component | fd uml diagram toolbars/fd sd toolbar', {
+    integration: true
+  });
+
+  (0, _emberQunit.test)('it renders', function (assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
+    this.set('actions.toolbarButtonClicked', function () {});
+
+    this.render(Ember.HTMLBars.template((function () {
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.4.6',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 1,
+              'column': 94
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [['inline', 'fd-uml-diagram-toolbars/fd-sd-toolbar', [], ['toolbarButtonClicked', ['subexpr', 'action', ['toolbarButtonClicked'], [], ['loc', [null, [1, 61], [1, 92]]]]], ['loc', [null, [1, 0], [1, 94]]]]],
+        locals: [],
+        templates: []
+      };
+    })()));
+
+    assert.equal(this.$().text().trim(), '');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-toolbars/fd-sd-toolbar-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - integration/components/fd-uml-diagram-toolbars');
+  test('integration/components/fd-uml-diagram-toolbars/fd-sd-toolbar-test.js should pass jscs', function () {
+    ok(true, 'integration/components/fd-uml-diagram-toolbars/fd-sd-toolbar-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-toolbars/fd-sd-toolbar-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/fd-uml-diagram-toolbars/fd-sd-toolbar-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/fd-uml-diagram-toolbars/fd-sd-toolbar-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-toolbars/fd-std-toolbar-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleForComponent)('fd-uml-diagram-toolbars/fd-std-toolbar', 'Integration | Component | fd uml diagram toolbars/fd std toolbar', {
+    integration: true
+  });
+
+  (0, _emberQunit.test)('it renders', function (assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
+    this.set('actions.toolbarButtonClicked', function () {});
+
+    this.render(Ember.HTMLBars.template((function () {
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.4.6',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 1,
+              'column': 95
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [['inline', 'fd-uml-diagram-toolbars/fd-std-toolbar', [], ['toolbarButtonClicked', ['subexpr', 'action', ['toolbarButtonClicked'], [], ['loc', [null, [1, 62], [1, 93]]]]], ['loc', [null, [1, 0], [1, 95]]]]],
+        locals: [],
+        templates: []
+      };
+    })()));
+
+    assert.equal(this.$().text().trim(), '');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-toolbars/fd-std-toolbar-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - integration/components/fd-uml-diagram-toolbars');
+  test('integration/components/fd-uml-diagram-toolbars/fd-std-toolbar-test.js should pass jscs', function () {
+    ok(true, 'integration/components/fd-uml-diagram-toolbars/fd-std-toolbar-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-toolbars/fd-std-toolbar-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/fd-uml-diagram-toolbars/fd-std-toolbar-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/fd-uml-diagram-toolbars/fd-std-toolbar-test.js should pass jshint.');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-toolbars/fd-ucd-toolbar-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleForComponent)('fd-uml-diagram-toolbars/fd-ucd-toolbar', 'Integration | Component | fd uml diagram toolbars/fd ucd toolbar', {
+    integration: true
+  });
+
+  (0, _emberQunit.test)('it renders', function (assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
+    this.set('actions.toolbarButtonClicked', function () {});
+
+    this.render(Ember.HTMLBars.template((function () {
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.4.6',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 1,
+              'column': 95
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [['inline', 'fd-uml-diagram-toolbars/fd-ucd-toolbar', [], ['toolbarButtonClicked', ['subexpr', 'action', ['toolbarButtonClicked'], [], ['loc', [null, [1, 62], [1, 93]]]]], ['loc', [null, [1, 0], [1, 95]]]]],
+        locals: [],
+        templates: []
+      };
+    })()));
+
+    assert.equal(this.$().text().trim(), '');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-toolbars/fd-ucd-toolbar-test.jscs-test', ['exports'], function (exports) {
+  'use strict';
+
+  module('JSCS - integration/components/fd-uml-diagram-toolbars');
+  test('integration/components/fd-uml-diagram-toolbars/fd-ucd-toolbar-test.js should pass jscs', function () {
+    ok(true, 'integration/components/fd-uml-diagram-toolbars/fd-ucd-toolbar-test.js should pass jscs.');
+  });
+});
+define('dummy/tests/integration/components/fd-uml-diagram-toolbars/fd-ucd-toolbar-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/fd-uml-diagram-toolbars/fd-ucd-toolbar-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/fd-uml-diagram-toolbars/fd-ucd-toolbar-test.js should pass jshint.');
   });
 });
 define('dummy/tests/integration/components/fd-visual-listform-form', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
