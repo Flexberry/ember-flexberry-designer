@@ -20,10 +20,10 @@ export default Ember.Object.extend({
   dataService: undefined,
 
   /**
-    Columns of storeInstancesInType.
+    Columns of data.
 
-    @property storeInstancesInType
+    @property data
     @type string
   */
-  storeInstancesInType: undefined,
+  data: undefined,
 });
