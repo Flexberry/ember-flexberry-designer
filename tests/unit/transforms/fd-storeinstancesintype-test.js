@@ -22,10 +22,10 @@ test('it exists', function(assert) {
   ]);
 
   let xml = '' +
-  '<DataSourceCustomizerList>'+
-  '<Item DataService="dataService1" data="data1" />'+
-  '<Item DataService="dataService2" data="data2" />'+
-  '<Item DataService="dataService3" data="data3" />'+
+  '<DataSourceCustomizerList>' +
+  '<Item DataService="dataService1" data="data1" />' +
+  '<Item DataService="dataService2" data="data2" />' +
+  '<Item DataService="dataService3" data="data3" />' +
   '</DataSourceCustomizerList>';
 
   let transform = this.subject();
