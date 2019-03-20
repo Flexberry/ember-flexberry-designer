@@ -10,6 +10,9 @@ import FdEditformTab from 'ember-flexberry-designer/objects/fd-editform-tab';
 moduleFor('controller:fd-editform-constructor', 'Unit | Controller | fd-editform-constructor', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
+  needs: [
+    'service:appState'
+  ]
 });
 
 // Replace this with your real tests.
