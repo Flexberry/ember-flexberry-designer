@@ -4,15 +4,15 @@ import FdClassExternalStoreInstancesInType from '../objects/fd-storeinstancesint
 
 export default DS.Transform.extend({
   deserialize(storeInstancesInType) {
-    let retObjects = Ember.A();
+    let ret = Ember.A();
     let parser = new DOMParser();
     let xmlDoc = parser.parseFromString(storeInstancesInType, 'text/xml');
     if (xmlDoc) {
 
       // Get DataSourceCustomizerList from xml.
-      let viewPropertiesList = xmlDoc.getElementsByTagName('DataSourceCustomizerList');
-      if (viewPropertiesList.length > 0) {
-        let itemList = viewPropertiesList[0].getElementsByTagName('Item');
+      let dataSourceCustomizerList = xmlDoc.getElementsByTagName('DataSourceCustomizerList');
+      if (dataSourceCustomizerList.length > 0) {
+        let itemList = dataSourceCustomizerList[0].getElementsByTagName('Item');
 
         // Get each item as FdClassExternalStoreInstancesInType from DataSourceCustomizerList.
         for (let item of itemList) {
@@ -25,17 +25,10 @@ export default DS.Transform.extend({
             data: data,
           });
 
-          retObjects.pushObject(itemObject);
+          ret.pushObject(itemObject);
         }
       }
     }
-
-    // TODO in version Ember 2.12+ replace on 'uniqBy'.
-    // Push all FdClassExternalStoreInstancesInType to array.
-    let ret = Ember.A();
-    retObjects.forEach((item) => {
-      ret.push(item);
-    });
 
     return ret;
   },
