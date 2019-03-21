@@ -413,7 +413,7 @@ Ember.$.extend(true, translations, {
     'fd-visual-control': FdVisualControlComponent,
     'fd-visual-edit-control-tree': FdVisualEditControlTreeComponent,
     'fd-tabs': FdTabs,
-    'fd-attribute-table': FdAttributeTable
+    'fd-attribute-table': FdAttributeTable,
     'fd-implementation-editing-panel': FdClassEditingPanel,
     'fd-userform-editing-panel': FdUserformEditingPanel,
     'fd-type-editing-panel': FdTypeEditingPanel,
