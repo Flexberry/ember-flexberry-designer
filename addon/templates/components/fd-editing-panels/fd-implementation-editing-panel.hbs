@@ -1,0 +1,155 @@
+<div class="ui stackable grid fd-list">
+
+  <div class="row">
+    <div class="three wide column">
+      {{t "components.fd-implementation-editing-panel.caption-caption"}}
+    </div>
+    <div class="thirteen wide column light-text">
+      {{flexberry-textbox
+        value=model.caption
+        class='fluid input'
+        placeholder=(t "components.fd-implementation-editing-panel.caption-placeholder")
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="three wide column">
+      <div>{{t "components.fd-implementation-editing-panel.publish-name-caption"}}</div>
+    </div>
+    <div class="thirteen wide column light-text">
+      {{flexberry-textbox
+        value=model.publishName
+        class='fluid input'
+        placeholder=(t "components.fd-implementation-editing-panel.publish-name-placeholder")
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="three wide column">
+      <div>{{t "components.fd-implementation-editing-panel.stored-caption"}}</div>
+    </div>
+    <div class="thirteen wide column light-text">
+      {{flexberry-checkbox
+        value=model.stored
+        class='fluid input'
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="three wide column">
+      <div>{{t "components.fd-implementation-editing-panel.storage-caption"}}</div>
+    </div>
+    <div class="thirteen wide column light-text">
+      {{flexberry-textbox
+        value=model.storage
+        class='fluid input'
+        placeholder=(t "components.fd-implementation-editing-panel.storage-placeholder")
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="three wide column">
+      <div>{{t "components.fd-implementation-editing-panel.packet-caption"}}</div>
+    </div>
+    <div class="thirteen wide column light-text">
+      {{flexberry-textbox
+        value=model.packet
+        class='fluid input'
+        placeholder=(t "components.fd-implementation-editing-panel.packet-placeholder")
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="three wide column">
+      <div>{{t "components.fd-implementation-editing-panel.namespace-postfix-caption"}}</div>
+    </div>
+    <div class="thirteen wide column light-text">
+      {{flexberry-textbox
+        value=model.namespacePostfix
+        class='fluid input'
+        placeholder=(t "components.fd-implementation-editing-panel.namespace-postfix-placeholder")
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="three wide column">
+      <div>{{t "components.fd-implementation-editing-panel.bs-caption"}}</div>
+    </div>
+    <div class="thirteen wide column light-text">
+      {{flexberry-dropdown
+        items=bsItems.names
+        value=bsValue
+        class='fluid input'
+        isSearch=true
+        onChange=(action "changeBsValue")
+      }}
+    </div>
+  </div>
+
+  {{#if model.businessServerClass}}
+  <div class="row">
+    <div class="three wide column">
+      <div>{{t "components.fd-implementation-editing-panel.bs-events-caption"}}</div>
+    </div>
+    <div class="thirteen wide column light-text">
+      {{flexberry-dropdown
+        items=(flexberry-enum 'i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events')
+        value=model.businessServerEvents
+        class='fluid input'
+      }}
+    </div>
+  </div>
+  {{/if}}
+
+  <div class="row">
+    {{#flexberry-toggler
+        caption=(t 'components.fd-implementation-editing-panel.toggler-caption')
+        expanded=false
+    }}
+    <div class="row" />
+      <div class="three wide column">
+        {{t "components.fd-implementation-editing-panel.description-caption"}}
+      </div>
+      <div class="thirteen wide column light-text">
+        {{flexberry-textarea
+          value=model.description
+          class='fluid input'
+          placeholder=(t "components.fd-implementation-editing-panel.description-placeholder")
+        }}
+      </div>
+    {{/flexberry-toggler}}
+  </div>
+
+  <div class="row">
+    <div class="three wide column">
+      <div>{{t "components.fd-implementation-editing-panel.attributes-caption"}}</div>
+    </div>
+    <div class="thirteen wide column light-text">
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="three wide column">
+      <div>{{t "components.fd-implementation-editing-panel.views-caption"}}</div>
+    </div>
+    <div class="thirteen wide column light-text">
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="three wide column">
+      <div>{{t "components.fd-implementation-editing-panel.class-storage-types-caption"}}</div>
+    </div>
+    <div class="thirteen wide column light-text">
+
+    </div>
+  </div>
+</div>

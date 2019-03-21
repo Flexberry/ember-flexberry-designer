@@ -41,6 +41,7 @@ import FdConfirmUnsavedFormModal from './forms/fd-confirm-unsaved-form-modal';
 import FdEditForm from './forms/fd-edit-form';
 import NewPlatformFlexberryWebDesignerGenerationEForm from './forms/new-platform-flexberry-web-designer-generation-e';
 import NewPlatformFlexberryWebDesignerStorageTypeEForm from './forms/new-platform-flexberry-web-designer-storage-type-e';
+import FdDiagramForm from './forms/fd-diagrams';
 import FdAdModel from './models/fd-ad';
 import FdAggregationModel from './models/fd-aggregation';
 import FdApplicationUserModel from './models/fd-application-user';
@@ -117,6 +118,16 @@ import FdVisualControlComponent from './components/fd-visual-control';
 import FdVisualEditControlTreeComponent from './components/fd-visual-edit-control-tree';
 import FdTabs from './components/fd-tabs';
 import FdAttributeTable from './components/fd-attribute-table';
+import FdClassEditingPanel from './components/fd-implementation-editing-panel';
+import FdUserformEditingPanel from './components/fd-userform-editing-panel';
+import FdTypeEditingPanel from './components/fd-type-editing-panel';
+import FdExternalEditingPanel from './components/fd-external-editing-panel';
+import FdCustomEditingPanel from './components/fd-custom-editing-panel';
+import FdApplicationEditingPanel from './components/fd-application-editing-panel';
+import FdInterfaceEditingPanel from './components/fd-interface-editing-panel';
+import FdBsEditingPanel from './components/fd-businessserver-editing-panel';
+import FdEnumEditingPanel from './components/fd-enumeration-editing-panel';
+import FdSheet from './components/fd-sheet';
 import FdApplicationModelForm from './forms/fd-application-model';
 
 const translations = {};
@@ -390,7 +401,8 @@ Ember.$.extend(true, translations, {
     'fd-edit-form': FdEditForm,
     'new-platform-flexberry-web-designer-generation-e': NewPlatformFlexberryWebDesignerGenerationEForm,
     'new-platform-flexberry-web-designer-storage-type-e': NewPlatformFlexberryWebDesignerStorageTypeEForm,
-    'fd-application-model': FdApplicationModelForm
+    'fd-application-model': FdApplicationModelForm,
+    'fd-diagrams': FdDiagramForm,
   },
 
   components: {
@@ -398,6 +410,16 @@ Ember.$.extend(true, translations, {
     'fd-visual-edit-control-tree': FdVisualEditControlTreeComponent,
     'fd-tabs': FdTabs,
     'fd-attribute-table': FdAttributeTable
+    'fd-implementation-editing-panel': FdClassEditingPanel,
+    'fd-userform-editing-panel': FdUserformEditingPanel,
+    'fd-type-editing-panel': FdTypeEditingPanel,
+    'fd-external-editing-panel': FdExternalEditingPanel,
+    'fd-custom-editing-panel': FdCustomEditingPanel,
+    'fd-application-editing-panel': FdApplicationEditingPanel,
+    'fd-interface-editing-panel': FdInterfaceEditingPanel,
+    'fd-businessserver-editing-panel': FdBsEditingPanel,
+    'fd-enumeration-editing-panel': FdEnumEditingPanel,
+    'fd-sheet': FdSheet,
   }
 
 });

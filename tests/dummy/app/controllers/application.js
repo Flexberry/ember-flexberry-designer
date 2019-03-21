@@ -1,7 +1,6 @@
 import Ember from 'ember';
-import fdSheetMixin from 'ember-flexberry-designer/mixins/fd-sheet-mixin';
 
-export default Ember.Controller.extend(fdSheetMixin, {
+export default Ember.Controller.extend({
   /**
     Flag indicates sidebar visible
 

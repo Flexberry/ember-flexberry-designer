@@ -21,7 +21,7 @@
 @lightTextColor      : rgba(0, 0, 0, 0.25);
 
 /* Цвет иконок сайдбара */
-@sidebarIconColor: rgba(0, 0, 0, 0.50);
+@sidebarIconColor    : rgba(0, 0, 0, 0.50);
 
 @headerHeight : 0px;
 @footerHeight : 40px;
@@ -53,6 +53,11 @@
 
 /* Фон кнопок тулбара */
 @toolbarBtnBg: @lightTextColor;
+
+/* Цвет основных кнопок */
+@basicBtn: @lightTextColor;
+
+@itemActiveBorderRadius: 0.5rem;
 @hoverToolbarBtnBg: rgba(0, 0, 0, 0.35);
 @activeToolbarBtnBg: rgba(0, 0, 0, 0.45);
 @itemActiveBorderRadius: 0.5rem;

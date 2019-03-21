@@ -1,51 +1,65 @@
 import Ember from 'ember';
 import layout from '../templates/components/fd-sheet';
-import fdSheetMixin from '../mixins/fd-sheet-mixin';
 
-export default Ember.Component.extend(fdSheetMixin, {
+export default Ember.Component.extend({
   layout,
 
-  title: '',
+  /**
+    Sheet component name.
 
-  expand: false,
+    @property sheetComponentName
+    @type String
+    @default ''
+  */
+  sheetComponentName: '',
+
+  /**
+    Service for managing the state of the component.
+
+    @property fdSheetService
+    @type FdSheetService
+  */
+  fdSheetService: Ember.inject.service(),
+
+  init() {
+    this._super(...arguments);
+
+    this.set('classNames', ['fd-sheet', `${this.get('sheetComponentName')}`]);
+    this.set('classNameBindings',
+    [
+      `fdSheetService.sheetSettings.visibility.${this.get('sheetComponentName')}:visible`,
+      `fdSheetService.sheetSettings.expanded.${this.get('sheetComponentName')}:expand`,
+    ]);
+  },
 
   actions: {
+    /**
+      Closing sheet.
+
+      @method actions.closeSheet
+    */
     closeSheet() {
-      this.set('commonVisible.visible', '');
-      this.set('expand', false);
-      let currentSheet = Ember.$('.fd-sheet', this.element);
-      Ember.$('.pushable').removeClass('fade');
-      currentSheet.css({ 'transform': '' });
-
-      // Сбрасываем стиль с кнопки сайдбара.
-      Ember.$('.toggle-sidebar').removeClass('expanded');
-      this.deactivateListItem();
-
-      Ember.run.later(function() {
-        Ember.$('.content-mini', currentSheet).css({ width: '' });
-      }, 1000);
+      let sheetComponentName = this.get('sheetComponentName');
+      this.get('fdSheetService').closeSheet(sheetComponentName);
     },
 
+    /**
+      Expanding sheet.
+
+      @method actions.expand
+    */
     expand() {
-      let sidebarWidth = Ember.$('.ui.sidebar.main.menu').width();
-
-      let currentSheet = Ember.$('.fd-sheet', this.element);
-      let sheetTranslate =  `translate3d(calc(50% - ${sidebarWidth}px), 0, 0)`;
-      currentSheet.css({ 'transform': sheetTranslate });
-
-      let contentWidth = this.expand ? '50%' : `calc(100% - ${sidebarWidth}px)`;
-
-      // Затемняем кнопку сайдбара.
-      Ember.$('.toggle-sidebar').toggleClass('expanded');
-
-      Ember.run.schedule('afterRender', this, () => {
-        this.toggleProperty('expand');
-      });
-
-      this.send('animatingSheetContent', contentWidth, 600);
+      let sheetComponentName = this.get('sheetComponentName');
+      this.get('fdSheetService').expand(sheetComponentName);
     },
 
+    /**
+      Saving changes.
+
+      @method actions.save
+    */
     save() {
+      this.sendAction('saveController');
     }
   }
 });
