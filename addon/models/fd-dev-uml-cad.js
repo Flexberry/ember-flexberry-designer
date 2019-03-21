@@ -184,36 +184,60 @@ let Model = CADModel.extend(DevUMLCADMixin, {
 
     }
 
-    let linkConnectorWidth = 10;
-    let linkConnectorHeight = 10;
+    let linkConnectorWidth = 20;
+    let linkConnectorHeight = 20;
     for (let parentClassId in linkTree) {
       for (let baseLinkId in linkTree[parentClassId]) {
+        let baseLink = elements[baseLinkId];
+        let linkConnectorUuid = '{' + uuid.v4() + '}';
+        let linkConnector = {
+          '$id': linkConnectorUuid,
+          '$type': 'STORMCASE.UML.cad.LinkConnector, UMLCAD',
+          'Name': {
+            'Text': 'LinkConnector'
+          },
+          'Location': {
+            '$type': 'System.Drawing.Point, System.Drawing',
+            'IsEmpty': false,
+            'X': -1,
+            'Y': -1
+          },
+          'Size': {
+            '$type': 'System.Drawing.Size, System.Drawing',
+            'IsEmpty': false,
+            'Width': linkConnectorWidth,
+            'Height': linkConnectorHeight
+          }
+        };
+        baseLink.StartPrimitive.$ref = linkConnectorUuid;
+        baseLink.StartLE.Primitive.$ref = linkConnectorUuid;
+        let parentLinkUuid = '{' + uuid.v4() + '}';
+        let parentLink = {
+          '$id': parentLinkUuid,
+          '$type': 'STORMCASE.UML.cad.Inheritance, UMLCAD',
+          'StartPrimitive': {
+            '$ref': parentClassId
+          },
+          'EndPrimitive': {
+            '$ref': linkConnectorUuid
+          },
+          'Points': [
+          ]
+        };
+        elements[parentLinkUuid] = parentLink;
         for (let i = 0; i < linkTree[parentClassId][baseLinkId].length; i++) {
           let linkId = linkTree[parentClassId][baseLinkId][i];
           let link = elements[linkId];
-          let linkConnectorUuid = '{' + uuid.v4() + '}';
-          let linkConnector = {
-            '$id': linkConnectorUuid,
-            '$type': 'STORMCASE.UML.cad.LinkConnector, UMLCAD',
-            'Name': {
-              'Text': 'LinkConnector'
-            },
-            'Location': {
-              '$type': 'System.Drawing.Point, System.Drawing',
-              'IsEmpty': false,
-              'X': link.StartPoint.X - linkConnectorWidth / 2,
-              'Y': link.StartPoint.Y - linkConnectorHeight / 2
-            },
-            'Size': {
-              '$type': 'System.Drawing.Size, System.Drawing',
-              'IsEmpty': false,
-              'Width': linkConnectorWidth,
-              'Height': linkConnectorHeight
-            }
-          };
-          elements[linkConnectorUuid] = linkConnector;
-          delete elements[linkId];
+          if (i === 0) {
+            linkConnector.Location.X = link.StartPoint.X - linkConnectorWidth / 2;
+            linkConnector.Location.Y = link.StartPoint.Y - linkConnectorHeight / 2;
+          }
+
+          link.StartPrimitive.$ref = linkConnectorUuid;
+          link.StartLE.Primitive.$ref = linkConnectorUuid;
         }
+
+        elements[linkConnectorUuid] = linkConnector;
       }
     }
 
