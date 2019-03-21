@@ -30,6 +30,9 @@ import FdUmlQComposition from '../objects/uml-primitives/fd-uml-qualified-compos
 import FdUmlRealization from '../objects/uml-primitives/fd-uml-realization';
 import FdUmlObjectAssociation from '../objects/uml-primitives/fd-uml-object-association';
 import FdUmlNAryAssociationConnector from '../objects/uml-primitives/fd-uml-naryassociation-connector';
+import FdUmlLinkConnector from '../objects/uml-primitives/fd-uml-link-connector';
+
+import uuid from 'npm:node-uuid';
 
 let Model = CADModel.extend(DevUMLCADMixin, {
   /**
@@ -138,6 +141,10 @@ let Model = CADModel.extend(DevUMLCADMixin, {
           result.pushObject(FdUmlRealization.create({ primitive }));
           break;
 
+        case 'STORMCASE.UML.cad.LinkConnector, UMLCAD':
+          result.pushObject(FdUmlLinkConnector.create({ primitive }));
+          break;
+
         default:
           throw new Error(`Unknown primitive type: '${primitive.$type}'.`);
       }
@@ -146,39 +153,75 @@ let Model = CADModel.extend(DevUMLCADMixin, {
     return result;
   }),
 
-
   _addConnector: function(primitives) {
     let elements = {};
     let links = [];
     for (let i = 0; i < primitives.length; i++) {
       let primitive = primitives[i];
       elements[primitive.$id] = primitive;
-      if (primitive.$type == 'STORMCASE.UML.cad.Inheritance, UMLCAD') {
+      if (primitive.$type === 'STORMCASE.UML.cad.Inheritance, UMLCAD') {
         links.push(primitive);
       }
-      
     }
 
     let linkTree = {};
     for (let i = 0; i < links.length; i++) {
-      let link =links[i];
+      let link = links[i];
       let startPrimitiveId = link.StartPrimitive.$ref;
       let startPrimitive = elements[startPrimitiveId];
-      if (startPrimitive.$type == 'STORMCASE.UML.cad.Inheritance, UMLCAD') {
+      if (startPrimitive.$type === 'STORMCASE.UML.cad.Inheritance, UMLCAD') {
         let parentId = startPrimitive.StartPrimitive.$ref;
         if (!(parentId in linkTree)) {
           linkTree[parentId] = {};
         }
-        
+
         if (!(startPrimitiveId in linkTree[parentId])) {
           linkTree[parentId][startPrimitiveId] = [];
         }
-        
+
         linkTree[parentId][startPrimitiveId].push(link.$id);
       }
-      
+
     }
-    
+
+    let linkConnectorWidth = 10;
+    let linkConnectorHeight = 10;
+    for (let parentClassId in linkTree) {
+      for (let baseLinkId in linkTree[parentClassId]) {
+        for (let i = 0; i < linkTree[parentClassId][baseLinkId].length; i++) {
+          let linkId = linkTree[parentClassId][baseLinkId][i];
+          let link = elements[linkId];
+          let linkConnectorUuid = '{' + uuid.v4() + '}';
+          let linkConnector = {
+            '$id': linkConnectorUuid,
+            '$type': 'STORMCASE.UML.cad.LinkConnector, UMLCAD',
+            'Name': {
+              'Text': 'LinkConnector'
+            },
+            'Location': {
+              '$type': 'System.Drawing.Point, System.Drawing',
+              'IsEmpty': false,
+              'X': link.StartPoint.X - linkConnectorWidth / 2,
+              'Y': link.StartPoint.Y - linkConnectorHeight / 2
+            },
+            'Size': {
+              '$type': 'System.Drawing.Size, System.Drawing',
+              'IsEmpty': false,
+              'Width': linkConnectorWidth,
+              'Height': linkConnectorHeight
+            }
+          };
+          elements[linkConnectorUuid] = linkConnector;
+          delete elements[linkId];
+        }
+      }
+    }
+
+    primitives = [];
+    for (let elementUuid in elements) {
+      primitives.push(elements[elementUuid]);
+    }
+
     return primitives;
   }
 
