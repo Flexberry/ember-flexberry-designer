@@ -42,4 +42,15 @@ export default Ember.Route.extend({
       generations: store.query(modelName, builder.build()),
     });
   },
+
+  /**
+    See [EmberJS API](https://emberjs.com/api/).
+
+    @method afterModel
+  */
+  afterModel({ generations }) {
+    if (generations.get('length') === 0) {
+      this.transitionTo('fd-generation.first');
+    }
+  },
 });

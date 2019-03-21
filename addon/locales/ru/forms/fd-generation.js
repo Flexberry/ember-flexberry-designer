@@ -11,4 +11,10 @@ export default {
   'user-name': 'Запрошена пользователем',
   'is-running': 'Запущена',
   'percent-complete': 'Завершено в процентах',
+  'generation-app': 'Генерация приложения',
+  'git-url': 'Git URL',
+  'git-url-placeholder': 'Адрес репозитория',
+  login: 'Логин',
+  password: 'Пароль',
+  'save-and-generate': 'Сохранить настройки и генерировать приложение',
 };

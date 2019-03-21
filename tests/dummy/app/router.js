@@ -127,6 +127,7 @@ Router.map(function () {
   this.route('fd-generation', { path: 'generation' }, function() {
     this.route('index', { path: '' });
     this.route('log', { path: ':generation_id' });
+    this.route('first');
   });
 
   this.route('fd-setting');

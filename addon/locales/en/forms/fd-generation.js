@@ -11,4 +11,10 @@ export default {
   'user-name': 'Requested by user',
   'is-running': 'Is running',
   'percent-complete': 'Completed as a percentage',
+  'generation-app': 'Application generation',
+  'git-url': 'Git URL',
+  'git-url-placeholder': 'Repository address',
+  login: 'Login',
+  password: 'Password',
+  'save-and-generate': 'Save settings and generate application',
 };
