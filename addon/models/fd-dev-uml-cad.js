@@ -41,8 +41,7 @@ let Model = CADModel.extend(DevUMLCADMixin, {
   primitives: Ember.computed('primitivesJsonString', function() {
     let result = Ember.A();
     let primitives = JSON.parse(this.get('primitivesJsonString')) || [];
-    this.primitives = primitives;
-    this._addConnector();
+    primitives = this._addConnector(primitives);
 
     for (let i = 0; i < primitives.length; i++) {
       let primitive = primitives[i];
@@ -148,19 +147,16 @@ let Model = CADModel.extend(DevUMLCADMixin, {
   }),
 
 
-  _addConnector: function() {
-    let elements = {},
-      links = [];
-    for (let i = 0; i < this.primitives.length; i++) {
-      let primitive = this.primitives[i];
-      switch (primitive.$type) {
-        case 'STORMCASE.UML.cad.Inheritance, UMLCAD':
-          elements[primitive.$id] = primitive;
-          links.push(primitive);
-          break;
-        case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin':
-          elements[primitive.$id] = primitive;
+  _addConnector: function(primitives) {
+    let elements = {};
+    let links = [];
+    for (let i = 0; i < primitives.length; i++) {
+      let primitive = primitives[i];
+      elements[primitive.$id] = primitive;
+      if (primitive.$type == 'STORMCASE.UML.cad.Inheritance, UMLCAD') {
+        links.push(primitive);
       }
+      
     }
 
     let linkTree = {};
@@ -168,21 +164,22 @@ let Model = CADModel.extend(DevUMLCADMixin, {
       let link =links[i];
       let startPrimitiveId = link.StartPrimitive.$ref;
       let startPrimitive = elements[startPrimitiveId];
-      switch (startPrimitive.$type) {
-        case 'STORMCASE.UML.cad.Inheritance, UMLCAD':
-          let parentId = startPrimitive.StartPrimitive.$ref;
-          if (!(parentId in linkTree)) {
-            linkTree[parentId] = {};
-          }
-          if (!(startPrimitiveId in linkTree[parentId])) {
-            linkTree[parentId][startPrimitiveId] = [];
-          }
-          linkTree[parentId][startPrimitiveId].push(link.$id);
-          break;
+      if (startPrimitive.$type == 'STORMCASE.UML.cad.Inheritance, UMLCAD') {
+        let parentId = startPrimitive.StartPrimitive.$ref;
+        if (!(parentId in linkTree)) {
+          linkTree[parentId] = {};
+        }
+        
+        if (!(startPrimitiveId in linkTree[parentId])) {
+          linkTree[parentId][startPrimitiveId] = [];
+        }
+        
+        linkTree[parentId][startPrimitiveId].push(link.$id);
       }
+      
     }
-    let json = JSON.stringify(linkTree);
-
+    
+    return primitives;
   }
 
 });
