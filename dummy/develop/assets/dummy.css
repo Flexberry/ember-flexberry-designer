@@ -5977,6 +5977,22 @@ input::selection {
 .fd-sheet-toolbar i.icon::before {
   font-size: 0.9rem;
 }
+.buttons-row {
+  left: -1.2em;
+}
+.buttons-row .basic.button.table-btn {
+  border-radius: 0.5rem;
+  white-space: nowrap;
+  min-height: 34px;
+  box-shadow: none;
+  border: 1px dashed rgba(0, 0, 0, 0.1);
+}
+.buttons-row .basic.button.table-btn:hover {
+  border: 1px dashed rgba(0, 0, 0, 0.19);
+}
+.buttons-row .basic.button.table-btn:active {
+  border: 1px dashed rgba(0, 0, 0, 0.28);
+}
 /*!
  * # Semantic UI - Container
  * http://github.com/semantic-org/semantic-ui/
@@ -57082,6 +57098,14 @@ html.ios body {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+.fd-table-first {
+  position: absolute;
+  left: -2rem;
+}
+.one.wide.column.fd-table-checkbox {
+  left: -1.8em;
+  width: 1.8em !important;
+}
 .pushable,
 .full.height {
   transition: background-color 1s;
