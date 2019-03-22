@@ -126,30 +126,25 @@
     {{/flexberry-toggler}}
   </div>
 
-  <div class="row">
-    <div class="three wide column">
-      <div>{{t "components.fd-implementation-editing-panel.attributes-caption"}}</div>
-    </div>
-    <div class="thirteen wide column light-text">
+  {{fd-attribute-table
+    tableView=tableViewAttribute
+    buttonCaption=attributeButton
+    model=model.attributes
+    create=(action 'createAttribute')
+  }}
 
-    </div>
-  </div>
+  {{fd-attribute-table
+    tableView=tableViewMethods
+    buttonCaption=methodsButton
+    model=model.methods
+    create=(action 'createMethod')
+  }}
 
-  <div class="row">
-    <div class="three wide column">
-      <div>{{t "components.fd-implementation-editing-panel.views-caption"}}</div>
-    </div>
-    <div class="thirteen wide column light-text">
+  {{fd-attribute-table
+    tableView=tableViewForView
+    buttonCaption=viewButton
+    model=model.views
+    create=(action 'createView')
+  }}
 
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="three wide column">
-      <div>{{t "components.fd-implementation-editing-panel.class-storage-types-caption"}}</div>
-    </div>
-    <div class="thirteen wide column light-text">
-
-    </div>
-  </div>
 </div>
