@@ -23,7 +23,14 @@ const fdDevSystemModelStub = FdDevSystemModel.extend({
 });
 
 moduleFor('service:fd-current-project-context', 'Unit | Service | fd current project context', {
-  needs: ['model:fd-dev-system', 'model:fd-stage', 'model:fd-diagram', 'model:fd-diagram-link', 'model:fd-filelink'],
+  needs: [
+    'model:fd-dev-system',
+    'model:fd-stage',
+    'model:fd-diagram',
+    'model:fd-diagram-link',
+    'model:fd-filelink',
+    'service:syncer'
+  ],
 
   beforeEach: function () {
     getOwner(this).unregister('service:store');
