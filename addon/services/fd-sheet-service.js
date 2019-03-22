@@ -84,6 +84,43 @@ export default Ember.Service.extend(Ember.Evented, {
     this.animatingSheetContent(sheetName, contentWidth, 600);
   },
 
+  toolbarDiagramPosition() {
+    let diagramToolbar = Ember.$('.fd-uml-diagram-toolbar');
+    let jointPaper = Ember.$('.joint-paper');
+    jointPaper.css('margin-bottom', diagramToolbar.height());
+    let diagramToolbarBottom = jointPaper.width() <= Ember.$('.fd-uml-diagram-editor').width() ? 0 : this._getScrollbarWidth();
+    diagramToolbar.css('bottom', diagramToolbarBottom);
+    jointPaper.css('margin-bottom', diagramToolbar.height());
+  },
+
+  _getScrollbarWidth() {
+    var outer = document.createElement('div');
+    outer.style.visibility = 'hidden';
+    outer.style.width = '100px';
+
+    // needed for WinJS apps
+    outer.style.msOverflowStyle = 'scrollbar';
+
+    document.body.appendChild(outer);
+
+    var widthNoScroll = outer.offsetWidth;
+
+    // force scrollbars
+    outer.style.overflow = 'scroll';
+
+    // add innerdiv
+    var inner = document.createElement('div');
+    inner.style.width = '100%';
+    outer.appendChild(inner);
+
+    var widthWithScroll = inner.offsetWidth;
+
+    // remove divs
+    outer.parentNode.removeChild(outer);
+
+    return widthNoScroll - widthWithScroll;
+  },
+
   /**
     Expands specified sheet.
 
@@ -93,8 +130,10 @@ export default Ember.Service.extend(Ember.Evented, {
   animatingSheetContent(sheetName, contentWidth, speed) {
     Ember.$(`.fd-sheet.${sheetName} .content-mini`).css({ opacity: 0.2 });
 
+    let _this = this;
     Ember.run.later(function() {
       Ember.$(`.fd-sheet.${sheetName} .content-mini`).css({ opacity: '', width: contentWidth });
+      _this.toolbarDiagramPosition();
     }, speed);
   }
 });

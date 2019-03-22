@@ -24,6 +24,14 @@ FdActionsForUcdPrimitivesMixin, {
   store: Ember.inject.service(),
 
   /**
+    Service for managing the state of the component.
+
+    @property fdSheetService
+    @type FdSheetService
+  */
+  fdSheetService: Ember.inject.service(),
+
+  /**
     Array elements to interact.
 
     @property interactionElements
@@ -97,6 +105,19 @@ FdActionsForUcdPrimitivesMixin, {
 
     return type.split('-').pop();
   }),
+
+  /**
+    See [EmberJS API](https://emberjs.com/).
+
+    @method didInsertElement
+  */
+  didInsertElement() {
+    this._super(...arguments);
+
+    Ember.run.next(() => {
+      this.get('fdSheetService').toolbarDiagramPosition();
+    });
+  },
 
   actions: {
 

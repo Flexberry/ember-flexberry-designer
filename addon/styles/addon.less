@@ -31,10 +31,20 @@
 
   .content-mini{
     height: 100%;
-    overflow: auto;
-    padding: 0 @fdSheetPadding @fdSheetPadding;
+    padding: 0 0 1em;
     transition: opacity 0.5s ease-in-out;
     width: 50%;
+    position: relative;
+  }
+
+  .fd-sheet-header,
+  .fd-sheet-body {
+    padding: 0 @fdSheetPadding;
+  }
+
+  .fd-sheet-body{
+    overflow: auto;
+    height: calc(~'100vh - 9.8125rem - @{footerHeight}');//toolbar height
   }
 
   .fd-sheet-toolbar {
@@ -173,8 +183,14 @@ h2.form-header,
   border-radius: @itemActiveBorderRadius;
 }
 
-.fd-uml-diagram-editor .ui.button img {
-  vertical-align: middle;
+.fd-uml-diagram-editor {
+  margin-right: -@fdSheetPadding;
+  margin-left: -@fdSheetPadding;
+  height: 100%;
+
+  .ui.button img {
+    vertical-align: middle;
+  }
 }
 
 @media (max-width: 1200px) {
