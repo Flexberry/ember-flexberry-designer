@@ -13,7 +13,7 @@
 }
 
 @fdSheetPadding: 3em;
-@fdSearchInputPadding: 0.7em 2.5em;
+@fdSearchInputPadding: 0.7em @leftIndent;
 
 .fd-sheet {
   background: @fdSheetBg;
@@ -90,7 +90,7 @@ h2.form-header,
 }
 
 .ui.main.container.fluid {
-  padding: 5em 3em 3em;
+  padding: 5em 4em 3em;
 }
 
 .sitemap-bottom{
@@ -182,4 +182,8 @@ h2.form-header,
   html {
     font-size: 14px;
   }
+}
+
+.ui.grid.fd-projects-toolbar {
+  margin-left: calc(~'-@{leftIndent} - 1em');
 }

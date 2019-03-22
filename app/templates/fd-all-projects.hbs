@@ -1,12 +1,14 @@
 {{flexberry-error error=error}}
 
 {{#if showHeader}}
-  <h3>{{t "forms.fd-all-projects.caption"}}</h3>
+  <h2 class="form-header">{{t "forms.fd-all-projects.caption"}}</h2>
 
-  {{fd-search-input value=search}}
-  {{#link-to "fd-all-projects.new" (query-params nameFromSearch=search)}}
-    {{t "forms.fd-all-projects.create-project"}}
-  {{/link-to}}
+  <div class="ui one column grid fd-projects-toolbar">
+    {{fd-search-input value=search}}
+    {{#link-to "fd-all-projects.new" (query-params nameFromSearch=search) class="ui basic button table-btn"}}
+      {{t "forms.fd-all-projects.create-project"}}
+    {{/link-to}}
+  </div>
 {{/if}}
 
 {{outlet}}

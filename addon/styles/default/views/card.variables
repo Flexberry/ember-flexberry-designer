@@ -1,0 +1,13 @@
+@headerColor: @textColor;
+@headerFontSize: 1.1em;
+@headerFontWeight: normal;
+@metaFontSize: 0.875em;
+@width: 450px;
+@contentPadding: 2.4em @leftIndent;
+@solidBorderColor: @sidebarBg;
+@shadowBoxShadow: 0px 0px 0px 0px @solidBorderColor;
+@descriptionColor: @lightTextColor;
+@linkHoverTransform: none;
+@solidSelectedBorderColor: @solidBorderColor;
+@shadowHoverBoxShadow: 0px 0px 0px 1px @solidSelectedBorderColor;
+@horizontalSpacing: @rowSpacing;
