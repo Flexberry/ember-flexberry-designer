@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  fdSheetService: Ember.inject.service(),
+
   /**
     Flag indicates sidebar visible
 
@@ -211,7 +213,8 @@ export default Ember.Controller.extend({
 
       // Sheet content is animated only if it is expanded.
       if (Ember.$('.fd-sheet.visible').hasClass('expand')) {
-        this.send('animatingSheetContent', contentWidth, 250);
+        let expandedSeet = Ember.$('.fd-sheet.visible.expand');
+        this.get('fdSheetService').animatingSheetContent(expandedSeet.attr('class').replace(/ /g, '.'), contentWidth, 250);
       } else {
 
         // That the sheet remained in its place and did not go along with the content.
