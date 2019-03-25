@@ -1,8 +1,11 @@
 import ClassModel from './fd-class';
 import { Model as DevClassMixin, defineProjections, defineBaseModel  } from
   '../mixins/regenerated/models/fd-dev-class';
+import DS from 'ember-data';
 
 let Model = ClassModel.extend(DevClassMixin, {
+  storeInstancesInType: DS.attr('fd-storeinstancesintype'),
+
   namePropertyeCompute: function() {
     //this.set('name', generateName(this.get('caption')));
   },
