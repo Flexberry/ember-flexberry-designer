@@ -36462,12 +36462,12 @@ define("dummy/templates/fd-all-projects", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 7,
-                "column": 2
+                "line": 8,
+                "column": 4
               },
               "end": {
-                "line": 9,
-                "column": 2
+                "line": 10,
+                "column": 4
               }
             },
             "moduleName": "dummy/templates/fd-all-projects.hbs"
@@ -36478,7 +36478,7 @@ define("dummy/templates/fd-all-projects", ["exports"], function (exports) {
           hasRendered: false,
           buildFragment: function buildFragment(dom) {
             var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode("    ");
+            var el1 = dom.createTextNode("      ");
             dom.appendChild(el0, el1);
             var el1 = dom.createComment("");
             dom.appendChild(el0, el1);
@@ -36491,7 +36491,7 @@ define("dummy/templates/fd-all-projects", ["exports"], function (exports) {
             morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
             return morphs;
           },
-          statements: [["inline", "t", ["forms.fd-all-projects.create-project"], [], ["loc", [null, [8, 4], [8, 48]]]]],
+          statements: [["inline", "t", ["forms.fd-all-projects.create-project"], [], ["loc", [null, [9, 6], [9, 50]]]]],
           locals: [],
           templates: []
         };
@@ -36507,7 +36507,7 @@ define("dummy/templates/fd-all-projects", ["exports"], function (exports) {
               "column": 0
             },
             "end": {
-              "line": 10,
+              "line": 12,
               "column": 0
             }
           },
@@ -36521,29 +36521,39 @@ define("dummy/templates/fd-all-projects", ["exports"], function (exports) {
           var el0 = dom.createDocumentFragment();
           var el1 = dom.createTextNode("  ");
           dom.appendChild(el0, el1);
-          var el1 = dom.createElement("h3");
+          var el1 = dom.createElement("h2");
+          dom.setAttribute(el1, "class", "form-header");
           var el2 = dom.createComment("");
           dom.appendChild(el1, el2);
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n\n  ");
           dom.appendChild(el0, el1);
-          var el1 = dom.createComment("");
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "ui one column grid fd-projects-toolbar");
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("  ");
+          dom.appendChild(el1, el2);
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createComment("");
           dom.appendChild(el0, el1);
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element0 = dom.childAt(fragment, [3]);
           var morphs = new Array(3);
           morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 0, 0);
-          morphs[1] = dom.createMorphAt(fragment, 3, 3, contextualElement);
-          morphs[2] = dom.createMorphAt(fragment, 5, 5, contextualElement);
-          dom.insertBoundary(fragment, null);
+          morphs[1] = dom.createMorphAt(element0, 1, 1);
+          morphs[2] = dom.createMorphAt(element0, 3, 3);
           return morphs;
         },
-        statements: [["inline", "t", ["forms.fd-all-projects.caption"], [], ["loc", [null, [4, 6], [4, 43]]]], ["inline", "fd-search-input", [], ["value", ["subexpr", "@mut", [["get", "search", ["loc", [null, [6, 26], [6, 32]]]]], [], []]], ["loc", [null, [6, 2], [6, 34]]]], ["block", "link-to", ["fd-all-projects.new", ["subexpr", "query-params", [], ["nameFromSearch", ["get", "search", ["loc", [null, [7, 64], [7, 70]]]]], ["loc", [null, [7, 35], [7, 71]]]]], [], 0, null, ["loc", [null, [7, 2], [9, 14]]]]],
+        statements: [["inline", "t", ["forms.fd-all-projects.caption"], [], ["loc", [null, [4, 26], [4, 63]]]], ["inline", "fd-search-input", [], ["value", ["subexpr", "@mut", [["get", "search", ["loc", [null, [7, 28], [7, 34]]]]], [], []]], ["loc", [null, [7, 4], [7, 36]]]], ["block", "link-to", ["fd-all-projects.new", ["subexpr", "query-params", [], ["nameFromSearch", ["get", "search", ["loc", [null, [8, 66], [8, 72]]]]], ["loc", [null, [8, 37], [8, 73]]]]], ["class", "ui basic button table-btn"], 0, null, ["loc", [null, [8, 4], [10, 16]]]]],
         locals: [],
         templates: [child0]
       };
@@ -36562,7 +36572,7 @@ define("dummy/templates/fd-all-projects", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 12,
+            "line": 14,
             "column": 10
           }
         },
@@ -36595,7 +36605,7 @@ define("dummy/templates/fd-all-projects", ["exports"], function (exports) {
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["block", "if", [["get", "showHeader", ["loc", [null, [3, 6], [3, 16]]]]], [], 0, null, ["loc", [null, [3, 0], [10, 7]]]], ["content", "outlet", ["loc", [null, [12, 0], [12, 10]]]]],
+      statements: [["inline", "flexberry-error", [], ["error", ["subexpr", "@mut", [["get", "error", ["loc", [null, [1, 24], [1, 29]]]]], [], []]], ["loc", [null, [1, 0], [1, 31]]]], ["block", "if", [["get", "showHeader", ["loc", [null, [3, 6], [3, 16]]]]], [], 0, null, ["loc", [null, [3, 0], [12, 7]]]], ["content", "outlet", ["loc", [null, [14, 0], [14, 10]]]]],
       locals: [],
       templates: [child0]
     };
@@ -36738,7 +36748,7 @@ define("dummy/templates/fd-all-projects/index", ["exports"], function (exports) 
           var el3 = dom.createTextNode("\n        ");
           dom.appendChild(el2, el3);
           var el3 = dom.createElement("i");
-          dom.setAttribute(el3, "class", "right floated like icon");
+          dom.setAttribute(el3, "class", "right floated icon-fd-pin icon");
           dom.appendChild(el2, el3);
           var el3 = dom.createTextNode("\n        ");
           dom.appendChild(el2, el3);
@@ -36807,7 +36817,7 @@ define("dummy/templates/fd-all-projects/index", ["exports"], function (exports) 
           morphs[5] = dom.createMorphAt(dom.childAt(element3, [3]), 0, 0);
           return morphs;
         },
-        statements: [["element", "action", ["chooseProject", ["get", "project", ["loc", [null, [3, 48], [3, 55]]]]], [], ["loc", [null, [3, 23], [3, 57]]]], ["element", "action", ["pinProject", ["get", "project", ["loc", [null, [5, 65], [5, 72]]]]], ["bubbles", false], ["loc", [null, [5, 43], [5, 88]]]], ["content", "project.name", ["loc", [null, [6, 28], [6, 44]]]], ["content", "project.description", ["loc", [null, [8, 13], [8, 36]]]], ["inline", "t", ["forms.fd-all-projects.updated"], [], ["loc", [null, [12, 12], [12, 49]]]], ["inline", "moment-format", [["get", "project.changeDate", ["loc", [null, [13, 36], [13, 54]]]], "DD.MM.YYYY"], [], ["loc", [null, [13, 20], [13, 69]]]]],
+        statements: [["element", "action", ["chooseProject", ["get", "project", ["loc", [null, [3, 48], [3, 55]]]]], [], ["loc", [null, [3, 23], [3, 57]]]], ["element", "action", ["pinProject", ["get", "project", ["loc", [null, [5, 72], [5, 79]]]]], ["bubbles", false], ["loc", [null, [5, 50], [5, 95]]]], ["content", "project.name", ["loc", [null, [6, 28], [6, 44]]]], ["content", "project.description", ["loc", [null, [8, 13], [8, 36]]]], ["inline", "t", ["forms.fd-all-projects.updated"], [], ["loc", [null, [12, 12], [12, 49]]]], ["inline", "moment-format", [["get", "project.changeDate", ["loc", [null, [13, 36], [13, 54]]]], "DD.MM.YYYY"], [], ["loc", [null, [13, 20], [13, 69]]]]],
         locals: ["project"],
         templates: []
       };
@@ -36838,7 +36848,7 @@ define("dummy/templates/fd-all-projects/index", ["exports"], function (exports) 
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
         var el1 = dom.createElement("div");
-        dom.setAttribute(el1, "class", "ui cards");
+        dom.setAttribute(el1, "class", "ui cards fd-projects");
         var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         var el2 = dom.createComment("");
@@ -62172,7 +62182,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+929e742b"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+f31c8260"});
 }
 
 /* jshint ignore:end */
