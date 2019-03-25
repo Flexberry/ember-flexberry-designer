@@ -200,11 +200,7 @@ export default Ember.Controller.extend({
   saveHasManyRelationships(model) {
     model.eachRelationship((name, desc) => {
       if (desc.kind === 'hasMany') {
-        model.get(name).filterBy('hasDirtyAttributes', true).forEach((record) => {
-          record.save().catch((error) => {
-            this.set('error', error);
-          });
-        });
+        model.get(name).filterBy('hasDirtyAttributes', true).forEach((record) => record.save());
       }
     });
   },
@@ -219,9 +215,7 @@ export default Ember.Controller.extend({
       let model = this.get('selectedElement.model');
       this.get('appState').loading();
       model.save()
-      .then(() => {
-        this.saveHasManyRelationships(model);
-      })
+      .then(() => this.saveHasManyRelationships(model))
       .catch((error) => {
         this.set('error', error);
       })

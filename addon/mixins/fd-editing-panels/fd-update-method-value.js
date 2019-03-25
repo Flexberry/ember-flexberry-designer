@@ -1,5 +1,11 @@
 import Ember from 'ember';
 
+/**
+  Mixin with the support `Method table` for controls in the edit form constructor.
+
+  @class FdUpdateMethodeValueMixin
+  @uses <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
+*/
 export default Ember.Mixin.create({
 
   /**
@@ -39,7 +45,7 @@ export default Ember.Mixin.create({
     Button locale path for methods.
 
     @property methodsButton
-    @type Array
+    @type Object
   */
   methodsButton: {
     createBtn: 'components.fd-attribute-table.methods.create-btn',

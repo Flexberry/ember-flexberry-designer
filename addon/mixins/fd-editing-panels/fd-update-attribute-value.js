@@ -1,5 +1,11 @@
 import Ember from 'ember';
 
+/**
+  Mixin with the support `Attribute table` for controls in the edit form constructor.
+
+  @class FdUpdateAttributeValueMixin
+  @uses <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
+*/
 export default Ember.Mixin.create({
 
   /**
@@ -39,7 +45,7 @@ export default Ember.Mixin.create({
     Button locale path for attribute.
 
     @property attributeButton
-    @type Array
+    @type Object
   */
   attributeButton: {
     createBtn: 'components.fd-attribute-table.attribute.create-btn',

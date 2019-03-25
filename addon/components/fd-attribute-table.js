@@ -10,7 +10,6 @@ export default Ember.Component.extend({
 
     @property tableView
     @type Array
-    @default undefined
   */
   tableView: undefined,
 
@@ -19,7 +18,6 @@ export default Ember.Component.extend({
 
     @property buttonCaption
     @type Array
-    @default undefined
   */
   buttonCaption: undefined,
 
@@ -28,7 +26,6 @@ export default Ember.Component.extend({
 
     @property model
     @type Object
-    @default undefined
   */
   model: undefined,
 
@@ -39,14 +36,20 @@ export default Ember.Component.extend({
     @type Array
     @default Ember.A()
   */
-  selectedValues: Ember.A(),
+  selectedValues: undefined,
+
+  init() {
+    this._super(...arguments);
+
+    this.set('selectedValues', Ember.A());
+  },
 
   actions: {
 
     /**
       Method create value from table.
 
-      @method createValue
+      @method actions.createValue
     */
     createValue() {
       this.sendAction('create');
@@ -55,13 +58,13 @@ export default Ember.Component.extend({
     /**
       Method delete value from table.
 
-      @method deleteValue
+      @method actions.deleteValue
     */
     deleteValue() {
       this.sendAction('delete');
 
       let selectedValues = this.get('selectedValues');
-      selectedValues.forEach((value)=> value.deleteRecord());
+      selectedValues.forEach((value) => value.deleteRecord());
       selectedValues.clear();
     },
 

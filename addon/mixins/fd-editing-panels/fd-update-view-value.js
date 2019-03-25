@@ -1,5 +1,11 @@
 import Ember from 'ember';
 
+/**
+  Mixin with the support `View table` for controls in the edit form constructor.
+
+  @class FdUpdateViewValueMixin
+  @uses <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
+*/
 export default Ember.Mixin.create({
 
   /**
@@ -27,7 +33,7 @@ export default Ember.Mixin.create({
     Button locale path for view.
 
     @property viewButton
-    @type Array
+    @type Object
   */
   viewButton: {
     createBtn: 'components.fd-attribute-table.view.create-btn',
