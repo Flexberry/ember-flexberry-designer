@@ -61,3 +61,5 @@
 @hoverToolbarBtnBg: rgba(0, 0, 0, 0.35);
 @activeToolbarBtnBg: rgba(0, 0, 0, 0.45);
 @itemActiveBorderRadius: 0.5rem;
+
+@leftIndent: 2.5em;

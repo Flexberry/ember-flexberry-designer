@@ -22,17 +22,21 @@
 
 .buttons-row {
   left: -1.2em;
-  .basic.button.table-btn {
-    border-radius: @itemActiveBorderRadius;
-    white-space: nowrap;
-    min-height: 34px;
+}
+
+.basic.button.table-btn {
+  border-radius: @itemActiveBorderRadius;
+  white-space: nowrap;
+  min-height: 34px;
+  box-shadow: none;
+  border: 1px dashed @sidebarBg;
+  padding: 0.7em 2.5em;
+  &:hover {
+    border: 1px dashed @sidebarBg + rgba(0, 0, 0, 0.10);
     box-shadow: none;
-    border: 1px dashed @sidebarBg;
-    &:hover {
-      border: 1px dashed @sidebarBg + rgba(0, 0, 0, 0.10);
-    }
-    &:active {
-      border: 1px dashed @sidebarBg + rgba(0, 0, 0, 0.20);
-    }
+  }
+  &:active {
+    border: 1px dashed @sidebarBg + rgba(0, 0, 0, 0.20);
+    box-shadow: none;
   }
 }
