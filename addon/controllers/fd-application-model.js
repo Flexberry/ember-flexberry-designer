@@ -196,13 +196,18 @@ export default Ember.Controller.extend({
 
     @method saveHasManyRelationships
     @param {DS.Model} model Record with hasMany relationships.
+    @return {Promise} A promise that will be resolved to array of saved records.
   */
   saveHasManyRelationships(model) {
+    let promises = [];
     model.eachRelationship((name, desc) => {
       if (desc.kind === 'hasMany') {
-        model.get(name).filterBy('hasDirtyAttributes', true).forEach((record) => record.save());
+        let promise = model.get(name).filterBy('hasDirtyAttributes', true).forEach((record) => record.save());
+        promises.push(promise);
       }
     });
+
+    return Ember.RSVP.all(promises);
   },
 
   actions: {
