@@ -202,8 +202,10 @@ export default Ember.Controller.extend({
     let promises = [];
     model.eachRelationship((name, desc) => {
       if (desc.kind === 'hasMany') {
-        let promise = model.get(name).filterBy('hasDirtyAttributes', true).forEach((record) => record.save());
-        promises.push(promise);
+        model.get(name).filterBy('hasDirtyAttributes', true).forEach((record) => {
+          let promise = record.save();
+          promises.push(promise);
+        });
       }
     });
 
