@@ -190,6 +190,28 @@ export default Ember.Controller.extend({
     }
   },
 
+  /**
+    Save dirty hasMany relationships in the `model`.
+    This method invokes by `save` method.
+
+    @method saveHasManyRelationships
+    @param {DS.Model} model Record with hasMany relationships.
+    @return {Promise} A promise that will be resolved to array of saved records.
+  */
+  saveHasManyRelationships(model) {
+    let promises = [];
+    model.eachRelationship((name, desc) => {
+      if (desc.kind === 'hasMany') {
+        model.get(name).filterBy('hasDirtyAttributes', true).forEach((record) => {
+          let promise = record.save();
+          promises.push(promise);
+        });
+      }
+    });
+
+    return Ember.RSVP.all(promises);
+  },
+
   actions: {
     /**
       Save 'selectedElement'.
@@ -200,6 +222,7 @@ export default Ember.Controller.extend({
       let model = this.get('selectedElement.model');
       this.get('appState').loading();
       model.save()
+      .then(() => this.saveHasManyRelationships(model))
       .catch((error) => {
         this.set('error', error);
       })

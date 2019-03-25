@@ -39,12 +39,10 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="three wide column">
-      <div>{{t "components.fd-enumeration-editing-panel.attributes-caption"}}</div>
-    </div>
-    <div class="thirteen wide column light-text">
-
-    </div>
-  </div>
+  {{fd-attribute-table
+    tableView=tableViewAttribute
+    buttonCaption=attributeButton
+    model=model.attributes
+    create=(action 'createAttribute')
+  }}
 </div>

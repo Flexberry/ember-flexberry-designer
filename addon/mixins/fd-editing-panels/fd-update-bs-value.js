@@ -1,5 +1,11 @@
 import Ember from 'ember';
 
+/**
+  Mixin with the support `Choice BS` for controls in the edit form constructor.
+
+  @class FdUpdateBsValueMixin
+  @uses <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
+*/
 export default Ember.Mixin.create({
   /**
     Store of current application.

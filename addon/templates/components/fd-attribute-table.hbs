@@ -1,70 +1,34 @@
+  {{#each tableView as |tableView|}}
+    <div class="four wide column light-text fd-table">
+      {{t tableView.columnCaption}}
+    </div>
+  {{/each}}
+  {{#each model as |value|}}
+    {{#if (not value.isDeleted)}}
+      <div class="one wide column fd-table-checkbox">
+        <div class="ui checkbox">
+          <input type="checkbox" onchange={{action 'selectValue' value}}>
+          <label> </label>
+        </div>
+      </div>
+      {{#each tableView as |tableView|}}
+        <div class="{{tableView.columnClass}} wide column light-text fd-table">
+          {{flexberry-textbox
+            value=(mut (get value tableView.columnProperty))
+            class='fluid input'
+            placeholder=(t tableView.attrPlaceholder)
+          }}
+        </div>
+      {{/each}}
+    {{/if}}
+  {{/each}}
 
-  <div class="four wide column light-text fd-table">
-    {{t "components.fd-attribute-table.attribute-name"}}
-  </div>
-  <div class="four wide column light-text fd-table"> 
-    {{t "components.fd-attribute-table.attribute-caption"}}
-  </div>
-  <div class="four wide column light-text fd-table">
-    {{t "components.fd-attribute-table.attribute-type"}}
-  </div>
-  <div class="four wide column light-text fd-table"> 
-    {{t "components.fd-attribute-table.attribute-description"}}
-  </div>
-  <div class="one wide column fd-table-checkbox">
-        <div class="ui checkbox">
-        <input type="checkbox">
-        <label> </label>
-      </div>
-  </div>
-  <div class="three wide column fd-table-first">
-    <div class="">Дата</div>
-  </div>
-  <div class="four wide column light-text fd-table"> 
-    {{flexberry-textbox
-      class='fluid input'
-      placeholder=(t "components.fd-attribute-table.attribute-caption")
-    }}
-  </div>
-  <div class="four wide column fd-table">
-    <div class="">DateTime</div>
-  </div>
-  <div class="four wide column light-text fd-table"> 
-    {{flexberry-textbox
-      class='fluid input'
-      placeholder=(t "components.fd-attribute-table.attribute-description")
-    }}
-  </div>
-  <div class=" one wide column fd-table-checkbox fd-table">
-        <div class="ui checkbox">
-        <input type="checkbox">
-        <label> </label>
-      </div>
-  </div>
-  <div class="three wide column fd-table-first">
-    <div class="">ФИО</div>
-  </div>
-  <div class="four wide column light-text fd-table"> 
-    {{flexberry-textbox
-      class='fluid input'
-      placeholder=(t "components.fd-attribute-table.attribute-caption")
-    }}
-  </div>
-  <div class="four wide column fd-table">
-    <div class="">String</div>
-  </div>
-  <div class="four wide column light-text fd-table"> 
-    {{flexberry-textbox
-      class='fluid input'
-      placeholder=(t "components.fd-attribute-table.attribute-description")
-    }}
-  </div>
   <div class="sixteen wide column buttons-row fd-table">
-    <button class="ui basic button table-btn">
-      {{t "components.fd-attribute-table.attribute-createBtn"}}
+    <button class="ui basic button table-btn" {{action 'createValue'}}>
+      {{t buttonCaption.createBtn}}
     </button>
-    <button class="ui basic button table-btn"> 
+    <button class="ui basic button table-btn" {{action 'deleteValue'}}>
       <i class="icon icon-fd-checkbox-checked"></i>
-      {{t "components.fd-attribute-table.attribute-deleteBtn"}}
+      {{t buttonCaption.deleteBtn}}
     </button>
   </div>

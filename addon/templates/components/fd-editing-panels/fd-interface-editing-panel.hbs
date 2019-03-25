@@ -69,22 +69,18 @@
   </div>
   {{/if}}
 
-  <div class="row">
-    <div class="three wide column">
-      <div>{{t "components.fd-interface-editing-panel.attributes-caption"}}</div>
-    </div>
-    <div class="thirteen wide column light-text">
+  {{fd-attribute-table
+    tableView=tableViewAttribute
+    buttonCaption=attributeButton
+    model=model.attributes
+    create=(action 'createAttribute')
+  }}
 
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="three wide column">
-      <div>{{t "components.fd-interface-editing-panel.metods-caption"}}</div>
-    </div>
-    <div class="thirteen wide column light-text">
-
-    </div>
-  </div>
+  {{fd-attribute-table
+    tableView=tableViewMethods
+    buttonCaption=methodsButton
+    model=model.methods
+    create=(action 'createMethod')
+  }}
 
 </div>
