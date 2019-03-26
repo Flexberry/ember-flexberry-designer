@@ -84,16 +84,26 @@ export default Ember.Service.extend(Ember.Evented, {
     this.animatingSheetContent(sheetName, contentWidth, 600);
   },
 
+  /**
+    Sets toolbar diagram position.
+
+     @method toolbarDiagramPosition
+  */
   toolbarDiagramPosition() {
     let diagramToolbar = Ember.$('.fd-uml-diagram-toolbar');
     let jointPaper = Ember.$('.joint-paper');
     jointPaper.css('margin-bottom', diagramToolbar.height());
-    let diagramToolbarBottom = jointPaper.width() <= Ember.$('.fd-uml-diagram-editor').width() ? 0 : this._getScrollbarWidth();
+    let diagramToolbarBottom = jointPaper.width() <= Ember.$('.fd-uml-diagram-editor').width() ? 0 : this.getScrollbarWidth();
     diagramToolbar.css('bottom', diagramToolbarBottom);
     jointPaper.css('margin-bottom', diagramToolbar.height());
   },
 
-  _getScrollbarWidth() {
+  /**
+    Gets scrollbar width.
+
+     @method getScrollbarWidth
+  */
+  getScrollbarWidth() {
     var outer = document.createElement('div');
     outer.style.visibility = 'hidden';
     outer.style.width = '100px';

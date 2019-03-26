@@ -13,6 +13,7 @@
 
 @fdSheetPadding: 3em;
 @fdSearchInputPadding: 0.7em 2.5em;
+@hr: 1px solid @sidebarBg;
 
 .fd-sheet {
   background: @fdSheetBg;
@@ -52,11 +53,17 @@
     height: 5rem;
     line-height: 5rem;
   }
+
+  &.diagrams-sheet {
+    .form-header {
+      border-bottom: @hr;
+    }
+  }
 }
 
 .ui.grid.fd-list {
   .row {
-    border-bottom: 1px solid @sidebarBg;
+    border-bottom: @hr;
     margin: 0 1rem;
 
     .column > {
