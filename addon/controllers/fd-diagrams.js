@@ -157,13 +157,105 @@ export default Ember.Controller.extend({
   */
   savePrimitives() {
     let model = this.get('selectedElement.model');
-    model.set('primitivesJsonString', JSON.stringify(model.get('primitives')));
+    let primitives = this._removeConnector(model.get('primitives'));
+
+    model.set('primitivesJsonString', JSON.stringify(primitives));
 
     let createdClasses = this.get('createdClasses');
     let promises = createdClasses.map(c => c.save());
     createdClasses.clear();
 
     return Ember.RSVP.all(promises);
+  },
+
+  _removeConnector: function(primitives) {
+    let elements = {};
+    let linksIds = [];
+    let linkConnectorsIds = [];
+    for (let i = 0; i < primitives.length; i++) {
+      let primitive = primitives[i].primitive;
+      let primitiveId = primitive.$id;
+      elements[primitiveId] = primitive;
+      switch (primitive.$type) {
+        case 'STORMCASE.UML.cad.Inheritance, UMLCAD':
+          linksIds.push(primitiveId);
+          break;
+        case 'STORMCASE.UML.cad.LinkInheritance, UMLCAD':
+          linksIds.push(primitiveId);
+          break;
+        case 'STORMCASE.UML.cad.LinkConnector, UMLCAD':
+          linkConnectorsIds.push(primitiveId);
+          break;
+      }
+    }
+
+    let inConnectorsLinksIds = [];
+    let outConnectorsLinksIds = [];
+    let inConnectorsLinksTree = {};
+    let outConnectorsLinksTree = {};
+    for (let i = 0; i < linksIds.length; i++) {
+      let linkId = linksIds[i];
+      let link = elements[linkId];
+      let startPrimitiveId = link.StartPrimitive.$ref;
+      let startPrimitive = elements[startPrimitiveId];
+      let endPrimitiveId = link.EndPrimitive.$ref;
+      let endPrimitive = elements[endPrimitiveId];
+      let linkConnectorId;
+      if (startPrimitive.$type === 'STORMCASE.UML.cad.LinkConnector, UMLCAD') {
+        inConnectorsLinksIds.push(linkId);
+        linkConnectorId = startPrimitive.$id;
+        if (!(linkConnectorId in inConnectorsLinksTree)) {
+          inConnectorsLinksTree[linkConnectorId] = [];
+        }
+
+        inConnectorsLinksTree[linkConnectorId].push(linkId);
+      } else {
+        if (endPrimitive.$type === 'STORMCASE.UML.cad.LinkConnector, UMLCAD') {
+          outConnectorsLinksIds.push(linkId);
+          linkConnectorId = endPrimitive.$id;
+          if (linkConnectorId in outConnectorsLinksTree) {
+            throw new Error(`linkConnector: '$linkConnectorId' has more, then one parent Class`);
+          }
+
+          outConnectorsLinksTree[linkConnectorId] = linkId;
+        }
+      }
+    }
+
+    for (let linkConnectorId in inConnectorsLinksTree) {
+      let linkConnector = elements[linkConnectorId];
+      let outConnectorLinkId = outConnectorsLinksTree[linkConnectorId];
+      let outConnectorLink = elements[outConnectorLinkId];
+      let parentClassId = outConnectorLink.StartPrimitive.$ref;
+      let inConnectorLinksIds = inConnectorsLinksTree[linkConnectorId];
+      let baseLinkId = inConnectorLinksIds[0];
+      let baseLink = elements[baseLinkId];
+      Ember.set(baseLink, '$type',  'STORMCASE.UML.cad.Inheritance, UMLCAD');
+      Ember.set(baseLink.StartPrimitive, '$ref', parentClassId);
+      Ember.set(baseLink.StartLE.Primitive, '$ref', parentClassId);
+      for (let i = 1; i < inConnectorLinksIds.length; i++) {
+        let inConnectorLinkId =  inConnectorLinksIds[i];
+        let inConnectorLink = elements[inConnectorLinkId];
+        Ember.set(inConnectorLink, '$type',  'STORMCASE.UML.cad.Inheritance, UMLCAD');
+        Ember.set(inConnectorLink.StartPrimitive, '$ref', baseLinkId);
+        Ember.set(inConnectorLink.StartLE.Primitive, '$ref', baseLinkId);
+        Ember.set(inConnectorLink.StartPoint, 'X', linkConnector.Location.X);
+        Ember.set(inConnectorLink.StartPoint, 'Y', linkConnector.Location.Y);
+      }
+
+      delete elements[linkConnectorId];
+    }
+
+    for (let i in outConnectorsLinksIds) {
+      let outConnectorsLinkId = outConnectorsLinksIds[i];
+      delete elements[outConnectorsLinkId];
+    }
+
+    primitives = [];
+    for (let elementUuid in elements) {
+      primitives.push(elements[elementUuid]);
+    }
+
   },
 
   actions: {

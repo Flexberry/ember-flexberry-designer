@@ -31,6 +31,7 @@ import FdUmlRealization from '../objects/uml-primitives/fd-uml-realization';
 import FdUmlObjectAssociation from '../objects/uml-primitives/fd-uml-object-association';
 import FdUmlNAryAssociationConnector from '../objects/uml-primitives/fd-uml-naryassociation-connector';
 import FdUmlLinkConnector from '../objects/uml-primitives/fd-uml-link-connector';
+import FdUmlLinkInheritance from '../objects/uml-primitives/fd-uml-link-inheritance';
 
 import uuid from 'npm:node-uuid';
 
@@ -83,6 +84,10 @@ let Model = CADModel.extend(DevUMLCADMixin, {
 
         case 'STORMCASE.UML.cad.Inheritance, UMLCAD':
           result.pushObject(FdUmlGeneralization.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.cad.LinkInheritance, UMLCAD':
+          result.pushObject(FdUmlLinkInheritance.create({ primitive }));
           break;
 
         case 'STORMCASE.UML.cad.PropertyObject, UMLCAD':
@@ -155,18 +160,20 @@ let Model = CADModel.extend(DevUMLCADMixin, {
 
   _addConnector: function(primitives) {
     let elements = {};
-    let links = [];
+    let linksIds = [];
     for (let i = 0; i < primitives.length; i++) {
       let primitive = primitives[i];
-      elements[primitive.$id] = primitive;
+      let primitiveId = primitive.$id;
+      elements[primitiveId] = primitive;
       if (primitive.$type === 'STORMCASE.UML.cad.Inheritance, UMLCAD') {
-        links.push(primitive);
+        linksIds.push(primitiveId);
       }
     }
 
     let linkTree = {};
-    for (let i = 0; i < links.length; i++) {
-      let link = links[i];
+    for (let i = 0; i < linksIds.length; i++) {
+      let linkId = linksIds[i];
+      let link = elements[linkId];
       let startPrimitiveId = link.StartPrimitive.$ref;
       let startPrimitive = elements[startPrimitiveId];
       if (startPrimitive.$type === 'STORMCASE.UML.cad.Inheritance, UMLCAD') {
@@ -179,7 +186,7 @@ let Model = CADModel.extend(DevUMLCADMixin, {
           linkTree[parentId][startPrimitiveId] = [];
         }
 
-        linkTree[parentId][startPrimitiveId].push(link.$id);
+        linkTree[parentId][startPrimitiveId].push(linkId);
       }
 
     }
@@ -189,6 +196,7 @@ let Model = CADModel.extend(DevUMLCADMixin, {
     for (let parentClassId in linkTree) {
       for (let baseLinkId in linkTree[parentClassId]) {
         let baseLink = elements[baseLinkId];
+        baseLink.$type = 'STORMCASE.UML.cad.LinkInheritance, UMLCAD';
         let linkConnectorUuid = '{' + uuid.v4() + '}';
         let linkConnector = {
           '$id': linkConnectorUuid,
@@ -235,6 +243,7 @@ let Model = CADModel.extend(DevUMLCADMixin, {
 
           link.StartPrimitive.$ref = linkConnectorUuid;
           link.StartLE.Primitive.$ref = linkConnectorUuid;
+          link.$type = 'STORMCASE.UML.cad.LinkInheritance, UMLCAD';
         }
 
         elements[linkConnectorUuid] = linkConnector;

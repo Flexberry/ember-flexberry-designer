@@ -49,13 +49,7 @@ export let LinkConnector = joint.shapes.basic.Generic.define('flexberry.uml.Link
 
   },
   name: [],
-  heightPadding: 10,
 
-  // Inputs padding by X.
-  widthPadding: 7,
-
-  // Inputs bottom padding by Y.
-  heightBottomPadding: 4,
 }, {
   markup: [
     '<g class="rotatable">',
@@ -66,11 +60,6 @@ export let LinkConnector = joint.shapes.basic.Generic.define('flexberry.uml.Link
   ].join(''),
 
   initialize: function () {
-
-    this.on('change:name change:attributes', function () {
-      this.trigger('uml-update');
-    }, this);
-
     let attrs = this.get('attrs');
     attrs['.flexberry-uml-link-connector-rect'].height = this.attributes.size.height;
     attrs['.flexberry-uml-link-connector-rect'].width =  this.attributes.size.width;
