@@ -7,6 +7,4 @@ export default {
   'namespace-postfix-placeholder': 'Наименование постфикса',
   'bs-caption': 'Бизнес-сервер',
   'bs-events-caption': 'События бизнес-сервера',
-  'attributes-caption': 'Атрибуты',
-  'metods-caption': 'Методы'
 };

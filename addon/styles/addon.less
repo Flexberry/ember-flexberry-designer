@@ -1,6 +1,7 @@
 @import 'fd-uml-diagram';
 @import 'src/themes/default/globals/site.variables';
 @import 'default/globals/site.variables';
+@import 'components/fd-attribute-table.less';
 
 .pushable, .full.height{
   transition: background-color 1s;
@@ -14,6 +15,7 @@
 @fdSheetPadding: 3em;
 @fdSearchInputPadding: 0.7em 2.5em;
 @hr: 1px solid @sidebarBg;
+@fdSearchInputPadding: 0.7em @leftIndent;
 
 .fd-sheet {
   background: @fdSheetBg;
@@ -66,8 +68,8 @@
     border-bottom: @hr;
     margin: 0 1rem;
 
-    .column > {
-      div:not(:first-child) {
+    .column {
+      > div:not(:first-child) {
         margin: 1rem 0;
       }
 
@@ -82,7 +84,7 @@
   }
 
   .fd-list-item span{
-    padding: 0.5em 2.5em;
+    padding: 0.5em @leftIndent;
     &:hover {
       cursor: pointer;
     }
@@ -106,7 +108,7 @@ h2.form-header,
 }
 
 .ui.main.container.fluid {
-  padding: 5em 3em 3em;
+  padding: 5em 4em 3em;
 }
 
 .sitemap-bottom{
@@ -204,4 +206,8 @@ h2.form-header,
   html {
     font-size: 14px;
   }
+}
+
+.ui.grid.fd-projects-toolbar {
+  margin-left: calc(~'-@{leftIndent} - 1em');
 }
