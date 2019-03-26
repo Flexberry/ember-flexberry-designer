@@ -57,7 +57,7 @@ export default Ember.Mixin.create({
     /**
       Method create attribute from table.
 
-      @method createAttribute
+      @method actions.createAttribute
     */
     createAttribute() {
       let store = this.get('store');

@@ -57,7 +57,7 @@ export default Ember.Mixin.create({
     /**
       Method create method from table.
 
-      @method createMethod
+      @method actions.createMethod
     */
     createMethod() {
       let store = this.get('store');

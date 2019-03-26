@@ -9,6 +9,14 @@ import Ember from 'ember';
 export default Ember.Mixin.create({
 
   /**
+    Service for managing the state of the sheet component.
+
+    @property fdSheetService
+    @type FdSheetService
+  */
+  fdSheetService: Ember.inject.service(),
+
+  /**
     Table headers for view.
 
     @property tableViewForView
@@ -45,10 +53,25 @@ export default Ember.Mixin.create({
     /**
       Method create view from table.
 
-      @method createView
+      @method actions.createView
     */
     createView() {
+      let store = this.get('store');
+      let model = this.get('model');
+      let view = store.createRecord('fd-dev-view', {
+        class: model
+      });
 
+      this.send('openViewSheet', view);
+    },
+
+    /**
+      Method open view sheet.
+
+      @method actions.openViewSheet
+    */
+    openViewSheet(selectView) {
+      this.sendAction('openViewSheetController', selectView);
     }
   }
 });

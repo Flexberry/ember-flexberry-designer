@@ -23,9 +23,16 @@ export default Ember.Controller.extend({
 
     @property selectedElement
     @type Object
-    @default undefined
   */
   selectedElement: undefined,
+
+  /**
+    Value selected view.
+
+    @property selectedView
+    @type Object
+  */
+  selectedView: undefined,
 
   /**
     Value search input.
@@ -230,6 +237,16 @@ export default Ember.Controller.extend({
         this.get('appState').reset();
       });
       this.updateClassModel(model);
+    },
+
+    /**
+      Opening sheet 'view-sheet'.
+
+       @method actions.openViewSheet
+    */
+    openViewSheet(view) {
+      this.set('selectedView',view);
+      this.get('fdSheetService').openSheet('view-sheet');
     }
   }
 });
