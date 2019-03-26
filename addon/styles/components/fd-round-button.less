@@ -1,0 +1,79 @@
+.fd-round-button("red");
+.fd-round-button("orange");
+.fd-round-button("yellow");
+.fd-round-button("olive");
+.fd-round-button("green");
+.fd-round-button("teal");
+.fd-round-button("blue");
+.fd-round-button("violet");
+.fd-round-button("purple");
+.fd-round-button("pink");
+.fd-round-button("brown");
+.fd-round-button("grey");
+.fd-round-button("black");
+
+.fd-round-button(@color) {
+  @classname: ~"@{color}";
+  .@{classname} {
+      color: @@color;
+      &:hover label.ui.basic.button.circular.icon,
+      &:hover span.ui.basic.label {
+        color: darken(@@color, 10%) !important;
+      }
+      &:hover  label.ui.basic.button.circular.icon {
+        box-shadow: 0px 0px 0px 1px darken(@@color, 10%) inset !important;  
+      }
+      &:active  label.ui.basic.button.circular.icon,
+      &:active  span.ui.basic.label {
+        color: darken(@@color, 20%)!important;
+      } 
+      &:active  label.ui.basic.button.circular.icon {
+        box-shadow: 0px 0px 0px 1px darken(@@color, 20%) inset !important;  
+      }
+  }
+}
+
+.ui.fd-round-button.flexberry-button {
+  display: grid;
+  text-align: center;
+  cursor: pointer;
+  max-width: 250px;
+  background: none;
+  &:hover {
+    background: none;
+  }
+  &:hover label.ui.basic.button.circular.icon,
+  &:hover span.ui.basic.label {
+    color: fade(@strongTransparentBlack, 15%);
+  }
+  &:hover  label.ui.basic.button.circular.icon {
+    box-shadow: 0px 0px 0px 1px fade(@strongTransparentBlack, 15%);  
+  }
+  &:active {
+    background: none;
+  }
+  &:active  label.ui.basic.button.circular.icon,
+  &:active  span.ui.basic.label {
+    color: fade(@strongTransparentBlack, 25%);
+  } 
+  &:active  label.ui.basic.button.circular.icon {
+    box-shadow: 0px 0px 0px 1px fade(@strongTransparentBlack, 25%);  
+  }
+  label.ui.basic.button.circular.icon {
+    margin: 0 auto;
+    padding: 0.7em 0.7em;
+    font-size: 1rem;
+    color: @strongTransparentBlack;
+    i.icon {
+      font-size: 1.5rem;
+      opacity: 1;
+    }
+  }
+  span.ui.basic.label {
+    margin: 0.1em 0;
+    border: none;
+    font-weight: normal;
+    font-size: 1rem;
+    color: @strongTransparentBlack;
+  }
+}
