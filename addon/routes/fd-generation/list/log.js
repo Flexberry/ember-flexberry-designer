@@ -15,6 +15,46 @@ const { Builder } = Query;
 */
 export default Ember.Route.extend({
   /**
+    Link to {{#crossLink "FdSheetService"}}{{/crossLink}}.
+
+    @property sheetService
+    @type Ember.Service
+  */
+  sheetService: Ember.inject.service('fd-sheet-service'),
+
+  actions: {
+    /**
+      See [EmberJS API](https://emberjs.com/api/).
+
+      @method actions.didTransition
+    */
+    didTransition() {
+      let { sheetService, controller } = this.getProperties('controller', 'sheetService');
+
+      sheetService.on('closeSheetTriggered', this, this._onCloseSheet);
+      sheetService.openSheet(controller.get('sheetName'));
+
+      if (controller.get('generation.isRunning')) {
+        controller.updateLog();
+      }
+    },
+
+    /**
+      See [EmberJS API](https://emberjs.com/api/).
+
+      @method actions.willTransition
+    */
+    willTransition() {
+      let { sheetService, controller } = this.getProperties('controller', 'sheetService');
+
+      sheetService.off('closeSheetTriggered', this, this._onCloseSheet);
+      sheetService.closeSheet(controller.get('sheetName'));
+
+      controller.stopUpdate();
+    },
+  },
+
+  /**
     See [EmberJS API](https://emberjs.com/api/).
 
     @method model
@@ -35,24 +75,15 @@ export default Ember.Route.extend({
   },
 
   /**
-    See [EmberJS API](https://emberjs.com/api/).
+    Called when the sheet with the generation log is closed.
 
-    @method setupController
+    @private
+    @method _onCloseSheet
+    @param {String} sheetName The name of the sheet that is closing.
   */
-  setupController(controller, { generation }) {
-    this._super(...arguments);
-
-    if (generation.get('isRunning')) {
-      controller.updateLog();
+  _onCloseSheet(sheetName) {
+    if (this.get('controller.sheetName') === sheetName) {
+      this.transitionTo('fd-generation.list');
     }
-  },
-
-  /**
-    See [EmberJS API](https://emberjs.com/api/).
-
-    @method resetController
-  */
-  resetController(controller) {
-    controller.stopUpdate();
   },
 });

@@ -5,7 +5,7 @@
 import Ember from 'ember';
 import { Query } from 'ember-flexberry-data';
 
-const { Controller, computed, run } = Ember;
+const { Controller, inject, computed, run } = Ember;
 const { Builder } = Query;
 
 /**
@@ -15,6 +15,23 @@ const { Builder } = Query;
   @extends Ember.Controller
 */
 export default Controller.extend({
+  /**
+    Link to {{#crossLink "FdGenerationListController"}}{{/crossLink}}.
+
+    @property listController
+    @type Ember.Controller
+  */
+  listController: inject.controller('fd-generation.list'),
+
+  /**
+    Read-only alias for {{#crossLink "FdGenerationListController/sheetName:property"}}{{/crossLink}} property.
+
+    @property sheetName
+    @type String
+    @readOnly
+  */
+  sheetName: computed.readOnly('listController.sheetName'),
+
   /**
     Generation log.
 
