@@ -5,7 +5,7 @@
 {{#if model.children.length}}
   <div class="menu subMenu hidden" >
     {{#each model.children as |child|}}
-      {{render "sitemap-node" child}}
+      {{flexberry-sitemap sitemap=child}}
     {{/each}}
   </div>
 {{/if}}
