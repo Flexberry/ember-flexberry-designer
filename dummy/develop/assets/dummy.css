@@ -53767,7 +53767,7 @@ html.ios body {
 }
 .ui.sidebar.main.menu {
   height: calc(100vh - 0px - 40px) !important;
-  padding: 5rem 0;
+  padding: 3.5rem 0;
   top: 0px;
   transform: translate3d(0, 0, 0);
   visibility: visible;
@@ -53803,6 +53803,17 @@ html.ios body {
 }
 .ui.sidebar.main.menu.visible .ui.button.toggle-sidebar-visible {
   opacity: 1;
+}
+.ui.sidebar.main.menu .item.current-project-name-header {
+  color: rgba(0, 0, 0, 0.25);
+  padding-bottom: 0;
+  padding-top: 0;
+  margin-bottom: 0.3rem;
+}
+.ui.sidebar.main.menu .current-project-name {
+  margin-bottom: 3.4rem;
+  padding-bottom: 0;
+  padding-top: 0;
 }
 .ui.visible.left.sidebar ~ .pusher {
   -webkit-transform: translate3d(300px, 0, 0) !important;
@@ -56914,6 +56925,45 @@ html.ios body {
 .joint-paper {
   min-width: 500px;
   min-height: 500px;
+  height: 100%;
+  margin-bottom: 150px;
+}
+.fd-uml-diagram-toolbar {
+  background: #FFFFFF;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  display: inline-table;
+  padding: 5px;
+  bottom: 0;
+  font-size: 0;
+  left: 0;
+  position: absolute;
+  width: auto;
+  max-width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+.fd-uml-diagram-toolbar:before {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: inherit;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+}
+.fd-uml-diagram-toolbar .ui.button {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  margin: 5px;
+  padding: 0.55em;
+}
+.fd-uml-diagram-toolbar .ui.button:hover,
+.fd-uml-diagram-toolbar .ui.button.active {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 /*******************************
          Site Settings
@@ -57149,15 +57199,26 @@ html.ios body {
 }
 .fd-sheet .content-mini {
   height: 100%;
-  overflow: auto;
-  padding: 0 3em 3em;
+  padding: 0 0 1em;
   transition: opacity 0.5s ease-in-out;
   width: 50%;
+  position: relative;
+}
+.fd-sheet .fd-sheet-header,
+.fd-sheet .fd-sheet-body {
+  padding: 0 3em;
+}
+.fd-sheet .fd-sheet-body {
+  overflow: auto;
+  height: calc(100vh - 9.8125rem - 40px);
 }
 .fd-sheet .fd-sheet-toolbar {
   text-align: right;
   height: 5rem;
   line-height: 5rem;
+}
+.fd-sheet.diagrams-sheet .form-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .ui.grid.fd-list .row {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -57199,18 +57260,6 @@ h2.form-header,
   position: absolute;
   bottom: 0;
   width: 100%;
-}
-.current-project-name {
-  position: absolute;
-  color: black;
-  top: 40px;
-  left: 40px;
-}
-.current-project-name-header {
-  position: absolute;
-  color: gray;
-  top: 15px;
-  left: 40px;
 }
 .ui.toggle-sidebar.button {
   position: absolute;
@@ -57265,6 +57314,11 @@ h2.form-header,
   background: rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
 }
+.fd-uml-diagram-editor {
+  margin-right: -3em;
+  margin-left: -3em;
+  height: 100%;
+}
 .fd-uml-diagram-editor .ui.button img {
   vertical-align: middle;
 }
@@ -57275,5 +57329,6 @@ h2.form-header,
 }
 .ui.grid.fd-projects-toolbar {
   margin-left: calc(-2.5em - 1em);
+  margin-top: 0;
 }
 /*# sourceMappingURL=/assets/dummy.css.map */
