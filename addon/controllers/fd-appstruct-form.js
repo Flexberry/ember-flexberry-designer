@@ -1,4 +1,4 @@
-import Evented from '@ember/object/evented';
+import { on } from '@ember/object/evented';
 import { inject as service } from '@ember/service';
 import { observer } from '@ember/object';
 import { A } from '@ember/array';
@@ -203,7 +203,7 @@ FdFormUnsavedData, {
    */
   singleModeStage: false,
 
-  _modelObserver: Evented.on('init', observer('model', function () {
+  _modelObserver: on('init', observer('model', function () {
     // Reset selection.
     this.set('jstreeSelectedNodesLeft', A());
     this.set('jstreeSelectedNodesRight', A());

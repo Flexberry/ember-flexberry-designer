@@ -4,7 +4,7 @@
 
 import Mixin from '@ember/object/mixin';
 import { inject as service } from '@ember/service';
-import SimplePredicate from 'ember-flexberry-data/query/predicate';
+import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
 
 /**
   Simple way of inject {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}} and limit list objects by stage.
