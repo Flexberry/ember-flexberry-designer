@@ -1,0 +1,28 @@
+<form class="ui form flexberry-vertical-form">
+  <div class="ui stackable grid fd-list">
+    <div class="row">
+      {{
+        fd-button
+        tagName="label"
+        caption="Создать сущность через Т"
+        click=(action "createClass" "«implementation»")
+      }}
+    </div>
+    <div class="row">
+      {{
+        fd-button
+        tagName="label"
+        caption="Создать перечисление через Т"
+        click=(action "createClass" "«enumeration»")
+      }}
+    </div>
+    <div class="row">
+      {{
+        fd-button
+        tagName="label"
+        caption="Создать typedef через Т"
+        click=(action "createClass" "«typedef»")
+      }}
+    </div>
+  </div>
+</form>

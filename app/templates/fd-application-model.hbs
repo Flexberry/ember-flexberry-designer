@@ -16,6 +16,15 @@
       </div>
     </div>
 
+    <div class="row">
+      {{
+        fd-button
+        tagName="label"
+        caption=(t "forms.fd-application-model.create-class-caption")
+        click=(action "openCreateClassPanel")
+      }}
+    </div>
+   
     {{!-- Classes --}}
     {{#each filteredModel.classes as |class|}}
       {{
@@ -278,18 +287,25 @@
   </div>
 </form>
 {{#fd-sheet
-  title=selectedElement.model.name
+  title=_sheetTitle
   saveController=(action 'save')
   sheetComponentName=sheetComponentName
+  readonly = (not _isSheetCreateClassPanel)
 }}
-  {{#if (known-for-type (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel"))}}
-    {{component (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel")
-      model=selectedElement.model
+  {{#if _isSheetCreateClassPanel}}
+    {{
+      fd-editing-panels/fd-create-entity
+      createClass=(action "createClass")
     }}
   {{else}}
-    {{fd-editing-panels/fd-custom-editing-panel
-      model=selectedElement.model
-    }}
+    {{#if (known-for-type (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel"))}}
+      {{component (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel")
+        model=selectedElement.model
+      }}
+    {{else}}
+      {{fd-editing-panels/fd-custom-editing-panel
+        model=selectedElement.model
+      }}
+    {{/if}}
   {{/if}}
-
 {{/fd-sheet}}

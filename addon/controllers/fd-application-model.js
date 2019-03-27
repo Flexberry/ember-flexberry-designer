@@ -19,6 +19,33 @@ export default Ember.Controller.extend({
   fdSheetService: Ember.inject.service(),
 
   /**
+    Service for get current stage.
+
+    @property fdCurrentProjectContext
+    @type FdCurrentProjectContext
+  */
+  fdCurrentProjectContext: Ember.inject.service(),
+
+  /**
+    Flag, that indicates when sheet must be opened as create new class panel.
+
+    @private
+    @property _isSheetCreateClassPanel
+    @readOnly
+    @type Boolean
+  */
+  _isSheetCreateClassPanel: false,
+
+  /**
+    Title of sheet.
+
+    @private
+    @property _sheetTitle
+    @type String
+  */
+  _sheetTitle: '',
+
+  /**
     Value selected entity.
 
     @property selectedElement
@@ -140,6 +167,7 @@ export default Ember.Controller.extend({
   */
   deactivateListItem() {
     let selectedElement = this.get('selectedElement');
+    
     if (!Ember.isNone(selectedElement)) {
       let model = selectedElement.get('model');
       model.rollbackAll();
@@ -169,11 +197,18 @@ export default Ember.Controller.extend({
      @param {Object} currentItem Current list item
   */
   openSheet(sheetName, currentItem) {
+    let isSheetCreateClassPanel = this.get('_isSheetCreateClassPanel');
+    if (isSheetCreateClassPanel && !Ember.isNone(currentItem)) {
+      this.set('_isSheetCreateClassPanel', false);
+    }
+
     let sheetComponentName = this.get('sheetComponentName');
     if (sheetComponentName === sheetName) {
       this.deactivateListItem();
       this.set('selectedElement', currentItem);
     }
+
+    this.setSheetTitle();
   },
 
   /**
@@ -190,6 +225,19 @@ export default Ember.Controller.extend({
     }
   },
 
+  /**
+    Determine sheet title.
+
+     @method setSheetTitle
+  */
+  setSheetTitle() {
+    let isSheetCreateClassPanel = this.get('_isSheetCreateClassPanel');
+    let createClassPanelTitle = "СОЗДАТЬ КЛАСС ПОПРАВИТЬ T";
+    let itemTitle = this.get('selectedElement.model.name');
+    let title = isSheetCreateClassPanel ? createClassPanelTitle : itemTitle;
+    this.set('_sheetTitle', title);
+  },
+
   actions: {
     /**
       Save 'selectedElement'.
@@ -200,13 +248,68 @@ export default Ember.Controller.extend({
       let model = this.get('selectedElement.model');
       this.get('appState').loading();
       model.save()
+      .then(() => this.saveHasManyRelationships(model))
+      .then(() => {
+        this.updateClassModel(model);
+      })
       .catch((error) => {
         this.set('error', error);
       })
       .finally(() => {
         this.get('appState').reset();
       });
-      this.updateClassModel(model);
+    },
+
+    /**
+      Create new Class.
+
+       @method actions.createNewClass
+    */
+    openCreateClassPanel() {
+      this.set('_isSheetCreateClassPanel', true);
+      this.deactivateListItem();
+      this.set('selectedElement', undefined);
+      let sheetComponentName = this.get('sheetComponentName');
+      let fdSheetService = this.get('fdSheetService');
+
+      fdSheetService.openSheet(sheetComponentName);
+    },
+
+    /**
+      Create new Class
+
+       @method actions.createClass
+    */
+    createClass(stereotype) {
+      this.set('_isSheetCreateClassPanel', false);
+      let fdCurrentProjectContextService = this.get('fdCurrentProjectContext');
+      let currentStage = fdCurrentProjectContextService.getCurrentStageModel();
+
+      let newClass = this.store.createRecord('fd-dev-class', {
+        stage: currentStage,
+        stereotype: stereotype,
+        name: '',
+        nameStr: ''
+      });
+
+      let newClassObject = Ember.Object.create({
+        model: newClass
+      });
+
+      switch (stereotype) {
+        case '«implementation»':
+          this.get('model.classes').push({settings: newClassObject})
+            ;
+          break;
+        case '«enumeration»':
+          this.get('model.enums').push(newClassObject);
+          break;
+        case '«typedef»':
+          this.get('model.typedefs').push(newClassObject);
+          break;
+      }
+
+      this.set('selectedElement', newClassObject);
     }
   }
 });

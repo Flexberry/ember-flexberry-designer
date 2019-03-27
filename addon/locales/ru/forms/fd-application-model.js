@@ -1,6 +1,7 @@
 export default {
   caption: 'Модель приложения',
   'type-caption': 'Тип ▾',
+  'create-class-caption': 'Класс',
   'enum-caption': 'Перечисление',
   'entity-caption': 'Сущность',
   'editor-caption': 'Редактор',
