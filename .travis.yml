@@ -33,7 +33,7 @@ matrix:
 before_install:
   - sudo chown root /opt/google/chrome/chrome-sandbox
   - sudo chmod 4755 /opt/google/chrome/chrome-sandbox
-  - yarn global add ember-cli@2.18.2
+  - yarn global add ember-cli@3.1.4
   - yarn global add bower
   - google-chrome-stable --headless --disable-gpu --no-sandbox --remote-debugging-port=9222 http://localhost &
 
