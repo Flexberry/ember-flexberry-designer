@@ -21,7 +21,7 @@ test('it renders and works', function(assert) {
   assert.equal(this.$('tbody tr').length, 5, '5 rows per page by default.');
   assert.ok(/\s*Column #1\s*Column #2\s*/.test(this.$('th').text()), 'The headers are correct.');
 
-  this.$('.flexberry-dropdown .item[data-value=10]').click();
+  this.$('.flexberry-dropdown .item[data-value=1]').click();
   assert.equal(this.$('tbody tr').length, 10, 'Switch to 10 rows on per page.');
 
   this.$('.next-page-button').click();
