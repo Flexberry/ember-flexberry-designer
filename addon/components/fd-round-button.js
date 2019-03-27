@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import FlexberryButtonComponent from 'ember-flexberry/components/flexberry-button';
 import layout from '../templates/components/fd-round-button';
 
