@@ -81,16 +81,15 @@
       <div class="copyright-text">
         {{t "forms.application.footer.copyright"}} 
       </div>
-      <div class="right menu">
-        {{flexberry-dropdown
-          class="compact"
-          items=locales
-          value=i18n.locale
-          placeholder=(t "forms.application.header.menu.language-dropdown.placeholder")
-          direction="upward"
-        }}
-      </div>
-
+    </div>
+    <div class="right menu">
+      {{flexberry-dropdown
+        class="compact"
+        items=locales
+        value=i18n.locale
+        placeholder=(t "forms.application.header.menu.language-dropdown.placeholder")
+        direction="upward"
+      }}
     </div>
   </div>
 </div>
