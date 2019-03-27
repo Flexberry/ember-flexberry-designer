@@ -11,7 +11,7 @@ const { Builder } = Query;
 /**
   The controller for the form with a log of generation.
 
-  @class FdGenerationLogController
+  @class FdGenerationListLogController
   @extends Ember.Controller
 */
 export default Controller.extend({
@@ -32,7 +32,7 @@ export default Controller.extend({
   generationSteps: computed.sort('generation.stepLogs', 'stepsSorting'),
 
   /**
-    Description of sorting for {{#crossLink "FdGenerationLogController/generationSteps:property"}}generation steps{{/crossLink}}.
+    Description of sorting for {{#crossLink "FdGenerationListLogController/generationSteps:property"}}generation steps{{/crossLink}}.
 
     @property stepsSorting
     @type Array
@@ -41,7 +41,7 @@ export default Controller.extend({
   stepsSorting: ['time'],
 
   /**
-    Log update interval, in milliseconds, performed by the {{#crossLink "FdGenerationLogController/updateLog:method"}}{{/crossLink}} function.
+    Log update interval, in milliseconds, performed by the {{#crossLink "FdGenerationListLogController/updateLog:method"}}{{/crossLink}} function.
 
     @property updateInterval
     @type Number

@@ -10,7 +10,7 @@ const { Builder } = Query;
 /**
   The route for the form with a log of generation.
 
-  @class FdGenerationLogRoute
+  @class FdGenerationListLogRoute
   @extends Ember.Route
 */
 export default Ember.Route.extend({

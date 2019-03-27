@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:fd-generation/log', 'Unit | Route | fd-generation/log', {
+moduleFor('route:fd-generation/list/log', 'Unit | Route | fd-generation/list/log', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });
