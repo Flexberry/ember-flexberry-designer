@@ -48,7 +48,11 @@ export default Ember.Service.extend(Ember.Evented, {
     this.set(`sheetSettings.visibility.${sheetName}`, false);
     this.set(`sheetSettings.expanded.${sheetName}`, false);
     let currentSheet = Ember.$(`.fd-sheet.${sheetName}`);
-    Ember.$('.pushable').removeClass('fade');
+
+    if (Ember.$('.fd-sheet.visible').length < 2) {
+      Ember.$('.pushable').removeClass('fade');
+    }
+
     currentSheet.css({ 'transform': '' });
 
     // Сбрасываем стиль с кнопки сайдбара.

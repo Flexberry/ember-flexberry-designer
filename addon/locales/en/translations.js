@@ -127,6 +127,7 @@ import FdApplicationEditingPanel from './components/fd-application-editing-panel
 import FdInterfaceEditingPanel from './components/fd-interface-editing-panel';
 import FdBsEditingPanel from './components/fd-businessserver-editing-panel';
 import FdEnumEditingPanel from './components/fd-enumeration-editing-panel';
+import FdCreateView from './components/fd-create-view';
 import FdSheet from './components/fd-sheet';
 import FdApplicationModelForm from './forms/fd-application-model';
 
@@ -419,6 +420,7 @@ Ember.$.extend(true, translations, {
     'fd-interface-editing-panel': FdInterfaceEditingPanel,
     'fd-businessserver-editing-panel': FdBsEditingPanel,
     'fd-enumeration-editing-panel': FdEnumEditingPanel,
+    'fd-create-view': FdCreateView,
     'fd-sheet': FdSheet,
   }
 
