@@ -464,6 +464,12 @@ FdFormUnsavedData, {
     @type Ember.NativeArray
   */
   controlsTree: computed('model.editform.formViews.firstObject.view.definition', function() {
+    // testing capabilities support
+    if (this._controlsTree)
+    {
+      return this._controlsTree;
+    }
+
     let controlsTree = A();
 
     let definition = this.get('model.editform.formViews.firstObject.view.definition');
@@ -865,6 +871,8 @@ FdFormUnsavedData, {
     let controlsTree = this.get('controlsTree');
     controlsTree.clear();
   },
+
+  _controlsTree: undefined, // testing capabilities support
 
   /**
     Overridden action for jsTree 'openNode'.

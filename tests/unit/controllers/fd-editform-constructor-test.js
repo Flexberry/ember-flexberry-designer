@@ -23,7 +23,7 @@ test('it exists', function(assert) {
 
 test(`'_findItemContainer' function`, function(assert) {
   let controller = this.subject();
-  controller.controlsTree = A([
+  controller._controlsTree = A([
     FdEditformRow.create({
       controls: A([FdEditformControl.create({ caption: 'Control' })]),
     }),
@@ -168,7 +168,7 @@ test('properties to move controls', function(assert) {
   let control3 = FdEditformControl.create({ caption: 'Control #3' });
   let row1 = FdEditformRow.create({ controls: A([control1]) });
   let row2 = FdEditformRow.create({ controls: A([control2, control3]) });
-  controller.controlsTree = A([row1, row2]);
+  controller._controlsTree = A([row1, row2]);
 
   controller.set('selectedItem', control1);
   assert.ok(controller.get('_itemToMove') === row1, 'The row with one control.');
