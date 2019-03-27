@@ -13,6 +13,8 @@
 }
 
 @fdSheetPadding: 3em;
+@fdSearchInputPadding: 0.7em 2.5em;
+@hr: 1px solid @sidebarBg;
 @fdSearchInputPadding: 0.7em @leftIndent;
 
 .fd-sheet {
@@ -32,10 +34,20 @@
 
   .content-mini{
     height: 100%;
-    overflow: auto;
-    padding: 0 @fdSheetPadding @fdSheetPadding;
+    padding: 0 0 1em;
     transition: opacity 0.5s ease-in-out;
     width: 50%;
+    position: relative;
+  }
+
+  .fd-sheet-header,
+  .fd-sheet-body {
+    padding: 0 @fdSheetPadding;
+  }
+
+  .fd-sheet-body{
+    overflow: auto;
+    height: calc(~'100vh - 9.8125rem - @{footerHeight}');//toolbar height
   }
 
   .fd-sheet-toolbar {
@@ -43,11 +55,17 @@
     height: 5rem;
     line-height: 5rem;
   }
+
+  &.diagrams-sheet {
+    .form-header {
+      border-bottom: @hr;
+    }
+  }
 }
 
 .ui.grid.fd-list {
   .row {
-    border-bottom: 1px solid @sidebarBg;
+    border-bottom: @hr;
     margin: 0 1rem;
 
     .column {
@@ -97,20 +115,6 @@ h2.form-header,
   position: absolute;
   bottom: 0;
   width: 100%;
-}
-
-.current-project-name {
-  position: absolute;
-  color: black;
-  top: 40px;
-  left: 40px;
-}
-
-.current-project-name-header {
-  position: absolute;
-  color: gray;
-  top: 15px;
-  left: 40px;
 }
 
 .ui.toggle-sidebar.button {
@@ -174,8 +178,14 @@ h2.form-header,
   border-radius: @itemActiveBorderRadius;
 }
 
-.fd-uml-diagram-editor .ui.button img {
-  vertical-align: middle;
+.fd-uml-diagram-editor {
+  margin-right: -@fdSheetPadding;
+  margin-left: -@fdSheetPadding;
+  height: 100%;
+
+  .ui.button img {
+    vertical-align: middle;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -186,4 +196,5 @@ h2.form-header,
 
 .ui.grid.fd-projects-toolbar {
   margin-left: calc(~'-@{leftIndent} - 1em');
+  margin-top: 0;
 }
