@@ -4,64 +4,15 @@
     <div class="closable panel-left">
       <div class="ui segments">
         <div class="ui segment">
-          {{t "forms.fd-view-edit-form.attributes-tree.caption"}}
+          {{t "components.fd-create-view.attributes-tree.caption"}}
         </div>
-        <div class="field">
-          {{
-            flexberry-textbox
-            placeholder=(t 'forms.fd-view-edit-form.attributes-tree.search')
-            value=searchTerm
-          }}
-        </div>
-        <div class="ui segment overflow-panel">
-          {{fd-ember-jstree
-            actionReceiver=jstreeActionReceiver
-            data=tree
-          }}
-        </div>
-      </div>
-    </div>
-
-    <div class="panel-right view-attributes">
-      <div class="ui segments">
-        <div class="ui segment overflow-panel">
-          <table class="ui very basic collapsing celled table fd-view-properties-table">
-            <thead>
-              <tr>
-                <th>{{t "forms.fd-view-edit-form.table-column.type"}}</th>
-                <th>{{t "forms.fd-view-edit-form.table-column.view-attributes"}}</th>
-                <th>{{t "forms.fd-view-edit-form.table-column.visibility"}}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each model.view.definition as |property index|}}
-              <tr class={{if (eq selectedRowIndex index) "active" ""}} onclick={{action "onAttributesClick" index}}>
-                <td>
-                  {{#if (or property.detailViewName (eq property.detailViewName ''))}}
-                    <img src="assets/images/datail.png">
-                  {{else}}
-                    {{#if property.lookupType}}
-                      <img src="assets/images/master.bmp">
-                    {{else}}
-                      <img src="assets/images/attribute.bmp">
-                    {{/if}}
-                  {{/if}}
-                </td>
-                <td>
-                  {{property.name}}
-                </td>
-                <td>
-                  {{
-                    flexberry-checkbox
-                    value=property.visible
-                    readonly=true
-                  }}
-                </td>
-              </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        </div>
+        {{
+          fd-ember-jstree
+          actionReceiver=jstreeActionReceiver
+          data=tree
+          loadDataNode=loadDataNode
+          searchTermPlaceholder=(t "components.fd-create-view.attributes-tree.search")
+        }}
       </div>
     </div>
   </div>

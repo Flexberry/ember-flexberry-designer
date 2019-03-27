@@ -110,9 +110,10 @@ let getAssociationTreeNode = function (tree, associationData, jsTreeId, rootId, 
       typeNode: 'master',
       id: jsTreeId + index,
       idNode: idMaster,
-      children: ['#'],
-      copyChildren: ['#'],
       own: own,
+      state: {
+        loaded: false
+      }
     }));
   });
 
@@ -264,9 +265,7 @@ let getTreeNodeByNotUsedAssociation = function (store, associationData, jsTreeId
       type: 'master',
       typeNode: 'master',
       id: jsTreeId + index,
-      idNode: idMaster,
-      children: ['#'],
-      copyChildren: ['#'],
+      idNode: idMaster
     }));
   });
 

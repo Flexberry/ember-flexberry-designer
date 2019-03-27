@@ -5,6 +5,12 @@ export default Ember.Component.extend({
   layout,
 
   /**
+    @property store
+    @type Service
+  */
+  store: Ember.inject.service(),
+
+  /**
     Action service jsTree.
 
     @property actionReceiver
@@ -61,6 +67,15 @@ export default Ember.Component.extend({
   searchTerm: '',
 
   /**
+    Placeholder for search tree nodes input.
+
+    @property searchTermPlaceholder
+    @type String
+    @default ''
+   */
+  searchTermPlaceholder: '',
+
+  /**
     Search settings for jsTree.
 
     @property searchOptions
@@ -78,6 +93,13 @@ export default Ember.Component.extend({
   */
   treeObject: undefined,
 
+  /**
+    Method for load tree nodes.
+
+    @method loadDataNode
+  */
+  loadDataNode: undefined,
+
   actions: {
 
     /**
@@ -86,38 +108,26 @@ export default Ember.Component.extend({
       @method actions.handleTreeDidBecomeReady
     */
     handleTreeDidBecomeReady() {
-      let treeObject = this.get('treeObject');
-      treeObject.on('open_node.jstree', this._openNodeTree.bind(this));
-      treeObject.on('after_close.jstree', this._afterCloseNodeTree.bind(this));
+      this.get('treeObject').on('load_node.jstree', this._loadNodeTree.bind(this));
     },
   },
 
   /**
-    Overridden action for jsTree 'openNode'.
+    Overridden action for jsTree 'loadNode'.
 
-    @method _openNodeTree
+    @method _loadNodeTree
   */
-  _openNodeTree(e, data) {
-    let treeData = this.get('model.tree');
-    restorationNodeTree(treeData, data.node.original, Ember.A(['master', 'class']), false, (function(node) {
-      let dataForBuildTree = getDataForBuildTree(this.get('store'), node.get('idNode'));
-      let childrenAttributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes);
-      let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, node.get('id'));
+  _loadNodeTree(e, data) {
+    if (!data.node.state.loaded) {
+      let jstree = this.get('treeObject').jstree(true);
+      let childrenNode = this.get('loadDataNode')(data.node.original, this.get('store'));
+      childrenNode.forEach((node) => {
+        jstree.create_node(data.node, node, 'last', null, true);
+      });
 
-      return childrenNode;
-    }).bind(this));
-
-    this.get('jstreeActionReceiver').send('redraw');
-  },
-
-  /**
-    Overridden action for jsTree 'eventDidClose'.
-
-    @method _afterCloseNodeTree
-  */
-  _afterCloseNodeTree(e, data) {
-    //this.get('jstreeActionReceiver').send('closeNode', data);
-    data.node.original.state.opened = false;
+      data.node.state.loaded = true;
+      jstree.open_node(data.node);
+    }
   },
 
   init() {
@@ -129,8 +139,7 @@ export default Ember.Component.extend({
     this._super(...arguments);
     let treeObject = this.get('jstreeObject');
     if (!Ember.isNone(treeObject)) {
-      treeObject.off('open_node.jstree', this._openNodeTree.bind(this));
-      treeObject.off('after_close.jstree',  this._afterCloseNodeTree.bind(this));
+      treeObject.off('load_node.jstree', this._loadNodeTree.bind(this));
     }
   }
 });

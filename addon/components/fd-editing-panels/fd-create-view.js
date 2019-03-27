@@ -81,7 +81,6 @@ export default Ember.Component.extend({
         id: 'class',
         idNode: model.get('id'),
         children: treeDetails,
-        copyChildren: treeDetails,
         state: {
           opened: true
         }
@@ -94,4 +93,17 @@ export default Ember.Component.extend({
 
     return tree;
   }),
+
+  /**
+    Method for load tree nodes.
+
+    @method loadDataNode
+  */
+  loadDataNode: function(node, store) {
+    let dataForBuildTree = getDataForBuildTree(store, node.get('idNode'));
+    let childrenAttributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes);
+    let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, node.get('id'));
+
+    return childrenNode;
+  }
 });

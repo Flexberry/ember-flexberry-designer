@@ -29,6 +29,15 @@ export default Ember.Route.extend({
   sheetComponentName: 'application-model-sheet',
 
   /**
+    Sheet view name.
+
+    @property sheetViewName
+    @type String
+    @default 'view-sheet'
+  */
+  sheetViewName: 'view-sheet',
+
+  /**
     A hook you can implement to convert the URL into the model for this route.
     [More info](http://emberjs.com/api/classes/Ember.Route.html#method_model).
 
@@ -166,6 +175,7 @@ export default Ember.Route.extend({
     this._super(...arguments);
 
     controller.set('sheetComponentName', this.get('sheetComponentName'));
+    controller.set('sheetViewName', this.get('sheetViewName'));
   },
 
   actions: {
@@ -179,6 +189,7 @@ export default Ember.Route.extend({
     */
     willTransition() {
       this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
+      this.get('fdSheetService').closeSheet(this.get('sheetViewName'));
 
       this._super(...arguments);
     }
