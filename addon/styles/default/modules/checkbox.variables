@@ -1,0 +1,2 @@
+@checkboxBackground: @inputBackground;
+@checkboxBorder: 1px solid @sidebarBg;
