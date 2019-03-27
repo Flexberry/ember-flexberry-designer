@@ -5,5 +5,4 @@ export default {
   'packet-placeholder': 'Наименование пакета',
   'namespace-postfix-caption': 'Постфикс пространства имен',
   'namespace-postfix-placeholder': 'Наименование постфикса',
-  'attributes-caption': 'Возможные значения',
 };

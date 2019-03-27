@@ -7,6 +7,4 @@ export default {
   'namespace-postfix-placeholder': 'Postfix name',
   'bs-caption': 'Business server class',
   'bs-events-caption': 'Business server events',
-  'attributes-caption': 'Attributes',
-  'metods-caption': 'Metods',
 };

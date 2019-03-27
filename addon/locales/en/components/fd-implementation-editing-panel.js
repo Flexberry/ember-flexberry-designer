@@ -15,7 +15,4 @@ export default {
   'namespace-postfix-placeholder': 'Postfix name',
   'bs-caption': 'Business server class',
   'bs-events-caption': 'Business server events',
-  'attributes-caption': 'Attributes',
-  'views-caption': 'Views',
-  'class-storage-types-caption': 'Storage types',
 };

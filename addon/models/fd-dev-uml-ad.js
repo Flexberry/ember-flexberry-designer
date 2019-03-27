@@ -29,7 +29,7 @@ let Model = ADModel.extend(DevUMLADMixin, {
     */
   primitives: Ember.computed('primitivesJsonString', function () {
     let result = Ember.A();
-    let primitives = JSON.parse(this.get('primitivesJsonString'));
+    let primitives = JSON.parse(this.get('primitivesJsonString')) || [];
 
     for (let i = 0; i < primitives.length; i++) {
       let primitive = primitives[i];
