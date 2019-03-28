@@ -21,6 +21,7 @@
       {{
         fd-class-list-items
         entity=class
+        sheetComponentName=sheetComponentName
       }}
     {{/each}}
 
@@ -34,7 +35,9 @@
         {{#each filteredModel.enums as |enum|}}
           {{
             fd-list-item
+            model=enum
             caption=enum.name
+            sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
@@ -57,7 +60,9 @@
         {{#each filteredModel.types as |type|}}
           {{
             fd-list-item
+            model=type
             caption=type.name
+            sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
@@ -80,7 +85,9 @@
         {{#each filteredModel.typedefs as |typedef|}}
           {{
             fd-list-item
+            model=typedef
             caption=typedef.name
+            sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
@@ -103,7 +110,9 @@
         {{#each filteredModel.bs as |bs|}}
           {{
             fd-list-item
+            model=bs
             caption=bs.name
+            sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
@@ -126,7 +135,9 @@
         {{#each filteredModel.interfaces as |interface|}}
           {{
             fd-list-item
+            model=interface
             caption=interface.name
+            sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
@@ -149,7 +160,9 @@
         {{#each filteredModel.externals as |external|}}
           {{
             fd-list-item
+            model=external
             caption=external.name
+            sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
@@ -172,7 +185,9 @@
         {{#each filteredModel.extinterfaces as |extinterface|}}
           {{
             fd-list-item
+            model=extinterface
             caption=extinterface.name
+            sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
@@ -195,7 +210,9 @@
         {{#each filteredModel.applications as |application|}}
           {{
             fd-list-item
+            model=application
             caption=application.name
+            sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
@@ -218,7 +235,9 @@
         {{#each filteredModel.userforms as |userform|}}
           {{
             fd-list-item
+            model=userform
             caption=userform.name
+            sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
@@ -241,7 +260,9 @@
         {{#each filteredModel.userstereotypes as |userstereotype|}}
           {{
             fd-list-item
+            model=userstereotype
             caption=userstereotype.name
+            sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
@@ -257,45 +278,33 @@
   </div>
 </form>
 {{#fd-sheet
-  title = 'Пациент'
+  title=selectedElement.model.name
+  saveController=(action 'save')
+  sheetComponentName=sheetComponentName
+  readonly=true
 }}
-  <div class="ui stackable grid fd-list">
-    <div class="row">
-      <div class="three wide column">
-        {{t "forms.fd-application-model.value-caption"}}
-      </div>
-      <div class="thirteen wide column light-text">
-        {{flexberry-textbox
-          class='fluid input'
-          placeholder=(t "forms.fd-application-model.entity-header-placeholder")
-        }}
-      </div>
-    </div>
-    <div class="row">
-      <div class="three wide column">
-        <div>{{t "forms.fd-application-model.storage-caption"}}</div>
-      </div>
-      <div class="thirteen wide column light-text">
-        {{flexberry-textbox
-          class='fluid input'
-          placeholder=(t "forms.fd-application-model.storage-name-placeholder")
-        }}
-      </div>
-      <div class="three wide column">
-        <div>{{t "forms.fd-application-model.stored-caption"}}</div>
-      </div>
-      <div class="thirteen wide column light-text">
-        {{flexberry-textbox
-          class='fluid input'
-          placeholder=(t "forms.fd-application-model.storage-name-placeholder")
-        }}
-      </div>
-      <div class="three wide column">
-        <div>{{t "forms.fd-application-model.bs-caption"}}</div>
-      </div>
-      <div class="thirteen wide column light-text">
-        <div>Нет значения</div>
-      </div>
-    </div>
-  </div>
+  {{#if (known-for-type (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel"))}}
+    {{component (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel")
+      model=selectedElement.model
+      openViewSheetController=(action 'openViewSheet')
+    }}
+  {{else}}
+    {{fd-editing-panels/fd-custom-editing-panel
+      model=selectedElement.model
+    }}
+  {{/if}}
+
+{{/fd-sheet}}
+
+{{#fd-sheet
+  title=selectedElement.model.name
+  saveController=(action 'save')
+  sheetComponentName=sheetViewName
+  readonly=false
+}}
+  {{fd-editing-panels/fd-create-view
+    model=selectedElement.model
+    view=selectedView
+  }}
+
 {{/fd-sheet}}

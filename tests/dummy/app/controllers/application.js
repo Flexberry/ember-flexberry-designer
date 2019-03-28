@@ -6,9 +6,8 @@ import { isNone } from '@ember/utils';
 import { later } from '@ember/runloop';
 import $ from 'jquery';
 
-import fdSheetMixin from 'ember-flexberry-designer/mixins/fd-sheet-mixin';
-
-export default Controller.extend(fdSheetMixin, {
+export default Controller.extend({
+  fdSheetService: Ember.inject.service(),
   /**
     Flag indicates sidebar visible
 
@@ -221,7 +220,8 @@ export default Controller.extend(fdSheetMixin, {
 
       // Sheet content is animated only if it is expanded.
       if ($('.fd-sheet.visible').hasClass('expand')) {
-        this.send('animatingSheetContent', contentWidth, 250);
+        let expandedSeet = $('.fd-sheet.visible.expand');
+        this.get('fdSheetService').animatingSheetContent(expandedSeet.attr('class').replace(/ /g, '.'), contentWidth, 250);
       } else {
 
         // That the sheet remained in its place and did not go along with the content.

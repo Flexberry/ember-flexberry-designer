@@ -38,7 +38,7 @@ let Model = CODModel.extend(DevUMLCODMixin, {
   */
   primitives: computed('primitivesJsonString', function() {
     let result = A();
-    let primitives = JSON.parse(this.get('primitivesJsonString'));
+    let primitives = JSON.parse(this.get('primitivesJsonString')) || A();
 
     for (let i = 0; i < primitives.length; i++) {
       let primitive = primitives[i];

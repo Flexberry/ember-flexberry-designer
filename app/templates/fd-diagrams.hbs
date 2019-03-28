@@ -1,1 +1,211 @@
-{{outlet}}
+<h2 class='form-header'>
+  {{t "forms.fd-diagrams.caption"}}
+</h2>
+
+<form class="ui form flexberry-vertical-form">
+  <div class="ui stackable grid fd-list">
+    <div class="row">
+      <div class="two wide column light-text">
+        {{t "forms.fd-diagrams.type-caption"}}
+      </div>
+      <div class="fourteen wide column">
+        {{
+          fd-search-input
+          value=searchValue
+        }}
+      </div>
+    </div>
+
+    {{!-- ad --}}
+    {{#if (not-eq filteredModel.ad.length 0)}}
+    <div class="row">
+      <div class="two wide column light-text">
+        {{t "forms.fd-diagrams.ad"}}
+      </div>
+      <div class="fourteen wide column">
+        {{#each filteredModel.ad as |ad|}}
+          {{
+            fd-list-item
+            model=ad
+            caption=ad.name
+            sheetComponentName=sheetComponentName
+          }}
+        {{/each}}
+      </div>
+      <div class="right floated fourteen wide column">
+        {{
+          fd-button
+          caption=(t "forms.fd-diagrams.ad")
+        }}
+      </div>
+    </div>
+    {{/if}}
+
+    {{!-- cad --}}
+    {{#if (not-eq filteredModel.cad.length 0)}}
+    <div class="row">
+      <div class="two wide column light-text">
+        {{t "forms.fd-diagrams.cad"}}
+      </div>
+      <div class="fourteen wide column">
+        {{#each filteredModel.cad as |cad|}}
+          {{
+            fd-list-item
+            model=cad
+            caption=cad.name
+            sheetComponentName=sheetComponentName
+          }}
+        {{/each}}
+      </div>
+      <div class="right floated fourteen wide column">
+        {{
+          fd-button
+          caption=(t "forms.fd-diagrams.cad")
+        }}
+      </div>
+    </div>
+    {{/if}}
+
+    {{!-- cod --}}
+    {{#if (not-eq filteredModel.cod.length 0)}}
+    <div class="row">
+      <div class="two wide column light-text">
+        {{t "forms.fd-diagrams.cod"}}
+      </div>
+      <div class="fourteen wide column">
+        {{#each filteredModel.cod as |cod|}}
+          {{
+            fd-list-item
+            model=cod
+            caption=cod.name
+            sheetComponentName=sheetComponentName
+          }}
+        {{/each}}
+      </div>
+      <div class="right floated fourteen wide column">
+        {{
+          fd-button
+          caption=(t "forms.fd-diagrams.cod")
+        }}
+      </div>
+    </div>
+    {{/if}}
+
+    {{!-- dpd --}}
+    {{#if (not-eq filteredModel.dpd.length 0)}}
+    <div class="row">
+      <div class="two wide column light-text">
+        {{t "forms.fd-diagrams.dpd"}}
+      </div>
+      <div class="fourteen wide column">
+        {{#each filteredModel.dpd as |dpd|}}
+          {{
+            fd-list-item
+            model=dpd
+            caption=dpd.name
+            sheetComponentName=sheetComponentName
+          }}
+        {{/each}}
+      </div>
+      <div class="right floated fourteen wide column">
+        {{
+          fd-button
+          caption=(t "forms.fd-diagrams.dpd")
+        }}
+      </div>
+    </div>
+    {{/if}}
+
+    {{!-- sd --}}
+    {{#if (not-eq filteredModel.sd.length 0)}}
+    <div class="row">
+      <div class="two wide column light-text">
+        {{t "forms.fd-diagrams.sd"}}
+      </div>
+      <div class="fourteen wide column">
+        {{#each filteredModel.sd as |sd|}}
+          {{
+            fd-list-item
+            model=sd
+            caption=sd.name
+            sheetComponentName=sheetComponentName
+          }}
+        {{/each}}
+      </div>
+      <div class="right floated fourteen wide column">
+        {{
+          fd-button
+          caption=(t "forms.fd-diagrams.sd")
+        }}
+      </div>
+    </div>
+    {{/if}}
+
+    {{!-- std --}}
+    {{#if (not-eq filteredModel.std.length 0)}}
+    <div class="row">
+      <div class="two wide column light-text">
+        {{t "forms.fd-diagrams.std"}}
+      </div>
+      <div class="fourteen wide column">
+        {{#each filteredModel.std as |std|}}
+          {{
+            fd-list-item
+            model=std
+            caption=std.name
+            sheetComponentName=sheetComponentName
+          }}
+        {{/each}}
+      </div>
+      <div class="right floated fourteen wide column">
+        {{
+          fd-button
+          caption=(t "forms.fd-diagrams.std")
+        }}
+      </div>
+    </div>
+    {{/if}}
+
+    {{!-- ucd --}}
+    {{#if (not-eq filteredModel.ucd.length 0)}}
+    <div class="row">
+      <div class="two wide column light-text">
+        {{t "forms.fd-diagrams.ucd"}}
+      </div>
+      <div class="fourteen wide column">
+        {{#each filteredModel.ucd as |ucd|}}
+          {{
+            fd-list-item
+            model=ucd
+            caption=ucd.name
+            sheetComponentName=sheetComponentName
+          }}
+        {{/each}}
+      </div>
+      <div class="right floated fourteen wide column">
+        {{
+          fd-button
+          caption=(t "forms.fd-diagrams.ucd")
+        }}
+      </div>
+    </div>
+    {{/if}}
+
+  </div>
+</form>
+
+
+{{#fd-sheet
+  title=selectedElement.model.name
+  saveController=(action 'save')
+  sheetComponentName=sheetComponentName
+}}
+{{#if isDiagramVisible}}
+  {{
+    fd-uml-diagram-editor
+    model=selectedElement.model
+    createdClasses=createdClasses
+  }}
+{{/if}}
+
+{{/fd-sheet}}

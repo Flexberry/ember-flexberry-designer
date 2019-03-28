@@ -8,6 +8,7 @@ moduleForModel('fd-dev-class', 'Unit | Serializer | fd-dev-class', {
     'transform:decimal',
     'transform:guid',
 
+    'transform:fd-storeinstancesintype',
     'transform:containers-tree',
     'transform:fd-propertylookupstr',
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-access-type',

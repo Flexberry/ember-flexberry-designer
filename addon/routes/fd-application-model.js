@@ -1,9 +1,8 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
-import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 
-export default Route.extend(FdFormCheckTransitionMixin, {
+export default Route.extend({
 
   /**
    Service that get current project contexts.
@@ -13,6 +12,32 @@ export default Route.extend(FdFormCheckTransitionMixin, {
    @default service()
    */
   currentProjectContext: service('fd-current-project-context'),
+
+  /**
+    Service for managing the state of the sheet component.
+
+    @property fdSheetService
+    @type FdSheetService
+  */
+  fdSheetService: Ember.inject.service(),
+
+  /**
+    Sheet component name.
+
+    @property sheetComponentName
+    @type String
+    @default 'application-model-sheet'
+  */
+  sheetComponentName: 'application-model-sheet',
+
+  /**
+    Sheet view name.
+
+    @property sheetViewName
+    @type String
+    @default 'view-sheet'
+  */
+  sheetViewName: 'view-sheet',
 
   /**
     A hook you can implement to convert the URL into the model for this route.
@@ -139,5 +164,36 @@ export default Route.extend(FdFormCheckTransitionMixin, {
     modelHash.userstereotypes = A(userstereotypes);
 
     return modelHash;
+  },
+
+  /**
+    A hook you can use to setup the controller for the current route.
+    [More info](https://www.emberjs.com/api/ember/release/classes/Route/methods/setupController?anchor=setupController).
+
+    @method setupController
+    @param {<a href="https://emberjs.com/api/ember/release/classes/Controller">Controller</a>} controller
+  */
+  setupController(controller) {
+    this._super(...arguments);
+
+    controller.set('sheetComponentName', this.get('sheetComponentName'));
+    controller.set('sheetViewName', this.get('sheetViewName'));
+  },
+
+  actions: {
+    /**
+      It sends message about transition to corresponding controller.
+
+      The willTransition action is fired at the beginning of any attempted transition with a Transition object as the sole argument.
+      [More info](http://emberjs.com/api/classes/Ember.Route.html#event_willTransition).
+
+      @method actions.willTransition
+    */
+    willTransition() {
+      this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
+      this.get('fdSheetService').closeSheet(this.get('sheetViewName'));
+
+      this._super(...arguments);
+    }
   }
 });
