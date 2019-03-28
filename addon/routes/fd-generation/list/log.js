@@ -43,12 +43,15 @@ export default Ember.Route.extend({
       See [EmberJS API](https://emberjs.com/api/).
 
       @method actions.willTransition
+      @param {Object} transition
     */
-    willTransition() {
+    willTransition(transition) {
       let { sheetService, controller } = this.getProperties('controller', 'sheetService');
 
       sheetService.off('closeSheetTriggered', this, this._onCloseSheet);
-      sheetService.closeSheet(controller.get('sheetName'));
+      if (transition.targetName !== 'fd-generation.list.log') {
+        sheetService.closeSheet(controller.get('sheetName'));
+      }
 
       controller.stopUpdate();
     },
