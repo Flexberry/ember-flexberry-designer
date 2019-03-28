@@ -19,7 +19,7 @@ export default FdUmlLink.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
-    return new AggregationLink(properties);
+    return new LinkInheritance(properties);
   },
 });
 
@@ -32,6 +32,6 @@ export default FdUmlLink.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let AggregationLink = LinkWithUnderline.define('flexberry.uml.AggregationLink', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' } },
+export let LinkInheritance = LinkWithUnderline.define('flexberry.uml.LinkInheritance', {
+  attrs: { },
 });
