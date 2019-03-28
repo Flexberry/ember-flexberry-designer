@@ -1,6 +1,5 @@
 import Component from '@ember/component';
-import $ from 'jquery';
-import { run } from '@ember/runloop';
+import { inject as service } from '@ember/service';
 import layout from '../templates/components/fd-sheet';
 
 export default Component.extend({
@@ -21,7 +20,7 @@ export default Component.extend({
     @property fdSheetService
     @type FdSheetService
   */
-  fdSheetService: Ember.inject.service(),
+  fdSheetService: service(),
 
   init() {
     this._super(...arguments);
@@ -61,7 +60,7 @@ export default Component.extend({
       @method actions.save
     */
     save() {
-      this.sendAction('saveController');
+      this.get('saveController')();
     }
   }
 });

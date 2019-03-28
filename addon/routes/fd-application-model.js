@@ -19,7 +19,7 @@ export default Route.extend({
     @property fdSheetService
     @type FdSheetService
   */
-  fdSheetService: Ember.inject.service(),
+  fdSheetService: service(),
 
   /**
     Sheet component name.

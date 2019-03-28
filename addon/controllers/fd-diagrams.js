@@ -1,4 +1,10 @@
 import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
+import { observer, computed } from '@ember/object';
+import { isBlank, isNone } from '@ember/utils';
+import { schedule } from '@ember/runloop';
+import { all } from 'rsvp';
 
 export default Controller.extend({
   /**
@@ -7,7 +13,7 @@ export default Controller.extend({
     @property appState
     @type AppStateService
   */
-  appState: Ember.inject.service(),
+  appState: service(),
 
   /**
     Service for managing the state of the sheet component.
@@ -15,7 +21,7 @@ export default Controller.extend({
     @property fdSheetService
     @type FdSheetService
   */
-  fdSheetService: Ember.inject.service(),
+  fdSheetService: service(),
 
   /**
     Value selected entity.
@@ -50,14 +56,14 @@ export default Controller.extend({
     @property createdClasses
     @type Ember.Array
   */
-  createdClasses: Ember.A(),
+  createdClasses: A(),
 
   /**
     Ember.observer, watching property `searchValue` and send action from 'fd-sheet' component.
 
     @method searchValueObserver
   */
-  searchValueObserver: Ember.observer('searchValue', function() {
+  searchValueObserver: observer('searchValue', function() {
     let sheetComponentName = this.get('sheetComponentName');
     let fdSheetService = this.get('fdSheetService');
     if (fdSheetService.isVisible(sheetComponentName)) {
@@ -70,18 +76,18 @@ export default Controller.extend({
 
     @method filteredModel
   */
-  filteredModel: Ember.computed('model', 'searchValue', function() {
+  filteredModel: computed('model', 'searchValue', function() {
     let searchStr = this.get('searchValue');
     let model = this.get('model');
 
-    if (Ember.isBlank(searchStr)) {
+    if (isBlank(searchStr)) {
       return model;
     }
 
     searchStr = searchStr.trim().toLocaleLowerCase();
     let filterFunction = function(item) {
       let name = item.get('name');
-      if (!Ember.isNone(name) && name.toLocaleLowerCase().indexOf(searchStr) !== -1) {
+      if (!isNone(name) && name.toLocaleLowerCase().indexOf(searchStr) !== -1) {
         return item;
       }
     };
@@ -90,7 +96,7 @@ export default Controller.extend({
 
     for (let prop in model) {
       let newdata = model[prop].filter(filterFunction);
-      newModel[prop] = Ember.A(newdata);
+      newModel[prop] = A(newdata);
     }
 
     return newModel;
@@ -110,7 +116,7 @@ export default Controller.extend({
   */
   deactivateListItem() {
     let selectedElement = this.get('selectedElement');
-    if (!Ember.isNone(selectedElement)) {
+    if (!isNone(selectedElement)) {
       let model = selectedElement.get('model');
       model.rollbackAll();
       this.set('isDiagramVisible', false);
@@ -130,7 +136,7 @@ export default Controller.extend({
     if (sheetComponentName === sheetName) {
       this.deactivateListItem();
       this.set('selectedElement', currentItem);
-      Ember.run.schedule('afterRender', this, function() {
+      schedule('afterRender', this, function() {
         this.set('isDiagramVisible', true);
       });
     }
@@ -163,7 +169,7 @@ export default Controller.extend({
     let promises = createdClasses.map(c => c.save());
     createdClasses.clear();
 
-    return Ember.RSVP.all(promises);
+    return all(promises);
   },
 
   actions: {

@@ -1,8 +1,9 @@
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
-import { isBlank } from '@ember/utils';
-import { isNone } from '@ember/utils';
+import { computed, observer, set } from '@ember/object';
+import { isBlank, isNone } from '@ember/utils';
 import { A } from '@ember/array';
+import { inject as service } from '@ember/service';
+import { all } from 'rsvp';
 
 export default Controller.extend({
 
@@ -12,7 +13,7 @@ export default Controller.extend({
     @property appState
     @type AppStateService
   */
-  appState: Ember.inject.service(),
+  appState: service(),
 
   /**
     Service for managing the state of the sheet component.
@@ -20,7 +21,7 @@ export default Controller.extend({
     @property fdSheetService
     @type FdSheetService
   */
-  fdSheetService: Ember.inject.service(),
+  fdSheetService: service(),
 
   /**
     Value selected entity.
@@ -70,7 +71,7 @@ export default Controller.extend({
 
     @method searchValueObserver
   */
-  searchValueObserver: Ember.observer('searchValue', function() {
+  searchValueObserver: observer('searchValue', function() {
     let sheetComponentName = this.get('sheetComponentName');
     let fdSheetService = this.get('fdSheetService');
     if (fdSheetService.isVisible(sheetComponentName)) {
@@ -85,11 +86,11 @@ export default Controller.extend({
 
     @method componentNamePart
   */
-  componentNamePart: Ember.computed('selectedElement', function() {
+  componentNamePart: computed('selectedElement', function() {
     let selectedElement = this.get('selectedElement');
-    if (!Ember.isNone(selectedElement)) {
+    if (!isNone(selectedElement)) {
       let stereotype = selectedElement.get('model.stereotype');
-      if (Ember.isNone(stereotype)) {
+      if (isNone(stereotype)) {
         return 'implementation';
       }
 
@@ -162,7 +163,7 @@ export default Controller.extend({
   */
   deactivateListItem() {
     let selectedElement = this.get('selectedElement');
-    if (!Ember.isNone(selectedElement)) {
+    if (!isNone(selectedElement)) {
       let model = selectedElement.get('model');
       model.rollbackAll();
       selectedElement.set('fdListItemActive', false);
@@ -179,7 +180,7 @@ export default Controller.extend({
     if (stereotype === '«implementation»' || stereotype === null) {
       let model = this.get('model');
       let classObj = model.classes.findBy('settings.id', modelSelectedElement.id);
-      Ember.set(classObj, 'bs', modelSelectedElement.get('businessServerClass'));
+      set(classObj, 'bs', modelSelectedElement.get('businessServerClass'));
     }
   },
 
@@ -247,7 +248,7 @@ export default Controller.extend({
       }
     });
 
-    return Ember.RSVP.all(promises);
+    return all(promises);
   },
 
   actions: {

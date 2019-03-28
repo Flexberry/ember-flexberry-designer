@@ -4,7 +4,8 @@ moduleFor('route:fd-application-model', 'Unit | Route | fd application model', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
   needs: [
-    'service:fd-current-project-context'
+    'service:fd-current-project-context',
+    'service:fdSheetService'
   ]
 });
 

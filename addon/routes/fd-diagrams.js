@@ -1,4 +1,6 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
 
 export default Route.extend({
 
@@ -9,7 +11,7 @@ export default Route.extend({
    @type {Class}
    @default Ember.inject.service()
    */
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
 
   /**
     Service for managing the state of the sheet component.
@@ -17,7 +19,7 @@ export default Route.extend({
     @property fdSheetService
     @type FdSheetService
   */
-  fdSheetService: Ember.inject.service(),
+  fdSheetService: service(),
 
   /**
     Sheet component name.
@@ -51,37 +53,37 @@ export default Route.extend({
     // Get current ad diagrams.
     let allAdDiagrams = store.peekAll('fd-dev-uml-ad');
     let adDiagramsCurrentStage = allAdDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    modelHash.ad = Ember.A(adDiagramsCurrentStage);
+    modelHash.ad = A(adDiagramsCurrentStage);
 
     // Get current cad diagrams.
     let allCadDiagrams = store.peekAll('fd-dev-uml-cad');
     let cadDiagramsCurrentStage = allCadDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    modelHash.cad = Ember.A(cadDiagramsCurrentStage);
+    modelHash.cad = A(cadDiagramsCurrentStage);
 
     // Get current cod diagrams.
     let allCodDiagrams = store.peekAll('fd-dev-uml-cod');
     let codDiagramsCurrentStage = allCodDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    modelHash.cod = Ember.A(codDiagramsCurrentStage);
+    modelHash.cod = A(codDiagramsCurrentStage);
 
     // Get current dpd diagrams.
     let allDpdDiagrams = store.peekAll('fd-dev-uml-dpd');
     let dpdDiagramsCurrentStage = allDpdDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    modelHash.dpd = Ember.A(dpdDiagramsCurrentStage);
+    modelHash.dpd = A(dpdDiagramsCurrentStage);
 
     // Get current sd diagrams.
     let allSdDiagrams = store.peekAll('fd-dev-uml-sd');
     let sdDiagramsCurrentStage = allSdDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    modelHash.sd = Ember.A(sdDiagramsCurrentStage);
+    modelHash.sd = A(sdDiagramsCurrentStage);
 
     // Get current std diagrams.
     let allStdDiagrams = store.peekAll('fd-dev-uml-std');
     let stdDiagramsCurrentStage = allStdDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    modelHash.std = Ember.A(stdDiagramsCurrentStage);
+    modelHash.std = A(stdDiagramsCurrentStage);
 
     // Get current ucd diagrams.
     let allUcdDiagrams = store.peekAll('fd-dev-uml-ucd');
     let ucdDiagramsCurrentStage = allUcdDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    modelHash.ucd = Ember.A(ucdDiagramsCurrentStage);
+    modelHash.ucd = A(ucdDiagramsCurrentStage);
 
     return modelHash;
   },
