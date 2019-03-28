@@ -14,6 +14,16 @@ export default Ember.Component.extend({
   sheetComponentName: '',
 
   /**
+    Flag, that indicates when need show toolbar on sheet
+
+    @private
+    @property showToolbar
+    @readOnly
+    @type Boolean
+  */
+  showToolbar: true,
+
+  /**
     Service for managing the state of the component.
 
     @property fdSheetService

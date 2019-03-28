@@ -37,15 +37,6 @@ export default Ember.Controller.extend({
   _isSheetCreateClassPanel: false,
 
   /**
-    Title of sheet.
-
-    @private
-    @property _sheetTitle
-    @type String
-  */
-  _sheetTitle: '',
-
-  /**
     Value selected entity.
 
     @property selectedElement
@@ -197,18 +188,11 @@ export default Ember.Controller.extend({
      @param {Object} currentItem Current list item
   */
   openSheet(sheetName, currentItem) {
-    let isSheetCreateClassPanel = this.get('_isSheetCreateClassPanel');
-    if (isSheetCreateClassPanel && !Ember.isNone(currentItem)) {
-      this.set('_isSheetCreateClassPanel', false);
-    }
-
     let sheetComponentName = this.get('sheetComponentName');
     if (sheetComponentName === sheetName) {
       this.deactivateListItem();
       this.set('selectedElement', currentItem);
     }
-
-    this.setSheetTitle();
   },
 
   /**
@@ -223,6 +207,8 @@ export default Ember.Controller.extend({
       this.deactivateListItem();
       this.set('selectedElement', undefined);
     }
+
+    this.set('_isSheetCreateClassPanel', false);
   },
 
   /**
@@ -245,19 +231,6 @@ export default Ember.Controller.extend({
     });
 
     return Ember.RSVP.all(promises);
-  },
-
-  /**
-    Determine sheet title.
-
-     @method setSheetTitle
-  */
-  setSheetTitle() {
-    let isSheetCreateClassPanel = this.get('_isSheetCreateClassPanel');
-    let createClassPanelTitle = "СОЗДАТЬ КЛАСС ПОПРАВИТЬ T";
-    let itemTitle = this.get('selectedElement.model.name');
-    let title = isSheetCreateClassPanel ? createClassPanelTitle : itemTitle;
-    this.set('_sheetTitle', title);
   },
 
   actions: {
@@ -295,43 +268,6 @@ export default Ember.Controller.extend({
       let fdSheetService = this.get('fdSheetService');
 
       fdSheetService.openSheet(sheetComponentName);
-    },
-
-    /**
-      Create new Class
-
-       @method actions.createClass
-    */
-    createClass(stereotype) {
-      this.set('_isSheetCreateClassPanel', false);
-      let fdCurrentProjectContextService = this.get('fdCurrentProjectContext');
-      let currentStage = fdCurrentProjectContextService.getCurrentStageModel();
-
-      let newClass = this.store.createRecord('fd-dev-class', {
-        stage: currentStage,
-        stereotype: stereotype,
-        name: '',
-        nameStr: ''
-      });
-
-      let newClassObject = Ember.Object.create({
-        model: newClass
-      });
-
-      switch (stereotype) {
-        case '«implementation»':
-          this.get('model.classes').push({settings: newClassObject})
-            ;
-          break;
-        case '«enumeration»':
-          this.get('model.enums').push(newClassObject);
-          break;
-        case '«typedef»':
-          this.get('model.typedefs').push(newClassObject);
-          break;
-      }
-
-      this.set('selectedElement', newClassObject);
     }
   }
 });
