@@ -5,7 +5,7 @@
 import Ember from 'ember';
 
 import FdDataType from '../objects/fd-data-type';
-import { deserialize } from '../utils/fd-type-map-functions';
+import { deserialize } from '../utils/transforms-utils/fd-type-map-functions';
 import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 
 /**

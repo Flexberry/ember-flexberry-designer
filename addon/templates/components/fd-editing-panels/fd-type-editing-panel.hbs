@@ -39,13 +39,12 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="three wide column">
-      <div>{{t "components.fd-type-editing-panel.instances-caption"}}</div>
-    </div>
-    <div class="thirteen wide column light-text">
-
-    </div>
-  </div>
+  {{fd-attribute-table
+    tableView=tableViewForStoreInstancesInType
+    buttonCaption=storeInstancesInTypeButton
+    model=model.storeInstancesInTypeXML
+    create=(action 'createStoreInstancesInType')
+    delete=(action 'deleteStoreInstancesInType')
+  }}
 
 </div>

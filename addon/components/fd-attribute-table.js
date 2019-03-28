@@ -61,9 +61,9 @@ export default Ember.Component.extend({
       @method actions.deleteValue
     */
     deleteValue() {
-      this.sendAction('delete');
-
       let selectedValues = this.get('selectedValues');
+      this.sendAction('delete', selectedValues);
+
       selectedValues.forEach((value) => value.deleteRecord());
       selectedValues.clear();
     },

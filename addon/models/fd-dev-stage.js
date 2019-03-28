@@ -11,7 +11,7 @@ import {
   defineBaseModel,
 } from '../mixins/regenerated/models/fd-dev-stage';
 
-import { deserialize, serialize } from '../utils/fd-type-map-functions';
+import { deserialize, serialize } from '../utils/transforms-utils/fd-type-map-functions';
 
 /**
   Model for stage.
