@@ -158,8 +158,6 @@ export default Ember.Controller.extend({
   savePrimitives() {
     let model = this.get('selectedElement.model');
     let primitives = model.get('primitives');
-    let first = primitives.shift();
-    primitives.push(first); //Change primitives for enebling serialize(). First Element to last
     model.set('primitivesJsonString', JSON.stringify(primitives));
     let createdClasses = this.get('createdClasses');
     let promises = createdClasses.map(c => c.save());
