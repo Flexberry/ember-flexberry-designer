@@ -1,0 +1,19 @@
+<div class="ui stackable grid fd-list">
+
+  <div class="panel-wrapper">
+    <div class="closable panel-left">
+      <div class="ui segments">
+        <div class="ui segment">
+          {{t "components.fd-create-view.attributes-tree.caption"}}
+        </div>
+        {{
+          fd-ember-jstree
+          actionReceiver=jstreeActionReceiver
+          data=tree
+          loadDataNode=loadDataNode
+          searchTermPlaceholder=(t "components.fd-create-view.attributes-tree.search")
+        }}
+      </div>
+    </div>
+  </div>
+</div>

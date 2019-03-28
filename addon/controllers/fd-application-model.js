@@ -23,9 +23,16 @@ export default Ember.Controller.extend({
 
     @property selectedElement
     @type Object
-    @default undefined
   */
   selectedElement: undefined,
+
+  /**
+    Value selected view.
+
+    @property selectedView
+    @type Object
+  */
+  selectedView: undefined,
 
   /**
     Value search input.
@@ -46,6 +53,15 @@ export default Ember.Controller.extend({
   sheetComponentName: '',
 
   /**
+    Sheet view name.
+
+    @property sheetViewName
+    @type String
+    @default ''
+  */
+  sheetViewName: '',
+
+  /**
     Ember.observer, watching property `searchValue` and send action from 'fd-sheet' component.
 
     @method searchValueObserver
@@ -56,6 +72,8 @@ export default Ember.Controller.extend({
     if (fdSheetService.isVisible(sheetComponentName)) {
       fdSheetService.closeSheet(sheetComponentName);
     }
+
+    this.closeViewSheet();
   }),
 
   /**
@@ -172,6 +190,7 @@ export default Ember.Controller.extend({
     let sheetComponentName = this.get('sheetComponentName');
     if (sheetComponentName === sheetName) {
       this.deactivateListItem();
+      this.closeViewSheet();
       this.set('selectedElement', currentItem);
     }
   },
@@ -186,11 +205,49 @@ export default Ember.Controller.extend({
     let sheetComponentName = this.get('sheetComponentName');
     if (sheetComponentName === sheetName) {
       this.deactivateListItem();
+      this.closeViewSheet();
       this.set('selectedElement', undefined);
     }
   },
 
+  /**
+    Closing view sheet.
+
+     @method closeViewSheet
+  */
+  closeViewSheet() {
+    let sheetViewName = this.get('sheetViewName');
+    let fdSheetService = this.get('fdSheetService');
+    if (fdSheetService.isVisible(sheetViewName)) {
+      fdSheetService.closeSheet(sheetViewName);
+      this.set('selectedView', undefined);
+    }
+  },
+
+  /**
+    Save dirty hasMany relationships in the `model`.
+    This method invokes by `save` method.
+
+    @method saveHasManyRelationships
+    @param {DS.Model} model Record with hasMany relationships.
+    @return {Promise} A promise that will be resolved to array of saved records.
+  */
+  saveHasManyRelationships(model) {
+    let promises = [];
+    model.eachRelationship((name, desc) => {
+      if (desc.kind === 'hasMany') {
+        model.get(name).filterBy('hasDirtyAttributes', true).forEach((record) => {
+          let promise = record.save();
+          promises.push(promise);
+        });
+      }
+    });
+
+    return Ember.RSVP.all(promises);
+  },
+
   actions: {
+
     /**
       Save 'selectedElement'.
 
@@ -200,13 +257,26 @@ export default Ember.Controller.extend({
       let model = this.get('selectedElement.model');
       this.get('appState').loading();
       model.save()
+      .then(() => this.saveHasManyRelationships(model))
+      .then(() => {
+        this.updateClassModel(model);
+      })
       .catch((error) => {
         this.set('error', error);
       })
       .finally(() => {
         this.get('appState').reset();
       });
-      this.updateClassModel(model);
+    },
+
+    /**
+      Opening sheet 'view-sheet'.
+
+       @method actions.openViewSheet
+    */
+    openViewSheet(view) {
+      this.set('selectedView', view);
+      this.get('fdSheetService').openSheet(this.get('sheetViewName'));
     }
   }
 });

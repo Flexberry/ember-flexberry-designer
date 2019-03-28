@@ -9,7 +9,9 @@
 }}
 
 {{#if (known-for-type (concat "fd-uml-diagram-toolbars/fd-" diagramType "-toolbar"))}}
-  {{component (concat "fd-uml-diagram-toolbars/fd-" diagramType "-toolbar")
-    toolbarButtonClicked=(action "toolbarButtonClicked")
-  }}
+  <div class="fd-uml-diagram-toolbar">
+    {{component (concat "fd-uml-diagram-toolbars/fd-" diagramType "-toolbar")
+      toolbarButtonClicked=(action "toolbarButtonClicked")
+    }}
+  </div>
 {{/if}}

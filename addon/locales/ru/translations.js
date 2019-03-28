@@ -117,6 +117,7 @@ import FdVisualControlModel from './models/fd-visual-control';
 import FdVisualControlComponent from './components/fd-visual-control';
 import FdVisualEditControlTreeComponent from './components/fd-visual-edit-control-tree';
 import FdTabs from './components/fd-tabs';
+import FdAttributeTable from './components/fd-attribute-table';
 import FdClassEditingPanel from './components/fd-implementation-editing-panel';
 import FdUserformEditingPanel from './components/fd-userform-editing-panel';
 import FdTypeEditingPanel from './components/fd-type-editing-panel';
@@ -126,6 +127,7 @@ import FdApplicationEditingPanel from './components/fd-application-editing-panel
 import FdInterfaceEditingPanel from './components/fd-interface-editing-panel';
 import FdBsEditingPanel from './components/fd-businessserver-editing-panel';
 import FdEnumEditingPanel from './components/fd-enumeration-editing-panel';
+import FdCreateView from './components/fd-create-view';
 import FdSheet from './components/fd-sheet';
 import FdApplicationModelForm from './forms/fd-application-model';
 
@@ -412,6 +414,7 @@ Ember.$.extend(true, translations, {
     'fd-visual-control': FdVisualControlComponent,
     'fd-visual-edit-control-tree': FdVisualEditControlTreeComponent,
     'fd-tabs': FdTabs,
+    'fd-attribute-table': FdAttributeTable,
     'fd-implementation-editing-panel': FdClassEditingPanel,
     'fd-userform-editing-panel': FdUserformEditingPanel,
     'fd-type-editing-panel': FdTypeEditingPanel,
@@ -421,6 +424,7 @@ Ember.$.extend(true, translations, {
     'fd-interface-editing-panel': FdInterfaceEditingPanel,
     'fd-businessserver-editing-panel': FdBsEditingPanel,
     'fd-enumeration-editing-panel': FdEnumEditingPanel,
+    'fd-create-view': FdCreateView,
     'fd-sheet': FdSheet,
   }
 
