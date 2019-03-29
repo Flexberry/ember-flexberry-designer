@@ -5,7 +5,22 @@
       {{t "components.fd-external-editing-panel.template-caption"}}
     </div>
     <div class="thirteen wide column light-text">
-
+      {{flexberry-dropdown
+        items=stageItems
+        value=stageValue
+        class='fluid input'
+        isSearch=true
+        onChange=(action "changeStageValue")
+      }}
+      {{#if stageValue}}
+        {{flexberry-dropdown
+          items=classItems
+          value=classValue
+          class='fluid input'
+          isSearch=true
+          onChange=(action "changeClassValue")
+        }}
+      {{/if}}
     </div>
   </div>
 
