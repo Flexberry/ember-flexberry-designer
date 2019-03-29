@@ -30,11 +30,15 @@ export default Ember.Service.extend(Ember.Evented, {
     this.trigger('openSheetTriggered', sheetName, currentItem);
     this.set(`sheetSettings.visibility.${sheetName}`, true);
     Ember.$('.pushable').addClass('fade');
+    Ember.$('.fd-sheet.visible.expand .content-mini').addClass('fade');
 
     let sidebarWidth = Ember.$('.ui.sidebar.main.menu').width();
 
     let sheetTranslate = `translate3d(calc(50% - ${sidebarWidth}px), 0, 0)`;
     Ember.$(`.fd-sheet.${sheetName}`).css({ 'transform': sheetTranslate });
+
+    // Сбрасываем стиль с кнопки сайдбара.
+    Ember.$('.toggle-sidebar').removeClass('expanded');
   },
 
   /**
@@ -51,15 +55,24 @@ export default Ember.Service.extend(Ember.Evented, {
 
     if (Ember.$('.fd-sheet.visible').length < 2) {
       Ember.$('.pushable').removeClass('fade');
+
+      // Сбрасываем стиль с кнопки сайдбара.
+      Ember.$('.toggle-sidebar').removeClass('expanded');
+    } else {
+      if (Ember.$('.fd-sheet.visible').hasClass('expand')) {
+
+        // Затемняем кнопку сайдбара.
+        Ember.$('.toggle-sidebar').addClass('expanded');
+        Ember.$('.toggle-sidebar').addClass('no-delay');
+      }
     }
 
+    Ember.$('.fd-sheet.visible.expand .content-mini').removeClass('fade');
     currentSheet.css({ 'transform': '' });
-
-    // Сбрасываем стиль с кнопки сайдбара.
-    Ember.$('.toggle-sidebar').removeClass('expanded');
 
     Ember.run.later(function() {
       Ember.$('.content-mini', currentSheet).css({ width: '' });
+      Ember.$('.toggle-sidebar').removeClass('no-delay');
     }, 1000);
   },
 

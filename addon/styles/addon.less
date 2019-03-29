@@ -5,12 +5,14 @@
 @import 'components/fd-sheet';
 @import 'components/fd-list';
 
-.pushable, .full.height{
+.pushable,
+.full.height {
   transition: background-color 1s;
 }
 
 .pushable.fade,
-.pushable.fade .full.height{
+.pushable.fade .full.height,
+.content-mini.fade {
   background: @overlayColor;
 }
 
