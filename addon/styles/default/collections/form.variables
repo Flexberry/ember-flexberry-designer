@@ -1,2 +1,7 @@
 @inputBorder: none;
 @inputPadding: 0;
+@textAreaPadding: 0;
+@textAreaHeight: 2em;
+@textAreaMinHeight: 2em;
+@inputPlaceholderFocusColor: transparent;
+@inputPlaceholderColor: @lightTextColor;
