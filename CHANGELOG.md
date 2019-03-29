@@ -26,6 +26,7 @@ All notable changes to this project will be documented in this file.
 * Buttons for adding ucd diagram primitives.
 * Forms of projects for new design.
 * Current project name view.
+* Create new classes in application model.
 
 ### Changed
 * The edit form constructor:
