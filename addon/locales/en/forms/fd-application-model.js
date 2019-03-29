@@ -1,7 +1,7 @@
 export default {
   caption: 'Application model',
   'type-caption': 'Type ▾',
-  'create-class-caption': 'Class',
+  'create-class-caption': 'Create class',
   'enum-caption': 'Enumeration',
   'entity-caption': 'Entity',
   'editor-caption': 'Editor',

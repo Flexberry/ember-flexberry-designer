@@ -24,6 +24,16 @@ export default Ember.Component.extend({
   showToolbar: true,
 
   /**
+    Flag, that indicates when sheet have save function
+
+    @private
+    @property savingSheet
+    @readOnly
+    @type Boolean
+  */
+  savingSheet: true,
+
+  /**
     Service for managing the state of the component.
 
     @property fdSheetService

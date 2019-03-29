@@ -287,11 +287,11 @@
   </div>
 </form>
 {{#fd-sheet
-  title=(if (or (not _isSheetCreateClassPanel) selectedElement) selectedElement.model.name 'Создать сущность')
+  title=(if (or (not _isSheetCreateClassPanel) selectedElement) selectedElement.model.name (t "forms.fd-application-model.create-class-caption"))
   saveController=(action 'save')
   sheetComponentName=sheetComponentName
-  readonly = (not (and _isSheetCreateClassPanel selectedElement))
-  showToolbar = (or (not _isSheetCreateClassPanel) selectedElement)
+  readonly=(not (and selectedElement (not selectedElement.model.id)))
+  savingSheet=(or (not _isSheetCreateClassPanel) selectedElement)
 }}
   {{#if (or (not _isSheetCreateClassPanel) selectedElement)}}
     {{#if (known-for-type (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel"))}}
@@ -307,7 +307,7 @@
     {{
       fd-editing-panels/fd-create-entity
       model=model
-      createdElement = selectedElement
+      createdElement=selectedElement
     }}
   {{/if}}
 {{/fd-sheet}}

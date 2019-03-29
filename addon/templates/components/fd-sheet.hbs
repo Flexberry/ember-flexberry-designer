@@ -3,19 +3,21 @@
     <div class="ui text loader"></div>
   </div>
 
-  <div class="fd-sheet-toolbar">
-    {{#if showToolbar}}
-      <button class="ui button" {{action 'save'}}>
-        {{t "components.fd-sheet.save-caption"}}
-      </button>
+  {{#if showToolbar}}
+    <div class="fd-sheet-toolbar">
+      {{#if savingSheet}}
+        <button class="ui button" {{action 'save'}}>
+          {{t "components.fd-sheet.save-caption"}}
+        </button>
+      {{/if}}
       <button class="ui icon button" {{action 'expand'}}>
         <i class="icon-fd-resize icon" ></i>
       </button>
-    {{/if}}
-    <button class="ui icon button" {{action 'closeSheet'}}>
-      <i class="icon-fd-x-mark icon" ></i>
-    </button>
-  </div>
+      <button class="ui icon button" {{action 'closeSheet'}}>
+        <i class="icon-fd-x-mark icon" ></i>
+      </button>
+    </div>
+  {{/if}}
 
   {{flexberry-textbox
     value=title

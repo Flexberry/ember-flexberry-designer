@@ -157,8 +157,7 @@ export default Ember.Controller.extend({
      @method deactivateListItem
   */
   deactivateListItem() {
-    let selectedElement = this.get('selectedElement');
-    
+    let selectedElement = this.get('selectedElement');    
     if (!Ember.isNone(selectedElement)) {
       let model = selectedElement.get('model');
       model.rollbackAll();
