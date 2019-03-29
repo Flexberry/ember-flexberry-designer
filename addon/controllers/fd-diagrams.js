@@ -157,12 +157,11 @@ export default Ember.Controller.extend({
   */
   savePrimitives() {
     let model = this.get('selectedElement.model');
-    model.set('primitivesJsonString', JSON.stringify(model.get('primitives')));
-
+    let primitives = model.get('primitives');
+    model.set('primitivesJsonString', JSON.stringify(primitives));
     let createdClasses = this.get('createdClasses');
     let promises = createdClasses.map(c => c.save());
     createdClasses.clear();
-
     return Ember.RSVP.all(promises);
   },
 

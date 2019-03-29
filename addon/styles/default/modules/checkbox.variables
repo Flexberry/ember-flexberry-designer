@@ -1,2 +1,7 @@
-@checkboxBackground: @inputBackground;
-@checkboxBorder: 1px solid @sidebarBg;
+@checkboxBorder: none;
+
+@checkboxBackground: transparent;
+@checkboxFocusBackground: transparent;
+@checkboxPressedBackground: transparent;
+@checkboxActiveBackground: transparent;
+@checkboxActiveFocusBackground: transparent;
