@@ -48,6 +48,14 @@ export default Ember.Service.extend({
   store: Ember.inject.service('store'),
 
   /**
+    Router service of current application.
+
+    @property _router
+    @type RouterService
+  */
+  _router: Ember.inject.service('-routing'),
+
+  /**
     Set current configuration.
 
     @method setCurrentConfiguration
@@ -242,8 +250,11 @@ export default Ember.Service.extend({
     return system;
   },
 
-  _router: Ember.inject.service('-routing'),
+  /**
+    Perform transition to initial stage selection route.
 
+    @method _transitionToSelectStage
+  */
   _transitionToSelectStage() {
     this.get('_router').transitionTo('fd-all-projects');
   }
