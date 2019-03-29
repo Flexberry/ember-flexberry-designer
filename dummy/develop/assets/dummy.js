@@ -1053,6 +1053,8 @@ define('dummy/controllers/application', ['exports', 'ember'], function (exports,
         @method actions.toggleSidebar
       */
       toggleSidebar: function toggleSidebar() {
+        var _this = this;
+
         var sidebar = _ember['default'].$('.ui.sidebar.main.menu');
         sidebar.sidebar('toggle');
         var sidebarVisible = sidebar.hasClass('visible');
@@ -1065,16 +1067,17 @@ define('dummy/controllers/application', ['exports', 'ember'], function (exports,
           _ember['default'].$('.toggle-sidebar').css({ transition: '' });
         }
 
-        // Sheet content is animated only if it is expanded.
-        if (_ember['default'].$('.fd-sheet.visible').hasClass('expand')) {
-          var expandedSeet = _ember['default'].$('.fd-sheet.visible.expand');
-          this.get('fdSheetService').animatingSheetContent(expandedSeet.attr('class').replace(/ /g, '.'), contentWidth, 250);
-        } else {
+        var visibleSheets = _ember['default'].$('.fd-sheet.visible').toArray();
+        visibleSheets.forEach(function (item) {
+          if (_ember['default'].$(item).hasClass('expand')) {
+            _this.get('fdSheetService').animatingSheetContent(_ember['default'].$(item).attr('class').replace(/ /g, '.'), contentWidth, 250);
+          } else {
 
-          // That the sheet remained in its place and did not go along with the content.
-          var sheetTranslate = 'translate3d(calc(50% - ' + currentSidebarWidth + '), 0, 0)';
-          _ember['default'].$('.fd-sheet.visible').css({ 'transform': sheetTranslate });
-        }
+            // That the sheet remained in its place and did not go along with the content.
+            var sheetTranslate = 'translate3d(calc(50% - ' + currentSidebarWidth + '), 0, 0)';
+            _ember['default'].$(item).css({ 'transform': sheetTranslate });
+          }
+        });
 
         // Animated increases the width of the page content.
         _ember['default'].$('.full.height .flexberry-vertical-form').css({ opacity: 0.2 });
@@ -20357,7 +20360,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
               "column": 0
             },
             "end": {
-              "line": 97,
+              "line": 96,
               "column": 0
             }
           },
@@ -20547,18 +20550,18 @@ define("dummy/templates/application", ["exports"], function (exports) {
           var el5 = dom.createTextNode(" \n      ");
           dom.appendChild(el4, el5);
           dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n    ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n    ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "right menu");
           var el4 = dom.createTextNode("\n      ");
           dom.appendChild(el3, el4);
-          var el4 = dom.createElement("div");
-          dom.setAttribute(el4, "class", "right menu");
-          var el5 = dom.createTextNode("\n        ");
-          dom.appendChild(el4, el5);
-          var el5 = dom.createComment("");
-          dom.appendChild(el4, el5);
-          var el5 = dom.createTextNode("\n      ");
-          dom.appendChild(el4, el5);
+          var el4 = dom.createComment("");
           dom.appendChild(el3, el4);
-          var el4 = dom.createTextNode("\n\n    ");
+          var el4 = dom.createTextNode("\n    ");
           dom.appendChild(el3, el4);
           dom.appendChild(el2, el3);
           var el3 = dom.createTextNode("\n  ");
@@ -20592,11 +20595,11 @@ define("dummy/templates/application", ["exports"], function (exports) {
           morphs[11] = dom.createMorphAt(dom.childAt(element4, [11]), 1, 1);
           morphs[12] = dom.createMorphAt(element5, 1, 1);
           morphs[13] = dom.createMorphAt(dom.childAt(element5, [3]), 1, 1);
-          morphs[14] = dom.createMorphAt(dom.childAt(element5, [5]), 1, 1);
+          morphs[14] = dom.createMorphAt(dom.childAt(element3, [5]), 1, 1);
           dom.insertBoundary(fragment, 0);
           return morphs;
         },
-        statements: [["block", "ui-sidebar", [], ["class", "vertical main menu visible uncover", "ui_context", ".ember-application > .ember-view", "closable", false, "dimPage", false, "onShow", ["subexpr", "action", ["updateWidth"], [], ["loc", [null, [10, 9], [10, 31]]]], "onHidden", ["subexpr", "action", ["updateWidth"], [], ["loc", [null, [11, 11], [11, 33]]]]], 0, null, ["loc", [null, [5, 0], [37, 15]]]], ["element", "action", ["toggleSidebar"], [], ["loc", [null, [38, 8], [38, 34]]]], ["inline", "outlet", ["right-sidebar"], [], ["loc", [null, [41, 0], [41, 26]]]], ["attribute", "class", ["concat", ["ui form ", ["get", "appState.state", ["loc", [null, [44, 24], [44, 38]]]]]]], ["content", "outlet", ["loc", [null, [48, 12], [48, 22]]]], ["inline", "outlet", ["modal"], [], ["loc", [null, [55, 2], [55, 20]]]], ["inline", "partial", ["svg-icons/social-icons/vk"], [], ["loc", [null, [61, 8], [61, 47]]]], ["inline", "partial", ["svg-icons/social-icons/facebook"], [], ["loc", [null, [64, 8], [64, 53]]]], ["inline", "partial", ["svg-icons/social-icons/twitter"], [], ["loc", [null, [67, 8], [67, 52]]]], ["inline", "partial", ["svg-icons/social-icons/github"], [], ["loc", [null, [70, 8], [70, 51]]]], ["inline", "partial", ["svg-icons/social-icons/youtube"], [], ["loc", [null, [73, 8], [73, 52]]]], ["inline", "partial", ["svg-icons/social-icons/gitter"], [], ["loc", [null, [76, 8], [76, 51]]]], ["inline", "t", ["forms.application.footer.application-name"], [], ["loc", [null, [80, 6], [80, 55]]]], ["inline", "t", ["forms.application.footer.copyright"], [], ["loc", [null, [82, 8], [82, 50]]]], ["inline", "flexberry-dropdown", [], ["class", "compact", "items", ["subexpr", "@mut", [["get", "locales", ["loc", [null, [87, 16], [87, 23]]]]], [], []], "value", ["subexpr", "@mut", [["get", "i18n.locale", ["loc", [null, [88, 16], [88, 27]]]]], [], []], "placeholder", ["subexpr", "t", ["forms.application.header.menu.language-dropdown.placeholder"], [], ["loc", [null, [89, 22], [89, 87]]]], "direction", "upward"], ["loc", [null, [85, 8], [91, 10]]]]],
+        statements: [["block", "ui-sidebar", [], ["class", "vertical main menu visible uncover", "ui_context", ".ember-application > .ember-view", "closable", false, "dimPage", false, "onShow", ["subexpr", "action", ["updateWidth"], [], ["loc", [null, [10, 9], [10, 31]]]], "onHidden", ["subexpr", "action", ["updateWidth"], [], ["loc", [null, [11, 11], [11, 33]]]]], 0, null, ["loc", [null, [5, 0], [37, 15]]]], ["element", "action", ["toggleSidebar"], [], ["loc", [null, [38, 8], [38, 34]]]], ["inline", "outlet", ["right-sidebar"], [], ["loc", [null, [41, 0], [41, 26]]]], ["attribute", "class", ["concat", ["ui form ", ["get", "appState.state", ["loc", [null, [44, 24], [44, 38]]]]]]], ["content", "outlet", ["loc", [null, [48, 12], [48, 22]]]], ["inline", "outlet", ["modal"], [], ["loc", [null, [55, 2], [55, 20]]]], ["inline", "partial", ["svg-icons/social-icons/vk"], [], ["loc", [null, [61, 8], [61, 47]]]], ["inline", "partial", ["svg-icons/social-icons/facebook"], [], ["loc", [null, [64, 8], [64, 53]]]], ["inline", "partial", ["svg-icons/social-icons/twitter"], [], ["loc", [null, [67, 8], [67, 52]]]], ["inline", "partial", ["svg-icons/social-icons/github"], [], ["loc", [null, [70, 8], [70, 51]]]], ["inline", "partial", ["svg-icons/social-icons/youtube"], [], ["loc", [null, [73, 8], [73, 52]]]], ["inline", "partial", ["svg-icons/social-icons/gitter"], [], ["loc", [null, [76, 8], [76, 51]]]], ["inline", "t", ["forms.application.footer.application-name"], [], ["loc", [null, [80, 6], [80, 55]]]], ["inline", "t", ["forms.application.footer.copyright"], [], ["loc", [null, [82, 8], [82, 50]]]], ["inline", "flexberry-dropdown", [], ["class", "compact", "items", ["subexpr", "@mut", [["get", "locales", ["loc", [null, [88, 14], [88, 21]]]]], [], []], "value", ["subexpr", "@mut", [["get", "i18n.locale", ["loc", [null, [89, 14], [89, 25]]]]], [], []], "placeholder", ["subexpr", "t", ["forms.application.header.menu.language-dropdown.placeholder"], [], ["loc", [null, [90, 20], [90, 85]]]], "direction", "upward"], ["loc", [null, [86, 6], [92, 8]]]]],
         locals: [],
         templates: [child0]
       };
@@ -20615,7 +20618,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 98,
+            "line": 97,
             "column": 0
           }
         },
@@ -20638,7 +20641,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["block", "if", [["get", "isInAcceptanceTestMode", ["loc", [null, [1, 6], [1, 28]]]]], [], 0, 1, ["loc", [null, [1, 0], [97, 7]]]]],
+      statements: [["block", "if", [["get", "isInAcceptanceTestMode", ["loc", [null, [1, 6], [1, 28]]]]], [], 0, 1, ["loc", [null, [1, 0], [96, 7]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -63138,7 +63141,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+3f761e3e"});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net","backendUrls":{"root":"https://ember-flexberry-designer-dummy.azurewebsites.net","api":"https://ember-flexberry-designer-dummy.azurewebsites.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://ember-flexberry-designer-dummy.azurewebsites.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}},"version":"0.3.0-beta.3+d2e9846c"});
 }
 
 /* jshint ignore:end */

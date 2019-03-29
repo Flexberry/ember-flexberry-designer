@@ -625,6 +625,10 @@
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -1647,6 +1651,10 @@ th {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -2034,6 +2042,10 @@ th {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*******************************
              Mix-ins
 *******************************/
@@ -2785,6 +2797,10 @@ input::selection {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -6611,6 +6627,10 @@ input::selection {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -7383,6 +7403,10 @@ input::selection {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -8258,6 +8282,10 @@ input::selection {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -9908,6 +9936,10 @@ i.flag.zimbabwe:before {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -11197,6 +11229,10 @@ a.ui.inverted.grey.header:hover {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -14307,6 +14343,10 @@ i.icon.bed:before {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -15225,6 +15265,10 @@ img.ui.bordered.image {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -15312,7 +15356,7 @@ img.ui.bordered.image {
   line-height: 1.2142em;
   font-family: 'Roboto', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   padding: 0.5804em 0.875em;
-  background: #FFFFFF;
+  background: transparent;
   border: 1px solid rgba(34, 36, 38, 0.15);
   color: rgba(0, 0, 0, 0.75);
   border-radius: 0.25rem;
@@ -15391,7 +15435,7 @@ img.ui.bordered.image {
 .ui.input.focus input,
 .ui.input input:focus {
   border-color: #85B7D9;
-  background: #FFFFFF;
+  background: transparent;
   color: rgba(0, 0, 0, 0.8);
   box-shadow: none;
 }
@@ -16321,6 +16365,10 @@ img.ui.bordered.image {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -18152,6 +18200,10 @@ a.ui.basic.label:hover {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -19700,6 +19752,10 @@ ol.ui.horizontal.list li:before,
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -20589,6 +20645,10 @@ ol.ui.horizontal.list li:before,
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -21339,6 +21399,10 @@ ol.ui.horizontal.list li:before,
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -22185,6 +22249,10 @@ ol.ui.horizontal.list li:before,
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -22881,6 +22949,9 @@ ol.ui.horizontal.list li:before,
 /*******************************
          Theme Overrides
 *******************************/
+.ui.vertical.footer.segment > .flex-container .right.menu {
+  padding: 0 1em;
+}
 .ui.vertical.footer.segment > .flex-container > .ui.text.menu {
   margin: 0px;
   padding: 0px 30px;
@@ -23518,6 +23589,10 @@ ol.ui.horizontal.list li:before,
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -24671,6 +24746,10 @@ ol.ui.horizontal.list li:before,
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -25411,6 +25490,10 @@ ol.ui.horizontal.list li:before,
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -25599,7 +25682,7 @@ ol.ui.horizontal.list li:before,
   line-height: 1.2142em;
   padding: 0;
   font-size: 1em;
-  background: #FFFFFF;
+  background: transparent;
   border: none;
   color: rgba(0, 0, 0, 0.75);
   border-radius: 0.25rem;
@@ -25612,7 +25695,7 @@ ol.ui.horizontal.list li:before,
   -webkit-appearance: none;
   tap-highlight-color: rgba(255, 255, 255, 0);
   padding: 0.6875em 0.875em;
-  background: #FFFFFF;
+  background: transparent;
   border: none;
   outline: none;
   color: rgba(0, 0, 0, 0.75);
@@ -25818,14 +25901,14 @@ ol.ui.horizontal.list li:before,
   color: rgba(0, 0, 0, 0.95);
   border-color: #85B7D9;
   border-radius: 0.25rem;
-  background: #FFFFFF;
+  background: transparent;
   box-shadow: 0px 0em 0em 0em rgba(34, 36, 38, 0.35) inset;
 }
 .ui.form textarea:focus {
   color: rgba(0, 0, 0, 0.95);
   border-color: #85B7D9;
   border-radius: 0.25rem;
-  background: #FFFFFF;
+  background: transparent;
   box-shadow: 0px 0em 0em 0em rgba(34, 36, 38, 0.35) inset;
   -webkit-appearance: none;
 }
@@ -26103,7 +26186,7 @@ ol.ui.horizontal.list li:before,
 .ui.inverted.form input[type="time"],
 .ui.inverted.form input[type="text"],
 .ui.inverted.form input[type="url"] {
-  background: #FFFFFF;
+  background: transparent;
   border-color: rgba(255, 255, 255, 0.1);
   color: rgba(0, 0, 0, 0.75);
   box-shadow: none;
@@ -27018,6 +27101,10 @@ ol.ui.horizontal.list li:before,
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -29488,6 +29575,10 @@ ol.ui.horizontal.list li:before,
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -31924,6 +32015,10 @@ Floated Menu / Item
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -32972,6 +33067,10 @@ Floated Menu / Item
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -34641,6 +34740,10 @@ Floated Menu / Item
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -35483,6 +35586,10 @@ Floated Menu / Item
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -37019,6 +37126,10 @@ a.ui.card:hover,
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -37900,6 +38011,10 @@ a.ui.card:hover,
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -38819,6 +38934,10 @@ a.ui.card:hover,
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -39884,6 +40003,10 @@ a.ui.card:hover,
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -41037,6 +41160,10 @@ a.ui.card:hover,
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -41903,6 +42030,10 @@ a.ui.card:hover,
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -43119,6 +43250,10 @@ a.ui.card:hover,
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -43922,6 +44057,10 @@ body.dimmable > .dimmer {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -44363,7 +44502,7 @@ body.dimmable > .dimmer {
   transform: rotateZ(0deg);
   min-width: 14em;
   min-height: 2.5267em;
-  background: #FFFFFF;
+  background: transparent;
   display: inline-block;
   padding: 0.6875em 2.475em 0.6875em 0.875em;
   color: rgba(0, 0, 0, 0.75);
@@ -45875,6 +46014,10 @@ select.ui.dropdown {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -46664,6 +46807,10 @@ select.ui.dropdown {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -47749,6 +47896,10 @@ select.ui.dropdown {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -48530,6 +48681,10 @@ a.ui.nag {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -49514,6 +49669,10 @@ a.ui.nag {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -50614,6 +50773,10 @@ a.ui.nag {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -51471,6 +51634,10 @@ a.ui.nag {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -51554,7 +51721,7 @@ a.ui.nag {
   line-height: 1.2142em;
   padding: 0.5804em 0.875em;
   font-size: 1em;
-  background: #FFFFFF;
+  background: transparent;
   border: 1px solid rgba(34, 36, 38, 0.15);
   color: rgba(0, 0, 0, 0.75);
   box-shadow: 0em 0em 0em 0em transparent inset;
@@ -51679,7 +51846,7 @@ a.ui.nag {
 ---------------------*/
 .ui.search > .prompt:focus {
   border-color: rgba(34, 36, 38, 0.35);
-  background: #FFFFFF;
+  background: transparent;
   color: rgba(0, 0, 0, 0.95);
 }
 /*--------------------
@@ -52486,6 +52653,10 @@ a.ui.nag {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -53240,6 +53411,10 @@ a.ui.nag {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -53767,6 +53942,9 @@ html.ios body {
   opacity: 1;
   transition: opacity 0.7s;
   transition-delay: .7s;
+}
+.toggle-sidebar.expanded.no-delay::after {
+  transition-delay: 0s;
 }
 .toggle-sidebar::after {
   border-top-left-radius: 0;
@@ -54456,6 +54634,10 @@ html.ios body {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -55140,6 +55322,10 @@ html.ios body {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -55840,6 +56026,10 @@ html.ios body {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 /*-------------------
  Component Variables
 ---------------------*/
@@ -57184,6 +57374,10 @@ html.ios body {
 /* Фон затемнение */
 /* Фон кнопок тулбара */
 /* Цвет основных кнопок */
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
 .fd-table-first {
   position: absolute;
   left: -2rem;
@@ -57197,7 +57391,8 @@ html.ios body {
   transition: background-color 1s;
 }
 .pushable.fade,
-.pushable.fade .full.height {
+.pushable.fade .full.height,
+.content-mini.fade {
   background: rgba(0, 0, 0, 0.15);
 }
 .fd-sheet {
@@ -57217,7 +57412,7 @@ html.ios body {
 .fd-sheet .content-mini {
   height: 100%;
   padding: 0 0 1em;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out, background-color 1s;
   width: 50%;
   position: relative;
 }
