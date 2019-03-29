@@ -36,6 +36,10 @@
   transition-delay: .7s;
 }
 
+.toggle-sidebar.expanded.no-delay::after{
+  transition-delay: 0s;
+}
+
 .toggle-sidebar::after {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;

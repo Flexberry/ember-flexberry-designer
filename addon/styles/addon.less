@@ -3,12 +3,14 @@
 @import 'default/globals/site.variables';
 @import 'components/fd-attribute-table.less';
 
-.pushable, .full.height{
+.pushable,
+.full.height {
   transition: background-color 1s;
 }
 
 .pushable.fade,
-.pushable.fade .full.height{
+.pushable.fade .full.height,
+.content-mini.fade {
   background: @overlayColor;
 }
 
@@ -35,7 +37,7 @@
   .content-mini{
     height: 100%;
     padding: 0 0 1em;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out, background-color 1s;
     width: 50%;
     position: relative;
   }
