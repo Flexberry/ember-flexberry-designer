@@ -12,10 +12,4 @@ test('it renders', function(assert) {
   this.render(hbs`{{fd-button}}`);
 
   assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{fd-button caption="template block text"}}`);
-
-  assert.equal(this.$().text().trim(), 'template block text');
 });
