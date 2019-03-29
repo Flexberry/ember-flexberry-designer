@@ -15368,13 +15368,13 @@ img.ui.bordered.image {
 ---------------------*/
 /* browsers require these rules separate */
 .ui.input input::-webkit-input-placeholder {
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.25);
 }
 .ui.input input::-moz-placeholder {
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.25);
 }
 .ui.input input::-ms-input-placeholder {
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.25);
 }
 /*******************************
             States
@@ -25694,7 +25694,7 @@ ol.ui.horizontal.list li:before,
   margin: 0em;
   -webkit-appearance: none;
   tap-highlight-color: rgba(255, 255, 255, 0);
-  padding: 0.6875em 0.875em;
+  padding: 0;
   background: transparent;
   border: none;
   outline: none;
@@ -25707,8 +25707,8 @@ ol.ui.horizontal.list li:before,
   resize: vertical;
 }
 .ui.form textarea:not([rows]) {
-  height: 12em;
-  min-height: 8em;
+  height: 2em;
+  min-height: 2em;
   max-height: 24em;
 }
 .ui.form textarea,
@@ -25848,22 +25848,22 @@ ol.ui.horizontal.list li:before,
 ---------------------*/
 /* browsers require these rules separate */
 .ui.form ::-webkit-input-placeholder {
-  color: rgba(140, 140, 140, 0.75);
+  color: rgba(0, 0, 0, 0.25);
 }
 .ui.form ::-ms-input-placeholder {
-  color: rgba(140, 140, 140, 0.75);
+  color: rgba(0, 0, 0, 0.25);
 }
 .ui.form ::-moz-placeholder {
-  color: rgba(140, 140, 140, 0.75);
+  color: rgba(0, 0, 0, 0.25);
 }
 .ui.form :focus::-webkit-input-placeholder {
-  color: rgba(89, 89, 89, 0.75);
+  color: transparent;
 }
 .ui.form :focus::-ms-input-placeholder {
-  color: rgba(89, 89, 89, 0.75);
+  color: transparent;
 }
 .ui.form :focus::-moz-placeholder {
-  color: rgba(89, 89, 89, 0.75);
+  color: transparent;
 }
 /* Error Placeholder */
 .ui.form .error ::-webkit-input-placeholder {
@@ -44209,6 +44209,11 @@ body.dimmable > .dimmer {
 /* Pointing */
 /* Pointing Upward */
 /* Site Theme */
+/* Visible Hover */
+/* Visible */
+/* Focus */
+/* Active Menu Item */
+/* Selected */
 /*******************************
              Mix-ins
 *******************************/
@@ -44501,13 +44506,13 @@ body.dimmable > .dimmer {
   outline: 0;
   transform: rotateZ(0deg);
   min-width: 14em;
-  min-height: 2.5267em;
+  min-height: 1em;
   background: transparent;
   display: inline-block;
-  padding: 0.6875em 2.475em 0.6875em 0.875em;
+  padding: 0;
   color: rgba(0, 0, 0, 0.75);
   box-shadow: none;
-  border: 1px solid rgba(34, 36, 38, 0.15);
+  border: none;
   border-radius: 0.25rem;
   transition: box-shadow 0.1s ease, width 0.1s ease;
 }
@@ -44599,21 +44604,21 @@ select.ui.dropdown {
 }
 /* Active */
 .ui.selection.active.dropdown {
-  border-color: #96C8DA;
-  box-shadow: 0px 2px 3px 0px rgba(34, 36, 38, 0.15);
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 .ui.selection.active.dropdown .menu {
-  border-color: #96C8DA;
-  box-shadow: 0px 2px 3px 0px rgba(34, 36, 38, 0.15);
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 /* Focus */
 .ui.selection.dropdown:focus {
-  border-color: #96C8DA;
+  border-color: rgba(0, 0, 0, 0.1);
   box-shadow: none;
 }
 .ui.selection.dropdown:focus .menu {
-  border-color: #96C8DA;
-  box-shadow: 0px 2px 3px 0px rgba(34, 36, 38, 0.15);
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 /* Visible */
 .ui.selection.visible.dropdown > .text:not(.default) {
@@ -44622,12 +44627,12 @@ select.ui.dropdown {
 }
 /* Visible Hover */
 .ui.selection.active.dropdown:hover {
-  border-color: #96C8DA;
-  box-shadow: 0px 2px 3px 0px rgba(34, 36, 38, 0.15);
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 .ui.selection.active.dropdown:hover .menu {
-  border-color: #96C8DA;
-  box-shadow: 0px 2px 3px 0px rgba(34, 36, 38, 0.15);
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 /* Dropdown Icon */
 .ui.active.selection.dropdown > .dropdown.icon,
@@ -44815,8 +44820,8 @@ select.ui.dropdown {
 /* Menu Item Active */
 .ui.dropdown .menu .active.item {
   background: transparent;
-  font-weight: bold;
-  color: rgba(0, 0, 0, 0.95);
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.75);
   box-shadow: none;
   z-index: 12;
 }
@@ -44826,7 +44831,7 @@ select.ui.dropdown {
 /* Menu Item Hover */
 .ui.dropdown .menu > .item:hover {
   background: rgba(0, 0, 0, 0.05);
-  color: rgba(0, 0, 0, 0.95);
+  color: rgba(0, 0, 0, 0.75);
   z-index: 13;
 }
 /*--------------------
@@ -44914,8 +44919,8 @@ select.ui.dropdown {
 /* Selected Item */
 .ui.dropdown.selected,
 .ui.dropdown .menu .selected.item {
-  background: rgba(0, 0, 0, 0.03);
-  color: rgba(0, 0, 0, 0.95);
+  background: rgba(0, 0, 0, 0.15);
+  color: rgba(0, 0, 0, 0.75);
 }
 /*--------------------
     Search Filtered
@@ -56977,201 +56982,6 @@ html.ios body {
     transform: scale3d(1, 1, 1);
   }
 }
-.ui.form .uml-class-inputs,
-.ui.form .uml-link-inputs {
-  position: absolute;
-  pointer-events: none;
-  -webkit-user-select: none;
-  padding: 2px 7px;
-  box-sizing: border-box;
-  z-index: 2;
-}
-.ui.form .uml-class-inputs input,
-.ui.form .uml-link-inputs input,
-.ui.form .uml-class-inputs textarea,
-.ui.form .uml-link-inputs textarea {
-  /* Enable interacting with inputs only. */
-  pointer-events: auto;
-}
-.ui.form .uml-class-inputs input.click-disabled,
-.ui.form .uml-link-inputs input.click-disabled,
-.ui.form .uml-class-inputs textarea.click-disabled,
-.ui.form .uml-link-inputs textarea.click-disabled {
-  pointer-events: none;
-}
-.ui.form .uml-class-inputs input[type="text"],
-.ui.form .uml-link-inputs input[type="text"],
-.ui.form .uml-class-inputs textarea {
-  border: none;
-  padding: 0px;
-  color: black;
-  font-size: 12px;
-  font-family: Arial;
-  min-width: 50px;
-  display: block;
-  margin: 0 auto;
-  background-color: transparent;
-}
-.ui.form .uml-class-inputs input[type="text"].class-name-input,
-.ui.form .uml-link-inputs input[type="text"].class-name-input,
-.ui.form .uml-class-inputs textarea.class-name-input {
-  font-weight: bold;
-  text-align: center;
-  resize: none;
-  line-height: 1.1;
-  overflow: hidden;
-}
-.ui.form .uml-class-inputs input[type="text"].class-name-input.active-object-input,
-.ui.form .uml-link-inputs input[type="text"].class-name-input.active-object-input,
-.ui.form .uml-class-inputs textarea.class-name-input.active-object-input {
-  text-decoration: underline;
-}
-.ui.form .uml-class-inputs input[type="text"].class-name-input.instance-input,
-.ui.form .uml-link-inputs input[type="text"].class-name-input.instance-input,
-.ui.form .uml-class-inputs textarea.class-name-input.instance-input {
-  font-weight: normal;
-  text-decoration: underline;
-}
-.ui.form .uml-class-inputs input[type="text"].class-name-input.package-header-input,
-.ui.form .uml-link-inputs input[type="text"].class-name-input.package-header-input,
-.ui.form .uml-class-inputs textarea.class-name-input.package-header-input {
-  font-weight: normal;
-  text-decoration: underline;
-  text-align: left;
-}
-.ui.form .uml-class-inputs input[type="text"].class-name-input.nary-assoc-name,
-.ui.form .uml-link-inputs input[type="text"].class-name-input.nary-assoc-name,
-.ui.form .uml-class-inputs textarea.class-name-input.nary-assoc-name {
-  font-weight: normal;
-  text-decoration: underline;
-  margin-top: 13px;
-}
-.ui.form .uml-class-inputs input[type="text"].params-input,
-.ui.form .uml-link-inputs input[type="text"].params-input,
-.ui.form .uml-class-inputs textarea.params-input {
-  resize: none;
-  overflow: hidden;
-  min-width: 10px;
-  line-height: 1.1;
-}
-.ui.form .uml-class-inputs input[type="text"].class-stereotype-input,
-.ui.form .uml-link-inputs input[type="text"].class-stereotype-input,
-.ui.form .uml-class-inputs textarea.class-stereotype-input {
-  resize: none;
-  line-height: 1.1;
-  overflow: hidden;
-}
-.ui.form .uml-class-inputs input[type="text"].package-header-input,
-.ui.form .uml-link-inputs input[type="text"].package-header-input,
-.ui.form .uml-class-inputs textarea.package-header-input {
-  font-weight: normal;
-  text-decoration: underline;
-  text-align: left;
-  resize: none;
-  margin: 0;
-  line-height: 1.1;
-  overflow: hidden;
-}
-.ui.form .uml-class-inputs input[type="text"].attributes-input,
-.ui.form .uml-link-inputs input[type="text"].attributes-input,
-.ui.form .uml-class-inputs textarea.attributes-input,
-.ui.form .uml-class-inputs input[type="text"].methods-input,
-.ui.form .uml-link-inputs input[type="text"].methods-input,
-.ui.form .uml-class-inputs textarea.methods-input {
-  resize: none;
-  line-height: 1.1;
-  margin: 4px 0 0 0;
-  overflow: hidden;
-}
-.ui.form .uml-class-inputs input[type="text"].start-multiplicity-input,
-.ui.form .uml-link-inputs input[type="text"].start-multiplicity-input,
-.ui.form .uml-class-inputs textarea.start-multiplicity-input,
-.ui.form .uml-class-inputs input[type="text"].end-multiplicity-input,
-.ui.form .uml-link-inputs input[type="text"].end-multiplicity-input,
-.ui.form .uml-class-inputs textarea.end-multiplicity-input,
-.ui.form .uml-class-inputs input[type="text"].start-role-input,
-.ui.form .uml-link-inputs input[type="text"].start-role-input,
-.ui.form .uml-class-inputs textarea.start-role-input,
-.ui.form .uml-class-inputs input[type="text"].end-role-input,
-.ui.form .uml-link-inputs input[type="text"].end-role-input,
-.ui.form .uml-class-inputs textarea.end-role-input {
-  min-width: 10px;
-}
-.ui.form .uml-class-inputs input[type="text"].description-input,
-.ui.form .uml-link-inputs input[type="text"].description-input,
-.ui.form .uml-class-inputs textarea.description-input {
-  min-width: 5px;
-}
-.ui.form .uml-class-inputs input[type="text"].underline-text,
-.ui.form .uml-link-inputs input[type="text"].underline-text,
-.ui.form .uml-class-inputs textarea.underline-text {
-  text-decoration: underline;
-}
-.ui.form .input-buffer {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  visibility: hidden;
-  font-size: 12px;
-  font-family: Arial;
-  font-weight: bold;
-  white-space: pre;
-}
-.ui.form .input-buffer.nary-buffer {
-  margin-top: 13px;
-}
-.edit-disabled {
-  pointer-events: none;
-}
-.edit-disabled .connection-wrap,
-.edit-disabled .marker-arrowhead,
-.edit-disabled .link-tools,
-.edit-disabled .marker-vertices {
-  display: none;
-}
-.joint-paper {
-  min-width: 500px;
-  min-height: 500px;
-  height: 100%;
-  margin-bottom: 150px;
-}
-.fd-uml-diagram-toolbar {
-  background: #FFFFFF;
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
-  display: inline-table;
-  padding: 5px;
-  bottom: 0;
-  font-size: 0;
-  left: 0;
-  position: absolute;
-  width: auto;
-  max-width: 90%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-}
-.fd-uml-diagram-toolbar:before {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: inherit;
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
-}
-.fd-uml-diagram-toolbar .ui.button {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 1rem;
-  margin: 5px;
-  padding: 0.55em;
-}
-.fd-uml-diagram-toolbar .ui.button:hover,
-.fd-uml-diagram-toolbar .ui.button.active {
-  background-color: rgba(0, 0, 0, 0.2);
-}
 /*******************************
          Site Settings
 *******************************/
@@ -57378,6 +57188,201 @@ html.ios body {
    Form Input
 ---------------*/
 /* This adjusts the default form input across all elements */
+.ui.form .uml-class-inputs,
+.ui.form .uml-link-inputs {
+  position: absolute;
+  pointer-events: none;
+  -webkit-user-select: none;
+  padding: 2px 7px;
+  box-sizing: border-box;
+  z-index: 2;
+}
+.ui.form .uml-class-inputs input,
+.ui.form .uml-link-inputs input,
+.ui.form .uml-class-inputs textarea,
+.ui.form .uml-link-inputs textarea {
+  /* Enable interacting with inputs only. */
+  pointer-events: auto;
+}
+.ui.form .uml-class-inputs input.click-disabled,
+.ui.form .uml-link-inputs input.click-disabled,
+.ui.form .uml-class-inputs textarea.click-disabled,
+.ui.form .uml-link-inputs textarea.click-disabled {
+  pointer-events: none;
+}
+.ui.form .uml-class-inputs input[type="text"],
+.ui.form .uml-link-inputs input[type="text"],
+.ui.form .uml-class-inputs textarea {
+  border: none;
+  padding: 0px;
+  color: black;
+  font-size: 12px;
+  font-family: Arial;
+  min-width: 50px;
+  display: block;
+  margin: 0 auto;
+  background-color: transparent;
+}
+.ui.form .uml-class-inputs input[type="text"].class-name-input,
+.ui.form .uml-link-inputs input[type="text"].class-name-input,
+.ui.form .uml-class-inputs textarea.class-name-input {
+  font-weight: bold;
+  text-align: center;
+  resize: none;
+  line-height: 1.1;
+  overflow: hidden;
+}
+.ui.form .uml-class-inputs input[type="text"].class-name-input.active-object-input,
+.ui.form .uml-link-inputs input[type="text"].class-name-input.active-object-input,
+.ui.form .uml-class-inputs textarea.class-name-input.active-object-input {
+  text-decoration: underline;
+}
+.ui.form .uml-class-inputs input[type="text"].class-name-input.instance-input,
+.ui.form .uml-link-inputs input[type="text"].class-name-input.instance-input,
+.ui.form .uml-class-inputs textarea.class-name-input.instance-input {
+  font-weight: normal;
+  text-decoration: underline;
+}
+.ui.form .uml-class-inputs input[type="text"].class-name-input.package-header-input,
+.ui.form .uml-link-inputs input[type="text"].class-name-input.package-header-input,
+.ui.form .uml-class-inputs textarea.class-name-input.package-header-input {
+  font-weight: normal;
+  text-decoration: underline;
+  text-align: left;
+}
+.ui.form .uml-class-inputs input[type="text"].class-name-input.nary-assoc-name,
+.ui.form .uml-link-inputs input[type="text"].class-name-input.nary-assoc-name,
+.ui.form .uml-class-inputs textarea.class-name-input.nary-assoc-name {
+  font-weight: normal;
+  text-decoration: underline;
+  margin-top: 13px;
+}
+.ui.form .uml-class-inputs input[type="text"].params-input,
+.ui.form .uml-link-inputs input[type="text"].params-input,
+.ui.form .uml-class-inputs textarea.params-input {
+  resize: none;
+  overflow: hidden;
+  min-width: 10px;
+  line-height: 1.1;
+}
+.ui.form .uml-class-inputs input[type="text"].class-stereotype-input,
+.ui.form .uml-link-inputs input[type="text"].class-stereotype-input,
+.ui.form .uml-class-inputs textarea.class-stereotype-input {
+  resize: none;
+  line-height: 1.1;
+  overflow: hidden;
+}
+.ui.form .uml-class-inputs input[type="text"].package-header-input,
+.ui.form .uml-link-inputs input[type="text"].package-header-input,
+.ui.form .uml-class-inputs textarea.package-header-input {
+  font-weight: normal;
+  text-decoration: underline;
+  text-align: left;
+  resize: none;
+  margin: 0;
+  line-height: 1.1;
+  overflow: hidden;
+}
+.ui.form .uml-class-inputs input[type="text"].attributes-input,
+.ui.form .uml-link-inputs input[type="text"].attributes-input,
+.ui.form .uml-class-inputs textarea.attributes-input,
+.ui.form .uml-class-inputs input[type="text"].methods-input,
+.ui.form .uml-link-inputs input[type="text"].methods-input,
+.ui.form .uml-class-inputs textarea.methods-input {
+  resize: none;
+  line-height: 1.1;
+  margin: 4px 0 0 0;
+  overflow: hidden;
+}
+.ui.form .uml-class-inputs input[type="text"].start-multiplicity-input,
+.ui.form .uml-link-inputs input[type="text"].start-multiplicity-input,
+.ui.form .uml-class-inputs textarea.start-multiplicity-input,
+.ui.form .uml-class-inputs input[type="text"].end-multiplicity-input,
+.ui.form .uml-link-inputs input[type="text"].end-multiplicity-input,
+.ui.form .uml-class-inputs textarea.end-multiplicity-input,
+.ui.form .uml-class-inputs input[type="text"].start-role-input,
+.ui.form .uml-link-inputs input[type="text"].start-role-input,
+.ui.form .uml-class-inputs textarea.start-role-input,
+.ui.form .uml-class-inputs input[type="text"].end-role-input,
+.ui.form .uml-link-inputs input[type="text"].end-role-input,
+.ui.form .uml-class-inputs textarea.end-role-input {
+  min-width: 10px;
+}
+.ui.form .uml-class-inputs input[type="text"].description-input,
+.ui.form .uml-link-inputs input[type="text"].description-input,
+.ui.form .uml-class-inputs textarea.description-input {
+  min-width: 5px;
+}
+.ui.form .uml-class-inputs input[type="text"].underline-text,
+.ui.form .uml-link-inputs input[type="text"].underline-text,
+.ui.form .uml-class-inputs textarea.underline-text {
+  text-decoration: underline;
+}
+.ui.form .input-buffer {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  visibility: hidden;
+  font-size: 12px;
+  font-family: Arial;
+  font-weight: bold;
+  white-space: pre;
+}
+.ui.form .input-buffer.nary-buffer {
+  margin-top: 13px;
+}
+.edit-disabled {
+  pointer-events: none;
+}
+.edit-disabled .connection-wrap,
+.edit-disabled .marker-arrowhead,
+.edit-disabled .link-tools,
+.edit-disabled .marker-vertices {
+  display: none;
+}
+.joint-paper {
+  min-width: 500px;
+  min-height: 500px;
+  height: 100%;
+  margin-bottom: 150px;
+}
+.fd-uml-diagram-toolbar {
+  background: #FFFFFF;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  display: inline-table;
+  padding: 5px;
+  bottom: 0;
+  font-size: 0;
+  left: 0;
+  position: absolute;
+  width: auto;
+  max-width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+.fd-uml-diagram-toolbar:before {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: inherit;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+}
+.fd-uml-diagram-toolbar .ui.button {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  margin: 5px;
+  padding: 0.55em;
+}
+.fd-uml-diagram-toolbar .ui.button:hover,
+.fd-uml-diagram-toolbar .ui.button.active {
+  background-color: rgba(0, 0, 0, 0.2);
+}
 .fd-table-first {
   position: absolute;
   left: -2rem;
@@ -57385,15 +57390,6 @@ html.ios body {
 .one.wide.column.fd-table-checkbox {
   left: -1.8em;
   width: 1.8em !important;
-}
-.pushable,
-.full.height {
-  transition: background-color 1s;
-}
-.pushable.fade,
-.pushable.fade .full.height,
-.content-mini.fade {
-  background: rgba(0, 0, 0, 0.15);
 }
 .fd-sheet {
   background: #FFFFFF;
@@ -57412,17 +57408,17 @@ html.ios body {
 .fd-sheet .content-mini {
   height: 100%;
   padding: 0 0 1em;
-  transition: opacity 0.5s ease-in-out, background-color 1s;
+  transition: opacity 0.5s ease-in-out;
   width: 50%;
   position: relative;
 }
-.fd-sheet .fd-sheet-header,
-.fd-sheet .fd-sheet-body {
+.fd-sheet .fd-sheet-header {
   padding: 0 3em;
 }
 .fd-sheet .fd-sheet-body {
   overflow: auto;
   height: calc(100vh - 9.8125rem - 40px);
+  padding: 1em 3em;
 }
 .fd-sheet .fd-sheet-toolbar {
   text-align: right;
@@ -57431,6 +57427,13 @@ html.ios body {
 }
 .fd-sheet.diagrams-sheet .form-header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.fd-sheet .ui.grid.fd-list .row:first-child {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.fd-sheet .form-header,
+.ui.form .fd-sheet .form-header input[type="text"] {
+  margin-bottom: 1em;
 }
 .ui.grid.fd-list .row {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -57457,6 +57460,18 @@ html.ios body {
 }
 .ui.grid.fd-list > .row > .column {
   padding: 0.5em 0;
+}
+.ui.grid.fd-list > .row > .column .fd-search-input {
+  margin-top: 0.5em;
+}
+.pushable,
+.full.height {
+  transition: background-color 1s;
+}
+.pushable.fade,
+.pushable.fade .full.height,
+.content-mini.fade {
+  background: rgba(0, 0, 0, 0.15);
 }
 h2.form-header,
 .ui.form .form-header input[type="text"] {
