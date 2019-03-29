@@ -61,7 +61,7 @@ export default Ember.Component.extend({
 
       switch (stereotype) {
         case '«implementation»':
-          this.get('model.classes').push({settings: newClassObject});
+          this.get('model.classes').push({ settings: newClassObject });
           break;
         case '«enumeration»':
           this.get('model.enums').push(newClassObject);
