@@ -1,0 +1,21 @@
+<h3>{{t "forms.fd-generation.generation-list"}}</h3>
+
+<button class="ui button" {{action "generate"}}>
+  {{t "forms.fd-generation.generate-app"}}
+</button>
+{{t "forms.fd-generation.with-selected"}} {{link-to (t "forms.fd-generation.settings") "fd-setting"}}
+
+<div class="ui stackable grid fd-list">
+  {{#each model.generations as |generation|}}
+    <div class="row">
+      <div class="wide column">{{link-to (moment-format generation.startTime "DD.MM.YYYY") "fd-generation.list.log" generation.id}}</div>
+    </div>
+  {{/each}}
+</div>
+
+{{#fd-sheet
+  title=(t "forms.fd-generation.generation-log")
+  sheetComponentName=sheetName
+}}
+  {{outlet}}
+{{/fd-sheet}}

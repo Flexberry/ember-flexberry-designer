@@ -8,6 +8,7 @@ moduleForModel('fd-dev-uml-cad', 'Unit | Serializer | fd-dev-uml-cad', {
     'transform:decimal',
     'transform:guid',
 
+    'transform:fd-primitives-json-string',
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-access-type',
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode',
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events',

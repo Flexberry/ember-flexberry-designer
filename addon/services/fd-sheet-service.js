@@ -32,12 +32,16 @@ export default Service.extend(Evented, {
   openSheet(sheetName, currentItem) {
     this.trigger('openSheetTriggered', sheetName, currentItem);
     this.set(`sheetSettings.visibility.${sheetName}`, true);
-    $('.pushable').addClass('fade');
+    Ember.$('.pushable').addClass('fade');
+    Ember.$('.fd-sheet.visible.expand .content-mini').addClass('fade');
 
     let sidebarWidth = $('.ui.sidebar.main.menu').width();
 
     let sheetTranslate = `translate3d(calc(50% - ${sidebarWidth}px), 0, 0)`;
-    $(`.fd-sheet.${sheetName}`).css({ 'transform': sheetTranslate });
+    Ember.$(`.fd-sheet.${sheetName}`).css({ 'transform': sheetTranslate });
+
+    // Сбрасываем стиль с кнопки сайдбара.
+    Ember.$('.toggle-sidebar').removeClass('expanded');
   },
 
   /**
@@ -52,17 +56,26 @@ export default Service.extend(Evented, {
     this.set(`sheetSettings.expanded.${sheetName}`, false);
     let currentSheet = $(`.fd-sheet.${sheetName}`);
 
-    if ($('.fd-sheet.visible').length < 2) {
-      $('.pushable').removeClass('fade');
+    if (Ember.$('.fd-sheet.visible').length < 2) {
+      Ember.$('.pushable').removeClass('fade');
+
+      // Сбрасываем стиль с кнопки сайдбара.
+      Ember.$('.toggle-sidebar').removeClass('expanded');
+    } else {
+      if (Ember.$('.fd-sheet.visible').hasClass('expand')) {
+
+        // Затемняем кнопку сайдбара.
+        Ember.$('.toggle-sidebar').addClass('expanded');
+        Ember.$('.toggle-sidebar').addClass('no-delay');
+      }
     }
 
+    Ember.$('.fd-sheet.visible.expand .content-mini').removeClass('fade');
     currentSheet.css({ 'transform': '' });
 
-    // Сбрасываем стиль с кнопки сайдбара.
-    $('.toggle-sidebar').removeClass('expanded');
-
-    later(function() {
-      $('.content-mini', currentSheet).css({ width: '' });
+    Ember.run.later(function() {
+      Ember.$('.content-mini', currentSheet).css({ width: '' });
+      Ember.$('.toggle-sidebar').removeClass('no-delay');
     }, 1000);
   },
 

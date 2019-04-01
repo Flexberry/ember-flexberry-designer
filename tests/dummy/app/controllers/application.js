@@ -218,16 +218,17 @@ export default Controller.extend({
         $('.toggle-sidebar').css({ transition: '' });
       }
 
-      // Sheet content is animated only if it is expanded.
-      if ($('.fd-sheet.visible').hasClass('expand')) {
-        let expandedSeet = $('.fd-sheet.visible.expand');
-        this.get('fdSheetService').animatingSheetContent(expandedSeet.attr('class').replace(/ /g, '.'), contentWidth, 250);
-      } else {
+      let visibleSheets = Ember.$('.fd-sheet.visible').toArray();
+      visibleSheets.forEach((item) => {
+        if (Ember.$(item).hasClass('expand')) {
+          this.get('fdSheetService').animatingSheetContent(Ember.$(item).attr('class').replace(/ /g, '.'), contentWidth, 250);
+        } else {
 
-        // That the sheet remained in its place and did not go along with the content.
-        let sheetTranslate = `translate3d(calc(50% - ${currentSidebarWidth}), 0, 0)`;
-        $('.fd-sheet.visible').css({ 'transform': sheetTranslate });
-      }
+          // That the sheet remained in its place and did not go along with the content.
+          let sheetTranslate = `translate3d(calc(50% - ${currentSidebarWidth}), 0, 0)`;
+          Ember.$(item).css({ 'transform': sheetTranslate });
+        }
+      });
 
       // Animated increases the width of the page content.
       $('.full.height .flexberry-vertical-form').css({ opacity: 0.2 });
