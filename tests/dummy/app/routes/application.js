@@ -1,22 +1,19 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 import ModalApplicationRouteMixin from 'ember-flexberry/mixins/modal-application-route';
 import FdPreloadStageMetadata from 'ember-flexberry-designer/utils/fd-preload-stage-metadata';
-import { Query } from 'ember-flexberry-data';
+import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
+import Builder from 'ember-flexberry-data/query/builder';
+import FilterOperator from 'ember-flexberry-data/query/filter-operator';
 
-const {
-  Builder,
-  FilterOperator,
-  SimplePredicate,
-} = Query;
-
-export default Ember.Route.extend(ModalApplicationRouteMixin, {
+export default Route.extend(ModalApplicationRouteMixin, {
 
   /**
     Service for managing the state of the application.
     @property appState
     @type AppStateService
   */
-  appState: Ember.inject.service(),
+  appState: service(),
 
   /**
     Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
@@ -24,7 +21,7 @@ export default Ember.Route.extend(ModalApplicationRouteMixin, {
     @property currentContext
     @type FdCurrentProjectContextService
   */
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
 
   activate: function() {
     let context = this.get('currentProjectContext');

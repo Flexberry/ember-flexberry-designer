@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import { A } from '@ember/array';
 import { StateEx } from '../../objects/uml-primitives/fd-uml-state-ex';
 import { StdClass } from '../../objects/uml-primitives/fd-uml-std-class';
 import { State } from '../../objects/uml-primitives/fd-uml-state';
@@ -14,7 +15,7 @@ import { FinalState } from '../../objects/uml-primitives/fd-uml-final-state';
   @class FdAcrionsForStdPrimitivesMixin
   @extends <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
-export default Ember.Mixin.create({
+export default Mixin.create({
   actions: {
     /**
       Handler for click on addStdClass button.
@@ -193,11 +194,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newTransitionObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.State', 'flexberry.uml.StateEx', 'flexberry.uml.ComplexTransitionH', 'flexberry.uml.ComplexTransitionV']));
+      }).bind(this), e, A(['flexberry.uml.State', 'flexberry.uml.StateEx', 'flexberry.uml.ComplexTransitionH', 'flexberry.uml.ComplexTransitionV']));
     },
 
     /**

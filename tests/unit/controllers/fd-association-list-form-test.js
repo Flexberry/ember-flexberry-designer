@@ -3,6 +3,11 @@ import { moduleFor, test } from 'ember-qunit';
 moduleFor('controller:fd-association-list-form', 'Unit | Controller | fd association list form', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
+  needs: [
+    'service:user-settings',
+    'service:objectlistview-events',
+    'controller:colsconfig-dialog'
+  ]
 });
 
 // Replace this with your real tests.

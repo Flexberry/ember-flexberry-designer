@@ -1,4 +1,7 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
+import { set } from '@ember/object';
+import { isNone } from '@ember/utils';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
 import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 import { updateAggregationOnDiagram } from '../utils/fd-update-class-diagram';
@@ -11,9 +14,9 @@ export default EditFormController.extend(FdFormUnsavedData, {
 
    @property currentProjectContext
    @type {Class}
-   @default Ember.inject.service()
+   @default service()
    */
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
 
   /**
     Array all classes.
@@ -22,7 +25,7 @@ export default EditFormController.extend(FdFormUnsavedData, {
     @type Array
     @default []
    */
-  implementations: Ember.A(),
+  implementations: A(),
 
   /**
     Array name all classes.
@@ -31,7 +34,7 @@ export default EditFormController.extend(FdFormUnsavedData, {
     @type Array
     @default []
    */
-  implementationsName: Ember.A(),
+  implementationsName: A(),
 
   /**
     Name end class.
@@ -80,10 +83,10 @@ export default EditFormController.extend(FdFormUnsavedData, {
       if (!this.get('readonlyClass')) {
         let startClass = this.get('implementations').find(i => i.get('name') === value || i.get('nameStr') === value);
         let model = this.get('model');
-        Ember.set(model, 'startClass', startClass);
-        Ember.set(this, 'startClassName', startClass.get('name'));
-        if (Ember.isNone(model.get('startRole')) || model.get('startRole') === '') {
-          Ember.set(model, 'startRole', startClass.get('name'));
+        set(model, 'startClass', startClass);
+        set(this, 'startClassName', startClass.get('name'));
+        if (isNone(model.get('startRole')) || model.get('startRole') === '') {
+          set(model, 'startRole', startClass.get('name'));
         }
       }
     },
@@ -97,10 +100,10 @@ export default EditFormController.extend(FdFormUnsavedData, {
       if (!this.get('readonlyClass')) {
         let endClass = this.get('implementations').find(i => i.get('name') === value || i.get('nameStr') === value);
         let model = this.get('model');
-        Ember.set(model, 'endClass', endClass);
-        Ember.set(this, 'endClassName', endClass.get('name'));
-        if (Ember.isNone(model.get('endRole')) || model.get('endRole') === '') {
-          Ember.set(model, 'endRole', endClass.get('name'));
+        set(model, 'endClass', endClass);
+        set(this, 'endClassName', endClass.get('name'));
+        if (isNone(model.get('endRole')) || model.get('endRole') === '') {
+          set(model, 'endRole', endClass.get('name'));
         }
       }
     },

@@ -1,4 +1,7 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
+import { set } from '@ember/object';
+import { isNone } from '@ember/utils';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
 import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 import { updateInheritanceOnDiagram } from '../utils/fd-update-class-diagram';
@@ -11,9 +14,9 @@ export default EditFormController.extend(FdFormUnsavedData, {
 
     @property currentProjectContext
     @type {Class}
-    @default Ember.inject.service()
+    @default service()
   */
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
 
   /**
     Array all classes.
@@ -22,7 +25,7 @@ export default EditFormController.extend(FdFormUnsavedData, {
     @type Array
     @default []
   */
-  implementations: Ember.A(),
+  implementations: A(),
 
   /**
     Array name parent classes.
@@ -31,7 +34,7 @@ export default EditFormController.extend(FdFormUnsavedData, {
     @type Array
     @default []
   */
-  parentNames: Ember.A(),
+  parentNames: A(),
 
   /**
     Array name child classes.
@@ -40,7 +43,7 @@ export default EditFormController.extend(FdFormUnsavedData, {
     @type Array
     @default []
   */
-  childNames: Ember.A(),
+  childNames: A(),
 
   /**
     Name parent class.
@@ -89,8 +92,8 @@ export default EditFormController.extend(FdFormUnsavedData, {
       if (!this.get('readonlyDropdown')) {
         let parent = this.get('implementations').find(i => i.get('name') === value || i.get('nameStr') === value);
         let model = this.get('model');
-        Ember.set(model, 'parent', parent);
-        Ember.set(this, 'parentName', parent.get('name'));
+        set(model, 'parent', parent);
+        set(this, 'parentName', parent.get('name'));
 
         let newChild = this._getNewItems(value);
         this.set('childNames', newChild);
@@ -106,8 +109,8 @@ export default EditFormController.extend(FdFormUnsavedData, {
       if (!this.get('readonlyDropdown')) {
         let child = this.get('implementations').find(i => i.get('name') === value || i.get('nameStr') === value);
         let model = this.get('model');
-        Ember.set(model, 'child', child);
-        Ember.set(this, 'childName', child.get('name'));
+        set(model, 'child', child);
+        set(this, 'childName', child.get('name'));
 
         let newParent = this._getNewItems(value);
         this.set('parentNames', newParent);
@@ -126,10 +129,10 @@ export default EditFormController.extend(FdFormUnsavedData, {
         let parentId = model.get('parent.id');
         let inheritance = this.get('store').peekAll('fd-dev-inheritance').filterBy('stage.id', stagePk);
         let reversRecord = inheritance.find(function(item) {
-          return item.get('child.id') === parentId && item.get('parent.id') === childId && !Ember.isNone(item.get('id'));
+          return item.get('child.id') === parentId && item.get('parent.id') === childId && !isNone(item.get('id'));
         });
 
-        if (Ember.isNone(reversRecord)) {
+        if (isNone(reversRecord)) {
           this._super(...arguments);
         } else {
           this.set('error', new Error(this.get('i18n').t('forms.fd-inheritance-edit-form.error')));
@@ -150,6 +153,6 @@ export default EditFormController.extend(FdFormUnsavedData, {
       return item.get('name') !== value && item.get('nameStr') !== value;
     });
 
-    return Ember.A(newItems).map(i => i.get('name') || i.get('nameStr'));
+    return A(newItems).map(i => i.get('name') || i.get('nameStr'));
   }
 });

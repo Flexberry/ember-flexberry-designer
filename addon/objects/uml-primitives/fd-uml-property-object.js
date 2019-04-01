@@ -2,7 +2,8 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { isEmpty } from '@ember/utils';
 
 import { BaseClass } from './fd-uml-class';
 import joint from 'npm:jointjs';
@@ -22,7 +23,7 @@ export default FdUmlElement.extend({
     @property name
     @type String
   */
-  name: Ember.computed.alias('primitive.Name.Text'),
+  name: computed.alias('primitive.Name.Text'),
 
   /**
     List of PropertyObject's attributes.
@@ -30,8 +31,8 @@ export default FdUmlElement.extend({
     @property attributes
     @type Array
   */
-  attributes: Ember.computed('primitive.AttributesTxt.Text', function() {
-    if (!Ember.isEmpty(this.get('primitive.Prop.Text'))) {
+  attributes: computed('primitive.AttributesTxt.Text', function() {
+    if (!isEmpty(this.get('primitive.Prop.Text'))) {
       return this.get('primitive.Prop.Text').split('\n');
     }
 

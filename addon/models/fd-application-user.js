@@ -1,8 +1,8 @@
 import { Model as ApplicationUserMixin, defineProjections } from
   '../mixins/regenerated/models/fd-application-user';
-import { Projection } from 'ember-flexberry-data';
-import { Offline } from 'ember-flexberry-data';
-let Model = Projection.Model.extend(Offline.ModelMixin, ApplicationUserMixin, {
+import model from 'ember-flexberry-data/models/model';
+import OfflineModelMixin from 'ember-flexberry-data/mixins/offline-model';
+let Model = model.extend(OfflineModelMixin, ApplicationUserMixin, {
 
 });
 

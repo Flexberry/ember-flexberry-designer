@@ -1,4 +1,8 @@
-import Ember from 'ember';
+/* eslint-disable ember/closure-actions */
+import { computed } from '@ember/object';
+import { isArray } from '@ember/array';
+import { isNone } from '@ember/utils';
+
 import FlexberryDropdown from 'ember-flexberry/components/flexberry-dropdown';
 import layout from '../templates/components/fd-tab-dropdown';
 
@@ -6,11 +10,11 @@ export default FlexberryDropdown.extend({
   layout,
   dynamicChange: true,
 
-  _items: Ember.computed('items.[]', function() {
+  _items: computed('items.[]', function() {
     let items = this.get('items');
     let obj = null;
 
-    if (Ember.isArray(items)) {
+    if (isArray(items)) {
       obj = {};
       items.forEach(item => obj[item.dataTab] = item.title);
     }
@@ -29,8 +33,8 @@ export default FlexberryDropdown.extend({
       });
 
       if (this.dynamicChange) {
-        let oldValue = !Ember.isNone(this.get('value')) ? this.get('value') : null;
-        newValue = !Ember.isNone(newValue) ? newValue : null;
+        let oldValue = !isNone(this.get('value')) ? this.get('value') : null;
+        newValue = !isNone(newValue) ? newValue : null;
         newValue = newValue === '<!---->' ? '' : newValue;
 
         if (newValue === oldValue) {

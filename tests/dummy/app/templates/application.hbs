@@ -2,13 +2,14 @@
   {{outlet}}
   {{outlet "modal"}}
 {{else}}
-{{#ui-sidebar
+{{#flexberry-sidebar
   class="vertical main menu visible uncover"
-  ui_context=".ember-application > .ember-view"
-  closable=false
-  dimPage=false
-  onShow=(action "updateWidth")
-  onHidden=(action "updateWidth")
+  settings=(hash
+    closable=false
+    dimPage=false
+    onShow=(action "updateWidth")
+    onHidden=(action "updateWidth")
+  )
 }}
   {{#if currentProjectName}}
     <div class="item current-project-name-header">
@@ -28,13 +29,13 @@
   <button {{action 'toggleSidebar'}} class="ui toggle-sidebar-visible icon button">
     <i class="caret left icon"></i>
   </button>
-  
-  {{render "sitemap" sitemap}}
+
+  {{flexberry-sitemap sitemap=sitemap}}
 
   <div class="sitemap-bottom">
-    {{render "sitemap" sitemapBottom}}
+    {{flexberry-sitemap sitemap=sitemapBottom}}
   </div>
-{{/ui-sidebar}}
+{{/flexberry-sidebar}}
 <button {{action 'toggleSidebar'}} class="ui toggle-sidebar icon button">
   <i class="caret right icon"></i>
 </button>
@@ -79,7 +80,7 @@
     <div class="ui text menu">
       {{t "forms.application.footer.application-name"}}
       <div class="copyright-text">
-        {{t "forms.application.footer.copyright"}} 
+        {{t "forms.application.footer.copyright"}}
       </div>
     </div>
     <div class="right menu">

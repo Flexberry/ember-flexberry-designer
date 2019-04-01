@@ -1,17 +1,19 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
+import { isNone } from '@ember/utils';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
-import { Query } from 'ember-flexberry-data';
+import { SimplePredicate, ComplexPredicate } from 'ember-flexberry-data/query/predicate';
+import Condition from 'ember-flexberry-data/query/condition';
+import FilterOperator from 'ember-flexberry-data/query/filter-operator';
 import BusinessDataObjectEvents from 'ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events';
 import { updateClassOnDiagram } from '../utils/fd-update-class-diagram';
-
-const { SimplePredicate, FilterOperator, ComplexPredicate, Condition } = Query;
 
 export default EditFormController.extend({
   parentRoute: 'fd-class-list-form',
 
-  header: Ember.computed.readOnly('model.name'),
+  header: computed.readOnly('model.name'),
 
-  currentContext: Ember.inject.service('fd-current-project-context'),
+  currentContext: service('fd-current-project-context'),
 
   /**
     Flag: indicates whether to edit class name.
@@ -52,7 +54,7 @@ export default EditFormController.extend({
     @property lookupStereotypeLimitPredicate
     @type SimplePredicate
    */
-  lookupStereotypeLimitPredicate: Ember.computed(function() {
+  lookupStereotypeLimitPredicate: computed(function() {
     let stagePk = this.get('currentContext').get('context.stage');
     let stagePredicate = new SimplePredicate('stage', FilterOperator.Eq, stagePk);
     let stereotypePredicate = new SimplePredicate('stereotype', FilterOperator.Eq, '«businessserver»');
@@ -65,7 +67,7 @@ export default EditFormController.extend({
   save() {
     let _this = this;
     let model = this.get('model');
-    if (Ember.isNone(model.get('nameStr'))) {
+    if (isNone(model.get('nameStr'))) {
       model.set('nameStr', model.get('name'));
     }
 

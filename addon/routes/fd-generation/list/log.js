@@ -2,10 +2,10 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
-import { Query } from 'ember-flexberry-data';
-
-const { Builder } = Query;
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+import { hash } from 'rsvp';
+import Builder from 'ember-flexberry-data/query/builder';
 
 /**
   The route for the form with a log of generation.
@@ -13,14 +13,14 @@ const { Builder } = Query;
   @class FdGenerationListLogRoute
   @extends Ember.Route
 */
-export default Ember.Route.extend({
+export default Route.extend({
   /**
     Link to {{#crossLink "FdSheetService"}}{{/crossLink}}.
 
     @property sheetService
     @type Ember.Service
   */
-  sheetService: Ember.inject.service('fd-sheet-service'),
+  sheetService: service('fd-sheet-service'),
 
   actions: {
     /**
@@ -72,7 +72,7 @@ export default Ember.Route.extend({
       .selectByProjection(projectionName)
       .byId(params.generation_id);
 
-    return Ember.RSVP.hash({
+    return hash({
       generation: store.queryRecord(modelName, builder.build()),
     });
   },

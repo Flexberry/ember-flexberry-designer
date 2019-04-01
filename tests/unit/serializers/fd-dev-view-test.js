@@ -90,7 +90,9 @@ moduleForModel('fd-dev-view', 'Unit | Serializer | fd-dev-view', {
     'model:fd-user-auth-profile',
     'model:fd-user-in-stage',
     'model:fd-view',
-    'model:i-c-s-soft-s-t-o-r-m-n-e-t-security-agent'
+    'model:i-c-s-soft-s-t-o-r-m-n-e-t-security-agent',
+
+    'service:syncer'
   ]
 });
 

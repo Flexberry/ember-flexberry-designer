@@ -1,10 +1,11 @@
-{{#ui-sidebar
+{{#flexberry-sidebar
   class="very wide inverted vertical right animating uncover config-panel"
-  closable=false
-  dimPage=false
-  ui_context=".ember-application > .ember-view"
+  settings=(hash
+    closable=false
+    dimPage=false
+  )
 }}
   <div class="ui inverted segments">
     {{yield}}
   </div>
-{{/ui-sidebar}}
+{{/flexberry-sidebar}}

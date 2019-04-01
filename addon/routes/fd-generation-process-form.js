@@ -1,6 +1,9 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { A } from '@ember/array';
+import { get } from '@ember/object';
+import { isNone } from '@ember/utils';
 
-export default Ember.Route.extend({
+export default Route.extend({
   modelProjection: 'EditFormView',
   modelName: 'fd-generation',
 
@@ -33,7 +36,7 @@ export default Ember.Route.extend({
   resetController(controller) {
     this._super(...arguments);
 
-    controller.set('generationLog', Ember.A());
+    controller.set('generationLog', A());
     controller.set('modelName', null);
     controller.set('modelProjection', null);
     controller.set('currentGeneration', null);
@@ -52,8 +55,8 @@ export default Ember.Route.extend({
 
     controller.set('modelName', this.get('modelName'));
     controller.set('modelProjection', this.get('modelProjection'));
-    controller.set('generationId', Ember.get(this.paramsFor('fd-generation-process-form'), 'id'));
-    if (!Ember.isNone(model)) {
+    controller.set('generationId', get(this.paramsFor('fd-generation-process-form'), 'id'));
+    if (!isNone(model)) {
       controller.set('generationLog', model.get('stepLogs'));
     }
 

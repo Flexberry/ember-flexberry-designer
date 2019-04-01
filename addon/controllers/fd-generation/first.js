@@ -2,7 +2,8 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { computed } from '@ember/object';
 
 /**
   The controller for the form with the setting of the first generation.
@@ -10,14 +11,14 @@ import Ember from 'ember';
   @class FdGenerationFirstController
   @extends Ember.Controller
 */
-export default Ember.Controller.extend({
+export default Controller.extend({
   /**
     Object with settings for generation.
 
     @property settings
     @type Object
   */
-  settings: Ember.computed('model', function() {
+  settings: computed('model', function() {
     let settings = {};
 
     JSON.parse(this.get('model.value')).forEach((setting) => {

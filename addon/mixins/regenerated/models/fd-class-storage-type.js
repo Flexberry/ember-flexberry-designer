@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
-export let Model = Ember.Mixin.create({
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
+export let Model = Mixin.create({
   connectionName: DS.attr('string'),
   connectionString: DS.attr('string'),
   storageType: DS.belongsTo('fd-storage-type', { inverse: null, async: false }),
@@ -12,28 +13,28 @@ export let Model = Ember.Mixin.create({
       storageType: { presence: true },
       class: { presence: true }
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('EditView', 'fd-class-storage-type', {
-    connectionName: Projection.attr(''),
-    connectionString: Projection.attr(''),
-    storageType: Projection.belongsTo('fd-storage-type', '', {
+    connectionName: attr(''),
+    connectionString: attr(''),
+    storageType: belongsTo('fd-storage-type', '', {
 
     }, { displayMemberPath: 'shortName' })
   });
   modelClass.defineProjection('FdEditClassForm', 'fd-class-storage-type', {
-    connectionName: Projection.attr('Имя соединения'),
-    connectionString: Projection.attr('Строка соединения'),
-    class: Projection.belongsTo('fd-dev-class', '', {
+    connectionName: attr('Имя соединения'),
+    connectionString: attr('Строка соединения'),
+    class: belongsTo('fd-dev-class', '', {
 
     }, { hidden: true }),
-    storageType: Projection.belongsTo('fd-storage-type', 'Тип хранилища', {
+    storageType: belongsTo('fd-storage-type', 'Тип хранилища', {
 
     }, { displayMemberPath: 'shortName' })
   });

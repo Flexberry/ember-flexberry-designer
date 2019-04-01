@@ -1,14 +1,18 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
+import { A } from '@ember/array';
+import { isNone } from '@ember/utils';
 import layout from '../templates/components/fd-ember-jstree';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
 
   /**
     @property store
     @type Service
   */
-  store: Ember.inject.service(),
+  store: service(),
 
   /**
     Action service jsTree.
@@ -42,7 +46,7 @@ export default Ember.Component.extend({
     @property typesOptions
     @type Object
   */
-  typesOptions: Ember.computed(() => ({
+  typesOptions: computed(() => ({
     'property': {
       icon: 'assets/images/attribute.bmp'
     },
@@ -81,7 +85,7 @@ export default Ember.Component.extend({
     @property searchOptions
     @type Object
   */
-  searchOptions: Ember.computed(() => ({
+  searchOptions: computed(() => ({
     show_only_matches: true
   })),
 
@@ -132,13 +136,13 @@ export default Ember.Component.extend({
 
   init() {
     this._super(...arguments);
-    this.set('selectedNodes', Ember.A());
+    this.set('selectedNodes', A());
   },
 
   willDestroy() {
     this._super(...arguments);
     let treeObject = this.get('jstreeObject');
-    if (!Ember.isNone(treeObject)) {
+    if (!isNone(treeObject)) {
       treeObject.off('load_node.jstree', this._loadNodeTree.bind(this));
     }
   }

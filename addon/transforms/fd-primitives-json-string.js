@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-import Ember from 'ember';
+import { set } from '@ember/object';
 import uuid from 'npm:node-uuid';
 
 export default DS.Transform.extend({
@@ -172,17 +172,17 @@ export default DS.Transform.extend({
       let inConnectorLinksIds = inConnectorsLinksTree[linkConnectorId];
       let baseLinkId = inConnectorLinksIds[0];
       let baseLink = elements[baseLinkId];
-      Ember.set(baseLink, '$type',  'STORMCASE.UML.cad.Inheritance, UMLCAD');
-      Ember.set(baseLink.StartPrimitive, '$ref', parentClassId);
-      Ember.set(baseLink.StartLE.Primitive, '$ref', parentClassId);
+      set(baseLink, '$type',  'STORMCASE.UML.cad.Inheritance, UMLCAD');
+      set(baseLink.StartPrimitive, '$ref', parentClassId);
+      set(baseLink.StartLE.Primitive, '$ref', parentClassId);
       for (let i = 1; i < inConnectorLinksIds.length; i++) {
         let inConnectorLinkId =  inConnectorLinksIds[i];
         let inConnectorLink = elements[inConnectorLinkId];
-        Ember.set(inConnectorLink, '$type',  'STORMCASE.UML.cad.Inheritance, UMLCAD');
-        Ember.set(inConnectorLink.StartPrimitive, '$ref', baseLinkId);
-        Ember.set(inConnectorLink.StartLE.Primitive, '$ref', baseLinkId);
-        Ember.set(inConnectorLink.StartPoint, 'X', linkConnector.Location.X);
-        Ember.set(inConnectorLink.StartPoint, 'Y', linkConnector.Location.Y);
+        set(inConnectorLink, '$type',  'STORMCASE.UML.cad.Inheritance, UMLCAD');
+        set(inConnectorLink.StartPrimitive, '$ref', baseLinkId);
+        set(inConnectorLink.StartLE.Primitive, '$ref', baseLinkId);
+        set(inConnectorLink.StartPoint, 'X', linkConnector.Location.X);
+        set(inConnectorLink.StartPoint, 'Y', linkConnector.Location.Y);
       }
 
       delete elements[linkConnectorId];

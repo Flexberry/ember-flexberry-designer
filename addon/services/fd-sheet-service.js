@@ -1,6 +1,9 @@
-import Ember from 'ember';
+import Service from '@ember/service';
+import Evented from '@ember/object/evented';
+import $ from 'jquery';
+import { later, schedule } from '@ember/runloop';
 
-export default Ember.Service.extend(Ember.Evented, {
+export default Service.extend(Evented, {
   sheetSettings: undefined,
 
   init() {
@@ -29,16 +32,16 @@ export default Ember.Service.extend(Ember.Evented, {
   openSheet(sheetName, currentItem) {
     this.trigger('openSheetTriggered', sheetName, currentItem);
     this.set(`sheetSettings.visibility.${sheetName}`, true);
-    Ember.$('.pushable').addClass('fade');
-    Ember.$('.fd-sheet.visible.expand .content-mini').addClass('fade');
+    $('.pushable').addClass('fade');
+    $('.fd-sheet.visible.expand .content-mini').addClass('fade');
 
-    let sidebarWidth = Ember.$('.ui.sidebar.main.menu').width();
+    let sidebarWidth = $('.ui.sidebar.main.menu').width();
 
     let sheetTranslate = `translate3d(calc(50% - ${sidebarWidth}px), 0, 0)`;
-    Ember.$(`.fd-sheet.${sheetName}`).css({ 'transform': sheetTranslate });
+    $(`.fd-sheet.${sheetName}`).css({ 'transform': sheetTranslate });
 
     // Сбрасываем стиль с кнопки сайдбара.
-    Ember.$('.toggle-sidebar').removeClass('expanded');
+    $('.toggle-sidebar').removeClass('expanded');
   },
 
   /**
@@ -51,28 +54,28 @@ export default Ember.Service.extend(Ember.Evented, {
     this.trigger('closeSheetTriggered', sheetName);
     this.set(`sheetSettings.visibility.${sheetName}`, false);
     this.set(`sheetSettings.expanded.${sheetName}`, false);
-    let currentSheet = Ember.$(`.fd-sheet.${sheetName}`);
+    let currentSheet = $(`.fd-sheet.${sheetName}`);
 
-    if (Ember.$('.fd-sheet.visible').length < 2) {
-      Ember.$('.pushable').removeClass('fade');
+    if ($('.fd-sheet.visible').length < 2) {
+      $('.pushable').removeClass('fade');
 
       // Сбрасываем стиль с кнопки сайдбара.
-      Ember.$('.toggle-sidebar').removeClass('expanded');
+      $('.toggle-sidebar').removeClass('expanded');
     } else {
-      if (Ember.$('.fd-sheet.visible').hasClass('expand')) {
+      if ($('.fd-sheet.visible').hasClass('expand')) {
 
         // Затемняем кнопку сайдбара.
-        Ember.$('.toggle-sidebar').addClass('expanded');
-        Ember.$('.toggle-sidebar').addClass('no-delay');
+        $('.toggle-sidebar').addClass('expanded');
+        $('.toggle-sidebar').addClass('no-delay');
       }
     }
 
-    Ember.$('.fd-sheet.visible.expand .content-mini').removeClass('fade');
+    $('.fd-sheet.visible.expand .content-mini').removeClass('fade');
     currentSheet.css({ 'transform': '' });
 
-    Ember.run.later(function() {
-      Ember.$('.content-mini', currentSheet).css({ width: '' });
-      Ember.$('.toggle-sidebar').removeClass('no-delay');
+    later(function() {
+      $('.content-mini', currentSheet).css({ width: '' });
+      $('.toggle-sidebar').removeClass('no-delay');
     }, 1000);
   },
 
@@ -83,18 +86,18 @@ export default Ember.Service.extend(Ember.Evented, {
      @param {String} sheetName Sheet's component name
   */
   expand(sheetName) {
-    let sidebarWidth = Ember.$('.ui.sidebar.main.menu').width();
+    let sidebarWidth = $('.ui.sidebar.main.menu').width();
 
-    let currentSheet = Ember.$(`.fd-sheet.${sheetName}`);
+    let currentSheet = $(`.fd-sheet.${sheetName}`);
     let sheetTranslate =  `translate3d(calc(50% - ${sidebarWidth}px), 0, 0)`;
     currentSheet.css({ 'transform': sheetTranslate });
 
     let contentWidth = this.get(`sheetSettings.expanded.${sheetName}`) ? '50%' : `calc(100% - ${sidebarWidth}px)`;
 
     // Затемняем кнопку сайдбара.
-    Ember.$('.toggle-sidebar').toggleClass('expanded');
+    $('.toggle-sidebar').toggleClass('expanded');
 
-    Ember.run.schedule('afterRender', this, () => {
+    schedule('afterRender', this, () => {
       this.toggleProperty(`sheetSettings.expanded.${sheetName}`);
     });
 
@@ -107,10 +110,10 @@ export default Ember.Service.extend(Ember.Evented, {
      @method toolbarDiagramPosition
   */
   toolbarDiagramPosition() {
-    let diagramToolbar = Ember.$('.fd-uml-diagram-toolbar');
-    let jointPaper = Ember.$('.joint-paper');
+    let diagramToolbar = $('.fd-uml-diagram-toolbar');
+    let jointPaper = $('.joint-paper');
     jointPaper.css('margin-bottom', diagramToolbar.height());
-    let diagramToolbarBottom = jointPaper.width() <= Ember.$('.fd-uml-diagram-editor').width() ? 0 : this.getScrollbarWidth();
+    let diagramToolbarBottom = jointPaper.width() <= $('.fd-uml-diagram-editor').width() ? 0 : this.getScrollbarWidth();
     diagramToolbar.css('bottom', diagramToolbarBottom);
     jointPaper.css('margin-bottom', diagramToolbar.height());
   },
@@ -155,11 +158,11 @@ export default Ember.Service.extend(Ember.Evented, {
      @param {String} sheetName Sheet's component name
   */
   animatingSheetContent(sheetName, contentWidth, speed) {
-    Ember.$(`.fd-sheet.${sheetName} .content-mini`).css({ opacity: 0.2 });
+    $(`.fd-sheet.${sheetName} .content-mini`).css({ opacity: 0.2 });
 
     let _this = this;
-    Ember.run.later(function() {
-      Ember.$(`.fd-sheet.${sheetName} .content-mini`).css({ opacity: '', width: contentWidth });
+    later(function() {
+      $(`.fd-sheet.${sheetName} .content-mini`).css({ opacity: '', width: contentWidth });
       _this.toolbarDiagramPosition();
     }, speed);
   }

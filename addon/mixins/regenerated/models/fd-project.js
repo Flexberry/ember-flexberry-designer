@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
-export let Model = Ember.Mixin.create({
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
+
+export let Model = Mixin.create({
   repository: DS.belongsTo('fd-repository', { inverse: 'projects', async: false }),
   configurations: DS.hasMany('fd-configuration', { inverse: 'project', async: false }),
   getValidations: function () {
@@ -9,11 +11,11 @@ export let Model = Ember.Mixin.create({
     let thisValidations = {
       repository: { presence: true }
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 export let defineBaseModel = function (modelClass) {
@@ -24,12 +26,12 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('PathSearchView', 'fd-project', {
-    name: Projection.attr(''),
-    repository: Projection.belongsTo('fd-repository', '', {
-      name: Projection.attr('')
+    name: attr(''),
+    repository: belongsTo('fd-repository', '', {
+      name: attr('')
     })
   });
   modelClass.defineProjection('SearchRepObjView', 'fd-project', {
-    name: Projection.attr('')
+    name: attr('')
   });
 };

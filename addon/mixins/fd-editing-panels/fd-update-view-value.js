@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import { inject as service } from '@ember/service';
 
 /**
   Mixin with the support `View table` for controls in the edit form constructor.
@@ -6,7 +7,7 @@ import Ember from 'ember';
   @class FdUpdateViewValueMixin
   @uses <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
-export default Ember.Mixin.create({
+export default Mixin.create({
 
   /**
     Service for managing the state of the sheet component.
@@ -14,7 +15,7 @@ export default Ember.Mixin.create({
     @property fdSheetService
     @type FdSheetService
   */
-  fdSheetService: Ember.inject.service(),
+  fdSheetService: service(),
 
   /**
     Table headers for view.
@@ -71,7 +72,7 @@ export default Ember.Mixin.create({
       @method actions.openViewSheet
     */
     openViewSheet(selectView) {
-      this.sendAction('openViewSheetController', selectView);
+      this.get('openViewSheetController')(selectView);
     }
   }
 });

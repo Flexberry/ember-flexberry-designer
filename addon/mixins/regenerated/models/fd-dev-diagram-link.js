@@ -1,15 +1,16 @@
-import Ember from 'ember';
-import { Projection } from 'ember-flexberry-data';
-export let Model = Ember.Mixin.create({
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
+import { attr } from 'ember-flexberry-data/utils/attributes';
+export let Model = Mixin.create({
   getValidations: function () {
     let parentValidations = this._super();
     let thisValidations = {
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 export let defineBaseModel = function (modelClass) {
@@ -20,7 +21,7 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('DiagramLink', 'fd-dev-diagram-link', {
-    name: Projection.attr('Название'),
-    description: Projection.attr('Описание')
+    name: attr('Название'),
+    description: attr('Описание')
   });
 };

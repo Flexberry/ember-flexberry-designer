@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { A } from '@ember/array';
 
 import CADModel from './fd-cad';
 import {
@@ -43,9 +44,9 @@ let Model = CADModel.extend(DevUMLCADMixin, {
     @property primitives
     @type Ember.Array
   */
-  primitives: Ember.computed('primitivesJsonString', function() {
-    let result = Ember.A();
-    let primitives = JSON.parse(this.get('primitivesJsonString')) || [];
+  primitives: computed('primitivesJsonString', function() {
+    let result = A();
+    let primitives = JSON.parse(this.get('primitivesJsonString')) || A();
 
     for (let i = 0; i < primitives.length; i++) {
       let primitive = primitives[i];

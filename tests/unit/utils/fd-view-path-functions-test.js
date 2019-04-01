@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
 import { module, test } from 'qunit';
 
 import {
@@ -16,7 +16,7 @@ import FdEditformTab from 'ember-flexberry-designer/objects/fd-editform-tab';
 module('Unit | Utility | fd-view-path-functions');
 
 test('it works', function(assert) {
-  const definition = Ember.A([
+  const definition = A([
     FdViewAttributesProperty.create({ caption: 'Control' }),
     FdViewAttributesProperty.create({ caption: 'Control #1', path: '#1' }),
     FdViewAttributesProperty.create({ caption: 'Control #2', path: '#2' }),
@@ -26,53 +26,53 @@ test('it works', function(assert) {
     FdViewAttributesProperty.create({ caption: 'Control', path: '|Tab #2\\-Group' }),
   ]);
 
-  const controlsTree = Ember.A([
+  const controlsTree = A([
     FdEditformRow.create({
-      controls: Ember.A([FdEditformControl.create({ caption: 'Control', propertyDefinition: definition.objectAt(0) })]),
+      controls: A([FdEditformControl.create({ caption: 'Control', propertyDefinition: definition.objectAt(0) })]),
     }),
     FdEditformRow.create({
-      controls: Ember.A([
+      controls: A([
         FdEditformControl.create({ caption: 'Control #1', propertyDefinition: definition.objectAt(1) }),
         FdEditformControl.create({ caption: 'Control #2', propertyDefinition: definition.objectAt(2) }),
       ]),
     }),
     FdEditformRow.create({
-      controls: Ember.A([
+      controls: A([
         FdEditformGroup.create({
           caption: 'Group',
-          rows: Ember.A([
+          rows: A([
             FdEditformRow.create({
-              controls: Ember.A([FdEditformControl.create({ caption: 'Control', propertyDefinition: definition.objectAt(3) })]),
+              controls: A([FdEditformControl.create({ caption: 'Control', propertyDefinition: definition.objectAt(3) })]),
             }),
           ]),
         }),
       ]),
     }),
     FdEditformRow.create({
-      controls: Ember.A([
+      controls: A([
         FdEditformTabgroup.create({
-          tabs: Ember.A([
+          tabs: A([
             FdEditformTab.create({
               caption: 'Tab #1',
-              rows: Ember.A([
+              rows: A([
                 FdEditformRow.create({
-                  controls: Ember.A([FdEditformControl.create({ caption: 'Control', propertyDefinition: definition.objectAt(4) })]),
+                  controls: A([FdEditformControl.create({ caption: 'Control', propertyDefinition: definition.objectAt(4) })]),
                 }),
               ]),
             }),
             FdEditformTab.create({
               caption: 'Tab #2',
-              rows: Ember.A([
+              rows: A([
                 FdEditformRow.create({
-                  controls: Ember.A([FdEditformControl.create({ caption: 'Control', propertyDefinition: definition.objectAt(5) })]),
+                  controls: A([FdEditformControl.create({ caption: 'Control', propertyDefinition: definition.objectAt(5) })]),
                 }),
                 FdEditformRow.create({
-                  controls: Ember.A([
+                  controls: A([
                     FdEditformGroup.create({
                       caption: 'Group',
-                      rows: Ember.A([
+                      rows: A([
                         FdEditformRow.create({
-                          controls: Ember.A([FdEditformControl.create({ caption: 'Control', propertyDefinition: definition.objectAt(6) })]),
+                          controls: A([FdEditformControl.create({ caption: 'Control', propertyDefinition: definition.objectAt(6) })]),
                         }),
                       ]),
                     }),
@@ -86,7 +86,7 @@ test('it works', function(assert) {
     }),
   ]);
 
-  let testTree = Ember.A();
+  let testTree = A();
   let length = definition.get('length');
   for (let i = 0; i < length; i++) {
     let propertyDefinition = definition.objectAt(i);

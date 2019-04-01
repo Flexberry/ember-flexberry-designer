@@ -1,4 +1,8 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { isArray } from '@ember/array';
+import { isNone } from '@ember/utils';
+import $ from 'jquery';
+
 import joint from 'npm:jointjs';
 
 export let DescriptionView = joint.dia.LinkView.extend({
@@ -9,7 +13,9 @@ export let DescriptionView = joint.dia.LinkView.extend({
     '</div>',
   ].join(''),
 
-  updateInputsArray: ['.description-input'],
+  updateInputsArray: computed(() => [
+    '.description-input'
+  ]).readOnly(),
 
   /**
     Link's source element.
@@ -30,7 +36,7 @@ export let DescriptionView = joint.dia.LinkView.extend({
   initialize: function() {
     joint.dia.LinkView.prototype.initialize.apply(this, arguments);
 
-    this.$box = Ember.$(this.template);
+    this.$box = $(this.template);
     this.model.inputElements = this.$box;
 
     // Prevent paper from handling pointerdown.
@@ -43,7 +49,7 @@ export let DescriptionView = joint.dia.LinkView.extend({
     }.bind(this));
 
     this.$box.find('.description-input').on('change', function(evt) {
-      this.model.setLabelText('description', Ember.$(evt.target).val());
+      this.model.setLabelText('description', $(evt.target).val());
     }.bind(this));
 
     // Initialize inputs values.
@@ -56,11 +62,11 @@ export let DescriptionView = joint.dia.LinkView.extend({
     this.model.on('change:source', function() {
       let sourceElement = this.model.getSourceElement();
       if (sourceElement !== this.sourceElement) {
-        if (!Ember.isNone(this.sourceElement)) {
+        if (!isNone(this.sourceElement)) {
           this.sourceElement.off('change:position change:size', this.updateBox, this);
         }
 
-        if (!Ember.isNone(sourceElement)) {
+        if (!isNone(sourceElement)) {
           sourceElement.on('change:position change:size', this.updateBox, this);
         }
 
@@ -71,11 +77,11 @@ export let DescriptionView = joint.dia.LinkView.extend({
     this.model.on('change:target', function() {
       let targetElement = this.model.getTargetElement();
       if (targetElement !== this.targetElement) {
-        if (!Ember.isNone(this.targetElement)) {
+        if (!isNone(this.targetElement)) {
           this.targetElement.off('change:position change:size', this.updateBox, this);
         }
 
-        if (!Ember.isNone(targetElement)) {
+        if (!isNone(targetElement)) {
           targetElement.on('change:position change:size', this.updateBox, this);
         }
 
@@ -84,12 +90,12 @@ export let DescriptionView = joint.dia.LinkView.extend({
     }, this);
 
     this.sourceElement = this.model.getSourceElement();
-    if (!Ember.isNone(this.sourceElement)) {
+    if (!isNone(this.sourceElement)) {
       this.sourceElement.on('change:position change:size', this.updateBox, this);
     }
 
     this.targetElement = this.model.getTargetElement();
-    if (!Ember.isNone(this.targetElement)) {
+    if (!isNone(this.targetElement)) {
       this.targetElement.on('change:position change:size', this.updateBox, this);
     }
   },
@@ -119,7 +125,7 @@ export let DescriptionView = joint.dia.LinkView.extend({
     // Update inputs positions.
     let descriptionPosition = this.getLabelCoordinates(this.model.get('labels')[2].position);
     let descriptionWidth = this.$box.find('.description-input').width();
-    Ember.$(this.$box[1]).css({
+    $(this.$box[1]).css({
       left: descriptionPosition.x - 7 - descriptionWidth / 2,
       top: descriptionPosition.y - 10,
       transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
@@ -131,8 +137,8 @@ export let DescriptionView = joint.dia.LinkView.extend({
   },
 
   updateInputsWidth(inputSelectors) {
-    let selectors = Ember.isArray(inputSelectors) ? inputSelectors : [inputSelectors];
-    let $buffer = Ember.$(this.$box[0]);
+    let selectors = isArray(inputSelectors) ? inputSelectors : [inputSelectors];
+    let $buffer = $(this.$box[0]);
     selectors.forEach((selector) => {
       let $input = this.$box.find(selector);
       $buffer.css('font-weight', $input.css('font-weight'));

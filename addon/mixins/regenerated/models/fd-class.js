@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
-export let Model = Ember.Mixin.create({
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
+
+export let Model = Mixin.create({
   /**
     Non-stored property.
 
@@ -36,11 +38,11 @@ export let Model = Ember.Mixin.create({
     let thisValidations = {
       stage: { presence: true }
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 
@@ -52,22 +54,22 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('DependensiesSearchView', 'fd-class', {
-    name: Projection.attr(''),
-    stereotype: Projection.attr(''),
-    nameStr: Projection.attr('')
+    name: attr(''),
+    stereotype: attr(''),
+    nameStr: attr('')
   });
   modelClass.defineProjection('Import', 'fd-class', {
-    referenceCount: Projection.attr(''),
-    nameStr: Projection.attr('')
+    referenceCount: attr(''),
+    nameStr: attr('')
   });
   modelClass.defineProjection('References', 'fd-class', {
-    referenceCount: Projection.attr('')
+    referenceCount: attr('')
   });
   modelClass.defineProjection('SearchClass', 'fd-class', {
-    name: Projection.attr(''),
-    nameStr: Projection.attr(''),
-    stereotype: Projection.attr(''),
-    stage: Projection.belongsTo('fd-stage', '', {
+    name: attr(''),
+    nameStr: attr(''),
+    stereotype: attr(''),
+    stage: belongsTo('fd-stage', '', {
 
     })
   });
