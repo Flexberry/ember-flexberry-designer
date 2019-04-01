@@ -53,6 +53,7 @@ export let Composition = Link.define('flexberry.uml.Composition', {
       case 'description':
         return 0.5;
       default:
+        // eslint-disable-next-line no-console
         console.log('ERROR - choose correct label name');
     }
   }

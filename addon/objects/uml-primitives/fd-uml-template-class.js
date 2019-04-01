@@ -2,7 +2,8 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import $ from 'jquery';
 import joint from 'npm:jointjs';
 
 import { Class } from './fd-uml-class';
@@ -22,7 +23,7 @@ export default FdUmlClass.extend({
     @property params
     @type String
   */
-  params: Ember.computed.alias('primitive.TemplateTxt.Text'),
+  params: computed.alias('primitive.TemplateTxt.Text'),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -114,7 +115,7 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
         let rectHeight = 0;
         let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
         inputs.each(function() {
-          let $input = Ember.$(this);
+          let $input = $(this);
           $buffer.css('font-weight', $input.css('font-weight'));
           $buffer.text($input.val());
           $input.width($buffer.width() + 1);
@@ -171,7 +172,7 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
   initialize: function() {
     joint.shapes.flexberry.uml.ClassView.prototype.initialize.apply(this, arguments);
     this.$box.find('.params-input').on('input', function (evt) {
-      let $textarea = Ember.$(evt.currentTarget);
+      let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
@@ -179,7 +180,7 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
     }.bind(this));
 
     this.$box.find('.params-input').on('change', function (evt) {
-      let $textarea = Ember.$(evt.currentTarget);
+      let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
@@ -214,7 +215,7 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
     joint.shapes.flexberry.uml.BaseObjectView.prototype.render.apply(this, arguments);
 
     let mask = document.getElementById('custom-mask');
-    let viewMaskId = Ember.$(mask).children('.view-rect').attr('id');
+    let viewMaskId = $(mask).children('.view-rect').attr('id');
     let maskId = 'mask_tc_' + viewMaskId;
     mask.setAttribute('id', maskId);
     let attrs = this.model.get('attrs');

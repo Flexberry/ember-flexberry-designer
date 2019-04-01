@@ -2,8 +2,9 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
-import { Query } from 'ember-flexberry-data';
+import Mixin from '@ember/object/mixin';
+import { inject as service } from '@ember/service';
+import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
 
 /**
   Simple way of inject {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}} and limit list objects by stage.
@@ -11,14 +12,14 @@ import { Query } from 'ember-flexberry-data';
   @class FdLimitByStageMixin
   @extends <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
-export default Ember.Mixin.create({
+export default Mixin.create({
   /**
     Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
 
     @property currentContext
     @type FdCurrentProjectContextService
   */
-  currentContext: Ember.inject.service('fd-current-project-context'),
+  currentContext: service('fd-current-project-context'),
 
   /**
     Return `SimplePredicate` for limit list objects by stage.
@@ -28,6 +29,6 @@ export default Ember.Mixin.create({
   */
   objectListViewLimitPredicate() {
     let stage = this.get('currentContext').getCurrentStage();
-    return new Query.SimplePredicate('stage', '==', stage);
+    return new SimplePredicate('stage', '==', stage);
   },
 });

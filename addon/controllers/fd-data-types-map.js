@@ -2,7 +2,12 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
+import { run } from '@ember/runloop';
+import { resolve } from 'rsvp';
+import { A } from '@ember/array';
 
 import FdDataType from '../objects/fd-data-type';
 import { deserialize } from '../utils/transforms-utils/fd-type-map-functions';
@@ -14,13 +19,13 @@ import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
   @class FdDataTypesMapController
   @extends <a href="http://emberjs.com/api/classes/Ember.Controller.html">Ember.Controller</a>
 */
-export default Ember.Controller.extend(FdFormUnsavedData, {
+export default Controller.extend(FdFormUnsavedData, {
   /**
     Service for managing the state of the application.
      @property appState
     @type AppStateService
   */
-  appState: Ember.inject.service(),
+  appState: service(),
 
   /**
     Transition, aborted for some reason.
@@ -45,7 +50,7 @@ export default Ember.Controller.extend(FdFormUnsavedData, {
     @property stage
     @type FdDevStageModel
   */
-  stage: Ember.computed.alias('model.stage'),
+  stage: computed.alias('model.stage'),
 
   /**
     All classes with stereotype «type».
@@ -53,7 +58,7 @@ export default Ember.Controller.extend(FdFormUnsavedData, {
     @property types
     @type Ember.NativeArray
   */
-  types: Ember.computed.filterBy('model.classes', 'stereotype', '«type»'),
+  types: computed.filterBy('model.classes', 'stereotype', '«type»'),
 
   /**
     All classes with stereotype «typedef».
@@ -61,7 +66,7 @@ export default Ember.Controller.extend(FdFormUnsavedData, {
     @property typedefs
     @type Ember.NativeArray
   */
-  typedefs: Ember.computed.filterBy('model.classes', 'stereotype', '«typedef»'),
+  typedefs: computed.filterBy('model.classes', 'stereotype', '«typedef»'),
 
   /**
     Combined type map.
@@ -69,7 +74,7 @@ export default Ember.Controller.extend(FdFormUnsavedData, {
     @property typeMap
     @type Ember.NativeArray
   */
-  typeMap: Ember.computed('stage', 'types', 'typedefs', function() {
+  typeMap: computed('stage', 'types', 'typedefs', function() {
     let typeMap = this.createDefaultTypeMap();
 
     let typeMapCS = deserialize(this.get('stage.typeMapCSStr'));
@@ -178,8 +183,8 @@ export default Ember.Controller.extend(FdFormUnsavedData, {
     */
     save(close) {
       this.get('appState').loading();
-      Ember.run.next(() => {
-        let promise = Ember.RSVP.resolve();
+      run.next(() => {
+        let promise = resolve();
         if (this.serializeTypeMap()) {
           promise = this.get('stage').save();
         }
@@ -235,7 +240,7 @@ export default Ember.Controller.extend(FdFormUnsavedData, {
     @return {Ember.NativeArray} Type map with default values.
   */
   createDefaultTypeMap() {
-    return Ember.A([
+    return A([
       FdDataType.create({
         name: 'bool',
         cs: 'System.Boolean',

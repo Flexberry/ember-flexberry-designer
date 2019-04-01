@@ -1,11 +1,15 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
+import DS from 'ember-data';
+import { getOwner } from '@ember/application';
+import { resolve } from 'rsvp';
 import { moduleFor, test } from 'ember-qunit';
+
 import FdDevSystemModel from 'ember-flexberry-designer/models/fd-dev-system';
 
 // Stub store service.
 const storeStub = DS.Store.extend({
   query() {
-    return Ember.RSVP.resolve(null);
+    return resolve(null);
   }
 });
 
@@ -14,16 +18,23 @@ const fdDevSystemModelStub = FdDevSystemModel.extend({
   save() {
     let _this = this;
     _this.set('id', 'subsystem');
-    return Ember.RSVP.resolve(_this);
+    return resolve(_this);
   }
 });
 
 moduleFor('service:fd-current-project-context', 'Unit | Service | fd current project context', {
-  needs: ['model:fd-dev-system', 'model:fd-stage', 'model:fd-diagram', 'model:fd-diagram-link', 'model:fd-filelink'],
+  needs: [
+    'model:fd-dev-system',
+    'model:fd-stage',
+    'model:fd-diagram',
+    'model:fd-diagram-link',
+    'model:fd-filelink',
+    'service:syncer'
+  ],
 
   beforeEach: function () {
-    Ember.getOwner(this).unregister('service:store');
-    Ember.getOwner(this).unregister('model:fd-dev-system');
+    getOwner(this).unregister('service:store');
+    getOwner(this).unregister('model:fd-dev-system');
     this.register('service:store', storeStub);
     this.register('model:fd-dev-system', fdDevSystemModelStub);
   }
@@ -36,8 +47,8 @@ test('it exists and works', function(assert) {
   let service = this.subject();
   assert.ok(service);
 
-  let configuration = Ember.Object.create({ id: 'configuration' });
-  let stage = Ember.Object.create({ id: 'stage' });
+  let configuration = EmberObject.create({ id: 'configuration' });
+  let stage = EmberObject.create({ id: 'stage' });
 
   assert.throws(service.getCurrentConfiguration);
   service.setCurrentConfiguration(configuration);

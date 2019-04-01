@@ -1,0 +1,43 @@
+@fdListColPadding: 0.5em;
+.ui.grid.fd-list {
+	.row {
+		border-bottom: @hr;
+		margin: 0 1rem;
+
+		.column {
+			> div:not(:first-child) {
+				margin: 1rem 0;
+			}
+
+			div:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		.light-text{
+			color: @lightTextColor;
+		}
+	}
+
+	.fd-list-item span{
+		padding: @fdListColPadding @leftIndent;
+
+		&:hover {
+			cursor: pointer;
+		}
+
+		&.active {
+			background: @fdSheetBg;
+			border-radius: @itemActiveBorderRadius;
+		}
+	}
+
+	> .row > .column {
+		padding: @fdListColPadding 0;
+
+		.fd-search-input {
+			margin-top: @fdListColPadding;
+		}
+	}
+}
+  

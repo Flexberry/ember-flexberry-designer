@@ -1,0 +1,7 @@
+@checkboxBorder: none;
+
+@checkboxBackground: transparent;
+@checkboxFocusBackground: transparent;
+@checkboxPressedBackground: transparent;
+@checkboxActiveBackground: transparent;
+@checkboxActiveFocusBackground: transparent;

@@ -43,5 +43,13 @@ export default ListFormRoute.extend(LimitByStageMixin, {
     @type Object
     @default {}
   */
-  developerUserSettings: { FdSystemListForm: {} },
+  developerUserSettings: undefined,
+
+  init() {
+    this._super(...arguments);
+
+    this.set('', {
+      FdSystemListForm: {}
+    });
+  }
 });

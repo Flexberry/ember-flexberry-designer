@@ -1,18 +1,22 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { A } from '@ember/array';
+import { getOwner } from '@ember/application';
+import { inject as service } from '@ember/service';
+import { isNone } from '@ember/utils';
+import $ from 'jquery';
 import FdAppStructTree from '../objects/fd-appstruct-tree';
 import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
-const { getOwner } = Ember;
 
-export default Ember.Route.extend(FdFormCheckTransitionMixin, {
+export default Route.extend(FdFormCheckTransitionMixin, {
 
   /**
    Service that get current project contexts.
 
    @property currentProjectContext
    @type {Class}
-   @default Ember.inject.service()
+   @default service()
    */
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
 
   model: function() {
     let store = this.get('store');
@@ -38,13 +42,13 @@ export default Ember.Route.extend(FdFormCheckTransitionMixin, {
     });
 
     if (applications.length === 0) {
-      Ember.A(applications).pushObject(store.createRecord('fd-dev-class', {
+      A(applications).pushObject(store.createRecord('fd-dev-class', {
         stage: stage,
         caption: 'Application',
         name: 'Application',
         nameStr: 'Application',
         stereotype: '«application»',
-        containersStr: Ember.A()
+        containersStr: A()
       }));
     }
 
@@ -53,7 +57,7 @@ export default Ember.Route.extend(FdFormCheckTransitionMixin, {
     */
 
     // Form in tree data.
-    let treeNodeForms = Ember.A();
+    let treeNodeForms = A();
     forms.forEach((form, index) => {
       let idParent = form.get('formViews').mapBy('view.class.id');
       treeNodeForms.pushObject(
@@ -73,7 +77,7 @@ export default Ember.Route.extend(FdFormCheckTransitionMixin, {
     });
 
     // Implementations in tree data.
-    let treeLeft = Ember.A();
+    let treeLeft = A();
     implementations.forEach((implementation, index) => {
       let implementationsChildren = treeNodeForms.filterBy('idParent', implementation.id);
       let typeImplementation = implementation.get('stored') ? 'implementations' : 'notStored';
@@ -93,7 +97,7 @@ export default Ember.Route.extend(FdFormCheckTransitionMixin, {
     });
 
     // applications in tree data.
-    let rightTreeNodes = Ember.A();
+    let rightTreeNodes = A();
     applications.forEach((application) => {
       rightTreeNodes.pushObjects(application.get('containersStr'));
     });
@@ -102,7 +106,7 @@ export default Ember.Route.extend(FdFormCheckTransitionMixin, {
     this._updateTypeRightTree(rightTreeNodes, classesCurrentStage);
 
     // Add root tree.
-    let treeRight = Ember.A([
+    let treeRight = A([
       FdAppStructTree.create({
         text: this.get('i18n').t('forms.fd-appstruct-form.desktop').toString(),
         type: 'desk',
@@ -156,7 +160,7 @@ export default Ember.Route.extend(FdFormCheckTransitionMixin, {
         _this._updateTypeRightTree(node.get('children'), recordsDevClass);
         node.set('copyChildren', node.get('children'));
       } else {
-        if (node.className !== '' && !Ember.isNone(node.className)) {
+        if (node.className !== '' && !isNone(node.className)) {
           let classData = recordsDevClass.findBy('name', node.className);
           node.set('type', classData.get('stereotype'));
           node.set('a_attr', { title: classData.get('stereotype') + ' ' + classData.get('name') });
@@ -170,8 +174,8 @@ export default Ember.Route.extend(FdFormCheckTransitionMixin, {
 
   actions: {
     didTransition() {
-      Ember.$('#example .flexberry-content').css('padding-bottom', 0);
-      Ember.$('.flexberry-content > .ui.main.container').css('margin-bottom', 0);
+      $('#example .flexberry-content').css('padding-bottom', 0);
+      $('.flexberry-content > .ui.main.container').css('margin-bottom', 0);
     }
   }
 });

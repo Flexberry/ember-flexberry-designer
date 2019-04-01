@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import $ from 'jquery';
 import joint from 'npm:jointjs';
 import { Dependency } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-dependency';
 import { Connection } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-connection';
@@ -8,7 +9,7 @@ import { Component } from 'ember-flexberry-designer/objects/uml-primitives/fd-um
 import { UmlNode } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-node';
 import { NoteConnector } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-note-connector';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   actions: {
     printDiagram: function() {
       let _this = this;
@@ -19,7 +20,7 @@ export default Ember.Controller.extend({
       let minY = 16384;
       let maxX = 0;
       let maxY = 0;
-      let sidebar = Ember.$('.ui.sidebar.main.menu');
+      let sidebar = $('.ui.sidebar.main.menu');
       let sidebarWidth = sidebar.hasClass('visible') ? sidebar.width() : 0;
 
       if (minX > maxX) {

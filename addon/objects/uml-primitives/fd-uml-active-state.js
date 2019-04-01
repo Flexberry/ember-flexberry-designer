@@ -2,7 +2,7 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import { computed } from '@ember/object';
 import { State } from './fd-uml-state';
 import FdUmlObject from './fd-uml-baseobject';
 
@@ -20,7 +20,7 @@ export default FdUmlObject.extend({
     @property state
     @type String
   */
-  state: Ember.computed.alias('primitive.Text.Text'),
+  state: computed.alias('primitive.Text.Text'),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.

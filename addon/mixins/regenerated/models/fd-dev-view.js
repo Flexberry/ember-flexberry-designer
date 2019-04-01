@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
-export let Model = Ember.Mixin.create({
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
+
+export let Model = Mixin.create({
   definition: DS.attr('string'),
   /**
     Non-stored property.
@@ -33,11 +35,11 @@ export let Model = Ember.Mixin.create({
     let thisValidations = {
       class: { presence: true }
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 export let defineBaseModel = function (modelClass) {
@@ -48,97 +50,97 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('AttributesView', 'fd-dev-view', {
-    name: Projection.attr(''),
-    properties: Projection.attr(''),
-    definition: Projection.attr(''),
-    class: Projection.belongsTo('fd-dev-class', '', {
+    name: attr(''),
+    properties: attr(''),
+    definition: attr(''),
+    class: belongsTo('fd-dev-class', '', {
 
     })
   });
   modelClass.defineProjection('BusinessServer', 'fd-dev-view', {
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    class: Projection.belongsTo('fd-dev-class', '', {
-      stage: Projection.belongsTo('fd-stage', '', {
+    name: attr(''),
+    description: attr(''),
+    class: belongsTo('fd-dev-class', '', {
+      stage: belongsTo('fd-stage', '', {
 
       })
     })
   });
   modelClass.defineProjection('EditDataObjectClass', 'fd-dev-view', {
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    properties: Projection.attr('')
+    name: attr(''),
+    description: attr(''),
+    properties: attr('')
   });
   modelClass.defineProjection('EditFormView', 'fd-dev-view', {
-    name: Projection.attr('Name'),
-    description: Projection.attr('Description')
+    name: attr('Name'),
+    description: attr('Description')
   });
   modelClass.defineProjection('EditPropertyLookups', 'fd-dev-view', {
-    name: Projection.attr(''),
-    definition: Projection.attr(''),
-    class: Projection.belongsTo('fd-dev-class', '', {
-      name: Projection.attr('')
+    name: attr(''),
+    definition: attr(''),
+    class: belongsTo('fd-dev-class', '', {
+      name: attr('')
     }, { hidden: true })
   });
   modelClass.defineProjection('FdAttributesView', 'fd-dev-view', {
-    name: Projection.attr(''),
-    definition: Projection.attr(''),
-    class: Projection.belongsTo('fd-dev-class', '', {
+    name: attr(''),
+    definition: attr(''),
+    class: belongsTo('fd-dev-class', '', {
 
     })
   });
   modelClass.defineProjection('FdEditClassForm', 'fd-dev-view', {
-    name: Projection.attr('Имя'),
-    description: Projection.attr('Описание'),
-    class: Projection.belongsTo('fd-dev-class', '', {
+    name: attr('Имя'),
+    description: attr('Описание'),
+    class: belongsTo('fd-dev-class', '', {
 
     }, { hidden: true })
   });
   modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-view', {
-    definition: Projection.attr(''),
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    nameStr: Projection.attr(''),
-    class: Projection.belongsTo('fd-dev-class', '', {
-      name: Projection.attr('')
+    definition: attr(''),
+    name: attr(''),
+    description: attr(''),
+    nameStr: attr(''),
+    class: belongsTo('fd-dev-class', '', {
+      name: attr('')
     })
   });
   modelClass.defineProjection('Generator', 'fd-dev-view', {
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    definition: Projection.attr(''),
-    class: Projection.belongsTo('fd-dev-class', '', {
+    name: attr(''),
+    description: attr(''),
+    definition: attr(''),
+    class: belongsTo('fd-dev-class', '', {
 
     })
   });
   modelClass.defineProjection('ListFormView', 'fd-dev-view', {
-    class: Projection.belongsTo('fd-dev-class', '', {
-      name: Projection.attr('Class')
+    class: belongsTo('fd-dev-class', '', {
+      name: attr('Class')
     }, { hidden: true }),
-    name: Projection.attr('View name')
+    name: attr('View name')
   });
   modelClass.defineProjection('Prototyping', 'fd-dev-view', {
-    name: Projection.attr(''),
-    definition: Projection.attr('')
+    name: attr(''),
+    definition: attr('')
   });
   modelClass.defineProjection('SearchView', 'fd-dev-view', {
-    name: Projection.attr(''),
-    class: Projection.belongsTo('fd-dev-class', '', {
+    name: attr(''),
+    class: belongsTo('fd-dev-class', '', {
 
     })
   });
   modelClass.defineProjection('ViewManager', 'fd-dev-view', {
-    class: Projection.belongsTo('fd-dev-class', 'Класс', {
-      name: Projection.attr('Класс'),
-      stage: Projection.belongsTo('fd-stage', '', {
+    class: belongsTo('fd-dev-class', 'Класс', {
+      name: attr('Класс'),
+      stage: belongsTo('fd-stage', '', {
 
       }, { hidden: true })
     }),
-    name: Projection.attr('Название представления'),
-    properties: Projection.attr('Свойства в представлении'),
-    definition: Projection.attr('', { hidden: true })
+    name: attr('Название представления'),
+    properties: attr('Свойства в представлении'),
+    definition: attr('', { hidden: true })
   });
   modelClass.defineProjection('ViewPeeker', 'fd-dev-view', {
-    name: Projection.attr('')
+    name: attr('')
   });
 };

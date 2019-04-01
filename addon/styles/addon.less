@@ -1,102 +1,19 @@
-@import 'fd-uml-diagram';
 @import 'src/themes/default/globals/site.variables';
 @import 'default/globals/site.variables';
-@import 'components/fd-attribute-table.less';
+@import 'components/fd-uml-diagram';
+@import 'components/fd-attribute-table';
+@import 'components/fd-sheet';
+@import 'components/fd-list';
 
-.pushable, .full.height{
+.pushable,
+.full.height {
   transition: background-color 1s;
 }
 
 .pushable.fade,
-.pushable.fade .full.height{
+.pushable.fade .full.height,
+.content-mini.fade {
   background: @overlayColor;
-}
-
-@fdSheetPadding: 3em;
-@fdSearchInputPadding: 0.7em 2.5em;
-@hr: 1px solid @sidebarBg;
-@fdSearchInputPadding: 0.7em @leftIndent;
-
-.fd-sheet {
-  background: @fdSheetBg;
-  height: 100%;
-  margin: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transform: translate3d(100%, 0, 0);
-  transition: transform 1s ease;
-  width: 100%;
-
-  &.expand {
-    transform: translate3d(0, 0, 0) !important;
-  }
-
-  .content-mini{
-    height: 100%;
-    padding: 0 0 1em;
-    transition: opacity 0.5s ease-in-out;
-    width: 50%;
-    position: relative;
-  }
-
-  .fd-sheet-header,
-  .fd-sheet-body {
-    padding: 0 @fdSheetPadding;
-  }
-
-  .fd-sheet-body{
-    overflow: auto;
-    height: calc(~'100vh - 9.8125rem - @{footerHeight}');//toolbar height
-  }
-
-  .fd-sheet-toolbar {
-    text-align: right;
-    height: 5rem;
-    line-height: 5rem;
-  }
-
-  &.diagrams-sheet {
-    .form-header {
-      border-bottom: @hr;
-    }
-  }
-}
-
-.ui.grid.fd-list {
-  .row {
-    border-bottom: @hr;
-    margin: 0 1rem;
-
-    .column {
-      > div:not(:first-child) {
-        margin: 1rem 0;
-      }
-
-      div:last-child {
-        margin-bottom: 0;
-      }
-    }
-
-    .light-text{
-      color: @lightTextColor;
-    }
-  }
-
-  .fd-list-item span{
-    padding: 0.5em @leftIndent;
-    &:hover {
-      cursor: pointer;
-    }
-    &.active {
-      background: @fdSheetBg;
-      border-radius: @itemActiveBorderRadius;
-    }
-  }
-
-  > .row > .column {
-    padding: 0.5em 0;
-  }
 }
 
 h2.form-header,
@@ -111,7 +28,7 @@ h2.form-header,
   padding: 5em 4em 3em;
 }
 
-.sitemap-bottom{
+.sitemap-bottom {
   position: absolute;
   bottom: 0;
   width: 100%;

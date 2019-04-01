@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { A } from '@ember/array';
 import FdUpdateAttributeValueMixin from '../../mixins/fd-editing-panels/fd-update-attribute-value';
 import layout from '../../templates/components/fd-editing-panels/fd-enumeration-editing-panel';
 
-export default Ember.Component.extend(FdUpdateAttributeValueMixin, {
+export default Component.extend(FdUpdateAttributeValueMixin, {
   layout,
 
   /**
@@ -21,24 +23,24 @@ export default Ember.Component.extend(FdUpdateAttributeValueMixin, {
     @type Array
     @default undefined
   */
-  tableViewAttribute: [
-    {
-      columnCaption: 'components.fd-attribute-table.attribute.name',
-      columnProperty: 'name',
-      attrPlaceholder: 'components.fd-attribute-table.attribute.name-placeholder',
-      columnClass: 'three'
-    },
-    {
-      columnCaption: 'components.fd-attribute-table.attribute.caption',
-      columnProperty: 'caption',
-      attrPlaceholder: 'components.fd-attribute-table.attribute.caption-placeholder',
-      columnClass: 'four'
-    },
-    {
-      columnCaption: 'components.fd-attribute-table.attribute.description',
-      columnProperty: 'description',
-      attrPlaceholder: 'components.fd-attribute-table.attribute.description-placeholder',
-      columnClass: 'four'
-    },
-  ],
+  tableViewAttribute: computed(() => (
+    A([{
+        columnCaption: 'components.fd-attribute-table.attribute.name',
+        columnProperty: 'name',
+        attrPlaceholder: 'components.fd-attribute-table.attribute.name-placeholder',
+        columnClass: 'three'
+      },
+      {
+        columnCaption: 'components.fd-attribute-table.attribute.caption',
+        columnProperty: 'caption',
+        attrPlaceholder: 'components.fd-attribute-table.attribute.caption-placeholder',
+        columnClass: 'four'
+      },
+      {
+        columnCaption: 'components.fd-attribute-table.attribute.description',
+        columnProperty: 'description',
+        attrPlaceholder: 'components.fd-attribute-table.attribute.description-placeholder',
+        columnClass: 'four'
+      }])
+  )),
 });

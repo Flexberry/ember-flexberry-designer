@@ -2,7 +2,8 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { computed } from '@ember/object';
 
 /**
   The controller for the project creation form.
@@ -10,7 +11,7 @@ import Ember from 'ember';
   @class FdAllProjectsNewController
   @extends Ember.Controller
 */
-export default Ember.Controller.extend({
+export default Controller.extend({
   /**
     The project name.
 
@@ -26,7 +27,7 @@ export default Ember.Controller.extend({
     @type String
     @readOnly
   */
-  nameExample: Ember.computed(function() {
+  nameExample: computed(function() {
     // Parts of `forms/fd-all-projects` locale keys.
     let examples = ['library', 'school', 'university', 'museum', 'gallery'];
     let example = examples[Math.floor(Math.random() * examples.length)];

@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
-export let Model = Ember.Mixin.create({
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
+
+export let Model = Mixin.create({
   designerHtmlTemplate: DS.attr('string'),
   designerMetadataXml: DS.attr('string'),
   name: DS.attr('string'),
@@ -14,43 +16,43 @@ export let Model = Ember.Mixin.create({
       editedType: { presence: true },
       stage: { presence: true }
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('ControlTypeE', 'fd-dev-control-type', {
-    name: Projection.attr('Имя'),
-    designerHtmlTemplate: Projection.attr('Шаблон'),
-    designerMetadataXml: Projection.attr('Метаданные дизайна'),
-    editedType: Projection.belongsTo('fd-dev-type-definition', '', {
-      name: Projection.attr('', { hidden: true })
+    name: attr('Имя'),
+    designerHtmlTemplate: attr('Шаблон'),
+    designerMetadataXml: attr('Метаданные дизайна'),
+    editedType: belongsTo('fd-dev-type-definition', '', {
+      name: attr('', { hidden: true })
     })
   });
   modelClass.defineProjection('ControlTypeL', 'fd-dev-control-type', {
-    name: Projection.attr(''),
-    designerHtmlTemplate: Projection.attr(''),
-    designerMetadataXml: Projection.attr(''),
-    editedType: Projection.belongsTo('fd-dev-type-definition', '', {
-      name: Projection.attr('')
+    name: attr(''),
+    designerHtmlTemplate: attr(''),
+    designerMetadataXml: attr(''),
+    editedType: belongsTo('fd-dev-type-definition', '', {
+      name: attr('')
     }, { hidden: true })
   });
   modelClass.defineProjection('ControlTypeXmlView', 'fd-dev-control-type', {
-    designerMetadataXml: Projection.attr('')
+    designerMetadataXml: attr('')
   });
   modelClass.defineProjection('Full', 'fd-dev-control-type', {
-    name: Projection.attr('Имя'),
-    designerHtmlTemplate: Projection.attr('Шаблон'),
-    designerMetadataXml: Projection.attr('Метаданные дизайна'),
-    editedType: Projection.belongsTo('fd-dev-type-definition', '', {
-      name: Projection.attr(''),
-      caption: Projection.attr(''),
-      mapTypeName: Projection.attr(''),
-      mapTypeAssemblyName: Projection.attr(''),
-      formatAttribute: Projection.attr('')
+    name: attr('Имя'),
+    designerHtmlTemplate: attr('Шаблон'),
+    designerMetadataXml: attr('Метаданные дизайна'),
+    editedType: belongsTo('fd-dev-type-definition', '', {
+      name: attr(''),
+      caption: attr(''),
+      mapTypeName: attr(''),
+      mapTypeAssemblyName: attr(''),
+      formatAttribute: attr('')
     })
   });
 };

@@ -1,10 +1,15 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import { all } from 'rsvp';
+import { isNone } from '@ember/utils';
+import { observer } from '@ember/object';
 import FdUpdateStoreInstancesValueMixin from '../../mixins/fd-editing-panels/fd-update-store-instances-value';
 import layout from '../../templates/components/fd-editing-panels/fd-external-editing-panel';
-import { Query } from 'ember-flexberry-data';
-const { Builder, SimplePredicate, FilterOperator } = Query;
+import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
+import Builder from 'ember-flexberry-data/query/builder';
+import FilterOperator from 'ember-flexberry-data/query/filter-operator';
 
-export default Ember.Component.extend(FdUpdateStoreInstancesValueMixin, {
+export default Component.extend(FdUpdateStoreInstancesValueMixin, {
   layout,
 
   /**
@@ -13,7 +18,7 @@ export default Ember.Component.extend(FdUpdateStoreInstancesValueMixin, {
     @property store
     @type DS.Store or subclass
   */
-  store: Ember.inject.service('store'),
+  store: service('store'),
 
   /**
     Classes data.
@@ -60,10 +65,10 @@ export default Ember.Component.extend(FdUpdateStoreInstancesValueMixin, {
 
     @method _modelObserver
   */
-  _modelObserver: Ember.on('init', Ember.observer('model.name', function() {
+  _modelObserver: observer('model.name', function() {
     let _this = this;
     let model = this.get('model');
-    if (Ember.isNone(model)) {
+    if (isNone(model)) {
       return;
     }
 
@@ -77,7 +82,7 @@ export default Ember.Component.extend(FdUpdateStoreInstancesValueMixin, {
 
     promises.push(store.query('fd-dev-stage', builderStage.build()));
 
-    if (!Ember.isNone(templateClassId)) {
+    if (!isNone(templateClassId)) {
       let id = templateClassId.substring(1, templateClassId.length - 1);
 
       let builderClass = new Builder(store)
@@ -98,7 +103,7 @@ export default Ember.Component.extend(FdUpdateStoreInstancesValueMixin, {
       promises.push(selectClassPromise);
     }
 
-    Ember.RSVP.all(promises).then((allThen) => {
+    all(promises).then((allThen) => {
       _this.set('stageItems', allThen[0]);
       if (promises.length === 2) {
         _this.set('stageValue', allThen[1]);
@@ -108,7 +113,12 @@ export default Ember.Component.extend(FdUpdateStoreInstancesValueMixin, {
       }
     });
 
-  })),
+  }),
+
+  init() {
+    this._super(...arguments);
+    this.get('_modelObserver')();
+  },
 
   /**
     Method for get all classes for current stage.

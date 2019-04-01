@@ -2,18 +2,19 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
-import { Query } from 'ember-flexberry-data';
-
-const { Builder, ComplexPredicate, StringPredicate, Condition } = Query;
+import Route from '@ember/routing/route';
+import { hash } from 'rsvp';
+import { StringPredicate, ComplexPredicate } from 'ember-flexberry-data/query/predicate';
+import Builder from 'ember-flexberry-data/query/builder';
+import Condition from 'ember-flexberry-data/query/condition';
 
 /**
   The route for the form with a list of all projects.
 
   @class FdAllProjectsIndexRoute
-  @extends Ember.Route
+  @extends Route
 */
-export default Ember.Route.extend({
+export default Route.extend({
   /**
     See [EmberJS API](https://emberjs.com/api/).
 
@@ -46,7 +47,7 @@ export default Ember.Route.extend({
       builder.where(predicate);
     }
 
-    return Ember.RSVP.hash({
+    return hash({
       projects: store.query(modelName, builder.build()),
     });
   },

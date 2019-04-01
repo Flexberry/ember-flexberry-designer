@@ -1,8 +1,8 @@
 import { Model as DevModuleSettingTypeMixin, defineProjections } from
   '../mixins/regenerated/models/fd-dev-module-setting-type';
-import { Projection } from 'ember-flexberry-data';
-import { Offline } from 'ember-flexberry-data';
-let Model = Projection.Model.extend(Offline.ModelMixin, DevModuleSettingTypeMixin, {
+import model from 'ember-flexberry-data/models/model';
+import OfflineModelMixin from 'ember-flexberry-data/mixins/offline-model';
+let Model = model.extend(OfflineModelMixin, DevModuleSettingTypeMixin, {
 
 });
 defineProjections(Model);

@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { A } from '@ember/array';
 import layout from '../templates/components/fd-attribute-table';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   classNames: ['row'],
 
@@ -41,7 +42,7 @@ export default Ember.Component.extend({
   init() {
     this._super(...arguments);
 
-    this.set('selectedValues', Ember.A());
+    this.set('selectedValues', A());
   },
 
   actions: {
@@ -52,7 +53,7 @@ export default Ember.Component.extend({
       @method actions.createValue
     */
     createValue() {
-      this.sendAction('create');
+      this.get('create')();
     },
 
     /**
@@ -62,7 +63,7 @@ export default Ember.Component.extend({
     */
     deleteValue() {
       let selectedValues = this.get('selectedValues');
-      this.sendAction('delete', selectedValues);
+      this.get('delete')(selectedValues);
 
       selectedValues.forEach((value) => value.deleteRecord());
       selectedValues.clear();

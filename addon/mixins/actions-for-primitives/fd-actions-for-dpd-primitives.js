@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import { A } from '@ember/array';
 import { Component } from '../../objects/uml-primitives/fd-uml-component';
 import { UmlNode } from '../../objects/uml-primitives/fd-uml-node';
 import { DeploymentActiveObject } from '../../objects/uml-primitives/fd-uml-deployment-active-object';
@@ -11,7 +12,7 @@ import { Connection } from '../../objects/uml-primitives/fd-uml-connection';
   @class FdAcrionsForDpdPrimitivesMixin
   @extends <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
-export default Ember.Mixin.create({
+export default Mixin.create({
   actions: {
     /**
       Handler for click on addComponent button.
@@ -92,11 +93,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newDependencyObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Component', 'flexberry.uml.UmlNode']));
+      }).bind(this), e, A(['flexberry.uml.Component', 'flexberry.uml.UmlNode']));
     },
 
     /**
@@ -114,11 +115,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newConnectionObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Component', 'flexberry.uml.UmlNode', 'flexberry.uml.Instance', 'flexberry.uml.DeploymentActiveObject']));
+      }).bind(this), e, A(['flexberry.uml.Component', 'flexberry.uml.UmlNode', 'flexberry.uml.Instance', 'flexberry.uml.DeploymentActiveObject']));
     }
   }
 });
