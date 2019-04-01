@@ -2,10 +2,10 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
-import { Query } from 'ember-flexberry-data';
-
-const { Builder } = Query;
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+import { hash } from 'rsvp';
+import Builder from 'ember-flexberry-data/query/builder';
 
 /**
   Parent route for all forms of generation.
@@ -13,14 +13,14 @@ const { Builder } = Query;
   @class FdGenerationRoute
   @extends Ember.Route
 */
-export default Ember.Route.extend({
+export default Route.extend({
   /**
     Link to {{#crossLink "FdCurrentProjectContextService"}}{{/crossLink}}.
 
     @property projectContext
     @type FdCurrentProjectContextService
   */
-  projectContext: Ember.inject.service('fd-current-project-context'),
+  projectContext: service('fd-current-project-context'),
 
   actions: {
     /**
@@ -54,7 +54,7 @@ export default Ember.Route.extend({
       .where('stage', 'eq', this.get('projectContext').getCurrentStage())
       .orderBy('startTime desc');
 
-    return Ember.RSVP.hash({
+    return hash({
       generations: store.query(modelName, builder.build()),
     });
   },

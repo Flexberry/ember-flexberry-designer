@@ -2,7 +2,7 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
 /**
   The route for the form with a list of all generations.
@@ -10,7 +10,7 @@ import Ember from 'ember';
   @class FdGenerationListRoute
   @extends Ember.Route
 */
-export default Ember.Route.extend({
+export default Route.extend({
   /**
     See [EmberJS API](https://emberjs.com/api/).
 

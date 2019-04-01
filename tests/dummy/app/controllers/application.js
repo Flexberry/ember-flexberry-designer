@@ -218,15 +218,15 @@ export default Controller.extend({
         $('.toggle-sidebar').css({ transition: '' });
       }
 
-      let visibleSheets = Ember.$('.fd-sheet.visible').toArray();
+      let visibleSheets = $('.fd-sheet.visible').toArray();
       visibleSheets.forEach((item) => {
-        if (Ember.$(item).hasClass('expand')) {
-          this.get('fdSheetService').animatingSheetContent(Ember.$(item).attr('class').replace(/ /g, '.'), contentWidth, 250);
+        if ($(item).hasClass('expand')) {
+          this.get('fdSheetService').animatingSheetContent($(item).attr('class').replace(/ /g, '.'), contentWidth, 250);
         } else {
 
           // That the sheet remained in its place and did not go along with the content.
           let sheetTranslate = `translate3d(calc(50% - ${currentSidebarWidth}), 0, 0)`;
-          Ember.$(item).css({ 'transform': sheetTranslate });
+          $(item).css({ 'transform': sheetTranslate });
         }
       });
 

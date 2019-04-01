@@ -32,16 +32,16 @@ export default Service.extend(Evented, {
   openSheet(sheetName, currentItem) {
     this.trigger('openSheetTriggered', sheetName, currentItem);
     this.set(`sheetSettings.visibility.${sheetName}`, true);
-    Ember.$('.pushable').addClass('fade');
-    Ember.$('.fd-sheet.visible.expand .content-mini').addClass('fade');
+    $('.pushable').addClass('fade');
+    $('.fd-sheet.visible.expand .content-mini').addClass('fade');
 
     let sidebarWidth = $('.ui.sidebar.main.menu').width();
 
     let sheetTranslate = `translate3d(calc(50% - ${sidebarWidth}px), 0, 0)`;
-    Ember.$(`.fd-sheet.${sheetName}`).css({ 'transform': sheetTranslate });
+    $(`.fd-sheet.${sheetName}`).css({ 'transform': sheetTranslate });
 
     // Сбрасываем стиль с кнопки сайдбара.
-    Ember.$('.toggle-sidebar').removeClass('expanded');
+    $('.toggle-sidebar').removeClass('expanded');
   },
 
   /**
@@ -56,26 +56,26 @@ export default Service.extend(Evented, {
     this.set(`sheetSettings.expanded.${sheetName}`, false);
     let currentSheet = $(`.fd-sheet.${sheetName}`);
 
-    if (Ember.$('.fd-sheet.visible').length < 2) {
-      Ember.$('.pushable').removeClass('fade');
+    if ($('.fd-sheet.visible').length < 2) {
+      $('.pushable').removeClass('fade');
 
       // Сбрасываем стиль с кнопки сайдбара.
-      Ember.$('.toggle-sidebar').removeClass('expanded');
+      $('.toggle-sidebar').removeClass('expanded');
     } else {
-      if (Ember.$('.fd-sheet.visible').hasClass('expand')) {
+      if ($('.fd-sheet.visible').hasClass('expand')) {
 
         // Затемняем кнопку сайдбара.
-        Ember.$('.toggle-sidebar').addClass('expanded');
-        Ember.$('.toggle-sidebar').addClass('no-delay');
+        $('.toggle-sidebar').addClass('expanded');
+        $('.toggle-sidebar').addClass('no-delay');
       }
     }
 
-    Ember.$('.fd-sheet.visible.expand .content-mini').removeClass('fade');
+    $('.fd-sheet.visible.expand .content-mini').removeClass('fade');
     currentSheet.css({ 'transform': '' });
 
-    Ember.run.later(function() {
-      Ember.$('.content-mini', currentSheet).css({ width: '' });
-      Ember.$('.toggle-sidebar').removeClass('no-delay');
+    later(function() {
+      $('.content-mini', currentSheet).css({ width: '' });
+      $('.toggle-sidebar').removeClass('no-delay');
     }, 1000);
   },
 

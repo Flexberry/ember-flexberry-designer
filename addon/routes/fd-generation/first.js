@@ -2,7 +2,9 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+import { Promise } from 'rsvp';
 
 /**
   The route for the form with the setting of the first generation.
@@ -10,14 +12,14 @@ import Ember from 'ember';
   @class FdGenerationFirstRoute
   @extends Ember.Route
 */
-export default Ember.Route.extend({
+export default Route.extend({
   /**
     Link to {{#crossLink "FdCurrentProjectContextService"}}{{/crossLink}}.
 
     @property projectContext
     @type FdCurrentProjectContextService
   */
-  projectContext: Ember.inject.service('fd-current-project-context'),
+  projectContext: service('fd-current-project-context'),
 
   actions: {
     /**
@@ -48,7 +50,7 @@ export default Ember.Route.extend({
     let adapter = this.get('store').adapterFor('application');
     let project = this.get('projectContext').getCurrentStage();
 
-    return new Ember.RSVP.Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       adapter.callFunction('GetCurrentModuleSetting', { project }, null, null, resolve, reject);
     });
   },

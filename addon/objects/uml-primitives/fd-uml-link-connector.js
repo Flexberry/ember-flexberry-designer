@@ -2,7 +2,7 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import { alias } from '@ember/object/computed';
 import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
@@ -21,7 +21,7 @@ export default FdUmlElement.extend({
     @property name
     @type String
   */
-  name: Ember.computed.alias('primitive.Name.Text'),
+  name: alias('primitive.Name.Text'),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -71,4 +71,3 @@ export let LinkConnector = joint.shapes.basic.Generic.define('flexberry.uml.Link
   },
 
 });
-

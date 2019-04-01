@@ -2,11 +2,12 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
-import { Query } from 'ember-flexberry-data';
-
-const { Controller, inject, computed, run } = Ember;
-const { Builder } = Query;
+import Controller, {
+  inject as controller
+} from '@ember/controller';
+import { computed } from '@ember/object';
+import { run } from '@ember/runloop';
+import Builder from 'ember-flexberry-data/query/builder';
 
 /**
   The controller for the form with a log of generation.
@@ -21,7 +22,7 @@ export default Controller.extend({
     @property listController
     @type Ember.Controller
   */
-  listController: inject.controller('fd-generation.list'),
+  listController: controller('fd-generation.list'),
 
   /**
     Read-only alias for {{#crossLink "FdGenerationListController/sheetName:property"}}{{/crossLink}} property.
@@ -55,7 +56,7 @@ export default Controller.extend({
     @type Array
     @default ['time']
   */
-  stepsSorting: ['time'],
+  stepsSorting: undefined,
 
   /**
     Log update interval, in milliseconds, performed by the {{#crossLink "FdGenerationListLogController/updateLog:method"}}{{/crossLink}} function.
@@ -73,6 +74,12 @@ export default Controller.extend({
     @type Any
   */
   _timer: undefined,
+
+  init() {
+    this._super(...arguments);
+
+    this.set('stepsSorting', ['time']);
+  },
 
   /**
     Updates the log until generation completes.
