@@ -53,9 +53,9 @@ let Model = StageModel.extend(DevStageMixin, {
   /**
     See [EmberJS API](https://emberjs.com/).
 
-    @method rolledBack
+    @method rollbackAttributes
   */
-  rolledBack() {
+  rollbackAttributes() {
     this.set('_typeMapCS', undefined);
 
     return this._super(...arguments);

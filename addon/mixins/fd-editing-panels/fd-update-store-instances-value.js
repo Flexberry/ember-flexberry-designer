@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import { inject as service } from '@ember/service';
 import FdClassExternalStoreInstancesInType from '../../objects/fd-storeinstancesintype';
 
 /**
@@ -7,7 +8,7 @@ import FdClassExternalStoreInstancesInType from '../../objects/fd-storeinstances
   @class FdUpdateStoreInstancesValueMixin
   @uses <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
-export default Ember.Mixin.create({
+export default Mixin.create({
 
   /**
     Service for managing the state of the sheet component.
@@ -15,7 +16,7 @@ export default Ember.Mixin.create({
     @property fdSheetService
     @type FdSheetService
   */
-  fdSheetService: Ember.inject.service(),
+  fdSheetService: service(),
 
   /**
     Table headers for 'store instances in type'.

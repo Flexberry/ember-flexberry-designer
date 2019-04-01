@@ -1,8 +1,9 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { all } from 'rsvp';
-import { isNone } from '@ember/utils';
+import { isNone, isBlank } from '@ember/utils';
 import { observer } from '@ember/object';
+import { A } from '@ember/array';
 import FdUpdateStoreInstancesValueMixin from '../../mixins/fd-editing-panels/fd-update-store-instances-value';
 import layout from '../../templates/components/fd-editing-panels/fd-external-editing-panel';
 import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
@@ -61,11 +62,29 @@ export default Component.extend(FdUpdateStoreInstancesValueMixin, {
   classItems: undefined,
 
   /**
+    Deactivate dropdowns actions.
+
+    @property deactivateActions
+    @type bool
+  */
+  deactivateActions: false,
+
+  /**
     Ember.observer, watching string `model.name` and update value property.
 
     @method _modelObserver
   */
   _modelObserver: observer('model.name', function() {
+    this.set('deactivateActions', true);
+    this._loadData();
+  }),
+
+  /**
+    Load data for dropdown.
+
+    @method _loadData
+  */
+  _loadData() {
     let _this = this;
     let model = this.get('model');
     if (isNone(model)) {
@@ -93,8 +112,15 @@ export default Component.extend(FdUpdateStoreInstancesValueMixin, {
       let selectClassPromise = store.queryRecord('fd-dev-class', builderClass.build()).then((selectClass) => {
         let stage = selectClass.get('stage');
         _this.getClassesForStage(store, stage).then((classes) => {
-          _this.set('classItems', classes);
-          _this.set('classValue', selectClass);
+          let classArray = A(classes);
+          let classNames = classArray.mapBy('name');
+          classNames.unshift('');
+          _this.set('classItems', {
+            names: classNames,
+            objects: classArray,
+          });
+
+          _this.set('classValue', selectClass.get('name'));
         });
 
         return stage;
@@ -104,20 +130,28 @@ export default Component.extend(FdUpdateStoreInstancesValueMixin, {
     }
 
     all(promises).then((allThen) => {
-      _this.set('stageItems', allThen[0]);
+      let stageArray = A(allThen[0]);
+      let stageNames = stageArray.mapBy('name');
+      stageNames.unshift('');
+      _this.set('stageItems', {
+        names: stageNames,
+        objects: stageArray,
+      });
+
       if (promises.length === 2) {
-        _this.set('stageValue', allThen[1]);
+        _this.set('stageValue', allThen[1].get('name'));
       } else {
         _this.set('stageValue', '');
         _this.set('classValue', '');
       }
-    });
 
-  }),
+      _this.set('deactivateActions', false);
+    });
+  },
 
   init() {
     this._super(...arguments);
-    this.get('_modelObserver')();
+    this._loadData();
   },
 
   /**
@@ -147,13 +181,25 @@ export default Component.extend(FdUpdateStoreInstancesValueMixin, {
       @param {Object} value An object with a new value in the `checked` property.
     */
     changeStageValue(value) {
-      let _this = this;
-      let store = this.get('store');
+      if (isBlank(value)) {
+        this.set('stageValue', '');
+        this.set('classValue', '');
+      } else {
+        let _this = this;
+        let store = this.get('store');
+        let stageObject = this.get('stageItems').objects.findBy('name', value);
+        this.getClassesForStage(store, stageObject).then((classes) => {
+          let classArray = A(classes);
+          let classNames = classArray.mapBy('name');
+          classNames.unshift('');
+          _this.set('classItems', {
+            names: classNames,
+            objects: classArray,
+          });
 
-      this.getClassesForStage(store, value).then((classes) => {
-        _this.set('classItems', classes);
-        _this.set('classValue', '');
-      });
+          _this.set('classValue', '');
+        });
+      }
     },
 
     /**
@@ -163,10 +209,11 @@ export default Component.extend(FdUpdateStoreInstancesValueMixin, {
       @param {Object} value An object with a new value in the `checked` property.
     */
     changeClassValue(value) {
-      if (Ember.isBlank(value)) {
+      if (isBlank(value)) {
         this.set('model.description', null);
       } else {
-        this.set('model.description', '{' + value + '}');
+        let classObject = this.get('classItems').objects.findBy('name', value);
+        this.set('model.description', '{' + classObject.get('id') + '}');
       }
     }
   }

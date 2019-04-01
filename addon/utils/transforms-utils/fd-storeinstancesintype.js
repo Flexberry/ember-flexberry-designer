@@ -2,7 +2,7 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import { A } from '@ember/array';
 import FdClassExternalStoreInstancesInType from '../../objects/fd-storeinstancesintype';
 
 /**
@@ -13,7 +13,7 @@ import FdClassExternalStoreInstancesInType from '../../objects/fd-storeinstances
   @return {Array} An array of storeInstancesInType.
 */
 export function deserialize(storeInstancesInType) {
-  let ret = Ember.A();
+  let ret = A();
   let parser = new DOMParser();
   let xmlDoc = parser.parseFromString(storeInstancesInType, 'text/xml');
   if (xmlDoc) {

@@ -1,4 +1,5 @@
 import Component from '@ember/component';
+import { inject as service } from '@ember/service';
 import FdUpdateBsValueMixin from '../../mixins/fd-editing-panels/fd-update-bs-value';
 import FdUpdateAttributeValueMixin from '../../mixins/fd-editing-panels/fd-update-attribute-value';
 import FdUpdateMethodeValueMixin from '../../mixins/fd-editing-panels/fd-update-method-value';
@@ -25,7 +26,7 @@ export default Component.extend(
     @property fdSheetService
     @type FdSheetService
   */
-  fdSheetService: Ember.inject.service(),
+  fdSheetService: service(),
 
   /**
     Table headers for view.
@@ -33,20 +34,7 @@ export default Component.extend(
     @property tableViewForView
     @type Array
   */
-  tableViewForView: [
-    {
-      columnCaption: 'components.fd-attribute-table.view.name',
-      columnProperty: 'name',
-      attrPlaceholder: 'components.fd-attribute-table.view.name-placeholder',
-      columnClass: 'three'
-    },
-    {
-      columnCaption: 'components.fd-attribute-table.view.description',
-      columnProperty: 'description',
-      attrPlaceholder: 'components.fd-attribute-table.view.description-placeholder',
-      columnClass: 'four'
-    },
-  ],
+  tableViewForView: undefined,
 
   /**
     Button locale path for view.
@@ -54,9 +42,30 @@ export default Component.extend(
     @property viewButton
     @type Object
   */
-  viewButton: {
-    createBtn: 'components.fd-attribute-table.view.create-btn',
-    deleteBtn: 'components.fd-attribute-table.view.delete-btn',
+  viewButton: undefined,
+
+  init() {
+    this._super(...arguments);
+
+    this.set('tableViewForView', [
+      {
+        columnCaption: 'components.fd-attribute-table.view.name',
+        columnProperty: 'name',
+        attrPlaceholder: 'components.fd-attribute-table.view.name-placeholder',
+        columnClass: 'three'
+      },
+      {
+        columnCaption: 'components.fd-attribute-table.view.description',
+        columnProperty: 'description',
+        attrPlaceholder: 'components.fd-attribute-table.view.description-placeholder',
+        columnClass: 'four'
+      },
+    ]);
+
+    this.set('viewButton', {
+      createBtn: 'components.fd-attribute-table.view.create-btn',
+      deleteBtn: 'components.fd-attribute-table.view.delete-btn',
+    });
   },
 
   actions: {
@@ -82,7 +91,7 @@ export default Component.extend(
       @method actions.openViewSheet
     */
     openViewSheet(selectView) {
-      this.sendAction('openViewSheetController', selectView);
+      this.get('openViewSheetController')(selectView);
     }
   }
 });

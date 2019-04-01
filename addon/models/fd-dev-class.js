@@ -1,4 +1,6 @@
-import Ember from 'ember';
+/* eslint-disable ember/no-side-effects */
+import { computed } from '@ember/object';
+import { A } from '@ember/array';
 import ClassModel from './fd-class';
 import { Model as DevClassMixin, defineProjections, defineBaseModel  } from
   '../mixins/regenerated/models/fd-dev-class';
@@ -22,12 +24,12 @@ let Model = ClassModel.extend(DevClassMixin, {
     @property storeInstancesInTypeXML
     @type Ember.NativeArray
   */
-  storeInstancesInTypeXML: Ember.computed('_storeInstancesInType.@each.{dataService,data}', function() {
+  storeInstancesInTypeXML: computed('_storeInstancesInType.@each.{dataService,data}', function() {
     let storeInstancesInType = this.get('_storeInstancesInType');
     if (storeInstancesInType) {
       this.set('storeInstancesInType', serialize(storeInstancesInType.toArray()));
     } else {
-      storeInstancesInType = Ember.A(deserialize(this.get('storeInstancesInType')));
+      storeInstancesInType = A(deserialize(this.get('storeInstancesInType')));
       this.set('_storeInstancesInType', storeInstancesInType);
     }
 
@@ -37,9 +39,9 @@ let Model = ClassModel.extend(DevClassMixin, {
   /**
     See [EmberJS API](https://emberjs.com/).
 
-    @method rolledBack
+    @method rollbackAttributes
   */
-  rolledBack() {
+  rollbackAttributes() {
     this.set('_storeInstancesInType', undefined);
 
     return this._super(...arguments);

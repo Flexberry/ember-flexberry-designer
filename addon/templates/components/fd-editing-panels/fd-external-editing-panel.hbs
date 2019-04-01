@@ -6,19 +6,17 @@
     </div>
     <div class="eleven wide column light-text">
       {{flexberry-dropdown
-        items=stageItems
+        items=stageItems.names
         value=stageValue
         class='fluid input'
-        isSearch=true
-        onChange=(action "changeStageValue")
+        onChange=(if deactivateActions '' (action "changeStageValue"))
       }}
       {{#if stageValue}}
         {{flexberry-dropdown
-          items=classItems
+          items=classItems.names
           value=classValue
           class='fluid input'
-          isSearch=true
-          onChange=(action "changeClassValue")
+          onChange=(if deactivateActions '' (action "changeClassValue"))
         }}
       {{/if}}
 
