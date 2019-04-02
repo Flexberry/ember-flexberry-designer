@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
-export let Model = Ember.Mixin.create({
+import { attr, belongsTo, hasMany } from 'ember-flexberry-data/utils/attributes';
+
+export let Model = Mixin.create({
   /**
     Non-stored property.
 
@@ -386,11 +388,11 @@ export let Model = Ember.Mixin.create({
     let parentValidations = this._super();
     let thisValidations = {
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 
@@ -402,204 +404,204 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('AuditPrototyping', 'fd-dev-stage', {
-    typeMapCS: Projection.attr(''),
-    typeMapCSStr: Projection.attr('')
+    typeMapCS: attr(''),
+    typeMapCSStr: attr('')
   });
   modelClass.defineProjection('Backup', 'fd-dev-stage', {
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    company: Projection.attr(''),
-    product: Projection.attr(''),
-    copyright: Projection.attr(''),
-    version: Projection.attr(''),
-    dataObjectNameSpace: Projection.attr(''),
-    sourceCodeCSPath: Projection.attr(''),
-    sourceCodeVBPath: Projection.attr(''),
-    sQLPath: Projection.attr(''),
-    typeMapCSStr: Projection.attr(''),
-    typeMapVBStr: Projection.attr(''),
-    typeMapSQLStr: Projection.attr(''),
-    typeMapAccessStr: Projection.attr(''),
-    typeMapOracleStr: Projection.attr(''),
-    defaultBaseClass: Projection.attr(''),
-    defaultDetailArrayClass: Projection.attr(''),
-    connectionString: Projection.attr(''),
-    oracleConnectionString: Projection.attr(''),
-    postgreConnectionString: Projection.attr(''),
-    additionalPluginsSettingsStr: Projection.attr(''),
-    defaultEditScriptName: Projection.attr(''),
-    defaultListScriptName: Projection.attr(''),
-    sourceAzStoragePath: Projection.attr(''),
-    operationsEnumPacket: Projection.attr(''),
-    operationsEnumNamespace: Projection.attr(''),
-    signAssemblies: Projection.attr(''),
-    auditEnabled: Projection.attr(''),
-    isAuditDatabaseLocal: Projection.attr(''),
-    isReportDatabaseLocal: Projection.attr(''),
-    defaultWriteMode: Projection.attr(''),
-    moduleSettings: Projection.hasMany('fd-dev-module-setting', '', {
-      valueXML: Projection.attr(''),
-      moduleSettingTypeName: Projection.attr(''),
-      moduleSettingType: Projection.belongsTo('fd-dev-module-setting-type', '', {
+    name: attr(''),
+    description: attr(''),
+    company: attr(''),
+    product: attr(''),
+    copyright: attr(''),
+    version: attr(''),
+    dataObjectNameSpace: attr(''),
+    sourceCodeCSPath: attr(''),
+    sourceCodeVBPath: attr(''),
+    sQLPath: attr(''),
+    typeMapCSStr: attr(''),
+    typeMapVBStr: attr(''),
+    typeMapSQLStr: attr(''),
+    typeMapAccessStr: attr(''),
+    typeMapOracleStr: attr(''),
+    defaultBaseClass: attr(''),
+    defaultDetailArrayClass: attr(''),
+    connectionString: attr(''),
+    oracleConnectionString: attr(''),
+    postgreConnectionString: attr(''),
+    additionalPluginsSettingsStr: attr(''),
+    defaultEditScriptName: attr(''),
+    defaultListScriptName: attr(''),
+    sourceAzStoragePath: attr(''),
+    operationsEnumPacket: attr(''),
+    operationsEnumNamespace: attr(''),
+    signAssemblies: attr(''),
+    auditEnabled: attr(''),
+    isAuditDatabaseLocal: attr(''),
+    isReportDatabaseLocal: attr(''),
+    defaultWriteMode: attr(''),
+    moduleSettings: hasMany('fd-dev-module-setting', '', {
+      valueXML: attr(''),
+      moduleSettingTypeName: attr(''),
+      moduleSettingType: belongsTo('fd-dev-module-setting-type', '', {
 
       }, { hidden: true }),
-      stage: Projection.belongsTo('fd-dev-stage', '', {
+      stage: belongsTo('fd-dev-stage', '', {
 
       }, { hidden: true })
     })
   });
   modelClass.defineProjection('Compiler', 'fd-dev-stage', {
-    company: Projection.attr(''),
-    product: Projection.attr(''),
-    copyright: Projection.attr(''),
-    version: Projection.attr(''),
-    dataObjectNameSpace: Projection.attr(''),
-    sourceCodeCSPath: Projection.attr(''),
-    sourceCodeVBPath: Projection.attr(''),
-    sQLPath: Projection.attr(''),
-    typeMapCSStr: Projection.attr(''),
-    typeMapVBStr: Projection.attr(''),
-    typeMapSQLStr: Projection.attr(''),
-    typeMapAccessStr: Projection.attr(''),
-    defaultBaseClass: Projection.attr(''),
-    defaultDetailArrayClass: Projection.attr(''),
-    defaultEditScriptName: Projection.attr(''),
-    defaultListScriptName: Projection.attr(''),
-    signAssemblies: Projection.attr(''),
-    additionalPluginsSettingsStr: Projection.attr(''),
-    name: Projection.attr(''),
-    description: Projection.attr('')
+    company: attr(''),
+    product: attr(''),
+    copyright: attr(''),
+    version: attr(''),
+    dataObjectNameSpace: attr(''),
+    sourceCodeCSPath: attr(''),
+    sourceCodeVBPath: attr(''),
+    sQLPath: attr(''),
+    typeMapCSStr: attr(''),
+    typeMapVBStr: attr(''),
+    typeMapSQLStr: attr(''),
+    typeMapAccessStr: attr(''),
+    defaultBaseClass: attr(''),
+    defaultDetailArrayClass: attr(''),
+    defaultEditScriptName: attr(''),
+    defaultListScriptName: attr(''),
+    signAssemblies: attr(''),
+    additionalPluginsSettingsStr: attr(''),
+    name: attr(''),
+    description: attr('')
   });
   modelClass.defineProjection('EditAccessGenerator', 'fd-dev-stage', {
-    name: Projection.attr('Название стадии'),
-    description: Projection.attr('Описание'),
-    sQLPath: Projection.attr(''),
-    typeMapAccessStr: Projection.attr('', { hidden: true }),
-    typeMapAccess: Projection.attr('Карта типов'),
-    additionalPluginsSettings: Projection.attr('Дополнительные настройки'),
-    additionalPluginsSettingsStr: Projection.attr('', { hidden: true }),
-    moduleSettings: Projection.hasMany('fd-dev-module-setting', '', {
-      moduleSettingType: Projection.belongsTo('fd-dev-module-setting-type', 'ModuleSettingTyp', {
-        name: Projection.attr('Name ModuleSettingType')
+    name: attr('Название стадии'),
+    description: attr('Описание'),
+    sQLPath: attr(''),
+    typeMapAccessStr: attr('', { hidden: true }),
+    typeMapAccess: attr('Карта типов'),
+    additionalPluginsSettings: attr('Дополнительные настройки'),
+    additionalPluginsSettingsStr: attr('', { hidden: true }),
+    moduleSettings: hasMany('fd-dev-module-setting', '', {
+      moduleSettingType: belongsTo('fd-dev-module-setting-type', 'ModuleSettingTyp', {
+        name: attr('Name ModuleSettingType')
       }, { hidden: true }),
-      valueXML: Projection.attr('ValueXML'),
-      moduleSettingTypeName: Projection.attr(''),
-      stage: Projection.belongsTo('fd-dev-stage', 'Stage', {
+      valueXML: attr('ValueXML'),
+      moduleSettingTypeName: attr(''),
+      stage: belongsTo('fd-dev-stage', 'Stage', {
 
       }, { hidden: true })
     })
   });
   modelClass.defineProjection('EditCSGenerator', 'fd-dev-stage', {
-    name: Projection.attr('Название стадии'),
-    description: Projection.attr('Описание'),
-    company: Projection.attr('Название компании'),
-    product: Projection.attr('Название продукта'),
-    copyright: Projection.attr('Copyright'),
-    version: Projection.attr('Версия'),
-    sourceCodeCSPath: Projection.attr('Каталог для исходного кода'),
-    typeMapCSStr: Projection.attr('', { hidden: true }),
-    typeMapCS: Projection.attr('Карта типов'),
-    enableAuElement: Projection.attr(''),
-    auditEnabled: Projection.attr('Вести аудит в приложение'),
-    defaultWriteMode: Projection.attr('Режим записи аудита по умолчанию'),
-    dataObjectNameSpace: Projection.attr('NameSpace'),
-    defaultBaseClass: Projection.attr('Default base class'),
-    defaultDetailArrayClass: Projection.attr('Default detail array class'),
-    defaultEditScriptName: Projection.attr('Default edit script name'),
-    defaultListScriptName: Projection.attr('Default list script name'),
-    scriptPacket: Projection.attr('Script packet'),
-    scriptNamespace: Projection.attr('Script namespace postfix'),
-    signAssemblies: Projection.attr('Подписывать сборки'),
-    additionalPluginsSettings: Projection.attr('Дополнительные настройки'),
-    additionalPluginsSettingsStr: Projection.attr('', { hidden: true }),
-    moduleSettings: Projection.hasMany('fd-dev-module-setting', '', {
-      moduleSettingType: Projection.belongsTo('fd-dev-module-setting-type', 'ModuleSettingTyp', {
-        name: Projection.attr('Name ModuleSettingType')
+    name: attr('Название стадии'),
+    description: attr('Описание'),
+    company: attr('Название компании'),
+    product: attr('Название продукта'),
+    copyright: attr('Copyright'),
+    version: attr('Версия'),
+    sourceCodeCSPath: attr('Каталог для исходного кода'),
+    typeMapCSStr: attr('', { hidden: true }),
+    typeMapCS: attr('Карта типов'),
+    enableAuElement: attr(''),
+    auditEnabled: attr('Вести аудит в приложение'),
+    defaultWriteMode: attr('Режим записи аудита по умолчанию'),
+    dataObjectNameSpace: attr('NameSpace'),
+    defaultBaseClass: attr('Default base class'),
+    defaultDetailArrayClass: attr('Default detail array class'),
+    defaultEditScriptName: attr('Default edit script name'),
+    defaultListScriptName: attr('Default list script name'),
+    scriptPacket: attr('Script packet'),
+    scriptNamespace: attr('Script namespace postfix'),
+    signAssemblies: attr('Подписывать сборки'),
+    additionalPluginsSettings: attr('Дополнительные настройки'),
+    additionalPluginsSettingsStr: attr('', { hidden: true }),
+    moduleSettings: hasMany('fd-dev-module-setting', '', {
+      moduleSettingType: belongsTo('fd-dev-module-setting-type', 'ModuleSettingTyp', {
+        name: attr('Name ModuleSettingType')
       }, { hidden: true }),
-      valueXML: Projection.attr('ValueXML'),
-      moduleSettingTypeName: Projection.attr(''),
-      stage: Projection.belongsTo('fd-dev-stage', 'Stage', {
+      valueXML: attr('ValueXML'),
+      moduleSettingTypeName: attr(''),
+      stage: belongsTo('fd-dev-stage', 'Stage', {
 
       }, { hidden: true })
     })
   });
   modelClass.defineProjection('EditFormView', 'fd-dev-stage', {
-    name: Projection.attr('Name'),
-    description: Projection.attr('Description'),
-    company: Projection.attr('Company'),
-    copyright: Projection.attr('Copyright'),
-    product: Projection.attr('Product'),
-    configuration: Projection.belongsTo('fd-configuration', '', {
-      project: Projection.belongsTo('fd-project', '', {
-        repository: Projection.belongsTo('fd-repository', '', {
+    name: attr('Name'),
+    description: attr('Description'),
+    company: attr('Company'),
+    copyright: attr('Copyright'),
+    product: attr('Product'),
+    configuration: belongsTo('fd-configuration', '', {
+      project: belongsTo('fd-project', '', {
+        repository: belongsTo('fd-repository', '', {
 
         }, { hidden: true })
       }, { hidden: true })
     }, { hidden: true })
   });
   modelClass.defineProjection('EditMSSQLDirectGenerator', 'fd-dev-stage', {
-    name: Projection.attr('Название стадии'),
-    description: Projection.attr('Описание'),
-    typeMapSQLStr: Projection.attr('', { hidden: true }),
-    typeMapSQL: Projection.attr('Карта типов'),
-    connectionString: Projection.attr('Строка соединения'),
-    additionalPluginsSettings: Projection.attr('Дополнительные настройки'),
-    additionalPluginsSettingsStr: Projection.attr('', { hidden: true }),
-    doNotDeleteExtraTables: Projection.attr('Не удалять существующие таблицы'),
-    isAuditDatabaseLocal: Projection.attr('БД аудита в БД приложения'),
-    isReportDatabaseLocal: Projection.attr('БД web-отчётов в БД приложения'),
-    moduleSettings: Projection.hasMany('fd-dev-module-setting', '', {
-      moduleSettingType: Projection.belongsTo('fd-dev-module-setting-type', 'ModuleSettingTyp', {
-        name: Projection.attr('Name ModuleSettingType')
+    name: attr('Название стадии'),
+    description: attr('Описание'),
+    typeMapSQLStr: attr('', { hidden: true }),
+    typeMapSQL: attr('Карта типов'),
+    connectionString: attr('Строка соединения'),
+    additionalPluginsSettings: attr('Дополнительные настройки'),
+    additionalPluginsSettingsStr: attr('', { hidden: true }),
+    doNotDeleteExtraTables: attr('Не удалять существующие таблицы'),
+    isAuditDatabaseLocal: attr('БД аудита в БД приложения'),
+    isReportDatabaseLocal: attr('БД web-отчётов в БД приложения'),
+    moduleSettings: hasMany('fd-dev-module-setting', '', {
+      moduleSettingType: belongsTo('fd-dev-module-setting-type', 'ModuleSettingTyp', {
+        name: attr('Name ModuleSettingType')
       }, { hidden: true }),
-      valueXML: Projection.attr('ValueXML'),
-      moduleSettingTypeName: Projection.attr(''),
-      stage: Projection.belongsTo('fd-dev-stage', 'Stage', {
+      valueXML: attr('ValueXML'),
+      moduleSettingTypeName: attr(''),
+      stage: belongsTo('fd-dev-stage', 'Stage', {
 
       }, { hidden: true })
     })
   });
   modelClass.defineProjection('EditOracleGenerator', 'fd-dev-stage', {
-    name: Projection.attr('Название стадии'),
-    description: Projection.attr('Описание'),
-    sQLPath: Projection.attr(''),
-    typeMapOracle: Projection.attr('Карта типов'),
-    doNotDeleteExtraTables: Projection.attr('Не удалять существующие таблицы'),
-    typeMapOracleStr: Projection.attr('', { hidden: true }),
-    isAuditDatabaseLocal: Projection.attr('БД аудита в БД приложения'),
-    isReportDatabaseLocal: Projection.attr('БД web-отчётов в БД приложения'),
-    additionalPluginsSettings: Projection.attr('Дополнительные настройки'),
-    additionalPluginsSettingsStr: Projection.attr('', { hidden: true }),
-    oracleConnectionString: Projection.attr('Строка соединения'),
-    moduleSettings: Projection.hasMany('fd-dev-module-setting', '', {
-      moduleSettingType: Projection.belongsTo('fd-dev-module-setting-type', 'ModuleSettingTyp', {
-        name: Projection.attr('Name ModuleSettingType')
+    name: attr('Название стадии'),
+    description: attr('Описание'),
+    sQLPath: attr(''),
+    typeMapOracle: attr('Карта типов'),
+    doNotDeleteExtraTables: attr('Не удалять существующие таблицы'),
+    typeMapOracleStr: attr('', { hidden: true }),
+    isAuditDatabaseLocal: attr('БД аудита в БД приложения'),
+    isReportDatabaseLocal: attr('БД web-отчётов в БД приложения'),
+    additionalPluginsSettings: attr('Дополнительные настройки'),
+    additionalPluginsSettingsStr: attr('', { hidden: true }),
+    oracleConnectionString: attr('Строка соединения'),
+    moduleSettings: hasMany('fd-dev-module-setting', '', {
+      moduleSettingType: belongsTo('fd-dev-module-setting-type', 'ModuleSettingTyp', {
+        name: attr('Name ModuleSettingType')
       }, { hidden: true }),
-      valueXML: Projection.attr('ValueXML'),
-      moduleSettingTypeName: Projection.attr(''),
-      stage: Projection.belongsTo('fd-dev-stage', 'Stage', {
+      valueXML: attr('ValueXML'),
+      moduleSettingTypeName: attr(''),
+      stage: belongsTo('fd-dev-stage', 'Stage', {
 
       }, { hidden: true })
     })
   });
   modelClass.defineProjection('EditPostgreSqlDirectGenerator', 'fd-dev-stage', {
-    name: Projection.attr('Название стадии'),
-    description: Projection.attr('Описание'),
-    typeMapPostgre: Projection.attr('Карта типов'),
-    postgreConnectionString: Projection.attr('Строка соединения'),
-    typeMapPostgreStr: Projection.attr('', { hidden: true }),
-    additionalPluginsSettingsStr: Projection.attr('', { hidden: true }),
-    doNotDeleteExtraTables: Projection.attr('Не удалять существующие таблицы'),
-    additionalPluginsSettings: Projection.attr('Дополнительные настройки'),
-    isAuditDatabaseLocal: Projection.attr('БД аудита в БД приложения'),
-    isReportDatabaseLocal: Projection.attr('БД web-отчётов в БД приложения'),
-    moduleSettings: Projection.hasMany('fd-dev-module-setting', '', {
-      moduleSettingType: Projection.belongsTo('fd-dev-module-setting-type', 'ModuleSettingTyp', {
-        name: Projection.attr('Name ModuleSettingType')
+    name: attr('Название стадии'),
+    description: attr('Описание'),
+    typeMapPostgre: attr('Карта типов'),
+    postgreConnectionString: attr('Строка соединения'),
+    typeMapPostgreStr: attr('', { hidden: true }),
+    additionalPluginsSettingsStr: attr('', { hidden: true }),
+    doNotDeleteExtraTables: attr('Не удалять существующие таблицы'),
+    additionalPluginsSettings: attr('Дополнительные настройки'),
+    isAuditDatabaseLocal: attr('БД аудита в БД приложения'),
+    isReportDatabaseLocal: attr('БД web-отчётов в БД приложения'),
+    moduleSettings: hasMany('fd-dev-module-setting', '', {
+      moduleSettingType: belongsTo('fd-dev-module-setting-type', 'ModuleSettingTyp', {
+        name: attr('Name ModuleSettingType')
       }, { hidden: true }),
-      valueXML: Projection.attr('ValueXML'),
-      moduleSettingTypeName: Projection.attr(''),
-      stage: Projection.belongsTo('fd-dev-stage', 'Stage', {
+      valueXML: attr('ValueXML'),
+      moduleSettingTypeName: attr(''),
+      stage: belongsTo('fd-dev-stage', 'Stage', {
 
       }, { hidden: true })
     })
@@ -608,244 +610,244 @@ export let defineProjections = function (modelClass) {
 
   });
   modelClass.defineProjection('EditRightManagementGenerator', 'fd-dev-stage', {
-    name: Projection.attr('Название стадии'),
-    description: Projection.attr('Описание'),
-    sourceAzStoragePath: Projection.attr('Имя файла хранилища'),
-    defaultAccessType: Projection.attr('Тип проверки доступа по умолчанию'),
-    additionalPluginsSettingsStr: Projection.attr('', { hidden: true })
+    name: attr('Название стадии'),
+    description: attr('Описание'),
+    sourceAzStoragePath: attr('Имя файла хранилища'),
+    defaultAccessType: attr('Тип проверки доступа по умолчанию'),
+    additionalPluginsSettingsStr: attr('', { hidden: true })
   });
   modelClass.defineProjection('EditSQLGenerator', 'fd-dev-stage', {
-    name: Projection.attr('Название стадии'),
-    description: Projection.attr('Описание'),
-    sQLPath: Projection.attr(''),
-    typeMapSQLStr: Projection.attr('', { hidden: true }),
-    typeMapSQL: Projection.attr('Карта типов'),
-    additionalPluginsSettings: Projection.attr('Дополнительные настройки'),
-    additionalPluginsSettingsStr: Projection.attr('', { hidden: true }),
-    moduleSettings: Projection.hasMany('fd-dev-module-setting', '', {
-      moduleSettingType: Projection.belongsTo('fd-dev-module-setting-type', 'ModuleSettingTyp', {
-        name: Projection.attr('Name ModuleSettingType')
+    name: attr('Название стадии'),
+    description: attr('Описание'),
+    sQLPath: attr(''),
+    typeMapSQLStr: attr('', { hidden: true }),
+    typeMapSQL: attr('Карта типов'),
+    additionalPluginsSettings: attr('Дополнительные настройки'),
+    additionalPluginsSettingsStr: attr('', { hidden: true }),
+    moduleSettings: hasMany('fd-dev-module-setting', '', {
+      moduleSettingType: belongsTo('fd-dev-module-setting-type', 'ModuleSettingTyp', {
+        name: attr('Name ModuleSettingType')
       }, { hidden: true }),
-      valueXML: Projection.attr('ValueXML'),
-      moduleSettingTypeName: Projection.attr(''),
-      stage: Projection.belongsTo('fd-dev-stage', 'Stage', {
+      valueXML: attr('ValueXML'),
+      moduleSettingTypeName: attr(''),
+      stage: belongsTo('fd-dev-stage', 'Stage', {
 
       }, { hidden: true })
     })
   });
   modelClass.defineProjection('EditVBGenerator', 'fd-dev-stage', {
-    name: Projection.attr('Название стадии'),
-    description: Projection.attr('Описание'),
-    company: Projection.attr(''),
-    product: Projection.attr(''),
-    copyright: Projection.attr(''),
-    version: Projection.attr(''),
-    dataObjectNameSpace: Projection.attr(''),
-    sourceCodeVBPath: Projection.attr(''),
-    typeMapVBStr: Projection.attr('', { hidden: true }),
-    typeMapVB: Projection.attr(''),
-    defaultBaseClass: Projection.attr(''),
-    defaultDetailArrayClass: Projection.attr(''),
-    defaultEditScriptName: Projection.attr(''),
-    defaultListScriptName: Projection.attr(''),
-    signAssemblies: Projection.attr('')
+    name: attr('Название стадии'),
+    description: attr('Описание'),
+    company: attr(''),
+    product: attr(''),
+    copyright: attr(''),
+    version: attr(''),
+    dataObjectNameSpace: attr(''),
+    sourceCodeVBPath: attr(''),
+    typeMapVBStr: attr('', { hidden: true }),
+    typeMapVB: attr(''),
+    defaultBaseClass: attr(''),
+    defaultDetailArrayClass: attr(''),
+    defaultEditScriptName: attr(''),
+    defaultListScriptName: attr(''),
+    signAssemblies: attr('')
   });
   modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-stage', {
-    additionalPluginsSettingsStr: Projection.attr(''),
-    auditEnabled: Projection.attr(''),
-    company: Projection.attr(''),
-    copyright: Projection.attr(''),
-    dataObjectNameSpace: Projection.attr(''),
-    defaultAccessType: Projection.attr(''),
-    defaultBaseClass: Projection.attr(''),
-    defaultDetailArrayClass: Projection.attr(''),
-    defaultEditScriptName: Projection.attr(''),
-    defaultListScriptName: Projection.attr(''),
-    defaultWriteMode: Projection.attr(''),
-    doNotDeleteExtraTables: Projection.attr(''),
-    indexComment: Projection.attr(''),
-    isAuditDatabaseLocal: Projection.attr(''),
-    isReportDatabaseLocal: Projection.attr(''),
-    lastIndexDate: Projection.attr(''),
-    operationsEnumNamespace: Projection.attr(''),
-    operationsEnumPacket: Projection.attr(''),
-    product: Projection.attr(''),
-    realDataObjectNameSpace: Projection.attr(''),
-    scriptNamespace: Projection.attr(''),
-    scriptPacket: Projection.attr(''),
-    serializedIndex: Projection.attr(''),
-    signAssemblies: Projection.attr(''),
-    sourceAzStoragePath: Projection.attr(''),
-    sourceCodeCSPath: Projection.attr(''),
-    sourceCodeVBPath: Projection.attr(''),
-    sourceControlUri: Projection.attr(''),
-    sQLPath: Projection.attr(''),
-    typeMapAccessStr: Projection.attr(''),
-    typeMapCSStr: Projection.attr(''),
-    typeMapOracleStr: Projection.attr(''),
-    typeMapPostgreStr: Projection.attr(''),
-    typeMapSQLStr: Projection.attr(''),
-    typeMapVBStr: Projection.attr(''),
-    useSourceControl: Projection.attr(''),
-    version: Projection.attr(''),
-    createUser: Projection.attr(''),
-    createDate: Projection.attr(''),
-    changeUser: Projection.attr(''),
-    changeDate: Projection.attr(''),
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    nameStr: Projection.attr(''),
-    configuration: Projection.belongsTo('fd-configuration', '', {
-      name: Projection.attr('')
+    additionalPluginsSettingsStr: attr(''),
+    auditEnabled: attr(''),
+    company: attr(''),
+    copyright: attr(''),
+    dataObjectNameSpace: attr(''),
+    defaultAccessType: attr(''),
+    defaultBaseClass: attr(''),
+    defaultDetailArrayClass: attr(''),
+    defaultEditScriptName: attr(''),
+    defaultListScriptName: attr(''),
+    defaultWriteMode: attr(''),
+    doNotDeleteExtraTables: attr(''),
+    indexComment: attr(''),
+    isAuditDatabaseLocal: attr(''),
+    isReportDatabaseLocal: attr(''),
+    lastIndexDate: attr(''),
+    operationsEnumNamespace: attr(''),
+    operationsEnumPacket: attr(''),
+    product: attr(''),
+    realDataObjectNameSpace: attr(''),
+    scriptNamespace: attr(''),
+    scriptPacket: attr(''),
+    serializedIndex: attr(''),
+    signAssemblies: attr(''),
+    sourceAzStoragePath: attr(''),
+    sourceCodeCSPath: attr(''),
+    sourceCodeVBPath: attr(''),
+    sourceControlUri: attr(''),
+    sQLPath: attr(''),
+    typeMapAccessStr: attr(''),
+    typeMapCSStr: attr(''),
+    typeMapOracleStr: attr(''),
+    typeMapPostgreStr: attr(''),
+    typeMapSQLStr: attr(''),
+    typeMapVBStr: attr(''),
+    useSourceControl: attr(''),
+    version: attr(''),
+    createUser: attr(''),
+    createDate: attr(''),
+    changeUser: attr(''),
+    changeDate: attr(''),
+    name: attr(''),
+    description: attr(''),
+    nameStr: attr(''),
+    configuration: belongsTo('fd-configuration', '', {
+      name: attr('')
     })
   });
   modelClass.defineProjection('FormDesigner_ProjectE', 'fd-dev-stage', {
-    name: Projection.attr('Название'),
-    description: Projection.attr('Описание'),
-    product: Projection.attr(''),
-    configuration: Projection.belongsTo('fd-configuration', '', {
-      project: Projection.belongsTo('fd-project', '', {
-        repository: Projection.belongsTo('fd-repository', '', {
+    name: attr('Название'),
+    description: attr('Описание'),
+    product: attr(''),
+    configuration: belongsTo('fd-configuration', '', {
+      project: belongsTo('fd-project', '', {
+        repository: belongsTo('fd-repository', '', {
 
         }, { hidden: true })
       }, { hidden: true })
     }, { hidden: true })
   });
   modelClass.defineProjection('FormDesigner_ProjectL', 'fd-dev-stage', {
-    name: Projection.attr('Название'),
-    description: Projection.attr('Описание'),
-    product: Projection.attr('', { hidden: true }),
-    configuration: Projection.belongsTo('fd-configuration', '', {
-      project: Projection.belongsTo('fd-project', '', {
-        repository: Projection.belongsTo('fd-repository', '', {
+    name: attr('Название'),
+    description: attr('Описание'),
+    product: attr('', { hidden: true }),
+    configuration: belongsTo('fd-configuration', '', {
+      project: belongsTo('fd-project', '', {
+        repository: belongsTo('fd-repository', '', {
 
         }, { hidden: true })
       }, { hidden: true })
     }, { hidden: true })
   });
   modelClass.defineProjection('Generations', 'fd-dev-stage', {
-    name: Projection.attr(''),
-    generations: Projection.hasMany('fd-generation', '', {
-      userName: Projection.attr('Пользователь'),
-      state: Projection.attr('Состояние'),
-      startTime: Projection.attr('Время старта'),
-      percentComplete: Projection.attr('% выполнения'),
-      endTime: Projection.attr('Время окончания'),
-      stage: Projection.belongsTo('fd-dev-stage', 'Имя стадии', {
-        name: Projection.attr('Имя стадии')
+    name: attr(''),
+    generations: hasMany('fd-generation', '', {
+      userName: attr('Пользователь'),
+      state: attr('Состояние'),
+      startTime: attr('Время старта'),
+      percentComplete: attr('% выполнения'),
+      endTime: attr('Время окончания'),
+      stage: belongsTo('fd-dev-stage', 'Имя стадии', {
+        name: attr('Имя стадии')
       }),
-      generationReason: Projection.attr('Действие')
+      generationReason: attr('Действие')
     })
   });
   modelClass.defineProjection('Generator', 'fd-dev-stage', {
-    name: Projection.attr(''),
-    description: Projection.attr(''),
-    company: Projection.attr(''),
-    product: Projection.attr(''),
-    copyright: Projection.attr(''),
-    version: Projection.attr(''),
-    dataObjectNameSpace: Projection.attr(''),
-    sourceCodeCSPath: Projection.attr(''),
-    sourceCodeVBPath: Projection.attr(''),
-    sQLPath: Projection.attr(''),
-    typeMapCSStr: Projection.attr(''),
-    typeMapVBStr: Projection.attr(''),
-    typeMapSQLStr: Projection.attr(''),
-    typeMapAccessStr: Projection.attr(''),
-    typeMapOracleStr: Projection.attr(''),
-    typeMapPostgreStr: Projection.attr(''),
-    defaultBaseClass: Projection.attr(''),
-    defaultDetailArrayClass: Projection.attr(''),
-    connectionString: Projection.attr(''),
-    oracleConnectionString: Projection.attr(''),
-    postgreConnectionString: Projection.attr(''),
-    additionalPluginsSettingsStr: Projection.attr(''),
-    defaultEditScriptName: Projection.attr(''),
-    defaultListScriptName: Projection.attr(''),
-    sourceAzStoragePath: Projection.attr(''),
-    operationsEnumPacket: Projection.attr(''),
-    operationsEnumNamespace: Projection.attr(''),
-    signAssemblies: Projection.attr(''),
-    auditEnabled: Projection.attr(''),
-    isAuditDatabaseLocal: Projection.attr(''),
-    defaultWriteMode: Projection.attr(''),
-    isReportDatabaseLocal: Projection.attr(''),
-    typeDefinitions: Projection.hasMany('fd-dev-type-definition', '', {
-      name: Projection.attr(''),
-      caption: Projection.attr(''),
-      mapTypeName: Projection.attr(''),
-      mapTypeAssemblyName: Projection.attr(''),
-      formatAttribute: Projection.attr('')
+    name: attr(''),
+    description: attr(''),
+    company: attr(''),
+    product: attr(''),
+    copyright: attr(''),
+    version: attr(''),
+    dataObjectNameSpace: attr(''),
+    sourceCodeCSPath: attr(''),
+    sourceCodeVBPath: attr(''),
+    sQLPath: attr(''),
+    typeMapCSStr: attr(''),
+    typeMapVBStr: attr(''),
+    typeMapSQLStr: attr(''),
+    typeMapAccessStr: attr(''),
+    typeMapOracleStr: attr(''),
+    typeMapPostgreStr: attr(''),
+    defaultBaseClass: attr(''),
+    defaultDetailArrayClass: attr(''),
+    connectionString: attr(''),
+    oracleConnectionString: attr(''),
+    postgreConnectionString: attr(''),
+    additionalPluginsSettingsStr: attr(''),
+    defaultEditScriptName: attr(''),
+    defaultListScriptName: attr(''),
+    sourceAzStoragePath: attr(''),
+    operationsEnumPacket: attr(''),
+    operationsEnumNamespace: attr(''),
+    signAssemblies: attr(''),
+    auditEnabled: attr(''),
+    isAuditDatabaseLocal: attr(''),
+    defaultWriteMode: attr(''),
+    isReportDatabaseLocal: attr(''),
+    typeDefinitions: hasMany('fd-dev-type-definition', '', {
+      name: attr(''),
+      caption: attr(''),
+      mapTypeName: attr(''),
+      mapTypeAssemblyName: attr(''),
+      formatAttribute: attr('')
     }),
-    controlTypes: Projection.hasMany('fd-dev-control-type', '', {
-      name: Projection.attr('Имя'),
-      designerHtmlTemplate: Projection.attr('Шаблон'),
-      designerMetadataXml: Projection.attr('Метаданные дизайна'),
-      editedType: Projection.belongsTo('fd-dev-type-definition', '', {
-        name: Projection.attr('', { hidden: true })
+    controlTypes: hasMany('fd-dev-control-type', '', {
+      name: attr('Имя'),
+      designerHtmlTemplate: attr('Шаблон'),
+      designerMetadataXml: attr('Метаданные дизайна'),
+      editedType: belongsTo('fd-dev-type-definition', '', {
+        name: attr('', { hidden: true })
       })
     }),
-    moduleSettings: Projection.hasMany('fd-dev-module-setting', '', {
-      moduleSettingType: Projection.belongsTo('fd-dev-module-setting-type', 'ModuleSettingTyp', {
-        name: Projection.attr('Name ModuleSettingType')
+    moduleSettings: hasMany('fd-dev-module-setting', '', {
+      moduleSettingType: belongsTo('fd-dev-module-setting-type', 'ModuleSettingTyp', {
+        name: attr('Name ModuleSettingType')
       }, { hidden: true }),
-      valueXML: Projection.attr('ValueXML'),
-      moduleSettingTypeName: Projection.attr(''),
-      stage: Projection.belongsTo('fd-dev-stage', 'Stage', {
+      valueXML: attr('ValueXML'),
+      moduleSettingTypeName: attr(''),
+      stage: belongsTo('fd-dev-stage', 'Stage', {
 
       }, { hidden: true })
     })
   });
   modelClass.defineProjection('IntelliSearchPluginIndexing', 'fd-dev-stage', {
-    name: Projection.attr(''),
-    changeDate: Projection.attr(''),
-    lastIndexDate: Projection.attr(''),
-    indexComment: Projection.attr(''),
-    typeMapCSStr: Projection.attr(''),
-    serializedIndex: Projection.attr('')
+    name: attr(''),
+    changeDate: attr(''),
+    lastIndexDate: attr(''),
+    indexComment: attr(''),
+    typeMapCSStr: attr(''),
+    serializedIndex: attr('')
   });
   modelClass.defineProjection('IntelliSearchPluginLight', 'fd-dev-stage', {
-    name: Projection.attr(''),
-    changeDate: Projection.attr(''),
-    lastIndexDate: Projection.attr(''),
-    indexComment: Projection.attr(''),
-    configuration: Projection.belongsTo('fd-configuration', '', {
-      name: Projection.attr(''),
-      project: Projection.belongsTo('fd-project', '', {
-        name: Projection.attr(''),
-        repository: Projection.belongsTo('fd-repository', '', {
-          name: Projection.attr('')
+    name: attr(''),
+    changeDate: attr(''),
+    lastIndexDate: attr(''),
+    indexComment: attr(''),
+    configuration: belongsTo('fd-configuration', '', {
+      name: attr(''),
+      project: belongsTo('fd-project', '', {
+        name: attr(''),
+        repository: belongsTo('fd-repository', '', {
+          name: attr('')
         })
       })
     })
   });
   modelClass.defineProjection('IntelliSearchPluginSearch', 'fd-dev-stage', {
-    name: Projection.attr(''),
-    changeDate: Projection.attr(''),
-    lastIndexDate: Projection.attr(''),
-    indexComment: Projection.attr(''),
-    configuration: Projection.belongsTo('fd-configuration', '', {
-      name: Projection.attr(''),
-      project: Projection.belongsTo('fd-project', '', {
-        name: Projection.attr(''),
-        repository: Projection.belongsTo('fd-repository', '', {
-          name: Projection.attr('')
+    name: attr(''),
+    changeDate: attr(''),
+    lastIndexDate: attr(''),
+    indexComment: attr(''),
+    configuration: belongsTo('fd-configuration', '', {
+      name: attr(''),
+      project: belongsTo('fd-project', '', {
+        name: attr(''),
+        repository: belongsTo('fd-repository', '', {
+          name: attr('')
         })
       })
     }),
-    serializedIndex: Projection.attr('')
+    serializedIndex: attr('')
   });
   modelClass.defineProjection('LightStage', 'fd-dev-stage', {
-    company: Projection.attr(''),
-    product: Projection.attr(''),
-    sourceCodeCSPath: Projection.attr(''),
-    moduleSettings: Projection.hasMany('fd-dev-module-setting', '', {
-      moduleSettingType: Projection.belongsTo('fd-dev-module-setting-type', 'ModuleSettingTyp', {
-        name: Projection.attr('Name ModuleSettingType')
+    company: attr(''),
+    product: attr(''),
+    sourceCodeCSPath: attr(''),
+    moduleSettings: hasMany('fd-dev-module-setting', '', {
+      moduleSettingType: belongsTo('fd-dev-module-setting-type', 'ModuleSettingTyp', {
+        name: attr('Name ModuleSettingType')
       }, { hidden: true }),
-      valueXML: Projection.attr('ValueXML'),
-      moduleSettingTypeName: Projection.attr(''),
-      stage: Projection.belongsTo('fd-dev-stage', 'Stage', {
+      valueXML: attr('ValueXML'),
+      moduleSettingTypeName: attr(''),
+      stage: belongsTo('fd-dev-stage', 'Stage', {
 
       }, { hidden: true })
     })
@@ -853,20 +855,20 @@ export let defineProjections = function (modelClass) {
   modelClass.defineProjection('ListDataObjectTypes', 'fd-dev-stage', {
   });
   modelClass.defineProjection('ListFormView', 'fd-dev-stage', {
-    name: Projection.attr('Name'),
-    description: Projection.attr('Description'),
-    changeUser: Projection.attr('Change user'),
-    changeDate: Projection.attr('Change date'),
-    createUser: Projection.attr('Create user'),
-    createDate: Projection.attr('Create date'),
-    configuration: Projection.belongsTo('fd-configuration', '', {
+    name: attr('Name'),
+    description: attr('Description'),
+    changeUser: attr('Change user'),
+    changeDate: attr('Change date'),
+    createUser: attr('Create user'),
+    createDate: attr('Create date'),
+    configuration: belongsTo('fd-configuration', '', {
 
     }, { hidden: true })
   });
   modelClass.defineProjection('Prototyping', 'fd-dev-stage', {
   });
   modelClass.defineProjection('SearchRepObjView', 'fd-dev-stage', {
-    name: Projection.attr('')
+    name: attr('')
   });
   modelClass.defineProjection('ViewPeeker', 'fd-dev-stage', {
   });

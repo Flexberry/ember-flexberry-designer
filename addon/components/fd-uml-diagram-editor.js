@@ -1,4 +1,10 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import { A, isArray } from '@ember/array';
+import { computed } from '@ember/object';
+import { isNone, isBlank } from '@ember/utils';
+import { next } from '@ember/runloop';
+import $ from 'jquery';
 import layout from '../templates/components/fd-uml-diagram-editor';
 import FdAcrionsForCadPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-cad-primitives';
 import FdAcrionsForDpdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-dpd-primitives';
@@ -9,7 +15,7 @@ import FdAcrionsForSdPrimitivesMixin from '../mixins/actions-for-primitives/fd-a
 import FdAcrionsForCommonPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-common-primitives';
 import FdActionsForUcdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-ucd-primitives';
 
-export default Ember.Component.extend(
+export default Component.extend(
 FdAcrionsForCadPrimitivesMixin,
 FdAcrionsForDpdPrimitivesMixin,
 FdAcrionsForStdPrimitivesMixin,
@@ -21,7 +27,15 @@ FdActionsForUcdPrimitivesMixin, {
 
   layout,
 
-  store: Ember.inject.service(),
+  store: service(),
+
+  /**
+    Service for managing the state of the component.
+
+    @property fdSheetService
+    @type FdSheetService
+  */
+  fdSheetService: service(),
 
   /**
     Array elements to interact.
@@ -29,7 +43,7 @@ FdActionsForUcdPrimitivesMixin, {
     @property interactionElements
     @type Array
   */
-  interactionElements: Ember.A(),
+  interactionElements: A(),
 
   /**
     Function for create element.
@@ -85,18 +99,31 @@ FdActionsForUcdPrimitivesMixin, {
     @property createdClasses
     @type Ember.Array
   */
-  createdClasses: Ember.A(),
+  createdClasses: A(),
 
   classNames: ['fd-uml-diagram-editor'],
 
-  diagramType: Ember.computed('model.constructor.modelName', function() {
+  diagramType: computed('model.constructor.modelName', function() {
     let type = this.get('model.constructor.modelName');
-    if (Ember.isNone(type)) {
+    if (isNone(type)) {
       return undefined;
     }
 
     return type.split('-').pop();
   }),
+
+  /**
+    See [EmberJS API](https://emberjs.com/).
+
+    @method didInsertElement
+  */
+  didInsertElement() {
+    this._super(...arguments);
+
+    next(() => {
+      this.get('fdSheetService').toolbarDiagramPosition();
+    });
+  },
 
   actions: {
 
@@ -108,7 +135,7 @@ FdActionsForUcdPrimitivesMixin, {
     */
     blankPointerClick(options) {
       let type = this.get('type');
-      if (!Ember.isNone(type)) {
+      if (!isNone(type)) {
         let x = options.x;
         let y = options.y;
         if (type === 'Object') {
@@ -119,7 +146,7 @@ FdActionsForUcdPrimitivesMixin, {
           return newObject;
         } else {
           let newLink = this.get('newLink');
-          if (type === 'Link' && newLink && !Ember.isNone(newLink.getSourceElement())) {
+          if (type === 'Link' && newLink && !isNone(newLink.getSourceElement())) {
             newLink.insertVertex(-1, { x: x, y: y });
           }
         }
@@ -140,8 +167,8 @@ FdActionsForUcdPrimitivesMixin, {
         let type = model.type;
         let interactionElements = this.get('interactionElements');
 
-        if ((Ember.isNone(interactionElements) || (Ember.isArray(interactionElements) && interactionElements.includes(type)) ||
-         (Ember.isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
+        if ((isNone(interactionElements) || (isArray(interactionElements) && interactionElements.includes(type)) ||
+         (isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
           let jointjsCallback = this.get('jointjsCallback');
           let newLink = jointjsCallback({ source: model.id, startClassRepObj: model.repositoryObject });
           this.set('newLink', newLink);
@@ -164,8 +191,8 @@ FdActionsForUcdPrimitivesMixin, {
         let type = model.type;
         let interactionElements = this.get('interactionElements');
 
-        if ((Ember.isNone(interactionElements) || (Ember.isArray(interactionElements) && interactionElements.includes(type)) ||
-         (Ember.isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
+        if ((isNone(interactionElements) || (isArray(interactionElements) && interactionElements.includes(type)) ||
+         (isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
           let newLink = this.get('newLink');
           newLink.set({ 'target': { id: model.id }, 'endClassRepObj': { id: model.repositoryObject } });
           let storeCallback = this.get('storeCallback');
@@ -190,7 +217,7 @@ FdActionsForUcdPrimitivesMixin, {
     */
     blankContextMenu() {
       let type = this.get('type');
-      if (!Ember.isNone(type)) {
+      if (!isNone(type)) {
         let newLink = this.get('newLink');
         if (newLink.vertices().length === 0) {
           this.clearData();
@@ -222,7 +249,7 @@ FdActionsForUcdPrimitivesMixin, {
       @param {String} buttonName clicked button name.
      */
     toolbarButtonClicked(buttonName, e) {
-      if (!Ember.isBlank(buttonName)) {
+      if (!isBlank(buttonName)) {
         this.send(buttonName, e);
       }
     }
@@ -284,7 +311,7 @@ FdActionsForUcdPrimitivesMixin, {
     this.set('jointjsCallback', undefined);
     this.set('storeCallback', undefined);
     this.set('type', undefined);
-    this.set('interactionElements', Ember.A());
+    this.set('interactionElements', A());
     this.set('newLink', undefined);
   },
 
@@ -298,7 +325,7 @@ FdActionsForUcdPrimitivesMixin, {
   _changeCurrentTargetElement(e) {
     let currentTargetElement = this.get('currentTargetElement') || this.$('.pointer-button');
     currentTargetElement.removeClass('active');
-    let newCurrentTargetElement = Ember.$(e.currentTarget);
+    let newCurrentTargetElement = $(e.currentTarget);
     newCurrentTargetElement.addClass('active');
     this.set('currentTargetElement', newCurrentTargetElement);
   },
@@ -328,7 +355,7 @@ FdActionsForUcdPrimitivesMixin, {
   */
   getRepObj(store, stage, value, modelObject) {
     let typeValue = typeof value;
-    if (typeValue === 'object' && !Ember.isNone(value)) {
+    if (typeValue === 'object' && !isNone(value)) {
       return value;
     } else if (typeValue === 'string') {
       let objectId = value.substr(1, value.length - 2);

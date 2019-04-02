@@ -4,7 +4,7 @@
     <a class="item {{if (eq selectedTab tab.dataTab) "selected"}} {{if (eq activeTab tab.dataTab) "active"}}" {{action "tabClick" tab bubbles=false}} data-tab="{{tab.dataTab}}" >{{tab.title}}</a>
   {{/each}}
   {{#if overflowButtonShow}}
-    {{fd-tab-dropdown
+    {{! --- the component is temporarily disabled due it uses removed ui-dropdown component --- fd-tab-dropdown
       items = _hideTabs
       class = 'overflowed-dropdown'
       placeholder = (t "components.fd-tabs.dd-placeholder")

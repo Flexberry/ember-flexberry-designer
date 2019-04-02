@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import { Promise } from 'rsvp';
 import EditFormNewRoute from 'ember-flexberry/routes/edit-form-new';
-import { Query } from 'ember-flexberry-data';
-const { Builder, FilterOperator } = Query;
+import Builder from 'ember-flexberry-data/query/builder';
+import FilterOperator from 'ember-flexberry-data/query/filter-operator';
 
 export default EditFormNewRoute.extend({
   modelProjection: 'EditFormView',
@@ -13,11 +14,11 @@ export default EditFormNewRoute.extend({
     @property currentContext
     @type FdCurrentProjectContextService
   */
-  currentContext: Ember.inject.service('fd-current-project-context'),
+  currentContext: service('fd-current-project-context'),
 
   afterModel: function (model) {
     let _this = this;
-    return new Ember.RSVP.Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       let modelName = 'fd-configuration';
       let configurationId = this.get('currentContext').getCurrentConfiguration();
       let builder = new Builder(_this.store, modelName)

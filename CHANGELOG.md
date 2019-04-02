@@ -25,6 +25,7 @@ All notable changes to this project will be documented in this file.
 * Edit form for classes with `typemap` stereotype.
 * Buttons for adding ucd diagram primitives.
 * Forms of projects for new design.
+* Forms of generation for new design.
 * Current project name view.
 * Create new classes in application model.
 

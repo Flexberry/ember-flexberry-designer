@@ -2,7 +2,9 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { A } from '@ember/array';
 import FdDataTypes from '../utils/fd-datatypes';
 
 /**
@@ -11,7 +13,7 @@ import FdDataTypes from '../utils/fd-datatypes';
   @class FdObjectlistviewComponent
   @extends <a href="http://emberjs.com/api/classes/Ember.Component.html">Ember.Component</a>
 */
-export default Ember.Component.extend({
+export default Component.extend({
   /**
     @private
     @property _dataTypes
@@ -26,7 +28,7 @@ export default Ember.Component.extend({
     @property _headers
     @type Ember.NativeArray
   */
-  _headers: Ember.computed.map('view.definition', pd => pd.get('caption') || pd.get('name')),
+  _headers: computed.map('view.definition', pd => pd.get('caption') || pd.get('name')),
 
   /**
     Cells for each row, they are always generated anew.
@@ -35,8 +37,8 @@ export default Ember.Component.extend({
     @property _cells
     @type Ember.NativeArray
   */
-  _cells: Ember.computed('_headers.length', function() {
-    let cells = Ember.A();
+  _cells: computed('_headers.length', function() {
+    let cells = A();
     let types = this.get('types');
     let dataTypes = this.get('_dataTypes');
     let length = this.get('_headers.length');
@@ -55,8 +57,8 @@ export default Ember.Component.extend({
     @property _rows
     @type Ember.NativeArray
   */
-  _rows: Ember.computed('rowsCount', function() {
-    let rows = Ember.A();
+  _rows: computed('rowsCount', function() {
+    let rows = A();
     let rowsCount = this.get('rowsCount');
     for (let i = 0; i < rowsCount; i++) {
       rows.pushObject(this.get('_cells'));
@@ -72,7 +74,7 @@ export default Ember.Component.extend({
     @property _rowsOnPage
     @type Ember.NativeArray
   */
-  _rowsOnPage: Ember.computed('_rows.[]', 'page', 'perPage', function() {
+  _rowsOnPage: computed('_rows.[]', 'page', 'perPage', function() {
     let { page, perPage } = this.getProperties('page', 'perPage');
 
     return this.get('_rows').slice((page - 1) * perPage, perPage * page);
@@ -85,8 +87,8 @@ export default Ember.Component.extend({
     @property _pages
     @type Ember.NativeArray
   */
-  _pages: Ember.computed('rowsCount', 'perPage', function() {
-    let pages = Ember.A();
+  _pages: computed('rowsCount', 'perPage', function() {
+    let pages = A();
     let count = Math.ceil(this.get('rowsCount') / this.get('perPage'));
     for (let i = 1; i <= count; i++) {
       pages.pushObject(i);

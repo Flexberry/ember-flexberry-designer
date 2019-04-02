@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
 import EditFormRoute from 'ember-flexberry/routes/edit-form';
 import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 
@@ -11,9 +12,9 @@ export default EditFormRoute.extend(FdFormCheckTransitionMixin, {
 
    @property currentProjectContext
    @type {Class}
-   @default Ember.inject.service()
+   @default service()
    */
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
 
   /**
     A hook you can use to setup the controller for the current route.
@@ -34,7 +35,7 @@ export default EditFormRoute.extend(FdFormCheckTransitionMixin, {
       return item.get('stereotype') !== '«application»' && item.get('stereotype') !== '«enumeration»';
     });
 
-    let implementationsName = Ember.A(implementations).map(i => i.get('name') || i.get('nameStr'));
+    let implementationsName = A(implementations).map(i => i.get('name') || i.get('nameStr'));
     controller.set('parentNames', implementationsName);
     controller.set('childNames', implementationsName);
     controller.set('parentName', model.get('parent.name'));

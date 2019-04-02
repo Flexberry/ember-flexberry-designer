@@ -1,15 +1,17 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
 
-export default Ember.Route.extend({
+export default Route.extend({
 
   /**
    Service that get current project contexts.
 
    @property currentProjectContext
    @type {Class}
-   @default Ember.inject.service()
+   @default service()
    */
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
 
   /**
     Service for managing the state of the sheet component.
@@ -17,7 +19,7 @@ export default Ember.Route.extend({
     @property fdSheetService
     @type FdSheetService
   */
-  fdSheetService: Ember.inject.service(),
+  fdSheetService: service(),
 
   /**
     Sheet component name.
@@ -29,6 +31,15 @@ export default Ember.Route.extend({
   sheetComponentName: 'application-model-sheet',
 
   /**
+    Sheet view name.
+
+    @property sheetViewName
+    @type String
+    @default 'view-sheet'
+  */
+  sheetViewName: 'view-sheet',
+
+  /**
     A hook you can implement to convert the URL into the model for this route.
     [More info](http://emberjs.com/api/classes/Ember.Route.html#method_model).
 
@@ -36,7 +47,7 @@ export default Ember.Route.extend({
    */
   model: function() {
     let modelHash = {
-      classes: Ember.A(),
+      classes: A(),
       typedefs: undefined,
       enums: undefined,
       types: undefined,
@@ -79,60 +90,60 @@ export default Ember.Route.extend({
         }
       });
 
-      let classFormsArray = Ember.A(classForms);
+      let classFormsArray = A(classForms);
       let editForms = classFormsArray.filterBy('stereotype', '«editform»');
       let listForms = classFormsArray.filterBy('stereotype', '«listform»');
 
       let inheritanceData = inheritanceCurrentStage.filterBy('child.id', implementation.get('id'));
-      let parents = Ember.A(inheritanceData).mapBy('parent');
+      let parents = A(inheritanceData).mapBy('parent');
 
       modelHash.classes.pushObject({
         settings: implementation,
-        editForms: Ember.A(editForms),
-        listForms: Ember.A(listForms),
-        parents: Ember.A(parents),
+        editForms: A(editForms),
+        listForms: A(listForms),
+        parents: A(parents),
         bs: implementation.get('businessServerClass')
       });
     });
 
     // Typedef.
     let typedefs = classesCurrentStage.filterBy('stereotype', '«typedef»');
-    modelHash.typedefs = Ember.A(typedefs);
+    modelHash.typedefs = A(typedefs);
 
     // Enums.
     let enums = classesCurrentStage.filterBy('stereotype', '«enumeration»');
-    modelHash.enums = Ember.A(enums);
+    modelHash.enums = A(enums);
 
     // Types.
     let types = classesCurrentStage.filterBy('stereotype', '«type»');
-    modelHash.types = Ember.A(types);
+    modelHash.types = A(types);
 
     // Applications.
     let applications = classesCurrentStage.filterBy('stereotype', '«application»');
-    modelHash.applications = Ember.A(applications);
+    modelHash.applications = A(applications);
 
     // BS.
     let bs = classesCurrentStage.filterBy('stereotype', '«businessserver»');
-    modelHash.bs = Ember.A(bs);
+    modelHash.bs = A(bs);
 
     // External.
     let externals = classesCurrentStage.filterBy('stereotype', '«external»');
-    modelHash.externals = Ember.A(externals);
+    modelHash.externals = A(externals);
 
     // Extinterface.
     let extinterfaces = classesCurrentStage.filterBy('stereotype', '«externalinterface»');
-    modelHash.extinterfaces = Ember.A(extinterfaces);
+    modelHash.extinterfaces = A(extinterfaces);
 
     // Interface.
     let interfaces = classesCurrentStage.filterBy('stereotype', '«interface»');
-    modelHash.interfaces = Ember.A(interfaces);
+    modelHash.interfaces = A(interfaces);
 
     // Userforms.
     let userforms = classesCurrentStage.filterBy('stereotype', '«userform»');
-    modelHash.userforms = Ember.A(userforms);
+    modelHash.userforms = A(userforms);
 
     // Userstereotypes.
-    let designerStereotypes = Ember.A([
+    let designerStereotypes = A([
       null,
       '«implementation»',
       '«listform»',
@@ -150,7 +161,7 @@ export default Ember.Route.extend({
     let userstereotypes = classesCurrentStage.filter(function(item) {
       return !designerStereotypes.includes(item.get('stereotype'));
     });
-    modelHash.userstereotypes = Ember.A(userstereotypes);
+    modelHash.userstereotypes = A(userstereotypes);
 
     return modelHash;
   },
@@ -166,6 +177,7 @@ export default Ember.Route.extend({
     this._super(...arguments);
 
     controller.set('sheetComponentName', this.get('sheetComponentName'));
+    controller.set('sheetViewName', this.get('sheetViewName'));
   },
 
   actions: {
@@ -179,6 +191,7 @@ export default Ember.Route.extend({
     */
     willTransition() {
       this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
+      this.get('fdSheetService').closeSheet(this.get('sheetViewName'));
 
       this._super(...arguments);
     }

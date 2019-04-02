@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { isNone } from '@ember/utils';
 
 /**
   Create propertyName.
@@ -36,7 +36,7 @@ let restorationNodeTree = function(nodeArray, wantedNode, restorationTypes, rest
     if (restorationTypes.indexOf(node.type) !== -1) {
       node.set('children', node.get('copyChildren'));
 
-      if ((!Ember.isNone(node.state) && node.state.opened) || restorationAllNode) {
+      if ((!isNone(node.state) && node.state.opened) || restorationAllNode) {
         restorationNodeTree(node.get('children'), wantedNode, restorationTypes, restorationAllNode, callbackGetChildrenNode);
       }
 
@@ -79,7 +79,7 @@ let findFreeNodeTreeID = function(name, index, searchLocation) {
 */
 let findFreeNodeTreeNameIndex = function(name, index, searchLocation, findBy) {
   let foundValue = searchLocation.findBy(`${findBy}`, name + index);
-  while (!Ember.isNone(foundValue)) {
+  while (!isNone(foundValue)) {
     index++;
     foundValue = searchLocation.findBy(`${findBy}`, name + index);
   }

@@ -1,9 +1,11 @@
-import Ember from 'ember';
+import Helper from '@ember/component/helper';
+import { getOwner } from '@ember/application';
+import { isNone } from '@ember/utils';
 
-export default Ember.Helper.extend({
+export default Helper.extend({
   compute([name]) {
-    let component = Ember.getOwner(this).lookup(`component:${name}`);
+    let component = getOwner(this).lookup(`component:${name}`);
 
-    return !Ember.isNone(component);
+    return !isNone(component);
   }
 });

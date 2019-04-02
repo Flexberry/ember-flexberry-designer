@@ -1,11 +1,13 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed, observer } from '@ember/object';
+import { A } from '@ember/array';
 
 import FdDataTypes from '../utils/fd-datatypes';
 import FdEditformControl from '../objects/fd-editform-control';
 import FdEditformGroup from '../objects/fd-editform-group';
 import FdEditformTab from '../objects/fd-editform-tab';
 
-export default Ember.Component.extend({
+export default Component.extend({
   /**
     Contains stage's enums.
 
@@ -39,7 +41,7 @@ export default Ember.Component.extend({
     @readOnly
     @type Boolean
   */
-  _selectedIsControl: Ember.computed('selectedControl', function() {
+  _selectedIsControl: computed('selectedControl', function() {
     return this.get('selectedControl') instanceof FdEditformControl;
   }).readOnly(),
 
@@ -49,7 +51,7 @@ export default Ember.Component.extend({
     @readOnly
     @type Boolean
   */
-  _selectedIsGroup: Ember.computed('selectedControl', function() {
+  _selectedIsGroup: computed('selectedControl', function() {
     return this.get('selectedControl') instanceof FdEditformGroup;
   }).readOnly(),
 
@@ -59,7 +61,7 @@ export default Ember.Component.extend({
     @readOnly
     @type Boolean
   */
-  _selectedIsTab: Ember.computed('selectedControl', function() {
+  _selectedIsTab: computed('selectedControl', function() {
     return this.get('selectedControl') instanceof FdEditformTab;
   }).readOnly(),
 
@@ -76,14 +78,14 @@ export default Ember.Component.extend({
 
     @method selectedControlChanged
   */
-  selectedControlChanged: Ember.observer('selectedControl', function() {
+  selectedControlChanged: observer('selectedControl', function() {
     let selectedControl = this.get('selectedControl');
     this.set('selectedType', this.getTranslationString(selectedControl.type));
   }),
 
   _dataTypes: FdDataTypes.create(),
 
-  _readonly: Ember.computed.empty('selectedControl'),
+  _readonly: computed.empty('selectedControl'),
 
   /**
     All types with properties.
@@ -108,7 +110,7 @@ export default Ember.Component.extend({
     @property typeToString
     @type Object
   */
-  typeToString: {
+  typeToString: computed(() => ({
     string: 'components.fd-visual-control.typeName.stringControlType',
     bool: 'components.fd-visual-control.typeName.boolControlType',
     char: 'components.fd-visual-control.typeName.charControlType',
@@ -129,7 +131,7 @@ export default Ember.Component.extend({
     file: 'components.fd-visual-control.typeName.fileControlType',
     dropdown: 'components.fd-visual-control.typeName.drowdownControlType',
     lookup: 'components.fd-visual-control.typeName.lookupControlType',
-  },
+  })).readOnly(),
 
   /**
     Gets translated string for type.
@@ -167,8 +169,8 @@ export default Ember.Component.extend({
     let typemap = this.get('typemap');
     let enums = this.get('enums');
     let fbtypes = this.get('fbtypes');
-    let ret = Ember.A();
-    let retStrings = Ember.A();
+    let ret = A();
+    let retStrings = A();
 
     for (let type of typemap) {
       let obj = {};
@@ -251,7 +253,7 @@ export default Ember.Component.extend({
   */
   selectedType: undefined,
 
-  allowNull: Ember.computed('selectedControl.notNull', {
+  allowNull: computed('selectedControl.notNull', {
     get() {
       return !this.get('selectedControl.notNull');
     },
@@ -261,7 +263,7 @@ export default Ember.Component.extend({
     },
   }),
 
-  defaultValueControl: Ember.computed('selectedControl.type', function() {
+  defaultValueControl: computed('selectedControl.type', function() {
     switch (this.get('selectedControl.type')) {
       default:
         return 'flexberry-textbox';

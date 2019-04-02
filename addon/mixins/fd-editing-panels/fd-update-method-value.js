@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
 
 /**
   Mixin with the support `Method table` for controls in the edit form constructor.
@@ -6,7 +6,7 @@ import Ember from 'ember';
   @class FdUpdateMethodeValueMixin
   @uses <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
-export default Ember.Mixin.create({
+export default Mixin.create({
 
   /**
     Table headers for method.
@@ -57,7 +57,7 @@ export default Ember.Mixin.create({
     /**
       Method create method from table.
 
-      @method createMethod
+      @method actions.createMethod
     */
     createMethod() {
       let store = this.get('store');

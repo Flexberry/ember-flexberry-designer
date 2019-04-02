@@ -2,7 +2,7 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
 
 /**
   Mixin with the unsaved form data check, and confirm close.
@@ -10,7 +10,7 @@ import Ember from 'ember';
   @class FdFormUnsavedData
   @uses <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
-export default Ember.Mixin.create({
+export default Mixin.create({
   /**
     @property saveTitleLocaleKey
     @type String

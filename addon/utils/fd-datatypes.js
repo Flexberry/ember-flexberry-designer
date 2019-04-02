@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
+import { computed } from '@ember/object';
 
-export default Ember.Object.extend({
+export default EmberObject.extend({
 
-  _randomValue: {
+  _randomValue: computed(() => ({
     bool: function() {
       let ret = Math.random() * 2 > 1.0 ? 'true' : 'false';
       return ret;
@@ -118,9 +119,9 @@ export default Ember.Object.extend({
       let ret = '{}';
       return ret;
     },
-  },
+  })),
 
-  _checkValue: {
+  _checkValue: computed(() => ({
     bool: function(value) {
       let ret = value === 'true' || value === 'false';
       return ret;
@@ -142,7 +143,7 @@ export default Ember.Object.extend({
     },
 
     guid: function(value) {
-      var regexGuid = /^(\{){0,1}[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}(\}){0,1}$/gi;
+      var regexGuid = /^(\{){0,1}[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}(\}){0,1}$/gi;
       return regexGuid.test(value);
     },
 
@@ -221,10 +222,9 @@ export default Ember.Object.extend({
       let ret = typeof value === 'object';
       return ret;
     },
+  })),
 
-  },
-
-  _flexberryTypeToFD: {
+  _flexberryTypeToFD: computed(() => ({
     'bool': 'bool',
     'System.Boolean': 'bool',
 
@@ -279,7 +279,7 @@ export default Ember.Object.extend({
     'ICSSoft.STORMNET.UserDataTypes.NullableDecimal': 'decimal',
     'WebFile': 'WebFile',
     'ICSSoft.STORMNET.UserDataTypes.WebFile': 'WebFile',
-  },
+  })),
 
   flexberryTypes: function() {
     let ret = Object.keys(this._flexberryTypeToFD);

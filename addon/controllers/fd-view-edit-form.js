@@ -1,4 +1,10 @@
-import Ember from 'ember';
+/* eslint-disable ember/no-side-effects */
+import { computed, set } from '@ember/object';
+import { A } from '@ember/array';
+import { inject as service } from '@ember/service';
+import { isNone } from '@ember/utils';
+import $ from 'jquery';
+
 import EditFormController from 'ember-flexberry/controllers/edit-form';
 import FdViewAttributesProperty from '../objects/fd-view-attributes-property';
 import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
@@ -19,11 +25,11 @@ FdFormUnsavedData, {
      @property appState
     @type AppStateService
   */
-  appState: Ember.inject.service(),
+  appState: service(),
 
   allAttrsHidedn: false,
 
-  popupMessage: t(`forms.fd-view-edit-form.attributes-panel.close-panel-btn-caption`),
+  closeRightPanelBtnMessage: t(`forms.fd-view-edit-form.attributes-panel.close-panel-btn-caption`),
 
   /**
     Index of the selected attribute for editing.
@@ -41,7 +47,7 @@ FdFormUnsavedData, {
     @type Array
     @default []
    */
-  detailViewNameItems: [],
+  detailViewNameItems: undefined,
 
   /**
     Type of the selected master for editing.
@@ -50,7 +56,11 @@ FdFormUnsavedData, {
     @type Array
     @default ['default', 'standard', 'combo']
    */
-  lookupTypeItems: ['default', 'standard', 'combo'],
+  lookupTypeItems: computed(() => [
+    'default',
+    'standard',
+    'combo'
+  ]).readOnly(),
 
   /**
     Included plugins for jsTree.
@@ -68,7 +78,7 @@ FdFormUnsavedData, {
     @type Array
     @default []
    */
-  jstreeSelectedNodes: Ember.A(),
+  jstreeSelectedNodes: A(),
 
   /**
     Type settings for jsTree.
@@ -76,7 +86,7 @@ FdFormUnsavedData, {
     @property typesOptions
     @type Object
   */
-  typesOptions: Ember.computed(() => ({
+  typesOptions: computed(() => ({
     'property': {
       icon: 'assets/images/attribute.bmp'
     },
@@ -106,7 +116,7 @@ FdFormUnsavedData, {
     @property searchOptions
     @type Object
   */
-  searchOptions: Ember.computed(() => ({
+  searchOptions: computed(() => ({
     show_only_matches: true
   })),
 
@@ -116,7 +126,7 @@ FdFormUnsavedData, {
     @property propertyType
     @type Object
   */
-  propertyType: Ember.computed('rowModel', function() {
+  propertyType: computed('rowModel', function() {
     let rowModel = this.get('rowModel');
     if (rowModel instanceof FdViewAttributesDetail) {
       return 'isDetail';
@@ -133,10 +143,10 @@ FdFormUnsavedData, {
     @property rowModel
     @type Object
   */
-  rowModel: Ember.computed('selectedRowIndex', function() {
+  rowModel: computed('selectedRowIndex', function() {
     let model = this.get('model.view.definition');
     let index = this.get('selectedRowIndex');
-    if (!Ember.isNone(index)) {
+    if (!isNone(index)) {
       let rowModel = model[index];
       let detailsViewArray = this.get('model.detailsView');
       let detailViewByName = detailsViewArray.findBy('detailName', rowModel.name);
@@ -154,6 +164,8 @@ FdFormUnsavedData, {
 
     return null;
   }),
+
+  closeRightPanelBtnSelector: 'div.text-center > div > button.close-panel-btn',
 
   actions: {
 
@@ -178,7 +190,7 @@ FdFormUnsavedData, {
     */
     onCreateCaptionClick() {
       let rowModel = this.get('rowModel');
-      if (Ember.isNone(rowModel)) {
+      if (isNone(rowModel)) {
         return;
       }
 
@@ -188,7 +200,7 @@ FdFormUnsavedData, {
         caption = partCaption + ' ' + caption;
       });
 
-      Ember.set(rowModel, 'caption', caption.trim());
+      set(rowModel, 'caption', caption.trim());
     },
 
     /**
@@ -197,11 +209,11 @@ FdFormUnsavedData, {
       @method actions.onAttributesClick
     */
     onAttributesClick(index) {
-      let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
+      let configPanelSidebar = $('.ui.sidebar.config-panel');
       let sidebarOpened = configPanelSidebar.hasClass('visible');
       let selectedRowIndex = this.get('selectedRowIndex');
 
-      if ((!Ember.isNone(index) || sidebarOpened) && selectedRowIndex !== index) {
+      if ((!isNone(index) || sidebarOpened) && selectedRowIndex !== index) {
         this.send('toggleConfigPanel', { dataTab: 'active-tree-tab' }, index);
       }
 
@@ -256,7 +268,7 @@ FdFormUnsavedData, {
           break;
       }
 
-      if (!Ember.isNone(newDdfinition)) {
+      if (!isNone(newDdfinition)) {
         model.pushObject(newDdfinition);
       }
     },
@@ -270,7 +282,7 @@ FdFormUnsavedData, {
     moveLeftHighlighted() {
       let rowModel = this.get('rowModel');
 
-      if (!Ember.isNone(rowModel)) {
+      if (!isNone(rowModel)) {
         let model = this.get('model.view.definition');
         model.removeObject(rowModel);
         this.set('selectedRowIndex', null);
@@ -327,15 +339,15 @@ FdFormUnsavedData, {
       this.set('selectedRowIndex', next);
     },
 
-    closeRightpanel() {
-      Ember.$('.closable.panel-left').toggle(500);
+    closeRightPanel() {
+      $('.closable.panel-left').toggle(500);
 
       if (this.allAttrsHidedn) {
-        this.set('popupMessage', t('forms.fd-view-edit-form.attributes-panel.close-panel-btn-caption'));
-        Ember.$('.panel-wrapper .panel-right.view-attributes').css('width', '50%');
+        this.set('closeRightPanelBtnMessage', t('forms.fd-view-edit-form.attributes-panel.close-panel-btn-caption'));
+        $('.panel-wrapper .panel-right.view-attributes').css('width', '50%');
       } else {
-        this.set('popupMessage', t('forms.fd-view-edit-form.attributes-panel.show-panel-btn-caption'));
-        Ember.$('.panel-wrapper .panel-right.view-attributes').css('width', '100%');
+        this.set('closeRightPanelBtnMessage', t('forms.fd-view-edit-form.attributes-panel.show-panel-btn-caption'));
+        $('.panel-wrapper .panel-right.view-attributes').css('width', '100%');
       }
 
       this.toggleProperty('allAttrsHidedn');
@@ -349,7 +361,7 @@ FdFormUnsavedData, {
     */
     saveView(close) {
       let view = this.get('model.view');
-      view.set('definition', Ember.A(view.get('definition').toArray()));
+      view.set('definition', A(view.get('definition').toArray()));
 
       this.get('appState').loading();
       view.save().then(() => {
@@ -400,9 +412,9 @@ FdFormUnsavedData, {
   */
   _openNodeTree(e, data) {
     let treeData = this.get('model.tree');
-    restorationNodeTree(treeData, data.node.original, Ember.A(['master', 'class']), false, (function(node) {
+    restorationNodeTree(treeData, data.node.original, A(['master', 'class']), false, (function(node) {
       let dataForBuildTree = getDataForBuildTree(this.get('store'), node.get('idNode'));
-      let childrenAttributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes);
+      let childrenAttributes = getClassTreeNode(A(), dataForBuildTree.classes);
       let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, node.get('id'));
 
       return childrenNode;
@@ -414,9 +426,15 @@ FdFormUnsavedData, {
   willDestroy() {
     this._super(...arguments);
     let treeObject = this.get('jstreeObject');
-    if (!Ember.isNone(treeObject)) {
+    if (!isNone(treeObject)) {
       treeObject.off('open_node.jstree', this._openNodeTree.bind(this));
       treeObject.off('after_close.jstree', afterCloseNodeTree.bind(this));
     }
+  },
+
+  init() {
+    this._super(...arguments);
+
+    this.set('detailViewNameItems', []);
   }
 });

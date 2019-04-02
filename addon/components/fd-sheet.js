@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
 import layout from '../templates/components/fd-sheet';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
 
   /**
@@ -39,7 +40,7 @@ export default Ember.Component.extend({
     @property fdSheetService
     @type FdSheetService
   */
-  fdSheetService: Ember.inject.service(),
+  fdSheetService: service(),
 
   init() {
     this._super(...arguments);
@@ -79,7 +80,7 @@ export default Ember.Component.extend({
       @method actions.save
     */
     save() {
-      this.sendAction('saveController');
+      this.get('saveController')();
     }
   }
 });

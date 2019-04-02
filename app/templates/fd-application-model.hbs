@@ -294,20 +294,33 @@
   savingSheet=(or (not _isSheetCreateClassPanel) selectedElement)
 }}
   {{#if (or (not _isSheetCreateClassPanel) selectedElement)}}
-    {{#if (known-for-type (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel"))}}
-      {{component (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel")
-        model=selectedElement.model
-      }}
-    {{else}}
-      {{fd-editing-panels/fd-custom-editing-panel
-        model=selectedElement.model
-      }}
+  {{#if (known-for-type (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel"))}}
+    {{component (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel")
+      model=selectedElement.model
+      openViewSheetController=(action 'openViewSheet')
     {{/if}}
-  {{else}}    
-    {{
-      fd-editing-panels/fd-create-entity
-      model=model
+      }}
+        model=selectedElement.model
+      {{fd-editing-panels/fd-custom-editing-panel
+    {{else}}
       createdElement=selectedElement
+      model=model
+      fd-editing-panels/fd-create-entity
+    {{
+  {{else}}    
     }}
   {{/if}}
+{{/fd-sheet}}
+
+{{#fd-sheet
+  title=selectedElement.model.name
+  saveController=(action 'save')
+  sheetComponentName=sheetViewName
+  readonly=false
+}}
+  {{!--{{fd-editing-panels/fd-create-view
+    model=selectedElement.model
+    view=selectedView
+  }}--}}
+
 {{/fd-sheet}}

@@ -2,7 +2,8 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import $ from 'jquery';
 import joint from 'npm:jointjs';
 
 import { BaseObject } from './fd-uml-baseobject';
@@ -22,7 +23,7 @@ export default FdUmlElement.extend({
     @property name
     @type String
   */
-  name: Ember.computed.alias('primitive.Name.Text'),
+  name: computed.alias('primitive.Name.Text'),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -102,7 +103,7 @@ export let NAryAssociation = BaseObject.define('flexberry.uml.NAryAssociation', 
         let rectHeight = 0;
         let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
         inputs.each(function() {
-          let $input = Ember.$(this);
+          let $input = $(this);
           $buffer.css('font-weight', $input.css('font-weight'));
           $buffer.text($input.val());
           $input.width($buffer.width() + 1);
@@ -146,7 +147,7 @@ joint.shapes.flexberry.uml.NAryAssociationView = joint.dia.ElementView.extend({
   initialize: function() {
     joint.dia.ElementView.prototype.initialize.apply(this, arguments);
 
-    this.$box = Ember.$(this.template);
+    this.$box = $(this.template);
     this.model.inputElements = this.$box;
 
     // Prevent paper from handling pointerdown.
@@ -155,7 +156,7 @@ joint.shapes.flexberry.uml.NAryAssociationView = joint.dia.ElementView.extend({
     });
 
     this.$box.find('.nary-assoc-name').on('input', function(evt) {
-      let $textarea = Ember.$(evt.currentTarget);
+      let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
@@ -163,7 +164,7 @@ joint.shapes.flexberry.uml.NAryAssociationView = joint.dia.ElementView.extend({
     }.bind(this));
 
     this.$box.find('.nary-assoc-name').on('change', function(evt) {
-      let $textarea = Ember.$(evt.currentTarget);
+      let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);

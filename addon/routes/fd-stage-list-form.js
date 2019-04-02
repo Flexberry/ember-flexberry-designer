@@ -1,5 +1,6 @@
-import Ember from 'ember';
-import { Query } from 'ember-flexberry-data';
+import { inject as service } from '@ember/service';
+
+import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
 import FdPreloadStageMetadata from 'ember-flexberry-designer/utils/fd-preload-stage-metadata';
 import ListFormRoute from 'ember-flexberry/routes/list-form';
 
@@ -27,7 +28,7 @@ export default ListFormRoute.extend({
      @property appState
     @type AppStateService
   */
-  appState: Ember.inject.service(),
+  appState: service(),
 
   /**
     Defined user settings developer.
@@ -52,13 +53,7 @@ export default ListFormRoute.extend({
     @type Object
     @default {}
   */
-  developerUserSettings: {
-    FdStageListForm: {
-      'DEFAULT': {
-        'columnWidths': [{ 'propName': 'OlvRowMenu', 'fixed': true, 'width': 68 }]
-      }
-    }
-  },
+  developerUserSettings: undefined,
 
   /**
     Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
@@ -66,7 +61,7 @@ export default ListFormRoute.extend({
     @property currentContext
     @type FdCurrentProjectContextService
   */
-  currentContext: Ember.inject.service('fd-current-project-context'),
+  currentContext: service('fd-current-project-context'),
 
   actions: {
     objectListViewRowClick(stage, options) {
@@ -86,6 +81,18 @@ export default ListFormRoute.extend({
 
   objectListViewLimitPredicate() {
     let configuration = this.get('currentContext').getCurrentConfiguration();
-    return new Query.SimplePredicate('configuration', '==', configuration);
+    return new SimplePredicate('configuration', '==', configuration);
   },
+
+  init() {
+    this._super(...arguments);
+
+    this.set('developerUserSettings', {
+      FdStageListForm: {
+        'DEFAULT': {
+          'columnWidths': [{ 'propName': 'OlvRowMenu', 'fixed': true, 'width': 68 }]
+        }
+      }
+    });
+  }
 });

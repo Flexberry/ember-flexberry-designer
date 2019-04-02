@@ -1,84 +1,19 @@
-@import 'fd-uml-diagram';
 @import 'src/themes/default/globals/site.variables';
 @import 'default/globals/site.variables';
-@import 'components/fd-attribute-table.less';
+@import 'components/fd-uml-diagram';
+@import 'components/fd-attribute-table';
+@import 'components/fd-sheet';
+@import 'components/fd-list';
 
-.pushable, .full.height{
+.pushable,
+.full.height {
   transition: background-color 1s;
 }
 
 .pushable.fade,
-.pushable.fade .full.height{
+.pushable.fade .full.height,
+.content-mini.fade {
   background: @overlayColor;
-}
-
-@fdSheetPadding: 3em;
-@fdSearchInputPadding: 0.7em @leftIndent;
-
-.fd-sheet {
-  background: @fdSheetBg;
-  height: 100%;
-  margin: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transform: translate3d(100%, 0, 0);
-  transition: transform 1s ease;
-  width: 100%;
-
-  &.expand {
-    transform: translate3d(0, 0, 0) !important;
-  }
-
-  .content-mini{
-    height: 100%;
-    overflow: auto;
-    padding: 0 @fdSheetPadding @fdSheetPadding;
-    transition: opacity 0.5s ease-in-out;
-    width: 50%;
-  }
-
-  .fd-sheet-toolbar {
-    text-align: right;
-    height: 5rem;
-    line-height: 5rem;
-  }
-}
-
-.ui.grid.fd-list {
-  .row {
-    border-bottom: 1px solid @sidebarBg;
-    margin: 0 1rem;
-
-    .column {
-      > div:not(:first-child) {
-        margin: 1rem 0;
-      }
-
-      div:last-child {
-        margin-bottom: 0;
-      }
-    }
-
-    .light-text{
-      color: @lightTextColor;
-    }
-  }
-
-  .fd-list-item span{
-    padding: 0.5em @leftIndent;
-    &:hover {
-      cursor: pointer;
-    }
-    &.active {
-      background: @fdSheetBg;
-      border-radius: @itemActiveBorderRadius;
-    }
-  }
-
-  > .row > .column {
-    padding: 0.5em 0;
-  }
 }
 
 h2.form-header,
@@ -93,24 +28,10 @@ h2.form-header,
   padding: 5em 4em 3em;
 }
 
-.sitemap-bottom{
+.sitemap-bottom {
   position: absolute;
   bottom: 0;
   width: 100%;
-}
-
-.current-project-name {
-  position: absolute;
-  color: black;
-  top: 40px;
-  left: 40px;
-}
-
-.current-project-name-header {
-  position: absolute;
-  color: gray;
-  top: 15px;
-  left: 40px;
 }
 
 .ui.toggle-sidebar.button {
@@ -174,8 +95,14 @@ h2.form-header,
   border-radius: @itemActiveBorderRadius;
 }
 
-.fd-uml-diagram-editor .ui.button img {
-  vertical-align: middle;
+.fd-uml-diagram-editor {
+  margin-right: -@fdSheetPadding;
+  margin-left: -@fdSheetPadding;
+  height: 100%;
+
+  .ui.button img {
+    vertical-align: middle;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -186,4 +113,5 @@ h2.form-header,
 
 .ui.grid.fd-projects-toolbar {
   margin-left: calc(~'-@{leftIndent} - 1em');
+  margin-top: 0;
 }

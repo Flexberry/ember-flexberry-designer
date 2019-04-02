@@ -2,7 +2,10 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import $ from 'jquery';
+import { isPresent } from '@ember/utils';
+
 import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
@@ -21,7 +24,7 @@ export default FdUmlElement.extend({
     @property name
     @type String
   */
-  name: Ember.computed.alias('primitive.Name.Text'),
+  name: computed.alias('primitive.Name.Text'),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -134,7 +137,7 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
         let rectHeight = 0;
         let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
         inputs.each(function () {
-          let $input = Ember.$(this);
+          let $input = $(this);
           $buffer.css('font-weight', $input.css('font-weight'));
           $buffer.text($input.val());
           $input.width($buffer.width() + 1);
@@ -176,7 +179,7 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.dia.ElementView.extend({
   initialize: function () {
     joint.dia.ElementView.prototype.initialize.apply(this, arguments);
 
-    this.$box = Ember.$(this.template);
+    this.$box = $(this.template);
     this.model.inputElements = this.$box;
 
     // Prevent paper from handling pointerdown.
@@ -185,7 +188,7 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.dia.ElementView.extend({
     });
 
     this.$box.find('.attributes-input').on('input', function (evt) {
-      let $textarea = Ember.$(evt.currentTarget);
+      let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
@@ -193,7 +196,7 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.dia.ElementView.extend({
     }.bind(this));
 
     this.$box.find('.class-name-input').on('input', function (evt) {
-      let $textarea = Ember.$(evt.currentTarget);
+      let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
@@ -201,7 +204,7 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.dia.ElementView.extend({
     }.bind(this));
 
     this.$box.find('.attributes-input').on('change', function (evt) {
-      let $textarea = Ember.$(evt.currentTarget);
+      let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
@@ -209,7 +212,7 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.dia.ElementView.extend({
     }.bind(this));
 
     this.$box.find('.class-name-input').on('change', function (evt) {
-      let $textarea = Ember.$(evt.currentTarget);
+      let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
@@ -221,7 +224,7 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.dia.ElementView.extend({
     classNameInput.prop('rows', this.model.get('name').split(/[\n\r|\r|\n]/).length || 1);
     classNameInput.val(this.model.get('name'));
 
-    if (Ember.isPresent(this.model.get('attributes'))) {
+    if (isPresent(this.model.get('attributes'))) {
       attributesInput.prop('rows', this.model.get('attributes').length || 1);
       if (this.model.get('attributes') instanceof Array) {
         attributesInput.val(this.model.get('attributes').join('\n'));

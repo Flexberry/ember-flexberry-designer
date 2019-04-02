@@ -1,8 +1,10 @@
+/* eslint-disable ember/no-side-effects */
 /**
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { A } from '@ember/array';
 
 import StageModel from './fd-stage';
 import {
@@ -36,12 +38,12 @@ let Model = StageModel.extend(DevStageMixin, {
     @property typeMapCS
     @type Ember.NativeArray
   */
-  typeMapCS: Ember.computed('_typeMapCS.@each.{value,assemblyDll}', function() {
+  typeMapCS: computed('_typeMapCS.@each.{value,assemblyDll}', function() {
     let typeMapCS = this.get('_typeMapCS');
     if (typeMapCS) {
       this.set('typeMapCSStr', serialize(typeMapCS.toArray()));
     } else {
-      typeMapCS = Ember.A(deserialize(this.get('typeMapCSStr')));
+      typeMapCS = A(deserialize(this.get('typeMapCSStr')));
       this.set('_typeMapCS', typeMapCS);
     }
 

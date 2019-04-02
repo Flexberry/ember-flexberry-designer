@@ -2,7 +2,8 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import EmberObject from '@ember/object';
+import { computed } from '@ember/object';
 
 /**
   An object that defines any primitive on the UML diagram.
@@ -10,7 +11,7 @@ import Ember from 'ember';
   @class FdUmlPrimitive
   @extends <a href="http://emberjs.com/api/classes/Ember.Object.html">Ember.Object</a>
 */
-export default Ember.Object.extend({
+export default EmberObject.extend({
 
   /**
     The object that describes the primitive.
@@ -26,7 +27,7 @@ export default Ember.Object.extend({
     @property id
     @type String
   */
-  id: Ember.computed.readOnly('primitive.$id'),
+  id: computed.readOnly('primitive.$id'),
 
   /**
     The unique identifier of the object.
@@ -34,7 +35,7 @@ export default Ember.Object.extend({
     @property repositoryObject
     @type String
   */
-  repositoryObject: Ember.computed.readOnly('primitive.RepositoryObject'),
+  repositoryObject: computed.readOnly('primitive.RepositoryObject'),
 
   /**
     Returns the string representation of the primitive.

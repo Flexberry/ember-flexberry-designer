@@ -1,9 +1,9 @@
 import DS from 'ember-data';
-import Ember from 'ember';
+import { A } from '@ember/array';
 
 export default DS.Transform.extend({
   deserialize(definition) {
-    let ret = Ember.A();
+    let ret = A();
     let parser = new DOMParser();
     let xmlDoc = parser.parseFromString(definition, 'text/xml');
     if (xmlDoc) {

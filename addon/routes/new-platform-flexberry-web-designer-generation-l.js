@@ -42,5 +42,13 @@ export default ListFormRoute.extend({
     @type Object
     @default {}
   */
-  developerUserSettings: { NewPlatformFlexberryWebDesignerGenerationL: {} },
+  developerUserSettings: undefined,
+
+  init() {
+    this._super(...arguments);
+
+    this.set('developerUserSettings', {
+      NewPlatformFlexberryWebDesignerGenerationL: {}
+    });
+  }
 });

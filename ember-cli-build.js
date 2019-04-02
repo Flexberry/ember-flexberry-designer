@@ -1,14 +1,9 @@
-/*jshint node:true*/
-/* global require, module */
-var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
+'use strict';
+
+const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function(defaults) {
-  var app = new EmberAddon(defaults, {
-    jscsOptions: {
-      enabled: true,
-      esnext: true,
-      configPath: './.jscsrc'
-    },
+  let app = new EmberAddon(defaults, {
     lessOptions: {
       paths: [
         'bower_components/semantic-ui'
@@ -31,12 +26,12 @@ module.exports = function(defaults) {
   app.import('vendor/fd-icons.css');
   app.import('vendor/joint.core.css');
 
-  app.import('vendor/fonts/icons.eot', { destDir: 'themes/default/assets/fonts' });
-  app.import('vendor/fonts/icons.otf', { destDir: 'themes/default/assets/fonts' });
-  app.import('vendor/fonts/icons.svg', { destDir: 'themes/default/assets/fonts' });
-  app.import('vendor/fonts/icons.ttf', { destDir: 'themes/default/assets/fonts' });
-  app.import('vendor/fonts/icons.woff', { destDir: 'themes/default/assets/fonts' });
-  app.import('vendor/fonts/icons.woff2', { destDir: 'themes/default/assets/fonts' });
+  app.import('vendor/fonts/icons.eot', { destDir: 'assets/fonts' });
+  app.import('vendor/fonts/icons.otf', { destDir: 'assets/fonts' });
+  app.import('vendor/fonts/icons.svg', { destDir: 'assets/fonts' });
+  app.import('vendor/fonts/icons.ttf', { destDir: 'assets/fonts' });
+  app.import('vendor/fonts/icons.woff', { destDir: 'assets/fonts' });
+  app.import('vendor/fonts/icons.woff2', { destDir: 'assets/fonts' });
 
   app.import('vendor/fonts/fd-icons.eot', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/fd-icons.ttf', { destDir: 'assets/fonts' });

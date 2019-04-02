@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import $ from 'jquery';
+import { isNone } from '@ember/utils';
 import ListFormController from 'ember-flexberry/controllers/list-form';
 
 export default ListFormController.extend({
@@ -17,7 +19,7 @@ export default ListFormController.extend({
     @property colsDiagramsItems
     @readOnly
   */
-  colsDiagramsItems: Ember.computed('i18n.locale', function() {
+  colsDiagramsItems: computed('i18n.locale', function() {
     let i18n = this.get('i18n');
     let menus = [
       {
@@ -78,7 +80,7 @@ export default ListFormController.extend({
       @param {jQuery.Event} e jQuery.Event by click on menu item
     */
     onDiagramsItemClick(e) {
-      let iTags = Ember.$(e.currentTarget).find('i');
+      let iTags = $(e.currentTarget).find('i');
       let className = iTags.length > 0 ? iTags.get(0).className : '';
 
       let modelName;
@@ -106,7 +108,7 @@ export default ListFormController.extend({
           break;
       }
 
-      if (!Ember.isNone(modelName)) {
+      if (!isNone(modelName)) {
         let editFormRoute = this.get('editFormRoute');
         this.get('objectlistviewEventsService').setLoadingState('loading');
         this.transitionToRoute(editFormRoute + '.new', { queryParams: { modelName: modelName } });

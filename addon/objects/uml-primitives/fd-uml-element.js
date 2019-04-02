@@ -2,7 +2,7 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import { computed } from '@ember/object';
 import FdUmlPrimitive from './fd-uml-primitive';
 
 /**
@@ -19,7 +19,7 @@ export default FdUmlPrimitive.extend({
     @property height
     @type Number
   */
-  height: Ember.computed.alias('primitive.Size.Height'),
+  height: computed.alias('primitive.Size.Height'),
 
   /**
     The width of this element.
@@ -27,7 +27,7 @@ export default FdUmlPrimitive.extend({
     @property width
     @type Number
   */
-  width: Ember.computed.alias('primitive.Size.Width'),
+  width: computed.alias('primitive.Size.Width'),
 
   /**
     An object with the properties `height` and `width` of this element, for example `{ height: 100, width: 100 }`.
@@ -35,7 +35,7 @@ export default FdUmlPrimitive.extend({
     @property size
     @type Object
   */
-  size: Ember.computed('height', 'width', function() {
+  size: computed('height', 'width', function() {
     return this.getProperties('height', 'width');
   }),
 
@@ -45,7 +45,7 @@ export default FdUmlPrimitive.extend({
     @property x
     @type Number
   */
-  x: Ember.computed.alias('primitive.Location.X'),
+  x: computed.alias('primitive.Location.X'),
 
   /**
     The `Y` coordinate of this element.
@@ -53,7 +53,7 @@ export default FdUmlPrimitive.extend({
     @property y
     @type Number
   */
-  y: Ember.computed.alias('primitive.Location.Y'),
+  y: computed.alias('primitive.Location.Y'),
 
   /**
     An object with the coordinates `X` and `Y` of this element, for example `{ x: 100, y: 100 }`.
@@ -61,7 +61,7 @@ export default FdUmlPrimitive.extend({
     @property position
     @type Object
   */
-  position: Ember.computed('x', 'y', function() {
+  position: computed('x', 'y', function() {
     return this.getProperties('x', 'y');
   }),
 });

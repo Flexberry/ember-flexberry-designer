@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
 
-export let Model = Ember.Mixin.create({
+export let Model = Mixin.create({
   follow: DS.belongsTo('fd-user-auth-profile', { inverse: null, async: false }),
   follower: DS.belongsTo('fd-user-auth-profile', { inverse: 'following', async: false }),
   getValidations: function () {
@@ -9,11 +10,11 @@ export let Model = Ember.Mixin.create({
     let thisValidations = {
       follower: { presence: true }
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 

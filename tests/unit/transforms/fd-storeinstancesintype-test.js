@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
 import { moduleFor, test } from 'ember-qunit';
 import FdClassExternalStoreInstancesInType from 'ember-flexberry-designer/objects/fd-storeinstancesintype';
 
@@ -6,7 +6,7 @@ moduleFor('transform:fd-storeinstancesintype', 'Unit | Transform | fd storeinsta
 
 test('it exists', function(assert) {
 
-  let objectModel = Ember.A([
+  let objectModel = A([
     FdClassExternalStoreInstancesInType.create({
       dataService: 'dataService1',
       data: 'data1',

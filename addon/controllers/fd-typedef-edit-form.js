@@ -1,14 +1,19 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
+import { observer } from '@ember/object';
+import { isEmpty } from '@ember/utils';
+
 import BusinessDataObjectEvents from 'ember-flexberry-designer/enums/i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events';
 import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 
-export default Ember.Controller.extend(FdFormUnsavedData, {
+export default Controller.extend(FdFormUnsavedData, {
   /**
     Service for managing the state of the application.
      @property appState
     @type AppStateService
   */
-  appState: Ember.inject.service(),
+  appState: service(),
 
   /**
     Name of current <<typedef>> class.
@@ -35,21 +40,21 @@ export default Ember.Controller.extend(FdFormUnsavedData, {
   CSStrText: undefined,
 
   /**
-    Ember.observer, watching string `CSStrText` and saving changes to model property.
+    Observer, watching string `CSStrText` and saving changes to model property.
     @method CSStr
   */
-  CSStr: Ember.observer('CSStrText', function() {
+  CSStr: observer('CSStrText', function() {
       let m = this.model;
       let deserialized = this.deserialize(m.get('typeMapCSStr'));
-      if (Ember.isEmpty(deserialized)) {
+      if (isEmpty(deserialized)) {
         deserialized = [{
           name: this.get('className'),
           value: this.get('CSStrText'),
           assemblydll: ''
         }];
       } else {
-        if (Ember.isEmpty(deserialized.findBy('name', this.get('className')))) {
-          if (!Ember.isEmpty(this.get('CSStrText'))) {
+        if (isEmpty(deserialized.findBy('name', this.get('className')))) {
+          if (!isEmpty(this.get('CSStrText'))) {
             deserialized.push({
               name: this.get('className'),
               value: this.get('CSStrText'),
@@ -82,21 +87,21 @@ export default Ember.Controller.extend(FdFormUnsavedData, {
   SQLStrText: undefined,
 
   /**
-    Ember.observer, watching string `SQLStrText` and saving changes to model property.
+    observer, watching string `SQLStrText` and saving changes to model property.
     @method SQLStr
   */
-  SQLStr: Ember.observer('SQLStrText', function() {
+  SQLStr: observer('SQLStrText', function() {
       let m = this.model;
       let deserialized = this.deserialize(m.get('typeMapSQLStr'));
-      if (Ember.isEmpty(deserialized)) {
+      if (isEmpty(deserialized)) {
         deserialized = [{
           name: this.get('className'),
           value: this.get('SQLStrText'),
           assemblydll: ''
         }];
       } else {
-        if (Ember.isEmpty(deserialized.findBy('name', this.get('className')))) {
-          if (!Ember.isEmpty(this.get('SQLStrText'))) {
+        if (isEmpty(deserialized.findBy('name', this.get('className')))) {
+          if (!isEmpty(this.get('SQLStrText'))) {
             deserialized.push({
               name: this.get('className'),
               value: this.get('SQLStrText'),
@@ -129,21 +134,21 @@ export default Ember.Controller.extend(FdFormUnsavedData, {
   oracleStrText: undefined,
 
   /**
-    Ember.observer, watching string `oracleStrText` and saving changes to model property.
+    Observer, watching string `oracleStrText` and saving changes to model property.
     @method oracleStr
   */
-  oracleStr: Ember.observer('oracleStrText', function() {
+  oracleStr: observer('oracleStrText', function() {
       let m = this.model;
       let deserialized = this.deserialize(m.get('typeMapOracleStr'));
-      if (Ember.isEmpty(deserialized)) {
+      if (isEmpty(deserialized)) {
         deserialized = [{
           name: this.get('className'),
           value: this.get('oracleStrText'),
           assemblydll: ''
         }];
       } else {
-        if (Ember.isEmpty(deserialized.findBy('name', this.get('className')))) {
-          if (!Ember.isEmpty(this.get('oracleStrText'))) {
+        if (isEmpty(deserialized.findBy('name', this.get('className')))) {
+          if (!isEmpty(this.get('oracleStrText'))) {
             deserialized.push({
               name: this.get('className'),
               value: this.get('oracleStrText'),
@@ -176,21 +181,21 @@ export default Ember.Controller.extend(FdFormUnsavedData, {
   postgreStrText: undefined,
 
   /**
-    Ember.observer, watching string `postgreStrText` and saving changes to model property.
+    Observer, watching string `postgreStrText` and saving changes to model property.
     @method postgreStr
   */
-  postgreStr: Ember.observer('postgreStrText', function() {
+  postgreStr: observer('postgreStrText', function() {
       let m = this.model;
       let deserialized = this.deserialize(m.get('typeMapPostgreStr'));
-      if (Ember.isEmpty(deserialized)) {
+      if (isEmpty(deserialized)) {
         deserialized = [{
           name: this.get('className'),
           value: this.get('postgreStrText'),
           assemblydll: ''
         }];
       } else {
-        if (Ember.isEmpty(deserialized.findBy('name', this.get('className')))) {
-          if (!Ember.isEmpty(this.get('postgreStrText'))) {
+        if (isEmpty(deserialized.findBy('name', this.get('className')))) {
+          if (!isEmpty(this.get('postgreStrText'))) {
             deserialized.push({
               name: this.get('className'),
               value: this.get('postgreStrText'),
@@ -215,7 +220,7 @@ export default Ember.Controller.extend(FdFormUnsavedData, {
       return serialized;
     }
 
-    let ret = Ember.A();
+    let ret = A();
     let parser = new DOMParser();
     let xmlDoc = parser.parseFromString(serialized, 'text/xml');
 
