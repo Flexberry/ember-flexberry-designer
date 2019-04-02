@@ -24,14 +24,6 @@ export default Controller.extend({
   fdSheetService: service(),
 
   /**
-    Service for get current stage.
-
-    @property fdCurrentProjectContext
-    @type FdCurrentProjectContext
-  */
-  fdCurrentProjectContext: Ember.inject.service(),
-
-  /**
     Flag, that indicates when sheet must be opened as create new class panel.
 
     @private

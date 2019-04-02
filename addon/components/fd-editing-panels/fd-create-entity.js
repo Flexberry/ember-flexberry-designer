@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import {inject as service} from '@ember/service';
+import EmberObject from '@ember/object';
 import layout from '../../templates/components/fd-editing-panels/fd-create-entity';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
 
   /**
@@ -10,7 +12,7 @@ export default Ember.Component.extend({
     @property store
     @type store
   */
-  store: Ember.inject.service(),
+  store: service(),
 
   /**
     Service for get current stage.
@@ -18,7 +20,7 @@ export default Ember.Component.extend({
     @property fdCurrentProjectContext
     @type FdCurrentProjectContext
   */
-  fdCurrentProjectContext: Ember.inject.service(),
+  fdCurrentProjectContext: service(),
 
   /**
     Classes data.
@@ -55,7 +57,7 @@ export default Ember.Component.extend({
         nameStr: ''
       });
 
-      let newClassObject = Ember.Object.create({
+      let newClassObject = EmberObject.create({
         model: newClass
       });
 
