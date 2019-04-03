@@ -18,5 +18,16 @@ export default Component.extend({
     @type Object
     @default undefined
   */
-  entity: undefined
+  entity: undefined,
+
+  actions: {
+    /**
+      Open crate class panel
+
+      @method actions.openCreateClassPanel
+    */
+    openCreateClassPanel(stereotype) {
+      this.sendAction("openCreateClassPanel", stereotype);
+    }
+  }
 });

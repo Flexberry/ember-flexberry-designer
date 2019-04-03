@@ -17,26 +17,19 @@
     </div>
 
     <div class="row">
-      {{
-        fd-button
-        tagName="label"
-        caption=(t "forms.fd-application-model.create-class-caption")
-        click=(action "openCreateClassPanel")
-      }}
-    </div>
-
-    <div class="row">
-      {{
-        fd-button
-        tagName="label"
-        caption=(t "forms.fd-application-model.create-class-caption")
-        click=(action "openCreateClassPanel")
-      }}
+      <button class="ui button" {{action "openCreateClassPanel" ""}}>
+        {{t "forms.fd-application-model.create-class-caption"}}
+      </button>
     </div>
    
     {{!-- Classes --}}
     {{#each filteredModel.classes as |class|}}
-     
+      {{
+        fd-class-list-items
+        entity=class
+        sheetComponentName=sheetComponentName
+        openCreateClassPanel=(action "openCreateClassPanel")
+      }}
     {{/each}}
 
     {{!-- Enums --}}

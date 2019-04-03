@@ -4,8 +4,9 @@ import { isBlank, isNone } from '@ember/utils';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
 import { all } from 'rsvp';
+import FdCreateClassObject from '../mixins/fd-create-class-object';
 
-export default Controller.extend({
+export default Controller.extend(FdCreateClassObject, {
 
   /**
     Service for managing the state of the application.
@@ -288,17 +289,22 @@ export default Controller.extend({
 
     /**
       Create new Class.
-
-       @method actions.createNewClass
+      @method actions.openCreateClassPanel
     */
-    openCreateClassPanel() {
+    openCreateClassPanel(stereotype) {
       this.set('_isSheetCreateClassPanel', true);
       this.deactivateListItem();
       this.set('selectedElement', undefined);
       let sheetComponentName = this.get('sheetComponentName');
       let fdSheetService = this.get('fdSheetService');
+      if(!fdSheetService.isVisible(sheetComponentName)) {
+        fdSheetService.openSheet(sheetComponentName);
+      }
 
-      fdSheetService.openSheet(sheetComponentName);
+      if (!isBlank(stereotype)) {
+        let createdObject = this.createClassObject(stereotype);
+        this.set('selectedElement', createdObject);
+      }
     },
 
     /**

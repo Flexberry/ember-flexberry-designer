@@ -78,13 +78,11 @@
   {{/if}}
 
   <div class="right floated fourteen wide column">
-    {{
-      fd-button
-      caption=(t "forms.fd-application-model.editor-caption")
-    }}
-    {{
-      fd-button
-      caption=(t "forms.fd-application-model.list-caption")
-    }}
+    <button class="ui button" {{action "openCreateClassPanel" "«editform»"}}>
+      {{t "forms.fd-application-model.editor-caption"}}
+    </button>
+    <button class="ui button" {{action "openCreateClassPanel" "«listform»"}}>
+      {{t "forms.fd-application-model.list-caption"}}
+    </button>
   </div>
 </div>

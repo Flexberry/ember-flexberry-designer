@@ -1,84 +1,54 @@
 <form class="ui form flexberry-vertical-form">
   <div class="ui stackable grid fd-list">
     <div class="row">
-      {{
-        fd-button
-        tagName="label"
-        caption=(t "forms.fd-application-model.entity-caption")
-        click=(action "createClass" "«implementation»")
-      }}
+      <button class="ui button" {{action "createClass" "«implementation»"}}>
+        {{t "forms.fd-application-model.entity-caption"}}
+      </button>
     </div>
     <div class="row">
-      {{
-        fd-button
-        tagName="label"
-        caption=(t "forms.fd-application-model.type-caption")
-        click=(action "createClass" "«type»")
-      }}
+      <button class="ui button" {{action "createClass" "«type»"}}>
+        {{t "forms.fd-application-model.type-caption"}}
+      </button>
     </div>
     <div class="row">
-      {{
-        fd-button
-        tagName="label"
-        caption=(t "forms.fd-application-model.application-caption")
-        click=(action "createClass" "«application»")
-      }}
+      <button class="ui button" {{action "createClass" "«application»"}}>
+        {{t "forms.fd-application-model.application-caption"}}
+      </button>
     </div>
     <div class="row">
-      {{
-        fd-button
-        tagName="label"
-        caption=(t "forms.fd-application-model.bs-caption")
-        click=(action "createClass" "«businessserver»")
-      }}
+      <button class="ui button" {{action "createClass" "«businessserver»"}}>
+        {{t "forms.fd-application-model.bs-caption"}}
+      </button>
     </div>
     <div class="row">
-      {{
-        fd-button
-        tagName="label"
-        caption=(t "forms.fd-application-model.external-caption")
-        click=(action "createClass" "«external»")
-      }}
+      <button class="ui button" {{action "createClass" "«external»"}}>
+        {{t "forms.fd-application-model.external-caption"}}
+      </button>
     </div>
     <div class="row">
-      {{
-        fd-button
-        tagName="label"
-        caption=(t "forms.fd-application-model.extinterface-caption")
-        click=(action "createClass" "«externalinterface»")
-      }}
+      <button class="ui button" {{action "createClass" "«externalinterface»"}}>
+        {{t "forms.fd-application-model.extinterface-caption"}}
+      </button>
     </div>
     <div class="row">
-      {{
-        fd-button
-        tagName="label"
-        caption=(t "forms.fd-application-model.interface-caption")
-        click=(action "createClass" "«interface»")
-      }}
+      <button class="ui button" {{action "createClass" "«interface»"}}>
+        {{t "forms.fd-application-model.interface-caption"}}
+      </button>
     </div>
     <div class="row">
-      {{
-        fd-button
-        tagName="label"
-        caption=(t "forms.fd-application-model.userform-caption")
-        click=(action "createClass" "«userform»")
-      }}
+      <button class="ui button" {{action "createClass" "«userform»"}}>
+        {{t "forms.fd-application-model.userform-caption"}}
+      </button>
     </div>
     <div class="row">
-      {{
-        fd-button
-        tagName="label"
-        caption=(t "forms.fd-application-model.enum-caption")
-        click=(action "createClass" "«enumeration»")
-      }}
+      <button class="ui button" {{action "createClass" "«enumeration»"}}>
+        {{t "forms.fd-application-model.enum-caption"}}
+      </button>
     </div>
     <div class="row">
-      {{
-        fd-button
-        tagName="label"
-        caption=(t "forms.fd-application-model.typedef-caption")
-        click=(action "createClass" "«typedef»")
-      }}
+      <button class="ui button" {{action "createClass" "«typedef»"}}>
+        {{t "forms.fd-application-model.typedef-caption"}}
+      </button>
     </div>
   </div>
 </form>
