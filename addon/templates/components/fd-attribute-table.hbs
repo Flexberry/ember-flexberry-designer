@@ -1,18 +1,20 @@
+<div class="row">
   {{#each tableView as |tableView|}}
-    <div class="four wide column light-text fd-table">
+    <div class="column light-text">
       {{t tableView.columnCaption}}
     </div>
   {{/each}}
+</div>
   {{#each model as |value|}}
     {{#if (not value.isDeleted)}}
-      <div class="one wide column fd-table-checkbox">
-        <div class="ui checkbox">
-          <input type="checkbox" onchange={{action 'selectValue' value}}>
-          <label> </label>
-        </div>
+    <div class="row">  
+      <div class="column fd-table-checkbox">
+        {{flexberry-checkbox
+          onchange=(action 'selectValue' value)
+        }}
       </div>
       {{#each tableView as |tableView|}}
-        <div class="{{tableView.columnClass}} wide column light-text fd-table">
+        <div class="{{tableView.columnClass}}column light-text">
           {{flexberry-textbox
             value=(mut (get value tableView.columnProperty))
             class='fluid input'
@@ -20,10 +22,11 @@
           }}
         </div>
       {{/each}}
+    </div>      
     {{/if}}
   {{/each}}
-
-  <div class="sixteen wide column buttons-row fd-table">
+<div class="row">
+  <div class="sixteen wide column buttons-row">
     <button class="ui basic button table-btn" {{action 'createValue'}}>
       {{t buttonCaption.createBtn}}
     </button>
@@ -32,3 +35,4 @@
       {{t buttonCaption.deleteBtn}}
     </button>
   </div>
+</div>

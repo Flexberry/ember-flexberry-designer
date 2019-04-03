@@ -26,19 +26,16 @@ export default Ember.Component.extend(FdUpdateAttributeValueMixin, {
       columnCaption: 'components.fd-attribute-table.attribute.name',
       columnProperty: 'name',
       attrPlaceholder: 'components.fd-attribute-table.attribute.name-placeholder',
-      columnClass: 'three'
     },
     {
       columnCaption: 'components.fd-attribute-table.attribute.caption',
       columnProperty: 'caption',
       attrPlaceholder: 'components.fd-attribute-table.attribute.caption-placeholder',
-      columnClass: 'four'
     },
     {
       columnCaption: 'components.fd-attribute-table.attribute.description',
       columnProperty: 'description',
       attrPlaceholder: 'components.fd-attribute-table.attribute.description-placeholder',
-      columnClass: 'four'
     },
   ],
 });

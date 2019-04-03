@@ -27,13 +27,11 @@ export default Ember.Mixin.create({
       columnCaption: 'components.fd-attribute-table.view.name',
       columnProperty: 'name',
       attrPlaceholder: 'components.fd-attribute-table.view.name-placeholder',
-      columnClass: 'three'
     },
     {
       columnCaption: 'components.fd-attribute-table.view.description',
       columnProperty: 'description',
       attrPlaceholder: 'components.fd-attribute-table.view.description-placeholder',
-      columnClass: 'four'
     },
   ],
 
