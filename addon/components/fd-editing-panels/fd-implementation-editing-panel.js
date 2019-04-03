@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
+import { A } from '@ember/array';
 import FdUpdateBsValueMixin from '../../mixins/fd-editing-panels/fd-update-bs-value';
 import FdUpdateAttributeValueMixin from '../../mixins/fd-editing-panels/fd-update-attribute-value';
 import FdUpdateMethodeValueMixin from '../../mixins/fd-editing-panels/fd-update-method-value';
@@ -36,7 +37,7 @@ export default Component.extend(
     @type Array
   */
   tableViewForView: computed(() => (
-    [{
+    A([{
         columnCaption: 'components.fd-attribute-table.view.name',
         columnProperty: 'name',
         attrPlaceholder: 'components.fd-attribute-table.view.name-placeholder',
@@ -47,7 +48,7 @@ export default Component.extend(
         columnProperty: 'description',
         attrPlaceholder: 'components.fd-attribute-table.view.description-placeholder',
         columnClass: 'four'
-      }]
+      }])
   )),
 
   /**
