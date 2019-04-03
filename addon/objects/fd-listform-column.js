@@ -2,7 +2,8 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import EmberObject from '@ember/object';
+import { computed } from '@ember/object';
 
 /**
   Describes one column on the list form.
@@ -10,14 +11,14 @@ import Ember from 'ember';
   @class FdListformColumn
   @extends <a href="http://emberjs.com/api/classes/Ember.Object.html">Ember.Object</a>
 */
-export default Ember.Object.extend({
+export default EmberObject.extend({
   /**
     Caption of the column.
 
     @property caption
     @type String
   */
-  caption: Ember.computed.alias('propertyDefinition.caption'),
+  caption: computed.alias('propertyDefinition.caption'),
 
   /**
     The property definition from view that corresponds to this column.

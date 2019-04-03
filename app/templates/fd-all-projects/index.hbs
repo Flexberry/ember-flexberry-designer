@@ -1,8 +1,8 @@
-<div class="ui cards">
+<div class="ui cards fd-projects">
   {{#each model.projects as |project|}}
     <a class="ui card" {{action "chooseProject" project}}>
       <div class="content">
-        <i class="right floated like icon" {{action "pinProject" project bubbles=false}}></i>
+        <i class="right floated icon-fd-pin icon" {{action "pinProject" project bubbles=false}}></i>
         <div class="header">{{project.name}}</div>
         <div class="description">
           <p>{{project.description}}</p>

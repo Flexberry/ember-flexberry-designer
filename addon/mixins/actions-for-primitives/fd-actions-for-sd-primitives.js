@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import { A } from '@ember/array';
 import { SequenceDiagramActor } from '../../objects/uml-primitives/fd-uml-sequence-actor';
 import { SequenceDiagramObject } from '../../objects/uml-primitives/fd-uml-sequence-object';
 import { SequenceDiagramActiveObject } from '../../objects/uml-primitives/fd-uml-sequence-active-object';
@@ -14,7 +15,7 @@ import { ReturnMessage } from '../../objects/uml-primitives/fd-uml-return-messag
   @class FdAcrionsForCadPrimitivesMixin
   @extends <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
-export default Ember.Mixin.create({
+export default Mixin.create({
   actions: {
     /**
       Handler for click on addSequenceDiagramActor button.
@@ -95,11 +96,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newProcedureCallObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.sequencediagramActiveObject', 'flexberry.uml.sequencediagramObject', 'flexberry.uml.SequenceDiagramActor']));
+      }).bind(this), e, A(['flexberry.uml.sequencediagramActiveObject', 'flexberry.uml.sequencediagramObject', 'flexberry.uml.SequenceDiagramActor']));
     },
 
     /**
@@ -117,11 +118,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newFlatMessageObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.sequencediagramActiveObject', 'flexberry.uml.sequencediagramObject', 'flexberry.uml.SequenceDiagramActor']));
+      }).bind(this), e, A(['flexberry.uml.sequencediagramActiveObject', 'flexberry.uml.sequencediagramObject', 'flexberry.uml.SequenceDiagramActor']));
     },
 
     /**
@@ -139,11 +140,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newAsyncMessageObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.sequencediagramActiveObject', 'flexberry.uml.sequencediagramObject', 'flexberry.uml.SequenceDiagramActor']));
+      }).bind(this), e, A(['flexberry.uml.sequencediagramActiveObject', 'flexberry.uml.sequencediagramObject', 'flexberry.uml.SequenceDiagramActor']));
     },
 
     /**
@@ -161,11 +162,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newReturnMessageObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.sequencediagramActiveObject', 'flexberry.uml.sequencediagramObject', 'flexberry.uml.SequenceDiagramActor']));
+      }).bind(this), e, A(['flexberry.uml.sequencediagramActiveObject', 'flexberry.uml.sequencediagramObject', 'flexberry.uml.SequenceDiagramActor']));
     },
 
     /**

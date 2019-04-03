@@ -1,4 +1,12 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import EmberObject from '@ember/object';
+import { computed, observer } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { A, isArray } from '@ember/array';
+import { isEmpty, isNone } from '@ember/utils';
+import { scheduleOnce } from '@ember/runloop';
+import { all } from 'rsvp';
+import $ from 'jquery';
 
 import FdEditformRow from '../objects/fd-editform-row';
 import FdEditformControl from '../objects/fd-editform-control';
@@ -25,7 +33,7 @@ import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 import { controlsToDefinition, locateControlByPath } from '../utils/fd-view-path-functions';
 import FdDataTypes from '../utils/fd-datatypes';
 
-export default Ember.Controller.extend(
+export default Controller.extend(
 FdWorkPanelToggler,
 FdFormUnsavedData, {
   /**
@@ -34,7 +42,7 @@ FdFormUnsavedData, {
     @property appState
     @type AppStateService
   */
-  appState: Ember.inject.service(),
+  appState: service(),
 
   queryParams: ['classId'],
 
@@ -50,7 +58,7 @@ FdFormUnsavedData, {
     @property _dataForBuildTree
     @type Object
   */
-  _dataForBuildTree: Ember.computed('model.dataobject.id', function() {
+  _dataForBuildTree: computed('model.dataobject.id', function() {
     return getDataForBuildTree(this.get('store'), this.get('model.dataobject.id'));
   }),
 
@@ -127,7 +135,7 @@ FdFormUnsavedData, {
     @type Array
     @default []
    */
-  selectedNodesNotUsedAttributesTree: Ember.A(),
+  selectedNodesNotUsedAttributesTree: A(),
 
   /**
     Included plugins for jsTree.
@@ -144,7 +152,7 @@ FdFormUnsavedData, {
     @property typesOptionsTree
     @type Object
   */
-  typesOptionsTree: Ember.computed(() => ({
+  typesOptionsTree: computed(() => ({
     'property': {
       icon: 'assets/images/attribute.bmp'
     },
@@ -174,7 +182,7 @@ FdFormUnsavedData, {
     @property searchOptionsTree
     @type Object
   */
-  searchOptionsTree: Ember.computed(() => ({
+  searchOptionsTree: computed(() => ({
     show_only_matches: true
   })),
 
@@ -184,7 +192,7 @@ FdFormUnsavedData, {
     @property dataNotUsedAttributesTree
     @type Array
   */
-  dataNotUsedAttributesTree: Ember.A(),
+  dataNotUsedAttributesTree: A(),
 
   /**
     View, edited in this exact constructor.
@@ -192,7 +200,7 @@ FdFormUnsavedData, {
     @property header
     @type String
   */
-  viewName: Ember.computed.readOnly('model.editform.name'),
+  viewName: computed.readOnly('model.editform.name'),
 
   /**
     Class, edited by this form.
@@ -200,30 +208,30 @@ FdFormUnsavedData, {
     @property className
     @type String
   */
-  className: Ember.computed.alias('model.dataobject.name'),
+  className: computed.alias('model.dataobject.name'),
 
   /**
     Update data in tree.
 
     @method dataNotUsedAttributesTreeObserver
   */
-  dataNotUsedAttributesTreeObserver: Ember.observer('_showNotUsedAttributesTree', function() {
+  dataNotUsedAttributesTreeObserver: observer('_showNotUsedAttributesTree', function() {
     if (!this.get('_showNotUsedAttributesTree')) {
       return;
     }
 
     let dataobjectId = this.get('model.dataobject.id');
-    let mockView = Ember.Object.create({
+    let mockView = EmberObject.create({
       definition: controlsToDefinition(this.get('controlsTree')),
       class: this.get('model.dataobject')
     });
 
     let dataForBuildTree = getDataForBuildTree(this.get('store'), dataobjectId);
     let attributesForTree = getTreeNodeByNotUsedAttributes(this.get('store'), dataForBuildTree.classes, mockView, 'type');
-    let associationForTree = getAssociationTreeNode(Ember.A(), dataForBuildTree.associations, 'node_', dataobjectId, 'name');
+    let associationForTree = getAssociationTreeNode(A(), dataForBuildTree.associations, 'node_', dataobjectId, 'name');
     let aggregationForTree = getTreeNodeByNotUsedAggregation(dataForBuildTree.aggregations, mockView, 'name');
 
-    let attributesTree = Ember.A();
+    let attributesTree = A();
     attributesTree.pushObjects([
       FdAttributesTree.create({
         text: this.get('i18n').t('forms.fd-editform-constructor.form-config-panel.tree.not-used-attributes.property').toString(),
@@ -254,7 +262,7 @@ FdFormUnsavedData, {
     this.set('dataNotUsedAttributesTree', attributesTree);
   }),
 
-  _applyDisabled: Ember.computed('selectedNodesNotUsedAttributesTree', function() {
+  _applyDisabled: computed('selectedNodesNotUsedAttributesTree', function() {
     let selectedNodes = this.get('selectedNodesNotUsedAttributesTree');
     if (selectedNodes.length === 0 || selectedNodes[0].type === 'class') {
       return 'disabled';
@@ -271,7 +279,7 @@ FdFormUnsavedData, {
     @readOnly
     @type {FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab}
   */
-  _itemToMove: Ember.computed('selectedItem', function() {
+  _itemToMove: computed('selectedItem', function() {
     let selectedItem = this.get('selectedItem');
     if (this._isControl(selectedItem)) {
       let itemContainer = this._findItemContainer(selectedItem);
@@ -291,7 +299,7 @@ FdFormUnsavedData, {
     @readOnly
     @type Ember.NativeArray
   */
-  _itemToMoveStorage: Ember.computed('_itemToMove', function() {
+  _itemToMoveStorage: computed('_itemToMove', function() {
     let itemToMove = this.get('_itemToMove');
     if (itemToMove) {
       return this._getItemStorage(this._findItemContainer(itemToMove));
@@ -304,7 +312,7 @@ FdFormUnsavedData, {
     @readOnly
     @type Boolean
   */
-  _itemToMoveIsRow: Ember.computed('_itemToMove', function() {
+  _itemToMoveIsRow: computed('_itemToMove', function() {
     return this.get('_itemToMove') instanceof FdEditformRow;
   }).readOnly(),
 
@@ -314,7 +322,7 @@ FdFormUnsavedData, {
     @readOnly
     @type Boolean
   */
-  _itemToMoveIsFirst: Ember.computed('_itemToMoveStorage.[]', function() {
+  _itemToMoveIsFirst: computed('_itemToMoveStorage.[]', function() {
     let itemToMove = this.get('_itemToMove');
     let itemToMoveStorage = this.get('_itemToMoveStorage');
     if (itemToMove && itemToMoveStorage) {
@@ -330,7 +338,7 @@ FdFormUnsavedData, {
     @readOnly
     @type Boolean
   */
-  _itemToMoveIsLast: Ember.computed('_itemToMoveStorage.[]', function() {
+  _itemToMoveIsLast: computed('_itemToMoveStorage.[]', function() {
     let itemToMove = this.get('_itemToMove');
     let itemToMoveStorage = this.get('_itemToMoveStorage');
     if (itemToMove && itemToMoveStorage) {
@@ -352,37 +360,37 @@ FdFormUnsavedData, {
     @property implementations
     @type Ember.NativeArray
   */
-  implementations: Ember.computed.filter('model.classes', clazz => clazz.get('stereotype') === '«implementation»' || clazz.get('stereotype') === null),
+  implementations: computed.filter('model.classes', clazz => clazz.get('stereotype') === '«implementation»' || clazz.get('stereotype') === null),
 
   /**
     @property attributes
     @type Ember.NativeArray
   */
-  attributes: Ember.computed('_dataForBuildTree', function() {
-    return getClassTreeNode(Ember.A(), this.get('_dataForBuildTree.classes'), this.get('model.dataobject.id'), 'type');
+  attributes: computed('_dataForBuildTree', function() {
+    return getClassTreeNode(A(), this.get('_dataForBuildTree.classes'), this.get('model.dataobject.id'), 'type');
   }),
 
   /**
     @property masters
     @type Ember.NativeArray
   */
-  masters: Ember.computed('_dataForBuildTree', function() {
-    return getAssociationTreeNode(Ember.A(), this.get('_dataForBuildTree.associations'), 'node_', this.get('model.dataobject.id'), 'name');
+  masters: computed('_dataForBuildTree', function() {
+    return getAssociationTreeNode(A(), this.get('_dataForBuildTree.associations'), 'node_', this.get('model.dataobject.id'), 'name');
   }),
 
   /**
     @property details
     @type Ember.NativeArray
   */
-  details: Ember.computed('_dataForBuildTree', function() {
-    return getAggregationTreeNode(Ember.A(), this.get('_dataForBuildTree.aggregations'), this.get('model.dataobject.id'), 'name');
+  details: computed('_dataForBuildTree', function() {
+    return getAggregationTreeNode(A(), this.get('_dataForBuildTree.aggregations'), this.get('model.dataobject.id'), 'name');
   }),
 
   /**
     @property mastersType
     @type Ember.NativeArray
   */
-  mastersType: Ember.computed('implementations', function() {
+  mastersType: computed('implementations', function() {
     return this._buildTree(this.get('implementations'), 'master', true);
   }),
 
@@ -390,7 +398,7 @@ FdFormUnsavedData, {
     @property detailsType
     @type Ember.NativeArray
   */
-  detailsType: Ember.computed('implementations', 'model.aggregations', 'model.dataobject.id', function() {
+  detailsType: computed('implementations', 'model.{aggregations,dataobject.id}', function() {
     let implementations = this.get('implementations');
     let aggregations = this.get('model.aggregations');
     let dataObjectId = this.get('model.dataobject.id');
@@ -403,7 +411,7 @@ FdFormUnsavedData, {
     @property simpleTypes
     @type Ember.NativeArray
   */
-  simpleTypes: Ember.computed('_dataTypes', function() {
+  simpleTypes: computed('_dataTypes', function() {
     return this._buildTree(this.get('_dataTypes').fDTypes(), 'property');
   }),
 
@@ -411,7 +419,7 @@ FdFormUnsavedData, {
     @property typemap
     @type Ember.NativeArray
   */
-  typemap: Ember.computed('model.stage.typeMapCS', '_dataTypes', function() {
+  typemap: computed('model.stage.typeMapCS', '_dataTypes', function() {
     let dataTypes = this.get('_dataTypes');
     let typemap = this.get('model.stage.typeMapCS').filter(t => dataTypes.fDTypeToFlexberry(t.name) === null);
     return this._buildTree(typemap, '«typemap»');
@@ -421,7 +429,7 @@ FdFormUnsavedData, {
     @property enums
     @type Ember.NativeArray
   */
-  enums: Ember.computed('model.classes', function() {
+  enums: computed('model.classes', function() {
     return this._buildTree(this.get('model.classes').filterBy('stereotype', '«enumeration»'), '«enumeration»');
   }),
 
@@ -429,7 +437,7 @@ FdFormUnsavedData, {
     @property types
     @type Ember.NativeArray
   */
-  types: Ember.computed('model.classes', function() {
+  types: computed('model.classes', function() {
     return this._buildTree(this.get('model.classes').filterBy('stereotype', '«type»'), '«type»');
   }),
 
@@ -439,7 +447,7 @@ FdFormUnsavedData, {
     @property dataObjectProperties
     @type Object
   */
-  dataObjectProperties: Ember.computed('model.dataobject.attributes.@each.type', 'model.inheritances', 'model.associations', 'model.aggregations', function() {
+  dataObjectProperties: computed('model.{dataobject.attributes.@each.type,inheritances,associations,aggregations}', function() {
     let dataObject = this.get('model.dataobject');
     let inheritances = this.get('model.inheritances');
     let associations = this.get('model.associations');
@@ -455,8 +463,8 @@ FdFormUnsavedData, {
     @readOnly
     @type Ember.NativeArray
   */
-  controlsTree: Ember.computed('model.editform.formViews.firstObject.view.definition', function() {
-    let controlsTree = Ember.A();
+  controlsTree: computed('model.editform.formViews.firstObject.view.definition', function() {
+    let controlsTree = A();
 
     let definition = this.get('model.editform.formViews.firstObject.view.definition');
     let length = definition.get('length');
@@ -470,7 +478,7 @@ FdFormUnsavedData, {
     }
 
     return controlsTree;
-  }).readOnly(),
+  }),
 
   actions: {
     /**
@@ -506,9 +514,9 @@ FdFormUnsavedData, {
 
       this._insertItem(control, this.get('selectedItem') || this.get('controlsTree'));
       this.send('selectItem', control, true);
-      let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
-      Ember.$('.ui.menu', configPanelSidebar).find(`.item[data-tab="control-properties"]`).click();
-      Ember.run.scheduleOnce('afterRender', this, this._scrollToSelected);
+      let configPanelSidebar = $('.ui.sidebar.config-panel');
+      $('.ui.menu', configPanelSidebar).find(`.item[data-tab="control-properties"]`).click();
+      scheduleOnce('afterRender', this, this._scrollToSelected);
     },
 
     /**
@@ -528,7 +536,7 @@ FdFormUnsavedData, {
 
       this._insertItem(control, this.get('selectedItem') || this.get('controlsTree'));
       this.send('selectItem', control, true);
-      Ember.run.scheduleOnce('afterRender', this, this._scrollToSelected);
+      scheduleOnce('afterRender', this, this._scrollToSelected);
     },
 
     /**
@@ -539,7 +547,7 @@ FdFormUnsavedData, {
     addGroup() {
       this._insertItem(FdEditformGroup.create({
         caption: `${this.get('i18n').t('forms.fd-editform-constructor.new-group-caption').toString()} #${this.incrementProperty('_newGroupIndex')}`,
-        rows: Ember.A(),
+        rows: A(),
       }), this.get('selectedItem') || this.get('controlsTree'));
     },
 
@@ -551,7 +559,7 @@ FdFormUnsavedData, {
     addTab() {
       this._insertItem(FdEditformTab.create({
         caption: `${this.get('i18n').t('forms.fd-editform-constructor.new-tab-caption').toString()} #${this.incrementProperty('_newTabIndex')}`,
-        rows: Ember.A(),
+        rows: A(),
       }), this.get('selectedItem') || this.get('controlsTree'));
     },
 
@@ -617,7 +625,7 @@ FdFormUnsavedData, {
     */
     selectItem(item, notTogglePanel) {
       let selectedItem = this.get('selectedItem');
-      if (this.get('_moveItem') && !Ember.isNone(item)) {
+      if (this.get('_moveItem') && !isNone(item)) {
         if (this._findItemContainer(item, selectedItem) === null) {
           let selectedItemContainer = this._findItemContainer(selectedItem);
           try {
@@ -631,7 +639,7 @@ FdFormUnsavedData, {
           }
         }
       } else if (!this.get('_moveItem')) {
-        let configPanelSidebar = Ember.$('.ui.sidebar.config-panel');
+        let configPanelSidebar = $('.ui.sidebar.config-panel');
         let sidebarOpened = configPanelSidebar.hasClass('visible');
 
         if (!notTogglePanel && selectedItem !== item && (item || sidebarOpened)) {
@@ -641,7 +649,7 @@ FdFormUnsavedData, {
         this.set('selectedItem', item);
 
         let newSelectedItem = selectedItem === item ? undefined : item;
-        if (!Ember.isNone(newSelectedItem) && newSelectedItem.get('propertyDefinition.name') === '') {
+        if (!isNone(newSelectedItem) && newSelectedItem.get('propertyDefinition.name') === '') {
           this.set('_showNotUsedAttributesTree', true);
         } else {
           this.set('_showNotUsedAttributesTree', false);
@@ -865,7 +873,7 @@ FdFormUnsavedData, {
   */
   _openNodeTree(e, data) {
     let treeData = this.get('dataNotUsedAttributesTree');
-    restorationNodeTree(treeData, data.node.original, Ember.A(['master', 'class']), false, (function(node) {
+    restorationNodeTree(treeData, data.node.original, A(['master', 'class']), false, (function(node) {
       let view = this.get('model.editform.formViews.firstObject.view');
       let dataForBuildTree = getDataForBuildTree(this.get('store'), node.get('idNode'));
       let childrenAttributes = getTreeNodeByNotUsedAttributes(this.get('store'), dataForBuildTree.classes, view, 'type');
@@ -969,7 +977,7 @@ FdFormUnsavedData, {
       foundContainer = this._findItemContainer(item, container.get('tabs'));
     } else if ((container instanceof FdEditformGroup || container instanceof FdEditformTab) && container.get('rows').indexOf(item) === -1) {
       foundContainer = this._findItemContainer(item, container.get('rows'));
-    } else if (Ember.isArray(container) && container.indexOf(item) === -1) {
+    } else if (isArray(container) && container.indexOf(item) === -1) {
       let index = 0;
       let length = container.get('length');
       while (index < length && !foundContainer) {
@@ -997,7 +1005,7 @@ FdFormUnsavedData, {
       return container.get('tabs');
     } else if (container instanceof FdEditformGroup || container instanceof FdEditformTab) {
       return container.get('rows');
-    } else if (Ember.isArray(container)) {
+    } else if (isArray(container)) {
       return container;
     } else {
       throw new Error(this.get('i18n').t('forms.fd-editform-constructor.unsupported-container-error'));
@@ -1017,11 +1025,11 @@ FdFormUnsavedData, {
     if (item instanceof FdEditformRow) {
       row = item;
     } else if (item instanceof FdEditformTab) {
-      row = FdEditformRow.create({ controls: Ember.A([
-        FdEditformTabgroup.create({ tabs: Ember.A([item]) }),
+      row = FdEditformRow.create({ controls: A([
+        FdEditformTabgroup.create({ tabs: A([item]) }),
       ]) });
     } else if (this._isControl(item)) {
-      row = FdEditformRow.create({ controls: Ember.A([item]) });
+      row = FdEditformRow.create({ controls: A([item]) });
     } else {
       throw new Error(this.get('i18n').t('forms.fd-editform-constructor.item-cast-error'));
     }
@@ -1041,7 +1049,7 @@ FdFormUnsavedData, {
     if (this._isControl(item)) {
       control = item;
     } else if (item instanceof FdEditformTab) {
-      control = FdEditformTabgroup.create({ tabs: Ember.A([item]) });
+      control = FdEditformTabgroup.create({ tabs: A([item]) });
     } else if (item instanceof FdEditformRow && item.get('controls.length') === 1) {
       control = item.get('controls.firstObject');
     } else {
@@ -1076,8 +1084,8 @@ FdFormUnsavedData, {
     let viewDefinition = controlsToDefinition(controlsTree);
 
     // Check viewDefinition on errors.
-    let duplicateValues = Ember.A();
-    let detailViewNull = Ember.A();
+    let duplicateValues = A();
+    let detailViewNull = A();
     viewDefinition.forEach((atr) => {
       let countDefinition = viewDefinition.filterBy('name', atr.name);
       if (countDefinition.length !== 1) {
@@ -1101,7 +1109,7 @@ FdFormUnsavedData, {
 
     // Save attributes.
     let dataobject = this.get('model.dataobject');
-    if (Ember.isNone(dataobject.get('caption'))) {
+    if (isNone(dataobject.get('caption'))) {
       dataobject.set('caption', dataobject.get('name'));
     }
 
@@ -1115,15 +1123,15 @@ FdFormUnsavedData, {
 
     // Сохранить класс формы редактирования
     let editform = this.get('model.editform');
-    editform.set('propertyLookupStr', Ember.A(editform.get('propertyLookupStr').toArray()));
+    editform.set('propertyLookupStr', A(editform.get('propertyLookupStr').toArray()));
 
-    return Ember.RSVP.all([
+    return all([
       view.save(),
       dataobject.save(),
       editform.save(),
-      Ember.RSVP.all(changedAttributes.map(a => a.save())),
-      Ember.RSVP.all(changedAssociations.map(a => a.save())),
-      Ember.RSVP.all(changedAggregation.map(a => a.save())),
+      all(changedAttributes.map(a => a.save())),
+      all(changedAssociations.map(a => a.save())),
+      all(changedAggregation.map(a => a.save())),
     ]);
   },
 
@@ -1134,8 +1142,8 @@ FdFormUnsavedData, {
     @method _scrollToSelected
   */
   _scrollToSelected() {
-    let form = Ember.$('.full.height');
-    let firstSelectedOffsetTop = Ember.$('.selected:first').length > 0 ? Ember.$('.selected:first').offset().top : 0;
+    let form = $('.full.height');
+    let firstSelectedOffsetTop = $('.selected:first').length > 0 ? $('.selected:first').offset().top : 0;
     let scrollTop = firstSelectedOffsetTop + form.scrollTop() - (form.offset().top + 10);
 
     form.animate({ scrollTop });
@@ -1154,9 +1162,9 @@ FdFormUnsavedData, {
   */
   _getClassProperties(clazz, inheritances, associations, aggregations) {
     let properties = {
-      attributes: Ember.A(),
-      associations: Ember.A(),
-      aggregations: Ember.A(),
+      attributes: A(),
+      associations: A(),
+      aggregations: A(),
     };
     let clazzId = clazz.get('id');
 
@@ -1204,7 +1212,7 @@ FdFormUnsavedData, {
       let { aggregations } = dataObjectProperties;
       let relation = aggregations.findBy('endRole', propertyName) || aggregations.findBy('endClass.name', propertyName);
       type = 'detail';
-      view = Ember.A(this.get('model.views').filterBy('class.id', relation.get('endClass.id'))).findBy('name', propertyDefinition.get('detailViewName'));
+      view = A(this.get('model.views').filterBy('class.id', relation.get('endClass.id'))).findBy('name', propertyDefinition.get('detailViewName'));
       types = this._getTypesForView(view);
     } else if (propertyDefinition instanceof FdViewAttributesMaster) {
       type = 'master';
@@ -1227,6 +1235,7 @@ FdFormUnsavedData, {
         if (relation) {
           properties = this._getClassProperties(relation.get('startClass'), inheritances, associations, aggregations);
         } else {
+          // eslint-disable-next-line no-console
           console.error('Not found association with name:' + role);
         }
       }
@@ -1291,7 +1300,7 @@ FdFormUnsavedData, {
     @return {Object} Object data for tree.
   */
   _buildTree(data, type, nodeId) {
-    let treeData = Ember.A();
+    let treeData = A();
     data.forEach((item, index) => {
       let text;
       if (type === '«typemap»') {
@@ -1308,7 +1317,7 @@ FdFormUnsavedData, {
         id: type + index
       });
 
-      if (!Ember.isNone(nodeId)) {
+      if (!isNone(nodeId)) {
         newNode.set('idNode', item.get('id'));
       }
 
@@ -1348,7 +1357,7 @@ FdFormUnsavedData, {
     let originalDefinitions = this.get('model.originalDefinition');
 
     let currentDefinitions = controlsToDefinition(this.get('controlsTree'));
-    if (Ember.isEmpty(currentDefinitions)) {
+    if (isEmpty(currentDefinitions)) {
       return false;
     }
 
@@ -1409,7 +1418,7 @@ FdFormUnsavedData, {
   willDestroy() {
     this._super(...arguments);
     let treeObject = this.get('treeObjectNotUsedAttributesTree');
-    if (!Ember.isNone(treeObject)) {
+    if (!isNone(treeObject)) {
       treeObject.off('open_node.jstree', this._openNodeTree.bind(this));
       treeObject.off('after_close.jstree', afterCloseNodeTree.bind(this));
     }

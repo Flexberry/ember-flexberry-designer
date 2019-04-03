@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import $ from 'jquery';
+
 import EmberFlexberryTranslations from 'ember-flexberry/locales/ru/translations';
 import FdAppstructListFormForm from './forms/fd-appstruct-form';
 import FdAggregationListFormForm from './forms/fd-aggregation-list-form';
@@ -35,12 +36,14 @@ import FdViewEditFormForm from './forms/fd-view-edit-form';
 import FdVisualEditFormForm from './forms/fd-visual-edit-form';
 import FdListformConstructor from './forms/fd-listform-constructor';
 import FdGenerationProcessForm from './forms/fd-generation-process-form';
+import FdGeneration from './forms/fd-generation';
 import FdGenerationListForm from './forms/fd-generation-list-form';
 import FdDataTypesMapForm from './forms/fd-data-types-map';
 import FdConfirmUnsavedFormModal from './forms/fd-confirm-unsaved-form-modal';
 import FdEditForm from './forms/fd-edit-form';
 import NewPlatformFlexberryWebDesignerGenerationEForm from './forms/new-platform-flexberry-web-designer-generation-e';
 import NewPlatformFlexberryWebDesignerStorageTypeEForm from './forms/new-platform-flexberry-web-designer-storage-type-e';
+import FdDiagramForm from './forms/fd-diagrams';
 import FdAdModel from './models/fd-ad';
 import FdAggregationModel from './models/fd-aggregation';
 import FdApplicationUserModel from './models/fd-application-user';
@@ -116,6 +119,7 @@ import FdVisualControlModel from './models/fd-visual-control';
 import FdVisualControlComponent from './components/fd-visual-control';
 import FdVisualEditControlTreeComponent from './components/fd-visual-edit-control-tree';
 import FdTabs from './components/fd-tabs';
+import FdAttributeTable from './components/fd-attribute-table';
 import FdClassEditingPanel from './components/fd-implementation-editing-panel';
 import FdUserformEditingPanel from './components/fd-userform-editing-panel';
 import FdTypeEditingPanel from './components/fd-type-editing-panel';
@@ -125,12 +129,14 @@ import FdApplicationEditingPanel from './components/fd-application-editing-panel
 import FdInterfaceEditingPanel from './components/fd-interface-editing-panel';
 import FdBsEditingPanel from './components/fd-businessserver-editing-panel';
 import FdEnumEditingPanel from './components/fd-enumeration-editing-panel';
+import FdCreateView from './components/fd-create-view';
+import FdSheet from './components/fd-sheet';
 import FdApplicationModelForm from './forms/fd-application-model';
 
 const translations = {};
-Ember.$.extend(true, translations, EmberFlexberryTranslations);
+$.extend(true, translations, EmberFlexberryTranslations);
 
-Ember.$.extend(true, translations, {
+$.extend(true, translations, {
   models: {
     'fd-ad': FdAdModel,
     'fd-aggregation': FdAggregationModel,
@@ -396,6 +402,7 @@ Ember.$.extend(true, translations, {
     'fd-visual-edit-form': FdVisualEditFormForm,
     'fd-listform-constructor': FdListformConstructor,
     'fd-generation-process-form': FdGenerationProcessForm,
+    'fd-generation': FdGeneration,
     'fd-generation-list-form': FdGenerationListForm,
     'fd-data-types-map': FdDataTypesMapForm,
     'fd-confirm-unsaved-form-modal': FdConfirmUnsavedFormModal,
@@ -403,12 +410,14 @@ Ember.$.extend(true, translations, {
     'new-platform-flexberry-web-designer-generation-e': NewPlatformFlexberryWebDesignerGenerationEForm,
     'new-platform-flexberry-web-designer-storage-type-e': NewPlatformFlexberryWebDesignerStorageTypeEForm,
     'fd-application-model': FdApplicationModelForm,
+    'fd-diagrams': FdDiagramForm,
   },
 
   components: {
     'fd-visual-control': FdVisualControlComponent,
     'fd-visual-edit-control-tree': FdVisualEditControlTreeComponent,
     'fd-tabs': FdTabs,
+    'fd-attribute-table': FdAttributeTable,
     'fd-implementation-editing-panel': FdClassEditingPanel,
     'fd-userform-editing-panel': FdUserformEditingPanel,
     'fd-type-editing-panel': FdTypeEditingPanel,
@@ -417,7 +426,9 @@ Ember.$.extend(true, translations, {
     'fd-application-editing-panel': FdApplicationEditingPanel,
     'fd-interface-editing-panel': FdInterfaceEditingPanel,
     'fd-businessserver-editing-panel': FdBsEditingPanel,
-    'fd-enumeration-editing-panel': FdEnumEditingPanel
+    'fd-enumeration-editing-panel': FdEnumEditingPanel,
+    'fd-create-view': FdCreateView,
+    'fd-sheet': FdSheet,
   }
 
 });

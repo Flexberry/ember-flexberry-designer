@@ -1,5 +1,4 @@
-import Ember from 'ember';
-const { getOwner } = Ember;
+import { getOwner } from '@ember/application';
 import EditFormRoute from 'ember-flexberry/routes/edit-form';
 
 export default EditFormRoute.extend({
@@ -24,7 +23,7 @@ export default EditFormRoute.extend({
           case 'frontendlogin':
             controller.set('moduleSetting.FrontendLogin', moduleSettingValue[i].Value);
             break;
-          case 'frontendpassword':
+          case 'frontendpassword': {
             let valueFrontendPassword = null;
             if (moduleSettingValue[i].Value) {
               valueFrontendPassword = '********';
@@ -32,6 +31,7 @@ export default EditFormRoute.extend({
 
             controller.set('moduleSetting.FrontendPassword', valueFrontendPassword);
             break;
+          }
           case 'frontendbranch':
             controller.set('moduleSetting.FrontendBranch', moduleSettingValue[i].Value);
             break;
@@ -44,7 +44,7 @@ export default EditFormRoute.extend({
           case 'backendlogin':
             controller.set('moduleSetting.BackendLogin', moduleSettingValue[i].Value);
             break;
-          case 'backendpassword':
+          case 'backendpassword': {
             let valueBackendPassword = null;
             if (moduleSettingValue[i].Value) {
               valueBackendPassword = '********';
@@ -52,6 +52,7 @@ export default EditFormRoute.extend({
 
             controller.set('moduleSetting.BackendPassword', valueBackendPassword);
             break;
+          }
           case 'backendbranch':
             controller.set('moduleSetting.BackendBranch', moduleSettingValue[i].Value);
             break;

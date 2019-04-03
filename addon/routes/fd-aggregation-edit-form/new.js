@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
 import EditFormNewRoute from 'ember-flexberry/routes/edit-form-new';
 
 export default EditFormNewRoute.extend({
@@ -11,9 +12,9 @@ export default EditFormNewRoute.extend({
 
    @property currentProjectContext
    @type {Class}
-   @default Ember.inject.service()
+   @default service()
    */
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
 
   /**
     A hook you can use to setup the controller for the current route.
@@ -34,7 +35,7 @@ export default EditFormNewRoute.extend({
       return item.get('stereotype') === '«implementation»' || item.get('stereotype') === null;
     });
 
-    let implementationsName = Ember.A(implementations).map(i => i.get('name') || i.get('nameStr'));
+    let implementationsName = A(implementations).map(i => i.get('name') || i.get('nameStr'));
     controller.set('implementations', implementations);
     controller.set('implementationsName', implementationsName);
     controller.set('startClassName', '');

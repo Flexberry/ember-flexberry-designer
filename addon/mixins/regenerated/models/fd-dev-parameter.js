@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
-export let Model = Ember.Mixin.create({
+import { attr } from 'ember-flexberry-data/utils/attributes';
+
+export let Model = Mixin.create({
   caption: DS.attr('string'),
   modifier: DS.attr('s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier'),
   orderNum: DS.attr('number'),
@@ -36,11 +38,11 @@ export let Model = Ember.Mixin.create({
     let thisValidations = {
       method: { presence: true }
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 export let defineBaseModel = function (modelClass) {
@@ -51,61 +53,61 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('EditApplication', 'fd-dev-parameter', {
-    name: Projection.attr(''),
-    modifier: Projection.attr(''),
-    type: Projection.attr(''),
-    description: Projection.attr('')
+    name: attr(''),
+    modifier: attr(''),
+    type: attr(''),
+    description: attr('')
   });
   modelClass.defineProjection('EditDataObjectClass', 'fd-dev-parameter', {
-    name: Projection.attr(''),
-    modifier: Projection.attr(''),
-    type: Projection.attr(''),
-    description: Projection.attr('')
+    name: attr(''),
+    modifier: attr(''),
+    type: attr(''),
+    description: attr('')
   });
   modelClass.defineProjection('EditEditForm', 'fd-dev-parameter', {
-    name: Projection.attr(''),
-    modifier: Projection.attr(''),
-    type: Projection.attr(''),
-    description: Projection.attr('')
+    name: attr(''),
+    modifier: attr(''),
+    type: attr(''),
+    description: attr('')
   });
   modelClass.defineProjection('EditInterface', 'fd-dev-parameter', {
-    name: Projection.attr(''),
-    modifier: Projection.attr(''),
-    type: Projection.attr(''),
-    description: Projection.attr('')
+    name: attr(''),
+    modifier: attr(''),
+    type: attr(''),
+    description: attr('')
   });
   modelClass.defineProjection('EditListForm', 'fd-dev-parameter', {
-    name: Projection.attr(''),
-    modifier: Projection.attr(''),
-    type: Projection.attr(''),
-    description: Projection.attr('')
+    name: attr(''),
+    modifier: attr(''),
+    type: attr(''),
+    description: attr('')
   });
   modelClass.defineProjection('EditPrintForm', 'fd-dev-parameter', {
-    name: Projection.attr(''),
-    modifier: Projection.attr(''),
-    type: Projection.attr(''),
-    description: Projection.attr('')
+    name: attr(''),
+    modifier: attr(''),
+    type: attr(''),
+    description: attr('')
   });
   modelClass.defineProjection('EditType', 'fd-dev-parameter', {
-    name: Projection.attr(''),
-    modifier: Projection.attr(''),
-    type: Projection.attr(''),
-    description: Projection.attr('')
+    name: attr(''),
+    modifier: attr(''),
+    type: attr(''),
+    description: attr('')
   });
   modelClass.defineProjection('EditUserForm', 'fd-dev-parameter', {
-    name: Projection.attr(''),
-    modifier: Projection.attr(''),
-    type: Projection.attr(''),
-    description: Projection.attr('')
+    name: attr(''),
+    modifier: attr(''),
+    type: attr(''),
+    description: attr('')
   });
   modelClass.defineProjection('Generator', 'fd-dev-parameter', {
-    caption: Projection.attr('Caption', { hidden: true }),
-    modifier: Projection.attr('Modifier', { hidden: true }),
-    orderNum: Projection.attr('OrderNum', { hidden: true }),
-    realCaption: Projection.attr('RealCaption', { hidden: true }),
-    type: Projection.attr('Type', { hidden: true }),
-    name: Projection.attr('Name', { hidden: true }),
-    description: Projection.attr('Description', { hidden: true }),
-    nameStr: Projection.attr('NameStr', { hidden: true })
+    caption: attr('Caption', { hidden: true }),
+    modifier: attr('Modifier', { hidden: true }),
+    orderNum: attr('OrderNum', { hidden: true }),
+    realCaption: attr('RealCaption', { hidden: true }),
+    type: attr('Type', { hidden: true }),
+    name: attr('Name', { hidden: true }),
+    description: attr('Description', { hidden: true }),
+    nameStr: attr('NameStr', { hidden: true })
   });
 };

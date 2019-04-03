@@ -1,4 +1,7 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
+import { isArray } from '@ember/array';
 import uuid from 'npm:node-uuid';
 
 import FdUmlClass from '../../objects/uml-primitives/fd-uml-class';
@@ -31,15 +34,15 @@ import { getJsonForClass } from '../../utils/get-json-for-diagram';
   @class FdActionsForCadPrimitivesMixin
   @extends <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
-export default Ember.Mixin.create({
+export default Mixin.create({
   /**
    Service that get current project contexts.
 
    @property currentProjectContext
    @type {Class}
-   @default Ember.inject.service()
+   @default service()
   */
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
 
   actions: {
     /**
@@ -71,7 +74,6 @@ export default Ember.Mixin.create({
         let umlClass = FdUmlClass.create({ primitive: getJsonForClass(newClass, null, 0, { location: { X, Y } }) });
 
         this.get('createdClasses').pushObject(newClass);
-        this.get('model.primitives').pushObject(umlClass);
 
         return umlClass.JointJS();
       }).bind(this), e);
@@ -92,13 +94,13 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: Ember.isArray(linkProperties.points) ? linkProperties.points.reverseObjects() : Ember.A()
+          vertices: isArray(linkProperties.points) ? linkProperties.points.reverseObjects() : A()
         });
         newAssociationObject.setLabelText('startMultiplicity', '1');
         newAssociationObject.setLabelText('endMultiplicity', '*');
 
         return newAssociationObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass', 'flexberry.uml.ClassCollapsed']), function(linkProperties) {
+      }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass', 'flexberry.uml.ClassCollapsed']), function(linkProperties) {
         let store = this.get('store');
         let stage = this.get('currentProjectContext').getCurrentStageModel();
 
@@ -132,13 +134,13 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
         newAggregationObject.setLabelText('startMultiplicity', '1');
         newAggregationObject.setLabelText('endMultiplicity', '*');
 
         return newAggregationObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']));
+      }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']));
     },
 
     /**
@@ -156,13 +158,13 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
         newCompositionObject.setLabelText('startMultiplicity', '1');
         newCompositionObject.setLabelText('endMultiplicity', '*');
 
         return newCompositionObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']), function(linkProperties) {
+      }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']), function(linkProperties) {
         let store = this.get('store');
         let stage = this.get('currentProjectContext').getCurrentStageModel();
 
@@ -196,11 +198,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newInheritanceObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']), function(linkProperties) {
+      }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']), function(linkProperties) {
         let store = this.get('store');
         let stage = this.get('currentProjectContext').getCurrentStageModel();
 
@@ -232,13 +234,13 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newRealizationObject;
       }).bind(this), e, {
-        start: Ember.A(['flexberry.uml.NAryAssociation']),
-        end: Ember.A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass'])
+        start: A(['flexberry.uml.NAryAssociation']),
+        end: A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass'])
       });
     },
 
@@ -257,11 +259,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newNestedClassAssociationObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']));
+      }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']));
     },
 
     /**
@@ -390,13 +392,13 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newNaryAssociationConnectorObject;
       }).bind(this), e, {
-        start: Ember.A(['flexberry.uml.NAryAssociation']),
-        end: Ember.A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass', 'flexberry.uml.Instance'])
+        start: A(['flexberry.uml.NAryAssociation']),
+        end: A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass', 'flexberry.uml.Instance'])
       });
     },
 
@@ -415,11 +417,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newQualifiedAssociationObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']));
+      }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']));
     },
 
     /**
@@ -437,11 +439,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newQualifiedCompositionObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']));
+      }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']));
     },
 
     /**
@@ -459,11 +461,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newQualifiedAggregationObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']));
+      }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']));
     },
 
     /**
@@ -497,11 +499,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newDependencyObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass', 'flexberry.uml.Instance',
+      }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass', 'flexberry.uml.Instance',
        'flexberry.uml.ActiveObject', 'flexberry.uml.PropertyObject', 'flexberry.uml.MultiObject', 'flexberry.uml.Package']));
     },
 
@@ -539,11 +541,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newObjectAssociationObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Instance', 'flexberry.uml.PropertyObject']));
+      }).bind(this), e, A(['flexberry.uml.Instance', 'flexberry.uml.PropertyObject']));
     }
   }
 });

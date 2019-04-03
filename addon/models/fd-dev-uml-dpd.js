@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { A } from '@ember/array';
 import { Model as DevUMLDPDMixin, defineBaseModel  } from
   '../mixins/regenerated/models/fd-dev-uml-dpd';
 import DPDModel from './fd-dpd';
@@ -19,9 +20,9 @@ let Model = DPDModel.extend(DevUMLDPDMixin, {
     @property primitives
     @type Ember.Array
   */
-  primitives: Ember.computed('primitivesJsonString', function() {
-    let result = Ember.A();
-    let primitives = JSON.parse(this.get('primitivesJsonString'));
+  primitives: computed('primitivesJsonString', function() {
+    let result = A();
+    let primitives = JSON.parse(this.get('primitivesJsonString')) || A();
 
     for (let i = 0; i < primitives.length; i++) {
       let primitive = primitives[i];

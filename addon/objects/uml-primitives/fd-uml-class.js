@@ -2,7 +2,10 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import $ from 'jquery';
+import { isBlank } from '@ember/utils';
+
 import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
@@ -21,7 +24,7 @@ export default FdUmlElement.extend({
     @property name
     @type String
   */
-  name: Ember.computed.alias('primitive.Name.Text'),
+  name: computed.alias('primitive.Name.Text'),
 
   /**
     Stereotype of the class.
@@ -29,7 +32,7 @@ export default FdUmlElement.extend({
     @property stereotype
     @type String
   */
-  stereotype: Ember.computed.alias('primitive.StereotypeTxt.Text'),
+  stereotype: computed.alias('primitive.StereotypeTxt.Text'),
 
   /**
     Indicates that the class is in a collapsed state.
@@ -37,7 +40,7 @@ export default FdUmlElement.extend({
     @property collapsed
     @type Boolean
   */
-  collapsed: Ember.computed.alias('primitive.Folded'),
+  collapsed: computed.alias('primitive.Folded'),
 
   /**
     List of attributes of the class.
@@ -45,7 +48,7 @@ export default FdUmlElement.extend({
     @property attributes
     @type Array
   */
-  attributes: Ember.computed('primitive.AttributesTxt.Text', function() {
+  attributes: computed('primitive.AttributesTxt.Text', function() {
     return this.get('primitive.AttributesTxt.Text').split('\n');
   }),
 
@@ -55,7 +58,7 @@ export default FdUmlElement.extend({
     @property methods
     @type Array
   */
-  methods: Ember.computed('primitive.MethodsTxt.Text', function() {
+  methods: computed('primitive.MethodsTxt.Text', function() {
     return this.get('primitive.MethodsTxt.Text').split('\n');
   }),
 
@@ -142,7 +145,7 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
         let rectHeight = 0;
         let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
         inputs.each(function() {
-          let $input = Ember.$(this);
+          let $input = $(this);
           $buffer.css('font-weight', $input.css('font-weight'));
           $buffer.text($input.val());
           $input.width($buffer.width() + 1);
@@ -228,7 +231,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
   initialize: function() {
     joint.dia.ElementView.prototype.initialize.apply(this, arguments);
 
-    this.$box = Ember.$(this.template);
+    this.$box = $(this.template);
     this.model.inputElements = this.$box;
 
     // Prevent paper from handling pointerdown.
@@ -237,7 +240,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
     });
 
     this.$box.find('.attributes-input').on('input', function(evt) {
-      let $textarea = Ember.$(evt.currentTarget);
+      let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
@@ -245,7 +248,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
     }.bind(this));
 
     this.$box.find('.methods-input').on('input', function(evt) {
-      let $textarea = Ember.$(evt.currentTarget);
+      let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
@@ -253,7 +256,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
     }.bind(this));
 
     this.$box.find('.class-name-input').on('input', function(evt) {
-      let $textarea = Ember.$(evt.currentTarget);
+      let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
@@ -261,7 +264,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
     }.bind(this));
 
     this.$box.find('.class-stereotype-input').on('input', function(evt) {
-      let $textarea = Ember.$(evt.currentTarget);
+      let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
@@ -269,7 +272,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
     }.bind(this));
 
     this.$box.find('.attributes-input').on('change', function(evt) {
-      let $textarea = Ember.$(evt.currentTarget);
+      let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
@@ -277,7 +280,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
     }.bind(this));
 
     this.$box.find('.methods-input').on('change', function(evt) {
-      let $textarea = Ember.$(evt.currentTarget);
+      let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
@@ -285,7 +288,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
     }.bind(this));
 
     this.$box.find('.class-name-input').on('change', function(evt) {
-      let $textarea = Ember.$(evt.currentTarget);
+      let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
@@ -293,13 +296,13 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
     }.bind(this));
 
     this.$box.find('.class-stereotype-input').on('focus', function(evt) {
-      let stereotype = this.normalizeStereotype(Ember.$(evt.target).val());
+      let stereotype = this.normalizeStereotype($(evt.target).val());
       this.$box.find('.class-stereotype-input').val(stereotype.slice(1, -1));
       this.model.updateRectangles();
     }.bind(this));
 
     this.$box.find('.class-stereotype-input').on('blur', function(evt) {
-      let stereotypeText = Ember.$(evt.target).val();
+      let stereotypeText = $(evt.target).val();
       let stereotype = this.normalizeStereotype(stereotypeText);
       let rows = stereotypeText.split(/[\n\r|\r|\n]/);
       let $stereotypeInput = this.$box.find('.class-stereotype-input');
@@ -359,7 +362,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
 
   normalizeStereotype(stereotype) {
     stereotype = stereotype.replace(new RegExp(`${String.fromCharCode(171)}|${String.fromCharCode(187)}`, 'g'), '');
-    if (!Ember.isBlank(stereotype)) {
+    if (!isBlank(stereotype)) {
       if (stereotype[0] !== String.fromCharCode(171)) {
         stereotype = String.fromCharCode(171) + stereotype;
       }

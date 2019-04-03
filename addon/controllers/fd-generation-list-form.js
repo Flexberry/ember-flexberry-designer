@@ -1,6 +1,8 @@
-import Ember from 'ember';
+import { getOwner } from '@ember/application';
+import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
+import { get } from '@ember/object';
 import ListFormController from 'ember-flexberry/controllers/list-form';
-const { getOwner } = Ember;
 
 export default ListFormController.extend({
   /**
@@ -17,11 +19,11 @@ export default ListFormController.extend({
      @property appState
     @type AppStateService
   */
-  appState: Ember.inject.service(),
+  appState: service(),
 
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
 
-  generationService: Ember.inject.service('fd-generation'),
+  generationService: service('fd-generation'),
 
   /**
     Property to form array of special structures of custom user buttons.
@@ -29,7 +31,7 @@ export default ListFormController.extend({
     @property customButtons
     @type Array
    */
-  customButtons: Ember.computed('i18n.locale', function() {
+  customButtons: computed('i18n.locale', function() {
     let i18n = this.get('i18n');
     return [{
       buttonName: i18n.t('forms.fd-generation-list-form.generation-button.caption'),
@@ -56,7 +58,7 @@ export default ListFormController.extend({
         _this.set('generationService.lastGenerationToken', result);
         result = result || {};
         _this.get('appState').reset();
-        _this.transitionToRoute(_this.get('editFormRoute'), Ember.get(result, 'value'));
+        _this.transitionToRoute(_this.get('editFormRoute'), get(result, 'value'));
       },
       () => {
         _this.get('appState').reset();

@@ -1,6 +1,11 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { computed, observer, set } from '@ember/object';
+import { isBlank, isNone } from '@ember/utils';
+import { A } from '@ember/array';
+import { inject as service } from '@ember/service';
+import { all } from 'rsvp';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
 
   /**
     Service for managing the state of the application.
@@ -8,7 +13,7 @@ export default Ember.Controller.extend({
     @property appState
     @type AppStateService
   */
-  appState: Ember.inject.service(),
+  appState: service(),
 
   /**
     Service for managing the state of the sheet component.
@@ -16,16 +21,23 @@ export default Ember.Controller.extend({
     @property fdSheetService
     @type FdSheetService
   */
-  fdSheetService: Ember.inject.service(),
+  fdSheetService: service(),
 
   /**
     Value selected entity.
 
     @property selectedElement
     @type Object
-    @default undefined
   */
   selectedElement: undefined,
+
+  /**
+    Value selected view.
+
+    @property selectedView
+    @type Object
+  */
+  selectedView: undefined,
 
   /**
     Value search input.
@@ -46,16 +58,27 @@ export default Ember.Controller.extend({
   sheetComponentName: '',
 
   /**
+    Sheet view name.
+
+    @property sheetViewName
+    @type String
+    @default ''
+  */
+  sheetViewName: '',
+
+  /**
     Ember.observer, watching property `searchValue` and send action from 'fd-sheet' component.
 
     @method searchValueObserver
   */
-  searchValueObserver: Ember.observer('searchValue', function() {
+  searchValueObserver: observer('searchValue', function() {
     let sheetComponentName = this.get('sheetComponentName');
     let fdSheetService = this.get('fdSheetService');
     if (fdSheetService.isVisible(sheetComponentName)) {
       fdSheetService.closeSheet(sheetComponentName);
     }
+
+    this.closeViewSheet();
   }),
 
   /**
@@ -63,11 +86,11 @@ export default Ember.Controller.extend({
 
     @method componentNamePart
   */
-  componentNamePart: Ember.computed('selectedElement', function() {
+  componentNamePart: computed('selectedElement', function() {
     let selectedElement = this.get('selectedElement');
-    if (!Ember.isNone(selectedElement)) {
+    if (!isNone(selectedElement)) {
       let stereotype = selectedElement.get('model.stereotype');
-      if (Ember.isNone(stereotype)) {
+      if (isNone(stereotype)) {
         return 'implementation';
       }
 
@@ -80,46 +103,46 @@ export default Ember.Controller.extend({
 
     @method filteredModel
   */
-  filteredModel: Ember.computed('model', 'searchValue', function() {
+  filteredModel: computed('model', 'searchValue', function() {
     let searchStr = this.get('searchValue');
     let model = this.get('model');
 
-    if (Ember.isBlank(searchStr)) {
+    if (isBlank(searchStr)) {
       return model;
     }
 
     searchStr = searchStr.trim().toLocaleLowerCase();
     let filterFunction = function(item) {
       let name = item.get('name');
-      if (!Ember.isNone(name) && name.toLocaleLowerCase().indexOf(searchStr) !== -1) {
+      if (!isNone(name) && name.toLocaleLowerCase().indexOf(searchStr) !== -1) {
         return item;
       }
     };
 
     let newClasses = model.classes.filter(function(clazz) {
       let classes = filterFunction(clazz.settings);
-      if (!Ember.isNone(classes)) {
+      if (!isNone(classes)) {
         return clazz;
       }
 
       let editForms = clazz.editForms.some(filterFunction);
       let listForms = clazz.listForms.some(filterFunction);
       let parents = clazz.parents.some(filterFunction);
-      let bs = !Ember.isNone(clazz.bs) ? filterFunction(clazz.bs) : null;
+      let bs = !isNone(clazz.bs) ? filterFunction(clazz.bs) : null;
 
-      if (editForms || listForms || parents || !Ember.isNone(bs)) {
+      if (editForms || listForms || parents || !isNone(bs)) {
         return clazz;
       }
     });
 
     let newModel = {
-      classes: Ember.A(newClasses)
+      classes: A(newClasses)
     };
 
     for (let prop in model) {
       if (prop !== 'classes') {
         let newdata = model[prop].filter(filterFunction);
-        newModel[prop] = Ember.A(newdata);
+        newModel[prop] = A(newdata);
       }
     }
 
@@ -140,7 +163,7 @@ export default Ember.Controller.extend({
   */
   deactivateListItem() {
     let selectedElement = this.get('selectedElement');
-    if (!Ember.isNone(selectedElement)) {
+    if (!isNone(selectedElement)) {
       let model = selectedElement.get('model');
       model.rollbackAll();
       selectedElement.set('fdListItemActive', false);
@@ -157,7 +180,7 @@ export default Ember.Controller.extend({
     if (stereotype === '«implementation»' || stereotype === null) {
       let model = this.get('model');
       let classObj = model.classes.findBy('settings.id', modelSelectedElement.id);
-      Ember.set(classObj, 'bs', modelSelectedElement.get('businessServerClass'));
+      set(classObj, 'bs', modelSelectedElement.get('businessServerClass'));
     }
   },
 
@@ -172,6 +195,7 @@ export default Ember.Controller.extend({
     let sheetComponentName = this.get('sheetComponentName');
     if (sheetComponentName === sheetName) {
       this.deactivateListItem();
+      this.closeViewSheet();
       this.set('selectedElement', currentItem);
     }
   },
@@ -186,11 +210,49 @@ export default Ember.Controller.extend({
     let sheetComponentName = this.get('sheetComponentName');
     if (sheetComponentName === sheetName) {
       this.deactivateListItem();
+      this.closeViewSheet();
       this.set('selectedElement', undefined);
     }
   },
 
+  /**
+    Closing view sheet.
+
+     @method closeViewSheet
+  */
+  closeViewSheet() {
+    let sheetViewName = this.get('sheetViewName');
+    let fdSheetService = this.get('fdSheetService');
+    if (fdSheetService.isVisible(sheetViewName)) {
+      fdSheetService.closeSheet(sheetViewName);
+      this.set('selectedView', undefined);
+    }
+  },
+
+  /**
+    Save dirty hasMany relationships in the `model`.
+    This method invokes by `save` method.
+
+    @method saveHasManyRelationships
+    @param {DS.Model} model Record with hasMany relationships.
+    @return {Promise} A promise that will be resolved to array of saved records.
+  */
+  saveHasManyRelationships(model) {
+    let promises = [];
+    model.eachRelationship((name, desc) => {
+      if (desc.kind === 'hasMany') {
+        model.get(name).filterBy('hasDirtyAttributes', true).forEach((record) => {
+          let promise = record.save();
+          promises.push(promise);
+        });
+      }
+    });
+
+    return all(promises);
+  },
+
   actions: {
+
     /**
       Save 'selectedElement'.
 
@@ -200,13 +262,26 @@ export default Ember.Controller.extend({
       let model = this.get('selectedElement.model');
       this.get('appState').loading();
       model.save()
+      .then(() => this.saveHasManyRelationships(model))
+      .then(() => {
+        this.updateClassModel(model);
+      })
       .catch((error) => {
         this.set('error', error);
       })
       .finally(() => {
         this.get('appState').reset();
       });
-      this.updateClassModel(model);
+    },
+
+    /**
+      Opening sheet 'view-sheet'.
+
+       @method actions.openViewSheet
+    */
+    openViewSheet(view) {
+      this.set('selectedView', view);
+      this.get('fdSheetService').openSheet(this.get('sheetViewName'));
     }
   }
 });

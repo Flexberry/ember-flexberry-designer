@@ -1,13 +1,24 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import { inject as service } from '@ember/service';
+import { on } from '@ember/object/evented';
+import { observer, set } from '@ember/object';
+import { isBlank } from '@ember/utils';
+import { A } from '@ember/array';
 
-export default Ember.Mixin.create({
+/**
+  Mixin with the support `Choice BS` for controls in the edit form constructor.
+
+  @class FdUpdateBsValueMixin
+  @uses <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
+*/
+export default Mixin.create({
   /**
     Store of current application.
 
     @property store
     @type DS.Store or subclass
   */
-  store: Ember.inject.service('store'),
+  store: service(),
 
   /**
    Service that get current project contexts.
@@ -16,7 +27,7 @@ export default Ember.Mixin.create({
    @type {Class}
    @default Ember.inject.service()
    */
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
 
   /**
     Businessserver arrays.
@@ -41,7 +52,7 @@ export default Ember.Mixin.create({
 
     @method _modelObserver
   */
-  _modelObserver: Ember.on('init', Ember.observer('model.name', function() {
+  _modelObserver: on('init', observer('model.name', function() {
     let bsName = this.get('model.businessServerClass.name') || '';
     this.set('bsValue', bsName);
   })),
@@ -54,10 +65,10 @@ export default Ember.Mixin.create({
     // Get current classes.
     let allClasses = store.peekAll('fd-dev-class');
     let bs = allClasses.filter(function(item) {
-      return item.get('stereotype') === '«businessserver»' && !Ember.isBlank(item.get('name')) && item.get('stage.id') === stagePk;
+      return item.get('stereotype') === '«businessserver»' && !isBlank(item.get('name')) && item.get('stage.id') === stagePk;
     });
 
-    let bsEmberA = Ember.A(bs);
+    let bsEmberA = A(bs);
     let bsNames = bsEmberA.mapBy('name');
     bsNames.unshift('');
 
@@ -77,12 +88,12 @@ export default Ember.Mixin.create({
     */
     changeBsValue(value) {
       let model = this.get('model');
-      if (Ember.isBlank(value)) {
-        Ember.set(model, 'businessServerClass', null);
+      if (isBlank(value)) {
+        set(model, 'businessServerClass', null);
       } else {
         let bsItems = this.get('bsItems');
         let bsObject = bsItems.objects.findBy('name', value);
-        Ember.set(model, 'businessServerClass', bsObject);
+        set(model, 'businessServerClass', bsObject);
       }
     }
   }

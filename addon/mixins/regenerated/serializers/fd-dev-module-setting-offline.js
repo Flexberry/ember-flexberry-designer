@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 
-export let OfflineSerializer = Ember.Mixin.create({
+export let OfflineSerializer = Mixin.create({
   getAttrs: function () {
     let parentAttrs = this._super();
     let attrs = {
@@ -8,7 +9,7 @@ export let OfflineSerializer = Ember.Mixin.create({
       stage: { serialize: 'id', deserialize: 'records' }
     };
 
-    return Ember.$.extend(true, {}, parentAttrs, attrs);
+    return $.extend(true, {}, parentAttrs, attrs);
   },
   init: function () {
     this.set('attrs', this.getAttrs());

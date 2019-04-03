@@ -42,5 +42,13 @@ export default ListFormRoute.extend({
     @type Object
     @default {}
   */
-  developerUserSettings: { NewPlatformFlexberryWebDesignerStorageTypeL: {} },
+  developerUserSettings: undefined,
+
+  init() {
+    this._super(...arguments);
+
+    this.set('', {
+      NewPlatformFlexberryWebDesignerStorageTypeL: {}
+    });
+  }
 });

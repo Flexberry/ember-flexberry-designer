@@ -1,19 +1,21 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
 import FdAttributesTree from '../../objects/fd-attributes-tree';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode, getDetailView } from '../../utils/fd-attributes-for-tree';
 
-export default Ember.Route.extend({
+export default Route.extend({
   modelProjection: 'EditFormView',
   modelName: 'fd-dev-view',
   templateName: 'fd-view-edit-form',
 
-  appState: Ember.inject.service(),
+  appState: service(),
 
-  detailInteractionService: Ember.inject.service('detail-interaction'),
+  detailInteractionService: service('detail-interaction'),
 
   model: function() {
     let data = this.get('detailInteractionService').modelSelectedDetail;
-    data.set('definition', Ember.A());
+    data.set('definition', A());
 
     let store = this.get('store');
     let devClass = this.get('detailInteractionService').modelCurrentAgregators[0];
@@ -23,7 +25,7 @@ export default Ember.Route.extend({
     let dataForBuildTree = getDataForBuildTree(store, devClass.id);
 
     // Set attributes tree.
-    let treeEmpty = Ember.A([
+    let treeEmpty = A([
 
       // Attribute - choose all.
       FdAttributesTree.create({
@@ -36,7 +38,7 @@ export default Ember.Route.extend({
     let treeMasters = getAssociationTreeNode(treeAttributes, dataForBuildTree.associations, 'node_');
     let treeDetails = getAggregationTreeNode(treeMasters, dataForBuildTree.aggregations);
     let detailView = getDetailView(dataForBuildTree.aggregations);
-    let tree = Ember.A([
+    let tree = A([
       FdAttributesTree.create({
         text: devClass.get('name'),
         type: 'class',

@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
-export let Model = Ember.Mixin.create({
+import { attr, belongsTo, hasMany } from 'ember-flexberry-data/utils/attributes';
+
+export let Model = Mixin.create({
   stage: DS.belongsTo('fd-stage', { inverse: 'systems', async: false, polymorphic: true }),
   diagrams: DS.hasMany('fd-diagram', { inverse: 'subsystem', async: false, polymorphic: true }),
   diagramLinks: DS.hasMany('fd-diagram-link', { inverse: 'subsystem', async: false }),
@@ -11,11 +13,11 @@ export let Model = Ember.Mixin.create({
     let thisValidations = {
       stage: { presence: true }
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 export let defineBaseModel = function (modelClass) {
@@ -26,50 +28,50 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('Convert', 'fd-subsystem', {
-    createUser: Projection.attr('CreateUser'),
-    createDate: Projection.attr('CreateDate'),
-    changeUser: Projection.attr('ChangeUser'),
-    changeDate: Projection.attr('ChangeDate'),
-    name: Projection.attr('Name'),
-    description: Projection.attr('Description'),
-    nameStr: Projection.attr('NameStr'),
-    diagramLinks: Projection.hasMany('fd-diagram-link', '', {
-      name: Projection.attr('Название'),
-      description: Projection.attr('Описание')
+    createUser: attr('CreateUser'),
+    createDate: attr('CreateDate'),
+    changeUser: attr('ChangeUser'),
+    changeDate: attr('ChangeDate'),
+    name: attr('Name'),
+    description: attr('Description'),
+    nameStr: attr('NameStr'),
+    diagramLinks: hasMany('fd-diagram-link', '', {
+      name: attr('Название'),
+      description: attr('Описание')
     }),
-    diagrams: Projection.hasMany('fd-diagram', '', {
-      primitivesStreamString: Projection.attr(''),
-      caseObjectsString: Projection.attr(''),
-      name: Projection.attr(''),
-      createDate: Projection.attr(''),
-      createUser: Projection.attr(''),
-      changeDate: Projection.attr(''),
-      changeUser: Projection.attr('')
+    diagrams: hasMany('fd-diagram', '', {
+      primitivesStreamString: attr(''),
+      caseObjectsString: attr(''),
+      name: attr(''),
+      createDate: attr(''),
+      createUser: attr(''),
+      changeDate: attr(''),
+      changeUser: attr('')
     }),
-    filelinks: Projection.hasMany('fd-filelink', '', {
-      name: Projection.attr('Название'),
-      description: Projection.attr('Описание')
+    filelinks: hasMany('fd-filelink', '', {
+      name: attr('Название'),
+      description: attr('Описание')
     })
   });
   modelClass.defineProjection('PathSearchView', 'fd-subsystem', {
-    name: Projection.attr(''),
-    stage: Projection.belongsTo('fd-stage', '', {
-      name: Projection.attr(''),
-      configuration: Projection.belongsTo('fd-configuration', '', {
-        name: Projection.attr(''),
-        project: Projection.belongsTo('fd-project', '', {
-          name: Projection.attr(''),
-          repository: Projection.belongsTo('fd-repository', '', {
-            name: Projection.attr('')
+    name: attr(''),
+    stage: belongsTo('fd-stage', '', {
+      name: attr(''),
+      configuration: belongsTo('fd-configuration', '', {
+        name: attr(''),
+        project: belongsTo('fd-project', '', {
+          name: attr(''),
+          repository: belongsTo('fd-repository', '', {
+            name: attr('')
           })
         })
       })
     })
   });
   modelClass.defineProjection('SearchSystem', 'fd-subsystem', {
-    name: Projection.attr(''),
-    stage: Projection.belongsTo('fd-stage', '', {
-      name: Projection.attr('')
+    name: attr(''),
+    stage: belongsTo('fd-stage', '', {
+      name: attr('')
     })
   });
 };

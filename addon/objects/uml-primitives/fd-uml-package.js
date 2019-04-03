@@ -2,7 +2,8 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import $ from 'jquery';
 import joint from 'npm:jointjs';
 
 import { BaseClass } from './fd-uml-class';
@@ -22,7 +23,7 @@ export default FdUmlElement.extend({
     @property name
     @type String
   */
-  name: Ember.computed.alias('primitive.Name.Text'),
+  name: computed.alias('primitive.Name.Text'),
 
   /**
     Package's attributes.
@@ -30,7 +31,7 @@ export default FdUmlElement.extend({
     @property attributes
     @type String
   */
-  attributes: Ember.computed('primitive.Prop.Text', function() {
+  attributes: computed('primitive.Prop.Text', function() {
     return this.get('primitive.Prop.Text').split('\n');
   }),
 
@@ -90,7 +91,7 @@ export let Package = BaseClass.define('flexberry.uml.Package', {
         let rectHeight = 0;
         let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
         inputs.each(function () {
-          let $input = Ember.$(this);
+          let $input = $(this);
           $buffer.css('font-weight', $input.css('font-weight'));
           $buffer.text($input.val());
           $input.width($buffer.width() + 1);
@@ -143,7 +144,7 @@ joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectVi
   initialize: function () {
     joint.shapes.flexberry.uml.BaseObjectView.prototype.initialize.apply(this, arguments);
     this.$box.find('.package-header-input').on('change', function (evt) {
-      let $textarea = Ember.$(evt.currentTarget);
+      let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
@@ -151,7 +152,7 @@ joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectVi
     }.bind(this));
 
     this.$box.find('.package-header-input').on('input', function (evt) {
-      let $textarea = Ember.$(evt.currentTarget);
+      let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);

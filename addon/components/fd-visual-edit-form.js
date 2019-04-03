@@ -1,12 +1,13 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
 
-export default Ember.Component.extend({
+export default Component.extend({
 
   /**
     @property store
     @type Service
   */
-  store: Ember.inject.service(),
+  store: service(),
 
   /**
   Flag: indicates whether to show creation button at toolbar.

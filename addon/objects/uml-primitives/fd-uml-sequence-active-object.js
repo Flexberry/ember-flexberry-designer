@@ -2,7 +2,8 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { isEmpty } from '@ember/utils';
 import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
@@ -22,7 +23,7 @@ export default FdUmlElement.extend({
     @property attrs
     @type String
   */
-  attrs: Ember.computed('primitive.Name.Text', function () {
+  attrs: computed('primitive.Name.Text', function () {
     return { text: { text: this.get('primitive.Name.Text') } };
   }),
 
@@ -71,7 +72,7 @@ export let SequenceDiagramActiveObject = SequenceDiagramObject.define('flexberry
 
   getObjName: function() {
     let ret = this.get('attrs').text.text;
-    if (Ember.isEmpty(ret)) {
+    if (isEmpty(ret)) {
       return '';
     } else {
       return ret;

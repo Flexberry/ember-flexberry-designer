@@ -1,0 +1,17 @@
+{{
+  fd-uml-diagram
+  primitives=model.primitives
+  isLinkAdding=isLinkAdding
+  blankPointerClick=(action "blankPointerClick")
+  blankContextMenu=(action "blankContextMenu")
+  startDragLink=(action "startDragLink")
+  endDragLink=(action "endDragLink")
+}}
+
+{{#if (known-for-type (concat "fd-uml-diagram-toolbars/fd-" diagramType "-toolbar"))}}
+  <div class="fd-uml-diagram-toolbar">
+    {{component (concat "fd-uml-diagram-toolbars/fd-" diagramType "-toolbar")
+      toolbarButtonClicked=(action "toolbarButtonClicked")
+    }}
+  </div>
+{{/if}}

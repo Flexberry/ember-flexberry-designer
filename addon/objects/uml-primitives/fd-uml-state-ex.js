@@ -2,7 +2,7 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import { computed } from '@ember/object';
 import { BaseClass, Class } from './fd-uml-class';
 
 import FdUmlElement from './fd-uml-element';
@@ -21,7 +21,7 @@ export default FdUmlElement.extend({
     @property name
     @type String
   */
-  name: Ember.computed.alias('primitive.Name.Text'),
+  name: computed.alias('primitive.Name.Text'),
 
   /**
     List of attributes of the states.
@@ -29,7 +29,7 @@ export default FdUmlElement.extend({
     @property attributes
     @type String
   */
-  attributes: Ember.computed.alias('primitive.Text.Text'),
+  attributes: computed.alias('primitive.Text.Text'),
 
   /**
     Type of primitive.
@@ -37,7 +37,7 @@ export default FdUmlElement.extend({
     @property type
     @type String
   */
-  type: Ember.computed.alias('primitive.$type'),
+  type: computed.alias('primitive.$type'),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.

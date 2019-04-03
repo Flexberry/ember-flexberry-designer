@@ -281,15 +281,30 @@
   title=selectedElement.model.name
   saveController=(action 'save')
   sheetComponentName=sheetComponentName
+  readonly=true
 }}
   {{#if (known-for-type (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel"))}}
     {{component (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel")
       model=selectedElement.model
+      openViewSheetController=(action 'openViewSheet')
     }}
   {{else}}
     {{fd-editing-panels/fd-custom-editing-panel
       model=selectedElement.model
     }}
   {{/if}}
+
+{{/fd-sheet}}
+
+{{#fd-sheet
+  title=selectedElement.model.name
+  saveController=(action 'save')
+  sheetComponentName=sheetViewName
+  readonly=false
+}}
+  {{!--{{fd-editing-panels/fd-create-view
+    model=selectedElement.model
+    view=selectedView
+  }}--}}
 
 {{/fd-sheet}}

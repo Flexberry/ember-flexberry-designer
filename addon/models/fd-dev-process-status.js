@@ -1,8 +1,8 @@
 import { Model as DevProcessStatusMixin } from
   '../mixins/regenerated/models/fd-dev-process-status';
-import { Projection } from 'ember-flexberry-data';
-import { Offline } from 'ember-flexberry-data';
-let Model = Projection.Model.extend(Offline.ModelMixin, DevProcessStatusMixin, {
+import model from 'ember-flexberry-data/models/model';
+import OfflineModelMixin from 'ember-flexberry-data/mixins/offline-model';
+let Model = model.extend(OfflineModelMixin, DevProcessStatusMixin, {
 
 });
 export default Model;

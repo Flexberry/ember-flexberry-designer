@@ -44,5 +44,13 @@ export default ListFormRoute.extend(LimitByStageMixin, {
     @type Object
     @default {}
   */
-  developerUserSettings: { FdAggregationListForm: {} },
+  developerUserSettings: undefined,
+
+  init() {
+    this._super(...arguments);
+
+    this.set('developerUserSettings', {
+      FdAggregationListForm: {}
+    });
+  }
 });

@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
-export let Model = Ember.Mixin.create({
+import { attr, belongsTo, hasMany } from 'ember-flexberry-data/utils/attributes';
+
+export let Model = Mixin.create({
   /**
     Non-stored property.
 
@@ -112,11 +114,11 @@ export let Model = Ember.Mixin.create({
       view: { presence: true },
       class: { presence: true }
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 export let defineBaseModel = function (modelClass) {
@@ -127,139 +129,139 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('EditEditForm', 'fd-dev-form-view', {
-    viewForForm: Projection.attr(''),
-    view: Projection.belongsTo('fd-dev-view', '', {
+    viewForForm: attr(''),
+    view: belongsTo('fd-dev-view', '', {
 
     }, { hidden: true })
   });
   modelClass.defineProjection('EditListForm', 'fd-dev-form-view', {
-    viewForForm: Projection.attr(''),
-    dataObjectTypesStr: Projection.attr(''),
-    listFormOperationsStr: Projection.attr(''),
-    hierarchicalMaster: Projection.attr(''),
-    view: Projection.belongsTo('fd-dev-view', '', {
+    viewForForm: attr(''),
+    dataObjectTypesStr: attr(''),
+    listFormOperationsStr: attr(''),
+    hierarchicalMaster: attr(''),
+    view: belongsTo('fd-dev-view', '', {
 
     }, { hidden: true })
   });
   modelClass.defineProjection('EditPrintForm', 'fd-dev-form-view', {
-    viewForForm: Projection.attr(''),
-    view: Projection.belongsTo('fd-dev-view', '', {
+    viewForForm: attr(''),
+    view: belongsTo('fd-dev-view', '', {
 
     }, { hidden: true })
   });
   modelClass.defineProjection('EditPropertyLookups', 'fd-dev-form-view', {
-    view: Projection.belongsTo('fd-dev-view', '', {
-      name: Projection.attr(''),
-      class: Projection.belongsTo('fd-dev-class', '', {
-        name: Projection.attr('')
+    view: belongsTo('fd-dev-view', '', {
+      name: attr(''),
+      class: belongsTo('fd-dev-class', '', {
+        name: attr('')
       }, { hidden: true })
     }, { hidden: true })
   });
   modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-form-view', {
-    view: Projection.belongsTo('fd-dev-view', '', {
-      class: Projection.belongsTo('fd-dev-class', '', {
-        name: Projection.attr('')
+    view: belongsTo('fd-dev-view', '', {
+      class: belongsTo('fd-dev-class', '', {
+        name: attr('')
       })
     })
   });
   modelClass.defineProjection('ForFormControls', 'fd-dev-form-view', {
-    controls: Projection.hasMany('fd-dev-form-control', '', {
-      name: Projection.attr(''),
-      propertyPath: Projection.attr(''),
-      settingsXml: Projection.attr(''),
-      order: Projection.attr(''),
-      controlType: Projection.belongsTo('fd-dev-control-type', '', {
-        name: Projection.attr('')
+    controls: hasMany('fd-dev-form-control', '', {
+      name: attr(''),
+      propertyPath: attr(''),
+      settingsXml: attr(''),
+      order: attr(''),
+      controlType: belongsTo('fd-dev-control-type', '', {
+        name: attr('')
       }),
-      propertyType: Projection.belongsTo('fd-dev-type-definition', '', {
-        name: Projection.attr('')
+      propertyType: belongsTo('fd-dev-type-definition', '', {
+        name: attr('')
       }),
-      formView: Projection.belongsTo('fd-dev-form-view', '', {
-        view: Projection.belongsTo('fd-dev-view', '', {
+      formView: belongsTo('fd-dev-form-view', '', {
+        view: belongsTo('fd-dev-view', '', {
 
         })
       })
     })
   });
   modelClass.defineProjection('Generator', 'fd-dev-form-view', {
-    view: Projection.belongsTo('fd-dev-view', '', {
-      name: Projection.attr(''),
-      class: Projection.belongsTo('fd-dev-class', '', {
-        name: Projection.attr('')
+    view: belongsTo('fd-dev-view', '', {
+      name: attr(''),
+      class: belongsTo('fd-dev-class', '', {
+        name: attr('')
       }, { hidden: true })
     }),
-    dataObjectTypes: Projection.attr('DataObjectTypes', { hidden: true }),
-    dataObjectTypesStr: Projection.attr('DataObjectTypesStr', { hidden: true }),
-    hierarchicalMaster: Projection.attr('HierarchicalMaster', { hidden: true }),
-    listFormOperations: Projection.attr('ListFormOperations', { hidden: true }),
-    listFormOperationsStr: Projection.attr('ListFormOperationsStr', { hidden: true }),
-    orderNum: Projection.attr('OrderNum', { hidden: true }),
-    propertyLookup: Projection.attr('PropertyLookup', { hidden: true }),
-    propertyLookupStr: Projection.attr('PropertyLookupStr', { hidden: true }),
-    viewForForm: Projection.attr('ViewForForm', { hidden: true }),
-    name: Projection.attr('Name', { hidden: true }),
-    description: Projection.attr('Description', { hidden: true }),
-    nameStr: Projection.attr('NameStr', { hidden: true }),
-    controls: Projection.hasMany('fd-dev-form-control', '', {
-      name: Projection.attr(''),
-      propertyPath: Projection.attr(''),
-      settingsXml: Projection.attr(''),
-      order: Projection.attr(''),
-      controlType: Projection.belongsTo('fd-dev-control-type', '', {
-        name: Projection.attr('')
+    dataObjectTypes: attr('DataObjectTypes', { hidden: true }),
+    dataObjectTypesStr: attr('DataObjectTypesStr', { hidden: true }),
+    hierarchicalMaster: attr('HierarchicalMaster', { hidden: true }),
+    listFormOperations: attr('ListFormOperations', { hidden: true }),
+    listFormOperationsStr: attr('ListFormOperationsStr', { hidden: true }),
+    orderNum: attr('OrderNum', { hidden: true }),
+    propertyLookup: attr('PropertyLookup', { hidden: true }),
+    propertyLookupStr: attr('PropertyLookupStr', { hidden: true }),
+    viewForForm: attr('ViewForForm', { hidden: true }),
+    name: attr('Name', { hidden: true }),
+    description: attr('Description', { hidden: true }),
+    nameStr: attr('NameStr', { hidden: true }),
+    controls: hasMany('fd-dev-form-control', '', {
+      name: attr(''),
+      propertyPath: attr(''),
+      settingsXml: attr(''),
+      order: attr(''),
+      controlType: belongsTo('fd-dev-control-type', '', {
+        name: attr('')
       }),
-      propertyType: Projection.belongsTo('fd-dev-type-definition', '', {
-        name: Projection.attr('')
+      propertyType: belongsTo('fd-dev-type-definition', '', {
+        name: attr('')
       }),
-      formView: Projection.belongsTo('fd-dev-form-view', '', {
-        view: Projection.belongsTo('fd-dev-view', '', {
+      formView: belongsTo('fd-dev-form-view', '', {
+        view: belongsTo('fd-dev-view', '', {
 
         })
       })
     })
   });
   modelClass.defineProjection('GetDataObjectByFormView', 'fd-dev-form-view', {
-    view: Projection.belongsTo('fd-dev-view', '', {
-      class: Projection.belongsTo('fd-dev-class', '', {
-        name: Projection.attr(''),
-        stereotype: Projection.attr(''),
-        caption: Projection.attr(''),
-        stage: Projection.belongsTo('fd-stage', '', {
+    view: belongsTo('fd-dev-view', '', {
+      class: belongsTo('fd-dev-class', '', {
+        name: attr(''),
+        stereotype: attr(''),
+        caption: attr(''),
+        stage: belongsTo('fd-stage', '', {
 
         })
       })
     }),
-    class: Projection.belongsTo('fd-dev-class', '', {
-      stage: Projection.belongsTo('fd-stage', '', {
+    class: belongsTo('fd-dev-class', '', {
+      stage: belongsTo('fd-stage', '', {
 
       })
     })
   });
   modelClass.defineProjection('GetFormControlsByFormView', 'fd-dev-form-view', {
-    view: Projection.belongsTo('fd-dev-view', '', {
+    view: belongsTo('fd-dev-view', '', {
 
     }),
-    class: Projection.belongsTo('fd-dev-class', '', {
+    class: belongsTo('fd-dev-class', '', {
 
     })
   });
   modelClass.defineProjection('GetFormWithView', 'fd-dev-form-view', {
-    dataObjectTypesStr: Projection.attr(''),
-    view: Projection.belongsTo('fd-dev-view', '', {
-      class: Projection.belongsTo('fd-dev-class', '', {
-        name: Projection.attr('')
+    dataObjectTypesStr: attr(''),
+    view: belongsTo('fd-dev-view', '', {
+      class: belongsTo('fd-dev-class', '', {
+        name: attr('')
       }),
-      definition: Projection.attr('')
+      definition: attr('')
     }),
-    class: Projection.belongsTo('fd-dev-class', '', {
+    class: belongsTo('fd-dev-class', '', {
 
     })
   });
   modelClass.defineProjection('ListDataObjectTypes', 'fd-dev-form-view', {
-    view: Projection.belongsTo('fd-dev-view', '', {
-      name: Projection.attr(''),
-      class: Projection.belongsTo('fd-dev-class', '', {
-        name: Projection.attr('')
+    view: belongsTo('fd-dev-view', '', {
+      name: attr(''),
+      class: belongsTo('fd-dev-class', '', {
+        name: attr('')
       }, { hidden: true })
     }, { hidden: true })
   });

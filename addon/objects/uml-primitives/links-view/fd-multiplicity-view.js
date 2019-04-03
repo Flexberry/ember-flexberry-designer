@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import { computed } from '@ember/object'
+import $ from 'jquery';
+
 import { RoleView } from './fd-role-view';
 
 export let MultiplicityView = RoleView.extend({
@@ -21,13 +23,13 @@ export let MultiplicityView = RoleView.extend({
     '</div>'
   ].join(''),
 
-  updateInputsArray: [
+  updateInputsArray: computed(() => [
     '.description-input',
     '.start-role-input',
     '.end-role-input',
     '.start-multiplicity-input',
     '.end-multiplicity-input'
-  ],
+  ]).readOnly(),
 
   initialize: function() {
     RoleView.prototype.initialize.apply(this, arguments);
@@ -42,11 +44,11 @@ export let MultiplicityView = RoleView.extend({
     }.bind(this));
 
     this.$box.find('.start-multiplicity-input').on('change', function(evt) {
-      this.model.setLabelText('startMultiplicity', Ember.$(evt.target).val());
+      this.model.setLabelText('startMultiplicity', $(evt.target).val());
     }.bind(this));
 
     this.$box.find('.end-multiplicity-input').on('change', function(evt) {
-      this.model.setLabelText('endMultiplicity', Ember.$(evt.target).val());
+      this.model.setLabelText('endMultiplicity', $(evt.target).val());
     }.bind(this));
 
     // Initialize inputs values.
@@ -62,14 +64,14 @@ export let MultiplicityView = RoleView.extend({
     // Update inputs positions.
     let startMultiplicityPosition = this.getLabelCoordinates(this.model.label(0).position);
     let startMultiplicityDelta = this.model.label(0).inverseTextDirection ? this.$box.find('.start-multiplicity-input').width() : 0;
-    Ember.$(this.$box[4]).css({
+    $(this.$box[4]).css({
       left: startMultiplicityPosition.x - 7 - startMultiplicityDelta,
       top: startMultiplicityPosition.y - 10,
       transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
     });
     let endMultiplicityPosition = this.getLabelCoordinates(this.model.label(1).position);
     let endMultiplicityDelta = this.model.label(1).inverseTextDirection ? this.$box.find('.end-multiplicity-input').width() : 0;
-    Ember.$(this.$box[5]).css({
+    $(this.$box[5]).css({
       left: endMultiplicityPosition.x - 7 - endMultiplicityDelta,
       top: endMultiplicityPosition.y - 10,
       transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'

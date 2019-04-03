@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import { assert } from '@ember/debug';
+import { inject as service } from '@ember/service';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -12,9 +14,9 @@ moduleForComponent('fd-editform-row', 'Integration | Component | fd-editform-row
 
   beforeEach() {
     if (FlexberryTextboxComponent.proto().i18n) {
-      Ember.assert(`Please, delete 'beforeEach' and 'afterEach' hooks.`);
+      assert(`Please, delete 'beforeEach' and 'afterEach' hooks.`);
     } else {
-      FlexberryTextboxComponent.reopen({ i18n: Ember.inject.service() });
+      FlexberryTextboxComponent.reopen({ i18n: service() });
     }
   },
 
@@ -28,7 +30,7 @@ test('it renders and works', function(assert) {
   this.render(hbs`{{fd-editform-row row=row selectedItem=selectedRow selectItemAction=selectItemAction}}`);
 
   this.set('row', FdEditformRow.create({
-    controls: Ember.A([
+    controls: A([
       FdEditformControl.create({ caption: 'Attribute #1' }),
     ]),
   }));
@@ -38,7 +40,7 @@ test('it renders and works', function(assert) {
   assert.notOk(this.$('.fd-editform-row').hasClass('width'));
 
   this.set('row', FdEditformRow.create({
-    controls: Ember.A([
+    controls: A([
       FdEditformControl.create({ caption: 'Attribute #1' }),
       FdEditformControl.create({ caption: 'Attribute #2' }),
     ]),

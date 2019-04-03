@@ -2,7 +2,8 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import EmberObject from '@ember/object';
+import { computed } from '@ember/object';
 
 /**
   Describes one row with controls on the edit form.
@@ -10,7 +11,7 @@ import Ember from 'ember';
   @class FdEditformRow
   @extends <a href="http://emberjs.com/api/classes/Ember.Object.html">Ember.Object</a>
 */
-export default Ember.Object.extend({
+export default EmberObject.extend({
   /**
     A collection of controls in row.
 
@@ -25,5 +26,5 @@ export default Ember.Object.extend({
     @property columnsCount
     @type Number
   */
-  columnsCount: Ember.computed.readOnly('controls.length'),
+  columnsCount: computed.readOnly('controls.length'),
 });

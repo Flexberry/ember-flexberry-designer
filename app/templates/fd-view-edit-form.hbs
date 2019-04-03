@@ -78,11 +78,12 @@
     </div>
 
     <div class="text-center">
-      {{#ui-popup content=popupMessage}}
-        <button class='ui inverted button icon close-panel-btn' type='button' {{action "closeRightpanel" on="click" }} >
+      {{! replace "ui-popup" }}
+      <div>
+        <button class="ui inverted button icon close-panel-btn" type="button" data-content="{{closeRightPanelBtnMessage}}" {{action "closeRightPanel" on="click" }} >
           <i class="{{if allAttrsHidedn 'chevron right' 'chevron left'}} icon"></i>
         </button>
-      {{/ui-popup}}
+      </div>
 
       <div class="ui vertical basic buttons">
         <button class='ui flexberry-button basic button icon' type='button' {{action "moveRightHighlighted" on="click" }} title="{{t "forms.fd-view-edit-form.attributes-panel.move-right-btn-title"}}">
@@ -145,7 +146,7 @@
         </div>
       </div>
     </div>
-  </div>  
+  </div>
 </form>
 
 {{#fd-config-panel}}

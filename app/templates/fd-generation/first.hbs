@@ -1,0 +1,21 @@
+<h3>{{t "forms.fd-generation.generation-app"}}</h3>
+
+<div class="ui stackable grid fd-list">
+  <div class="row">
+    <div class="two wide column">{{t "forms.fd-generation.git-url"}}</div>
+    <div class="fourteen wide column">{{flexberry-textbox value=settings.gitUrl placeholder=(t "forms.fd-generation.git-url-placeholder")}}</div>
+  </div>
+  <div class="row">
+    <div class="two wide column">{{t "forms.fd-generation.login"}}</div>
+    <div class="fourteen wide column">{{flexberry-textbox value=settings.login placeholder=(t "forms.fd-generation.login")}}</div>
+  </div>
+  <div class="row">
+    <div class="two wide column">{{t "forms.fd-generation.password"}}</div>
+    <div class="fourteen wide column">{{flexberry-textbox value=settings.password placeholder=(t "forms.fd-generation.password")}}</div>
+  </div>
+</div>
+
+<button class="ui labeled icon button" {{action send "saveAndGenerate" settings}}>
+  <i class="stop icon"></i>
+  {{t "forms.fd-generation.save-and-generate"}}
+</button>

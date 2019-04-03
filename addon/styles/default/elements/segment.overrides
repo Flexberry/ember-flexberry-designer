@@ -1,11 +1,17 @@
-.ui.vertical.footer.segment > .flex-container > .ui.text.menu {
-  margin: 0px;
-  padding: 0px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: auto;
-  overflow: hidden;
+.ui.vertical.footer.segment > .flex-container {
+  .right.menu {
+    padding: 0 1em;
+  }
+
+  > .ui.text.menu {
+    margin: 0px;
+    padding: 0px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    overflow: hidden;
+  }
 }
 
 .ui.vertical.footer.segment > .flex-container {
