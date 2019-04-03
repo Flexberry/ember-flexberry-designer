@@ -41,6 +41,7 @@ export let NAryAssociationConnector = Association.define('flexberry.uml.NAryAsso
       case 'description':
         return 0.1;
       default:
+        // eslint-disable-next-line no-console
         console.log('ERROR - choose correct label name');
     }
   }

@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
 import { moduleFor, test } from 'ember-qunit';
 
 import FdEditformRow from 'ember-flexberry-designer/objects/fd-editform-row';
@@ -10,6 +10,9 @@ import FdEditformTab from 'ember-flexberry-designer/objects/fd-editform-tab';
 moduleFor('controller:fd-editform-constructor', 'Unit | Controller | fd-editform-constructor', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
+  needs: [
+    'service:appState'
+  ]
 });
 
 // Replace this with your real tests.
@@ -20,53 +23,53 @@ test('it exists', function(assert) {
 
 test(`'_findItemContainer' function`, function(assert) {
   let controller = this.subject();
-  controller.controlsTree = Ember.A([
+  controller.set('controlsTree', A([
     FdEditformRow.create({
-      controls: Ember.A([FdEditformControl.create({ caption: 'Control' })]),
+      controls: A([FdEditformControl.create({ caption: 'Control' })]),
     }),
     FdEditformRow.create({
-      controls: Ember.A([
+      controls: A([
         FdEditformControl.create({ caption: 'Control #1' }),
         FdEditformControl.create({ caption: 'Control #2' }),
       ]),
     }),
     FdEditformRow.create({
-      controls: Ember.A([
+      controls: A([
         FdEditformGroup.create({
           caption: 'Group',
-          rows: Ember.A([
+          rows: A([
             FdEditformRow.create({
-              controls: Ember.A([FdEditformControl.create({ caption: 'Control' })]),
+              controls: A([FdEditformControl.create({ caption: 'Control' })]),
             }),
           ]),
         }),
       ]),
     }),
     FdEditformRow.create({
-      controls: Ember.A([
+      controls: A([
         FdEditformTabgroup.create({
-          tabs: Ember.A([
+          tabs: A([
             FdEditformTab.create({
               caption: 'Tab #1',
-              rows: Ember.A([
+              rows: A([
                 FdEditformRow.create({
-                  controls: Ember.A([FdEditformControl.create({ caption: 'Control' })]),
+                  controls: A([FdEditformControl.create({ caption: 'Control' })]),
                 }),
               ]),
             }),
             FdEditformTab.create({
               caption: 'Tab #2',
-              rows: Ember.A([
+              rows: A([
                 FdEditformRow.create({
-                  controls: Ember.A([FdEditformControl.create({ caption: 'Control' })]),
+                  controls: A([FdEditformControl.create({ caption: 'Control' })]),
                 }),
                 FdEditformRow.create({
-                  controls: Ember.A([
+                  controls: A([
                     FdEditformGroup.create({
                       caption: 'Group',
-                      rows: Ember.A([
+                      rows: A([
                         FdEditformRow.create({
-                          controls: Ember.A([FdEditformControl.create({ caption: 'Control' })]),
+                          controls: A([FdEditformControl.create({ caption: 'Control' })]),
                         }),
                       ]),
                     }),
@@ -78,7 +81,7 @@ test(`'_findItemContainer' function`, function(assert) {
         }),
       ]),
     }),
-  ]);
+  ]));
 
   [
     {
@@ -163,9 +166,9 @@ test('properties to move controls', function(assert) {
   let control1 = FdEditformControl.create({ caption: 'Control #1' });
   let control2 = FdEditformControl.create({ caption: 'Control #2' });
   let control3 = FdEditformControl.create({ caption: 'Control #3' });
-  let row1 = FdEditformRow.create({ controls: Ember.A([control1]) });
-  let row2 = FdEditformRow.create({ controls: Ember.A([control2, control3]) });
-  controller.controlsTree = Ember.A([row1, row2]);
+  let row1 = FdEditformRow.create({ controls: A([control1]) });
+  let row2 = FdEditformRow.create({ controls: A([control2, control3]) });
+  controller.set('controlsTree', A([row1, row2]));
 
   controller.set('selectedItem', control1);
   assert.ok(controller.get('_itemToMove') === row1, 'The row with one control.');

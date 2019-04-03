@@ -59,14 +59,14 @@
         </div>
       </div>
     </div>
-
     <div class="panel-toolbar">
-      {{#ui-popup content=popupMessage}}
-        <button class='ui inverted button icon close-panel-btn' type='button' {{action "closeRightpanel" on="click" }} >
+      {{! replace "ui-popup" }}
+      <div>
+        <button class="ui inverted button icon close-panel-btn" type="button" data-content="{{closeRightPanelBtnMessage}}" {{action "closeRightPanel" on="click" }} >
           <i class="{{if allAttrsHidedn 'chevron right' 'chevron left'}} icon"></i>
         </button>
-      {{/ui-popup}}
-      <button class='ui button icon flexberry-button move {{moveRightDisabled}}' type='button' {{action "moveRightHighlighted" on="click" }}>
+      </div>
+      <button class="ui button icon flexberry-button move {{moveRightDisabled}}" type="button" {{action "moveRightHighlighted" on="click" }}>
         <i class="right long arrow icon"></i>
       </button>
     </div>

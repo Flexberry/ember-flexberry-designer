@@ -1,10 +1,10 @@
 /**
   @module ember-flexberry-designer
 */
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 
-import Ember from 'ember';
 import FdDraggableControlMixin from '../mixins/fd-draggable-control';
-
 import FdEditformControl from '../objects/fd-editform-control';
 import FdEditformGroup from '../objects/fd-editform-group';
 import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
@@ -16,7 +16,7 @@ import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
   @extends <a href="http://emberjs.com/api/classes/Ember.Component.html">Ember.Component</a>
   @uses FdDraggableControlMixin
 */
-export default Ember.Component.extend(FdDraggableControlMixin, {
+export default Component.extend(FdDraggableControlMixin, {
   /**
     An object in the format `{ 'typeName': 'componentName' }`, which describes which components should be rendered for each type.
 
@@ -24,7 +24,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     @property _componentsTypeMap
     @type Object
   */
-  _componentsTypeMap: {
+  _componentsTypeMap: computed(() => ({
     'bool': 'flexberry-checkbox',
     'System.Boolean': 'flexberry-checkbox',
 
@@ -75,7 +75,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     'detail': 'fd-groupedit',
 
     'default': 'flexberry-textbox',
-  },
+  })).readOnly(),
 
   /**
     The passed control is a simple control.
@@ -85,7 +85,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     @readOnly
     @type Boolean
   */
-  _isControl: Ember.computed('control', function() {
+  _isControl: computed('control', function() {
     return this.get('control') instanceof FdEditformControl;
   }).readOnly(),
 
@@ -97,7 +97,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     @readOnly
     @type Boolean
   */
-  _isGroup: Ember.computed('control', function() {
+  _isGroup: computed('control', function() {
     return this.get('control') instanceof FdEditformGroup;
   }).readOnly(),
 
@@ -109,7 +109,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     @readOnly
     @type Boolean
   */
-  _isTab: Ember.computed('control', function() {
+  _isTab: computed('control', function() {
     return this.get('control') instanceof FdEditformTabgroup;
   }).readOnly(),
 
@@ -121,7 +121,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     @readOnly
     @type String
   */
-  _componentName: Ember.computed('_componentProperties.type', function() {
+  _componentName: computed('_componentProperties.type', function() {
     let type = this.get('_componentProperties.type');
     let typeMap = this.get('_componentsTypeMap');
     if (!typeMap.hasOwnProperty(type)) {
@@ -139,7 +139,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     @readOnly
     @type Object
   */
-  _componentProperties: Ember.computed('control.propertyDefinition.name', 'control.propertyDefinition.detailViewName', function() {
+  _componentProperties: computed('control.propertyDefinition.{name,detailViewName}', function() {
     let propertyDefinition = this.get('control.propertyDefinition');
     if (propertyDefinition) {
       return this.get('getComponentPropertiesAction')(propertyDefinition);
@@ -155,7 +155,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     @property _dimmed
     @type Boolean
   */
-  _dimmed: Ember.computed.reads('draggable'),
+  _dimmed: computed.reads('draggable'),
 
   /**
     Used in class name bindings to add a class when this control is selected.
@@ -165,7 +165,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     @readOnly
     @type Boolean
   */
-  _isSelected: Ember.computed('control', 'selectedItem', function() {
+  _isSelected: computed('control', 'selectedItem', function() {
     return this.get('control') === this.get('selectedItem');
   }).readOnly(),
 
@@ -177,7 +177,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     @readOnly
     @type Boolean
   */
-  _isNotVisible: Ember.computed('control', 'selectedItem.propertyDefinition.visible', function() {
+  _isNotVisible: computed('control', 'selectedItem.propertyDefinition.visible', function() {
     let control = this.get('control');
     if (control instanceof FdEditformControl) {
       return !this.get('control.propertyDefinition.visible');
@@ -207,7 +207,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     @property activeTab
     @type FdEditformTab
   */
-  activeTab: Ember.computed.alias('control.activeTab'),
+  activeTab: computed.alias('control.activeTab'),
 
   /**
     See description {{#crossLink "FdDraggableControlMixin/draggableProperty:property"}}here{{/crossLink}}.

@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import $ from 'jquery';
+
 import EmberFlexberryDesignerTranslations from 'ember-flexberry-designer/locales/en/translations';
 
 const translations = {};
-Ember.$.extend(true, translations, EmberFlexberryDesignerTranslations);
+$.extend(true, translations, EmberFlexberryDesignerTranslations);
 
-Ember.$.extend(true, translations, {
+$.extend(true, translations, {
 
   'application-name': '',
 

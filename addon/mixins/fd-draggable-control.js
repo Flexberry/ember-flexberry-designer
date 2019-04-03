@@ -2,7 +2,8 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import { computed, get } from '@ember/object';
 
 import FdEditformRow from '../objects/fd-editform-row';
 import FdEditformControl from '../objects/fd-editform-control';
@@ -15,7 +16,7 @@ import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
   @class FdDraggableControlMixin
   @uses <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
-export default Ember.Mixin.create({
+export default Mixin.create({
   /**
     The `X` coordinate with which the dragging started.
 
@@ -42,7 +43,7 @@ export default Ember.Mixin.create({
     @readOnly
     @type Number
   */
-  _initialXY: Ember.computed('_initialX', '_initialY', 'dragDirection', function() {
+  _initialXY: computed('_initialX', '_initialY', 'dragDirection', function() {
     return this.get(`_initial${this.get('dragDirection')}`);
   }).readOnly(),
 
@@ -54,16 +55,18 @@ export default Ember.Mixin.create({
     @readOnly
     @type Number
   */
-  _centerXY: Ember.computed('dragDirection', function() {
+  _centerXY: computed('dragDirection', function() {
     let clientRect = this.get('element').getBoundingClientRect();
     switch (this.get('dragDirection')) {
-      case 'X':
+      case 'X': {
         let width = clientRect.right - clientRect.left;
         return clientRect.left + width / 2;
+      }
 
-      case 'Y':
+      case 'Y': {
         let height = clientRect.bottom - clientRect.top;
         return clientRect.top + height / 2;
+      }
 
       default:
         throw new Error(`The drag direction must be 'X' or 'Y'.`);
@@ -78,7 +81,7 @@ export default Ember.Mixin.create({
     @readOnly
     @type FdEditformRow|FdEditformControl|FdEditformGroup|FdEditformTabgroup|FdEditformTab
   */
-  _draggableProperty: Ember.computed('draggableProperty', function() {
+  _draggableProperty: computed('draggableProperty', function() {
     return this.get(this.get('draggableProperty'));
   }).readOnly(),
 
@@ -177,7 +180,7 @@ export default Ember.Mixin.create({
         return false;
       }
     } else {
-      let clientXY = Ember.get(event.originalEvent, `client${this.get('dragDirection')}`);
+      let clientXY = get(event.originalEvent, `client${this.get('dragDirection')}`);
       let centerXY = this.get('_centerXY');
       let motion = this.get('_initialXY') - clientXY;
 

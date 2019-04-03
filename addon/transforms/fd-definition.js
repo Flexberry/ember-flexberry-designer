@@ -1,12 +1,14 @@
 import DS from 'ember-data';
-import Ember from 'ember';
+import { A } from '@ember/array';
+import { get } from '@ember/object';
+import { guidFor } from '@ember/object/internals';
 import FdViewAttributesProperty from '../objects/fd-view-attributes-property';
 import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 
 export default DS.Transform.extend({
   deserialize(definition) {
-    let ret = Ember.A();
+    let ret = A();
     let parser = new DOMParser();
     let xmlDoc = parser.parseFromString(definition, 'text/xml');
     if (xmlDoc) {
@@ -68,10 +70,10 @@ export default DS.Transform.extend({
     }
 
     // TODO in version Ember 2.12+ replace on 'uniqBy'.
-    let uniqRet = Ember.A();
+    let uniqRet = A();
     let seen = Object.create(null);
     ret.forEach((item) => {
-      let guid = Ember.guidFor(Ember.get(item, 'name'));
+      let guid = guidFor(get(item, 'name'));
       if (!(guid in seen)) {
         seen[guid] = true;
         uniqRet.push(item);

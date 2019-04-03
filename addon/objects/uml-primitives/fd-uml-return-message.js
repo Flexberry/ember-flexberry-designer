@@ -1,7 +1,7 @@
 /**
   @module ember-flexberry-designer
 */
-import Ember from 'ember';
+import { computed } from '@ember/object';
 
 import FdUmlLink from './fd-uml-link';
 import { FlatMessage } from './fd-uml-flat-message';
@@ -21,7 +21,7 @@ export default FdUmlLink.extend({
     @type String
   */
 
-  endRoleTxt: Ember.computed.alias('primitive.LeftText.Text'),
+  endRoleTxt: computed.alias('primitive.LeftText.Text'),
 
   /**
     Start role text.
@@ -29,7 +29,7 @@ export default FdUmlLink.extend({
     @property startRoleTxt
     @type String
   */
-  startRoleTxt: Ember.computed.alias('primitive.RightText.Text'),
+  startRoleTxt: computed.alias('primitive.RightText.Text'),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.

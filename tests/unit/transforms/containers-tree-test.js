@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
 import { moduleFor, test } from 'ember-qunit';
 import FdAppStructTree from 'ember-flexberry-designer/objects/fd-appstruct-tree';
 
@@ -7,7 +7,7 @@ moduleFor('transform:containers-tree', 'Unit | Transform | containers tree');
 // Replace this with your real tests.
 test('it exists', function(assert) {
 
-  let noteNoteObjectModel1 = Ember.A([
+  let noteNoteObjectModel1 = A([
     FdAppStructTree.create({
       className: 'ПисьмоWebL',
       description: null,
@@ -19,7 +19,7 @@ test('it exists', function(assert) {
     })
   ]);
 
-  let noteNoteObjectModel2 = Ember.A([
+  let noteNoteObjectModel2 = A([
     FdAppStructTree.create({
       className: 'ЖурналИмпортаWebL',
       description: null,
@@ -31,12 +31,12 @@ test('it exists', function(assert) {
     })
   ]);
 
-  let noteObjectModel1 = Ember.A([
+  let noteObjectModel1 = A([
     FdAppStructTree.create({
       text: 'Настройки',
       type: 'folder',
-      children: Ember.A(),
-      copyChildren: Ember.A(),
+      children: A(),
+      copyChildren: A(),
       id: 'p1l0i1',
     }),
     FdAppStructTree.create({
@@ -55,7 +55,7 @@ test('it exists', function(assert) {
     })
   ]);
 
-  let noteObjectModel2 = Ember.A([
+  let noteObjectModel2 = A([
     FdAppStructTree.create({
       className: 'УчетРабочегоВремениWebL',
       description: 'test',
@@ -85,7 +85,7 @@ test('it exists', function(assert) {
     }),
   ]);
 
-  let objectModel = Ember.A([
+  let objectModel = A([
     FdAppStructTree.create({
       text: 'Администрирование',
       type: 'folder',

@@ -1,9 +1,13 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
+import { isNone } from '@ember/utils';
+import { A } from '@ember/array';
 import FdAttributesTree from '../../objects/fd-attributes-tree';
-import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode, getDetailView } from '../../utils/fd-attributes-for-tree';
+import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode } from '../../utils/fd-attributes-for-tree';
 import layout from '../../templates/components/fd-editing-panels/fd-create-view';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
 
   /**
@@ -12,13 +16,13 @@ export default Ember.Component.extend({
     @property appState
     @type AppStateService
   */
-  appState: Ember.inject.service(),
+  appState: service(),
 
   /**
     @property store
     @type Service
   */
-  store: Ember.inject.service(),
+  store: service(),
 
   /**
     Classes data.
@@ -37,22 +41,14 @@ export default Ember.Component.extend({
   view: undefined,
 
   /**
-    details data.
-
-    @property detailsView
-    @type Object
-  */
-  detailsView: undefined,
-
-  /**
     tree data.
 
     @property tree
     @type Object
   */
-  tree: Ember.computed('model.name', function() {
+  tree: computed('model.name', function() {
     let model = this.get('model');
-    if (Ember.isNone(model)) {
+    if (isNone(model)) {
       return null;
     }
 
@@ -62,7 +58,7 @@ export default Ember.Component.extend({
     let dataForBuildTree = getDataForBuildTree(store, model.get('id'));
 
     // Set attributes tree.
-    let treeEmpty = Ember.A([
+    let treeEmpty = A([
 
       // Attribute - choose all.
       FdAttributesTree.create({
@@ -74,7 +70,7 @@ export default Ember.Component.extend({
     let treeAttributes = getClassTreeNode(treeEmpty, dataForBuildTree.classes);
     let treeMasters = getAssociationTreeNode(treeAttributes, dataForBuildTree.associations, 'node_');
     let treeDetails = getAggregationTreeNode(treeMasters, dataForBuildTree.aggregations);
-    let tree = Ember.A([
+    let tree = A([
       FdAttributesTree.create({
         text: model.get('name'),
         type: 'class',
@@ -87,8 +83,6 @@ export default Ember.Component.extend({
       })
     ]);
 
-    let detailView = getDetailView(dataForBuildTree.aggregations);
-    this.set('detailsView', detailView);
     this.get('appState').reset();
 
     return tree;
@@ -101,7 +95,7 @@ export default Ember.Component.extend({
   */
   loadDataNode: function(node, store) {
     let dataForBuildTree = getDataForBuildTree(store, node.get('idNode'));
-    let childrenAttributes = getClassTreeNode(Ember.A(), dataForBuildTree.classes);
+    let childrenAttributes = getClassTreeNode(A(), dataForBuildTree.classes);
     let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, node.get('id'));
 
     return childrenNode;

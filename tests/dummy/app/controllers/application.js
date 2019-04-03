@@ -1,8 +1,13 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { computed, observer } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
+import { isNone } from '@ember/utils';
+import { later } from '@ember/runloop';
+import $ from 'jquery';
 
-export default Ember.Controller.extend({
-  fdSheetService: Ember.inject.service(),
-
+export default Controller.extend({
+  fdSheetService: service(),
   /**
     Flag indicates sidebar visible
 
@@ -19,14 +24,14 @@ export default Ember.Controller.extend({
     @property currentContext
     @type FdCurrentProjectContextService
   */
-  currentContext: Ember.inject.service('fd-current-project-context'),
+  currentContext: service('fd-current-project-context'),
 
   /**
     Service for managing the state of the application.
     @property appState
     @type AppStateService
   */
-  appState: Ember.inject.service(),
+  appState: service(),
 
   /**
     Current project name from stageModel
@@ -34,11 +39,11 @@ export default Ember.Controller.extend({
     @property currentProjectName
     @type String
   */
-  currentProjectName: Ember.computed('currentContext.context.stageModel.name', function() {
+  currentProjectName: computed('currentContext.context.stageModel.name', function() {
     return this.get('currentContext.context.stageModel.name');
   }),
 
-  sitemap: Ember.computed('i18n.locale', 'currentContext.context.configuration', 'currentContext.context.stage', function() {
+  sitemap: computed('i18n.locale', 'currentContext.context.{configuration,stage}', function() {
     let i18n = this.get('i18n');
     let singleStageMode = this.get('currentContext.singleStageMode');
 
@@ -89,7 +94,7 @@ export default Ember.Controller.extend({
     return sitemap;
   }),
 
-  sitemapBottom: Ember.computed('i18n.locale', 'currentContext.context.configuration', 'currentContext.context.stage', function() {
+  sitemapBottom: computed('i18n.locale', 'currentContext.context.{configuration,stage}', function() {
     let i18n = this.get('i18n');
     let singleStageMode = this.get('currentContext.singleStageMode');
 
@@ -135,7 +140,7 @@ export default Ember.Controller.extend({
     @type String[]
     @default ['ru', 'en']
   */
-  locales: ['ru', 'en'],
+  locales: undefined,
 
   /**
     Handles changes in userSettingsService.isUserSettingsServiceEnabled.
@@ -143,7 +148,7 @@ export default Ember.Controller.extend({
     @method _userSettingsServiceChanged
     @private
   */
-  _userSettingsServiceChanged: Ember.observer('userSettingsService.isUserSettingsServiceEnabled', function() {
+  _userSettingsServiceChanged: observer('userSettingsService.isUserSettingsServiceEnabled', function() {
     this.get('target.router').refresh();
   }),
 
@@ -153,19 +158,21 @@ export default Ember.Controller.extend({
   init() {
     this._super(...arguments);
 
+    this.set('locales', ['ru', 'en']);
+
     let i18n = this.get('i18n');
-    if (Ember.isNone(i18n)) {
+    if (isNone(i18n)) {
       return;
     }
 
     // If i18n.locale is long value like 'ru-RU', 'en-GB', ... this code will return short variant 'ru', 'en', etc.
     let shortCurrentLocale = this.get('i18n.locale').split('-')[0];
-    let availableLocales = Ember.A(this.get('locales'));
+    let availableLocales = A(this.get('locales'));
 
     // Force current locale to be one of available,
     // if browser's current language is not supported by dummy application,
     // or if browser's current locale is long value like 'ru-RU', 'en-GB', etc.
-    if (!availableLocales.contains(shortCurrentLocale)) {
+    if (!availableLocales.includes(shortCurrentLocale)) {
       i18n.set('locale', 'en');
     } else {
       i18n.set('locale', shortCurrentLocale);
@@ -178,7 +185,7 @@ export default Ember.Controller.extend({
     @property objectlistviewEventsService
     @type Service
   */
-  objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
+  objectlistviewEventsService: service('objectlistview-events'),
 
   sidebarWidth: '300px',
 
@@ -199,41 +206,42 @@ export default Ember.Controller.extend({
       @method actions.toggleSidebar
     */
     toggleSidebar() {
-      let sidebar = Ember.$('.ui.sidebar.main.menu');
+      let sidebar = $('.ui.sidebar.main.menu');
       sidebar.sidebar('toggle');
       let sidebarVisible = sidebar.hasClass('visible');
       this.set('_sidebarVisible', !sidebarVisible);
       let currentSidebarWidth = sidebarVisible ? this.sidebarMiniWidth : this.sidebarWidth;
       let contentWidth = `calc(100% - ${currentSidebarWidth})`;
       if (!sidebarVisible) {
-        Ember.$('.toggle-sidebar').css({ transition: 'opacity 500ms step-start' });
+        $('.toggle-sidebar').css({ transition: 'opacity 500ms step-start' });
       } else {
-        Ember.$('.toggle-sidebar').css({ transition: '' });
+        $('.toggle-sidebar').css({ transition: '' });
       }
 
-      // Sheet content is animated only if it is expanded.
-      if (Ember.$('.fd-sheet.visible').hasClass('expand')) {
-        let expandedSeet = Ember.$('.fd-sheet.visible.expand');
-        this.get('fdSheetService').animatingSheetContent(expandedSeet.attr('class').replace(/ /g, '.'), contentWidth, 250);
-      } else {
+      let visibleSheets = $('.fd-sheet.visible').toArray();
+      visibleSheets.forEach((item) => {
+        if ($(item).hasClass('expand')) {
+          this.get('fdSheetService').animatingSheetContent($(item).attr('class').replace(/ /g, '.'), contentWidth, 250);
+        } else {
 
-        // That the sheet remained in its place and did not go along with the content.
-        let sheetTranslate = `translate3d(calc(50% - ${currentSidebarWidth}), 0, 0)`;
-        Ember.$('.fd-sheet.visible').css({ 'transform': sheetTranslate });
-      }
+          // That the sheet remained in its place and did not go along with the content.
+          let sheetTranslate = `translate3d(calc(50% - ${currentSidebarWidth}), 0, 0)`;
+          $(item).css({ 'transform': sheetTranslate });
+        }
+      });
 
       // Animated increases the width of the page content.
-      Ember.$('.full.height .flexberry-vertical-form').css({ opacity: 0.2 });
-      Ember.run.later(function() {
-        Ember.$('.full.height .flexberry-vertical-form').css({ opacity: '' });
-        Ember.$('.full.height').css({ width: contentWidth });
+      $('.full.height .flexberry-vertical-form').css({ opacity: 0.2 });
+      later(function() {
+        $('.full.height .flexberry-vertical-form').css({ opacity: '' });
+        $('.full.height').css({ width: contentWidth });
       }, 250);
 
-      Ember.run.later(this, function() {
+      later(this, function() {
         sidebar.toggleClass('sidebar-mini');
 
         // For reinit overflowed tabs.
-        Ember.$(window).trigger('resize');
+        $(window).trigger('resize');
       }, 500);
     },
 
@@ -242,17 +250,17 @@ export default Ember.Controller.extend({
       @method actions.toggleSidebarMobile
     */
     toggleSidebarMobile() {
-      Ember.$('.ui.sidebar.main.menu').sidebar('toggle');
-      let sidebarVisible = Ember.$('.inverted.vertical.main.menu').hasClass('visible');
+      $('.ui.sidebar.main.menu').sidebar('toggle');
+      let sidebarVisible = $('.inverted.vertical.main.menu').hasClass('visible');
       this.set('_sidebarVisible', !sidebarVisible);
       if (sidebarVisible) {
-        Ember.$('.sidebar.icon.text-menu-show').removeClass('hidden');
-        Ember.$('.sidebar.icon.text-menu-hide').addClass('hidden');
-        Ember.$('.bgw-opacity').addClass('hidden');
+        $('.sidebar.icon.text-menu-show').removeClass('hidden');
+        $('.sidebar.icon.text-menu-hide').addClass('hidden');
+        $('.bgw-opacity').addClass('hidden');
       } else {
-        Ember.$('.sidebar.icon.text-menu-show').addClass('hidden');
-        Ember.$('.sidebar.icon.text-menu-hide').removeClass('hidden');
-        Ember.$('.bgw-opacity').removeClass('hidden');
+        $('.sidebar.icon.text-menu-show').addClass('hidden');
+        $('.sidebar.icon.text-menu-hide').removeClass('hidden');
+        $('.bgw-opacity').removeClass('hidden');
       }
     }
   }

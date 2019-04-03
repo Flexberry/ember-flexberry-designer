@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+
 import ListFormRoute from 'ember-flexberry/routes/list-form';
 import LimitByStageMixin from '../mixins/fd-limit-by-stage';
 
@@ -11,7 +12,7 @@ export default ListFormRoute.extend(LimitByStageMixin, {
    @type {Class}
    @default Ember.inject.service()
    */
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
 
   /**
     Name of model projection to be used as record's properties limitation.
@@ -54,5 +55,13 @@ export default ListFormRoute.extend(LimitByStageMixin, {
     @type Object
     @default {}
   */
-  developerUserSettings: { FdAssociationListForm: {} },
+  developerUserSettings: undefined,
+
+  init() {
+    this._super(...arguments);
+
+    this.set('developerUserSettings', {
+      FdAssociationListForm: {}
+    });
+  }
 });

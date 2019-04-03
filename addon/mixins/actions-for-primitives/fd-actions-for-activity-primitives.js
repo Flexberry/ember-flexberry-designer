@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
 import { SignalReceiptRight, SignalReceiptLeft } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-signal-receipt';
 import { Transition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-transition';
 import { ComplexTransitionH, ComplexTransitionV } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-complex-transition';
@@ -17,15 +19,15 @@ import { ObjectFlow } from 'ember-flexberry-designer/objects/uml-primitives/fd-u
   @class FdActionsForActivityPrimitivesMixin
   @extends <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
-export default Ember.Mixin.create({
+export default Mixin.create({
   /**
     Service that get current project contexts.
 
     @property currentProjectContext
     @type {Class}
-    @default Ember.inject.service()
+    @default service()
   */
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
 
   actions: {
     /**
@@ -231,11 +233,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newTransitionObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Decision', 'flexberry.uml.ActiveState', 'flexberry.uml.StartState',
+      }).bind(this), e, A(['flexberry.uml.Decision', 'flexberry.uml.ActiveState', 'flexberry.uml.StartState',
        'flexberry.uml.FinalState', 'flexberry.uml.ComplexTransitionH', 'flexberry.uml.ComplexTransitionV', 'flexberry.uml.SignalReceiptRight',
        'flexberry.uml.SignalReceiptLeft', 'flexberry.uml.SignalSendLeft', 'flexberry.uml.SignalSendRight']));
     },
@@ -255,11 +257,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newObjectFlowObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.ActiveState', 'flexberry.uml.ComplexTransitionH',
+      }).bind(this), e, A(['flexberry.uml.ActiveState', 'flexberry.uml.ComplexTransitionH',
        'flexberry.uml.ComplexTransitionV', 'flexberry.uml.ObjectInState', 'flexberry.uml.SignalSendLeft',
        'flexberry.uml.SignalSendRight']));
     },

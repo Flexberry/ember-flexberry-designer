@@ -1,4 +1,10 @@
-import Ember from 'ember';
+/* eslint-disable ember/closure-actions */
+import Component from '@ember/component';
+import { computed, getWithDefault, observer } from '@ember/object';
+import { schedule } from '@ember/runloop';
+import { A } from '@ember/array';
+import $ from 'jquery';
+
 import layout from '../templates/components/fd-tabs';
 import TabPane from '../components/fd-tabs/pane';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
@@ -24,7 +30,7 @@ import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
  @uses Mixins.ComponentParent
  @public
  */
-export default Ember.Component.extend(FdWorkPanelToggler, {
+export default Component.extend(FdWorkPanelToggler, {
 
   layout: layout,
   tabsWidth: 0,
@@ -36,12 +42,12 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
   dynamicTabs: false,
   selectedTab: '',
   reloadTabs: true,
-  activeTab: Ember.computed.oneWay('childPanes.firstObject.dataTab'),
-  options: {
-    tabPadding: 25,
-    containerPadding: 0,
-    dropdownSize: 70
-  },
+  activeTab: computed.oneWay('childPanes.firstObject.dataTab'),
+  options: computed(() => ({
+      tabPadding: 25,
+      containerPadding: 0,
+      dropdownSize: 70
+  })).readOnly(),
 
   /**
    * Array of registered child components
@@ -69,7 +75,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
    * @readonly
    * @private
    */
-  childPanes: Ember.computed.filter('children', function(view) {
+  childPanes: computed.filter('children', function(view) {
     return view instanceof TabPane;
   }),
 
@@ -80,9 +86,9 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
    * @type array
    * @private
    */
-  _showedTabs: Ember.computed('tabs', {
+  _showedTabs: computed('tabs', {
     get() {
-      return Ember.getWithDefault(this, 'tabs', null);
+      return getWithDefault(this, 'tabs', null);
     },
 
     set(key, value) {
@@ -98,8 +104,8 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
    * @readonly
    * @private
    */
-  tabs: Ember.computed('childPanes.@each.{tab,title,dataTab}', function() {
-    let items = Ember.A();
+  tabs: computed('childPanes.@each.{tab,title,dataTab}', function() {
+    let items = A();
     this.get('childPanes').forEach((pane) => {
       let item = pane.getProperties('tab', 'title', 'dataTab');
       items.push(item);
@@ -108,7 +114,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
     return items;
   }),
 
-  tabsObserver: Ember.observer('tabs.[]', function() {
+  tabsObserver: observer('tabs.[]', function() {
     if (this.overflowedTabs) {
       this.reinitTabs();
     }
@@ -118,11 +124,11 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
     let width = 0;
     let countHide = this.get('tabs').length;
     let _this = this;
-    _this.containerWidth = Ember.$(this.element).parent().width() - _this.options.containerPadding - _this.options.dropdownSize;
+    _this.containerWidth = $(this.element).parent().width() - _this.options.containerPadding - _this.options.dropdownSize;
 
-    Ember.$(_this.element).find('a.item').each(function() {
-      if ((width + Ember.$(this).outerWidth(true)) < _this.containerWidth) {
-        width += Ember.$(this).outerWidth(true);
+    $(_this.element).find('a.item').each(function() {
+      if ((width + $(this).outerWidth(true)) < _this.containerWidth) {
+        width += $(this).outerWidth(true);
         countHide--;
       } else {
         return false;
@@ -137,7 +143,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
 
     for (let i = 0; i < hideTabs; i++) {
       let _currentTabs = this.get('_showedTabs');
-      let lastTab = Ember.A(_currentTabs).get('lastObject');
+      let lastTab = A(_currentTabs).get('lastObject');
 
       this.get('_hideTabs').pushObject(lastTab);
       _currentTabs.popObject();
@@ -149,13 +155,13 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
 
   init() {
     this._super(...arguments);
-    this.set('children', Ember.A());
-    this.set('_hideTabs', Ember.A());
+    this.set('children', A());
+    this.set('_hideTabs', A());
 
     if (this.overflowedTabs) {
-      Ember.run.schedule('afterRender', this, function() {
+      schedule('afterRender', this, function() {
         let _this = this;
-        Ember.$(window).resize(function() {
+        $(window).resize(function() {
           if (!(_this.get('isDestroyed') || _this.get('isDestroyed'))) {
             _this.set('dynamicTabs', false);
             _this.reinitTabs();
@@ -166,14 +172,14 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
   },
 
   reinitTabs() {
-    Ember.run.schedule('afterRender', this, function() {
+    schedule('afterRender', this, function() {
       this.set('overflowButtonShow', false);
       let _showedTabs =  this.dynamicTabs ? this.get('tabs').slice() : this.get('_showedTabs').slice().concat(this.get('_hideTabs'));
 
       this.set('_showedTabs', _showedTabs);
-      this.set('_hideTabs', Ember.A());
+      this.set('_hideTabs', A());
 
-      Ember.run.schedule('afterRender', this,	function() {
+      schedule('afterRender', this,	function() {
         this._calculateWidths();
 
         this.set('overflowButtonShow', this.get('hideTabsCount') > 0);
@@ -208,7 +214,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
    * @public
    */
   registerChild(child) {
-    Ember.run.schedule('actions', this, function() {
+    schedule('actions', this, function() {
       this.get('children').addObject(child);
     });
   },
@@ -221,7 +227,7 @@ export default Ember.Component.extend(FdWorkPanelToggler, {
    * @public
    */
   removeChild(child) {
-    Ember.run.schedule('actions', this, function() {
+    schedule('actions', this, function() {
       this.get('children').removeObject(child);
     });
   },

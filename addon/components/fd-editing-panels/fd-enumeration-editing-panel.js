@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { A } from '@ember/array';
 import FdUpdateAttributeValueMixin from '../../mixins/fd-editing-panels/fd-update-attribute-value';
 import layout from '../../templates/components/fd-editing-panels/fd-enumeration-editing-panel';
 
-export default Ember.Component.extend(FdUpdateAttributeValueMixin, {
+export default Component.extend(FdUpdateAttributeValueMixin, {
   layout,
 
   /**

@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
-export let Model = Ember.Mixin.create({
+import { attr } from 'ember-flexberry-data/utils/attributes';
+
+export let Model = Mixin.create({
   /**
     Non-stored property.
 
@@ -32,11 +34,11 @@ export let Model = Ember.Mixin.create({
     let thisValidations = {
       subsystem: { presence: true }
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 export let defineBaseModel = function (modelClass) {
@@ -47,7 +49,7 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('FileLink', 'fd-filelink', {
-    name: Projection.attr('Название'),
-    description: Projection.attr('Описание')
+    name: attr('Название'),
+    description: attr('Описание')
   });
 };

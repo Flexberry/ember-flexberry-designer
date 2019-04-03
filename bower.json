@@ -1,18 +1,18 @@
 {
   "name": "ember-flexberry-designer",
   "dependencies": {
-    "ember": "~2.4.3",
-    "ember-cli-shims": "0.1.1",
-    "ember-cli-test-loader": "0.2.2",
-    "ember-qunit-notifications": "0.1.0",
-    "semantic-ui-daterangepicker": "5d46ed2e6e5a0bf398bb6a5df82e06036dfc46be",
-    "flatpickr-calendar": "git://github.com/chmln/flatpickr.git#2.3.4",
-    "blueimp-file-upload": "9.11.2",
     "devicejs": "0.2.7",
-    "semantic-ui": "git://github.com/Flexberry/Semantic-UI.git#fixed-abort",
-    "seiyria-bootstrap-slider": "6.0.6",
+    "blueimp-file-upload": "9.11.2",
+    "flatpickr-calendar": "2.6.3",
     "jquery-minicolors": "2.2.6",
     "js-beautify": "1.6.4",
-    "jstree": "^3.3.5"
+    "jstree": "^3.3.5",
+    "seiyria-bootstrap-slider": "6.0.6",
+    "semantic-ui": "2.2.14",
+    "semantic-ui-daterangepicker": "5d46ed2e6e5a0bf398bb6a5df82e06036dfc46be",
+    "moment": "~2.22.0"
+  },
+  "resolutions": {
+    "moment": "~2.22.0"
   }
 }

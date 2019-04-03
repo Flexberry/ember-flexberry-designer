@@ -1,8 +1,10 @@
-import Ember from 'ember';
-import ListFormRoute from 'ember-flexberry/routes/list-form';
-import { Query } from 'ember-flexberry-data';
+import { inject as service } from '@ember/service';
+import { merge } from '@ember/polyfills';
+import { isNone } from '@ember/utils'
 
-const { SimplePredicate, FilterOperator } = Query;
+import ListFormRoute from 'ember-flexberry/routes/list-form';
+import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
+import FilterOperator from 'ember-flexberry-data/query/filter-operator';
 
 export default ListFormRoute.extend({
   /**
@@ -46,20 +48,9 @@ export default ListFormRoute.extend({
     @type Object
     @default {}
   */
-  developerUserSettings: { FdGenerationListForm: {
-    'DEFAULT': {
-      'columnWidths': [
-        { 'propName': 'generationReason', 'width': 250 },
-        { 'propName': 'state', 'width': 100 },
-        { 'propName': 'percentComplete', 'width': 100 },
-      ],
-      'colsOrder': [{ 'propName': 'userName' }, { 'propName': 'state' }, { 'propName': 'percentComplete' },
-      { 'propName': 'startTime' }, { 'propName': 'endTime' }, { 'propName': 'stage.name' }, { 'propName': 'generationReason' }],
-      'sorting': [{ 'propName': 'startTime', 'direction': 'desc' }]
-    }
-  } },
+  developerUserSettings: undefined,
 
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
 
   /**
     It overrides base method and forms the limit predicate for loaded data.
@@ -75,7 +66,7 @@ export default ListFormRoute.extend({
     @return {BasePredicate} The predicate to limit loaded data.
    */
   objectListViewLimitPredicate: function(options) {
-    let methodOptions = Ember.merge({
+    let methodOptions = merge({
       modelName: undefined,
       projectionName: undefined,
       params: undefined
@@ -84,11 +75,30 @@ export default ListFormRoute.extend({
     if (methodOptions.modelName === this.get('modelName') &&
         methodOptions.projectionName === this.get('modelProjection')) {
       let stage = this.get('currentProjectContext').getCurrentStage();
-      if (!Ember.isNone(stage)) {
+      if (!isNone(stage)) {
         return new SimplePredicate('stage', FilterOperator.Eq, stage);
       }
     }
 
     return undefined;
+  },
+
+  init() {
+    this._super(...arguments);
+
+    this.set('developerUserSettings', {
+      FdGenerationListForm: {
+        'DEFAULT': {
+          'columnWidths': [
+            { 'propName': 'generationReason', 'width': 250 },
+            { 'propName': 'state', 'width': 100 },
+            { 'propName': 'percentComplete', 'width': 100 },
+          ],
+          'colsOrder': [{ 'propName': 'userName' }, { 'propName': 'state' }, { 'propName': 'percentComplete' },
+          { 'propName': 'startTime' }, { 'propName': 'endTime' }, { 'propName': 'stage.name' }, { 'propName': 'generationReason' }],
+          'sorting': [{ 'propName': 'startTime', 'direction': 'desc' }]
+        }
+      }
+    });
   }
 });

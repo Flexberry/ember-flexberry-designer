@@ -1,14 +1,18 @@
-@import 'fd-uml-diagram';
 @import 'src/themes/default/globals/site.variables';
 @import 'default/globals/site.variables';
-@import 'components/fd-attribute-table.less';
+@import 'components/fd-uml-diagram';
+@import 'components/fd-attribute-table';
+@import 'components/fd-sheet';
+@import 'components/fd-list';
 
-.pushable, .full.height{
+.pushable,
+.full.height {
   transition: background-color 1s;
 }
 
 .pushable.fade,
-.pushable.fade .full.height{
+.pushable.fade .full.height,
+.content-mini.fade {
   background: @overlayColor;
 }
 
@@ -110,7 +114,7 @@ h2.form-header,
   padding: 5em 4em 3em;
 }
 
-.sitemap-bottom{
+.sitemap-bottom {
   position: absolute;
   bottom: 0;
   width: 100%;

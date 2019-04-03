@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import { A } from '@ember/array';
 import { UseCase } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-use-case';
 import { Association } from '../../objects/uml-primitives/fd-uml-association';
 import { UseCaseActor } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-actor';
@@ -13,7 +14,7 @@ import { Dependency } from '../../objects/uml-primitives/fd-uml-dependency';
   @class FdActionsForUCDPrimitivesMixin
   @extends <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
-export default Ember.Mixin.create({
+export default Mixin.create({
   actions: {
     /**
       Handler for click on addUseCase button.
@@ -80,11 +81,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newAssociationObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Usecase', 'flexberry.uml.UsecaseActor']));
+      }).bind(this), e, A(['flexberry.uml.Usecase', 'flexberry.uml.UsecaseActor']));
     },
 
     /**
@@ -102,11 +103,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newAssociationObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Usecase', 'flexberry.uml.UsecaseActor']));
+      }).bind(this), e, A(['flexberry.uml.Usecase', 'flexberry.uml.UsecaseActor']));
     },
 
     /**
@@ -124,11 +125,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newGeneralizationObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Usecase', 'flexberry.uml.UsecaseActor']));
+      }).bind(this), e, A(['flexberry.uml.Usecase', 'flexberry.uml.UsecaseActor']));
     },
 
     /**
@@ -146,11 +147,11 @@ export default Ember.Mixin.create({
           target: {
             id: linkProperties.target
           },
-          vertices: linkProperties.points || Ember.A()
+          vertices: linkProperties.points || A()
         });
 
         return newDependencyObject;
-      }).bind(this), e, Ember.A(['flexberry.uml.Usecase']));
+      }).bind(this), e, A(['flexberry.uml.Usecase']));
     },
   }
 });

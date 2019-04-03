@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model(control) {
     let store = this.get('store');
     return store.find('fd-visual-edit-control', control);

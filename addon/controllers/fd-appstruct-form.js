@@ -1,4 +1,12 @@
-import Ember from 'ember';
+import { on } from '@ember/object/evented';
+import { inject as service } from '@ember/service';
+import { observer } from '@ember/object';
+import { A } from '@ember/array';
+import { isNone } from '@ember/utils';
+import { isEqual } from '@ember/utils';
+import { computed } from '@ember/object';
+import { run } from '@ember/runloop';
+import $ from 'jquery'
 import FdAppStructTree from '../objects/fd-appstruct-tree';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
 import { translationMacro as t } from 'ember-i18n';
@@ -23,13 +31,13 @@ FdFormUnsavedData, {
     @property store
     @type Service
   */
-  store: Ember.inject.service(),
+  store: service(),
 
   /**
     @property currentProjectContext
     @type Service
   */
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
 
   /**
     Setting off for 'openProcessEditorForm' buttons.
@@ -65,7 +73,7 @@ FdFormUnsavedData, {
      @property appState
     @type AppStateService
   */
-  appState: Ember.inject.service(),
+  appState: service(),
 
   allAttrsHidedn: false,
 
@@ -104,7 +112,7 @@ FdFormUnsavedData, {
     @type Array
     @default []
    */
-  jstreeSelectedNodesLeft: Ember.A(),
+  jstreeSelectedNodesLeft: A(),
 
   /**
     Selected nodes in right jsTree.
@@ -113,7 +121,7 @@ FdFormUnsavedData, {
     @type Array
     @default []
    */
-  jstreeSelectedNodesRight: Ember.A(),
+  jstreeSelectedNodesRight: A(),
 
   /**
     Nodes in right jsTree for edit propertys.
@@ -129,7 +137,7 @@ FdFormUnsavedData, {
     @property typesOptions
     @type Object
   */
-  typesOptions: Ember.computed(() => ({
+  typesOptions: computed(() => ({
     '«listform»': {
       icon: 'assets/images/listform.png',
       max_children: 0
@@ -182,7 +190,7 @@ FdFormUnsavedData, {
     @property searchOptions
     @type Object
   */
-  searchOptions: Ember.computed(() => ({
+  searchOptions: computed(() => ({
     show_only_matches: true
   })),
 
@@ -195,10 +203,10 @@ FdFormUnsavedData, {
    */
   singleModeStage: false,
 
-  _modelObserver: Ember.on('init', Ember.observer('model', function () {
+  _modelObserver: on('init', observer('model', function () {
     // Reset selection.
-    this.set('jstreeSelectedNodesLeft', Ember.A());
-    this.set('jstreeSelectedNodesRight', Ember.A());
+    this.set('jstreeSelectedNodesLeft', A());
+    this.set('jstreeSelectedNodesRight', A());
     this.set('selectedElementForEdit', undefined);
   })),
 
@@ -207,15 +215,15 @@ FdFormUnsavedData, {
 
     @method selectedElementCaptionObserver
   */
-  selectedElementCaptionObserver: Ember.observer('selectedElementForEdit.caption', function() {
+  selectedElementCaptionObserver: observer('selectedElementForEdit.caption', function() {
     let selectedElement = this.get('selectedElementForEdit');
-    if (Ember.isNone(selectedElement)) {
+    if (isNone(selectedElement)) {
       return;
     }
 
     if (selectedElement.get('type') !== 'folder' && selectedElement.get('type') !== 'desk') {
       let caption = selectedElement.get('caption');
-      if (caption !== '' && !Ember.isNone(caption)) {
+      if (caption !== '' && !isNone(caption)) {
         selectedElement.set('text', caption);
       } else {
         selectedElement.set('text', selectedElement.get('className'));
@@ -228,9 +236,9 @@ FdFormUnsavedData, {
 
     @method selectedElementTextObserver
   */
-  selectedElementTextObserver: Ember.observer('selectedElementForEdit.text', function() {
+  selectedElementTextObserver: observer('selectedElementForEdit.text', function() {
     let selectedElement = this.get('selectedElementForEdit');
-    if (Ember.isNone(selectedElement)) {
+    if (isNone(selectedElement)) {
       return;
     }
 
@@ -242,7 +250,7 @@ FdFormUnsavedData, {
 
     @method jstreeSelectedNodesLeftObserver
   */
-  _jstreeSelectedNodesLeftObserver: Ember.observer('jstreeSelectedNodesLeft', function() {
+  _jstreeSelectedNodesLeftObserver: observer('jstreeSelectedNodesLeft', function() {
     let jstreeSelectedNodesLeft = this.get('jstreeSelectedNodesLeft');
     if (jstreeSelectedNodesLeft.length === 0) {
       this.set('removeLeftNodeDisabled', 'disabled');
@@ -266,7 +274,7 @@ FdFormUnsavedData, {
 
     @method jstreeSelectedNodesRightObserver
   */
-  _jstreeSelectedNodesRightObserver: Ember.observer('jstreeSelectedNodesRight', function() {
+  _jstreeSelectedNodesRightObserver: observer('jstreeSelectedNodesRight', function() {
     let jstreeSelectedNodesRight = this.get('jstreeSelectedNodesRight');
     if (jstreeSelectedNodesRight.length === 0) {
       this.set('addRightNodeDisabled', 'disabled');
@@ -303,7 +311,7 @@ FdFormUnsavedData, {
 
     @method _jstreeSelectedNodesObserver
   */
-  _jstreeSelectedNodesObserver: Ember.observer('jstreeSelectedNodesLeft', 'jstreeSelectedNodesRight', function() {
+  _jstreeSelectedNodesObserver: observer('jstreeSelectedNodesLeft', 'jstreeSelectedNodesRight', function() {
     let jstreeSelectedNodesLeft = this.get('jstreeSelectedNodesLeft');
     let jstreeSelectedNodesRight = this.get('jstreeSelectedNodesRight');
     if (jstreeSelectedNodesRight.length === 0 || jstreeSelectedNodesLeft.length === 0) {
@@ -327,7 +335,7 @@ FdFormUnsavedData, {
     @property indexSelectedRight
     @type Number
   */
-  indexSelectedRight: Ember.computed('jstreeSelectedNodesRight', function() {
+  indexSelectedRight: computed('jstreeSelectedNodesRight', function() {
     let jstreeSelectedNodesRight = this.get('jstreeSelectedNodesRight');
     if (jstreeSelectedNodesRight.length === 0 || jstreeSelectedNodesRight[0].type === 'desk') {
       return {
@@ -359,6 +367,16 @@ FdFormUnsavedData, {
       downRightNodeDisabled: downRightNodeDisabled
     };
   }),
+
+  closeRightPanelBtnSelector: 'div.panel-toolbar > div > button.close-panel-btn',
+
+  setCloseRightPanelBtnMessage() {
+    if (this.allAttrsHidedn) {
+      this.set('closeRightPanelBtnMessage', t('forms.fd-appstruct-form.show-panel-btn-caption'));
+    } else {
+      this.set('closeRightPanelBtnMessage', t('forms.fd-appstruct-form.close-panel-btn-caption'));
+    }
+  },
 
   actions: {
     /**
@@ -423,7 +441,7 @@ FdFormUnsavedData, {
         let forms = allClasses.filterBy('formViews.firstObject.view.class.id', classId);
         if (forms.length === 0) {
           this.get('jstreeActionReceiverLeft').send('deleteNode', jstreeSelectedNodesLeft[0]);
-          this.set('jstreeSelectedNodesLeft', Ember.A());
+          this.set('jstreeSelectedNodesLeft', A());
           let deletedClass = allClasses.findBy('id', classId);
           deletedClass.destroyRecord();
         } else {
@@ -457,7 +475,7 @@ FdFormUnsavedData, {
       }
 
       let _this = this;
-      Ember.run.next(_this, () => {
+      run.next(_this, () => {
         let selectedNode = jstreeSelectedNodesLeft[0];
         let classId = selectedNode.original.get('idNode');
 
@@ -480,7 +498,7 @@ FdFormUnsavedData, {
           store.createRecord('fd-dev-view', {
             class: devClass,
             name: newCaption,
-            definition: Ember.A()
+            definition: A()
           }).save().then(savedDevView => {
             store.createRecord('fd-dev-form-view', {
               class: savedDevClass,
@@ -628,7 +646,7 @@ FdFormUnsavedData, {
       arrayChildrensParentSelectedNode.removeObject(selectedObject);
 
       this.get('jstreeActionReceiverRight').send('deleteNode', jstreeSelectedNodesRight[0]);
-      this.set('jstreeSelectedNodesRight', Ember.A());
+      this.set('jstreeSelectedNodesRight', A());
     },
 
     /**
@@ -649,8 +667,8 @@ FdFormUnsavedData, {
       let folder = FdAppStructTree.create({
         text: 'NewFolder' + folderIndex,
         type: 'folder',
-        children: Ember.A(),
-        copyChildren: Ember.A(),
+        children: A(),
+        copyChildren: A(),
         id: 'NF' + folderId
       });
 
@@ -724,7 +742,7 @@ FdFormUnsavedData, {
       let record = this.get('model.applications')[0];
       record.set('containersStr', dataForSave);
 
-      if (Ember.isNone(record.get('caption'))) {
+      if (isNone(record.get('caption'))) {
         record.set('caption', record.get('name'));
       }
 
@@ -757,18 +775,18 @@ FdFormUnsavedData, {
       this.transitionToRoute('fd-generation-process-form.new');
     },
 
-    closeRightpanel() {
-      Ember.$('.closable.panel-left').toggle(500);
-
-      if (this.allAttrsHidedn) {
-        this.set('popupMessage', t('forms.fd-appstruct-form.close-panel-btn-caption'));
-        Ember.$('.panel-wrapper .panel-right').css('width', '50%');
-      } else {
-        this.set('popupMessage', t('forms.fd-appstruct-form.show-panel-btn-caption'));
-        Ember.$('.panel-wrapper .panel-right').css('width', '100%');
-      }
+    closeRightPanel() {
+      $('.closable.panel-left').toggle(500);
 
       this.toggleProperty('allAttrsHidedn');
+
+      this.setCloseRightPanelBtnMessage();
+
+      if (this.allAttrsHidedn) {
+        $('.panel-wrapper .panel-right').css('width', '100%');
+      } else {
+        $('.panel-wrapper .panel-right').css('width', '50%');
+      }
     }
   },
 
@@ -778,7 +796,7 @@ FdFormUnsavedData, {
     @method saveOriginalData
   */
   originalDataInit: function () {
-    Ember.run.next(this, () => {
+    run.next(this, () => {
       this.saveDataToOriginal();
     });
   },
@@ -811,7 +829,7 @@ FdFormUnsavedData, {
     let checkResult = false;
     let originalDataString = this.get('_originalData');
     let currentDataString = this._getStringifyModel();
-    if (!Ember.isEqual(originalDataString, currentDataString)) {
+    if (!isEqual(originalDataString, currentDataString)) {
       checkResult = true;
     }
 
@@ -825,7 +843,7 @@ FdFormUnsavedData, {
   */
   _updateTreeData() {
     let dataTree = this.get('model.rightTreeNodes');
-    restorationNodeTree(dataTree, {}, Ember.A(['folder', 'desk']), true);
+    restorationNodeTree(dataTree, {}, A(['folder', 'desk']), true);
 
     this.get('jstreeActionReceiverRight').send('redraw');
   },

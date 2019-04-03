@@ -2,7 +2,7 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 
 /**
   Describes properties on the tree.
@@ -10,7 +10,7 @@ import Ember from 'ember';
   @class FdAppStructTree
   @extends <a href="http://emberjs.com/api/classes/Ember.Object.html">Ember.Object</a>
 */
-export default Ember.Object.extend({
+export default EmberObject.extend({
 
   /**
     Item property 'name'.

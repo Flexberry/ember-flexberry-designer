@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
-export let Model = Ember.Mixin.create({
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
+
+export let Model = Mixin.create({
   /**
     Non-stored property.
 
@@ -82,11 +84,11 @@ export let Model = Ember.Mixin.create({
     let parentValidations = this._super();
     let thisValidations = {
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 export let defineBaseModel = function (modelClass) {
@@ -97,78 +99,78 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('AssocList', 'fd-dev-base-association', {
-    referenceCount: Projection.attr('Количество упоминаний'),
-    assocType: Projection.attr('Тип связи'),
-    startClass: Projection.belongsTo('fd-class', '', {
-      nameStr: Projection.attr('Начальный класс')
+    referenceCount: attr('Количество упоминаний'),
+    assocType: attr('Тип связи'),
+    startClass: belongsTo('fd-class', '', {
+      nameStr: attr('Начальный класс')
     }, { hidden: true }),
-    endClass: Projection.belongsTo('fd-class', '', {
-      nameStr: Projection.attr('Конечный класс')
+    endClass: belongsTo('fd-class', '', {
+      nameStr: attr('Конечный класс')
     }, { hidden: true }),
-    startRole: Projection.attr('Начальная роль'),
-    endRole: Projection.attr('Конечная роль'),
-    stage: Projection.belongsTo('fd-stage', '', {
-      name: Projection.attr('', { hidden: true })
+    startRole: attr('Начальная роль'),
+    endRole: attr('Конечная роль'),
+    stage: belongsTo('fd-stage', '', {
+      name: attr('', { hidden: true })
     }, { hidden: true }),
-    storage: Projection.attr('Хранилище')
+    storage: attr('Хранилище')
   });
   modelClass.defineProjection('EditPropertyLookups', 'fd-dev-base-association', {
-    assocType: Projection.attr('AssocType', { hidden: true }),
-    autoStoreMasterDisabled: Projection.attr('AutoStoreMasterDisabled', { hidden: true }),
-    realEndRole: Projection.attr('RealEndRole', { hidden: true }),
-    realStartRole: Projection.attr('RealStartRole', { hidden: true }),
-    storage: Projection.attr('Storage', { hidden: true }),
-    startRolePublishName: Projection.attr('StartRolePublishName', { hidden: true }),
-    endRolePublishName: Projection.attr('EndRolePublishName', { hidden: true }),
-    endMultiplicity: Projection.attr('EndMultiplicity', { hidden: true }),
-    endRole: Projection.attr('EndRole', { hidden: true }),
-    endRoleAccessModifier: Projection.attr('EndRoleAccessModifier', { hidden: true }),
-    endRoleStored: Projection.attr('EndRoleStored', { hidden: true }),
-    endRoleStr: Projection.attr('EndRoleStr', { hidden: true }),
-    notNullStart: Projection.attr('NotNullStart', { hidden: true }),
-    startMultiplicity: Projection.attr('StartMultiplicity', { hidden: true }),
-    startRole: Projection.attr('StartRole', { hidden: true }),
-    startRoleAccessModifier: Projection.attr('StartRoleAccessModifier', { hidden: true }),
-    startRoleStored: Projection.attr('StartRoleStored', { hidden: true }),
-    startRoleStr: Projection.attr('StartRoleStr', { hidden: true }),
-    referenceCount: Projection.attr('ReferenceCount', { hidden: true }),
-    name: Projection.attr('Name', { hidden: true }),
-    description: Projection.attr('Description', { hidden: true }),
-    nameStr: Projection.attr('NameStr', { hidden: true }),
-    endClass: Projection.belongsTo('fd-class', 'EndClass', {
+    assocType: attr('AssocType', { hidden: true }),
+    autoStoreMasterDisabled: attr('AutoStoreMasterDisabled', { hidden: true }),
+    realEndRole: attr('RealEndRole', { hidden: true }),
+    realStartRole: attr('RealStartRole', { hidden: true }),
+    storage: attr('Storage', { hidden: true }),
+    startRolePublishName: attr('StartRolePublishName', { hidden: true }),
+    endRolePublishName: attr('EndRolePublishName', { hidden: true }),
+    endMultiplicity: attr('EndMultiplicity', { hidden: true }),
+    endRole: attr('EndRole', { hidden: true }),
+    endRoleAccessModifier: attr('EndRoleAccessModifier', { hidden: true }),
+    endRoleStored: attr('EndRoleStored', { hidden: true }),
+    endRoleStr: attr('EndRoleStr', { hidden: true }),
+    notNullStart: attr('NotNullStart', { hidden: true }),
+    startMultiplicity: attr('StartMultiplicity', { hidden: true }),
+    startRole: attr('StartRole', { hidden: true }),
+    startRoleAccessModifier: attr('StartRoleAccessModifier', { hidden: true }),
+    startRoleStored: attr('StartRoleStored', { hidden: true }),
+    startRoleStr: attr('StartRoleStr', { hidden: true }),
+    referenceCount: attr('ReferenceCount', { hidden: true }),
+    name: attr('Name', { hidden: true }),
+    description: attr('Description', { hidden: true }),
+    nameStr: attr('NameStr', { hidden: true }),
+    endClass: belongsTo('fd-class', 'EndClass', {
 
     }, { hidden: true }),
-    startClass: Projection.belongsTo('fd-class', 'StartClass', {
+    startClass: belongsTo('fd-class', 'StartClass', {
 
     }, { hidden: true })
   });
   modelClass.defineProjection('Generator', 'fd-dev-base-association', {
-    assocType: Projection.attr('AssocType', { hidden: true }),
-    autoStoreMasterDisabled: Projection.attr('AutoStoreMasterDisabled', { hidden: true }),
-    realEndRole: Projection.attr('RealEndRole', { hidden: true }),
-    realStartRole: Projection.attr('RealStartRole', { hidden: true }),
-    storage: Projection.attr('Storage', { hidden: true }),
-    startRolePublishName: Projection.attr('StartRolePublishName', { hidden: true }),
-    endRolePublishName: Projection.attr('EndRolePublishName', { hidden: true }),
-    endMultiplicity: Projection.attr('EndMultiplicity', { hidden: true }),
-    endRole: Projection.attr('EndRole', { hidden: true }),
-    endRoleAccessModifier: Projection.attr('EndRoleAccessModifier', { hidden: true }),
-    endRoleStored: Projection.attr('EndRoleStored', { hidden: true }),
-    endRoleStr: Projection.attr('EndRoleStr', { hidden: true }),
-    notNullStart: Projection.attr('NotNullStart', { hidden: true }),
-    startMultiplicity: Projection.attr('StartMultiplicity', { hidden: true }),
-    startRole: Projection.attr('StartRole', { hidden: true }),
-    startRoleAccessModifier: Projection.attr('StartRoleAccessModifier', { hidden: true }),
-    startRoleStored: Projection.attr('StartRoleStored', { hidden: true }),
-    startRoleStr: Projection.attr('StartRoleStr', { hidden: true }),
-    referenceCount: Projection.attr('ReferenceCount', { hidden: true }),
-    name: Projection.attr('Name', { hidden: true }),
-    description: Projection.attr('Description', { hidden: true }),
-    nameStr: Projection.attr('NameStr', { hidden: true }),
-    endClass: Projection.belongsTo('fd-class', 'EndClass', {
+    assocType: attr('AssocType', { hidden: true }),
+    autoStoreMasterDisabled: attr('AutoStoreMasterDisabled', { hidden: true }),
+    realEndRole: attr('RealEndRole', { hidden: true }),
+    realStartRole: attr('RealStartRole', { hidden: true }),
+    storage: attr('Storage', { hidden: true }),
+    startRolePublishName: attr('StartRolePublishName', { hidden: true }),
+    endRolePublishName: attr('EndRolePublishName', { hidden: true }),
+    endMultiplicity: attr('EndMultiplicity', { hidden: true }),
+    endRole: attr('EndRole', { hidden: true }),
+    endRoleAccessModifier: attr('EndRoleAccessModifier', { hidden: true }),
+    endRoleStored: attr('EndRoleStored', { hidden: true }),
+    endRoleStr: attr('EndRoleStr', { hidden: true }),
+    notNullStart: attr('NotNullStart', { hidden: true }),
+    startMultiplicity: attr('StartMultiplicity', { hidden: true }),
+    startRole: attr('StartRole', { hidden: true }),
+    startRoleAccessModifier: attr('StartRoleAccessModifier', { hidden: true }),
+    startRoleStored: attr('StartRoleStored', { hidden: true }),
+    startRoleStr: attr('StartRoleStr', { hidden: true }),
+    referenceCount: attr('ReferenceCount', { hidden: true }),
+    name: attr('Name', { hidden: true }),
+    description: attr('Description', { hidden: true }),
+    nameStr: attr('NameStr', { hidden: true }),
+    endClass: belongsTo('fd-class', 'EndClass', {
 
     }, { hidden: true }),
-    startClass: Projection.belongsTo('fd-class', 'StartClass', {
+    startClass: belongsTo('fd-class', 'StartClass', {
 
     }, { hidden: true })
   });
