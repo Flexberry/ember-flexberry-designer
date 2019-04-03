@@ -10,7 +10,7 @@ export default FlexberryButtonComponent.extend({
 
   classNames: ['fd-round-button'],
 
-  colorClass: 'blue',
+  colorClass: ' ',
 
   init() {
     this._super(...arguments);
