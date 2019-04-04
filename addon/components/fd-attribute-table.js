@@ -62,9 +62,9 @@ export default Component.extend({
       @method actions.deleteValue
     */
     deleteValue() {
-      this.get('delete')();
-
       let selectedValues = this.get('selectedValues');
+      this.get('delete')(selectedValues);
+
       selectedValues.forEach((value) => value.deleteRecord());
       selectedValues.clear();
     },

@@ -1,8 +1,9 @@
+import { module, test } from 'qunit';
 import { A } from '@ember/array';
-import { moduleFor, test } from 'ember-qunit';
 import FdClassExternalStoreInstancesInType from 'ember-flexberry-designer/objects/fd-storeinstancesintype';
+import { deserialize, serialize } from 'ember-flexberry-designer/utils/transforms-utils/fd-storeinstancesintype';
 
-moduleFor('transform:fd-storeinstancesintype', 'Unit | Transform | fd storeinstancesintype');
+module('Unit | Utility | fd storeinstancesintype');
 
 test('it exists', function(assert) {
 
@@ -28,12 +29,6 @@ test('it exists', function(assert) {
   '<Item DataService="dataService3" data="data3" />' +
   '</DataSourceCustomizerList>';
 
-  let transform = this.subject();
-  assert.ok(transform);
-
-  let deserializeResult = transform.deserialize(xml);
-  assert.deepEqual(deserializeResult, objectModel, 'Store instances in type deserialize does not work');
-
-  let serializeResult = transform.serialize(deserializeResult);
-  assert.equal(serializeResult, xml, 'Store instances in type serialize does not work');
+  assert.deepEqual(deserialize(xml), objectModel, `The 'deserialize' function is OK.`);
+  assert.equal(serialize(objectModel), xml, `The 'serialize' function is OK.`);
 });

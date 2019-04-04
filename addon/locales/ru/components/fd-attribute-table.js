@@ -39,5 +39,12 @@ export default {
     'type': 'Тип хранилища',
     'create-btn': 'Создать тип хранилища',
     'delete-btn': 'Удалить выбранные',
+  'store-instances': {
+    'data': 'Тип',
+    'data-placeholder': 'Введите тип',
+    'ds': 'Сервис данных',
+    'ds-placeholder': 'Введите сервис данных',
+    'create-btn': 'Создать тип в хранилище',
+    'delete-btn': 'Удалить выбранные',
   }
 };

@@ -13,7 +13,7 @@ import {
   defineBaseModel,
 } from '../mixins/regenerated/models/fd-dev-stage';
 
-import { deserialize, serialize } from '../utils/fd-type-map-functions';
+import { deserialize, serialize } from '../utils/transforms-utils/fd-type-map-functions';
 
 /**
   Model for stage.
@@ -53,9 +53,9 @@ let Model = StageModel.extend(DevStageMixin, {
   /**
     See [EmberJS API](https://emberjs.com/).
 
-    @method rolledBack
+    @method rollbackAttributes
   */
-  rolledBack() {
+  rollbackAttributes() {
     this.set('_typeMapCS', undefined);
 
     return this._super(...arguments);

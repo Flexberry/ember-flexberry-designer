@@ -5,6 +5,20 @@
       {{t "components.fd-external-editing-panel.template-caption"}}
     </div>
     <div class="eleven wide column light-text">
+      {{flexberry-dropdown
+        items=stageItems.names
+        value=stageValue
+        class='fluid input'
+        onChange=(if deactivateActions '' (action "changeStageValue"))
+      }}
+      {{#if stageValue}}
+        {{flexberry-dropdown
+          items=classItems.names
+          value=classValue
+          class='fluid input'
+          onChange=(if deactivateActions '' (action "changeClassValue"))
+        }}
+      {{/if}}
 
     </div>
   </div>
@@ -35,13 +49,12 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="five wide column">
-      <div>{{t "components.fd-external-editing-panel.instances-caption"}}</div>
-    </div>
-    <div class="eleven wide column light-text">
-
-    </div>
-  </div>
+  {{fd-attribute-table
+    tableView=tableViewForStoreInstancesInType
+    buttonCaption=storeInstancesInTypeButton
+    model=model.storeInstancesInTypeXML
+    create=(action 'createStoreInstancesInType')
+    delete=(action 'deleteStoreInstancesInType')
+  }}
 
 </div>
