@@ -78,15 +78,24 @@ export default DS.Transform.extend({
           'Points': [
           ]
         };
+        let link0Id = linkTree[parentClassId][baseLinkId][0];
+        let link0 =  elements[link0Id];
+        let nCrossSegment = this._findCrossSegment(baseLink.Points, link0.StartPoint);
+        for (let i = 0; i < nCrossSegment; i++) {
+          parentLink.Points.push(baseLink.Points[i]);
+        }
+        parentLink.Points.push(link0.StartPoint);
+        let baseLinkPoints = [ link0.StartPoint ];
+        for (let i = nCrossSegment; i < baseLink.Points.length; i++) {
+          baseLinkPoints.push(baseLink.Points[i]);
+        }
+        baseLink.Points = baseLinkPoints;
+        linkConnector.Location.X = link0.StartPoint.X - linkConnectorWidth / 2;
+        linkConnector.Location.Y = link0.StartPoint.Y - linkConnectorHeight / 2;
         elements[parentLinkUuid] = parentLink;
         for (let i = 0; i < linkTree[parentClassId][baseLinkId].length; i++) {
           let linkId = linkTree[parentClassId][baseLinkId][i];
           let link = elements[linkId];
-          if (i === 0) {
-            linkConnector.Location.X = link.StartPoint.X - linkConnectorWidth / 2;
-            linkConnector.Location.Y = link.StartPoint.Y - linkConnectorHeight / 2;
-          }
-
           link.StartPrimitive.$ref = linkConnectorUuid;
           link.StartLE.Primitive.$ref = linkConnectorUuid;
           link.$type = 'STORMCASE.UML.cad.LinkInheritance, UMLCAD';
@@ -103,6 +112,31 @@ export default DS.Transform.extend({
 
     primitivesJsonString = JSON.stringify(primitives);
     return primitivesJsonString;
+  },
+
+  _findCrossSegment(points, crossPoint) {
+    let i;
+    for (i = 0; i < points.length-1; i++) {
+      let point1 = points[i];
+      let point2 = points[i+1];
+      let minX = Math.min(point1.X, point2.X);
+      let maxX = Math.max(point1.X, point2.X);
+      let minY = Math.min(point1.Y, point2.Y);
+      let maxY = Math.max(point1.Y, point2.Y);
+      if (crossPoint.X >= minX && crossPoint.X <= maxX && crossPoint.Y >= minY && crossPoint.Y <= maxY) {
+        let a = point1.Y - point2.Y;
+        let b = point2.X - point1.X;
+        let c = point1.X * point2.Y - point2.X * point1.Y;
+        let norm = Math.sqrt(a * a + b * b);
+        let d = a *  crossPoint.X + b * crossPoint.Y + c;
+        d = Math.abs(d / norm);
+        if (d < 2) {
+          break;
+        }
+      }
+    }
+
+    return i+1;
   },
 
   serialize(deserialized) {
