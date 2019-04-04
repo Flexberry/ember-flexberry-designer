@@ -1,7 +1,9 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
 import { A } from '@ember/array';
+import { set, computed } from '@ember/object';
+import { isBlank } from '@ember/utils';
+import Builder from 'ember-flexberry-data/query/builder';
 import FdUpdateBsValueMixin from '../../mixins/fd-editing-panels/fd-update-bs-value';
 import FdUpdateAttributeValueMixin from '../../mixins/fd-editing-panels/fd-update-attribute-value';
 import FdUpdateMethodeValueMixin from '../../mixins/fd-editing-panels/fd-update-method-value';
@@ -31,11 +33,18 @@ export default Component.extend(
   fdSheetService: service(),
 
   /**
+    Storeges arrays.
+
+    @property storegesItems
+    @type Object
+  */
+  storegesItems: undefined,
+
+  /**
     Table headers.
 
     @property tableClassStorageTypes
     @type Array
-    @default undefined
   */
   tableClassStorageTypes: computed(() => (
     A([{
@@ -52,11 +61,9 @@ export default Component.extend(
     },
     {
       columnCaption: 'components.fd-attribute-table.storage.type',
-      columnProperty: 'storageType',
+      columnProperty: 'storageType.shortName',
       columnClass: 'four',
       isDropDown: true,
-      dropdownItems: ['1', '2', '3'],
-      dropdownValue: null,
     }])
   )),
 
@@ -104,6 +111,25 @@ export default Component.extend(
     deleteBtn: 'components.fd-attribute-table.view.delete-btn',
   })),
 
+  init() {
+    this._super(...arguments);
+
+    let _this = this;
+    let store = this.get('store');
+    let builder = new Builder(store)
+      .from('fd-storage-type')
+      .selectByProjection('ListFormView');
+
+    store.query('fd-storage-type', builder.build()).then((storeges) => {
+      let storegesNames = storeges.mapBy('shortName');
+      storegesNames.unshift('');
+
+      _this.set('storegesItems', {
+        names: storegesNames,
+        objects: storeges,
+      });
+    });
+  },
 
   actions: {
 
@@ -118,6 +144,7 @@ export default Component.extend(
       store.createRecord('fd-class-storage-type', {
         class: model
       });
+    },
 
     /**
       Method create view from table.
@@ -141,6 +168,21 @@ export default Component.extend(
     */
     openViewSheet(selectView) {
       this.get('openViewSheetController')(selectView);
+    },
+
+    /**
+      Update storageType.
+
+      @method actions.dropdownChangeStorage
+    */
+    dropdownChangeStorage(model, value) {
+      if (isBlank(value)) {
+        set(model, 'storageType', null);
+      } else {
+        let storegesItems = this.get('storegesItems');
+        let storegeObject = storegesItems.objects.findBy('shortName', value);
+        set(model, 'storageType', storegeObject);
+      }
     }
   }
 });

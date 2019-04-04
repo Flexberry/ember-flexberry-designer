@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { A } from '@ember/array';
+import { isNone } from '@ember/utils';
 import layout from '../templates/components/fd-attribute-table';
 
 export default Component.extend({
@@ -21,6 +22,14 @@ export default Component.extend({
     @type Array
   */
   buttonCaption: undefined,
+
+  /**
+    Items for dropdowns.
+
+    @property dropdownItemsObject
+    @type Object
+  */
+  dropdownItemsObject: undefined,
 
   /**
     Data.
@@ -63,7 +72,10 @@ export default Component.extend({
     */
     deleteValue() {
       let selectedValues = this.get('selectedValues');
-      this.get('delete')(selectedValues);
+      let deleteAction = this.get('delete');
+      if (!isNone(deleteAction)) {
+        deleteAction(selectedValues);
+      }
 
       selectedValues.forEach((value) => value.deleteRecord());
       selectedValues.clear();
@@ -87,10 +99,15 @@ export default Component.extend({
     /**
       Method for dropdown change.
 
-      @method dropdownChange
+      @method dropdownChangeValue
+      @param {Object} model data.
       @param {Object} value selected value.
     */
-    dropdownChange(value) {
+    dropdownChangeValue(model, value) {
+      let dropdownChange = this.get('dropdownChange');
+      if (!isNone(dropdownChange)) {
+        dropdownChange(model, value);
+      }
     }
   }
 });

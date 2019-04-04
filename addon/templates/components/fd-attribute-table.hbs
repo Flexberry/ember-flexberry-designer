@@ -15,9 +15,9 @@
         <div class="{{tableView.columnClass}} wide column light-text fd-table">
           {{#if tableView.isDropDown}}
             {{flexberry-dropdown
-              items=tableView.dropdownItems
-              value=tableView.dropdownValue
-              onChange=(action 'dropdownChange')
+              items=dropdownItemsObject
+              value=(if (get value tableView.columnProperty) (get value tableView.columnProperty) '')
+              onChange=(action 'dropdownChangeValue' value)
               class="fluid input"
             }}
           {{else}}

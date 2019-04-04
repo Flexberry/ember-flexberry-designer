@@ -39,6 +39,7 @@ export default {
     'type': 'Storage type',
     'create-btn': 'Create storage type',
     'delete-btn': 'Delete selected',
+  },
   'store-instances': {
     'data': 'Type',
     'data-placeholder': 'Enter type',
