@@ -13,11 +13,20 @@
       </div>
       {{#each tableView as |tableView|}}
         <div class="{{tableView.columnClass}} wide column light-text fd-table">
-          {{flexberry-textbox
-            value=(mut (get value tableView.columnProperty))
-            class='fluid input'
-            placeholder=(t tableView.attrPlaceholder)
-          }}
+          {{#if tableView.isDropDown}}
+            {{flexberry-dropdown
+              items=tableView.dropdownItems
+              value=tableView.dropdownValue
+              onChange=(action 'dropdownChange')
+              class="fluid input"
+            }}
+          {{else}}
+            {{flexberry-textbox
+              value=(mut (get value tableView.columnProperty))
+              class='fluid input'
+              placeholder=(t tableView.attrPlaceholder)
+            }}
+          {{/if}}
         </div>
       {{/each}}
     {{/if}}

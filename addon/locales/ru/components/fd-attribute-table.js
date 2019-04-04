@@ -30,5 +30,14 @@ export default {
     'description-placeholder': 'Введите описание',
     'create-btn': 'Создать метод',
     'delete-btn': 'Удалить выбранные',
+  },
+  'storage': {
+    'name': 'Имя соединения',
+    'name-placeholder': 'Введите имя соединения',
+    'string': 'Строка соединения',
+    'string-placeholder': 'Введите строку соединения',
+    'type': 'Тип хранилища',
+    'create-btn': 'Создать тип хранилища',
+    'delete-btn': 'Удалить выбранные',
   }
 };

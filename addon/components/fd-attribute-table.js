@@ -82,6 +82,15 @@ export default Component.extend({
       } else {
         selectedValues.pushObject(value);
       }
+    },
+
+    /**
+      Method for dropdown change.
+
+      @method dropdownChange
+      @param {Object} value selected value.
+    */
+    dropdownChange(value) {
     }
   }
 });
