@@ -84,11 +84,12 @@ export default DS.Transform.extend({
         for (let i = 0; i < nCrossSegment; i++) {
           parentLink.Points.push(baseLink.Points[i]);
         }
-        parentLink.Points.push(link0.StartPoint);
+
         let baseLinkPoints = [ link0.StartPoint ];
         for (let i = nCrossSegment; i < baseLink.Points.length; i++) {
           baseLinkPoints.push(baseLink.Points[i]);
         }
+
         baseLink.Points = baseLinkPoints;
         linkConnector.Location.X = link0.StartPoint.X - linkConnectorWidth / 2;
         linkConnector.Location.Y = link0.StartPoint.Y - linkConnectorHeight / 2;
