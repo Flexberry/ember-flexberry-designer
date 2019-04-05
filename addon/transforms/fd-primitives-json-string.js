@@ -210,8 +210,8 @@ export default DS.Transform.extend({
       let baseLinkPoints = baseLink.Points;
       baseLinkPoints.shift();
       let mergePoints=outConnectorLink.Points.concat(baseLinkPoints);
-      set(baseLink, 'Points', mergePoints);
       set(baseLink, '$type',  'STORMCASE.UML.cad.Inheritance, UMLCAD');
+      set(baseLink, 'Points', mergePoints);
       set(baseLink.StartPrimitive, '$ref', parentClassId);
       set(baseLink.StartLE.Primitive, '$ref', parentClassId);
       for (let i = 1; i < inConnectorLinksIds.length; i++) {
