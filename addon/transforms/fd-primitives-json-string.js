@@ -85,6 +85,7 @@ export default DS.Transform.extend({
           parentLink.Points.push(baseLink.Points[i]);
         }
 
+        parentLink.Points.push(link0.StartPoint);
         let baseLinkPoints = [ link0.StartPoint ];
         for (let i = nCrossSegment; i < baseLink.Points.length; i++) {
           baseLinkPoints.push(baseLink.Points[i]);
