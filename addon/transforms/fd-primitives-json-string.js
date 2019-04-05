@@ -85,6 +85,7 @@ export default DS.Transform.extend({
           parentLink.Points.push(baseLink.Points[i]);
         }
 
+        parentLink.Points.push(link0.StartPoint);
         let baseLinkPoints = [ link0.StartPoint ];
         for (let i = nCrossSegment; i < baseLink.Points.length; i++) {
           baseLinkPoints.push(baseLink.Points[i]);
@@ -207,6 +208,12 @@ export default DS.Transform.extend({
       let inConnectorLinksIds = inConnectorsLinksTree[linkConnectorId];
       let baseLinkId = inConnectorLinksIds[0];
       let baseLink = elements[baseLinkId];
+      let baseLinkPoints = baseLink.Points;
+      baseLinkPoints.shift();
+      let outConnectorLinkPoints = outConnectorLink.Points;
+      outConnectorLinkPoints.pop();
+      let mergePoints=outConnectorLinkPoints.concat(baseLinkPoints);
+      set(baseLink, 'Points', mergePoints);
       set(baseLink, '$type',  'STORMCASE.UML.cad.Inheritance, UMLCAD');
       set(baseLink.StartPrimitive, '$ref', parentClassId);
       set(baseLink.StartLE.Primitive, '$ref', parentClassId);
