@@ -292,6 +292,11 @@
   savingSheet=(or (not _isSheetCreateClassPanel) selectedElement)
 }}
   {{#if (or (not _isSheetCreateClassPanel) selectedElement)}}
+    <div class="one wide column light-text">
+      {{#if (not selectedElement.model.name)}}
+        {{t "forms.fd-application-model.empty-name-error"}}
+      {{/if}}
+    </div>
     {{#if (known-for-type (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel"))}}
       {{component (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel")
         model=selectedElement.model

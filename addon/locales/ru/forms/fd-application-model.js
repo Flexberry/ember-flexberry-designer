@@ -20,5 +20,6 @@ export default {
   'application-caption': 'Приложение',
   'userform-caption': 'Пользовательская форма',
   'userstereotype-caption': 'Сущность с пользовательским стереотипом',
-  'parent-caption': 'Предки первого уровня'
+  'parent-caption': 'Предки первого уровня',
+  'empty-name-error': 'Имя не может быть пустым'
 };

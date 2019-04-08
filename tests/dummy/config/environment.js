@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function (environment) {
-  let backendUrl = 'http://rtc-web.ics.perm.ru:2018';
+  let backendUrl = 'https://ember-flexberry-designer-dummy.azurewebsites.net';
 
   if (environment === 'development-loc') {
     // Use `ember s -e development-loc` command for local backend usage.

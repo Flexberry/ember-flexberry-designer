@@ -1,6 +1,4 @@
 import Component from '@ember/component';
-import EmberObject from '@ember/object';
-import {inject as service} from '@ember/service';
 import FdCreateClassObject from '../../mixins/fd-create-class-object';
 import layout from '../../templates/components/fd-editing-panels/fd-create-entity';
 

@@ -273,18 +273,21 @@ export default Controller.extend(FdCreateClassObject, {
     */
     save() {
       let model = this.get('selectedElement.model');
-      this.get('appState').loading();
-      model.save()
-      .then(() => this.saveHasManyRelationships(model))
-      .then(() => {
-        this.updateClassModel(model);
-      })
-      .catch((error) => {
-        this.set('error', error);
-      })
-      .finally(() => {
-        this.get('appState').reset();
-      });
+      let modelName = model.get('name');
+      if (!isBlank(modelName)) {
+        this.get('appState').loading();
+        model.save()
+        .then(() => this.saveHasManyRelationships(model))
+        .then(() => {
+          this.updateClassModel(model);
+        })
+        .catch((error) => {
+          this.set('error', error);
+        })
+        .finally(() => {
+          this.get('appState').reset();
+        });
+      }
     },
 
     /**

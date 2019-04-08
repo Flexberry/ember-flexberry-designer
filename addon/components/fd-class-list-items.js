@@ -24,10 +24,10 @@ export default Component.extend({
     /**
       Open crate class panel
 
-      @method actions.openCreateClassPanel
+      @method actions.createClass
     */
-    openCreateClassPanel(stereotype) {
-      this.sendAction("openCreateClassPanel", stereotype);
+    createClass(stereotype) {
+      this.openCreateClassPanel(stereotype);
     }
   }
 });

@@ -20,5 +20,6 @@ export default {
   'application-caption': 'Application',
   'userform-caption': 'Userform',
   'userstereotype-caption': 'Entity with user stereotypes',
-  'parent-caption': 'Parent first level'
+  'parent-caption': 'Parent first level',
+  'empty-name-error': 'Name can not be empty'
 };
