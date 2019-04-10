@@ -3,15 +3,18 @@ import { set } from '@ember/object';
 import uuid from 'npm:node-uuid';
 
 export default DS.Transform.extend({
+
   deserialize(primitivesJsonString) {
     let primitives = JSON.parse(primitivesJsonString) || [];
+    let linkTypes = this._linkTypes();
     let elements = {};
     let linksIds = [];
     for (let i = 0; i < primitives.length; i++) {
       let primitive = primitives[i];
       let primitiveId = primitive.$id;
       elements[primitiveId] = primitive;
-      if (primitive.$type === 'STORMCASE.UML.cad.Inheritance, UMLCAD') {
+//       if (primitive.$type === 'STORMCASE.UML.cad.Inheritance, UMLCAD') {
+      if (primitive.$type in linkTypes) {
         linksIds.push(primitiveId);
       }
     }
@@ -22,27 +25,86 @@ export default DS.Transform.extend({
       let link = elements[linkId];
       let startPrimitiveId = link.StartPrimitive.$ref;
       let startPrimitive = elements[startPrimitiveId];
-      if (startPrimitive.$type === 'STORMCASE.UML.cad.Inheritance, UMLCAD') {
-        let parentId = startPrimitive.StartPrimitive.$ref;
+      let endPrimitiveId = link.EndPrimitive.$ref;
+      let endPrimitive = elements[endPrimitiveId];
+//       if (startPrimitive.$type === 'STORMCASE.UML.cad.Inheritance, UMLCAD') {
+      if (startPrimitive.$type in linkTypes || endPrimitive.$type in linkTypes) {
+        let baseLinkId;
+        let parentId;
+        let crossPoint;
+        let LE;
+        if (startPrimitive.$type in linkTypes) {
+          baseLinkId = startPrimitiveId;
+          parentId = startPrimitive.StartPrimitive.$ref;
+          crossPoint = link.StartPoint;
+          LE = link.StartLE;
+        } else {
+          baseLinkId = endPrimitiveId;
+          parentId = endPrimitive.StartPrimitive.$ref;
+          crossPoint = link.EndPoint;
+          LE = link.EndLE;
+        }
+        let crossInfo = {
+            linkId: linkId,
+            crossPoint: crossPoint,
+            LE: LE
+        };
+
         if (!(parentId in linkTree)) {
           linkTree[parentId] = {};
         }
 
-        if (!(startPrimitiveId in linkTree[parentId])) {
-          linkTree[parentId][startPrimitiveId] = [];
+        if (!(baseLinkId in linkTree[parentId])) {
+          linkTree[parentId][baseLinkId] = [];
         }
 
-        linkTree[parentId][startPrimitiveId].push(linkId);
+        linkTree[parentId][baseLinkId].push(crossInfo);
       }
 
     }
+
+    for (let parentClassId in linkTree) {
+      for (let baseLinkId in linkTree[parentClassId]) {
+        let baseLink = elements[baseLinkId];
+        let crossedLinksInfo = linkTree[parentClassId][baseLinkId];
+        let baseLinkPoints =  baseLink.Points;
+        baseLink.Points = [baseLinkPoints[0] ];
+        let prevX = baseLinkPoints[0].X;
+        let prevY = baseLinkPoints[0].Y;
+        let lastPointNo = 0;
+        crossedLinksInfo.sort(this._cmpByLE);
+        for (let i = 0; i < crossedLinksInfo.length; i++) {
+          /*
+          let crossedLinkInfo =  crossedLinksInfo[i];
+          let X = crossedLinkInfo.crossPoint.X;
+          let Y = crossedLinkInfo.crossPoint.Y;
+          if (i==0 || prevX != X || prevY != Y) {
+            let linkConnector = this._linkConnector(X, Y);
+            baseLink.StartPrimitive.$ref = linkConnector.$id;
+            baseLink.StartLE.Primitive.$ref = linkConnector.$id;
+            while (lastPointNo < crossedLinkInfo.LE.SegmNo) {
+              baseLink.Points.push(baseLinkPoints[i]);
+              i+=1;
+              lastPointNo+=1;
+            }
+            baseLink.Points.push(crossedLinkInfo.LE.Point);
+            baseLink = this._LinkInheritance(parentClassId, linkConnector.$id);
+          }
+          */
+        }
+      }
+    }
+
+/** ---------------------------**/
 
     let linkConnectorWidth = 20;
     let linkConnectorHeight = 20;
     for (let parentClassId in linkTree) {
       for (let baseLinkId in linkTree[parentClassId]) {
         let baseLink = elements[baseLinkId];
-        baseLink.$type = 'STORMCASE.UML.cad.LinkInheritance, UMLCAD';
+//         baseLink.$type = 'STORMCASE.UML.cad.LinkInheritance, UMLCAD';
+        let baseLinkType = baseLink.$type;
+        baseLink.$type = linkTypes[baseLinkType].sublinkType;
         let linkConnectorUuid = '{' + uuid.v4() + '}';
         let linkConnector = {
           '$id': linkConnectorUuid,
@@ -68,7 +130,8 @@ export default DS.Transform.extend({
         let parentLinkUuid = '{' + uuid.v4() + '}';
         let parentLink = {
           '$id': parentLinkUuid,
-          '$type': 'STORMCASE.UML.cad.Inheritance, UMLCAD',
+//           '$type': 'STORMCASE.UML.cad.Inheritance, UMLCAD',
+          '$type': baseLinkType,
           'StartPrimitive': {
             '$ref': parentClassId
           },
@@ -100,7 +163,8 @@ export default DS.Transform.extend({
           let link = elements[linkId];
           link.StartPrimitive.$ref = linkConnectorUuid;
           link.StartLE.Primitive.$ref = linkConnectorUuid;
-          link.$type = 'STORMCASE.UML.cad.LinkInheritance, UMLCAD';
+//           link.$type = 'STORMCASE.UML.cad.LinkInheritance, UMLCAD';
+          link.$type = linkTypes[baseLinkType].sublinkType;
         }
 
         elements[linkConnectorUuid] = linkConnector;
@@ -115,6 +179,88 @@ export default DS.Transform.extend({
     primitivesJsonString = JSON.stringify(primitives);
     return primitivesJsonString;
   },
+
+  _linkTypes() {
+    return {
+      'STORMCASE.UML.cad.Inheritance, UMLCAD': {
+        sublinkType: 'STORMCASE.UML.cad.LinkInheritance, UMLCAD',
+        isBaseLink: true,
+      },
+      'STORMCASE.UML.cad.Aggregation, UMLCAD': {
+        sublinkType: 'STORMCASE.UML.cad.LinkInheritance, UMLCAD',
+        isBaseLink: true,
+      },
+      'STORMCASE.UML.cad.Composition, UMLCAD': {
+        sublinkType: 'STORMCASE.UML.cad.LinkInheritance, UMLCAD',
+        isBaseLink: true,
+      },
+      'STORMCASE.UML.cad.Association, UMLCAD': {
+        sublinkType: 'STORMCASE.UML.cad.LinkInheritance, UMLCAD',
+        isBaseLink: true,
+      },
+      'STORMCASE.UML.cad.Realization, UMLCAD': {
+        sublinkType: 'SSTORMCASE.UML.cad.Realization, UMLCAD',
+        isBaseLink: false,
+      },
+      'STORMCASE.UML.Common.NoteConnector, UMLCommon': {
+        sublinkType: 'STORMCASE.UML.Common.NoteConnector, UMLCommon',
+        isBaseLink: false,
+      }
+    };
+  },
+
+  _linkConnector(X, Y) {
+    let linkConnectorWidth = 20;
+    let linkConnectorHeight = 20;
+    let linkConnectorUuid = '{' + uuid.v4() + '}';
+    let linkConnector = {
+      '$id': linkConnectorUuid,
+      '$type': 'STORMCASE.UML.cad.LinkConnector, UMLCAD',
+      'Name': {
+        'Text': 'LinkConnector'
+      },
+      'Location': {
+        '$type': 'System.Drawing.Point, System.Drawing',
+        'IsEmpty': false,
+        'X': X - linkConnectorWidth / 2,
+        'Y': Y - linkConnectorHeight / 2
+      },
+      'Size': {
+        '$type': 'System.Drawing.Size, System.Drawing',
+        'IsEmpty': false,
+        'Width': linkConnectorWidth,
+        'Height': linkConnectorHeight
+      }
+    };
+    return linkConnector;
+  },
+
+  _LinkInheritance(parentClassId, linkConnectorUuid) {
+    let LinkInheritanceUuid = '{' + uuid.v4() + '}';
+    let LinkInheritance = {
+      '$id': LinkInheritanceUuid,
+      '$type': 'stormcase.uml.cad.inheritance, umlcad',
+      'StartPrimitive': {
+        '$ref': parentClassId
+      },
+      'EndPrimitive': {
+        '$ref': linkConnectorUuid
+      },
+      'Points': [
+      ]
+    };
+    return LinkInheritance;
+  },
+
+  _cmpByLE(crossInfo1, crossInfo2) {
+    let ret = crossInfo1.LE.SegmNo - crossInfo2.LE.SegmNo;
+    if (ret == 0) {
+      ret = crossInfo1.LE.Percent - crossInfo2.LE.Percent;
+    }
+
+    return ret;
+  },
+
 
   _findCrossSegment(points, crossPoint) {
     let i;
