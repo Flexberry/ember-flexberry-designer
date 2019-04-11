@@ -64,6 +64,12 @@ export default DS.Transform.extend({
     for (let parentClassId in linkTree) {
       for (let baseLinkId in linkTree[parentClassId]) {
         let baseLink = elements[baseLinkId];
+        let startMultText;
+        if ('StartMultTxt' in baseLink) {
+          startMultText = baseLink.StartMultTxt.Text;
+          baseLink.StartMultTxt.Text = '';
+        }
+
         let EndPrimitiveRef = baseLink.EndPrimitive.$ref;
         let crossedLinksInfo = linkTree[parentClassId][baseLinkId];
         let baseLinkPoints =  baseLink.Points;
@@ -116,6 +122,9 @@ export default DS.Transform.extend({
         }
         baseLink.EndPrimitive.$ref = EndPrimitiveRef;
         baseLink.EndLE.Primitive.$ref = EndPrimitiveRef;
+        if (startMultText) {
+          baseLink.EndMultTxt.Text = startMultText;
+        }
         elements[baseLink.$id] = baseLink;
       }
     }
@@ -188,7 +197,15 @@ export default DS.Transform.extend({
         }
       },
       'Points': [
-      ]
+      ],
+      "StartMultTxt": {
+        "$type": "STORMCASE.Primitives.TextBlock, Repository",
+        "Text": "",
+      },
+      "EndMultTxt": {
+        "$type": "STORMCASE.Primitives.TextBlock, Repository",
+        "Text": "",
+      }
     };
     return toConnectorLink;
   },
