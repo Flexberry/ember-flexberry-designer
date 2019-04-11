@@ -33,12 +33,12 @@ export default Component.extend(
   fdSheetService: service(),
 
   /**
-    Storeges arrays.
+    Storages arrays.
 
-    @property storegesItems
+    @property storagesItems
     @type Object
   */
-  storegesItems: undefined,
+  storagesItems: undefined,
 
   /**
     Table headers.
@@ -120,13 +120,13 @@ export default Component.extend(
       .from('fd-storage-type')
       .selectByProjection('ListFormView');
 
-    store.query('fd-storage-type', builder.build()).then((storeges) => {
-      let storegesNames = storeges.mapBy('shortName');
-      storegesNames.unshift('');
+    store.query('fd-storage-type', builder.build()).then((storages) => {
+      let storagesNames = storages.mapBy('shortName');
+      storagesNames.unshift('');
 
-      _this.set('storegesItems', {
-        names: storegesNames,
-        objects: storeges,
+      _this.set('storagesItems', {
+        names: storagesNames,
+        objects: storages,
       });
     });
   },
@@ -179,9 +179,9 @@ export default Component.extend(
       if (isBlank(value)) {
         set(model, 'storageType', null);
       } else {
-        let storegesItems = this.get('storegesItems');
-        let storegeObject = storegesItems.objects.findBy('shortName', value);
-        set(model, 'storageType', storegeObject);
+        let storagesItems = this.get('storagesItems');
+        let storageObject = storagesItems.objects.findBy('shortName', value);
+        set(model, 'storageType', storageObject);
       }
     }
   }
