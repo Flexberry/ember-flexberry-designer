@@ -31,23 +31,21 @@ export default DS.Transform.extend({
       if (startPrimitive.$type in linkTypes || endPrimitive.$type in linkTypes) {
         let baseLinkId;
         let parentId;
-        let crossPoint;
         let LE;
-        if (startPrimitive.$type in linkTypes) {
+        let connectorToLinkEnd = startPrimitive.$type in linkTypes;
+        if (connectorToLinkEnd) {
           baseLinkId = startPrimitiveId;
           parentId = startPrimitive.StartPrimitive.$ref;
-          crossPoint = link.StartPoint;
           LE = link.StartLE;
         } else {
           baseLinkId = endPrimitiveId;
           parentId = endPrimitive.StartPrimitive.$ref;
-          crossPoint = link.EndPoint;
           LE = link.EndLE;
         }
-        let crossInfo = {
-            linkId: linkId,
-            crossPoint: crossPoint,
-            LE: LE
+        let crossedLinkInfo = {
+            connectedLinkId: linkId,
+            LE: LE,
+            connectorToLinkEnd: connectorToLinkEnd
         };
 
         if (!(parentId in linkTree)) {
@@ -58,7 +56,7 @@ export default DS.Transform.extend({
           linkTree[parentId][baseLinkId] = [];
         }
 
-        linkTree[parentId][baseLinkId].push(crossInfo);
+        linkTree[parentId][baseLinkId].push(crossedLinkInfo);
       }
 
     }
@@ -66,6 +64,7 @@ export default DS.Transform.extend({
     for (let parentClassId in linkTree) {
       for (let baseLinkId in linkTree[parentClassId]) {
         let baseLink = elements[baseLinkId];
+        let EnPrimitiveRef = baseLink.EndPrimitive.$ref;
         let crossedLinksInfo = linkTree[parentClassId][baseLinkId];
         let baseLinkPoints =  baseLink.Points;
         baseLink.Points = [baseLinkPoints[0] ];
@@ -73,29 +72,52 @@ export default DS.Transform.extend({
         let prevY = baseLinkPoints[0].Y;
         let lastPointNo = 0;
         crossedLinksInfo.sort(this._cmpByLE);
+        let linkConnector;
         for (let i = 0; i < crossedLinksInfo.length; i++) {
-          /*
           let crossedLinkInfo =  crossedLinksInfo[i];
-          let X = crossedLinkInfo.crossPoint.X;
-          let Y = crossedLinkInfo.crossPoint.Y;
-          if (i==0 || prevX != X || prevY != Y) {
-            let linkConnector = this._linkConnector(X, Y);
-            baseLink.StartPrimitive.$ref = linkConnector.$id;
-            baseLink.StartLE.Primitive.$ref = linkConnector.$id;
-            while (lastPointNo < crossedLinkInfo.LE.SegmNo) {
-              baseLink.Points.push(baseLinkPoints[i]);
-              i+=1;
-              lastPointNo+=1;
-            }
-            baseLink.Points.push(crossedLinkInfo.LE.Point);
-            baseLink = this._LinkInheritance(parentClassId, linkConnector.$id);
+          let crossPoint = crossedLinkInfo.LE.Point;
+          let connectedLinkId = crossedLinkInfo.connectedLinkId;
+          let connectedLink = elements[connectedLinkId];
+          while (lastPointNo < crossedLinkInfo.LE.SegmNo) {
+            baseLink.Points.push(baseLinkPoints[lastPointNo]);
+            lastPointNo += 1;
           }
-          */
+
+          baseLink.Points.push(crossPoint);
+          let X = crossPoint.X;
+          let Y = crossPoint.Y;
+          if (i==0 || prevX != X || prevY != Y) {
+            linkConnector = this._linkConnector(X, Y);
+            elements[linkConnector.$id] = linkConnector;
+            baseLink.EndPrimitive.$ref = linkConnector.$id;
+//             baseLink.EndLE.Primitive.$ref = linkConnector.$id;
+            elements[baseLink.$id] = baseLink;
+            baseLink = this._toConnectorLink(parentClassId, linkConnector.$id);
+            baseLink.Points.push(crossPoint);
+          }
+
+          if (crossedLinkInfo.connectorToLinkEnd) {
+            connectedLink.EndPrimitive.$ref = linkConnector.$id;
+            connectedLink.EndLE.Primitive.$ref = linkConnector.$id;
+          } else {
+            connectedLink.StartPrimitive.$ref = linkConnector.$id;
+            connectedLink.StartLE.Primitive.$ref = linkConnector.$id;
+          }
+          prevX = X;
+          prevY = Y;
         }
+
+        while (lastPointNo < baseLinkPoints.length) {
+          baseLink.Points.push(baseLinkPoints[lastPointNo]);
+          lastPointNo += 1;
+        }
+        baseLink.EndPrimitive.$ref = EnPrimitiveRef;
+        baseLink.EndLE.Primitive.$ref = EnPrimitiveRef;
+        elements[baseLink.$id] = baseLink;
       }
     }
 
-/** ---------------------------**/
+/** ---------------------------
 
     let linkConnectorWidth = 20;
     let linkConnectorHeight = 20;
@@ -170,7 +192,7 @@ export default DS.Transform.extend({
         elements[linkConnectorUuid] = linkConnector;
       }
     }
-
+*/
     primitives = [];
     for (let elementUuid in elements) {
       primitives.push(elements[elementUuid]);
@@ -235,21 +257,31 @@ export default DS.Transform.extend({
     return linkConnector;
   },
 
-  _LinkInheritance(parentClassId, linkConnectorUuid) {
-    let LinkInheritanceUuid = '{' + uuid.v4() + '}';
-    let LinkInheritance = {
-      '$id': LinkInheritanceUuid,
-      '$type': 'stormcase.uml.cad.inheritance, umlcad',
+  _toConnectorLink(fromUuid, toUuid) {
+    let toConnectorLinkUuid = '{' + uuid.v4() + '}';
+    let toConnectorLink = {
+      '$id': toConnectorLinkUuid,
+      '$type': 'STORMCASE.UML.cad.LinkInheritance, UMLCAD',
       'StartPrimitive': {
-        '$ref': parentClassId
+        '$ref': fromUuid
+      },
+      'StartLE': {
+        'Primitive': {
+          '$ref': '',
+        }
       },
       'EndPrimitive': {
-        '$ref': linkConnectorUuid
+        '$ref': toUuid
+      },
+      'EndLE': {
+        'Primitive': {
+          '$ref': '',
+        }
       },
       'Points': [
       ]
     };
-    return LinkInheritance;
+    return toConnectorLink;
   },
 
   _cmpByLE(crossInfo1, crossInfo2) {
