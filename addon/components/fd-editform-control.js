@@ -1,10 +1,10 @@
 /**
   @module ember-flexberry-designer
 */
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 
-import Ember from 'ember';
 import FdDraggableControlMixin from '../mixins/fd-draggable-control';
-
 import FdEditformControl from '../objects/fd-editform-control';
 import FdEditformGroup from '../objects/fd-editform-group';
 import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
@@ -16,7 +16,67 @@ import FdEditformTabgroup from '../objects/fd-editform-tabgroup';
   @extends <a href="http://emberjs.com/api/classes/Ember.Component.html">Ember.Component</a>
   @uses FdDraggableControlMixin
 */
-export default Ember.Component.extend(FdDraggableControlMixin, {
+export default Component.extend(FdDraggableControlMixin, {
+  /**
+    An object in the format `{ 'typeName': 'componentName' }`, which describes which components should be rendered for each type.
+
+    @private
+    @property _componentsTypeMap
+    @type Object
+  */
+  _componentsTypeMap: computed(() => ({
+    'bool': 'flexberry-checkbox',
+    'System.Boolean': 'flexberry-checkbox',
+
+    'DateTime': 'flexberry-simpledatetime',
+    'System.DateTime': 'flexberry-simpledatetime',
+    'ICSSoft.STORMNET.UserDataTypes.NullableDateTime': 'flexberry-simpledatetime',
+
+    'ICSSoft.STORMNET.UserDataTypes.WebFile': 'fd-file',
+
+    'char': 'flexberry-textbox',
+    'System.Char': 'flexberry-textbox',
+    'string': 'flexberry-textbox',
+    'System.String': 'flexberry-textbox',
+
+    'byte': 'flexberry-textbox',
+    'System.Byte': 'flexberry-textbox',
+    'sbyte': 'flexberry-textbox',
+    'System.SByte': 'flexberry-textbox',
+    'short': 'flexberry-textbox',
+    'System.Int16': 'flexberry-textbox',
+    'ushort': 'flexberry-textbox',
+    'System.UInt16': 'flexberry-textbox',
+    'int': 'flexberry-textbox',
+    'System.Int32': 'flexberry-textbox',
+    'uint': 'flexberry-textbox',
+    'System.UInt32': 'flexberry-textbox',
+    'long': 'flexberry-textbox',
+    'System.Int64': 'flexberry-textbox',
+    'ulong': 'flexberry-textbox',
+    'System.UInt64': 'flexberry-textbox',
+    'ICSSoft.STORMNET.UserDataTypes.NullableInt': 'flexberry-textbox',
+
+    'float': 'flexberry-textbox',
+    'System.Single': 'flexberry-textbox',
+    'double': 'flexberry-textbox',
+    'System.Double': 'flexberry-textbox',
+    'decimal': 'flexberry-textbox',
+    'System.Decimal': 'flexberry-textbox',
+    'ICSSoft.STORMNET.UserDataTypes.NullableDecimal': 'flexberry-textbox',
+
+    'object': 'flexberry-textbox',
+    'System.Object': 'flexberry-textbox',
+    'guid': 'flexberry-textbox',
+    'System.Guid': 'flexberry-textbox',
+
+    'enumeration': 'flexberry-dropdown',
+    'master': 'fd-lookup',
+    'detail': 'fd-groupedit',
+
+    'default': 'flexberry-textbox',
+  })).readOnly(),
+
   /**
     The passed control is a simple control.
 
@@ -25,7 +85,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     @readOnly
     @type Boolean
   */
-  _isControl: Ember.computed('control', function() {
+  _isControl: computed('control', function() {
     return this.get('control') instanceof FdEditformControl;
   }).readOnly(),
 
@@ -37,7 +97,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     @readOnly
     @type Boolean
   */
-  _isGroup: Ember.computed('control', function() {
+  _isGroup: computed('control', function() {
     return this.get('control') instanceof FdEditformGroup;
   }).readOnly(),
 
@@ -49,23 +109,42 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     @readOnly
     @type Boolean
   */
-  _isTab: Ember.computed('control', function() {
+  _isTab: computed('control', function() {
     return this.get('control') instanceof FdEditformTabgroup;
   }).readOnly(),
 
   /**
-    Type of rendered component.
+    The name of the component that will be rendered for this control.
 
     @private
-    @property _component
+    @property _componentName
     @readOnly
     @type String
   */
-  _component: Ember.computed('control.type', function() {
-    switch (this.get('control.type')) {
-      case 'date': return 'flexberry-datepicker';
-      case 'bool': return 'flexberry-checkbox';
-      default: return 'flexberry-textbox';
+  _componentName: computed('_componentProperties.type', function() {
+    let type = this.get('_componentProperties.type');
+    let typeMap = this.get('_componentsTypeMap');
+    if (!typeMap.hasOwnProperty(type)) {
+      type = 'default';
+    }
+
+    return typeMap[type];
+  }).readOnly(),
+
+  /**
+    An object with properties for rendering the component.
+
+    @private
+    @property _componentProperties
+    @readOnly
+    @type Object
+  */
+  _componentProperties: computed('control.propertyDefinition.{name,detailViewName}', function() {
+    let propertyDefinition = this.get('control.propertyDefinition');
+    if (propertyDefinition) {
+      return this.get('getComponentPropertiesAction')(propertyDefinition);
+    } else {
+      return { type: 'default' };
     }
   }).readOnly(),
 
@@ -76,7 +155,43 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     @property _dimmed
     @type Boolean
   */
-  _dimmed: Ember.computed.reads('draggable'),
+  _dimmed: computed.reads('draggable'),
+
+  /**
+    Used in class name bindings to add a class when this control is selected.
+
+    @private
+    @property _isSelected
+    @readOnly
+    @type Boolean
+  */
+  _isSelected: computed('control', 'selectedItem', function() {
+    return this.get('control') === this.get('selectedItem');
+  }).readOnly(),
+
+  /**
+    Used in class name bindings visibility.
+
+    @private
+    @property _isNotVisible
+    @readOnly
+    @type Boolean
+  */
+  _isNotVisible: computed('control', 'selectedItem.propertyDefinition.visible', function() {
+    let control = this.get('control');
+    if (control instanceof FdEditformControl) {
+      return !this.get('control.propertyDefinition.visible');
+    }
+
+    return false;
+  }).readOnly(),
+
+  /**
+    {{#crossLink "FdEditformConstructorController/selectedItem:property"}}Passed from above{{/crossLink}}, the selected item.
+
+    @property selectedItem
+  */
+  selectedItem: undefined,
 
   /**
     The control to render.
@@ -85,6 +200,14 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
     @type FdEditformControl|FdEditformGroup|FdEditformTabgroup
   */
   control: undefined,
+
+  /**
+    If the passed control is tabs, contains active tab.
+
+    @property activeTab
+    @type FdEditformTab
+  */
+  activeTab: computed.alias('control.activeTab'),
 
   /**
     See description {{#crossLink "FdDraggableControlMixin/draggableProperty:property"}}here{{/crossLink}}.
@@ -105,7 +228,7 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
 
     @property classNameBindings
   */
-  classNameBindings: ['_dimmed:dimmed'],
+  classNameBindings: ['_dimmed:dimmed', '_isSelected:selected', '_isNotVisible:blackout'],
 
   /**
     See [EmberJS API](https://emberjs.com/api/).
@@ -114,29 +237,28 @@ export default Ember.Component.extend(FdDraggableControlMixin, {
   */
   classNames: ['fd-editform-control', 'ui', 'dimmable', 'field'],
 
-  /**
-    See [EmberJS API](https://emberjs.com/api/).
+  actions: {
+    /**
+      Change active tab.
 
-    @method didInsertElement
-  */
-  didInsertElement() {
-    this._super(...arguments);
-
-    if (this.get('_isTab')) {
-      this.$('.menu .item').tab();
-    }
+      @method actions.changeTab
+      @param {FdEditformTab} tab New tab.
+    */
+    changeTab(tab) {
+      this.get('selectItemAction')(tab.tab);
+    },
   },
 
   /**
     The event handler is `click`.
-    Calls the `selectControlAction` action when the component is clicked.
-    The action `selectControlAction` should be passed, for example, from the controller.
+    Calls the `selectItemAction` action when the component is clicked.
+    The action `selectItemAction` should be passed, for example, from the controller.
 
     @method click
     @param {JQuery.Event} event
   */
   click(event) {
     event.stopPropagation();
-    this.get('selectControlAction')(this.get('control'));
+    this.get('selectItemAction')(this.get('control'));
   },
 });

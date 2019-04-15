@@ -1,0 +1,19 @@
+<div class="ui cards fd-projects">
+  {{#each model.projects as |project|}}
+    <a class="ui card" {{action "chooseProject" project}}>
+      <div class="content">
+        <i class="right floated icon-fd-pin icon" {{action "pinProject" project bubbles=false}}></i>
+        <div class="header">{{project.name}}</div>
+        <div class="description">
+          <p>{{project.description}}</p>
+        </div>
+        <div class="meta">
+          <span>
+            {{t "forms.fd-all-projects.updated"}}
+            <strong>{{moment-format project.changeDate "DD.MM.YYYY"}}</strong>
+          </span>
+        </div>
+      </div>
+    </a>
+  {{/each}}
+</div>

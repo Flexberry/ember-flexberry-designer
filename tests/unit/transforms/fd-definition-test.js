@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
 import { moduleFor, test } from 'ember-qunit';
 import FdViewAttributesProperty from 'ember-flexberry-designer/objects/fd-view-attributes-property';
 import FdViewAttributesMaster from 'ember-flexberry-designer/objects/fd-view-attributes-master';
@@ -8,7 +8,7 @@ moduleFor('transform:fd-definition', 'Unit | Transform | fd definition');
 
 test('it exists', function(assert) {
 
-  let objectModel = Ember.A([
+  let objectModel = A([
     FdViewAttributesProperty.create({
       name: 'TestProperty',
       caption: 'Test Property',

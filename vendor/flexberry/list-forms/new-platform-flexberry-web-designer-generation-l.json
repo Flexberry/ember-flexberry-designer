@@ -1,0 +1,15 @@
+﻿{
+  "newForm": null,
+  "editForm": null,
+  "external": false,
+  "caption": "Менеджер запусков генераций",
+  "name": "NewPlatformFlexberryWebDesignerGenerationL",
+  "className": "GenerationL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-generation",
+      "modelProjection": "ListFormView"
+    }
+  ]
+}

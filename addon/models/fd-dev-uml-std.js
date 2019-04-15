@@ -1,9 +1,90 @@
+import { computed } from '@ember/object';
+import { A } from '@ember/array';
 import { Model as DevUMLSTDMixin, defineBaseModel  } from
   '../mixins/regenerated/models/fd-dev-uml-std';
 import STDModel from './fd-std';
 
-let Model = STDModel.extend(DevUMLSTDMixin, {
+import FdUmlNote from '../objects/uml-primitives/fd-uml-note';
+import FdUmlNoteConnector from '../objects/uml-primitives/fd-uml-note-connector';
+import FdUmlStateEx from '../objects/uml-primitives/fd-uml-state-ex';
+import FdUmlStdClass from '../objects/uml-primitives/fd-uml-std-class';
+import FdUmlState from '../objects/uml-primitives/fd-uml-state';
+import FdUmlComplexTransition from '../objects/uml-primitives/fd-uml-complex-transition';
+import FdUmlConnection from '../objects/uml-primitives/fd-uml-connection';
+import FdUmlHistory from '../objects/uml-primitives/fd-uml-history';
+import FdUmlStartState from '../objects/uml-primitives/fd-uml-start-state';
+import FdUmlFinalState from '../objects/uml-primitives/fd-uml-final-state';
 
+let Model = STDModel.extend(DevUMLSTDMixin, {
+  /**
+    The array of primitives of this diagram.
+
+    @property primitives
+    @type Ember.Array
+  */
+  primitives: computed('primitivesJsonString', function() {
+    let result = A();
+    let primitives = JSON.parse(this.get('primitivesJsonString')) || A();
+
+    for (let i = 0; i < primitives.length; i++) {
+      let primitive = primitives[i];
+      switch (primitive.$type) {
+        case 'STORMCASE.UML.Common.Note, UMLCommon':
+          result.pushObject(FdUmlNote.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':
+          result.pushObject(FdUmlNoteConnector.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.std.CompositeState, UMLSTD':
+        case 'STORMCASE.UML.std.StateEx, UMLSTD':
+          result.pushObject(FdUmlStateEx.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.std.Class, UMLSTD':
+          result.pushObject(FdUmlStdClass.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.std.State, UMLSTD':
+          result.pushObject(FdUmlState.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.std.ComplexTransitionV, UMLSTD':
+        case 'STORMCASE.UML.std.ComplexTransitionH, UMLSTD':
+          result.pushObject(FdUmlComplexTransition.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.std.Transition, UMLSTD':
+          result.pushObject(FdUmlConnection.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.std.DeepHistory, UMLSTD':
+        case 'STORMCASE.UML.std.History, UMLSTD':
+          result.pushObject(FdUmlHistory.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.std.StartState, UMLSTD':
+          result.pushObject(FdUmlStartState.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.std.FinalState, UMLSTD':
+          result.pushObject(FdUmlFinalState.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.std.EventMessage, UMLSTD': // TODO need fix primitive EventMessage 169738
+          break;
+
+        case 'STORMCASE.UML.std.ConcurrentState, UMLSTD': // TODO need create primitive ConcurrentState 169738
+          break;
+
+        default:
+          throw new Error(`Unknown primitive type: '${primitive.$type}'.`);
+      }
+    }
+
+    return result;
+  }),
 });
 defineBaseModel(Model);
 export default Model;

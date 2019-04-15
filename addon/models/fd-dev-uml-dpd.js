@@ -1,9 +1,76 @@
+import { computed } from '@ember/object';
+import { A } from '@ember/array';
 import { Model as DevUMLDPDMixin, defineBaseModel  } from
   '../mixins/regenerated/models/fd-dev-uml-dpd';
 import DPDModel from './fd-dpd';
 
-let Model = DPDModel.extend(DevUMLDPDMixin, {
+import FdUmlNote from '../objects/uml-primitives/fd-uml-note';
+import FdUmlNoteConnector from '../objects/uml-primitives/fd-uml-note-connector';
+import FdUmlDependency from '../objects/uml-primitives/fd-uml-dependency';
+import FdUmlConnection from '../objects/uml-primitives/fd-uml-connection';
+import FdUmlDeploymentActiveObject from '../objects/uml-primitives/fd-uml-deployment-active-object';
+import FdUmlInstance from '../objects/uml-primitives/fd-uml-instance';
+import FdUmlComponent from '../objects/uml-primitives/fd-uml-component';
+import FdUmlNode from '../objects/uml-primitives/fd-uml-node';
 
+let Model = DPDModel.extend(DevUMLDPDMixin, {
+  /**
+    The array of primitives of this diagram.
+
+    @property primitives
+    @type Ember.Array
+  */
+  primitives: computed('primitivesJsonString', function() {
+    let result = A();
+    let primitives = JSON.parse(this.get('primitivesJsonString')) || A();
+
+    for (let i = 0; i < primitives.length; i++) {
+      let primitive = primitives[i];
+      switch (primitive.$type) {
+        case 'STORMCASE.UML.Common.Note, UMLCommon':
+          result.pushObject(FdUmlNote.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':
+          result.pushObject(FdUmlNoteConnector.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.dpd.Dependency, UMLDPD':
+          result.pushObject(FdUmlDependency.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.dpd.Connection, UMLDPD':
+          result.pushObject(FdUmlConnection.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.dpd.ActiveDeploymentObject, UMLDPD':
+          result.pushObject(FdUmlDeploymentActiveObject.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.dpd.DeploymentObject, UMLDPD':
+          result.pushObject(FdUmlInstance.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.dpd.ComponentInstance, UMLDPD':
+        case 'STORMCASE.UML.dpd.Component, UMLDPD':
+          result.pushObject(FdUmlComponent.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.dpd.NodeInstance, UMLDPD':
+        case 'STORMCASE.UML.dpd.Node, UMLDPD':
+          result.pushObject(FdUmlNode.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.dpd.Interface, UMLDPD': //TODO need fix primitive 'Interface' TFS 169736
+          break;
+
+        default:
+          throw new Error(`Unknown primitive type: '${primitive.$type}'.`);
+      }
+    }
+
+    return result;
+  }),
 });
 defineBaseModel(Model);
 export default Model;

@@ -1,27 +1,35 @@
-import Ember from 'ember';
+/* eslint-disable ember/no-side-effects */
+import { computed, set } from '@ember/object';
+import { A } from '@ember/array';
+import { inject as service } from '@ember/service';
+import { isNone } from '@ember/utils';
+import $ from 'jquery';
+
 import EditFormController from 'ember-flexberry/controllers/edit-form';
 import FdViewAttributesProperty from '../objects/fd-view-attributes-property';
 import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
-import { getTreeNode } from '../utils/fd-get-view-tree-node';
+import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode } from '../utils/fd-attributes-for-tree';
 import { translationMacro as t } from 'ember-i18n';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
+import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
+import { createPropertyName, restorationNodeTree, afterCloseNodeTree } from '../utils/fd-metods-for-tree';
 
-export default EditFormController.extend(FdWorkPanelToggler, {
+export default EditFormController.extend(
+FdWorkPanelToggler,
+FdFormUnsavedData, {
   parentRoute: 'fd-view-list-form',
 
   /**
-   Service that triggers objectlistview events.
-
-   @property objectlistviewEventsService
-   @type {Class}
-   @default Ember.inject.service()
-   */
-  objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
+    Service for managing the state of the application.
+     @property appState
+    @type AppStateService
+  */
+  appState: service(),
 
   allAttrsHidedn: false,
 
-  popupMessage: t(`forms.fd-view-edit-form.attributes-panel.close-panel-btn-caption`),
+  closeRightPanelBtnMessage: t(`forms.fd-view-edit-form.attributes-panel.close-panel-btn-caption`),
 
   /**
     Index of the selected attribute for editing.
@@ -39,25 +47,29 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     @type Array
     @default []
    */
-  detailViewNameItems: [],
+  detailViewNameItems: undefined,
 
   /**
     Type of the selected master for editing.
 
     @property lookupTypeItems
     @type Array
-    @default ['default', 'standard', 'combo', 'custom']
+    @default ['default', 'standard', 'combo']
    */
-  lookupTypeItems: ['default', 'standard', 'combo', 'custom'],
+  lookupTypeItems: computed(() => [
+    'default',
+    'standard',
+    'combo'
+  ]).readOnly(),
 
   /**
     Included plugins for jsTree.
 
     @property plugins
     @type String
-    @default 'wholerow, types'
+    @default 'wholerow, types, search'
    */
-  plugins: 'wholerow, types',
+  plugins: 'wholerow, types, search',
 
   /**
     Selected nodes in jsTree.
@@ -66,7 +78,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     @type Array
     @default []
    */
-  jstreeSelectedNodes: Ember.A(),
+  jstreeSelectedNodes: A(),
 
   /**
     Type settings for jsTree.
@@ -74,7 +86,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     @property typesOptions
     @type Object
   */
-  typesOptions: Ember.computed(() => ({
+  typesOptions: computed(() => ({
     'property': {
       icon: 'assets/images/attribute.bmp'
     },
@@ -90,12 +102,31 @@ export default EditFormController.extend(FdWorkPanelToggler, {
   })),
 
   /**
+    Data for search tree nodes.
+
+    @property searchTerm
+    @type String
+    @default ''
+   */
+  searchTerm: '',
+
+  /**
+    Search settings for jsTree.
+
+    @property searchOptions
+    @type Object
+  */
+  searchOptions: computed(() => ({
+    show_only_matches: true
+  })),
+
+  /**
     Type selected attribute for editing.
 
     @property propertyType
     @type Object
   */
-  propertyType: Ember.computed('rowModel', function() {
+  propertyType: computed('rowModel', function() {
     let rowModel = this.get('rowModel');
     if (rowModel instanceof FdViewAttributesDetail) {
       return 'isDetail';
@@ -112,10 +143,10 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     @property rowModel
     @type Object
   */
-  rowModel: Ember.computed('selectedRowIndex', function() {
+  rowModel: computed('selectedRowIndex', function() {
     let model = this.get('model.view.definition');
     let index = this.get('selectedRowIndex');
-    if (!Ember.isNone(index)) {
+    if (!isNone(index)) {
       let rowModel = model[index];
       let detailsViewArray = this.get('model.detailsView');
       let detailViewByName = detailsViewArray.findBy('detailName', rowModel.name);
@@ -134,7 +165,23 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     return null;
   }),
 
+  closeRightPanelBtnSelector: 'div.text-center > div > button.close-panel-btn',
+
   actions: {
+
+    /**
+      Resets 'masterPropertyName' and 'masterCustomizationString' if 'LookupType' is 'default'.
+
+      @method actions.changeLookupType
+      @param {Object} value An object with a new value in the `value` property.
+    */
+    changeLookupType(value) {
+      if (value === 'default') {
+        let rowModel = this.get('rowModel');
+        rowModel.set('masterPropertyName', '');
+        rowModel.set('masterCustomizationString', '');
+      }
+    },
 
     /**
       Handles form 'onCreateCaptionClick' button click.
@@ -143,7 +190,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     */
     onCreateCaptionClick() {
       let rowModel = this.get('rowModel');
-      if (Ember.isNone(rowModel)) {
+      if (isNone(rowModel)) {
         return;
       }
 
@@ -153,7 +200,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
         caption = partCaption + ' ' + caption;
       });
 
-      Ember.set(rowModel, 'caption', caption.trim());
+      set(rowModel, 'caption', caption.trim());
     },
 
     /**
@@ -162,8 +209,15 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       @method actions.onAttributesClick
     */
     onAttributesClick(index) {
+      let configPanelSidebar = $('.ui.sidebar.config-panel');
+      let sidebarOpened = configPanelSidebar.hasClass('visible');
+      let selectedRowIndex = this.get('selectedRowIndex');
+
+      if ((!isNone(index) || sidebarOpened) && selectedRowIndex !== index) {
+        this.send('toggleConfigPanel', { dataTab: 'active-tree-tab' }, index);
+      }
+
       this.set('selectedRowIndex', index);
-      this.send('toggleConfigPanel', 'active-tree-tab', index);
     },
 
     /**
@@ -174,7 +228,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     handleTreeDidBecomeReady() {
       let treeObject = this.get('jstreeObject');
       treeObject.on('open_node.jstree', this._openNodeTree.bind(this));
-      treeObject.on('after_close.jstree', this._afterCloseNodeTree.bind(this));
+      treeObject.on('after_close.jstree', afterCloseNodeTree.bind(this));
     },
 
     /**
@@ -189,24 +243,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       let model = this.get('model.view.definition');
 
       // Create propertyName
-      let parents = selectedNodes.parents;
-      let propertyName = '';
-      if (parents.length > 2) {
-        let indexParentID = parents.length - 3;
-        let parentAttributes = treeData[0].copyChildren;
-        while (indexParentID >= 0) {
-          let parentID = parents[indexParentID];
-          let parent = parentAttributes.findBy('id', parentID);
-          propertyName = propertyName + '.' + parent.text;
-          indexParentID--;
-          parentAttributes = parent.copyChildren;
-        }
-
-        propertyName = propertyName.slice(1) + '.' + selectedNodes.text;
-
-      } else {
-        propertyName = selectedNodes.text;
-      }
+      let propertyName = createPropertyName(selectedNodes, treeData[0], true);
 
       if (model.findBy('name', propertyName)) {
         return;
@@ -231,7 +268,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
           break;
       }
 
-      if (!Ember.isNone(newDdfinition)) {
+      if (!isNone(newDdfinition)) {
         model.pushObject(newDdfinition);
       }
     },
@@ -245,7 +282,7 @@ export default EditFormController.extend(FdWorkPanelToggler, {
     moveLeftHighlighted() {
       let rowModel = this.get('rowModel');
 
-      if (!Ember.isNone(rowModel)) {
+      if (!isNone(rowModel)) {
         let model = this.get('model.view.definition');
         model.removeObject(rowModel);
         this.set('selectedRowIndex', null);
@@ -302,15 +339,15 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       this.set('selectedRowIndex', next);
     },
 
-    closeRightpanel() {
-      Ember.$('.closable.panel-left').toggle(500);
+    closeRightPanel() {
+      $('.closable.panel-left').toggle(500);
 
       if (this.allAttrsHidedn) {
-        this.set('popupMessage', t('forms.fd-view-edit-form.attributes-panel.close-panel-btn-caption'));
-        Ember.$('.panel-wrapper .panel-right.view-attributes').css('width', '50%');
+        this.set('closeRightPanelBtnMessage', t('forms.fd-view-edit-form.attributes-panel.close-panel-btn-caption'));
+        $('.panel-wrapper .panel-right.view-attributes').css('width', '50%');
       } else {
-        this.set('popupMessage', t('forms.fd-view-edit-form.attributes-panel.show-panel-btn-caption'));
-        Ember.$('.panel-wrapper .panel-right.view-attributes').css('width', '100%');
+        this.set('closeRightPanelBtnMessage', t('forms.fd-view-edit-form.attributes-panel.show-panel-btn-caption'));
+        $('.panel-wrapper .panel-right.view-attributes').css('width', '100%');
       }
 
       this.toggleProperty('allAttrsHidedn');
@@ -320,22 +357,53 @@ export default EditFormController.extend(FdWorkPanelToggler, {
       Handles form 'saveView' button click.
 
       @method actions.saveView
+      @param {Boolean} close If `true`, the `close` action will be run after saving.
     */
-    saveView() {
+    saveView(close) {
       let view = this.get('model.view');
-      view.set('definition', Ember.A(view.get('definition').toArray()));
-      let _this = this;
+      view.set('definition', A(view.get('definition').toArray()));
 
-      this.get('objectlistviewEventsService').setLoadingState('loading');
+      this.get('appState').loading();
       view.save().then(() => {
-        let routeName = _this.get('routeName');
-        if (routeName.indexOf('.new') > 0) {
-          _this.transitionToRoute(routeName.slice(0, -4), view.get('id'));
-        } else {
-          _this.get('objectlistviewEventsService').setLoadingState('');
+        let routeName = this.get('routeName');
+        if (close) {
+          this.saveDataToOriginal();
+          this.send('close');
+        } else if (routeName.indexOf('.new') > 0) {
+          this.transitionToRoute(routeName.slice(0, -4), view.get('id'));
         }
+      }).finally(() => {
+        this.get('appState').reset();
       });
-    }
+    },
+
+    /**
+      Save changes and close form
+
+      @method actions.closeWithSaving
+    */
+    closeWithSaving() {
+      this.send('saveView', true);
+    },
+  },
+
+  /**
+    Cancel form data changes
+
+    @method clearDirtyAttributes
+  */
+  clearDirtyAttributes: function () {
+    this.get('model.view').rollbackAttributes();
+  },
+
+  /**
+    Check if fields changed, but unsaved
+
+    @method findUnsavedFormData
+  */
+  findUnsavedFormData: function () {
+    let isDirtyAttributes = this.get('model.view.hasDirtyAttributes');
+    return isDirtyAttributes;
   },
 
   /**
@@ -344,64 +412,29 @@ export default EditFormController.extend(FdWorkPanelToggler, {
   */
   _openNodeTree(e, data) {
     let treeData = this.get('model.tree');
-    this._restorationNodeTree(treeData, data.node.original);
+    restorationNodeTree(treeData, data.node.original, A(['master', 'class']), false, (function(node) {
+      let dataForBuildTree = getDataForBuildTree(this.get('store'), node.get('idNode'));
+      let childrenAttributes = getClassTreeNode(A(), dataForBuildTree.classes);
+      let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, node.get('id'));
+
+      return childrenNode;
+    }).bind(this));
 
     this.get('jstreeActionReceiver').send('redraw');
-  },
-
-  /**
-    Overridden action for jsTree 'eventDidClose'.
-    @method _afterCloseNodeTree
-  */
-  _afterCloseNodeTree(e, data) {
-    data.node.original.state.opened = false;
-  },
-
-  /**
-    Method for restoring tree nodes.
-    @method _restorationNodeTree
-  */
-  _restorationNodeTree(nodeArray, wantedNode) {
-    let _this = this;
-    nodeArray.forEach(function(node) {
-      if (node.type === 'master' || node.type === 'class') {
-        node.set('children', node.get('copyChildren'));
-
-        if (!Ember.isNone(node.state) && node.state.opened) {
-          _this._restorationNodeTree(node.get('children'), wantedNode);
-        }
-
-        if (node.text === wantedNode.text && node.idNode === wantedNode.idNode) {
-          node.state = { opened: true };
-          if (node.get('children').length === 1 && node.get('children')[0] === '#') {
-            _this._getChildrenNode(node);
-          } else {
-            _this._restorationNodeTree(node.get('children'), wantedNode);
-          }
-        }
-      }
-    });
-  },
-
-  /**
-    Method for loading tree node data.
-    @method _getChildrenNode
-  */
-  _getChildrenNode(node) {
-    let store = this.get('store');
-    let idNode = node.get('idNode');
-    let idTree = node.get('id');
-    let tree = getTreeNode(store, idNode, idTree);
-    node.set('children', tree);
-    node.set('copyChildren', tree);
   },
 
   willDestroy() {
     this._super(...arguments);
     let treeObject = this.get('jstreeObject');
-    if (!Ember.isNone(treeObject)) {
+    if (!isNone(treeObject)) {
       treeObject.off('open_node.jstree', this._openNodeTree.bind(this));
-      treeObject.off('after_close.jstree', this._afterCloseNodeTree.bind(this));
+      treeObject.off('after_close.jstree', afterCloseNodeTree.bind(this));
     }
+  },
+
+  init() {
+    this._super(...arguments);
+
+    this.set('detailViewNameItems', []);
   }
 });

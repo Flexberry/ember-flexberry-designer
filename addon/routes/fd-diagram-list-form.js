@@ -1,5 +1,8 @@
-import Ember from 'ember';
-import { Query } from 'ember-flexberry-data';
+import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
+
+import { SimplePredicate, ComplexPredicate, IsOfPredicate } from 'ember-flexberry-data/query/predicate';
+import Condition from 'ember-flexberry-data/query/condition';
 import ListFormRoute from 'ember-flexberry/routes/list-form';
 
 export default ListFormRoute.extend({
@@ -8,18 +11,18 @@ export default ListFormRoute.extend({
 
     @property modelProjection
     @type String
-    @default 'ListFormView'
+    @default 'FdDiagramL'
   */
-  modelProjection: 'ListFormView',
+  modelProjection: 'FdDiagramL',
 
   /**
     Name of model to be used as list's records types.
 
     @property modelName
     @type String
-    @default 'fd-dev-uml-cad'
+    @default 'fd-diagram'
   */
-  modelName: 'fd-dev-uml-cad',
+  modelName: 'fd-diagram',
 
   /**
     Defined user settings developer.
@@ -44,7 +47,7 @@ export default ListFormRoute.extend({
     @type Object
     @default {}
   */
-  developerUserSettings: { FdDiagramListForm: {} },
+ developerUserSettings: undefined,
 
   /**
     Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
@@ -52,16 +55,36 @@ export default ListFormRoute.extend({
     @property currentContext
     @type FdCurrentProjectContextService
   */
-  currentContext: Ember.inject.service('fd-current-project-context'),
+  currentContext: service('fd-current-project-context'),
 
   /**
     Return `SimplePredicate` for limit list objects by stage.
 
     @method objectListViewLimitPredicate
-    @return {Query.SimplePredicate}
+    @return {Query.ComplexPredicate}
   */
   objectListViewLimitPredicate() {
     let stage = this.get('currentContext').getCurrentStage();
-    return new Query.SimplePredicate('subsystem.stage', 'eq', stage);
+    let spStage = new SimplePredicate('subsystem.stage', 'eq', stage);
+
+    let iopDiagrams = A();
+    iopDiagrams.pushObject(new IsOfPredicate('fd-dev-uml-ad'));
+    iopDiagrams.pushObject(new IsOfPredicate('fd-dev-uml-cad'));
+    iopDiagrams.pushObject(new IsOfPredicate('fd-dev-uml-cod'));
+    iopDiagrams.pushObject(new IsOfPredicate('fd-dev-uml-dpd'));
+    iopDiagrams.pushObject(new IsOfPredicate('fd-dev-uml-sd'));
+    iopDiagrams.pushObject(new IsOfPredicate('fd-dev-uml-std'));
+    iopDiagrams.pushObject(new IsOfPredicate('fd-dev-uml-ucd'));
+    let cpDiagrams = new ComplexPredicate(Condition.Or, ...iopDiagrams);
+
+    return new ComplexPredicate(Condition.And, spStage, cpDiagrams);
   },
+
+  init() {
+    this._super(...arguments);
+
+    this.set('developerUserSettings', {
+      FdDiagramListForm: {}
+    });
+  }
 });

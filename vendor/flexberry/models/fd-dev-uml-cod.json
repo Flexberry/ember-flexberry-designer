@@ -2,6 +2,7 @@
   "name": "FdDevUmlCod",
   "modelName": "fd-dev-uml-cod",
   "className": "DevUMLCOD",
+  "nameSpace": "",
   "parentModelName": "fd-cod",
   "parentClassName": "COD",
   "attrs": [

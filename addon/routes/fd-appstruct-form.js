@@ -1,23 +1,30 @@
-import Ember from 'ember';
-import FdViewAttributesTree from '../objects/fd-view-attributes-tree';
-export default Ember.Route.extend({
+import Route from '@ember/routing/route';
+import { A } from '@ember/array';
+import { getOwner } from '@ember/application';
+import { inject as service } from '@ember/service';
+import { isNone } from '@ember/utils';
+import $ from 'jquery';
+import FdAppStructTree from '../objects/fd-appstruct-tree';
+import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
+
+export default Route.extend(FdFormCheckTransitionMixin, {
 
   /**
    Service that get current project contexts.
 
    @property currentProjectContext
    @type {Class}
-   @default Ember.inject.service()
+   @default service()
    */
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
 
   model: function() {
     let store = this.get('store');
-    let stagePk = this.get('currentProjectContext').getCurrentStage();
+    let stage = this.get('currentProjectContext').getCurrentStageModel();
 
     // Get current classes.
     let allClasses = store.peekAll('fd-dev-class');
-    let classesCurrentStage = allClasses.filterBy('stage.id', stagePk);
+    let classesCurrentStage = allClasses.filterBy('stage.id', stage.get('id'));
 
     // null or «implementation»
     let implementations = classesCurrentStage.filter(function(item) {
@@ -34,16 +41,27 @@ export default Ember.Route.extend({
       return item.get('stereotype') === '«application»';
     });
 
+    if (applications.length === 0) {
+      A(applications).pushObject(store.createRecord('fd-dev-class', {
+        stage: stage,
+        caption: 'Application',
+        name: 'Application',
+        nameStr: 'Application',
+        stereotype: '«application»',
+        containersStr: A()
+      }));
+    }
+
     /*
       Build tree.
     */
 
     // Form in tree data.
-    let treeNodeForms = Ember.A();
+    let treeNodeForms = A();
     forms.forEach((form, index) => {
       let idParent = form.get('formViews').mapBy('view.class.id');
       treeNodeForms.pushObject(
-        FdViewAttributesTree.create({
+        FdAppStructTree.create({
           text: form.get('caption') || form.get('name'),
           name: form.get('name'),
           caption: form.get('caption'),
@@ -59,12 +77,12 @@ export default Ember.Route.extend({
     });
 
     // Implementations in tree data.
-    let treeLeft = Ember.A();
+    let treeLeft = A();
     implementations.forEach((implementation, index) => {
       let implementationsChildren = treeNodeForms.filterBy('idParent', implementation.id);
       let typeImplementation = implementation.get('stored') ? 'implementations' : 'notStored';
       treeLeft.pushObject(
-        FdViewAttributesTree.create({
+        FdAppStructTree.create({
           text: implementation.get('caption') || implementation.get('name'),
           name: implementation.get('name'),
           type: typeImplementation,
@@ -79,7 +97,7 @@ export default Ember.Route.extend({
     });
 
     // applications in tree data.
-    let rightTreeNodes = Ember.A();
+    let rightTreeNodes = A();
     applications.forEach((application) => {
       rightTreeNodes.pushObjects(application.get('containersStr'));
     });
@@ -88,9 +106,9 @@ export default Ember.Route.extend({
     this._updateTypeRightTree(rightTreeNodes, classesCurrentStage);
 
     // Add root tree.
-    let treeRight = Ember.A([
-      FdViewAttributesTree.create({
-        text: 'Рабочий стол',
+    let treeRight = A([
+      FdAppStructTree.create({
+        text: this.get('i18n').t('forms.fd-appstruct-form.desktop').toString(),
         type: 'desk',
         id: 'node_app',
         children: rightTreeNodes,
@@ -110,7 +128,20 @@ export default Ember.Route.extend({
 
   setupController(controller) {
     this._super(...arguments);
+    let context = this.get('currentProjectContext');
     controller.set('parentRoute', this.get('router.url'));
+    controller.set('searchTermLeft', '');
+    controller.set('searchTermRight', '');
+    controller.set('singleModeStage', context.singleStageMode);
+
+    let stagePk = context.getCurrentStage();
+    let adapter = getOwner(this).lookup('adapter:application');
+
+    adapter.callFunction('GetCurrentProcessMethodology', { project: stagePk.toString() }, null, { withCredentials: true },
+    (result) => {
+      controller.set('processMethodologyValue', result.value);
+    });
+    controller.originalDataInit();
   },
 
   /**
@@ -125,21 +156,26 @@ export default Ember.Route.extend({
         node.set('children', node.get('copyChildren'));
       }
 
-      if (node.type === 'master') {
+      if (node.type === 'folder') {
         _this._updateTypeRightTree(node.get('children'), recordsDevClass);
         node.set('copyChildren', node.get('children'));
       } else {
-        let classData = recordsDevClass.findBy('name', node.className);
-        node.set('type', classData.get('stereotype'));
-        node.set('a_attr', { title: classData.get('stereotype') + ' ' + classData.get('name') });
+        if (node.className !== '' && !isNone(node.className)) {
+          let classData = recordsDevClass.findBy('name', node.className);
+          node.set('type', classData.get('stereotype'));
+          node.set('a_attr', { title: classData.get('stereotype') + ' ' + classData.get('name') });
+        } else {
+          node.set('type', 'url');
+          node.set('a_attr', { title: 'url' });
+        }
       }
     });
   },
 
-  actions:{
+  actions: {
     didTransition() {
-      Ember.$('#example .flexberry-content').css('padding-bottom', 0);
-      Ember.$('.flexberry-content > .ui.main.container').css('margin-bottom', 0);
+      $('#example .flexberry-content').css('padding-bottom', 0);
+      $('.flexberry-content > .ui.main.container').css('margin-bottom', 0);
     }
   }
 });

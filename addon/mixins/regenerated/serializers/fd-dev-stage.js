@@ -1,16 +1,18 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 
-export let Serializer = Ember.Mixin.create({
+export let Serializer = Mixin.create({
   getAttrs: function () {
     let parentAttrs = this._super();
     let attrs = {
       typeDefinitions: { serialize: false, deserialize: 'records' },
       controlTypes: { serialize: false, deserialize: 'records' },
+      users: { serialize: false, deserialize: 'records' },
       moduleSettings: { serialize: false, deserialize: 'records' },
       generations: { serialize: false, deserialize: 'records' }
     };
 
-    return Ember.$.extend(true, {}, parentAttrs, attrs);
+    return $.extend(true, {}, parentAttrs, attrs);
   },
   init: function () {
     this.set('attrs', this.getAttrs());

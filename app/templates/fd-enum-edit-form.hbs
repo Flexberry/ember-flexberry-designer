@@ -1,4 +1,11 @@
-<h3 class="ui header">{{t 'forms.fd-enum-edit-form.caption'}}</h3>
+<h3 class="ui header">{{t 'forms.fd-enum-edit-form.caption'}}
+  {{#if readonly}}
+    ({{t 'forms.fd-edit-form.readonly-mode'}})
+  {{/if}}
+  <div class="sub header">
+    {{t 'forms.fd-enum-edit-form.enum'}}: {{header}}
+  </div>
+</h3>
 
 <form class="ui form flexberry-vertical-form" role="form">
   {{flexberry-error error=error}}
@@ -13,11 +20,9 @@
         <button type="submit" class="ui button save-button" {{action 'save'}}>
           {{t "forms.edit-form.save-button-text"}}
         </button>
-        {{#unless model.isNew}}
-          <button type="submit" class="ui button save-del-button" {{action 'delete'}}>
-            {{t "forms.edit-form.delete-button-text"}}
-          </button>
-        {{/unless}}
+        <button type="submit" class="ui button save-close-button" {{action 'saveAndClose'}}>
+          {{t "forms.edit-form.saveAndClose-button-text"}}
+        </button>
       {{/unless}}
       <button type="submit" class="ui button close-button" {{action 'close'}}>
         {{t "forms.edit-form.close-button-text"}}
@@ -53,8 +58,8 @@
 <div class="field">
   <label>{{t 'forms.fd-enum-edit-form.onlyShowSelectedValue-caption'}}</label>
   {{
-    flexberry-checkbox 
-    readonly=readonly 
+    flexberry-checkbox
+    readonly=readonly
     value=model.onlyShowSelectedValue
   }}
   {{flexberry-validationmessage error=model.errors.onlyShowSelectedValue pointing="pointing"}}
@@ -100,5 +105,4 @@
   }}
   {{flexberry-validationmessage error=model.errors.attributes pointing="pointing"}}
 </div>
-
 </form>

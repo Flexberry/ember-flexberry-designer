@@ -1,0 +1,95 @@
+@font-face {
+  font-family: 'fd-icons';
+  src:  url('fonts/fd-icons.eot?2avusg');
+  src:  url('fonts/fd-icons.eot?2avusg#iefix') format('embedded-opentype'),
+    url('fonts/fd-icons.ttf?2avusg') format('truetype'),
+    url('fonts/fd-icons.woff?2avusg') format('woff'),
+    url('fonts/fd-icons.svg?2avusg#fd-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'fd-icons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-fd-book:before {
+  content: "\e900";
+}
+.icon-fd-checkbox-checked:before {
+  content: "\e901";
+}
+.icon-fd-checkbox:before {
+  content: "\e902";
+}
+.icon-fd-cloud-upload-thin:before {
+  content: "\e903";
+}
+.icon-fd-email:before {
+  content: "\e904";
+}
+.icon-fd-eye:before {
+  content: "\e905";
+}
+.icon-fd-gear:before {
+  content: "\e906";
+}
+.icon-fd-globe:before {
+  content: "\e907";
+}
+.icon-fd-help:before {
+  content: "\e908";
+}
+.icon-fd-lock:before {
+  content: "\e909";
+}
+.icon-fd-menu:before {
+  content: "\e90a";
+}
+.icon-fd-pin:before {
+  content: "\e90b";
+}
+.icon-fd-plus-thin:before {
+  content: "\e90c";
+}
+.icon-fd-resize:before {
+  content: "\e90d";
+}
+.icon-fd-shipping-box:before {
+  content: "\e90e";
+}
+.icon-fd-diagram:before {
+  content: "\e90f";
+}
+.icon-fd-sitemap:before {
+  content: "\e910";
+}
+.icon-fd-speech-bubble:before {
+  content: "\e911";
+}
+.icon-fd-trash-can:before {
+  content: "\e912";
+}
+.icon-fd-triangle:before {
+  content: "\e913";
+}
+.icon-fd-view:before {
+  content: "\e914";
+}
+.icon-fd-x-mark:before {
+  content: "\e915";
+}
+.icon-fd-x-mark-thin:before {
+  content: "\e916";
+}

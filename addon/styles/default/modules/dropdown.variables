@@ -1,0 +1,24 @@
+@selectionBorder: none;
+@selectionPadding: 0;
+@selectionMinHeight: 1em;
+
+/* Visible Hover */
+@selectionActiveHoverBorderColor: @sidebarBg;
+@selectionActiveHoverMenuBoxShadow: none;
+@selectionActiveHoverBoxShadow: none;
+
+/* Visible */
+@selectionVisibleBorderColor: @sidebarBg;
+@selectionVisibleMenuBoxShadow: none;
+@selectionVisibleBoxShadow: none;
+
+/* Focus */
+@selectionFocusBorderColor: @sidebarBg;
+@selectionFocusMenuBoxShadow: none;
+
+/* Active Menu Item */
+@activeItemFontWeight: normal;
+
+/* Selected */
+@selectedBackground: @overlayColor;
+@selectedTextColor: @textColor;

@@ -1,5 +1,19 @@
 export default {
   projections: {
+    Backup: {
+      valueXML: {
+        __caption__: 'valueXML'
+      },
+      moduleSettingTypeName: {
+        __caption__: 'moduleSettingTypeName'
+      },
+      moduleSettingType: {
+        __caption__: 'moduleSettingType'
+      },
+      stage: {
+        __caption__: 'stage'
+      }
+    },
     ModuleSettingE: {
       moduleSettingType: {
         __caption__: 'moduleSettingType',
@@ -9,6 +23,9 @@ export default {
       },
       valueXML: {
         __caption__: 'valueXML'
+      },
+      moduleSettingTypeName: {
+        __caption__: 'moduleSettingTypeName'
       },
       stage: {
         __caption__: 'stage'
@@ -23,6 +40,9 @@ export default {
       },
       valueXML: {
         __caption__: 'valueXML'
+      },
+      moduleSettingTypeName: {
+        __caption__: 'moduleSettingTypeName'
       },
       stage: {
         __caption__: 'stage'

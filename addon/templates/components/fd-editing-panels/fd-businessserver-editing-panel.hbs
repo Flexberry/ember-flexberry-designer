@@ -1,0 +1,42 @@
+<div class="ui stackable grid fd-list">
+
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-businessserver-editing-panel.description-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textarea
+        value=model.description
+        class='fluid input'
+        placeholder=(t "components.fd-businessserver-editing-panel.description-placeholder")
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="five wide column">
+      <div>{{t "components.fd-businessserver-editing-panel.packet-caption"}}</div>
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=model.packet
+        class='fluid input'
+        placeholder=(t "components.fd-businessserver-editing-panel.packet-placeholder")
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="five wide column">
+      <div>{{t "components.fd-businessserver-editing-panel.namespace-postfix-caption"}}</div>
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=model.namespacePostfix
+        class='fluid input'
+        placeholder=(t "components.fd-businessserver-editing-panel.namespace-postfix-placeholder")
+      }}
+    </div>
+  </div>
+
+</div>

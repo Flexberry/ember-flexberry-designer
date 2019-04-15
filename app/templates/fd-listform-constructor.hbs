@@ -1,0 +1,205 @@
+<h3 class="ui header">
+  {{t "forms.fd-listform-constructor.caption"}}
+  {{#if readonly}}
+    ({{t 'forms.fd-edit-form.readonly-mode'}})
+  {{/if}}
+  <div class="sub header">
+    {{t "forms.fd-listform-constructor.view"}}: {{viewName}}
+    <br>
+    {{t "forms.fd-listform-constructor.class"}}: {{className}}
+  </div>
+</h3>
+{{#if errorMessages}}
+  {{#each errorMessages as |currentError|}}
+    {{ui-message
+      type='error'
+      closeable=true
+      visible=true
+      title='Error occurred'
+      message=currentError
+    }}
+  {{/each}}
+{{/if}}
+<form class="ui form flexberry-vertical-form list-form-constructor" role="form">
+  {{flexberry-error error=error}}
+  <div class="field">
+    <div class="flexberry-edit-panel">
+      {{#unless readonly}}
+        <button type="button" class="ui button save-button" {{action 'save'}}>
+          {{t "forms.edit-form.save-button-text"}}
+        </button>
+        {{#unless model.isNew}}
+          <button type="button" class="ui button save-close-button" {{action 'save' true}}>
+            {{t "forms.edit-form.saveAndClose-button-text"}}
+          </button>
+        {{/unless}}
+      {{/unless}}
+      <button class="ui button disabled" type='button'>
+        {{t "forms.fd-listform-constructor.preview-mobile-variant"}}
+      </button>
+      <button type="button" class="ui button close-button" {{action 'close'}}>
+        {{t "forms.edit-form.close-button-text"}}
+      </button>
+    </div>
+  </div>
+  <div class="ui segment">
+    <h3 class="ui header">{{formClass.name}}</h3>
+    <img src="assets/images/visualEditListFormTop.png" />
+    <div class="panel-wrapper overflow-panel">
+    <table class="ui celled selectable collapsing table fd-listform">
+      <thead>
+        <tr>
+          {{#each columns as |column|}}
+            <th
+              class="{{if (eq selectedColumn column) "fd-selected"}} {{unless column.propertyDefinition.visible "blackout"}}"
+              title={{column.propertyDefinition.name}}
+              {{action "selectColumn" column bubbles=false}}
+            >{{or column.caption column.propertyDefinition.name}}</th>
+          {{/each}}
+        </tr>
+      </thead>
+      <tbody>
+        {{#each rows as |row|}}
+          <tr>
+            {{#each columns as |column|}}
+              <td class="{{if (eq selectedColumn column) "fd-selected"}} {{unless column.propertyDefinition.visible "blackout"}}" {{action "selectColumn" column bubbles=false}}>&nbsp;</td>
+            {{/each}}
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    </div>
+    <img src="assets/images/visualEditListFormBottom.png" />
+  </div>
+</form>
+
+{{#if _showModalDialog}}
+  {{#modal-dialog
+    title=(t "forms.fd-listform-constructor.form-config-panel.remove-column")
+    ok=(action "removeSelectedColumn" true)
+    settings=(hash
+      onHidden=(action set "_showModalDialog" false)
+      context=".pusher:first"
+    )
+  }}
+    {{t "forms.fd-listform-constructor.form-config-panel.remove-approve"}}
+  {{/modal-dialog}}
+{{/if}}
+
+{{#fd-config-panel}}
+  {{#fd-tabs
+    tabsMenuTheme="vertical tabular"
+    class="ui segments horizontal right-tabs"
+    tabClick = (action "toggleConfigPanel")
+    overflowedTabs=false
+    inactiveTabs=true
+    activeTab=activeTab
+    as |tab|
+  }}
+    <form class="ui form segment">
+      <div class="ui segment">
+        <div class="ui large header">
+          {{t "forms.fd-listform-constructor.caption"}}
+        </div>
+      </div>
+      {{#tab.pane dataTab='first' title=(t "forms.fd-editform-constructor.form-config-panel.form-properties-header") theme=""}}
+        <div class="ui small dividing header">
+          {{t "forms.fd-editform-constructor.form-config-panel.form-properties-header"}}
+        </div>
+
+        <div class="field">
+          {{
+            flexberry-field
+            placeholder=(t "forms.fd-listform-constructor.name")
+            readonly=readonly
+            required=true
+            value=formClass.name
+            label=(t "forms.fd-listform-constructor.name")
+          }}
+        </div>
+
+      {{/tab.pane}}
+
+      {{#tab.pane dataTab='control-properties' title=(t "forms.fd-listform-constructor.form-config-panel.control-properties-header") theme=""}}
+        <div class="ui small dividing header">
+          {{t "forms.fd-listform-constructor.form-config-panel.control-properties-header"}}
+        </div>
+        {{fd-visual-edit-control-tree
+          selectedItem=selectedColumn
+          model=model
+          items=columns
+          typeForm='listform'
+        }}
+      {{/tab.pane}}
+
+      {{#tab.pane dataTab="actions-with-columns" title=(t "forms.fd-listform-constructor.form-config-panel.actions-with-columns-header") theme=""}}
+        <div class="ui small dividing header">
+          {{t "forms.fd-listform-constructor.form-config-panel.add-columns-header"}}
+        </div>
+        <div class="field">
+          <button class="ui button" type='button' {{action "addColumn"}}>
+            {{t "forms.fd-listform-constructor.form-config-panel.add-column"}}
+          </button>
+        </div>
+        <div class="field">
+          <button class="ui button" type='button' {{action "addEmptyControl"}}>
+            {{t "forms.fd-listform-constructor.form-config-panel.select-column"}}
+          </button>
+        </div>
+        <div class="ui small dividing header">
+          {{t "forms.fd-listform-constructor.form-config-panel.re-move-columns-header"}}
+        </div>
+        <div class="equal width fields">
+          <div class="field">
+            <button class="ui icon button" type='button' disabled={{or (not selectedColumn) _selectedIsFirst}} {{action "sortSelectedColumn" -1}}>
+              <i class="left arrow icon"></i>
+            </button>
+            <button class="ui icon button" type='button' disabled={{or (not selectedColumn) _selectedIsLast}} {{action "sortSelectedColumn" 1}}>
+              <i class="right arrow icon"></i>
+            </button>
+          </div>
+          <div class="field">
+            <button class="ui button" type='button' disabled={{not selectedColumn}} {{action "removeSelectedColumn" false}}>
+              {{t "forms.fd-listform-constructor.form-config-panel.remove-column"}}
+            </button>
+          </div>
+        </div>
+        {{#if _showNotUsedAttributesTree}}
+          <div class="ui small dividing header">
+            {{t "forms.fd-editform-constructor.form-config-panel.attributes-control"}}
+          </div>
+          <div class="ui segments panel-wrapper">
+            <div class="field">
+              {{
+                flexberry-textbox
+                placeholder=(t 'forms.fd-editform-constructor.form-config-panel.search')
+                value=searchTermTree
+              }}
+            </div>
+            <div class="ui segment overflow-panel">
+              {{
+                ember-jstree
+                actionReceiver=actionReceiverNotUsedAttributesTree
+                selectedNodes=selectedNodesNotUsedAttributesTree
+                data=dataNotUsedAttributesTree
+                plugins=pluginsTree
+                searchTerm=searchTermTree
+                searchOptions=searchOptionsTree
+                typesOptions=typesOptionsTree
+                treeObject=treeObjectNotUsedAttributesTree
+                eventDidBecomeReady=(action 'handleTreeDidBecomeReady')
+              }}
+            </div>
+          </div>
+          <button class='ui button {{_applyDisabled}}' type='button' {{action "setAttributeInControl" on="click" }}>
+            {{t "forms.fd-editform-constructor.form-config-panel.apply"}}
+          </button>
+          <button class='ui button' type='button' {{action "deleteEmptyControl" on="click" }}>
+            {{t "forms.fd-editform-constructor.form-config-panel.cancel"}}
+          </button>
+        {{/if}}
+      {{/tab.pane}}
+
+    </form>
+  {{/fd-tabs}}
+{{/fd-config-panel}}

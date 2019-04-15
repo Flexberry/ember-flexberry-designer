@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
 
-export let Model = Ember.Mixin.create({
+export let Model = Mixin.create({
   /**
     Non-stored property.
 
@@ -22,7 +23,7 @@ export let Model = Ember.Mixin.create({
       }))
       ```
   */
-  _nameCompute: function() {
+  _nameCompute: function () {
     let result = (this.nameCompute && typeof this.nameCompute === 'function') ? this.nameCompute() : null;
     this.set('name', result);
   },
@@ -46,7 +47,7 @@ export let Model = Ember.Mixin.create({
       }))
       ```
   */
-  _primitiveTypesCompute: function() {
+  _primitiveTypesCompute: function () {
     let result = (this.primitiveTypesCompute && typeof this.primitiveTypesCompute === 'function') ? this.primitiveTypesCompute() : null;
     this.set('primitiveTypes', result);
   },
@@ -70,7 +71,7 @@ export let Model = Ember.Mixin.create({
       }))
       ```
   */
-  _primitivesCompute: function() {
+  _primitivesCompute: function () {
     let result = (this.primitivesCompute && typeof this.primitivesCompute === 'function') ? this.primitivesCompute() : null;
     this.set('primitives', result);
   },
@@ -94,7 +95,7 @@ export let Model = Ember.Mixin.create({
       }))
       ```
   */
-  _helpKeywordCompute: function() {
+  _helpKeywordCompute: function () {
     let result = (this.helpKeywordCompute && typeof this.helpKeywordCompute === 'function') ? this.helpKeywordCompute() : null;
     this.set('helpKeyword', result);
   },
@@ -102,11 +103,11 @@ export let Model = Ember.Mixin.create({
     let parentValidations = this._super();
     let thisValidations = {
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 export let defineBaseModel = function (modelClass) {
@@ -114,4 +115,3 @@ export let defineBaseModel = function (modelClass) {
     _parentModelName: 'fd-sd'
   });
 };
-

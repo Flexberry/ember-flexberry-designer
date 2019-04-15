@@ -1,0 +1,23 @@
+﻿{
+  "propertyLookup": [
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "Stage",
+      "projection": "ListFormView",
+      "detailModelName": null
+    }
+  ],
+  "external": false,
+  "caption": null,
+  "name": "NewPlatformFlexberryWebDesignerStorageTypeE",
+  "className": "StorageTypeE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-storage-type",
+      "modelProjection": "EditFormView"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
 import EditFormNewRoute from 'ember-flexberry/routes/edit-form-new';
 
 export default EditFormNewRoute.extend({
@@ -12,7 +12,7 @@ export default EditFormNewRoute.extend({
     @property currentContext
     @type FdCurrentProjectContextService
   */
-  currentContext: Ember.inject.service('fd-current-project-context'),
+  currentContext: service('fd-current-project-context'),
 
   /**
     A hook you can use to setup the controller for the current route.
@@ -26,5 +26,6 @@ export default EditFormNewRoute.extend({
     let stage = this.get('currentContext').getCurrentStageModel();
     model.set('stage', stage);
     this._super(...arguments);
+    controller.set('readonlyClass', false);
   }
 });

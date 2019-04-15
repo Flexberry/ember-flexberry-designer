@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+
 import ListFormRoute from 'ember-flexberry/routes/list-form';
 
 export default ListFormRoute.extend({
@@ -43,7 +44,7 @@ export default ListFormRoute.extend({
     @type Object
     @default {}
   */
-  developerUserSettings: { FdConfigurationListForm: {} },
+  developerUserSettings: undefined,
 
   /**
     Link to {{#crossLink "FdCurrentProjectContextService"}}FdCurrentProjectContextService{{/crossLink}}.
@@ -51,7 +52,7 @@ export default ListFormRoute.extend({
     @property currentContext
     @type FdCurrentProjectContextService
   */
-  currentContext: Ember.inject.service('fd-current-project-context'),
+  currentContext: service('fd-current-project-context'),
 
   actions: {
     objectListViewRowClick(configuration, options) {
@@ -63,4 +64,16 @@ export default ListFormRoute.extend({
       }
     },
   },
+
+  init() {
+    this._super(...arguments);
+
+    this.set('developerUserSettings', {
+      FdConfigurationListForm: {
+        'DEFAULT': {
+          'columnWidths': [{ 'propName': 'OlvRowMenu', 'fixed': true, 'width': 68 }]
+        }
+      }
+    });
+  }
 });

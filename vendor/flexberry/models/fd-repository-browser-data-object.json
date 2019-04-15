@@ -2,6 +2,7 @@
   "name": "FdRepositoryBrowserDataObject",
   "modelName": "fd-repository-browser-data-object",
   "className": "RepositoryBrowserDataObject",
+  "nameSpace": "",
   "parentModelName": "fd-repository-data-object",
   "parentClassName": "RepositoryDataObject",
   "attrs": [

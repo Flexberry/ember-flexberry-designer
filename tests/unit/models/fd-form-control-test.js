@@ -5,10 +5,13 @@ moduleForModel('fd-form-control', 'Unit | Model | fd-form-control', {
   needs: [
     'model:fd-ad',
     'model:fd-aggregation',
+    'model:fd-application-user',
     'model:fd-association',
+    'model:fd-auth-type',
     'model:fd-base-association',
     'model:fd-cad',
     'model:fd-case-property',
+    'model:fd-class-storage-type',
     'model:fd-class',
     'model:fd-cod',
     'model:fd-configuration',
@@ -46,8 +49,11 @@ moduleForModel('fd-form-control', 'Unit | Model | fd-form-control', {
     'model:fd-diagram',
     'model:fd-dpd',
     'model:fd-filelink',
+    'model:fd-following',
     'model:fd-form-control',
     'model:fd-form-view',
+    'model:fd-generation-step-log',
+    'model:fd-generation',
     'model:fd-inheritance',
     'model:fd-object-in-system',
     'model:fd-plugin-on-rep-object',
@@ -62,9 +68,14 @@ moduleForModel('fd-form-control', 'Unit | Model | fd-form-control', {
     'model:fd-sd',
     'model:fd-stage',
     'model:fd-std',
+    'model:fd-storage-type',
     'model:fd-subsystem',
     'model:fd-ucd',
-    'model:fd-view'
+    'model:fd-user-auth-profile',
+    'model:fd-user-in-stage',
+    'model:fd-view',
+    'model:i-c-s-soft-s-t-o-r-m-n-e-t-security-agent',
+    'service:syncer'
   ]
 });
 

@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import layout from '../templates/components/ui-tab-menu';
 
 /**
@@ -8,7 +9,7 @@ ui-tab-menu component
 @class UiTabMenu
 @constructor
 */
-export default Ember.Component.extend({
+export default Component.extend({
   layout: layout,
 
   tagName: 'div',
@@ -21,20 +22,9 @@ export default Ember.Component.extend({
 
   theme: '',
 
-  _theme: Ember.computed('theme', {
+  _theme: computed('theme', {
     get() {
       return this.get('theme') ? this.get('theme') : 'top attached tabular';
     }
-  }),
-
-  /**
-  the active tab name
-  @property {String} active
-  */
-  active: '',
-
-  didInsertElement() {
-    this.$('.item').tab();
-    this.$('.item[data-tab="' + this.active + '"]').addClass('active');
-  }
+  })
 });

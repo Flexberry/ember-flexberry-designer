@@ -1,4 +1,12 @@
-<h3 class="ui header">{{t 'forms.fd-class-edit-form.caption'}}</h3>
+<h3 class="ui header">
+  {{t 'forms.fd-class-edit-form.caption'}}
+  {{#if readonly}}
+    ({{t 'forms.fd-edit-form.readonly-mode'}})
+  {{/if}}
+  <div class="sub header">
+      {{t 'forms.fd-class-edit-form.class'}}: {{header}}
+  </div>
+</h3>
 
 {{#if errorMessages}}
   {{#each errorMessages as |currentError|}}
@@ -25,11 +33,9 @@
         <button type="submit" class="ui button save-button" {{action 'save'}}>
           {{t "forms.edit-form.save-button-text"}}
         </button>
-        {{#unless model.isNew}}
-          <button type="submit" class="ui button save-del-button" {{action 'delete'}}>
-            {{t "forms.edit-form.delete-button-text"}}
-          </button>
-        {{/unless}}
+        <button type="submit" class="ui button save-close-button" {{action 'saveAndClose'}}>
+          {{t "forms.edit-form.saveAndClose-button-text"}}
+        </button>
       {{/unless}}
       <button type="submit" class="ui button close-button" {{action 'close'}}>
         {{t "forms.edit-form.close-button-text"}}
@@ -72,7 +78,7 @@
     {{
       flexberry-field
       placeholder=(t 'components.flexberry-field.placeholder')
-      readonly=readonly
+      readonly=readonlyClass
       required=true
       value=model.name
       class=(if model.errors.name 'error' '')

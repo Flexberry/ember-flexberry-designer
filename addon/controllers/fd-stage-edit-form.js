@@ -1,31 +1,21 @@
-import Ember from 'ember';
+import { computed, observer } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { getOwner } from '@ember/application';
+import { A } from '@ember/array';
+
 import EditFormController from 'ember-flexberry/controllers/edit-form';
-import { Query } from 'ember-flexberry-data';
 import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
+import Builder from 'ember-flexberry-data/query/builder';
 
 export default EditFormController.extend({
 
   parentRoute: 'fd-stage-list-form',
 
-  store: Ember.inject.service('store'),
+  store: service('store'),
 
-  moduleSetting: {
-    FrontendGitRepoUrl: '',
-    FrontendLogin: '',
-    FrontendPassword: '',
-    FrontendBranch: '',
-    FrontendPublishGh: false,
-    BackendGitRepoUrl: '',
-    BackendLogin: '',
-    BackendPassword: '',
-    BackendBranch: '',
-    GenerateCordova: false,
-    ProcessMethodology: false,
-    ProcessConsoleAddress: '',
-    DefaultStorage: '',
-  },
+  moduleSetting: undefined,
 
-  _changedModel: Ember.observer('model.id', function() {
+  _changedModel: observer('model.id', function() {
     this.set('moduleSetting.FrontendGitRepoUrl', '');
     this.set('moduleSetting.FrontendLogin', '');
     this.set('moduleSetting.FrontendPassword', '');
@@ -41,7 +31,7 @@ export default EditFormController.extend({
     this.set('moduleSetting.DefaultStorage', '');
   }),
 
-  _storageType: Ember.computed('model.id', function() {
+  _storageType: computed('model.id', function() {
     let currentStage = this.get('model.id');
 
     let stageEqualNull = new SimplePredicate('stage', '==', null);
@@ -50,7 +40,7 @@ export default EditFormController.extend({
 
     let store = this.get('store');
 
-    let builder = new Query.Builder(store)
+    let builder = new Builder(store)
       .from('fd-storage-type')
       .selectByProjection('EditFormView')
       .where(condition);
@@ -62,38 +52,51 @@ export default EditFormController.extend({
   }),
 
   save() {
+    this._super(...arguments).then(() => {
+      let stagePk = this.get('model.id');
+      let moduleSetting = this.get('moduleSetting');
+      let moduleSettingTypes = Object.keys(moduleSetting);
+
+      let valueModuleSetting = A();
+      let moduleSettingData = A();
+
+      for (let i = 0; i < moduleSettingTypes.length; i++) {
+        let valueModuleSettingData = {
+          'ValueXML': moduleSetting[moduleSettingTypes[i]]
+        };
+
+        let moduleSettingTypeData = {
+          'Name': moduleSettingTypes[i]
+        };
+
+        valueModuleSetting.pushObject(valueModuleSettingData);
+        moduleSettingData.pushObject(moduleSettingTypeData);
+      }
+
+      let data = { 'project': stagePk.toString(), 'moduleSettingType': moduleSettingData, 'valueModuleSetting': valueModuleSetting };
+      let adapter = getOwner(this).lookup('adapter:application');
+
+      adapter.callAction('SaveCurrentModuleSetting', data, null, { withCredentials: true });
+    });
+  },
+
+  init() {
     this._super(...arguments);
 
-    let stagePk = this.get('model.id');
-    let moduleSetting = this.get('moduleSetting');
-    let moduleSettingTypes = Object.keys(moduleSetting);
-    let host = this.get('store').adapterFor('application').host;
-
-    let valueModuleSetting = Ember.A();
-    let moduleSettingData = Ember.A();
-
-    for (let i = 0; i < moduleSettingTypes.length; i++) {
-      let valueModuleSettingData = {
-        'ValueXML': moduleSetting[moduleSettingTypes[i]]
-      };
-
-      let moduleSettingTypeData = {
-        'Name': moduleSettingTypes[i]
-      };
-
-      valueModuleSetting.push(valueModuleSettingData);
-      moduleSettingData.push(moduleSettingTypeData);
-    }
-
-    let data = { 'project': stagePk, 'moduleSettingType': moduleSettingData, 'valueModuleSetting': valueModuleSetting };
-
-    Ember.$.ajax({
-      type: 'POST',
-      xhrFields: { withCredentials: true },
-      url: `${host}/SaveCurrentModuleSetting`,
-      data: JSON.stringify(data),
-      contentType: 'application/json; charset=utf-8',
-      dataType: 'json',
+    this.set('moduleSetting', {
+      FrontendGitRepoUrl: '',
+      FrontendLogin: '',
+      FrontendPassword: '',
+      FrontendBranch: '',
+      FrontendPublishGh: false,
+      BackendGitRepoUrl: '',
+      BackendLogin: '',
+      BackendPassword: '',
+      BackendBranch: '',
+      GenerateCordova: false,
+      ProcessMethodology: false,
+      ProcessConsoleAddress: '',
+      DefaultStorage: '',
     });
   }
 });

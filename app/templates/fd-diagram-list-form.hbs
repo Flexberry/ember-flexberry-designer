@@ -1,17 +1,33 @@
 {{flexberry-error error=error}}
 <h3>{{t 'forms.fd-diagram-list-form.caption'}}</h3>
+<div class="creare-diagram-button">
+  {{flexberry-menu
+    items=colsDiagramsItems
+    onItemClick=(action "onDiagramsItemClick")
+    collapseMenuOnItemClick=collapseMenuOnItemClick
+    isVertical=true
+  }}
+</div>
 <div class="row">
   {{flexberry-objectlistview
-    modelName="fd-dev-uml-cad"
+    modelName=modelName
     modelProjection=modelProjection
     editFormRoute=editFormRoute
     content=model
-    createNewButton=true
     refreshButton=true
+    deleteButton=true
+    showDeleteMenuItemInRow=true
+    showCheckBoxInRow=true
     sorting=computedSorting
     orderable=true
+    enableFilters=true
+    filters=filters
+    disableHierarchicalMode=true
+    applyFilters=(action "applyFilters")
+    resetFilters=(action "resetFilters")
     sortByColumn=(action "sortByColumn")
     addColumnToSorting=(action "addColumnToSorting")
+    beforeDeleteAllRecords=(action "beforeDeleteAllRecords")
     pages=pages
     perPageValue=perPageValue
     perPageValues=perPageValues

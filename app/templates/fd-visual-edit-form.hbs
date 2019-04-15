@@ -1,4 +1,9 @@
-<h3 class="ui header">{{t 'forms.fd-visual-edit-form.caption'}}</h3>
+<h3 class="ui header">
+  {{t 'forms.fd-visual-edit-form.caption'}}
+  {{#if readonly}}
+    ({{t 'forms.fd-edit-form.readonly-mode'}})
+  {{/if}}
+</h3>
 {{#if errorMessages}}
   {{#each errorMessages as |currentError|}}
     {{ui-message
@@ -18,16 +23,14 @@
         <button type="submit" class="ui button save-button" {{action 'save'}}>
           {{t "forms.edit-form.save-button-text"}}
         </button>
-        {{#unless model.isNew}}
-          <button type="submit" class="ui button save-close-button" {{action 'save-close'}}>
-            {{t "forms.edit-form.saveAndClose-button-text"}}
-          </button>
-        {{/unless}}
+        <button type="submit" class="ui button save-close-button" {{action 'saveAndClose'}}>
+          {{t "forms.edit-form.saveAndClose-button-text"}}
+        </button>
       {{/unless}}
       <button class="ui button fake save-close-button">
         {{t "forms.edit-form.saveAndClose-button-text"}}
       </button>
-      <button class="ui button">
+      <button class="ui button disabled">
         {{t "forms.fd-visual-edit-form.preview-mobile-variant"}}
       </button>
       <button type="submit" class="ui button close-button" {{action 'close'}}>

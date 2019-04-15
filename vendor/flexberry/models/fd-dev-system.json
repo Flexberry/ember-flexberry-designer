@@ -2,6 +2,7 @@
   "name": "FdDevSystem",
   "modelName": "fd-dev-system",
   "className": "DevSystem",
+  "nameSpace": "",
   "parentModelName": "fd-subsystem",
   "parentClassName": "Subsystem",
   "attrs": [],
@@ -94,6 +95,78 @@
       "hasMany": []
     },
     {
+      "name": "FdDevSystem",
+      "modelName": "fd-dev-system",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "FdStage",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [],
+          "index": 1,
+          "caption": "",
+          "name": "stage",
+          "relatedTo": "fd-stage",
+          "inverse": null
+        }
+      ],
+      "hasMany": [
+        {
+          "projectionName": "FdDiagram",
+          "caption": "",
+          "name": "diagrams",
+          "relatedTo": "fd-diagram",
+          "inverse": null
+        }
+      ]
+    },
+    {
+      "name": "FdPreloadMetadata",
+      "modelName": "fd-dev-system",
+      "attrs": [
+        {
+          "name": "name",
+          "caption": "",
+          "hidden": false,
+          "index": 0
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "FdStage",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [],
+          "index": 1,
+          "caption": "",
+          "name": "stage",
+          "relatedTo": "fd-stage",
+          "inverse": null
+        }
+      ],
+      "hasMany": [
+        {
+          "projectionName": "FdPreloadMetadata",
+          "caption": "",
+          "name": "diagrams",
+          "relatedTo": "fd-diagram",
+          "inverse": null
+        }
+      ]
+    },
+    {
       "name": "ListFormView",
       "modelName": "fd-dev-system",
       "attrs": [
@@ -152,7 +225,7 @@
         {
           "lookupValue": null,
           "lookupValueField": null,
-          "relationName": "Stage",
+          "relationName": "FdStage",
           "belongsTo": [],
           "hidden": false,
           "attrs": [

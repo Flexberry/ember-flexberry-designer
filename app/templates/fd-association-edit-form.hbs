@@ -1,4 +1,12 @@
-<h3 class="ui header">{{t 'forms.fd-association-edit-form.caption'}}</h3>
+<h3 class="ui header">
+  {{t 'forms.fd-association-edit-form.caption'}}
+  {{#if readonly}}
+    ({{t 'forms.fd-edit-form.readonly-mode'}})
+  {{/if}}
+  <div class="sub header">
+    {{startClassName}} - {{endClassName}}
+  </div>
+</h3>
 
 {{#if errorMessages}}
   {{#each errorMessages as |currentError|}}
@@ -24,11 +32,9 @@
         <button type="submit" class="ui button save-button" {{action 'save'}}>
           {{t "forms.edit-form.save-button-text"}}
         </button>
-        {{#unless model.isNew}}
-          <button type="submit" class="ui button save-del-button" {{action 'delete'}}>
-            {{t "forms.edit-form.delete-button-text"}}
-          </button>
-        {{/unless}}
+        <button type="submit" class="ui button save-close-button" {{action 'saveAndClose'}}>
+          {{t "forms.edit-form.saveAndClose-button-text"}}
+        </button>
       {{/unless}}
       <button type="submit" class="ui button close-button" {{action 'close'}}>
         {{t "forms.edit-form.close-button-text"}}
@@ -36,29 +42,145 @@
     </div>
   </div>
   <div class="field">
-  {{
-    flexberry-field
-    placeholder=(t 'components.flexberry-field.placeholder')
-    readonly=readonly
-    required=true
-    value=model.name
-    class=(if model.errors.name 'error' '')
-    label=(t 'forms.fd-association-edit-form.name-caption')
-  }}
-  {{flexberry-validationmessage error=model.errors.name pointing="pointing"}}
-</div>
-
-<div class="field">
-  {{
-    flexberry-field
-    placeholder=(t 'components.flexberry-field.placeholder')
-    readonly=readonly
-    required=true
-    value=model.description
-    class=(if model.errors.description 'error' '')
-    label=(t 'forms.fd-association-edit-form.description-caption')
-  }}
-  {{flexberry-validationmessage error=model.errors.description pointing="pointing"}}
-</div>
-
+    <label>{{t "forms.fd-association-edit-form.name-caption"}}</label>
+    {{
+      flexberry-textbox
+      value=model.name
+    }}
+  </div>
+  <div class="field">
+    <label>{{t "forms.fd-association-edit-form.start-class-caption"}}</label>
+    {{
+      flexberry-dropdown
+      items=implementationsName
+      value=startClassName
+      readonly=readonlyClass
+      onChange=(action "changeStartClass")
+    }}
+    {{flexberry-validationmessage error=model.errors.startClass pointing="pointing"}}
+  </div>
+  <div class="field">
+    <label>{{t "forms.fd-association-edit-form.end-class-caption"}}</label>
+    {{
+      flexberry-dropdown
+      items=implementationsName
+      value=endClassName
+      readonly=readonlyClass
+      onChange=(action "changeEndClass")
+    }}
+    {{flexberry-validationmessage error=model.errors.endClass pointing="pointing"}}
+  </div>
+  <div class="field">
+    <label>{{t "forms.fd-association-edit-form.description-caption"}}</label>
+    {{
+      flexberry-textarea
+      value=model.description
+    }}
+  </div>
+  <div class="field">
+    <label>{{t "forms.fd-association-edit-form.start-role-caption"}}</label>
+    {{
+      flexberry-textbox
+      value=model.startRole
+    }}
+  </div>
+  <div class="field">
+    <label>{{t "forms.fd-association-edit-form.start-multiplicity-caption"}}</label>
+    {{
+      flexberry-textbox
+      value=model.startMultiplicity
+    }}
+  </div>
+  <div class="field">
+    <label>{{t "forms.fd-association-edit-form.end-role-access-modifier-caption"}}</label>
+    {{
+      flexberry-dropdown
+      items=itemsAccessModifier
+      value=model.endRoleAccessModifier
+    }}
+  </div>
+  <div class="field">
+    <label>{{t "forms.fd-association-edit-form.start-role-stored-caption"}}</label>
+    {{
+      flexberry-checkbox
+      value=model.startRoleStored
+    }}
+  </div>
+  <div class="field">
+    <label>{{t "forms.fd-association-edit-form.end-role-caption"}}</label>
+    {{
+      flexberry-textbox
+      value=model.endRole
+    }}
+  </div>
+  <div class="field">
+    <label>{{t "forms.fd-association-edit-form.end-multiplicity-caption"}}</label>
+    {{
+      flexberry-textbox
+      value=model.endMultiplicity
+    }}
+  </div>
+  <div class="field">
+    <label>{{t "forms.fd-association-edit-form.auto-generate-type-usage-caption"}}</label>
+    {{
+      flexberry-checkbox
+      value=model.autoGenerateTypeUsage
+    }}
+  </div>
+  <div class="field">
+    <label>{{t "forms.fd-association-edit-form.type-usage-caption"}}</label>
+    {{
+      flexberry-textbox
+      value=model.typeUsage
+    }}
+  </div>
+  <div class="field">
+    <label>{{t "forms.fd-association-edit-form.storage"}}</label>
+    {{
+      flexberry-textbox
+      value=model.storage
+    }}
+  </div>
+  <div class="field">
+    <label>{{t "forms.fd-association-edit-form.auto-store-master-disabled-caption"}}</label>
+    {{
+      flexberry-checkbox
+      value=model.autoStoreMasterDisabled
+    }}
+  </div>
+  <div class="field">
+    <label>{{t "forms.fd-association-edit-form.pb-master-custom-attributes-caption"}}</label>
+    {{
+      flexberry-checkbox
+      value=model.pBMasterCustomAttributes
+    }}
+  </div>
+  <div class="field">
+    <label>{{t "forms.fd-association-edit-form.pb-master-get-start-caption"}}</label>
+    {{
+      flexberry-checkbox
+      value=model.pBMasterGetStart
+    }}
+  </div>
+  <div class="field">
+    <label>{{t "forms.fd-association-edit-form.pb-master-get-end-caption"}}</label>
+    {{
+      flexberry-checkbox
+      value=model.pBMasterGetEnd
+    }}
+  </div>
+  <div class="field">
+    <label>{{t "forms.fd-association-edit-form.pb-master-set-start-caption"}}</label>
+    {{
+      flexberry-checkbox
+      value=model.pBMasterSetStart
+    }}
+  </div>
+  <div class="field">
+    <label>{{t "forms.fd-association-edit-form.pb-master-set-end-caption"}}</label>
+    {{
+      flexberry-checkbox
+      value=model.pBMasterSetEnd
+    }}
+  </div>
 </form>

@@ -1,5 +1,8 @@
 export default {
-  caption: 'Подсистема',
+  caption: 'Редактировать подсистему',
   'name-caption': 'Название',
-  'description-caption': 'Описание'
+  'description-caption': 'Описание',
+  'subsystem': 'Подсистема',
+  'namespacePostfix-caption': 'Постфикс пространства имен',
+  'attributes-caption': 'Возможные значения'
 };

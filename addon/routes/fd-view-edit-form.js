@@ -1,16 +1,20 @@
-import Ember from 'ember';
-import { getTreeNode } from '../utils/fd-get-view-tree-node';
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
+import $ from 'jquery';
+import { get } from '@ember/object';
+import FdAttributesTree from '../objects/fd-attributes-tree';
+import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
+import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode, getDetailView } from '../utils/fd-attributes-for-tree';
 
-export default Ember.Route.extend({
+export default Route.extend(FdFormCheckTransitionMixin, {
 
   /**
-   Service that triggers objectlistview events.
-
-   @property objectlistviewEventsService
-   @type {Class}
-   @default Ember.inject.service()
-   */
-  objectlistviewEventsService: Ember.inject.service('objectlistview-events'),
+    Service for managing the state of the application.
+     @property appState
+    @type AppStateService
+  */
+  appState: service(),
 
   model: function(arg) {
     let store = this.get('store');
@@ -24,27 +28,81 @@ export default Ember.Route.extend({
     let idDevClass = devClass.get('id');
 
     // Get attributes tree current class.
-    let treeData = getTreeNode(store, idDevClass, 'node_', data);
+    let dataForBuildTree = getDataForBuildTree(store, idDevClass);
 
-    this.get('objectlistviewEventsService').setLoadingState('');
+    // Set attributes tree.
+    let treeEmpty = A([
+
+      // Attribute - choose all.
+      FdAttributesTree.create({
+        text: '*',
+        type: 'property',
+      })
+    ]);
+
+    let treeAttributes = getClassTreeNode(treeEmpty, dataForBuildTree.classes);
+    let treeMasters = getAssociationTreeNode(treeAttributes, dataForBuildTree.associations, 'node_');
+    let treeDetails = getAggregationTreeNode(treeMasters, dataForBuildTree.aggregations);
+    let detailView = getDetailView(dataForBuildTree.aggregations);
+    let tree = A([
+      FdAttributesTree.create({
+        text: devClass.get('name'),
+        type: 'class',
+        id: 'class',
+        idNode: idDevClass,
+        children: treeDetails,
+        copyChildren: treeDetails,
+        state: {
+          opened: true
+        }
+      })
+    ]);
+
+    this.get('appState').reset();
 
     return {
       view: data,
-      tree: treeData.tree,
-      detailsView: treeData.detailView
+      tree: tree,
+      detailsView: detailView
     };
+  },
+
+  /**
+    A hook you can use to reset controller values either when the model changes or the route is exiting.
+    [More info](http://emberjs.com/api/classes/Ember.Route.html#method_resetController).
+
+    @method resetController
+    @param {Ember.Controller} controller
+    @param {Boolean} isExisting
+   */
+  resetController(controller, isExiting) {
+    this._super(...arguments);
+
+    if (isExiting) {
+      $('.full.height').off('click.fd-view-editform-constructor');
+    }
   },
 
   setupController(controller) {
     this._super(...arguments);
     controller.set('routeName', this.get('routeName'));
     controller.set('parentRoute', this.get('router.url'));
+    controller.set('searchTerm', '');
   },
 
-  actions:{
+  actions: {
     didTransition() {
-      Ember.$('#example .flexberry-content').css('padding-bottom', 0);
-      Ember.$('.flexberry-content > .ui.main.container').css('margin-bottom', 0);
+      $('#example .flexberry-content').css('padding-bottom', 0);
+      $('.flexberry-content > .ui.main.container').css('margin-bottom', 0);
+
+      $('.full.height').on('click.fd-view-editform-constructor', (e) => {
+        let table = $('.ui.table.fd-view-properties-table')[0];
+        let buttons = $('.text-center > .ui.buttons')[0];
+        let path = get(e, 'originalEvent.path') || [];
+        if (path.indexOf(table) === -1 && path.indexOf(buttons) === -1) {
+          this.get('controller').send('onAttributesClick');
+        }
+      });
     }
   }
 });

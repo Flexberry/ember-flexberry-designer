@@ -1,13 +1,15 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
-export let Model = Ember.Mixin.create({
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
+
+export let Model = Mixin.create({
   /**
     Non-stored property.
 
     @property nameStr
   */
-  nameStr: DS.attr('string'),
+  nameStr: DS.attr('string', { defaultValue: 'Empty' }),
   /**
     Method to set non-stored property.
     Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
@@ -26,9 +28,9 @@ export let Model = Ember.Mixin.create({
     let result = (this.nameStrCompute && typeof this.nameStrCompute === 'function') ? this.nameStrCompute() : null;
     this.set('nameStr', result);
   },
-  attributesStr: DS.attr('string'),
-  methodsStr: DS.attr('string'),
-  stored: DS.attr('boolean'),
+  attributesStr: DS.attr('string', { defaultValue: 'Empty' }),
+  methodsStr: DS.attr('string', { defaultValue: 'Empty' }),
+  stored: DS.attr('boolean', { defaultValue: true }),
   stereotype: DS.attr('string'),
   stage: DS.belongsTo('fd-stage', { inverse: 'classes', async: false, polymorphic: true }),
   getValidations: function () {
@@ -36,13 +38,14 @@ export let Model = Ember.Mixin.create({
     let thisValidations = {
       stage: { presence: true }
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
+
 export let defineBaseModel = function (modelClass) {
   modelClass.reopenClass({
     _parentModelName: 'fd-repository-ref-data-object'
@@ -51,22 +54,22 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('DependensiesSearchView', 'fd-class', {
-    name: Projection.attr(''),
-    stereotype: Projection.attr(''),
-    nameStr: Projection.attr('')
+    name: attr(''),
+    stereotype: attr(''),
+    nameStr: attr('')
   });
   modelClass.defineProjection('Import', 'fd-class', {
-    referenceCount: Projection.attr(''),
-    nameStr: Projection.attr('')
+    referenceCount: attr(''),
+    nameStr: attr('')
   });
   modelClass.defineProjection('References', 'fd-class', {
-    referenceCount: Projection.attr('')
+    referenceCount: attr('')
   });
   modelClass.defineProjection('SearchClass', 'fd-class', {
-    name: Projection.attr(''),
-    nameStr: Projection.attr(''),
-    stereotype: Projection.attr(''),
-    stage: Projection.belongsTo('fd-stage', '', {
+    name: attr(''),
+    nameStr: attr(''),
+    stereotype: attr(''),
+    stage: belongsTo('fd-stage', '', {
 
     })
   });

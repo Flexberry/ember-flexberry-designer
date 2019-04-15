@@ -1,88 +1,101 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
 import { moduleFor, test } from 'ember-qunit';
-import FdViewAttributesTree from 'ember-flexberry-designer/objects/fd-view-attributes-tree';
+import FdAppStructTree from 'ember-flexberry-designer/objects/fd-appstruct-tree';
 
 moduleFor('transform:containers-tree', 'Unit | Transform | containers tree');
 
 // Replace this with your real tests.
 test('it exists', function(assert) {
 
-  let noteNoteObjectModel1 = Ember.A([
-    FdViewAttributesTree.create({
+  let noteNoteObjectModel1 = A([
+    FdAppStructTree.create({
       className: 'ПисьмоWebL',
       description: null,
       caption: 'Настройка рассылки писем',
       text: 'Настройка рассылки писем',
       type: 'property',
       id: 'p2l0i2',
+      url: ''
     })
   ]);
 
-  let noteNoteObjectModel2 = Ember.A([
-    FdViewAttributesTree.create({
+  let noteNoteObjectModel2 = A([
+    FdAppStructTree.create({
       className: 'ЖурналИмпортаWebL',
       description: null,
       caption: 'Журнал импорта',
       text: 'Журнал импорта',
       type: 'property',
       id: 'p2l0i3',
+      url: ''
     })
   ]);
 
-  let noteObjectModel1 = Ember.A([
-    FdViewAttributesTree.create({
+  let noteObjectModel1 = A([
+    FdAppStructTree.create({
       text: 'Настройки',
-      type: 'master',
-      children: Ember.A(),
-      copyChildren: Ember.A(),
+      type: 'folder',
+      children: A(),
+      copyChildren: A(),
       id: 'p1l0i1',
     }),
-    FdViewAttributesTree.create({
+    FdAppStructTree.create({
       text: 'Рассылка по e-mail',
-      type: 'master',
+      type: 'folder',
       children: noteNoteObjectModel1,
       copyChildren: noteNoteObjectModel1,
       id: 'p1l1i2',
     }),
-    FdViewAttributesTree.create({
+    FdAppStructTree.create({
       text: 'Импорт данных',
-      type: 'master',
+      type: 'folder',
       children: noteNoteObjectModel2,
       copyChildren: noteNoteObjectModel2,
       id: 'p1l2i3',
     })
   ]);
 
-  let noteObjectModel2 = Ember.A([
-    FdViewAttributesTree.create({
+  let noteObjectModel2 = A([
+    FdAppStructTree.create({
       className: 'УчетРабочегоВремениWebL',
       description: 'test',
       caption: 'Учет рабочего времени',
       text: 'Учет рабочего времени',
       type: 'property',
       id: 'p1l0i4',
+      url: ''
     }),
-    FdViewAttributesTree.create({
+    FdAppStructTree.create({
       className: 'ПроизводственныйКалендарьWebL',
       description: null,
       caption: 'Производственный календарь',
       text: 'Производственный календарь',
       type: 'property',
       id: 'p1l1i5',
+      url: ''
+    }),
+    FdAppStructTree.create({
+      className: null,
+      description: null,
+      caption: 'Test',
+      text: 'Test',
+      type: 'property',
+      id: 'p1l2i6',
+      url: 'Test'
     }),
   ]);
 
-  let objectModel = Ember.A([
-    FdViewAttributesTree.create({
+  let objectModel = A([
+    FdAppStructTree.create({
       text: 'Администрирование',
-      type: 'master',
+      type: 'folder',
       children: noteObjectModel1,
       copyChildren: noteObjectModel1,
       id: 'p0l0i0',
     }),
-    FdViewAttributesTree.create({
+    FdAppStructTree.create({
       text: 'Поручения',
-      type: 'master',
+      type: 'folder',
       children: noteObjectModel2,
       copyChildren: noteObjectModel2,
       id: 'p0l1i4',
@@ -92,12 +105,13 @@ test('it exists', function(assert) {
   let xml = '' +
   '<Containers>' +
   '<ContainersList>' +
-  '<Item ClassName="##########" MenuPath="Администрирование" Caption="" Description="" />' +
-  '<Item ClassName="##########" MenuPath="Администрирование\\Настройки" Caption="" Description="" />' +
-  '<Item ClassName="ПисьмоWebL" MenuPath="Администрирование\\Рассылка по e-mail" Caption="Настройка рассылки писем" Description="" />' +
-  '<Item ClassName="ЖурналИмпортаWebL" MenuPath="Администрирование\\Импорт данных" Caption="Журнал импорта" Description="" />' +
-  '<Item ClassName="УчетРабочегоВремениWebL" MenuPath="Поручения" Caption="Учет рабочего времени" Description="test" />' +
-  '<Item ClassName="ПроизводственныйКалендарьWebL" MenuPath="Поручения" Caption="Производственный календарь" Description="" />' +
+  '<Item ClassName="##########" MenuPath="Администрирование" Caption="" Description="" Url="" />' +
+  '<Item ClassName="##########" MenuPath="Администрирование\\Настройки" Caption="" Description="" Url="" />' +
+  '<Item ClassName="ПисьмоWebL" MenuPath="Администрирование\\Рассылка по e-mail" Caption="Настройка рассылки писем" Description="" Url="" />' +
+  '<Item ClassName="ЖурналИмпортаWebL" MenuPath="Администрирование\\Импорт данных" Caption="Журнал импорта" Description="" Url="" />' +
+  '<Item ClassName="УчетРабочегоВремениWebL" MenuPath="Поручения" Caption="Учет рабочего времени" Description="test" Url="" />' +
+  '<Item ClassName="ПроизводственныйКалендарьWebL" MenuPath="Поручения" Caption="Производственный календарь" Description="" Url="" />' +
+  '<Item ClassName="" MenuPath="Поручения" Caption="Test" Description="" Url="Test" />' +
   '</ContainersList>' +
   '</Containers>';
 

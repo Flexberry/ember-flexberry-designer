@@ -1,11 +1,13 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
-export let Model = Ember.Mixin.create({
-  endMultiplicity: DS.attr('string'),
-  endRole: DS.attr('string'),
-  endRoleAccessModifier: DS.attr('s-t-o-r-m-c-a-s-e-repository-access-modifier'),
-  endRoleStored: DS.attr('boolean'),
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
+import AccessModifierEnum from '../../../enums/s-t-o-r-m-c-a-s-e-repository-access-modifier';
+export let Model = Mixin.create({
+  endMultiplicity: DS.attr('string', { defaultValue: 'Empty' }),
+  endRole: DS.attr('string', { defaultValue: 'Empty' }),
+  endRoleAccessModifier: DS.attr('s-t-o-r-m-c-a-s-e-repository-access-modifier', { defaultValue: AccessModifierEnum.Public }),
+  endRoleStored: DS.attr('boolean', { defaultValue: true }),
   /**
     Non-stored property.
 
@@ -54,10 +56,10 @@ export let Model = Ember.Mixin.create({
     let result = (this.notNullStartCompute && typeof this.notNullStartCompute === 'function') ? this.notNullStartCompute() : null;
     this.set('notNullStart', result);
   },
-  startMultiplicity: DS.attr('string'),
-  startRole: DS.attr('string'),
-  startRoleAccessModifier: DS.attr('s-t-o-r-m-c-a-s-e-repository-access-modifier'),
-  startRoleStored: DS.attr('boolean'),
+  startMultiplicity: DS.attr('string', { defaultValue: 'Empty' }),
+  startRole: DS.attr('string', { defaultValue: 'Empty' }),
+  startRoleAccessModifier: DS.attr('s-t-o-r-m-c-a-s-e-repository-access-modifier', { defaultValue: AccessModifierEnum.Public }),
+  startRoleStored: DS.attr('boolean', { defaultValue: true }),
   /**
     Non-stored property.
 
@@ -92,13 +94,14 @@ export let Model = Ember.Mixin.create({
       startClass: { presence: true },
       stage: { presence: true }
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
+
 export let defineBaseModel = function (modelClass) {
   modelClass.reopenClass({
     _parentModelName: 'fd-repository-ref-data-object'
@@ -107,27 +110,27 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('Import', 'fd-base-association', {
-    startRole: Projection.attr(''),
-    endRole: Projection.attr(''),
-    referenceCount: Projection.attr(''),
-    startClass: Projection.belongsTo('fd-class', '', {
+    startRole: attr(''),
+    endRole: attr(''),
+    referenceCount: attr(''),
+    startClass: belongsTo('fd-class', '', {
 
     }),
-    endClass: Projection.belongsTo('fd-class', '', {
+    endClass: belongsTo('fd-class', '', {
 
     })
   });
   modelClass.defineProjection('PropertySearch', 'fd-base-association', {
-    startRole: Projection.attr(''),
-    endRole: Projection.attr(''),
-    startClass: Projection.belongsTo('fd-class', '', {
-      nameStr: Projection.attr('')
+    startRole: attr(''),
+    endRole: attr(''),
+    startClass: belongsTo('fd-class', '', {
+      nameStr: attr('')
     }),
-    endClass: Projection.belongsTo('fd-class', '', {
+    endClass: belongsTo('fd-class', '', {
 
     })
   });
   modelClass.defineProjection('References', 'fd-base-association', {
-    referenceCount: Projection.attr('')
+    referenceCount: attr('')
   });
 };

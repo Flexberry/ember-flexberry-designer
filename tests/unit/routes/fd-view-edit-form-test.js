@@ -3,6 +3,9 @@ import { moduleFor, test } from 'ember-qunit';
 moduleFor('route:fd-view-edit-form', 'Unit | Route | fd view edit form', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
+  needs: [
+    'service:appState'
+  ]
 });
 
 test('it exists', function(assert) {

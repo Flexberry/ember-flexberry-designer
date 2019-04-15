@@ -2,7 +2,7 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 
 /**
   Describes the control on the edit form.
@@ -10,7 +10,7 @@ import Ember from 'ember';
   @class FdEditformControl
   @extends <a href="http://emberjs.com/api/classes/Ember.Object.html">Ember.Object</a>
 */
-export default Ember.Object.extend({
+export default EmberObject.extend({
   /**
     Specifies the type of the control, `textbox`, `datepicker`, `dropdown`, etc.
 
@@ -34,4 +34,12 @@ export default Ember.Object.extend({
     @type String
   */
   width: undefined,
+
+  /**
+    The property definition from view that corresponds to this control.
+
+    @property propertyDefinition
+    @type FdViewAttributesProperty|FdViewAttributesMaster|FdViewAttributesDetail
+  */
+  propertyDefinition: undefined,
 });

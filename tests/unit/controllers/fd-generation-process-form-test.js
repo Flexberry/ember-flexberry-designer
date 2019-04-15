@@ -3,6 +3,11 @@ import { moduleFor, test } from 'ember-qunit';
 moduleFor('controller:fd-generation-process-form', 'Unit | Controller | fd generation process form', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
+  needs: [
+    'service:appState',
+    'service:fd-current-project-context',
+    'service:fd-generation'
+  ]
 });
 
 // Replace this with your real tests.

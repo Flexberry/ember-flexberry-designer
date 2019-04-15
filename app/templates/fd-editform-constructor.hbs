@@ -1,48 +1,95 @@
-<h3 class="ui header">{{model.editform.caption}}</h3>
+<h3 class="ui header">{{t "forms.fd-editform-constructor.caption"}}
+  {{#if readonly}}
+    ({{t 'forms.fd-edit-form.readonly-mode'}})
+  {{/if}}
+  <div class="sub header">
+    {{t "forms.fd-editform-constructor.view"}}: {{viewName}}
+    <br>
+    {{t "forms.fd-editform-constructor.class"}}: {{className}}
+  </div>
+</h3>
 
 <form class="ui form flexberry-vertical-form" role="form">
   {{flexberry-error error=error}}
   <div class="field">
     <div class="flexberry-edit-panel">
       {{#unless readonly}}
-        <button type="submit" class="ui button save-button" {{action 'save'}}>
+        <button type="button" class="ui button save-button" {{action "save"}}>
           {{t "forms.edit-form.save-button-text"}}
         </button>
         {{#unless model.isNew}}
-          <button type="submit" class="ui button save-close-button" {{action 'save-close'}}>
+          <button type="button" class="ui button save-close-button" {{action "save" true}}>
             {{t "forms.edit-form.saveAndClose-button-text"}}
           </button>
         {{/unless}}
       {{/unless}}
-      <button class="ui button">
+      <button class="ui button disabled" type='button'>
         {{t "forms.fd-visual-edit-form.preview-mobile-variant"}}
       </button>
-      <button type="submit" class="ui button close-button" {{action "close"}}>
+      <button type="button" class="ui button close-button" {{action "close"}}>
         {{t "forms.edit-form.close-button-text"}}
       </button>
     </div>
   </div>
-
-  {{#each model.controls as |control|}}
+  <h3 class="ui header">{{model.editform.caption}}</h3>
+  {{#each controlsTree as |row|}}
     {{fd-editform-row
-      row=control
-      selectControlAction=(action "selectControl")
+      row=row
+      selectedItem=(readonly selectedItem)
+      selectItemAction=(action "selectItem")
       setDragItemAction=(action "setDragItem")
       getDragItemAction=(action "getDragItem")
       moveDragItemAction=(action "moveDragItem")
+      getComponentPropertiesAction=(action "getComponentProperties")
+      showLookupAction=(action "showLookup")
     }}
   {{/each}}
 </form>
 
+{{#if _showModalDialog}}
+  {{#modal-dialog
+    title=(t "forms.fd-editform-constructor.form-config-panel.remove-control")
+    ok=(action "removeSelectedItem" true)
+    settings=(hash
+      onHidden=(action set "_showModalDialog" false)
+      context=".pusher:first"
+    )
+  }}
+    {{t "forms.fd-editform-constructor.form-config-panel.remove-approve"}}
+  {{/modal-dialog}}
+{{/if}}
+
+{{#if _showLookupDialog}}
+  {{#modal-dialog
+    title=_lookupCaption
+    useOkButton=false
+    useCloseButton=false
+    settings=(hash
+      onHidden=(action set "_showLookupDialog" false)
+      context=".pusher:first"
+    )
+  }}
+    {{fd-objectlistview view=_lookupView types=_lookupTypes}}
+  {{/modal-dialog}}
+{{/if}}
+
 {{#fd-config-panel}}
-  {{#fd-tabs tabsMenuTheme="vertical tabular" class="ui segments horizontal right-tabs"}}
+  {{#fd-tabs
+    tabsMenuTheme="vertical tabular"
+    class="ui segments horizontal right-tabs"
+    tabClick = (action "toggleConfigPanel")
+    activeTab=activeTab
+    overflowedTabs=false
+    inactiveTabs=true
+    as |tab|
+  }}
     <form class="ui form segment">
       <div class="ui segment">
         <div class="ui large header">
           {{t "forms.fd-editform-constructor.caption"}}
         </div>
       </div>
-      {{#ui-tab-segment tab='first' title=(t "forms.fd-editform-constructor.form-config-panel.form-properties-header") theme="" active=true}}
+      {{#tab.pane dataTab='first' title=(t "forms.fd-editform-constructor.form-config-panel.form-properties-header") theme=""}}
         <div class="ui small dividing header">
           {{t "forms.fd-editform-constructor.form-config-panel.form-properties-header"}}
         </div>
@@ -54,42 +101,120 @@
           <label>{{t "forms.fd-editform-constructor.form-config-panel.form-description"}}</label>
           {{flexberry-textarea value=model.editform.description}}
         </div>
-      {{/ui-tab-segment}}
+      {{/tab.pane}}
 
-      {{#ui-tab-segment tab='control-properties' title=(t "forms.fd-editform-constructor.form-config-panel.control-properties-header") theme=""}}
+      {{#tab.pane dataTab='control-properties' title=(t "forms.fd-editform-constructor.form-config-panel.control-properties-header") theme=""}}
         <div class="ui small dividing header">
           {{t "forms.fd-editform-constructor.form-config-panel.control-properties-header"}}
         </div>
-        {{fd-visual-edit-control
-          selectedControl=selectedControl
-          typemap=model.typemap
-          enums=model.enums
-          fbtypes=model.types
+        {{fd-visual-edit-control-tree
+          selectedItem=selectedItem
+          model=(hash
+            dataobject=model.dataobject
+            editform=model.editform
+            attributes=attributes
+            masters=masters
+            details=details
+            simpleTypes=simpleTypes
+            typemap=typemap
+            enums=enums
+            types=types
+            mastersType=mastersType
+            detailsType=detailsType
+          )
+          items=controlsTree
+          typeForm='editform'
         }}
-      {{/ui-tab-segment}}
+      {{/tab.pane}}
 
-      {{#ui-tab-segment tab='add-controls' title=(t "forms.fd-editform-constructor.form-config-panel.add-controls-header") theme=""}}
+      {{#tab.pane dataTab='add-controls' title=(t "forms.fd-editform-constructor.form-config-panel.add-controls-header") theme=""}}
         <div class="ui small dividing header">
           {{t "forms.fd-editform-constructor.form-config-panel.add-controls-header"}}
         </div>
-        <div class="equal width fields">
-          <div class="field">
-            <button class="ui button" {{action "addControl" "control"}}>
+        <div class="field">
+            <button class="ui button" type='button' {{action "addControl"}}>
               {{t "forms.fd-editform-constructor.form-config-panel.add-control"}}
             </button>
-          </div>
-          <div class="field">
-            <button class="ui button" {{action "addControl" "group"}}>
+            <button class="ui button" type='button' {{action "addGroup"}}>
               {{t "forms.fd-editform-constructor.form-config-panel.add-group"}}
+            </button>
+            <button class="ui button" type='button' {{action "addTab"}}>
+              {{t "forms.fd-editform-constructor.form-config-panel.add-tab"}}
+            </button>
+        </div>
+        <div class="field">
+          <button class="ui button" type='button' {{action "addEmptyControl"}}>
+            {{t "forms.fd-editform-constructor.form-config-panel.empty-control"}}
+          </button>
+        </div>
+        <div class="ui small dividing header">
+          {{t "forms.fd-editform-constructor.form-config-panel.move-controls-header"}}
+        </div>
+        <div class="equal width fields">
+          <div class="field">
+            <button class="ui {{if _moveItem "active"}} button" type='button' disabled={{not selectedItem}} {{action toggleProperty "_moveItem"}}>
+              {{t "forms.fd-editform-constructor.form-config-panel.move-control"}}
             </button>
           </div>
           <div class="field">
-            <button class="ui button" {{action "addControl" "tabs"}}>
-              {{t "forms.fd-editform-constructor.form-config-panel.add-tabs"}}
+            <button class="ui button" type='button' disabled={{not selectedItem}} {{action "removeSelectedItem" false}}>
+              {{t "forms.fd-editform-constructor.form-config-panel.remove-control"}}
             </button>
           </div>
         </div>
-      {{/ui-tab-segment}}
+        <div class="equal width fields">
+          <div class="field">
+            <button class="ui icon button" type='button' disabled={{or (not _itemToMove) (not _itemToMoveIsRow) _itemToMoveIsFirst}} {{action "sortSelectedItem" -1}}>
+              <i class="up arrow icon"></i>
+            </button>
+            <button class="ui icon button" type='button' disabled={{or (not _itemToMove) (not _itemToMoveIsRow) _itemToMoveIsLast}} {{action "sortSelectedItem" 1}}>
+              <i class="down arrow icon"></i>
+            </button>
+          </div>
+          <div class="field">
+            <button class="ui icon button" type='button' disabled={{or (not _itemToMove) _itemToMoveIsRow _itemToMoveIsFirst}} {{action "sortSelectedItem" -1}}>
+              <i class="left arrow icon"></i>
+            </button>
+            <button class="ui icon button" type='button' disabled={{or (not _itemToMove) _itemToMoveIsRow _itemToMoveIsLast}} {{action "sortSelectedItem" 1}}>
+              <i class="right arrow icon"></i>
+            </button>
+          </div>
+        </div>
+        {{#if _showNotUsedAttributesTree}}
+          <div class="ui small dividing header">
+            {{t "forms.fd-editform-constructor.form-config-panel.attributes-control"}}
+          </div>
+          <div class="ui segments panel-wrapper">
+            <div class="field">
+              {{
+                flexberry-textbox
+                placeholder=(t 'forms.fd-editform-constructor.form-config-panel.search')
+                value=searchTermTree
+              }}
+            </div>
+            <div class="ui segment overflow-panel">
+              {{
+                ember-jstree
+                actionReceiver=actionReceiverNotUsedAttributesTree
+                selectedNodes=selectedNodesNotUsedAttributesTree
+                data=dataNotUsedAttributesTree
+                plugins=pluginsTree
+                searchTerm=searchTermTree
+                searchOptions=searchOptionsTree
+                typesOptions=typesOptionsTree
+                treeObject=treeObjectNotUsedAttributesTree
+                eventDidBecomeReady=(action 'handleTreeDidBecomeReady')
+              }}
+            </div>
+          </div>
+          <button class='ui button {{_applyDisabled}}' type='button' {{action "setAttributeInControl" on="click" }}>
+            {{t "forms.fd-editform-constructor.form-config-panel.apply"}}
+          </button>
+          <button class='ui button' type='button' {{action "deleteEmptyControl" on="click" }}>
+            {{t "forms.fd-editform-constructor.form-config-panel.cancel"}}
+          </button>
+        {{/if}}
+      {{/tab.pane}}
 
     </form>
   {{/fd-tabs}}

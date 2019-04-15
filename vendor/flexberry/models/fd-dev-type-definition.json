@@ -2,6 +2,7 @@
   "name": "FdDevTypeDefinition",
   "modelName": "fd-dev-type-definition",
   "className": "DevTypeDefinition",
+  "nameSpace": "",
   "parentModelName": null,
   "parentClassName": null,
   "attrs": [

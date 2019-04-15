@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
 
-export let Model = Ember.Mixin.create({
+export let Model = Mixin.create({
   /**
     Non-stored property.
 
@@ -102,11 +103,11 @@ export let Model = Ember.Mixin.create({
     let parentValidations = this._super();
     let thisValidations = {
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 export let defineBaseModel = function (modelClass) {
@@ -114,4 +115,3 @@ export let defineBaseModel = function (modelClass) {
     _parentModelName: 'fd-dpd'
   });
 };
-

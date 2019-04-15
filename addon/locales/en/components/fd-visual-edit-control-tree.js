@@ -1,0 +1,27 @@
+export default {
+  'selected-element-null': 'Element is not selected',
+  'selected-element-change-edit': 'Click on controls to select Element',
+  'selected-element-change-list': 'Click on columns to select Element',
+  header: 'Header',
+  'property-name': 'Property name',
+  'edit-property': 'Edit property',
+  apply: 'Apply',
+  cancel: 'Cancel',
+  type: 'Type',
+  'not-null': 'NotNull',
+  'default-value': 'Default value',
+  description: 'Description',
+  'detail-view': 'View detail',
+  'master-list-form': 'List form for Look-Up',
+  'master-property': 'Property in master',
+  'sample-setting': 'Master customization string',
+  visibility: 'Visibility',
+  'custom-width': 'Customize width of control',
+  search: 'Enter name to search',
+  tree: {
+    'property': 'Own properties',
+    'type': 'Simple types',
+    'master': 'Masters',
+    'detail': 'Details',
+  }
+};

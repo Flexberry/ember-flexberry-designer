@@ -1,5 +1,14 @@
 export default {
   caption: 'Edit form constructor',
+  'new-control-caption': 'New attribute',
+  'class': 'Class',
+  'view': 'View',
+  'new-group-caption': 'New group',
+  'new-tab-caption': 'New tab',
+  'duplicate-value-error': 'Duplicate values',
+  'unknown-detail-view-error': 'Unknown view of detail',
+  'unsupported-container-error': 'Unsupported container',
+  'item-cast-error': 'The passed item can not be cast to a row',
   'form-config-panel': {
     'form-properties-header': 'Form properties',
     'form-name': 'Form name',
@@ -11,8 +20,24 @@ export default {
     'tab-caption': 'Tab caption',
     'control-not-selected': 'Control not selected',
     'add-controls-header': 'Add controls',
-    'add-control': 'Control',
+    'add-control': 'New property',
+    'empty-control': 'Select from existing properties',
+    'attributes-control': 'Set attribute for the control',
     'add-group': 'Group',
-    'add-tabs': 'Tabs',
+    'add-tab': 'Tab',
+    'move-controls-header': 'Move controls',
+    'move-control': 'Move',
+    'remove-control': 'Remove',
+    'remove-approve': 'Are you sure?',
+    apply: 'Apply',
+    cancel: 'Cancel',
+    search: 'Enter name to search',
+    tree: {
+      'not-used-attributes': {
+        'property': 'Own properties',
+        'master': 'Masters',
+        'detail': 'Details',
+      }
+    }
   },
 };

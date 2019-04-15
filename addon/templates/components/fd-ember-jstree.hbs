@@ -1,0 +1,22 @@
+<div class="field">
+  {{
+    flexberry-textbox
+    placeholder=searchTermPlaceholder
+    value=searchTerm
+  }}
+</div>
+<div class="ui segment overflow-panel">
+  {{
+    ember-jstree
+    actionReceiver=actionReceiver
+    selectedNodes=selectedNodes
+    multiple=false
+    data=data
+    plugins=plugins
+    typesOptions=typesOptions
+    searchTerm=searchTerm
+    searchOptions=searchOptions
+    treeObject=treeObject
+    eventDidBecomeReady=(action 'handleTreeDidBecomeReady')
+  }}
+</div>

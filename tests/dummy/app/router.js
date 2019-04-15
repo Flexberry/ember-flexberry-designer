@@ -1,23 +1,42 @@
-import Ember from 'ember';
+import EmberRouter from '@ember/routing/router';
 import config from './config/environment';
 
-const Router = Ember.Router.extend({
-  location: config.locationType
+const Router = EmberRouter.extend({
+  location: config.locationType,
+  rootURL: config.rootURL
 });
 
 Router.map(function () {
+  // old route
   this.route('fd-appstruct-form');
 
+  this.route('fd-application-edit-form',
+  { path: 'fd-application-edit-form/:id' });
+  this.route('fd-application-edit-form.new',
+  { path: 'fd-application-edit-form/new' });
   this.route('fd-association-list-form');
   this.route('fd-association-edit-form',
   { path: 'fd-association-edit-form/:id' });
   this.route('fd-association-edit-form.new',
   { path: 'fd-association-edit-form/new' });
+  this.route('fd-aggregation-list-form');
+  this.route('fd-aggregation-edit-form',
+  { path: 'fd-aggregation-edit-form/:id' });
+  this.route('fd-aggregation-edit-form.new',
+  { path: 'fd-aggregation-edit-form/new' });
+  this.route('fd-business-server-edit-form',
+  { path: 'fd-business-server-edit-form/:id' });
+  this.route('fd-business-server-edit-form.new',
+  { path: 'fd-business-server-edit-form/new' });
   this.route('fd-class-list-form');
   this.route('fd-class-edit-form',
   { path: 'fd-class-edit-form/:id' });
   this.route('fd-class-edit-form.new',
   { path: 'fd-class-edit-form/new' });
+  this.route('fd-typedef-edit-form',
+  { path: 'fd-typedef-edit-form/:id' });
+  this.route('fd-typedef-edit-form.new',
+  { path: 'fd-typedef-edit-form/new' });
   this.route('fd-configuration-list-form');
   this.route('fd-configuration-edit-form',
   { path: 'fd-configuration-edit-form/:id' });
@@ -28,15 +47,31 @@ Router.map(function () {
   { path: 'fd-diagram-edit-form/:id' });
   this.route('fd-diagram-edit-form.new',
   { path: 'fd-diagram-edit-form/new' });
+  this.route('fd-edit-form-edit-form',
+  { path: 'fd-edit-form-edit-form/:id' });
+  this.route('fd-edit-form-edit-form.new',
+  { path: 'fd-edit-form-edit-form/new' });
   this.route('fd-enum-edit-form',
   { path: 'fd-enum-edit-form/:id' });
   this.route('fd-enum-edit-form.new',
   { path: 'fd-enum-edit-form/new' });
+  this.route('fd-external-edit-form',
+  { path: 'fd-external-edit-form/:id' });
+  this.route('fd-external-edit-form.new',
+  { path: 'fd-external-edit-form/new' });
   this.route('fd-inheritance-list-form');
   this.route('fd-inheritance-edit-form',
   { path: 'fd-inheritance-edit-form/:id' });
   this.route('fd-inheritance-edit-form.new',
   { path: 'fd-inheritance-edit-form/new' });
+  this.route('fd-interface-edit-form',
+  { path: 'fd-interface-edit-form/:id' });
+  this.route('fd-interface-edit-form.new',
+  { path: 'fd-interface-edit-form/new' });
+  this.route('fd-list-form-edit-form',
+  { path: 'fd-list-form-edit-form/:id' });
+  this.route('fd-list-form-edit-form.new',
+  { path: 'fd-list-form-edit-form/new' });
   this.route('fd-stage-list-form');
   this.route('fd-stage-edit-form',
   { path: 'fd-stage-edit-form/:id' });
@@ -47,6 +82,14 @@ Router.map(function () {
   { path: 'fd-system-edit-form/:id' });
   this.route('fd-system-edit-form.new',
   { path: 'fd-system-edit-form/new' });
+  this.route('fd-type-edit-form',
+  { path: 'fd-type-edit-form/:id' });
+  this.route('fd-type-edit-form.new',
+  { path: 'fd-type-edit-form/new' });
+  this.route('fd-user-form-edit-form',
+  { path: 'fd-user-form-edit-form/:id' });
+  this.route('fd-user-form-edit-form.new',
+  { path: 'fd-user-form-edit-form/new' });
   this.route('fd-view-list-form');
   this.route('fd-view-edit-form',
   { path: 'fd-view-edit-form/:id' });
@@ -60,13 +103,40 @@ Router.map(function () {
   this.route('fd-editform-constructor.new',
   { path: 'fd-editform-constructor/new' });
 
-  this.route('fd-visual-listform');
+  this.route('fd-listform-constructor');
 
   this.route('fd-generation-process-form.new',
   { path: 'fd-generation-process-form/new' });
   this.route('fd-generation-process-form',
   { path: 'fd-generation-process-form/:id' });
   this.route('fd-generation-list-form');
+  this.route('fd-data-types-map');
+  this.route('fd-sequence-diagram-primitives-demo');
+  this.route('class-diagram-primitives-demo');
+  this.route('activity-diagram-primitives-demo');
+  this.route('usecase-diagram-primitives-demo');
+  this.route('deployment-diagram-primitives-demo');
+  this.route('statechart-diagram-primitives-demo');
+  this.route('collaboration-diagram-primitives-demo');
+
+  // new route
+  this.route('fd-application-model');
+  this.route('fd-diagrams');
+  this.route('fd-navigation');
+  this.route('fd-generation', { path: 'generation' }, function() {
+    this.route('first');
+    this.route('list', { path: '' }, function() {
+      this.route('log', { path: ':generation_id' });
+    });
+  });
+
+  this.route('fd-setting');
+  this.route('fd-architecture');
+  this.route('fd-all-projects', { path: 'all-projects' }, function() {
+    this.route('index', { path: '' });
+    this.route('empty');
+    this.route('new');
+  });
 });
 
 export default Router;

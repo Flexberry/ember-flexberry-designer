@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
+import { computed } from '@ember/object';
 
-export default Ember.Object.extend({
+export default EmberObject.extend({
 
-  _randomValue: {
+  _randomValue: computed(() => ({
     bool: function() {
       let ret = Math.random() * 2 > 1.0 ? 'true' : 'false';
       return ret;
@@ -118,9 +119,9 @@ export default Ember.Object.extend({
       let ret = '{}';
       return ret;
     },
-  },
+  })),
 
-  _checkValue: {
+  _checkValue: computed(() => ({
     bool: function(value) {
       let ret = value === 'true' || value === 'false';
       return ret;
@@ -142,7 +143,7 @@ export default Ember.Object.extend({
     },
 
     guid: function(value) {
-      var regexGuid = /^(\{){0,1}[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}(\}){0,1}$/gi;
+      var regexGuid = /^(\{){0,1}[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}(\}){0,1}$/gi;
       return regexGuid.test(value);
     },
 
@@ -221,32 +222,64 @@ export default Ember.Object.extend({
       let ret = typeof value === 'object';
       return ret;
     },
+  })),
 
-  },
+  _flexberryTypeToFD: computed(() => ({
+    'bool': 'bool',
+    'System.Boolean': 'bool',
 
-  _flexberryTypeToFD: {
-    boolean: 'bool',
-    WebFile: 'tFile',
-    char: 'string',
-    string: 'string',
-    guid: 'guid',
-    decimal: 'decimal',
-    double: 'double',
-    float: 'float',
-    sbyte: 'sbyte',
-    short: 'short',
-    byte: 'byte',
-    int: 'int',
-    long: 'long',
-    uint: 'uint',
-    ushort: 'ushort',
-    ulong: 'ulong',
-    DateTime: 'DateTime',
-    NullableDateTime: 'DateTime',
-    NullableDecimal: 'Decimal',
-    NullableInt: 'Int',
-    object: 'object'
-  },
+    'byte': 'byte',
+    'System.Byte': 'byte',
+    'sbyte': 'sbyte',
+    'System.SByte': 'sbyte',
+
+    'short': 'short',
+    'System.Int16': 'short',
+    'ushort': 'ushort',
+    'System.UInt16': 'ushort',
+
+    'int': 'int',
+    'System.Int32': 'int',
+    'uint': 'uint',
+    'System.UInt32': 'uint',
+
+    'long': 'long',
+    'System.Int64': 'long',
+    'ulong': 'ulong',
+    'System.UInt64': 'ulong',
+
+    'float': 'float',
+    'System.Single': 'float',
+
+    'double': 'double',
+    'System.Double': 'double',
+
+    'decimal': 'decimal',
+    'System.Decimal': 'decimal',
+
+    'DateTime': 'DateTime',
+    'System.DateTime': 'DateTime',
+
+    'char': 'string',
+    'System.Char': 'string',
+    'string': 'string',
+    'System.String': 'string',
+
+    'guid': 'guid',
+    'System.Guid': 'guid',
+
+    'object': 'object',
+    'System.Object': 'object',
+
+    'NullableDateTime': 'DateTime',
+    'ICSSoft.STORMNET.UserDataTypes.NullableDateTime': 'DateTime',
+    'NullableInt': 'int',
+    'ICSSoft.STORMNET.UserDataTypes.NullableInt': 'int',
+    'NullableDecimal': 'decimal',
+    'ICSSoft.STORMNET.UserDataTypes.NullableDecimal': 'decimal',
+    'WebFile': 'WebFile',
+    'ICSSoft.STORMNET.UserDataTypes.WebFile': 'WebFile',
+  })),
 
   flexberryTypes: function() {
     let ret = Object.keys(this._flexberryTypeToFD);
@@ -287,7 +320,7 @@ export default Ember.Object.extend({
   },
 
   randomValue: function(type) {
-    if (type === undefined) {
+    if (!type) {
       type = 'string';
     }
 

@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
 
-export let Model = Ember.Mixin.create({
+export let Model = Mixin.create({
   name: DS.attr('string'),
   description: DS.attr('string'),
   ordernum: DS.attr('number'),
@@ -16,10 +17,10 @@ export let Model = Ember.Mixin.create({
     let thisValidations = {
       view: { presence: true }
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });

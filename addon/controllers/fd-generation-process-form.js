@@ -1,6 +1,21 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { A } from '@ember/array';
+import { getOwner } from '@ember/application';
+import { run } from '@ember/runloop';
+import { isNone } from '@ember/utils';
+import { inject as service } from '@ember/service';
+import { get } from '@ember/object';
+import { computed } from '@ember/object';
+import $ from 'jquery';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
+  /**
+    Service for managing the state of the application.
+     @property appState
+    @type AppStateService
+  */
+  appState: service(),
+
   /**
     Current store.
 
@@ -8,7 +23,7 @@ export default Ember.Controller.extend({
     @type DS.Store
     @readOnly
   */
-  store: Ember.inject.service('store'),
+  store: service('store'),
 
   /**
     Generation log records array.
@@ -17,7 +32,7 @@ export default Ember.Controller.extend({
     @type Array
     @readOnly
   */
-  generationLog: Ember.A(),
+  generationLog: A(),
 
   /**
     Current generation object.
@@ -33,14 +48,14 @@ export default Ember.Controller.extend({
     @property sortedGenerationLog
     @type Array
   */
-  sortedGenerationLog: Ember.computed('currentGeneration.stepLogs.[]', function() {
-    let stepLogs = this.get('currentGeneration.stepLogs') || Ember.A();
+  sortedGenerationLog: computed('currentGeneration.stepLogs.[]', function() {
+    let stepLogs = this.get('currentGeneration.stepLogs') || A();
     return stepLogs.sortBy('time');
   }),
 
-  currentProjectContext: Ember.inject.service('fd-current-project-context'),
+  currentProjectContext: service('fd-current-project-context'),
 
-  generationService: Ember.inject.service('fd-generation'),
+  generationService: service('fd-generation'),
 
   actions: {
     /**
@@ -49,20 +64,21 @@ export default Ember.Controller.extend({
       @method actions.generate
      */
     generate() {
+      this.get('appState').loading();
       let _this = this;
       let stagePk = _this.get('currentProjectContext').getCurrentStage();
-      let host = _this.get('store').adapterFor('application').host;
-      Ember.$.ajax({
-        type: 'GET',
-        xhrFields: { withCredentials: true },
-        url: `${host}/Generate(project=${stagePk})`,
-        success(result) {
-          _this.set('generationService.lastGenerationToken', result);
-          _this.transitionToRoute('fd-generation-process-form', Ember.get(result, 'value'));
-        },
-        error() {
+      let adapter = getOwner(this).lookup('adapter:application');
 
-        },
+      adapter.callFunction('Generate', { project: stagePk.toString() }, null, { withCredentials: true },
+      (result) => {
+        _this.set('generationService.lastGenerationToken', result);
+        result = result || {};
+        _this.get('appState').reset();
+        _this.transitionToRoute(_this.get('editFormRoute'), get(result, 'value'));
+      },
+      () => {
+        _this.get('appState').reset();
+        _this.set('error', new Error(_this.get('i18n').t('forms.fd-generation-process-form.connection-error-text')));
       });
     }
   },
@@ -80,9 +96,9 @@ export default Ember.Controller.extend({
     let _this = this;
     if (modelName && modelProjection && modelId) {
       this.store.findRecord(modelName, modelId, { projection: modelProjection }).then(record => {
-        if (!Ember.isNone(record)) {
+        if (!isNone(record)) {
           _this.set('currentGeneration', record);
-          Ember.$('.generation-progress-bar').progress({
+          $('.generation-progress-bar').progress({
             text: {
               active: '{percent}%',
               success: '{percent}%'
@@ -93,7 +109,7 @@ export default Ember.Controller.extend({
           }
         }
 
-        Ember.run.later(_this, function() {
+        run.later(_this, function() {
           let currentModelId = _this.get('generationId');
           if (modelId === currentModelId) {
             _this.generationLogUpdate(interval);

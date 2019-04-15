@@ -2,6 +2,7 @@
   "name": "FdRepositoryDataObject",
   "modelName": "fd-repository-data-object",
   "className": "RepositoryDataObject",
+  "nameSpace": "",
   "parentModelName": null,
   "parentClassName": null,
   "attrs": [

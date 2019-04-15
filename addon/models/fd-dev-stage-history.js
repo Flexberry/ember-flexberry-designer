@@ -1,8 +1,8 @@
 import { Model as StageHistoryMixin } from
   '../mixins/regenerated/models/fd-dev-stage-history';
-import { Projection } from 'ember-flexberry-data';
-import { Offline } from 'ember-flexberry-data';
-let Model = Projection.Model.extend(Offline.ModelMixin, StageHistoryMixin, {
+import model from 'ember-flexberry-data/models/model';
+import OfflineModelMixin from 'ember-flexberry-data/mixins/offline-model';
+let Model = model.extend(OfflineModelMixin, StageHistoryMixin, {
 
 });
 export default Model;

@@ -1,0 +1,28 @@
+<div class="ui stackable grid fd-list">
+
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-custom-editing-panel.stereotype-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=model.stereotype
+        class='fluid input disabled'
+        placeholder=(t "components.fd-custom-editing-panel.stereotype-placeholder")
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-custom-editing-panel.description-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textarea
+        value=model.description
+        class='fluid input'
+        placeholder=(t "components.fd-custom-editing-panel.description-placeholder")
+      }}
+    </div>
+  </div>
+</div>

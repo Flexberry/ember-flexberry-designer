@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import $ from 'jquery';
+
 import EmberFlexberryDesignerTranslations from 'ember-flexberry-designer/locales/ru/translations';
 
 const translations = {};
-Ember.$.extend(true, translations, EmberFlexberryDesignerTranslations);
+$.extend(true, translations, EmberFlexberryDesignerTranslations);
 
-Ember.$.extend(true, translations, {
+$.extend(true, translations, {
 
   'application-name': '',
 
@@ -52,6 +53,12 @@ Ember.$.extend(true, translations, {
           title: 'Это версия аддона ember-flexberry, которая сейчас используется в этом тестовом приложении ' +
           '(версия npm-пакета + хэш коммита). ' +
           'Кликните, чтобы перейти на GitHub.'
+        },
+        'copyright': 'Copyright © New platform Ltd. 2018 Создано при поддержке Фонда содействия ' +
+        'развитию малых форм предприятий в научно-технической сфере (программа СТАРТ-2013).',
+        'copyright-version': {
+          title: 'Copyright © New platform Ltd. 2018 Создано при поддержке Фонда содействия ' +
+           'развитию малых форм предприятий в научно-технической сфере (программа СТАРТ-2013).'
         }
       },
 
@@ -84,7 +91,7 @@ Ember.$.extend(true, translations, {
 
           },
 
-          'fd-visual-listform': {
+          'fd-listform-constructor': {
             caption: 'Конструктор списковой формы',
             title: '',
           },
@@ -123,6 +130,11 @@ Ember.$.extend(true, translations, {
             title: '',
 
           },
+          'fd-aggregation-list-form': {
+            caption: 'Аггрегации',
+            title: '',
+
+          },
           'fd-inheritance-list-form': {
             caption: 'Наследование',
             title: '',
@@ -139,6 +151,42 @@ Ember.$.extend(true, translations, {
           },
           'fd-generation-list-form': {
             caption: 'Список генераций',
+            title: '',
+          },
+          'fd-uml-primitives': {
+            caption: 'UML',
+            title: '',
+          },
+          'class-diagram-primitives-demo': {
+            caption: 'Диаграмма классов',
+            title: '',
+          },
+          'activity-diagram-primitives-demo': {
+            caption: 'Диаграмма активностей',
+            title: '',
+          },
+          'deployment-diagram-primitives-demo': {
+            caption: 'Диаграмма развертывания',
+            title: '',
+          },
+          'statechart-diagram-primitives-demo': {
+            caption: 'Диаграмма состояний',
+            title: '',
+          },
+          'usecase-diagram-primitives-demo': {
+            caption: 'Диаграмма вариантов использования',
+            title: '',
+          },
+          'sequence-diagram-primitives-demo': {
+            caption: 'Диаграмма последовательности',
+            title: '',
+          },
+          'collaboration-diagram-primitives-demo': {
+            caption: 'Диаграмма сотрудничества',
+            title: '',
+          },
+          'fd-data-types-map': {
+            caption: 'Карта типов данных',
             title: '',
           }
         },

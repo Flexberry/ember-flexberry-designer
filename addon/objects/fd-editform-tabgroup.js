@@ -2,7 +2,8 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import EmberObject from '@ember/object';
+import { computed } from '@ember/object';
 
 /**
   Describes a group of tabs on the edit form.
@@ -10,7 +11,7 @@ import Ember from 'ember';
   @class FdEditformTabgroup
   @extends <a href="http://emberjs.com/api/classes/Ember.Object.html">Ember.Object</a>
 */
-export default Ember.Object.extend({
+export default EmberObject.extend({
   /**
     Specifies the width of the tab group, in percent or in pixels.
 
@@ -26,4 +27,12 @@ export default Ember.Object.extend({
     @type FdEditformTab[]
   */
   tabs: undefined,
+
+  /**
+    One of the tabs, which is now considered active.
+
+    @property activeTab
+    @type FdEditformTab
+  */
+  activeTab: computed.oneWay('tabs.firstObject'),
 });

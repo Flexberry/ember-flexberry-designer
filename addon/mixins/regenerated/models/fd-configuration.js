@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
-export let Model = Ember.Mixin.create({
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
+export let Model = Mixin.create({
   project: DS.belongsTo('fd-project', { inverse: 'configurations', async: false }),
   stages: DS.hasMany('fd-stage', { inverse: 'configuration', async: false }),
   getValidations: function () {
@@ -9,11 +10,11 @@ export let Model = Ember.Mixin.create({
     let thisValidations = {
       project: { presence: true }
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 export let defineBaseModel = function (modelClass) {
@@ -24,34 +25,34 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('EditFormView', 'fd-configuration', {
-    name: Projection.attr('Name'),
-    description: Projection.attr('Description'),
-    project: Projection.belongsTo('fd-project', '', {
-      repository: Projection.belongsTo('fd-repository', '', {
+    name: attr('Name'),
+    description: attr('Description'),
+    project: belongsTo('fd-project', '', {
+      repository: belongsTo('fd-repository', '', {
 
       }, { hidden: true })
     }, { hidden: true })
   });
   modelClass.defineProjection('ListFormView', 'fd-configuration', {
-    name: Projection.attr('Name'),
-    changeUser: Projection.attr('Change user'),
-    changeDate: Projection.attr('Change date'),
-    createUser: Projection.attr('Create user'),
-    createDate: Projection.attr('Create date')
+    name: attr('Name'),
+    changeUser: attr('Change user'),
+    changeDate: attr('Change date'),
+    createUser: attr('Create user'),
+    createDate: attr('Create date')
   });
   modelClass.defineProjection('PathSearchView', 'fd-configuration', {
-    name: Projection.attr(''),
-    project: Projection.belongsTo('fd-project', '', {
-      name: Projection.attr(''),
-      repository: Projection.belongsTo('fd-repository', '', {
+    name: attr(''),
+    project: belongsTo('fd-project', '', {
+      name: attr(''),
+      repository: belongsTo('fd-repository', '', {
 
       })
     })
   });
   modelClass.defineProjection('SearchRepObjView', 'fd-configuration', {
-    name: Projection.attr('')
+    name: attr('')
   });
   modelClass.defineProjection('TestStageName', 'fd-configuration', {
-    name: Projection.attr('')
+    name: attr('')
   });
 };

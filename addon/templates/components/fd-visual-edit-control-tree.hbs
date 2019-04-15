@@ -1,0 +1,229 @@
+{{#if (not selectedItem)}}
+  <div class="ui info message">
+    <div class="header">
+      {{t 'components.fd-visual-edit-control-tree.selected-element-null'}}
+    </div>
+    {{#if (eq typeForm 'editform')}}
+      <p>{{t 'components.fd-visual-edit-control-tree.selected-element-change-edit'}}</p>
+    {{/if}}
+    {{#if (eq typeForm 'listform')}}
+      <p>{{t 'components.fd-visual-edit-control-tree.selected-element-change-list'}}</p>
+    {{/if}}
+  </div>
+{{else}}
+
+  <div class="field">
+    <label>{{t "components.fd-visual-edit-control-tree.header"}}</label>
+    {{
+      flexberry-textbox
+      value=selectedItem.caption
+    }}
+  </div>
+
+  <div class="field">
+    <label>{{t "components.fd-visual-edit-control-tree.property-name"}}</label>
+    {{
+      flexberry-textbox
+      value=selectedItem.propertyDefinition.name
+      readonly=true
+    }}
+  </div>
+
+  {{#flexberry-toggler caption=(t 'components.fd-visual-edit-control-tree.edit-property')}}
+    {{#if treeViewMode}}
+      <div>
+        <div class="ui buttons">
+          <button class='ui button icon' type='button' {{action "addAttribute" on="click" }}>
+            <i class="plus icon"></i>
+          </button>
+          <button class='ui button icon {{editAttributeDisabled}}' type='button' {{action "editAttribute" on="click" }}>
+            <i class="edit icon"></i>
+          </button>
+          <button class='ui button icon {{removeAttributeDisabled}}' type='button' {{action "removeAttribute" on="click" }}>
+            <i class="remove icon"></i>
+          </button>
+          <button class='ui button icon {{applyAttributeDisabled}}' type='button' {{action "applyAttribute" on="click" }}>
+            <i class="check icon"></i>
+          </button>
+        </div>
+        <div class="ui segments panel-wrapper">
+          <div class="field">
+            {{
+              flexberry-textbox
+              placeholder=(t 'components.fd-visual-edit-control-tree.search')
+              value=searchAttributes
+            }}
+          </div>
+          <div class="ui segment overflow-panel">
+            {{
+              ember-jstree
+              actionReceiver=actionReceiverAttributesTree
+              selectedNodes=selectedNodesAttributesTree
+              data=dataAttributesTree
+              plugins=plugins
+              typesOptions=typesOptions
+              searchTerm=searchAttributes
+              searchOptions=searchOptions
+              treeObject=treeObjectAttributesTree
+              eventDidBecomeReady=(action 'handleTreeDidBecomeReady')
+            }}
+          </div>
+        </div>
+      </div>
+    {{else}}
+    <div class="field">
+      <label>{{t "components.fd-visual-edit-control-tree.property-name"}}</label>
+      {{
+        flexberry-textbox
+        value=propertyName
+      }}
+    </div>
+    <div class="field">
+      <label>{{t "components.fd-visual-edit-control-tree.type"}}</label>
+      <div class="ui segments panel-wrapper">
+        <div class="field">
+          {{
+            flexberry-textbox
+            placeholder=(t 'components.fd-visual-edit-control-tree.search')
+            value=searchType
+          }}
+        </div>
+        <div class="ui segment overflow-panel">
+          {{
+            ember-jstree
+            selectedNodes=selectedNodesTypeTree
+            data=dataTypeTree
+            plugins=plugins
+            searchTerm=searchType
+            searchOptions=searchOptions
+            typesOptions=typesOptions
+          }}
+        </div>
+      </div>
+    </div>
+    <button class='ui button {{applyTypeDisabled}}' type='button' {{action "applyСlick" on="click" }}>
+      {{t "components.fd-visual-edit-control-tree.apply"}}
+    </button>
+    <button class='ui button' type='button' {{action "cancelСlick" on="click" }}>
+      {{t "components.fd-visual-edit-control-tree.cancel"}}
+    </button>
+    {{/if}}
+  {{/flexberry-toggler}}
+
+  {{#if (eq selectedItem.type 'detail')}}
+    <div class="field">
+      <label>{{t "components.fd-visual-edit-control-tree.detail-view"}}</label>
+      {{
+        flexberry-dropdown
+        items=dropdownElements.dropdownItems
+        value=dropdownElements.dropdownValue.detailViewName
+      }}
+    </div>
+  {{/if}}
+  {{#if (eq selectedItem.type 'master')}}
+    {{#if (eq typeForm 'editform')}}
+    <div class="field">
+      <label>{{t "components.fd-visual-edit-control-tree.master-list-form"}}</label>
+      {{
+        flexberry-dropdown
+        items=dropdownElements.dropdownItems
+        value=dropdownElements.dropdownValue.container
+      }}
+    </div>
+    {{/if}}
+    <div class="field">
+      <label>{{t "forms.fd-view-edit-form.settings-master.lookup-type"}}</label>
+      {{
+        flexberry-dropdown
+        onChange=(action "changeLookupType")
+        items=lookupTypeItems
+        value=selectedItem.propertyDefinition.lookupType
+      }}
+    </div>
+    {{#if (not-eq selectedItem.propertyDefinition.lookupType 'default')}}
+      <div class="field">
+        <label>{{t "components.fd-visual-edit-control-tree.master-property"}}</label>
+        {{
+          flexberry-textbox
+          value=selectedItem.propertyDefinition.masterPropertyName
+        }}
+      </div>
+      <div class="field">
+        <label>{{t "components.fd-visual-edit-control-tree.sample-setting"}}</label>
+        {{
+          flexberry-textbox
+          value=selectedItem.propertyDefinition.masterCustomizationString
+        }}
+      </div>
+    {{/if}}
+  {{/if}}
+
+  {{#if (or (eq selectedItem.type 'master') (eq selectedItem.type 'detail'))}}
+  <div class="field {{if (or notNullDisabled readonly) "disabled"}}">
+    <label>{{t "components.fd-visual-edit-control-tree.not-null"}}</label>
+    {{
+      flexberry-checkbox
+      onChange=(action "changeMasterNotNull")
+      value=(eq selectedAttribute.startMultiplicity "1")
+    }}
+  </div>
+  {{else}}
+  <div class="field {{if readonly "disabled"}}">
+    <label>{{t "components.fd-visual-edit-control-tree.not-null"}}</label>
+    {{
+      flexberry-checkbox
+      value=selectedAttribute.notNull
+    }}
+  </div>
+  <div class="field {{if readonly "disabled"}}">
+    <label>{{t "components.fd-visual-edit-control-tree.default-value"}}</label>
+    {{
+      flexberry-textbox
+      value=selectedAttribute.defaultValue
+    }}
+  </div>
+  {{/if}}
+  {{#if (eq typeForm 'editform')}}
+    <div class="field">
+      <label>{{t "components.fd-visual-edit-control-tree.custom-width"}}</label>
+      {{
+        flexberry-checkbox
+        value=customWidth
+        onChange=(action "useCustomWidth")
+      }}
+    </div>
+    {{#if customWidth}}
+      <div class="slider">
+        <div class="flexberry-textbox ui input">
+          {{
+            input
+            type="number"
+            value=widthValue
+            input=(action "changeWidth" value="target.value")
+          }}
+        </div>
+        {{
+          flexberry-dropdown
+          onChange=(action "changeWidthType")
+          items=itemsWidthType
+          value=widthType
+        }}
+      </div>
+    {{/if}}
+  {{/if}}
+  <div class="field">
+    <label>{{t "components.fd-visual-edit-control-tree.visibility"}}</label>
+    {{
+      flexberry-checkbox
+      value=selectedItem.propertyDefinition.visible
+    }}
+  </div>
+  <div class="field {{if readonly "disabled"}}">
+    <label>{{t "components.fd-visual-edit-control-tree.description"}}</label>
+    {{
+      flexberry-textarea
+      value=selectedAttribute.description
+    }}
+  </div>
+
+{{/if}}

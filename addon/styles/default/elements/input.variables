@@ -1,0 +1,2 @@
+@placeholderFocusColor: transparent;
+@placeholderColor: @lightTextColor;

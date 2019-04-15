@@ -1,0 +1,90 @@
+<div class="row">
+  <div class="two wide column light-text">
+    {{t "forms.fd-application-model.entity-caption"}}
+  </div>
+  <div class="fourteen wide column">
+    {{
+      fd-list-item
+      model=entity.settings
+      caption=entity.settings.name
+      sheetComponentName=sheetComponentName
+    }}
+  </div>
+
+  {{!-- EForm --}}
+  {{#if (not-eq entity.editForms.length 0)}}
+    <div class="two wide column light-text">
+      {{t "forms.fd-application-model.editor-caption"}}
+    </div>
+    <div class="fourteen wide column">
+      {{#each entity.editForms as |editForm|}}
+        {{
+          fd-list-item
+          model=editForm
+          caption=editForm.name
+          sheetComponentName=sheetComponentName
+        }}
+      {{/each}}
+    </div>
+  {{/if}}
+
+  {{!-- LForm --}}
+  {{#if (not-eq entity.listForms.length 0)}}
+    <div class="two wide column light-text">
+      {{t "forms.fd-application-model.list-caption"}}
+    </div>
+    <div class="fourteen wide column">
+      {{#each entity.listForms as |listForm|}}
+        {{
+          fd-list-item
+          model=listForm
+          caption=listForm.name
+          sheetComponentName=sheetComponentName
+        }}
+      {{/each}}
+    </div>
+  {{/if}}
+
+  {{!-- BS --}}
+  {{#if (not-eq entity.bs null)}}
+    <div class="two wide column light-text">
+      {{t "forms.fd-application-model.bs-caption"}}
+    </div>
+    <div class="fourteen wide column">
+      {{
+        fd-list-item
+        model=entity.bs
+        caption=entity.bs.name
+        sheetComponentName=sheetComponentName
+      }}
+    </div>
+  {{/if}}
+
+  {{!-- Parents --}}
+  {{#if (not-eq entity.parents.length 0)}}
+    <div class="two wide column light-text">
+      {{t "forms.fd-application-model.parent-caption"}}
+    </div>
+    <div class="fourteen wide column">
+      {{#each entity.parents as |parent|}}
+        {{
+          fd-list-item
+          model=parent
+          caption=parent.name
+          sheetComponentName=sheetComponentName
+        }}
+      {{/each}}
+    </div>
+  {{/if}}
+
+  <div class="right floated fourteen wide column">
+    {{
+      fd-button
+      caption=(t "forms.fd-application-model.editor-caption")
+    }}
+    {{
+      fd-button
+      caption=(t "forms.fd-application-model.list-caption")
+    }}
+  </div>
+</div>

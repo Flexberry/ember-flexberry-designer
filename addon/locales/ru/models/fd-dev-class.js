@@ -330,10 +330,7 @@ export default {
       disableAllRightChecks: {
         __caption__: ''
       },
-      containers: {
-        __caption__: ''
-      },
-      appConfigFile: {
+      containersStr: {
         __caption__: ''
       },
       auditConnectionStringName: {
@@ -438,9 +435,6 @@ export default {
         __caption__: ''
       },
       generateComPlusServer: {
-        __caption__: ''
-      },
-      comPlusServerOptions: {
         __caption__: ''
       },
       generateHttpRemoteServer: {
@@ -982,11 +976,8 @@ export default {
       }
     },
     EditInterface: {
-      bSClass: {
-        __caption__: 'Business Server'
-      },
-      bSEvents: {
-        __caption__: 'BS Events'
+      businessServerEvents: {
+        __caption__: ''
       },
       businessServerClass: {
         __caption__: '',
@@ -1136,10 +1127,10 @@ export default {
         viewForForm: {
           __caption__: ''
         },
-        dataObjectTypes: {
+        dataObjectTypesStr: {
           __caption__: ''
         },
-        listFormOperations: {
+        listFormOperationsStr: {
           __caption__: ''
         },
         hierarchicalMaster: {
@@ -1362,7 +1353,7 @@ export default {
       description: {
         __caption__: ''
       },
-      storeInstancesInTypeXML: {
+      storeInstancesInType: {
         __caption__: 'StoreInstancesInType'
       },
       packet: {
@@ -1664,6 +1655,9 @@ export default {
       businessServerEvents: {
         __caption__: 'События бизнес-сервера'
       },
+      nameStr: {
+        __caption__: ''
+      },
       stage: {
         __caption__: 'Стадия'
       },
@@ -1934,6 +1928,51 @@ export default {
           name: {
             __caption__: ''
           }
+        }
+      },
+      formViews: {
+        __caption__: '',
+        view: {
+          __caption__: '',
+          class: {
+            __caption__: '',
+            name: {
+              __caption__: ''
+            }
+          }
+        }
+      },
+      attributes: {
+        __caption__: '',
+        name: {
+          __caption__: ''
+        },
+        type: {
+          __caption__: ''
+        },
+        notNull: {
+          __caption__: ''
+        },
+        defaultValue: {
+          __caption__: ''
+        },
+        description: {
+          __caption__: ''
+        },
+        accessModifier: {
+          __caption__: ''
+        }
+      },
+      methods: {
+        __caption__: '',
+        accessModifier: {
+          __caption__: ''
+        },
+        type: {
+          __caption__: ''
+        },
+        name: {
+          __caption__: ''
         }
       }
     },
@@ -2456,9 +2495,6 @@ export default {
       }
     },
     ListFormView: {
-      referenceCount: {
-        __caption__: 'Reference count'
-      },
       stereotype: {
         __caption__: 'Stereotype'
       },
@@ -2476,6 +2512,9 @@ export default {
       },
       stage: {
         __caption__: ''
+      },
+      referenceCount: {
+        __caption__: 'Reference count'
       }
     },
     LoadNameView: {

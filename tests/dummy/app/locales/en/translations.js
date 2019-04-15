@@ -1,12 +1,13 @@
-import Ember from 'ember';
+import $ from 'jquery';
+
 import EmberFlexberryDesignerTranslations from 'ember-flexberry-designer/locales/en/translations';
 
 const translations = {};
-Ember.$.extend(true, translations, EmberFlexberryDesignerTranslations);
+$.extend(true, translations, EmberFlexberryDesignerTranslations);
 
-Ember.$.extend(true, translations, {
+$.extend(true, translations, {
 
-  'application-name': 'Application caption',
+  'application-name': '',
 
   forms: {
     loading: {
@@ -52,7 +53,11 @@ Ember.$.extend(true, translations, {
           title: 'It is version of ember-flexberry addon, which uses in this dummy application ' +
           '(npm version + commit sha). ' +
           'Click to open commit on GitHub.'
-        }
+        },
+        'copyright': 'Copyright © New platform Ltd. 2018',
+        'copyright-version': {
+          title: 'Copyright © New platform Ltd. 2018'
+        },
       },
 
       sitemap: {
@@ -83,8 +88,8 @@ Ember.$.extend(true, translations, {
             title: '',
           },
 
-          'fd-visual-listform': {
-            caption: 'Visual edit listform',
+          'fd-listform-constructor': {
+            caption: 'List form constructor',
             title: '',
           },
 
@@ -121,6 +126,11 @@ Ember.$.extend(true, translations, {
             title: 'fd-association-list-form',
 
           },
+          'fd-aggregation-list-form': {
+            caption: 'fd-aggregation-list-form',
+            title: 'fd-aggregation-list-form',
+
+          },
           'fd-inheritance-list-form': {
             caption: 'fd-inheritance-list-form',
             title: 'fd-inheritance-list-form',
@@ -138,7 +148,43 @@ Ember.$.extend(true, translations, {
           'fd-generation-list-form': {
             caption: 'Generations list form',
             title: '',
-          }
+          },
+          'fd-uml-primitives': {
+            caption: 'UML',
+            title: '',
+          },
+          'class-diagram-primitives-demo': {
+            caption: 'Class Diagram',
+            title: '',
+          },
+          'activity-diagram-primitives-demo': {
+            caption: 'Activity Diagram',
+            title: '',
+          },
+          'deployment-diagram-primitives-demo': {
+            caption: 'Deployment Diagram',
+            title: '',
+          },
+          'statechart-diagram-primitives-demo': {
+            caption: 'Statechart Diagram',
+            title: '',
+          },
+          'usecase-diagram-primitives-demo': {
+            caption: 'Usecase Diagram',
+            title: '',
+          },
+          'sequence-diagram-primitives-demo': {
+            caption: 'Sequence Diagram',
+            title: '',
+          },
+          'collaboration-diagram-primitives-demo': {
+            caption: 'Collaboration Diagram',
+            title: '',
+          },
+          'fd-data-types-map': {
+            caption: 'Data types map',
+            title: '',
+          },
         },
       }
     },

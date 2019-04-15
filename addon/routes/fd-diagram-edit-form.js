@@ -1,15 +1,9 @@
 import EditFormRoute from 'ember-flexberry/routes/edit-form';
+import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 
-export default EditFormRoute.extend({
+export default EditFormRoute.extend(FdFormCheckTransitionMixin, {
 
-  modelProjection: 'FdUmlCad',
+  modelProjection: 'FdDiagram',
 
-  modelName: 'fd-dev-uml-cad',
-
-  setupController: function (controller, model) {
-    this._super(...arguments);
-    let primitivesJsonString = model.get('primitivesJsonString');
-    model.set('primitives', eval(primitivesJsonString));
-  }
-
+  modelName: 'fd-diagram'
 });
