@@ -14,7 +14,7 @@
         }}
       </div>
       {{#each tableView as |tableView|}}
-        <div class="{{tableView.columnClass}}column light-text">
+        <div class="column light-text">
           {{flexberry-textbox
             value=(mut (get value tableView.columnProperty))
             class='fluid input'

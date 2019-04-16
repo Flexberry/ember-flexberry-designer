@@ -23,8 +23,8 @@ export default Component.extend(FdUpdateAttributeValueMixin, {
     @type Array
     @default undefined
   */
-  tableViewAttribute: [
-    {
+  tableViewAttribute: computed(() => ( 
+    A([{
       columnCaption: 'components.fd-attribute-table.attribute.name',
       columnProperty: 'name',
       attrPlaceholder: 'components.fd-attribute-table.attribute.name-placeholder',
@@ -38,6 +38,6 @@ export default Component.extend(FdUpdateAttributeValueMixin, {
       columnCaption: 'components.fd-attribute-table.attribute.description',
       columnProperty: 'description',
       attrPlaceholder: 'components.fd-attribute-table.attribute.description-placeholder',
-    },
-  ],
+    }])
+  )),
 });
