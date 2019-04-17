@@ -19,6 +19,46 @@ export default DS.Transform.extend({
       }
     }
 
+    for (let primitiveId in elements) {
+      let primitive = elements[primitiveId];
+      if ('StartLE' in primitive && 'Primitive' in primitive.StartLE && '$type' in  primitive.StartLE.Primitive ||
+        'StartPrimitive' in primitive && '$type' in primitive.StartPrimitive
+      ) {
+        let findPrimitive =  'StartPrimitive' in primitive && '$type' in primitive.StartPrimitive ? primitive.StartPrimitive : primitive.StartLE.Primitive;
+        let findedPrimitiveId = this._findPrimitive(findPrimitive, elements);
+        if (findedPrimitiveId === false) {
+          findedPrimitiveId = '{' + uuid.v4() + '}';
+          findPrimitive['$id'] = findedPrimitiveId;
+          elements[findedPrimitiveId] = findPrimitive;
+        }
+        if ('StartLE' in primitive && 'Primitive' in primitive.StartLE && '$type' in  primitive.StartLE.Primitive) {
+          elements[primitiveId].StartLE.Primitive = { '$ref': findedPrimitiveId };
+        }
+        if ('StartPrimitive' in primitive && '$type' in primitive.StartPrimitive) {
+          elements[primitiveId].StartPrimitive = { '$ref': findedPrimitiveId };
+        }
+      }
+
+      if ('EndLE' in primitive && 'Primitive' in primitive.EndLE && '$type' in  primitive.EndLE.Primitive ||
+        'EndPrimitive' in primitive && '$type' in primitive.EndPrimitive
+      ) {
+        let findPrimitive =  'EndPrimitive' in primitive && '$type' in primitive.EndPrimitive ? primitive.EndPrimitive : primitive.EndLE.Primitive;
+        let findedPrimitiveId = this._findPrimitive(findPrimitive, elements);
+        if (findedPrimitiveId === false) {
+          findedPrimitiveId = '{' + uuid.v4() + '}';
+          findPrimitive['$id'] = findedPrimitiveId;
+          elements[findedPrimitiveId] = findPrimitive;
+        }
+        if ('EndLE' in primitive && 'Primitive' in primitive.EndLE && '$type' in  primitive.EndLE.Primitive) {
+          elements[primitiveId].EndLE.Primitive = { '$ref': findedPrimitiveId };
+        }
+        if ('EndPrimitive' in primitive && '$type' in primitive.EndPrimitive) {
+          elements[primitiveId].EndPrimitive = { '$ref': findedPrimitiveId };
+        }
+      }
+
+    }
+
     let linkTree = {};
     for (let i = 0; i < linksIds.length; i++) {
       let linkId = linksIds[i];
@@ -208,6 +248,29 @@ export default DS.Transform.extend({
       }
     };
     return toConnectorLink;
+  },
+
+  _findPrimitive(findPrimitive, elements) {
+    for (let primitiveId in elements) {
+      let primitive = elements[primitiveId];
+      let find = false;
+      for (let property in findPrimitive) {
+        if ( typeof(findPrimitive[property]) !== 'object' || ! ('Text' in findPrimitive[property])) {
+          continue;
+        }
+        if (property in primitive && typeof(primitive[property]) === 'object' && 'Text' in primitive[property] && findPrimitive[property].Text === primitive[property].Text) {
+          find = true;
+        } else {
+          find = false;
+          break;
+        }
+      }
+
+      if (find) {
+        return primitiveId;
+      }
+    }
+    return false;
   },
 
   _cmpByLE(crossInfo1, crossInfo2) {
