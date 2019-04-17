@@ -1,5 +1,7 @@
 import FlexberryButtonComponent from 'ember-flexberry/components/flexberry-button';
 import layout from '../templates/components/fd-round-button';
+import { next } from '@ember/runloop';
+import $ from 'jquery';
 
 export default FlexberryButtonComponent.extend({
   layout,
@@ -12,8 +14,10 @@ export default FlexberryButtonComponent.extend({
 
   colorClass: ' ',
 
-  init() {
+  didInsertElement() {
     this._super(...arguments);
-    this.classNames.push(this.get('colorClass'));
+    next(() => {
+      $(this.element).addClass(this.get('colorClass'));
+    });
   }
 });
