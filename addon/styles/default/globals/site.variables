@@ -47,7 +47,7 @@
 @fdSheetBg: @pageBackground;
 
 /* Текст кнопок тулбара */
-@toolbarBtnClr: @white;
+@toolbarButtonColor: @white;
 
 /* Фон сайдбара */
 @sidebarBg: @strongTransparentBlack;
@@ -58,14 +58,14 @@
 @footerBackground: #eee;
 
 /* Фон кнопок тулбара */
-@toolbarBtnBg: @lightTextColor;
+@toolbarButtonBackground: @lightTextColor;
 
 /* Цвет основных кнопок */
-@basicBtn: @lightTextColor;
+@basicButtonColor: @lightTextColor;
+@basicButtonBoxShadow: @strongTransparentBlack;
 
 @itemActiveBorderRadius: 0.5rem;
-@hoverToolbarBtnBg: rgba(0, 0, 0, 0.35);
-@activeToolbarBtnBg: rgba(0, 0, 0, 0.45);
+
 @itemActiveBorderRadius: 0.5rem;
 
 @leftIndent: 2.5rem;
@@ -78,3 +78,34 @@
 @inputBackground        : transparent;
 
 @blue: #007aff;
+/* Loading Dimmer */
+@loaderDimmerColorGlobal: rgba(255, 255, 255, 0.8);
+
+/*---------------
+    DARK THEME
+----------------*/
+
+/*
+
+@veryStrongTransparentWhite: rgba(255, 255, 255, 0.65);
+
+@textColor: @veryStrongTransparentWhite;
+@lightTextColor: rgba(255, 255, 255, 0.25);
+@pageBackground: #3e3e3e;
+
+@sidebarBg: rgba(0, 0, 0, 0.14);
+
+@sidebarIconColor: rgba(255, 255, 255, 0.50);
+
+@overlayColor: rgba(1, 1, 1, 0.15);
+
+@footerBackground: #383838;
+
+@loaderDimmerColorGlobal: rgba(74, 74, 74, 0.78);
+
+@basicButtonBoxShadow: @lightTextColor;
+
+@toolbarButtonColor: @veryStrongTransparentWhite;
+@toolbarButtonBackground: @sidebarBg;
+
+*/
