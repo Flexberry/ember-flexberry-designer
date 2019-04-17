@@ -12,8 +12,8 @@ export default FlexberryButtonComponent.extend({
 
   colorClass: ' ',
 
-  init() {
+  didInsertElement() {
     this._super(...arguments);
-    this.classNames.push(this.get('colorClass'));
+    $(this.element).addClass(this.get('colorClass'));
   }
 });
