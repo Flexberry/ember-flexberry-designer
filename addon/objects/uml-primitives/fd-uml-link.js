@@ -130,7 +130,7 @@ export default FdUmlPrimitive.extend({
   vertices: computed('primitive.Points', function() {
     let vertices = [];
     let points = this.get('primitive.Points');
-    for (let i = points.length - 2; i > 0; i--) {
+    for (let i = 1; i < points.length - 1; i++) {
       vertices.push({ x: points[i].X, y: points[i].Y });
     }
 

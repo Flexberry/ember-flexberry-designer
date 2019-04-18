@@ -30,5 +30,13 @@ export default {
     'description-placeholder': 'Введите описание',
     'create-btn': 'Создать метод',
     'delete-btn': 'Удалить выбранные',
+  },
+  'store-instances': {
+    'data': 'Тип',
+    'data-placeholder': 'Введите тип',
+    'ds': 'Сервис данных',
+    'ds-placeholder': 'Введите сервис данных',
+    'create-btn': 'Создать тип в хранилище',
+    'delete-btn': 'Удалить выбранные',
   }
 };
