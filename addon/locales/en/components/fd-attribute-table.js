@@ -30,5 +30,13 @@ export default {
     'description-placeholder': 'Enter description',
     'create-btn': 'Create metod',
     'delete-btn': 'Delete selected',
+  },
+  'store-instances': {
+    'data': 'Type',
+    'data-placeholder': 'Enter type',
+    'ds': 'Data Service',
+    'ds-placeholder': 'Enter data service',
+    'create-btn': 'Create store instances in type',
+    'delete-btn': 'Delete selected',
   }
 };
