@@ -30,7 +30,7 @@
   min-height: 34px;
   box-shadow: none;
   border: 1px dashed @sidebarBg;
-  padding: 0.7em 2.5em;
+  padding: 0.7em 1em;
   &:hover {
     border: 1px dashed @sidebarBg + rgba(0, 0, 0, 0.10);
     box-shadow: none;

@@ -1,15 +1,10 @@
-.fd-table > .row {
-  border-bottom: none !important;
-  & > .fd-table-header {
-    padding-top: 1rem !important;
+.ui.grid.fd-table {
+  width: 100%;
+  padding-top: 1rem;
+
+  > .row .column.fd-table-checkbox{
+    position: absolute;
+    left: -2.5em;
+    width: 2em;
   }
-  & > .column {
-    padding-right: 0 !important;
-    padding-left: 0 !important;
-  }
-}
-.fd-table > .row > .column.fd-table-checkbox{
-  position: absolute;
-  left: -2em;
-  width: 2em;
 }
